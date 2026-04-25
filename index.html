@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torah Translation | Orot, War</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-soft: #151b24;
+      --panel: rgba(18, 24, 34, 0.84);
+      --panel-strong: rgba(9, 13, 20, 0.92);
+      --line: rgba(203, 183, 130, 0.18);
+      --text: #ece6d9;
+      --muted: #b6ab95;
+      --accent: #d2b16f;
+      --accent-soft: #7e6541;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(127, 97, 55, 0.24), transparent 36%),
+        linear-gradient(180deg, #111827 0%, var(--bg) 46%, #090c11 100%);
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 72px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 56px 32px 40px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(210, 177, 111, 0.09), transparent 52%),
+        var(--panel-strong);
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -24% 36%;
+      height: 240px;
+      background: radial-gradient(circle, rgba(210, 177, 111, 0.12), transparent 62%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.75rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 10ch;
+      margin-bottom: 18px;
+      font-size: clamp(3rem, 8vw, 5.7rem);
+      line-height: 0.92;
+      font-weight: 600;
+    }
+
+    .lede {
+      max-width: 640px;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-links a {
+      padding: 10px 16px;
+      border: 1px solid rgba(210, 177, 111, 0.28);
+      border-radius: 999px;
+      color: var(--text);
+      text-decoration: none;
+      background: rgba(210, 177, 111, 0.06);
+    }
+
+    .hero-links a:hover,
+    .hero-links a:focus-visible {
+      background: rgba(210, 177, 111, 0.14);
+      outline: none;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .panel {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .section-title {
+      margin-bottom: 16px;
+      font-size: 1.35rem;
+    }
+
+    .sort-list,
+    .steps {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .sort-list li,
+    .steps li {
+      margin-bottom: 12px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background:
+        linear-gradient(180deg, rgba(210, 177, 111, 0.05), transparent 44%),
+        var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .card p,
+    .card span {
+      color: var(--muted);
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(210, 177, 111, 0.12);
+      color: var(--accent);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .focus {
+      margin-top: 24px;
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        linear-gradient(120deg, rgba(210, 177, 111, 0.08), transparent 48%),
+        var(--panel-strong);
+      box-shadow: var(--shadow);
+    }
+
+    .focus p {
+      max-width: 760px;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 28px;
+      color: var(--accent-soft);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .grid,
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 40px 22px 30px;
+      }
+
+      .panel,
+      .focus {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <p class="eyebrow">Torah Translation</p>
+      <h1>Texts Before Dawn</h1>
+      <p class="lede">
+        A working field for translations drawn from the interior line of Torah:
+        The Ari, The Gra, and Rav Kook. The first opening is <em>Orot</em>, section
+        <em>War</em>, with room for notes, variants, and the slow sorting of language
+        before publication.
+      </p>
+      <nav class="hero-links" aria-label="Primary sections">
+        <a href="#sorting">Primordial Sorting</a>
+        <a href="#authors">Translation Lines</a>
+        <a href="#orot-war">Orot, War</a>
+      </nav>
+    </section>
+
+    <section class="grid" id="sorting">
+      <article class="panel">
+        <h2 class="section-title">Primordial Sorting</h2>
+        <ol class="sort-list">
+          <li>
+            Gather the source text in its cleanest form, without commentary crowding
+            the page or later edits masquerading as original phrasing.
+          </li>
+          <li>
+            Separate literal meaning from tonal force. A phrase may be accurate and
+            still betray the pulse of the Hebrew.
+          </li>
+          <li>
+            Keep a visible record of disputed choices, so interpretation stays
+            accountable instead of disappearing into a polished sentence.
+          </li>
+          <li>
+            Publish only what can survive rereading. Everything else remains in the
+            workshop until the language settles.
+          </li>
+        </ol>
+      </article>
+
+      <aside class="panel">
+        <h2 class="section-title">Current Sequence</h2>
+        <ol class="steps">
+          <li><strong>Now:</strong> Rav Kook, <em>Orot</em>, “War”</li>
+          <li><strong>Next:</strong> structural notes and translation glossary</li>
+          <li><strong>Then:</strong> expansion toward The Ari and The Gra</li>
+          <li><strong>Later:</strong> cross-text echoes and thematic indexing</li>
+        </ol>
+      </aside>
+    </section>
+
+    <section class="cards" id="authors">
+      <article class="card">
+        <span class="tag">The Ari</span>
+        <h3>Streams of Emanation</h3>
+        <p>
+          Placeholder text for the Lurianic strand: contraction, rupture, repair,
+          and the pressure of metaphysical language translated into readable English
+          without flattening its force.
+        </p>
+      </article>
+
+      <article class="card">
+        <span class="tag">The Gra</span>
+        <h3>Precision and Compression</h3>
+        <p>
+          Placeholder text for the Vilna Gaon: terse formulation, structural rigor,
+          and the discipline of keeping translation close enough to the original
+          syntax to preserve its edge.
+        </p>
+      </article>
+
+      <article class="card">
+        <span class="tag">Rav Kook</span>
+        <h3>Fire in the Margins</h3>
+        <p>
+          Placeholder text for the first live project: prophetic cadence, spiritual
+          nationalism, inner conflict, and the unusual task of rendering elevated
+          Hebrew without drifting into vague ornament.
+        </p>
+      </article>
+    </section>
+
+    <section class="focus" id="orot-war">
+      <p class="eyebrow">Starting Text</p>
+      <h2 class="section-title">Orot, War</h2>
+      <p>
+        This first page is intentionally provisional. It marks the beginning of a
+        translation archive focused on difficult, luminous texts that resist casual
+        paraphrase. The work begins with Rav Kook on war, where catastrophe and
+        renewal stand too close together for sentimental language to survive.
+      </p>
+      <p>
+        Final translations, source alignment, and annotation layers will be added in
+        stages. For now, the page names the project, establishes the order of work,
+        and leaves a deliberate dark field open for what will be brought into speech.
+      </p>
+    </section>
+
+    <footer>
+      Torah Translation. A working site for texts in progress.
+    </footer>
+  </main>
+</body>
+</html>
