@@ -3,18 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mashiach Ben Yosef</title>
+  <title>Mashiach Son Yosef</title>
   <style>
     :root {
-      --bg: #090b0f;
-      --bg-2: #11151d;
-      --panel: rgba(15, 19, 27, 0.82);
-      --line: rgba(211, 185, 128, 0.18);
-      --text: #f1eadb;
-      --muted: #b5aa95;
-      --accent: #d3b980;
-      --accent-dim: #8f7650;
-      --shadow: 0 24px 80px rgba(0, 0, 0, 0.48);
+      --bg: #0a0b0d;
+      --text: #ece7dd;
+      --muted: #a7a093;
+      --link: #d6be8a;
+      --link-soft: #b59d6c;
+      --line: rgba(214, 190, 138, 0.12);
     }
 
     * {
@@ -24,208 +21,177 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: Georgia, "Times New Roman", serif;
+      background: var(--bg);
       color: var(--text);
-      background:
-        radial-gradient(circle at top, rgba(120, 88, 43, 0.16), transparent 32%),
-        linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 58%, #050608 100%);
+      font-family: "Times New Roman", Georgia, serif;
     }
 
-    .shell {
-      width: min(1120px, calc(100% - 32px));
+    main {
+      width: min(920px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 28px 0 56px;
-    }
-
-    .frame {
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background:
-        linear-gradient(135deg, rgba(211, 185, 128, 0.06), transparent 40%),
-        var(--panel);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .hero {
-      padding: 72px 32px 48px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .eyebrow {
-      margin: 0 0 18px;
-      color: var(--accent);
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      font-size: 0.76rem;
+      padding: 28px 0 60px;
     }
 
     h1,
-    h2,
-    p {
+    p,
+    ul {
       margin-top: 0;
     }
 
     h1 {
-      max-width: 8ch;
-      margin-bottom: 16px;
-      font-size: clamp(3.3rem, 8vw, 6.4rem);
-      line-height: 0.92;
-      font-weight: 500;
+      margin-bottom: 10px;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 400;
+      letter-spacing: 0.02em;
     }
 
-    .hero p {
-      max-width: 720px;
+    .intro {
+      max-width: 780px;
+      margin-bottom: 28px;
       color: var(--muted);
-      font-size: 1.06rem;
+      line-height: 1.5;
     }
 
-    .hero strong {
+    .rule {
+      height: 1px;
+      margin: 0 0 24px;
+      background: var(--line);
+      border: 0;
+    }
+
+    .directory,
+    .directory ul {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .directory li {
+      margin: 0;
+      padding: 0;
+    }
+
+    .directory > li {
+      margin-bottom: 14px;
+    }
+
+    .directory ul {
+      margin-top: 8px;
+      padding-left: 28px;
+    }
+
+    .directory ul ul {
+      padding-left: 24px;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    a:hover,
+    a:focus-visible {
       color: var(--text);
-      font-weight: 600;
-    }
-
-    .directory {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0;
-    }
-
-    .branch {
-      min-height: 240px;
-      padding: 28px;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      text-decoration: none;
-      color: inherit;
-      background: rgba(255, 255, 255, 0.01);
-      transition: background 160ms ease, transform 160ms ease;
-    }
-
-    .branch:nth-child(2n) {
-      border-right: 0;
-    }
-
-    .branch:nth-last-child(-n + 2) {
-      border-bottom: 0;
-    }
-
-    .branch:hover,
-    .branch:focus-visible {
-      background: rgba(211, 185, 128, 0.06);
-      transform: translateY(-2px);
       outline: none;
     }
 
-    .branch-label {
-      display: inline-block;
-      margin-bottom: 14px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      color: var(--accent);
-      background: rgba(211, 185, 128, 0.1);
-      font-size: 0.76rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .label {
+      color: var(--muted);
+      margin-left: 8px;
+      font-size: 0.96rem;
     }
 
-    .branch h2 {
-      margin-bottom: 10px;
-      font-size: 1.5rem;
-      font-weight: 500;
-    }
-
-    .branch p {
-      margin-bottom: 0;
+    .muted {
       color: var(--muted);
     }
 
-    .status {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      padding: 24px 32px 32px;
-      color: var(--accent-dim);
-      font-size: 0.92rem;
+    .placeholder {
+      color: var(--link-soft);
     }
 
-    .status span {
-      padding: 8px 12px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    @media (max-width: 800px) {
-      .hero {
-        padding: 48px 22px 32px;
-      }
-
-      .directory {
-        grid-template-columns: 1fr;
-      }
-
-      .branch,
-      .branch:nth-child(2n) {
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .branch:last-child {
-        border-bottom: 0;
-      }
-
-      .status {
-        padding: 20px 22px 24px;
-      }
+    footer {
+      margin-top: 32px;
+      color: var(--muted);
+      font-size: 0.94rem;
     }
   </style>
 </head>
 <body>
-  <main class="shell">
-    <section class="frame">
-      <header class="hero">
-        <p class="eyebrow">Mashiach Ben Yosef</p>
-        <h1>A Book With Branches</h1>
-        <p>
-          This is the front gate, not the full structure. <strong>Mashiach Ben Yosef</strong>
-          is a personal compilation of translations, interpretations, and original
-          writing. The site will expand into distinct branches as the work takes form.
-        </p>
-      </header>
+  <main>
+    <h1>Mashiach Son Yosef</h1>
+    <p class="intro">
+      Personal book / translation project / index. The formatting is not the point.
+      The point is structure, access, and eventual depth. Start with <em>Orot</em>.
+    </p>
 
-      <section class="directory" aria-label="Site directory">
-        <a class="branch" href="#">
-          <span class="branch-label">Translations</span>
-          <h2>Orot, War</h2>
-          <p>The first active text. Rav Kook enters here, with translation, notes, and revision history.</p>
-        </a>
+    <hr class="rule">
 
-        <a class="branch" href="#">
-          <span class="branch-label">Canon</span>
-          <h2>The Ari / The Gra / Rav Kook</h2>
-          <p>The main lines of the project, eventually split into their own sections with primary texts and commentary.</p>
-        </a>
+    <ul class="directory">
+      <li>
+        <a href="#">Orot</a>
+        <span class="label">Rav Kook</span>
+        <ul>
+          <li>
+            <a href="#">Land</a>
+            <span class="label">placeholder</span>
+          </li>
+          <li>
+            <a href="#">War</a>
+            <span class="label">active branch</span>
+            <ul>
+              <li><a href="#">Section 1</a> <span class="label placeholder">placeholder</span></li>
+              <li><a href="#">Section 2</a> <span class="label placeholder">placeholder</span></li>
+              <li><a href="#">Section 3</a> <span class="label placeholder">placeholder</span></li>
+              <li><a href="#">Section 4</a> <span class="label placeholder">placeholder</span></li>
+              <li><a href="#">Section 5</a> <span class="label placeholder">placeholder</span></li>
+              <li><a href="#">Section 6</a> <span class="label placeholder">placeholder</span></li>
+              <li><a href="#">Section 7</a> <span class="label placeholder">placeholder</span></li>
+              <li><a href="#">Section 8</a> <span class="label placeholder">placeholder</span></li>
+              <li><a href="#">Section 9</a> <span class="label placeholder">placeholder</span></li>
+              <li><a href="#">Section 10</a> <span class="label placeholder">placeholder</span></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Lights of Israel</a>
+            <span class="label">placeholder</span>
+          </li>
+          <li>
+            <a href="#">The Soul of Israel</a>
+            <span class="label">placeholder</span>
+          </li>
+          <li>
+            <a href="#">Israel and Its Revival</a>
+            <span class="label">placeholder</span>
+          </li>
+        </ul>
+      </li>
 
-        <a class="branch" href="#">
-          <span class="branch-label">Original Work</span>
-          <h2>Stick as Origin</h2>
-          <p>A place for your own writing to stand beside the translations without pretending to be secondary to them.</p>
-        </a>
+      <li>
+        <a href="#">The Ari</a>
+        <span class="label muted">future branch</span>
+      </li>
 
-        <a class="branch" href="#">
-          <span class="branch-label">Archive</span>
-          <h2>Fragments and Drafts</h2>
-          <p>Discarded lines, alternate renderings, unfinished pages, and the residue that still belongs to the book.</p>
-        </a>
-      </section>
+      <li>
+        <a href="#">The Gra</a>
+        <span class="label muted">future branch</span>
+      </li>
 
-      <footer class="status">
-        <span>Current branch: Orot, War</span>
-        <span>Mode: Splash / Directory</span>
-        <span>Scope: Personal project</span>
-      </footer>
-    </section>
+      <li>
+        <a href="#">Original Writing</a>
+        <span class="label muted">future branch</span>
+      </li>
+
+      <li>
+        <a href="#">Fragments / Drafts / Variants</a>
+        <span class="label muted">future branch</span>
+      </li>
+    </ul>
+
+    <footer>
+      Working index. Everything branches from here.
+    </footer>
   </main>
 </body>
 </html>
