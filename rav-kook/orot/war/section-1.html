@@ -14,34 +14,6 @@
     .pair { margin-bottom: 8px; padding-bottom: 0; }
     .hebrew { direction: rtl; unicode-bidi: plaintext; color: #ece7dd; }
     .text { max-width: none; }
-    .term {
-      position: relative;
-      cursor: pointer;
-      text-decoration: underline;
-      text-decoration-style: dotted;
-      text-underline-offset: 2px;
-    }
-    .popup {
-      white-space: pre-line;
-      position: absolute;
-      left: 0;
-      top: calc(100% + 4px);
-      z-index: 10;
-      min-width: 280px;
-      max-width: 420px;
-      padding: 8px 10px;
-      background: #11151d;
-      color: #ece7dd;
-      border: 1px solid rgba(214, 190, 138, 0.24);
-      line-height: 1.35;
-      display: none;
-      user-select: text;
-      -webkit-user-select: text;
-    }
-    .term.open .popup,
-    .term:focus-visible .popup {
-      display: block;
-    }
   </style>
 </head>
 <body>
@@ -59,11 +31,7 @@
       </div>
       <div class="pair">
         <p class="hebrew">היחידים הנספים בלא משפט, שבתוך המהפכה של שטף המלחמה, יש בה ממדת מיתת צדיקים המכפרת, עולים הם למעלה בשורש החיים ועצמות חייהם מביא ערך כללי לטובה ולברכה אל כלל בנין העולם בכל ערכיו ומובניו.</p>
-        <p>The individuals who perish without judgment, within the upheaval of the torrent of war, have in them something of the quality of the death of the righteous that atones. They ascend <span class="term" tabindex="0">in the root of the tree of life<span class="popup">HEBREW: בשורש החיים
-HEBREW: b'shoresh hachayim
-STRICT: in the root of life
-ALT: in the source of life
-NOTE: Shoresh (root) cannot be abstracted; a root is inherently part of a tree. Thus "root of life" is the root of that tree - the Tree of Life, which in turn grounds the messianic reading.</span></span>, and the essence itself of their life brings a general value for good and blessing to the entire structure of the world in all its values and meanings.</p>
+        <p>The individuals who perish without judgment, within the upheaval of the torrent of war, have in them something of the quality of the death of the righteous that atones. They ascend in the root of life, and the essence itself of their life brings a general value for good and blessing to the entire structure of the world in all its values and meanings.</p>
       </div>
       <div class="pair">
         <p class="hebrew">ואח"כ כתום המלחמה מתחדש העולם ברוח חדש ורגלי משיח מתגלים ביותר, ולפי ערכה של גודל המלחמה בכמותה ואיכותה ככה תגדל הצפיה לרגלי משיח שבה.</p>
@@ -83,31 +51,5 @@ NOTE: Shoresh (root) cannot be abstracted; a root is inherently part of a tree. 
       </div>
     </div>
   </main>
-  <script>
-    document.querySelectorAll('.term').forEach((term) => {
-      const popup = term.querySelector('.popup');
-
-      term.addEventListener('click', (event) => {
-        event.stopPropagation();
-        const open = term.classList.contains('open');
-        document.querySelectorAll('.term.open').forEach((node) => node.classList.remove('open'));
-        if (!open) {
-          term.classList.add('open');
-        }
-      });
-
-      if (popup) {
-        ['mousedown', 'mouseup', 'click'].forEach((name) => {
-          popup.addEventListener(name, (event) => {
-            event.stopPropagation();
-          });
-        });
-      }
-    });
-
-    document.addEventListener('click', () => {
-      document.querySelectorAll('.term.open').forEach((node) => node.classList.remove('open'));
-    });
-  </script>
 </body>
 </html>
