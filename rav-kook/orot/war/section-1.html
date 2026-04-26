@@ -14,6 +14,32 @@
     .pair { margin-bottom: 8px; padding-bottom: 0; }
     .hebrew { direction: rtl; unicode-bidi: plaintext; color: #ece7dd; }
     .text { max-width: none; }
+    .term {
+      position: relative;
+      cursor: help;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 2px;
+    }
+    .term::after {
+      content: attr(data-popup);
+      white-space: pre-line;
+      position: absolute;
+      left: 0;
+      top: calc(100% + 4px);
+      z-index: 10;
+      min-width: 280px;
+      max-width: 420px;
+      padding: 8px 10px;
+      background: #11151d;
+      color: #ece7dd;
+      border: 1px solid rgba(214, 190, 138, 0.24);
+      display: none;
+    }
+    .term:hover::after,
+    .term:focus-visible::after {
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -31,7 +57,7 @@
       </div>
       <div class="pair">
         <p class="hebrew">היחידים הנספים בלא משפט, שבתוך המהפכה של שטף המלחמה, יש בה ממדת מיתת צדיקים המכפרת, עולים הם למעלה בשורש החיים ועצמות חייהם מביא ערך כללי לטובה ולברכה אל כלל בנין העולם בכל ערכיו ומובניו.</p>
-        <p>The individuals who perish without judgment, within the upheaval of the torrent of war, have in them something of the quality of the death of the righteous that atones. They ascend within the originating root of life, and the essence itself of their life brings a general value for good and blessing to the entire structure of the world in all its values and meanings.</p>
+        <p>The individuals who perish without judgment, within the upheaval of the torrent of war, have in them something of the quality of the death of the righteous that atones. They ascend within <span class="term" tabindex="0" data-popup="traditional: in the root of life&#10;alternative: within life's originating root&#10;alternative: within the tree of life at its root of origin">the originating root of the tree of life</span>, and the essence itself of their life brings a general value for good and blessing to the entire structure of the world in all its values and meanings.</p>
       </div>
       <div class="pair">
         <p class="hebrew">ואח"כ כתום המלחמה מתחדש העולם ברוח חדש ורגלי משיח מתגלים ביותר, ולפי ערכה של גודל המלחמה בכמותה ואיכותה ככה תגדל הצפיה לרגלי משיח שבה.</p>
