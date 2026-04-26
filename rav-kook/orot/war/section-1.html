@@ -16,13 +16,12 @@
     .text { max-width: none; }
     .term {
       position: relative;
-      cursor: help;
+      cursor: pointer;
       text-decoration: underline;
       text-decoration-style: dotted;
       text-underline-offset: 2px;
     }
-    .term::after {
-      content: attr(data-popup);
+    .popup {
       white-space: pre-line;
       position: absolute;
       left: 0;
@@ -34,10 +33,13 @@
       background: #11151d;
       color: #ece7dd;
       border: 1px solid rgba(214, 190, 138, 0.24);
+      line-height: 1.35;
       display: none;
+      user-select: text;
+      -webkit-user-select: text;
     }
-    .term:hover::after,
-    .term:focus-visible::after {
+    .term.open .popup,
+    .term:focus-visible .popup {
       display: block;
     }
   </style>
@@ -57,7 +59,9 @@
       </div>
       <div class="pair">
         <p class="hebrew">היחידים הנספים בלא משפט, שבתוך המהפכה של שטף המלחמה, יש בה ממדת מיתת צדיקים המכפרת, עולים הם למעלה בשורש החיים ועצמות חייהם מביא ערך כללי לטובה ולברכה אל כלל בנין העולם בכל ערכיו ומובניו.</p>
-        <p>The individuals who perish without judgment, within the upheaval of the torrent of war, have in them something of the quality of the death of the righteous that atones. They ascend within <span class="term" tabindex="0" data-popup="HEBREW: בשורש החיים&#10;STRICT: the ultimate root&#10;ALT: the primary source">the originating root of the tree of life</span>, and the essence itself of their life brings a general value for good and blessing to the entire structure of the world in all its values and meanings.</p>
+        <p>The individuals who perish without judgment, within the upheaval of the torrent of war, have in them something of the quality of the death of the righteous that atones. They ascend within <span class="term" tabindex="0">the originating root of the tree of life<span class="popup">HEBREW: בשורש החיים
+STRICT: the ultimate root
+ALT: the primary source</span></span>, and the essence itself of their life brings a general value for good and blessing to the entire structure of the world in all its values and meanings.</p>
       </div>
       <div class="pair">
         <p class="hebrew">ואח"כ כתום המלחמה מתחדש העולם ברוח חדש ורגלי משיח מתגלים ביותר, ולפי ערכה של גודל המלחמה בכמותה ואיכותה ככה תגדל הצפיה לרגלי משיח שבה.</p>
@@ -77,5 +81,21 @@
       </div>
     </div>
   </main>
+  <script>
+    document.querySelectorAll('.term').forEach((term) => {
+      term.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const open = term.classList.contains('open');
+        document.querySelectorAll('.term.open').forEach((node) => node.classList.remove('open'));
+        if (!open) {
+          term.classList.add('open');
+        }
+      });
+    });
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.term.open').forEach((node) => node.classList.remove('open'));
+    });
+  </script>
 </body>
 </html>
