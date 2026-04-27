@@ -1,0 +1,32 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | status |
+|---|---|---|---|---|---|---|
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 1:1:1 | gras-nuschah-on-tractate-soferim-1-1-1 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 1:1:2 | gras-nuschah-on-tractate-soferim-1-1-2 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 3:1:1 | gras-nuschah-on-tractate-soferim-3-1-1 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 4:1:1 | gras-nuschah-on-tractate-soferim-4-1-1 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 4:1:2 | gras-nuschah-on-tractate-soferim-4-1-2 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 5:1:1 | gras-nuschah-on-tractate-soferim-5-1-1 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 5:1:2 | gras-nuschah-on-tractate-soferim-5-1-2 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 5:1:3 | gras-nuschah-on-tractate-soferim-5-1-3 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 6:1:1 | gras-nuschah-on-tractate-soferim-6-1-1 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 7:1:1 | gras-nuschah-on-tractate-soferim-7-1-1 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 7:1:2 | gras-nuschah-on-tractate-soferim-7-1-2 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 7:1:3 | gras-nuschah-on-tractate-soferim-7-1-3 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 8:1:1 | gras-nuschah-on-tractate-soferim-8-1-1 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 8:1:2 | gras-nuschah-on-tractate-soferim-8-1-2 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 8:1:3 | gras-nuschah-on-tractate-soferim-8-1-3 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 8:1:4 | gras-nuschah-on-tractate-soferim-8-1-4 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 8:1:5 | gras-nuschah-on-tractate-soferim-8-1-5 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 8:1:6 | gras-nuschah-on-tractate-soferim-8-1-6 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 8:1:7 | gras-nuschah-on-tractate-soferim-8-1-7 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 9:1:1 | gras-nuschah-on-tractate-soferim-9-1-1 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 11:1:1 | gras-nuschah-on-tractate-soferim-11-1-1 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 13:1:1 | gras-nuschah-on-tractate-soferim-13-1-1 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 14:1:1 | gras-nuschah-on-tractate-soferim-14-1-1 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 15:1:1 | gras-nuschah-on-tractate-soferim-15-1-1 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 16:1:1 | gras-nuschah-on-tractate-soferim-16-1-1 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 18:1:1 | gras-nuschah-on-tractate-soferim-18-1-1 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 18:1:2 | gras-nuschah-on-tractate-soferim-18-1-2 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 20:1:1 | gras-nuschah-on-tractate-soferim-20-1-1 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 20:1:2 | gras-nuschah-on-tractate-soferim-20-1-2 |  |  |  |
+| gras-nuschah-on-tractate-soferim | Gra's Nuschah on Tractate Soferim | Gra's Nuschah on Tractate Soferim 21:1:1 | gras-nuschah-on-tractate-soferim-21-1-1 |  |  |  |

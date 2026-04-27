@@ -46,6 +46,27 @@ function Write-Utf8 {
   [System.IO.File]::WriteAllText($resolved, $Content, [System.Text.UTF8Encoding]::new($false))
 }
 
+function Get-ExportText {
+  param([AllowNull()][object]$Value)
+  if ($null -eq $Value) { return '' }
+  if ($Value -is [string]) { return $Value.Trim() }
+  return ((@($Value) | Where-Object { $null -ne $_ -and $_.ToString().Trim() } | ForEach-Object { $_.ToString().Trim() }) -join '; ')
+}
+
+function Convert-CsvCell {
+  param([AllowNull()][object]$Value)
+  $text = Get-ExportText $Value
+  return '"' + ($text -replace '"', '""') + '"'
+}
+
+function Convert-MarkdownCell {
+  param([AllowNull()][object]$Value)
+  $text = Get-ExportText $Value
+  $text = $text -replace '\|', '\|'
+  $text = $text -replace "`r?`n", '<br>'
+  return $text
+}
+
 function Get-RootHref {
   param([string]$WorkSlug)
   $depth = @($WorkSlug -split '[\\/]' | Where-Object { $_ }).Count
@@ -134,6 +155,65 @@ function Get-SourceSummaryHtml {
   return ($parts -join ' | ')
 }
 
+function Get-OverlayExportRows {
+  param(
+    [object]$Source,
+    [object]$Overlay
+  )
+
+  $rows = @()
+  foreach ($unit in @($Source.units)) {
+    $overlayUnit = Get-OverlayUnit -Overlay $Overlay -UnitId $unit.unit_id
+    $rows += [pscustomobject][ordered]@{
+      work_id = $Source.work_id
+      work_title = $Source.work_title
+      source_ref = $unit.source_ref
+      anchor_id = $unit.anchor_id
+      translation = Get-ExportText (Get-OverlayValue -OverlayUnit $overlayUnit -Field 'strict_translation')
+      translator_notes = Get-ExportText (Get-OverlayValue -OverlayUnit $overlayUnit -Field 'clean_translation')
+      status = Get-ExportText (Get-OverlayValue -OverlayUnit $overlayUnit -Field 'status')
+    }
+  }
+  return $rows
+}
+
+function Write-OverlayExports {
+  param(
+    [string]$WorkSlug,
+    [object[]]$Rows
+  )
+
+  $headers = @('work_id', 'work_title', 'source_ref', 'anchor_id', 'translation', 'translator_notes', 'status')
+
+  $csv = New-Object System.Text.StringBuilder
+  [void]$csv.AppendLine(($headers | ForEach-Object { Convert-CsvCell $_ }) -join ',')
+  foreach ($row in $Rows) {
+    [void]$csv.AppendLine(($headers | ForEach-Object { Convert-CsvCell $row.$_ }) -join ',')
+  }
+
+  $json = ConvertTo-Json -InputObject @($Rows) -Depth 10
+
+  $markdown = New-Object System.Text.StringBuilder
+  [void]$markdown.AppendLine('| work_id | work_title | source_ref | anchor_id | translation | translator_notes | status |')
+  [void]$markdown.AppendLine('|---|---|---|---|---|---|---|')
+  foreach ($row in $Rows) {
+    $markdownCells = @(
+      (Convert-MarkdownCell $row.work_id)
+      (Convert-MarkdownCell $row.work_title)
+      (Convert-MarkdownCell $row.source_ref)
+      (Convert-MarkdownCell $row.anchor_id)
+      (Convert-MarkdownCell $row.translation)
+      (Convert-MarkdownCell $row.translator_notes)
+      (Convert-MarkdownCell $row.status)
+    )
+    [void]$markdown.AppendLine('| ' + ($markdownCells -join ' | ') + ' |')
+  }
+
+  Write-Utf8 -Path "$WorkSlug\overlay-export.csv" -Content $csv.ToString()
+  Write-Utf8 -Path "$WorkSlug\overlay-export.json" -Content $json
+  Write-Utf8 -Path "$WorkSlug\overlay-export.md" -Content $markdown.ToString()
+}
+
 function Append-SiteHead {
   param(
     [System.Text.StringBuilder]$Builder,
@@ -161,6 +241,8 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .shell { border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }')
   [void]$Builder.AppendLine('    .hero { padding: 22px 22px 18px; border-bottom: 1px solid var(--line); }')
   [void]$Builder.AppendLine('    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }')
+  [void]$Builder.AppendLine('    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }')
+  [void]$Builder.AppendLine('    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }')
   [void]$Builder.AppendLine('    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }')
   [void]$Builder.AppendLine('    .home-section { margin-top: 26px; }')
   [void]$Builder.AppendLine('    .home-section:first-child { margin-top: 0; }')
@@ -230,6 +312,8 @@ Write-Utf8 -Path 'index.html' -Content $homePage.ToString()
 foreach ($source in $sources) {
   $overlayPath = Join-Path $OverlayDir "$($source.work_id).json"
   $overlay = if (Test-Path $overlayPath) { Read-Json -Path $overlayPath } else { $null }
+  $exportRows = Get-OverlayExportRows -Source $source -Overlay $overlay
+  Write-OverlayExports -WorkSlug $source.work_slug -Rows $exportRows
   $page = New-Object System.Text.StringBuilder
   $visibleUnits = if ($MaxUnits -gt 0) { @($source.units | Select-Object -First $MaxUnits) } else { @($source.units) }
   $rootHref = Get-RootHref -WorkSlug $source.work_slug
@@ -261,6 +345,12 @@ foreach ($source in $sources) {
   } else {
     [void]$page.AppendLine("        <p class=""meta source-citation"">$($sourceNotes.Count) source/license notes. See footer table for details.</p>")
   }
+  [void]$page.AppendLine('        <div class="export-actions" aria-label="Overlay exports">')
+  [void]$page.AppendLine('          <span>Overlay export:</span>')
+  [void]$page.AppendLine('          <a class="export-button" href="overlay-export.csv" download>CSV</a>')
+  [void]$page.AppendLine('          <a class="export-button" href="overlay-export.json" download>JSON</a>')
+  [void]$page.AppendLine('          <a class="export-button" href="overlay-export.md" download>Markdown</a>')
+  [void]$page.AppendLine('        </div>')
   if ($MaxUnits -gt 0) {
     [void]$page.AppendLine("        <p class=""fallback-note"">Fallback render active. Showing first $MaxUnits units only while route stability is verified.</p>")
   }
@@ -340,14 +430,14 @@ foreach ($source in $sources) {
     if (Test-HasContent $strict) {
       [void]$page.AppendLine("                  <p>$(Encode-Html $strict)</p>")
     } else {
-      [void]$page.AppendLine('                  <p class="placeholder">[Awaiting translation]</p>')
+      [void]$page.AppendLine('                  <p class="placeholder">N/A</p>')
     }
     [void]$page.AppendLine('                </div>')
     [void]$page.AppendLine('                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>')
     if (Test-HasContent $clean) {
       [void]$page.AppendLine("                  <p>$(Encode-Html $clean)</p>")
     } else {
-      [void]$page.AppendLine('                  <p class="placeholder">[Awaiting notes]</p>')
+      [void]$page.AppendLine('                  <p class="placeholder">N/A</p>')
     }
     [void]$page.AppendLine('                </div>')
     [void]$page.AppendLine('              </div>')
