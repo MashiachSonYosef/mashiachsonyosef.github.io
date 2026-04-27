@@ -20,6 +20,8 @@
     .hero { padding: 22px 22px 18px; border-bottom: 1px solid var(--line); }
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
     .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
     .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
     .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }
@@ -37,6 +39,7 @@
     .placeholder { color: #8c857c; }
     .overlay-block { border: 1px solid var(--line); background: var(--panel-2); padding: 12px; margin-bottom: 10px; }
     .overlay-label { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
     summary { cursor: pointer; color: var(--accent); }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
@@ -51,36 +54,125 @@
         <p>Hebrew source infrastructure first. Overlays stay separate. English remains placeholder-only until you write it.</p>
       </div>
       <div style="padding:22px">
-        <div class="home-grid">
-          <a class="work-card" href="tanakh/deuteronomy/">
-            <strong>Deuteronomy</strong>
-            <span class="meta">956 source units | Sefaria API | imported 2026-04-27</span>
-          </a>
-          <a class="work-card" href="tanakh/exodus/">
-            <strong>Exodus</strong>
-            <span class="meta">1210 source units | Sefaria API | imported 2026-04-27</span>
-          </a>
-          <a class="work-card" href="tanakh/ezekiel/">
-            <strong>Ezekiel</strong>
-            <span class="meta">1273 source units | Sefaria API | imported 2026-04-27</span>
-          </a>
-          <a class="work-card" href="tanakh/i-kings/">
-            <strong>I Kings</strong>
-            <span class="meta">817 source units | Sefaria API | imported 2026-04-27</span>
-          </a>
-          <a class="work-card" href="tanakh/jeremiah/">
-            <strong>Jeremiah</strong>
-            <span class="meta">1364 source units | Sefaria API | imported 2026-04-27</span>
-          </a>
-          <a class="work-card" href="orot/">
-            <strong>Orot</strong>
-            <span class="meta">416 source units | Sefaria API | imported 2026-04-27</span>
-          </a>
-          <a class="work-card" href="tanakh/psalms/">
-            <strong>Psalms</strong>
-            <span class="meta">2527 source units | Sefaria API | imported 2026-04-27</span>
-          </a>
-        </div>
+        <section class="home-section">
+          <h2>Ari</h2>
+          <div class="home-grid">
+            <a class="work-card" href="ari/pri-etz-chaim/">
+              <strong>Pri Etz Chaim</strong>
+              <span class="meta">589 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="ari/sefer-etz-chaim/">
+              <strong>Sefer Etz Chaim</strong>
+              <span class="meta">7 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="ari/shaar-hagilgulim/">
+              <strong>Sha&#39;ar HaGilgulim</strong>
+              <span class="meta">854 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="ari/shaar-hahakdamot/">
+              <strong>Sha&#39;ar HaHakdamot</strong>
+              <span class="meta">93 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="ari/shaar-hakavanot/">
+              <strong>Sha&#39;ar HaKavanot</strong>
+              <span class="meta">366 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="ari/shaar-hamitzvot/">
+              <strong>Sha&#39;ar HaMitzvot</strong>
+              <span class="meta">298 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="ari/shaar-hapesukim/">
+              <strong>Sha&#39;ar HaPesukim</strong>
+              <span class="meta">2051 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="ari/shaar-maamarei-rashbi/">
+              <strong>Sha&#39;ar Ma&#39;amarei Rashbi</strong>
+              <span class="meta">585 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="ari/shaar-maamarei-razal/">
+              <strong>Sha&#39;ar Ma&#39;amarei Razal</strong>
+              <span class="meta">103 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="ari/shaar-ruach-hakodesh/">
+              <strong>Sha&#39;ar Ruach HaKodesh</strong>
+              <span class="meta">22 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="ari/shaarei-kedusha/">
+              <strong>Sha&#39;arei Kedusha</strong>
+              <span class="meta">66 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+          </div>
+        </section>
+        <section class="home-section">
+          <h2>Gra</h2>
+          <div class="home-grid">
+            <a class="work-card" href="gra/aderet-eliyahu/">
+              <strong>Aderet Eliyahu</strong>
+              <span class="meta">59 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="gra/beur-hagra-on-shulchan-arukh-choshen-mishpat/">
+              <strong>Beur HaGra on Shulchan Arukh, Choshen Mishpat</strong>
+              <span class="meta">41 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="gra/beur-hagra-on-shulchan-arukh-even-haezer/">
+              <strong>Beur HaGra on Shulchan Arukh, Even HaEzer</strong>
+              <span class="meta">281 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="gra/beur-hagra-on-shulchan-arukh-orach-chayim/">
+              <strong>Beur HaGra on Shulchan Arukh, Orach Chayim</strong>
+              <span class="meta">2479 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="gra/beur-hagra-on-shulchan-arukh-yoreh-deah/">
+              <strong>Beur HaGra on Shulchan Arukh, Yoreh De&#39;ah</strong>
+              <span class="meta">7500 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="gra/beur-hagra-on-sifra-detzniuta/">
+              <strong>Beur HaGra on Sifra DeTzniuta</strong>
+              <span class="meta">297 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="gra/gra-on-pirkei-avot/">
+              <strong>Gra on Pirkei Avot</strong>
+              <span class="meta">20 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="gra/hagra-on-sefer-yetzirah-gra-version/">
+              <strong>HaGra on Sefer Yetzirah Gra Version</strong>
+              <span class="meta">35 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="gra/sefer-yetzirah-gra-version/">
+              <strong>Sefer Yetzirah Gra Version</strong>
+              <span class="meta">62 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+          </div>
+        </section>
+        <section class="home-section">
+          <h2>Rav Kook</h2>
+          <div class="home-grid">
+            <a class="work-card" href="rav-kook/maamar-hador/">
+              <strong>Ma&#39;amar Hador</strong>
+              <span class="meta">18 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="rav-kook/midbar-shur/">
+              <strong>Midbar Shur</strong>
+              <span class="meta">243 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="rav-kook/musar-avikha/">
+              <strong>Musar Avikha</strong>
+              <span class="meta">14 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="orot/">
+              <strong>Orot</strong>
+              <span class="meta">416 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="rav-kook/orot-ha-kodesh/">
+              <strong>Orot HaKodesh</strong>
+              <span class="meta">458 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="rav-kook/orot-ha-torah/">
+              <strong>Orot HaTorah</strong>
+              <span class="meta">10 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+          </div>
+        </section>
       </div>
     </div>
   </main>

@@ -1,7 +1,9 @@
 param(
   [string]$OutputPath = 'data/catalog/sefaria-cc-by-sa.json',
   [string[]]$IncludeCategories = @(),
-  [int]$MaxWorks = 50
+  [int]$MaxWorks = 50,
+  [string[]]$Refs = @(),
+  [string]$RefsPath = ''
 )
 
 $ErrorActionPreference = 'Stop'
@@ -131,6 +133,67 @@ function Get-ProbeRef {
   if ($Leaf.depth -eq 1) { return $leafRef }
   if ($Leaf.address_types.Count -gt 0 -and $Leaf.address_types[0] -eq 'Talmud') { return $null }
   return "$leafRef 1"
+}
+
+function Get-ProbedWork {
+  param([string]$WorkRef)
+
+  $encodedTitle = [System.Uri]::EscapeDataString($WorkRef)
+  $index = Get-Utf8Json -Uri "https://www.sefaria.org/api/index/$encodedTitle"
+  $leaf = Get-FirstLeaf -Node $index.schema
+  if (-not $leaf) { return $null }
+  $probeRef = Get-ProbeRef -WorkRef $index.title -Leaf $leaf
+  if (-not $probeRef) { return $null }
+
+  $encodedProbe = [System.Uri]::EscapeDataString($probeRef)
+  $payload = Get-Utf8Json -Uri "https://www.sefaria.org/api/texts/$encodedProbe`?context=0&commentary=0"
+
+  [ordered]@{
+    work_id = New-Slug $index.title
+    work_title = $index.title
+    he_title = $index.heTitle
+    work_slug = New-Slug $index.title
+    sefaria_ref = $index.title
+    categories = @($index.categories)
+    probe_ref = $payload.ref
+    license = $payload.heLicense
+    license_ok = ($payload.heLicense -eq 'CC-BY-SA')
+    version_title = $payload.heVersionTitle
+    version_source = $payload.heVersionSource
+    source_system = 'Sefaria API'
+    source_base_url = 'https://www.sefaria.org/api/'
+  }
+}
+
+if ($RefsPath -and (Test-Path $RefsPath)) {
+  $Refs += @(Get-Content -Path $RefsPath -Encoding UTF8 | Where-Object { $_.Trim() -and -not $_.Trim().StartsWith('#') })
+}
+
+if ($Refs.Count -gt 0) {
+  $matches = New-Object System.Collections.Generic.List[object]
+  $scanned = 0
+  foreach ($ref in $Refs) {
+    $scanned += 1
+    try {
+      $result = Get-ProbedWork -WorkRef $ref
+      if ($result) {
+        $matches.Add($result)
+      }
+    } catch {
+      Write-Warning "Skipping $ref`: $($_.Exception.Message)"
+    }
+  }
+
+  Write-Utf8Json -Path $OutputPath -Value ([ordered]@{
+    generated_at = (Get-Date).ToString('yyyy-MM-dd')
+    refs = $Refs
+    scanned = $scanned
+    match_count = @($matches | Where-Object { $_.license_ok }).Count
+    works = $matches
+  })
+
+  Write-Host "Probed $($matches.Count) Hebrew works; $(@($matches | Where-Object { $_.license_ok }).Count) are CC-BY-SA."
+  exit 0
 }
 
 $library = Get-Utf8Json -Uri 'https://www.sefaria.org/api/index'

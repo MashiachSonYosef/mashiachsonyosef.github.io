@@ -1,7 +1,10 @@
 param(
   [string]$ConfigPath = 'data/work-imports.json',
   [string]$OutputDir = 'data/sources',
-  [string]$OverlayDir = 'data/overlays'
+  [string]$OverlayDir = 'data/overlays',
+  [string[]]$OnlyWorkIds = @(),
+  [string]$OnlyWorkIdsPath = '',
+  [switch]$SkipExisting
 )
 
 $ErrorActionPreference = 'Stop'
@@ -233,12 +236,28 @@ function Get-FetchRefs {
     throw "Unsupported Talmud-addressed text: $LeafRef"
   }
 
+  if ($Leaf.lengths.Count -eq 0 -or -not $Leaf.lengths[0]) {
+    return @($LeafRef)
+  }
+
   $count = [int]$Leaf.lengths[0]
+  if ($count -le 0) {
+    return @($LeafRef)
+  }
+
   $refs = New-Object System.Collections.Generic.List[string]
   for ($i = 1; $i -le $count; $i += 1) {
     $refs.Add("$LeafRef $i")
   }
   return @($refs)
+}
+
+function Test-UseNextTraversal {
+  param([object]$Leaf)
+
+  if ($Leaf.depth -ge 4) { return $true }
+  if ($Leaf.lengths.Count -eq 0 -and $Leaf.title_path.Count -gt 0 -and $Leaf.title_path[-1] -eq 'default') { return $true }
+  return $false
 }
 
 function Add-UnitsFromPayload {
@@ -294,12 +313,62 @@ function Add-UnitsFromPayload {
   }
 }
 
+function Add-UnitsByNextTraversal {
+  param(
+    [System.Collections.Generic.List[object]]$Units,
+    [ref]$SequenceRef,
+    [object]$Work,
+    [hashtable]$Meta,
+    [string]$StartRef
+  )
+
+  $seenRefs = @{}
+  $nextRef = $StartRef
+  $step = 0
+  while ($nextRef) {
+    $step += 1
+    if ($step -gt 20000) {
+      Write-Warning "Stopping next-link traversal after 20000 refs for $StartRef"
+      break
+    }
+    if ($seenRefs.ContainsKey($nextRef)) {
+      Write-Warning "Stopping next-link traversal loop at $nextRef"
+      break
+    }
+    $seenRefs[$nextRef] = $true
+
+    Write-Host "Importing $nextRef"
+    try {
+      $payload = Get-SefariaText -Ref $nextRef
+      Add-UnitsFromPayload -Units $Units -SequenceRef $SequenceRef -Work $Work -Meta $Meta -Payload $payload
+      $nextRef = $payload.next
+    } catch {
+      Write-Warning "Skipping $nextRef`: $($_.Exception.Message)"
+      break
+    }
+  }
+}
+
 New-Item -ItemType Directory -Force -Path $OutputDir | Out-Null
 New-Item -ItemType Directory -Force -Path $OverlayDir | Out-Null
 $config = Read-Json -Path $ConfigPath
 $importDate = (Get-Date).ToString('yyyy-MM-dd')
 
+if ($OnlyWorkIdsPath -and (Test-Path $OnlyWorkIdsPath)) {
+  $OnlyWorkIds += @(Get-Content -Path $OnlyWorkIdsPath -Encoding UTF8 | Where-Object { $_.Trim() -and -not $_.Trim().StartsWith('#') })
+}
+
 foreach ($work in $config.works) {
+  if ($OnlyWorkIds.Count -gt 0 -and $OnlyWorkIds -notcontains $work.work_id) {
+    continue
+  }
+
+  $sourcePath = Join-Path $OutputDir "$($work.work_id).json"
+  if ($SkipExisting -and (Test-Path $sourcePath)) {
+    Write-Host "Skipping existing source for $($work.sefaria_ref)"
+    continue
+  }
+
   Write-Host "Building work-level import for $($work.sefaria_ref)"
   $index = Get-SefariaIndex -Ref $work.sefaria_ref
   $units = New-Object System.Collections.Generic.List[object]
@@ -316,10 +385,19 @@ foreach ($work in $config.works) {
     $meta = Get-OutlineEntry -Work $work -Leaf $leaf
     Add-OutlineSection -Outline $outline -SeenGroups $seenGroups -SeenSections $seenSections -Meta $meta
 
+    if (Test-UseNextTraversal -Leaf $leaf) {
+      Add-UnitsByNextTraversal -Units $units -SequenceRef ([ref]$sequence) -Work $work -Meta $meta -StartRef $leafRef
+      continue
+    }
+
     foreach ($fetchRef in Get-FetchRefs -LeafRef $leafRef -Leaf $leaf) {
       Write-Host "Importing $fetchRef"
-      $payload = Get-SefariaText -Ref $fetchRef
-      Add-UnitsFromPayload -Units $units -SequenceRef ([ref]$sequence) -Work $work -Meta $meta -Payload $payload
+      try {
+        $payload = Get-SefariaText -Ref $fetchRef
+        Add-UnitsFromPayload -Units $units -SequenceRef ([ref]$sequence) -Work $work -Meta $meta -Payload $payload
+      } catch {
+        Write-Warning "Skipping $fetchRef`: $($_.Exception.Message)"
+      }
     }
   }
 
@@ -335,7 +413,7 @@ foreach ($work in $config.works) {
     units = $units
   }
 
-  Write-Utf8Json -Path (Join-Path $OutputDir "$($work.work_id).json") -Value $source
+  Write-Utf8Json -Path $sourcePath -Value $source
 
   $overlayPath = Join-Path $OverlayDir "$($work.work_id).json"
   if (-not (Test-Path $overlayPath)) {

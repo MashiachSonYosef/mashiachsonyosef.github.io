@@ -39,6 +39,30 @@ function Get-RootHref {
   return ('../' * $depth)
 }
 
+function Get-HomeGroup {
+  param([object]$Source)
+  if ($Source.work_id -eq 'orot') {
+    return 'Rav Kook'
+  }
+  $slugParts = @($Source.work_slug -split '[\\/]' | Where-Object { $_ })
+  if ($slugParts.Count -gt 1) {
+    $first = $slugParts[0]
+    if ($first -eq 'tanakh') { return 'Tanakh' }
+    return (Get-Culture).TextInfo.ToTitleCase(($first -replace '-', ' '))
+  }
+  return 'Works'
+}
+
+function Get-VersionSourceLabel {
+  param([AllowNull()][string]$Source)
+  if (-not $Source) { return '' }
+  try {
+    $uri = [System.Uri]$Source
+    if ($uri.Host) { return $uri.Host }
+  } catch {}
+  return $Source
+}
+
 function Get-OverlayUnit {
   param(
     [object]$Overlay,
@@ -87,6 +111,8 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .hero { padding: 22px 22px 18px; border-bottom: 1px solid var(--line); }')
   [void]$Builder.AppendLine('    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }')
   [void]$Builder.AppendLine('    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }')
+  [void]$Builder.AppendLine('    .home-section { margin-top: 26px; }')
+  [void]$Builder.AppendLine('    .home-section:first-child { margin-top: 0; }')
   [void]$Builder.AppendLine('    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }')
   [void]$Builder.AppendLine('    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }')
   [void]$Builder.AppendLine('    .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }')
@@ -104,6 +130,7 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .placeholder { color: #8c857c; }')
   [void]$Builder.AppendLine('    .overlay-block { border: 1px solid var(--line); background: var(--panel-2); padding: 12px; margin-bottom: 10px; }')
   [void]$Builder.AppendLine('    .overlay-label { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }')
+  [void]$Builder.AppendLine('    .source-citation { overflow-wrap: anywhere; word-break: break-word; }')
   [void]$Builder.AppendLine('    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }')
   [void]$Builder.AppendLine('    summary { cursor: pointer; color: var(--accent); }')
   [void]$Builder.AppendLine('    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }')
@@ -140,14 +167,20 @@ Append-SiteHead -Builder $homePage -Title 'Translation Workspace'
 [void]$homePage.AppendLine('        <p>Hebrew source infrastructure first. Overlays stay separate. English remains placeholder-only until you write it.</p>')
 [void]$homePage.AppendLine('      </div>')
 [void]$homePage.AppendLine('      <div style="padding:22px">')
-[void]$homePage.AppendLine('        <div class="home-grid">')
-foreach ($source in $sources) {
-  [void]$homePage.AppendLine("          <a class=""work-card"" href=""$($source.work_slug)/"">")
-  [void]$homePage.AppendLine("            <strong>$(Encode-Html $source.work_title)</strong>")
-  [void]$homePage.AppendLine("            <span class=""meta"">$(@($source.units).Count) source units | $(Encode-Html $source.source_system) | imported $(Encode-Html $source.import_date)</span>")
-  [void]$homePage.AppendLine('          </a>')
+$homeGroups = $sources | Group-Object { Get-HomeGroup $_ } | Sort-Object @{ Expression = { if ($_.Name -eq 'Works') { 0 } elseif ($_.Name -eq 'Tanakh') { 1 } else { 2 } } }, Name
+foreach ($homeGroup in $homeGroups) {
+  [void]$homePage.AppendLine('        <section class="home-section">')
+  [void]$homePage.AppendLine("          <h2>$(Encode-Html $homeGroup.Name)</h2>")
+  [void]$homePage.AppendLine('          <div class="home-grid">')
+  foreach ($source in @($homeGroup.Group | Sort-Object work_title)) {
+    [void]$homePage.AppendLine("            <a class=""work-card"" href=""$($source.work_slug)/"">")
+    [void]$homePage.AppendLine("              <strong>$(Encode-Html $source.work_title)</strong>")
+    [void]$homePage.AppendLine("              <span class=""meta"">$(@($source.units).Count) source units | $(Encode-Html $source.source_system) | imported $(Encode-Html $source.import_date)</span>")
+    [void]$homePage.AppendLine('            </a>')
+  }
+  [void]$homePage.AppendLine('          </div>')
+  [void]$homePage.AppendLine('        </section>')
 }
-[void]$homePage.AppendLine('        </div>')
 [void]$homePage.AppendLine('      </div>')
 [void]$homePage.AppendLine('    </div>')
 [void]$homePage.AppendLine('  </main>')
@@ -212,6 +245,7 @@ foreach ($source in $sources) {
     }
 
     $digitization = if ($unit.digitization) { $unit.digitization } else { $source.source_system }
+    $versionSourceLabel = Get-VersionSourceLabel -Source $unit.version_source
     $overlayUnit = Get-OverlayUnit -Overlay $overlay -UnitId $unit.unit_id
     $transliteration = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'transliteration'
     $strict = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'strict_translation'
@@ -230,14 +264,12 @@ foreach ($source in $sources) {
     foreach ($paragraph in @($unit.hebrew)) {
       [void]$page.AppendLine("                <p class=""hebrew"" lang=""he"">$(Encode-Html $paragraph)</p>")
     }
-    [void]$page.AppendLine('                <p class="meta">')
-    [void]$page.AppendLine("                  Source ref: $(Encode-Html $unit.source_ref)<br>")
-    [void]$page.AppendLine("                  Hebrew version: $(Encode-Html $unit.version_title)<br>")
+    [void]$page.AppendLine('                <p class="meta source-citation">')
+    [void]$page.Append("                  Source: $(Encode-Html $unit.source_ref) | Hebrew version: $(Encode-Html $unit.version_title)")
     if ($unit.version_source) {
-      [void]$page.AppendLine("                  Version source: $(Encode-Html $unit.version_source)<br>")
+      [void]$page.Append(" | Version source: <a href=""$(Encode-Html $unit.version_source)"">$(Encode-Html $versionSourceLabel)</a>")
     }
-    [void]$page.AppendLine("                  Digitization: $(Encode-Html $digitization)<br>")
-    [void]$page.AppendLine("                  License: $(Encode-Html $unit.license)")
+    [void]$page.AppendLine(" | Digitization: $(Encode-Html $digitization) | License: $(Encode-Html $unit.license)")
     [void]$page.AppendLine('                </p>')
     [void]$page.AppendLine('              </div>')
     [void]$page.AppendLine('              <div>')
