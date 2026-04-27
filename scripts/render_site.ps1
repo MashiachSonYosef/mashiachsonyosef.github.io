@@ -56,12 +56,15 @@ function Get-RootHref {
 function Get-HomeGroup {
   param([object]$Source)
   if ($Source.work_id -eq 'orot') {
-    return 'Rav Kook'
+    return 'Rav Kook School'
   }
   $slugParts = @($Source.work_slug -split '[\\/]' | Where-Object { $_ })
   if ($slugParts.Count -gt 1) {
     $first = $slugParts[0]
     if ($first -eq 'tanakh') { return 'Tanakh' }
+    if ($first -eq 'ari') { return 'Ari School' }
+    if ($first -eq 'gra') { return 'Gra School' }
+    if ($first -eq 'rav-kook') { return 'Rav Kook School' }
     return (Get-Culture).TextInfo.ToTitleCase(($first -replace '-', ' '))
   }
   return 'Works'
@@ -168,7 +171,6 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .toc ul { list-style: none; padding: 0; margin: 0; }')
   [void]$Builder.AppendLine('    .toc li { margin: 0 0 7px; }')
   [void]$Builder.AppendLine('    .toc a { text-decoration: none; font-size: 0.94rem; }')
-  [void]$Builder.AppendLine('    .search { width: 100%; border: 1px solid var(--line-2); background: #090a0c; color: var(--text); padding: 10px; margin-bottom: 12px; font: inherit; }')
   [void]$Builder.AppendLine('    .section-block { margin-bottom: 10px; }')
   [void]$Builder.AppendLine('    .unit { border-top: 1px solid var(--line); padding: 16px 0; }')
   [void]$Builder.AppendLine('    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }')
@@ -191,22 +193,6 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('  </style>')
   [void]$Builder.AppendLine('</head>')
   [void]$Builder.AppendLine('<body>')
-}
-
-function Append-Script {
-  param([System.Text.StringBuilder]$Builder)
-
-  [void]$Builder.AppendLine('  <script>')
-  [void]$Builder.AppendLine('    const search = document.querySelector("[data-search]");')
-  [void]$Builder.AppendLine('    if (search) {')
-  [void]$Builder.AppendLine('      search.addEventListener("input", () => {')
-  [void]$Builder.AppendLine('        const q = search.value.trim().toLowerCase();')
-  [void]$Builder.AppendLine('        document.querySelectorAll("[data-unit]").forEach((unit) => {')
-  [void]$Builder.AppendLine('          unit.hidden = q && !unit.textContent.toLowerCase().includes(q);')
-  [void]$Builder.AppendLine('        });')
-  [void]$Builder.AppendLine('      });')
-  [void]$Builder.AppendLine('    }')
-  [void]$Builder.AppendLine('  </script>')
 }
 
 $sources = @(Get-ChildItem -Path $SourceDir -Filter '*.json' | ForEach-Object { Read-Json -Path $_.FullName } | Sort-Object work_title)
@@ -281,7 +267,6 @@ foreach ($source in $sources) {
   [void]$page.AppendLine('      </div>')
   [void]$page.AppendLine('      <div class="reader-shell">')
   [void]$page.AppendLine('        <nav class="toc" aria-label="Table of contents">')
-  [void]$page.AppendLine('          <input class="search" data-search type="search" placeholder="Search this work">')
   foreach ($group in $source.outline) {
     $showGroupTitle = ($group.group_title -ne $source.work_title -and $group.group_slug -ne 'text')
     $visibleSections = @($group.sections | Where-Object { $_.section_title -ne $source.work_title -and $_.section_slug -ne 'text' })
@@ -388,7 +373,6 @@ foreach ($source in $sources) {
   [void]$page.AppendLine('      </div>')
   [void]$page.AppendLine('    </div>')
   [void]$page.AppendLine('  </main>')
-  Append-Script -Builder $page
   [void]$page.AppendLine('</body>')
   [void]$page.AppendLine('</html>')
 
