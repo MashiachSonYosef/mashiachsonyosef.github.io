@@ -5,48 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Translation Workspace</title>
   <style>
-    :root { color-scheme: dark; --bg: #0a0b0d; --panel: #111318; --panel-2: #171a21; --text: #ece7dd; --muted: #aaa296; --line: #2a2d35; --accent: #d6be8a; --hebrew: #f4efe5; }
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
     * { box-sizing: border-box; }
-    body { margin: 0; background: var(--bg); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    body { margin: 0; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
     a { color: var(--accent); }
-    main { width: min(1400px, calc(100% - 24px)); margin: 0 auto; padding: 24px 0 48px; }
-    h1, h2, h3 { font-weight: 400; margin: 0; scroll-margin-top: 18px; }
-    h1 { font-size: clamp(2rem, 5vw, 4.8rem); line-height: 0.95; margin-bottom: 14px; }
-    h2 { color: var(--accent); font-size: 1.25rem; margin: 28px 0 12px; }
-    h3 { font-size: 1.05rem; margin-bottom: 8px; }
-    p { color: var(--muted); line-height: 1.5; margin: 0 0 8px; }
+    main { width: min(1440px, calc(100% - 28px)); margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; }
+    .shell { border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { padding: 22px 22px 18px; border-bottom: 1px solid var(--line); }
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
-    .home-grid, .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
-    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 16px; text-decoration: none; min-height: 120px; }
-    .work-card strong { display: block; color: var(--text); font-size: 1.1rem; margin-bottom: 8px; }
-    .reader-shell { display: grid; grid-template-columns: minmax(210px, 280px) 1fr; gap: 20px; align-items: start; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }
     .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
     .toc ul { list-style: none; padding: 0; margin: 0; }
     .toc li { margin: 0 0 7px; }
     .toc a { text-decoration: none; font-size: 0.94rem; }
-    .search { width: 100%; border: 1px solid var(--line); background: #090a0c; color: var(--text); padding: 10px; margin-bottom: 12px; font: inherit; }
-    .unit { border-top: 1px solid var(--line); padding: 18px 0; }
+    .search { width: 100%; border: 1px solid var(--line-2); background: #090a0c; color: var(--text); padding: 10px; margin-bottom: 12px; font: inherit; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; }
     .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
     .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
-    .unit-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 18px; }
-    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.18rem; line-height: 1.7; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; }
     .placeholder { color: #8c857c; }
     .overlay-block { border: 1px solid var(--line); background: var(--panel-2); padding: 12px; margin-bottom: 10px; }
-    .overlay-label { display: block; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0; margin-bottom: 6px; }
+    .overlay-label { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
     summary { cursor: pointer; color: var(--accent); }
-    @media (max-width: 820px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
   <main>
-    <h1>Translation Workspace</h1>
-    <p>Hebrew source texts with empty overlay fields for future translation work.</p>
-    <div class="home-grid">
-      <a class="work-card" href="orot/">
-        <strong>Orot</strong>
-        <span class="meta">Imported Hebrew source texts and translation overlays.</span>
-      </a>
+    <div class="shell">
+      <div class="hero">
+        <h1>Translation Workspace</h1>
+        <p>Hebrew source infrastructure first. Overlays stay separate. English remains placeholder-only until you write it.</p>
+      </div>
+      <div style="padding:22px">
+        <div class="home-grid">
+          <a class="work-card" href="orot/">
+            <strong>Orot</strong>
+            <span class="meta">416 source units | Sefaria API | imported 2026-04-27</span>
+          </a>
+        </div>
+      </div>
     </div>
   </main>
 </body>
