@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iggeret HaGra</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; }
+    .shell { border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { padding: 22px 22px 18px; border-bottom: 1px solid var(--line); }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .search { width: 100%; border: 1px solid var(--line-2); background: #090a0c; color: var(--text); padding: 10px; margin-bottom: 12px; font: inherit; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
+    .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .overlay-block { border: 1px solid var(--line); background: var(--panel-2); padding: 12px; margin-bottom: 10px; }
+    .overlay-label { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero">
+        <p class="crumbs"><a href="../../">Home</a></p>
+        <h1>Iggeret HaGra</h1>
+        <p class="meta">16 total source units | imported 2026-04-27</p>
+        <p class="meta source-citation">Hebrew version: Iggeret HaGra -- Wikisource | Version source: <a href="https://he.wikisource.org/wiki/%D7%90%D7%92%D7%A8%D7%AA_%D7%94%D7%92%D7%A8%22%D7%90">he.wikisource.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <input class="search" data-search type="search" placeholder="Search this work">
+        </nav>
+        <article>
+          <h4 id="chapter-iggeret-hagra-text-1">Chapter 1</h4>
+          <section class="unit" id="iggeret-hagra-1" data-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Iggeret HaGra:1</h4></div>
+              <a class="anchor" href="#iggeret-hagra-1" aria-label="Copy link to Iggeret HaGra:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew" lang="he">באתי לבקש מאתכם שלא תצטערו כלל וכלל, כמה שהבטיחו לי אמתית, וגם לא תדאגו (<span class="source-small">נ&quot;א:</span> שהבטיחה לי אמי תחיה, וגם מה תדאגו?), הנה אנשים נוסעים על כמה שנים בשביל ממון, מניחים נשותיהן וגם הם נע ונד בחוסר כל. ואני תודה לאל, נוסע לארץ הקדושה שהכל מצפים לראותה, חמדת כל ישראל (<span class="source-small">נ&quot;א:</span> וחמדת השם-יתברך, כל העליונים והתחתונים תשוקתם אליה), ואני נוסע בשלום ברוך ה&#39;. וגם את יודעת שהנחתי ילדי שלבי הומה עליהם וכל ספרי היקרים, והייתי כגר בארץ אחרת והנחתי הכל כו&#39;.</p>
+              </div>
+              <div>
+                <div class="overlay-block"><span class="overlay-label">Translation</span>
+                  <p class="placeholder">[Awaiting translation]</p>
+                </div>
+                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
+                  <p class="placeholder">[Awaiting notes]</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <h4 id="chapter-iggeret-hagra-text-2">Chapter 2</h4>
+          <section class="unit" id="iggeret-hagra-2" data-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Iggeret HaGra:2</h4></div>
+              <a class="anchor" href="#iggeret-hagra-2" aria-label="Copy link to Iggeret HaGra:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew" lang="he">וידוע, כי כל העולם-הזה הכל הבל, וכל השעשועים הכל כלא, ואוי להרודפים אחר ההבל אין בו מועיל. ואל תקנא בעושר, כי &quot;יש וגו&#39; עשר שמור לבעליו לרעתו&quot;, &quot;כאשר יצא מבטן אמו ערום ישוב&quot; וגו&#39;, &quot;כל- עומת שבא כן ילך, ומה-יתרון לו שיעמל לרוח&quot; (קהלת ה, יב - טו). &quot;ואלו חיה אלף שנים פעמים&quot; וגו&#39;, (קהלת ו, ו). &quot;כי אם-שנים הרבה יחיה האדם בכולם ישמח, ויזכר את-ימי החשך, כי-הרבה יהיו כל -שבא הבל&quot; (קהלת יא, ח). &quot;ולשמחה מה-זה עשה&quot; (קהלת ב, ב). כי מחר תבכה מאשר היום תשחק. ואל תקנא בכבוד המדומה ההבל, והזמן בוגד והוא כמאזנים: יגביה הקל וישפיל הכבד. והעולם דומה לשותה מים מלוחים, ידמה לו שמרוה, וצמא יותר <span class="source-small">(מבחר הפנינים)</span>. &quot;אין אדם מת וחצי תאותו בידו&quot; (קהלת רבה, א). &quot;מה-יתרון לאדם בכל-עמלו&quot; וגו&#39; (קהלת א, ג). זכור הראשונים אשר היו לפנינו, שכל אהבתם וחמדתם ושמחתם כבר אבדה (שם) ומקבלים על זה דינים מרובים. ומה-הנאה לאדם שסופו לפרוש לעפר רמה ותולעה, וכל הנאות יתהפכו לו בקבר למרה והמות כרוך באדם. ומה העולם-הזה, כי כל ימיו כעס ומכאובים, גם בלילה איננו מניח לו לישון, והמות אינו מקווה, והכל יביא במשפט, על כל דיבור, ולא נאבד אפילו דיבור קל.</p>
+              </div>
+              <div>
+                <div class="overlay-block"><span class="overlay-label">Translation</span>
+                  <p class="placeholder">[Awaiting translation]</p>
+                </div>
+                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
+                  <p class="placeholder">[Awaiting notes]</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <h4 id="chapter-iggeret-hagra-text-3">Chapter 3</h4>
+          <section class="unit" id="iggeret-hagra-3" data-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Iggeret HaGra:3</h4></div>
+              <a class="anchor" href="#iggeret-hagra-3" aria-label="Copy link to Iggeret HaGra:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew" lang="he">ולכן אני מזהירך, שתרגיל בכל היותר לישב יחידי, כי חטא הלשון על כולו. כמאמר חכמינו ז&quot;ל (תוספתא פאה, א), &quot;אלו דברים שאדם אוכל כו&#39; ולשון הרע כנגד כולם&quot;. ומה לי להאריך בזה העוון החמור מכל- העבירות. &quot;כל-עמל האדם לפיהו&quot; (קהלת ו, ז), אמרו חכמינו ז&quot;ל, שכל-מצותיו ותורותיו של אדם אינו מספיק למה-שמוציא מפיו. &quot;מה אומנותו של אדם בעולם-הזה, ישים עצמו כאלם&quot; כו&#39; (חולין פט, א). וידביק שפתותיו כשתי ריחים כו&#39;. וכל כף הקלע הכל בהבל פיו של דברים בטלים, ועל כל דיבור הבל, צריך להתקלע מסוף העולם ועד סופו. וכל זה בדברים יתרים. אבל בדברים האסורים, כגון: לשון-הרע וליצנות ושבועות ונדרים ומחלוקת וקללות, ובפרט בבית-הכנסת ובשבת ויום-טוב, על אלו צריך לירד לשאול למטה הרבה מאד, ואי-אפשר לשער גודל היסורין והצרות שסובל בשביל דיבור אחד (זהר), ולא נאבד אפילו דיבור אחד שלא נכתב. בעלי-גדפין הולכין תמיד אל כל אדם ואדם ואין נפרדים ממנו וכותבין כל דיבור ודיבור, &quot;כי עוף השמים יוליך את-הקול, ובעל כנפים יגיד דבר&quot; (קהלת י, כ). &quot;אל-תתן את-פיך לחטיא את-בשרך ואל-תאמר לפני המלאך כי שגגה היא למה יקצף&quot; וגו&#39; (קהלת ה, ה). ובכל אשר צריך לך, תקח הכל על-ידי שליח, ואף אם הוא פעמים ושלש ביקר, &quot;היד ה&#39; תקצר&quot; וגו&#39; (במדבר יא, כג). השם יתברך זן מקרני ראמים עד ביצי כנים (עבודה זרה ג, א), ונותן לכל אחד ואחד די מחסורו. ובשבת ויום-טוב אל תדברו כלל מדברים שאינם נצרכים מאד. וגם בדברים הנצרכים למאד תקצרו מאד, כי קדושת שבת גדולה מאד, &quot;ובקושי התירו לומר שלום בשבת&quot; <span class="source-small">(ירושלמי שבת, וכן בתוספת שבת דף קיג)</span>. ראה, בדיבור אחד כמה החמירו. ותכבד את השבת מאד כאשר היה לפני, ואל תצמצם כלל, כי &quot;כל מזונותיו של אדם קצובים לו מראש-השנה ועד יום-הכיפורים, חוץ מהוצאות שבתות והוצאות יום-טוב וכו&#39;. (ביצה טז, א).</p>
+              </div>
+              <div>
+                <div class="overlay-block"><span class="overlay-label">Translation</span>
+                  <p class="placeholder">[Awaiting translation]</p>
+                </div>
+                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
+                  <p class="placeholder">[Awaiting notes]</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <h4 id="chapter-iggeret-hagra-text-4">Chapter 4</h4>
+          <section class="unit" id="iggeret-hagra-4" data-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Iggeret HaGra:4</h4></div>
+              <a class="anchor" href="#iggeret-hagra-4" aria-label="Copy link to Iggeret HaGra:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew" lang="he">וגם באתי לבקש מאתך מאד מאד בבקשה גדולה ועצומה ושטוחה, שתדריך את בנותיך מאד שלא יצא מפיהם קללה ושבועה וכזב ומחלוקת, רק הכל בשלום, באהבה ובחיבה ונחת. והנה יש לי כמה ספרי מוסר עם לשון אשכנז, יקראוהו תמיד, וכל-שכן בשבת קדש-קדשים לא יתעסקו אלא בספרי מוסר. והנה תדריכם תמיד בספרי מוסר. ועל קללה ושבועה וכזב, תכה אותם ולא תרחם עליהם כלל, כי חס-ושלום בקלקול הבנים יענשו אב ואם מאד. והבזיון בעולם-הבא, &quot;את-אביה היא מחללת&quot; (ויקרא כא, ט). &quot;כמאן קרינן לרשע בן- צדיק, רשע-בן רשע&quot; כו&#39; (סנהדרין נב, א). וכן שאר דברים, לשון-הרע ורכילות, ושלא יאכלו וישתו כי אם בברכה ראשונה ואחרונה, וברכת-המזון וקריאת-שמע והכל בכונה. ועיקר הכל שלא יצאו חס-ושלום מפתח ביתם ולחוץ, ושיצייתו ויכבדו אותך ולאמי ולכל הגדולים בשנים מהם, וגם כל מה שכתוב בספרי מוסר יקיימו.</p>
+              </div>
+              <div>
+                <div class="overlay-block"><span class="overlay-label">Translation</span>
+                  <p class="placeholder">[Awaiting translation]</p>
+                </div>
+                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
+                  <p class="placeholder">[Awaiting notes]</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <h4 id="chapter-iggeret-hagra-text-5">Chapter 5</h4>
+          <section class="unit" id="iggeret-hagra-5" data-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Iggeret HaGra:5</h4></div>
+              <a class="anchor" href="#iggeret-hagra-5" aria-label="Copy link to Iggeret HaGra:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew" lang="he">גם לבניך שיחיו תגדל אותם בדרך הישר ובנחת, ותשלם שכר-למוד ותחזיק מלמד בביתך ולא תצמצם בשכרו, כי כל מזונותיו של אדם קצובים לו מראש-השנה חוץ מתשר&quot;י <span class="source-small">[<strong>ת</strong>למוד תורה, <strong>ש</strong>בתות, <strong>ר</strong>אשי חודשים, <strong>י</strong>מים טובים]</span> (ביצה טז, א). וגם הנחתי להם ספרים. ולמען השם תדריכם בטוב ובנחת. וגם תשגיח על בריאותם ומזונותם תמיד שלא יחסר להם, ושילמדו מקודם כל החומש, שיהיו רגילים כמעט בעל- פה, ואל יכביד עליהם כי אם בנחת. כי הלימוד אינו נקבע באדם, כי אם בישוב ובנחת. ותפזר להם פרוטות וכיוצא.</p>
+              </div>
+              <div>
+                <div class="overlay-block"><span class="overlay-label">Translation</span>
+                  <p class="placeholder">[Awaiting translation]</p>
+                </div>
+                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
+                  <p class="placeholder">[Awaiting notes]</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <h4 id="chapter-iggeret-hagra-text-6">Chapter 6</h4>
+          <section class="unit" id="iggeret-hagra-6" data-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Iggeret HaGra:6</h4></div>
+              <a class="anchor" href="#iggeret-hagra-6" aria-label="Copy link to Iggeret HaGra:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew" lang="he">ועל זה תתן תמיד דעתך, והשאר הכל הבל. כי מאומה לא ישא אדם בעמלו, רק שתי חליפות בגדים לבנים. גם &quot;אח לא-פדה וגו&#39; (תהלים מט, ח) אל-תירא כי-יעשר איש וגו&#39;, כי לא במותו&quot; וגו&#39; (תהלים יז, יח). ואל תאמר אניח לבני חק בשאול וגו&#39;. בני- אדם דומין לעשבי השדה, הללו נוצצין והללו נובלין (עירובין נד, א). כל אחד נולד במזלו ובהשגחת אל עליון ברוך-הוא, והם שמחים במותו והוא יורד לשאול. &quot;ריש-לקיש הניח לבניו קבא דמוריקא, קרי אנפשיה (תהלים מט, יא): &#39;ועזבו לאחרים חילם&#39;&quot; (גיטין מז, א). אוי ואבוי על שכולם חושבים להניח לבנים, ואין יתרון מבנים ומבנות רק בתורתם ובמעשיהם הטובים, אבל מזונותם קצובים להם. גם-כן ידוע (ברכות יז, א): &quot;אגרא דנשי באקרויי בניהו&quot; כו&#39; .</p>
+              </div>
+              <div>
+                <div class="overlay-block"><span class="overlay-label">Translation</span>
+                  <p class="placeholder">[Awaiting translation]</p>
+                </div>
+                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
+                  <p class="placeholder">[Awaiting notes]</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <h4 id="chapter-iggeret-hagra-text-7">Chapter 7</h4>
+          <section class="unit" id="iggeret-hagra-7" data-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Iggeret HaGra:7</h4></div>
+              <a class="anchor" href="#iggeret-hagra-7" aria-label="Copy link to Iggeret HaGra:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew" lang="he">ואמרו חכמינו זכרונם לברכה <span class="source-small">(תנא דבי אליהו רבא פרק ט)</span>, אין לך אשה כשרה בנשים, אלא כשעושה רצון בעלה, וכל-שכן שאני כותב לך דברי אלהים חיים, ובטוח אני שתעשה ככל אשר כתבתי, אף-על-פי-כן באתי להזהירך באזהרה כפולה, שלא תשנה דבר מכל אשר כתבתי. ותקרא את האיגרת הזאת בכל שבוע, ובפרט בשבת קודם האכילה ובתוך הסעודה, שלא ידברו דברים בטלים חס-ושלום וכל-שכן וחס-ושלום בלשון- הרע וכיוצא בהם.</p>
+              </div>
+              <div>
+                <div class="overlay-block"><span class="overlay-label">Translation</span>
+                  <p class="placeholder">[Awaiting translation]</p>
+                </div>
+                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
+                  <p class="placeholder">[Awaiting notes]</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <h4 id="chapter-iggeret-hagra-text-8">Chapter 8</h4>
+          <section class="unit" id="iggeret-hagra-8" data-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Iggeret HaGra:8</h4></div>
+              <a class="anchor" href="#iggeret-hagra-8" aria-label="Copy link to Iggeret HaGra:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew" lang="he">ובבקשה לכולכם על הנכתב לעיל שתדריך בניך ובנותיך, ועיקר בדברים רכים בדברי מוסר המתיישב על הלב, ובפרט אם נזכה לבוא לארץ-ישראל, כי שם צריך לילך מאד בדרכי ה&#39;, ולכן תרגילם. כי הדיבור והמדות צריך הרגל רב. וההרגל על כל דבר, שלטון <span class="source-small">(שערי תשובה לר&quot;י)</span>. &quot;וכל ההתחלות קשות&quot; (מכילתא יתרו). ואחר-כך (<span class="source-small">נ&quot;א:</span> טוב לו) &quot;ואזל לו אז יתהלל&quot; (משלי כ, יד). כי הרשע יודע בעצמו שרע ומר דרכו, אך שקשה לו לפרוש. וזה כל האדם, לא יניח לו לחפצו &quot;במתג-ורסן עדיו לבלום&quot; (תהלים לב, ט). ועד יום מותו צריך האדם להתייסר, ולא בתעניתים וסיגופים רק ברסן פיו ובתאותו, וזהו התשובה, ולזה כל פרי העולם-הבא, כמו שכתוב (משלי ו, כג): &quot;כי נר מצוה&quot; וגו&#39;, אבל &quot;ודרך חיים תוכחות מוסר&quot;, וזהו יותר מכל התעניתים וסיגופים בעולם. וכל רגע ורגע שהאדם חוסם פיו זוכה בשבילו לאור הגנוז שאין מלאך ובריה יכולים לשער (מדרש). ואומר הכתוב (תהלים לד, יג - יד): &quot;מי-האיש החפץ חיים, אהב ימים וגו&#39; נצר לשונך מרע, ושפתיך מדבר מרמה&quot;, ובזה יכופר לו כל עון וניצול משאול תחתית, כמו שכתוב (משלי כא, כג): &quot;שמר פיו [מאכילה ושתיה יתרה] ולשונו [מדברים בטלים], שמר מצרות נפשו&quot;. &quot;מות וחיים ביד-לשון&quot; (משלי יח, כא). אוי למי שממית עצמו בשביל דיבור אחד. &quot;ואין יתרון לבעל הלשון &quot; (קהלת י, יא), ולכל יש רפואה חוץ כו&#39;. והעיקר שלא תדבר בשום אדם בשבחו וכל שכן בגנותו, כי מה-לו לאדם בדבר זרות. &quot;שוחה עמוקה פי זרות, זעום ה&#39; יפל-שם&quot; (משלי כב, יד).</p>
+              </div>
+              <div>
+                <div class="overlay-block"><span class="overlay-label">Translation</span>
+                  <p class="placeholder">[Awaiting translation]</p>
+                </div>
+                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
+                  <p class="placeholder">[Awaiting notes]</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <h4 id="chapter-iggeret-hagra-text-9">Chapter 9</h4>
+          <section class="unit" id="iggeret-hagra-9" data-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Iggeret HaGra:9</h4></div>
+              <a class="anchor" href="#iggeret-hagra-9" aria-label="Copy link to Iggeret HaGra:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew" lang="he">ועיקר הגדר בבדידות, שלא תצא חס-ושלום מפתח ביתך חוצה, ואף בבית-הכנסת תקצר מאד ותצא. ויותר טוב להתפלל בבית, כי בבית-הכנסת אי-אפשר להינצל מקנאה, ולשמוע דברים בטלים ולשון-הרע. ונענשין על-זה, כמו שאמרו (שבת לג, א): &quot;אף שומע ושותק&quot; כו&#39;. וכל-שכן בשבת ויום-טוב שמתאספין לדבר, יותר טוב שלא תתפלל כלל. ותישמר שלא תלך לבית הקברות כלל וכלל. (<span class="source-small">נ&quot;א:</span> ששם מתדבקין הקליפות מאד וכל שכן בנשים), וכל הצרות והעוונות באים מזה. וגם בתך יותר טוב שלא תלך לבית- הכנסת, כי שם רואה בגדים טובים ומתקנאת ומספרת בבית, ומתוך זה באין ללשון- הרע ולשאר דברים. אלא תדבק במוסר תמיד ואל תקנא בעולם- הזה, הכל הבל מעשה תעתועים, &quot;שבן-לילה היה&quot; וגו&#39; (יונה ד, י). כי &quot;אם-יעלה לשמים שיאו&quot; וגו&#39; (איוב כ, ו). &quot;כי לא לעולם חסן, ואם-נזר&quot; וגו&#39; (משלי כז, כד). ואף בשעתו הוא הבל אין בו ממש ומאוס ובזוי בעיני כל בעל-שכל. אוי ואבוי למי ששוגה בו. ותקנא ביראת ה&#39; (משלי כג, יז). ולא תאמר במה אזכה לעולם-הבא, איני יכולה לעשות? &quot;אחד המרבה ואחד הממעיט ובלבד שיכוון לבו לשמים&quot; (ברכות יז, א).</p>
+              </div>
+              <div>
+                <div class="overlay-block"><span class="overlay-label">Translation</span>
+                  <p class="placeholder">[Awaiting translation]</p>
+                </div>
+                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
+                  <p class="placeholder">[Awaiting notes]</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <h4 id="chapter-iggeret-hagra-text-10">Chapter 10</h4>
+          <section class="unit" id="iggeret-hagra-10" data-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Iggeret HaGra:10</h4></div>
+              <a class="anchor" href="#iggeret-hagra-10" aria-label="Copy link to Iggeret HaGra:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew" lang="he">ולמען ה&#39; שתפריש את החומש כאשר צויתיך ואל תפחות כאשר הזהרתיך, כי בפחות מזה עוברים כל רגע על כמה לאוין ועשין, ושקול כאילו כפר בתורה הקדושה חס- ושלום.</p>
+              </div>
+              <div>
+                <div class="overlay-block"><span class="overlay-label">Translation</span>
+                  <p class="placeholder">[Awaiting translation]</p>
+                </div>
+                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
+                  <p class="placeholder">[Awaiting notes]</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <h4 id="chapter-iggeret-hagra-text-11">Chapter 11</h4>
+          <section class="unit" id="iggeret-hagra-11" data-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Iggeret HaGra:11</h4></div>
+              <a class="anchor" href="#iggeret-hagra-11" aria-label="Copy link to Iggeret HaGra:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew" lang="he">אבל העיקר לזכות לעולם-הבא בשמירת פיו, וזהו יותר מכל התורה והמעשים, ואלו נקראים &quot;נשים שאננות&quot; (ישעיה לב, ט), כי הפה קדש קדשים.</p>
+              </div>
+              <div>
+                <div class="overlay-block"><span class="overlay-label">Translation</span>
+                  <p class="placeholder">[Awaiting translation]</p>
+                </div>
+                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
+                  <p class="placeholder">[Awaiting notes]</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <h4 id="chapter-iggeret-hagra-text-12">Chapter 12</h4>
+          <section class="unit" id="iggeret-hagra-12" data-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Iggeret HaGra:12</h4></div>
+              <a class="anchor" href="#iggeret-hagra-12" aria-label="Copy link to Iggeret HaGra:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew" lang="he">ובספרים שלי יש &quot;משלי&quot; עם לשון אשכנז, למען השם שיקראו בכל יום. והוא יותר טוב מכל ספרי מוסר. וגם ספר &quot;קהלת&quot; יקראו תמיד לפניך, כי שם מהביל עניני העולם-הזה, ושאר ספרים. אבל חס-ושלום לא תהיה התכלית הקריאה לבד, כי בזה אין מתפעל האדם. גם כמה בני-אדם קורין בספרי מוסר ואינם מתפעלים, והוא בשביל הנזכר למעלה. ועוד בשביל יציאתם בלא הבנה, (<span class="source-small">נ&quot;א:</span> בין הבריות), כי זה מאבד את הכל. והמשל, הזורע בלא חרישה, שיחטוף הרוח וישביע עופות כו&#39;, והוא בשביל שאין יכול לחסום עצמו ולגדור, והוא כזורע בלא גדר ואוכלין החזירים וירמסון. ויש שזורע על האבן, והוא לב האבן שאינו נכנס בו כלל, וצריך להכות את האבן עד שיתפוצץ. לכן כתבתי לך שתכה את בנינו אם לא ישמעו לך, ו&quot;חנוך לנער על-פי דרכו&quot; (משלי כב, ו). ועיקר בחינוך.</p>
+              </div>
+              <div>
+                <div class="overlay-block"><span class="overlay-label">Translation</span>
+                  <p class="placeholder">[Awaiting translation]</p>
+                </div>
+                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
+                  <p class="placeholder">[Awaiting notes]</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <h4 id="chapter-iggeret-hagra-text-13">Chapter 13</h4>
+          <section class="unit" id="iggeret-hagra-13" data-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Iggeret HaGra:13</h4></div>
+              <a class="anchor" href="#iggeret-hagra-13" aria-label="Copy link to Iggeret HaGra:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew" lang="he">וגם את חתני אני מזהיר בכל זה, שיקרא לפניהם כנזכר למעלה, ושיהא לימודו לשם שמים, ולמען השם יחנך עצמו בזה. ואל ישגיח על האומרים, כי הנער אין צריך לזה חס- ושלום, אדרבה &quot;חנוך לנער&quot; וגו&#39;. קליפת האגוז ירוקה נוחה להסיר כו&#39;. ועיקר הכל הוא, כי בזה זוכה אל הכל, כמו שאמרו חז&quot;ל (משנה אבות ו, א): &quot;רבי מאיר אומר כל העוסק בתורה לשמה כו&#39; ולא עוד&quot; כו&#39;. ותלמד מסכת אבות ובפרט בפרקי אבות דרבי נתן, ומסכת דרך-ארץ קדמה לתורה. ותכבד לחמותך, ולחמותך הזקנה תכבד מאד. ועם כל אדם תתנהג בדרך-ארץ בנחת ובכבוד.</p>
+              </div>
+              <div>
+                <div class="overlay-block"><span class="overlay-label">Translation</span>
+                  <p class="placeholder">[Awaiting translation]</p>
+                </div>
+                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
+                  <p class="placeholder">[Awaiting notes]</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <h4 id="chapter-iggeret-hagra-text-14">Chapter 14</h4>
+          <section class="unit" id="iggeret-hagra-14" data-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Iggeret HaGra:14</h4></div>
+              <a class="anchor" href="#iggeret-hagra-14" aria-label="Copy link to Iggeret HaGra:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew" lang="he">אהובתי אמי, ידעתי שאינך צריכה למוסר שלי, כי ידעתי כי צנועה את, אף-על-פי-כן יקראו לפניך האיגרת הזאת, כי הם דברי אלהים חיים. ומבקש אני מאד ממך בבקשה שטוחה, שלא תצטערי בשבילי, כאשר הבטחת לי. ואם ירצה ה&#39;, אם אזכה להיות בירושלים עיר הקדש אצל שער השמים, אבקש בעדך כאשר הבטחתי. ואם נזכה נתראה יחדו כולנו, אם ירצה בעל הרחמים. וגם באתי לבקש לאשתי שתכבד את אמי, כמו שכתוב בתורה, ובפרט לאלמנה, שעון פלילי מאד לצערה, אפילו בתנועה קלה. וגם לאמי בקשתי, שיהא שלום בין שתיכן, ואשה את רעותה תשמח בדברים טובים, כי זה מצוה גדולה לכל אדם, ו&quot;שואלין לאדם בשעת הדין כו&#39;, המלכת את חברך בנחת-רוח&quot;, הרי צריך שימליכהו בנחת, ובזה רוב התורה לשמח לאדם. ואף אם תעשה אחת מכם שלא כהוגן, תמחלו זו לזו ותחיו למען ה&#39; בשלום. וכן לאמי בקשתי שתדריך את בני ובנותי בדברים רכים שיקבלום ותשגיח עליהם. ולבני ולבנותי אני מצוה שיכבדו אותה. וגם ביניהם לא ישמע ריב וכעס כלל, אלא הכל בשלום.</p>
+              </div>
+              <div>
+                <div class="overlay-block"><span class="overlay-label">Translation</span>
+                  <p class="placeholder">[Awaiting translation]</p>
+                </div>
+                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
+                  <p class="placeholder">[Awaiting notes]</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <h4 id="chapter-iggeret-hagra-text-15">Chapter 15</h4>
+          <section class="unit" id="iggeret-hagra-15" data-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Iggeret HaGra:15</h4></div>
+              <a class="anchor" href="#iggeret-hagra-15" aria-label="Copy link to Iggeret HaGra:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew" lang="he">ובעל השלום יתן לכם ולבני ולבנותי וחתני ואחי וכל ישראל חיים ושלום.</p>
+              </div>
+              <div>
+                <div class="overlay-block"><span class="overlay-label">Translation</span>
+                  <p class="placeholder">[Awaiting translation]</p>
+                </div>
+                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
+                  <p class="placeholder">[Awaiting notes]</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <h4 id="chapter-iggeret-hagra-text-16">Chapter 16</h4>
+          <section class="unit" id="iggeret-hagra-16" data-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Iggeret HaGra:16</h4></div>
+              <a class="anchor" href="#iggeret-hagra-16" aria-label="Copy link to Iggeret HaGra:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew" lang="he">מנאי אהובכם אליהו במוהר&quot;ר שלמה זלמן זצלה&quot;ה</p>
+              </div>
+              <div>
+                <div class="overlay-block"><span class="overlay-label">Translation</span>
+                  <p class="placeholder">[Awaiting translation]</p>
+                </div>
+                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
+                  <p class="placeholder">[Awaiting notes]</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <script>
+    const search = document.querySelector("[data-search]");
+    if (search) {
+      search.addEventListener("input", () => {
+        const q = search.value.trim().toLowerCase();
+        document.querySelectorAll("[data-unit]").forEach((unit) => {
+          unit.hidden = q && !unit.textContent.toLowerCase().includes(q);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
