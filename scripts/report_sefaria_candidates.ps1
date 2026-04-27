@@ -233,7 +233,7 @@ foreach ($work in $works) {
 }
 
 $candidates = @{}
-foreach ($title in @('Yahel Ohr on Zohar', 'Maaseh Rav', 'Olat Reiyah', 'Shabbat HaAretz')) {
+foreach ($title in @('Yahel Ohr on Zohar', 'Maaseh Rav', 'Kol HaTor', 'Nefesh HaChayim', 'Olat Reiyah', 'Shabbat HaAretz')) {
   Add-Candidate -Candidates $candidates -Title $title -Reason 'Explicit user candidate'
 }
 
@@ -250,7 +250,7 @@ foreach ($work in $works) {
   if ($work.title -match "^Gra's Nuschah") {
     Add-Candidate -Candidates $candidates -Title $work.title -Reason "Gra's Nuschah on Minor Tractates"
   }
-  if ($work.category_text -match 'Beur HaGra|Gra''s Nuschah' -or $work.title -match 'Vilna Gaon|HaGra|^Gra on |^Aderet Eliyahu$|^Maaseh Rav$|^Yahel Ohr') {
+  if ($work.category_text -match 'Beur HaGra|Gra''s Nuschah' -or $work.title -match 'Vilna Gaon|HaGra|^Gra on |^Aderet Eliyahu$|^Maaseh Rav$|^Yahel Ohr|^Kol HaTor$|^Nefesh HaChayim$') {
     Add-Candidate -Candidates $candidates -Title $work.title -Reason 'Gra/Vilna Gaon catalog search'
   }
 }
