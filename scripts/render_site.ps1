@@ -332,13 +332,8 @@ foreach ($source in $sources) {
 
     $sourceNoteNumber = $sourceNoteByKey[(Get-SourceKey -Unit $unit)]
     $overlayUnit = Get-OverlayUnit -Overlay $overlay -UnitId $unit.unit_id
-    $transliteration = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'transliteration'
     $strict = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'strict_translation'
     $clean = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'clean_translation'
-    $notes = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'notes'
-    $pressureWords = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'pressure_words'
-    $rejected = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'rejected_alternatives'
-    $hasOverlayContent = (Test-HasContent $transliteration) -or (Test-HasContent $strict) -or (Test-HasContent $clean) -or (Test-HasContent $notes) -or (Test-HasContent $pressureWords) -or (Test-HasContent $rejected)
 
     [void]$page.AppendLine("          <section class=""unit"" id=""$($unit.anchor_id)"" data-unit>")
     [void]$page.AppendLine('            <div class="unit-head">')
@@ -356,42 +351,20 @@ foreach ($source in $sources) {
     }
     [void]$page.AppendLine('              </div>')
     [void]$page.AppendLine('              <div>')
-
-    if ($hasOverlayContent) {
-      if (Test-HasContent $transliteration) {
-      [void]$page.AppendLine('                <div class="overlay-block"><span class="overlay-label">Transliteration</span>')
-      [void]$page.AppendLine("                  <p>$(Encode-Html $transliteration)</p></div>")
-      }
-      if (Test-HasContent $strict) {
-        [void]$page.AppendLine('                <div class="overlay-block"><span class="overlay-label">Translation</span>')
-        [void]$page.AppendLine("                  <p>$(Encode-Html $strict)</p></div>")
-      }
-      if (Test-HasContent $clean) {
-        [void]$page.AppendLine('                <div class="overlay-block"><span class="overlay-label">Translator’s Notes</span>')
-        [void]$page.AppendLine("                  <p>$(Encode-Html $clean)</p></div>")
-      }
-      if ((Test-HasContent $notes) -or (Test-HasContent $pressureWords) -or (Test-HasContent $rejected)) {
-        [void]$page.AppendLine('                <details open>')
-        [void]$page.AppendLine('                  <summary>Notes / Pressure Words</summary>')
-        if (Test-HasContent $notes) {
-          [void]$page.AppendLine("                  <p><span class=""overlay-label"">Notes</span>$(Encode-Html $notes)</p>")
-        }
-        if (Test-HasContent $pressureWords) {
-          [void]$page.AppendLine("                  <p><span class=""overlay-label"">Pressure Words</span>$(Encode-Html (($pressureWords -join ', ')))</p>")
-        }
-        if (Test-HasContent $rejected) {
-          [void]$page.AppendLine("                  <p><span class=""overlay-label"">Rejected Alternatives</span>$(Encode-Html (($rejected -join ', ')))</p>")
-        }
-        [void]$page.AppendLine('                </details>')
-      }
+    [void]$page.AppendLine('                <div class="overlay-block"><span class="overlay-label">Translation</span>')
+    if (Test-HasContent $strict) {
+      [void]$page.AppendLine("                  <p>$(Encode-Html $strict)</p>")
     } else {
-      [void]$page.AppendLine('                <details class="translation-panel">')
-      [void]$page.AppendLine('                  <summary>Translation pending</summary>')
-      [void]$page.AppendLine('                  <div class="overlay-block"><span class="overlay-label">Translation</span><p class="placeholder">[Awaiting translation]</p></div>')
-      [void]$page.AppendLine('                  <div class="overlay-block"><span class="overlay-label">Translator’s Notes</span><p class="placeholder">[Awaiting translation]</p></div>')
-      [void]$page.AppendLine('                  <div class="overlay-block"><span class="overlay-label">Notes / Pressure Words</span><p class="placeholder">[Awaiting notes]</p></div>')
-      [void]$page.AppendLine('                </details>')
+      [void]$page.AppendLine('                  <p class="placeholder">[Awaiting translation]</p>')
     }
+    [void]$page.AppendLine('                </div>')
+    [void]$page.AppendLine('                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>')
+    if (Test-HasContent $clean) {
+      [void]$page.AppendLine("                  <p>$(Encode-Html $clean)</p>")
+    } else {
+      [void]$page.AppendLine('                  <p class="placeholder">[Awaiting notes]</p>')
+    }
+    [void]$page.AppendLine('                </div>')
     [void]$page.AppendLine('              </div>')
     [void]$page.AppendLine('            </div>')
     [void]$page.AppendLine('          </section>')
