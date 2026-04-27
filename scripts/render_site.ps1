@@ -32,6 +32,13 @@ function Write-Utf8 {
   [System.IO.File]::WriteAllText($resolved, $Content, [System.Text.UTF8Encoding]::new($false))
 }
 
+function Get-RootHref {
+  param([string]$WorkSlug)
+  $depth = @($WorkSlug -split '[\\/]' | Where-Object { $_ }).Count
+  if ($depth -le 0) { return './' }
+  return ('../' * $depth)
+}
+
 function Get-OverlayUnit {
   param(
     [object]$Overlay,
@@ -122,8 +129,7 @@ function Append-Script {
   [void]$Builder.AppendLine('  </script>')
 }
 
-$sources = Get-ChildItem -Path $SourceDir -Filter '*.json' | ForEach-Object { Read-Json -Path $_.FullName }
-$primary = @($sources | Where-Object { $_.work_slug -eq 'orot' } | Select-Object -First 1)[0]
+$sources = @(Get-ChildItem -Path $SourceDir -Filter '*.json' | ForEach-Object { Read-Json -Path $_.FullName } | Sort-Object work_title)
 
 $homePage = New-Object System.Text.StringBuilder
 Append-SiteHead -Builder $homePage -Title 'Translation Workspace'
@@ -135,10 +141,10 @@ Append-SiteHead -Builder $homePage -Title 'Translation Workspace'
 [void]$homePage.AppendLine('      </div>')
 [void]$homePage.AppendLine('      <div style="padding:22px">')
 [void]$homePage.AppendLine('        <div class="home-grid">')
-if ($primary) {
-  [void]$homePage.AppendLine('          <a class="work-card" href="orot/">')
-  [void]$homePage.AppendLine("            <strong>$(Encode-Html $primary.work_title)</strong>")
-  [void]$homePage.AppendLine("            <span class=""meta"">$(@($primary.units).Count) source units | $(Encode-Html $primary.source_system) | imported $(Encode-Html $primary.import_date)</span>")
+foreach ($source in $sources) {
+  [void]$homePage.AppendLine("          <a class=""work-card"" href=""$($source.work_slug)/"">")
+  [void]$homePage.AppendLine("            <strong>$(Encode-Html $source.work_title)</strong>")
+  [void]$homePage.AppendLine("            <span class=""meta"">$(@($source.units).Count) source units | $(Encode-Html $source.source_system) | imported $(Encode-Html $source.import_date)</span>")
   [void]$homePage.AppendLine('          </a>')
 }
 [void]$homePage.AppendLine('        </div>')
@@ -154,12 +160,13 @@ foreach ($source in $sources) {
   $overlay = if (Test-Path $overlayPath) { Read-Json -Path $overlayPath } else { $null }
   $page = New-Object System.Text.StringBuilder
   $visibleUnits = if ($MaxUnits -gt 0) { @($source.units | Select-Object -First $MaxUnits) } else { @($source.units) }
+  $rootHref = Get-RootHref -WorkSlug $source.work_slug
 
   Append-SiteHead -Builder $page -Title $source.work_title
   [void]$page.AppendLine('  <main>')
   [void]$page.AppendLine('    <div class="shell">')
   [void]$page.AppendLine('      <div class="hero">')
-  [void]$page.AppendLine('        <p class="crumbs"><a href="../">Home</a></p>')
+  [void]$page.AppendLine("        <p class=""crumbs""><a href=""$rootHref"">Home</a></p>")
   [void]$page.AppendLine("        <h1>$(Encode-Html $source.work_title)</h1>")
   [void]$page.AppendLine("        <p class=""meta"">$(@($source.units).Count) total source units | $(Encode-Html $source.source_system) | imported $(Encode-Html $source.import_date)</p>")
   if ($MaxUnits -gt 0) {
@@ -204,6 +211,7 @@ foreach ($source in $sources) {
       [void]$page.AppendLine("          <h4 id=""chapter-$($unit.group_slug)-$($unit.section_slug)-$($unit.chapter_number)"">Chapter $($unit.chapter_number)</h4>")
     }
 
+    $digitization = if ($unit.digitization) { $unit.digitization } else { $source.source_system }
     $overlayUnit = Get-OverlayUnit -Overlay $overlay -UnitId $unit.unit_id
     $transliteration = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'transliteration'
     $strict = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'strict_translation'
@@ -222,7 +230,15 @@ foreach ($source in $sources) {
     foreach ($paragraph in @($unit.hebrew)) {
       [void]$page.AppendLine("                <p class=""hebrew"" lang=""he"">$(Encode-Html $paragraph)</p>")
     }
-    [void]$page.AppendLine("                <p class=""meta"">Source: $(Encode-Html $unit.source_ref) | Version: $(Encode-Html $unit.version_title) | License: $(Encode-Html $unit.license)</p>")
+    [void]$page.AppendLine('                <p class="meta">')
+    [void]$page.AppendLine("                  Source ref: $(Encode-Html $unit.source_ref)<br>")
+    [void]$page.AppendLine("                  Hebrew version: $(Encode-Html $unit.version_title)<br>")
+    if ($unit.version_source) {
+      [void]$page.AppendLine("                  Version source: $(Encode-Html $unit.version_source)<br>")
+    }
+    [void]$page.AppendLine("                  Digitization: $(Encode-Html $digitization)<br>")
+    [void]$page.AppendLine("                  License: $(Encode-Html $unit.license)")
+    [void]$page.AppendLine('                </p>')
     [void]$page.AppendLine('              </div>')
     [void]$page.AppendLine('              <div>')
 

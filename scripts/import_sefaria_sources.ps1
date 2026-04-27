@@ -1,6 +1,7 @@
 param(
   [string]$ConfigPath = 'data/work-imports.json',
-  [string]$OutputDir = 'data/sources'
+  [string]$OutputDir = 'data/sources',
+  [string]$OverlayDir = 'data/overlays'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -9,9 +10,10 @@ function New-Slug {
   param([string]$Text)
   $slug = $Text.ToLowerInvariant()
   $slug = $slug -replace '&', ' and '
+  $slug = $slug -replace "'", ''
   $slug = $slug -replace '[^a-z0-9]+', '-'
   $slug = $slug.Trim('-')
-  if (-not $slug) { return 'section' }
+  if (-not $slug) { return 'text' }
   return $slug
 }
 
@@ -29,13 +31,12 @@ function Write-Utf8Json {
   if ($parent) {
     New-Item -ItemType Directory -Force -Path $parent | Out-Null
   }
-  $json = $Value | ConvertTo-Json -Depth 30
+  $json = $Value | ConvertTo-Json -Depth 40
   [System.IO.File]::WriteAllText((Resolve-Path -Path $parent).Path + '\' + (Split-Path $Path -Leaf), $json, [System.Text.UTF8Encoding]::new($false))
 }
 
 function Get-Utf8Json {
   param([string]$Uri)
-
   $response = Invoke-WebRequest -Uri $Uri
   $stream = $response.RawContentStream
   $stream.Position = 0
@@ -72,117 +73,229 @@ function Get-PrimaryTitle {
   return ''
 }
 
-function Get-HebrewParagraphs {
-  param([object]$Value)
+function Get-NodeChildren {
+  param([object]$Node)
+  if ($null -eq $Node.nodes) { return @() }
+  if ($Node.nodes -is [string]) { return @() }
+  return @($Node.nodes)
+}
+
+function Get-LeafNodes {
+  param(
+    [object]$Node,
+    [string[]]$TitlePath = @(),
+    [string[]]$HeTitlePath = @()
+  )
+
+  $children = Get-NodeChildren -Node $Node
+  if ($children.Count -gt 0) {
+    $results = @()
+    foreach ($child in $children) {
+      $title = Get-PrimaryTitle -Node $child -Lang 'en'
+      $heTitle = Get-PrimaryTitle -Node $child -Lang 'he'
+      foreach ($leaf in Get-LeafNodes -Node $child -TitlePath ($TitlePath + @($title)) -HeTitlePath ($HeTitlePath + @($heTitle))) {
+        $results += $leaf
+      }
+    }
+    return $results
+  }
+
+  [pscustomobject]@{
+    title_path = $TitlePath
+    he_title_path = $HeTitlePath
+    depth = [int]$Node.depth
+    address_types = @($Node.addressTypes)
+    section_names = @($Node.sectionNames)
+    lengths = @($Node.lengths)
+  }
+}
+
+function Get-HebrewTexts {
+  param(
+    [object]$Value,
+    [int[]]$Address = @()
+  )
+
   if ($null -eq $Value) { return @() }
   if ($Value -is [string]) {
-    if ($Value.Trim()) { return @($Value.Trim()) }
+    if ($Value.Trim()) {
+      return @([pscustomobject]@{
+        address = $Address
+        text = $Value.Trim()
+      })
+    }
     return @()
   }
 
-  $items = New-Object System.Collections.Generic.List[string]
+  $items = @()
+  $index = 0
   foreach ($child in @($Value)) {
-    foreach ($paragraph in Get-HebrewParagraphs -Value $child) {
-      $items.Add($paragraph)
+    $index += 1
+    foreach ($text in Get-HebrewTexts -Value $child -Address ($Address + @($index))) {
+      $items += $text
     }
   }
-  return @($items)
+  return $items
 }
 
-function Add-DepthOneUnits {
+function Get-LeafRef {
+  param(
+    [string]$WorkRef,
+    [string[]]$TitlePath
+  )
+  if ($TitlePath.Count -eq 0) { return $WorkRef }
+  return "$WorkRef, $($TitlePath -join ', ')"
+}
+
+function Get-OutlineEntry {
+  param(
+    [object]$Work,
+    [object]$Leaf
+  )
+
+  if ($Leaf.title_path.Count -eq 0) {
+    $groupTitle = $Work.work_title
+    $groupHeTitle = if ($Work.he_title) { $Work.he_title } else { $Work.work_title }
+    $groupSlug = New-Slug $Work.work_title
+    $sectionTitle = $Work.work_title
+    $sectionHeTitle = $groupHeTitle
+    $sectionSlug = 'text'
+  } elseif ($Leaf.title_path.Count -eq 1) {
+    $groupTitle = $Leaf.title_path[0]
+    $groupHeTitle = $Leaf.he_title_path[0]
+    $groupSlug = New-Slug $groupTitle
+    $sectionTitle = $Leaf.title_path[0]
+    $sectionHeTitle = $Leaf.he_title_path[0]
+    $sectionSlug = New-Slug $sectionTitle
+  } else {
+    $groupTitle = $Leaf.title_path[0]
+    $groupHeTitle = $Leaf.he_title_path[0]
+    $groupSlug = New-Slug $groupTitle
+    $sectionTitle = ($Leaf.title_path | Select-Object -Skip 1) -join ' / '
+    $sectionHeTitle = ($Leaf.he_title_path | Select-Object -Skip 1) -join ' / '
+    $sectionSlug = New-Slug $sectionTitle
+  }
+
+  [ordered]@{
+    group_title = $groupTitle
+    group_he_title = $groupHeTitle
+    group_slug = $groupSlug
+    section_title = $sectionTitle
+    section_he_title = $sectionHeTitle
+    section_slug = $sectionSlug
+    section_ref = Get-LeafRef -WorkRef $Work.sefaria_ref -TitlePath $Leaf.title_path
+    node_depth = $Leaf.depth
+  }
+}
+
+function Add-OutlineSection {
+  param(
+    [System.Collections.Generic.List[object]]$Outline,
+    [hashtable]$SeenGroups,
+    [hashtable]$SeenSections,
+    [hashtable]$Meta
+  )
+
+  if (-not $SeenGroups.ContainsKey($Meta.group_slug)) {
+    $Outline.Add([ordered]@{
+      group_title = $Meta.group_title
+      group_he_title = $Meta.group_he_title
+      group_slug = $Meta.group_slug
+      sections = @()
+    })
+    $SeenGroups[$Meta.group_slug] = $Outline.Count - 1
+  }
+
+  $sectionKey = "$($Meta.group_slug)/$($Meta.section_slug)"
+  if (-not $SeenSections.ContainsKey($sectionKey)) {
+    $groupIndex = $SeenGroups[$Meta.group_slug]
+    $Outline[$groupIndex].sections += @([ordered]@{
+      section_title = $Meta.section_title
+      section_he_title = $Meta.section_he_title
+      section_slug = $Meta.section_slug
+      section_ref = $Meta.section_ref
+      node_depth = $Meta.node_depth
+    })
+    $SeenSections[$sectionKey] = $true
+  }
+}
+
+function Get-FetchRefs {
+  param(
+    [string]$LeafRef,
+    [object]$Leaf
+  )
+
+  if ($Leaf.depth -eq 1) { return @($LeafRef) }
+
+  $firstAddressType = if ($Leaf.address_types.Count -gt 0) { $Leaf.address_types[0] } else { '' }
+  if ($firstAddressType -eq 'Talmud') {
+    throw "Unsupported Talmud-addressed text: $LeafRef"
+  }
+
+  $count = [int]$Leaf.lengths[0]
+  $refs = New-Object System.Collections.Generic.List[string]
+  for ($i = 1; $i -le $count; $i += 1) {
+    $refs.Add("$LeafRef $i")
+  }
+  return @($refs)
+}
+
+function Add-UnitsFromPayload {
   param(
     [System.Collections.Generic.List[object]]$Units,
     [ref]$SequenceRef,
     [object]$Work,
-    [hashtable]$GroupMeta,
-    [hashtable]$SectionMeta,
+    [hashtable]$Meta,
     [object]$Payload
   )
 
-  $paragraphs = Get-HebrewParagraphs -Value $Payload.he
-  $paragraphNumber = 0
-  foreach ($paragraph in $paragraphs) {
-    $paragraphNumber += 1
+  $texts = Get-HebrewTexts -Value $Payload.he
+  foreach ($text in $texts) {
     $SequenceRef.Value += 1
-    $unitId = "$($Work.work_id)-$($GroupMeta.group_slug)-$($SectionMeta.section_slug)-$paragraphNumber"
+    $addressParts = @()
+    if ($Payload.sections) { $addressParts += @($Payload.sections) }
+    if ($text.address) { $addressParts += @($text.address) }
+    if ($addressParts.Count -eq 0) { $addressParts = @($SequenceRef.Value) }
+
+    $unitSuffix = ($addressParts -join '-')
+    $pathSlug = if ($Meta.section_slug -eq 'text') { '' } else { "$($Meta.group_slug)-$($Meta.section_slug)-" }
+    $unitId = "$($Work.work_id)-$pathSlug$unitSuffix"
+    $sourceRef = "$($Payload.ref):$(($text.address) -join ':')"
+    if (-not $text.address -or @($text.address).Count -eq 0) { $sourceRef = $Payload.ref }
+
+    $chapterNumber = if ($addressParts.Count -ge 1) { $addressParts[0] } else { $null }
+    $paragraphNumber = if ($addressParts.Count -ge 2) { $addressParts[-1] } else { $addressParts[0] }
+
     $Units.Add([ordered]@{
       work_id = $Work.work_id
       work_title = $Work.work_title
-      group_title = $GroupMeta.group_title
-      group_he_title = $GroupMeta.group_he_title
-      group_slug = $GroupMeta.group_slug
-      section_title = $SectionMeta.section_title
-      section_he_title = $SectionMeta.section_he_title
-      section_slug = $SectionMeta.section_slug
-      chapter_number = $null
+      group_title = $Meta.group_title
+      group_he_title = $Meta.group_he_title
+      group_slug = $Meta.group_slug
+      section_title = $Meta.section_title
+      section_he_title = $Meta.section_he_title
+      section_slug = $Meta.section_slug
+      chapter_number = $chapterNumber
       paragraph_number = $paragraphNumber
       sequence = $SequenceRef.Value
       unit_id = $unitId
       anchor_id = $unitId
-      source_ref = "$($Payload.ref):$paragraphNumber"
-      sefaria_ref = "$($Payload.ref):$paragraphNumber"
-      hebrew = @($paragraph)
+      source_ref = $sourceRef
+      sefaria_ref = $sourceRef
+      hebrew = @($text.text)
       license = if ($Payload.heLicense) { $Payload.heLicense } else { 'unknown' }
       version_title = if ($Payload.heVersionTitle) { $Payload.heVersionTitle } else { 'unknown' }
       version_source = if ($Payload.heVersionSource) { $Payload.heVersionSource } else { '' }
-      source_url = "https://www.sefaria.org/$($Payload.ref -replace ' ', '_' -replace ',', '%2C')"
+      digitization = 'Sefaria API'
+      source_url = "https://www.sefaria.org/$($sourceRef -replace ' ', '_' -replace ',', '%2C')"
       import_date = $importDate
     })
   }
 }
 
-function Add-DepthTwoUnits {
-  param(
-    [System.Collections.Generic.List[object]]$Units,
-    [ref]$SequenceRef,
-    [object]$Work,
-    [hashtable]$GroupMeta,
-    [hashtable]$SectionMeta,
-    [int]$ChapterCount
-  )
-
-  for ($chapter = 1; $chapter -le $ChapterCount; $chapter += 1) {
-    $chapterRef = "$($SectionMeta.section_ref) $chapter"
-    Write-Host "Importing $chapterRef"
-    $payload = Get-SefariaText -Ref $chapterRef
-    $paragraphs = Get-HebrewParagraphs -Value $payload.he
-    if ($paragraphs.Count -eq 0) {
-      throw "No Hebrew returned for $chapterRef"
-    }
-
-    $paragraphNumber = 0
-    foreach ($paragraph in $paragraphs) {
-      $paragraphNumber += 1
-      $SequenceRef.Value += 1
-      $unitId = "$($Work.work_id)-$($GroupMeta.group_slug)-$($SectionMeta.section_slug)-$chapter-$paragraphNumber"
-      $Units.Add([ordered]@{
-        work_id = $Work.work_id
-        work_title = $Work.work_title
-        group_title = $GroupMeta.group_title
-        group_he_title = $GroupMeta.group_he_title
-        group_slug = $GroupMeta.group_slug
-        section_title = $SectionMeta.section_title
-        section_he_title = $SectionMeta.section_he_title
-        section_slug = $SectionMeta.section_slug
-        chapter_number = $chapter
-        paragraph_number = $paragraphNumber
-        sequence = $SequenceRef.Value
-        unit_id = $unitId
-        anchor_id = $unitId
-        source_ref = "${chapterRef}:$paragraphNumber"
-        sefaria_ref = "${chapterRef}:$paragraphNumber"
-        hebrew = @($paragraph)
-        license = if ($payload.heLicense) { $payload.heLicense } else { 'unknown' }
-        version_title = if ($payload.heVersionTitle) { $payload.heVersionTitle } else { 'unknown' }
-        version_source = if ($payload.heVersionSource) { $payload.heVersionSource } else { '' }
-        source_url = "https://www.sefaria.org/$($chapterRef -replace ' ', '_' -replace ',', '%2C')"
-        import_date = $importDate
-      })
-    }
-  }
-}
-
 New-Item -ItemType Directory -Force -Path $OutputDir | Out-Null
+New-Item -ItemType Directory -Force -Path $OverlayDir | Out-Null
 $config = Read-Json -Path $ConfigPath
 $importDate = (Get-Date).ToString('yyyy-MM-dd')
 
@@ -191,59 +304,23 @@ foreach ($work in $config.works) {
   $index = Get-SefariaIndex -Ref $work.sefaria_ref
   $units = New-Object System.Collections.Generic.List[object]
   $outline = New-Object System.Collections.Generic.List[object]
+  $seenGroups = @{}
+  $seenSections = @{}
   $sequence = 0
 
-  foreach ($groupNode in @($index.schema.nodes)) {
-    $groupTitle = Get-PrimaryTitle -Node $groupNode -Lang 'en'
-    $groupHeTitle = Get-PrimaryTitle -Node $groupNode -Lang 'he'
-    $groupSlug = New-Slug $groupTitle
-    $groupRef = "$($work.sefaria_ref), $groupTitle"
-    $groupMeta = @{
-      group_title = $groupTitle
-      group_he_title = $groupHeTitle
-      group_slug = $groupSlug
+  if (-not $work.work_title) { $work | Add-Member -NotePropertyName work_title -NotePropertyValue $index.title }
+  if (-not $work.he_title) { $work | Add-Member -NotePropertyName he_title -NotePropertyValue $index.heTitle }
+
+  foreach ($leaf in Get-LeafNodes -Node $index.schema) {
+    $leafRef = Get-LeafRef -WorkRef $work.sefaria_ref -TitlePath $leaf.title_path
+    $meta = Get-OutlineEntry -Work $work -Leaf $leaf
+    Add-OutlineSection -Outline $outline -SeenGroups $seenGroups -SeenSections $seenSections -Meta $meta
+
+    foreach ($fetchRef in Get-FetchRefs -LeafRef $leafRef -Leaf $leaf) {
+      Write-Host "Importing $fetchRef"
+      $payload = Get-SefariaText -Ref $fetchRef
+      Add-UnitsFromPayload -Units $units -SequenceRef ([ref]$sequence) -Work $work -Meta $meta -Payload $payload
     }
-
-    $groupEntry = [ordered]@{
-      group_title = $groupTitle
-      group_he_title = $groupHeTitle
-      group_slug = $groupSlug
-      sections = @()
-    }
-
-    foreach ($sectionNode in @($groupNode.nodes)) {
-      $sectionTitle = Get-PrimaryTitle -Node $sectionNode -Lang 'en'
-      $sectionHeTitle = Get-PrimaryTitle -Node $sectionNode -Lang 'he'
-      $sectionSlug = New-Slug $sectionTitle
-      $sectionRef = "$groupRef, $sectionTitle"
-      $sectionMeta = @{
-        section_title = $sectionTitle
-        section_he_title = $sectionHeTitle
-        section_slug = $sectionSlug
-        section_ref = $sectionRef
-      }
-
-      $groupEntry.sections += @([ordered]@{
-        section_title = $sectionTitle
-        section_he_title = $sectionHeTitle
-        section_slug = $sectionSlug
-        node_depth = $sectionNode.depth
-        section_ref = $sectionRef
-      })
-
-      if ($sectionNode.depth -eq 1) {
-        Write-Host "Importing $sectionRef"
-        $payload = Get-SefariaText -Ref $sectionRef
-        Add-DepthOneUnits -Units $units -SequenceRef ([ref]$sequence) -Work $work -GroupMeta $groupMeta -SectionMeta $sectionMeta -Payload $payload
-      } elseif ($sectionNode.depth -eq 2) {
-        $chapterCount = [int]$sectionNode.lengths[0]
-        Add-DepthTwoUnits -Units $units -SequenceRef ([ref]$sequence) -Work $work -GroupMeta $groupMeta -SectionMeta $sectionMeta -ChapterCount $chapterCount
-      } else {
-        throw "Unsupported node depth $($sectionNode.depth) for $sectionRef"
-      }
-    }
-
-    $outline.Add($groupEntry)
   }
 
   $source = [ordered]@{
@@ -259,4 +336,12 @@ foreach ($work in $config.works) {
   }
 
   Write-Utf8Json -Path (Join-Path $OutputDir "$($work.work_id).json") -Value $source
+
+  $overlayPath = Join-Path $OverlayDir "$($work.work_id).json"
+  if (-not (Test-Path $overlayPath)) {
+    Write-Utf8Json -Path $overlayPath -Value ([ordered]@{
+      work_id = $work.work_id
+      units = @{}
+    })
+  }
 }
