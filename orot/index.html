@@ -55,19 +55,22 @@
     .placeholder { color: #8c857c; }
     .overlay-block { border: 1px solid var(--line); background: var(--panel-2); padding: 12px; margin-bottom: 10px; }
     .overlay-label { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
-    .lexical-sample { padding: 22px; }
-    .lexical-verse { direction: rtl; text-align: right; font-size: clamp(2rem, 6vw, 4.5rem); line-height: 1.8; color: var(--hebrew); margin: 0 0 20px; }
     .lexical-word { display: inline-block; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; }
     .lexical-word:hover, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); }
-    .lexical-hud { border: 1px solid var(--line); background: var(--panel-2); padding: 18px; }
+    .lexical-hud { position: sticky; top: 14px; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
     .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
     .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
     .lexical-fields dd { margin: 0; color: var(--text); }
     .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .source-details { margin-top: 16px; }
     .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
     .source-row:first-child { border-top: 0; }
     .source-row strong { color: var(--text); font-weight: 400; }
-    .lexical-note { margin-top: 16px; color: var(--muted); font-size: 0.92rem; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
     .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
     .source-table { width: 100%; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
@@ -75,7 +78,7 @@
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
     summary { cursor: pointer; color: var(--accent); }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields { grid-template-columns: 1fr; } .toc, .lexical-hud { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -3606,14 +3609,20 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="orot-lights-from-darkness-lights-of-rebirth-70-5" data-unit data-complete="false">
+          <section class="unit" id="orot-lights-from-darkness-lights-of-rebirth-70-5" data-unit data-complete="false" data-lexical-unit data-lexical-sample="orot-lights-from-darkness-lights-of-rebirth-70-5">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Orot, Lights from Darkness, Lights of Rebirth 70:5</h4></div>
               <a class="anchor" href="#orot-lights-from-darkness-lights-of-rebirth-70-5" aria-label="Copy link to Orot, Lights from Darkness, Lights of Rebirth 70:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he">רוח אפנו משיח ד&#39;.</p>
+                <p class="hebrew lexical-inline" lang="he">
+                  <button class="lexical-word" type="button" data-lexical-token="orot-70-5-word-1" aria-pressed="false">רוח</button>
+                  <button class="lexical-word" type="button" data-lexical-token="orot-70-5-word-2" aria-pressed="false">אפנו</button>
+                  <button class="lexical-word" type="button" data-lexical-token="orot-70-5-word-3" aria-pressed="false">משיח</button>
+                  <button class="lexical-word" type="button" data-lexical-token="orot-70-5-word-4" aria-pressed="false">ד&#39;</button>.
+                </p>
+                <p class="meta">Lexical HUD sample for this unit only. Click a Hebrew word to open the on-page drawer.</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -3622,8 +3631,24 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+                  <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+                  <dl class="lexical-fields">
+                    <dt>Hebrew word</dt><dd data-hud-word>N/A</dd>
+                    <dt>Transliteration</dt><dd data-hud-transliteration>N/A</dd>
+                    <dt>Strict renderings</dt><dd data-hud-renderings>N/A</dd>
+                    <dt>Root</dt><dd data-hud-root>N/A</dd>
+                    <dt>Root transliteration</dt><dd data-hud-root-transliteration>N/A</dd>
+                    <dt>Root meaning</dt><dd data-hud-root-meaning>N/A</dd>
+                  </dl>
+                  <details class="source-details">
+                    <summary>Sources / licenses</summary>
+                    <div data-hud-sources></div>
+                  </details>
+                </section>
               </div>
             </div>
+            <script type="application/json" data-lexical-json>{"sample_id":"orot-lights-from-darkness-lights-of-rebirth-70-5","title":"Orot Lexical HUD Proof of Concept","work_id":"orot","work_slug":"orot","source_ref":"Orot, Lights from Darkness, Lights of Rebirth 70:5","unit_id":"orot-lights-from-darkness-lights-of-rebirth-70-5","anchor_id":"orot-lights-from-darkness-lights-of-rebirth-70-5","scope":"Tiny lexical HUD proof of concept only. This data covers one already-rendered Orot source unit and must not be treated as a library-wide lexical import.","import_date":"2026-04-28","unit_hebrew":"רוח אפנו משיח ד\u0027.","license_policy":"Lexical source rows remain separately attributed. Lexical data is not part of the owner\u0027s CC0 English translation overlay unless a row is itself CC0 or public domain.","words":[{"token_id":"orot-70-5-word-1","hebrew_word":"רוח","transliteration":"ruach","strict_renderings":["wind","breath","spirit","air"],"root":"רוּחַ","root_transliteration":"ruach","root_meaning":["blow","breathe","smell","perceive"],"source_rows":[{"source_name":"Wikidata Lexeme","source_family":"wikidata","source_id":"L68068","source_url":"https://www.wikidata.org/wiki/Lexeme:L68068","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","fields_used":["lemma coverage","sense check"],"notes":"Wikidata coverage exists for the Hebrew lemma רוח."},{"source_name":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"Lam.4.20 word 25evD; lemma 7307; morph HNcbsc","source_url":"https://github.com/openscriptures/morphhb/blob/master/wlc/Lam.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["Biblical phrase token","lemma id","morphology"],"notes":"Used as Biblical phrase enrichment because the selected Orot unit matches the opening phrase of Lamentations 4:20."},{"source_name":"OpenScriptures HebrewLexicon","source_family":"openscriptures","source_id":"H7307; linked root entry H7306","source_url":"https://github.com/openscriptures/HebrewLexicon/blob/master/HebrewStrong.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["transliteration","strict renderings","root","root meaning"],"notes":"Used for Biblical-Hebrew lexical enrichment, paired with the morphHB token row."}]},{"token_id":"orot-70-5-word-2","hebrew_word":"אפנו","transliteration":"apenu","strict_renderings":["our nose","our nostril","our face","our breath"],"root":"אַף","root_transliteration":"aph","root_meaning":["nose","nostril","face","anger"],"source_rows":[{"source_name":"Wikidata Lexeme","source_family":"wikidata","source_id":"L64054","source_url":"https://www.wikidata.org/wiki/Lexeme:L64054","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","fields_used":["lemma coverage","sense check"],"notes":"Wikidata coverage exists for the base lemma אף. The possessive suffix in אפנו is supplied by the local token form."},{"source_name":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"Lam.4.20 word 25vKo; lemma 639; morph HNcmdc/Sp1cp","source_url":"https://github.com/openscriptures/morphhb/blob/master/wlc/Lam.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["Biblical phrase token","lemma id","morphology","first-person plural suffix"],"notes":"Used as Biblical phrase enrichment because the selected Orot unit matches the opening phrase of Lamentations 4:20."},{"source_name":"OpenScriptures HebrewLexicon","source_family":"openscriptures","source_id":"H639; linked root entry H599","source_url":"https://github.com/openscriptures/HebrewLexicon/blob/master/HebrewStrong.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["transliteration","strict renderings","root","root meaning"],"notes":"Used for Biblical-Hebrew lexical enrichment, paired with the morphHB token row."}]},{"token_id":"orot-70-5-word-3","hebrew_word":"משיח","transliteration":"mashiach","strict_renderings":["anointed","anointed one","Messiah","consecrated one"],"root":"מָשַׁח","root_transliteration":"mashach","root_meaning":["anoint","rub with oil","consecrate","paint"],"source_rows":[{"source_name":"Wikidata Lexeme","source_family":"wikidata","source_id":"L66576","source_url":"https://www.wikidata.org/wiki/Lexeme:L66576","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","fields_used":["lemma coverage","sense check"],"notes":"Wikidata coverage exists for the Hebrew lemma משיח."},{"source_name":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"Lam.4.20 word 25mvJ; lemma 4899; morph HNcmsc","source_url":"https://github.com/openscriptures/morphhb/blob/master/wlc/Lam.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["Biblical phrase token","lemma id","morphology"],"notes":"Used as Biblical phrase enrichment because the selected Orot unit matches the opening phrase of Lamentations 4:20."},{"source_name":"OpenScriptures HebrewLexicon","source_family":"openscriptures","source_id":"H4899; linked root entry H4886","source_url":"https://github.com/openscriptures/HebrewLexicon/blob/master/HebrewStrong.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["transliteration","strict renderings","root","root meaning"],"notes":"Used for Biblical-Hebrew lexical enrichment, paired with the morphHB token row."}]},{"token_id":"orot-70-5-word-4","hebrew_word":"ד\u0027","transliteration":"Hashem; YHWH","strict_renderings":["the Name","YHWH","God"],"root":"יְהֹוָה / הָיָה","root_transliteration":"YHWH / hayah","root_meaning":["self-existent","eternal","be","become"],"trailing_punctuation":".","source_rows":[{"source_name":"Wikidata Lexeme","source_family":"wikidata","source_id":"L490075; L78221","source_url":"https://www.wikidata.org/wiki/Lexeme:L490075","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","fields_used":["lemma coverage","sense check"],"notes":"Wikidata coverage exists for יהוה. The printed Orot token is the abbreviation ד\u0027."},{"source_name":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"Lam.4.20 word 25pDQ; lemma 3068; morph HNp","source_url":"https://github.com/openscriptures/morphhb/blob/master/wlc/Lam.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["Biblical phrase token","lemma id","morphology"],"notes":"Used as Biblical phrase enrichment because the selected Orot unit prints ד\u0027 where Lamentations 4:20 has the Divine Name."},{"source_name":"OpenScriptures HebrewLexicon","source_family":"openscriptures","source_id":"H3068; linked root entry H1961","source_url":"https://github.com/openscriptures/HebrewLexicon/blob/master/HebrewStrong.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["transliteration","strict renderings","root","root meaning"],"notes":"Used for Biblical-Hebrew lexical enrichment, paired with the morphHB token row."}]}]}</script>
           </section>
           <section class="unit" id="orot-lights-from-darkness-lights-of-rebirth-70-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -8472,6 +8497,86 @@
           target.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       }
+    })();
+  </script>
+  <script>
+    (() => {
+      const sampleNodes = Array.from(document.querySelectorAll("[data-lexical-json]"));
+      if (!sampleNodes.length) return;
+      const samples = new Map();
+      sampleNodes.forEach((node) => {
+        const sample = JSON.parse(node.textContent);
+        samples.set(sample.sample_id, sample);
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = value || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderSources = (sourceBox, rows) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        (rows || []).forEach((row) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const title = document.createElement("p");
+          const link = document.createElement("a");
+          link.href = row.source_url || "#";
+          link.textContent = row.source_name || "Source";
+          const strong = document.createElement("strong");
+          strong.appendChild(link);
+          title.appendChild(strong);
+          title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+          const fields = document.createElement("p");
+          fields.textContent = `Fields: ${(row.fields_used || []).join(", ") || "N/A"}`;
+          const notes = document.createElement("p");
+          notes.textContent = row.notes || "";
+          section.append(title, fields, notes);
+          sourceBox.appendChild(section);
+        });
+      };
+      const renderWord = (unit, hud, word) => {
+        if (!unit || !hud || !word) return;
+        unit.querySelectorAll("[data-lexical-token]").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.lexicalToken === word.token_id)));
+        setText(hud, "[data-hud-word]", word.hebrew_word);
+        setText(hud, "[data-hud-transliteration]", word.transliteration);
+        setList(hud, "[data-hud-renderings]", word.strict_renderings);
+        setText(hud, "[data-hud-root]", word.root);
+        setText(hud, "[data-hud-root-transliteration]", word.root_transliteration);
+        setList(hud, "[data-hud-root-meaning]", word.root_meaning);
+        renderSources(hud.querySelector("[data-hud-sources]"), word.source_rows);
+        const details = hud.querySelector("details");
+        if (details) details.open = false;
+        hud.hidden = false;
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const unit = button.closest("[data-lexical-unit]");
+          const hud = unit ? unit.querySelector("[data-lexical-hud]") : null;
+          const sample = unit ? samples.get(unit.dataset.lexicalSample) : null;
+          const word = sample ? (sample.words || []).find((item) => item.token_id === button.dataset.lexicalToken) : null;
+          renderWord(unit, hud, word);
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          const unit = button.closest("[data-lexical-unit]");
+          if (hud) hud.hidden = true;
+          if (unit) unit.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
     })();
   </script>
 </body>

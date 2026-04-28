@@ -179,14 +179,28 @@ if (Test-Path $homePagePath) {
   $errors.Add('Missing homepage index.html')
 }
 
-$lexicalSamplePath = Join-Path $LexicalDir 'genesis-1-1.json'
-if (Test-Path $lexicalSamplePath) {
-  $lexical = Get-Content -Path $lexicalSamplePath -Raw -Encoding UTF8 | ConvertFrom-Json
-  if ($lexical.source_ref -ne 'Genesis 1:1') {
-    $errors.Add('Lexical proof of concept is not scoped to Genesis 1:1')
+$lexicalFiles = if (Test-Path $LexicalDir) { @(Get-ChildItem -Path $LexicalDir -Filter '*.json') } else { @() }
+foreach ($lexicalFile in $lexicalFiles) {
+  $lexical = Get-Content -Path $lexicalFile.FullName -Raw -Encoding UTF8 | ConvertFrom-Json
+  foreach ($field in @('sample_id', 'work_id', 'source_ref', 'unit_id', 'anchor_id', 'words', 'license_policy')) {
+    if (-not $lexical.$field) {
+      $errors.Add("Lexical sample missing $field`: $($lexicalFile.Name)")
+    }
   }
-  if (@($lexical.words).Count -ne 7) {
-    $errors.Add("Genesis 1:1 lexical proof of concept should contain 7 words, found $(@($lexical.words).Count)")
+  if ($lexical.source_ref -eq 'Genesis 1:1') {
+    $errors.Add('Lexical proof of concept should not use Genesis 1:1 unless Genesis is imported and rendered')
+  }
+  if (-not $sourceByWorkId.ContainsKey($lexical.work_id)) {
+    $errors.Add("Lexical sample references unknown work_id: $($lexical.work_id)")
+    continue
+  }
+  $source = $sourceByWorkId[$lexical.work_id]
+  $targetUnit = @($source.units | Where-Object { $_.unit_id -eq $lexical.unit_id })
+  if ($targetUnit.Count -ne 1) {
+    $errors.Add("Lexical sample target unit not found exactly once: $($lexical.unit_id)")
+  }
+  if (@($lexical.words).Count -ne 4) {
+    $errors.Add("Current lexical proof of concept should contain 4 words, found $(@($lexical.words).Count)")
   }
   foreach ($word in @($lexical.words)) {
     foreach ($field in @('token_id', 'hebrew_word', 'transliteration', 'strict_renderings', 'root', 'root_transliteration', 'root_meaning', 'source_rows')) {
@@ -206,21 +220,21 @@ if (Test-Path $lexicalSamplePath) {
     }
   }
 
-  $lexicalPagePath = 'lexical/genesis-1-1/index.html'
+  $lexicalPagePath = Join-Path $source.work_slug 'index.html'
   if (Test-Path $lexicalPagePath) {
     $lexicalPage = Get-Content -Path $lexicalPagePath -Raw -Encoding UTF8
-    foreach ($requiredText in @('Genesis 1:1 Lexical HUD Proof of Concept', 'Hebrew word', 'Transliteration', 'Strict renderings', 'Root', 'Root transliteration', 'Root meaning', 'CC BY 4.0', 'CC0')) {
+    foreach ($requiredText in @($lexical.anchor_id, 'data-lexical-token', 'data-lexical-hud', 'Hebrew word', 'Transliteration', 'Strict renderings', 'Root', 'Root transliteration', 'Root meaning', 'Sources / licenses', 'CC BY 4.0', 'CC0')) {
       if (-not $lexicalPage.Contains($requiredText)) {
-        $errors.Add("Lexical proof page missing required text '$requiredText'")
+        $errors.Add("Lexical proof target page missing required text '$requiredText'")
       }
     }
-    foreach ($badText in @('Kaikki', 'Wiktionary', 'machine_draft_translation', 'Translatorâ')) {
+    foreach ($badText in @('Genesis 1:1 Lexical HUD', 'lexical/genesis-1-1', 'Kaikki', 'Wiktionary', 'machine_draft_translation', 'Translatorâ')) {
       if ($lexicalPage.Contains($badText)) {
-        $errors.Add("Lexical proof page contains disallowed text '$badText'")
+        $errors.Add("Lexical proof target page contains disallowed text '$badText'")
       }
     }
   } else {
-    $errors.Add("Missing lexical proof page: $lexicalPagePath")
+    $errors.Add("Missing lexical proof target page: $lexicalPagePath")
   }
 }
 
