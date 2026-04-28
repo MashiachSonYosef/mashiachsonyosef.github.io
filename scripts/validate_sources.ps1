@@ -1,6 +1,7 @@
 param(
   [string]$SourceDir = 'data/sources',
-  [string]$OverlayDir = 'data/overlays'
+  [string]$OverlayDir = 'data/overlays',
+  [string]$LexicalDir = 'data/lexical'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -176,6 +177,51 @@ if (Test-Path $homePagePath) {
   }
 } else {
   $errors.Add('Missing homepage index.html')
+}
+
+$lexicalSamplePath = Join-Path $LexicalDir 'genesis-1-1.json'
+if (Test-Path $lexicalSamplePath) {
+  $lexical = Get-Content -Path $lexicalSamplePath -Raw -Encoding UTF8 | ConvertFrom-Json
+  if ($lexical.source_ref -ne 'Genesis 1:1') {
+    $errors.Add('Lexical proof of concept is not scoped to Genesis 1:1')
+  }
+  if (@($lexical.words).Count -ne 7) {
+    $errors.Add("Genesis 1:1 lexical proof of concept should contain 7 words, found $(@($lexical.words).Count)")
+  }
+  foreach ($word in @($lexical.words)) {
+    foreach ($field in @('token_id', 'hebrew_word', 'transliteration', 'strict_renderings', 'root', 'root_transliteration', 'root_meaning', 'source_rows')) {
+      if (-not $word.$field) {
+        $errors.Add("Lexical word missing $field`: $($word.token_id)")
+      }
+    }
+    foreach ($row in @($word.source_rows)) {
+      foreach ($field in @('source_name', 'source_family', 'source_id', 'source_url', 'license', 'license_url', 'fields_used', 'notes')) {
+        if (-not $row.$field) {
+          $errors.Add("Lexical source row missing $field for $($word.token_id)")
+        }
+      }
+      if ($row.source_family -eq 'wiktionary' -or $row.source_family -eq 'kaikki') {
+        $errors.Add("Lexical proof of concept includes disallowed Wiktionary/Kaikki row for $($word.token_id)")
+      }
+    }
+  }
+
+  $lexicalPagePath = 'lexical/genesis-1-1/index.html'
+  if (Test-Path $lexicalPagePath) {
+    $lexicalPage = Get-Content -Path $lexicalPagePath -Raw -Encoding UTF8
+    foreach ($requiredText in @('Genesis 1:1 Lexical HUD Proof of Concept', 'Hebrew word', 'Transliteration', 'Strict renderings', 'Root', 'Root transliteration', 'Root meaning', 'CC BY 4.0', 'CC0')) {
+      if (-not $lexicalPage.Contains($requiredText)) {
+        $errors.Add("Lexical proof page missing required text '$requiredText'")
+      }
+    }
+    foreach ($badText in @('Kaikki', 'Wiktionary', 'machine_draft_translation', 'Translatorâ')) {
+      if ($lexicalPage.Contains($badText)) {
+        $errors.Add("Lexical proof page contains disallowed text '$badText'")
+      }
+    }
+  } else {
+    $errors.Add("Missing lexical proof page: $lexicalPagePath")
+  }
 }
 
 foreach ($workId in $sourceByWorkId.Keys) {

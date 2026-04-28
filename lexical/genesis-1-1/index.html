@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genesis 1:1 Lexical HUD Proof of Concept</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; }
+    .shell { border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { padding: 22px 22px 18px; border-bottom: 1px solid var(--line); }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .progress-panel { margin-top: 14px; border: 1px solid var(--line); background: rgba(20,24,31,0.58); padding: 12px; }
+    .progress-summary { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; color: var(--muted); font-size: 0.92rem; }
+    .progress-summary strong { color: var(--text); font-weight: 400; }
+    .progress-meter { height: 5px; margin-top: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); overflow: hidden; }
+    .progress-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+    .progress-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .filter-button { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 6px 10px; font: inherit; cursor: pointer; }
+    .filter-button[aria-pressed="true"], .filter-button:hover { color: var(--text); border-color: var(--accent); background: rgba(214,190,138,0.08); }
+    .filter-button:disabled { cursor: default; opacity: 0.45; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
+    .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .overlay-block { border: 1px solid var(--line); background: var(--panel-2); padding: 12px; margin-bottom: 10px; }
+    .overlay-label { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .lexical-sample { padding: 22px; }
+    .lexical-verse { direction: rtl; text-align: right; font-size: clamp(2rem, 6vw, 4.5rem); line-height: 1.8; color: var(--hebrew); margin: 0 0 20px; }
+    .lexical-word { display: inline-block; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; }
+    .lexical-word:hover, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); }
+    .lexical-hud { border: 1px solid var(--line); background: var(--panel-2); padding: 18px; }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .lexical-note { margin-top: 16px; color: var(--muted); font-size: 0.92rem; }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero">
+        <p class="crumbs"><a href="../../">Home</a></p>
+        <h1>Genesis 1:1 Lexical HUD Proof of Concept</h1>
+        <p class="meta">Genesis 1:1 | 7 lexical tokens | imported 2026-04-28</p>
+        <div class="license-notice"><strong>Lexical license rule:</strong> Lexical source rows remain separately attributed. Lexical data is not part of the owner&#39;s CC0 English translation overlay unless a row is itself CC0 or public domain.</div>
+      </div>
+      <div class="lexical-sample">
+        <p class="meta">Tiny lexical HUD proof of concept only. This data covers Genesis 1:1 and must not be treated as a library-wide lexical import.</p>
+        <div class="lexical-verse" lang="he" aria-label="Genesis 1:1 Hebrew word buttons">
+          <button class="lexical-word" type="button" data-lexical-token="genesis-1-1-word-1" aria-pressed="false">בְּרֵאשִׁית</button>
+          <button class="lexical-word" type="button" data-lexical-token="genesis-1-1-word-2" aria-pressed="false">בָּרָא</button>
+          <button class="lexical-word" type="button" data-lexical-token="genesis-1-1-word-3" aria-pressed="false">אֱלֹהִים</button>
+          <button class="lexical-word" type="button" data-lexical-token="genesis-1-1-word-4" aria-pressed="false">אֵת</button>
+          <button class="lexical-word" type="button" data-lexical-token="genesis-1-1-word-5" aria-pressed="false">הַשָּׁמַיִם</button>
+          <button class="lexical-word" type="button" data-lexical-token="genesis-1-1-word-6" aria-pressed="false">וְאֵת</button>
+          <button class="lexical-word" type="button" data-lexical-token="genesis-1-1-word-7" aria-pressed="false">הָאָרֶץ</button>
+        </div>
+        <section class="lexical-hud" aria-live="polite">
+          <dl class="lexical-fields">
+            <dt>Hebrew word</dt><dd data-hud-word>N/A</dd>
+            <dt>Transliteration</dt><dd data-hud-transliteration>N/A</dd>
+            <dt>Strict renderings</dt><dd data-hud-renderings>N/A</dd>
+            <dt>Root</dt><dd data-hud-root>N/A</dd>
+            <dt>Root transliteration</dt><dd data-hud-root-transliteration>N/A</dd>
+            <dt>Root meaning</dt><dd data-hud-root-meaning>N/A</dd>
+          </dl>
+          <div class="lexical-note">Source rows and licenses for the selected word:</div>
+          <div data-hud-sources></div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <script id="lexical-data" type="application/json">{"sample_id":"genesis-1-1","title":"Genesis 1:1 Lexical HUD Proof of Concept","source_ref":"Genesis 1:1","anchor_id":"genesis-1-1-lexical-poc","scope":"Tiny lexical HUD proof of concept only. This data covers Genesis 1:1 and must not be treated as a library-wide lexical import.","import_date":"2026-04-28","verse_hebrew":"בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ","license_policy":"Lexical source rows remain separately attributed. Lexical data is not part of the owner\u0027s CC0 English translation overlay unless a row is itself CC0 or public domain.","words":[{"token_id":"genesis-1-1-word-1","hebrew_word":"בְּרֵאשִׁית","transliteration":"bereshit; reshith","strict_renderings":["in beginning","at first","beginning","first"],"root":"רֹאשׁ","root_transliteration":"rosh","root_meaning":["head","beginning","chief","first"],"source_rows":[{"source_name":"Wikidata Lexeme","source_family":"wikidata","source_id":"L489915","source_url":"https://www.wikidata.org/wiki/Lexeme:L489915","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","fields_used":["lemma coverage","lexical category"],"notes":"Wikidata coverage exists for the lemma, but the checked Lexeme row did not provide enough usable HUD gloss/root data for this sample."},{"source_name":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"Gen.1.1 word 01xeN; lemma b/7225; morph HR/Ncfsa","source_url":"https://github.com/openscriptures/morphhb/blob/master/wlc/Gen.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["word token","lemma id","morphology"],"notes":"Used for Biblical token identity and lemma enrichment."},{"source_name":"OpenScriptures HebrewLexicon","source_family":"openscriptures","source_id":"H7225; linked root entry H7218","source_url":"https://github.com/openscriptures/HebrewLexicon/blob/master/HebrewStrong.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["transliteration","strict renderings","root","root meaning"],"notes":"H7225 points to H7218; strict renderings are reduced from the lexical entry, not from an English Bible translation."}]},{"token_id":"genesis-1-1-word-2","hebrew_word":"בָּרָא","transliteration":"bara; bara\u0027","strict_renderings":["create","form","make","cut down","select"],"root":"בָּרָא","root_transliteration":"bara","root_meaning":["create","cut down","select","feed"],"source_rows":[{"source_name":"Wikidata Lexeme","source_family":"wikidata","source_id":"L491566","source_url":"https://www.wikidata.org/wiki/Lexeme:L491566","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","fields_used":["lemma coverage","lexical category"],"notes":"Wikidata coverage exists for the lemma, but the checked Lexeme row did not provide enough usable HUD gloss/root data for this sample."},{"source_name":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"Gen.1.1 word 01Nvk; lemma 1254 a; morph HVqp3ms","source_url":"https://github.com/openscriptures/morphhb/blob/master/wlc/Gen.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["word token","lemma id","morphology"],"notes":"Used for Biblical token identity and lemma enrichment."},{"source_name":"OpenScriptures HebrewLexicon","source_family":"openscriptures","source_id":"H1254","source_url":"https://github.com/openscriptures/HebrewLexicon/blob/master/HebrewStrong.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["transliteration","strict renderings","root","root meaning"],"notes":"Strict renderings are reduced from the lexical entry, not from an English Bible translation."}]},{"token_id":"genesis-1-1-word-3","hebrew_word":"אֱלֹהִים","transliteration":"elohim","strict_renderings":["God","gods","deity","judges","mighty ones"],"root":"אֱלוֹהַּ","root_transliteration":"eloah","root_meaning":["deity","God","god"],"source_rows":[{"source_name":"Wikidata Lexeme","source_family":"wikidata","source_id":"No matching Hebrew Lexeme found for lemma אלהים or Strong H430 in the checked query","source_url":"https://query.wikidata.org/","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","fields_used":["coverage check"],"notes":"No usable Wikidata Lexeme row was found for this sample word, so OpenScriptures supplies the HUD data."},{"source_name":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"Gen.1.1 word 01TyA; lemma 430; morph HNcmpa","source_url":"https://github.com/openscriptures/morphhb/blob/master/wlc/Gen.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["word token","lemma id","morphology"],"notes":"Used for Biblical token identity and lemma enrichment."},{"source_name":"OpenScriptures HebrewLexicon","source_family":"openscriptures","source_id":"H430; linked root entry H433","source_url":"https://github.com/openscriptures/HebrewLexicon/blob/master/HebrewStrong.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["transliteration","strict renderings","root","root meaning"],"notes":"H430 is treated as plural of H433 by the lexical entry."}]},{"token_id":"genesis-1-1-word-4","hebrew_word":"אֵת","transliteration":"et","strict_renderings":["definite direct-object marker","object marker","not represented directly in English"],"root":"N/A","root_transliteration":"N/A","root_meaning":["N/A"],"source_rows":[{"source_name":"Wikidata Lexeme","source_family":"wikidata","source_id":"L1555922","source_url":"https://www.wikidata.org/wiki/Lexeme:L1555922","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","fields_used":["lemma coverage","strict rendering"],"notes":"Selected over L1348294 because the checked Wikidata gloss describes the definite direct-object marker rather than the preposition \u0027with\u0027."},{"source_name":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"Gen.1.1 word 01vuQ; lemma 853; morph HTo","source_url":"https://github.com/openscriptures/morphhb/blob/master/wlc/Gen.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["word token","lemma id","morphology"],"notes":"Used for Biblical token identity and lemma enrichment."},{"source_name":"OpenScriptures HebrewLexicon","source_family":"openscriptures","source_id":"H853","source_url":"https://github.com/openscriptures/HebrewLexicon/blob/master/HebrewStrong.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["transliteration","strict renderings"],"notes":"The lexical entry marks this particle as generally unrepresented in English."}]},{"token_id":"genesis-1-1-word-5","hebrew_word":"הַשָּׁמַיִם","transliteration":"hashamayim; shamayim","strict_renderings":["the heavens","the sky","the air","heaven(s)"],"root":"N/A (unused root in source)","root_transliteration":"N/A","root_meaning":["be lofty"],"source_rows":[{"source_name":"Wikidata Lexeme","source_family":"wikidata","source_id":"No matching Hebrew Lexeme found for lemma שמים or Strong H8064 in the checked query","source_url":"https://query.wikidata.org/","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","fields_used":["coverage check"],"notes":"No usable Wikidata Lexeme row was found for this sample word, so OpenScriptures supplies the HUD data."},{"source_name":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"Gen.1.1 word 01TSc; lemma d/8064; morph HTd/Ncmpa","source_url":"https://github.com/openscriptures/morphhb/blob/master/wlc/Gen.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["word token","lemma id","morphology"],"notes":"Used for Biblical token identity and lemma enrichment."},{"source_name":"OpenScriptures HebrewLexicon","source_family":"openscriptures","source_id":"H8064","source_url":"https://github.com/openscriptures/HebrewLexicon/blob/master/HebrewStrong.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["transliteration","strict renderings","root meaning"],"notes":"The lexical entry gives an unused-root meaning but does not name a Hebrew root form."}]},{"token_id":"genesis-1-1-word-6","hebrew_word":"וְאֵת","transliteration":"ve\u0027et","strict_renderings":["and + definite direct-object marker","and + object marker","and [not represented directly in English]"],"root":"N/A","root_transliteration":"N/A","root_meaning":["N/A"],"source_rows":[{"source_name":"Wikidata Lexeme","source_family":"wikidata","source_id":"L1555922","source_url":"https://www.wikidata.org/wiki/Lexeme:L1555922","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","fields_used":["lemma coverage","strict rendering"],"notes":"Wikidata supplies the base particle; the conjunction prefix is from morphHB token morphology."},{"source_name":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"Gen.1.1 word 01k5P; lemma c/853; morph HC/To","source_url":"https://github.com/openscriptures/morphhb/blob/master/wlc/Gen.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["word token","lemma id","morphology","conjunction prefix"],"notes":"Used for Biblical token identity and prefix enrichment."},{"source_name":"OpenScriptures HebrewLexicon","source_family":"openscriptures","source_id":"H853","source_url":"https://github.com/openscriptures/HebrewLexicon/blob/master/HebrewStrong.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["transliteration","strict renderings"],"notes":"The lexical entry marks this particle as generally unrepresented in English."}]},{"token_id":"genesis-1-1-word-7","hebrew_word":"הָאָרֶץ","transliteration":"ha\u0027aretz; erets","strict_renderings":["the earth","the land","the ground","the country"],"root":"N/A (unused root in source)","root_transliteration":"N/A","root_meaning":["be firm"],"source_rows":[{"source_name":"Wikidata Lexeme","source_family":"wikidata","source_id":"L64126","source_url":"https://www.wikidata.org/wiki/Lexeme:L64126","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","fields_used":["lemma coverage","sense check"],"notes":"Wikidata coverage exists, but OpenScriptures is used for Biblical-Hebrew enrichment and Genesis-token morphology."},{"source_name":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"Gen.1.1 word 01nPh; lemma d/776; morph HTd/Ncbsa","source_url":"https://github.com/openscriptures/morphhb/blob/master/wlc/Gen.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["word token","lemma id","morphology","article prefix"],"notes":"Used for Biblical token identity and prefix enrichment."},{"source_name":"OpenScriptures HebrewLexicon","source_family":"openscriptures","source_id":"H776","source_url":"https://github.com/openscriptures/HebrewLexicon/blob/master/HebrewStrong.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["transliteration","strict renderings","root meaning"],"notes":"The lexical entry gives an unused-root meaning but does not name a Hebrew root form."}]}]}</script>
+  <script>
+    (() => {
+      const dataNode = document.getElementById("lexical-data");
+      if (!dataNode) return;
+      const data = JSON.parse(dataNode.textContent);
+      const words = data.words || [];
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      const sourceBox = document.querySelector("[data-hud-sources]");
+      const setText = (selector, value) => {
+        const node = document.querySelector(selector);
+        if (node) node.textContent = value || "N/A";
+      };
+      const setList = (selector, value) => {
+        const node = document.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderSources = (rows) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        (rows || []).forEach((row) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const title = document.createElement("p");
+          const link = document.createElement("a");
+          link.href = row.source_url || "#";
+          link.textContent = row.source_name || "Source";
+          const strong = document.createElement("strong");
+          strong.appendChild(link);
+          title.appendChild(strong);
+          title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+          const fields = document.createElement("p");
+          fields.textContent = `Fields: ${(row.fields_used || []).join(", ") || "N/A"}`;
+          const notes = document.createElement("p");
+          notes.textContent = row.notes || "";
+          section.append(title, fields, notes);
+          sourceBox.appendChild(section);
+        });
+      };
+      const renderWord = (word) => {
+        if (!word) return;
+        buttons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.lexicalToken === word.token_id)));
+        setText("[data-hud-word]", word.hebrew_word);
+        setText("[data-hud-transliteration]", word.transliteration);
+        setList("[data-hud-renderings]", word.strict_renderings);
+        setText("[data-hud-root]", word.root);
+        setText("[data-hud-root-transliteration]", word.root_transliteration);
+        setList("[data-hud-root-meaning]", word.root_meaning);
+        renderSources(word.source_rows);
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => renderWord(words.find((word) => word.token_id === button.dataset.lexicalToken)));
+      });
+      renderWord(words[0]);
+    })();
+  </script>
+</body>
+</html>
