@@ -14,10 +14,17 @@ function Encode-Html {
   return [System.Net.WebUtility]::HtmlEncode($Text)
 }
 
+function Convert-HebrewDisplayHtml {
+  param([AllowNull()][string]$Text)
+  $html = Encode-Html $Text
+  $geresh = [char]0x05F3
+  return ($html -replace '([\u0590-\u05FF])&#39;', ('$1' + $geresh))
+}
+
 function Convert-SourceHtml {
   param([AllowNull()][string]$Text)
   if ($null -eq $Text) { return '' }
-  $html = Encode-Html $Text
+  $html = Convert-HebrewDisplayHtml $Text
   $html = $html -replace '(?i)&lt;br\s*/?&gt;', '<br>'
   $html = $html -replace '(?i)&lt;b&gt;', '<strong>'
   $html = $html -replace '(?i)&lt;/b&gt;', '</strong>'
@@ -345,7 +352,7 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .overlay-block { border: 1px solid var(--line); background: var(--panel-2); padding: 12px; margin-bottom: 10px; }')
   [void]$Builder.AppendLine('    .overlay-label { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }')
   if ($IncludeLexicalStyles) {
-    [void]$Builder.AppendLine('    .lexical-word { display: inline-block; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; }')
+    [void]$Builder.AppendLine('    .lexical-word { display: inline-block; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: rtl; unicode-bidi: isolate; }')
     [void]$Builder.AppendLine('    .lexical-word:hover, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); }')
     [void]$Builder.AppendLine('    .lexical-hud { position: sticky; top: 14px; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }')
     [void]$Builder.AppendLine('    .lexical-hud[hidden] { display: none; }')
@@ -449,6 +456,7 @@ function Append-HomeScript {
 function Append-LexicalHudScript {
   param([System.Text.StringBuilder]$Builder)
 
+  $geresh = [char]0x05F3
   [void]$Builder.AppendLine('  <script>')
   [void]$Builder.AppendLine('    (() => {')
   [void]$Builder.AppendLine('      const sampleNodes = Array.from(document.querySelectorAll("[data-lexical-json]"));')
@@ -459,9 +467,10 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        samples.set(sample.sample_id, sample);')
   [void]$Builder.AppendLine('      });')
   [void]$Builder.AppendLine('      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));')
+  [void]$Builder.AppendLine("      const normalizeHebrewDisplay = (value) => typeof value === ""string"" ? value.replace(/([\u0590-\u05FF])'/g, ""`$1$geresh"") : value;")
   [void]$Builder.AppendLine('      const setText = (root, selector, value) => {')
   [void]$Builder.AppendLine('        const node = root.querySelector(selector);')
-  [void]$Builder.AppendLine('        if (node) node.textContent = value || "N/A";')
+  [void]$Builder.AppendLine('        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";')
   [void]$Builder.AppendLine('      };')
   [void]$Builder.AppendLine('      const setList = (root, selector, value) => {')
   [void]$Builder.AppendLine('        const node = root.querySelector(selector);')
@@ -743,19 +752,18 @@ foreach ($source in $sources) {
     [void]$page.AppendLine('            <div class="unit-grid">')
     [void]$page.AppendLine('              <div>')
     if ($null -ne $lexicalSample) {
-      [void]$page.AppendLine('                <p class="hebrew lexical-inline" lang="he">')
+      [void]$page.AppendLine('                <p class="hebrew lexical-inline" lang="he" dir="rtl">')
       foreach ($word in @($lexicalSample.words)) {
-        [void]$page.Append("                  <button class=""lexical-word"" type=""button"" data-lexical-token=""$(Encode-Html $word.token_id)"" aria-pressed=""false"">$(Encode-Html $word.hebrew_word)</button>")
+        [void]$page.Append("                  <button class=""lexical-word"" type=""button"" data-lexical-token=""$(Encode-Html $word.token_id)"" aria-pressed=""false"">$(Convert-HebrewDisplayHtml $word.hebrew_word)</button>")
         if ($word.trailing_punctuation) {
-          [void]$page.Append((Encode-Html $word.trailing_punctuation))
+          [void]$page.Append((Convert-HebrewDisplayHtml $word.trailing_punctuation))
         }
         [void]$page.AppendLine('')
       }
       [void]$page.AppendLine('                </p>')
-      [void]$page.AppendLine("                <p class=""meta"">Lexical HUD sample for this unit only. Click a Hebrew word to open the on-page drawer.</p>")
     } else {
       foreach ($paragraph in @($unit.hebrew)) {
-        [void]$page.AppendLine("                <p class=""hebrew"" lang=""he"">$(Convert-SourceHtml $paragraph)</p>")
+        [void]$page.AppendLine("                <p class=""hebrew"" lang=""he"" dir=""rtl"">$(Convert-SourceHtml $paragraph)</p>")
       }
     }
     [void]$page.AppendLine('              </div>')
@@ -778,10 +786,10 @@ foreach ($source in $sources) {
       [void]$page.AppendLine('                <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">')
       [void]$page.AppendLine('                  <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>')
       [void]$page.AppendLine('                  <dl class="lexical-fields">')
-      [void]$page.AppendLine('                    <dt>Hebrew word</dt><dd data-hud-word>N/A</dd>')
+      [void]$page.AppendLine('                    <dt>Hebrew word</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd>')
       [void]$page.AppendLine('                    <dt>Transliteration</dt><dd data-hud-transliteration>N/A</dd>')
       [void]$page.AppendLine('                    <dt>Strict renderings</dt><dd data-hud-renderings>N/A</dd>')
-      [void]$page.AppendLine('                    <dt>Root</dt><dd data-hud-root>N/A</dd>')
+      [void]$page.AppendLine('                    <dt>Root</dt><dd data-hud-root lang="he" dir="rtl">N/A</dd>')
       [void]$page.AppendLine('                    <dt>Root transliteration</dt><dd data-hud-root-transliteration>N/A</dd>')
       [void]$page.AppendLine('                    <dt>Root meaning</dt><dd data-hud-root-meaning>N/A</dd>')
       [void]$page.AppendLine('                  </dl>')
