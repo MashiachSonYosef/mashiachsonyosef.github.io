@@ -43,10 +43,16 @@
     .toc ul { list-style: none; padding: 0; margin: 0; }
     .toc li { margin: 0 0 7px; }
     .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
     .section-block { margin-bottom: 10px; }
     .unit { border-top: 1px solid var(--line); padding: 16px 0; }
     .unit[hidden] { display: none; }
     .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; }
@@ -61,6 +67,9 @@
     .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
     summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
     @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
@@ -68,7 +77,7 @@
 <body>
   <main>
     <div class="shell">
-      <div class="hero">
+      <div class="hero" id="work-top">
         <p class="crumbs"><a href="../../">Home</a></p>
         <h1>Midbar Shur</h1>
         <p class="meta">243 total source units | imported 2026-04-27</p>
@@ -93,6 +102,488 @@
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Midbar Shur</summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Midbar Shur</summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-1-1" title="Midbar Shur 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-1-2" title="Midbar Shur 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-1-3" title="Midbar Shur 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-1-4" title="Midbar Shur 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-1-5" title="Midbar Shur 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-1-6" title="Midbar Shur 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-1-7" title="Midbar Shur 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-1-8" title="Midbar Shur 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-1-9" title="Midbar Shur 1:9">1:9</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-1-10" title="Midbar Shur 1:10">1:10</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-1-11" title="Midbar Shur 1:11">1:11</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-1-12" title="Midbar Shur 1:12">1:12</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-2-1" title="Midbar Shur 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-2-2" title="Midbar Shur 2:2">2:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-2-3" title="Midbar Shur 2:3">2:3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-3-1" title="Midbar Shur 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-3-2" title="Midbar Shur 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-3-3" title="Midbar Shur 3:3">3:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-3-4" title="Midbar Shur 3:4">3:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-4-1" title="Midbar Shur 4:1">4:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-4-2" title="Midbar Shur 4:2">4:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-4-3" title="Midbar Shur 4:3">4:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-4-4" title="Midbar Shur 4:4">4:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-4-5" title="Midbar Shur 4:5">4:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-4-6" title="Midbar Shur 4:6">4:6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-5-1" title="Midbar Shur 5:1">5:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-5-2" title="Midbar Shur 5:2">5:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-5-3" title="Midbar Shur 5:3">5:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-5-4" title="Midbar Shur 5:4">5:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-6-1" title="Midbar Shur 6:1">6:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-6-2" title="Midbar Shur 6:2">6:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-7-1" title="Midbar Shur 7:1">7:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-7-2" title="Midbar Shur 7:2">7:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-7-3" title="Midbar Shur 7:3">7:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-7-4" title="Midbar Shur 7:4">7:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-8-1" title="Midbar Shur 8:1">8:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-8-2" title="Midbar Shur 8:2">8:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-8-3" title="Midbar Shur 8:3">8:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-8-4" title="Midbar Shur 8:4">8:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-8-5" title="Midbar Shur 8:5">8:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-8-6" title="Midbar Shur 8:6">8:6</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-8-7" title="Midbar Shur 8:7">8:7</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-8-8" title="Midbar Shur 8:8">8:8</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-8-9" title="Midbar Shur 8:9">8:9</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-9-1" title="Midbar Shur 9:1">9:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-9-2" title="Midbar Shur 9:2">9:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-9-3" title="Midbar Shur 9:3">9:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-9-4" title="Midbar Shur 9:4">9:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-9-5" title="Midbar Shur 9:5">9:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-10-1" title="Midbar Shur 10:1">10:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-10-2" title="Midbar Shur 10:2">10:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-10-3" title="Midbar Shur 10:3">10:3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 11</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-11">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-11-1" title="Midbar Shur 11:1">11:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-11-2" title="Midbar Shur 11:2">11:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-11-3" title="Midbar Shur 11:3">11:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-11-4" title="Midbar Shur 11:4">11:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-11-5" title="Midbar Shur 11:5">11:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 12</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-12">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-12-1" title="Midbar Shur 12:1">12:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-12-2" title="Midbar Shur 12:2">12:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 13</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-13">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-13-1" title="Midbar Shur 13:1">13:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-13-2" title="Midbar Shur 13:2">13:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-13-3" title="Midbar Shur 13:3">13:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-13-4" title="Midbar Shur 13:4">13:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-13-5" title="Midbar Shur 13:5">13:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 14</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-14">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-14-1" title="Midbar Shur 14:1">14:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-14-2" title="Midbar Shur 14:2">14:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-14-3" title="Midbar Shur 14:3">14:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-14-4" title="Midbar Shur 14:4">14:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-14-5" title="Midbar Shur 14:5">14:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-14-6" title="Midbar Shur 14:6">14:6</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-14-7" title="Midbar Shur 14:7">14:7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 15</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-15">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-15-1" title="Midbar Shur 15:1">15:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-15-2" title="Midbar Shur 15:2">15:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-15-3" title="Midbar Shur 15:3">15:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-15-4" title="Midbar Shur 15:4">15:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-15-5" title="Midbar Shur 15:5">15:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-15-6" title="Midbar Shur 15:6">15:6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 16</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-16">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-16-1" title="Midbar Shur 16:1">16:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-16-2" title="Midbar Shur 16:2">16:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-16-3" title="Midbar Shur 16:3">16:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-16-4" title="Midbar Shur 16:4">16:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-16-5" title="Midbar Shur 16:5">16:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-16-6" title="Midbar Shur 16:6">16:6</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-16-7" title="Midbar Shur 16:7">16:7</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-16-8" title="Midbar Shur 16:8">16:8</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-16-9" title="Midbar Shur 16:9">16:9</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-16-10" title="Midbar Shur 16:10">16:10</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-16-11" title="Midbar Shur 16:11">16:11</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-16-12" title="Midbar Shur 16:12">16:12</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-16-13" title="Midbar Shur 16:13">16:13</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 17</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-17">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-17-1" title="Midbar Shur 17:1">17:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-17-2" title="Midbar Shur 17:2">17:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-17-3" title="Midbar Shur 17:3">17:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-17-4" title="Midbar Shur 17:4">17:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-17-5" title="Midbar Shur 17:5">17:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-17-6" title="Midbar Shur 17:6">17:6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 18</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-18">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-18-1" title="Midbar Shur 18:1">18:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-18-2" title="Midbar Shur 18:2">18:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-18-3" title="Midbar Shur 18:3">18:3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 19</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-19">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-19-1" title="Midbar Shur 19:1">19:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-19-2" title="Midbar Shur 19:2">19:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-19-3" title="Midbar Shur 19:3">19:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-19-4" title="Midbar Shur 19:4">19:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-19-5" title="Midbar Shur 19:5">19:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-19-6" title="Midbar Shur 19:6">19:6</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-19-7" title="Midbar Shur 19:7">19:7</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-19-8" title="Midbar Shur 19:8">19:8</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-19-9" title="Midbar Shur 19:9">19:9</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-19-10" title="Midbar Shur 19:10">19:10</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-19-11" title="Midbar Shur 19:11">19:11</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 20</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-20">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-20-1" title="Midbar Shur 20:1">20:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-20-2" title="Midbar Shur 20:2">20:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-20-3" title="Midbar Shur 20:3">20:3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 21</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-21">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-21-1" title="Midbar Shur 21:1">21:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-21-2" title="Midbar Shur 21:2">21:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-21-3" title="Midbar Shur 21:3">21:3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 22</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-22">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-22-1" title="Midbar Shur 22:1">22:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-22-2" title="Midbar Shur 22:2">22:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-22-3" title="Midbar Shur 22:3">22:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-22-4" title="Midbar Shur 22:4">22:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-22-5" title="Midbar Shur 22:5">22:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 23</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-23">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-23-1" title="Midbar Shur 23:1">23:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-23-2" title="Midbar Shur 23:2">23:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-23-3" title="Midbar Shur 23:3">23:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-23-4" title="Midbar Shur 23:4">23:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-23-5" title="Midbar Shur 23:5">23:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-23-6" title="Midbar Shur 23:6">23:6</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-23-7" title="Midbar Shur 23:7">23:7</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-23-8" title="Midbar Shur 23:8">23:8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 24</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-24">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-24-1" title="Midbar Shur 24:1">24:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-24-2" title="Midbar Shur 24:2">24:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-24-3" title="Midbar Shur 24:3">24:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-24-4" title="Midbar Shur 24:4">24:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-24-5" title="Midbar Shur 24:5">24:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-24-6" title="Midbar Shur 24:6">24:6</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-24-7" title="Midbar Shur 24:7">24:7</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-24-8" title="Midbar Shur 24:8">24:8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 25</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-25">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-25-1" title="Midbar Shur 25:1">25:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-25-2" title="Midbar Shur 25:2">25:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-25-3" title="Midbar Shur 25:3">25:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-25-4" title="Midbar Shur 25:4">25:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-25-5" title="Midbar Shur 25:5">25:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-25-6" title="Midbar Shur 25:6">25:6</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-25-7" title="Midbar Shur 25:7">25:7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 26</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-26">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-26-1" title="Midbar Shur 26:1">26:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-26-2" title="Midbar Shur 26:2">26:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-26-3" title="Midbar Shur 26:3">26:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-26-4" title="Midbar Shur 26:4">26:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-26-5" title="Midbar Shur 26:5">26:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-26-6" title="Midbar Shur 26:6">26:6</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-26-7" title="Midbar Shur 26:7">26:7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 27</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-27">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-27-1" title="Midbar Shur 27:1">27:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-27-2" title="Midbar Shur 27:2">27:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-27-3" title="Midbar Shur 27:3">27:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-27-4" title="Midbar Shur 27:4">27:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-27-5" title="Midbar Shur 27:5">27:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-27-6" title="Midbar Shur 27:6">27:6</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-27-7" title="Midbar Shur 27:7">27:7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 28</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-28">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-28-1" title="Midbar Shur 28:1">28:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-28-2" title="Midbar Shur 28:2">28:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-28-3" title="Midbar Shur 28:3">28:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-28-4" title="Midbar Shur 28:4">28:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-28-5" title="Midbar Shur 28:5">28:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 29</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-29">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-29-1" title="Midbar Shur 29:1">29:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-29-2" title="Midbar Shur 29:2">29:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-29-3" title="Midbar Shur 29:3">29:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-29-4" title="Midbar Shur 29:4">29:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-29-5" title="Midbar Shur 29:5">29:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-29-6" title="Midbar Shur 29:6">29:6</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-29-7" title="Midbar Shur 29:7">29:7</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-29-8" title="Midbar Shur 29:8">29:8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 30</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-30">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-30-1" title="Midbar Shur 30:1">30:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-30-2" title="Midbar Shur 30:2">30:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-30-3" title="Midbar Shur 30:3">30:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-30-4" title="Midbar Shur 30:4">30:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-30-5" title="Midbar Shur 30:5">30:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-30-6" title="Midbar Shur 30:6">30:6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 31</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-31">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-31-1" title="Midbar Shur 31:1">31:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-31-2" title="Midbar Shur 31:2">31:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-31-3" title="Midbar Shur 31:3">31:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-31-4" title="Midbar Shur 31:4">31:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-31-5" title="Midbar Shur 31:5">31:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-31-6" title="Midbar Shur 31:6">31:6</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-31-7" title="Midbar Shur 31:7">31:7</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-31-8" title="Midbar Shur 31:8">31:8</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-31-9" title="Midbar Shur 31:9">31:9</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 32</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-32">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-32-1" title="Midbar Shur 32:1">32:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-32-2" title="Midbar Shur 32:2">32:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-32-3" title="Midbar Shur 32:3">32:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-32-4" title="Midbar Shur 32:4">32:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-32-5" title="Midbar Shur 32:5">32:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 33</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-33">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-33-1" title="Midbar Shur 33:1">33:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-33-2" title="Midbar Shur 33:2">33:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-33-3" title="Midbar Shur 33:3">33:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-33-4" title="Midbar Shur 33:4">33:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-33-5" title="Midbar Shur 33:5">33:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-33-6" title="Midbar Shur 33:6">33:6</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-33-7" title="Midbar Shur 33:7">33:7</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-33-8" title="Midbar Shur 33:8">33:8</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-33-9" title="Midbar Shur 33:9">33:9</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-33-10" title="Midbar Shur 33:10">33:10</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-33-11" title="Midbar Shur 33:11">33:11</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-33-12" title="Midbar Shur 33:12">33:12</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-33-13" title="Midbar Shur 33:13">33:13</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 34</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-34">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-34-1" title="Midbar Shur 34:1">34:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-34-2" title="Midbar Shur 34:2">34:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-34-3" title="Midbar Shur 34:3">34:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-34-4" title="Midbar Shur 34:4">34:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 35</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-35">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-35-1" title="Midbar Shur 35:1">35:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-35-2" title="Midbar Shur 35:2">35:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-35-3" title="Midbar Shur 35:3">35:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-35-4" title="Midbar Shur 35:4">35:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 36</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-36">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-36-1" title="Midbar Shur 36:1">36:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-2" title="Midbar Shur 36:2">36:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-3" title="Midbar Shur 36:3">36:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-4" title="Midbar Shur 36:4">36:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-5" title="Midbar Shur 36:5">36:5</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-6" title="Midbar Shur 36:6">36:6</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-7" title="Midbar Shur 36:7">36:7</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-8" title="Midbar Shur 36:8">36:8</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-9" title="Midbar Shur 36:9">36:9</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-10" title="Midbar Shur 36:10">36:10</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-11" title="Midbar Shur 36:11">36:11</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-12" title="Midbar Shur 36:12">36:12</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-13" title="Midbar Shur 36:13">36:13</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-14" title="Midbar Shur 36:14">36:14</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-15" title="Midbar Shur 36:15">36:15</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-16" title="Midbar Shur 36:16">36:16</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-17" title="Midbar Shur 36:17">36:17</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-18" title="Midbar Shur 36:18">36:18</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-19" title="Midbar Shur 36:19">36:19</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-20" title="Midbar Shur 36:20">36:20</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-21" title="Midbar Shur 36:21">36:21</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-36-22" title="Midbar Shur 36:22">36:22</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 37</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-37">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-37-1" title="Midbar Shur 37:1">37:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-37-2" title="Midbar Shur 37:2">37:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-37-3" title="Midbar Shur 37:3">37:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-37-4" title="Midbar Shur 37:4">37:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 38</summary>
+                  <a class="toc-start" href="#chapter-midbar-shur-text-38">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midbar-shur-38-1" title="Midbar Shur 38:1">38:1</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-38-2" title="Midbar Shur 38:2">38:2</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-38-3" title="Midbar Shur 38:3">38:3</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-38-4" title="Midbar Shur 38:4">38:4</a></li>
+                    <li><a class="toc-unit" href="#midbar-shur-38-5" title="Midbar Shur 38:5">38:5</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
         </nav>
         <article>
           <h4 id="chapter-midbar-shur-text-1">Chapter 1</h4>
@@ -114,6 +605,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -133,6 +628,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -152,6 +651,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -171,6 +674,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -190,6 +697,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -209,6 +720,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-1-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -228,6 +743,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-1-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -247,6 +766,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-1-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -266,6 +789,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-1-10" data-unit data-complete="false">
             <div class="unit-head">
@@ -285,6 +812,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-1-11" data-unit data-complete="false">
             <div class="unit-head">
@@ -304,6 +835,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-1-12" data-unit data-complete="false">
             <div class="unit-head">
@@ -323,6 +858,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-2">Chapter 2</h4>
           <section class="unit" id="midbar-shur-2-1" data-unit data-complete="false">
@@ -343,6 +882,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-2-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -362,6 +905,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-2-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -381,6 +928,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-3">Chapter 3</h4>
           <section class="unit" id="midbar-shur-3-1" data-unit data-complete="false">
@@ -401,6 +952,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-3-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -420,6 +975,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-3-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -439,6 +998,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-3-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -458,6 +1021,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-4">Chapter 4</h4>
           <section class="unit" id="midbar-shur-4-1" data-unit data-complete="false">
@@ -478,6 +1045,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-4-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -497,6 +1068,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-4-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -516,6 +1091,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-4-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -535,6 +1114,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-4-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -554,6 +1137,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-4-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -573,6 +1160,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-5">Chapter 5</h4>
           <section class="unit" id="midbar-shur-5-1" data-unit data-complete="false">
@@ -593,6 +1184,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-5">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-5-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -612,6 +1207,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-5">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-5-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -631,6 +1230,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-5">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-5-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -650,6 +1253,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-5">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-6">Chapter 6</h4>
           <section class="unit" id="midbar-shur-6-1" data-unit data-complete="false">
@@ -670,6 +1277,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-6">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-6-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -689,6 +1300,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-6">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-7">Chapter 7</h4>
           <section class="unit" id="midbar-shur-7-1" data-unit data-complete="false">
@@ -709,6 +1324,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-7">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-7-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -728,6 +1347,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-7">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-7-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -747,6 +1370,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-7">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-7-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -766,6 +1393,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-7">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-8">Chapter 8</h4>
           <section class="unit" id="midbar-shur-8-1" data-unit data-complete="false">
@@ -786,6 +1417,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-8-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -805,6 +1440,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-8-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -824,6 +1463,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-8-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -843,6 +1486,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-8-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -862,6 +1509,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-8-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -881,6 +1532,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-8-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -900,6 +1555,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-8-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -919,6 +1578,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-8-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -938,6 +1601,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-9">Chapter 9</h4>
           <section class="unit" id="midbar-shur-9-1" data-unit data-complete="false">
@@ -958,6 +1625,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-9">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-9-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -977,6 +1648,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-9">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-9-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -996,6 +1671,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-9">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-9-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1015,6 +1694,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-9">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-9-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -1034,6 +1717,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-9">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-10">Chapter 10</h4>
           <section class="unit" id="midbar-shur-10-1" data-unit data-complete="false">
@@ -1054,6 +1741,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-10">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-10-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1073,6 +1764,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-10">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-10-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1092,6 +1787,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-10">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-11">Chapter 11</h4>
           <section class="unit" id="midbar-shur-11-1" data-unit data-complete="false">
@@ -1112,6 +1811,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-11-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1131,6 +1834,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-11-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1150,6 +1857,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-11-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1169,6 +1880,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-11-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -1188,6 +1903,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-12">Chapter 12</h4>
           <section class="unit" id="midbar-shur-12-1" data-unit data-complete="false">
@@ -1208,6 +1927,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-12">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-12-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1227,6 +1950,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-12">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-13">Chapter 13</h4>
           <section class="unit" id="midbar-shur-13-1" data-unit data-complete="false">
@@ -1247,6 +1974,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-13">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-13-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1266,6 +1997,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-13">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-13-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1285,6 +2020,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-13">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-13-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1304,6 +2043,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-13">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-13-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -1323,6 +2066,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-13">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-14">Chapter 14</h4>
           <section class="unit" id="midbar-shur-14-1" data-unit data-complete="false">
@@ -1343,6 +2090,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-14">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-14-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1362,6 +2113,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-14">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-14-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1381,6 +2136,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-14">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-14-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1400,6 +2159,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-14">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-14-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -1419,6 +2182,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-14">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-14-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -1438,6 +2205,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-14">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-14-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -1457,6 +2228,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-14">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-15">Chapter 15</h4>
           <section class="unit" id="midbar-shur-15-1" data-unit data-complete="false">
@@ -1477,6 +2252,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-15">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-15-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1496,6 +2275,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-15">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-15-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1515,6 +2298,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-15">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-15-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1534,6 +2321,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-15">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-15-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -1553,6 +2344,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-15">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-15-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -1572,6 +2367,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-15">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-16">Chapter 16</h4>
           <section class="unit" id="midbar-shur-16-1" data-unit data-complete="false">
@@ -1592,6 +2391,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-16-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1611,6 +2414,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-16-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1630,6 +2437,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-16-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1649,6 +2460,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-16-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -1668,6 +2483,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-16-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -1687,6 +2506,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-16-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -1706,6 +2529,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-16-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -1725,6 +2552,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-16-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -1744,6 +2575,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-16-10" data-unit data-complete="false">
             <div class="unit-head">
@@ -1763,6 +2598,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-16-11" data-unit data-complete="false">
             <div class="unit-head">
@@ -1782,6 +2621,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-16-12" data-unit data-complete="false">
             <div class="unit-head">
@@ -1801,6 +2644,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-16-13" data-unit data-complete="false">
             <div class="unit-head">
@@ -1820,6 +2667,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-17">Chapter 17</h4>
           <section class="unit" id="midbar-shur-17-1" data-unit data-complete="false">
@@ -1840,6 +2691,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-17">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-17-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1859,6 +2714,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-17">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-17-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1878,6 +2737,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-17">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-17-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1897,6 +2760,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-17">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-17-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -1916,6 +2783,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-17">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-17-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -1935,6 +2806,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-17">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-18">Chapter 18</h4>
           <section class="unit" id="midbar-shur-18-1" data-unit data-complete="false">
@@ -1955,6 +2830,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-18">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-18-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1974,6 +2853,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-18">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-18-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1993,6 +2876,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-18">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-19">Chapter 19</h4>
           <section class="unit" id="midbar-shur-19-1" data-unit data-complete="false">
@@ -2013,6 +2900,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-19">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-19-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -2032,6 +2923,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-19">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-19-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -2051,6 +2946,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-19">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-19-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -2070,6 +2969,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-19">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-19-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -2089,6 +2992,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-19">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-19-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -2108,6 +3015,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-19">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-19-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -2127,6 +3038,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-19">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-19-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -2146,6 +3061,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-19">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-19-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -2165,6 +3084,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-19">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-19-10" data-unit data-complete="false">
             <div class="unit-head">
@@ -2184,6 +3107,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-19">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-19-11" data-unit data-complete="false">
             <div class="unit-head">
@@ -2203,6 +3130,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-19">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-20">Chapter 20</h4>
           <section class="unit" id="midbar-shur-20-1" data-unit data-complete="false">
@@ -2223,6 +3154,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-20-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -2242,6 +3177,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-20-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -2261,6 +3200,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-21">Chapter 21</h4>
           <section class="unit" id="midbar-shur-21-1" data-unit data-complete="false">
@@ -2281,6 +3224,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-21">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-21-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -2300,6 +3247,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-21">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-21-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -2319,6 +3270,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-21">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-22">Chapter 22</h4>
           <section class="unit" id="midbar-shur-22-1" data-unit data-complete="false">
@@ -2339,6 +3294,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-22">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-22-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -2358,6 +3317,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-22">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-22-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -2377,6 +3340,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-22">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-22-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -2396,6 +3363,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-22">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-22-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -2415,6 +3386,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-22">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-23">Chapter 23</h4>
           <section class="unit" id="midbar-shur-23-1" data-unit data-complete="false">
@@ -2435,6 +3410,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-23">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-23-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -2454,6 +3433,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-23">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-23-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -2473,6 +3456,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-23">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-23-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -2492,6 +3479,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-23">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-23-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -2511,6 +3502,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-23">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-23-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -2530,6 +3525,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-23">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-23-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -2549,6 +3548,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-23">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-23-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -2568,6 +3571,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-23">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-24">Chapter 24</h4>
           <section class="unit" id="midbar-shur-24-1" data-unit data-complete="false">
@@ -2588,6 +3595,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-24">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-24-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -2607,6 +3618,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-24">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-24-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -2626,6 +3641,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-24">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-24-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -2645,6 +3664,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-24">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-24-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -2664,6 +3687,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-24">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-24-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -2683,6 +3710,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-24">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-24-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -2702,6 +3733,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-24">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-24-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -2721,6 +3756,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-24">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-25">Chapter 25</h4>
           <section class="unit" id="midbar-shur-25-1" data-unit data-complete="false">
@@ -2741,6 +3780,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-25">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-25-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -2760,6 +3803,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-25">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-25-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -2779,6 +3826,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-25">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-25-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -2798,6 +3849,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-25">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-25-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -2817,6 +3872,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-25">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-25-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -2836,6 +3895,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-25">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-25-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -2855,6 +3918,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-25">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-26">Chapter 26</h4>
           <section class="unit" id="midbar-shur-26-1" data-unit data-complete="false">
@@ -2875,6 +3942,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-26">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-26-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -2894,6 +3965,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-26">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-26-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -2913,6 +3988,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-26">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-26-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -2932,6 +4011,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-26">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-26-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -2951,6 +4034,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-26">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-26-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -2970,6 +4057,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-26">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-26-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -2989,6 +4080,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-26">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-27">Chapter 27</h4>
           <section class="unit" id="midbar-shur-27-1" data-unit data-complete="false">
@@ -3009,6 +4104,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-27">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-27-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -3028,6 +4127,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-27">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-27-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -3047,6 +4150,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-27">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-27-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -3066,6 +4173,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-27">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-27-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -3085,6 +4196,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-27">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-27-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -3104,6 +4219,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-27">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-27-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -3123,6 +4242,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-27">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-28">Chapter 28</h4>
           <section class="unit" id="midbar-shur-28-1" data-unit data-complete="false">
@@ -3143,6 +4266,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-28">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-28-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -3162,6 +4289,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-28">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-28-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -3181,6 +4312,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-28">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-28-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -3200,6 +4335,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-28">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-28-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -3219,6 +4358,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-28">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-29">Chapter 29</h4>
           <section class="unit" id="midbar-shur-29-1" data-unit data-complete="false">
@@ -3239,6 +4382,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-29">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-29-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -3258,6 +4405,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-29">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-29-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -3277,6 +4428,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-29">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-29-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -3296,6 +4451,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-29">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-29-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -3315,6 +4474,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-29">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-29-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -3334,6 +4497,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-29">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-29-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -3353,6 +4520,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-29">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-29-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -3372,6 +4543,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-29">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-30">Chapter 30</h4>
           <section class="unit" id="midbar-shur-30-1" data-unit data-complete="false">
@@ -3392,6 +4567,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-30">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-30-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -3411,6 +4590,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-30">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-30-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -3430,6 +4613,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-30">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-30-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -3449,6 +4636,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-30">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-30-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -3468,6 +4659,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-30">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-30-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -3487,6 +4682,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-30">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-31">Chapter 31</h4>
           <section class="unit" id="midbar-shur-31-1" data-unit data-complete="false">
@@ -3507,6 +4706,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-31">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-31-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -3526,6 +4729,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-31">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-31-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -3545,6 +4752,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-31">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-31-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -3564,6 +4775,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-31">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-31-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -3583,6 +4798,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-31">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-31-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -3602,6 +4821,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-31">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-31-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -3621,6 +4844,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-31">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-31-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -3640,6 +4867,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-31">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-31-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -3659,6 +4890,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-31">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-32">Chapter 32</h4>
           <section class="unit" id="midbar-shur-32-1" data-unit data-complete="false">
@@ -3679,6 +4914,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-32">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-32-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -3698,6 +4937,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-32">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-32-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -3717,6 +4960,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-32">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-32-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -3736,6 +4983,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-32">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-32-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -3755,6 +5006,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-32">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-33">Chapter 33</h4>
           <section class="unit" id="midbar-shur-33-1" data-unit data-complete="false">
@@ -3775,6 +5030,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-33">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-33-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -3794,6 +5053,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-33">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-33-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -3813,6 +5076,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-33">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-33-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -3832,6 +5099,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-33">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-33-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -3851,6 +5122,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-33">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-33-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -3870,6 +5145,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-33">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-33-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -3889,6 +5168,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-33">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-33-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -3908,6 +5191,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-33">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-33-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -3927,6 +5214,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-33">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-33-10" data-unit data-complete="false">
             <div class="unit-head">
@@ -3946,6 +5237,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-33">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-33-11" data-unit data-complete="false">
             <div class="unit-head">
@@ -3965,6 +5260,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-33">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-33-12" data-unit data-complete="false">
             <div class="unit-head">
@@ -3984,6 +5283,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-33">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-33-13" data-unit data-complete="false">
             <div class="unit-head">
@@ -4003,6 +5306,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-33">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-34">Chapter 34</h4>
           <section class="unit" id="midbar-shur-34-1" data-unit data-complete="false">
@@ -4023,6 +5330,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-34">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-34-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -4042,6 +5353,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-34">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-34-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -4061,6 +5376,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-34">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-34-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -4080,6 +5399,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-34">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-35">Chapter 35</h4>
           <section class="unit" id="midbar-shur-35-1" data-unit data-complete="false">
@@ -4100,6 +5423,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-35">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-35-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -4119,6 +5446,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-35">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-35-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -4138,6 +5469,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-35">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-35-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -4157,6 +5492,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-35">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-36">Chapter 36</h4>
           <section class="unit" id="midbar-shur-36-1" data-unit data-complete="false">
@@ -4177,6 +5516,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -4196,6 +5539,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -4215,6 +5562,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -4234,6 +5585,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -4253,6 +5608,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -4272,6 +5631,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -4291,6 +5654,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -4310,6 +5677,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -4329,6 +5700,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-10" data-unit data-complete="false">
             <div class="unit-head">
@@ -4348,6 +5723,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-11" data-unit data-complete="false">
             <div class="unit-head">
@@ -4367,6 +5746,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-12" data-unit data-complete="false">
             <div class="unit-head">
@@ -4386,6 +5769,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-13" data-unit data-complete="false">
             <div class="unit-head">
@@ -4405,6 +5792,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-14" data-unit data-complete="false">
             <div class="unit-head">
@@ -4424,6 +5815,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-15" data-unit data-complete="false">
             <div class="unit-head">
@@ -4443,6 +5838,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-16" data-unit data-complete="false">
             <div class="unit-head">
@@ -4462,6 +5861,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-17" data-unit data-complete="false">
             <div class="unit-head">
@@ -4481,6 +5884,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-18" data-unit data-complete="false">
             <div class="unit-head">
@@ -4500,6 +5907,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-19" data-unit data-complete="false">
             <div class="unit-head">
@@ -4519,6 +5930,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-20" data-unit data-complete="false">
             <div class="unit-head">
@@ -4538,6 +5953,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-21" data-unit data-complete="false">
             <div class="unit-head">
@@ -4557,6 +5976,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-36-22" data-unit data-complete="false">
             <div class="unit-head">
@@ -4576,6 +5999,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-37">Chapter 37</h4>
           <section class="unit" id="midbar-shur-37-1" data-unit data-complete="false">
@@ -4596,6 +6023,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-37">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-37-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -4615,6 +6046,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-37">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-37-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -4634,6 +6069,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-37">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-37-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -4653,6 +6092,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-37">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-midbar-shur-text-38">Chapter 38</h4>
           <section class="unit" id="midbar-shur-38-1" data-unit data-complete="false">
@@ -4673,6 +6116,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-38">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-38-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -4692,6 +6139,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-38">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-38-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -4711,6 +6162,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-38">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-38-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -4730,6 +6185,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-38">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="midbar-shur-38-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -4749,6 +6208,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midbar-shur-text-38">Back to chapter/section start</a>
+            </nav>
           </section>
         </article>
       </div>

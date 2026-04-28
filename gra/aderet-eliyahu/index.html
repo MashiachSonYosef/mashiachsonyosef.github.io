@@ -43,10 +43,16 @@
     .toc ul { list-style: none; padding: 0; margin: 0; }
     .toc li { margin: 0 0 7px; }
     .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
     .section-block { margin-bottom: 10px; }
     .unit { border-top: 1px solid var(--line); padding: 16px 0; }
     .unit[hidden] { display: none; }
     .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; }
@@ -61,6 +67,9 @@
     .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
     summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
     @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
@@ -68,7 +77,7 @@
 <body>
   <main>
     <div class="shell">
-      <div class="hero">
+      <div class="hero" id="work-top">
         <p class="crumbs"><a href="../../">Home</a></p>
         <h1>Aderet Eliyahu</h1>
         <p class="meta">59 total source units | imported 2026-04-27</p>
@@ -93,42 +102,162 @@
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
-          <div class="section-block">
-            <h2 id="toc-introduction">Introduction</h2>
-            <ul>
-              <li><a href="#section-introduction-introduction">Introduction</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-genesis">Genesis</h2>
-            <ul>
-              <li><a href="#section-genesis-genesis">Genesis</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-exodus">Exodus</h2>
-            <ul>
-              <li><a href="#section-exodus-exodus">Exodus</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-leviticus">Leviticus</h2>
-            <ul>
-              <li><a href="#section-leviticus-leviticus">Leviticus</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-numbers">Numbers</h2>
-            <ul>
-              <li><a href="#section-numbers-numbers">Numbers</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-deuteronomy">Deuteronomy</h2>
-            <ul>
-              <li><a href="#section-deuteronomy-deuteronomy">Deuteronomy</a></li>
-            </ul>
-          </div>
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Introduction</summary>
+              <a class="toc-start" href="#group-introduction">Start</a>
+              <details class="toc-section">
+                <summary>Introduction</summary>
+                <a class="toc-start" href="#section-introduction-introduction">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-introduction-introduction-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#aderet-eliyahu-introduction-introduction-1" title="Aderet Eliyahu, Introduction:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-introduction-introduction-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#aderet-eliyahu-introduction-introduction-2" title="Aderet Eliyahu, Introduction:2">2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-introduction-introduction-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#aderet-eliyahu-introduction-introduction-3" title="Aderet Eliyahu, Introduction:3">3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-introduction-introduction-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#aderet-eliyahu-introduction-introduction-4" title="Aderet Eliyahu, Introduction:4">4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-introduction-introduction-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#aderet-eliyahu-introduction-introduction-5" title="Aderet Eliyahu, Introduction:5">5</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Genesis</summary>
+              <a class="toc-start" href="#group-genesis">Start</a>
+              <details class="toc-section">
+                <summary>Genesis</summary>
+                <a class="toc-start" href="#section-genesis-genesis">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-genesis-genesis-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#aderet-eliyahu-genesis-genesis-1-1-1" title="Aderet Eliyahu, Genesis 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-genesis-genesis-1-1-2" title="Aderet Eliyahu, Genesis 1:1:2">1:1:2</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-genesis-genesis-1-1-3" title="Aderet Eliyahu, Genesis 1:1:3">1:1:3</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-genesis-genesis-1-1-4" title="Aderet Eliyahu, Genesis 1:1:4">1:1:4</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-genesis-genesis-1-1-5" title="Aderet Eliyahu, Genesis 1:1:5">1:1:5</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-genesis-genesis-1-1-6" title="Aderet Eliyahu, Genesis 1:1:6">1:1:6</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-genesis-genesis-1-1-7" title="Aderet Eliyahu, Genesis 1:1:7">1:1:7</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-genesis-genesis-1-1-8" title="Aderet Eliyahu, Genesis 1:1:8">1:1:8</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-genesis-genesis-1-1-9" title="Aderet Eliyahu, Genesis 1:1:9">1:1:9</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-genesis-genesis-1-1-10" title="Aderet Eliyahu, Genesis 1:1:10">1:1:10</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-genesis-genesis-1-1-11" title="Aderet Eliyahu, Genesis 1:1:11">1:1:11</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-genesis-genesis-1-1-12" title="Aderet Eliyahu, Genesis 1:1:12">1:1:12</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-genesis-genesis-1-1-13" title="Aderet Eliyahu, Genesis 1:1:13">1:1:13</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-genesis-genesis-1-1-14" title="Aderet Eliyahu, Genesis 1:1:14">1:1:14</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-genesis-genesis-1-1-15" title="Aderet Eliyahu, Genesis 1:1:15">1:1:15</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Leviticus</summary>
+              <a class="toc-start" href="#group-leviticus">Start</a>
+              <details class="toc-section">
+                <summary>Leviticus</summary>
+                <a class="toc-start" href="#section-leviticus-leviticus">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-leviticus-leviticus-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#aderet-eliyahu-leviticus-leviticus-1-1-1" title="Aderet Eliyahu, Leviticus 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-leviticus-leviticus-1-1-2" title="Aderet Eliyahu, Leviticus 1:1:2">1:1:2</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-leviticus-leviticus-1-1-3" title="Aderet Eliyahu, Leviticus 1:1:3">1:1:3</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-leviticus-leviticus-1-1-4" title="Aderet Eliyahu, Leviticus 1:1:4">1:1:4</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-leviticus-leviticus-1-1-5" title="Aderet Eliyahu, Leviticus 1:1:5">1:1:5</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Numbers</summary>
+              <a class="toc-start" href="#group-numbers">Start</a>
+              <details class="toc-section">
+                <summary>Numbers</summary>
+                <a class="toc-start" href="#section-numbers-numbers">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-numbers-numbers-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#aderet-eliyahu-numbers-numbers-1-1-1" title="Aderet Eliyahu, Numbers 1:1:1">1:1:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Deuteronomy</summary>
+              <a class="toc-start" href="#group-deuteronomy">Start</a>
+              <details class="toc-section">
+                <summary>Deuteronomy</summary>
+                <a class="toc-start" href="#section-deuteronomy-deuteronomy">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-deuteronomy-deuteronomy-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-1" title="Aderet Eliyahu, Deuteronomy 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-2" title="Aderet Eliyahu, Deuteronomy 1:1:2">1:1:2</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-3" title="Aderet Eliyahu, Deuteronomy 1:1:3">1:1:3</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-4" title="Aderet Eliyahu, Deuteronomy 1:1:4">1:1:4</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-5" title="Aderet Eliyahu, Deuteronomy 1:1:5">1:1:5</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-6" title="Aderet Eliyahu, Deuteronomy 1:1:6">1:1:6</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-7" title="Aderet Eliyahu, Deuteronomy 1:1:7">1:1:7</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-8" title="Aderet Eliyahu, Deuteronomy 1:1:8">1:1:8</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-9" title="Aderet Eliyahu, Deuteronomy 1:1:9">1:1:9</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-10" title="Aderet Eliyahu, Deuteronomy 1:1:10">1:1:10</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-11" title="Aderet Eliyahu, Deuteronomy 1:1:11">1:1:11</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-12" title="Aderet Eliyahu, Deuteronomy 1:1:12">1:1:12</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-13" title="Aderet Eliyahu, Deuteronomy 1:1:13">1:1:13</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-14" title="Aderet Eliyahu, Deuteronomy 1:1:14">1:1:14</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-15" title="Aderet Eliyahu, Deuteronomy 1:1:15">1:1:15</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-16" title="Aderet Eliyahu, Deuteronomy 1:1:16">1:1:16</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-17" title="Aderet Eliyahu, Deuteronomy 1:1:17">1:1:17</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-18" title="Aderet Eliyahu, Deuteronomy 1:1:18">1:1:18</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-19" title="Aderet Eliyahu, Deuteronomy 1:1:19">1:1:19</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-20" title="Aderet Eliyahu, Deuteronomy 1:1:20">1:1:20</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-21" title="Aderet Eliyahu, Deuteronomy 1:1:21">1:1:21</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-22" title="Aderet Eliyahu, Deuteronomy 1:1:22">1:1:22</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-23" title="Aderet Eliyahu, Deuteronomy 1:1:23">1:1:23</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-24" title="Aderet Eliyahu, Deuteronomy 1:1:24">1:1:24</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-25" title="Aderet Eliyahu, Deuteronomy 1:1:25">1:1:25</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-26" title="Aderet Eliyahu, Deuteronomy 1:1:26">1:1:26</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-27" title="Aderet Eliyahu, Deuteronomy 1:1:27">1:1:27</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-28" title="Aderet Eliyahu, Deuteronomy 1:1:28">1:1:28</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-29" title="Aderet Eliyahu, Deuteronomy 1:1:29">1:1:29</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-30" title="Aderet Eliyahu, Deuteronomy 1:1:30">1:1:30</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-31" title="Aderet Eliyahu, Deuteronomy 1:1:31">1:1:31</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-32" title="Aderet Eliyahu, Deuteronomy 1:1:32">1:1:32</a></li>
+                    <li><a class="toc-unit" href="#aderet-eliyahu-deuteronomy-deuteronomy-1-1-33" title="Aderet Eliyahu, Deuteronomy 1:1:33">1:1:33</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
         </nav>
         <article>
           <h2 id="group-introduction">Introduction</h2>
@@ -152,6 +281,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-introduction-introduction-2">Chapter 2</h4>
           <section class="unit" id="aderet-eliyahu-introduction-introduction-2" data-unit data-complete="false">
@@ -172,6 +305,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introduction-introduction-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-introduction-introduction-3">Chapter 3</h4>
           <section class="unit" id="aderet-eliyahu-introduction-introduction-3" data-unit data-complete="false">
@@ -192,6 +329,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introduction-introduction-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-introduction-introduction-4">Chapter 4</h4>
           <section class="unit" id="aderet-eliyahu-introduction-introduction-4" data-unit data-complete="false">
@@ -212,6 +353,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introduction-introduction-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-introduction-introduction-5">Chapter 5</h4>
           <section class="unit" id="aderet-eliyahu-introduction-introduction-5" data-unit data-complete="false">
@@ -232,6 +377,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introduction-introduction-5">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-genesis">Genesis</h2>
           <h3 id="section-genesis-genesis">Genesis</h3>
@@ -254,6 +403,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-genesis-genesis-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-genesis-genesis-1-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -273,6 +426,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-genesis-genesis-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-genesis-genesis-1-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -292,6 +449,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-genesis-genesis-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-genesis-genesis-1-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -311,6 +472,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-genesis-genesis-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-genesis-genesis-1-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -330,6 +495,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-genesis-genesis-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-genesis-genesis-1-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -349,6 +518,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-genesis-genesis-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-genesis-genesis-1-1-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -368,6 +541,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-genesis-genesis-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-genesis-genesis-1-1-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -387,6 +564,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-genesis-genesis-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-genesis-genesis-1-1-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -406,6 +587,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-genesis-genesis-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-genesis-genesis-1-1-10" data-unit data-complete="false">
             <div class="unit-head">
@@ -425,6 +610,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-genesis-genesis-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-genesis-genesis-1-1-11" data-unit data-complete="false">
             <div class="unit-head">
@@ -444,6 +633,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-genesis-genesis-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-genesis-genesis-1-1-12" data-unit data-complete="false">
             <div class="unit-head">
@@ -463,6 +656,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-genesis-genesis-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-genesis-genesis-1-1-13" data-unit data-complete="false">
             <div class="unit-head">
@@ -482,6 +679,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-genesis-genesis-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-genesis-genesis-1-1-14" data-unit data-complete="false">
             <div class="unit-head">
@@ -501,6 +702,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-genesis-genesis-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-genesis-genesis-1-1-15" data-unit data-complete="false">
             <div class="unit-head">
@@ -520,6 +725,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-genesis-genesis-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-leviticus">Leviticus</h2>
           <h3 id="section-leviticus-leviticus">Leviticus</h3>
@@ -542,6 +751,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-leviticus-leviticus-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-leviticus-leviticus-1-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -561,6 +774,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-leviticus-leviticus-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-leviticus-leviticus-1-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -580,6 +797,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-leviticus-leviticus-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-leviticus-leviticus-1-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -599,6 +820,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-leviticus-leviticus-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-leviticus-leviticus-1-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -618,6 +843,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-leviticus-leviticus-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-numbers">Numbers</h2>
           <h3 id="section-numbers-numbers">Numbers</h3>
@@ -640,6 +869,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-numbers-numbers-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-deuteronomy">Deuteronomy</h2>
           <h3 id="section-deuteronomy-deuteronomy">Deuteronomy</h3>
@@ -662,6 +895,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -681,6 +918,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -700,6 +941,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -719,6 +964,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -738,6 +987,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -757,6 +1010,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -776,6 +1033,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -795,6 +1056,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -814,6 +1079,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-10" data-unit data-complete="false">
             <div class="unit-head">
@@ -833,6 +1102,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-11" data-unit data-complete="false">
             <div class="unit-head">
@@ -852,6 +1125,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-12" data-unit data-complete="false">
             <div class="unit-head">
@@ -871,6 +1148,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-13" data-unit data-complete="false">
             <div class="unit-head">
@@ -890,6 +1171,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-14" data-unit data-complete="false">
             <div class="unit-head">
@@ -909,6 +1194,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-15" data-unit data-complete="false">
             <div class="unit-head">
@@ -928,6 +1217,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-16" data-unit data-complete="false">
             <div class="unit-head">
@@ -947,6 +1240,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-17" data-unit data-complete="false">
             <div class="unit-head">
@@ -966,6 +1263,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-18" data-unit data-complete="false">
             <div class="unit-head">
@@ -985,6 +1286,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-19" data-unit data-complete="false">
             <div class="unit-head">
@@ -1004,6 +1309,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-20" data-unit data-complete="false">
             <div class="unit-head">
@@ -1023,6 +1332,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-21" data-unit data-complete="false">
             <div class="unit-head">
@@ -1042,6 +1355,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-22" data-unit data-complete="false">
             <div class="unit-head">
@@ -1061,6 +1378,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-23" data-unit data-complete="false">
             <div class="unit-head">
@@ -1080,6 +1401,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-24" data-unit data-complete="false">
             <div class="unit-head">
@@ -1099,6 +1424,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-25" data-unit data-complete="false">
             <div class="unit-head">
@@ -1118,6 +1447,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-26" data-unit data-complete="false">
             <div class="unit-head">
@@ -1137,6 +1470,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-27" data-unit data-complete="false">
             <div class="unit-head">
@@ -1156,6 +1493,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-28" data-unit data-complete="false">
             <div class="unit-head">
@@ -1175,6 +1516,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-29" data-unit data-complete="false">
             <div class="unit-head">
@@ -1194,6 +1539,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-30" data-unit data-complete="false">
             <div class="unit-head">
@@ -1213,6 +1562,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-31" data-unit data-complete="false">
             <div class="unit-head">
@@ -1232,6 +1585,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-32" data-unit data-complete="false">
             <div class="unit-head">
@@ -1251,6 +1608,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="aderet-eliyahu-deuteronomy-deuteronomy-1-1-33" data-unit data-complete="false">
             <div class="unit-head">
@@ -1270,6 +1631,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-deuteronomy-deuteronomy-1">Back to chapter/section start</a>
+            </nav>
           </section>
         </article>
       </div>

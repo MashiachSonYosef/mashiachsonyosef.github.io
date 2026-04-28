@@ -339,10 +339,16 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .toc ul { list-style: none; padding: 0; margin: 0; }')
   [void]$Builder.AppendLine('    .toc li { margin: 0 0 7px; }')
   [void]$Builder.AppendLine('    .toc a { text-decoration: none; font-size: 0.94rem; }')
+  [void]$Builder.AppendLine('    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }')
+  [void]$Builder.AppendLine('    .toc-start:hover, .toc-unit:hover { color: var(--accent); }')
+  [void]$Builder.AppendLine('    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }')
   [void]$Builder.AppendLine('    .section-block { margin-bottom: 10px; }')
   [void]$Builder.AppendLine('    .unit { border-top: 1px solid var(--line); padding: 16px 0; }')
   [void]$Builder.AppendLine('    .unit[hidden] { display: none; }')
   [void]$Builder.AppendLine('    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }')
+  [void]$Builder.AppendLine('    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }')
+  [void]$Builder.AppendLine('    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }')
+  [void]$Builder.AppendLine('    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }')
   [void]$Builder.AppendLine('    .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }')
   [void]$Builder.AppendLine('    .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }')
   [void]$Builder.AppendLine('    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; }')
@@ -376,6 +382,9 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }')
   [void]$Builder.AppendLine('    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }')
   [void]$Builder.AppendLine('    summary { cursor: pointer; color: var(--accent); }')
+  [void]$Builder.AppendLine('    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }')
+  [void]$Builder.AppendLine('    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }')
+  [void]$Builder.AppendLine('    .toc summary { color: var(--accent); font-size: 0.94rem; }')
   [void]$Builder.AppendLine('    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }')
   if ($IncludeLexicalStyles) {
     [void]$Builder.AppendLine('    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields { grid-template-columns: 1fr; } .toc, .lexical-hud { position: static; max-height: none; } }')
@@ -559,6 +568,160 @@ function Get-LexicalSamplesByUnit {
   return $samples
 }
 
+function Get-OrderedGroups {
+  param(
+    [object[]]$Items,
+    [scriptblock]$KeyScript
+  )
+
+  $order = @()
+  $groups = @{}
+  foreach ($item in @($Items)) {
+    $key = (& $KeyScript $item).ToString()
+    if (-not $key.Trim()) { $key = 'text' }
+    if (-not $groups.ContainsKey($key)) {
+      $groups[$key] = New-Object System.Collections.ArrayList
+      $order += $key
+    }
+    [void]$groups[$key].Add($item)
+  }
+
+  $result = @()
+  foreach ($key in $order) {
+    $result += [pscustomobject]@{
+      Key = $key
+      Items = @($groups[$key])
+    }
+  }
+  return $result
+}
+
+function Get-UnitTocLabel {
+  param([object]$Unit)
+
+  $ref = [string]$Unit.source_ref
+  if ($ref -match '(\d+(?::\d+){0,3})$') {
+    return $Matches[1]
+  }
+
+  $parts = @($ref -split ',')
+  $lastPart = $parts[$parts.Count - 1].Trim()
+  if ($lastPart) { return $lastPart }
+  return [string]$Unit.anchor_id
+}
+
+function Get-GroupStartAnchor {
+  param(
+    [object]$Unit,
+    [object]$Source
+  )
+
+  if ($Unit.group_title -ne $Source.work_title -and $Unit.group_slug -ne 'text') {
+    return "group-$($Unit.group_slug)"
+  }
+  return 'work-top'
+}
+
+function Get-SectionStartAnchor {
+  param(
+    [object]$Unit,
+    [object]$Source
+  )
+
+  if ($Unit.section_title -ne $Source.work_title -and $Unit.section_slug -ne 'text') {
+    return "section-$($Unit.group_slug)-$($Unit.section_slug)"
+  }
+  return (Get-GroupStartAnchor -Unit $Unit -Source $Source)
+}
+
+function Get-UnitParentAnchor {
+  param(
+    [object]$Unit,
+    [object]$Source
+  )
+
+  if ($null -ne $Unit.chapter_number -and $Unit.chapter_number.ToString().Trim()) {
+    return "chapter-$($Unit.group_slug)-$($Unit.section_slug)-$($Unit.chapter_number)"
+  }
+  return (Get-SectionStartAnchor -Unit $Unit -Source $Source)
+}
+
+function Append-TocUnitLinks {
+  param(
+    [System.Text.StringBuilder]$Builder,
+    [object[]]$Units,
+    [string]$Indent = '                    '
+  )
+
+  [void]$Builder.AppendLine("$Indent<ul class=""toc-units"">")
+  foreach ($unit in @($Units)) {
+    $label = Get-UnitTocLabel -Unit $unit
+    [void]$Builder.AppendLine("$Indent  <li><a class=""toc-unit"" href=""#$($unit.anchor_id)"" title=""$(Encode-Html $unit.source_ref)"">$(Encode-Html $label)</a></li>")
+  }
+  [void]$Builder.AppendLine("$Indent</ul>")
+}
+
+function Append-WorkToc {
+  param(
+    [System.Text.StringBuilder]$Builder,
+    [object]$Source,
+    [object[]]$VisibleUnits
+  )
+
+  [void]$Builder.AppendLine('        <nav class="toc" aria-label="Table of contents">')
+  [void]$Builder.AppendLine('          <details class="toc-root" open>')
+  [void]$Builder.AppendLine('            <summary>Contents</summary>')
+
+  foreach ($group in (Get-OrderedGroups -Items $VisibleUnits -KeyScript { param($item) $item.group_slug })) {
+    $groupUnits = @($group.Items)
+    if ($groupUnits.Count -eq 0) { continue }
+    $firstGroupUnit = $groupUnits[0]
+    $groupTitle = if ($firstGroupUnit.group_title -and $firstGroupUnit.group_slug -ne 'text') { $firstGroupUnit.group_title } else { $Source.work_title }
+    $groupAnchor = Get-GroupStartAnchor -Unit $firstGroupUnit -Source $Source
+
+    [void]$Builder.AppendLine('            <details class="toc-group">')
+    [void]$Builder.AppendLine("              <summary>$(Encode-Html $groupTitle)</summary>")
+    [void]$Builder.AppendLine("              <a class=""toc-start"" href=""#$groupAnchor"">Start</a>")
+
+    foreach ($section in (Get-OrderedGroups -Items $groupUnits -KeyScript { param($item) $item.section_slug })) {
+      $sectionUnits = @($section.Items)
+      if ($sectionUnits.Count -eq 0) { continue }
+      $firstSectionUnit = $sectionUnits[0]
+      $sectionTitle = if ($firstSectionUnit.section_title -and $firstSectionUnit.section_slug -ne 'text') { $firstSectionUnit.section_title } else { $groupTitle }
+      $sectionAnchor = Get-SectionStartAnchor -Unit $firstSectionUnit -Source $Source
+
+      [void]$Builder.AppendLine('              <details class="toc-section">')
+      [void]$Builder.AppendLine("                <summary>$(Encode-Html $sectionTitle)</summary>")
+      [void]$Builder.AppendLine("                <a class=""toc-start"" href=""#$sectionAnchor"">Start section</a>")
+
+      $chapterGroups = Get-OrderedGroups -Items $sectionUnits -KeyScript { param($item) if ($null -ne $item.chapter_number -and $item.chapter_number.ToString().Trim()) { $item.chapter_number } else { 'text' } }
+      foreach ($chapter in $chapterGroups) {
+        $chapterUnits = @($chapter.Items)
+        if ($chapterUnits.Count -eq 0) { continue }
+        $firstChapterUnit = $chapterUnits[0]
+        if ($chapter.Key -eq 'text') {
+          Append-TocUnitLinks -Builder $Builder -Units $chapterUnits -Indent '                '
+          continue
+        }
+
+        $chapterAnchor = "chapter-$($firstChapterUnit.group_slug)-$($firstChapterUnit.section_slug)-$($firstChapterUnit.chapter_number)"
+        [void]$Builder.AppendLine('                <details class="toc-chapter">')
+        [void]$Builder.AppendLine("                  <summary>Chapter $(Encode-Html $firstChapterUnit.chapter_number)</summary>")
+        [void]$Builder.AppendLine("                  <a class=""toc-start"" href=""#$chapterAnchor"">Start chapter</a>")
+        Append-TocUnitLinks -Builder $Builder -Units $chapterUnits -Indent '                  '
+        [void]$Builder.AppendLine('                </details>')
+      }
+
+      [void]$Builder.AppendLine('              </details>')
+    }
+
+    [void]$Builder.AppendLine('            </details>')
+  }
+
+  [void]$Builder.AppendLine('          </details>')
+  [void]$Builder.AppendLine('        </nav>')
+}
+
 $sources = @(Get-ChildItem -Path $SourceDir -Filter '*.json' | ForEach-Object { Read-Json -Path $_.FullName } | Sort-Object work_title)
 $lexicalSamplesByUnit = Get-LexicalSamplesByUnit
 
@@ -647,7 +810,7 @@ foreach ($source in $sources) {
   Append-SiteHead -Builder $page -Title $source.work_title -IncludeLexicalStyles:$workHasLexicalSample
   [void]$page.AppendLine('  <main>')
   [void]$page.AppendLine('    <div class="shell">')
-  [void]$page.AppendLine('      <div class="hero">')
+  [void]$page.AppendLine('      <div class="hero" id="work-top">')
   [void]$page.AppendLine("        <p class=""crumbs""><a href=""$rootHref"">Home</a></p>")
   [void]$page.AppendLine("        <h1>$(Encode-Html $source.work_title)</h1>")
   [void]$page.AppendLine("        <p class=""meta"">$(@($source.units).Count) total source units | imported $(Encode-Html $source.import_date)</p>")
@@ -682,27 +845,7 @@ foreach ($source in $sources) {
   }
   [void]$page.AppendLine('      </div>')
   [void]$page.AppendLine('      <div class="reader-shell">')
-  [void]$page.AppendLine('        <nav class="toc" aria-label="Table of contents">')
-  foreach ($group in $source.outline) {
-    $showGroupTitle = ($group.group_title -ne $source.work_title -and $group.group_slug -ne 'text')
-    $visibleSections = @($group.sections | Where-Object { $_.section_title -ne $source.work_title -and $_.section_slug -ne 'text' })
-    if (-not $showGroupTitle -and $visibleSections.Count -eq 0) {
-      continue
-    }
-    [void]$page.AppendLine('          <div class="section-block">')
-    if ($showGroupTitle) {
-      [void]$page.AppendLine("            <h2 id=""toc-$($group.group_slug)"">$(Encode-Html $group.group_title)</h2>")
-    }
-    if ($visibleSections.Count -gt 0) {
-      [void]$page.AppendLine('            <ul>')
-      foreach ($section in $visibleSections) {
-        [void]$page.AppendLine("              <li><a href=""#section-$($group.group_slug)-$($section.section_slug)"">$(Encode-Html $section.section_title)</a></li>")
-      }
-      [void]$page.AppendLine('            </ul>')
-    }
-    [void]$page.AppendLine('          </div>')
-  }
-  [void]$page.AppendLine('        </nav>')
+  Append-WorkToc -Builder $page -Source $source -VisibleUnits $visibleUnits
   [void]$page.AppendLine('        <article>')
 
   $currentGroup = ''
@@ -758,7 +901,11 @@ foreach ($source in $sources) {
     if ($null -ne $lexicalSample) {
       [void]$page.AppendLine('                <p class="hebrew lexical-inline" lang="he" dir="ltr">')
       $displayWords = @($lexicalSample.words)
-      [array]::Reverse($displayWords)
+      if ($displayWords.Count -gt 1 -and $displayWords[-1].trailing_punctuation) {
+        $textWords = @($displayWords[0..($displayWords.Count - 2)])
+        [array]::Reverse($textWords)
+        $displayWords = @($textWords) + @($displayWords[-1])
+      }
       foreach ($word in $displayWords) {
         $buttonText = Convert-HebrewDisplayHtml $word.hebrew_word
         if ($word.trailing_punctuation) {
@@ -813,6 +960,11 @@ foreach ($source in $sources) {
       $lexicalJson = (ConvertTo-Json -InputObject $lexicalSample -Depth 30 -Compress) -replace '</script', '<\/script'
       [void]$page.AppendLine("            <script type=""application/json"" data-lexical-json>$lexicalJson</script>")
     }
+    $parentAnchor = Get-UnitParentAnchor -Unit $unit -Source $source
+    [void]$page.AppendLine('            <nav class="unit-nav" aria-label="Unit navigation">')
+    [void]$page.AppendLine('              <a href="#work-top">Back to top</a>')
+    [void]$page.AppendLine("              <a href=""#$parentAnchor"">Back to chapter/section start</a>")
+    [void]$page.AppendLine('            </nav>')
     [void]$page.AppendLine('          </section>')
   }
 

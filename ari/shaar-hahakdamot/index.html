@@ -43,10 +43,16 @@
     .toc ul { list-style: none; padding: 0; margin: 0; }
     .toc li { margin: 0 0 7px; }
     .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
     .section-block { margin-bottom: 10px; }
     .unit { border-top: 1px solid var(--line); padding: 16px 0; }
     .unit[hidden] { display: none; }
     .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; }
@@ -61,6 +67,9 @@
     .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
     summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
     @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
@@ -68,7 +77,7 @@
 <body>
   <main>
     <div class="shell">
-      <div class="hero">
+      <div class="hero" id="work-top">
         <p class="crumbs"><a href="../../">Home</a></p>
         <h1>Sha&#39;ar HaHakdamot</h1>
         <p class="meta">93 total source units | imported 2026-04-27</p>
@@ -93,120 +102,440 @@
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
-          <div class="section-block">
-            <h2 id="toc-introductions">Introductions</h2>
-            <ul>
-              <li><a href="#section-introductions-introductions">Introductions</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-adam-kadmon">Adam Kadmon</h2>
-            <ul>
-              <li><a href="#section-adam-kadmon-adam-kadmon">Adam Kadmon</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-akudim">Akudim</h2>
-            <ul>
-              <li><a href="#section-akudim-akudim">Akudim</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-mati-velo-mati">Mati velo Mati</h2>
-            <ul>
-              <li><a href="#section-mati-velo-mati-mati-velo-mati">Mati velo Mati</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-nekudim">Nekudim</h2>
-            <ul>
-              <li><a href="#section-nekudim-nekudim">Nekudim</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-the-seven-kings-of-edom">The Seven Kings of Edom</h2>
-            <ul>
-              <li><a href="#section-the-seven-kings-of-edom-the-seven-kings-of-edom">The Seven Kings of Edom</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tikkun">Tikkun</h2>
-            <ul>
-              <li><a href="#section-tikkun-tikkun">Tikkun</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-a-short-discourse-on-adam-kadmon">A Short Discourse on Adam Kadmon</h2>
-            <ul>
-              <li><a href="#section-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon">A Short Discourse on Adam Kadmon</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-derush-gadol">Derush Gadol</h2>
-            <ul>
-              <li><a href="#section-derush-gadol-derush-gadol">Derush Gadol</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-zeir-anpin-and-nukba">Zeir Anpin and Nukba</h2>
-            <ul>
-              <li><a href="#section-zeir-anpin-and-nukba-zeir-anpin-and-nukba">Zeir Anpin and Nukba</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-atzilut">Atzilut</h2>
-            <ul>
-              <li><a href="#section-atzilut-atzilut">Atzilut</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-abba-and-imma">Abba and Imma</h2>
-            <ul>
-              <li><a href="#section-abba-and-imma-abba-and-imma">Abba and Imma</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-daat">Daat</h2>
-            <ul>
-              <li><a href="#section-daat-daat">Daat</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-ohr-penimi-and-ohr-makif">Ohr Penimi and Ohr Makif</h2>
-            <ul>
-              <li><a href="#section-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif">Ohr Penimi and Ohr Makif</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-chesed-and-gevurah">Chesed and Gevurah</h2>
-            <ul>
-              <li><a href="#section-chesed-and-gevurah-chesed-and-gevurah">Chesed and Gevurah</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-zeir-anpin">Zeir Anpin</h2>
-            <ul>
-              <li><a href="#section-zeir-anpin-zeir-anpin">Zeir Anpin</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-partzuf-rachel">Partzuf Rachel</h2>
-            <ul>
-              <li><a href="#section-partzuf-rachel-partzuf-rachel">Partzuf Rachel</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-the-four-worlds">The Four Worlds</h2>
-            <ul>
-              <li><a href="#section-the-four-worlds-the-four-worlds">The Four Worlds</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-miscellany">Miscellany</h2>
-            <ul>
-              <li><a href="#section-miscellany-miscellany">Miscellany</a></li>
-            </ul>
-          </div>
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Introductions</summary>
+              <a class="toc-start" href="#group-introductions">Start</a>
+              <details class="toc-section">
+                <summary>Introductions</summary>
+                <a class="toc-start" href="#section-introductions-introductions">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-introductions-introductions-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-introductions-introductions-1-1" title="Sha&#39;ar HaHakdamot, Introductions 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-introductions-introductions-1-2" title="Sha&#39;ar HaHakdamot, Introductions 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-introductions-introductions-1-3" title="Sha&#39;ar HaHakdamot, Introductions 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-introductions-introductions-1-4" title="Sha&#39;ar HaHakdamot, Introductions 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-introductions-introductions-1-5" title="Sha&#39;ar HaHakdamot, Introductions 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-introductions-introductions-1-6" title="Sha&#39;ar HaHakdamot, Introductions 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-introductions-introductions-1-7" title="Sha&#39;ar HaHakdamot, Introductions 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-introductions-introductions-1-8" title="Sha&#39;ar HaHakdamot, Introductions 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-introductions-introductions-1-9" title="Sha&#39;ar HaHakdamot, Introductions 1:9">1:9</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-introductions-introductions-1-10" title="Sha&#39;ar HaHakdamot, Introductions 1:10">1:10</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-introductions-introductions-1-11" title="Sha&#39;ar HaHakdamot, Introductions 1:11">1:11</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-introductions-introductions-1-12" title="Sha&#39;ar HaHakdamot, Introductions 1:12">1:12</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-introductions-introductions-1-13" title="Sha&#39;ar HaHakdamot, Introductions 1:13">1:13</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-introductions-introductions-1-14" title="Sha&#39;ar HaHakdamot, Introductions 1:14">1:14</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-introductions-introductions-1-15" title="Sha&#39;ar HaHakdamot, Introductions 1:15">1:15</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-introductions-introductions-1-16" title="Sha&#39;ar HaHakdamot, Introductions 1:16">1:16</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Adam Kadmon</summary>
+              <a class="toc-start" href="#group-adam-kadmon">Start</a>
+              <details class="toc-section">
+                <summary>Adam Kadmon</summary>
+                <a class="toc-start" href="#section-adam-kadmon-adam-kadmon">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-adam-kadmon-adam-kadmon-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-1" title="Sha&#39;ar HaHakdamot, Adam Kadmon 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-2" title="Sha&#39;ar HaHakdamot, Adam Kadmon 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-3" title="Sha&#39;ar HaHakdamot, Adam Kadmon 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-4" title="Sha&#39;ar HaHakdamot, Adam Kadmon 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-5" title="Sha&#39;ar HaHakdamot, Adam Kadmon 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-6" title="Sha&#39;ar HaHakdamot, Adam Kadmon 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-7" title="Sha&#39;ar HaHakdamot, Adam Kadmon 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-8" title="Sha&#39;ar HaHakdamot, Adam Kadmon 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-9" title="Sha&#39;ar HaHakdamot, Adam Kadmon 1:9">1:9</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-10" title="Sha&#39;ar HaHakdamot, Adam Kadmon 1:10">1:10</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-11" title="Sha&#39;ar HaHakdamot, Adam Kadmon 1:11">1:11</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-12" title="Sha&#39;ar HaHakdamot, Adam Kadmon 1:12">1:12</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-13" title="Sha&#39;ar HaHakdamot, Adam Kadmon 1:13">1:13</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-14" title="Sha&#39;ar HaHakdamot, Adam Kadmon 1:14">1:14</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-15" title="Sha&#39;ar HaHakdamot, Adam Kadmon 1:15">1:15</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Akudim</summary>
+              <a class="toc-start" href="#group-akudim">Start</a>
+              <details class="toc-section">
+                <summary>Akudim</summary>
+                <a class="toc-start" href="#section-akudim-akudim">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-akudim-akudim-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-akudim-akudim-1-1" title="Sha&#39;ar HaHakdamot, Akudim 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-akudim-akudim-1-2" title="Sha&#39;ar HaHakdamot, Akudim 1:2">1:2</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Mati velo Mati</summary>
+              <a class="toc-start" href="#group-mati-velo-mati">Start</a>
+              <details class="toc-section">
+                <summary>Mati velo Mati</summary>
+                <a class="toc-start" href="#section-mati-velo-mati-mati-velo-mati">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-mati-velo-mati-mati-velo-mati-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-mati-velo-mati-mati-velo-mati-1-1" title="Sha&#39;ar HaHakdamot, Mati velo Mati 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-mati-velo-mati-mati-velo-mati-1-2" title="Sha&#39;ar HaHakdamot, Mati velo Mati 1:2">1:2</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Nekudim</summary>
+              <a class="toc-start" href="#group-nekudim">Start</a>
+              <details class="toc-section">
+                <summary>Nekudim</summary>
+                <a class="toc-start" href="#section-nekudim-nekudim">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-nekudim-nekudim-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-nekudim-nekudim-1-1" title="Sha&#39;ar HaHakdamot, Nekudim 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-nekudim-nekudim-1-2" title="Sha&#39;ar HaHakdamot, Nekudim 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-nekudim-nekudim-1-3" title="Sha&#39;ar HaHakdamot, Nekudim 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-nekudim-nekudim-1-4" title="Sha&#39;ar HaHakdamot, Nekudim 1:4">1:4</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>The Seven Kings of Edom</summary>
+              <a class="toc-start" href="#group-the-seven-kings-of-edom">Start</a>
+              <details class="toc-section">
+                <summary>The Seven Kings of Edom</summary>
+                <a class="toc-start" href="#section-the-seven-kings-of-edom-the-seven-kings-of-edom">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-the-seven-kings-of-edom-the-seven-kings-of-edom-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-1" title="Sha&#39;ar HaHakdamot, The Seven Kings of Edom 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-2" title="Sha&#39;ar HaHakdamot, The Seven Kings of Edom 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-3" title="Sha&#39;ar HaHakdamot, The Seven Kings of Edom 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-4" title="Sha&#39;ar HaHakdamot, The Seven Kings of Edom 1:4">1:4</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tikkun</summary>
+              <a class="toc-start" href="#group-tikkun">Start</a>
+              <details class="toc-section">
+                <summary>Tikkun</summary>
+                <a class="toc-start" href="#section-tikkun-tikkun">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tikkun-tikkun-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-tikkun-tikkun-1-1" title="Sha&#39;ar HaHakdamot, Tikkun 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-tikkun-tikkun-1-2" title="Sha&#39;ar HaHakdamot, Tikkun 1:2">1:2</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>A Short Discourse on Adam Kadmon</summary>
+              <a class="toc-start" href="#group-a-short-discourse-on-adam-kadmon">Start</a>
+              <details class="toc-section">
+                <summary>A Short Discourse on Adam Kadmon</summary>
+                <a class="toc-start" href="#section-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon-1-1" title="Sha&#39;ar HaHakdamot, A Short Discourse on Adam Kadmon 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon-1-2" title="Sha&#39;ar HaHakdamot, A Short Discourse on Adam Kadmon 1:2">1:2</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Derush Gadol</summary>
+              <a class="toc-start" href="#group-derush-gadol">Start</a>
+              <details class="toc-section">
+                <summary>Derush Gadol</summary>
+                <a class="toc-start" href="#section-derush-gadol-derush-gadol">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-derush-gadol-derush-gadol-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-derush-gadol-derush-gadol-1-1" title="Sha&#39;ar HaHakdamot, Derush Gadol 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-derush-gadol-derush-gadol-1-2" title="Sha&#39;ar HaHakdamot, Derush Gadol 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-derush-gadol-derush-gadol-1-3" title="Sha&#39;ar HaHakdamot, Derush Gadol 1:3">1:3</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Zeir Anpin and Nukba</summary>
+              <a class="toc-start" href="#group-zeir-anpin-and-nukba">Start</a>
+              <details class="toc-section">
+                <summary>Zeir Anpin and Nukba</summary>
+                <a class="toc-start" href="#section-zeir-anpin-and-nukba-zeir-anpin-and-nukba">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-zeir-anpin-and-nukba-zeir-anpin-and-nukba-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-zeir-anpin-and-nukba-zeir-anpin-and-nukba-1-1" title="Sha&#39;ar HaHakdamot, Zeir Anpin and Nukba 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-zeir-anpin-and-nukba-zeir-anpin-and-nukba-1-2" title="Sha&#39;ar HaHakdamot, Zeir Anpin and Nukba 1:2">1:2</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Atzilut</summary>
+              <a class="toc-start" href="#group-atzilut">Start</a>
+              <details class="toc-section">
+                <summary>Atzilut</summary>
+                <a class="toc-start" href="#section-atzilut-atzilut">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-atzilut-atzilut-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-atzilut-atzilut-1-1" title="Sha&#39;ar HaHakdamot, Atzilut 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-atzilut-atzilut-1-2" title="Sha&#39;ar HaHakdamot, Atzilut 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-atzilut-atzilut-1-3" title="Sha&#39;ar HaHakdamot, Atzilut 1:3">1:3</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Abba and Imma</summary>
+              <a class="toc-start" href="#group-abba-and-imma">Start</a>
+              <details class="toc-section">
+                <summary>Abba and Imma</summary>
+                <a class="toc-start" href="#section-abba-and-imma-abba-and-imma">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-abba-and-imma-abba-and-imma-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-abba-and-imma-abba-and-imma-1-1" title="Sha&#39;ar HaHakdamot, Abba and Imma 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-abba-and-imma-abba-and-imma-1-2" title="Sha&#39;ar HaHakdamot, Abba and Imma 1:2">1:2</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Daat</summary>
+              <a class="toc-start" href="#group-daat">Start</a>
+              <details class="toc-section">
+                <summary>Daat</summary>
+                <a class="toc-start" href="#section-daat-daat">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-daat-daat-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-daat-daat-1-1" title="Sha&#39;ar HaHakdamot, Daat 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-daat-daat-1-2" title="Sha&#39;ar HaHakdamot, Daat 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-daat-daat-1-3" title="Sha&#39;ar HaHakdamot, Daat 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-daat-daat-1-4" title="Sha&#39;ar HaHakdamot, Daat 1:4">1:4</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Ohr Penimi and Ohr Makif</summary>
+              <a class="toc-start" href="#group-ohr-penimi-and-ohr-makif">Start</a>
+              <details class="toc-section">
+                <summary>Ohr Penimi and Ohr Makif</summary>
+                <a class="toc-start" href="#section-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif-1-1" title="Sha&#39;ar HaHakdamot, Ohr Penimi and Ohr Makif 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif-1-2" title="Sha&#39;ar HaHakdamot, Ohr Penimi and Ohr Makif 1:2">1:2</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Chesed and Gevurah</summary>
+              <a class="toc-start" href="#group-chesed-and-gevurah">Start</a>
+              <details class="toc-section">
+                <summary>Chesed and Gevurah</summary>
+                <a class="toc-start" href="#section-chesed-and-gevurah-chesed-and-gevurah">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-chesed-and-gevurah-chesed-and-gevurah-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-chesed-and-gevurah-chesed-and-gevurah-1-1" title="Sha&#39;ar HaHakdamot, Chesed and Gevurah 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-chesed-and-gevurah-chesed-and-gevurah-1-2" title="Sha&#39;ar HaHakdamot, Chesed and Gevurah 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-chesed-and-gevurah-chesed-and-gevurah-1-3" title="Sha&#39;ar HaHakdamot, Chesed and Gevurah 1:3">1:3</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Zeir Anpin</summary>
+              <a class="toc-start" href="#group-zeir-anpin">Start</a>
+              <details class="toc-section">
+                <summary>Zeir Anpin</summary>
+                <a class="toc-start" href="#section-zeir-anpin-zeir-anpin">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-zeir-anpin-zeir-anpin-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-zeir-anpin-zeir-anpin-1-1" title="Sha&#39;ar HaHakdamot, Zeir Anpin 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-zeir-anpin-zeir-anpin-1-2" title="Sha&#39;ar HaHakdamot, Zeir Anpin 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-zeir-anpin-zeir-anpin-1-3" title="Sha&#39;ar HaHakdamot, Zeir Anpin 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-zeir-anpin-zeir-anpin-1-4" title="Sha&#39;ar HaHakdamot, Zeir Anpin 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-zeir-anpin-zeir-anpin-1-5" title="Sha&#39;ar HaHakdamot, Zeir Anpin 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-zeir-anpin-zeir-anpin-1-6" title="Sha&#39;ar HaHakdamot, Zeir Anpin 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-zeir-anpin-zeir-anpin-1-7" title="Sha&#39;ar HaHakdamot, Zeir Anpin 1:7">1:7</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Partzuf Rachel</summary>
+              <a class="toc-start" href="#group-partzuf-rachel">Start</a>
+              <details class="toc-section">
+                <summary>Partzuf Rachel</summary>
+                <a class="toc-start" href="#section-partzuf-rachel-partzuf-rachel">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-partzuf-rachel-partzuf-rachel-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-partzuf-rachel-partzuf-rachel-1-1" title="Sha&#39;ar HaHakdamot, Partzuf Rachel 1:1">1:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>The Four Worlds</summary>
+              <a class="toc-start" href="#group-the-four-worlds">Start</a>
+              <details class="toc-section">
+                <summary>The Four Worlds</summary>
+                <a class="toc-start" href="#section-the-four-worlds-the-four-worlds">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-the-four-worlds-the-four-worlds-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-the-four-worlds-the-four-worlds-1-1" title="Sha&#39;ar HaHakdamot, The Four Worlds 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-the-four-worlds-the-four-worlds-1-2" title="Sha&#39;ar HaHakdamot, The Four Worlds 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-the-four-worlds-the-four-worlds-1-3" title="Sha&#39;ar HaHakdamot, The Four Worlds 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-the-four-worlds-the-four-worlds-1-4" title="Sha&#39;ar HaHakdamot, The Four Worlds 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-the-four-worlds-the-four-worlds-1-5" title="Sha&#39;ar HaHakdamot, The Four Worlds 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-the-four-worlds-the-four-worlds-1-6" title="Sha&#39;ar HaHakdamot, The Four Worlds 1:6">1:6</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Miscellany</summary>
+              <a class="toc-start" href="#group-miscellany">Start</a>
+              <details class="toc-section">
+                <summary>Miscellany</summary>
+                <a class="toc-start" href="#section-miscellany-miscellany">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-miscellany-miscellany-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-miscellany-miscellany-1" title="Sha&#39;ar HaHakdamot, Miscellany:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-miscellany-miscellany-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-miscellany-miscellany-2" title="Sha&#39;ar HaHakdamot, Miscellany:2">2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-miscellany-miscellany-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-miscellany-miscellany-3" title="Sha&#39;ar HaHakdamot, Miscellany:3">3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-miscellany-miscellany-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-miscellany-miscellany-4" title="Sha&#39;ar HaHakdamot, Miscellany:4">4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-miscellany-miscellany-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-miscellany-miscellany-5" title="Sha&#39;ar HaHakdamot, Miscellany:5">5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-miscellany-miscellany-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-miscellany-miscellany-6" title="Sha&#39;ar HaHakdamot, Miscellany:6">6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-miscellany-miscellany-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-miscellany-miscellany-7" title="Sha&#39;ar HaHakdamot, Miscellany:7">7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-miscellany-miscellany-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-miscellany-miscellany-8" title="Sha&#39;ar HaHakdamot, Miscellany:8">8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-miscellany-miscellany-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-miscellany-miscellany-9" title="Sha&#39;ar HaHakdamot, Miscellany:9">9</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-miscellany-miscellany-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-miscellany-miscellany-10" title="Sha&#39;ar HaHakdamot, Miscellany:10">10</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 11</summary>
+                  <a class="toc-start" href="#chapter-miscellany-miscellany-11">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-miscellany-miscellany-11" title="Sha&#39;ar HaHakdamot, Miscellany:11">11</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 12</summary>
+                  <a class="toc-start" href="#chapter-miscellany-miscellany-12">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-miscellany-miscellany-12" title="Sha&#39;ar HaHakdamot, Miscellany:12">12</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 13</summary>
+                  <a class="toc-start" href="#chapter-miscellany-miscellany-13">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-hahakdamot-miscellany-miscellany-13" title="Sha&#39;ar HaHakdamot, Miscellany:13">13</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
         </nav>
         <article>
           <h2 id="group-introductions">Introductions</h2>
@@ -230,6 +559,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -249,6 +582,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -268,6 +605,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -287,6 +628,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -306,6 +651,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -325,6 +674,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -344,6 +697,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -363,6 +720,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -382,6 +743,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-10" data-unit data-complete="false">
             <div class="unit-head">
@@ -401,6 +766,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-11" data-unit data-complete="false">
             <div class="unit-head">
@@ -420,6 +789,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-12" data-unit data-complete="false">
             <div class="unit-head">
@@ -439,6 +812,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-13" data-unit data-complete="false">
             <div class="unit-head">
@@ -458,6 +835,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-14" data-unit data-complete="false">
             <div class="unit-head">
@@ -477,6 +858,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-15" data-unit data-complete="false">
             <div class="unit-head">
@@ -496,6 +881,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-16" data-unit data-complete="false">
             <div class="unit-head">
@@ -515,6 +904,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-adam-kadmon">Adam Kadmon</h2>
           <h3 id="section-adam-kadmon-adam-kadmon">Adam Kadmon</h3>
@@ -537,6 +930,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -556,6 +953,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -575,6 +976,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -594,6 +999,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -613,6 +1022,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -632,6 +1045,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -651,6 +1068,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -670,6 +1091,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -689,6 +1114,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-10" data-unit data-complete="false">
             <div class="unit-head">
@@ -708,6 +1137,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-11" data-unit data-complete="false">
             <div class="unit-head">
@@ -727,6 +1160,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-12" data-unit data-complete="false">
             <div class="unit-head">
@@ -746,6 +1183,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-13" data-unit data-complete="false">
             <div class="unit-head">
@@ -765,6 +1206,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-14" data-unit data-complete="false">
             <div class="unit-head">
@@ -784,6 +1229,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-15" data-unit data-complete="false">
             <div class="unit-head">
@@ -803,6 +1252,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-akudim">Akudim</h2>
           <h3 id="section-akudim-akudim">Akudim</h3>
@@ -825,6 +1278,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-akudim-akudim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-akudim-akudim-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -844,6 +1301,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-akudim-akudim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-mati-velo-mati">Mati velo Mati</h2>
           <h3 id="section-mati-velo-mati-mati-velo-mati">Mati velo Mati</h3>
@@ -866,6 +1327,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mati-velo-mati-mati-velo-mati-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-mati-velo-mati-mati-velo-mati-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -885,6 +1350,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mati-velo-mati-mati-velo-mati-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-nekudim">Nekudim</h2>
           <h3 id="section-nekudim-nekudim">Nekudim</h3>
@@ -907,6 +1376,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-nekudim-nekudim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-nekudim-nekudim-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -926,6 +1399,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-nekudim-nekudim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-nekudim-nekudim-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -945,6 +1422,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-nekudim-nekudim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-nekudim-nekudim-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -964,6 +1445,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-nekudim-nekudim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-the-seven-kings-of-edom">The Seven Kings of Edom</h2>
           <h3 id="section-the-seven-kings-of-edom-the-seven-kings-of-edom">The Seven Kings of Edom</h3>
@@ -986,6 +1471,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-seven-kings-of-edom-the-seven-kings-of-edom-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1005,6 +1494,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-seven-kings-of-edom-the-seven-kings-of-edom-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1024,6 +1517,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-seven-kings-of-edom-the-seven-kings-of-edom-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1043,6 +1540,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-seven-kings-of-edom-the-seven-kings-of-edom-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tikkun">Tikkun</h2>
           <h3 id="section-tikkun-tikkun">Tikkun</h3>
@@ -1065,6 +1566,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tikkun-tikkun-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-tikkun-tikkun-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1084,6 +1589,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tikkun-tikkun-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-a-short-discourse-on-adam-kadmon">A Short Discourse on Adam Kadmon</h2>
           <h3 id="section-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon">A Short Discourse on Adam Kadmon</h3>
@@ -1106,6 +1615,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1125,6 +1638,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-derush-gadol">Derush Gadol</h2>
           <h3 id="section-derush-gadol-derush-gadol">Derush Gadol</h3>
@@ -1147,6 +1664,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-derush-gadol-derush-gadol-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-derush-gadol-derush-gadol-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1166,6 +1687,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-derush-gadol-derush-gadol-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-derush-gadol-derush-gadol-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1185,6 +1710,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-derush-gadol-derush-gadol-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-zeir-anpin-and-nukba">Zeir Anpin and Nukba</h2>
           <h3 id="section-zeir-anpin-and-nukba-zeir-anpin-and-nukba">Zeir Anpin and Nukba</h3>
@@ -1207,6 +1736,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-zeir-anpin-and-nukba-zeir-anpin-and-nukba-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-zeir-anpin-and-nukba-zeir-anpin-and-nukba-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1226,6 +1759,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-zeir-anpin-and-nukba-zeir-anpin-and-nukba-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-atzilut">Atzilut</h2>
           <h3 id="section-atzilut-atzilut">Atzilut</h3>
@@ -1248,6 +1785,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-atzilut-atzilut-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-atzilut-atzilut-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1267,6 +1808,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-atzilut-atzilut-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-atzilut-atzilut-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1286,6 +1831,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-atzilut-atzilut-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-abba-and-imma">Abba and Imma</h2>
           <h3 id="section-abba-and-imma-abba-and-imma">Abba and Imma</h3>
@@ -1308,6 +1857,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-abba-and-imma-abba-and-imma-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-abba-and-imma-abba-and-imma-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1327,6 +1880,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-abba-and-imma-abba-and-imma-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-daat">Daat</h2>
           <h3 id="section-daat-daat">Daat</h3>
@@ -1349,6 +1906,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-daat-daat-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-daat-daat-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1368,6 +1929,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-daat-daat-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-daat-daat-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1387,6 +1952,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-daat-daat-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-daat-daat-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1406,6 +1975,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-daat-daat-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-ohr-penimi-and-ohr-makif">Ohr Penimi and Ohr Makif</h2>
           <h3 id="section-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif">Ohr Penimi and Ohr Makif</h3>
@@ -1428,6 +2001,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1447,6 +2024,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-chesed-and-gevurah">Chesed and Gevurah</h2>
           <h3 id="section-chesed-and-gevurah-chesed-and-gevurah">Chesed and Gevurah</h3>
@@ -1469,6 +2050,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-chesed-and-gevurah-chesed-and-gevurah-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-chesed-and-gevurah-chesed-and-gevurah-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1488,6 +2073,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-chesed-and-gevurah-chesed-and-gevurah-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-chesed-and-gevurah-chesed-and-gevurah-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1507,6 +2096,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-chesed-and-gevurah-chesed-and-gevurah-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-zeir-anpin">Zeir Anpin</h2>
           <h3 id="section-zeir-anpin-zeir-anpin">Zeir Anpin</h3>
@@ -1529,6 +2122,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-zeir-anpin-zeir-anpin-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1548,6 +2145,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-zeir-anpin-zeir-anpin-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1567,6 +2168,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-zeir-anpin-zeir-anpin-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1586,6 +2191,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-zeir-anpin-zeir-anpin-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -1605,6 +2214,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-zeir-anpin-zeir-anpin-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -1624,6 +2237,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-zeir-anpin-zeir-anpin-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -1643,6 +2260,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-zeir-anpin-zeir-anpin-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-partzuf-rachel">Partzuf Rachel</h2>
           <h3 id="section-partzuf-rachel-partzuf-rachel">Partzuf Rachel</h3>
@@ -1665,6 +2286,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-partzuf-rachel-partzuf-rachel-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-the-four-worlds">The Four Worlds</h2>
           <h3 id="section-the-four-worlds-the-four-worlds">The Four Worlds</h3>
@@ -1687,6 +2312,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-four-worlds-the-four-worlds-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-the-four-worlds-the-four-worlds-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1706,6 +2335,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-four-worlds-the-four-worlds-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-the-four-worlds-the-four-worlds-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1725,6 +2358,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-four-worlds-the-four-worlds-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-the-four-worlds-the-four-worlds-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1744,6 +2381,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-four-worlds-the-four-worlds-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-the-four-worlds-the-four-worlds-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -1763,6 +2404,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-four-worlds-the-four-worlds-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-hahakdamot-the-four-worlds-the-four-worlds-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -1782,6 +2427,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-four-worlds-the-four-worlds-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-miscellany">Miscellany</h2>
           <h3 id="section-miscellany-miscellany">Miscellany</h3>
@@ -1804,6 +2453,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-miscellany-miscellany-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-2">Chapter 2</h4>
           <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-2" data-unit data-complete="false">
@@ -1824,6 +2477,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-miscellany-miscellany-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-3">Chapter 3</h4>
           <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-3" data-unit data-complete="false">
@@ -1844,6 +2501,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-miscellany-miscellany-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-4">Chapter 4</h4>
           <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-4" data-unit data-complete="false">
@@ -1864,6 +2525,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-miscellany-miscellany-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-5">Chapter 5</h4>
           <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-5" data-unit data-complete="false">
@@ -1884,6 +2549,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-miscellany-miscellany-5">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-6">Chapter 6</h4>
           <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-6" data-unit data-complete="false">
@@ -1904,6 +2573,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-miscellany-miscellany-6">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-7">Chapter 7</h4>
           <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-7" data-unit data-complete="false">
@@ -1924,6 +2597,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-miscellany-miscellany-7">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-8">Chapter 8</h4>
           <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-8" data-unit data-complete="false">
@@ -1944,6 +2621,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-miscellany-miscellany-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-9">Chapter 9</h4>
           <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-9" data-unit data-complete="false">
@@ -1964,6 +2645,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-miscellany-miscellany-9">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-10">Chapter 10</h4>
           <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-10" data-unit data-complete="false">
@@ -1984,6 +2669,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-miscellany-miscellany-10">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-11">Chapter 11</h4>
           <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-11" data-unit data-complete="false">
@@ -2004,6 +2693,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-miscellany-miscellany-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-12">Chapter 12</h4>
           <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-12" data-unit data-complete="false">
@@ -2024,6 +2717,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-miscellany-miscellany-12">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-13">Chapter 13</h4>
           <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-13" data-unit data-complete="false">
@@ -2044,6 +2741,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-miscellany-miscellany-13">Back to chapter/section start</a>
+            </nav>
           </section>
         </article>
       </div>

@@ -43,10 +43,16 @@
     .toc ul { list-style: none; padding: 0; margin: 0; }
     .toc li { margin: 0 0 7px; }
     .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
     .section-block { margin-bottom: 10px; }
     .unit { border-top: 1px solid var(--line); padding: 16px 0; }
     .unit[hidden] { display: none; }
     .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; }
@@ -61,6 +67,9 @@
     .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
     summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
     @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
@@ -68,7 +77,7 @@
 <body>
   <main>
     <div class="shell">
-      <div class="hero">
+      <div class="hero" id="work-top">
         <p class="crumbs"><a href="../../">Home</a></p>
         <h1>Beur HaGra on Shulchan Arukh, Choshen Mishpat</h1>
         <p class="meta">41 total source units | imported 2026-04-27</p>
@@ -93,18 +102,162 @@
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
-          <div class="section-block">
-            <h2 id="toc-default">default</h2>
-            <ul>
-              <li><a href="#section-default-default">default</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-dinei-migo">Dinei Migo</h2>
-            <ul>
-              <li><a href="#section-dinei-migo-dinei-migo">Dinei Migo</a></li>
-            </ul>
-          </div>
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>default</summary>
+              <a class="toc-start" href="#group-default">Start</a>
+              <details class="toc-section">
+                <summary>default</summary>
+                <a class="toc-start" href="#section-default-default">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-default-default-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-1" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-2" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-3" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-4" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-5" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-6" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-7" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-8" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-9" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:9">1:9</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-10" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:10">1:10</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-11" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:11">1:11</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-12" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:12">1:12</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-13" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:13">1:13</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-14" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:14">1:14</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-15" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:15">1:15</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-16" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:16">1:16</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-17" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:17">1:17</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-18" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:18">1:18</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-19" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:19">1:19</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-20" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:20">1:20</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-21" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:21">1:21</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-22" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:22">1:22</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-23" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:23">1:23</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-24" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:24">1:24</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-25" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:25">1:25</a></li>
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-26" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat 1:26">1:26</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Dinei Migo</summary>
+              <a class="toc-start" href="#group-dinei-migo">Start</a>
+              <details class="toc-section">
+                <summary>Dinei Migo</summary>
+                <a class="toc-start" href="#section-dinei-migo-dinei-migo">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-dinei-migo-dinei-migo-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-1" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat, Dinei Migo:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-dinei-migo-dinei-migo-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-2" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat, Dinei Migo:2">2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-dinei-migo-dinei-migo-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-3" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat, Dinei Migo:3">3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-dinei-migo-dinei-migo-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-4" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat, Dinei Migo:4">4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-dinei-migo-dinei-migo-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-5" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat, Dinei Migo:5">5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-dinei-migo-dinei-migo-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-6" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat, Dinei Migo:6">6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-dinei-migo-dinei-migo-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-7" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat, Dinei Migo:7">7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-dinei-migo-dinei-migo-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-8" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat, Dinei Migo:8">8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-dinei-migo-dinei-migo-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-9" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat, Dinei Migo:9">9</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-dinei-migo-dinei-migo-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-10" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat, Dinei Migo:10">10</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 11</summary>
+                  <a class="toc-start" href="#chapter-dinei-migo-dinei-migo-11">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-11" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat, Dinei Migo:11">11</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 12</summary>
+                  <a class="toc-start" href="#chapter-dinei-migo-dinei-migo-12">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-12" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat, Dinei Migo:12">12</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 13</summary>
+                  <a class="toc-start" href="#chapter-dinei-migo-dinei-migo-13">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-13" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat, Dinei Migo:13">13</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 14</summary>
+                  <a class="toc-start" href="#chapter-dinei-migo-dinei-migo-14">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-14" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat, Dinei Migo:14">14</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 15</summary>
+                  <a class="toc-start" href="#chapter-dinei-migo-dinei-migo-15">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-15" title="Beur HaGra on Shulchan Arukh, Choshen Mishpat, Dinei Migo:15">15</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
         </nav>
         <article>
           <h2 id="group-default">default</h2>
@@ -128,6 +281,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -147,6 +304,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -166,6 +327,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -185,6 +350,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -204,6 +373,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -223,6 +396,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -242,6 +419,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -261,6 +442,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -280,6 +465,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-10" data-unit data-complete="false">
             <div class="unit-head">
@@ -299,6 +488,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-11" data-unit data-complete="false">
             <div class="unit-head">
@@ -318,6 +511,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-12" data-unit data-complete="false">
             <div class="unit-head">
@@ -337,6 +534,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-13" data-unit data-complete="false">
             <div class="unit-head">
@@ -356,6 +557,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-14" data-unit data-complete="false">
             <div class="unit-head">
@@ -375,6 +580,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-15" data-unit data-complete="false">
             <div class="unit-head">
@@ -394,6 +603,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-16" data-unit data-complete="false">
             <div class="unit-head">
@@ -413,6 +626,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-17" data-unit data-complete="false">
             <div class="unit-head">
@@ -432,6 +649,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-18" data-unit data-complete="false">
             <div class="unit-head">
@@ -451,6 +672,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-19" data-unit data-complete="false">
             <div class="unit-head">
@@ -470,6 +695,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-20" data-unit data-complete="false">
             <div class="unit-head">
@@ -489,6 +718,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-21" data-unit data-complete="false">
             <div class="unit-head">
@@ -508,6 +741,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-22" data-unit data-complete="false">
             <div class="unit-head">
@@ -527,6 +764,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-23" data-unit data-complete="false">
             <div class="unit-head">
@@ -546,6 +787,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-24" data-unit data-complete="false">
             <div class="unit-head">
@@ -565,6 +810,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-25" data-unit data-complete="false">
             <div class="unit-head">
@@ -584,6 +833,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-default-default-1-26" data-unit data-complete="false">
             <div class="unit-head">
@@ -603,6 +856,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-dinei-migo">Dinei Migo</h2>
           <h3 id="section-dinei-migo-dinei-migo">Dinei Migo</h3>
@@ -625,6 +882,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-dinei-migo-dinei-migo-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-dinei-migo-dinei-migo-2">Chapter 2</h4>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-2" data-unit data-complete="false">
@@ -645,6 +906,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-dinei-migo-dinei-migo-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-dinei-migo-dinei-migo-3">Chapter 3</h4>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-3" data-unit data-complete="false">
@@ -665,6 +930,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-dinei-migo-dinei-migo-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-dinei-migo-dinei-migo-4">Chapter 4</h4>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-4" data-unit data-complete="false">
@@ -685,6 +954,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-dinei-migo-dinei-migo-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-dinei-migo-dinei-migo-5">Chapter 5</h4>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-5" data-unit data-complete="false">
@@ -705,6 +978,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-dinei-migo-dinei-migo-5">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-dinei-migo-dinei-migo-6">Chapter 6</h4>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-6" data-unit data-complete="false">
@@ -725,6 +1002,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-dinei-migo-dinei-migo-6">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-dinei-migo-dinei-migo-7">Chapter 7</h4>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-7" data-unit data-complete="false">
@@ -745,6 +1026,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-dinei-migo-dinei-migo-7">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-dinei-migo-dinei-migo-8">Chapter 8</h4>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-8" data-unit data-complete="false">
@@ -765,6 +1050,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-dinei-migo-dinei-migo-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-dinei-migo-dinei-migo-9">Chapter 9</h4>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-9" data-unit data-complete="false">
@@ -785,6 +1074,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-dinei-migo-dinei-migo-9">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-dinei-migo-dinei-migo-10">Chapter 10</h4>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-10" data-unit data-complete="false">
@@ -805,6 +1098,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-dinei-migo-dinei-migo-10">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-dinei-migo-dinei-migo-11">Chapter 11</h4>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-11" data-unit data-complete="false">
@@ -825,6 +1122,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-dinei-migo-dinei-migo-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-dinei-migo-dinei-migo-12">Chapter 12</h4>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-12" data-unit data-complete="false">
@@ -845,6 +1146,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-dinei-migo-dinei-migo-12">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-dinei-migo-dinei-migo-13">Chapter 13</h4>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-13" data-unit data-complete="false">
@@ -865,6 +1170,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-dinei-migo-dinei-migo-13">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-dinei-migo-dinei-migo-14">Chapter 14</h4>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-14" data-unit data-complete="false">
@@ -885,6 +1194,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-dinei-migo-dinei-migo-14">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-dinei-migo-dinei-migo-15">Chapter 15</h4>
           <section class="unit" id="beur-hagra-on-shulchan-arukh-choshen-mishpat-dinei-migo-dinei-migo-15" data-unit data-complete="false">
@@ -905,6 +1218,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-dinei-migo-dinei-migo-15">Back to chapter/section start</a>
+            </nav>
           </section>
         </article>
       </div>

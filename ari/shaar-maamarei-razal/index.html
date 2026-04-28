@@ -43,10 +43,16 @@
     .toc ul { list-style: none; padding: 0; margin: 0; }
     .toc li { margin: 0 0 7px; }
     .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
     .section-block { margin-bottom: 10px; }
     .unit { border-top: 1px solid var(--line); padding: 16px 0; }
     .unit[hidden] { display: none; }
     .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; }
@@ -61,6 +67,9 @@
     .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
     summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
     @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
@@ -68,7 +77,7 @@
 <body>
   <main>
     <div class="shell">
-      <div class="hero">
+      <div class="hero" id="work-top">
         <p class="crumbs"><a href="../../">Home</a></p>
         <h1>Sha&#39;ar Ma&#39;amarei Razal</h1>
         <p class="meta">103 total source units | imported 2026-04-27</p>
@@ -93,126 +102,812 @@
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
-          <div class="section-block">
-            <h2 id="toc-tractate-berakhot">Tractate Berakhot</h2>
-            <ul>
-              <li><a href="#section-tractate-berakhot-tractate-berakhot">Tractate Berakhot</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tractate-shabbat">Tractate Shabbat</h2>
-            <ul>
-              <li><a href="#section-tractate-shabbat-tractate-shabbat">Tractate Shabbat</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tractate-eruvin">Tractate Eruvin</h2>
-            <ul>
-              <li><a href="#section-tractate-eruvin-tractate-eruvin">Tractate Eruvin</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tractate-pesachim">Tractate Pesachim</h2>
-            <ul>
-              <li><a href="#section-tractate-pesachim-tractate-pesachim">Tractate Pesachim</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tractate-chagigah">Tractate Chagigah</h2>
-            <ul>
-              <li><a href="#section-tractate-chagigah-tractate-chagigah">Tractate Chagigah</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tractate-moed-katan">Tractate Moed Katan</h2>
-            <ul>
-              <li><a href="#section-tractate-moed-katan-tractate-moed-katan">Tractate Moed Katan</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tractate-rosh-hashanah">Tractate Rosh Hashanah</h2>
-            <ul>
-              <li><a href="#section-tractate-rosh-hashanah-tractate-rosh-hashanah">Tractate Rosh Hashanah</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tractate-yoma">Tractate Yoma</h2>
-            <ul>
-              <li><a href="#section-tractate-yoma-tractate-yoma">Tractate Yoma</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tractate-megillah">Tractate Megillah</h2>
-            <ul>
-              <li><a href="#section-tractate-megillah-tractate-megillah">Tractate Megillah</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tractate-yevamot">Tractate Yevamot</h2>
-            <ul>
-              <li><a href="#section-tractate-yevamot-tractate-yevamot">Tractate Yevamot</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tractate-ketubot">Tractate Ketubot</h2>
-            <ul>
-              <li><a href="#section-tractate-ketubot-tractate-ketubot">Tractate Ketubot</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tractate-nedarim">Tractate Nedarim</h2>
-            <ul>
-              <li><a href="#section-tractate-nedarim-tractate-nedarim">Tractate Nedarim</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tractate-sotah">Tractate Sotah</h2>
-            <ul>
-              <li><a href="#section-tractate-sotah-tractate-sotah">Tractate Sotah</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tractate-bava-kamma">Tractate Bava Kamma</h2>
-            <ul>
-              <li><a href="#section-tractate-bava-kamma-tractate-bava-kamma">Tractate Bava Kamma</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tractate-bava-metzia">Tractate Bava Metzia</h2>
-            <ul>
-              <li><a href="#section-tractate-bava-metzia-tractate-bava-metzia">Tractate Bava Metzia</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tractate-bava-batra">Tractate Bava Batra</h2>
-            <ul>
-              <li><a href="#section-tractate-bava-batra-tractate-bava-batra">Tractate Bava Batra</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tractate-sanhedrin">Tractate Sanhedrin</h2>
-            <ul>
-              <li><a href="#section-tractate-sanhedrin-tractate-sanhedrin">Tractate Sanhedrin</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-pirkei-avot">Pirkei Avot</h2>
-            <ul>
-              <li><a href="#section-pirkei-avot-pirkei-avot">Pirkei Avot</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-tractate-niddah">Tractate Niddah</h2>
-            <ul>
-              <li><a href="#section-tractate-niddah-tractate-niddah">Tractate Niddah</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-midrashim">Midrashim</h2>
-            <ul>
-              <li><a href="#section-midrashim-midrashim">Midrashim</a></li>
-            </ul>
-          </div>
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Tractate Berakhot</summary>
+              <a class="toc-start" href="#group-tractate-berakhot">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Berakhot</summary>
+                <a class="toc-start" href="#section-tractate-berakhot-tractate-berakhot">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-berakhot-tractate-berakhot-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-tractate-berakhot-tractate-berakhot-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-2" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:2">2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-tractate-berakhot-tractate-berakhot-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-3" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:3">3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-tractate-berakhot-tractate-berakhot-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-4" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:4">4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-tractate-berakhot-tractate-berakhot-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-5" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:5">5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-tractate-berakhot-tractate-berakhot-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-6" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:6">6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-tractate-berakhot-tractate-berakhot-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-7" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:7">7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-tractate-berakhot-tractate-berakhot-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-8" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:8">8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-tractate-berakhot-tractate-berakhot-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-9" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:9">9</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-tractate-berakhot-tractate-berakhot-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-10" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:10">10</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 11</summary>
+                  <a class="toc-start" href="#chapter-tractate-berakhot-tractate-berakhot-11">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-11" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:11">11</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 12</summary>
+                  <a class="toc-start" href="#chapter-tractate-berakhot-tractate-berakhot-12">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-12" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:12">12</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 13</summary>
+                  <a class="toc-start" href="#chapter-tractate-berakhot-tractate-berakhot-13">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-13" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:13">13</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 14</summary>
+                  <a class="toc-start" href="#chapter-tractate-berakhot-tractate-berakhot-14">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-14" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:14">14</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 15</summary>
+                  <a class="toc-start" href="#chapter-tractate-berakhot-tractate-berakhot-15">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-15" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:15">15</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 16</summary>
+                  <a class="toc-start" href="#chapter-tractate-berakhot-tractate-berakhot-16">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-16" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:16">16</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tractate Shabbat</summary>
+              <a class="toc-start" href="#group-tractate-shabbat">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Shabbat</summary>
+                <a class="toc-start" href="#section-tractate-shabbat-tractate-shabbat">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-2" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:2">2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-3" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:3">3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-4" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:4">4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-5" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:5">5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-6" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:6">6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-7" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:7">7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-8" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:8">8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-9" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:9">9</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-10" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:10">10</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 11</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-11">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-11" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:11">11</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 12</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-12">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-12" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:12">12</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 13</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-13">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-13" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:13">13</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 14</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-14">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-14" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:14">14</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 15</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-15">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-15" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:15">15</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 16</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-16">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-16" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:16">16</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 17</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-17">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-17" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:17">17</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 18</summary>
+                  <a class="toc-start" href="#chapter-tractate-shabbat-tractate-shabbat-18">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-18" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:18">18</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tractate Eruvin</summary>
+              <a class="toc-start" href="#group-tractate-eruvin">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Eruvin</summary>
+                <a class="toc-start" href="#section-tractate-eruvin-tractate-eruvin">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-eruvin-tractate-eruvin-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-eruvin-tractate-eruvin-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Eruvin:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-tractate-eruvin-tractate-eruvin-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-eruvin-tractate-eruvin-2" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Eruvin:2">2</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tractate Pesachim</summary>
+              <a class="toc-start" href="#group-tractate-pesachim">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Pesachim</summary>
+                <a class="toc-start" href="#section-tractate-pesachim-tractate-pesachim">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-pesachim-tractate-pesachim-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-pesachim-tractate-pesachim-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Pesachim:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-tractate-pesachim-tractate-pesachim-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-pesachim-tractate-pesachim-2" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Pesachim:2">2</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tractate Chagigah</summary>
+              <a class="toc-start" href="#group-tractate-chagigah">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Chagigah</summary>
+                <a class="toc-start" href="#section-tractate-chagigah-tractate-chagigah">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-chagigah-tractate-chagigah-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-tractate-chagigah-tractate-chagigah-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-2" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:2">2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-tractate-chagigah-tractate-chagigah-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-3" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:3">3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-tractate-chagigah-tractate-chagigah-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-4" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:4">4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-tractate-chagigah-tractate-chagigah-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-5" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:5">5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-tractate-chagigah-tractate-chagigah-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-6" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:6">6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-tractate-chagigah-tractate-chagigah-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-7" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:7">7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-tractate-chagigah-tractate-chagigah-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-8" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:8">8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-tractate-chagigah-tractate-chagigah-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-9" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:9">9</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tractate Moed Katan</summary>
+              <a class="toc-start" href="#group-tractate-moed-katan">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Moed Katan</summary>
+                <a class="toc-start" href="#section-tractate-moed-katan-tractate-moed-katan">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-moed-katan-tractate-moed-katan-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-moed-katan-tractate-moed-katan-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Moed Katan:1">1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tractate Rosh Hashanah</summary>
+              <a class="toc-start" href="#group-tractate-rosh-hashanah">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Rosh Hashanah</summary>
+                <a class="toc-start" href="#section-tractate-rosh-hashanah-tractate-rosh-hashanah">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-rosh-hashanah-tractate-rosh-hashanah-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-rosh-hashanah-tractate-rosh-hashanah-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Rosh Hashanah:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-tractate-rosh-hashanah-tractate-rosh-hashanah-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-rosh-hashanah-tractate-rosh-hashanah-2" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Rosh Hashanah:2">2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-tractate-rosh-hashanah-tractate-rosh-hashanah-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-rosh-hashanah-tractate-rosh-hashanah-3" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Rosh Hashanah:3">3</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tractate Yoma</summary>
+              <a class="toc-start" href="#group-tractate-yoma">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Yoma</summary>
+                <a class="toc-start" href="#section-tractate-yoma-tractate-yoma">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-yoma-tractate-yoma-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-yoma-tractate-yoma-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Yoma:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-tractate-yoma-tractate-yoma-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-yoma-tractate-yoma-2" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Yoma:2">2</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tractate Megillah</summary>
+              <a class="toc-start" href="#group-tractate-megillah">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Megillah</summary>
+                <a class="toc-start" href="#section-tractate-megillah-tractate-megillah">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-megillah-tractate-megillah-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-megillah-tractate-megillah-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Megillah:1">1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tractate Yevamot</summary>
+              <a class="toc-start" href="#group-tractate-yevamot">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Yevamot</summary>
+                <a class="toc-start" href="#section-tractate-yevamot-tractate-yevamot">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-yevamot-tractate-yevamot-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-yevamot-tractate-yevamot-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Yevamot:1">1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tractate Ketubot</summary>
+              <a class="toc-start" href="#group-tractate-ketubot">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Ketubot</summary>
+                <a class="toc-start" href="#section-tractate-ketubot-tractate-ketubot">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-ketubot-tractate-ketubot-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-ketubot-tractate-ketubot-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Ketubot:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-tractate-ketubot-tractate-ketubot-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-ketubot-tractate-ketubot-2" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Ketubot:2">2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-tractate-ketubot-tractate-ketubot-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-ketubot-tractate-ketubot-3" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Ketubot:3">3</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tractate Nedarim</summary>
+              <a class="toc-start" href="#group-tractate-nedarim">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Nedarim</summary>
+                <a class="toc-start" href="#section-tractate-nedarim-tractate-nedarim">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-nedarim-tractate-nedarim-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-nedarim-tractate-nedarim-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Nedarim:1">1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tractate Sotah</summary>
+              <a class="toc-start" href="#group-tractate-sotah">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Sotah</summary>
+                <a class="toc-start" href="#section-tractate-sotah-tractate-sotah">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-sotah-tractate-sotah-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-sotah-tractate-sotah-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Sotah:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-tractate-sotah-tractate-sotah-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-sotah-tractate-sotah-2" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Sotah:2">2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-tractate-sotah-tractate-sotah-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-sotah-tractate-sotah-3" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Sotah:3">3</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tractate Bava Kamma</summary>
+              <a class="toc-start" href="#group-tractate-bava-kamma">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Bava Kamma</summary>
+                <a class="toc-start" href="#section-tractate-bava-kamma-tractate-bava-kamma">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-bava-kamma-tractate-bava-kamma-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Bava Kamma:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-tractate-bava-kamma-tractate-bava-kamma-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-2" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Bava Kamma:2">2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-tractate-bava-kamma-tractate-bava-kamma-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-3" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Bava Kamma:3">3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-tractate-bava-kamma-tractate-bava-kamma-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-4" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Bava Kamma:4">4</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tractate Bava Metzia</summary>
+              <a class="toc-start" href="#group-tractate-bava-metzia">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Bava Metzia</summary>
+                <a class="toc-start" href="#section-tractate-bava-metzia-tractate-bava-metzia">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-bava-metzia-tractate-bava-metzia-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-bava-metzia-tractate-bava-metzia-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Bava Metzia:1">1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tractate Bava Batra</summary>
+              <a class="toc-start" href="#group-tractate-bava-batra">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Bava Batra</summary>
+                <a class="toc-start" href="#section-tractate-bava-batra-tractate-bava-batra">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-bava-batra-tractate-bava-batra-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-bava-batra-tractate-bava-batra-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Bava Batra:1">1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tractate Sanhedrin</summary>
+              <a class="toc-start" href="#group-tractate-sanhedrin">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Sanhedrin</summary>
+                <a class="toc-start" href="#section-tractate-sanhedrin-tractate-sanhedrin">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-sanhedrin-tractate-sanhedrin-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-tractate-sanhedrin-tractate-sanhedrin-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-2" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:2">2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-tractate-sanhedrin-tractate-sanhedrin-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-3" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:3">3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-tractate-sanhedrin-tractate-sanhedrin-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-4" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:4">4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-tractate-sanhedrin-tractate-sanhedrin-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-5" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:5">5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-tractate-sanhedrin-tractate-sanhedrin-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-6" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:6">6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-tractate-sanhedrin-tractate-sanhedrin-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-7" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:7">7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-tractate-sanhedrin-tractate-sanhedrin-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-8" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:8">8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-tractate-sanhedrin-tractate-sanhedrin-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-9" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:9">9</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-tractate-sanhedrin-tractate-sanhedrin-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-10" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:10">10</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Pirkei Avot</summary>
+              <a class="toc-start" href="#group-pirkei-avot">Start</a>
+              <details class="toc-section">
+                <summary>Pirkei Avot</summary>
+                <a class="toc-start" href="#section-pirkei-avot-pirkei-avot">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-pirkei-avot-pirkei-avot-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-1" title="Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-pirkei-avot-pirkei-avot-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-2" title="Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:2">2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-pirkei-avot-pirkei-avot-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-3" title="Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:3">3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-pirkei-avot-pirkei-avot-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-4" title="Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:4">4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-pirkei-avot-pirkei-avot-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-5" title="Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:5">5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-pirkei-avot-pirkei-avot-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-6" title="Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:6">6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-pirkei-avot-pirkei-avot-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-7" title="Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:7">7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-pirkei-avot-pirkei-avot-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-8" title="Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:8">8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-pirkei-avot-pirkei-avot-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-9" title="Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:9">9</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-pirkei-avot-pirkei-avot-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-10" title="Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:10">10</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Tractate Niddah</summary>
+              <a class="toc-start" href="#group-tractate-niddah">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Niddah</summary>
+                <a class="toc-start" href="#section-tractate-niddah-tractate-niddah">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-niddah-tractate-niddah-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-tractate-niddah-tractate-niddah-1" title="Sha&#39;ar Ma&#39;amarei Razal, Tractate Niddah:1">1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Midrashim</summary>
+              <a class="toc-start" href="#group-midrashim">Start</a>
+              <details class="toc-section">
+                <summary>Midrashim</summary>
+                <a class="toc-start" href="#section-midrashim-midrashim">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-midrashim-midrashim-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-midrashim-midrashim-1-1" title="Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-midrashim-midrashim-1-2" title="Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-midrashim-midrashim-1-3" title="Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-midrashim-midrashim-1-4" title="Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-midrashim-midrashim-1-5" title="Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-midrashim-midrashim-1-6" title="Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-midrashim-midrashim-1-7" title="Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-midrashim-midrashim-1-8" title="Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-midrashim-midrashim-1-9" title="Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:9">1:9</a></li>
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-midrashim-midrashim-1-10" title="Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:10">1:10</a></li>
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-midrashim-midrashim-1-11" title="Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:11">1:11</a></li>
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-midrashim-midrashim-1-12" title="Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:12">1:12</a></li>
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-midrashim-midrashim-1-13" title="Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:13">1:13</a></li>
+                    <li><a class="toc-unit" href="#shaar-maamarei-razal-midrashim-midrashim-1-14" title="Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:14">1:14</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
         </nav>
         <article>
           <h2 id="group-tractate-berakhot">Tractate Berakhot</h2>
@@ -236,6 +931,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-berakhot-tractate-berakhot-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-2">Chapter 2</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-2" data-unit data-complete="false">
@@ -256,6 +955,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-berakhot-tractate-berakhot-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-3">Chapter 3</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-3" data-unit data-complete="false">
@@ -276,6 +979,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-berakhot-tractate-berakhot-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-4">Chapter 4</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-4" data-unit data-complete="false">
@@ -296,6 +1003,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-berakhot-tractate-berakhot-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-5">Chapter 5</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-5" data-unit data-complete="false">
@@ -316,6 +1027,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-berakhot-tractate-berakhot-5">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-6">Chapter 6</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-6" data-unit data-complete="false">
@@ -336,6 +1051,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-berakhot-tractate-berakhot-6">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-7">Chapter 7</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-7" data-unit data-complete="false">
@@ -356,6 +1075,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-berakhot-tractate-berakhot-7">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-8">Chapter 8</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-8" data-unit data-complete="false">
@@ -376,6 +1099,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-berakhot-tractate-berakhot-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-9">Chapter 9</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-9" data-unit data-complete="false">
@@ -396,6 +1123,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-berakhot-tractate-berakhot-9">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-10">Chapter 10</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-10" data-unit data-complete="false">
@@ -416,6 +1147,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-berakhot-tractate-berakhot-10">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-11">Chapter 11</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-11" data-unit data-complete="false">
@@ -436,6 +1171,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-berakhot-tractate-berakhot-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-12">Chapter 12</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-12" data-unit data-complete="false">
@@ -456,6 +1195,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-berakhot-tractate-berakhot-12">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-13">Chapter 13</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-13" data-unit data-complete="false">
@@ -476,6 +1219,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-berakhot-tractate-berakhot-13">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-14">Chapter 14</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-14" data-unit data-complete="false">
@@ -496,6 +1243,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-berakhot-tractate-berakhot-14">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-15">Chapter 15</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-15" data-unit data-complete="false">
@@ -516,6 +1267,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-berakhot-tractate-berakhot-15">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-16">Chapter 16</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-16" data-unit data-complete="false">
@@ -536,6 +1291,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-berakhot-tractate-berakhot-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tractate-shabbat">Tractate Shabbat</h2>
           <h3 id="section-tractate-shabbat-tractate-shabbat">Tractate Shabbat</h3>
@@ -558,6 +1317,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-2">Chapter 2</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-2" data-unit data-complete="false">
@@ -578,6 +1341,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-3">Chapter 3</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-3" data-unit data-complete="false">
@@ -598,6 +1365,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-4">Chapter 4</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-4" data-unit data-complete="false">
@@ -618,6 +1389,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-5">Chapter 5</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-5" data-unit data-complete="false">
@@ -638,6 +1413,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-5">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-6">Chapter 6</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-6" data-unit data-complete="false">
@@ -658,6 +1437,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-6">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-7">Chapter 7</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-7" data-unit data-complete="false">
@@ -678,6 +1461,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-7">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-8">Chapter 8</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-8" data-unit data-complete="false">
@@ -698,6 +1485,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-9">Chapter 9</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-9" data-unit data-complete="false">
@@ -718,6 +1509,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-9">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-10">Chapter 10</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-10" data-unit data-complete="false">
@@ -738,6 +1533,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-10">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-11">Chapter 11</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-11" data-unit data-complete="false">
@@ -758,6 +1557,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-12">Chapter 12</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-12" data-unit data-complete="false">
@@ -778,6 +1581,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-12">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-13">Chapter 13</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-13" data-unit data-complete="false">
@@ -798,6 +1605,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-13">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-14">Chapter 14</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-14" data-unit data-complete="false">
@@ -818,6 +1629,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-14">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-15">Chapter 15</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-15" data-unit data-complete="false">
@@ -838,6 +1653,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-15">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-16">Chapter 16</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-16" data-unit data-complete="false">
@@ -858,6 +1677,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-17">Chapter 17</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-17" data-unit data-complete="false">
@@ -878,6 +1701,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-17">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-18">Chapter 18</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-18" data-unit data-complete="false">
@@ -898,6 +1725,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-shabbat-tractate-shabbat-18">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tractate-eruvin">Tractate Eruvin</h2>
           <h3 id="section-tractate-eruvin-tractate-eruvin">Tractate Eruvin</h3>
@@ -920,6 +1751,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-eruvin-tractate-eruvin-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-eruvin-tractate-eruvin-2">Chapter 2</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-eruvin-tractate-eruvin-2" data-unit data-complete="false">
@@ -940,6 +1775,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-eruvin-tractate-eruvin-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tractate-pesachim">Tractate Pesachim</h2>
           <h3 id="section-tractate-pesachim-tractate-pesachim">Tractate Pesachim</h3>
@@ -962,6 +1801,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-pesachim-tractate-pesachim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-pesachim-tractate-pesachim-2">Chapter 2</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-pesachim-tractate-pesachim-2" data-unit data-complete="false">
@@ -982,6 +1825,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-pesachim-tractate-pesachim-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tractate-chagigah">Tractate Chagigah</h2>
           <h3 id="section-tractate-chagigah-tractate-chagigah">Tractate Chagigah</h3>
@@ -1004,6 +1851,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-chagigah-tractate-chagigah-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-chagigah-tractate-chagigah-2">Chapter 2</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-2" data-unit data-complete="false">
@@ -1024,6 +1875,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-chagigah-tractate-chagigah-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-chagigah-tractate-chagigah-3">Chapter 3</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-3" data-unit data-complete="false">
@@ -1044,6 +1899,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-chagigah-tractate-chagigah-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-chagigah-tractate-chagigah-4">Chapter 4</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-4" data-unit data-complete="false">
@@ -1064,6 +1923,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-chagigah-tractate-chagigah-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-chagigah-tractate-chagigah-5">Chapter 5</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-5" data-unit data-complete="false">
@@ -1084,6 +1947,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-chagigah-tractate-chagigah-5">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-chagigah-tractate-chagigah-6">Chapter 6</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-6" data-unit data-complete="false">
@@ -1104,6 +1971,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-chagigah-tractate-chagigah-6">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-chagigah-tractate-chagigah-7">Chapter 7</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-7" data-unit data-complete="false">
@@ -1124,6 +1995,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-chagigah-tractate-chagigah-7">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-chagigah-tractate-chagigah-8">Chapter 8</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-8" data-unit data-complete="false">
@@ -1144,6 +2019,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-chagigah-tractate-chagigah-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-chagigah-tractate-chagigah-9">Chapter 9</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-9" data-unit data-complete="false">
@@ -1164,6 +2043,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-chagigah-tractate-chagigah-9">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tractate-moed-katan">Tractate Moed Katan</h2>
           <h3 id="section-tractate-moed-katan-tractate-moed-katan">Tractate Moed Katan</h3>
@@ -1186,6 +2069,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-moed-katan-tractate-moed-katan-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tractate-rosh-hashanah">Tractate Rosh Hashanah</h2>
           <h3 id="section-tractate-rosh-hashanah-tractate-rosh-hashanah">Tractate Rosh Hashanah</h3>
@@ -1208,6 +2095,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-rosh-hashanah-tractate-rosh-hashanah-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-rosh-hashanah-tractate-rosh-hashanah-2">Chapter 2</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-rosh-hashanah-tractate-rosh-hashanah-2" data-unit data-complete="false">
@@ -1228,6 +2119,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-rosh-hashanah-tractate-rosh-hashanah-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-rosh-hashanah-tractate-rosh-hashanah-3">Chapter 3</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-rosh-hashanah-tractate-rosh-hashanah-3" data-unit data-complete="false">
@@ -1248,6 +2143,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-rosh-hashanah-tractate-rosh-hashanah-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tractate-yoma">Tractate Yoma</h2>
           <h3 id="section-tractate-yoma-tractate-yoma">Tractate Yoma</h3>
@@ -1270,6 +2169,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-yoma-tractate-yoma-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-yoma-tractate-yoma-2">Chapter 2</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-yoma-tractate-yoma-2" data-unit data-complete="false">
@@ -1290,6 +2193,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-yoma-tractate-yoma-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tractate-megillah">Tractate Megillah</h2>
           <h3 id="section-tractate-megillah-tractate-megillah">Tractate Megillah</h3>
@@ -1312,6 +2219,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-megillah-tractate-megillah-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tractate-yevamot">Tractate Yevamot</h2>
           <h3 id="section-tractate-yevamot-tractate-yevamot">Tractate Yevamot</h3>
@@ -1334,6 +2245,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-yevamot-tractate-yevamot-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tractate-ketubot">Tractate Ketubot</h2>
           <h3 id="section-tractate-ketubot-tractate-ketubot">Tractate Ketubot</h3>
@@ -1356,6 +2271,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-ketubot-tractate-ketubot-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-ketubot-tractate-ketubot-2">Chapter 2</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-ketubot-tractate-ketubot-2" data-unit data-complete="false">
@@ -1376,6 +2295,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-ketubot-tractate-ketubot-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-ketubot-tractate-ketubot-3">Chapter 3</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-ketubot-tractate-ketubot-3" data-unit data-complete="false">
@@ -1396,6 +2319,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-ketubot-tractate-ketubot-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tractate-nedarim">Tractate Nedarim</h2>
           <h3 id="section-tractate-nedarim-tractate-nedarim">Tractate Nedarim</h3>
@@ -1418,6 +2345,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-nedarim-tractate-nedarim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tractate-sotah">Tractate Sotah</h2>
           <h3 id="section-tractate-sotah-tractate-sotah">Tractate Sotah</h3>
@@ -1440,6 +2371,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-sotah-tractate-sotah-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-sotah-tractate-sotah-2">Chapter 2</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-sotah-tractate-sotah-2" data-unit data-complete="false">
@@ -1460,6 +2395,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-sotah-tractate-sotah-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-sotah-tractate-sotah-3">Chapter 3</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-sotah-tractate-sotah-3" data-unit data-complete="false">
@@ -1480,6 +2419,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-sotah-tractate-sotah-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tractate-bava-kamma">Tractate Bava Kamma</h2>
           <h3 id="section-tractate-bava-kamma-tractate-bava-kamma">Tractate Bava Kamma</h3>
@@ -1502,6 +2445,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-bava-kamma-tractate-bava-kamma-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-bava-kamma-tractate-bava-kamma-2">Chapter 2</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-2" data-unit data-complete="false">
@@ -1522,6 +2469,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-bava-kamma-tractate-bava-kamma-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-bava-kamma-tractate-bava-kamma-3">Chapter 3</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-3" data-unit data-complete="false">
@@ -1542,6 +2493,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-bava-kamma-tractate-bava-kamma-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-bava-kamma-tractate-bava-kamma-4">Chapter 4</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-4" data-unit data-complete="false">
@@ -1562,6 +2517,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-bava-kamma-tractate-bava-kamma-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tractate-bava-metzia">Tractate Bava Metzia</h2>
           <h3 id="section-tractate-bava-metzia-tractate-bava-metzia">Tractate Bava Metzia</h3>
@@ -1584,6 +2543,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-bava-metzia-tractate-bava-metzia-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tractate-bava-batra">Tractate Bava Batra</h2>
           <h3 id="section-tractate-bava-batra-tractate-bava-batra">Tractate Bava Batra</h3>
@@ -1606,6 +2569,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-bava-batra-tractate-bava-batra-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tractate-sanhedrin">Tractate Sanhedrin</h2>
           <h3 id="section-tractate-sanhedrin-tractate-sanhedrin">Tractate Sanhedrin</h3>
@@ -1628,6 +2595,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-sanhedrin-tractate-sanhedrin-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-2">Chapter 2</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-2" data-unit data-complete="false">
@@ -1648,6 +2619,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-sanhedrin-tractate-sanhedrin-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-3">Chapter 3</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-3" data-unit data-complete="false">
@@ -1668,6 +2643,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-sanhedrin-tractate-sanhedrin-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-4">Chapter 4</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-4" data-unit data-complete="false">
@@ -1688,6 +2667,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-sanhedrin-tractate-sanhedrin-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-5">Chapter 5</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-5" data-unit data-complete="false">
@@ -1708,6 +2691,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-sanhedrin-tractate-sanhedrin-5">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-6">Chapter 6</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-6" data-unit data-complete="false">
@@ -1728,6 +2715,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-sanhedrin-tractate-sanhedrin-6">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-7">Chapter 7</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-7" data-unit data-complete="false">
@@ -1748,6 +2739,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-sanhedrin-tractate-sanhedrin-7">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-8">Chapter 8</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-8" data-unit data-complete="false">
@@ -1768,6 +2763,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-sanhedrin-tractate-sanhedrin-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-9">Chapter 9</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-9" data-unit data-complete="false">
@@ -1788,6 +2787,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-sanhedrin-tractate-sanhedrin-9">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-10">Chapter 10</h4>
           <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-10" data-unit data-complete="false">
@@ -1808,6 +2811,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-sanhedrin-tractate-sanhedrin-10">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-pirkei-avot">Pirkei Avot</h2>
           <h3 id="section-pirkei-avot-pirkei-avot">Pirkei Avot</h3>
@@ -1830,6 +2837,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-pirkei-avot-pirkei-avot-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-2">Chapter 2</h4>
           <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-2" data-unit data-complete="false">
@@ -1850,6 +2861,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-pirkei-avot-pirkei-avot-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-3">Chapter 3</h4>
           <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-3" data-unit data-complete="false">
@@ -1870,6 +2885,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-pirkei-avot-pirkei-avot-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-4">Chapter 4</h4>
           <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-4" data-unit data-complete="false">
@@ -1890,6 +2909,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-pirkei-avot-pirkei-avot-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-5">Chapter 5</h4>
           <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-5" data-unit data-complete="false">
@@ -1910,6 +2933,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-pirkei-avot-pirkei-avot-5">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-6">Chapter 6</h4>
           <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-6" data-unit data-complete="false">
@@ -1930,6 +2957,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-pirkei-avot-pirkei-avot-6">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-7">Chapter 7</h4>
           <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-7" data-unit data-complete="false">
@@ -1950,6 +2981,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-pirkei-avot-pirkei-avot-7">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-8">Chapter 8</h4>
           <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-8" data-unit data-complete="false">
@@ -1970,6 +3005,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-pirkei-avot-pirkei-avot-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-9">Chapter 9</h4>
           <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-9" data-unit data-complete="false">
@@ -1990,6 +3029,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-pirkei-avot-pirkei-avot-9">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-10">Chapter 10</h4>
           <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-10" data-unit data-complete="false">
@@ -2010,6 +3053,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-pirkei-avot-pirkei-avot-10">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-tractate-niddah">Tractate Niddah</h2>
           <h3 id="section-tractate-niddah-tractate-niddah">Tractate Niddah</h3>
@@ -2032,6 +3079,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-niddah-tractate-niddah-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-midrashim">Midrashim</h2>
           <h3 id="section-midrashim-midrashim">Midrashim</h3>
@@ -2054,6 +3105,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midrashim-midrashim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -2073,6 +3128,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midrashim-midrashim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -2092,6 +3151,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midrashim-midrashim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -2111,6 +3174,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midrashim-midrashim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -2130,6 +3197,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midrashim-midrashim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -2149,6 +3220,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midrashim-midrashim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -2168,6 +3243,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midrashim-midrashim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -2187,6 +3266,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midrashim-midrashim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -2206,6 +3289,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midrashim-midrashim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-10" data-unit data-complete="false">
             <div class="unit-head">
@@ -2225,6 +3312,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midrashim-midrashim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-11" data-unit data-complete="false">
             <div class="unit-head">
@@ -2244,6 +3335,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midrashim-midrashim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-12" data-unit data-complete="false">
             <div class="unit-head">
@@ -2263,6 +3358,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midrashim-midrashim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-13" data-unit data-complete="false">
             <div class="unit-head">
@@ -2282,6 +3381,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midrashim-midrashim-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-14" data-unit data-complete="false">
             <div class="unit-head">
@@ -2301,6 +3404,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-midrashim-midrashim-1">Back to chapter/section start</a>
+            </nav>
           </section>
         </article>
       </div>

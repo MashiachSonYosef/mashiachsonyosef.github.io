@@ -43,10 +43,16 @@
     .toc ul { list-style: none; padding: 0; margin: 0; }
     .toc li { margin: 0 0 7px; }
     .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
     .section-block { margin-bottom: 10px; }
     .unit { border-top: 1px solid var(--line); padding: 16px 0; }
     .unit[hidden] { display: none; }
     .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; }
@@ -61,6 +67,9 @@
     .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
     summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
     @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
@@ -68,7 +77,7 @@
 <body>
   <main>
     <div class="shell">
-      <div class="hero">
+      <div class="hero" id="work-top">
         <p class="crumbs"><a href="../../">Home</a></p>
         <h1>Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan</h1>
         <p class="meta">103 total source units | imported 2026-04-27</p>
@@ -93,6 +102,270 @@
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan</summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan</summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-1-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-1-1-2" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:2">1:1:2</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-1-1-3" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:3">1:1:3</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-1-1-4" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:4">1:1:4</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-1-1-5" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:5">1:1:5</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-1-1-6" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:6">1:1:6</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-1-1-7" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:7">1:1:7</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-1-1-8" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:8">1:1:8</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-1-1-9" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:9">1:1:9</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-2-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-2-1-2" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 2:1:2">2:1:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-4-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 4:1:1">4:1:1</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-4-1-2" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 4:1:2">4:1:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-6-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 6:1:1">6:1:1</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-6-1-2" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 6:1:2">6:1:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-7-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 7:1:1">7:1:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-8-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 8:1:1">8:1:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-9-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 9:1:1">9:1:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 11</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-11">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-11-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 11:1:1">11:1:1</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-11-1-2" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 11:1:2">11:1:2</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-11-1-3" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 11:1:3">11:1:3</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-11-1-4" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 11:1:4">11:1:4</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-11-1-5" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 11:1:5">11:1:5</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-11-1-6" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 11:1:6">11:1:6</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-11-1-7" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 11:1:7">11:1:7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 12</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-12">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-12-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 12:1:1">12:1:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 14</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-14">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-14-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 14:1:1">14:1:1</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-14-1-2" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 14:1:2">14:1:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 15</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-15">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-15-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 15:1:1">15:1:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 20</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:1">20:1:1</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-2" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:2">20:1:2</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-3" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:3">20:1:3</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-4" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:4">20:1:4</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-5" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:5">20:1:5</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-6" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:6">20:1:6</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-7" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:7">20:1:7</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-8" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:8">20:1:8</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-9" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:9">20:1:9</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-10" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:10">20:1:10</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-11" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:11">20:1:11</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-12" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:12">20:1:12</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-13" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:13">20:1:13</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-14" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:14">20:1:14</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-15" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:15">20:1:15</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-16" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:16">20:1:16</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-17" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:17">20:1:17</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-20-1-18" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:18">20:1:18</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 21</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-21-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 21:1:1">21:1:1</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-21-1-2" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 21:1:2">21:1:2</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-21-1-3" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 21:1:3">21:1:3</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-21-1-4" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 21:1:4">21:1:4</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-21-1-5" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 21:1:5">21:1:5</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-21-1-6" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 21:1:6">21:1:6</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-21-1-7" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 21:1:7">21:1:7</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-21-1-8" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 21:1:8">21:1:8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 23</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-23">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-23-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 23:1:1">23:1:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 25</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-25">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-25-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 25:1:1">25:1:1</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-25-1-2" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 25:1:2">25:1:2</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-25-1-3" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 25:1:3">25:1:3</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-25-1-4" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 25:1:4">25:1:4</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-25-1-5" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 25:1:5">25:1:5</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-25-1-6" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 25:1:6">25:1:6</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-25-1-7" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 25:1:7">25:1:7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 27</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-27">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-27-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 27:1:1">27:1:1</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-27-1-2" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 27:1:2">27:1:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 29</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-29">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-29-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 29:1:1">29:1:1</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-29-1-2" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 29:1:2">29:1:2</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-29-1-3" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 29:1:3">29:1:3</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-29-1-4" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 29:1:4">29:1:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 30</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-30">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-30-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 30:1:1">30:1:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 32</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-32">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-32-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 32:1:1">32:1:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 34</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-34">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-34-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 34:1:1">34:1:1</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-34-1-2" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 34:1:2">34:1:2</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-34-1-3" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 34:1:3">34:1:3</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-34-1-4" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 34:1:4">34:1:4</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-34-1-5" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 34:1:5">34:1:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 35</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-35">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-35-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 35:1:1">35:1:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 36</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-36">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-36-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 36:1:1">36:1:1</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-36-1-2" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 36:1:2">36:1:2</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-36-1-3" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 36:1:3">36:1:3</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-36-1-4" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 36:1:4">36:1:4</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-36-1-5" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 36:1:5">36:1:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 38</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-38">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-38-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 38:1:1">38:1:1</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-38-1-2" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 38:1:2">38:1:2</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-38-1-3" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 38:1:3">38:1:3</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-38-1-4" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 38:1:4">38:1:4</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-38-1-5" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 38:1:5">38:1:5</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-38-1-6" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 38:1:6">38:1:6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 39</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-39-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:1">39:1:1</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-39-1-2" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:2">39:1:2</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-39-1-3" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:3">39:1:3</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-39-1-4" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:4">39:1:4</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-39-1-5" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:5">39:1:5</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-39-1-6" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:6">39:1:6</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-39-1-7" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:7">39:1:7</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-39-1-8" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:8">39:1:8</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-39-1-9" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:9">39:1:9</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-39-1-10" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:10">39:1:10</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-39-1-11" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:11">39:1:11</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-39-1-12" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:12">39:1:12</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 41</summary>
+                  <a class="toc-start" href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-41">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-41-1-1" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 41:1:1">41:1:1</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-41-1-2" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 41:1:2">41:1:2</a></li>
+                    <li><a class="toc-unit" href="#gras-nuschah-on-avot-drabbi-natan-41-1-3" title="Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 41:1:3">41:1:3</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
         </nav>
         <article>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Chapter 1</h4>
@@ -114,6 +387,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -133,6 +410,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -152,6 +433,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -171,6 +456,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -190,6 +479,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -209,6 +502,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -228,6 +525,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -247,6 +548,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -266,6 +571,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-2">Chapter 2</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-2-1-1" data-unit data-complete="false">
@@ -286,6 +595,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-2-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -305,6 +618,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-4">Chapter 4</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-4-1-1" data-unit data-complete="false">
@@ -325,6 +642,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-4-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -344,6 +665,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-6">Chapter 6</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-6-1-1" data-unit data-complete="false">
@@ -364,6 +689,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-6">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-6-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -383,6 +712,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-6">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-7">Chapter 7</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-7-1-1" data-unit data-complete="false">
@@ -403,6 +736,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-7">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-8">Chapter 8</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-8-1-1" data-unit data-complete="false">
@@ -423,6 +760,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-9">Chapter 9</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-9-1-1" data-unit data-complete="false">
@@ -443,6 +784,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-9">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-11">Chapter 11</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-1" data-unit data-complete="false">
@@ -463,6 +808,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -482,6 +831,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -501,6 +854,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -520,6 +877,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -539,6 +900,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -558,6 +923,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -577,6 +946,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-12">Chapter 12</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-12-1-1" data-unit data-complete="false">
@@ -597,6 +970,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-12">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-14">Chapter 14</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-14-1-1" data-unit data-complete="false">
@@ -617,6 +994,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-14">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-14-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -636,6 +1017,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-14">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-15">Chapter 15</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-15-1-1" data-unit data-complete="false">
@@ -656,6 +1041,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-15">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Chapter 20</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-1" data-unit data-complete="false">
@@ -676,6 +1065,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -695,6 +1088,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -714,6 +1111,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -733,6 +1134,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -752,6 +1157,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -771,6 +1180,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -790,6 +1203,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -809,6 +1226,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -828,6 +1249,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-10" data-unit data-complete="false">
             <div class="unit-head">
@@ -847,6 +1272,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-11" data-unit data-complete="false">
             <div class="unit-head">
@@ -866,6 +1295,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-12" data-unit data-complete="false">
             <div class="unit-head">
@@ -885,6 +1318,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-13" data-unit data-complete="false">
             <div class="unit-head">
@@ -904,6 +1341,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-14" data-unit data-complete="false">
             <div class="unit-head">
@@ -923,6 +1364,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-15" data-unit data-complete="false">
             <div class="unit-head">
@@ -942,6 +1387,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-16" data-unit data-complete="false">
             <div class="unit-head">
@@ -961,6 +1410,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-17" data-unit data-complete="false">
             <div class="unit-head">
@@ -980,6 +1433,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-18" data-unit data-complete="false">
             <div class="unit-head">
@@ -999,6 +1456,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Chapter 21</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-1" data-unit data-complete="false">
@@ -1019,6 +1480,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1038,6 +1503,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1057,6 +1526,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1076,6 +1549,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -1095,6 +1572,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -1114,6 +1595,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -1133,6 +1618,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -1152,6 +1641,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-23">Chapter 23</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-23-1-1" data-unit data-complete="false">
@@ -1172,6 +1665,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-23">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-25">Chapter 25</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-1" data-unit data-complete="false">
@@ -1192,6 +1689,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-25">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1211,6 +1712,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-25">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1230,6 +1735,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-25">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1249,6 +1758,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-25">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -1268,6 +1781,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-25">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -1287,6 +1804,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-25">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -1306,6 +1827,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-25">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-27">Chapter 27</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-27-1-1" data-unit data-complete="false">
@@ -1326,6 +1851,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-27">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-27-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1345,6 +1874,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-27">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-29">Chapter 29</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-29-1-1" data-unit data-complete="false">
@@ -1365,6 +1898,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-29">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-29-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1384,6 +1921,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-29">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-29-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1403,6 +1944,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-29">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-29-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1422,6 +1967,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-29">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-30">Chapter 30</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-30-1-1" data-unit data-complete="false">
@@ -1442,6 +1991,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-30">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-32">Chapter 32</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-32-1-1" data-unit data-complete="false">
@@ -1462,6 +2015,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-32">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-34">Chapter 34</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-34-1-1" data-unit data-complete="false">
@@ -1482,6 +2039,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-34">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-34-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1501,6 +2062,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-34">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-34-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1520,6 +2085,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-34">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-34-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1539,6 +2108,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-34">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-34-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -1558,6 +2131,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-34">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-35">Chapter 35</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-35-1-1" data-unit data-complete="false">
@@ -1578,6 +2155,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-35">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-36">Chapter 36</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-36-1-1" data-unit data-complete="false">
@@ -1598,6 +2179,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-36-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1617,6 +2202,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-36-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1636,6 +2225,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-36-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1655,6 +2248,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-36-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -1674,6 +2271,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-38">Chapter 38</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-1" data-unit data-complete="false">
@@ -1694,6 +2295,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-38">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1713,6 +2318,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-38">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1732,6 +2341,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-38">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1751,6 +2364,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-38">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -1770,6 +2387,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-38">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -1789,6 +2410,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-38">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Chapter 39</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-1" data-unit data-complete="false">
@@ -1809,6 +2434,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -1828,6 +2457,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -1847,6 +2480,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1866,6 +2503,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -1885,6 +2526,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -1904,6 +2549,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -1923,6 +2572,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -1942,6 +2595,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -1961,6 +2618,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-10" data-unit data-complete="false">
             <div class="unit-head">
@@ -1980,6 +2641,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-11" data-unit data-complete="false">
             <div class="unit-head">
@@ -1999,6 +2664,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-12" data-unit data-complete="false">
             <div class="unit-head">
@@ -2018,6 +2687,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-41">Chapter 41</h4>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-41-1-1" data-unit data-complete="false">
@@ -2038,6 +2711,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-41">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-41-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -2057,6 +2734,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-41">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-41-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -2076,6 +2757,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-41">Back to chapter/section start</a>
+            </nav>
           </section>
         </article>
       </div>

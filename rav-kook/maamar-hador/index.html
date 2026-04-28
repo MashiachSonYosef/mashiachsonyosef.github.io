@@ -43,10 +43,16 @@
     .toc ul { list-style: none; padding: 0; margin: 0; }
     .toc li { margin: 0 0 7px; }
     .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
     .section-block { margin-bottom: 10px; }
     .unit { border-top: 1px solid var(--line); padding: 16px 0; }
     .unit[hidden] { display: none; }
     .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; }
@@ -61,6 +67,9 @@
     .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
     summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
     @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
@@ -68,7 +77,7 @@
 <body>
   <main>
     <div class="shell">
-      <div class="hero">
+      <div class="hero" id="work-top">
         <p class="crumbs"><a href="../../">Home</a></p>
         <h1>Ma&#39;amar Hador</h1>
         <p class="meta">18 total source units | imported 2026-04-27</p>
@@ -93,6 +102,143 @@
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Ma&#39;amar Hador</summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Ma&#39;amar Hador</summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-1" title="Ma&#39;amar Hador:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-2" title="Ma&#39;amar Hador:2">2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-3" title="Ma&#39;amar Hador:3">3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-4" title="Ma&#39;amar Hador:4">4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-5" title="Ma&#39;amar Hador:5">5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-6" title="Ma&#39;amar Hador:6">6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-7" title="Ma&#39;amar Hador:7">7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-8" title="Ma&#39;amar Hador:8">8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-9" title="Ma&#39;amar Hador:9">9</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-10" title="Ma&#39;amar Hador:10">10</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 11</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-11">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-11" title="Ma&#39;amar Hador:11">11</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 12</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-12">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-12" title="Ma&#39;amar Hador:12">12</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 13</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-13">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-13" title="Ma&#39;amar Hador:13">13</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 14</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-14">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-14" title="Ma&#39;amar Hador:14">14</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 15</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-15">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-15" title="Ma&#39;amar Hador:15">15</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 16</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-16">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-16" title="Ma&#39;amar Hador:16">16</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 17</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-17">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-17" title="Ma&#39;amar Hador:17">17</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 18</summary>
+                  <a class="toc-start" href="#chapter-maamar-hador-text-18">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-hador-18" title="Ma&#39;amar Hador:18">18</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
         </nav>
         <article>
           <h4 id="chapter-maamar-hador-text-1">Chapter 1</h4>
@@ -114,6 +260,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-2">Chapter 2</h4>
           <section class="unit" id="maamar-hador-2" data-unit data-complete="false">
@@ -134,6 +284,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-3">Chapter 3</h4>
           <section class="unit" id="maamar-hador-3" data-unit data-complete="false">
@@ -154,6 +308,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-4">Chapter 4</h4>
           <section class="unit" id="maamar-hador-4" data-unit data-complete="false">
@@ -174,6 +332,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-5">Chapter 5</h4>
           <section class="unit" id="maamar-hador-5" data-unit data-complete="false">
@@ -194,6 +356,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-5">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-6">Chapter 6</h4>
           <section class="unit" id="maamar-hador-6" data-unit data-complete="false">
@@ -214,6 +380,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-6">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-7">Chapter 7</h4>
           <section class="unit" id="maamar-hador-7" data-unit data-complete="false">
@@ -234,6 +404,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-7">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-8">Chapter 8</h4>
           <section class="unit" id="maamar-hador-8" data-unit data-complete="false">
@@ -254,6 +428,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-9">Chapter 9</h4>
           <section class="unit" id="maamar-hador-9" data-unit data-complete="false">
@@ -274,6 +452,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-9">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-10">Chapter 10</h4>
           <section class="unit" id="maamar-hador-10" data-unit data-complete="false">
@@ -294,6 +476,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-10">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-11">Chapter 11</h4>
           <section class="unit" id="maamar-hador-11" data-unit data-complete="false">
@@ -314,6 +500,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-12">Chapter 12</h4>
           <section class="unit" id="maamar-hador-12" data-unit data-complete="false">
@@ -334,6 +524,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-12">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-13">Chapter 13</h4>
           <section class="unit" id="maamar-hador-13" data-unit data-complete="false">
@@ -354,6 +548,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-13">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-14">Chapter 14</h4>
           <section class="unit" id="maamar-hador-14" data-unit data-complete="false">
@@ -374,6 +572,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-14">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-15">Chapter 15</h4>
           <section class="unit" id="maamar-hador-15" data-unit data-complete="false">
@@ -394,6 +596,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-15">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-16">Chapter 16</h4>
           <section class="unit" id="maamar-hador-16" data-unit data-complete="false">
@@ -414,6 +620,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-17">Chapter 17</h4>
           <section class="unit" id="maamar-hador-17" data-unit data-complete="false">
@@ -434,6 +644,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-17">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-18">Chapter 18</h4>
           <section class="unit" id="maamar-hador-18" data-unit data-complete="false">
@@ -454,6 +668,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-hador-text-18">Back to chapter/section start</a>
+            </nav>
           </section>
         </article>
       </div>

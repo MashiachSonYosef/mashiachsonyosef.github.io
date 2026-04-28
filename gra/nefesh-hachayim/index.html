@@ -43,10 +43,16 @@
     .toc ul { list-style: none; padding: 0; margin: 0; }
     .toc li { margin: 0 0 7px; }
     .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
     .section-block { margin-bottom: 10px; }
     .unit { border-top: 1px solid var(--line); padding: 16px 0; }
     .unit[hidden] { display: none; }
     .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; }
@@ -61,6 +67,9 @@
     .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
     summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
     @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
@@ -68,7 +77,7 @@
 <body>
   <main>
     <div class="shell">
-      <div class="hero">
+      <div class="hero" id="work-top">
         <p class="crumbs"><a href="../../">Home</a></p>
         <h1>Nefesh HaChayim</h1>
         <p class="meta">164 total source units | imported 2026-04-27</p>
@@ -93,48 +102,1003 @@
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
-          <div class="section-block">
-            <h2 id="toc-an-introduction-by-the-authors-son">An Introduction by the Author&#39;s Son</h2>
-            <ul>
-              <li><a href="#section-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son">An Introduction by the Author&#39;s Son</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-gate-i">Gate I</h2>
-            <ul>
-              <li><a href="#section-gate-i-gate-i">Gate I</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-reb-itzeles-long-annotation">Reb Itzele&#39;s Long Annotation</h2>
-            <ul>
-              <li><a href="#section-reb-itzeles-long-annotation-reb-itzeles-long-annotation">Reb Itzele&#39;s Long Annotation</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-gate-ii">Gate II</h2>
-            <ul>
-              <li><a href="#section-gate-ii-gate-ii">Gate II</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-gate-iii">Gate III</h2>
-            <ul>
-              <li><a href="#section-gate-iii-gate-iii">Gate III</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-chapters">Chapters</h2>
-            <ul>
-              <li><a href="#section-chapters-chapters">Chapters</a></li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2 id="toc-gate-iv">Gate IV</h2>
-            <ul>
-              <li><a href="#section-gate-iv-gate-iv">Gate IV</a></li>
-            </ul>
-          </div>
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>An Introduction by the Author&#39;s Son</summary>
+              <a class="toc-start" href="#group-an-introduction-by-the-authors-son">Start</a>
+              <details class="toc-section">
+                <summary>An Introduction by the Author&#39;s Son</summary>
+                <a class="toc-start" href="#section-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-1" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-2" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:2">2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-3" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:3">3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-4" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:4">4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-5" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:5">5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-6" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:6">6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-7" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:7">7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-8" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:8">8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-9" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:9">9</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-10" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:10">10</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 11</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-11">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-11" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:11">11</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 12</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-12">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-12" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:12">12</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 13</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-13">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-13" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:13">13</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 14</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-14">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-14" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:14">14</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 15</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-15">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-15" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:15">15</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 16</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-16">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-16" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:16">16</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 17</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-17">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-17" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:17">17</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 18</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-18">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-18" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:18">18</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 19</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-19">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-19" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:19">19</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 20</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-20">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-20" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:20">20</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 21</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-21">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-21" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:21">21</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 22</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-22">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-22" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:22">22</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 23</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-23">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-23" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:23">23</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 24</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-24">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-24" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:24">24</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 25</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-25">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-25" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:25">25</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 26</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-26">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-26" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:26">26</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 27</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-27">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-27" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:27">27</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 28</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-28">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-28" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:28">28</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 29</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-29">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-29" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:29">29</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 30</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-30">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-30" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:30">30</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 31</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-31">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-31" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:31">31</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 32</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-32">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-32" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:32">32</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 33</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-33">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-33" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:33">33</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 34</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-34">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-34" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:34">34</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 35</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-35">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-35" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:35">35</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 36</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-36">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-36" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:36">36</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 37</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-37">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-37" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:37">37</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 38</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-38">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-38" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:38">38</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 39</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-39">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-39" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:39">39</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 40</summary>
+                  <a class="toc-start" href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-40">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-40" title="Nefesh HaChayim, An Introduction by the Author&#39;s Son:40">40</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Gate I</summary>
+              <a class="toc-start" href="#group-gate-i">Start</a>
+              <details class="toc-section">
+                <summary>Gate I</summary>
+                <a class="toc-start" href="#section-gate-i-gate-i">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-gate-i-gate-i-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-i-gate-i-1-1" title="Nefesh HaChayim, Gate I 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-i-gate-i-1-2" title="Nefesh HaChayim, Gate I 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-i-gate-i-1-3" title="Nefesh HaChayim, Gate I 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-i-gate-i-1-4" title="Nefesh HaChayim, Gate I 1:4">1:4</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Reb Itzele&#39;s Long Annotation</summary>
+              <a class="toc-start" href="#group-reb-itzeles-long-annotation">Start</a>
+              <details class="toc-section">
+                <summary>Reb Itzele&#39;s Long Annotation</summary>
+                <a class="toc-start" href="#section-reb-itzeles-long-annotation-reb-itzeles-long-annotation">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-1" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-2" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:2">2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-3" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:3">3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-4" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:4">4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-5" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:5">5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-6" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:6">6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-7" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:7">7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-8" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:8">8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-9" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:9">9</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-10" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:10">10</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 11</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-11">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-11" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:11">11</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 12</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-12">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-12" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:12">12</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 13</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-13">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-13" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:13">13</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 14</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-14">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-14" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:14">14</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 15</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-15">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-15" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:15">15</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 16</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-16">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-16" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:16">16</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 17</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-17">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-17" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:17">17</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 18</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-18">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-18" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:18">18</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 19</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-19">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-19" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:19">19</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 20</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-20">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-20" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:20">20</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 21</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-21">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-21" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:21">21</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 22</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-22">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-22" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:22">22</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 23</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-23">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-23" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:23">23</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 24</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-24">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-24" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:24">24</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 25</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-25">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-25" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:25">25</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 26</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-26">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-26" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:26">26</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 27</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-27">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-27" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:27">27</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 28</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-28">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-28" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:28">28</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 29</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-29">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-29" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:29">29</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 30</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-30">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-30" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:30">30</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 31</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-31">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-31" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:31">31</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 32</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-32">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-32" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:32">32</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 33</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-33">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-33" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:33">33</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 34</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-34">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-34" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:34">34</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 35</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-35">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-35" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:35">35</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 36</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-36">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-36" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:36">36</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 37</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-37">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-37" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:37">37</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 38</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-38">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-38" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:38">38</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 39</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-39">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-39" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:39">39</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 40</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-40">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-40" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:40">40</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 41</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-41">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-41" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:41">41</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 42</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-42">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-42" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:42">42</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 43</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-43">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-43" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:43">43</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 44</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-44">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-44" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:44">44</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 45</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-45">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-45" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:45">45</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 46</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-46">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-46" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:46">46</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 47</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-47">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-47" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:47">47</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 48</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-48">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-48" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:48">48</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 49</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-49">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-49" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:49">49</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 50</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-50">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-50" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:50">50</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 51</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-51">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-51" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:51">51</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 52</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-52">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-52" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:52">52</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 53</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-53">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-53" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:53">53</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 54</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-54">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-54" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:54">54</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 55</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-55">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-55" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:55">55</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 56</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-56">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-56" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:56">56</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 57</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-57">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-57" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:57">57</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 58</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-58">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-58" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:58">58</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 59</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-59">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-59" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:59">59</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 60</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-60">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-60" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:60">60</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 61</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-61">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-61" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:61">61</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 62</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-62">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-62" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:62">62</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 63</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-63">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-63" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:63">63</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 64</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-64">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-64" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:64">64</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 65</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-65">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-65" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:65">65</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 66</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-66">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-66" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:66">66</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 67</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-67">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-67" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:67">67</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 68</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-68">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-68" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:68">68</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 69</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-69">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-69" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:69">69</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 70</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-70">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-70" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:70">70</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 71</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-71">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-71" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:71">71</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 72</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-72">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-72" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:72">72</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 73</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-73">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-73" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:73">73</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 74</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-74">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-74" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:74">74</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 75</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-75">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-75" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:75">75</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 76</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-76">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-76" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:76">76</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 77</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-77">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-77" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:77">77</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 78</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-78">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-78" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:78">78</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 79</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-79">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-79" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:79">79</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 80</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-80">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-80" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:80">80</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 81</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-81">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-81" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:81">81</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 82</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-82">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-82" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:82">82</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 83</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-83">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-83" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:83">83</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 84</summary>
+                  <a class="toc-start" href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-84">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-84" title="Nefesh HaChayim, Reb Itzele&#39;s Long Annotation:84">84</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Gate II</summary>
+              <a class="toc-start" href="#group-gate-ii">Start</a>
+              <details class="toc-section">
+                <summary>Gate II</summary>
+                <a class="toc-start" href="#section-gate-ii-gate-ii">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-gate-ii-gate-ii-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-ii-gate-ii-1-1" title="Nefesh HaChayim, Gate II 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-ii-gate-ii-1-2" title="Nefesh HaChayim, Gate II 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-ii-gate-ii-1-3" title="Nefesh HaChayim, Gate II 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-ii-gate-ii-1-4" title="Nefesh HaChayim, Gate II 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-ii-gate-ii-1-5" title="Nefesh HaChayim, Gate II 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-ii-gate-ii-1-6" title="Nefesh HaChayim, Gate II 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-ii-gate-ii-1-7" title="Nefesh HaChayim, Gate II 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-ii-gate-ii-1-8" title="Nefesh HaChayim, Gate II 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-ii-gate-ii-1-9" title="Nefesh HaChayim, Gate II 1:9">1:9</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-ii-gate-ii-1-10" title="Nefesh HaChayim, Gate II 1:10">1:10</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-ii-gate-ii-1-11" title="Nefesh HaChayim, Gate II 1:11">1:11</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Gate III</summary>
+              <a class="toc-start" href="#group-gate-iii">Start</a>
+              <details class="toc-section">
+                <summary>Gate III</summary>
+                <a class="toc-start" href="#section-gate-iii-gate-iii">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-gate-iii-gate-iii-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iii-gate-iii-1-1" title="Nefesh HaChayim, Gate III 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iii-gate-iii-1-2" title="Nefesh HaChayim, Gate III 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iii-gate-iii-1-3" title="Nefesh HaChayim, Gate III 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iii-gate-iii-1-4" title="Nefesh HaChayim, Gate III 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iii-gate-iii-1-5" title="Nefesh HaChayim, Gate III 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iii-gate-iii-1-6" title="Nefesh HaChayim, Gate III 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iii-gate-iii-1-7" title="Nefesh HaChayim, Gate III 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iii-gate-iii-1-8" title="Nefesh HaChayim, Gate III 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iii-gate-iii-1-9" title="Nefesh HaChayim, Gate III 1:9">1:9</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Chapters</summary>
+              <a class="toc-start" href="#group-chapters">Start</a>
+              <details class="toc-section">
+                <summary>Chapters</summary>
+                <a class="toc-start" href="#section-chapters-chapters">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-chapters-chapters-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-chapters-chapters-1-1" title="Nefesh HaChayim, Chapters 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-chapters-chapters-1-2" title="Nefesh HaChayim, Chapters 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-chapters-chapters-1-3" title="Nefesh HaChayim, Chapters 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-chapters-chapters-1-4" title="Nefesh HaChayim, Chapters 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-chapters-chapters-1-5" title="Nefesh HaChayim, Chapters 1:5">1:5</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>Gate IV</summary>
+              <a class="toc-start" href="#group-gate-iv">Start</a>
+              <details class="toc-section">
+                <summary>Gate IV</summary>
+                <a class="toc-start" href="#section-gate-iv-gate-iv">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-gate-iv-gate-iv-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iv-gate-iv-1-1" title="Nefesh HaChayim, Gate IV 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iv-gate-iv-1-2" title="Nefesh HaChayim, Gate IV 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iv-gate-iv-1-3" title="Nefesh HaChayim, Gate IV 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iv-gate-iv-1-4" title="Nefesh HaChayim, Gate IV 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iv-gate-iv-1-5" title="Nefesh HaChayim, Gate IV 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iv-gate-iv-1-6" title="Nefesh HaChayim, Gate IV 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iv-gate-iv-1-7" title="Nefesh HaChayim, Gate IV 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iv-gate-iv-1-8" title="Nefesh HaChayim, Gate IV 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iv-gate-iv-1-9" title="Nefesh HaChayim, Gate IV 1:9">1:9</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iv-gate-iv-1-10" title="Nefesh HaChayim, Gate IV 1:10">1:10</a></li>
+                    <li><a class="toc-unit" href="#nefesh-hachayim-gate-iv-gate-iv-1-11" title="Nefesh HaChayim, Gate IV 1:11">1:11</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
         </nav>
         <article>
           <h2 id="group-an-introduction-by-the-authors-son">An Introduction by the Author&#39;s Son</h2>
@@ -158,6 +1122,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-2">Chapter 2</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-2" data-unit data-complete="false">
@@ -178,6 +1146,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-3">Chapter 3</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-3" data-unit data-complete="false">
@@ -198,6 +1170,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-4">Chapter 4</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-4" data-unit data-complete="false">
@@ -218,6 +1194,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-5">Chapter 5</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-5" data-unit data-complete="false">
@@ -238,6 +1218,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-5">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-6">Chapter 6</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-6" data-unit data-complete="false">
@@ -258,6 +1242,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-6">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-7">Chapter 7</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-7" data-unit data-complete="false">
@@ -278,6 +1266,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-7">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-8">Chapter 8</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-8" data-unit data-complete="false">
@@ -298,6 +1290,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-9">Chapter 9</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-9" data-unit data-complete="false">
@@ -318,6 +1314,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-9">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-10">Chapter 10</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-10" data-unit data-complete="false">
@@ -338,6 +1338,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-10">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-11">Chapter 11</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-11" data-unit data-complete="false">
@@ -358,6 +1362,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-12">Chapter 12</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-12" data-unit data-complete="false">
@@ -378,6 +1386,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-12">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-13">Chapter 13</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-13" data-unit data-complete="false">
@@ -398,6 +1410,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-13">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-14">Chapter 14</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-14" data-unit data-complete="false">
@@ -418,6 +1434,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-14">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-15">Chapter 15</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-15" data-unit data-complete="false">
@@ -438,6 +1458,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-15">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-16">Chapter 16</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-16" data-unit data-complete="false">
@@ -458,6 +1482,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-17">Chapter 17</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-17" data-unit data-complete="false">
@@ -478,6 +1506,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-17">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-18">Chapter 18</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-18" data-unit data-complete="false">
@@ -498,6 +1530,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-18">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-19">Chapter 19</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-19" data-unit data-complete="false">
@@ -518,6 +1554,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-19">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-20">Chapter 20</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-20" data-unit data-complete="false">
@@ -538,6 +1578,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-21">Chapter 21</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-21" data-unit data-complete="false">
@@ -558,6 +1602,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-21">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-22">Chapter 22</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-22" data-unit data-complete="false">
@@ -578,6 +1626,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-22">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-23">Chapter 23</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-23" data-unit data-complete="false">
@@ -598,6 +1650,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-23">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-24">Chapter 24</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-24" data-unit data-complete="false">
@@ -618,6 +1674,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-24">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-25">Chapter 25</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-25" data-unit data-complete="false">
@@ -638,6 +1698,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-25">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-26">Chapter 26</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-26" data-unit data-complete="false">
@@ -658,6 +1722,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-26">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-27">Chapter 27</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-27" data-unit data-complete="false">
@@ -678,6 +1746,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-27">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-28">Chapter 28</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-28" data-unit data-complete="false">
@@ -698,6 +1770,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-28">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-29">Chapter 29</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-29" data-unit data-complete="false">
@@ -718,6 +1794,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-29">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-30">Chapter 30</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-30" data-unit data-complete="false">
@@ -738,6 +1818,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-30">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-31">Chapter 31</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-31" data-unit data-complete="false">
@@ -758,6 +1842,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-31">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-32">Chapter 32</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-32" data-unit data-complete="false">
@@ -778,6 +1866,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-32">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-33">Chapter 33</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-33" data-unit data-complete="false">
@@ -798,6 +1890,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-33">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-34">Chapter 34</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-34" data-unit data-complete="false">
@@ -818,6 +1914,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-34">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-35">Chapter 35</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-35" data-unit data-complete="false">
@@ -838,6 +1938,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-35">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-36">Chapter 36</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-36" data-unit data-complete="false">
@@ -858,6 +1962,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-37">Chapter 37</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-37" data-unit data-complete="false">
@@ -878,6 +1986,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-37">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-38">Chapter 38</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-38" data-unit data-complete="false">
@@ -898,6 +2010,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-38">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-39">Chapter 39</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-39" data-unit data-complete="false">
@@ -918,6 +2034,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-39">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-40">Chapter 40</h4>
           <section class="unit" id="nefesh-hachayim-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-40" data-unit data-complete="false">
@@ -938,6 +2058,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-an-introduction-by-the-authors-son-an-introduction-by-the-authors-son-40">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-gate-i">Gate I</h2>
           <h3 id="section-gate-i-gate-i">Gate I</h3>
@@ -960,6 +2084,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-i-gate-i-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-i-gate-i-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -979,6 +2107,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-i-gate-i-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-i-gate-i-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -998,6 +2130,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-i-gate-i-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-i-gate-i-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -1017,6 +2153,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-i-gate-i-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-reb-itzeles-long-annotation">Reb Itzele&#39;s Long Annotation</h2>
           <h3 id="section-reb-itzeles-long-annotation-reb-itzeles-long-annotation">Reb Itzele&#39;s Long Annotation</h3>
@@ -1039,6 +2179,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-2">Chapter 2</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-2" data-unit data-complete="false">
@@ -1059,6 +2203,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-2">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-3">Chapter 3</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-3" data-unit data-complete="false">
@@ -1079,6 +2227,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-3">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-4">Chapter 4</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-4" data-unit data-complete="false">
@@ -1099,6 +2251,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-4">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-5">Chapter 5</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-5" data-unit data-complete="false">
@@ -1119,6 +2275,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-5">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-6">Chapter 6</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-6" data-unit data-complete="false">
@@ -1139,6 +2299,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-6">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-7">Chapter 7</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-7" data-unit data-complete="false">
@@ -1159,6 +2323,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-7">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-8">Chapter 8</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-8" data-unit data-complete="false">
@@ -1179,6 +2347,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-8">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-9">Chapter 9</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-9" data-unit data-complete="false">
@@ -1199,6 +2371,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-9">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-10">Chapter 10</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-10" data-unit data-complete="false">
@@ -1219,6 +2395,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-10">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-11">Chapter 11</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-11" data-unit data-complete="false">
@@ -1239,6 +2419,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-11">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-12">Chapter 12</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-12" data-unit data-complete="false">
@@ -1259,6 +2443,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-12">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-13">Chapter 13</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-13" data-unit data-complete="false">
@@ -1279,6 +2467,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-13">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-14">Chapter 14</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-14" data-unit data-complete="false">
@@ -1299,6 +2491,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-14">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-15">Chapter 15</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-15" data-unit data-complete="false">
@@ -1319,6 +2515,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-15">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-16">Chapter 16</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-16" data-unit data-complete="false">
@@ -1339,6 +2539,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-16">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-17">Chapter 17</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-17" data-unit data-complete="false">
@@ -1359,6 +2563,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-17">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-18">Chapter 18</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-18" data-unit data-complete="false">
@@ -1379,6 +2587,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-18">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-19">Chapter 19</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-19" data-unit data-complete="false">
@@ -1399,6 +2611,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-19">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-20">Chapter 20</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-20" data-unit data-complete="false">
@@ -1419,6 +2635,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-20">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-21">Chapter 21</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-21" data-unit data-complete="false">
@@ -1439,6 +2659,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-21">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-22">Chapter 22</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-22" data-unit data-complete="false">
@@ -1459,6 +2683,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-22">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-23">Chapter 23</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-23" data-unit data-complete="false">
@@ -1479,6 +2707,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-23">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-24">Chapter 24</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-24" data-unit data-complete="false">
@@ -1499,6 +2731,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-24">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-25">Chapter 25</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-25" data-unit data-complete="false">
@@ -1519,6 +2755,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-25">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-26">Chapter 26</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-26" data-unit data-complete="false">
@@ -1539,6 +2779,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-26">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-27">Chapter 27</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-27" data-unit data-complete="false">
@@ -1559,6 +2803,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-27">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-28">Chapter 28</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-28" data-unit data-complete="false">
@@ -1579,6 +2827,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-28">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-29">Chapter 29</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-29" data-unit data-complete="false">
@@ -1599,6 +2851,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-29">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-30">Chapter 30</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-30" data-unit data-complete="false">
@@ -1619,6 +2875,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-30">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-31">Chapter 31</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-31" data-unit data-complete="false">
@@ -1639,6 +2899,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-31">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-32">Chapter 32</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-32" data-unit data-complete="false">
@@ -1659,6 +2923,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-32">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-33">Chapter 33</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-33" data-unit data-complete="false">
@@ -1679,6 +2947,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-33">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-34">Chapter 34</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-34" data-unit data-complete="false">
@@ -1699,6 +2971,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-34">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-35">Chapter 35</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-35" data-unit data-complete="false">
@@ -1719,6 +2995,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-35">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-36">Chapter 36</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-36" data-unit data-complete="false">
@@ -1739,6 +3019,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-36">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-37">Chapter 37</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-37" data-unit data-complete="false">
@@ -1759,6 +3043,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-37">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-38">Chapter 38</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-38" data-unit data-complete="false">
@@ -1779,6 +3067,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-38">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-39">Chapter 39</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-39" data-unit data-complete="false">
@@ -1799,6 +3091,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-39">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-40">Chapter 40</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-40" data-unit data-complete="false">
@@ -1819,6 +3115,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-40">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-41">Chapter 41</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-41" data-unit data-complete="false">
@@ -1839,6 +3139,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-41">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-42">Chapter 42</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-42" data-unit data-complete="false">
@@ -1859,6 +3163,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-42">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-43">Chapter 43</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-43" data-unit data-complete="false">
@@ -1879,6 +3187,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-43">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-44">Chapter 44</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-44" data-unit data-complete="false">
@@ -1899,6 +3211,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-44">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-45">Chapter 45</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-45" data-unit data-complete="false">
@@ -1919,6 +3235,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-45">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-46">Chapter 46</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-46" data-unit data-complete="false">
@@ -1939,6 +3259,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-46">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-47">Chapter 47</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-47" data-unit data-complete="false">
@@ -1959,6 +3283,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-47">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-48">Chapter 48</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-48" data-unit data-complete="false">
@@ -1979,6 +3307,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-48">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-49">Chapter 49</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-49" data-unit data-complete="false">
@@ -1999,6 +3331,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-49">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-50">Chapter 50</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-50" data-unit data-complete="false">
@@ -2019,6 +3355,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-50">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-51">Chapter 51</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-51" data-unit data-complete="false">
@@ -2039,6 +3379,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-51">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-52">Chapter 52</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-52" data-unit data-complete="false">
@@ -2059,6 +3403,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-52">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-53">Chapter 53</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-53" data-unit data-complete="false">
@@ -2079,6 +3427,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-53">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-54">Chapter 54</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-54" data-unit data-complete="false">
@@ -2099,6 +3451,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-54">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-55">Chapter 55</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-55" data-unit data-complete="false">
@@ -2119,6 +3475,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-55">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-56">Chapter 56</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-56" data-unit data-complete="false">
@@ -2139,6 +3499,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-56">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-57">Chapter 57</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-57" data-unit data-complete="false">
@@ -2159,6 +3523,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-57">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-58">Chapter 58</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-58" data-unit data-complete="false">
@@ -2179,6 +3547,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-58">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-59">Chapter 59</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-59" data-unit data-complete="false">
@@ -2199,6 +3571,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-59">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-60">Chapter 60</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-60" data-unit data-complete="false">
@@ -2219,6 +3595,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-60">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-61">Chapter 61</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-61" data-unit data-complete="false">
@@ -2239,6 +3619,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-61">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-62">Chapter 62</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-62" data-unit data-complete="false">
@@ -2259,6 +3643,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-62">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-63">Chapter 63</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-63" data-unit data-complete="false">
@@ -2279,6 +3667,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-63">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-64">Chapter 64</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-64" data-unit data-complete="false">
@@ -2299,6 +3691,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-64">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-65">Chapter 65</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-65" data-unit data-complete="false">
@@ -2319,6 +3715,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-65">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-66">Chapter 66</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-66" data-unit data-complete="false">
@@ -2339,6 +3739,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-66">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-67">Chapter 67</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-67" data-unit data-complete="false">
@@ -2359,6 +3763,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-67">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-68">Chapter 68</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-68" data-unit data-complete="false">
@@ -2379,6 +3787,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-68">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-69">Chapter 69</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-69" data-unit data-complete="false">
@@ -2399,6 +3811,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-69">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-70">Chapter 70</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-70" data-unit data-complete="false">
@@ -2419,6 +3835,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-70">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-71">Chapter 71</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-71" data-unit data-complete="false">
@@ -2439,6 +3859,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-71">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-72">Chapter 72</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-72" data-unit data-complete="false">
@@ -2459,6 +3883,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-72">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-73">Chapter 73</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-73" data-unit data-complete="false">
@@ -2479,6 +3907,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-73">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-74">Chapter 74</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-74" data-unit data-complete="false">
@@ -2499,6 +3931,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-74">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-75">Chapter 75</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-75" data-unit data-complete="false">
@@ -2519,6 +3955,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-75">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-76">Chapter 76</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-76" data-unit data-complete="false">
@@ -2539,6 +3979,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-76">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-77">Chapter 77</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-77" data-unit data-complete="false">
@@ -2559,6 +4003,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-77">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-78">Chapter 78</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-78" data-unit data-complete="false">
@@ -2579,6 +4027,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-78">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-79">Chapter 79</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-79" data-unit data-complete="false">
@@ -2599,6 +4051,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-79">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-80">Chapter 80</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-80" data-unit data-complete="false">
@@ -2619,6 +4075,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-80">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-81">Chapter 81</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-81" data-unit data-complete="false">
@@ -2639,6 +4099,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-81">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-82">Chapter 82</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-82" data-unit data-complete="false">
@@ -2659,6 +4123,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-82">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-83">Chapter 83</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-83" data-unit data-complete="false">
@@ -2679,6 +4147,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-83">Back to chapter/section start</a>
+            </nav>
           </section>
           <h4 id="chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-84">Chapter 84</h4>
           <section class="unit" id="nefesh-hachayim-reb-itzeles-long-annotation-reb-itzeles-long-annotation-84" data-unit data-complete="false">
@@ -2699,6 +4171,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-reb-itzeles-long-annotation-reb-itzeles-long-annotation-84">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-gate-ii">Gate II</h2>
           <h3 id="section-gate-ii-gate-ii">Gate II</h3>
@@ -2721,6 +4197,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-ii-gate-ii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-ii-gate-ii-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -2740,6 +4220,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-ii-gate-ii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-ii-gate-ii-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -2759,6 +4243,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-ii-gate-ii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-ii-gate-ii-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -2778,6 +4266,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-ii-gate-ii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-ii-gate-ii-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -2797,6 +4289,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-ii-gate-ii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-ii-gate-ii-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -2816,6 +4312,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-ii-gate-ii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-ii-gate-ii-1-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -2835,6 +4335,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-ii-gate-ii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-ii-gate-ii-1-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -2854,6 +4358,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-ii-gate-ii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-ii-gate-ii-1-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -2873,6 +4381,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-ii-gate-ii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-ii-gate-ii-1-10" data-unit data-complete="false">
             <div class="unit-head">
@@ -2892,6 +4404,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-ii-gate-ii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-ii-gate-ii-1-11" data-unit data-complete="false">
             <div class="unit-head">
@@ -2911,6 +4427,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-ii-gate-ii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-gate-iii">Gate III</h2>
           <h3 id="section-gate-iii-gate-iii">Gate III</h3>
@@ -2933,6 +4453,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iii-gate-iii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iii-gate-iii-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -2952,6 +4476,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iii-gate-iii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iii-gate-iii-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -2971,6 +4499,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iii-gate-iii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iii-gate-iii-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -2990,6 +4522,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iii-gate-iii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iii-gate-iii-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -3009,6 +4545,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iii-gate-iii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iii-gate-iii-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -3028,6 +4568,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iii-gate-iii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iii-gate-iii-1-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -3047,6 +4591,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iii-gate-iii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iii-gate-iii-1-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -3066,6 +4614,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iii-gate-iii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iii-gate-iii-1-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -3085,6 +4637,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iii-gate-iii-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-chapters">Chapters</h2>
           <h3 id="section-chapters-chapters">Chapters</h3>
@@ -3107,6 +4663,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-chapters-chapters-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-chapters-chapters-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -3126,6 +4686,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-chapters-chapters-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-chapters-chapters-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -3145,6 +4709,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-chapters-chapters-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-chapters-chapters-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -3164,6 +4732,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-chapters-chapters-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-chapters-chapters-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -3183,6 +4755,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-chapters-chapters-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <h2 id="group-gate-iv">Gate IV</h2>
           <h3 id="section-gate-iv-gate-iv">Gate IV</h3>
@@ -3205,6 +4781,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iv-gate-iv-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iv-gate-iv-1-2" data-unit data-complete="false">
             <div class="unit-head">
@@ -3224,6 +4804,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iv-gate-iv-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iv-gate-iv-1-3" data-unit data-complete="false">
             <div class="unit-head">
@@ -3243,6 +4827,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iv-gate-iv-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iv-gate-iv-1-4" data-unit data-complete="false">
             <div class="unit-head">
@@ -3262,6 +4850,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iv-gate-iv-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iv-gate-iv-1-5" data-unit data-complete="false">
             <div class="unit-head">
@@ -3281,6 +4873,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iv-gate-iv-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iv-gate-iv-1-6" data-unit data-complete="false">
             <div class="unit-head">
@@ -3300,6 +4896,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iv-gate-iv-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iv-gate-iv-1-7" data-unit data-complete="false">
             <div class="unit-head">
@@ -3319,6 +4919,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iv-gate-iv-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iv-gate-iv-1-8" data-unit data-complete="false">
             <div class="unit-head">
@@ -3338,6 +4942,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iv-gate-iv-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iv-gate-iv-1-9" data-unit data-complete="false">
             <div class="unit-head">
@@ -3357,6 +4965,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iv-gate-iv-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iv-gate-iv-1-10" data-unit data-complete="false">
             <div class="unit-head">
@@ -3376,6 +4988,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iv-gate-iv-1">Back to chapter/section start</a>
+            </nav>
           </section>
           <section class="unit" id="nefesh-hachayim-gate-iv-gate-iv-1-11" data-unit data-complete="false">
             <div class="unit-head">
@@ -3395,6 +5011,10 @@
                 </div>
               </div>
             </div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-gate-iv-gate-iv-1">Back to chapter/section start</a>
+            </nav>
           </section>
         </article>
       </div>
