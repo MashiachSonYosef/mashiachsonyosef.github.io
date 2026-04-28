@@ -353,8 +353,8 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .overlay-label { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }')
   if ($IncludeLexicalStyles) {
     [void]$Builder.AppendLine('    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; }')
-    [void]$Builder.AppendLine('    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: rtl; unicode-bidi: isolate; white-space: nowrap; }')
-    [void]$Builder.AppendLine('    .lexical-word:hover, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); }')
+    [void]$Builder.AppendLine('    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; white-space: nowrap; }')
+    [void]$Builder.AppendLine('    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }')
     [void]$Builder.AppendLine('    .lexical-hud { position: sticky; top: 14px; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }')
     [void]$Builder.AppendLine('    .lexical-hud[hidden] { display: none; }')
     [void]$Builder.AppendLine('    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }')
@@ -527,6 +527,9 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('          const sample = unit ? samples.get(unit.dataset.lexicalSample) : null;')
   [void]$Builder.AppendLine('          const word = sample ? (sample.words || []).find((item) => item.token_id === button.dataset.lexicalToken) : null;')
   [void]$Builder.AppendLine('          renderWord(unit, hud, word);')
+  [void]$Builder.AppendLine('        });')
+  [void]$Builder.AppendLine('        button.addEventListener("keydown", (event) => {')
+  [void]$Builder.AppendLine('          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }')
   [void]$Builder.AppendLine('        });')
   [void]$Builder.AppendLine('      });')
   [void]$Builder.AppendLine('      document.querySelectorAll("[data-hud-close]").forEach((button) => {')
@@ -760,7 +763,7 @@ foreach ($source in $sources) {
           $buttonText += Convert-HebrewDisplayHtml $word.trailing_punctuation
           $buttonText += '&#8207;'
         }
-        [void]$page.Append("                  <button class=""lexical-word"" type=""button"" data-lexical-token=""$(Encode-Html $word.token_id)"" aria-pressed=""false"">$buttonText</button>")
+        [void]$page.Append("                  <span class=""lexical-word"" role=""button"" tabindex=""0"" data-lexical-token=""$(Encode-Html $word.token_id)"" aria-pressed=""false"">$buttonText</span>")
         [void]$page.AppendLine('')
       }
       [void]$page.AppendLine('                </p>')
