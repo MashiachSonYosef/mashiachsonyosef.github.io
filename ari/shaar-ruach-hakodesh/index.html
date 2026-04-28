@@ -21,11 +21,21 @@
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
     .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .progress-panel { margin-top: 14px; border: 1px solid var(--line); background: rgba(20,24,31,0.58); padding: 12px; }
+    .progress-summary { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; color: var(--muted); font-size: 0.92rem; }
+    .progress-summary strong { color: var(--text); font-weight: 400; }
+    .progress-meter { height: 5px; margin-top: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); overflow: hidden; }
+    .progress-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+    .progress-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .filter-button { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 6px 10px; font: inherit; cursor: pointer; }
+    .filter-button[aria-pressed="true"], .filter-button:hover { color: var(--text); border-color: var(--accent); background: rgba(214,190,138,0.08); }
+    .filter-button:disabled { cursor: default; opacity: 0.45; }
     .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
     .home-section { margin-top: 26px; }
     .home-section:first-child { margin-top: 0; }
     .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
     .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
     .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }
     .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
     .toc ul { list-style: none; padding: 0; margin: 0; }
@@ -33,6 +43,7 @@
     .toc a { text-decoration: none; font-size: 0.94rem; }
     .section-block { margin-bottom: 10px; }
     .unit { border-top: 1px solid var(--line); padding: 16px 0; }
+    .unit[hidden] { display: none; }
     .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
     .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
@@ -66,6 +77,16 @@
           <a class="export-button" href="overlay-export.json" download>JSON</a>
           <a class="export-button" href="overlay-export.md" download>Markdown</a>
         </div>
+        <div class="progress-panel" data-progress-panel>
+          <div class="progress-summary"><span>Progress</span><strong>0 / 22 done</strong><span>0% complete</span></div>
+          <div class="progress-meter" aria-label="0% complete"><span style="width:0%"></span></div>
+          <div class="progress-controls" aria-label="Progress filters">
+            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Done</button>
+            <button class="filter-button" type="button" data-filter="not-done" aria-pressed="false">Not done</button>
+            <button class="filter-button" type="button" data-next-not-done>Next not done</button>
+          </div>
+        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -92,7 +113,7 @@
           <h2 id="group-introduction">Introduction</h2>
           <h3 id="section-introduction-introduction">Introduction</h3>
           <h4 id="chapter-introduction-introduction-1">Chapter 1</h4>
-          <section class="unit" id="shaar-ruach-hakodesh-introduction-introduction-1-1" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-introduction-introduction-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Introduction 1:1</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-introduction-introduction-1-1" aria-label="Copy link to Sha'ar Ruach HaKodesh, Introduction 1:1">#</a>
@@ -111,7 +132,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-ruach-hakodesh-introduction-introduction-1-2" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-introduction-introduction-1-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Introduction 1:2</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-introduction-introduction-1-2" aria-label="Copy link to Sha'ar Ruach HaKodesh, Introduction 1:2">#</a>
@@ -130,7 +151,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-ruach-hakodesh-introduction-introduction-1-3" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-introduction-introduction-1-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Introduction 1:3</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-introduction-introduction-1-3" aria-label="Copy link to Sha'ar Ruach HaKodesh, Introduction 1:3">#</a>
@@ -152,7 +173,7 @@
           <h2 id="group-default">default</h2>
           <h3 id="section-default-default">default</h3>
           <h4 id="chapter-default-default-1">Chapter 1</h4>
-          <section class="unit" id="shaar-ruach-hakodesh-default-default-1-1" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-default-default-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh 1:1</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-default-default-1-1" aria-label="Copy link to Sha'ar Ruach HaKodesh 1:1">#</a>
@@ -171,7 +192,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-ruach-hakodesh-default-default-1-2" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-default-default-1-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh 1:2</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-default-default-1-2" aria-label="Copy link to Sha'ar Ruach HaKodesh 1:2">#</a>
@@ -190,7 +211,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-ruach-hakodesh-default-default-1-3" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-default-default-1-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh 1:3</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-default-default-1-3" aria-label="Copy link to Sha'ar Ruach HaKodesh 1:3">#</a>
@@ -209,7 +230,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-ruach-hakodesh-default-default-1-4" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-default-default-1-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh 1:4</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-default-default-1-4" aria-label="Copy link to Sha'ar Ruach HaKodesh 1:4">#</a>
@@ -231,7 +252,7 @@
           <h2 id="group-silent-prayer-before-yichud">Silent Prayer Before Yichud</h2>
           <h3 id="section-silent-prayer-before-yichud-silent-prayer-before-yichud">Silent Prayer Before Yichud</h3>
           <h4 id="chapter-silent-prayer-before-yichud-silent-prayer-before-yichud-1">Chapter 1</h4>
-          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-1" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Silent Prayer Before Yichud:1</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-1" aria-label="Copy link to Sha'ar Ruach HaKodesh, Silent Prayer Before Yichud:1">#</a>
@@ -251,7 +272,7 @@
             </div>
           </section>
           <h4 id="chapter-silent-prayer-before-yichud-silent-prayer-before-yichud-2">Chapter 2</h4>
-          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-2" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Silent Prayer Before Yichud:2</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-2" aria-label="Copy link to Sha'ar Ruach HaKodesh, Silent Prayer Before Yichud:2">#</a>
@@ -271,7 +292,7 @@
             </div>
           </section>
           <h4 id="chapter-silent-prayer-before-yichud-silent-prayer-before-yichud-3">Chapter 3</h4>
-          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-3" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Silent Prayer Before Yichud:3</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-3" aria-label="Copy link to Sha'ar Ruach HaKodesh, Silent Prayer Before Yichud:3">#</a>
@@ -291,7 +312,7 @@
             </div>
           </section>
           <h4 id="chapter-silent-prayer-before-yichud-silent-prayer-before-yichud-4">Chapter 4</h4>
-          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-4" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Silent Prayer Before Yichud:4</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-4" aria-label="Copy link to Sha'ar Ruach HaKodesh, Silent Prayer Before Yichud:4">#</a>
@@ -311,7 +332,7 @@
             </div>
           </section>
           <h4 id="chapter-silent-prayer-before-yichud-silent-prayer-before-yichud-5">Chapter 5</h4>
-          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-5" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Silent Prayer Before Yichud:5</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-5" aria-label="Copy link to Sha'ar Ruach HaKodesh, Silent Prayer Before Yichud:5">#</a>
@@ -331,7 +352,7 @@
             </div>
           </section>
           <h4 id="chapter-silent-prayer-before-yichud-silent-prayer-before-yichud-6">Chapter 6</h4>
-          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-6" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Silent Prayer Before Yichud:6</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-6" aria-label="Copy link to Sha'ar Ruach HaKodesh, Silent Prayer Before Yichud:6">#</a>
@@ -351,7 +372,7 @@
             </div>
           </section>
           <h4 id="chapter-silent-prayer-before-yichud-silent-prayer-before-yichud-7">Chapter 7</h4>
-          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-7" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Silent Prayer Before Yichud:7</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-7" aria-label="Copy link to Sha'ar Ruach HaKodesh, Silent Prayer Before Yichud:7">#</a>
@@ -371,7 +392,7 @@
             </div>
           </section>
           <h4 id="chapter-silent-prayer-before-yichud-silent-prayer-before-yichud-8">Chapter 8</h4>
-          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-8" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Silent Prayer Before Yichud:8</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-8" aria-label="Copy link to Sha'ar Ruach HaKodesh, Silent Prayer Before Yichud:8">#</a>
@@ -391,7 +412,7 @@
             </div>
           </section>
           <h4 id="chapter-silent-prayer-before-yichud-silent-prayer-before-yichud-9">Chapter 9</h4>
-          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-9" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Silent Prayer Before Yichud:9</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-9" aria-label="Copy link to Sha'ar Ruach HaKodesh, Silent Prayer Before Yichud:9">#</a>
@@ -411,7 +432,7 @@
             </div>
           </section>
           <h4 id="chapter-silent-prayer-before-yichud-silent-prayer-before-yichud-10">Chapter 10</h4>
-          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-10" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Silent Prayer Before Yichud:10</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-10" aria-label="Copy link to Sha'ar Ruach HaKodesh, Silent Prayer Before Yichud:10">#</a>
@@ -431,7 +452,7 @@
             </div>
           </section>
           <h4 id="chapter-silent-prayer-before-yichud-silent-prayer-before-yichud-11">Chapter 11</h4>
-          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-11" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-11" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Silent Prayer Before Yichud:11</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-11" aria-label="Copy link to Sha'ar Ruach HaKodesh, Silent Prayer Before Yichud:11">#</a>
@@ -451,7 +472,7 @@
             </div>
           </section>
           <h4 id="chapter-silent-prayer-before-yichud-silent-prayer-before-yichud-12">Chapter 12</h4>
-          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-12" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-12" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Silent Prayer Before Yichud:12</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-12" aria-label="Copy link to Sha'ar Ruach HaKodesh, Silent Prayer Before Yichud:12">#</a>
@@ -471,7 +492,7 @@
             </div>
           </section>
           <h4 id="chapter-silent-prayer-before-yichud-silent-prayer-before-yichud-13">Chapter 13</h4>
-          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-13" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-13" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Silent Prayer Before Yichud:13</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-13" aria-label="Copy link to Sha'ar Ruach HaKodesh, Silent Prayer Before Yichud:13">#</a>
@@ -491,7 +512,7 @@
             </div>
           </section>
           <h4 id="chapter-silent-prayer-before-yichud-silent-prayer-before-yichud-14">Chapter 14</h4>
-          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-14" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-14" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Silent Prayer Before Yichud:14</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-14" aria-label="Copy link to Sha'ar Ruach HaKodesh, Silent Prayer Before Yichud:14">#</a>
@@ -511,7 +532,7 @@
             </div>
           </section>
           <h4 id="chapter-silent-prayer-before-yichud-silent-prayer-before-yichud-15">Chapter 15</h4>
-          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-15" data-unit>
+          <section class="unit" id="shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-15" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ruach HaKodesh, Silent Prayer Before Yichud:15</h4></div>
               <a class="anchor" href="#shaar-ruach-hakodesh-silent-prayer-before-yichud-silent-prayer-before-yichud-15" aria-label="Copy link to Sha'ar Ruach HaKodesh, Silent Prayer Before Yichud:15">#</a>
@@ -534,5 +555,38 @@
       </div>
     </div>
   </main>
+  <script>
+    (() => {
+      const units = Array.from(document.querySelectorAll("[data-unit]"));
+      const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
+      const nextButton = document.querySelector("[data-next-not-done]");
+      let currentFilter = "all";
+      const matchesFilter = (unit, filter) => {
+        const done = unit.dataset.complete === "true";
+        return filter === "all" || (filter === "done" && done) || (filter === "not-done" && !done);
+      };
+      const applyFilter = (filter) => {
+        currentFilter = filter;
+        units.forEach((unit) => { unit.hidden = !matchesFilter(unit, filter); });
+        filterButtons.forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
+        });
+      };
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => applyFilter(button.dataset.filter));
+      });
+      if (nextButton) {
+        nextButton.addEventListener("click", () => {
+          const incomplete = units.filter((unit) => unit.dataset.complete !== "true");
+          if (!incomplete.length) return;
+          if (currentFilter === "done") applyFilter("not-done");
+          const currentY = window.scrollY + 12;
+          const target = incomplete.find((unit) => unit.getBoundingClientRect().top + window.scrollY > currentY) || incomplete[0];
+          if (target.id) history.replaceState(null, "", "#" + target.id);
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

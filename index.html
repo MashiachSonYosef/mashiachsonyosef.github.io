@@ -21,11 +21,21 @@
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
     .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .progress-panel { margin-top: 14px; border: 1px solid var(--line); background: rgba(20,24,31,0.58); padding: 12px; }
+    .progress-summary { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; color: var(--muted); font-size: 0.92rem; }
+    .progress-summary strong { color: var(--text); font-weight: 400; }
+    .progress-meter { height: 5px; margin-top: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); overflow: hidden; }
+    .progress-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+    .progress-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .filter-button { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 6px 10px; font: inherit; cursor: pointer; }
+    .filter-button[aria-pressed="true"], .filter-button:hover { color: var(--text); border-color: var(--accent); background: rgba(214,190,138,0.08); }
+    .filter-button:disabled { cursor: default; opacity: 0.45; }
     .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
     .home-section { margin-top: 26px; }
     .home-section:first-child { margin-top: 0; }
     .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
     .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
     .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }
     .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
     .toc ul { list-style: none; padding: 0; margin: 0; }
@@ -33,6 +43,7 @@
     .toc a { text-decoration: none; font-size: 0.94rem; }
     .section-block { margin-bottom: 10px; }
     .unit { border-top: 1px solid var(--line); padding: 16px 0; }
+    .unit[hidden] { display: none; }
     .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
     .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
@@ -66,46 +77,57 @@
             <a class="work-card" href="ari/pri-etz-chaim/">
               <strong>Pri Etz Chaim</strong>
               <span class="meta">589 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 589 done | 0% complete</span>
             </a>
             <a class="work-card" href="ari/sefer-etz-chaim/">
               <strong>Sefer Etz Chaim</strong>
               <span class="meta">7 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 7 done | 0% complete</span>
             </a>
             <a class="work-card" href="ari/shaar-hagilgulim/">
               <strong>Sha&#39;ar HaGilgulim</strong>
               <span class="meta">854 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 854 done | 0% complete</span>
             </a>
             <a class="work-card" href="ari/shaar-hahakdamot/">
               <strong>Sha&#39;ar HaHakdamot</strong>
               <span class="meta">93 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 93 done | 0% complete</span>
             </a>
             <a class="work-card" href="ari/shaar-hakavanot/">
               <strong>Sha&#39;ar HaKavanot</strong>
               <span class="meta">366 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 366 done | 0% complete</span>
             </a>
             <a class="work-card" href="ari/shaar-hamitzvot/">
               <strong>Sha&#39;ar HaMitzvot</strong>
               <span class="meta">298 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 298 done | 0% complete</span>
             </a>
             <a class="work-card" href="ari/shaar-hapesukim/">
               <strong>Sha&#39;ar HaPesukim</strong>
               <span class="meta">2051 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 2051 done | 0% complete</span>
             </a>
             <a class="work-card" href="ari/shaar-maamarei-rashbi/">
               <strong>Sha&#39;ar Ma&#39;amarei Rashbi</strong>
               <span class="meta">585 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 585 done | 0% complete</span>
             </a>
             <a class="work-card" href="ari/shaar-maamarei-razal/">
               <strong>Sha&#39;ar Ma&#39;amarei Razal</strong>
               <span class="meta">103 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 103 done | 0% complete</span>
             </a>
             <a class="work-card" href="ari/shaar-ruach-hakodesh/">
               <strong>Sha&#39;ar Ruach HaKodesh</strong>
               <span class="meta">22 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 22 done | 0% complete</span>
             </a>
             <a class="work-card" href="ari/shaarei-kedusha/">
               <strong>Sha&#39;arei Kedusha</strong>
               <span class="meta">66 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 66 done | 0% complete</span>
             </a>
           </div>
         </section>
@@ -115,90 +137,112 @@
             <a class="work-card" href="gra/aderet-eliyahu/">
               <strong>Aderet Eliyahu</strong>
               <span class="meta">59 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 59 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/beur-hagra-on-jerusalem-talmud-bikkurim/">
               <strong>Beur HaGra on Jerusalem Talmud Bikkurim</strong>
               <span class="meta">170 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 170 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/beur-hagra-on-jerusalem-talmud-challah/">
               <strong>Beur HaGra on Jerusalem Talmud Challah</strong>
               <span class="meta">657 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 657 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/beur-hagra-on-shulchan-arukh-choshen-mishpat/">
               <strong>Beur HaGra on Shulchan Arukh, Choshen Mishpat</strong>
               <span class="meta">41 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 41 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/beur-hagra-on-shulchan-arukh-even-haezer/">
               <strong>Beur HaGra on Shulchan Arukh, Even HaEzer</strong>
               <span class="meta">281 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 281 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/beur-hagra-on-shulchan-arukh-orach-chayim/">
               <strong>Beur HaGra on Shulchan Arukh, Orach Chayim</strong>
               <span class="meta">2479 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 2479 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/beur-hagra-on-shulchan-arukh-yoreh-deah/">
               <strong>Beur HaGra on Shulchan Arukh, Yoreh De&#39;ah</strong>
               <span class="meta">7500 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 7500 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/beur-hagra-on-sifra-detzniuta/">
               <strong>Beur HaGra on Sifra DeTzniuta</strong>
               <span class="meta">297 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 297 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/gra-on-pirkei-avot/">
               <strong>Gra on Pirkei Avot</strong>
               <span class="meta">20 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 20 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/gras-nuschah-on-avot-drabbi-natan/">
               <strong>Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan</strong>
               <span class="meta">103 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 103 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/gras-nuschah-on-tractate-derekh-eretz-rabbah/">
               <strong>Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah</strong>
               <span class="meta">16 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 16 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/gras-nuschah-on-tractate-derekh-eretz-zuta/">
               <strong>Gra&#39;s Nuschah on Tractate Derekh Eretz Zuta</strong>
               <span class="meta">4 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 4 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/gras-nuschah-on-tractate-kallah/">
               <strong>Gra&#39;s Nuschah on Tractate Kallah</strong>
               <span class="meta">6 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 6 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/gras-nuschah-on-tractate-semachot/">
               <strong>Gra&#39;s Nuschah on Tractate Semachot</strong>
               <span class="meta">20 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 20 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/gras-nuschah-on-tractate-soferim/">
               <strong>Gra&#39;s Nuschah on Tractate Soferim</strong>
               <span class="meta">30 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 30 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/hagra-on-sefer-yetzirah-gra-version/">
               <strong>HaGra on Sefer Yetzirah Gra Version</strong>
               <span class="meta">35 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 35 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/iggeret-hagra/">
               <strong>Iggeret HaGra</strong>
               <span class="meta">16 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 16 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/kol-hator/">
               <strong>Kol HaTor</strong>
               <span class="meta">228 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 228 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/maaseh-rav/">
               <strong>Maaseh Rav</strong>
               <span class="meta">250 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 250 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/nefesh-hachayim/">
               <strong>Nefesh HaChayim</strong>
               <span class="meta">164 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 164 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/sefer-yetzirah-gra-version/">
               <strong>Sefer Yetzirah Gra Version</strong>
               <span class="meta">62 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 62 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/yahel-ohr-on-zohar/">
               <strong>Yahel Ohr on Zohar</strong>
               <span class="meta">238 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 238 done | 0% complete</span>
             </a>
           </div>
         </section>
@@ -208,26 +252,32 @@
             <a class="work-card" href="rav-kook/maamar-hador/">
               <strong>Ma&#39;amar Hador</strong>
               <span class="meta">18 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 18 done | 0% complete</span>
             </a>
             <a class="work-card" href="rav-kook/midbar-shur/">
               <strong>Midbar Shur</strong>
               <span class="meta">243 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 243 done | 0% complete</span>
             </a>
             <a class="work-card" href="rav-kook/musar-avikha/">
               <strong>Musar Avikha</strong>
               <span class="meta">14 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 14 done | 0% complete</span>
             </a>
             <a class="work-card" href="orot/">
               <strong>Orot</strong>
               <span class="meta">416 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 416 done | 0% complete</span>
             </a>
             <a class="work-card" href="rav-kook/orot-ha-kodesh/">
               <strong>Orot HaKodesh</strong>
               <span class="meta">458 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 458 done | 0% complete</span>
             </a>
             <a class="work-card" href="rav-kook/orot-ha-torah/">
               <strong>Orot HaTorah</strong>
               <span class="meta">10 source units | Sefaria API | imported 2026-04-27</span>
+              <span class="meta">Progress: 0 / 10 done | 0% complete</span>
             </a>
           </div>
         </section>

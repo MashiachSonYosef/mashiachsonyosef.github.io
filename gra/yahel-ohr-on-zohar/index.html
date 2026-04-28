@@ -21,11 +21,21 @@
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
     .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .progress-panel { margin-top: 14px; border: 1px solid var(--line); background: rgba(20,24,31,0.58); padding: 12px; }
+    .progress-summary { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; color: var(--muted); font-size: 0.92rem; }
+    .progress-summary strong { color: var(--text); font-weight: 400; }
+    .progress-meter { height: 5px; margin-top: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); overflow: hidden; }
+    .progress-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+    .progress-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .filter-button { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 6px 10px; font: inherit; cursor: pointer; }
+    .filter-button[aria-pressed="true"], .filter-button:hover { color: var(--text); border-color: var(--accent); background: rgba(214,190,138,0.08); }
+    .filter-button:disabled { cursor: default; opacity: 0.45; }
     .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
     .home-section { margin-top: 26px; }
     .home-section:first-child { margin-top: 0; }
     .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
     .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
     .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }
     .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
     .toc ul { list-style: none; padding: 0; margin: 0; }
@@ -33,6 +43,7 @@
     .toc a { text-decoration: none; font-size: 0.94rem; }
     .section-block { margin-bottom: 10px; }
     .unit { border-top: 1px solid var(--line); padding: 16px 0; }
+    .unit[hidden] { display: none; }
     .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
     .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
@@ -66,6 +77,16 @@
           <a class="export-button" href="overlay-export.json" download>JSON</a>
           <a class="export-button" href="overlay-export.md" download>Markdown</a>
         </div>
+        <div class="progress-panel" data-progress-panel>
+          <div class="progress-summary"><span>Progress</span><strong>0 / 238 done</strong><span>0% complete</span></div>
+          <div class="progress-meter" aria-label="0% complete"><span style="width:0%"></span></div>
+          <div class="progress-controls" aria-label="Progress filters">
+            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Done</button>
+            <button class="filter-button" type="button" data-filter="not-done" aria-pressed="false">Not done</button>
+            <button class="filter-button" type="button" data-next-not-done>Next not done</button>
+          </div>
+        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -86,7 +107,7 @@
           <h2 id="group-default">default</h2>
           <h3 id="section-default-default">default</h3>
           <h4 id="chapter-default-default-1">Chapter 1</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-1" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:1</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-1" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:1">#</a>
@@ -105,7 +126,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-2" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:2</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-2" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:2">#</a>
@@ -124,7 +145,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-3" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:3</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-3" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:3">#</a>
@@ -143,7 +164,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-4" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:4</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-4" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:4">#</a>
@@ -162,7 +183,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-5" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:5</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-5" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:5">#</a>
@@ -181,7 +202,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-6" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:6</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-6" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:6">#</a>
@@ -200,7 +221,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-7" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:7</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-7" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:7">#</a>
@@ -219,7 +240,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-8" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:8</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-8" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:8">#</a>
@@ -238,7 +259,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-9" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:9</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-9" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:9">#</a>
@@ -257,7 +278,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-10" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:10</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-10" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:10">#</a>
@@ -276,7 +297,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-11" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-11" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:11</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-11" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:11">#</a>
@@ -295,7 +316,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-12" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-12" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:12</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-12" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:12">#</a>
@@ -314,7 +335,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-13" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-13" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:13</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-13" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:13">#</a>
@@ -333,7 +354,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-14" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-14" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:14</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-14" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:14">#</a>
@@ -352,7 +373,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-15" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-15" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:15</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-15" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:15">#</a>
@@ -371,7 +392,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-16" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-16" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:16</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-16" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:16">#</a>
@@ -390,7 +411,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-17" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-17" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:17</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-17" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:17">#</a>
@@ -409,7 +430,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-18" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-18" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:18</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-18" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:18">#</a>
@@ -428,7 +449,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-19" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-19" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:19</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-19" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:19">#</a>
@@ -447,7 +468,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-20" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-20" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:20</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-20" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:20">#</a>
@@ -466,7 +487,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-21" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-21" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:21</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-21" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:21">#</a>
@@ -485,7 +506,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-22" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-22" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:22</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-22" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:22">#</a>
@@ -504,7 +525,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-23" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-23" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:23</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-23" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:23">#</a>
@@ -523,7 +544,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-24" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-24" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:24</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-24" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:24">#</a>
@@ -542,7 +563,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-25" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-25" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:25</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-25" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:25">#</a>
@@ -561,7 +582,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-26" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-26" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:26</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-26" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:26">#</a>
@@ -580,7 +601,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-27" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-27" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:27</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-27" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:27">#</a>
@@ -599,7 +620,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-28" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-28" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:28</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-28" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:28">#</a>
@@ -618,7 +639,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-29" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-29" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:29</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-29" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:29">#</a>
@@ -637,7 +658,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-30" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-30" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:30</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-30" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:30">#</a>
@@ -656,7 +677,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-31" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-31" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:31</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-31" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:31">#</a>
@@ -675,7 +696,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-32" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-default-default-1-1a-32" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar 1:1a:32</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-default-default-1-1a-32" aria-label="Copy link to Yahel Ohr on Zohar 1:1a:32">#</a>
@@ -697,7 +718,7 @@
           <h2 id="group-addenda">Addenda</h2>
           <h3 id="section-addenda-addenda">Addenda</h3>
           <h4 id="chapter-addenda-addenda-1">Chapter 1</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-1" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:1</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-1" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:1">#</a>
@@ -717,7 +738,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-2">Chapter 2</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-2" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:2</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-2" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:2">#</a>
@@ -737,7 +758,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-3">Chapter 3</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-3" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:3</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-3" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:3">#</a>
@@ -757,7 +778,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-4">Chapter 4</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-4" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:4</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-4" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:4">#</a>
@@ -777,7 +798,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-5">Chapter 5</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-5" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:5</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-5" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:5">#</a>
@@ -797,7 +818,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-6">Chapter 6</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-6" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:6</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-6" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:6">#</a>
@@ -817,7 +838,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-7">Chapter 7</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-7" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:7</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-7" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:7">#</a>
@@ -837,7 +858,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-8">Chapter 8</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-8" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:8</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-8" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:8">#</a>
@@ -857,7 +878,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-9">Chapter 9</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-9" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:9</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-9" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:9">#</a>
@@ -877,7 +898,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-10">Chapter 10</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-10" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:10</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-10" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:10">#</a>
@@ -897,7 +918,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-11">Chapter 11</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-11" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-11" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:11</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-11" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:11">#</a>
@@ -917,7 +938,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-12">Chapter 12</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-12" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-12" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:12</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-12" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:12">#</a>
@@ -937,7 +958,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-13">Chapter 13</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-13" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-13" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:13</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-13" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:13">#</a>
@@ -957,7 +978,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-14">Chapter 14</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-14" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-14" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:14</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-14" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:14">#</a>
@@ -977,7 +998,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-15">Chapter 15</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-15" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-15" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:15</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-15" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:15">#</a>
@@ -997,7 +1018,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-16">Chapter 16</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-16" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-16" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:16</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-16" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:16">#</a>
@@ -1017,7 +1038,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-17">Chapter 17</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-17" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-17" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:17</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-17" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:17">#</a>
@@ -1037,7 +1058,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-18">Chapter 18</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-18" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-18" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:18</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-18" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:18">#</a>
@@ -1057,7 +1078,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-19">Chapter 19</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-19" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-19" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:19</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-19" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:19">#</a>
@@ -1077,7 +1098,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-20">Chapter 20</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-20" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-20" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:20</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-20" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:20">#</a>
@@ -1097,7 +1118,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-21">Chapter 21</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-21" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-21" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:21</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-21" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:21">#</a>
@@ -1117,7 +1138,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-22">Chapter 22</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-22" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-22" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:22</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-22" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:22">#</a>
@@ -1137,7 +1158,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-23">Chapter 23</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-23" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-23" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:23</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-23" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:23">#</a>
@@ -1157,7 +1178,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-24">Chapter 24</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-24" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-24" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:24</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-24" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:24">#</a>
@@ -1177,7 +1198,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-25">Chapter 25</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-25" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-25" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:25</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-25" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:25">#</a>
@@ -1197,7 +1218,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-26">Chapter 26</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-26" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-26" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:26</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-26" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:26">#</a>
@@ -1217,7 +1238,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-27">Chapter 27</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-27" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-27" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:27</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-27" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:27">#</a>
@@ -1237,7 +1258,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-28">Chapter 28</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-28" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-28" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:28</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-28" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:28">#</a>
@@ -1257,7 +1278,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-29">Chapter 29</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-29" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-29" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:29</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-29" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:29">#</a>
@@ -1277,7 +1298,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-30">Chapter 30</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-30" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-30" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:30</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-30" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:30">#</a>
@@ -1297,7 +1318,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-31">Chapter 31</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-31" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-31" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:31</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-31" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:31">#</a>
@@ -1317,7 +1338,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-32">Chapter 32</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-32" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-32" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:32</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-32" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:32">#</a>
@@ -1337,7 +1358,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-33">Chapter 33</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-33" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-33" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:33</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-33" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:33">#</a>
@@ -1357,7 +1378,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-34">Chapter 34</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-34" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-34" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:34</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-34" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:34">#</a>
@@ -1377,7 +1398,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-35">Chapter 35</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-35" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-35" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:35</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-35" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:35">#</a>
@@ -1397,7 +1418,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-36">Chapter 36</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-36" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-36" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:36</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-36" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:36">#</a>
@@ -1417,7 +1438,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-37">Chapter 37</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-37" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-37" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:37</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-37" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:37">#</a>
@@ -1437,7 +1458,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-38">Chapter 38</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-38" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-38" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:38</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-38" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:38">#</a>
@@ -1457,7 +1478,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-39">Chapter 39</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-39" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-39" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:39</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-39" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:39">#</a>
@@ -1477,7 +1498,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-40">Chapter 40</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-40" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-40" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:40</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-40" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:40">#</a>
@@ -1497,7 +1518,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-41">Chapter 41</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-41" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-41" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:41</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-41" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:41">#</a>
@@ -1517,7 +1538,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-42">Chapter 42</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-42" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-42" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:42</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-42" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:42">#</a>
@@ -1537,7 +1558,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-43">Chapter 43</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-43" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-43" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:43</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-43" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:43">#</a>
@@ -1557,7 +1578,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-44">Chapter 44</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-44" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-44" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:44</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-44" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:44">#</a>
@@ -1577,7 +1598,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-45">Chapter 45</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-45" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-45" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:45</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-45" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:45">#</a>
@@ -1597,7 +1618,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-46">Chapter 46</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-46" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-46" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:46</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-46" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:46">#</a>
@@ -1617,7 +1638,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-47">Chapter 47</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-47" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-47" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:47</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-47" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:47">#</a>
@@ -1637,7 +1658,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-48">Chapter 48</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-48" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-48" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:48</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-48" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:48">#</a>
@@ -1657,7 +1678,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-49">Chapter 49</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-49" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-49" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:49</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-49" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:49">#</a>
@@ -1677,7 +1698,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-50">Chapter 50</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-50" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-50" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:50</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-50" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:50">#</a>
@@ -1697,7 +1718,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-51">Chapter 51</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-51" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-51" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:51</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-51" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:51">#</a>
@@ -1717,7 +1738,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-52">Chapter 52</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-52" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-52" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:52</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-52" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:52">#</a>
@@ -1737,7 +1758,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-53">Chapter 53</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-53" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-53" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:53</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-53" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:53">#</a>
@@ -1757,7 +1778,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-54">Chapter 54</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-54" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-54" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:54</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-54" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:54">#</a>
@@ -1777,7 +1798,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-55">Chapter 55</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-55" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-55" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:55</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-55" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:55">#</a>
@@ -1797,7 +1818,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-56">Chapter 56</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-56" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-56" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:56</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-56" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:56">#</a>
@@ -1817,7 +1838,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-57">Chapter 57</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-57" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-57" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:57</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-57" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:57">#</a>
@@ -1837,7 +1858,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-58">Chapter 58</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-58" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-58" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:58</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-58" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:58">#</a>
@@ -1857,7 +1878,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-59">Chapter 59</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-59" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-59" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:59</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-59" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:59">#</a>
@@ -1877,7 +1898,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-60">Chapter 60</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-60" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-60" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:60</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-60" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:60">#</a>
@@ -1897,7 +1918,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-61">Chapter 61</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-61" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-61" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:61</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-61" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:61">#</a>
@@ -1917,7 +1938,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-62">Chapter 62</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-62" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-62" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:62</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-62" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:62">#</a>
@@ -1937,7 +1958,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-63">Chapter 63</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-63" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-63" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:63</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-63" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:63">#</a>
@@ -1957,7 +1978,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-64">Chapter 64</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-64" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-64" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:64</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-64" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:64">#</a>
@@ -1977,7 +1998,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-65">Chapter 65</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-65" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-65" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:65</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-65" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:65">#</a>
@@ -1997,7 +2018,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-66">Chapter 66</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-66" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-66" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:66</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-66" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:66">#</a>
@@ -2017,7 +2038,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-67">Chapter 67</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-67" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-67" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:67</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-67" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:67">#</a>
@@ -2037,7 +2058,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-68">Chapter 68</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-68" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-68" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:68</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-68" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:68">#</a>
@@ -2057,7 +2078,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-69">Chapter 69</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-69" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-69" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:69</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-69" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:69">#</a>
@@ -2077,7 +2098,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-70">Chapter 70</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-70" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-70" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:70</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-70" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:70">#</a>
@@ -2097,7 +2118,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-71">Chapter 71</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-71" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-71" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:71</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-71" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:71">#</a>
@@ -2117,7 +2138,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-72">Chapter 72</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-72" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-72" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:72</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-72" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:72">#</a>
@@ -2137,7 +2158,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-73">Chapter 73</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-73" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-73" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:73</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-73" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:73">#</a>
@@ -2157,7 +2178,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-74">Chapter 74</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-74" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-74" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:74</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-74" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:74">#</a>
@@ -2177,7 +2198,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-75">Chapter 75</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-75" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-75" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:75</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-75" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:75">#</a>
@@ -2197,7 +2218,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-76">Chapter 76</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-76" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-76" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:76</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-76" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:76">#</a>
@@ -2217,7 +2238,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-77">Chapter 77</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-77" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-77" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:77</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-77" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:77">#</a>
@@ -2237,7 +2258,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-78">Chapter 78</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-78" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-78" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:78</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-78" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:78">#</a>
@@ -2257,7 +2278,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-79">Chapter 79</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-79" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-79" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:79</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-79" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:79">#</a>
@@ -2277,7 +2298,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-80">Chapter 80</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-80" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-80" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:80</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-80" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:80">#</a>
@@ -2297,7 +2318,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-81">Chapter 81</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-81" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-81" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:81</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-81" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:81">#</a>
@@ -2317,7 +2338,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-82">Chapter 82</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-82" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-82" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:82</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-82" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:82">#</a>
@@ -2337,7 +2358,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-83">Chapter 83</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-83" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-83" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:83</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-83" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:83">#</a>
@@ -2357,7 +2378,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-84">Chapter 84</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-84" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-84" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:84</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-84" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:84">#</a>
@@ -2377,7 +2398,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-85">Chapter 85</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-85" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-85" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:85</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-85" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:85">#</a>
@@ -2397,7 +2418,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-86">Chapter 86</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-86" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-86" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:86</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-86" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:86">#</a>
@@ -2417,7 +2438,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-87">Chapter 87</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-87" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-87" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:87</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-87" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:87">#</a>
@@ -2437,7 +2458,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-88">Chapter 88</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-88" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-88" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:88</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-88" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:88">#</a>
@@ -2457,7 +2478,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-89">Chapter 89</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-89" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-89" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:89</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-89" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:89">#</a>
@@ -2477,7 +2498,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-90">Chapter 90</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-90" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-90" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:90</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-90" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:90">#</a>
@@ -2497,7 +2518,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-91">Chapter 91</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-91" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-91" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:91</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-91" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:91">#</a>
@@ -2517,7 +2538,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-92">Chapter 92</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-92" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-92" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:92</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-92" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:92">#</a>
@@ -2537,7 +2558,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-93">Chapter 93</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-93" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-93" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:93</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-93" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:93">#</a>
@@ -2557,7 +2578,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-94">Chapter 94</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-94" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-94" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:94</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-94" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:94">#</a>
@@ -2577,7 +2598,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-95">Chapter 95</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-95" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-95" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:95</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-95" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:95">#</a>
@@ -2597,7 +2618,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-96">Chapter 96</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-96" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-96" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:96</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-96" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:96">#</a>
@@ -2617,7 +2638,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-97">Chapter 97</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-97" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-97" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:97</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-97" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:97">#</a>
@@ -2637,7 +2658,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-98">Chapter 98</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-98" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-98" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:98</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-98" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:98">#</a>
@@ -2657,7 +2678,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-99">Chapter 99</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-99" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-99" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:99</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-99" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:99">#</a>
@@ -2677,7 +2698,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-100">Chapter 100</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-100" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-100" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:100</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-100" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:100">#</a>
@@ -2697,7 +2718,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-101">Chapter 101</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-101" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-101" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:101</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-101" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:101">#</a>
@@ -2717,7 +2738,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-102">Chapter 102</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-102" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-102" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:102</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-102" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:102">#</a>
@@ -2737,7 +2758,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-103">Chapter 103</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-103" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-103" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:103</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-103" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:103">#</a>
@@ -2757,7 +2778,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-104">Chapter 104</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-104" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-104" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:104</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-104" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:104">#</a>
@@ -2777,7 +2798,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-105">Chapter 105</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-105" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-105" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:105</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-105" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:105">#</a>
@@ -2797,7 +2818,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-106">Chapter 106</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-106" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-106" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:106</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-106" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:106">#</a>
@@ -2817,7 +2838,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-107">Chapter 107</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-107" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-107" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:107</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-107" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:107">#</a>
@@ -2837,7 +2858,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-108">Chapter 108</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-108" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-108" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:108</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-108" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:108">#</a>
@@ -2857,7 +2878,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-109">Chapter 109</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-109" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-109" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:109</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-109" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:109">#</a>
@@ -2877,7 +2898,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-110">Chapter 110</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-110" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-110" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:110</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-110" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:110">#</a>
@@ -2897,7 +2918,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-111">Chapter 111</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-111" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-111" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:111</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-111" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:111">#</a>
@@ -2917,7 +2938,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-112">Chapter 112</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-112" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-112" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:112</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-112" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:112">#</a>
@@ -2937,7 +2958,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-113">Chapter 113</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-113" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-113" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:113</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-113" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:113">#</a>
@@ -2957,7 +2978,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-114">Chapter 114</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-114" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-114" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:114</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-114" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:114">#</a>
@@ -2977,7 +2998,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-115">Chapter 115</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-115" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-115" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:115</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-115" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:115">#</a>
@@ -2997,7 +3018,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-116">Chapter 116</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-116" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-116" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:116</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-116" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:116">#</a>
@@ -3017,7 +3038,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-117">Chapter 117</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-117" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-117" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:117</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-117" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:117">#</a>
@@ -3037,7 +3058,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-118">Chapter 118</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-118" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-118" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:118</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-118" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:118">#</a>
@@ -3057,7 +3078,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-119">Chapter 119</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-119" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-119" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:119</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-119" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:119">#</a>
@@ -3077,7 +3098,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-120">Chapter 120</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-120" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-120" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:120</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-120" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:120">#</a>
@@ -3097,7 +3118,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-121">Chapter 121</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-121" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-121" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:121</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-121" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:121">#</a>
@@ -3117,7 +3138,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-122">Chapter 122</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-122" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-122" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:122</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-122" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:122">#</a>
@@ -3137,7 +3158,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-123">Chapter 123</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-123" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-123" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:123</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-123" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:123">#</a>
@@ -3157,7 +3178,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-124">Chapter 124</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-124" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-124" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:124</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-124" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:124">#</a>
@@ -3177,7 +3198,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-125">Chapter 125</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-125" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-125" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:125</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-125" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:125">#</a>
@@ -3197,7 +3218,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-126">Chapter 126</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-126" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-126" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:126</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-126" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:126">#</a>
@@ -3217,7 +3238,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-127">Chapter 127</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-127" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-127" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:127</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-127" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:127">#</a>
@@ -3237,7 +3258,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-128">Chapter 128</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-128" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-128" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:128</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-128" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:128">#</a>
@@ -3257,7 +3278,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-129">Chapter 129</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-129" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-129" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:129</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-129" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:129">#</a>
@@ -3277,7 +3298,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-130">Chapter 130</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-130" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-130" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:130</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-130" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:130">#</a>
@@ -3297,7 +3318,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-131">Chapter 131</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-131" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-131" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:131</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-131" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:131">#</a>
@@ -3317,7 +3338,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-132">Chapter 132</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-132" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-132" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:132</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-132" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:132">#</a>
@@ -3337,7 +3358,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-133">Chapter 133</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-133" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-133" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:133</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-133" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:133">#</a>
@@ -3357,7 +3378,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-134">Chapter 134</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-134" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-134" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:134</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-134" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:134">#</a>
@@ -3377,7 +3398,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-135">Chapter 135</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-135" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-135" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:135</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-135" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:135">#</a>
@@ -3397,7 +3418,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-136">Chapter 136</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-136" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-136" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:136</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-136" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:136">#</a>
@@ -3417,7 +3438,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-137">Chapter 137</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-137" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-137" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:137</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-137" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:137">#</a>
@@ -3437,7 +3458,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-138">Chapter 138</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-138" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-138" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:138</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-138" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:138">#</a>
@@ -3457,7 +3478,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-139">Chapter 139</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-139" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-139" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:139</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-139" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:139">#</a>
@@ -3477,7 +3498,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-140">Chapter 140</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-140" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-140" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:140</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-140" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:140">#</a>
@@ -3497,7 +3518,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-141">Chapter 141</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-141" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-141" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:141</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-141" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:141">#</a>
@@ -3517,7 +3538,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-142">Chapter 142</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-142" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-142" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:142</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-142" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:142">#</a>
@@ -3537,7 +3558,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-143">Chapter 143</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-143" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-143" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:143</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-143" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:143">#</a>
@@ -3557,7 +3578,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-144">Chapter 144</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-144" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-144" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:144</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-144" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:144">#</a>
@@ -3577,7 +3598,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-145">Chapter 145</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-145" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-145" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:145</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-145" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:145">#</a>
@@ -3597,7 +3618,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-146">Chapter 146</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-146" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-146" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:146</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-146" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:146">#</a>
@@ -3617,7 +3638,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-147">Chapter 147</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-147" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-147" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:147</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-147" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:147">#</a>
@@ -3637,7 +3658,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-148">Chapter 148</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-148" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-148" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:148</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-148" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:148">#</a>
@@ -3657,7 +3678,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-149">Chapter 149</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-149" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-149" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:149</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-149" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:149">#</a>
@@ -3677,7 +3698,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-150">Chapter 150</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-150" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-150" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:150</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-150" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:150">#</a>
@@ -3697,7 +3718,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-151">Chapter 151</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-151" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-151" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:151</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-151" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:151">#</a>
@@ -3717,7 +3738,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-152">Chapter 152</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-152" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-152" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:152</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-152" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:152">#</a>
@@ -3737,7 +3758,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-153">Chapter 153</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-153" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-153" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:153</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-153" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:153">#</a>
@@ -3757,7 +3778,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-154">Chapter 154</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-154" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-154" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:154</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-154" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:154">#</a>
@@ -3777,7 +3798,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-155">Chapter 155</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-155" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-155" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:155</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-155" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:155">#</a>
@@ -3797,7 +3818,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-156">Chapter 156</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-156" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-156" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:156</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-156" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:156">#</a>
@@ -3817,7 +3838,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-157">Chapter 157</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-157" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-157" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:157</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-157" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:157">#</a>
@@ -3837,7 +3858,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-158">Chapter 158</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-158" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-158" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:158</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-158" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:158">#</a>
@@ -3857,7 +3878,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-159">Chapter 159</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-159" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-159" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:159</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-159" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:159">#</a>
@@ -3877,7 +3898,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-160">Chapter 160</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-160" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-160" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:160</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-160" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:160">#</a>
@@ -3897,7 +3918,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-161">Chapter 161</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-161" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-161" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:161</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-161" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:161">#</a>
@@ -3917,7 +3938,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-162">Chapter 162</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-162" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-162" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:162</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-162" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:162">#</a>
@@ -3937,7 +3958,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-163">Chapter 163</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-163" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-163" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:163</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-163" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:163">#</a>
@@ -3957,7 +3978,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-164">Chapter 164</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-164" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-164" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:164</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-164" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:164">#</a>
@@ -3977,7 +3998,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-165">Chapter 165</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-165" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-165" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:165</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-165" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:165">#</a>
@@ -3997,7 +4018,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-166">Chapter 166</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-166" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-166" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:166</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-166" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:166">#</a>
@@ -4017,7 +4038,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-167">Chapter 167</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-167" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-167" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:167</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-167" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:167">#</a>
@@ -4037,7 +4058,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-168">Chapter 168</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-168" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-168" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:168</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-168" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:168">#</a>
@@ -4057,7 +4078,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-169">Chapter 169</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-169" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-169" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:169</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-169" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:169">#</a>
@@ -4077,7 +4098,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-170">Chapter 170</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-170" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-170" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:170</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-170" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:170">#</a>
@@ -4097,7 +4118,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-171">Chapter 171</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-171" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-171" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:171</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-171" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:171">#</a>
@@ -4117,7 +4138,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-172">Chapter 172</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-172" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-172" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:172</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-172" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:172">#</a>
@@ -4137,7 +4158,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-173">Chapter 173</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-173" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-173" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:173</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-173" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:173">#</a>
@@ -4157,7 +4178,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-174">Chapter 174</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-174" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-174" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:174</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-174" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:174">#</a>
@@ -4177,7 +4198,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-175">Chapter 175</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-175" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-175" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:175</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-175" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:175">#</a>
@@ -4197,7 +4218,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-176">Chapter 176</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-176" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-176" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:176</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-176" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:176">#</a>
@@ -4217,7 +4238,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-177">Chapter 177</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-177" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-177" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:177</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-177" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:177">#</a>
@@ -4237,7 +4258,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-178">Chapter 178</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-178" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-178" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:178</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-178" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:178">#</a>
@@ -4257,7 +4278,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-179">Chapter 179</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-179" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-179" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:179</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-179" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:179">#</a>
@@ -4277,7 +4298,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-180">Chapter 180</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-180" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-180" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:180</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-180" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:180">#</a>
@@ -4297,7 +4318,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-181">Chapter 181</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-181" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-181" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:181</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-181" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:181">#</a>
@@ -4317,7 +4338,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-182">Chapter 182</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-182" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-182" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:182</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-182" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:182">#</a>
@@ -4337,7 +4358,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-183">Chapter 183</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-183" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-183" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:183</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-183" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:183">#</a>
@@ -4357,7 +4378,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-184">Chapter 184</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-184" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-184" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:184</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-184" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:184">#</a>
@@ -4377,7 +4398,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-185">Chapter 185</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-185" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-185" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:185</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-185" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:185">#</a>
@@ -4397,7 +4418,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-186">Chapter 186</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-186" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-186" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:186</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-186" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:186">#</a>
@@ -4417,7 +4438,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-187">Chapter 187</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-187" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-187" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:187</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-187" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:187">#</a>
@@ -4437,7 +4458,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-188">Chapter 188</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-188" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-188" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:188</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-188" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:188">#</a>
@@ -4457,7 +4478,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-189">Chapter 189</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-189" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-189" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:189</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-189" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:189">#</a>
@@ -4477,7 +4498,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-190">Chapter 190</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-190" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-190" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:190</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-190" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:190">#</a>
@@ -4497,7 +4518,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-191">Chapter 191</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-191" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-191" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:191</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-191" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:191">#</a>
@@ -4517,7 +4538,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-192">Chapter 192</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-192" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-192" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:192</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-192" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:192">#</a>
@@ -4537,7 +4558,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-193">Chapter 193</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-193" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-193" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:193</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-193" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:193">#</a>
@@ -4557,7 +4578,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-194">Chapter 194</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-194" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-194" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:194</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-194" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:194">#</a>
@@ -4577,7 +4598,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-195">Chapter 195</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-195" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-195" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:195</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-195" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:195">#</a>
@@ -4597,7 +4618,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-196">Chapter 196</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-196" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-196" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:196</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-196" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:196">#</a>
@@ -4617,7 +4638,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-197">Chapter 197</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-197" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-197" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:197</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-197" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:197">#</a>
@@ -4637,7 +4658,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-198">Chapter 198</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-198" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-198" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:198</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-198" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:198">#</a>
@@ -4657,7 +4678,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-199">Chapter 199</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-199" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-199" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:199</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-199" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:199">#</a>
@@ -4677,7 +4698,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-200">Chapter 200</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-200" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-200" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:200</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-200" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:200">#</a>
@@ -4697,7 +4718,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-201">Chapter 201</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-201" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-201" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:201</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-201" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:201">#</a>
@@ -4717,7 +4738,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-202">Chapter 202</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-202" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-202" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:202</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-202" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:202">#</a>
@@ -4737,7 +4758,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-203">Chapter 203</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-203" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-203" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:203</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-203" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:203">#</a>
@@ -4757,7 +4778,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-204">Chapter 204</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-204" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-204" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:204</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-204" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:204">#</a>
@@ -4777,7 +4798,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-205">Chapter 205</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-205" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-205" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:205</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-205" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:205">#</a>
@@ -4797,7 +4818,7 @@
             </div>
           </section>
           <h4 id="chapter-addenda-addenda-206">Chapter 206</h4>
-          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-206" data-unit>
+          <section class="unit" id="yahel-ohr-on-zohar-addenda-addenda-206" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yahel Ohr on Zohar, Addenda:206</h4></div>
               <a class="anchor" href="#yahel-ohr-on-zohar-addenda-addenda-206" aria-label="Copy link to Yahel Ohr on Zohar, Addenda:206">#</a>
@@ -4820,5 +4841,38 @@
       </div>
     </div>
   </main>
+  <script>
+    (() => {
+      const units = Array.from(document.querySelectorAll("[data-unit]"));
+      const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
+      const nextButton = document.querySelector("[data-next-not-done]");
+      let currentFilter = "all";
+      const matchesFilter = (unit, filter) => {
+        const done = unit.dataset.complete === "true";
+        return filter === "all" || (filter === "done" && done) || (filter === "not-done" && !done);
+      };
+      const applyFilter = (filter) => {
+        currentFilter = filter;
+        units.forEach((unit) => { unit.hidden = !matchesFilter(unit, filter); });
+        filterButtons.forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
+        });
+      };
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => applyFilter(button.dataset.filter));
+      });
+      if (nextButton) {
+        nextButton.addEventListener("click", () => {
+          const incomplete = units.filter((unit) => unit.dataset.complete !== "true");
+          if (!incomplete.length) return;
+          if (currentFilter === "done") applyFilter("not-done");
+          const currentY = window.scrollY + 12;
+          const target = incomplete.find((unit) => unit.getBoundingClientRect().top + window.scrollY > currentY) || incomplete[0];
+          if (target.id) history.replaceState(null, "", "#" + target.id);
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

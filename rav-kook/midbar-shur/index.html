@@ -21,11 +21,21 @@
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
     .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .progress-panel { margin-top: 14px; border: 1px solid var(--line); background: rgba(20,24,31,0.58); padding: 12px; }
+    .progress-summary { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; color: var(--muted); font-size: 0.92rem; }
+    .progress-summary strong { color: var(--text); font-weight: 400; }
+    .progress-meter { height: 5px; margin-top: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); overflow: hidden; }
+    .progress-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+    .progress-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .filter-button { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 6px 10px; font: inherit; cursor: pointer; }
+    .filter-button[aria-pressed="true"], .filter-button:hover { color: var(--text); border-color: var(--accent); background: rgba(214,190,138,0.08); }
+    .filter-button:disabled { cursor: default; opacity: 0.45; }
     .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
     .home-section { margin-top: 26px; }
     .home-section:first-child { margin-top: 0; }
     .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
     .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
     .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }
     .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
     .toc ul { list-style: none; padding: 0; margin: 0; }
@@ -33,6 +43,7 @@
     .toc a { text-decoration: none; font-size: 0.94rem; }
     .section-block { margin-bottom: 10px; }
     .unit { border-top: 1px solid var(--line); padding: 16px 0; }
+    .unit[hidden] { display: none; }
     .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
     .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
@@ -66,13 +77,23 @@
           <a class="export-button" href="overlay-export.json" download>JSON</a>
           <a class="export-button" href="overlay-export.md" download>Markdown</a>
         </div>
+        <div class="progress-panel" data-progress-panel>
+          <div class="progress-summary"><span>Progress</span><strong>0 / 243 done</strong><span>0% complete</span></div>
+          <div class="progress-meter" aria-label="0% complete"><span style="width:0%"></span></div>
+          <div class="progress-controls" aria-label="Progress filters">
+            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Done</button>
+            <button class="filter-button" type="button" data-filter="not-done" aria-pressed="false">Not done</button>
+            <button class="filter-button" type="button" data-next-not-done>Next not done</button>
+          </div>
+        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
         </nav>
         <article>
           <h4 id="chapter-midbar-shur-text-1">Chapter 1</h4>
-          <section class="unit" id="midbar-shur-1-1" data-unit>
+          <section class="unit" id="midbar-shur-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 1:1</h4></div>
               <a class="anchor" href="#midbar-shur-1-1" aria-label="Copy link to Midbar Shur 1:1">#</a>
@@ -91,7 +112,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-1-2" data-unit>
+          <section class="unit" id="midbar-shur-1-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 1:2</h4></div>
               <a class="anchor" href="#midbar-shur-1-2" aria-label="Copy link to Midbar Shur 1:2">#</a>
@@ -110,7 +131,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-1-3" data-unit>
+          <section class="unit" id="midbar-shur-1-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 1:3</h4></div>
               <a class="anchor" href="#midbar-shur-1-3" aria-label="Copy link to Midbar Shur 1:3">#</a>
@@ -129,7 +150,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-1-4" data-unit>
+          <section class="unit" id="midbar-shur-1-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 1:4</h4></div>
               <a class="anchor" href="#midbar-shur-1-4" aria-label="Copy link to Midbar Shur 1:4">#</a>
@@ -148,7 +169,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-1-5" data-unit>
+          <section class="unit" id="midbar-shur-1-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 1:5</h4></div>
               <a class="anchor" href="#midbar-shur-1-5" aria-label="Copy link to Midbar Shur 1:5">#</a>
@@ -167,7 +188,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-1-6" data-unit>
+          <section class="unit" id="midbar-shur-1-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 1:6</h4></div>
               <a class="anchor" href="#midbar-shur-1-6" aria-label="Copy link to Midbar Shur 1:6">#</a>
@@ -186,7 +207,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-1-7" data-unit>
+          <section class="unit" id="midbar-shur-1-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 1:7</h4></div>
               <a class="anchor" href="#midbar-shur-1-7" aria-label="Copy link to Midbar Shur 1:7">#</a>
@@ -205,7 +226,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-1-8" data-unit>
+          <section class="unit" id="midbar-shur-1-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 1:8</h4></div>
               <a class="anchor" href="#midbar-shur-1-8" aria-label="Copy link to Midbar Shur 1:8">#</a>
@@ -224,7 +245,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-1-9" data-unit>
+          <section class="unit" id="midbar-shur-1-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 1:9</h4></div>
               <a class="anchor" href="#midbar-shur-1-9" aria-label="Copy link to Midbar Shur 1:9">#</a>
@@ -243,7 +264,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-1-10" data-unit>
+          <section class="unit" id="midbar-shur-1-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 1:10</h4></div>
               <a class="anchor" href="#midbar-shur-1-10" aria-label="Copy link to Midbar Shur 1:10">#</a>
@@ -262,7 +283,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-1-11" data-unit>
+          <section class="unit" id="midbar-shur-1-11" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 1:11</h4></div>
               <a class="anchor" href="#midbar-shur-1-11" aria-label="Copy link to Midbar Shur 1:11">#</a>
@@ -281,7 +302,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-1-12" data-unit>
+          <section class="unit" id="midbar-shur-1-12" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 1:12</h4></div>
               <a class="anchor" href="#midbar-shur-1-12" aria-label="Copy link to Midbar Shur 1:12">#</a>
@@ -301,7 +322,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-2">Chapter 2</h4>
-          <section class="unit" id="midbar-shur-2-1" data-unit>
+          <section class="unit" id="midbar-shur-2-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 2:1</h4></div>
               <a class="anchor" href="#midbar-shur-2-1" aria-label="Copy link to Midbar Shur 2:1">#</a>
@@ -320,7 +341,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-2-2" data-unit>
+          <section class="unit" id="midbar-shur-2-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 2:2</h4></div>
               <a class="anchor" href="#midbar-shur-2-2" aria-label="Copy link to Midbar Shur 2:2">#</a>
@@ -339,7 +360,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-2-3" data-unit>
+          <section class="unit" id="midbar-shur-2-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 2:3</h4></div>
               <a class="anchor" href="#midbar-shur-2-3" aria-label="Copy link to Midbar Shur 2:3">#</a>
@@ -359,7 +380,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-3">Chapter 3</h4>
-          <section class="unit" id="midbar-shur-3-1" data-unit>
+          <section class="unit" id="midbar-shur-3-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 3:1</h4></div>
               <a class="anchor" href="#midbar-shur-3-1" aria-label="Copy link to Midbar Shur 3:1">#</a>
@@ -378,7 +399,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-3-2" data-unit>
+          <section class="unit" id="midbar-shur-3-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 3:2</h4></div>
               <a class="anchor" href="#midbar-shur-3-2" aria-label="Copy link to Midbar Shur 3:2">#</a>
@@ -397,7 +418,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-3-3" data-unit>
+          <section class="unit" id="midbar-shur-3-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 3:3</h4></div>
               <a class="anchor" href="#midbar-shur-3-3" aria-label="Copy link to Midbar Shur 3:3">#</a>
@@ -416,7 +437,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-3-4" data-unit>
+          <section class="unit" id="midbar-shur-3-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 3:4</h4></div>
               <a class="anchor" href="#midbar-shur-3-4" aria-label="Copy link to Midbar Shur 3:4">#</a>
@@ -436,7 +457,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-4">Chapter 4</h4>
-          <section class="unit" id="midbar-shur-4-1" data-unit>
+          <section class="unit" id="midbar-shur-4-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 4:1</h4></div>
               <a class="anchor" href="#midbar-shur-4-1" aria-label="Copy link to Midbar Shur 4:1">#</a>
@@ -455,7 +476,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-4-2" data-unit>
+          <section class="unit" id="midbar-shur-4-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 4:2</h4></div>
               <a class="anchor" href="#midbar-shur-4-2" aria-label="Copy link to Midbar Shur 4:2">#</a>
@@ -474,7 +495,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-4-3" data-unit>
+          <section class="unit" id="midbar-shur-4-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 4:3</h4></div>
               <a class="anchor" href="#midbar-shur-4-3" aria-label="Copy link to Midbar Shur 4:3">#</a>
@@ -493,7 +514,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-4-4" data-unit>
+          <section class="unit" id="midbar-shur-4-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 4:4</h4></div>
               <a class="anchor" href="#midbar-shur-4-4" aria-label="Copy link to Midbar Shur 4:4">#</a>
@@ -512,7 +533,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-4-5" data-unit>
+          <section class="unit" id="midbar-shur-4-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 4:5</h4></div>
               <a class="anchor" href="#midbar-shur-4-5" aria-label="Copy link to Midbar Shur 4:5">#</a>
@@ -531,7 +552,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-4-6" data-unit>
+          <section class="unit" id="midbar-shur-4-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 4:6</h4></div>
               <a class="anchor" href="#midbar-shur-4-6" aria-label="Copy link to Midbar Shur 4:6">#</a>
@@ -551,7 +572,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-5">Chapter 5</h4>
-          <section class="unit" id="midbar-shur-5-1" data-unit>
+          <section class="unit" id="midbar-shur-5-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 5:1</h4></div>
               <a class="anchor" href="#midbar-shur-5-1" aria-label="Copy link to Midbar Shur 5:1">#</a>
@@ -570,7 +591,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-5-2" data-unit>
+          <section class="unit" id="midbar-shur-5-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 5:2</h4></div>
               <a class="anchor" href="#midbar-shur-5-2" aria-label="Copy link to Midbar Shur 5:2">#</a>
@@ -589,7 +610,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-5-3" data-unit>
+          <section class="unit" id="midbar-shur-5-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 5:3</h4></div>
               <a class="anchor" href="#midbar-shur-5-3" aria-label="Copy link to Midbar Shur 5:3">#</a>
@@ -608,7 +629,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-5-4" data-unit>
+          <section class="unit" id="midbar-shur-5-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 5:4</h4></div>
               <a class="anchor" href="#midbar-shur-5-4" aria-label="Copy link to Midbar Shur 5:4">#</a>
@@ -628,7 +649,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-6">Chapter 6</h4>
-          <section class="unit" id="midbar-shur-6-1" data-unit>
+          <section class="unit" id="midbar-shur-6-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 6:1</h4></div>
               <a class="anchor" href="#midbar-shur-6-1" aria-label="Copy link to Midbar Shur 6:1">#</a>
@@ -647,7 +668,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-6-2" data-unit>
+          <section class="unit" id="midbar-shur-6-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 6:2</h4></div>
               <a class="anchor" href="#midbar-shur-6-2" aria-label="Copy link to Midbar Shur 6:2">#</a>
@@ -667,7 +688,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-7">Chapter 7</h4>
-          <section class="unit" id="midbar-shur-7-1" data-unit>
+          <section class="unit" id="midbar-shur-7-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 7:1</h4></div>
               <a class="anchor" href="#midbar-shur-7-1" aria-label="Copy link to Midbar Shur 7:1">#</a>
@@ -686,7 +707,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-7-2" data-unit>
+          <section class="unit" id="midbar-shur-7-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 7:2</h4></div>
               <a class="anchor" href="#midbar-shur-7-2" aria-label="Copy link to Midbar Shur 7:2">#</a>
@@ -705,7 +726,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-7-3" data-unit>
+          <section class="unit" id="midbar-shur-7-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 7:3</h4></div>
               <a class="anchor" href="#midbar-shur-7-3" aria-label="Copy link to Midbar Shur 7:3">#</a>
@@ -724,7 +745,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-7-4" data-unit>
+          <section class="unit" id="midbar-shur-7-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 7:4</h4></div>
               <a class="anchor" href="#midbar-shur-7-4" aria-label="Copy link to Midbar Shur 7:4">#</a>
@@ -744,7 +765,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-8">Chapter 8</h4>
-          <section class="unit" id="midbar-shur-8-1" data-unit>
+          <section class="unit" id="midbar-shur-8-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 8:1</h4></div>
               <a class="anchor" href="#midbar-shur-8-1" aria-label="Copy link to Midbar Shur 8:1">#</a>
@@ -763,7 +784,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-8-2" data-unit>
+          <section class="unit" id="midbar-shur-8-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 8:2</h4></div>
               <a class="anchor" href="#midbar-shur-8-2" aria-label="Copy link to Midbar Shur 8:2">#</a>
@@ -782,7 +803,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-8-3" data-unit>
+          <section class="unit" id="midbar-shur-8-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 8:3</h4></div>
               <a class="anchor" href="#midbar-shur-8-3" aria-label="Copy link to Midbar Shur 8:3">#</a>
@@ -801,7 +822,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-8-4" data-unit>
+          <section class="unit" id="midbar-shur-8-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 8:4</h4></div>
               <a class="anchor" href="#midbar-shur-8-4" aria-label="Copy link to Midbar Shur 8:4">#</a>
@@ -820,7 +841,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-8-5" data-unit>
+          <section class="unit" id="midbar-shur-8-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 8:5</h4></div>
               <a class="anchor" href="#midbar-shur-8-5" aria-label="Copy link to Midbar Shur 8:5">#</a>
@@ -839,7 +860,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-8-6" data-unit>
+          <section class="unit" id="midbar-shur-8-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 8:6</h4></div>
               <a class="anchor" href="#midbar-shur-8-6" aria-label="Copy link to Midbar Shur 8:6">#</a>
@@ -858,7 +879,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-8-7" data-unit>
+          <section class="unit" id="midbar-shur-8-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 8:7</h4></div>
               <a class="anchor" href="#midbar-shur-8-7" aria-label="Copy link to Midbar Shur 8:7">#</a>
@@ -877,7 +898,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-8-8" data-unit>
+          <section class="unit" id="midbar-shur-8-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 8:8</h4></div>
               <a class="anchor" href="#midbar-shur-8-8" aria-label="Copy link to Midbar Shur 8:8">#</a>
@@ -896,7 +917,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-8-9" data-unit>
+          <section class="unit" id="midbar-shur-8-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 8:9</h4></div>
               <a class="anchor" href="#midbar-shur-8-9" aria-label="Copy link to Midbar Shur 8:9">#</a>
@@ -916,7 +937,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-9">Chapter 9</h4>
-          <section class="unit" id="midbar-shur-9-1" data-unit>
+          <section class="unit" id="midbar-shur-9-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 9:1</h4></div>
               <a class="anchor" href="#midbar-shur-9-1" aria-label="Copy link to Midbar Shur 9:1">#</a>
@@ -935,7 +956,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-9-2" data-unit>
+          <section class="unit" id="midbar-shur-9-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 9:2</h4></div>
               <a class="anchor" href="#midbar-shur-9-2" aria-label="Copy link to Midbar Shur 9:2">#</a>
@@ -954,7 +975,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-9-3" data-unit>
+          <section class="unit" id="midbar-shur-9-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 9:3</h4></div>
               <a class="anchor" href="#midbar-shur-9-3" aria-label="Copy link to Midbar Shur 9:3">#</a>
@@ -973,7 +994,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-9-4" data-unit>
+          <section class="unit" id="midbar-shur-9-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 9:4</h4></div>
               <a class="anchor" href="#midbar-shur-9-4" aria-label="Copy link to Midbar Shur 9:4">#</a>
@@ -992,7 +1013,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-9-5" data-unit>
+          <section class="unit" id="midbar-shur-9-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 9:5</h4></div>
               <a class="anchor" href="#midbar-shur-9-5" aria-label="Copy link to Midbar Shur 9:5">#</a>
@@ -1012,7 +1033,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-10">Chapter 10</h4>
-          <section class="unit" id="midbar-shur-10-1" data-unit>
+          <section class="unit" id="midbar-shur-10-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 10:1</h4></div>
               <a class="anchor" href="#midbar-shur-10-1" aria-label="Copy link to Midbar Shur 10:1">#</a>
@@ -1031,7 +1052,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-10-2" data-unit>
+          <section class="unit" id="midbar-shur-10-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 10:2</h4></div>
               <a class="anchor" href="#midbar-shur-10-2" aria-label="Copy link to Midbar Shur 10:2">#</a>
@@ -1050,7 +1071,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-10-3" data-unit>
+          <section class="unit" id="midbar-shur-10-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 10:3</h4></div>
               <a class="anchor" href="#midbar-shur-10-3" aria-label="Copy link to Midbar Shur 10:3">#</a>
@@ -1070,7 +1091,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-11">Chapter 11</h4>
-          <section class="unit" id="midbar-shur-11-1" data-unit>
+          <section class="unit" id="midbar-shur-11-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 11:1</h4></div>
               <a class="anchor" href="#midbar-shur-11-1" aria-label="Copy link to Midbar Shur 11:1">#</a>
@@ -1089,7 +1110,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-11-2" data-unit>
+          <section class="unit" id="midbar-shur-11-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 11:2</h4></div>
               <a class="anchor" href="#midbar-shur-11-2" aria-label="Copy link to Midbar Shur 11:2">#</a>
@@ -1108,7 +1129,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-11-3" data-unit>
+          <section class="unit" id="midbar-shur-11-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 11:3</h4></div>
               <a class="anchor" href="#midbar-shur-11-3" aria-label="Copy link to Midbar Shur 11:3">#</a>
@@ -1127,7 +1148,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-11-4" data-unit>
+          <section class="unit" id="midbar-shur-11-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 11:4</h4></div>
               <a class="anchor" href="#midbar-shur-11-4" aria-label="Copy link to Midbar Shur 11:4">#</a>
@@ -1146,7 +1167,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-11-5" data-unit>
+          <section class="unit" id="midbar-shur-11-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 11:5</h4></div>
               <a class="anchor" href="#midbar-shur-11-5" aria-label="Copy link to Midbar Shur 11:5">#</a>
@@ -1166,7 +1187,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-12">Chapter 12</h4>
-          <section class="unit" id="midbar-shur-12-1" data-unit>
+          <section class="unit" id="midbar-shur-12-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 12:1</h4></div>
               <a class="anchor" href="#midbar-shur-12-1" aria-label="Copy link to Midbar Shur 12:1">#</a>
@@ -1185,7 +1206,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-12-2" data-unit>
+          <section class="unit" id="midbar-shur-12-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 12:2</h4></div>
               <a class="anchor" href="#midbar-shur-12-2" aria-label="Copy link to Midbar Shur 12:2">#</a>
@@ -1205,7 +1226,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-13">Chapter 13</h4>
-          <section class="unit" id="midbar-shur-13-1" data-unit>
+          <section class="unit" id="midbar-shur-13-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 13:1</h4></div>
               <a class="anchor" href="#midbar-shur-13-1" aria-label="Copy link to Midbar Shur 13:1">#</a>
@@ -1224,7 +1245,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-13-2" data-unit>
+          <section class="unit" id="midbar-shur-13-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 13:2</h4></div>
               <a class="anchor" href="#midbar-shur-13-2" aria-label="Copy link to Midbar Shur 13:2">#</a>
@@ -1243,7 +1264,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-13-3" data-unit>
+          <section class="unit" id="midbar-shur-13-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 13:3</h4></div>
               <a class="anchor" href="#midbar-shur-13-3" aria-label="Copy link to Midbar Shur 13:3">#</a>
@@ -1262,7 +1283,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-13-4" data-unit>
+          <section class="unit" id="midbar-shur-13-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 13:4</h4></div>
               <a class="anchor" href="#midbar-shur-13-4" aria-label="Copy link to Midbar Shur 13:4">#</a>
@@ -1281,7 +1302,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-13-5" data-unit>
+          <section class="unit" id="midbar-shur-13-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 13:5</h4></div>
               <a class="anchor" href="#midbar-shur-13-5" aria-label="Copy link to Midbar Shur 13:5">#</a>
@@ -1301,7 +1322,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-14">Chapter 14</h4>
-          <section class="unit" id="midbar-shur-14-1" data-unit>
+          <section class="unit" id="midbar-shur-14-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 14:1</h4></div>
               <a class="anchor" href="#midbar-shur-14-1" aria-label="Copy link to Midbar Shur 14:1">#</a>
@@ -1320,7 +1341,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-14-2" data-unit>
+          <section class="unit" id="midbar-shur-14-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 14:2</h4></div>
               <a class="anchor" href="#midbar-shur-14-2" aria-label="Copy link to Midbar Shur 14:2">#</a>
@@ -1339,7 +1360,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-14-3" data-unit>
+          <section class="unit" id="midbar-shur-14-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 14:3</h4></div>
               <a class="anchor" href="#midbar-shur-14-3" aria-label="Copy link to Midbar Shur 14:3">#</a>
@@ -1358,7 +1379,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-14-4" data-unit>
+          <section class="unit" id="midbar-shur-14-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 14:4</h4></div>
               <a class="anchor" href="#midbar-shur-14-4" aria-label="Copy link to Midbar Shur 14:4">#</a>
@@ -1377,7 +1398,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-14-5" data-unit>
+          <section class="unit" id="midbar-shur-14-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 14:5</h4></div>
               <a class="anchor" href="#midbar-shur-14-5" aria-label="Copy link to Midbar Shur 14:5">#</a>
@@ -1396,7 +1417,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-14-6" data-unit>
+          <section class="unit" id="midbar-shur-14-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 14:6</h4></div>
               <a class="anchor" href="#midbar-shur-14-6" aria-label="Copy link to Midbar Shur 14:6">#</a>
@@ -1415,7 +1436,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-14-7" data-unit>
+          <section class="unit" id="midbar-shur-14-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 14:7</h4></div>
               <a class="anchor" href="#midbar-shur-14-7" aria-label="Copy link to Midbar Shur 14:7">#</a>
@@ -1435,7 +1456,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-15">Chapter 15</h4>
-          <section class="unit" id="midbar-shur-15-1" data-unit>
+          <section class="unit" id="midbar-shur-15-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 15:1</h4></div>
               <a class="anchor" href="#midbar-shur-15-1" aria-label="Copy link to Midbar Shur 15:1">#</a>
@@ -1454,7 +1475,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-15-2" data-unit>
+          <section class="unit" id="midbar-shur-15-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 15:2</h4></div>
               <a class="anchor" href="#midbar-shur-15-2" aria-label="Copy link to Midbar Shur 15:2">#</a>
@@ -1473,7 +1494,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-15-3" data-unit>
+          <section class="unit" id="midbar-shur-15-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 15:3</h4></div>
               <a class="anchor" href="#midbar-shur-15-3" aria-label="Copy link to Midbar Shur 15:3">#</a>
@@ -1492,7 +1513,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-15-4" data-unit>
+          <section class="unit" id="midbar-shur-15-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 15:4</h4></div>
               <a class="anchor" href="#midbar-shur-15-4" aria-label="Copy link to Midbar Shur 15:4">#</a>
@@ -1511,7 +1532,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-15-5" data-unit>
+          <section class="unit" id="midbar-shur-15-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 15:5</h4></div>
               <a class="anchor" href="#midbar-shur-15-5" aria-label="Copy link to Midbar Shur 15:5">#</a>
@@ -1530,7 +1551,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-15-6" data-unit>
+          <section class="unit" id="midbar-shur-15-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 15:6</h4></div>
               <a class="anchor" href="#midbar-shur-15-6" aria-label="Copy link to Midbar Shur 15:6">#</a>
@@ -1550,7 +1571,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-16">Chapter 16</h4>
-          <section class="unit" id="midbar-shur-16-1" data-unit>
+          <section class="unit" id="midbar-shur-16-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 16:1</h4></div>
               <a class="anchor" href="#midbar-shur-16-1" aria-label="Copy link to Midbar Shur 16:1">#</a>
@@ -1569,7 +1590,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-16-2" data-unit>
+          <section class="unit" id="midbar-shur-16-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 16:2</h4></div>
               <a class="anchor" href="#midbar-shur-16-2" aria-label="Copy link to Midbar Shur 16:2">#</a>
@@ -1588,7 +1609,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-16-3" data-unit>
+          <section class="unit" id="midbar-shur-16-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 16:3</h4></div>
               <a class="anchor" href="#midbar-shur-16-3" aria-label="Copy link to Midbar Shur 16:3">#</a>
@@ -1607,7 +1628,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-16-4" data-unit>
+          <section class="unit" id="midbar-shur-16-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 16:4</h4></div>
               <a class="anchor" href="#midbar-shur-16-4" aria-label="Copy link to Midbar Shur 16:4">#</a>
@@ -1626,7 +1647,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-16-5" data-unit>
+          <section class="unit" id="midbar-shur-16-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 16:5</h4></div>
               <a class="anchor" href="#midbar-shur-16-5" aria-label="Copy link to Midbar Shur 16:5">#</a>
@@ -1645,7 +1666,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-16-6" data-unit>
+          <section class="unit" id="midbar-shur-16-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 16:6</h4></div>
               <a class="anchor" href="#midbar-shur-16-6" aria-label="Copy link to Midbar Shur 16:6">#</a>
@@ -1664,7 +1685,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-16-7" data-unit>
+          <section class="unit" id="midbar-shur-16-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 16:7</h4></div>
               <a class="anchor" href="#midbar-shur-16-7" aria-label="Copy link to Midbar Shur 16:7">#</a>
@@ -1683,7 +1704,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-16-8" data-unit>
+          <section class="unit" id="midbar-shur-16-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 16:8</h4></div>
               <a class="anchor" href="#midbar-shur-16-8" aria-label="Copy link to Midbar Shur 16:8">#</a>
@@ -1702,7 +1723,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-16-9" data-unit>
+          <section class="unit" id="midbar-shur-16-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 16:9</h4></div>
               <a class="anchor" href="#midbar-shur-16-9" aria-label="Copy link to Midbar Shur 16:9">#</a>
@@ -1721,7 +1742,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-16-10" data-unit>
+          <section class="unit" id="midbar-shur-16-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 16:10</h4></div>
               <a class="anchor" href="#midbar-shur-16-10" aria-label="Copy link to Midbar Shur 16:10">#</a>
@@ -1740,7 +1761,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-16-11" data-unit>
+          <section class="unit" id="midbar-shur-16-11" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 16:11</h4></div>
               <a class="anchor" href="#midbar-shur-16-11" aria-label="Copy link to Midbar Shur 16:11">#</a>
@@ -1759,7 +1780,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-16-12" data-unit>
+          <section class="unit" id="midbar-shur-16-12" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 16:12</h4></div>
               <a class="anchor" href="#midbar-shur-16-12" aria-label="Copy link to Midbar Shur 16:12">#</a>
@@ -1778,7 +1799,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-16-13" data-unit>
+          <section class="unit" id="midbar-shur-16-13" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 16:13</h4></div>
               <a class="anchor" href="#midbar-shur-16-13" aria-label="Copy link to Midbar Shur 16:13">#</a>
@@ -1798,7 +1819,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-17">Chapter 17</h4>
-          <section class="unit" id="midbar-shur-17-1" data-unit>
+          <section class="unit" id="midbar-shur-17-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 17:1</h4></div>
               <a class="anchor" href="#midbar-shur-17-1" aria-label="Copy link to Midbar Shur 17:1">#</a>
@@ -1817,7 +1838,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-17-2" data-unit>
+          <section class="unit" id="midbar-shur-17-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 17:2</h4></div>
               <a class="anchor" href="#midbar-shur-17-2" aria-label="Copy link to Midbar Shur 17:2">#</a>
@@ -1836,7 +1857,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-17-3" data-unit>
+          <section class="unit" id="midbar-shur-17-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 17:3</h4></div>
               <a class="anchor" href="#midbar-shur-17-3" aria-label="Copy link to Midbar Shur 17:3">#</a>
@@ -1855,7 +1876,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-17-4" data-unit>
+          <section class="unit" id="midbar-shur-17-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 17:4</h4></div>
               <a class="anchor" href="#midbar-shur-17-4" aria-label="Copy link to Midbar Shur 17:4">#</a>
@@ -1874,7 +1895,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-17-5" data-unit>
+          <section class="unit" id="midbar-shur-17-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 17:5</h4></div>
               <a class="anchor" href="#midbar-shur-17-5" aria-label="Copy link to Midbar Shur 17:5">#</a>
@@ -1893,7 +1914,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-17-6" data-unit>
+          <section class="unit" id="midbar-shur-17-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 17:6</h4></div>
               <a class="anchor" href="#midbar-shur-17-6" aria-label="Copy link to Midbar Shur 17:6">#</a>
@@ -1913,7 +1934,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-18">Chapter 18</h4>
-          <section class="unit" id="midbar-shur-18-1" data-unit>
+          <section class="unit" id="midbar-shur-18-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 18:1</h4></div>
               <a class="anchor" href="#midbar-shur-18-1" aria-label="Copy link to Midbar Shur 18:1">#</a>
@@ -1932,7 +1953,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-18-2" data-unit>
+          <section class="unit" id="midbar-shur-18-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 18:2</h4></div>
               <a class="anchor" href="#midbar-shur-18-2" aria-label="Copy link to Midbar Shur 18:2">#</a>
@@ -1951,7 +1972,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-18-3" data-unit>
+          <section class="unit" id="midbar-shur-18-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 18:3</h4></div>
               <a class="anchor" href="#midbar-shur-18-3" aria-label="Copy link to Midbar Shur 18:3">#</a>
@@ -1971,7 +1992,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-19">Chapter 19</h4>
-          <section class="unit" id="midbar-shur-19-1" data-unit>
+          <section class="unit" id="midbar-shur-19-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 19:1</h4></div>
               <a class="anchor" href="#midbar-shur-19-1" aria-label="Copy link to Midbar Shur 19:1">#</a>
@@ -1990,7 +2011,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-19-2" data-unit>
+          <section class="unit" id="midbar-shur-19-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 19:2</h4></div>
               <a class="anchor" href="#midbar-shur-19-2" aria-label="Copy link to Midbar Shur 19:2">#</a>
@@ -2009,7 +2030,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-19-3" data-unit>
+          <section class="unit" id="midbar-shur-19-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 19:3</h4></div>
               <a class="anchor" href="#midbar-shur-19-3" aria-label="Copy link to Midbar Shur 19:3">#</a>
@@ -2028,7 +2049,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-19-4" data-unit>
+          <section class="unit" id="midbar-shur-19-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 19:4</h4></div>
               <a class="anchor" href="#midbar-shur-19-4" aria-label="Copy link to Midbar Shur 19:4">#</a>
@@ -2047,7 +2068,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-19-5" data-unit>
+          <section class="unit" id="midbar-shur-19-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 19:5</h4></div>
               <a class="anchor" href="#midbar-shur-19-5" aria-label="Copy link to Midbar Shur 19:5">#</a>
@@ -2066,7 +2087,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-19-6" data-unit>
+          <section class="unit" id="midbar-shur-19-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 19:6</h4></div>
               <a class="anchor" href="#midbar-shur-19-6" aria-label="Copy link to Midbar Shur 19:6">#</a>
@@ -2085,7 +2106,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-19-7" data-unit>
+          <section class="unit" id="midbar-shur-19-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 19:7</h4></div>
               <a class="anchor" href="#midbar-shur-19-7" aria-label="Copy link to Midbar Shur 19:7">#</a>
@@ -2104,7 +2125,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-19-8" data-unit>
+          <section class="unit" id="midbar-shur-19-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 19:8</h4></div>
               <a class="anchor" href="#midbar-shur-19-8" aria-label="Copy link to Midbar Shur 19:8">#</a>
@@ -2123,7 +2144,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-19-9" data-unit>
+          <section class="unit" id="midbar-shur-19-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 19:9</h4></div>
               <a class="anchor" href="#midbar-shur-19-9" aria-label="Copy link to Midbar Shur 19:9">#</a>
@@ -2142,7 +2163,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-19-10" data-unit>
+          <section class="unit" id="midbar-shur-19-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 19:10</h4></div>
               <a class="anchor" href="#midbar-shur-19-10" aria-label="Copy link to Midbar Shur 19:10">#</a>
@@ -2161,7 +2182,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-19-11" data-unit>
+          <section class="unit" id="midbar-shur-19-11" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 19:11</h4></div>
               <a class="anchor" href="#midbar-shur-19-11" aria-label="Copy link to Midbar Shur 19:11">#</a>
@@ -2181,7 +2202,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-20">Chapter 20</h4>
-          <section class="unit" id="midbar-shur-20-1" data-unit>
+          <section class="unit" id="midbar-shur-20-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 20:1</h4></div>
               <a class="anchor" href="#midbar-shur-20-1" aria-label="Copy link to Midbar Shur 20:1">#</a>
@@ -2200,7 +2221,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-20-2" data-unit>
+          <section class="unit" id="midbar-shur-20-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 20:2</h4></div>
               <a class="anchor" href="#midbar-shur-20-2" aria-label="Copy link to Midbar Shur 20:2">#</a>
@@ -2219,7 +2240,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-20-3" data-unit>
+          <section class="unit" id="midbar-shur-20-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 20:3</h4></div>
               <a class="anchor" href="#midbar-shur-20-3" aria-label="Copy link to Midbar Shur 20:3">#</a>
@@ -2239,7 +2260,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-21">Chapter 21</h4>
-          <section class="unit" id="midbar-shur-21-1" data-unit>
+          <section class="unit" id="midbar-shur-21-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 21:1</h4></div>
               <a class="anchor" href="#midbar-shur-21-1" aria-label="Copy link to Midbar Shur 21:1">#</a>
@@ -2258,7 +2279,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-21-2" data-unit>
+          <section class="unit" id="midbar-shur-21-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 21:2</h4></div>
               <a class="anchor" href="#midbar-shur-21-2" aria-label="Copy link to Midbar Shur 21:2">#</a>
@@ -2277,7 +2298,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-21-3" data-unit>
+          <section class="unit" id="midbar-shur-21-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 21:3</h4></div>
               <a class="anchor" href="#midbar-shur-21-3" aria-label="Copy link to Midbar Shur 21:3">#</a>
@@ -2297,7 +2318,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-22">Chapter 22</h4>
-          <section class="unit" id="midbar-shur-22-1" data-unit>
+          <section class="unit" id="midbar-shur-22-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 22:1</h4></div>
               <a class="anchor" href="#midbar-shur-22-1" aria-label="Copy link to Midbar Shur 22:1">#</a>
@@ -2316,7 +2337,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-22-2" data-unit>
+          <section class="unit" id="midbar-shur-22-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 22:2</h4></div>
               <a class="anchor" href="#midbar-shur-22-2" aria-label="Copy link to Midbar Shur 22:2">#</a>
@@ -2335,7 +2356,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-22-3" data-unit>
+          <section class="unit" id="midbar-shur-22-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 22:3</h4></div>
               <a class="anchor" href="#midbar-shur-22-3" aria-label="Copy link to Midbar Shur 22:3">#</a>
@@ -2354,7 +2375,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-22-4" data-unit>
+          <section class="unit" id="midbar-shur-22-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 22:4</h4></div>
               <a class="anchor" href="#midbar-shur-22-4" aria-label="Copy link to Midbar Shur 22:4">#</a>
@@ -2373,7 +2394,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-22-5" data-unit>
+          <section class="unit" id="midbar-shur-22-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 22:5</h4></div>
               <a class="anchor" href="#midbar-shur-22-5" aria-label="Copy link to Midbar Shur 22:5">#</a>
@@ -2393,7 +2414,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-23">Chapter 23</h4>
-          <section class="unit" id="midbar-shur-23-1" data-unit>
+          <section class="unit" id="midbar-shur-23-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 23:1</h4></div>
               <a class="anchor" href="#midbar-shur-23-1" aria-label="Copy link to Midbar Shur 23:1">#</a>
@@ -2412,7 +2433,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-23-2" data-unit>
+          <section class="unit" id="midbar-shur-23-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 23:2</h4></div>
               <a class="anchor" href="#midbar-shur-23-2" aria-label="Copy link to Midbar Shur 23:2">#</a>
@@ -2431,7 +2452,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-23-3" data-unit>
+          <section class="unit" id="midbar-shur-23-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 23:3</h4></div>
               <a class="anchor" href="#midbar-shur-23-3" aria-label="Copy link to Midbar Shur 23:3">#</a>
@@ -2450,7 +2471,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-23-4" data-unit>
+          <section class="unit" id="midbar-shur-23-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 23:4</h4></div>
               <a class="anchor" href="#midbar-shur-23-4" aria-label="Copy link to Midbar Shur 23:4">#</a>
@@ -2469,7 +2490,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-23-5" data-unit>
+          <section class="unit" id="midbar-shur-23-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 23:5</h4></div>
               <a class="anchor" href="#midbar-shur-23-5" aria-label="Copy link to Midbar Shur 23:5">#</a>
@@ -2488,7 +2509,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-23-6" data-unit>
+          <section class="unit" id="midbar-shur-23-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 23:6</h4></div>
               <a class="anchor" href="#midbar-shur-23-6" aria-label="Copy link to Midbar Shur 23:6">#</a>
@@ -2507,7 +2528,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-23-7" data-unit>
+          <section class="unit" id="midbar-shur-23-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 23:7</h4></div>
               <a class="anchor" href="#midbar-shur-23-7" aria-label="Copy link to Midbar Shur 23:7">#</a>
@@ -2526,7 +2547,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-23-8" data-unit>
+          <section class="unit" id="midbar-shur-23-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 23:8</h4></div>
               <a class="anchor" href="#midbar-shur-23-8" aria-label="Copy link to Midbar Shur 23:8">#</a>
@@ -2546,7 +2567,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-24">Chapter 24</h4>
-          <section class="unit" id="midbar-shur-24-1" data-unit>
+          <section class="unit" id="midbar-shur-24-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 24:1</h4></div>
               <a class="anchor" href="#midbar-shur-24-1" aria-label="Copy link to Midbar Shur 24:1">#</a>
@@ -2565,7 +2586,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-24-2" data-unit>
+          <section class="unit" id="midbar-shur-24-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 24:2</h4></div>
               <a class="anchor" href="#midbar-shur-24-2" aria-label="Copy link to Midbar Shur 24:2">#</a>
@@ -2584,7 +2605,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-24-3" data-unit>
+          <section class="unit" id="midbar-shur-24-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 24:3</h4></div>
               <a class="anchor" href="#midbar-shur-24-3" aria-label="Copy link to Midbar Shur 24:3">#</a>
@@ -2603,7 +2624,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-24-4" data-unit>
+          <section class="unit" id="midbar-shur-24-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 24:4</h4></div>
               <a class="anchor" href="#midbar-shur-24-4" aria-label="Copy link to Midbar Shur 24:4">#</a>
@@ -2622,7 +2643,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-24-5" data-unit>
+          <section class="unit" id="midbar-shur-24-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 24:5</h4></div>
               <a class="anchor" href="#midbar-shur-24-5" aria-label="Copy link to Midbar Shur 24:5">#</a>
@@ -2641,7 +2662,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-24-6" data-unit>
+          <section class="unit" id="midbar-shur-24-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 24:6</h4></div>
               <a class="anchor" href="#midbar-shur-24-6" aria-label="Copy link to Midbar Shur 24:6">#</a>
@@ -2660,7 +2681,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-24-7" data-unit>
+          <section class="unit" id="midbar-shur-24-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 24:7</h4></div>
               <a class="anchor" href="#midbar-shur-24-7" aria-label="Copy link to Midbar Shur 24:7">#</a>
@@ -2679,7 +2700,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-24-8" data-unit>
+          <section class="unit" id="midbar-shur-24-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 24:8</h4></div>
               <a class="anchor" href="#midbar-shur-24-8" aria-label="Copy link to Midbar Shur 24:8">#</a>
@@ -2699,7 +2720,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-25">Chapter 25</h4>
-          <section class="unit" id="midbar-shur-25-1" data-unit>
+          <section class="unit" id="midbar-shur-25-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 25:1</h4></div>
               <a class="anchor" href="#midbar-shur-25-1" aria-label="Copy link to Midbar Shur 25:1">#</a>
@@ -2718,7 +2739,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-25-2" data-unit>
+          <section class="unit" id="midbar-shur-25-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 25:2</h4></div>
               <a class="anchor" href="#midbar-shur-25-2" aria-label="Copy link to Midbar Shur 25:2">#</a>
@@ -2737,7 +2758,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-25-3" data-unit>
+          <section class="unit" id="midbar-shur-25-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 25:3</h4></div>
               <a class="anchor" href="#midbar-shur-25-3" aria-label="Copy link to Midbar Shur 25:3">#</a>
@@ -2756,7 +2777,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-25-4" data-unit>
+          <section class="unit" id="midbar-shur-25-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 25:4</h4></div>
               <a class="anchor" href="#midbar-shur-25-4" aria-label="Copy link to Midbar Shur 25:4">#</a>
@@ -2775,7 +2796,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-25-5" data-unit>
+          <section class="unit" id="midbar-shur-25-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 25:5</h4></div>
               <a class="anchor" href="#midbar-shur-25-5" aria-label="Copy link to Midbar Shur 25:5">#</a>
@@ -2794,7 +2815,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-25-6" data-unit>
+          <section class="unit" id="midbar-shur-25-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 25:6</h4></div>
               <a class="anchor" href="#midbar-shur-25-6" aria-label="Copy link to Midbar Shur 25:6">#</a>
@@ -2813,7 +2834,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-25-7" data-unit>
+          <section class="unit" id="midbar-shur-25-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 25:7</h4></div>
               <a class="anchor" href="#midbar-shur-25-7" aria-label="Copy link to Midbar Shur 25:7">#</a>
@@ -2833,7 +2854,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-26">Chapter 26</h4>
-          <section class="unit" id="midbar-shur-26-1" data-unit>
+          <section class="unit" id="midbar-shur-26-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 26:1</h4></div>
               <a class="anchor" href="#midbar-shur-26-1" aria-label="Copy link to Midbar Shur 26:1">#</a>
@@ -2852,7 +2873,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-26-2" data-unit>
+          <section class="unit" id="midbar-shur-26-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 26:2</h4></div>
               <a class="anchor" href="#midbar-shur-26-2" aria-label="Copy link to Midbar Shur 26:2">#</a>
@@ -2871,7 +2892,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-26-3" data-unit>
+          <section class="unit" id="midbar-shur-26-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 26:3</h4></div>
               <a class="anchor" href="#midbar-shur-26-3" aria-label="Copy link to Midbar Shur 26:3">#</a>
@@ -2890,7 +2911,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-26-4" data-unit>
+          <section class="unit" id="midbar-shur-26-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 26:4</h4></div>
               <a class="anchor" href="#midbar-shur-26-4" aria-label="Copy link to Midbar Shur 26:4">#</a>
@@ -2909,7 +2930,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-26-5" data-unit>
+          <section class="unit" id="midbar-shur-26-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 26:5</h4></div>
               <a class="anchor" href="#midbar-shur-26-5" aria-label="Copy link to Midbar Shur 26:5">#</a>
@@ -2928,7 +2949,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-26-6" data-unit>
+          <section class="unit" id="midbar-shur-26-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 26:6</h4></div>
               <a class="anchor" href="#midbar-shur-26-6" aria-label="Copy link to Midbar Shur 26:6">#</a>
@@ -2947,7 +2968,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-26-7" data-unit>
+          <section class="unit" id="midbar-shur-26-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 26:7</h4></div>
               <a class="anchor" href="#midbar-shur-26-7" aria-label="Copy link to Midbar Shur 26:7">#</a>
@@ -2967,7 +2988,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-27">Chapter 27</h4>
-          <section class="unit" id="midbar-shur-27-1" data-unit>
+          <section class="unit" id="midbar-shur-27-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 27:1</h4></div>
               <a class="anchor" href="#midbar-shur-27-1" aria-label="Copy link to Midbar Shur 27:1">#</a>
@@ -2986,7 +3007,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-27-2" data-unit>
+          <section class="unit" id="midbar-shur-27-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 27:2</h4></div>
               <a class="anchor" href="#midbar-shur-27-2" aria-label="Copy link to Midbar Shur 27:2">#</a>
@@ -3005,7 +3026,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-27-3" data-unit>
+          <section class="unit" id="midbar-shur-27-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 27:3</h4></div>
               <a class="anchor" href="#midbar-shur-27-3" aria-label="Copy link to Midbar Shur 27:3">#</a>
@@ -3024,7 +3045,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-27-4" data-unit>
+          <section class="unit" id="midbar-shur-27-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 27:4</h4></div>
               <a class="anchor" href="#midbar-shur-27-4" aria-label="Copy link to Midbar Shur 27:4">#</a>
@@ -3043,7 +3064,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-27-5" data-unit>
+          <section class="unit" id="midbar-shur-27-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 27:5</h4></div>
               <a class="anchor" href="#midbar-shur-27-5" aria-label="Copy link to Midbar Shur 27:5">#</a>
@@ -3062,7 +3083,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-27-6" data-unit>
+          <section class="unit" id="midbar-shur-27-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 27:6</h4></div>
               <a class="anchor" href="#midbar-shur-27-6" aria-label="Copy link to Midbar Shur 27:6">#</a>
@@ -3081,7 +3102,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-27-7" data-unit>
+          <section class="unit" id="midbar-shur-27-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 27:7</h4></div>
               <a class="anchor" href="#midbar-shur-27-7" aria-label="Copy link to Midbar Shur 27:7">#</a>
@@ -3101,7 +3122,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-28">Chapter 28</h4>
-          <section class="unit" id="midbar-shur-28-1" data-unit>
+          <section class="unit" id="midbar-shur-28-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 28:1</h4></div>
               <a class="anchor" href="#midbar-shur-28-1" aria-label="Copy link to Midbar Shur 28:1">#</a>
@@ -3120,7 +3141,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-28-2" data-unit>
+          <section class="unit" id="midbar-shur-28-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 28:2</h4></div>
               <a class="anchor" href="#midbar-shur-28-2" aria-label="Copy link to Midbar Shur 28:2">#</a>
@@ -3139,7 +3160,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-28-3" data-unit>
+          <section class="unit" id="midbar-shur-28-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 28:3</h4></div>
               <a class="anchor" href="#midbar-shur-28-3" aria-label="Copy link to Midbar Shur 28:3">#</a>
@@ -3158,7 +3179,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-28-4" data-unit>
+          <section class="unit" id="midbar-shur-28-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 28:4</h4></div>
               <a class="anchor" href="#midbar-shur-28-4" aria-label="Copy link to Midbar Shur 28:4">#</a>
@@ -3177,7 +3198,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-28-5" data-unit>
+          <section class="unit" id="midbar-shur-28-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 28:5</h4></div>
               <a class="anchor" href="#midbar-shur-28-5" aria-label="Copy link to Midbar Shur 28:5">#</a>
@@ -3197,7 +3218,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-29">Chapter 29</h4>
-          <section class="unit" id="midbar-shur-29-1" data-unit>
+          <section class="unit" id="midbar-shur-29-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 29:1</h4></div>
               <a class="anchor" href="#midbar-shur-29-1" aria-label="Copy link to Midbar Shur 29:1">#</a>
@@ -3216,7 +3237,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-29-2" data-unit>
+          <section class="unit" id="midbar-shur-29-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 29:2</h4></div>
               <a class="anchor" href="#midbar-shur-29-2" aria-label="Copy link to Midbar Shur 29:2">#</a>
@@ -3235,7 +3256,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-29-3" data-unit>
+          <section class="unit" id="midbar-shur-29-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 29:3</h4></div>
               <a class="anchor" href="#midbar-shur-29-3" aria-label="Copy link to Midbar Shur 29:3">#</a>
@@ -3254,7 +3275,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-29-4" data-unit>
+          <section class="unit" id="midbar-shur-29-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 29:4</h4></div>
               <a class="anchor" href="#midbar-shur-29-4" aria-label="Copy link to Midbar Shur 29:4">#</a>
@@ -3273,7 +3294,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-29-5" data-unit>
+          <section class="unit" id="midbar-shur-29-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 29:5</h4></div>
               <a class="anchor" href="#midbar-shur-29-5" aria-label="Copy link to Midbar Shur 29:5">#</a>
@@ -3292,7 +3313,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-29-6" data-unit>
+          <section class="unit" id="midbar-shur-29-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 29:6</h4></div>
               <a class="anchor" href="#midbar-shur-29-6" aria-label="Copy link to Midbar Shur 29:6">#</a>
@@ -3311,7 +3332,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-29-7" data-unit>
+          <section class="unit" id="midbar-shur-29-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 29:7</h4></div>
               <a class="anchor" href="#midbar-shur-29-7" aria-label="Copy link to Midbar Shur 29:7">#</a>
@@ -3330,7 +3351,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-29-8" data-unit>
+          <section class="unit" id="midbar-shur-29-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 29:8</h4></div>
               <a class="anchor" href="#midbar-shur-29-8" aria-label="Copy link to Midbar Shur 29:8">#</a>
@@ -3350,7 +3371,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-30">Chapter 30</h4>
-          <section class="unit" id="midbar-shur-30-1" data-unit>
+          <section class="unit" id="midbar-shur-30-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 30:1</h4></div>
               <a class="anchor" href="#midbar-shur-30-1" aria-label="Copy link to Midbar Shur 30:1">#</a>
@@ -3369,7 +3390,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-30-2" data-unit>
+          <section class="unit" id="midbar-shur-30-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 30:2</h4></div>
               <a class="anchor" href="#midbar-shur-30-2" aria-label="Copy link to Midbar Shur 30:2">#</a>
@@ -3388,7 +3409,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-30-3" data-unit>
+          <section class="unit" id="midbar-shur-30-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 30:3</h4></div>
               <a class="anchor" href="#midbar-shur-30-3" aria-label="Copy link to Midbar Shur 30:3">#</a>
@@ -3407,7 +3428,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-30-4" data-unit>
+          <section class="unit" id="midbar-shur-30-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 30:4</h4></div>
               <a class="anchor" href="#midbar-shur-30-4" aria-label="Copy link to Midbar Shur 30:4">#</a>
@@ -3426,7 +3447,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-30-5" data-unit>
+          <section class="unit" id="midbar-shur-30-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 30:5</h4></div>
               <a class="anchor" href="#midbar-shur-30-5" aria-label="Copy link to Midbar Shur 30:5">#</a>
@@ -3445,7 +3466,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-30-6" data-unit>
+          <section class="unit" id="midbar-shur-30-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 30:6</h4></div>
               <a class="anchor" href="#midbar-shur-30-6" aria-label="Copy link to Midbar Shur 30:6">#</a>
@@ -3465,7 +3486,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-31">Chapter 31</h4>
-          <section class="unit" id="midbar-shur-31-1" data-unit>
+          <section class="unit" id="midbar-shur-31-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 31:1</h4></div>
               <a class="anchor" href="#midbar-shur-31-1" aria-label="Copy link to Midbar Shur 31:1">#</a>
@@ -3484,7 +3505,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-31-2" data-unit>
+          <section class="unit" id="midbar-shur-31-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 31:2</h4></div>
               <a class="anchor" href="#midbar-shur-31-2" aria-label="Copy link to Midbar Shur 31:2">#</a>
@@ -3503,7 +3524,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-31-3" data-unit>
+          <section class="unit" id="midbar-shur-31-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 31:3</h4></div>
               <a class="anchor" href="#midbar-shur-31-3" aria-label="Copy link to Midbar Shur 31:3">#</a>
@@ -3522,7 +3543,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-31-4" data-unit>
+          <section class="unit" id="midbar-shur-31-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 31:4</h4></div>
               <a class="anchor" href="#midbar-shur-31-4" aria-label="Copy link to Midbar Shur 31:4">#</a>
@@ -3541,7 +3562,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-31-5" data-unit>
+          <section class="unit" id="midbar-shur-31-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 31:5</h4></div>
               <a class="anchor" href="#midbar-shur-31-5" aria-label="Copy link to Midbar Shur 31:5">#</a>
@@ -3560,7 +3581,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-31-6" data-unit>
+          <section class="unit" id="midbar-shur-31-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 31:6</h4></div>
               <a class="anchor" href="#midbar-shur-31-6" aria-label="Copy link to Midbar Shur 31:6">#</a>
@@ -3579,7 +3600,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-31-7" data-unit>
+          <section class="unit" id="midbar-shur-31-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 31:7</h4></div>
               <a class="anchor" href="#midbar-shur-31-7" aria-label="Copy link to Midbar Shur 31:7">#</a>
@@ -3598,7 +3619,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-31-8" data-unit>
+          <section class="unit" id="midbar-shur-31-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 31:8</h4></div>
               <a class="anchor" href="#midbar-shur-31-8" aria-label="Copy link to Midbar Shur 31:8">#</a>
@@ -3617,7 +3638,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-31-9" data-unit>
+          <section class="unit" id="midbar-shur-31-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 31:9</h4></div>
               <a class="anchor" href="#midbar-shur-31-9" aria-label="Copy link to Midbar Shur 31:9">#</a>
@@ -3637,7 +3658,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-32">Chapter 32</h4>
-          <section class="unit" id="midbar-shur-32-1" data-unit>
+          <section class="unit" id="midbar-shur-32-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 32:1</h4></div>
               <a class="anchor" href="#midbar-shur-32-1" aria-label="Copy link to Midbar Shur 32:1">#</a>
@@ -3656,7 +3677,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-32-2" data-unit>
+          <section class="unit" id="midbar-shur-32-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 32:2</h4></div>
               <a class="anchor" href="#midbar-shur-32-2" aria-label="Copy link to Midbar Shur 32:2">#</a>
@@ -3675,7 +3696,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-32-3" data-unit>
+          <section class="unit" id="midbar-shur-32-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 32:3</h4></div>
               <a class="anchor" href="#midbar-shur-32-3" aria-label="Copy link to Midbar Shur 32:3">#</a>
@@ -3694,7 +3715,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-32-4" data-unit>
+          <section class="unit" id="midbar-shur-32-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 32:4</h4></div>
               <a class="anchor" href="#midbar-shur-32-4" aria-label="Copy link to Midbar Shur 32:4">#</a>
@@ -3713,7 +3734,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-32-5" data-unit>
+          <section class="unit" id="midbar-shur-32-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 32:5</h4></div>
               <a class="anchor" href="#midbar-shur-32-5" aria-label="Copy link to Midbar Shur 32:5">#</a>
@@ -3733,7 +3754,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-33">Chapter 33</h4>
-          <section class="unit" id="midbar-shur-33-1" data-unit>
+          <section class="unit" id="midbar-shur-33-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 33:1</h4></div>
               <a class="anchor" href="#midbar-shur-33-1" aria-label="Copy link to Midbar Shur 33:1">#</a>
@@ -3752,7 +3773,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-33-2" data-unit>
+          <section class="unit" id="midbar-shur-33-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 33:2</h4></div>
               <a class="anchor" href="#midbar-shur-33-2" aria-label="Copy link to Midbar Shur 33:2">#</a>
@@ -3771,7 +3792,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-33-3" data-unit>
+          <section class="unit" id="midbar-shur-33-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 33:3</h4></div>
               <a class="anchor" href="#midbar-shur-33-3" aria-label="Copy link to Midbar Shur 33:3">#</a>
@@ -3790,7 +3811,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-33-4" data-unit>
+          <section class="unit" id="midbar-shur-33-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 33:4</h4></div>
               <a class="anchor" href="#midbar-shur-33-4" aria-label="Copy link to Midbar Shur 33:4">#</a>
@@ -3809,7 +3830,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-33-5" data-unit>
+          <section class="unit" id="midbar-shur-33-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 33:5</h4></div>
               <a class="anchor" href="#midbar-shur-33-5" aria-label="Copy link to Midbar Shur 33:5">#</a>
@@ -3828,7 +3849,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-33-6" data-unit>
+          <section class="unit" id="midbar-shur-33-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 33:6</h4></div>
               <a class="anchor" href="#midbar-shur-33-6" aria-label="Copy link to Midbar Shur 33:6">#</a>
@@ -3847,7 +3868,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-33-7" data-unit>
+          <section class="unit" id="midbar-shur-33-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 33:7</h4></div>
               <a class="anchor" href="#midbar-shur-33-7" aria-label="Copy link to Midbar Shur 33:7">#</a>
@@ -3866,7 +3887,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-33-8" data-unit>
+          <section class="unit" id="midbar-shur-33-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 33:8</h4></div>
               <a class="anchor" href="#midbar-shur-33-8" aria-label="Copy link to Midbar Shur 33:8">#</a>
@@ -3885,7 +3906,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-33-9" data-unit>
+          <section class="unit" id="midbar-shur-33-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 33:9</h4></div>
               <a class="anchor" href="#midbar-shur-33-9" aria-label="Copy link to Midbar Shur 33:9">#</a>
@@ -3904,7 +3925,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-33-10" data-unit>
+          <section class="unit" id="midbar-shur-33-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 33:10</h4></div>
               <a class="anchor" href="#midbar-shur-33-10" aria-label="Copy link to Midbar Shur 33:10">#</a>
@@ -3923,7 +3944,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-33-11" data-unit>
+          <section class="unit" id="midbar-shur-33-11" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 33:11</h4></div>
               <a class="anchor" href="#midbar-shur-33-11" aria-label="Copy link to Midbar Shur 33:11">#</a>
@@ -3942,7 +3963,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-33-12" data-unit>
+          <section class="unit" id="midbar-shur-33-12" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 33:12</h4></div>
               <a class="anchor" href="#midbar-shur-33-12" aria-label="Copy link to Midbar Shur 33:12">#</a>
@@ -3961,7 +3982,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-33-13" data-unit>
+          <section class="unit" id="midbar-shur-33-13" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 33:13</h4></div>
               <a class="anchor" href="#midbar-shur-33-13" aria-label="Copy link to Midbar Shur 33:13">#</a>
@@ -3981,7 +4002,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-34">Chapter 34</h4>
-          <section class="unit" id="midbar-shur-34-1" data-unit>
+          <section class="unit" id="midbar-shur-34-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 34:1</h4></div>
               <a class="anchor" href="#midbar-shur-34-1" aria-label="Copy link to Midbar Shur 34:1">#</a>
@@ -4000,7 +4021,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-34-2" data-unit>
+          <section class="unit" id="midbar-shur-34-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 34:2</h4></div>
               <a class="anchor" href="#midbar-shur-34-2" aria-label="Copy link to Midbar Shur 34:2">#</a>
@@ -4019,7 +4040,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-34-3" data-unit>
+          <section class="unit" id="midbar-shur-34-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 34:3</h4></div>
               <a class="anchor" href="#midbar-shur-34-3" aria-label="Copy link to Midbar Shur 34:3">#</a>
@@ -4038,7 +4059,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-34-4" data-unit>
+          <section class="unit" id="midbar-shur-34-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 34:4</h4></div>
               <a class="anchor" href="#midbar-shur-34-4" aria-label="Copy link to Midbar Shur 34:4">#</a>
@@ -4058,7 +4079,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-35">Chapter 35</h4>
-          <section class="unit" id="midbar-shur-35-1" data-unit>
+          <section class="unit" id="midbar-shur-35-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 35:1</h4></div>
               <a class="anchor" href="#midbar-shur-35-1" aria-label="Copy link to Midbar Shur 35:1">#</a>
@@ -4077,7 +4098,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-35-2" data-unit>
+          <section class="unit" id="midbar-shur-35-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 35:2</h4></div>
               <a class="anchor" href="#midbar-shur-35-2" aria-label="Copy link to Midbar Shur 35:2">#</a>
@@ -4096,7 +4117,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-35-3" data-unit>
+          <section class="unit" id="midbar-shur-35-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 35:3</h4></div>
               <a class="anchor" href="#midbar-shur-35-3" aria-label="Copy link to Midbar Shur 35:3">#</a>
@@ -4115,7 +4136,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-35-4" data-unit>
+          <section class="unit" id="midbar-shur-35-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 35:4</h4></div>
               <a class="anchor" href="#midbar-shur-35-4" aria-label="Copy link to Midbar Shur 35:4">#</a>
@@ -4135,7 +4156,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-36">Chapter 36</h4>
-          <section class="unit" id="midbar-shur-36-1" data-unit>
+          <section class="unit" id="midbar-shur-36-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:1</h4></div>
               <a class="anchor" href="#midbar-shur-36-1" aria-label="Copy link to Midbar Shur 36:1">#</a>
@@ -4154,7 +4175,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-2" data-unit>
+          <section class="unit" id="midbar-shur-36-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:2</h4></div>
               <a class="anchor" href="#midbar-shur-36-2" aria-label="Copy link to Midbar Shur 36:2">#</a>
@@ -4173,7 +4194,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-3" data-unit>
+          <section class="unit" id="midbar-shur-36-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:3</h4></div>
               <a class="anchor" href="#midbar-shur-36-3" aria-label="Copy link to Midbar Shur 36:3">#</a>
@@ -4192,7 +4213,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-4" data-unit>
+          <section class="unit" id="midbar-shur-36-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:4</h4></div>
               <a class="anchor" href="#midbar-shur-36-4" aria-label="Copy link to Midbar Shur 36:4">#</a>
@@ -4211,7 +4232,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-5" data-unit>
+          <section class="unit" id="midbar-shur-36-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:5</h4></div>
               <a class="anchor" href="#midbar-shur-36-5" aria-label="Copy link to Midbar Shur 36:5">#</a>
@@ -4230,7 +4251,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-6" data-unit>
+          <section class="unit" id="midbar-shur-36-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:6</h4></div>
               <a class="anchor" href="#midbar-shur-36-6" aria-label="Copy link to Midbar Shur 36:6">#</a>
@@ -4249,7 +4270,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-7" data-unit>
+          <section class="unit" id="midbar-shur-36-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:7</h4></div>
               <a class="anchor" href="#midbar-shur-36-7" aria-label="Copy link to Midbar Shur 36:7">#</a>
@@ -4268,7 +4289,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-8" data-unit>
+          <section class="unit" id="midbar-shur-36-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:8</h4></div>
               <a class="anchor" href="#midbar-shur-36-8" aria-label="Copy link to Midbar Shur 36:8">#</a>
@@ -4287,7 +4308,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-9" data-unit>
+          <section class="unit" id="midbar-shur-36-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:9</h4></div>
               <a class="anchor" href="#midbar-shur-36-9" aria-label="Copy link to Midbar Shur 36:9">#</a>
@@ -4306,7 +4327,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-10" data-unit>
+          <section class="unit" id="midbar-shur-36-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:10</h4></div>
               <a class="anchor" href="#midbar-shur-36-10" aria-label="Copy link to Midbar Shur 36:10">#</a>
@@ -4325,7 +4346,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-11" data-unit>
+          <section class="unit" id="midbar-shur-36-11" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:11</h4></div>
               <a class="anchor" href="#midbar-shur-36-11" aria-label="Copy link to Midbar Shur 36:11">#</a>
@@ -4344,7 +4365,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-12" data-unit>
+          <section class="unit" id="midbar-shur-36-12" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:12</h4></div>
               <a class="anchor" href="#midbar-shur-36-12" aria-label="Copy link to Midbar Shur 36:12">#</a>
@@ -4363,7 +4384,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-13" data-unit>
+          <section class="unit" id="midbar-shur-36-13" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:13</h4></div>
               <a class="anchor" href="#midbar-shur-36-13" aria-label="Copy link to Midbar Shur 36:13">#</a>
@@ -4382,7 +4403,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-14" data-unit>
+          <section class="unit" id="midbar-shur-36-14" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:14</h4></div>
               <a class="anchor" href="#midbar-shur-36-14" aria-label="Copy link to Midbar Shur 36:14">#</a>
@@ -4401,7 +4422,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-15" data-unit>
+          <section class="unit" id="midbar-shur-36-15" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:15</h4></div>
               <a class="anchor" href="#midbar-shur-36-15" aria-label="Copy link to Midbar Shur 36:15">#</a>
@@ -4420,7 +4441,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-16" data-unit>
+          <section class="unit" id="midbar-shur-36-16" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:16</h4></div>
               <a class="anchor" href="#midbar-shur-36-16" aria-label="Copy link to Midbar Shur 36:16">#</a>
@@ -4439,7 +4460,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-17" data-unit>
+          <section class="unit" id="midbar-shur-36-17" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:17</h4></div>
               <a class="anchor" href="#midbar-shur-36-17" aria-label="Copy link to Midbar Shur 36:17">#</a>
@@ -4458,7 +4479,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-18" data-unit>
+          <section class="unit" id="midbar-shur-36-18" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:18</h4></div>
               <a class="anchor" href="#midbar-shur-36-18" aria-label="Copy link to Midbar Shur 36:18">#</a>
@@ -4477,7 +4498,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-19" data-unit>
+          <section class="unit" id="midbar-shur-36-19" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:19</h4></div>
               <a class="anchor" href="#midbar-shur-36-19" aria-label="Copy link to Midbar Shur 36:19">#</a>
@@ -4496,7 +4517,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-20" data-unit>
+          <section class="unit" id="midbar-shur-36-20" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:20</h4></div>
               <a class="anchor" href="#midbar-shur-36-20" aria-label="Copy link to Midbar Shur 36:20">#</a>
@@ -4515,7 +4536,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-21" data-unit>
+          <section class="unit" id="midbar-shur-36-21" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:21</h4></div>
               <a class="anchor" href="#midbar-shur-36-21" aria-label="Copy link to Midbar Shur 36:21">#</a>
@@ -4534,7 +4555,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-36-22" data-unit>
+          <section class="unit" id="midbar-shur-36-22" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 36:22</h4></div>
               <a class="anchor" href="#midbar-shur-36-22" aria-label="Copy link to Midbar Shur 36:22">#</a>
@@ -4554,7 +4575,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-37">Chapter 37</h4>
-          <section class="unit" id="midbar-shur-37-1" data-unit>
+          <section class="unit" id="midbar-shur-37-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 37:1</h4></div>
               <a class="anchor" href="#midbar-shur-37-1" aria-label="Copy link to Midbar Shur 37:1">#</a>
@@ -4573,7 +4594,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-37-2" data-unit>
+          <section class="unit" id="midbar-shur-37-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 37:2</h4></div>
               <a class="anchor" href="#midbar-shur-37-2" aria-label="Copy link to Midbar Shur 37:2">#</a>
@@ -4592,7 +4613,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-37-3" data-unit>
+          <section class="unit" id="midbar-shur-37-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 37:3</h4></div>
               <a class="anchor" href="#midbar-shur-37-3" aria-label="Copy link to Midbar Shur 37:3">#</a>
@@ -4611,7 +4632,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-37-4" data-unit>
+          <section class="unit" id="midbar-shur-37-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 37:4</h4></div>
               <a class="anchor" href="#midbar-shur-37-4" aria-label="Copy link to Midbar Shur 37:4">#</a>
@@ -4631,7 +4652,7 @@
             </div>
           </section>
           <h4 id="chapter-midbar-shur-text-38">Chapter 38</h4>
-          <section class="unit" id="midbar-shur-38-1" data-unit>
+          <section class="unit" id="midbar-shur-38-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 38:1</h4></div>
               <a class="anchor" href="#midbar-shur-38-1" aria-label="Copy link to Midbar Shur 38:1">#</a>
@@ -4650,7 +4671,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-38-2" data-unit>
+          <section class="unit" id="midbar-shur-38-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 38:2</h4></div>
               <a class="anchor" href="#midbar-shur-38-2" aria-label="Copy link to Midbar Shur 38:2">#</a>
@@ -4669,7 +4690,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-38-3" data-unit>
+          <section class="unit" id="midbar-shur-38-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 38:3</h4></div>
               <a class="anchor" href="#midbar-shur-38-3" aria-label="Copy link to Midbar Shur 38:3">#</a>
@@ -4688,7 +4709,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-38-4" data-unit>
+          <section class="unit" id="midbar-shur-38-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 38:4</h4></div>
               <a class="anchor" href="#midbar-shur-38-4" aria-label="Copy link to Midbar Shur 38:4">#</a>
@@ -4707,7 +4728,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="midbar-shur-38-5" data-unit>
+          <section class="unit" id="midbar-shur-38-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midbar Shur 38:5</h4></div>
               <a class="anchor" href="#midbar-shur-38-5" aria-label="Copy link to Midbar Shur 38:5">#</a>
@@ -4730,5 +4751,38 @@
       </div>
     </div>
   </main>
+  <script>
+    (() => {
+      const units = Array.from(document.querySelectorAll("[data-unit]"));
+      const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
+      const nextButton = document.querySelector("[data-next-not-done]");
+      let currentFilter = "all";
+      const matchesFilter = (unit, filter) => {
+        const done = unit.dataset.complete === "true";
+        return filter === "all" || (filter === "done" && done) || (filter === "not-done" && !done);
+      };
+      const applyFilter = (filter) => {
+        currentFilter = filter;
+        units.forEach((unit) => { unit.hidden = !matchesFilter(unit, filter); });
+        filterButtons.forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
+        });
+      };
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => applyFilter(button.dataset.filter));
+      });
+      if (nextButton) {
+        nextButton.addEventListener("click", () => {
+          const incomplete = units.filter((unit) => unit.dataset.complete !== "true");
+          if (!incomplete.length) return;
+          if (currentFilter === "done") applyFilter("not-done");
+          const currentY = window.scrollY + 12;
+          const target = incomplete.find((unit) => unit.getBoundingClientRect().top + window.scrollY > currentY) || incomplete[0];
+          if (target.id) history.replaceState(null, "", "#" + target.id);
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

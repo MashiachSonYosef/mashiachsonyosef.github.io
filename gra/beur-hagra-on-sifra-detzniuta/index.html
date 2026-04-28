@@ -21,11 +21,21 @@
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
     .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .progress-panel { margin-top: 14px; border: 1px solid var(--line); background: rgba(20,24,31,0.58); padding: 12px; }
+    .progress-summary { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; color: var(--muted); font-size: 0.92rem; }
+    .progress-summary strong { color: var(--text); font-weight: 400; }
+    .progress-meter { height: 5px; margin-top: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); overflow: hidden; }
+    .progress-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+    .progress-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .filter-button { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 6px 10px; font: inherit; cursor: pointer; }
+    .filter-button[aria-pressed="true"], .filter-button:hover { color: var(--text); border-color: var(--accent); background: rgba(214,190,138,0.08); }
+    .filter-button:disabled { cursor: default; opacity: 0.45; }
     .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
     .home-section { margin-top: 26px; }
     .home-section:first-child { margin-top: 0; }
     .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
     .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
     .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }
     .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
     .toc ul { list-style: none; padding: 0; margin: 0; }
@@ -33,6 +43,7 @@
     .toc a { text-decoration: none; font-size: 0.94rem; }
     .section-block { margin-bottom: 10px; }
     .unit { border-top: 1px solid var(--line); padding: 16px 0; }
+    .unit[hidden] { display: none; }
     .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
     .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
@@ -66,13 +77,23 @@
           <a class="export-button" href="overlay-export.json" download>JSON</a>
           <a class="export-button" href="overlay-export.md" download>Markdown</a>
         </div>
+        <div class="progress-panel" data-progress-panel>
+          <div class="progress-summary"><span>Progress</span><strong>0 / 297 done</strong><span>0% complete</span></div>
+          <div class="progress-meter" aria-label="0% complete"><span style="width:0%"></span></div>
+          <div class="progress-controls" aria-label="Progress filters">
+            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Done</button>
+            <button class="filter-button" type="button" data-filter="not-done" aria-pressed="false">Not done</button>
+            <button class="filter-button" type="button" data-next-not-done>Next not done</button>
+          </div>
+        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
         </nav>
         <article>
           <h4 id="chapter-beur-hagra-on-sifra-detzniuta-text-1">Chapter 1</h4>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-1" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-1" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:1">#</a>
@@ -91,7 +112,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-2" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-2" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:2">#</a>
@@ -110,7 +131,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-3" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-3" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:3">#</a>
@@ -129,7 +150,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-4" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-4" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:4">#</a>
@@ -148,7 +169,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-5" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:5</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-5" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:5">#</a>
@@ -167,7 +188,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-6" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:6</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-6" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:6">#</a>
@@ -186,7 +207,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-7" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:7</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-7" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:7">#</a>
@@ -205,7 +226,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-8" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:8</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-8" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:8">#</a>
@@ -224,7 +245,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-9" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:9</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-9" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:9">#</a>
@@ -243,7 +264,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-10" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:10</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-10" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:10">#</a>
@@ -262,7 +283,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-11" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-11" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:11</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-11" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:11">#</a>
@@ -281,7 +302,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-12" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-12" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:12</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-12" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:12">#</a>
@@ -300,7 +321,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-13" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-13" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:13</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-13" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:13">#</a>
@@ -319,7 +340,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-14" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-14" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:14</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-14" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:14">#</a>
@@ -338,7 +359,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-15" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-15" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:15</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-15" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:15">#</a>
@@ -357,7 +378,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-16" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-16" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:16</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-16" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:16">#</a>
@@ -376,7 +397,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-17" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-17" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:17</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-17" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:17">#</a>
@@ -395,7 +416,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-18" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-18" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:18</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-18" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:18">#</a>
@@ -414,7 +435,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-19" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-19" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:19</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-19" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:19">#</a>
@@ -433,7 +454,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-20" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-20" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:20</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-20" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:20">#</a>
@@ -452,7 +473,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-21" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-21" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:21</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-21" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:21">#</a>
@@ -471,7 +492,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-22" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-22" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:22</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-22" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:22">#</a>
@@ -490,7 +511,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-23" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-23" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:23</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-23" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:23">#</a>
@@ -509,7 +530,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-24" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-24" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:24</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-24" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:24">#</a>
@@ -528,7 +549,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-25" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-25" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:25</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-25" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:25">#</a>
@@ -547,7 +568,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-26" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-26" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:26</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-26" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:26">#</a>
@@ -566,7 +587,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-27" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-27" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:27</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-27" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:27">#</a>
@@ -585,7 +606,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-28" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-28" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:28</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-28" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:28">#</a>
@@ -604,7 +625,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-29" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-29" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:29</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-29" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:29">#</a>
@@ -623,7 +644,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-30" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-30" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:30</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-30" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:30">#</a>
@@ -642,7 +663,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-31" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-31" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:31</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-31" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:31">#</a>
@@ -661,7 +682,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-32" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-32" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:32</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-32" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:32">#</a>
@@ -680,7 +701,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-33" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-33" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:33</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-33" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:33">#</a>
@@ -699,7 +720,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-34" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-34" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:34</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-34" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:34">#</a>
@@ -718,7 +739,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-35" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-35" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:35</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-35" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:35">#</a>
@@ -737,7 +758,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-36" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-36" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:36</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-36" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:36">#</a>
@@ -756,7 +777,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-37" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-37" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:37</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-37" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:37">#</a>
@@ -775,7 +796,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-38" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-38" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:38</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-38" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:38">#</a>
@@ -794,7 +815,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-39" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-39" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:39</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-39" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:39">#</a>
@@ -813,7 +834,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-40" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-40" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:40</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-40" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:40">#</a>
@@ -832,7 +853,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-41" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-41" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:41</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-41" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:41">#</a>
@@ -851,7 +872,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-42" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-42" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:42</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-42" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:42">#</a>
@@ -870,7 +891,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-43" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-43" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:43</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-43" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:43">#</a>
@@ -889,7 +910,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-44" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-44" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:44</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-44" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:44">#</a>
@@ -908,7 +929,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-45" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-45" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:45</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-45" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:45">#</a>
@@ -927,7 +948,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-46" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-46" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:46</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-46" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:46">#</a>
@@ -946,7 +967,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-47" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-47" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:47</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-47" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:47">#</a>
@@ -965,7 +986,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-48" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-48" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:48</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-48" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:48">#</a>
@@ -984,7 +1005,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-49" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-49" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:49</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-49" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:49">#</a>
@@ -1003,7 +1024,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-50" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-50" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:50</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-50" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:50">#</a>
@@ -1022,7 +1043,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-51" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-51" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:51</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-51" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:51">#</a>
@@ -1041,7 +1062,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-52" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-52" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:52</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-52" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:52">#</a>
@@ -1060,7 +1081,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-53" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-53" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:53</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-53" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:53">#</a>
@@ -1079,7 +1100,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-54" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-54" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:54</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-54" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:54">#</a>
@@ -1098,7 +1119,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-55" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-55" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:55</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-55" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:55">#</a>
@@ -1117,7 +1138,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-56" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-56" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:56</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-56" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:56">#</a>
@@ -1136,7 +1157,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-57" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-57" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:57</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-57" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:57">#</a>
@@ -1155,7 +1176,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-58" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-58" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:58</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-58" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:58">#</a>
@@ -1174,7 +1195,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-59" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-59" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:59</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-59" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:59">#</a>
@@ -1193,7 +1214,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-60" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-60" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:60</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-60" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:60">#</a>
@@ -1212,7 +1233,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-61" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-61" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:61</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-61" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:61">#</a>
@@ -1231,7 +1252,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-62" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-62" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:62</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-62" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:62">#</a>
@@ -1250,7 +1271,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-63" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-63" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:63</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-63" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:63">#</a>
@@ -1269,7 +1290,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-64" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-64" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:64</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-64" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:64">#</a>
@@ -1288,7 +1309,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-65" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-65" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:65</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-65" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:65">#</a>
@@ -1307,7 +1328,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-66" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-66" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:66</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-66" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:66">#</a>
@@ -1326,7 +1347,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-67" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-67" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:67</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-67" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:67">#</a>
@@ -1345,7 +1366,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-68" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-68" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:68</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-68" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:68">#</a>
@@ -1364,7 +1385,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-69" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-69" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:69</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-69" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:69">#</a>
@@ -1383,7 +1404,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-70" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-70" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:70</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-70" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:70">#</a>
@@ -1402,7 +1423,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-71" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-71" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:71</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-71" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:71">#</a>
@@ -1421,7 +1442,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-72" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-72" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:72</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-72" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:72">#</a>
@@ -1440,7 +1461,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-73" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-73" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:73</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-73" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:73">#</a>
@@ -1459,7 +1480,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-74" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-74" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:74</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-74" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:74">#</a>
@@ -1478,7 +1499,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-75" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-75" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:75</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-75" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:75">#</a>
@@ -1497,7 +1518,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-76" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-76" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:76</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-76" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:76">#</a>
@@ -1516,7 +1537,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-77" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-77" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:77</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-77" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:77">#</a>
@@ -1535,7 +1556,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-78" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-78" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:78</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-78" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:78">#</a>
@@ -1554,7 +1575,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-79" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-79" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:79</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-79" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:79">#</a>
@@ -1573,7 +1594,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-80" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-80" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:80</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-80" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:80">#</a>
@@ -1592,7 +1613,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-81" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-81" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:81</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-81" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:81">#</a>
@@ -1611,7 +1632,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-82" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-82" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:82</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-82" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:82">#</a>
@@ -1630,7 +1651,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-83" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-83" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:83</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-83" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:83">#</a>
@@ -1649,7 +1670,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-84" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-84" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:84</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-84" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:84">#</a>
@@ -1668,7 +1689,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-85" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-85" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:85</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-85" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:85">#</a>
@@ -1687,7 +1708,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-86" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-86" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:86</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-86" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:86">#</a>
@@ -1706,7 +1727,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-87" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-87" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:87</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-87" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:87">#</a>
@@ -1725,7 +1746,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-88" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-88" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:88</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-88" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:88">#</a>
@@ -1744,7 +1765,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-89" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-89" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:89</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-89" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:89">#</a>
@@ -1763,7 +1784,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-90" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-90" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:90</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-90" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:90">#</a>
@@ -1782,7 +1803,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-91" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-91" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:91</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-91" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:91">#</a>
@@ -1801,7 +1822,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-92" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-92" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:92</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-92" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:92">#</a>
@@ -1820,7 +1841,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-93" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-93" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:93</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-93" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:93">#</a>
@@ -1839,7 +1860,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-94" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-94" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:94</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-94" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:94">#</a>
@@ -1858,7 +1879,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-95" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-95" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:95</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-95" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:95">#</a>
@@ -1877,7 +1898,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-96" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-96" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:96</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-96" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:96">#</a>
@@ -1896,7 +1917,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-97" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-97" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:97</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-97" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:97">#</a>
@@ -1915,7 +1936,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-98" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-98" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:98</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-98" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:98">#</a>
@@ -1934,7 +1955,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-99" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-99" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:99</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-99" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:99">#</a>
@@ -1953,7 +1974,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-100" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-100" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:100</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-100" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:100">#</a>
@@ -1972,7 +1993,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-101" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-101" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:101</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-101" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:101">#</a>
@@ -1991,7 +2012,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-102" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-102" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:102</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-102" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:102">#</a>
@@ -2010,7 +2031,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-103" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-103" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:103</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-103" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:103">#</a>
@@ -2029,7 +2050,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-104" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-104" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:104</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-104" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:104">#</a>
@@ -2048,7 +2069,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-105" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-105" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:105</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-105" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:105">#</a>
@@ -2067,7 +2088,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-106" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-106" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:106</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-106" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:106">#</a>
@@ -2086,7 +2107,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-107" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-107" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:107</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-107" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:107">#</a>
@@ -2105,7 +2126,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-108" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-108" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:108</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-108" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:108">#</a>
@@ -2124,7 +2145,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-109" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-109" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:109</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-109" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:109">#</a>
@@ -2143,7 +2164,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-110" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-110" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:110</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-110" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:110">#</a>
@@ -2162,7 +2183,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-111" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-111" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:111</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-111" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:111">#</a>
@@ -2181,7 +2202,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-112" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-112" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:112</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-112" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:112">#</a>
@@ -2200,7 +2221,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-113" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-113" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:113</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-113" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:113">#</a>
@@ -2219,7 +2240,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-114" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-114" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:114</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-114" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:114">#</a>
@@ -2238,7 +2259,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-115" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-115" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:115</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-115" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:115">#</a>
@@ -2257,7 +2278,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-116" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-116" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:116</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-116" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:116">#</a>
@@ -2276,7 +2297,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-117" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-117" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:117</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-117" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:117">#</a>
@@ -2295,7 +2316,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-118" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-118" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:118</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-118" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:118">#</a>
@@ -2314,7 +2335,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-119" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-119" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:119</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-119" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:119">#</a>
@@ -2333,7 +2354,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-120" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-120" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:120</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-120" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:120">#</a>
@@ -2352,7 +2373,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-121" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-121" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:121</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-121" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:121">#</a>
@@ -2371,7 +2392,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-122" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-122" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:122</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-122" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:122">#</a>
@@ -2390,7 +2411,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-123" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-123" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:123</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-123" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:123">#</a>
@@ -2409,7 +2430,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-124" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-124" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:124</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-124" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:124">#</a>
@@ -2428,7 +2449,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-125" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-125" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:125</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-125" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:125">#</a>
@@ -2447,7 +2468,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-126" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-126" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:126</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-126" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:126">#</a>
@@ -2466,7 +2487,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-127" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-127" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:127</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-127" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:127">#</a>
@@ -2485,7 +2506,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-128" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-1-128" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 1:128</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-1-128" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 1:128">#</a>
@@ -2505,7 +2526,7 @@
             </div>
           </section>
           <h4 id="chapter-beur-hagra-on-sifra-detzniuta-text-2">Chapter 2</h4>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-1" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-1" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:1">#</a>
@@ -2524,7 +2545,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-2" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-2" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:2">#</a>
@@ -2543,7 +2564,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-3" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-3" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:3">#</a>
@@ -2562,7 +2583,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-4" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-4" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:4">#</a>
@@ -2581,7 +2602,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-5" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:5</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-5" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:5">#</a>
@@ -2600,7 +2621,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-6" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:6</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-6" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:6">#</a>
@@ -2619,7 +2640,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-7" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:7</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-7" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:7">#</a>
@@ -2638,7 +2659,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-8" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:8</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-8" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:8">#</a>
@@ -2657,7 +2678,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-9" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:9</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-9" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:9">#</a>
@@ -2676,7 +2697,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-10" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:10</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-10" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:10">#</a>
@@ -2695,7 +2716,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-11" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-11" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:11</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-11" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:11">#</a>
@@ -2714,7 +2735,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-12" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-12" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:12</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-12" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:12">#</a>
@@ -2733,7 +2754,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-13" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-13" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:13</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-13" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:13">#</a>
@@ -2752,7 +2773,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-14" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-14" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:14</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-14" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:14">#</a>
@@ -2771,7 +2792,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-15" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-15" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:15</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-15" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:15">#</a>
@@ -2790,7 +2811,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-16" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-16" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:16</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-16" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:16">#</a>
@@ -2809,7 +2830,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-17" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-17" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:17</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-17" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:17">#</a>
@@ -2828,7 +2849,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-18" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-18" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:18</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-18" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:18">#</a>
@@ -2847,7 +2868,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-19" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-19" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:19</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-19" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:19">#</a>
@@ -2866,7 +2887,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-20" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-20" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:20</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-20" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:20">#</a>
@@ -2885,7 +2906,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-21" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-21" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:21</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-21" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:21">#</a>
@@ -2904,7 +2925,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-22" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-22" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:22</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-22" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:22">#</a>
@@ -2923,7 +2944,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-23" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-23" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:23</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-23" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:23">#</a>
@@ -2942,7 +2963,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-24" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-24" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:24</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-24" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:24">#</a>
@@ -2961,7 +2982,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-25" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-25" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:25</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-25" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:25">#</a>
@@ -2980,7 +3001,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-26" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-26" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:26</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-26" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:26">#</a>
@@ -2999,7 +3020,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-27" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-27" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:27</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-27" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:27">#</a>
@@ -3018,7 +3039,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-28" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-28" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:28</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-28" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:28">#</a>
@@ -3037,7 +3058,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-29" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-29" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:29</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-29" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:29">#</a>
@@ -3056,7 +3077,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-30" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-30" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:30</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-30" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:30">#</a>
@@ -3075,7 +3096,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-31" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-31" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:31</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-31" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:31">#</a>
@@ -3094,7 +3115,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-32" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-32" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:32</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-32" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:32">#</a>
@@ -3113,7 +3134,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-33" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-33" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:33</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-33" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:33">#</a>
@@ -3132,7 +3153,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-34" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-34" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:34</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-34" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:34">#</a>
@@ -3151,7 +3172,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-35" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-35" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:35</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-35" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:35">#</a>
@@ -3170,7 +3191,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-36" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-36" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:36</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-36" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:36">#</a>
@@ -3189,7 +3210,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-37" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-37" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:37</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-37" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:37">#</a>
@@ -3208,7 +3229,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-38" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-38" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:38</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-38" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:38">#</a>
@@ -3227,7 +3248,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-39" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-39" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:39</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-39" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:39">#</a>
@@ -3246,7 +3267,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-40" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-40" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:40</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-40" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:40">#</a>
@@ -3265,7 +3286,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-41" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-41" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:41</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-41" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:41">#</a>
@@ -3284,7 +3305,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-42" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-42" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:42</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-42" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:42">#</a>
@@ -3303,7 +3324,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-43" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-43" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:43</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-43" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:43">#</a>
@@ -3322,7 +3343,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-44" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-44" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:44</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-44" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:44">#</a>
@@ -3341,7 +3362,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-45" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-45" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:45</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-45" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:45">#</a>
@@ -3360,7 +3381,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-46" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-46" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:46</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-46" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:46">#</a>
@@ -3379,7 +3400,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-47" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-47" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:47</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-47" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:47">#</a>
@@ -3398,7 +3419,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-48" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-48" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:48</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-48" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:48">#</a>
@@ -3417,7 +3438,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-49" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-49" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:49</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-49" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:49">#</a>
@@ -3436,7 +3457,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-50" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-50" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:50</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-50" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:50">#</a>
@@ -3455,7 +3476,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-51" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-51" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:51</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-51" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:51">#</a>
@@ -3474,7 +3495,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-52" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-52" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:52</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-52" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:52">#</a>
@@ -3493,7 +3514,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-53" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-53" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:53</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-53" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:53">#</a>
@@ -3512,7 +3533,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-54" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-54" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:54</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-54" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:54">#</a>
@@ -3531,7 +3552,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-55" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-55" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:55</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-55" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:55">#</a>
@@ -3550,7 +3571,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-56" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-56" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:56</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-56" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:56">#</a>
@@ -3569,7 +3590,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-57" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-57" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:57</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-57" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:57">#</a>
@@ -3588,7 +3609,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-58" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-58" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:58</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-58" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:58">#</a>
@@ -3607,7 +3628,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-59" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-59" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:59</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-59" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:59">#</a>
@@ -3626,7 +3647,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-60" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-60" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:60</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-60" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:60">#</a>
@@ -3645,7 +3666,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-61" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-61" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:61</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-61" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:61">#</a>
@@ -3664,7 +3685,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-62" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-62" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:62</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-62" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:62">#</a>
@@ -3683,7 +3704,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-63" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-63" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:63</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-63" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:63">#</a>
@@ -3702,7 +3723,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-64" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-64" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:64</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-64" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:64">#</a>
@@ -3721,7 +3742,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-65" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-2-65" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 2:65</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-2-65" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 2:65">#</a>
@@ -3741,7 +3762,7 @@
             </div>
           </section>
           <h4 id="chapter-beur-hagra-on-sifra-detzniuta-text-3">Chapter 3</h4>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-1" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-1" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:1">#</a>
@@ -3760,7 +3781,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-2" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-2" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:2">#</a>
@@ -3779,7 +3800,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-3" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-3" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:3">#</a>
@@ -3798,7 +3819,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-4" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-4" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:4">#</a>
@@ -3817,7 +3838,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-5" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:5</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-5" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:5">#</a>
@@ -3836,7 +3857,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-6" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:6</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-6" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:6">#</a>
@@ -3855,7 +3876,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-7" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:7</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-7" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:7">#</a>
@@ -3874,7 +3895,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-8" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:8</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-8" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:8">#</a>
@@ -3893,7 +3914,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-9" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:9</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-9" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:9">#</a>
@@ -3912,7 +3933,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-10" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:10</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-10" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:10">#</a>
@@ -3931,7 +3952,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-11" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-11" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:11</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-11" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:11">#</a>
@@ -3950,7 +3971,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-12" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-12" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:12</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-12" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:12">#</a>
@@ -3969,7 +3990,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-13" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-13" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:13</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-13" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:13">#</a>
@@ -3988,7 +4009,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-14" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-14" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:14</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-14" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:14">#</a>
@@ -4007,7 +4028,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-15" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-15" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:15</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-15" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:15">#</a>
@@ -4026,7 +4047,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-16" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-16" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:16</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-16" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:16">#</a>
@@ -4045,7 +4066,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-17" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-17" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:17</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-17" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:17">#</a>
@@ -4064,7 +4085,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-18" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-18" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:18</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-18" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:18">#</a>
@@ -4083,7 +4104,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-19" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-19" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:19</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-19" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:19">#</a>
@@ -4102,7 +4123,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-20" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-20" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:20</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-20" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:20">#</a>
@@ -4121,7 +4142,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-21" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-21" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:21</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-21" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:21">#</a>
@@ -4140,7 +4161,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-22" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-22" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:22</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-22" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:22">#</a>
@@ -4159,7 +4180,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-23" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-23" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:23</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-23" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:23">#</a>
@@ -4178,7 +4199,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-24" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-24" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:24</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-24" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:24">#</a>
@@ -4197,7 +4218,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-25" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-25" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:25</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-25" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:25">#</a>
@@ -4216,7 +4237,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-26" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-26" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:26</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-26" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:26">#</a>
@@ -4235,7 +4256,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-27" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-27" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:27</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-27" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:27">#</a>
@@ -4254,7 +4275,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-28" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-28" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:28</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-28" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:28">#</a>
@@ -4273,7 +4294,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-29" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-29" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:29</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-29" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:29">#</a>
@@ -4292,7 +4313,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-30" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-30" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:30</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-30" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:30">#</a>
@@ -4311,7 +4332,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-31" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-31" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:31</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-31" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:31">#</a>
@@ -4330,7 +4351,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-32" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-32" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:32</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-32" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:32">#</a>
@@ -4349,7 +4370,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-33" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-33" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:33</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-33" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:33">#</a>
@@ -4368,7 +4389,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-34" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-34" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:34</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-34" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:34">#</a>
@@ -4387,7 +4408,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-35" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-35" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:35</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-35" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:35">#</a>
@@ -4406,7 +4427,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-36" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-36" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:36</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-36" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:36">#</a>
@@ -4425,7 +4446,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-37" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-37" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:37</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-37" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:37">#</a>
@@ -4444,7 +4465,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-38" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-38" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:38</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-38" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:38">#</a>
@@ -4463,7 +4484,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-39" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-39" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:39</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-39" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:39">#</a>
@@ -4482,7 +4503,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-40" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-40" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:40</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-40" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:40">#</a>
@@ -4501,7 +4522,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-41" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-41" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:41</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-41" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:41">#</a>
@@ -4520,7 +4541,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-42" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-42" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:42</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-42" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:42">#</a>
@@ -4539,7 +4560,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-43" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-43" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:43</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-43" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:43">#</a>
@@ -4558,7 +4579,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-44" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-44" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:44</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-44" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:44">#</a>
@@ -4577,7 +4598,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-45" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-45" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:45</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-45" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:45">#</a>
@@ -4596,7 +4617,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-46" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-46" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:46</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-46" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:46">#</a>
@@ -4615,7 +4636,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-47" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-47" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:47</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-47" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:47">#</a>
@@ -4634,7 +4655,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-48" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-48" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:48</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-48" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:48">#</a>
@@ -4653,7 +4674,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-49" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-49" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:49</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-49" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:49">#</a>
@@ -4672,7 +4693,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-50" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-50" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:50</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-50" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:50">#</a>
@@ -4691,7 +4712,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-51" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-51" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:51</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-51" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:51">#</a>
@@ -4710,7 +4731,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-52" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-52" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:52</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-52" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:52">#</a>
@@ -4729,7 +4750,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-53" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-53" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:53</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-53" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:53">#</a>
@@ -4748,7 +4769,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-54" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-54" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:54</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-54" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:54">#</a>
@@ -4767,7 +4788,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-55" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-55" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:55</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-55" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:55">#</a>
@@ -4786,7 +4807,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-56" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-3-56" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 3:56</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-3-56" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 3:56">#</a>
@@ -4806,7 +4827,7 @@
             </div>
           </section>
           <h4 id="chapter-beur-hagra-on-sifra-detzniuta-text-4">Chapter 4</h4>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-1" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-1" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:1">#</a>
@@ -4825,7 +4846,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-2" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-2" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:2">#</a>
@@ -4844,7 +4865,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-3" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-3" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:3">#</a>
@@ -4863,7 +4884,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-4" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-4" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:4">#</a>
@@ -4882,7 +4903,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-5" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:5</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-5" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:5">#</a>
@@ -4901,7 +4922,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-6" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:6</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-6" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:6">#</a>
@@ -4920,7 +4941,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-7" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:7</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-7" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:7">#</a>
@@ -4939,7 +4960,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-8" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:8</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-8" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:8">#</a>
@@ -4958,7 +4979,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-9" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:9</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-9" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:9">#</a>
@@ -4977,7 +4998,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-10" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:10</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-10" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:10">#</a>
@@ -4996,7 +5017,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-11" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-11" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:11</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-11" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:11">#</a>
@@ -5015,7 +5036,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-12" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-12" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:12</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-12" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:12">#</a>
@@ -5034,7 +5055,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-13" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-13" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:13</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-13" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:13">#</a>
@@ -5053,7 +5074,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-14" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-14" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:14</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-14" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:14">#</a>
@@ -5072,7 +5093,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-15" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-15" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:15</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-15" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:15">#</a>
@@ -5091,7 +5112,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-16" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-16" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:16</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-16" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:16">#</a>
@@ -5110,7 +5131,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-17" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-17" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:17</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-17" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:17">#</a>
@@ -5129,7 +5150,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-18" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-4-18" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 4:18</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-4-18" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 4:18">#</a>
@@ -5149,7 +5170,7 @@
             </div>
           </section>
           <h4 id="chapter-beur-hagra-on-sifra-detzniuta-text-5">Chapter 5</h4>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-1" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-1" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:1">#</a>
@@ -5168,7 +5189,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-2" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-2" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:2">#</a>
@@ -5187,7 +5208,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-3" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-3" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:3">#</a>
@@ -5206,7 +5227,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-4" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-4" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:4">#</a>
@@ -5225,7 +5246,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-5" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:5</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-5" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:5">#</a>
@@ -5244,7 +5265,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-6" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:6</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-6" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:6">#</a>
@@ -5263,7 +5284,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-7" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:7</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-7" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:7">#</a>
@@ -5282,7 +5303,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-8" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:8</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-8" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:8">#</a>
@@ -5301,7 +5322,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-9" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:9</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-9" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:9">#</a>
@@ -5320,7 +5341,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-10" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:10</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-10" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:10">#</a>
@@ -5339,7 +5360,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-11" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-11" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:11</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-11" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:11">#</a>
@@ -5358,7 +5379,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-12" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-12" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:12</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-12" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:12">#</a>
@@ -5377,7 +5398,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-13" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-13" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:13</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-13" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:13">#</a>
@@ -5396,7 +5417,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-14" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-14" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:14</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-14" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:14">#</a>
@@ -5415,7 +5436,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-15" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-15" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:15</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-15" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:15">#</a>
@@ -5434,7 +5455,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-16" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-16" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:16</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-16" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:16">#</a>
@@ -5453,7 +5474,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-17" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-17" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:17</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-17" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:17">#</a>
@@ -5472,7 +5493,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-18" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-18" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:18</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-18" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:18">#</a>
@@ -5491,7 +5512,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-19" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-19" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:19</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-19" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:19">#</a>
@@ -5510,7 +5531,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-20" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-20" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:20</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-20" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:20">#</a>
@@ -5529,7 +5550,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-21" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-21" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:21</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-21" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:21">#</a>
@@ -5548,7 +5569,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-22" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-22" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:22</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-22" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:22">#</a>
@@ -5567,7 +5588,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-23" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-23" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:23</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-23" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:23">#</a>
@@ -5586,7 +5607,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-24" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-24" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:24</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-24" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:24">#</a>
@@ -5605,7 +5626,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-25" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-25" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:25</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-25" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:25">#</a>
@@ -5624,7 +5645,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-26" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-26" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:26</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-26" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:26">#</a>
@@ -5643,7 +5664,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-27" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-27" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:27</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-27" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:27">#</a>
@@ -5662,7 +5683,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-28" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-28" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:28</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-28" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:28">#</a>
@@ -5681,7 +5702,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-29" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-29" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:29</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-29" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:29">#</a>
@@ -5700,7 +5721,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-30" data-unit>
+          <section class="unit" id="beur-hagra-on-sifra-detzniuta-5-30" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Sifra DeTzniuta 5:30</h4></div>
               <a class="anchor" href="#beur-hagra-on-sifra-detzniuta-5-30" aria-label="Copy link to Beur HaGra on Sifra DeTzniuta 5:30">#</a>
@@ -5723,5 +5744,38 @@
       </div>
     </div>
   </main>
+  <script>
+    (() => {
+      const units = Array.from(document.querySelectorAll("[data-unit]"));
+      const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
+      const nextButton = document.querySelector("[data-next-not-done]");
+      let currentFilter = "all";
+      const matchesFilter = (unit, filter) => {
+        const done = unit.dataset.complete === "true";
+        return filter === "all" || (filter === "done" && done) || (filter === "not-done" && !done);
+      };
+      const applyFilter = (filter) => {
+        currentFilter = filter;
+        units.forEach((unit) => { unit.hidden = !matchesFilter(unit, filter); });
+        filterButtons.forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
+        });
+      };
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => applyFilter(button.dataset.filter));
+      });
+      if (nextButton) {
+        nextButton.addEventListener("click", () => {
+          const incomplete = units.filter((unit) => unit.dataset.complete !== "true");
+          if (!incomplete.length) return;
+          if (currentFilter === "done") applyFilter("not-done");
+          const currentY = window.scrollY + 12;
+          const target = incomplete.find((unit) => unit.getBoundingClientRect().top + window.scrollY > currentY) || incomplete[0];
+          if (target.id) history.replaceState(null, "", "#" + target.id);
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

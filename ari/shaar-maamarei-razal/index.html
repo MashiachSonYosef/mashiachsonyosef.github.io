@@ -21,11 +21,21 @@
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
     .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .progress-panel { margin-top: 14px; border: 1px solid var(--line); background: rgba(20,24,31,0.58); padding: 12px; }
+    .progress-summary { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; color: var(--muted); font-size: 0.92rem; }
+    .progress-summary strong { color: var(--text); font-weight: 400; }
+    .progress-meter { height: 5px; margin-top: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); overflow: hidden; }
+    .progress-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+    .progress-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .filter-button { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 6px 10px; font: inherit; cursor: pointer; }
+    .filter-button[aria-pressed="true"], .filter-button:hover { color: var(--text); border-color: var(--accent); background: rgba(214,190,138,0.08); }
+    .filter-button:disabled { cursor: default; opacity: 0.45; }
     .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
     .home-section { margin-top: 26px; }
     .home-section:first-child { margin-top: 0; }
     .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
     .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
     .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }
     .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
     .toc ul { list-style: none; padding: 0; margin: 0; }
@@ -33,6 +43,7 @@
     .toc a { text-decoration: none; font-size: 0.94rem; }
     .section-block { margin-bottom: 10px; }
     .unit { border-top: 1px solid var(--line); padding: 16px 0; }
+    .unit[hidden] { display: none; }
     .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
     .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
@@ -65,6 +76,16 @@
           <a class="export-button" href="overlay-export.csv" download>CSV</a>
           <a class="export-button" href="overlay-export.json" download>JSON</a>
           <a class="export-button" href="overlay-export.md" download>Markdown</a>
+        </div>
+        <div class="progress-panel" data-progress-panel>
+          <div class="progress-summary"><span>Progress</span><strong>0 / 103 done</strong><span>0% complete</span></div>
+          <div class="progress-meter" aria-label="0% complete"><span style="width:0%"></span></div>
+          <div class="progress-controls" aria-label="Progress filters">
+            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Done</button>
+            <button class="filter-button" type="button" data-filter="not-done" aria-pressed="false">Not done</button>
+            <button class="filter-button" type="button" data-next-not-done>Next not done</button>
+          </div>
         </div>
       </div>
       <div class="reader-shell">
@@ -194,7 +215,7 @@
           <h2 id="group-tractate-berakhot">Tractate Berakhot</h2>
           <h3 id="section-tractate-berakhot-tractate-berakhot">Tractate Berakhot</h3>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Berakhot:1">#</a>
@@ -214,7 +235,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-2">Chapter 2</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-2" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:2</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-2" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Berakhot:2">#</a>
@@ -234,7 +255,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-3">Chapter 3</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-3" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:3</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-3" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Berakhot:3">#</a>
@@ -254,7 +275,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-4">Chapter 4</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-4" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:4</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-4" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Berakhot:4">#</a>
@@ -274,7 +295,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-5">Chapter 5</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-5" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:5</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-5" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Berakhot:5">#</a>
@@ -294,7 +315,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-6">Chapter 6</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-6" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:6</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-6" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Berakhot:6">#</a>
@@ -314,7 +335,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-7">Chapter 7</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-7" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:7</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-7" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Berakhot:7">#</a>
@@ -334,7 +355,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-8">Chapter 8</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-8" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:8</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-8" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Berakhot:8">#</a>
@@ -354,7 +375,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-9">Chapter 9</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-9" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:9</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-9" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Berakhot:9">#</a>
@@ -374,7 +395,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-10">Chapter 10</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-10" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:10</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-10" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Berakhot:10">#</a>
@@ -394,7 +415,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-11">Chapter 11</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-11" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-11" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:11</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-11" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Berakhot:11">#</a>
@@ -414,7 +435,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-12">Chapter 12</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-12" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-12" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:12</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-12" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Berakhot:12">#</a>
@@ -434,7 +455,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-13">Chapter 13</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-13" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-13" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:13</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-13" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Berakhot:13">#</a>
@@ -454,7 +475,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-14">Chapter 14</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-14" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-14" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:14</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-14" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Berakhot:14">#</a>
@@ -474,7 +495,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-15">Chapter 15</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-15" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-15" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:15</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-15" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Berakhot:15">#</a>
@@ -494,7 +515,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-berakhot-tractate-berakhot-16">Chapter 16</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-16" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-16" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Berakhot:16</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-berakhot-tractate-berakhot-16" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Berakhot:16">#</a>
@@ -516,7 +537,7 @@
           <h2 id="group-tractate-shabbat">Tractate Shabbat</h2>
           <h3 id="section-tractate-shabbat-tractate-shabbat">Tractate Shabbat</h3>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:1">#</a>
@@ -536,7 +557,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-2">Chapter 2</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-2" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:2</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-2" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:2">#</a>
@@ -556,7 +577,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-3">Chapter 3</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-3" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:3</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-3" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:3">#</a>
@@ -576,7 +597,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-4">Chapter 4</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-4" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:4</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-4" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:4">#</a>
@@ -596,7 +617,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-5">Chapter 5</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-5" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:5</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-5" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:5">#</a>
@@ -616,7 +637,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-6">Chapter 6</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-6" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:6</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-6" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:6">#</a>
@@ -636,7 +657,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-7">Chapter 7</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-7" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:7</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-7" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:7">#</a>
@@ -656,7 +677,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-8">Chapter 8</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-8" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:8</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-8" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:8">#</a>
@@ -676,7 +697,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-9">Chapter 9</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-9" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:9</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-9" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:9">#</a>
@@ -696,7 +717,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-10">Chapter 10</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-10" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:10</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-10" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:10">#</a>
@@ -716,7 +737,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-11">Chapter 11</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-11" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-11" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:11</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-11" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:11">#</a>
@@ -736,7 +757,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-12">Chapter 12</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-12" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-12" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:12</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-12" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:12">#</a>
@@ -756,7 +777,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-13">Chapter 13</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-13" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-13" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:13</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-13" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:13">#</a>
@@ -776,7 +797,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-14">Chapter 14</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-14" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-14" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:14</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-14" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:14">#</a>
@@ -796,7 +817,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-15">Chapter 15</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-15" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-15" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:15</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-15" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:15">#</a>
@@ -816,7 +837,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-16">Chapter 16</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-16" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-16" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:16</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-16" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:16">#</a>
@@ -836,7 +857,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-17">Chapter 17</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-17" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-17" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:17</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-17" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:17">#</a>
@@ -856,7 +877,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-shabbat-tractate-shabbat-18">Chapter 18</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-18" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-18" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Shabbat:18</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-shabbat-tractate-shabbat-18" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Shabbat:18">#</a>
@@ -878,7 +899,7 @@
           <h2 id="group-tractate-eruvin">Tractate Eruvin</h2>
           <h3 id="section-tractate-eruvin-tractate-eruvin">Tractate Eruvin</h3>
           <h4 id="chapter-tractate-eruvin-tractate-eruvin-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-eruvin-tractate-eruvin-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-eruvin-tractate-eruvin-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Eruvin:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-eruvin-tractate-eruvin-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Eruvin:1">#</a>
@@ -898,7 +919,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-eruvin-tractate-eruvin-2">Chapter 2</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-eruvin-tractate-eruvin-2" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-eruvin-tractate-eruvin-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Eruvin:2</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-eruvin-tractate-eruvin-2" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Eruvin:2">#</a>
@@ -920,7 +941,7 @@
           <h2 id="group-tractate-pesachim">Tractate Pesachim</h2>
           <h3 id="section-tractate-pesachim-tractate-pesachim">Tractate Pesachim</h3>
           <h4 id="chapter-tractate-pesachim-tractate-pesachim-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-pesachim-tractate-pesachim-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-pesachim-tractate-pesachim-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Pesachim:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-pesachim-tractate-pesachim-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Pesachim:1">#</a>
@@ -940,7 +961,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-pesachim-tractate-pesachim-2">Chapter 2</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-pesachim-tractate-pesachim-2" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-pesachim-tractate-pesachim-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Pesachim:2</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-pesachim-tractate-pesachim-2" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Pesachim:2">#</a>
@@ -962,7 +983,7 @@
           <h2 id="group-tractate-chagigah">Tractate Chagigah</h2>
           <h3 id="section-tractate-chagigah-tractate-chagigah">Tractate Chagigah</h3>
           <h4 id="chapter-tractate-chagigah-tractate-chagigah-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Chagigah:1">#</a>
@@ -982,7 +1003,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-chagigah-tractate-chagigah-2">Chapter 2</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-2" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:2</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-2" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Chagigah:2">#</a>
@@ -1002,7 +1023,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-chagigah-tractate-chagigah-3">Chapter 3</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-3" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:3</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-3" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Chagigah:3">#</a>
@@ -1022,7 +1043,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-chagigah-tractate-chagigah-4">Chapter 4</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-4" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:4</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-4" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Chagigah:4">#</a>
@@ -1042,7 +1063,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-chagigah-tractate-chagigah-5">Chapter 5</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-5" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:5</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-5" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Chagigah:5">#</a>
@@ -1062,7 +1083,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-chagigah-tractate-chagigah-6">Chapter 6</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-6" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:6</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-6" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Chagigah:6">#</a>
@@ -1082,7 +1103,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-chagigah-tractate-chagigah-7">Chapter 7</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-7" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:7</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-7" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Chagigah:7">#</a>
@@ -1102,7 +1123,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-chagigah-tractate-chagigah-8">Chapter 8</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-8" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:8</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-8" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Chagigah:8">#</a>
@@ -1122,7 +1143,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-chagigah-tractate-chagigah-9">Chapter 9</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-9" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Chagigah:9</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-chagigah-tractate-chagigah-9" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Chagigah:9">#</a>
@@ -1144,7 +1165,7 @@
           <h2 id="group-tractate-moed-katan">Tractate Moed Katan</h2>
           <h3 id="section-tractate-moed-katan-tractate-moed-katan">Tractate Moed Katan</h3>
           <h4 id="chapter-tractate-moed-katan-tractate-moed-katan-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-moed-katan-tractate-moed-katan-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-moed-katan-tractate-moed-katan-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Moed Katan:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-moed-katan-tractate-moed-katan-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Moed Katan:1">#</a>
@@ -1166,7 +1187,7 @@
           <h2 id="group-tractate-rosh-hashanah">Tractate Rosh Hashanah</h2>
           <h3 id="section-tractate-rosh-hashanah-tractate-rosh-hashanah">Tractate Rosh Hashanah</h3>
           <h4 id="chapter-tractate-rosh-hashanah-tractate-rosh-hashanah-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-rosh-hashanah-tractate-rosh-hashanah-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-rosh-hashanah-tractate-rosh-hashanah-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Rosh Hashanah:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-rosh-hashanah-tractate-rosh-hashanah-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Rosh Hashanah:1">#</a>
@@ -1186,7 +1207,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-rosh-hashanah-tractate-rosh-hashanah-2">Chapter 2</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-rosh-hashanah-tractate-rosh-hashanah-2" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-rosh-hashanah-tractate-rosh-hashanah-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Rosh Hashanah:2</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-rosh-hashanah-tractate-rosh-hashanah-2" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Rosh Hashanah:2">#</a>
@@ -1206,7 +1227,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-rosh-hashanah-tractate-rosh-hashanah-3">Chapter 3</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-rosh-hashanah-tractate-rosh-hashanah-3" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-rosh-hashanah-tractate-rosh-hashanah-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Rosh Hashanah:3</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-rosh-hashanah-tractate-rosh-hashanah-3" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Rosh Hashanah:3">#</a>
@@ -1228,7 +1249,7 @@
           <h2 id="group-tractate-yoma">Tractate Yoma</h2>
           <h3 id="section-tractate-yoma-tractate-yoma">Tractate Yoma</h3>
           <h4 id="chapter-tractate-yoma-tractate-yoma-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-yoma-tractate-yoma-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-yoma-tractate-yoma-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Yoma:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-yoma-tractate-yoma-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Yoma:1">#</a>
@@ -1248,7 +1269,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-yoma-tractate-yoma-2">Chapter 2</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-yoma-tractate-yoma-2" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-yoma-tractate-yoma-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Yoma:2</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-yoma-tractate-yoma-2" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Yoma:2">#</a>
@@ -1270,7 +1291,7 @@
           <h2 id="group-tractate-megillah">Tractate Megillah</h2>
           <h3 id="section-tractate-megillah-tractate-megillah">Tractate Megillah</h3>
           <h4 id="chapter-tractate-megillah-tractate-megillah-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-megillah-tractate-megillah-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-megillah-tractate-megillah-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Megillah:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-megillah-tractate-megillah-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Megillah:1">#</a>
@@ -1292,7 +1313,7 @@
           <h2 id="group-tractate-yevamot">Tractate Yevamot</h2>
           <h3 id="section-tractate-yevamot-tractate-yevamot">Tractate Yevamot</h3>
           <h4 id="chapter-tractate-yevamot-tractate-yevamot-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-yevamot-tractate-yevamot-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-yevamot-tractate-yevamot-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Yevamot:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-yevamot-tractate-yevamot-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Yevamot:1">#</a>
@@ -1314,7 +1335,7 @@
           <h2 id="group-tractate-ketubot">Tractate Ketubot</h2>
           <h3 id="section-tractate-ketubot-tractate-ketubot">Tractate Ketubot</h3>
           <h4 id="chapter-tractate-ketubot-tractate-ketubot-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-ketubot-tractate-ketubot-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-ketubot-tractate-ketubot-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Ketubot:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-ketubot-tractate-ketubot-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Ketubot:1">#</a>
@@ -1334,7 +1355,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-ketubot-tractate-ketubot-2">Chapter 2</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-ketubot-tractate-ketubot-2" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-ketubot-tractate-ketubot-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Ketubot:2</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-ketubot-tractate-ketubot-2" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Ketubot:2">#</a>
@@ -1354,7 +1375,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-ketubot-tractate-ketubot-3">Chapter 3</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-ketubot-tractate-ketubot-3" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-ketubot-tractate-ketubot-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Ketubot:3</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-ketubot-tractate-ketubot-3" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Ketubot:3">#</a>
@@ -1376,7 +1397,7 @@
           <h2 id="group-tractate-nedarim">Tractate Nedarim</h2>
           <h3 id="section-tractate-nedarim-tractate-nedarim">Tractate Nedarim</h3>
           <h4 id="chapter-tractate-nedarim-tractate-nedarim-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-nedarim-tractate-nedarim-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-nedarim-tractate-nedarim-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Nedarim:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-nedarim-tractate-nedarim-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Nedarim:1">#</a>
@@ -1398,7 +1419,7 @@
           <h2 id="group-tractate-sotah">Tractate Sotah</h2>
           <h3 id="section-tractate-sotah-tractate-sotah">Tractate Sotah</h3>
           <h4 id="chapter-tractate-sotah-tractate-sotah-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-sotah-tractate-sotah-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-sotah-tractate-sotah-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Sotah:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-sotah-tractate-sotah-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Sotah:1">#</a>
@@ -1418,7 +1439,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-sotah-tractate-sotah-2">Chapter 2</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-sotah-tractate-sotah-2" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-sotah-tractate-sotah-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Sotah:2</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-sotah-tractate-sotah-2" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Sotah:2">#</a>
@@ -1438,7 +1459,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-sotah-tractate-sotah-3">Chapter 3</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-sotah-tractate-sotah-3" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-sotah-tractate-sotah-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Sotah:3</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-sotah-tractate-sotah-3" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Sotah:3">#</a>
@@ -1460,7 +1481,7 @@
           <h2 id="group-tractate-bava-kamma">Tractate Bava Kamma</h2>
           <h3 id="section-tractate-bava-kamma-tractate-bava-kamma">Tractate Bava Kamma</h3>
           <h4 id="chapter-tractate-bava-kamma-tractate-bava-kamma-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Bava Kamma:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Bava Kamma:1">#</a>
@@ -1480,7 +1501,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-bava-kamma-tractate-bava-kamma-2">Chapter 2</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-2" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Bava Kamma:2</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-2" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Bava Kamma:2">#</a>
@@ -1500,7 +1521,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-bava-kamma-tractate-bava-kamma-3">Chapter 3</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-3" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Bava Kamma:3</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-3" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Bava Kamma:3">#</a>
@@ -1520,7 +1541,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-bava-kamma-tractate-bava-kamma-4">Chapter 4</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-4" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Bava Kamma:4</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-bava-kamma-tractate-bava-kamma-4" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Bava Kamma:4">#</a>
@@ -1542,7 +1563,7 @@
           <h2 id="group-tractate-bava-metzia">Tractate Bava Metzia</h2>
           <h3 id="section-tractate-bava-metzia-tractate-bava-metzia">Tractate Bava Metzia</h3>
           <h4 id="chapter-tractate-bava-metzia-tractate-bava-metzia-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-bava-metzia-tractate-bava-metzia-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-bava-metzia-tractate-bava-metzia-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Bava Metzia:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-bava-metzia-tractate-bava-metzia-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Bava Metzia:1">#</a>
@@ -1564,7 +1585,7 @@
           <h2 id="group-tractate-bava-batra">Tractate Bava Batra</h2>
           <h3 id="section-tractate-bava-batra-tractate-bava-batra">Tractate Bava Batra</h3>
           <h4 id="chapter-tractate-bava-batra-tractate-bava-batra-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-bava-batra-tractate-bava-batra-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-bava-batra-tractate-bava-batra-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Bava Batra:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-bava-batra-tractate-bava-batra-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Bava Batra:1">#</a>
@@ -1586,7 +1607,7 @@
           <h2 id="group-tractate-sanhedrin">Tractate Sanhedrin</h2>
           <h3 id="section-tractate-sanhedrin-tractate-sanhedrin">Tractate Sanhedrin</h3>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Sanhedrin:1">#</a>
@@ -1606,7 +1627,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-2">Chapter 2</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-2" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:2</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-2" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Sanhedrin:2">#</a>
@@ -1626,7 +1647,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-3">Chapter 3</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-3" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:3</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-3" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Sanhedrin:3">#</a>
@@ -1646,7 +1667,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-4">Chapter 4</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-4" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:4</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-4" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Sanhedrin:4">#</a>
@@ -1666,7 +1687,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-5">Chapter 5</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-5" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:5</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-5" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Sanhedrin:5">#</a>
@@ -1686,7 +1707,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-6">Chapter 6</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-6" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:6</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-6" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Sanhedrin:6">#</a>
@@ -1706,7 +1727,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-7">Chapter 7</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-7" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:7</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-7" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Sanhedrin:7">#</a>
@@ -1726,7 +1747,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-8">Chapter 8</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-8" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:8</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-8" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Sanhedrin:8">#</a>
@@ -1746,7 +1767,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-9">Chapter 9</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-9" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:9</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-9" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Sanhedrin:9">#</a>
@@ -1766,7 +1787,7 @@
             </div>
           </section>
           <h4 id="chapter-tractate-sanhedrin-tractate-sanhedrin-10">Chapter 10</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-10" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Sanhedrin:10</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-sanhedrin-tractate-sanhedrin-10" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Sanhedrin:10">#</a>
@@ -1788,7 +1809,7 @@
           <h2 id="group-pirkei-avot">Pirkei Avot</h2>
           <h3 id="section-pirkei-avot-pirkei-avot">Pirkei Avot</h3>
           <h4 id="chapter-pirkei-avot-pirkei-avot-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Pirkei Avot:1">#</a>
@@ -1808,7 +1829,7 @@
             </div>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-2">Chapter 2</h4>
-          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-2" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:2</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-2" aria-label="Copy link to Sha'ar Ma'amarei Razal, Pirkei Avot:2">#</a>
@@ -1828,7 +1849,7 @@
             </div>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-3">Chapter 3</h4>
-          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-3" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:3</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-3" aria-label="Copy link to Sha'ar Ma'amarei Razal, Pirkei Avot:3">#</a>
@@ -1848,7 +1869,7 @@
             </div>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-4">Chapter 4</h4>
-          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-4" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:4</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-4" aria-label="Copy link to Sha'ar Ma'amarei Razal, Pirkei Avot:4">#</a>
@@ -1868,7 +1889,7 @@
             </div>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-5">Chapter 5</h4>
-          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-5" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:5</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-5" aria-label="Copy link to Sha'ar Ma'amarei Razal, Pirkei Avot:5">#</a>
@@ -1888,7 +1909,7 @@
             </div>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-6">Chapter 6</h4>
-          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-6" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:6</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-6" aria-label="Copy link to Sha'ar Ma'amarei Razal, Pirkei Avot:6">#</a>
@@ -1908,7 +1929,7 @@
             </div>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-7">Chapter 7</h4>
-          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-7" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:7</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-7" aria-label="Copy link to Sha'ar Ma'amarei Razal, Pirkei Avot:7">#</a>
@@ -1928,7 +1949,7 @@
             </div>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-8">Chapter 8</h4>
-          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-8" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:8</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-8" aria-label="Copy link to Sha'ar Ma'amarei Razal, Pirkei Avot:8">#</a>
@@ -1948,7 +1969,7 @@
             </div>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-9">Chapter 9</h4>
-          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-9" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:9</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-9" aria-label="Copy link to Sha'ar Ma'amarei Razal, Pirkei Avot:9">#</a>
@@ -1968,7 +1989,7 @@
             </div>
           </section>
           <h4 id="chapter-pirkei-avot-pirkei-avot-10">Chapter 10</h4>
-          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-10" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-pirkei-avot-pirkei-avot-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Pirkei Avot:10</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-pirkei-avot-pirkei-avot-10" aria-label="Copy link to Sha'ar Ma'amarei Razal, Pirkei Avot:10">#</a>
@@ -1990,7 +2011,7 @@
           <h2 id="group-tractate-niddah">Tractate Niddah</h2>
           <h3 id="section-tractate-niddah-tractate-niddah">Tractate Niddah</h3>
           <h4 id="chapter-tractate-niddah-tractate-niddah-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-tractate-niddah-tractate-niddah-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-tractate-niddah-tractate-niddah-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Tractate Niddah:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-tractate-niddah-tractate-niddah-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Tractate Niddah:1">#</a>
@@ -2012,7 +2033,7 @@
           <h2 id="group-midrashim">Midrashim</h2>
           <h3 id="section-midrashim-midrashim">Midrashim</h3>
           <h4 id="chapter-midrashim-midrashim-1">Chapter 1</h4>
-          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-1" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:1</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-midrashim-midrashim-1-1" aria-label="Copy link to Sha'ar Ma'amarei Razal, Midrashim 1:1">#</a>
@@ -2031,7 +2052,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-2" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:2</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-midrashim-midrashim-1-2" aria-label="Copy link to Sha'ar Ma'amarei Razal, Midrashim 1:2">#</a>
@@ -2050,7 +2071,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-3" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:3</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-midrashim-midrashim-1-3" aria-label="Copy link to Sha'ar Ma'amarei Razal, Midrashim 1:3">#</a>
@@ -2069,7 +2090,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-4" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:4</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-midrashim-midrashim-1-4" aria-label="Copy link to Sha'ar Ma'amarei Razal, Midrashim 1:4">#</a>
@@ -2088,7 +2109,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-5" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:5</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-midrashim-midrashim-1-5" aria-label="Copy link to Sha'ar Ma'amarei Razal, Midrashim 1:5">#</a>
@@ -2107,7 +2128,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-6" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:6</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-midrashim-midrashim-1-6" aria-label="Copy link to Sha'ar Ma'amarei Razal, Midrashim 1:6">#</a>
@@ -2126,7 +2147,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-7" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:7</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-midrashim-midrashim-1-7" aria-label="Copy link to Sha'ar Ma'amarei Razal, Midrashim 1:7">#</a>
@@ -2145,7 +2166,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-8" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-8" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:8</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-midrashim-midrashim-1-8" aria-label="Copy link to Sha'ar Ma'amarei Razal, Midrashim 1:8">#</a>
@@ -2164,7 +2185,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-9" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-9" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:9</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-midrashim-midrashim-1-9" aria-label="Copy link to Sha'ar Ma'amarei Razal, Midrashim 1:9">#</a>
@@ -2183,7 +2204,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-10" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-10" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:10</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-midrashim-midrashim-1-10" aria-label="Copy link to Sha'ar Ma'amarei Razal, Midrashim 1:10">#</a>
@@ -2202,7 +2223,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-11" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-11" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:11</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-midrashim-midrashim-1-11" aria-label="Copy link to Sha'ar Ma'amarei Razal, Midrashim 1:11">#</a>
@@ -2221,7 +2242,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-12" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-12" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:12</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-midrashim-midrashim-1-12" aria-label="Copy link to Sha'ar Ma'amarei Razal, Midrashim 1:12">#</a>
@@ -2240,7 +2261,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-13" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-13" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:13</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-midrashim-midrashim-1-13" aria-label="Copy link to Sha'ar Ma'amarei Razal, Midrashim 1:13">#</a>
@@ -2259,7 +2280,7 @@
               </div>
             </div>
           </section>
-          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-14" data-unit>
+          <section class="unit" id="shaar-maamarei-razal-midrashim-midrashim-1-14" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar Ma&#39;amarei Razal, Midrashim 1:14</h4></div>
               <a class="anchor" href="#shaar-maamarei-razal-midrashim-midrashim-1-14" aria-label="Copy link to Sha'ar Ma'amarei Razal, Midrashim 1:14">#</a>
@@ -2282,5 +2303,38 @@
       </div>
     </div>
   </main>
+  <script>
+    (() => {
+      const units = Array.from(document.querySelectorAll("[data-unit]"));
+      const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
+      const nextButton = document.querySelector("[data-next-not-done]");
+      let currentFilter = "all";
+      const matchesFilter = (unit, filter) => {
+        const done = unit.dataset.complete === "true";
+        return filter === "all" || (filter === "done" && done) || (filter === "not-done" && !done);
+      };
+      const applyFilter = (filter) => {
+        currentFilter = filter;
+        units.forEach((unit) => { unit.hidden = !matchesFilter(unit, filter); });
+        filterButtons.forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
+        });
+      };
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => applyFilter(button.dataset.filter));
+      });
+      if (nextButton) {
+        nextButton.addEventListener("click", () => {
+          const incomplete = units.filter((unit) => unit.dataset.complete !== "true");
+          if (!incomplete.length) return;
+          if (currentFilter === "done") applyFilter("not-done");
+          const currentY = window.scrollY + 12;
+          const target = incomplete.find((unit) => unit.getBoundingClientRect().top + window.scrollY > currentY) || incomplete[0];
+          if (target.id) history.replaceState(null, "", "#" + target.id);
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

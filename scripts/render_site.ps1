@@ -121,6 +121,16 @@ function Get-OverlayValue {
   return $property.Value
 }
 
+function Get-OverlayForSource {
+  param(
+    [object]$Source,
+    [string]$OverlayDir
+  )
+  $overlayPath = Join-Path $OverlayDir "$($Source.work_id).json"
+  if (Test-Path $overlayPath) { return Read-Json -Path $overlayPath }
+  return $null
+}
+
 function Test-HasContent {
   param([AllowNull()][object]$Value)
   if ($null -eq $Value) { return $false }
@@ -129,6 +139,37 @@ function Test-HasContent {
     if ($null -ne $item -and $item.ToString().Trim()) { return $true }
   }
   return $false
+}
+
+function Get-WorkProgress {
+  param(
+    [object]$Source,
+    [object]$Overlay
+  )
+
+  $total = @($Source.units).Count
+  $done = 0
+  foreach ($unit in @($Source.units)) {
+    $overlayUnit = Get-OverlayUnit -Overlay $Overlay -UnitId $unit.unit_id
+    $translation = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'strict_translation'
+    if (Test-HasContent $translation) {
+      $done += 1
+    }
+  }
+
+  $percent = if ($total -gt 0) { [math]::Round(($done / $total) * 100, 1) } else { 0 }
+  $percentLabel = if ($percent -eq [math]::Round($percent, 0)) {
+    ([int]$percent).ToString()
+  } else {
+    $percent.ToString('0.0', [System.Globalization.CultureInfo]::InvariantCulture)
+  }
+
+  return [pscustomobject]@{
+    done = $done
+    total = $total
+    percent = $percent
+    percent_label = $percentLabel
+  }
 }
 
 function Get-SourceKey {
@@ -243,11 +284,21 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }')
   [void]$Builder.AppendLine('    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }')
   [void]$Builder.AppendLine('    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }')
+  [void]$Builder.AppendLine('    .progress-panel { margin-top: 14px; border: 1px solid var(--line); background: rgba(20,24,31,0.58); padding: 12px; }')
+  [void]$Builder.AppendLine('    .progress-summary { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; color: var(--muted); font-size: 0.92rem; }')
+  [void]$Builder.AppendLine('    .progress-summary strong { color: var(--text); font-weight: 400; }')
+  [void]$Builder.AppendLine('    .progress-meter { height: 5px; margin-top: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); overflow: hidden; }')
+  [void]$Builder.AppendLine('    .progress-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }')
+  [void]$Builder.AppendLine('    .progress-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }')
+  [void]$Builder.AppendLine('    .filter-button { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 6px 10px; font: inherit; cursor: pointer; }')
+  [void]$Builder.AppendLine('    .filter-button[aria-pressed="true"], .filter-button:hover { color: var(--text); border-color: var(--accent); background: rgba(214,190,138,0.08); }')
+  [void]$Builder.AppendLine('    .filter-button:disabled { cursor: default; opacity: 0.45; }')
   [void]$Builder.AppendLine('    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }')
   [void]$Builder.AppendLine('    .home-section { margin-top: 26px; }')
   [void]$Builder.AppendLine('    .home-section:first-child { margin-top: 0; }')
   [void]$Builder.AppendLine('    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }')
   [void]$Builder.AppendLine('    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }')
+  [void]$Builder.AppendLine('    .work-card .meta { display: block; margin-top: 6px; }')
   [void]$Builder.AppendLine('    .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }')
   [void]$Builder.AppendLine('    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border: 1px solid var(--line); background: var(--panel); padding: 14px; }')
   [void]$Builder.AppendLine('    .toc ul { list-style: none; padding: 0; margin: 0; }')
@@ -255,6 +306,7 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .toc a { text-decoration: none; font-size: 0.94rem; }')
   [void]$Builder.AppendLine('    .section-block { margin-bottom: 10px; }')
   [void]$Builder.AppendLine('    .unit { border-top: 1px solid var(--line); padding: 16px 0; }')
+  [void]$Builder.AppendLine('    .unit[hidden] { display: none; }')
   [void]$Builder.AppendLine('    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }')
   [void]$Builder.AppendLine('    .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }')
   [void]$Builder.AppendLine('    .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }')
@@ -277,6 +329,44 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('<body>')
 }
 
+function Append-ReaderScript {
+  param([System.Text.StringBuilder]$Builder)
+
+  [void]$Builder.AppendLine('  <script>')
+  [void]$Builder.AppendLine('    (() => {')
+  [void]$Builder.AppendLine('      const units = Array.from(document.querySelectorAll("[data-unit]"));')
+  [void]$Builder.AppendLine('      const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));')
+  [void]$Builder.AppendLine('      const nextButton = document.querySelector("[data-next-not-done]");')
+  [void]$Builder.AppendLine('      let currentFilter = "all";')
+  [void]$Builder.AppendLine('      const matchesFilter = (unit, filter) => {')
+  [void]$Builder.AppendLine('        const done = unit.dataset.complete === "true";')
+  [void]$Builder.AppendLine('        return filter === "all" || (filter === "done" && done) || (filter === "not-done" && !done);')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const applyFilter = (filter) => {')
+  [void]$Builder.AppendLine('        currentFilter = filter;')
+  [void]$Builder.AppendLine('        units.forEach((unit) => { unit.hidden = !matchesFilter(unit, filter); });')
+  [void]$Builder.AppendLine('        filterButtons.forEach((button) => {')
+  [void]$Builder.AppendLine('          button.setAttribute("aria-pressed", String(button.dataset.filter === filter));')
+  [void]$Builder.AppendLine('        });')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      filterButtons.forEach((button) => {')
+  [void]$Builder.AppendLine('        button.addEventListener("click", () => applyFilter(button.dataset.filter));')
+  [void]$Builder.AppendLine('      });')
+  [void]$Builder.AppendLine('      if (nextButton) {')
+  [void]$Builder.AppendLine('        nextButton.addEventListener("click", () => {')
+  [void]$Builder.AppendLine('          const incomplete = units.filter((unit) => unit.dataset.complete !== "true");')
+  [void]$Builder.AppendLine('          if (!incomplete.length) return;')
+  [void]$Builder.AppendLine('          if (currentFilter === "done") applyFilter("not-done");')
+  [void]$Builder.AppendLine('          const currentY = window.scrollY + 12;')
+  [void]$Builder.AppendLine('          const target = incomplete.find((unit) => unit.getBoundingClientRect().top + window.scrollY > currentY) || incomplete[0];')
+  [void]$Builder.AppendLine('          if (target.id) history.replaceState(null, "", "#" + target.id);')
+  [void]$Builder.AppendLine('          target.scrollIntoView({ behavior: "smooth", block: "start" });')
+  [void]$Builder.AppendLine('        });')
+  [void]$Builder.AppendLine('      }')
+  [void]$Builder.AppendLine('    })();')
+  [void]$Builder.AppendLine('  </script>')
+}
+
 $sources = @(Get-ChildItem -Path $SourceDir -Filter '*.json' | ForEach-Object { Read-Json -Path $_.FullName } | Sort-Object work_title)
 
 $homePage = New-Object System.Text.StringBuilder
@@ -294,9 +384,12 @@ foreach ($homeGroup in $homeGroups) {
   [void]$homePage.AppendLine("          <h2>$(Encode-Html $homeGroup.Name)</h2>")
   [void]$homePage.AppendLine('          <div class="home-grid">')
   foreach ($source in @($homeGroup.Group | Sort-Object work_title)) {
+    $homeOverlay = Get-OverlayForSource -Source $source -OverlayDir $OverlayDir
+    $homeProgress = Get-WorkProgress -Source $source -Overlay $homeOverlay
     [void]$homePage.AppendLine("            <a class=""work-card"" href=""$($source.work_slug)/"">")
     [void]$homePage.AppendLine("              <strong>$(Encode-Html $source.work_title)</strong>")
     [void]$homePage.AppendLine("              <span class=""meta"">$(@($source.units).Count) source units | $(Encode-Html $source.source_system) | imported $(Encode-Html $source.import_date)</span>")
+    [void]$homePage.AppendLine("              <span class=""meta"">Progress: $($homeProgress.done) / $($homeProgress.total) done | $($homeProgress.percent_label)% complete</span>")
     [void]$homePage.AppendLine('            </a>')
   }
   [void]$homePage.AppendLine('          </div>')
@@ -310,8 +403,8 @@ foreach ($homeGroup in $homeGroups) {
 Write-Utf8 -Path 'index.html' -Content $homePage.ToString()
 
 foreach ($source in $sources) {
-  $overlayPath = Join-Path $OverlayDir "$($source.work_id).json"
-  $overlay = if (Test-Path $overlayPath) { Read-Json -Path $overlayPath } else { $null }
+  $overlay = Get-OverlayForSource -Source $source -OverlayDir $OverlayDir
+  $progress = Get-WorkProgress -Source $source -Overlay $overlay
   $exportRows = Get-OverlayExportRows -Source $source -Overlay $overlay
   Write-OverlayExports -WorkSlug $source.work_slug -Rows $exportRows
   $page = New-Object System.Text.StringBuilder
@@ -350,6 +443,20 @@ foreach ($source in $sources) {
   [void]$page.AppendLine('          <a class="export-button" href="overlay-export.csv" download>CSV</a>')
   [void]$page.AppendLine('          <a class="export-button" href="overlay-export.json" download>JSON</a>')
   [void]$page.AppendLine('          <a class="export-button" href="overlay-export.md" download>Markdown</a>')
+  [void]$page.AppendLine('        </div>')
+  [void]$page.AppendLine('        <div class="progress-panel" data-progress-panel>')
+  [void]$page.AppendLine("          <div class=""progress-summary""><span>Progress</span><strong>$($progress.done) / $($progress.total) done</strong><span>$($progress.percent_label)% complete</span></div>")
+  [void]$page.AppendLine("          <div class=""progress-meter"" aria-label=""$($progress.percent_label)% complete""><span style=""width:$($progress.percent)%""></span></div>")
+  [void]$page.AppendLine('          <div class="progress-controls" aria-label="Progress filters">')
+  [void]$page.AppendLine('            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>')
+  [void]$page.AppendLine('            <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Done</button>')
+  [void]$page.AppendLine('            <button class="filter-button" type="button" data-filter="not-done" aria-pressed="false">Not done</button>')
+  if ($progress.done -lt $progress.total) {
+    [void]$page.AppendLine('            <button class="filter-button" type="button" data-next-not-done>Next not done</button>')
+  } else {
+    [void]$page.AppendLine('            <button class="filter-button" type="button" data-next-not-done disabled>Next not done</button>')
+  }
+  [void]$page.AppendLine('          </div>')
   [void]$page.AppendLine('        </div>')
   if ($MaxUnits -gt 0) {
     [void]$page.AppendLine("        <p class=""fallback-note"">Fallback render active. Showing first $MaxUnits units only while route stability is verified.</p>")
@@ -409,8 +516,10 @@ foreach ($source in $sources) {
     $overlayUnit = Get-OverlayUnit -Overlay $overlay -UnitId $unit.unit_id
     $strict = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'strict_translation'
     $clean = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'clean_translation'
+    $isDone = Test-HasContent $strict
+    $completeState = if ($isDone) { 'true' } else { 'false' }
 
-    [void]$page.AppendLine("          <section class=""unit"" id=""$($unit.anchor_id)"" data-unit>")
+    [void]$page.AppendLine("          <section class=""unit"" id=""$($unit.anchor_id)"" data-unit data-complete=""$completeState"">")
     [void]$page.AppendLine('            <div class="unit-head">')
     [void]$page.Append("              <div><h4 style=""margin:0;color:var(--text);text-transform:none;letter-spacing:0"">$(Encode-Html $unit.source_ref)")
     if (-not $singleSourceNote) {
@@ -427,7 +536,7 @@ foreach ($source in $sources) {
     [void]$page.AppendLine('              </div>')
     [void]$page.AppendLine('              <div>')
     [void]$page.AppendLine('                <div class="overlay-block"><span class="overlay-label">Translation</span>')
-    if (Test-HasContent $strict) {
+    if ($isDone) {
       [void]$page.AppendLine("                  <p>$(Encode-Html $strict)</p>")
     } else {
       [void]$page.AppendLine('                  <p class="placeholder">N/A</p>')
@@ -463,6 +572,7 @@ foreach ($source in $sources) {
   [void]$page.AppendLine('      </div>')
   [void]$page.AppendLine('    </div>')
   [void]$page.AppendLine('  </main>')
+  Append-ReaderScript -Builder $page
   [void]$page.AppendLine('</body>')
   [void]$page.AppendLine('</html>')
 
