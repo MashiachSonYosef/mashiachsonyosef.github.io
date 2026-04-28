@@ -6,7 +6,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-$overlayLicenseNotice = 'English translations and translator''s notes by Kyle Thompson are released under CC0 1.0 Universal. You may copy, modify, distribute, and use them for any purpose without attribution. Hebrew source texts retain their original source/version licenses.'
+$overlayLicenseNotice = 'English translations and translator''s notes by the owner are released under CC0 1.0 Universal. You may copy, modify, distribute, and use them for any purpose without attribution. Hebrew source texts retain their original source/version licenses.'
 
 function Encode-Html {
   param([AllowNull()][string]$Text)
