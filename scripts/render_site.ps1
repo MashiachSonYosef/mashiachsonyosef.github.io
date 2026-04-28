@@ -367,6 +367,35 @@ function Append-ReaderScript {
   [void]$Builder.AppendLine('  </script>')
 }
 
+function Append-HomeScript {
+  param([System.Text.StringBuilder]$Builder)
+
+  [void]$Builder.AppendLine('  <script>')
+  [void]$Builder.AppendLine('    (() => {')
+  [void]$Builder.AppendLine('      const cards = Array.from(document.querySelectorAll("[data-work-card]"));')
+  [void]$Builder.AppendLine('      const sections = Array.from(document.querySelectorAll("[data-home-section]"));')
+  [void]$Builder.AppendLine('      const buttons = Array.from(document.querySelectorAll("[data-work-filter]"));')
+  [void]$Builder.AppendLine('      const matchesFilter = (card, filter) => {')
+  [void]$Builder.AppendLine('        const done = card.dataset.workComplete === "true";')
+  [void]$Builder.AppendLine('        return filter === "all" || (filter === "done" && done) || (filter === "not-done" && !done);')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const applyFilter = (filter) => {')
+  [void]$Builder.AppendLine('        cards.forEach((card) => { card.hidden = !matchesFilter(card, filter); });')
+  [void]$Builder.AppendLine('        sections.forEach((section) => {')
+  [void]$Builder.AppendLine('          const visibleCard = section.querySelector("[data-work-card]:not([hidden])");')
+  [void]$Builder.AppendLine('          section.hidden = !visibleCard;')
+  [void]$Builder.AppendLine('        });')
+  [void]$Builder.AppendLine('        buttons.forEach((button) => {')
+  [void]$Builder.AppendLine('          button.setAttribute("aria-pressed", String(button.dataset.workFilter === filter));')
+  [void]$Builder.AppendLine('        });')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      buttons.forEach((button) => {')
+  [void]$Builder.AppendLine('        button.addEventListener("click", () => applyFilter(button.dataset.workFilter));')
+  [void]$Builder.AppendLine('      });')
+  [void]$Builder.AppendLine('    })();')
+  [void]$Builder.AppendLine('  </script>')
+}
+
 $sources = @(Get-ChildItem -Path $SourceDir -Filter '*.json' | ForEach-Object { Read-Json -Path $_.FullName } | Sort-Object work_title)
 
 $homePage = New-Object System.Text.StringBuilder
@@ -378,15 +407,21 @@ Append-SiteHead -Builder $homePage -Title 'Translation Workspace'
 [void]$homePage.AppendLine('        <p>Hebrew source infrastructure first. Overlays stay separate. English remains placeholder-only until you write it.</p>')
 [void]$homePage.AppendLine('      </div>')
 [void]$homePage.AppendLine('      <div style="padding:22px">')
+[void]$homePage.AppendLine('        <div class="progress-controls" aria-label="Work progress filters">')
+[void]$homePage.AppendLine('          <button class="filter-button" type="button" data-work-filter="all" aria-pressed="true">All</button>')
+[void]$homePage.AppendLine('          <button class="filter-button" type="button" data-work-filter="done" aria-pressed="false">Done</button>')
+[void]$homePage.AppendLine('          <button class="filter-button" type="button" data-work-filter="not-done" aria-pressed="false">Not done</button>')
+[void]$homePage.AppendLine('        </div>')
 $homeGroups = $sources | Group-Object { Get-HomeGroup $_ } | Sort-Object @{ Expression = { if ($_.Name -eq 'Works') { 0 } elseif ($_.Name -eq 'Tanakh') { 1 } else { 2 } } }, Name
 foreach ($homeGroup in $homeGroups) {
-  [void]$homePage.AppendLine('        <section class="home-section">')
+  [void]$homePage.AppendLine('        <section class="home-section" data-home-section>')
   [void]$homePage.AppendLine("          <h2>$(Encode-Html $homeGroup.Name)</h2>")
   [void]$homePage.AppendLine('          <div class="home-grid">')
   foreach ($source in @($homeGroup.Group | Sort-Object work_title)) {
     $homeOverlay = Get-OverlayForSource -Source $source -OverlayDir $OverlayDir
     $homeProgress = Get-WorkProgress -Source $source -Overlay $homeOverlay
-    [void]$homePage.AppendLine("            <a class=""work-card"" href=""$($source.work_slug)/"">")
+    $workComplete = if ($homeProgress.total -gt 0 -and $homeProgress.done -eq $homeProgress.total) { 'true' } else { 'false' }
+    [void]$homePage.AppendLine("            <a class=""work-card"" href=""$($source.work_slug)/"" data-work-card data-work-complete=""$workComplete"">")
     [void]$homePage.AppendLine("              <strong>$(Encode-Html $source.work_title)</strong>")
     [void]$homePage.AppendLine("              <span class=""meta"">$(@($source.units).Count) source units | $(Encode-Html $source.source_system) | imported $(Encode-Html $source.import_date)</span>")
     [void]$homePage.AppendLine("              <span class=""meta"">Progress: $($homeProgress.done) / $($homeProgress.total) done | $($homeProgress.percent_label)% complete</span>")
@@ -398,6 +433,7 @@ foreach ($homeGroup in $homeGroups) {
 [void]$homePage.AppendLine('      </div>')
 [void]$homePage.AppendLine('    </div>')
 [void]$homePage.AppendLine('  </main>')
+Append-HomeScript -Builder $homePage
 [void]$homePage.AppendLine('</body>')
 [void]$homePage.AppendLine('</html>')
 Write-Utf8 -Path 'index.html' -Content $homePage.ToString()
