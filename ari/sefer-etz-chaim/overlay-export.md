@@ -1,9 +1,9 @@
-| work_id | work_title | source_ref | anchor_id | translation | translator_notes | status |
-|---|---|---|---|---|---|---|
-| sefer-etz-chaim | Sefer Etz Chaim | Sefer Etz Chaim, Shaar HaKlalim 1:1 | sefer-etz-chaim-shaar-haklalim-shaar-haklalim-1-1 |  |  |  |
-| sefer-etz-chaim | Sefer Etz Chaim | Sefer Etz Chaim, Shaar HaKlalim 1:2 | sefer-etz-chaim-shaar-haklalim-shaar-haklalim-1-2 |  |  |  |
-| sefer-etz-chaim | Sefer Etz Chaim | Sefer Etz Chaim 1:1:1 | sefer-etz-chaim-default-default-1-1-1 |  |  |  |
-| sefer-etz-chaim | Sefer Etz Chaim | Sefer Etz Chaim 1:1:2 | sefer-etz-chaim-default-default-1-1-2 |  |  |  |
-| sefer-etz-chaim | Sefer Etz Chaim | Sefer Etz Chaim 1:1:3 | sefer-etz-chaim-default-default-1-1-3 |  |  |  |
-| sefer-etz-chaim | Sefer Etz Chaim | Sefer Etz Chaim 1:1:4 | sefer-etz-chaim-default-default-1-1-4 |  |  |  |
-| sefer-etz-chaim | Sefer Etz Chaim | Sefer Etz Chaim 1:1:5 | sefer-etz-chaim-default-default-1-1-5 |  |  |  |
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| sefer-etz-chaim | Sefer Etz Chaim | Sefer Etz Chaim, Shaar HaKlalim 1:1 | sefer-etz-chaim-shaar-haklalim-shaar-haklalim-1-1 |  |  | not_done |  |
+| sefer-etz-chaim | Sefer Etz Chaim | Sefer Etz Chaim, Shaar HaKlalim 1:2 | sefer-etz-chaim-shaar-haklalim-shaar-haklalim-1-2 |  |  | not_done |  |
+| sefer-etz-chaim | Sefer Etz Chaim | Sefer Etz Chaim 1:1:1 | sefer-etz-chaim-default-default-1-1-1 |  |  | not_done |  |
+| sefer-etz-chaim | Sefer Etz Chaim | Sefer Etz Chaim 1:1:2 | sefer-etz-chaim-default-default-1-1-2 |  |  | not_done |  |
+| sefer-etz-chaim | Sefer Etz Chaim | Sefer Etz Chaim 1:1:3 | sefer-etz-chaim-default-default-1-1-3 |  |  | not_done |  |
+| sefer-etz-chaim | Sefer Etz Chaim | Sefer Etz Chaim 1:1:4 | sefer-etz-chaim-default-default-1-1-4 |  |  | not_done |  |
+| sefer-etz-chaim | Sefer Etz Chaim | Sefer Etz Chaim 1:1:5 | sefer-etz-chaim-default-default-1-1-5 |  |  | not_done |  |

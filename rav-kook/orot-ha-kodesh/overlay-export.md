@@ -1,460 +1,460 @@
-| work_id | work_title | source_ref | anchor_id | translation | translator_notes | status |
-|---|---|---|---|---|---|---|
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:1:1 | orot-ha-kodesh-1-1-1-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:2:1 | orot-ha-kodesh-1-1-2-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:3:1 | orot-ha-kodesh-1-1-3-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:4:1 | orot-ha-kodesh-1-1-4-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:5:1 | orot-ha-kodesh-1-1-5-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:6:1 | orot-ha-kodesh-1-1-6-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:7:1 | orot-ha-kodesh-1-1-7-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:8:1 | orot-ha-kodesh-1-1-8-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:9:1 | orot-ha-kodesh-1-1-9-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:10:1 | orot-ha-kodesh-1-1-10-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:11:1 | orot-ha-kodesh-1-1-11-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:12:1 | orot-ha-kodesh-1-1-12-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:13:1 | orot-ha-kodesh-1-1-13-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:14:1 | orot-ha-kodesh-1-1-14-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:15:1 | orot-ha-kodesh-1-1-15-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:16:1 | orot-ha-kodesh-1-1-16-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:17:1 | orot-ha-kodesh-1-1-17-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:18:1 | orot-ha-kodesh-1-1-18-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:19:1 | orot-ha-kodesh-1-1-19-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:20:1 | orot-ha-kodesh-1-1-20-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:21:1 | orot-ha-kodesh-1-1-21-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:22:1 | orot-ha-kodesh-1-1-22-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:23:1 | orot-ha-kodesh-1-1-23-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:24:1 | orot-ha-kodesh-1-1-24-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:25:1 | orot-ha-kodesh-1-1-25-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:26:1 | orot-ha-kodesh-1-1-26-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:27:1 | orot-ha-kodesh-1-1-27-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:28:1 | orot-ha-kodesh-1-1-28-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:29:1 | orot-ha-kodesh-1-1-29-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:30:1 | orot-ha-kodesh-1-1-30-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:31:1 | orot-ha-kodesh-1-1-31-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:32:1 | orot-ha-kodesh-1-1-32-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:33:1 | orot-ha-kodesh-1-1-33-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:34:1 | orot-ha-kodesh-1-1-34-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:35:1 | orot-ha-kodesh-1-1-35-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:36:1 | orot-ha-kodesh-1-1-36-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:37:1 | orot-ha-kodesh-1-1-37-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:38:1 | orot-ha-kodesh-1-1-38-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:39:1 | orot-ha-kodesh-1-1-39-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:40:1 | orot-ha-kodesh-1-1-40-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:41:1 | orot-ha-kodesh-1-1-41-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:42:1 | orot-ha-kodesh-1-1-42-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:43:1 | orot-ha-kodesh-1-1-43-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:44:1 | orot-ha-kodesh-1-1-44-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:45:1 | orot-ha-kodesh-1-1-45-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:46:1 | orot-ha-kodesh-1-1-46-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:47:1 | orot-ha-kodesh-1-1-47-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:48:1 | orot-ha-kodesh-1-1-48-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:49:1 | orot-ha-kodesh-1-1-49-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:50:1 | orot-ha-kodesh-1-1-50-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:51:1 | orot-ha-kodesh-1-1-51-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:52:1 | orot-ha-kodesh-1-1-52-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:53:1 | orot-ha-kodesh-1-1-53-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:54:1 | orot-ha-kodesh-1-1-54-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:55:1 | orot-ha-kodesh-1-1-55-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:56:1 | orot-ha-kodesh-1-1-56-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:57:1 | orot-ha-kodesh-1-1-57-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:58:1 | orot-ha-kodesh-1-1-58-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:59:1 | orot-ha-kodesh-1-1-59-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:60:1 | orot-ha-kodesh-1-1-60-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:61:1 | orot-ha-kodesh-1-1-61-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:62:1 | orot-ha-kodesh-1-1-62-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:63:1 | orot-ha-kodesh-1-1-63-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:64:1 | orot-ha-kodesh-1-1-64-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:65:1 | orot-ha-kodesh-1-1-65-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:66:1 | orot-ha-kodesh-1-1-66-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:67:1 | orot-ha-kodesh-1-1-67-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:68:1 | orot-ha-kodesh-1-1-68-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:69:1 | orot-ha-kodesh-1-1-69-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:70:1 | orot-ha-kodesh-1-1-70-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:71:1 | orot-ha-kodesh-1-1-71-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:72:1 | orot-ha-kodesh-1-1-72-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:73:1 | orot-ha-kodesh-1-1-73-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:74:1 | orot-ha-kodesh-1-1-74-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:75:1 | orot-ha-kodesh-1-1-75-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:76:1 | orot-ha-kodesh-1-1-76-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:77:1 | orot-ha-kodesh-1-1-77-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:78:1 | orot-ha-kodesh-1-1-78-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:79:1 | orot-ha-kodesh-1-1-79-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:80:1 | orot-ha-kodesh-1-1-80-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:81:1 | orot-ha-kodesh-1-1-81-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:82:1 | orot-ha-kodesh-1-1-82-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:83:1 | orot-ha-kodesh-1-1-83-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:84:1 | orot-ha-kodesh-1-1-84-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:85:1 | orot-ha-kodesh-1-1-85-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:86:1 | orot-ha-kodesh-1-1-86-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:87:1 | orot-ha-kodesh-1-1-87-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:88:1 | orot-ha-kodesh-1-1-88-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:89:1 | orot-ha-kodesh-1-1-89-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:90:1 | orot-ha-kodesh-1-1-90-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:91:1 | orot-ha-kodesh-1-1-91-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:92:1 | orot-ha-kodesh-1-1-92-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:93:1 | orot-ha-kodesh-1-1-93-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:94:1 | orot-ha-kodesh-1-1-94-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:95:1 | orot-ha-kodesh-1-1-95-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:96:1 | orot-ha-kodesh-1-1-96-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:97:1 | orot-ha-kodesh-1-1-97-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:98:1 | orot-ha-kodesh-1-1-98-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:99:1 | orot-ha-kodesh-1-1-99-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:100:1 | orot-ha-kodesh-1-1-100-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:101:1 | orot-ha-kodesh-1-1-101-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:102:1 | orot-ha-kodesh-1-1-102-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:103:1 | orot-ha-kodesh-1-1-103-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:104:1 | orot-ha-kodesh-1-1-104-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:105:1 | orot-ha-kodesh-1-1-105-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:106:1 | orot-ha-kodesh-1-1-106-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:107:1 | orot-ha-kodesh-1-1-107-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:108:1 | orot-ha-kodesh-1-1-108-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:109:1 | orot-ha-kodesh-1-1-109-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:110:1 | orot-ha-kodesh-1-1-110-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:111:1 | orot-ha-kodesh-1-1-111-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:112:1 | orot-ha-kodesh-1-1-112-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:113:1 | orot-ha-kodesh-1-1-113-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:115:1 | orot-ha-kodesh-1-1-115-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:116:1 | orot-ha-kodesh-1-1-116-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:117:1 | orot-ha-kodesh-1-1-117-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:118:1 | orot-ha-kodesh-1-1-118-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:119:1 | orot-ha-kodesh-1-1-119-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:120:1 | orot-ha-kodesh-1-1-120-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:121:1 | orot-ha-kodesh-1-1-121-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:122:1 | orot-ha-kodesh-1-1-122-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:123:1 | orot-ha-kodesh-1-1-123-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:124:1 | orot-ha-kodesh-1-1-124-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:125:1 | orot-ha-kodesh-1-1-125-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:126:1 | orot-ha-kodesh-1-1-126-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:127:1 | orot-ha-kodesh-1-1-127-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:128:1 | orot-ha-kodesh-1-1-128-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:129:1 | orot-ha-kodesh-1-1-129-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:130:1 | orot-ha-kodesh-1-1-130-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:131:1 | orot-ha-kodesh-1-1-131-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:132:1 | orot-ha-kodesh-1-1-132-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:133:1 | orot-ha-kodesh-1-1-133-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:134:1 | orot-ha-kodesh-1-1-134-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:135:1 | orot-ha-kodesh-1-1-135-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:136:1 | orot-ha-kodesh-1-1-136-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:137:1 | orot-ha-kodesh-1-1-137-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:138:1 | orot-ha-kodesh-1-1-138-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:1 | orot-ha-kodesh-3-1-1-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:2 | orot-ha-kodesh-3-1-1-2 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:3 | orot-ha-kodesh-3-1-1-3 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:4 | orot-ha-kodesh-3-1-1-4 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:5 | orot-ha-kodesh-3-1-1-5 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:6 | orot-ha-kodesh-3-1-1-6 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:7 | orot-ha-kodesh-3-1-1-7 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:8 | orot-ha-kodesh-3-1-1-8 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:9 | orot-ha-kodesh-3-1-1-9 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:10 | orot-ha-kodesh-3-1-1-10 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:11 | orot-ha-kodesh-3-1-1-11 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:12 | orot-ha-kodesh-3-1-1-12 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:13 | orot-ha-kodesh-3-1-1-13 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:14 | orot-ha-kodesh-3-1-1-14 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:15 | orot-ha-kodesh-3-1-1-15 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:16 | orot-ha-kodesh-3-1-1-16 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:17 | orot-ha-kodesh-3-1-1-17 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:18 | orot-ha-kodesh-3-1-1-18 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:1 | orot-ha-kodesh-3-2-1-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:2 | orot-ha-kodesh-3-2-1-2 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:3 | orot-ha-kodesh-3-2-1-3 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:4 | orot-ha-kodesh-3-2-1-4 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:5 | orot-ha-kodesh-3-2-1-5 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:6 | orot-ha-kodesh-3-2-1-6 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:7 | orot-ha-kodesh-3-2-1-7 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:8 | orot-ha-kodesh-3-2-1-8 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:9 | orot-ha-kodesh-3-2-1-9 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:10 | orot-ha-kodesh-3-2-1-10 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:11 | orot-ha-kodesh-3-2-1-11 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:12 | orot-ha-kodesh-3-2-1-12 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:13 | orot-ha-kodesh-3-2-1-13 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:14 | orot-ha-kodesh-3-2-1-14 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:15 | orot-ha-kodesh-3-2-2-15 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:16 | orot-ha-kodesh-3-2-2-16 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:17 | orot-ha-kodesh-3-2-2-17 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:18 | orot-ha-kodesh-3-2-2-18 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:19 | orot-ha-kodesh-3-2-2-19 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:20 | orot-ha-kodesh-3-2-2-20 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:21 | orot-ha-kodesh-3-2-2-21 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:22 | orot-ha-kodesh-3-2-2-22 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:23 | orot-ha-kodesh-3-2-2-23 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:24 | orot-ha-kodesh-3-2-2-24 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:25 | orot-ha-kodesh-3-2-2-25 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:26 | orot-ha-kodesh-3-2-2-26 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:27 | orot-ha-kodesh-3-2-2-27 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:28 | orot-ha-kodesh-3-2-2-28 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:29 | orot-ha-kodesh-3-2-3-29 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:30 | orot-ha-kodesh-3-2-3-30 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:31 | orot-ha-kodesh-3-2-3-31 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:32 | orot-ha-kodesh-3-2-3-32 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:33 | orot-ha-kodesh-3-2-3-33 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:34 | orot-ha-kodesh-3-2-3-34 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:35 | orot-ha-kodesh-3-2-3-35 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:36 | orot-ha-kodesh-3-2-3-36 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:37 | orot-ha-kodesh-3-2-3-37 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:38 | orot-ha-kodesh-3-2-3-38 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:39 | orot-ha-kodesh-3-2-3-39 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:40 | orot-ha-kodesh-3-2-3-40 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:41 | orot-ha-kodesh-3-2-3-41 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:42 | orot-ha-kodesh-3-2-3-42 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:43 | orot-ha-kodesh-3-2-3-43 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:44 | orot-ha-kodesh-3-2-3-44 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:45 | orot-ha-kodesh-3-2-3-45 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:46 | orot-ha-kodesh-3-2-3-46 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:47 | orot-ha-kodesh-3-2-3-47 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:48 | orot-ha-kodesh-3-2-3-48 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:49 | orot-ha-kodesh-3-2-3-49 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:50 | orot-ha-kodesh-3-2-3-50 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:51 | orot-ha-kodesh-3-2-3-51 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:52 | orot-ha-kodesh-3-2-3-52 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:53 | orot-ha-kodesh-3-2-3-53 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:54 | orot-ha-kodesh-3-2-3-54 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:55 | orot-ha-kodesh-3-2-3-55 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:56 | orot-ha-kodesh-3-2-3-56 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:57 | orot-ha-kodesh-3-2-4-57 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:58 | orot-ha-kodesh-3-2-4-58 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:59 | orot-ha-kodesh-3-2-4-59 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:60 | orot-ha-kodesh-3-2-4-60 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:61 | orot-ha-kodesh-3-2-4-61 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:62 | orot-ha-kodesh-3-2-4-62 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:63 | orot-ha-kodesh-3-2-4-63 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:64 | orot-ha-kodesh-3-2-4-64 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:65 | orot-ha-kodesh-3-2-4-65 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:66 | orot-ha-kodesh-3-2-4-66 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:67 | orot-ha-kodesh-3-2-4-67 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:68 | orot-ha-kodesh-3-2-4-68 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:69 | orot-ha-kodesh-3-2-4-69 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:70 | orot-ha-kodesh-3-2-4-70 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:71 | orot-ha-kodesh-3-2-4-71 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:72 | orot-ha-kodesh-3-2-4-72 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:73 | orot-ha-kodesh-3-2-4-73 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:74 | orot-ha-kodesh-3-2-4-74 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:75 | orot-ha-kodesh-3-2-4-75 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:76 | orot-ha-kodesh-3-2-4-76 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:77 | orot-ha-kodesh-3-2-5-77 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:78 | orot-ha-kodesh-3-2-5-78 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:79 | orot-ha-kodesh-3-2-5-79 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:80 | orot-ha-kodesh-3-2-5-80 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:81 | orot-ha-kodesh-3-2-5-81 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:82 | orot-ha-kodesh-3-2-5-82 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:83 | orot-ha-kodesh-3-2-5-83 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:84 | orot-ha-kodesh-3-2-5-84 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:85 | orot-ha-kodesh-3-2-5-85 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:86 | orot-ha-kodesh-3-2-5-86 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:87 | orot-ha-kodesh-3-2-5-87 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:88 | orot-ha-kodesh-3-2-5-88 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:89 | orot-ha-kodesh-3-2-5-89 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:90 | orot-ha-kodesh-3-2-5-90 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:91 | orot-ha-kodesh-3-2-5-91 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:92 | orot-ha-kodesh-3-2-5-92 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:93 | orot-ha-kodesh-3-2-5-93 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:94 | orot-ha-kodesh-3-2-5-94 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:95 | orot-ha-kodesh-3-2-5-95 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:96 | orot-ha-kodesh-3-2-5-96 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:97 | orot-ha-kodesh-3-2-5-97 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:98 | orot-ha-kodesh-3-2-5-98 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:99 | orot-ha-kodesh-3-2-5-99 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:100 | orot-ha-kodesh-3-2-5-100 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:101 | orot-ha-kodesh-3-2-6-101 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:102 | orot-ha-kodesh-3-2-6-102 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:103 | orot-ha-kodesh-3-2-6-103 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:104 | orot-ha-kodesh-3-2-6-104 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:105 | orot-ha-kodesh-3-2-6-105 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:106 | orot-ha-kodesh-3-2-6-106 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:107 | orot-ha-kodesh-3-2-6-107 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:108 | orot-ha-kodesh-3-2-6-108 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:109 | orot-ha-kodesh-3-2-6-109 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:110 | orot-ha-kodesh-3-2-6-110 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:111 | orot-ha-kodesh-3-2-6-111 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:112 | orot-ha-kodesh-3-2-6-112 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:113 | orot-ha-kodesh-3-2-6-113 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:114 | orot-ha-kodesh-3-2-7-114 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:115 | orot-ha-kodesh-3-2-7-115 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:116 | orot-ha-kodesh-3-2-7-116 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:117 | orot-ha-kodesh-3-2-7-117 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:118 | orot-ha-kodesh-3-2-7-118 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:119 | orot-ha-kodesh-3-2-7-119 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:120 | orot-ha-kodesh-3-2-7-120 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:121 | orot-ha-kodesh-3-2-7-121 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:122 | orot-ha-kodesh-3-2-7-122 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:123 | orot-ha-kodesh-3-2-7-123 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:124 | orot-ha-kodesh-3-2-7-124 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:125 | orot-ha-kodesh-3-2-7-125 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:126 | orot-ha-kodesh-3-2-7-126 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:127 | orot-ha-kodesh-3-2-7-127 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:128 | orot-ha-kodesh-3-2-7-128 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:129 | orot-ha-kodesh-3-2-7-129 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:130 | orot-ha-kodesh-3-2-7-130 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:131 | orot-ha-kodesh-3-2-7-131 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:132 | orot-ha-kodesh-3-2-7-132 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:133 | orot-ha-kodesh-3-2-7-133 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:134 | orot-ha-kodesh-3-2-7-134 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:135 | orot-ha-kodesh-3-2-7-135 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:136 | orot-ha-kodesh-3-2-7-136 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:137 | orot-ha-kodesh-3-2-7-137 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:138 | orot-ha-kodesh-3-2-7-138 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:1 | orot-ha-kodesh-3-3-1-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:2 | orot-ha-kodesh-3-3-1-2 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:3 | orot-ha-kodesh-3-3-1-3 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:4 | orot-ha-kodesh-3-3-1-4 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:5 | orot-ha-kodesh-3-3-1-5 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:6 | orot-ha-kodesh-3-3-1-6 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:7 | orot-ha-kodesh-3-3-1-7 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:8 | orot-ha-kodesh-3-3-1-8 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:9 | orot-ha-kodesh-3-3-1-9 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:10 | orot-ha-kodesh-3-3-1-10 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:11 | orot-ha-kodesh-3-3-1-11 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:12 | orot-ha-kodesh-3-3-1-12 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:13 | orot-ha-kodesh-3-3-1-13 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:14 | orot-ha-kodesh-3-3-1-14 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:15 | orot-ha-kodesh-3-3-1-15 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:16 | orot-ha-kodesh-3-3-1-16 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:17 | orot-ha-kodesh-3-3-1-17 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:18 | orot-ha-kodesh-3-3-1-18 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:19 | orot-ha-kodesh-3-3-1-19 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:20 | orot-ha-kodesh-3-3-1-20 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:21 | orot-ha-kodesh-3-3-1-21 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:22 | orot-ha-kodesh-3-3-1-22 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:23 | orot-ha-kodesh-3-3-1-23 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:24 | orot-ha-kodesh-3-3-1-24 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:25 | orot-ha-kodesh-3-3-1-25 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:26 | orot-ha-kodesh-3-3-1-26 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:27 | orot-ha-kodesh-3-3-1-27 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:28 | orot-ha-kodesh-3-3-1-28 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:1 | orot-ha-kodesh-3-3-2-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:2 | orot-ha-kodesh-3-3-2-2 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:3 | orot-ha-kodesh-3-3-2-3 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:4 | orot-ha-kodesh-3-3-2-4 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:5 | orot-ha-kodesh-3-3-2-5 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:6 | orot-ha-kodesh-3-3-2-6 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:7 | orot-ha-kodesh-3-3-2-7 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:8 | orot-ha-kodesh-3-3-2-8 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:9 | orot-ha-kodesh-3-3-2-9 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:10 | orot-ha-kodesh-3-3-2-10 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:11 | orot-ha-kodesh-3-3-2-11 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:12 | orot-ha-kodesh-3-3-2-12 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:13 | orot-ha-kodesh-3-3-2-13 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:14 | orot-ha-kodesh-3-3-2-14 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:15 | orot-ha-kodesh-3-3-2-15 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:16 | orot-ha-kodesh-3-3-2-16 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:17 | orot-ha-kodesh-3-3-2-17 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:18 | orot-ha-kodesh-3-3-2-18 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:19 | orot-ha-kodesh-3-3-2-19 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:20 | orot-ha-kodesh-3-3-2-20 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:21 | orot-ha-kodesh-3-3-2-21 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:22 | orot-ha-kodesh-3-3-2-22 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:23 | orot-ha-kodesh-3-3-2-23 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:24 | orot-ha-kodesh-3-3-2-24 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:25 | orot-ha-kodesh-3-3-2-25 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:26 | orot-ha-kodesh-3-3-2-26 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:27 | orot-ha-kodesh-3-3-2-27 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:28 | orot-ha-kodesh-3-3-2-28 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:29 | orot-ha-kodesh-3-3-2-29 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:30 | orot-ha-kodesh-3-3-2-30 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:31 | orot-ha-kodesh-3-3-2-31 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:32 | orot-ha-kodesh-3-3-2-32 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:33 | orot-ha-kodesh-3-3-2-33 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:34 | orot-ha-kodesh-3-3-2-34 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:35 | orot-ha-kodesh-3-3-2-35 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:36 | orot-ha-kodesh-3-3-2-36 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:37 | orot-ha-kodesh-3-3-2-37 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:38 | orot-ha-kodesh-3-3-2-38 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:39 | orot-ha-kodesh-3-3-2-39 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:40 | orot-ha-kodesh-3-3-2-40 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:41 | orot-ha-kodesh-3-3-2-41 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:42 | orot-ha-kodesh-3-3-2-42 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:1 | orot-ha-kodesh-3-3-3-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:2 | orot-ha-kodesh-3-3-3-2 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:3 | orot-ha-kodesh-3-3-3-3 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:4 | orot-ha-kodesh-3-3-3-4 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:5 | orot-ha-kodesh-3-3-3-5 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:6 | orot-ha-kodesh-3-3-3-6 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:7 | orot-ha-kodesh-3-3-3-7 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:8 | orot-ha-kodesh-3-3-3-8 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:9 | orot-ha-kodesh-3-3-3-9 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:10 | orot-ha-kodesh-3-3-3-10 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:11 | orot-ha-kodesh-3-3-3-11 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:12 | orot-ha-kodesh-3-3-3-12 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:13 | orot-ha-kodesh-3-3-3-13 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:14 | orot-ha-kodesh-3-3-3-14 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:15 | orot-ha-kodesh-3-3-3-15 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:16 | orot-ha-kodesh-3-3-3-16 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:17 | orot-ha-kodesh-3-3-3-17 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:18 | orot-ha-kodesh-3-3-3-18 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:19 | orot-ha-kodesh-3-3-3-19 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:20 | orot-ha-kodesh-3-3-3-20 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:21 | orot-ha-kodesh-3-3-3-21 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:22 | orot-ha-kodesh-3-3-3-22 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:23 | orot-ha-kodesh-3-3-3-23 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:24 | orot-ha-kodesh-3-3-3-24 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:25 | orot-ha-kodesh-3-3-3-25 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:26 | orot-ha-kodesh-3-3-3-26 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:27 | orot-ha-kodesh-3-3-3-27 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:28 | orot-ha-kodesh-3-3-3-28 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:29 | orot-ha-kodesh-3-3-3-29 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:30 | orot-ha-kodesh-3-3-3-30 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:31 | orot-ha-kodesh-3-3-3-31 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:32 | orot-ha-kodesh-3-3-3-32 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:33 | orot-ha-kodesh-3-3-3-33 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:34 | orot-ha-kodesh-3-3-3-34 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:35 | orot-ha-kodesh-3-3-3-35 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:36 | orot-ha-kodesh-3-3-3-36 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:37 | orot-ha-kodesh-3-3-3-37 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:38 | orot-ha-kodesh-3-3-3-38 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:39 | orot-ha-kodesh-3-3-3-39 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:40 | orot-ha-kodesh-3-3-3-40 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:41 | orot-ha-kodesh-3-3-3-41 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:42 | orot-ha-kodesh-3-3-3-42 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:43 | orot-ha-kodesh-3-3-3-43 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:44 | orot-ha-kodesh-3-3-3-44 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:45 | orot-ha-kodesh-3-3-3-45 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:1 | orot-ha-kodesh-3-3-4-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:2 | orot-ha-kodesh-3-3-4-2 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:3 | orot-ha-kodesh-3-3-4-3 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:4 | orot-ha-kodesh-3-3-4-4 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:5 | orot-ha-kodesh-3-3-4-5 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:6 | orot-ha-kodesh-3-3-4-6 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:7 | orot-ha-kodesh-3-3-4-7 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:8 | orot-ha-kodesh-3-3-4-8 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:9 | orot-ha-kodesh-3-3-4-9 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:10 | orot-ha-kodesh-3-3-4-10 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:11 | orot-ha-kodesh-3-3-4-11 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:12 | orot-ha-kodesh-3-3-4-12 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:13 | orot-ha-kodesh-3-3-4-13 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:14 | orot-ha-kodesh-3-3-4-14 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:15 | orot-ha-kodesh-3-3-4-15 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:16 | orot-ha-kodesh-3-3-4-16 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:17 | orot-ha-kodesh-3-3-4-17 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:18 | orot-ha-kodesh-3-3-4-18 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:19 | orot-ha-kodesh-3-3-4-19 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:20 | orot-ha-kodesh-3-3-4-20 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:21 | orot-ha-kodesh-3-3-4-21 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:22 | orot-ha-kodesh-3-3-4-22 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:23 | orot-ha-kodesh-3-3-4-23 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:24 | orot-ha-kodesh-3-3-4-24 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:25 | orot-ha-kodesh-3-3-4-25 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:26 | orot-ha-kodesh-3-3-4-26 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:27 | orot-ha-kodesh-3-3-4-27 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:28 | orot-ha-kodesh-3-3-4-28 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:29 | orot-ha-kodesh-3-3-4-29 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:30 | orot-ha-kodesh-3-3-4-30 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:31 | orot-ha-kodesh-3-3-4-31 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:32 | orot-ha-kodesh-3-3-4-32 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:1 | orot-ha-kodesh-3-3-5-1 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:2 | orot-ha-kodesh-3-3-5-2 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:3 | orot-ha-kodesh-3-3-5-3 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:4 | orot-ha-kodesh-3-3-5-4 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:5 | orot-ha-kodesh-3-3-5-5 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:6 | orot-ha-kodesh-3-3-5-6 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:7 | orot-ha-kodesh-3-3-5-7 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:8 | orot-ha-kodesh-3-3-5-8 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:9 | orot-ha-kodesh-3-3-5-9 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:10 | orot-ha-kodesh-3-3-5-10 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:11 | orot-ha-kodesh-3-3-5-11 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:12 | orot-ha-kodesh-3-3-5-12 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:13 | orot-ha-kodesh-3-3-5-13 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:14 | orot-ha-kodesh-3-3-5-14 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:15 | orot-ha-kodesh-3-3-5-15 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:16 | orot-ha-kodesh-3-3-5-16 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:17 | orot-ha-kodesh-3-3-5-17 |  |  |  |
-| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:18 | orot-ha-kodesh-3-3-5-18 |  |  |  |
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:1:1 | orot-ha-kodesh-1-1-1-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:2:1 | orot-ha-kodesh-1-1-2-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:3:1 | orot-ha-kodesh-1-1-3-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:4:1 | orot-ha-kodesh-1-1-4-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:5:1 | orot-ha-kodesh-1-1-5-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:6:1 | orot-ha-kodesh-1-1-6-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:7:1 | orot-ha-kodesh-1-1-7-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:8:1 | orot-ha-kodesh-1-1-8-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:9:1 | orot-ha-kodesh-1-1-9-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:10:1 | orot-ha-kodesh-1-1-10-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:11:1 | orot-ha-kodesh-1-1-11-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:12:1 | orot-ha-kodesh-1-1-12-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:13:1 | orot-ha-kodesh-1-1-13-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:14:1 | orot-ha-kodesh-1-1-14-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:15:1 | orot-ha-kodesh-1-1-15-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:16:1 | orot-ha-kodesh-1-1-16-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:17:1 | orot-ha-kodesh-1-1-17-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:18:1 | orot-ha-kodesh-1-1-18-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:19:1 | orot-ha-kodesh-1-1-19-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:20:1 | orot-ha-kodesh-1-1-20-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:21:1 | orot-ha-kodesh-1-1-21-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:22:1 | orot-ha-kodesh-1-1-22-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:23:1 | orot-ha-kodesh-1-1-23-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:24:1 | orot-ha-kodesh-1-1-24-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:25:1 | orot-ha-kodesh-1-1-25-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:26:1 | orot-ha-kodesh-1-1-26-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:27:1 | orot-ha-kodesh-1-1-27-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:28:1 | orot-ha-kodesh-1-1-28-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:29:1 | orot-ha-kodesh-1-1-29-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:30:1 | orot-ha-kodesh-1-1-30-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:31:1 | orot-ha-kodesh-1-1-31-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:32:1 | orot-ha-kodesh-1-1-32-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:33:1 | orot-ha-kodesh-1-1-33-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:34:1 | orot-ha-kodesh-1-1-34-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:35:1 | orot-ha-kodesh-1-1-35-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:36:1 | orot-ha-kodesh-1-1-36-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:37:1 | orot-ha-kodesh-1-1-37-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:38:1 | orot-ha-kodesh-1-1-38-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:39:1 | orot-ha-kodesh-1-1-39-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:40:1 | orot-ha-kodesh-1-1-40-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:41:1 | orot-ha-kodesh-1-1-41-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:42:1 | orot-ha-kodesh-1-1-42-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:43:1 | orot-ha-kodesh-1-1-43-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:44:1 | orot-ha-kodesh-1-1-44-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:45:1 | orot-ha-kodesh-1-1-45-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:46:1 | orot-ha-kodesh-1-1-46-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:47:1 | orot-ha-kodesh-1-1-47-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:48:1 | orot-ha-kodesh-1-1-48-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:49:1 | orot-ha-kodesh-1-1-49-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:50:1 | orot-ha-kodesh-1-1-50-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:51:1 | orot-ha-kodesh-1-1-51-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:52:1 | orot-ha-kodesh-1-1-52-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:53:1 | orot-ha-kodesh-1-1-53-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:54:1 | orot-ha-kodesh-1-1-54-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:55:1 | orot-ha-kodesh-1-1-55-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:56:1 | orot-ha-kodesh-1-1-56-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:57:1 | orot-ha-kodesh-1-1-57-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:58:1 | orot-ha-kodesh-1-1-58-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:59:1 | orot-ha-kodesh-1-1-59-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:60:1 | orot-ha-kodesh-1-1-60-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:61:1 | orot-ha-kodesh-1-1-61-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:62:1 | orot-ha-kodesh-1-1-62-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:63:1 | orot-ha-kodesh-1-1-63-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:64:1 | orot-ha-kodesh-1-1-64-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:65:1 | orot-ha-kodesh-1-1-65-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:66:1 | orot-ha-kodesh-1-1-66-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:67:1 | orot-ha-kodesh-1-1-67-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:68:1 | orot-ha-kodesh-1-1-68-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:69:1 | orot-ha-kodesh-1-1-69-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:70:1 | orot-ha-kodesh-1-1-70-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:71:1 | orot-ha-kodesh-1-1-71-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:72:1 | orot-ha-kodesh-1-1-72-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:73:1 | orot-ha-kodesh-1-1-73-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:74:1 | orot-ha-kodesh-1-1-74-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:75:1 | orot-ha-kodesh-1-1-75-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:76:1 | orot-ha-kodesh-1-1-76-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:77:1 | orot-ha-kodesh-1-1-77-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:78:1 | orot-ha-kodesh-1-1-78-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:79:1 | orot-ha-kodesh-1-1-79-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:80:1 | orot-ha-kodesh-1-1-80-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:81:1 | orot-ha-kodesh-1-1-81-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:82:1 | orot-ha-kodesh-1-1-82-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:83:1 | orot-ha-kodesh-1-1-83-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:84:1 | orot-ha-kodesh-1-1-84-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:85:1 | orot-ha-kodesh-1-1-85-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:86:1 | orot-ha-kodesh-1-1-86-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:87:1 | orot-ha-kodesh-1-1-87-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:88:1 | orot-ha-kodesh-1-1-88-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:89:1 | orot-ha-kodesh-1-1-89-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:90:1 | orot-ha-kodesh-1-1-90-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:91:1 | orot-ha-kodesh-1-1-91-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:92:1 | orot-ha-kodesh-1-1-92-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:93:1 | orot-ha-kodesh-1-1-93-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:94:1 | orot-ha-kodesh-1-1-94-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:95:1 | orot-ha-kodesh-1-1-95-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:96:1 | orot-ha-kodesh-1-1-96-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:97:1 | orot-ha-kodesh-1-1-97-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:98:1 | orot-ha-kodesh-1-1-98-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:99:1 | orot-ha-kodesh-1-1-99-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:100:1 | orot-ha-kodesh-1-1-100-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:101:1 | orot-ha-kodesh-1-1-101-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:102:1 | orot-ha-kodesh-1-1-102-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:103:1 | orot-ha-kodesh-1-1-103-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:104:1 | orot-ha-kodesh-1-1-104-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:105:1 | orot-ha-kodesh-1-1-105-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:106:1 | orot-ha-kodesh-1-1-106-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:107:1 | orot-ha-kodesh-1-1-107-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:108:1 | orot-ha-kodesh-1-1-108-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:109:1 | orot-ha-kodesh-1-1-109-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:110:1 | orot-ha-kodesh-1-1-110-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:111:1 | orot-ha-kodesh-1-1-111-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:112:1 | orot-ha-kodesh-1-1-112-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:113:1 | orot-ha-kodesh-1-1-113-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:115:1 | orot-ha-kodesh-1-1-115-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:116:1 | orot-ha-kodesh-1-1-116-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:117:1 | orot-ha-kodesh-1-1-117-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:118:1 | orot-ha-kodesh-1-1-118-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:119:1 | orot-ha-kodesh-1-1-119-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:120:1 | orot-ha-kodesh-1-1-120-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:121:1 | orot-ha-kodesh-1-1-121-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:122:1 | orot-ha-kodesh-1-1-122-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:123:1 | orot-ha-kodesh-1-1-123-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:124:1 | orot-ha-kodesh-1-1-124-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:125:1 | orot-ha-kodesh-1-1-125-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:126:1 | orot-ha-kodesh-1-1-126-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:127:1 | orot-ha-kodesh-1-1-127-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:128:1 | orot-ha-kodesh-1-1-128-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:129:1 | orot-ha-kodesh-1-1-129-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:130:1 | orot-ha-kodesh-1-1-130-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:131:1 | orot-ha-kodesh-1-1-131-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:132:1 | orot-ha-kodesh-1-1-132-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:133:1 | orot-ha-kodesh-1-1-133-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:134:1 | orot-ha-kodesh-1-1-134-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:135:1 | orot-ha-kodesh-1-1-135-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:136:1 | orot-ha-kodesh-1-1-136-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:137:1 | orot-ha-kodesh-1-1-137-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 1:1:138:1 | orot-ha-kodesh-1-1-138-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:1 | orot-ha-kodesh-3-1-1-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:2 | orot-ha-kodesh-3-1-1-2 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:3 | orot-ha-kodesh-3-1-1-3 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:4 | orot-ha-kodesh-3-1-1-4 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:5 | orot-ha-kodesh-3-1-1-5 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:6 | orot-ha-kodesh-3-1-1-6 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:7 | orot-ha-kodesh-3-1-1-7 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:8 | orot-ha-kodesh-3-1-1-8 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:9 | orot-ha-kodesh-3-1-1-9 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:10 | orot-ha-kodesh-3-1-1-10 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:11 | orot-ha-kodesh-3-1-1-11 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:12 | orot-ha-kodesh-3-1-1-12 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:13 | orot-ha-kodesh-3-1-1-13 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:14 | orot-ha-kodesh-3-1-1-14 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:15 | orot-ha-kodesh-3-1-1-15 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:16 | orot-ha-kodesh-3-1-1-16 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:17 | orot-ha-kodesh-3-1-1-17 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:1:1:18 | orot-ha-kodesh-3-1-1-18 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:1 | orot-ha-kodesh-3-2-1-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:2 | orot-ha-kodesh-3-2-1-2 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:3 | orot-ha-kodesh-3-2-1-3 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:4 | orot-ha-kodesh-3-2-1-4 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:5 | orot-ha-kodesh-3-2-1-5 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:6 | orot-ha-kodesh-3-2-1-6 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:7 | orot-ha-kodesh-3-2-1-7 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:8 | orot-ha-kodesh-3-2-1-8 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:9 | orot-ha-kodesh-3-2-1-9 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:10 | orot-ha-kodesh-3-2-1-10 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:11 | orot-ha-kodesh-3-2-1-11 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:12 | orot-ha-kodesh-3-2-1-12 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:13 | orot-ha-kodesh-3-2-1-13 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:1:14 | orot-ha-kodesh-3-2-1-14 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:15 | orot-ha-kodesh-3-2-2-15 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:16 | orot-ha-kodesh-3-2-2-16 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:17 | orot-ha-kodesh-3-2-2-17 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:18 | orot-ha-kodesh-3-2-2-18 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:19 | orot-ha-kodesh-3-2-2-19 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:20 | orot-ha-kodesh-3-2-2-20 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:21 | orot-ha-kodesh-3-2-2-21 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:22 | orot-ha-kodesh-3-2-2-22 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:23 | orot-ha-kodesh-3-2-2-23 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:24 | orot-ha-kodesh-3-2-2-24 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:25 | orot-ha-kodesh-3-2-2-25 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:26 | orot-ha-kodesh-3-2-2-26 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:27 | orot-ha-kodesh-3-2-2-27 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:2:28 | orot-ha-kodesh-3-2-2-28 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:29 | orot-ha-kodesh-3-2-3-29 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:30 | orot-ha-kodesh-3-2-3-30 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:31 | orot-ha-kodesh-3-2-3-31 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:32 | orot-ha-kodesh-3-2-3-32 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:33 | orot-ha-kodesh-3-2-3-33 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:34 | orot-ha-kodesh-3-2-3-34 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:35 | orot-ha-kodesh-3-2-3-35 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:36 | orot-ha-kodesh-3-2-3-36 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:37 | orot-ha-kodesh-3-2-3-37 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:38 | orot-ha-kodesh-3-2-3-38 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:39 | orot-ha-kodesh-3-2-3-39 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:40 | orot-ha-kodesh-3-2-3-40 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:41 | orot-ha-kodesh-3-2-3-41 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:42 | orot-ha-kodesh-3-2-3-42 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:43 | orot-ha-kodesh-3-2-3-43 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:44 | orot-ha-kodesh-3-2-3-44 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:45 | orot-ha-kodesh-3-2-3-45 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:46 | orot-ha-kodesh-3-2-3-46 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:47 | orot-ha-kodesh-3-2-3-47 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:48 | orot-ha-kodesh-3-2-3-48 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:49 | orot-ha-kodesh-3-2-3-49 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:50 | orot-ha-kodesh-3-2-3-50 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:51 | orot-ha-kodesh-3-2-3-51 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:52 | orot-ha-kodesh-3-2-3-52 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:53 | orot-ha-kodesh-3-2-3-53 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:54 | orot-ha-kodesh-3-2-3-54 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:55 | orot-ha-kodesh-3-2-3-55 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:3:56 | orot-ha-kodesh-3-2-3-56 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:57 | orot-ha-kodesh-3-2-4-57 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:58 | orot-ha-kodesh-3-2-4-58 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:59 | orot-ha-kodesh-3-2-4-59 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:60 | orot-ha-kodesh-3-2-4-60 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:61 | orot-ha-kodesh-3-2-4-61 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:62 | orot-ha-kodesh-3-2-4-62 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:63 | orot-ha-kodesh-3-2-4-63 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:64 | orot-ha-kodesh-3-2-4-64 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:65 | orot-ha-kodesh-3-2-4-65 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:66 | orot-ha-kodesh-3-2-4-66 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:67 | orot-ha-kodesh-3-2-4-67 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:68 | orot-ha-kodesh-3-2-4-68 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:69 | orot-ha-kodesh-3-2-4-69 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:70 | orot-ha-kodesh-3-2-4-70 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:71 | orot-ha-kodesh-3-2-4-71 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:72 | orot-ha-kodesh-3-2-4-72 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:73 | orot-ha-kodesh-3-2-4-73 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:74 | orot-ha-kodesh-3-2-4-74 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:75 | orot-ha-kodesh-3-2-4-75 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:4:76 | orot-ha-kodesh-3-2-4-76 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:77 | orot-ha-kodesh-3-2-5-77 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:78 | orot-ha-kodesh-3-2-5-78 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:79 | orot-ha-kodesh-3-2-5-79 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:80 | orot-ha-kodesh-3-2-5-80 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:81 | orot-ha-kodesh-3-2-5-81 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:82 | orot-ha-kodesh-3-2-5-82 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:83 | orot-ha-kodesh-3-2-5-83 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:84 | orot-ha-kodesh-3-2-5-84 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:85 | orot-ha-kodesh-3-2-5-85 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:86 | orot-ha-kodesh-3-2-5-86 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:87 | orot-ha-kodesh-3-2-5-87 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:88 | orot-ha-kodesh-3-2-5-88 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:89 | orot-ha-kodesh-3-2-5-89 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:90 | orot-ha-kodesh-3-2-5-90 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:91 | orot-ha-kodesh-3-2-5-91 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:92 | orot-ha-kodesh-3-2-5-92 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:93 | orot-ha-kodesh-3-2-5-93 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:94 | orot-ha-kodesh-3-2-5-94 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:95 | orot-ha-kodesh-3-2-5-95 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:96 | orot-ha-kodesh-3-2-5-96 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:97 | orot-ha-kodesh-3-2-5-97 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:98 | orot-ha-kodesh-3-2-5-98 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:99 | orot-ha-kodesh-3-2-5-99 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:5:100 | orot-ha-kodesh-3-2-5-100 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:101 | orot-ha-kodesh-3-2-6-101 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:102 | orot-ha-kodesh-3-2-6-102 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:103 | orot-ha-kodesh-3-2-6-103 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:104 | orot-ha-kodesh-3-2-6-104 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:105 | orot-ha-kodesh-3-2-6-105 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:106 | orot-ha-kodesh-3-2-6-106 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:107 | orot-ha-kodesh-3-2-6-107 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:108 | orot-ha-kodesh-3-2-6-108 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:109 | orot-ha-kodesh-3-2-6-109 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:110 | orot-ha-kodesh-3-2-6-110 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:111 | orot-ha-kodesh-3-2-6-111 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:112 | orot-ha-kodesh-3-2-6-112 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:6:113 | orot-ha-kodesh-3-2-6-113 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:114 | orot-ha-kodesh-3-2-7-114 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:115 | orot-ha-kodesh-3-2-7-115 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:116 | orot-ha-kodesh-3-2-7-116 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:117 | orot-ha-kodesh-3-2-7-117 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:118 | orot-ha-kodesh-3-2-7-118 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:119 | orot-ha-kodesh-3-2-7-119 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:120 | orot-ha-kodesh-3-2-7-120 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:121 | orot-ha-kodesh-3-2-7-121 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:122 | orot-ha-kodesh-3-2-7-122 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:123 | orot-ha-kodesh-3-2-7-123 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:124 | orot-ha-kodesh-3-2-7-124 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:125 | orot-ha-kodesh-3-2-7-125 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:126 | orot-ha-kodesh-3-2-7-126 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:127 | orot-ha-kodesh-3-2-7-127 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:128 | orot-ha-kodesh-3-2-7-128 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:129 | orot-ha-kodesh-3-2-7-129 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:130 | orot-ha-kodesh-3-2-7-130 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:131 | orot-ha-kodesh-3-2-7-131 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:132 | orot-ha-kodesh-3-2-7-132 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:133 | orot-ha-kodesh-3-2-7-133 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:134 | orot-ha-kodesh-3-2-7-134 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:135 | orot-ha-kodesh-3-2-7-135 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:136 | orot-ha-kodesh-3-2-7-136 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:137 | orot-ha-kodesh-3-2-7-137 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:2:7:138 | orot-ha-kodesh-3-2-7-138 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:1 | orot-ha-kodesh-3-3-1-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:2 | orot-ha-kodesh-3-3-1-2 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:3 | orot-ha-kodesh-3-3-1-3 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:4 | orot-ha-kodesh-3-3-1-4 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:5 | orot-ha-kodesh-3-3-1-5 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:6 | orot-ha-kodesh-3-3-1-6 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:7 | orot-ha-kodesh-3-3-1-7 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:8 | orot-ha-kodesh-3-3-1-8 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:9 | orot-ha-kodesh-3-3-1-9 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:10 | orot-ha-kodesh-3-3-1-10 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:11 | orot-ha-kodesh-3-3-1-11 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:12 | orot-ha-kodesh-3-3-1-12 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:13 | orot-ha-kodesh-3-3-1-13 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:14 | orot-ha-kodesh-3-3-1-14 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:15 | orot-ha-kodesh-3-3-1-15 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:16 | orot-ha-kodesh-3-3-1-16 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:17 | orot-ha-kodesh-3-3-1-17 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:18 | orot-ha-kodesh-3-3-1-18 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:19 | orot-ha-kodesh-3-3-1-19 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:20 | orot-ha-kodesh-3-3-1-20 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:21 | orot-ha-kodesh-3-3-1-21 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:22 | orot-ha-kodesh-3-3-1-22 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:23 | orot-ha-kodesh-3-3-1-23 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:24 | orot-ha-kodesh-3-3-1-24 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:25 | orot-ha-kodesh-3-3-1-25 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:26 | orot-ha-kodesh-3-3-1-26 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:27 | orot-ha-kodesh-3-3-1-27 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:1:28 | orot-ha-kodesh-3-3-1-28 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:1 | orot-ha-kodesh-3-3-2-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:2 | orot-ha-kodesh-3-3-2-2 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:3 | orot-ha-kodesh-3-3-2-3 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:4 | orot-ha-kodesh-3-3-2-4 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:5 | orot-ha-kodesh-3-3-2-5 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:6 | orot-ha-kodesh-3-3-2-6 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:7 | orot-ha-kodesh-3-3-2-7 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:8 | orot-ha-kodesh-3-3-2-8 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:9 | orot-ha-kodesh-3-3-2-9 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:10 | orot-ha-kodesh-3-3-2-10 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:11 | orot-ha-kodesh-3-3-2-11 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:12 | orot-ha-kodesh-3-3-2-12 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:13 | orot-ha-kodesh-3-3-2-13 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:14 | orot-ha-kodesh-3-3-2-14 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:15 | orot-ha-kodesh-3-3-2-15 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:16 | orot-ha-kodesh-3-3-2-16 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:17 | orot-ha-kodesh-3-3-2-17 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:18 | orot-ha-kodesh-3-3-2-18 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:19 | orot-ha-kodesh-3-3-2-19 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:20 | orot-ha-kodesh-3-3-2-20 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:21 | orot-ha-kodesh-3-3-2-21 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:22 | orot-ha-kodesh-3-3-2-22 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:23 | orot-ha-kodesh-3-3-2-23 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:24 | orot-ha-kodesh-3-3-2-24 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:25 | orot-ha-kodesh-3-3-2-25 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:26 | orot-ha-kodesh-3-3-2-26 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:27 | orot-ha-kodesh-3-3-2-27 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:28 | orot-ha-kodesh-3-3-2-28 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:29 | orot-ha-kodesh-3-3-2-29 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:30 | orot-ha-kodesh-3-3-2-30 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:31 | orot-ha-kodesh-3-3-2-31 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:32 | orot-ha-kodesh-3-3-2-32 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:33 | orot-ha-kodesh-3-3-2-33 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:34 | orot-ha-kodesh-3-3-2-34 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:35 | orot-ha-kodesh-3-3-2-35 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:36 | orot-ha-kodesh-3-3-2-36 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:37 | orot-ha-kodesh-3-3-2-37 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:38 | orot-ha-kodesh-3-3-2-38 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:39 | orot-ha-kodesh-3-3-2-39 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:40 | orot-ha-kodesh-3-3-2-40 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:41 | orot-ha-kodesh-3-3-2-41 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:2:42 | orot-ha-kodesh-3-3-2-42 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:1 | orot-ha-kodesh-3-3-3-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:2 | orot-ha-kodesh-3-3-3-2 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:3 | orot-ha-kodesh-3-3-3-3 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:4 | orot-ha-kodesh-3-3-3-4 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:5 | orot-ha-kodesh-3-3-3-5 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:6 | orot-ha-kodesh-3-3-3-6 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:7 | orot-ha-kodesh-3-3-3-7 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:8 | orot-ha-kodesh-3-3-3-8 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:9 | orot-ha-kodesh-3-3-3-9 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:10 | orot-ha-kodesh-3-3-3-10 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:11 | orot-ha-kodesh-3-3-3-11 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:12 | orot-ha-kodesh-3-3-3-12 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:13 | orot-ha-kodesh-3-3-3-13 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:14 | orot-ha-kodesh-3-3-3-14 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:15 | orot-ha-kodesh-3-3-3-15 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:16 | orot-ha-kodesh-3-3-3-16 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:17 | orot-ha-kodesh-3-3-3-17 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:18 | orot-ha-kodesh-3-3-3-18 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:19 | orot-ha-kodesh-3-3-3-19 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:20 | orot-ha-kodesh-3-3-3-20 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:21 | orot-ha-kodesh-3-3-3-21 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:22 | orot-ha-kodesh-3-3-3-22 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:23 | orot-ha-kodesh-3-3-3-23 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:24 | orot-ha-kodesh-3-3-3-24 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:25 | orot-ha-kodesh-3-3-3-25 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:26 | orot-ha-kodesh-3-3-3-26 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:27 | orot-ha-kodesh-3-3-3-27 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:28 | orot-ha-kodesh-3-3-3-28 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:29 | orot-ha-kodesh-3-3-3-29 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:30 | orot-ha-kodesh-3-3-3-30 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:31 | orot-ha-kodesh-3-3-3-31 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:32 | orot-ha-kodesh-3-3-3-32 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:33 | orot-ha-kodesh-3-3-3-33 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:34 | orot-ha-kodesh-3-3-3-34 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:35 | orot-ha-kodesh-3-3-3-35 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:36 | orot-ha-kodesh-3-3-3-36 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:37 | orot-ha-kodesh-3-3-3-37 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:38 | orot-ha-kodesh-3-3-3-38 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:39 | orot-ha-kodesh-3-3-3-39 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:40 | orot-ha-kodesh-3-3-3-40 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:41 | orot-ha-kodesh-3-3-3-41 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:42 | orot-ha-kodesh-3-3-3-42 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:43 | orot-ha-kodesh-3-3-3-43 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:44 | orot-ha-kodesh-3-3-3-44 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:3:45 | orot-ha-kodesh-3-3-3-45 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:1 | orot-ha-kodesh-3-3-4-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:2 | orot-ha-kodesh-3-3-4-2 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:3 | orot-ha-kodesh-3-3-4-3 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:4 | orot-ha-kodesh-3-3-4-4 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:5 | orot-ha-kodesh-3-3-4-5 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:6 | orot-ha-kodesh-3-3-4-6 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:7 | orot-ha-kodesh-3-3-4-7 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:8 | orot-ha-kodesh-3-3-4-8 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:9 | orot-ha-kodesh-3-3-4-9 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:10 | orot-ha-kodesh-3-3-4-10 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:11 | orot-ha-kodesh-3-3-4-11 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:12 | orot-ha-kodesh-3-3-4-12 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:13 | orot-ha-kodesh-3-3-4-13 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:14 | orot-ha-kodesh-3-3-4-14 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:15 | orot-ha-kodesh-3-3-4-15 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:16 | orot-ha-kodesh-3-3-4-16 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:17 | orot-ha-kodesh-3-3-4-17 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:18 | orot-ha-kodesh-3-3-4-18 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:19 | orot-ha-kodesh-3-3-4-19 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:20 | orot-ha-kodesh-3-3-4-20 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:21 | orot-ha-kodesh-3-3-4-21 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:22 | orot-ha-kodesh-3-3-4-22 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:23 | orot-ha-kodesh-3-3-4-23 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:24 | orot-ha-kodesh-3-3-4-24 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:25 | orot-ha-kodesh-3-3-4-25 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:26 | orot-ha-kodesh-3-3-4-26 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:27 | orot-ha-kodesh-3-3-4-27 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:28 | orot-ha-kodesh-3-3-4-28 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:29 | orot-ha-kodesh-3-3-4-29 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:30 | orot-ha-kodesh-3-3-4-30 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:31 | orot-ha-kodesh-3-3-4-31 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:4:32 | orot-ha-kodesh-3-3-4-32 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:1 | orot-ha-kodesh-3-3-5-1 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:2 | orot-ha-kodesh-3-3-5-2 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:3 | orot-ha-kodesh-3-3-5-3 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:4 | orot-ha-kodesh-3-3-5-4 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:5 | orot-ha-kodesh-3-3-5-5 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:6 | orot-ha-kodesh-3-3-5-6 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:7 | orot-ha-kodesh-3-3-5-7 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:8 | orot-ha-kodesh-3-3-5-8 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:9 | orot-ha-kodesh-3-3-5-9 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:10 | orot-ha-kodesh-3-3-5-10 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:11 | orot-ha-kodesh-3-3-5-11 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:12 | orot-ha-kodesh-3-3-5-12 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:13 | orot-ha-kodesh-3-3-5-13 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:14 | orot-ha-kodesh-3-3-5-14 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:15 | orot-ha-kodesh-3-3-5-15 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:16 | orot-ha-kodesh-3-3-5-16 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:17 | orot-ha-kodesh-3-3-5-17 |  |  | not_done |  |
+| orot-ha-kodesh | Orot HaKodesh | Orot HaKodesh 3:3:5:18 | orot-ha-kodesh-3-3-5-18 |  |  | not_done |  |

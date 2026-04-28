@@ -1,105 +1,105 @@
-| work_id | work_title | source_ref | anchor_id | translation | translator_notes | status |
-|---|---|---|---|---|---|---|
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:1 | gras-nuschah-on-avot-drabbi-natan-1-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:2 | gras-nuschah-on-avot-drabbi-natan-1-1-2 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:3 | gras-nuschah-on-avot-drabbi-natan-1-1-3 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:4 | gras-nuschah-on-avot-drabbi-natan-1-1-4 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:5 | gras-nuschah-on-avot-drabbi-natan-1-1-5 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:6 | gras-nuschah-on-avot-drabbi-natan-1-1-6 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:7 | gras-nuschah-on-avot-drabbi-natan-1-1-7 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:8 | gras-nuschah-on-avot-drabbi-natan-1-1-8 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:9 | gras-nuschah-on-avot-drabbi-natan-1-1-9 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 2:1:1 | gras-nuschah-on-avot-drabbi-natan-2-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 2:1:2 | gras-nuschah-on-avot-drabbi-natan-2-1-2 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 4:1:1 | gras-nuschah-on-avot-drabbi-natan-4-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 4:1:2 | gras-nuschah-on-avot-drabbi-natan-4-1-2 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 6:1:1 | gras-nuschah-on-avot-drabbi-natan-6-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 6:1:2 | gras-nuschah-on-avot-drabbi-natan-6-1-2 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 7:1:1 | gras-nuschah-on-avot-drabbi-natan-7-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 8:1:1 | gras-nuschah-on-avot-drabbi-natan-8-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 9:1:1 | gras-nuschah-on-avot-drabbi-natan-9-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 11:1:1 | gras-nuschah-on-avot-drabbi-natan-11-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 11:1:2 | gras-nuschah-on-avot-drabbi-natan-11-1-2 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 11:1:3 | gras-nuschah-on-avot-drabbi-natan-11-1-3 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 11:1:4 | gras-nuschah-on-avot-drabbi-natan-11-1-4 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 11:1:5 | gras-nuschah-on-avot-drabbi-natan-11-1-5 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 11:1:6 | gras-nuschah-on-avot-drabbi-natan-11-1-6 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 11:1:7 | gras-nuschah-on-avot-drabbi-natan-11-1-7 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 12:1:1 | gras-nuschah-on-avot-drabbi-natan-12-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 14:1:1 | gras-nuschah-on-avot-drabbi-natan-14-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 14:1:2 | gras-nuschah-on-avot-drabbi-natan-14-1-2 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 15:1:1 | gras-nuschah-on-avot-drabbi-natan-15-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:1 | gras-nuschah-on-avot-drabbi-natan-20-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:2 | gras-nuschah-on-avot-drabbi-natan-20-1-2 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:3 | gras-nuschah-on-avot-drabbi-natan-20-1-3 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:4 | gras-nuschah-on-avot-drabbi-natan-20-1-4 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:5 | gras-nuschah-on-avot-drabbi-natan-20-1-5 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:6 | gras-nuschah-on-avot-drabbi-natan-20-1-6 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:7 | gras-nuschah-on-avot-drabbi-natan-20-1-7 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:8 | gras-nuschah-on-avot-drabbi-natan-20-1-8 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:9 | gras-nuschah-on-avot-drabbi-natan-20-1-9 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:10 | gras-nuschah-on-avot-drabbi-natan-20-1-10 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:11 | gras-nuschah-on-avot-drabbi-natan-20-1-11 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:12 | gras-nuschah-on-avot-drabbi-natan-20-1-12 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:13 | gras-nuschah-on-avot-drabbi-natan-20-1-13 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:14 | gras-nuschah-on-avot-drabbi-natan-20-1-14 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:15 | gras-nuschah-on-avot-drabbi-natan-20-1-15 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:16 | gras-nuschah-on-avot-drabbi-natan-20-1-16 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:17 | gras-nuschah-on-avot-drabbi-natan-20-1-17 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:18 | gras-nuschah-on-avot-drabbi-natan-20-1-18 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 21:1:1 | gras-nuschah-on-avot-drabbi-natan-21-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 21:1:2 | gras-nuschah-on-avot-drabbi-natan-21-1-2 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 21:1:3 | gras-nuschah-on-avot-drabbi-natan-21-1-3 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 21:1:4 | gras-nuschah-on-avot-drabbi-natan-21-1-4 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 21:1:5 | gras-nuschah-on-avot-drabbi-natan-21-1-5 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 21:1:6 | gras-nuschah-on-avot-drabbi-natan-21-1-6 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 21:1:7 | gras-nuschah-on-avot-drabbi-natan-21-1-7 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 21:1:8 | gras-nuschah-on-avot-drabbi-natan-21-1-8 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 23:1:1 | gras-nuschah-on-avot-drabbi-natan-23-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 25:1:1 | gras-nuschah-on-avot-drabbi-natan-25-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 25:1:2 | gras-nuschah-on-avot-drabbi-natan-25-1-2 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 25:1:3 | gras-nuschah-on-avot-drabbi-natan-25-1-3 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 25:1:4 | gras-nuschah-on-avot-drabbi-natan-25-1-4 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 25:1:5 | gras-nuschah-on-avot-drabbi-natan-25-1-5 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 25:1:6 | gras-nuschah-on-avot-drabbi-natan-25-1-6 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 25:1:7 | gras-nuschah-on-avot-drabbi-natan-25-1-7 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 27:1:1 | gras-nuschah-on-avot-drabbi-natan-27-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 27:1:2 | gras-nuschah-on-avot-drabbi-natan-27-1-2 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 29:1:1 | gras-nuschah-on-avot-drabbi-natan-29-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 29:1:2 | gras-nuschah-on-avot-drabbi-natan-29-1-2 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 29:1:3 | gras-nuschah-on-avot-drabbi-natan-29-1-3 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 29:1:4 | gras-nuschah-on-avot-drabbi-natan-29-1-4 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 30:1:1 | gras-nuschah-on-avot-drabbi-natan-30-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 32:1:1 | gras-nuschah-on-avot-drabbi-natan-32-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 34:1:1 | gras-nuschah-on-avot-drabbi-natan-34-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 34:1:2 | gras-nuschah-on-avot-drabbi-natan-34-1-2 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 34:1:3 | gras-nuschah-on-avot-drabbi-natan-34-1-3 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 34:1:4 | gras-nuschah-on-avot-drabbi-natan-34-1-4 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 34:1:5 | gras-nuschah-on-avot-drabbi-natan-34-1-5 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 35:1:1 | gras-nuschah-on-avot-drabbi-natan-35-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 36:1:1 | gras-nuschah-on-avot-drabbi-natan-36-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 36:1:2 | gras-nuschah-on-avot-drabbi-natan-36-1-2 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 36:1:3 | gras-nuschah-on-avot-drabbi-natan-36-1-3 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 36:1:4 | gras-nuschah-on-avot-drabbi-natan-36-1-4 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 36:1:5 | gras-nuschah-on-avot-drabbi-natan-36-1-5 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 38:1:1 | gras-nuschah-on-avot-drabbi-natan-38-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 38:1:2 | gras-nuschah-on-avot-drabbi-natan-38-1-2 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 38:1:3 | gras-nuschah-on-avot-drabbi-natan-38-1-3 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 38:1:4 | gras-nuschah-on-avot-drabbi-natan-38-1-4 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 38:1:5 | gras-nuschah-on-avot-drabbi-natan-38-1-5 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 38:1:6 | gras-nuschah-on-avot-drabbi-natan-38-1-6 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:1 | gras-nuschah-on-avot-drabbi-natan-39-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:2 | gras-nuschah-on-avot-drabbi-natan-39-1-2 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:3 | gras-nuschah-on-avot-drabbi-natan-39-1-3 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:4 | gras-nuschah-on-avot-drabbi-natan-39-1-4 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:5 | gras-nuschah-on-avot-drabbi-natan-39-1-5 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:6 | gras-nuschah-on-avot-drabbi-natan-39-1-6 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:7 | gras-nuschah-on-avot-drabbi-natan-39-1-7 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:8 | gras-nuschah-on-avot-drabbi-natan-39-1-8 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:9 | gras-nuschah-on-avot-drabbi-natan-39-1-9 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:10 | gras-nuschah-on-avot-drabbi-natan-39-1-10 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:11 | gras-nuschah-on-avot-drabbi-natan-39-1-11 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:12 | gras-nuschah-on-avot-drabbi-natan-39-1-12 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 41:1:1 | gras-nuschah-on-avot-drabbi-natan-41-1-1 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 41:1:2 | gras-nuschah-on-avot-drabbi-natan-41-1-2 |  |  |  |
-| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 41:1:3 | gras-nuschah-on-avot-drabbi-natan-41-1-3 |  |  |  |
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:1 | gras-nuschah-on-avot-drabbi-natan-1-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:2 | gras-nuschah-on-avot-drabbi-natan-1-1-2 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:3 | gras-nuschah-on-avot-drabbi-natan-1-1-3 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:4 | gras-nuschah-on-avot-drabbi-natan-1-1-4 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:5 | gras-nuschah-on-avot-drabbi-natan-1-1-5 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:6 | gras-nuschah-on-avot-drabbi-natan-1-1-6 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:7 | gras-nuschah-on-avot-drabbi-natan-1-1-7 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:8 | gras-nuschah-on-avot-drabbi-natan-1-1-8 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 1:1:9 | gras-nuschah-on-avot-drabbi-natan-1-1-9 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 2:1:1 | gras-nuschah-on-avot-drabbi-natan-2-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 2:1:2 | gras-nuschah-on-avot-drabbi-natan-2-1-2 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 4:1:1 | gras-nuschah-on-avot-drabbi-natan-4-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 4:1:2 | gras-nuschah-on-avot-drabbi-natan-4-1-2 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 6:1:1 | gras-nuschah-on-avot-drabbi-natan-6-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 6:1:2 | gras-nuschah-on-avot-drabbi-natan-6-1-2 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 7:1:1 | gras-nuschah-on-avot-drabbi-natan-7-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 8:1:1 | gras-nuschah-on-avot-drabbi-natan-8-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 9:1:1 | gras-nuschah-on-avot-drabbi-natan-9-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 11:1:1 | gras-nuschah-on-avot-drabbi-natan-11-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 11:1:2 | gras-nuschah-on-avot-drabbi-natan-11-1-2 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 11:1:3 | gras-nuschah-on-avot-drabbi-natan-11-1-3 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 11:1:4 | gras-nuschah-on-avot-drabbi-natan-11-1-4 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 11:1:5 | gras-nuschah-on-avot-drabbi-natan-11-1-5 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 11:1:6 | gras-nuschah-on-avot-drabbi-natan-11-1-6 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 11:1:7 | gras-nuschah-on-avot-drabbi-natan-11-1-7 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 12:1:1 | gras-nuschah-on-avot-drabbi-natan-12-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 14:1:1 | gras-nuschah-on-avot-drabbi-natan-14-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 14:1:2 | gras-nuschah-on-avot-drabbi-natan-14-1-2 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 15:1:1 | gras-nuschah-on-avot-drabbi-natan-15-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:1 | gras-nuschah-on-avot-drabbi-natan-20-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:2 | gras-nuschah-on-avot-drabbi-natan-20-1-2 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:3 | gras-nuschah-on-avot-drabbi-natan-20-1-3 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:4 | gras-nuschah-on-avot-drabbi-natan-20-1-4 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:5 | gras-nuschah-on-avot-drabbi-natan-20-1-5 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:6 | gras-nuschah-on-avot-drabbi-natan-20-1-6 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:7 | gras-nuschah-on-avot-drabbi-natan-20-1-7 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:8 | gras-nuschah-on-avot-drabbi-natan-20-1-8 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:9 | gras-nuschah-on-avot-drabbi-natan-20-1-9 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:10 | gras-nuschah-on-avot-drabbi-natan-20-1-10 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:11 | gras-nuschah-on-avot-drabbi-natan-20-1-11 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:12 | gras-nuschah-on-avot-drabbi-natan-20-1-12 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:13 | gras-nuschah-on-avot-drabbi-natan-20-1-13 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:14 | gras-nuschah-on-avot-drabbi-natan-20-1-14 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:15 | gras-nuschah-on-avot-drabbi-natan-20-1-15 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:16 | gras-nuschah-on-avot-drabbi-natan-20-1-16 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:17 | gras-nuschah-on-avot-drabbi-natan-20-1-17 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 20:1:18 | gras-nuschah-on-avot-drabbi-natan-20-1-18 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 21:1:1 | gras-nuschah-on-avot-drabbi-natan-21-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 21:1:2 | gras-nuschah-on-avot-drabbi-natan-21-1-2 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 21:1:3 | gras-nuschah-on-avot-drabbi-natan-21-1-3 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 21:1:4 | gras-nuschah-on-avot-drabbi-natan-21-1-4 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 21:1:5 | gras-nuschah-on-avot-drabbi-natan-21-1-5 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 21:1:6 | gras-nuschah-on-avot-drabbi-natan-21-1-6 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 21:1:7 | gras-nuschah-on-avot-drabbi-natan-21-1-7 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 21:1:8 | gras-nuschah-on-avot-drabbi-natan-21-1-8 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 23:1:1 | gras-nuschah-on-avot-drabbi-natan-23-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 25:1:1 | gras-nuschah-on-avot-drabbi-natan-25-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 25:1:2 | gras-nuschah-on-avot-drabbi-natan-25-1-2 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 25:1:3 | gras-nuschah-on-avot-drabbi-natan-25-1-3 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 25:1:4 | gras-nuschah-on-avot-drabbi-natan-25-1-4 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 25:1:5 | gras-nuschah-on-avot-drabbi-natan-25-1-5 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 25:1:6 | gras-nuschah-on-avot-drabbi-natan-25-1-6 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 25:1:7 | gras-nuschah-on-avot-drabbi-natan-25-1-7 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 27:1:1 | gras-nuschah-on-avot-drabbi-natan-27-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 27:1:2 | gras-nuschah-on-avot-drabbi-natan-27-1-2 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 29:1:1 | gras-nuschah-on-avot-drabbi-natan-29-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 29:1:2 | gras-nuschah-on-avot-drabbi-natan-29-1-2 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 29:1:3 | gras-nuschah-on-avot-drabbi-natan-29-1-3 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 29:1:4 | gras-nuschah-on-avot-drabbi-natan-29-1-4 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 30:1:1 | gras-nuschah-on-avot-drabbi-natan-30-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 32:1:1 | gras-nuschah-on-avot-drabbi-natan-32-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 34:1:1 | gras-nuschah-on-avot-drabbi-natan-34-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 34:1:2 | gras-nuschah-on-avot-drabbi-natan-34-1-2 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 34:1:3 | gras-nuschah-on-avot-drabbi-natan-34-1-3 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 34:1:4 | gras-nuschah-on-avot-drabbi-natan-34-1-4 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 34:1:5 | gras-nuschah-on-avot-drabbi-natan-34-1-5 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 35:1:1 | gras-nuschah-on-avot-drabbi-natan-35-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 36:1:1 | gras-nuschah-on-avot-drabbi-natan-36-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 36:1:2 | gras-nuschah-on-avot-drabbi-natan-36-1-2 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 36:1:3 | gras-nuschah-on-avot-drabbi-natan-36-1-3 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 36:1:4 | gras-nuschah-on-avot-drabbi-natan-36-1-4 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 36:1:5 | gras-nuschah-on-avot-drabbi-natan-36-1-5 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 38:1:1 | gras-nuschah-on-avot-drabbi-natan-38-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 38:1:2 | gras-nuschah-on-avot-drabbi-natan-38-1-2 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 38:1:3 | gras-nuschah-on-avot-drabbi-natan-38-1-3 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 38:1:4 | gras-nuschah-on-avot-drabbi-natan-38-1-4 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 38:1:5 | gras-nuschah-on-avot-drabbi-natan-38-1-5 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 38:1:6 | gras-nuschah-on-avot-drabbi-natan-38-1-6 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:1 | gras-nuschah-on-avot-drabbi-natan-39-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:2 | gras-nuschah-on-avot-drabbi-natan-39-1-2 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:3 | gras-nuschah-on-avot-drabbi-natan-39-1-3 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:4 | gras-nuschah-on-avot-drabbi-natan-39-1-4 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:5 | gras-nuschah-on-avot-drabbi-natan-39-1-5 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:6 | gras-nuschah-on-avot-drabbi-natan-39-1-6 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:7 | gras-nuschah-on-avot-drabbi-natan-39-1-7 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:8 | gras-nuschah-on-avot-drabbi-natan-39-1-8 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:9 | gras-nuschah-on-avot-drabbi-natan-39-1-9 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:10 | gras-nuschah-on-avot-drabbi-natan-39-1-10 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:11 | gras-nuschah-on-avot-drabbi-natan-39-1-11 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 39:1:12 | gras-nuschah-on-avot-drabbi-natan-39-1-12 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 41:1:1 | gras-nuschah-on-avot-drabbi-natan-41-1-1 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 41:1:2 | gras-nuschah-on-avot-drabbi-natan-41-1-2 |  |  | not_done |  |
+| gras-nuschah-on-avot-drabbi-natan | Gra's Nuschah on Avot D'Rabbi Natan | Gra's Nuschah on Avot D'Rabbi Natan 41:1:3 | gras-nuschah-on-avot-drabbi-natan-41-1-3 |  |  | not_done |  |

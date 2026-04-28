@@ -1,8 +1,8 @@
-| work_id | work_title | source_ref | anchor_id | translation | translator_notes | status |
-|---|---|---|---|---|---|---|
-| gras-nuschah-on-tractate-kallah | Gra's Nuschah on Tractate Kallah | Gra's Nuschah on Tractate Kallah 1:1:1 | gras-nuschah-on-tractate-kallah-1-1-1 |  |  |  |
-| gras-nuschah-on-tractate-kallah | Gra's Nuschah on Tractate Kallah | Gra's Nuschah on Tractate Kallah 2:1:1 | gras-nuschah-on-tractate-kallah-2-1-1 |  |  |  |
-| gras-nuschah-on-tractate-kallah | Gra's Nuschah on Tractate Kallah | Gra's Nuschah on Tractate Kallah 3:1:1 | gras-nuschah-on-tractate-kallah-3-1-1 |  |  |  |
-| gras-nuschah-on-tractate-kallah | Gra's Nuschah on Tractate Kallah | Gra's Nuschah on Tractate Kallah 3:1:2 | gras-nuschah-on-tractate-kallah-3-1-2 |  |  |  |
-| gras-nuschah-on-tractate-kallah | Gra's Nuschah on Tractate Kallah | Gra's Nuschah on Tractate Kallah 5:1:1 | gras-nuschah-on-tractate-kallah-5-1-1 |  |  |  |
-| gras-nuschah-on-tractate-kallah | Gra's Nuschah on Tractate Kallah | Gra's Nuschah on Tractate Kallah 5:1:2 | gras-nuschah-on-tractate-kallah-5-1-2 |  |  |  |
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| gras-nuschah-on-tractate-kallah | Gra's Nuschah on Tractate Kallah | Gra's Nuschah on Tractate Kallah 1:1:1 | gras-nuschah-on-tractate-kallah-1-1-1 |  |  | not_done |  |
+| gras-nuschah-on-tractate-kallah | Gra's Nuschah on Tractate Kallah | Gra's Nuschah on Tractate Kallah 2:1:1 | gras-nuschah-on-tractate-kallah-2-1-1 |  |  | not_done |  |
+| gras-nuschah-on-tractate-kallah | Gra's Nuschah on Tractate Kallah | Gra's Nuschah on Tractate Kallah 3:1:1 | gras-nuschah-on-tractate-kallah-3-1-1 |  |  | not_done |  |
+| gras-nuschah-on-tractate-kallah | Gra's Nuschah on Tractate Kallah | Gra's Nuschah on Tractate Kallah 3:1:2 | gras-nuschah-on-tractate-kallah-3-1-2 |  |  | not_done |  |
+| gras-nuschah-on-tractate-kallah | Gra's Nuschah on Tractate Kallah | Gra's Nuschah on Tractate Kallah 5:1:1 | gras-nuschah-on-tractate-kallah-5-1-1 |  |  | not_done |  |
+| gras-nuschah-on-tractate-kallah | Gra's Nuschah on Tractate Kallah | Gra's Nuschah on Tractate Kallah 5:1:2 | gras-nuschah-on-tractate-kallah-5-1-2 |  |  | not_done |  |

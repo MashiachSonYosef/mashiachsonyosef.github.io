@@ -6,6 +6,8 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+$overlayLicenseNotice = 'English translations and translator''s notes by Kyle Thompson are released under CC0 1.0 Universal. You may copy, modify, distribute, and use them for any purpose without attribution. Hebrew source texts retain their original source/version licenses.'
+
 function Encode-Html {
   param([AllowNull()][string]$Text)
   if ($null -eq $Text) { return '' }
@@ -205,14 +207,17 @@ function Get-OverlayExportRows {
   $rows = @()
   foreach ($unit in @($Source.units)) {
     $overlayUnit = Get-OverlayUnit -Overlay $Overlay -UnitId $unit.unit_id
+    $translation = Get-ExportText (Get-OverlayValue -OverlayUnit $overlayUnit -Field 'strict_translation')
+    $translatorNotes = Get-ExportText (Get-OverlayValue -OverlayUnit $overlayUnit -Field 'clean_translation')
     $rows += [pscustomobject][ordered]@{
       work_id = $Source.work_id
       work_title = $Source.work_title
       source_ref = $unit.source_ref
       anchor_id = $unit.anchor_id
-      translation = Get-ExportText (Get-OverlayValue -OverlayUnit $overlayUnit -Field 'strict_translation')
-      translator_notes = Get-ExportText (Get-OverlayValue -OverlayUnit $overlayUnit -Field 'clean_translation')
-      status = Get-ExportText (Get-OverlayValue -OverlayUnit $overlayUnit -Field 'status')
+      translation = $translation
+      translator_notes = $translatorNotes
+      done_status = if (Test-HasContent $translation) { 'done' } else { 'not_done' }
+      updated_at = Get-ExportText (Get-OverlayValue -OverlayUnit $overlayUnit -Field 'updated_at')
     }
   }
   return $rows
@@ -224,7 +229,7 @@ function Write-OverlayExports {
     [object[]]$Rows
   )
 
-  $headers = @('work_id', 'work_title', 'source_ref', 'anchor_id', 'translation', 'translator_notes', 'status')
+  $headers = @('work_id', 'work_title', 'source_ref', 'anchor_id', 'translation', 'translator_notes', 'done_status', 'updated_at')
 
   $csv = New-Object System.Text.StringBuilder
   [void]$csv.AppendLine(($headers | ForEach-Object { Convert-CsvCell $_ }) -join ',')
@@ -235,8 +240,8 @@ function Write-OverlayExports {
   $json = ConvertTo-Json -InputObject @($Rows) -Depth 10
 
   $markdown = New-Object System.Text.StringBuilder
-  [void]$markdown.AppendLine('| work_id | work_title | source_ref | anchor_id | translation | translator_notes | status |')
-  [void]$markdown.AppendLine('|---|---|---|---|---|---|---|')
+  [void]$markdown.AppendLine('| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |')
+  [void]$markdown.AppendLine('|---|---|---|---|---|---|---|---|')
   foreach ($row in $Rows) {
     $markdownCells = @(
       (Convert-MarkdownCell $row.work_id)
@@ -245,14 +250,16 @@ function Write-OverlayExports {
       (Convert-MarkdownCell $row.anchor_id)
       (Convert-MarkdownCell $row.translation)
       (Convert-MarkdownCell $row.translator_notes)
-      (Convert-MarkdownCell $row.status)
+      (Convert-MarkdownCell $row.done_status)
+      (Convert-MarkdownCell $row.updated_at)
     )
     [void]$markdown.AppendLine('| ' + ($markdownCells -join ' | ') + ' |')
   }
 
-  Write-Utf8 -Path "$WorkSlug\overlay-export.csv" -Content $csv.ToString()
-  Write-Utf8 -Path "$WorkSlug\overlay-export.json" -Content $json
-  Write-Utf8 -Path "$WorkSlug\overlay-export.md" -Content $markdown.ToString()
+  $exportDir = if ($WorkSlug) { $WorkSlug } else { '.' }
+  Write-Utf8 -Path (Join-Path $exportDir 'overlay-export.csv') -Content $csv.ToString()
+  Write-Utf8 -Path (Join-Path $exportDir 'overlay-export.json') -Content $json
+  Write-Utf8 -Path (Join-Path $exportDir 'overlay-export.md') -Content $markdown.ToString()
 }
 
 function Append-SiteHead {
@@ -282,6 +289,8 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .shell { border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }')
   [void]$Builder.AppendLine('    .hero { padding: 22px 22px 18px; border-bottom: 1px solid var(--line); }')
   [void]$Builder.AppendLine('    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }')
+  [void]$Builder.AppendLine('    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }')
+  [void]$Builder.AppendLine('    .license-notice strong { color: var(--text); font-weight: 400; }')
   [void]$Builder.AppendLine('    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }')
   [void]$Builder.AppendLine('    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }')
   [void]$Builder.AppendLine('    .progress-panel { margin-top: 14px; border: 1px solid var(--line); background: rgba(20,24,31,0.58); padding: 12px; }')
@@ -405,6 +414,13 @@ Append-SiteHead -Builder $homePage -Title 'Translation Workspace'
 [void]$homePage.AppendLine('      <div class="hero">')
 [void]$homePage.AppendLine('        <h1>Translation Workspace</h1>')
 [void]$homePage.AppendLine('        <p>Hebrew source infrastructure first. Overlays stay separate. English remains placeholder-only until you write it.</p>')
+[void]$homePage.AppendLine("        <div class=""license-notice""><strong>English overlay license:</strong> $(Encode-Html $overlayLicenseNotice)</div>")
+[void]$homePage.AppendLine('        <div class="export-actions" aria-label="Full-site overlay exports">')
+[void]$homePage.AppendLine('          <span>Full overlay export:</span>')
+[void]$homePage.AppendLine('          <a class="export-button" href="overlay-export.csv" download>CSV</a>')
+[void]$homePage.AppendLine('          <a class="export-button" href="overlay-export.json" download>JSON</a>')
+[void]$homePage.AppendLine('          <a class="export-button" href="overlay-export.md" download>Markdown</a>')
+[void]$homePage.AppendLine('        </div>')
 [void]$homePage.AppendLine('      </div>')
 [void]$homePage.AppendLine('      <div style="padding:22px">')
 [void]$homePage.AppendLine('        <div class="progress-controls" aria-label="Work progress filters">')
@@ -438,11 +454,15 @@ Append-HomeScript -Builder $homePage
 [void]$homePage.AppendLine('</html>')
 Write-Utf8 -Path 'index.html' -Content $homePage.ToString()
 
+$allExportRows = New-Object System.Collections.Generic.List[object]
 foreach ($source in $sources) {
   $overlay = Get-OverlayForSource -Source $source -OverlayDir $OverlayDir
   $progress = Get-WorkProgress -Source $source -Overlay $overlay
   $exportRows = Get-OverlayExportRows -Source $source -Overlay $overlay
   Write-OverlayExports -WorkSlug $source.work_slug -Rows $exportRows
+  foreach ($row in @($exportRows)) {
+    $allExportRows.Add($row)
+  }
   $page = New-Object System.Text.StringBuilder
   $visibleUnits = if ($MaxUnits -gt 0) { @($source.units | Select-Object -First $MaxUnits) } else { @($source.units) }
   $rootHref = Get-RootHref -WorkSlug $source.work_slug
@@ -474,6 +494,7 @@ foreach ($source in $sources) {
   } else {
     [void]$page.AppendLine("        <p class=""meta source-citation"">$($sourceNotes.Count) source/license notes. See footer table for details.</p>")
   }
+  [void]$page.AppendLine("        <div class=""license-notice""><strong>English overlay license:</strong> $(Encode-Html $overlayLicenseNotice)</div>")
   [void]$page.AppendLine('        <div class="export-actions" aria-label="Overlay exports">')
   [void]$page.AppendLine('          <span>Overlay export:</span>')
   [void]$page.AppendLine('          <a class="export-button" href="overlay-export.csv" download>CSV</a>')
@@ -614,3 +635,5 @@ foreach ($source in $sources) {
 
   Write-Utf8 -Path "$($source.work_slug)\index.html" -Content $page.ToString()
 }
+
+Write-OverlayExports -WorkSlug '.' -Rows $allExportRows.ToArray()

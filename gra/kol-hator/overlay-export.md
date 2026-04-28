@@ -1,230 +1,230 @@
-| work_id | work_title | source_ref | anchor_id | translation | translator_notes | status |
-|---|---|---|---|---|---|---|
-| kol-hator | Kol HaTor | Kol HaTor 1:1 | kol-hator-1-1 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:2 | kol-hator-1-2 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:3 | kol-hator-1-3 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:4 | kol-hator-1-4 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:5 | kol-hator-1-5 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:6 | kol-hator-1-6 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:7 | kol-hator-1-7 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:8 | kol-hator-1-8 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:9 | kol-hator-1-9 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:10 | kol-hator-1-10 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:11 | kol-hator-1-11 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:12 | kol-hator-1-12 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:13 | kol-hator-1-13 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:14 | kol-hator-1-14 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:15 | kol-hator-1-15 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:16 | kol-hator-1-16 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:17 | kol-hator-1-17 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:18 | kol-hator-1-18 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:19 | kol-hator-1-19 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:20 | kol-hator-1-20 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:21 | kol-hator-1-21 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:22 | kol-hator-1-22 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:23 | kol-hator-1-23 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:24 | kol-hator-1-24 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:25 | kol-hator-1-25 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:26 | kol-hator-1-26 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:27 | kol-hator-1-27 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:28 | kol-hator-1-28 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:29 | kol-hator-1-29 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:30 | kol-hator-1-30 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:31 | kol-hator-1-31 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:32 | kol-hator-1-32 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:33 | kol-hator-1-33 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:34 | kol-hator-1-34 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:35 | kol-hator-1-35 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:36 | kol-hator-1-36 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 1:37 | kol-hator-1-37 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:1 | kol-hator-2-1 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:2 | kol-hator-2-2 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:3 | kol-hator-2-3 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:4 | kol-hator-2-4 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:5 | kol-hator-2-5 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:6 | kol-hator-2-6 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:7 | kol-hator-2-7 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:8 | kol-hator-2-8 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:9 | kol-hator-2-9 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:10 | kol-hator-2-10 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:11 | kol-hator-2-11 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:12 | kol-hator-2-12 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:13 | kol-hator-2-13 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:14 | kol-hator-2-14 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:15 | kol-hator-2-15 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:16 | kol-hator-2-16 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:17 | kol-hator-2-17 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:18 | kol-hator-2-18 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:19 | kol-hator-2-19 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:20 | kol-hator-2-20 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:21 | kol-hator-2-21 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:22 | kol-hator-2-22 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:23 | kol-hator-2-23 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:24 | kol-hator-2-24 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:25 | kol-hator-2-25 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:26 | kol-hator-2-26 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:27 | kol-hator-2-27 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:28 | kol-hator-2-28 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:29 | kol-hator-2-29 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:30 | kol-hator-2-30 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:31 | kol-hator-2-31 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:32 | kol-hator-2-32 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:33 | kol-hator-2-33 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:34 | kol-hator-2-34 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:35 | kol-hator-2-35 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:36 | kol-hator-2-36 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:37 | kol-hator-2-37 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:38 | kol-hator-2-38 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:39 | kol-hator-2-39 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:40 | kol-hator-2-40 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:41 | kol-hator-2-41 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:42 | kol-hator-2-42 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:43 | kol-hator-2-43 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:44 | kol-hator-2-44 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:45 | kol-hator-2-45 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:46 | kol-hator-2-46 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:47 | kol-hator-2-47 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:48 | kol-hator-2-48 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:49 | kol-hator-2-49 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:50 | kol-hator-2-50 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:51 | kol-hator-2-51 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:52 | kol-hator-2-52 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:53 | kol-hator-2-53 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:54 | kol-hator-2-54 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:55 | kol-hator-2-55 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:56 | kol-hator-2-56 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:57 | kol-hator-2-57 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:58 | kol-hator-2-58 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:59 | kol-hator-2-59 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:60 | kol-hator-2-60 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:61 | kol-hator-2-61 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:62 | kol-hator-2-62 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:63 | kol-hator-2-63 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:64 | kol-hator-2-64 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:65 | kol-hator-2-65 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:66 | kol-hator-2-66 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:67 | kol-hator-2-67 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:68 | kol-hator-2-68 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:69 | kol-hator-2-69 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:70 | kol-hator-2-70 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:71 | kol-hator-2-71 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:72 | kol-hator-2-72 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:73 | kol-hator-2-73 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:74 | kol-hator-2-74 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:75 | kol-hator-2-75 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:76 | kol-hator-2-76 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:77 | kol-hator-2-77 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:78 | kol-hator-2-78 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:79 | kol-hator-2-79 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:80 | kol-hator-2-80 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:81 | kol-hator-2-81 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:82 | kol-hator-2-82 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:83 | kol-hator-2-83 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:84 | kol-hator-2-84 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:85 | kol-hator-2-85 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:86 | kol-hator-2-86 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:87 | kol-hator-2-87 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:88 | kol-hator-2-88 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:89 | kol-hator-2-89 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:90 | kol-hator-2-90 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:91 | kol-hator-2-91 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:92 | kol-hator-2-92 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:93 | kol-hator-2-93 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:94 | kol-hator-2-94 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:95 | kol-hator-2-95 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:96 | kol-hator-2-96 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:97 | kol-hator-2-97 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:98 | kol-hator-2-98 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:99 | kol-hator-2-99 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:100 | kol-hator-2-100 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:101 | kol-hator-2-101 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:102 | kol-hator-2-102 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:103 | kol-hator-2-103 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:104 | kol-hator-2-104 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:105 | kol-hator-2-105 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:106 | kol-hator-2-106 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:107 | kol-hator-2-107 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:108 | kol-hator-2-108 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:109 | kol-hator-2-109 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:110 | kol-hator-2-110 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:111 | kol-hator-2-111 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:112 | kol-hator-2-112 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:113 | kol-hator-2-113 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:114 | kol-hator-2-114 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:115 | kol-hator-2-115 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:116 | kol-hator-2-116 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:117 | kol-hator-2-117 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:118 | kol-hator-2-118 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:119 | kol-hator-2-119 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:120 | kol-hator-2-120 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:121 | kol-hator-2-121 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:122 | kol-hator-2-122 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:123 | kol-hator-2-123 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:124 | kol-hator-2-124 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:125 | kol-hator-2-125 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:126 | kol-hator-2-126 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:127 | kol-hator-2-127 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:128 | kol-hator-2-128 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:129 | kol-hator-2-129 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:130 | kol-hator-2-130 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:131 | kol-hator-2-131 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:132 | kol-hator-2-132 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:133 | kol-hator-2-133 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:134 | kol-hator-2-134 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:135 | kol-hator-2-135 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:136 | kol-hator-2-136 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:137 | kol-hator-2-137 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:138 | kol-hator-2-138 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:139 | kol-hator-2-139 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:140 | kol-hator-2-140 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:141 | kol-hator-2-141 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:142 | kol-hator-2-142 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:143 | kol-hator-2-143 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:144 | kol-hator-2-144 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:145 | kol-hator-2-145 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:146 | kol-hator-2-146 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:147 | kol-hator-2-147 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:148 | kol-hator-2-148 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:149 | kol-hator-2-149 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:150 | kol-hator-2-150 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:151 | kol-hator-2-151 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:152 | kol-hator-2-152 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:153 | kol-hator-2-153 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:154 | kol-hator-2-154 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:155 | kol-hator-2-155 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:156 | kol-hator-2-156 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 2:157 | kol-hator-2-157 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:1 | kol-hator-3-1 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:2 | kol-hator-3-2 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:3 | kol-hator-3-3 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:4 | kol-hator-3-4 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:5 | kol-hator-3-5 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:6 | kol-hator-3-6 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:7 | kol-hator-3-7 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:8 | kol-hator-3-8 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:9 | kol-hator-3-9 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:10 | kol-hator-3-10 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:11 | kol-hator-3-11 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:12 | kol-hator-3-12 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:13 | kol-hator-3-13 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:14 | kol-hator-3-14 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:15 | kol-hator-3-15 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:16 | kol-hator-3-16 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:17 | kol-hator-3-17 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:18 | kol-hator-3-18 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:19 | kol-hator-3-19 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:20 | kol-hator-3-20 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:21 | kol-hator-3-21 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:22 | kol-hator-3-22 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:23 | kol-hator-3-23 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:24 | kol-hator-3-24 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:25 | kol-hator-3-25 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:26 | kol-hator-3-26 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:27 | kol-hator-3-27 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:28 | kol-hator-3-28 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:29 | kol-hator-3-29 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:30 | kol-hator-3-30 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:31 | kol-hator-3-31 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:32 | kol-hator-3-32 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:33 | kol-hator-3-33 |  |  |  |
-| kol-hator | Kol HaTor | Kol HaTor 3:34 | kol-hator-3-34 |  |  |  |
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| kol-hator | Kol HaTor | Kol HaTor 1:1 | kol-hator-1-1 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:2 | kol-hator-1-2 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:3 | kol-hator-1-3 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:4 | kol-hator-1-4 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:5 | kol-hator-1-5 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:6 | kol-hator-1-6 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:7 | kol-hator-1-7 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:8 | kol-hator-1-8 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:9 | kol-hator-1-9 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:10 | kol-hator-1-10 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:11 | kol-hator-1-11 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:12 | kol-hator-1-12 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:13 | kol-hator-1-13 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:14 | kol-hator-1-14 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:15 | kol-hator-1-15 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:16 | kol-hator-1-16 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:17 | kol-hator-1-17 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:18 | kol-hator-1-18 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:19 | kol-hator-1-19 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:20 | kol-hator-1-20 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:21 | kol-hator-1-21 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:22 | kol-hator-1-22 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:23 | kol-hator-1-23 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:24 | kol-hator-1-24 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:25 | kol-hator-1-25 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:26 | kol-hator-1-26 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:27 | kol-hator-1-27 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:28 | kol-hator-1-28 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:29 | kol-hator-1-29 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:30 | kol-hator-1-30 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:31 | kol-hator-1-31 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:32 | kol-hator-1-32 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:33 | kol-hator-1-33 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:34 | kol-hator-1-34 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:35 | kol-hator-1-35 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:36 | kol-hator-1-36 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 1:37 | kol-hator-1-37 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:1 | kol-hator-2-1 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:2 | kol-hator-2-2 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:3 | kol-hator-2-3 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:4 | kol-hator-2-4 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:5 | kol-hator-2-5 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:6 | kol-hator-2-6 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:7 | kol-hator-2-7 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:8 | kol-hator-2-8 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:9 | kol-hator-2-9 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:10 | kol-hator-2-10 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:11 | kol-hator-2-11 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:12 | kol-hator-2-12 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:13 | kol-hator-2-13 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:14 | kol-hator-2-14 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:15 | kol-hator-2-15 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:16 | kol-hator-2-16 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:17 | kol-hator-2-17 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:18 | kol-hator-2-18 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:19 | kol-hator-2-19 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:20 | kol-hator-2-20 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:21 | kol-hator-2-21 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:22 | kol-hator-2-22 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:23 | kol-hator-2-23 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:24 | kol-hator-2-24 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:25 | kol-hator-2-25 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:26 | kol-hator-2-26 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:27 | kol-hator-2-27 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:28 | kol-hator-2-28 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:29 | kol-hator-2-29 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:30 | kol-hator-2-30 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:31 | kol-hator-2-31 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:32 | kol-hator-2-32 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:33 | kol-hator-2-33 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:34 | kol-hator-2-34 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:35 | kol-hator-2-35 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:36 | kol-hator-2-36 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:37 | kol-hator-2-37 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:38 | kol-hator-2-38 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:39 | kol-hator-2-39 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:40 | kol-hator-2-40 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:41 | kol-hator-2-41 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:42 | kol-hator-2-42 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:43 | kol-hator-2-43 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:44 | kol-hator-2-44 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:45 | kol-hator-2-45 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:46 | kol-hator-2-46 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:47 | kol-hator-2-47 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:48 | kol-hator-2-48 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:49 | kol-hator-2-49 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:50 | kol-hator-2-50 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:51 | kol-hator-2-51 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:52 | kol-hator-2-52 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:53 | kol-hator-2-53 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:54 | kol-hator-2-54 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:55 | kol-hator-2-55 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:56 | kol-hator-2-56 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:57 | kol-hator-2-57 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:58 | kol-hator-2-58 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:59 | kol-hator-2-59 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:60 | kol-hator-2-60 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:61 | kol-hator-2-61 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:62 | kol-hator-2-62 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:63 | kol-hator-2-63 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:64 | kol-hator-2-64 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:65 | kol-hator-2-65 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:66 | kol-hator-2-66 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:67 | kol-hator-2-67 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:68 | kol-hator-2-68 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:69 | kol-hator-2-69 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:70 | kol-hator-2-70 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:71 | kol-hator-2-71 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:72 | kol-hator-2-72 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:73 | kol-hator-2-73 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:74 | kol-hator-2-74 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:75 | kol-hator-2-75 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:76 | kol-hator-2-76 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:77 | kol-hator-2-77 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:78 | kol-hator-2-78 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:79 | kol-hator-2-79 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:80 | kol-hator-2-80 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:81 | kol-hator-2-81 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:82 | kol-hator-2-82 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:83 | kol-hator-2-83 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:84 | kol-hator-2-84 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:85 | kol-hator-2-85 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:86 | kol-hator-2-86 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:87 | kol-hator-2-87 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:88 | kol-hator-2-88 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:89 | kol-hator-2-89 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:90 | kol-hator-2-90 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:91 | kol-hator-2-91 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:92 | kol-hator-2-92 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:93 | kol-hator-2-93 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:94 | kol-hator-2-94 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:95 | kol-hator-2-95 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:96 | kol-hator-2-96 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:97 | kol-hator-2-97 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:98 | kol-hator-2-98 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:99 | kol-hator-2-99 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:100 | kol-hator-2-100 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:101 | kol-hator-2-101 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:102 | kol-hator-2-102 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:103 | kol-hator-2-103 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:104 | kol-hator-2-104 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:105 | kol-hator-2-105 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:106 | kol-hator-2-106 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:107 | kol-hator-2-107 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:108 | kol-hator-2-108 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:109 | kol-hator-2-109 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:110 | kol-hator-2-110 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:111 | kol-hator-2-111 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:112 | kol-hator-2-112 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:113 | kol-hator-2-113 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:114 | kol-hator-2-114 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:115 | kol-hator-2-115 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:116 | kol-hator-2-116 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:117 | kol-hator-2-117 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:118 | kol-hator-2-118 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:119 | kol-hator-2-119 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:120 | kol-hator-2-120 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:121 | kol-hator-2-121 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:122 | kol-hator-2-122 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:123 | kol-hator-2-123 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:124 | kol-hator-2-124 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:125 | kol-hator-2-125 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:126 | kol-hator-2-126 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:127 | kol-hator-2-127 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:128 | kol-hator-2-128 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:129 | kol-hator-2-129 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:130 | kol-hator-2-130 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:131 | kol-hator-2-131 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:132 | kol-hator-2-132 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:133 | kol-hator-2-133 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:134 | kol-hator-2-134 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:135 | kol-hator-2-135 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:136 | kol-hator-2-136 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:137 | kol-hator-2-137 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:138 | kol-hator-2-138 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:139 | kol-hator-2-139 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:140 | kol-hator-2-140 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:141 | kol-hator-2-141 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:142 | kol-hator-2-142 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:143 | kol-hator-2-143 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:144 | kol-hator-2-144 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:145 | kol-hator-2-145 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:146 | kol-hator-2-146 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:147 | kol-hator-2-147 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:148 | kol-hator-2-148 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:149 | kol-hator-2-149 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:150 | kol-hator-2-150 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:151 | kol-hator-2-151 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:152 | kol-hator-2-152 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:153 | kol-hator-2-153 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:154 | kol-hator-2-154 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:155 | kol-hator-2-155 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:156 | kol-hator-2-156 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 2:157 | kol-hator-2-157 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:1 | kol-hator-3-1 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:2 | kol-hator-3-2 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:3 | kol-hator-3-3 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:4 | kol-hator-3-4 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:5 | kol-hator-3-5 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:6 | kol-hator-3-6 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:7 | kol-hator-3-7 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:8 | kol-hator-3-8 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:9 | kol-hator-3-9 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:10 | kol-hator-3-10 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:11 | kol-hator-3-11 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:12 | kol-hator-3-12 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:13 | kol-hator-3-13 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:14 | kol-hator-3-14 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:15 | kol-hator-3-15 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:16 | kol-hator-3-16 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:17 | kol-hator-3-17 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:18 | kol-hator-3-18 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:19 | kol-hator-3-19 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:20 | kol-hator-3-20 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:21 | kol-hator-3-21 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:22 | kol-hator-3-22 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:23 | kol-hator-3-23 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:24 | kol-hator-3-24 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:25 | kol-hator-3-25 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:26 | kol-hator-3-26 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:27 | kol-hator-3-27 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:28 | kol-hator-3-28 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:29 | kol-hator-3-29 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:30 | kol-hator-3-30 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:31 | kol-hator-3-31 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:32 | kol-hator-3-32 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:33 | kol-hator-3-33 |  |  | not_done |  |
+| kol-hator | Kol HaTor | Kol HaTor 3:34 | kol-hator-3-34 |  |  | not_done |  |

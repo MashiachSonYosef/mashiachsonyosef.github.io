@@ -1,12 +1,12 @@
-| work_id | work_title | source_ref | anchor_id | translation | translator_notes | status |
-|---|---|---|---|---|---|---|
-| orot-ha-torah | Orot HaTorah | Orot HaTorah, Introduction:1 | orot-ha-torah-introduction-introduction-1 |  |  |  |
-| orot-ha-torah | Orot HaTorah | Orot HaTorah, Introduction:2 | orot-ha-torah-introduction-introduction-2 |  |  |  |
-| orot-ha-torah | Orot HaTorah | Orot HaTorah, Introduction:3 | orot-ha-torah-introduction-introduction-3 |  |  |  |
-| orot-ha-torah | Orot HaTorah | Orot HaTorah, Introduction:4 | orot-ha-torah-introduction-introduction-4 |  |  |  |
-| orot-ha-torah | Orot HaTorah | Orot HaTorah, Introduction:5 | orot-ha-torah-introduction-introduction-5 |  |  |  |
-| orot-ha-torah | Orot HaTorah | Orot HaTorah, Introduction:6 | orot-ha-torah-introduction-introduction-6 |  |  |  |
-| orot-ha-torah | Orot HaTorah | Orot HaTorah, Introduction:7 | orot-ha-torah-introduction-introduction-7 |  |  |  |
-| orot-ha-torah | Orot HaTorah | Orot HaTorah 1:1 | orot-ha-torah-default-default-1-1 |  |  |  |
-| orot-ha-torah | Orot HaTorah | Orot HaTorah 1:2 | orot-ha-torah-default-default-1-2 |  |  |  |
-| orot-ha-torah | Orot HaTorah | Orot HaTorah 1:3 | orot-ha-torah-default-default-1-3 |  |  |  |
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| orot-ha-torah | Orot HaTorah | Orot HaTorah, Introduction:1 | orot-ha-torah-introduction-introduction-1 |  |  | not_done |  |
+| orot-ha-torah | Orot HaTorah | Orot HaTorah, Introduction:2 | orot-ha-torah-introduction-introduction-2 |  |  | not_done |  |
+| orot-ha-torah | Orot HaTorah | Orot HaTorah, Introduction:3 | orot-ha-torah-introduction-introduction-3 |  |  | not_done |  |
+| orot-ha-torah | Orot HaTorah | Orot HaTorah, Introduction:4 | orot-ha-torah-introduction-introduction-4 |  |  | not_done |  |
+| orot-ha-torah | Orot HaTorah | Orot HaTorah, Introduction:5 | orot-ha-torah-introduction-introduction-5 |  |  | not_done |  |
+| orot-ha-torah | Orot HaTorah | Orot HaTorah, Introduction:6 | orot-ha-torah-introduction-introduction-6 |  |  | not_done |  |
+| orot-ha-torah | Orot HaTorah | Orot HaTorah, Introduction:7 | orot-ha-torah-introduction-introduction-7 |  |  | not_done |  |
+| orot-ha-torah | Orot HaTorah | Orot HaTorah 1:1 | orot-ha-torah-default-default-1-1 |  |  | not_done |  |
+| orot-ha-torah | Orot HaTorah | Orot HaTorah 1:2 | orot-ha-torah-default-default-1-2 |  |  | not_done |  |
+| orot-ha-torah | Orot HaTorah | Orot HaTorah 1:3 | orot-ha-torah-default-default-1-3 |  |  | not_done |  |

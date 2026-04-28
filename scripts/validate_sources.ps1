@@ -8,10 +8,88 @@ $ErrorActionPreference = 'Stop'
 $errors = New-Object System.Collections.Generic.List[string]
 $unitIds = @{}
 $anchorIds = @{}
+$sourceByWorkId = @{}
+$unitCountByWorkId = @{}
+$slugByWorkId = @{}
 
-Get-ChildItem -Path $SourceDir -Filter '*.json' | ForEach-Object {
+$sourceFiles = @(Get-ChildItem -Path $SourceDir -Filter '*.json')
+
+function Test-ExportFiles {
+  param(
+    [string]$ExportDir,
+    [int]$ExpectedRows,
+    [string]$Label
+  )
+
+  $csvPath = Join-Path $ExportDir 'overlay-export.csv'
+  $jsonPath = Join-Path $ExportDir 'overlay-export.json'
+  $mdPath = Join-Path $ExportDir 'overlay-export.md'
+  $expectedCsvHeader = '"work_id","work_title","source_ref","anchor_id","translation","translator_notes","done_status","updated_at"'
+  $expectedMarkdownHeader = '| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |'
+
+  foreach ($path in @($csvPath, $jsonPath, $mdPath)) {
+    if (-not (Test-Path $path)) {
+      $errors.Add("Missing overlay export for $Label`: $path")
+      return
+    }
+  }
+
+  $csvHeader = Get-Content -Path $csvPath -TotalCount 1 -Encoding UTF8
+  if ($csvHeader -ne $expectedCsvHeader) {
+    $errors.Add("Unexpected CSV overlay export header for $Label")
+  }
+
+  $markdownHeader = Get-Content -Path $mdPath -TotalCount 1 -Encoding UTF8
+  if ($markdownHeader -ne $expectedMarkdownHeader) {
+    $errors.Add("Unexpected Markdown overlay export header for $Label")
+  }
+
+  foreach ($path in @($csvPath, $jsonPath, $mdPath)) {
+    $text = Get-Content -Path $path -Raw -Encoding UTF8
+    foreach ($placeholder in @('[Awaiting translation]', '[Awaiting notes]', 'Translation pending')) {
+      if ($text.Contains($placeholder)) {
+        $errors.Add("Overlay export contains placeholder text in $Label`: $placeholder")
+      }
+    }
+    if ($text -match '\bhebrew\b' -or $text -match '\bhebrew_source\b' -or $text -match '\bsource_hebrew\b') {
+      $errors.Add("Overlay export appears to include Hebrew/source-body field in $Label`: $path")
+    }
+  }
+
+  $parsedRows = Get-Content -Path $jsonPath -Raw -Encoding UTF8 | ConvertFrom-Json
+  $rows = if ($parsedRows -is [array]) { $parsedRows } else { @($parsedRows) }
+  if ($rows.Count -ne $ExpectedRows) {
+    $errors.Add("Overlay JSON row count mismatch for $Label`: expected $ExpectedRows, found $($rows.Count)")
+  }
+
+  $requiredFields = @('work_id', 'work_title', 'source_ref', 'anchor_id', 'translation', 'translator_notes', 'done_status', 'updated_at')
+  foreach ($row in $rows) {
+    foreach ($field in $requiredFields) {
+      if ($row.PSObject.Properties.Name -notcontains $field) {
+        $errors.Add("Overlay export row missing $field in $Label")
+      }
+    }
+
+    foreach ($forbiddenField in @('hebrew', 'english', 'status')) {
+      if ($row.PSObject.Properties.Name -contains $forbiddenField) {
+        $errors.Add("Overlay export row contains forbidden field $forbiddenField in $Label")
+      }
+    }
+
+    $translation = if ($null -ne $row.translation) { $row.translation.ToString().Trim() } else { '' }
+    $expectedDoneStatus = if ($translation) { 'done' } else { 'not_done' }
+    if ($row.done_status -ne $expectedDoneStatus) {
+      $errors.Add("Overlay export done_status mismatch for $Label / $($row.anchor_id)")
+    }
+  }
+}
+
+$sourceFiles | ForEach-Object {
   $source = Get-Content -Path $_.FullName -Raw -Encoding UTF8 | ConvertFrom-Json
   $overlayPath = Join-Path $OverlayDir "$($source.work_id).json"
+  $sourceByWorkId[$source.work_id] = $source
+  $unitCountByWorkId[$source.work_id] = @($source.units).Count
+  $slugByWorkId[$source.work_id] = $source.work_slug
 
   foreach ($field in @('work_id', 'work_title', 'work_slug', 'sefaria_ref', 'source_system', 'import_date')) {
     if (-not $source.$field) {
@@ -63,7 +141,48 @@ Get-ChildItem -Path $SourceDir -Filter '*.json' | ForEach-Object {
       $anchorIds[$unit.anchor_id] = $true
     }
   }
+
+  $workPagePath = Join-Path $source.work_slug 'index.html'
+  if (Test-Path $workPagePath) {
+    $workPage = Get-Content -Path $workPagePath -Raw -Encoding UTF8
+    foreach ($requiredText in @('License', 'CC0 1.0 Universal', 'Translation', 'Translator&rsquo;s Notes')) {
+      if (-not $workPage.Contains($requiredText)) {
+        $errors.Add("Generated work page missing required text '$requiredText' for $($source.work_id)")
+      }
+    }
+    if (-not ($workPage.Contains('Hebrew version:') -or $workPage.Contains('Hebrew Version'))) {
+      $errors.Add("Generated work page missing Hebrew version metadata for $($source.work_id)")
+    }
+    foreach ($badText in @('Translatorâ', 'Translation pending', 'Notes / Pressure Words', '[Awaiting translation]', '[Awaiting notes]')) {
+      if ($workPage.Contains($badText)) {
+        $errors.Add("Generated work page contains disallowed text '$badText' for $($source.work_id)")
+      }
+    }
+  } else {
+    $errors.Add("Missing generated work page for $($source.work_id): $workPagePath")
+  }
 }
+
+$homePagePath = 'index.html'
+if (Test-Path $homePagePath) {
+  $homePage = Get-Content -Path $homePagePath -Raw -Encoding UTF8
+  foreach ($requiredText in @('CC0 1.0 Universal', 'Full overlay export:', 'data-work-filter="done"', 'data-work-filter="not-done"')) {
+    if (-not $homePage.Contains($requiredText)) {
+      $errors.Add("Homepage missing required text '$requiredText'")
+    }
+  }
+  if ($homePage.Contains('Translatorâ')) {
+    $errors.Add('Homepage contains raw encoding bug text: Translatorâ')
+  }
+} else {
+  $errors.Add('Missing homepage index.html')
+}
+
+foreach ($workId in $sourceByWorkId.Keys) {
+  Test-ExportFiles -ExportDir $slugByWorkId[$workId] -ExpectedRows $unitCountByWorkId[$workId] -Label $workId
+}
+
+Test-ExportFiles -ExportDir '.' -ExpectedRows $unitIds.Count -Label 'full-site'
 
 if ($errors.Count -gt 0) {
   $errors | ForEach-Object { Write-Error $_ }

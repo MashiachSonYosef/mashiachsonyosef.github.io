@@ -1,37 +1,37 @@
-| work_id | work_title | source_ref | anchor_id | translation | translator_notes | status |
-|---|---|---|---|---|---|---|
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:1 | hagra-on-sefer-yetzirah-gra-version-1-1-1 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:2 | hagra-on-sefer-yetzirah-gra-version-1-1-2 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:3 | hagra-on-sefer-yetzirah-gra-version-1-1-3 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:4 | hagra-on-sefer-yetzirah-gra-version-1-1-4 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:5 | hagra-on-sefer-yetzirah-gra-version-1-1-5 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:6 | hagra-on-sefer-yetzirah-gra-version-1-1-6 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:7 | hagra-on-sefer-yetzirah-gra-version-1-1-7 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:8 | hagra-on-sefer-yetzirah-gra-version-1-1-8 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:9 | hagra-on-sefer-yetzirah-gra-version-1-1-9 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:10 | hagra-on-sefer-yetzirah-gra-version-1-1-10 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:11 | hagra-on-sefer-yetzirah-gra-version-1-1-11 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:12 | hagra-on-sefer-yetzirah-gra-version-1-1-12 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:13 | hagra-on-sefer-yetzirah-gra-version-1-1-13 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:14 | hagra-on-sefer-yetzirah-gra-version-1-1-14 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:15 | hagra-on-sefer-yetzirah-gra-version-1-1-15 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:16 | hagra-on-sefer-yetzirah-gra-version-1-1-16 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:17 | hagra-on-sefer-yetzirah-gra-version-1-1-17 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:18 | hagra-on-sefer-yetzirah-gra-version-1-1-18 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:19 | hagra-on-sefer-yetzirah-gra-version-1-1-19 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:20 | hagra-on-sefer-yetzirah-gra-version-1-1-20 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:21 | hagra-on-sefer-yetzirah-gra-version-1-1-21 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:22 | hagra-on-sefer-yetzirah-gra-version-1-1-22 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:23 | hagra-on-sefer-yetzirah-gra-version-1-1-23 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:24 | hagra-on-sefer-yetzirah-gra-version-1-1-24 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:25 | hagra-on-sefer-yetzirah-gra-version-1-1-25 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:26 | hagra-on-sefer-yetzirah-gra-version-1-1-26 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:27 | hagra-on-sefer-yetzirah-gra-version-1-1-27 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:28 | hagra-on-sefer-yetzirah-gra-version-1-1-28 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:29 | hagra-on-sefer-yetzirah-gra-version-1-1-29 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:30 | hagra-on-sefer-yetzirah-gra-version-1-1-30 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:31 | hagra-on-sefer-yetzirah-gra-version-1-1-31 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:32 | hagra-on-sefer-yetzirah-gra-version-1-1-32 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:33 | hagra-on-sefer-yetzirah-gra-version-1-1-33 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:34 | hagra-on-sefer-yetzirah-gra-version-1-1-34 |  |  |  |
-| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:35 | hagra-on-sefer-yetzirah-gra-version-1-1-35 |  |  |  |
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:1 | hagra-on-sefer-yetzirah-gra-version-1-1-1 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:2 | hagra-on-sefer-yetzirah-gra-version-1-1-2 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:3 | hagra-on-sefer-yetzirah-gra-version-1-1-3 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:4 | hagra-on-sefer-yetzirah-gra-version-1-1-4 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:5 | hagra-on-sefer-yetzirah-gra-version-1-1-5 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:6 | hagra-on-sefer-yetzirah-gra-version-1-1-6 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:7 | hagra-on-sefer-yetzirah-gra-version-1-1-7 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:8 | hagra-on-sefer-yetzirah-gra-version-1-1-8 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:9 | hagra-on-sefer-yetzirah-gra-version-1-1-9 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:10 | hagra-on-sefer-yetzirah-gra-version-1-1-10 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:11 | hagra-on-sefer-yetzirah-gra-version-1-1-11 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:12 | hagra-on-sefer-yetzirah-gra-version-1-1-12 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:13 | hagra-on-sefer-yetzirah-gra-version-1-1-13 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:14 | hagra-on-sefer-yetzirah-gra-version-1-1-14 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:15 | hagra-on-sefer-yetzirah-gra-version-1-1-15 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:16 | hagra-on-sefer-yetzirah-gra-version-1-1-16 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:17 | hagra-on-sefer-yetzirah-gra-version-1-1-17 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:18 | hagra-on-sefer-yetzirah-gra-version-1-1-18 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:19 | hagra-on-sefer-yetzirah-gra-version-1-1-19 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:20 | hagra-on-sefer-yetzirah-gra-version-1-1-20 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:21 | hagra-on-sefer-yetzirah-gra-version-1-1-21 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:22 | hagra-on-sefer-yetzirah-gra-version-1-1-22 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:23 | hagra-on-sefer-yetzirah-gra-version-1-1-23 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:24 | hagra-on-sefer-yetzirah-gra-version-1-1-24 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:25 | hagra-on-sefer-yetzirah-gra-version-1-1-25 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:26 | hagra-on-sefer-yetzirah-gra-version-1-1-26 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:27 | hagra-on-sefer-yetzirah-gra-version-1-1-27 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:28 | hagra-on-sefer-yetzirah-gra-version-1-1-28 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:29 | hagra-on-sefer-yetzirah-gra-version-1-1-29 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:30 | hagra-on-sefer-yetzirah-gra-version-1-1-30 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:31 | hagra-on-sefer-yetzirah-gra-version-1-1-31 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:32 | hagra-on-sefer-yetzirah-gra-version-1-1-32 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:33 | hagra-on-sefer-yetzirah-gra-version-1-1-33 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:34 | hagra-on-sefer-yetzirah-gra-version-1-1-34 |  |  | not_done |  |
+| hagra-on-sefer-yetzirah-gra-version | HaGra on Sefer Yetzirah Gra Version | HaGra on Sefer Yetzirah Gra Version 1:1:35 | hagra-on-sefer-yetzirah-gra-version-1-1-35 |  |  | not_done |  |

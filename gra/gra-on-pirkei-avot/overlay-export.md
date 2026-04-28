@@ -1,22 +1,22 @@
-| work_id | work_title | source_ref | anchor_id | translation | translator_notes | status |
-|---|---|---|---|---|---|---|
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 1:1:1 | gra-on-pirkei-avot-1-1-1 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 1:1:2 | gra-on-pirkei-avot-1-1-2 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 1:1:3 | gra-on-pirkei-avot-1-1-3 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 1:1:4 | gra-on-pirkei-avot-1-1-4 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 1:1:5 | gra-on-pirkei-avot-1-1-5 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 1:1:6 | gra-on-pirkei-avot-1-1-6 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 1:1:7 | gra-on-pirkei-avot-1-1-7 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 1:1:8 | gra-on-pirkei-avot-1-1-8 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 2:1:1 | gra-on-pirkei-avot-2-1-1 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 2:1:2 | gra-on-pirkei-avot-2-1-2 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 2:1:3 | gra-on-pirkei-avot-2-1-3 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 2:1:4 | gra-on-pirkei-avot-2-1-4 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 2:1:5 | gra-on-pirkei-avot-2-1-5 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 2:1:6 | gra-on-pirkei-avot-2-1-6 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 2:1:7 | gra-on-pirkei-avot-2-1-7 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 3:1:1 | gra-on-pirkei-avot-3-1-1 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 3:1:2 | gra-on-pirkei-avot-3-1-2 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 3:1:3 | gra-on-pirkei-avot-3-1-3 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 3:1:4 | gra-on-pirkei-avot-3-1-4 |  |  |  |
-| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 5:1:1 | gra-on-pirkei-avot-5-1-1 |  |  |  |
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 1:1:1 | gra-on-pirkei-avot-1-1-1 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 1:1:2 | gra-on-pirkei-avot-1-1-2 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 1:1:3 | gra-on-pirkei-avot-1-1-3 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 1:1:4 | gra-on-pirkei-avot-1-1-4 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 1:1:5 | gra-on-pirkei-avot-1-1-5 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 1:1:6 | gra-on-pirkei-avot-1-1-6 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 1:1:7 | gra-on-pirkei-avot-1-1-7 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 1:1:8 | gra-on-pirkei-avot-1-1-8 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 2:1:1 | gra-on-pirkei-avot-2-1-1 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 2:1:2 | gra-on-pirkei-avot-2-1-2 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 2:1:3 | gra-on-pirkei-avot-2-1-3 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 2:1:4 | gra-on-pirkei-avot-2-1-4 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 2:1:5 | gra-on-pirkei-avot-2-1-5 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 2:1:6 | gra-on-pirkei-avot-2-1-6 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 2:1:7 | gra-on-pirkei-avot-2-1-7 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 3:1:1 | gra-on-pirkei-avot-3-1-1 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 3:1:2 | gra-on-pirkei-avot-3-1-2 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 3:1:3 | gra-on-pirkei-avot-3-1-3 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 3:1:4 | gra-on-pirkei-avot-3-1-4 |  |  | not_done |  |
+| gra-on-pirkei-avot | Gra on Pirkei Avot | Gra on Pirkei Avot 5:1:1 | gra-on-pirkei-avot-5-1-1 |  |  | not_done |  |

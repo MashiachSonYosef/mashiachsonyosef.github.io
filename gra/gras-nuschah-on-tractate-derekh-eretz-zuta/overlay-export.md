@@ -1,6 +1,6 @@
-| work_id | work_title | source_ref | anchor_id | translation | translator_notes | status |
-|---|---|---|---|---|---|---|
-| gras-nuschah-on-tractate-derekh-eretz-zuta | Gra's Nuschah on Tractate Derekh Eretz Zuta | Gra's Nuschah on Tractate Derekh Eretz Zuta 1:1:1 | gras-nuschah-on-tractate-derekh-eretz-zuta-default-default-1-1-1 |  |  |  |
-| gras-nuschah-on-tractate-derekh-eretz-zuta | Gra's Nuschah on Tractate Derekh Eretz Zuta | Gra's Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:1 | gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-1 |  |  |  |
-| gras-nuschah-on-tractate-derekh-eretz-zuta | Gra's Nuschah on Tractate Derekh Eretz Zuta | Gra's Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:2 | gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-2 |  |  |  |
-| gras-nuschah-on-tractate-derekh-eretz-zuta | Gra's Nuschah on Tractate Derekh Eretz Zuta | Gra's Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:3 | gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-3 |  |  |  |
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| gras-nuschah-on-tractate-derekh-eretz-zuta | Gra's Nuschah on Tractate Derekh Eretz Zuta | Gra's Nuschah on Tractate Derekh Eretz Zuta 1:1:1 | gras-nuschah-on-tractate-derekh-eretz-zuta-default-default-1-1-1 |  |  | not_done |  |
+| gras-nuschah-on-tractate-derekh-eretz-zuta | Gra's Nuschah on Tractate Derekh Eretz Zuta | Gra's Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:1 | gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-1 |  |  | not_done |  |
+| gras-nuschah-on-tractate-derekh-eretz-zuta | Gra's Nuschah on Tractate Derekh Eretz Zuta | Gra's Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:2 | gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-2 |  |  | not_done |  |
+| gras-nuschah-on-tractate-derekh-eretz-zuta | Gra's Nuschah on Tractate Derekh Eretz Zuta | Gra's Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:3 | gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-3 |  |  | not_done |  |
