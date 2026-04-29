@@ -92,10 +92,20 @@ $sourceFiles | ForEach-Object {
   $unitCountByWorkId[$source.work_id] = @($source.units).Count
   $slugByWorkId[$source.work_id] = $source.work_slug
 
-  foreach ($field in @('work_id', 'work_title', 'work_slug', 'sefaria_ref', 'source_system', 'import_date')) {
+  foreach ($field in @('work_id', 'work_title', 'work_slug', 'sefaria_ref', 'source_system', 'import_date', 'work_type')) {
     if (-not $source.$field) {
       $errors.Add("Missing work field $field in $($_.Name)")
     }
+  }
+
+  if ($source.work_type -eq 'commentary') {
+    foreach ($field in @('base_work_id', 'base_work_title', 'display_label')) {
+      if (-not $source.$field) {
+        $errors.Add("Commentary work missing $field in $($source.work_id)")
+      }
+    }
+  } elseif ($source.work_type -ne 'primary_text' -and $source.work_type -ne 'base_text') {
+    $errors.Add("Unexpected work_type '$($source.work_type)' in $($source.work_id)")
   }
 
   if (-not (Test-Path $overlayPath)) {
@@ -149,6 +159,15 @@ $sourceFiles | ForEach-Object {
     foreach ($requiredText in @('License', 'CC0 1.0 Universal', 'Translation', 'Translator&rsquo;s Notes')) {
       if (-not $workPage.Contains($requiredText)) {
         $errors.Add("Generated work page missing required text '$requiredText' for $($source.work_id)")
+      }
+    }
+    if ($source.work_type -eq 'commentary') {
+      $encodedDisplayLabel = [System.Net.WebUtility]::HtmlEncode($source.display_label)
+      if (-not $workPage.Contains($encodedDisplayLabel)) {
+        $errors.Add("Generated commentary page missing display label '$($source.display_label)' for $($source.work_id)")
+      }
+      if (-not ($workPage.Contains('Base text not imported yet.') -or $workPage.Contains('Show base text'))) {
+        $errors.Add("Generated commentary page missing base text status/link for $($source.work_id)")
       }
     }
     if (-not ($workPage.Contains('Hebrew version:') -or $workPage.Contains('Hebrew Version'))) {
@@ -224,6 +243,9 @@ if (Test-Path $tokenIndexPath) {
 
 $occurrenceDir = Join-Path $LexicalDir 'occurrences'
 $lexicalFiles = if (Test-Path $occurrenceDir) { @(Get-ChildItem -Path $occurrenceDir -Filter '*.json') } else { @() }
+if ($lexicalFiles.Count -ne 1 -or ($lexicalFiles.Count -eq 1 -and $lexicalFiles[0].Name -ne 'orot.json')) {
+  $errors.Add("Lexical HUD scope should be limited to data/lexical/occurrences/orot.json for Orot Lights from Darkness")
+}
 foreach ($lexicalFile in $lexicalFiles) {
   $lexical = Get-Content -Path $lexicalFile.FullName -Raw -Encoding UTF8 | ConvertFrom-Json
   foreach ($field in @('schema_version', 'work_id', 'work_title', 'work_slug', 'total_occurrences', 'units')) {
@@ -238,6 +260,14 @@ foreach ($lexicalFile in $lexicalFiles) {
   $source = $sourceByWorkId[$lexical.work_id]
   foreach ($unitProperty in @($lexical.units.PSObject.Properties)) {
     $unitOccurrence = $unitProperty.Value
+    $sourceUnit = $source.units | Where-Object { $_.unit_id -eq $unitOccurrence.unit_id } | Select-Object -First 1
+    if ($null -eq $sourceUnit) {
+      $errors.Add("Lexical occurrence references missing source unit: $($unitOccurrence.unit_id)")
+      continue
+    }
+    if ($sourceUnit.group_slug -ne 'lights-from-darkness') {
+      $errors.Add("Lexical occurrence outside Orot Lights from Darkness scope: $($unitOccurrence.unit_id)")
+    }
     foreach ($field in @('unit_id', 'anchor_id', 'source_ref', 'paragraphs')) {
       if (-not $unitOccurrence.$field) {
         $errors.Add("Lexical unit occurrence missing $field`: $($unitProperty.Name)")

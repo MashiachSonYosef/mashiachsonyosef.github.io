@@ -14,10 +14,10 @@ $samples = @(
     OccurrencePath = Join-Path $PSScriptRoot '..\data\lexical\occurrences\orot.json'
   },
   [pscustomobject]@{
-    Label = 'Gra abbreviation sample'
-    UnitId = 'beur-hagra-on-jerusalem-talmud-bikkurim-1-1-4-2'
-    HtmlPath = Join-Path $PSScriptRoot '..\gra\beur-hagra-on-jerusalem-talmud-bikkurim\index.html'
-    OccurrencePath = Join-Path $PSScriptRoot '..\data\lexical\occurrences\beur-hagra-on-jerusalem-talmud-bikkurim.json'
+    Label = 'Orot Land of Israel punctuation sample'
+    UnitId = 'orot-lights-from-darkness-land-of-israel-1-2'
+    HtmlPath = Join-Path $PSScriptRoot '..\orot\index.html'
+    OccurrencePath = Join-Path $PSScriptRoot '..\data\lexical\occurrences\orot.json'
   }
 )
 

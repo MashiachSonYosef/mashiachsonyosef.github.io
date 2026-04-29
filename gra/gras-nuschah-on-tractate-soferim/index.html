@@ -38,6 +38,7 @@
     .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
     .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
     .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }
     .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
     .toc ul { list-style: none; padding: 0; margin: 0; }
@@ -61,23 +62,6 @@
     .placeholder { color: #8c857c; }
     .overlay-block { border: 1px solid var(--line); background: var(--panel-2); padding: 12px; margin-bottom: 10px; }
     .overlay-label { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
-    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; }
-    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }
-    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
-    .lexical-hud { position: sticky; top: 14px; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }
-    .lexical-hud[hidden] { display: none; }
-    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
-    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
-    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
-    .hud-close:hover { color: var(--text); border-color: var(--accent); }
-    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
-    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
-    .lexical-fields dd { margin: 0; color: var(--text); }
-    .lexical-fields ul { margin: 0; padding-left: 18px; }
-    .source-details { margin-top: 16px; }
-    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
-    .source-row:first-child { border-top: 0; }
-    .source-row strong { color: var(--text); font-weight: 400; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
     .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
     .source-table { width: 100%; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
@@ -88,7 +72,9 @@
     .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
     .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields { grid-template-columns: 1fr; } .toc, .lexical-hud { position: static; max-height: none; } }
+    .paired-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--muted); }
+    .paired-note a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -97,6 +83,11 @@
       <div class="hero" id="work-top">
         <p class="crumbs"><a href="../../">Home</a></p>
         <h1>Gra&#39;s Nuschah on Tractate Soferim</h1>
+        <p class="work-label">Commentary on Tractate Soferim</p>
+        <div class="paired-note">
+          <strong>Commentary on Tractate Soferim</strong>
+          <p>Base text not imported yet.</p>
+        </div>
         <p class="meta">30 total source units | imported 2026-04-27</p>
         <p class="meta source-citation">Hebrew version: Talmud Bavli, Vilna 1883 ed. | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001300957">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
         <div class="license-notice"><strong>English overlay license:</strong> English translations and translator&#39;s notes by the owner are released under CC0 1.0 Universal. You may copy, modify, distribute, and use them for any purpose without attribution. Hebrew source texts retain their original source/version licenses.</div>
@@ -259,14 +250,14 @@
         </nav>
         <article>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-1">Chapter 1</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-1-1-1" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-1-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 1:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-1-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 1:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תפילין ומזוזות:</p>
+                <p class="hebrew" lang="he" dir="rtl">תפילין ומזוזות:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -275,7 +266,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -283,14 +273,14 @@
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-1-1-2" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-1-1-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 1:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-1-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 1:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וסמך לו:</p>
+                <p class="hebrew" lang="he" dir="rtl">וסמך לו:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -299,7 +289,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -308,14 +297,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-3">Chapter 3</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-3-1-1" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-3-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 3:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-3-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 3:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וכתובים כאחת דברי ר&quot;מ ר׳ יהודה אומר תורה בפני עצמו ונביאים בפני עצמן וכתובים בפ&quot;ע וחכמים אומרים כל אחד ואחד בפ&quot;ע. אמר ר׳ יהודה מעשה בבייתום בן זונין שהיו לו ח׳ נביאים מדובקים כא׳ ע&quot;פ ראב&quot;ע. וי&quot;א לא היו לו כי אם כל אחד ואחד בפני עצמו. אמר ר׳ מעשה באחד שהביא לפנינו תורה ונביאים וכתובים כאחת והכשרנו. במה דברים אמורים בקלף אבל בגויל תורה בפ&quot;ע ונביאים בפ&quot;ע וכתובים בפ&quot;ע לא יניח:</p>
+                <p class="hebrew" lang="he" dir="rtl">וכתובים כאחת דברי ר&quot;מ ר׳ יהודה אומר תורה בפני עצמו ונביאים בפני עצמן וכתובים בפ&quot;ע וחכמים אומרים כל אחד ואחד בפ&quot;ע. אמר ר׳ יהודה מעשה בבייתום בן זונין שהיו לו ח׳ נביאים מדובקים כא׳ ע&quot;פ ראב&quot;ע. וי&quot;א לא היו לו כי אם כל אחד ואחד בפני עצמו. אמר ר׳ מעשה באחד שהביא לפנינו תורה ונביאים וכתובים כאחת והכשרנו. במה דברים אמורים בקלף אבל בגויל תורה בפ&quot;ע ונביאים בפ&quot;ע וכתובים בפ&quot;ע לא יניח:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -324,7 +313,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -333,14 +321,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-4">Chapter 4</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-4-1-1" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-4-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 4:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-4-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 4:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">(בירושל׳ פ&quot;א דמגילה הגירסא) חגידה:</p>
+                <p class="hebrew" lang="he" dir="rtl">(בירושל׳ פ&quot;א דמגילה הגירסא) חגידה:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -349,7 +337,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -357,14 +344,14 @@
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-4-1-2" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-4-1-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 4:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-4-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 4:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אומנים שבירושלים:</p>
+                <p class="hebrew" lang="he" dir="rtl">אומנים שבירושלים:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -373,7 +360,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -382,14 +368,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-5">Chapter 5</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-5-1-1" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-5-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 5:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-5-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 5:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ומחטב:</p>
+                <p class="hebrew" lang="he" dir="rtl">ומחטב:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -398,7 +384,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -406,14 +391,14 @@
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-5-1-2" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-5-1-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 5:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-5-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 5:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מחטב:</p>
+                <p class="hebrew" lang="he" dir="rtl">מחטב:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -422,7 +407,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -430,14 +414,14 @@
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-5-1-3" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-5-1-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 5:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-5-1-3" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 5:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בסוף:</p>
+                <p class="hebrew" lang="he" dir="rtl">בסוף:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -446,7 +430,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -455,14 +438,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-6">Chapter 6</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-6-1-1" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-6-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 6:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-6-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 6:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">סימן בפרשה ( והם הנונין של ויהי בנסוע):</p>
+                <p class="hebrew" lang="he" dir="rtl">סימן בפרשה ( והם הנונין של ויהי בנסוע):</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -471,7 +454,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -480,14 +462,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-7">Chapter 7</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-7-1-1" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-7-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 7:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-7-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 7:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויצוו (שופטים כא):</p>
+                <p class="hebrew" lang="he" dir="rtl">ויצוו (שופטים כא):</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -496,7 +478,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -504,14 +485,14 @@
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-7">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-7-1-2" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-7-1-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 7:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-7-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 7:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">חנניה (נחמיה ג) מלכיה (שם) וישתחו (בראשית כז) וישתחו (שם מג) וישתחו (מ&quot;א ט). וחילופיהן ויאמר (יהושע ו) ויאמר (שם ט) ויאמר (ש&quot;א טו):</p>
+                <p class="hebrew" lang="he" dir="rtl">חנניה (נחמיה ג) מלכיה (שם) וישתחו (בראשית כז) וישתחו (שם מג) וישתחו (מ&quot;א ט). וחילופיהן ויאמר (יהושע ו) ויאמר (שם ט) ויאמר (ש&quot;א טו):</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -520,7 +501,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -528,14 +508,14 @@
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-7">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-7-1-3" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-7-1-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 7:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-7-1-3" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 7:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">(מלכים א י״ב:ג׳ ויקראו לו ויבאו כתיב וקרי ויבא):</p>
+                <p class="hebrew" lang="he" dir="rtl">(מלכים א י״ב:ג׳ ויקראו לו ויבאו כתיב וקרי ויבא):</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -544,7 +524,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -553,14 +532,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-8">Chapter 8</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-1" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 8:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-8-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 8:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דוד לה׳ (ובתהלים למנצח לעבד ה׳ לדוד אשר דבר לה׳). ומכף (ובתהלים ומיד). [ויאמר ה׳ (סלעי ובתהלים ויאמר ארחמך ה׳ חזקי ה׳ סלעי)]. לי. אלהי (וכ&quot;ה בס&quot;א) ומנוסי מושיעי מחמס תושיעני (ובתהלים ליתא). ומאויבי. כי. משברי. נחלי. סבוני (וכ&quot;ה בס&quot;א). אקרא. וישמע. [ושועתי באזניו (ובתהלים ושועתי לפניו תבוא באזניו ויתגעש מוסדות)]:</p>
+                <p class="hebrew" lang="he" dir="rtl">דוד לה׳ (ובתהלים למנצח לעבד ה׳ לדוד אשר דבר לה׳). ומכף (ובתהלים ומיד). [ויאמר ה׳ (סלעי ובתהלים ויאמר ארחמך ה׳ חזקי ה׳ סלעי)]. לי. אלהי (וכ&quot;ה בס&quot;א) ומנוסי מושיעי מחמס תושיעני (ובתהלים ליתא). ומאויבי. כי. משברי. נחלי. סבוני (וכ&quot;ה בס&quot;א). אקרא. וישמע. [ושועתי באזניו (ובתהלים ושועתי לפניו תבוא באזניו ויתגעש מוסדות)]:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -569,7 +548,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -577,14 +555,14 @@
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-2" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 8:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-8-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 8:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[חשך סביבותיו (ובתהלים חשך סתרו סביבותיו)]:</p>
+                <p class="hebrew" lang="he" dir="rtl">[חשך סביבותיו (ובתהלים חשך סתרו סביבותיו)]:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -593,7 +571,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -601,14 +578,14 @@
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-3" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-3" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 8:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-8-1-3" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 8:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">(מנגה נגדו. ובתהלים מנגה נגדו עביו עברו):</p>
+                <p class="hebrew" lang="he" dir="rtl">(מנגה נגדו. ובתהלים מנגה נגדו עביו עברו):</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -617,7 +594,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -625,14 +601,14 @@
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-4" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-4" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 8:1:4</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-8-1-4" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 8:1:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[קולו וישלח (ובתהלים קולו ברד וגחלי אש וישלח)]. חצים. ברק ויהום (ובתהליס וברקים רב ויהמם). אפיקי ים (וכ&quot;ה בס&quot;א) יגלו:</p>
+                <p class="hebrew" lang="he" dir="rtl">[קולו וישלח (ובתהלים קולו ברד וגחלי אש וישלח)]. חצים. ברק ויהום (ובתהליס וברקים רב ויהמם). אפיקי ים (וכ&quot;ה בס&quot;א) יגלו:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -641,7 +617,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -649,14 +624,14 @@
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-5" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-5" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 8:1:5</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-8-1-5" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 8:1:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[אתה נירי (ובתהלים אתה תאיר נרי)]. וה׳ [בכה (ובתהלים בך)]. באלהי. אל. מבלעדי (ובתהלים זולתי). מעוזי. ויתר. [דרכו רגליו כתיב (ובתהלים דרכי רגלי)]. ונחת. [ישעך] וענתך (ובתהלים ישעך וימינך תסעדני וענותך):</p>
+                <p class="hebrew" lang="he" dir="rtl">[אתה נירי (ובתהלים אתה תאיר נרי)]. וה׳ [בכה (ובתהלים בך)]. באלהי. אל. מבלעדי (ובתהלים זולתי). מעוזי. ויתר. [דרכו רגליו כתיב (ובתהלים דרכי רגלי)]. ונחת. [ישעך] וענתך (ובתהלים ישעך וימינך תסעדני וענותך):</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -665,7 +640,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -673,14 +647,14 @@
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-6" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-6" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 8:1:6</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-8-1-6" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 8:1:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תתה (ובתהלים נתתה):</p>
+                <p class="hebrew" lang="he" dir="rtl">תתה (ובתהלים נתתה):</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -689,7 +663,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -697,14 +670,14 @@
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-7" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-7" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 8:1:7</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-8-1-7" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 8:1:7">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">(וגם בתהלים האי קרא מהופך דתחלת הפסוק לשמע אזן ישמעו לי ואח&quot;כ בני כו׳):</p>
+                <p class="hebrew" lang="he" dir="rtl">(וגם בתהלים האי קרא מהופך דתחלת הפסוק לשמע אזן ישמעו לי ואח&quot;כ בני כו׳):</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -713,7 +686,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -722,14 +694,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-9">Chapter 9</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-9-1-1" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-9-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 9:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-9-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 9:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">חק עולם (ומלת עולם כ&quot;ה בדפו&quot;י):</p>
+                <p class="hebrew" lang="he" dir="rtl">חק עולם (ומלת עולם כ&quot;ה בדפו&quot;י):</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -738,7 +710,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -747,14 +718,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-11">Chapter 11</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-11-1-1" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-11-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 11:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-11-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 11:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כל (ובס&quot;א קורא כל):</p>
+                <p class="hebrew" lang="he" dir="rtl">כל (ובס&quot;א קורא כל):</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -763,7 +734,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -772,14 +742,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-13">Chapter 13</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-13-1-1" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-13-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 13:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-13-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 13:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">(כס&quot;א כצ&quot;ל):</p>
+                <p class="hebrew" lang="he" dir="rtl">(כס&quot;א כצ&quot;ל):</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -788,7 +758,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -797,14 +766,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-14">Chapter 14</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-14-1-1" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-14-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 14:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-14-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 14:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בתורה:</p>
+                <p class="hebrew" lang="he" dir="rtl">בתורה:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -813,7 +782,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -822,14 +790,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-15">Chapter 15</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-15-1-1" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-15-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 15:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-15-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 15:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תפלה שבלתה אין עושין אותה מזוזה ומזוזה שבלתה עושין אותה תפילין לפי שמעלין בקדש ולא מורידין:</p>
+                <p class="hebrew" lang="he" dir="rtl">תפלה שבלתה אין עושין אותה מזוזה ומזוזה שבלתה עושין אותה תפילין לפי שמעלין בקדש ולא מורידין:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -838,7 +806,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -847,14 +814,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-16">Chapter 16</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-16-1-1" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-16-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 16:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-16-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 16:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואיני מלמד את בני אלא תורה:</p>
+                <p class="hebrew" lang="he" dir="rtl">ואיני מלמד את בני אלא תורה:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -863,7 +830,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -872,14 +838,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-18">Chapter 18</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-18-1-1" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-18-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 18:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-18-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 18:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דרשב&quot;ל:</p>
+                <p class="hebrew" lang="he" dir="rtl">דרשב&quot;ל:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -888,7 +854,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -896,14 +861,14 @@
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-18">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-18-1-2" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-18-1-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 18:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-18-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 18:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">א&quot;ל:</p>
+                <p class="hebrew" lang="he" dir="rtl">א&quot;ל:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -912,7 +877,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -921,14 +885,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-20">Chapter 20</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-20-1-1" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-20-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 20:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-20-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 20:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ששים ושמחים לעשות רצון קונם פועלי אמת שפעולתן:</p>
+                <p class="hebrew" lang="he" dir="rtl">ששים ושמחים לעשות רצון קונם פועלי אמת שפעולתן:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -937,7 +901,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -945,14 +908,14 @@
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-20-1-2" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-20-1-2" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 20:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-20-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 20:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ולפאר ליוצרם על שם כבוד מלכותו ברוך אתה ה׳ מחדש חדשים:</p>
+                <p class="hebrew" lang="he" dir="rtl">ולפאר ליוצרם על שם כבוד מלכותו ברוך אתה ה׳ מחדש חדשים:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -961,7 +924,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -970,14 +932,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-21">Chapter 21</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-21-1-1" data-unit data-complete="false" data-lexical-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-21-1-1" data-unit data-complete="false">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 21:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-21-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 21:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מנהג:</p>
+                <p class="hebrew" lang="he" dir="rtl">מנהג:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -986,7 +948,6 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
-                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -998,24 +959,6 @@
       </div>
     </div>
   </main>
-  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
-    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
-    <dl class="lexical-fields">
-      <dt>Hebrew word</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd>
-      <dt>Transliteration</dt><dd data-hud-transliteration>N/A</dd>
-      <dt>Strict renderings</dt><dd data-hud-renderings>N/A</dd>
-      <dt>Root</dt><dd data-hud-root lang="he" dir="rtl">N/A</dd>
-      <dt>Root transliteration</dt><dd data-hud-root-transliteration>N/A</dd>
-      <dt>Root meaning</dt><dd data-hud-root-meaning>N/A</dd>
-    </dl>
-    <details class="source-details">
-      <summary>Sources / licenses</summary>
-      <div data-hud-sources></div>
-    </details>
-  </section>
-  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"gras-nuschah-on-tractate-soferim","work_title":"Gra\u0027s Nuschah on Tractate Soferim","work_slug":"gra/gras-nuschah-on-tractate-soferim","generated_at":"2026-04-29T05:49:29.040Z","total_occurrences":319,"units":{"gras-nuschah-on-tractate-soferim-1-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-1-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-1-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-92188a4fff08","tok-5fa8f5ddcbc4"]}]},"gras-nuschah-on-tractate-soferim-1-1-2":{"unit_id":"gras-nuschah-on-tractate-soferim-1-1-2","anchor_id":"gras-nuschah-on-tractate-soferim-1-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 1:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e5344e014798","tok-5b1ed971f234"]}]},"gras-nuschah-on-tractate-soferim-3-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-3-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-3-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 3:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-60aaf8b629d1","tok-f721ceba744a","tok-7ff8a53969c7","tok-c15f1b0636cb","tok-ef2f6732a189","tok-30e3b79fe2d9","tok-171fad81e536","tok-01bede4d30ee","tok-734499338b8f","tok-1acf9cfa315d","tok-8a0ec777dfa8","tok-734499338b8f","tok-036019301f9c","tok-60aaf8b629d1","tok-4dacf699101b","tok-66094eec3bf0","tok-22c9cea91b13","tok-9a903f8da6d0","tok-a64510b99d7e","tok-058c10c54f53","tok-4dacf699101b","tok-b874f27fdafb","tok-ef2f6732a189","tok-30e3b79fe2d9","tok-9a126316972a","tok-154cd10a9a65","tok-ca2c15acf1b2","tok-a58d6f1e0b5f","tok-a8c48c63232f","tok-5b1ed971f234","tok-147726d1575e","tok-eec00be6228f","tok-ffddf94e3502","tok-b91e4ac5d276","tok-9fc51187aa83","tok-7ac406c3a40a","tok-682867a01c9f","tok-21a2d9d60e13","tok-64fa7f231d4b","tok-5b1ed971f234","tok-2a7abc83b760","tok-f82e1cb64812","tok-9a903f8da6d0","tok-a64510b99d7e","tok-058c10c54f53","tok-734499338b8f","tok-1acf9cfa315d","tok-b874f27fdafb","tok-ef2f6732a189","tok-9a126316972a","tok-f375846d2f7d","tok-30d312af7949","tok-1808bd67ae7d","tok-01bede4d30ee","tok-8a0ec777dfa8","tok-60aaf8b629d1","tok-f721ceba744a","tok-8193beef09af","tok-ba4cc35cb751","tok-d02b84c3ea87","tok-f593c7a502dc","tok-ce796fb5b9a6","tok-7eb10aec8ff7","tok-a43448d0c72d","tok-01bede4d30ee","tok-4dacf699101b","tok-8a0ec777dfa8","tok-4dacf699101b","tok-60aaf8b629d1","tok-4dacf699101b","tok-21a2d9d60e13","tok-3cdb83dc2f6b"]}]},"gras-nuschah-on-tractate-soferim-4-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-4-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-4-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 4:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1b4425472c7c","tok-b77e4cf21935","tok-373e36479a29","tok-99010c1ea10a","tok-626dde1534b0"]}]},"gras-nuschah-on-tractate-soferim-4-1-2":{"unit_id":"gras-nuschah-on-tractate-soferim-4-1-2","anchor_id":"gras-nuschah-on-tractate-soferim-4-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 4:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-771a84211be5","tok-6998f4198138"]}]},"gras-nuschah-on-tractate-soferim-5-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-5-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-5-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 5:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5579e759ba8c"]}]},"gras-nuschah-on-tractate-soferim-5-1-2":{"unit_id":"gras-nuschah-on-tractate-soferim-5-1-2","anchor_id":"gras-nuschah-on-tractate-soferim-5-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 5:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2f2f4cbbca39"]}]},"gras-nuschah-on-tractate-soferim-5-1-3":{"unit_id":"gras-nuschah-on-tractate-soferim-5-1-3","anchor_id":"gras-nuschah-on-tractate-soferim-5-1-3","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 5:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7294adec4fc7"]}]},"gras-nuschah-on-tractate-soferim-6-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-6-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-6-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 6:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7ae47dc0a541","tok-a598f687a064","tok-f3679629b360","tok-1880e6ee6998","tok-2b6526dbcaa3","tok-c0bea5f405f7","tok-800158a8a302"]}]},"gras-nuschah-on-tractate-soferim-7-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-7-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-7-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 7:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bd49d5516782","tok-9c2edcb5e8c8","tok-6bbc8752112e"]}]},"gras-nuschah-on-tractate-soferim-7-1-2":{"unit_id":"gras-nuschah-on-tractate-soferim-7-1-2","anchor_id":"gras-nuschah-on-tractate-soferim-7-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 7:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5ee43f3bdea7","tok-712c0ea39ca4","tok-e89d5099163d","tok-58f1f8340b31","tok-8b1aa6b1d71e","tok-50b9cd8a98a3","tok-0feab681ba10","tok-68afbcaea00b","tok-50b9cd8a98a3","tok-8b1aa6b1d71e","tok-a650199e7f2c","tok-50b9cd8a98a3","tok-cb54545ec2fe","tok-26fbb23f206e","tok-bdde3e4b1db2","tok-5451e39e8c3e","tok-1217a7c52d20","tok-8ccf3c9fb630","tok-5451e39e8c3e","tok-8b1aa6b1d71e","tok-26fbb23f206e","tok-5451e39e8c3e","tok-77aa3d611dc4","tok-3779e6f0c5eb"]}]},"gras-nuschah-on-tractate-soferim-7-1-3":{"unit_id":"gras-nuschah-on-tractate-soferim-7-1-3","anchor_id":"gras-nuschah-on-tractate-soferim-7-1-3","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 7:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d696a3acad85","tok-e194bcc5df38","tok-2df829baa280","tok-7b5b7d0c904a","tok-63d98c3375a8","tok-5b1ed971f234","tok-957edf3eb5b5","tok-275eab9d2019","tok-7804a5fda906","tok-15c6a734d406"]}]},"gras-nuschah-on-tractate-soferim-8-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-8-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-8-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 8:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9e93cd75c30e","tok-801f282e3e24","tok-6ebd7ff9f1db","tok-59d3bcb7f174","tok-63e951195536","tok-c2742c4cba06","tok-cf00d19391f0","tok-354ef2c709aa","tok-3eee938058d5","tok-801f282e3e24","tok-06283cf88c02","tok-6ebd7ff9f1db","tok-ba324365ed22","tok-5451e39e8c3e","tok-c2742c4cba06","tok-6628f0d242f9","tok-6ebd7ff9f1db","tok-5451e39e8c3e","tok-02b24e6969ae","tok-c2742c4cba06","tok-878d2d07bfdc","tok-c2742c4cba06","tok-6628f0d242f9","tok-d1f6c62cc7c9","tok-ab2b949383e1","tok-568620bdcc1a","tok-8619fe76fc7d","tok-a26c835b1d22","tok-460394444e2c","tok-864c5fdb2da5","tok-ed20d9320523","tok-6ebd7ff9f1db","tok-f89b2c40c1ae","tok-00d3d95b45d6","tok-2a7abc83b760","tok-d02ec1b97bf8","tok-6a7c9861bcfb","tok-58804dd24829","tok-568620bdcc1a","tok-8619fe76fc7d","tok-64e725396f05","tok-d3003c70dbc1","tok-42f5579f6ecb","tok-2d70042bccce","tok-6ebd7ff9f1db","tok-42f5579f6ecb","tok-8920c2bd0081","tok-333536e3ffe9","tok-2d70042bccce","tok-7614ce7467eb","tok-461b786ca008"]}]},"gras-nuschah-on-tractate-soferim-8-1-2":{"unit_id":"gras-nuschah-on-tractate-soferim-8-1-2","anchor_id":"gras-nuschah-on-tractate-soferim-8-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 8:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-965e1710a771","tok-9b1fbf1eef09","tok-6ebd7ff9f1db","tok-965e1710a771","tok-18ff2b3bbd76","tok-9b1fbf1eef09"]}]},"gras-nuschah-on-tractate-soferim-8-1-3":{"unit_id":"gras-nuschah-on-tractate-soferim-8-1-3","anchor_id":"gras-nuschah-on-tractate-soferim-8-1-3","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 8:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a260462d423e","tok-70c54f918dc0","tok-6ebd7ff9f1db","tok-a260462d423e","tok-70c54f918dc0","tok-2b53a677ded3","tok-0a1228585389"]}]},"gras-nuschah-on-tractate-soferim-8-1-4":{"unit_id":"gras-nuschah-on-tractate-soferim-8-1-4","anchor_id":"gras-nuschah-on-tractate-soferim-8-1-4","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 8:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0746f706ec89","tok-04ae7a7cdbd0","tok-6ebd7ff9f1db","tok-0746f706ec89","tok-b7784688021e","tok-069ec099f7f0","tok-e22a332eaf55","tok-04ae7a7cdbd0","tok-6d0bca360888","tok-ab54923a0412","tok-d412f8225c1a","tok-911d937f1d47","tok-53756c218beb","tok-dc45853d56ce","tok-740326c37f8a","tok-6e69af6c4ad6","tok-65429524ba3d","tok-568620bdcc1a","tok-8619fe76fc7d","tok-f59202fa31cd"]}]},"gras-nuschah-on-tractate-soferim-8-1-5":{"unit_id":"gras-nuschah-on-tractate-soferim-8-1-5","anchor_id":"gras-nuschah-on-tractate-soferim-8-1-5","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 8:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-99d168184fe8","tok-50509b625828","tok-6ebd7ff9f1db","tok-99d168184fe8","tok-b2621a8c859d","tok-e75c0193b01a","tok-33f827694c2d","tok-9b6757a7a01c","tok-6ebd7ff9f1db","tok-ae858d37abd3","tok-1e817aba403c","tok-3a771ca39263","tok-5d3e027426fa","tok-6ebd7ff9f1db","tok-416313058557","tok-43ad4d110984","tok-f64af4c5c7d5","tok-45afd507271d","tok-c3680d12b8a4","tok-275eab9d2019","tok-6ebd7ff9f1db","tok-1edb139b8501","tok-6d77244514c7","tok-dcb875546ce3","tok-d14fb3259e92","tok-55f1bc8a4e30","tok-6ebd7ff9f1db","tok-d14fb3259e92","tok-7211b7cfdf47","tok-51ccd7e76d26","tok-21fbe3c5f069"]}]},"gras-nuschah-on-tractate-soferim-8-1-6":{"unit_id":"gras-nuschah-on-tractate-soferim-8-1-6","anchor_id":"gras-nuschah-on-tractate-soferim-8-1-6","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 8:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e232ce04c2b3","tok-6ebd7ff9f1db","tok-8dc64a1ff4b0"]}]},"gras-nuschah-on-tractate-soferim-8-1-7":{"unit_id":"gras-nuschah-on-tractate-soferim-8-1-7","anchor_id":"gras-nuschah-on-tractate-soferim-8-1-7","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 8:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-afa59c36dd64","tok-5115bacaed8d","tok-ba6ca9112882","tok-88d78f439431","tok-90dd21d993cd","tok-9a8fe6c2aec0","tok-0b415db44b64","tok-57fab3134d69","tok-9f0462db84a8","tok-6b49dd8d06ed","tok-d1f6c62cc7c9","tok-3a441e537683","tok-051ba6ec3537","tok-cb5f45dfb95a"]}]},"gras-nuschah-on-tractate-soferim-9-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-9-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-9-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 9:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-eeffe18f09c1","tok-68bc1c61c8ea","tok-c03e93e22962","tok-68bc1c61c8ea","tok-c5c2f1825abe","tok-c749cd3f9976"]}]},"gras-nuschah-on-tractate-soferim-11-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-11-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-11-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 11:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9a903f8da6d0","tok-8d31073e5334","tok-06e662745036","tok-9a903f8da6d0"]}]},"gras-nuschah-on-tractate-soferim-13-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-13-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-13-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 13:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1b201c4b5231","tok-b0520195832b"]}]},"gras-nuschah-on-tractate-soferim-14-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-14-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-14-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 14:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6a4a62c07e79"]}]},"gras-nuschah-on-tractate-soferim-15-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-15-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-15-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 15:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-05e14696a4dc","tok-65def13c3586","tok-ea12a4ba2b0d","tok-3fec8844a715","tok-cc7266a68ddb","tok-3c41a1e9820a","tok-855faa47ec0f","tok-65def13c3586","tok-3fec8844a715","tok-cc7266a68ddb","tok-92188a4fff08","tok-eb010110c3c7","tok-0e7f5dc7b1a2","tok-cec6b48d97fd","tok-139df11d5fae","tok-d43a4f6ea2af"]}]},"gras-nuschah-on-tractate-soferim-16-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-16-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-16-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 16:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bac9cc96f657","tok-f647de6860eb","tok-ee47bc9cdbbd","tok-051ba6ec3537","tok-fdfa29e2dc05","tok-01bede4d30ee"]}]},"gras-nuschah-on-tractate-soferim-18-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-18-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-18-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 18:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5f3d2f015ddc"]}]},"gras-nuschah-on-tractate-soferim-18-1-2":{"unit_id":"gras-nuschah-on-tractate-soferim-18-1-2","anchor_id":"gras-nuschah-on-tractate-soferim-18-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 18:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-82f6b26e13ec"]}]},"gras-nuschah-on-tractate-soferim-20-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-20-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-20-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 20:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4aa50463d83f","tok-a864c0aa7fe6","tok-5c049ec08d5c","tok-a5e94724fb7d","tok-6673c5a6851e","tok-9f5702d6f166","tok-fe00403755ad","tok-a7b5e15c4f43"]}]},"gras-nuschah-on-tractate-soferim-20-1-2":{"unit_id":"gras-nuschah-on-tractate-soferim-20-1-2","anchor_id":"gras-nuschah-on-tractate-soferim-20-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 20:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e83baa79dff1","tok-b37f885d882a","tok-5e9ae20c9a46","tok-8b1aa6b1d71e","tok-54d18e8765b6","tok-64b13a94a97f","tok-b5bf56c45090","tok-99d168184fe8","tok-c2742c4cba06","tok-10c844e2fd5f","tok-ddd4efe98af1"]}]},"gras-nuschah-on-tractate-soferim-21-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-21-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-21-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 21:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e869acec3013"]}]}}}</script>
-  <script type="application/json" data-lexical-token-index>{"schema_version":1,"forms":[{"token_index_id":"tok-00d3d95b45d6","surface_word":"ומאויבי","normalized_word":"ומאויבי","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-01bede4d30ee","surface_word":"תורה","normalized_word":"תורה","lexicon_entry_id":"","status":"unmatched","occurrence_count":785},{"token_index_id":"tok-02b24e6969ae","surface_word":"ארחמך","normalized_word":"ארחמכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-036019301f9c","surface_word":"עצמן","normalized_word":"עצמנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":162},{"token_index_id":"tok-04ae7a7cdbd0","surface_word":"וישלח","normalized_word":"וישלח","lexicon_entry_id":"","status":"unmatched","occurrence_count":27},{"token_index_id":"tok-051ba6ec3537","surface_word":"בני","normalized_word":"בני","lexicon_entry_id":"","status":"unmatched","occurrence_count":714},{"token_index_id":"tok-058c10c54f53","surface_word":"ואחד","normalized_word":"ואחד","lexicon_entry_id":"","status":"unmatched","occurrence_count":192},{"token_index_id":"tok-05e14696a4dc","surface_word":"תפלה","normalized_word":"תפלה","lexicon_entry_id":"","status":"unmatched","occurrence_count":190},{"token_index_id":"tok-06283cf88c02","surface_word":"ומכף","normalized_word":"ומכפ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-069ec099f7f0","surface_word":"וגחלי","normalized_word":"וגחלי","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-06e662745036","surface_word":"קורא","normalized_word":"קורא","lexicon_entry_id":"","status":"unmatched","occurrence_count":114},{"token_index_id":"tok-0746f706ec89","surface_word":"קולו","normalized_word":"קולו","lexicon_entry_id":"","status":"unmatched","occurrence_count":25},{"token_index_id":"tok-0a1228585389","surface_word":"עברו","normalized_word":"עברו","lexicon_entry_id":"","status":"unmatched","occurrence_count":31},{"token_index_id":"tok-0b415db44b64","surface_word":"הפסוק","normalized_word":"הפסוק","lexicon_entry_id":"","status":"unmatched","occurrence_count":187},{"token_index_id":"tok-0e7f5dc7b1a2","surface_word":"שמעלין","normalized_word":"שמעלינ","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-0feab681ba10","surface_word":"בראשית","normalized_word":"בראשית","lexicon_entry_id":"","status":"unmatched","occurrence_count":531},{"token_index_id":"tok-10c844e2fd5f","surface_word":"מחדש","normalized_word":"מחדש","lexicon_entry_id":"","status":"unmatched","occurrence_count":58},{"token_index_id":"tok-1217a7c52d20","surface_word":"יהושע","normalized_word":"יהושע","lexicon_entry_id":"","status":"unmatched","occurrence_count":171},{"token_index_id":"tok-139df11d5fae","surface_word":"ולא","normalized_word":"ולא","lexicon_entry_id":"","status":"unmatched","occurrence_count":3731},{"token_index_id":"tok-147726d1575e","surface_word":"ח׳","normalized_word":"ח׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":295},{"token_index_id":"tok-154cd10a9a65","surface_word":"בבייתום","normalized_word":"בבייתומ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-15c6a734d406","surface_word":"ויבא","normalized_word":"ויבא","lexicon_entry_id":"","status":"unmatched","occurrence_count":68},{"token_index_id":"tok-171fad81e536","surface_word":"אומר","normalized_word":"אומר","lexicon_entry_id":"","status":"unmatched","occurrence_count":510},{"token_index_id":"tok-1808bd67ae7d","surface_word":"לפנינו","normalized_word":"לפנינו","lexicon_entry_id":"","status":"unmatched","occurrence_count":48},{"token_index_id":"tok-1880e6ee6998","surface_word":"הנונין","normalized_word":"הנונינ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-18ff2b3bbd76","surface_word":"סתרו","normalized_word":"סתרו","lexicon_entry_id":"","status":"unmatched","occurrence_count":12},{"token_index_id":"tok-1acf9cfa315d","surface_word":"עצמו","normalized_word":"עצמו","lexicon_entry_id":"","status":"unmatched","occurrence_count":1247},{"token_index_id":"tok-1b201c4b5231","surface_word":"כס״א","normalized_word":"כס״א","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-1b4425472c7c","surface_word":"בירושל׳","normalized_word":"בירושל׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":12},{"token_index_id":"tok-1e817aba403c","surface_word":"באלהי","normalized_word":"באלהי","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-1edb139b8501","surface_word":"דרכי","normalized_word":"דרכי","lexicon_entry_id":"","status":"unmatched","occurrence_count":102},{"token_index_id":"tok-21a2d9d60e13","surface_word":"לא","normalized_word":"לא","lexicon_entry_id":"","status":"unmatched","occurrence_count":7110},{"token_index_id":"tok-21fbe3c5f069","surface_word":"וענותך","normalized_word":"וענותכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-22c9cea91b13","surface_word":"אומרים","normalized_word":"אומרימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":259},{"token_index_id":"tok-26fbb23f206e","surface_word":"ט","normalized_word":"ט","lexicon_entry_id":"","status":"unmatched","occurrence_count":39},{"token_index_id":"tok-275eab9d2019","surface_word":"כתיב","normalized_word":"כתיב","lexicon_entry_id":"","status":"unmatched","occurrence_count":500},{"token_index_id":"tok-2a7abc83b760","surface_word":"כי","normalized_word":"כי","lexicon_entry_id":"","status":"unmatched","occurrence_count":16368},{"token_index_id":"tok-2b53a677ded3","surface_word":"עביו","normalized_word":"עביו","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-2b6526dbcaa3","surface_word":"של","normalized_word":"של","lexicon_entry_id":"","status":"unmatched","occurrence_count":11270},{"token_index_id":"tok-2d70042bccce","surface_word":"באזניו","normalized_word":"באזניו","lexicon_entry_id":"","status":"unmatched","occurrence_count":7},{"token_index_id":"tok-2df829baa280","surface_word":"י״ב","normalized_word":"י״ב","lexicon_entry_id":"","status":"unmatched","occurrence_count":479},{"token_index_id":"tok-2f2f4cbbca39","surface_word":"מחטב","normalized_word":"מחטב","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-30d312af7949","surface_word":"שהביא","normalized_word":"שהביא","lexicon_entry_id":"","status":"unmatched","occurrence_count":38},{"token_index_id":"tok-30e3b79fe2d9","surface_word":"יהודה","normalized_word":"יהודה","lexicon_entry_id":"","status":"unmatched","occurrence_count":273},{"token_index_id":"tok-333536e3ffe9","surface_word":"תבוא","normalized_word":"תבוא","lexicon_entry_id":"","status":"unmatched","occurrence_count":15},{"token_index_id":"tok-33f827694c2d","surface_word":"וה׳","normalized_word":"וה׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":199},{"token_index_id":"tok-354ef2c709aa","surface_word":"אשר","normalized_word":"אשר","lexicon_entry_id":"","status":"unmatched","occurrence_count":3250},{"token_index_id":"tok-373e36479a29","surface_word":"דמגילה","normalized_word":"דמגילה","lexicon_entry_id":"","status":"unmatched","occurrence_count":104},{"token_index_id":"tok-3779e6f0c5eb","surface_word":"טו","normalized_word":"טו","lexicon_entry_id":"","status":"unmatched","occurrence_count":19},{"token_index_id":"tok-3a441e537683","surface_word":"ואח״כ","normalized_word":"ואח״כ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1416},{"token_index_id":"tok-3a771ca39263","surface_word":"אל","normalized_word":"אל","lexicon_entry_id":"","status":"unmatched","occurrence_count":4173},{"token_index_id":"tok-3c41a1e9820a","surface_word":"מזוזה","normalized_word":"מזוזה","lexicon_entry_id":"","status":"unmatched","occurrence_count":11},{"token_index_id":"tok-3cdb83dc2f6b","surface_word":"יניח","normalized_word":"יניח","lexicon_entry_id":"","status":"unmatched","occurrence_count":15},{"token_index_id":"tok-3eee938058d5","surface_word":"דבר","normalized_word":"דבר","lexicon_entry_id":"","status":"unmatched","occurrence_count":1066},{"token_index_id":"tok-3fec8844a715","surface_word":"עושין","normalized_word":"עושינ","lexicon_entry_id":"","status":"unmatched","occurrence_count":55},{"token_index_id":"tok-416313058557","surface_word":"זולתי","normalized_word":"זולתי","lexicon_entry_id":"","status":"unmatched","occurrence_count":68},{"token_index_id":"tok-42f5579f6ecb","surface_word":"ושועתי","normalized_word":"ושועתי","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-43ad4d110984","surface_word":"מעוזי","normalized_word":"מעוזי","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-45afd507271d","surface_word":"דרכו","normalized_word":"דרכו","lexicon_entry_id":"","status":"unmatched","occurrence_count":65},{"token_index_id":"tok-460394444e2c","surface_word":"מושיעי","normalized_word":"מושיעי","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-461b786ca008","surface_word":"מוסדות","normalized_word":"מוסדות","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-4aa50463d83f","surface_word":"ששים","normalized_word":"ששימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":53},{"token_index_id":"tok-4dacf699101b","surface_word":"בפ״ע","normalized_word":"בפ״ע","lexicon_entry_id":"","status":"unmatched","occurrence_count":137},{"token_index_id":"tok-50509b625828","surface_word":"נירי","normalized_word":"נירי","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-50b9cd8a98a3","surface_word":"וישתחו","normalized_word":"וישתחו","lexicon_entry_id":"","status":"unmatched","occurrence_count":5},{"token_index_id":"tok-5115bacaed8d","surface_word":"בתהלים","normalized_word":"בתהלימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-51ccd7e76d26","surface_word":"תסעדני","normalized_word":"תסעדני","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-53756c218beb","surface_word":"וברקים","normalized_word":"וברקימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-5451e39e8c3e","surface_word":"ויאמר","normalized_word":"ויאמר","lexicon_entry_id":"","status":"unmatched","occurrence_count":252},{"token_index_id":"tok-54d18e8765b6","surface_word":"כבוד","normalized_word":"כבוד","lexicon_entry_id":"","status":"unmatched","occurrence_count":255},{"token_index_id":"tok-5579e759ba8c","surface_word":"ומחטב","normalized_word":"ומחטב","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-55f1bc8a4e30","surface_word":"וענתך","normalized_word":"וענתכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-568620bdcc1a","surface_word":"וכ״ה","normalized_word":"וכ״ה","lexicon_entry_id":"","status":"unmatched","occurrence_count":294},{"token_index_id":"tok-57fab3134d69","surface_word":"לשמע","normalized_word":"לשמע","lexicon_entry_id":"","status":"unmatched","occurrence_count":10},{"token_index_id":"tok-58804dd24829","surface_word":"סבוני","normalized_word":"סבוני","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-58f1f8340b31","surface_word":"מלכיה","normalized_word":"מלכיה","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-59d3bcb7f174","surface_word":"למנצח","normalized_word":"למנצח","lexicon_entry_id":"","status":"unmatched","occurrence_count":11},{"token_index_id":"tok-5b1ed971f234","surface_word":"לו","normalized_word":"לו","lexicon_entry_id":"","status":"unmatched","occurrence_count":2751},{"token_index_id":"tok-5c049ec08d5c","surface_word":"לעשות","normalized_word":"לעשות","lexicon_entry_id":"","status":"unmatched","occurrence_count":407},{"token_index_id":"tok-5d3e027426fa","surface_word":"מבלעדי","normalized_word":"מבלעדי","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-5e9ae20c9a46","surface_word":"על","normalized_word":"על","lexicon_entry_id":"","status":"unmatched","occurrence_count":7637},{"token_index_id":"tok-5ee43f3bdea7","surface_word":"חנניה","normalized_word":"חנניה","lexicon_entry_id":"","status":"unmatched","occurrence_count":8},{"token_index_id":"tok-5f3d2f015ddc","surface_word":"דרשב״ל","normalized_word":"דרשב״ל","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-5fa8f5ddcbc4","surface_word":"ומזוזות","normalized_word":"ומזוזות","lexicon_entry_id":"","status":"unmatched","occurrence_count":9},{"token_index_id":"tok-60aaf8b629d1","surface_word":"וכתובים","normalized_word":"וכתובימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":11},{"token_index_id":"tok-626dde1534b0","surface_word":"חגידה","normalized_word":"חגידה","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-63d98c3375a8","surface_word":"ויקראו","normalized_word":"ויקראו","lexicon_entry_id":"","status":"unmatched","occurrence_count":9},{"token_index_id":"tok-63e951195536","surface_word":"לעבד","normalized_word":"לעבד","lexicon_entry_id":"","status":"unmatched","occurrence_count":15},{"token_index_id":"tok-64b13a94a97f","surface_word":"מלכותו","normalized_word":"מלכותו","lexicon_entry_id":"","status":"unmatched","occurrence_count":29},{"token_index_id":"tok-64e725396f05","surface_word":"אקרא","normalized_word":"אקרא","lexicon_entry_id":"","status":"unmatched","occurrence_count":20},{"token_index_id":"tok-64fa7f231d4b","surface_word":"היו","normalized_word":"היו","lexicon_entry_id":"","status":"unmatched","occurrence_count":1242},{"token_index_id":"tok-65429524ba3d","surface_word":"ים","normalized_word":"ימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":124},{"token_index_id":"tok-65def13c3586","surface_word":"שבלתה","normalized_word":"שבלתה","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-66094eec3bf0","surface_word":"וחכמים","normalized_word":"וחכמימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":31},{"token_index_id":"tok-6628f0d242f9","surface_word":"סלעי","normalized_word":"סלעי","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-6673c5a6851e","surface_word":"קונם","normalized_word":"קונמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":42},{"token_index_id":"tok-682867a01c9f","surface_word":"וי״א","normalized_word":"וי״א","lexicon_entry_id":"","status":"unmatched","occurrence_count":428},{"token_index_id":"tok-68afbcaea00b","surface_word":"כז","normalized_word":"כז","lexicon_entry_id":"","status":"unmatched","occurrence_count":13},{"token_index_id":"tok-68bc1c61c8ea","surface_word":"עולם","normalized_word":"עולמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1065},{"token_index_id":"tok-6998f4198138","surface_word":"שבירושלים","normalized_word":"שבירושלימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-6a4a62c07e79","surface_word":"בתורה","normalized_word":"בתורה","lexicon_entry_id":"","status":"unmatched","occurrence_count":394},{"token_index_id":"tok-6a7c9861bcfb","surface_word":"נחלי","normalized_word":"נחלי","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-6b49dd8d06ed","surface_word":"ישמעו","normalized_word":"ישמעו","lexicon_entry_id":"","status":"unmatched","occurrence_count":12},{"token_index_id":"tok-6bbc8752112e","surface_word":"כא","normalized_word":"כא","lexicon_entry_id":"","status":"unmatched","occurrence_count":16},{"token_index_id":"tok-6d0bca360888","surface_word":"חצים","normalized_word":"חצימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-6d77244514c7","surface_word":"רגלי","normalized_word":"רגלי","lexicon_entry_id":"","status":"unmatched","occurrence_count":84},{"token_index_id":"tok-6e69af6c4ad6","surface_word":"אפיקי","normalized_word":"אפיקי","lexicon_entry_id":"","status":"unmatched","occurrence_count":5},{"token_index_id":"tok-6ebd7ff9f1db","surface_word":"ובתהלים","normalized_word":"ובתהלימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":14},{"token_index_id":"tok-70c54f918dc0","surface_word":"נגדו","normalized_word":"נגדו","lexicon_entry_id":"","status":"unmatched","occurrence_count":17},{"token_index_id":"tok-712c0ea39ca4","surface_word":"נחמיה","normalized_word":"נחמיה","lexicon_entry_id":"","status":"unmatched","occurrence_count":22},{"token_index_id":"tok-7211b7cfdf47","surface_word":"וימינך","normalized_word":"וימינכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-7294adec4fc7","surface_word":"בסוף","normalized_word":"בסופ","lexicon_entry_id":"","status":"unmatched","occurrence_count":291},{"token_index_id":"tok-734499338b8f","surface_word":"בפני","normalized_word":"בפני","lexicon_entry_id":"","status":"unmatched","occurrence_count":180},{"token_index_id":"tok-740326c37f8a","surface_word":"ויהמם","normalized_word":"ויהממ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-7614ce7467eb","surface_word":"ויתגעש","normalized_word":"ויתגעש","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-771a84211be5","surface_word":"אומנים","normalized_word":"אומנימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-77aa3d611dc4","surface_word":"ש״א","normalized_word":"ש״א","lexicon_entry_id":"","status":"unmatched","occurrence_count":23},{"token_index_id":"tok-7804a5fda906","surface_word":"וקרי","normalized_word":"וקרי","lexicon_entry_id":"","status":"unmatched","occurrence_count":17},{"token_index_id":"tok-7ac406c3a40a","surface_word":"ראב״ע","normalized_word":"ראב״ע","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-7ae47dc0a541","surface_word":"סימן","normalized_word":"סימנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":419},{"token_index_id":"tok-7b5b7d0c904a","surface_word":"ג׳","normalized_word":"ג׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":1917},{"token_index_id":"tok-7eb10aec8ff7","surface_word":"אבל","normalized_word":"אבל","lexicon_entry_id":"","status":"unmatched","occurrence_count":6550},{"token_index_id":"tok-7ff8a53969c7","surface_word":"דברי","normalized_word":"דברי","lexicon_entry_id":"","status":"unmatched","occurrence_count":505},{"token_index_id":"tok-800158a8a302","surface_word":"בנסוע","normalized_word":"בנסוע","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-801f282e3e24","surface_word":"לה׳","normalized_word":"לה׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":173},{"token_index_id":"tok-8193beef09af","surface_word":"והכשרנו","normalized_word":"והכשרנו","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-82f6b26e13ec","surface_word":"א״ל","normalized_word":"א״ל","lexicon_entry_id":"","status":"unmatched","occurrence_count":713},{"token_index_id":"tok-855faa47ec0f","surface_word":"ומזוזה","normalized_word":"ומזוזה","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-8619fe76fc7d","surface_word":"בס״א","normalized_word":"בס״א","lexicon_entry_id":"","status":"unmatched","occurrence_count":61},{"token_index_id":"tok-864c5fdb2da5","surface_word":"מחמס","normalized_word":"מחמס","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-878d2d07bfdc","surface_word":"חזקי","normalized_word":"חזקי","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-88d78f439431","surface_word":"קרא","normalized_word":"קרא","lexicon_entry_id":"","status":"unmatched","occurrence_count":133},{"token_index_id":"tok-8920c2bd0081","surface_word":"לפניו","normalized_word":"לפניו","lexicon_entry_id":"","status":"unmatched","occurrence_count":163},{"token_index_id":"tok-8a0ec777dfa8","surface_word":"ונביאים","normalized_word":"ונביאימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-8b1aa6b1d71e","surface_word":"שם","normalized_word":"שמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":12474},{"token_index_id":"tok-8ccf3c9fb630","surface_word":"ו","normalized_word":"ו","lexicon_entry_id":"","status":"unmatched","occurrence_count":81},{"token_index_id":"tok-8d31073e5334","surface_word":"ובס״א","normalized_word":"ובס״א","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-8dc64a1ff4b0","surface_word":"נתתה","normalized_word":"נתתה","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-90dd21d993cd","surface_word":"מהופך","normalized_word":"מהופכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-911d937f1d47","surface_word":"ובתהליס","normalized_word":"ובתהליס","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-92188a4fff08","surface_word":"תפילין","normalized_word":"תפילינ","lexicon_entry_id":"","status":"unmatched","occurrence_count":109},{"token_index_id":"tok-957edf3eb5b5","surface_word":"ויבאו","normalized_word":"ויבאו","lexicon_entry_id":"","status":"unmatched","occurrence_count":19},{"token_index_id":"tok-965e1710a771","surface_word":"חשך","normalized_word":"חשכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":43},{"token_index_id":"tok-99010c1ea10a","surface_word":"הגירסא","normalized_word":"הגירסא","lexicon_entry_id":"","status":"unmatched","occurrence_count":26},{"token_index_id":"tok-99d168184fe8","surface_word":"אתה","normalized_word":"אתה","lexicon_entry_id":"","status":"unmatched","occurrence_count":350},{"token_index_id":"tok-9a126316972a","surface_word":"מעשה","normalized_word":"מעשה","lexicon_entry_id":"","status":"unmatched","occurrence_count":358},{"token_index_id":"tok-9a8fe6c2aec0","surface_word":"דתחלת","normalized_word":"דתחלת","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-9a903f8da6d0","surface_word":"כל","normalized_word":"כל","lexicon_entry_id":"","status":"unmatched","occurrence_count":8305},{"token_index_id":"tok-9b1fbf1eef09","surface_word":"סביבותיו","normalized_word":"סביבותיו","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-9b6757a7a01c","surface_word":"בכה","normalized_word":"בכה","lexicon_entry_id":"","status":"unmatched","occurrence_count":8},{"token_index_id":"tok-9c2edcb5e8c8","surface_word":"שופטים","normalized_word":"שופטימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":23},{"token_index_id":"tok-9e93cd75c30e","surface_word":"דוד","normalized_word":"דוד","lexicon_entry_id":"","status":"unmatched","occurrence_count":328},{"token_index_id":"tok-9f0462db84a8","surface_word":"אזן","normalized_word":"אזנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":25},{"token_index_id":"tok-9f5702d6f166","surface_word":"פועלי","normalized_word":"פועלי","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-9fc51187aa83","surface_word":"ע״פ","normalized_word":"ע״פ","lexicon_entry_id":"","status":"unmatched","occurrence_count":500},{"token_index_id":"tok-a260462d423e","surface_word":"מנגה","normalized_word":"מנגה","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-a26c835b1d22","surface_word":"ומנוסי","normalized_word":"ומנוסי","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-a43448d0c72d","surface_word":"בגויל","normalized_word":"בגויל","lexicon_entry_id":"","status":"unmatched","occurrence_count":7},{"token_index_id":"tok-a58d6f1e0b5f","surface_word":"זונין","normalized_word":"זונינ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-a598f687a064","surface_word":"בפרשה","normalized_word":"בפרשה","lexicon_entry_id":"","status":"unmatched","occurrence_count":40},{"token_index_id":"tok-a5e94724fb7d","surface_word":"רצון","normalized_word":"רצונ","lexicon_entry_id":"","status":"unmatched","occurrence_count":276},{"token_index_id":"tok-a64510b99d7e","surface_word":"אחד","normalized_word":"אחד","lexicon_entry_id":"","status":"unmatched","occurrence_count":2013},{"token_index_id":"tok-a650199e7f2c","surface_word":"מג","normalized_word":"מג","lexicon_entry_id":"","status":"unmatched","occurrence_count":7},{"token_index_id":"tok-a7b5e15c4f43","surface_word":"שפעולתן","normalized_word":"שפעולתנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-a864c0aa7fe6","surface_word":"ושמחים","normalized_word":"ושמחימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":10},{"token_index_id":"tok-a8c48c63232f","surface_word":"שהיו","normalized_word":"שהיו","lexicon_entry_id":"","status":"unmatched","occurrence_count":448},{"token_index_id":"tok-ab2b949383e1","surface_word":"אלהי","normalized_word":"אלהי","lexicon_entry_id":"","status":"unmatched","occurrence_count":155},{"token_index_id":"tok-ab54923a0412","surface_word":"ברק","normalized_word":"ברק","lexicon_entry_id":"","status":"unmatched","occurrence_count":18},{"token_index_id":"tok-ae858d37abd3","surface_word":"בך","normalized_word":"בכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":66},{"token_index_id":"tok-afa59c36dd64","surface_word":"וגם","normalized_word":"וגמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1187},{"token_index_id":"tok-b0520195832b","surface_word":"כצ״ל","normalized_word":"כצ״ל","lexicon_entry_id":"","status":"unmatched","occurrence_count":60},{"token_index_id":"tok-b2621a8c859d","surface_word":"תאיר","normalized_word":"תאיר","lexicon_entry_id":"","status":"unmatched","occurrence_count":17},{"token_index_id":"tok-b37f885d882a","surface_word":"ליוצרם","normalized_word":"ליוצרמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-b5bf56c45090","surface_word":"ברוך","normalized_word":"ברוכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":233},{"token_index_id":"tok-b7784688021e","surface_word":"ברד","normalized_word":"ברד","lexicon_entry_id":"","status":"unmatched","occurrence_count":9},{"token_index_id":"tok-b77e4cf21935","surface_word":"פ״א","normalized_word":"פ״א","lexicon_entry_id":"","status":"unmatched","occurrence_count":243},{"token_index_id":"tok-b874f27fdafb","surface_word":"אמר","normalized_word":"אמר","lexicon_entry_id":"","status":"unmatched","occurrence_count":1994},{"token_index_id":"tok-b91e4ac5d276","surface_word":"כא׳","normalized_word":"כא׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":18},{"token_index_id":"tok-ba324365ed22","surface_word":"ומיד","normalized_word":"ומיד","lexicon_entry_id":"","status":"unmatched","occurrence_count":27},{"token_index_id":"tok-ba4cc35cb751","surface_word":"במה","normalized_word":"במה","lexicon_entry_id":"","status":"unmatched","occurrence_count":420},{"token_index_id":"tok-ba6ca9112882","surface_word":"האי","normalized_word":"האי","lexicon_entry_id":"","status":"unmatched","occurrence_count":327},{"token_index_id":"tok-bac9cc96f657","surface_word":"ואיני","normalized_word":"ואיני","lexicon_entry_id":"","status":"unmatched","occurrence_count":38},{"token_index_id":"tok-bd49d5516782","surface_word":"ויצוו","normalized_word":"ויצוו","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-bdde3e4b1db2","surface_word":"וחילופיהן","normalized_word":"וחילופיהנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-c03e93e22962","surface_word":"ומלת","normalized_word":"ומלת","lexicon_entry_id":"","status":"unmatched","occurrence_count":29},{"token_index_id":"tok-c0bea5f405f7","surface_word":"ויהי","normalized_word":"ויהי","lexicon_entry_id":"","status":"unmatched","occurrence_count":195},{"token_index_id":"tok-c15f1b0636cb","surface_word":"ר״מ","normalized_word":"ר״מ","lexicon_entry_id":"","status":"unmatched","occurrence_count":77},{"token_index_id":"tok-c2742c4cba06","surface_word":"ה׳","normalized_word":"ה׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":3005},{"token_index_id":"tok-c3680d12b8a4","surface_word":"רגליו","normalized_word":"רגליו","lexicon_entry_id":"","status":"unmatched","occurrence_count":93},{"token_index_id":"tok-c5c2f1825abe","surface_word":"כ״ה","normalized_word":"כ״ה","lexicon_entry_id":"","status":"unmatched","occurrence_count":249},{"token_index_id":"tok-c749cd3f9976","surface_word":"בדפו״י","normalized_word":"בדפו״י","lexicon_entry_id":"","status":"unmatched","occurrence_count":49},{"token_index_id":"tok-ca2c15acf1b2","surface_word":"בן","normalized_word":"בנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1307},{"token_index_id":"tok-cb54545ec2fe","surface_word":"מ״א","normalized_word":"מ״א","lexicon_entry_id":"","status":"unmatched","occurrence_count":135},{"token_index_id":"tok-cb5f45dfb95a","surface_word":"כו׳","normalized_word":"כו׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":26833},{"token_index_id":"tok-cc7266a68ddb","surface_word":"אותה","normalized_word":"אותה","lexicon_entry_id":"","status":"unmatched","occurrence_count":630},{"token_index_id":"tok-ce796fb5b9a6","surface_word":"בקלף","normalized_word":"בקלפ","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-cec6b48d97fd","surface_word":"בקדש","normalized_word":"בקדש","lexicon_entry_id":"","status":"unmatched","occurrence_count":20},{"token_index_id":"tok-cf00d19391f0","surface_word":"לדוד","normalized_word":"לדוד","lexicon_entry_id":"","status":"unmatched","occurrence_count":64},{"token_index_id":"tok-d02b84c3ea87","surface_word":"דברים","normalized_word":"דברימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":431},{"token_index_id":"tok-d02ec1b97bf8","surface_word":"משברי","normalized_word":"משברי","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-d14fb3259e92","surface_word":"ישעך","normalized_word":"ישעכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-d1f6c62cc7c9","surface_word":"לי","normalized_word":"לי","lexicon_entry_id":"","status":"unmatched","occurrence_count":657},{"token_index_id":"tok-d3003c70dbc1","surface_word":"וישמע","normalized_word":"וישמע","lexicon_entry_id":"","status":"unmatched","occurrence_count":9},{"token_index_id":"tok-d412f8225c1a","surface_word":"ויהום","normalized_word":"ויהומ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-d43a4f6ea2af","surface_word":"מורידין","normalized_word":"מורידינ","lexicon_entry_id":"","status":"unmatched","occurrence_count":20},{"token_index_id":"tok-d696a3acad85","surface_word":"מלכים","normalized_word":"מלכימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":151},{"token_index_id":"tok-dc45853d56ce","surface_word":"רב","normalized_word":"רב","lexicon_entry_id":"","status":"unmatched","occurrence_count":758},{"token_index_id":"tok-dcb875546ce3","surface_word":"ונחת","normalized_word":"ונחת","lexicon_entry_id":"","status":"unmatched","occurrence_count":12},{"token_index_id":"tok-ddd4efe98af1","surface_word":"חדשים","normalized_word":"חדשימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":163},{"token_index_id":"tok-e194bcc5df38","surface_word":"א","normalized_word":"א","lexicon_entry_id":"","status":"unmatched","occurrence_count":259},{"token_index_id":"tok-e22a332eaf55","surface_word":"אש","normalized_word":"אש","lexicon_entry_id":"","status":"unmatched","occurrence_count":175},{"token_index_id":"tok-e232ce04c2b3","surface_word":"תתה","normalized_word":"תתה","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-e5344e014798","surface_word":"וסמך","normalized_word":"וסמכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":10},{"token_index_id":"tok-e75c0193b01a","surface_word":"נרי","normalized_word":"נרי","lexicon_entry_id":"","status":"unmatched","occurrence_count":5},{"token_index_id":"tok-e83baa79dff1","surface_word":"ולפאר","normalized_word":"ולפאר","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-e869acec3013","surface_word":"מנהג","normalized_word":"מנהג","lexicon_entry_id":"","status":"unmatched","occurrence_count":40},{"token_index_id":"tok-e89d5099163d","surface_word":"ג","normalized_word":"ג","lexicon_entry_id":"","status":"unmatched","occurrence_count":62},{"token_index_id":"tok-ea12a4ba2b0d","surface_word":"אין","normalized_word":"אינ","lexicon_entry_id":"","status":"unmatched","occurrence_count":3926},{"token_index_id":"tok-eb010110c3c7","surface_word":"לפי","normalized_word":"לפי","lexicon_entry_id":"","status":"unmatched","occurrence_count":1796},{"token_index_id":"tok-ed20d9320523","surface_word":"תושיעני","normalized_word":"תושיעני","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-ee47bc9cdbbd","surface_word":"את","normalized_word":"את","lexicon_entry_id":"","status":"unmatched","occurrence_count":6415},{"token_index_id":"tok-eec00be6228f","surface_word":"נביאים","normalized_word":"נביאימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":40},{"token_index_id":"tok-eeffe18f09c1","surface_word":"חק","normalized_word":"חק","lexicon_entry_id":"","status":"unmatched","occurrence_count":67},{"token_index_id":"tok-ef2f6732a189","surface_word":"ר׳","normalized_word":"ר׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":1414},{"token_index_id":"tok-f3679629b360","surface_word":"והם","normalized_word":"והמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1673},{"token_index_id":"tok-f375846d2f7d","surface_word":"באחד","normalized_word":"באחד","lexicon_entry_id":"","status":"unmatched","occurrence_count":36},{"token_index_id":"tok-f59202fa31cd","surface_word":"יגלו","normalized_word":"יגלו","lexicon_entry_id":"","status":"unmatched","occurrence_count":9},{"token_index_id":"tok-f593c7a502dc","surface_word":"אמורים","normalized_word":"אמורימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":8},{"token_index_id":"tok-f647de6860eb","surface_word":"מלמד","normalized_word":"מלמד","lexicon_entry_id":"","status":"unmatched","occurrence_count":47},{"token_index_id":"tok-f64af4c5c7d5","surface_word":"ויתר","normalized_word":"ויתר","lexicon_entry_id":"","status":"unmatched","occurrence_count":15},{"token_index_id":"tok-f721ceba744a","surface_word":"כאחת","normalized_word":"כאחת","lexicon_entry_id":"","status":"unmatched","occurrence_count":19},{"token_index_id":"tok-f82e1cb64812","surface_word":"אם","normalized_word":"אמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":3450},{"token_index_id":"tok-f89b2c40c1ae","surface_word":"ליתא","normalized_word":"ליתא","lexicon_entry_id":"","status":"unmatched","occurrence_count":61},{"token_index_id":"tok-fdfa29e2dc05","surface_word":"אלא","normalized_word":"אלא","lexicon_entry_id":"","status":"unmatched","occurrence_count":4886},{"token_index_id":"tok-fe00403755ad","surface_word":"אמת","normalized_word":"אמת","lexicon_entry_id":"","status":"unmatched","occurrence_count":235},{"token_index_id":"tok-ffddf94e3502","surface_word":"מדובקים","normalized_word":"מדובקימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":2}]}</script>
-  <script type="application/json" data-lexical-lexicon>{"schema_version":1,"entries":[]}</script>
   <script>
     (() => {
       const units = Array.from(document.querySelectorAll("[data-unit]"));
@@ -1047,147 +990,6 @@
           target.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       }
-    })();
-  </script>
-  <script>
-    (() => {
-      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
-      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
-      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
-      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
-      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
-      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
-      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
-      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
-      const hud = document.querySelector("[data-lexical-hud]");
-      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
-      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
-      const makeWordSpan = (text, tokenIndexId, ordinal) => {
-        const row = tokenRows.get(tokenIndexId) || {};
-        const span = document.createElement("span");
-        span.className = "lexical-word";
-        span.lang = "he";
-        span.role = "button";
-        span.tabIndex = 0;
-        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
-        span.dataset.lexicalIndex = tokenIndexId || "";
-        span.dataset.lexicalEntry = row.lexicon_entry_id || "";
-        span.dataset.lexicalStatus = row.status || "unmatched";
-        span.setAttribute("aria-pressed", "false");
-        span.textContent = normalizeHebrewDisplay(text);
-        return span;
-      };
-      const wrapTextNode = (node, tokenIds, state) => {
-        const text = node.nodeValue;
-        const matches = Array.from(text.matchAll(hebrewTokenPattern));
-        if (!matches.length) return;
-        const fragment = document.createDocumentFragment();
-        let position = 0;
-        matches.forEach((match) => {
-          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
-          const tokenIndexId = tokenIds[state.index++];
-          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
-          position = match.index + match[0].length;
-        });
-        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
-        node.parentNode.replaceChild(fragment, node);
-      };
-      const wrapParagraph = (paragraph, tokenIds) => {
-        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
-        const textNodes = [];
-        while (walker.nextNode()) textNodes.push(walker.currentNode);
-        const state = { index: 0 };
-        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
-      };
-      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
-        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
-        if (!unitData) return;
-        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
-          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
-          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
-          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
-        });
-      });
-      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
-      if (!buttons.length || !hud) return;
-      const setText = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
-      };
-      const setList = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (!node) return;
-        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
-        node.replaceChildren();
-        if (!values.length) { node.textContent = "N/A"; return; }
-        if (values.length === 1) { node.textContent = values[0]; return; }
-        const ul = document.createElement("ul");
-        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const renderSources = (sourceBox, rows) => {
-        if (!sourceBox) return;
-        sourceBox.replaceChildren();
-        if (!rows || !rows.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
-        (rows || []).forEach((row) => {
-          const section = document.createElement("div");
-          section.className = "source-row";
-          const title = document.createElement("p");
-          const link = document.createElement("a");
-          link.href = row.source_url || "#";
-          link.textContent = row.source_name || "Source";
-          const strong = document.createElement("strong");
-          strong.appendChild(link);
-          title.appendChild(strong);
-          title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
-          const fields = document.createElement("p");
-          fields.textContent = `Fields: ${(row.fields_used || []).join(", ") || "N/A"}`;
-          const notes = document.createElement("p");
-          notes.textContent = row.notes || "";
-          section.append(title, fields, notes);
-          sourceBox.appendChild(section);
-        });
-      };
-      const buildWordView = (button) => {
-        const tokenRow = tokenRows.get(button.dataset.lexicalIndex) || {};
-        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
-        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
-        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [] };
-      };
-      const renderWord = (button) => {
-        const unit = button.closest("[data-lexical-unit]");
-        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
-        if (!unit || !slot) return;
-        if (hud.parentElement !== slot) slot.appendChild(hud);
-        const view = buildWordView(button);
-        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        button.setAttribute("aria-pressed", "true");
-        setText(hud, "[data-hud-word]", view.hebrew_word);
-        setText(hud, "[data-hud-transliteration]", view.transliteration);
-        setList(hud, "[data-hud-renderings]", view.strict_renderings);
-        setText(hud, "[data-hud-root]", view.root);
-        setText(hud, "[data-hud-root-transliteration]", view.root_transliteration);
-        setList(hud, "[data-hud-root-meaning]", view.root_meaning);
-        renderSources(hud.querySelector("[data-hud-sources]"), view.source_rows);
-        const details = hud.querySelector("details");
-        if (details) details.open = false;
-        hud.hidden = false;
-      };
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          renderWord(button);
-        });
-        button.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
-        });
-      });
-      document.querySelectorAll("[data-hud-close]").forEach((button) => {
-        button.addEventListener("click", () => {
-          const hud = button.closest("[data-lexical-hud]");
-          if (hud) hud.hidden = true;
-          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        });
-      });
     })();
   </script>
 </body>

@@ -334,6 +334,7 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }')
   [void]$Builder.AppendLine('    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }')
   [void]$Builder.AppendLine('    .work-card .meta { display: block; margin-top: 6px; }')
+  [void]$Builder.AppendLine('    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }')
   [void]$Builder.AppendLine('    .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }')
   [void]$Builder.AppendLine('    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border: 1px solid var(--line); background: var(--panel); padding: 14px; }')
   [void]$Builder.AppendLine('    .toc ul { list-style: none; padding: 0; margin: 0; }')
@@ -361,7 +362,8 @@ function Append-SiteHead {
     [void]$Builder.AppendLine('    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; }')
     [void]$Builder.AppendLine('    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }')
     [void]$Builder.AppendLine('    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }')
-    [void]$Builder.AppendLine('    .lexical-hud { position: sticky; top: 14px; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }')
+    [void]$Builder.AppendLine('    .lexical-slot { margin-top: 16px; }')
+    [void]$Builder.AppendLine('    .lexical-hud { position: static; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }')
     [void]$Builder.AppendLine('    .lexical-hud[hidden] { display: none; }')
     [void]$Builder.AppendLine('    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }')
     [void]$Builder.AppendLine('    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }')
@@ -386,8 +388,10 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }')
   [void]$Builder.AppendLine('    .toc summary { color: var(--accent); font-size: 0.94rem; }')
   [void]$Builder.AppendLine('    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }')
+  [void]$Builder.AppendLine('    .paired-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--muted); }')
+  [void]$Builder.AppendLine('    .paired-note a { color: var(--accent); }')
   if ($IncludeLexicalStyles) {
-    [void]$Builder.AppendLine('    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields { grid-template-columns: 1fr; } .toc, .lexical-hud { position: static; max-height: none; } }')
+    [void]$Builder.AppendLine('    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }')
   } else {
     [void]$Builder.AppendLine('    @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }')
   }
@@ -854,6 +858,10 @@ function Append-WorkToc {
 }
 
 $sources = @(Get-ChildItem -Path $SourceDir -Filter '*.json' | ForEach-Object { Read-Json -Path $_.FullName } | Sort-Object work_title)
+$sourceById = @{}
+foreach ($source in $sources) {
+  $sourceById[[string]$source.work_id] = $source
+}
 $lexicalCache = Get-LexicalCache
 
 $homePage = New-Object System.Text.StringBuilder
@@ -888,6 +896,9 @@ foreach ($homeGroup in $homeGroups) {
     $workComplete = if ($homeProgress.total -gt 0 -and $homeProgress.done -eq $homeProgress.total) { 'true' } else { 'false' }
     [void]$homePage.AppendLine("            <a class=""work-card"" href=""$($source.work_slug)/"" data-work-card data-work-complete=""$workComplete"">")
     [void]$homePage.AppendLine("              <strong>$(Encode-Html $source.work_title)</strong>")
+    if ($source.display_label) {
+      [void]$homePage.AppendLine("              <span class=""work-label"">$(Encode-Html $source.display_label)</span>")
+    }
     [void]$homePage.AppendLine("              <span class=""meta"">$(@($source.units).Count) source units | $(Encode-Html $source.source_system) | imported $(Encode-Html $source.import_date)</span>")
     [void]$homePage.AppendLine("              <span class=""meta"">Progress: $($homeProgress.done) / $($homeProgress.total) done | $($homeProgress.percent_label)% complete</span>")
     [void]$homePage.AppendLine('            </a>')
@@ -940,6 +951,26 @@ foreach ($source in $sources) {
   [void]$page.AppendLine('      <div class="hero" id="work-top">')
   [void]$page.AppendLine("        <p class=""crumbs""><a href=""$rootHref"">Home</a></p>")
   [void]$page.AppendLine("        <h1>$(Encode-Html $source.work_title)</h1>")
+  if ($source.display_label) {
+    [void]$page.AppendLine("        <p class=""work-label"">$(Encode-Html $source.display_label)</p>")
+  }
+  if ($source.work_type -eq 'commentary') {
+    $baseImported = $false
+    $baseHref = ''
+    if ($source.base_work_id -and $sourceById.ContainsKey([string]$source.base_work_id)) {
+      $baseSource = $sourceById[[string]$source.base_work_id]
+      $baseHref = "$rootHref$($baseSource.work_slug)/"
+      $baseImported = $true
+    }
+    [void]$page.AppendLine('        <div class="paired-note">')
+    [void]$page.AppendLine("          <strong>$(Encode-Html $source.display_label)</strong>")
+    if ($baseImported) {
+      [void]$page.AppendLine("          <p><a href=""$baseHref"">Show base text</a></p>")
+    } else {
+      [void]$page.AppendLine('          <p>Base text not imported yet.</p>')
+    }
+    [void]$page.AppendLine('        </div>')
+  }
   [void]$page.AppendLine("        <p class=""meta"">$(@($source.units).Count) total source units | imported $(Encode-Html $source.import_date)</p>")
   if ($singleSourceNote) {
     [void]$page.AppendLine("        <p class=""meta source-citation"">$(Get-SourceSummaryHtml -Note $sourceNotes[0])</p>")
@@ -1050,11 +1081,11 @@ foreach ($source in $sources) {
       [void]$page.AppendLine('                  <p class="placeholder">N/A</p>')
     }
     [void]$page.AppendLine('                </div>')
-    if ($null -ne $lexicalUnit) {
-      [void]$page.AppendLine('                <div data-lexical-slot></div>')
-    }
     [void]$page.AppendLine('              </div>')
     [void]$page.AppendLine('            </div>')
+    if ($null -ne $lexicalUnit) {
+      [void]$page.AppendLine('            <div class="lexical-slot" data-lexical-slot></div>')
+    }
     $parentAnchor = Get-UnitParentAnchor -Unit $unit -Source $source
     [void]$page.AppendLine('            <nav class="unit-nav" aria-label="Unit navigation">')
     [void]$page.AppendLine('              <a href="#work-top">Back to top</a>')

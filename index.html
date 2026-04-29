@@ -38,6 +38,7 @@
     .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
     .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
     .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }
     .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
     .toc ul { list-style: none; padding: 0; margin: 0; }
@@ -71,6 +72,8 @@
     .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
     .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--muted); }
+    .paired-note a { color: var(--accent); }
     @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
@@ -159,81 +162,97 @@
           <div class="home-grid">
             <a class="work-card" href="gra/aderet-eliyahu/" data-work-card data-work-complete="false">
               <strong>Aderet Eliyahu</strong>
+              <span class="work-label">Commentary on Torah</span>
               <span class="meta">59 source units | Sefaria API | imported 2026-04-27</span>
               <span class="meta">Progress: 0 / 59 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/beur-hagra-on-jerusalem-talmud-bikkurim/" data-work-card data-work-complete="false">
               <strong>Beur HaGra on Jerusalem Talmud Bikkurim</strong>
+              <span class="work-label">Commentary on Jerusalem Talmud Bikkurim</span>
               <span class="meta">170 source units | Sefaria API | imported 2026-04-27</span>
               <span class="meta">Progress: 0 / 170 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/beur-hagra-on-jerusalem-talmud-challah/" data-work-card data-work-complete="false">
               <strong>Beur HaGra on Jerusalem Talmud Challah</strong>
+              <span class="work-label">Commentary on Jerusalem Talmud Challah</span>
               <span class="meta">657 source units | Sefaria API | imported 2026-04-27</span>
               <span class="meta">Progress: 0 / 657 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/beur-hagra-on-shulchan-arukh-choshen-mishpat/" data-work-card data-work-complete="false">
               <strong>Beur HaGra on Shulchan Arukh, Choshen Mishpat</strong>
+              <span class="work-label">Commentary on Shulchan Arukh, Choshen Mishpat</span>
               <span class="meta">41 source units | Sefaria API | imported 2026-04-27</span>
               <span class="meta">Progress: 0 / 41 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/beur-hagra-on-shulchan-arukh-even-haezer/" data-work-card data-work-complete="false">
               <strong>Beur HaGra on Shulchan Arukh, Even HaEzer</strong>
+              <span class="work-label">Commentary on Shulchan Arukh, Even HaEzer</span>
               <span class="meta">281 source units | Sefaria API | imported 2026-04-27</span>
               <span class="meta">Progress: 0 / 281 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/beur-hagra-on-shulchan-arukh-orach-chayim/" data-work-card data-work-complete="false">
               <strong>Beur HaGra on Shulchan Arukh, Orach Chayim</strong>
+              <span class="work-label">Commentary on Shulchan Arukh, Orach Chayim</span>
               <span class="meta">2479 source units | Sefaria API | imported 2026-04-27</span>
               <span class="meta">Progress: 0 / 2479 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/beur-hagra-on-shulchan-arukh-yoreh-deah/" data-work-card data-work-complete="false">
               <strong>Beur HaGra on Shulchan Arukh, Yoreh De&#39;ah</strong>
+              <span class="work-label">Commentary on Shulchan Arukh, Yoreh De&#39;ah</span>
               <span class="meta">7500 source units | Sefaria API | imported 2026-04-27</span>
               <span class="meta">Progress: 0 / 7500 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/beur-hagra-on-sifra-detzniuta/" data-work-card data-work-complete="false">
               <strong>Beur HaGra on Sifra DeTzniuta</strong>
+              <span class="work-label">Commentary on Sifra DeTzniuta</span>
               <span class="meta">297 source units | Sefaria API | imported 2026-04-27</span>
               <span class="meta">Progress: 0 / 297 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/gra-on-pirkei-avot/" data-work-card data-work-complete="false">
               <strong>Gra on Pirkei Avot</strong>
+              <span class="work-label">Commentary on Pirkei Avot</span>
               <span class="meta">20 source units | Sefaria API | imported 2026-04-27</span>
               <span class="meta">Progress: 0 / 20 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/gras-nuschah-on-avot-drabbi-natan/" data-work-card data-work-complete="false">
               <strong>Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan</strong>
+              <span class="work-label">Commentary on Avot D&#39;Rabbi Natan</span>
               <span class="meta">103 source units | Sefaria API | imported 2026-04-27</span>
               <span class="meta">Progress: 0 / 103 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/gras-nuschah-on-tractate-derekh-eretz-rabbah/" data-work-card data-work-complete="false">
               <strong>Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah</strong>
+              <span class="work-label">Commentary on Tractate Derekh Eretz Rabbah</span>
               <span class="meta">16 source units | Sefaria API | imported 2026-04-27</span>
               <span class="meta">Progress: 0 / 16 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/gras-nuschah-on-tractate-derekh-eretz-zuta/" data-work-card data-work-complete="false">
               <strong>Gra&#39;s Nuschah on Tractate Derekh Eretz Zuta</strong>
+              <span class="work-label">Commentary on Tractate Derekh Eretz Zuta</span>
               <span class="meta">4 source units | Sefaria API | imported 2026-04-27</span>
               <span class="meta">Progress: 0 / 4 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/gras-nuschah-on-tractate-kallah/" data-work-card data-work-complete="false">
               <strong>Gra&#39;s Nuschah on Tractate Kallah</strong>
+              <span class="work-label">Commentary on Tractate Kallah</span>
               <span class="meta">6 source units | Sefaria API | imported 2026-04-27</span>
               <span class="meta">Progress: 0 / 6 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/gras-nuschah-on-tractate-semachot/" data-work-card data-work-complete="false">
               <strong>Gra&#39;s Nuschah on Tractate Semachot</strong>
+              <span class="work-label">Commentary on Tractate Semachot</span>
               <span class="meta">20 source units | Sefaria API | imported 2026-04-27</span>
               <span class="meta">Progress: 0 / 20 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/gras-nuschah-on-tractate-soferim/" data-work-card data-work-complete="false">
               <strong>Gra&#39;s Nuschah on Tractate Soferim</strong>
+              <span class="work-label">Commentary on Tractate Soferim</span>
               <span class="meta">30 source units | Sefaria API | imported 2026-04-27</span>
               <span class="meta">Progress: 0 / 30 done | 0% complete</span>
             </a>
             <a class="work-card" href="gra/hagra-on-sefer-yetzirah-gra-version/" data-work-card data-work-complete="false">
               <strong>HaGra on Sefer Yetzirah Gra Version</strong>
+              <span class="work-label">Commentary on Sefer Yetzirah Gra Version</span>
               <span class="meta">35 source units | Sefaria API | imported 2026-04-27</span>
               <span class="meta">Progress: 0 / 35 done | 0% complete</span>
             </a>
@@ -264,6 +283,7 @@
             </a>
             <a class="work-card" href="gra/yahel-ohr-on-zohar/" data-work-card data-work-complete="false">
               <strong>Yahel Ohr on Zohar</strong>
+              <span class="work-label">Commentary on Zohar</span>
               <span class="meta">238 source units | Sefaria API | imported 2026-04-27</span>
               <span class="meta">Progress: 0 / 238 done | 0% complete</span>
             </a>
