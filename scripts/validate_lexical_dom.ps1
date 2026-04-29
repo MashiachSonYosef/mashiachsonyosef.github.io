@@ -18,6 +18,12 @@ $samples = @(
     UnitId = 'orot-lights-from-darkness-land-of-israel-1-2'
     HtmlPath = Join-Path $PSScriptRoot '..\orot\index.html'
     OccurrencePath = Join-Path $PSScriptRoot '..\data\lexical\occurrences\orot.json'
+  },
+  [pscustomobject]@{
+    Label = 'Orot non-Lights-from-Darkness sample'
+    UnitId = 'orot-the-process-of-ideals-in-israel-the-godly-and-the-national-ideal-in-the-individual-1'
+    HtmlPath = Join-Path $PSScriptRoot '..\orot\index.html'
+    OccurrencePath = Join-Path $PSScriptRoot '..\data\lexical\occurrences\orot.json'
   }
 )
 

@@ -362,6 +362,7 @@ function Append-SiteHead {
     [void]$Builder.AppendLine('    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; }')
     [void]$Builder.AppendLine('    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }')
     [void]$Builder.AppendLine('    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }')
+    [void]$Builder.AppendLine('    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }')
     [void]$Builder.AppendLine('    .lexical-slot { margin-top: 16px; }')
     [void]$Builder.AppendLine('    .lexical-hud { position: static; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }')
     [void]$Builder.AppendLine('    .lexical-hud[hidden] { display: none; }')
@@ -670,6 +671,21 @@ function Get-LexicalUnitOccurrence {
   return $property.Value
 }
 
+function Test-UnitsHaveLexical {
+  param(
+    [AllowNull()][object]$WorkOccurrence,
+    [object[]]$Units
+  )
+
+  if ($null -eq $WorkOccurrence) { return $false }
+  foreach ($unit in @($Units)) {
+    if ($null -ne (Get-LexicalUnitOccurrence -WorkOccurrence $WorkOccurrence -UnitId $unit.unit_id)) {
+      return $true
+    }
+  }
+  return $false
+}
+
 function Get-WorkLexicalPayload {
   param(
     [AllowNull()][object]$WorkOccurrence,
@@ -800,7 +816,8 @@ function Append-WorkToc {
   param(
     [System.Text.StringBuilder]$Builder,
     [object]$Source,
-    [object[]]$VisibleUnits
+    [object[]]$VisibleUnits,
+    [AllowNull()][object]$WorkOccurrence
   )
 
   [void]$Builder.AppendLine('        <nav class="toc" aria-label="Table of contents">')
@@ -813,9 +830,10 @@ function Append-WorkToc {
     $firstGroupUnit = $groupUnits[0]
     $groupTitle = if ($firstGroupUnit.group_title -and $firstGroupUnit.group_slug -ne 'text') { $firstGroupUnit.group_title } else { $Source.work_title }
     $groupAnchor = Get-GroupStartAnchor -Unit $firstGroupUnit -Source $Source
+    $groupBadge = if (Test-UnitsHaveLexical -WorkOccurrence $WorkOccurrence -Units $groupUnits) { ' <span class="hud-badge">HUD</span>' } else { '' }
 
     [void]$Builder.AppendLine('            <details class="toc-group">')
-    [void]$Builder.AppendLine("              <summary>$(Encode-Html $groupTitle)</summary>")
+    [void]$Builder.AppendLine("              <summary>$(Encode-Html $groupTitle)$groupBadge</summary>")
     [void]$Builder.AppendLine("              <a class=""toc-start"" href=""#$groupAnchor"">Start</a>")
 
     foreach ($section in (Get-OrderedGroups -Items $groupUnits -KeyScript { param($item) $item.section_slug })) {
@@ -824,9 +842,10 @@ function Append-WorkToc {
       $firstSectionUnit = $sectionUnits[0]
       $sectionTitle = if ($firstSectionUnit.section_title -and $firstSectionUnit.section_slug -ne 'text') { $firstSectionUnit.section_title } else { $groupTitle }
       $sectionAnchor = Get-SectionStartAnchor -Unit $firstSectionUnit -Source $Source
+      $sectionBadge = if (Test-UnitsHaveLexical -WorkOccurrence $WorkOccurrence -Units $sectionUnits) { ' <span class="hud-badge">HUD</span>' } else { '' }
 
       [void]$Builder.AppendLine('              <details class="toc-section">')
-      [void]$Builder.AppendLine("                <summary>$(Encode-Html $sectionTitle)</summary>")
+      [void]$Builder.AppendLine("                <summary>$(Encode-Html $sectionTitle)$sectionBadge</summary>")
       [void]$Builder.AppendLine("                <a class=""toc-start"" href=""#$sectionAnchor"">Start section</a>")
 
       $chapterGroups = Get-OrderedGroups -Items $sectionUnits -KeyScript { param($item) if ($null -ne $item.chapter_number -and $item.chapter_number.ToString().Trim()) { $item.chapter_number } else { 'text' } }
@@ -1003,7 +1022,7 @@ foreach ($source in $sources) {
   }
   [void]$page.AppendLine('      </div>')
   [void]$page.AppendLine('      <div class="reader-shell">')
-  Append-WorkToc -Builder $page -Source $source -VisibleUnits $visibleUnits
+  Append-WorkToc -Builder $page -Source $source -VisibleUnits $visibleUnits -WorkOccurrence $workOccurrence
   [void]$page.AppendLine('        <article>')
 
   $currentGroup = ''
@@ -1015,7 +1034,9 @@ foreach ($source in $sources) {
       $currentSection = ''
       $currentChapter = ''
       if ($unit.group_title -ne $source.work_title -and $unit.group_slug -ne 'text') {
-        [void]$page.AppendLine("          <h2 id=""group-$($unit.group_slug)"">$(Encode-Html $unit.group_title)</h2>")
+        $groupUnitsForBadge = @($visibleUnits | Where-Object { $_.group_slug -eq $unit.group_slug })
+        $groupBadge = if (Test-UnitsHaveLexical -WorkOccurrence $workOccurrence -Units $groupUnitsForBadge) { ' <span class="hud-badge">HUD</span>' } else { '' }
+        [void]$page.AppendLine("          <h2 id=""group-$($unit.group_slug)"">$(Encode-Html $unit.group_title)$groupBadge</h2>")
       }
     }
 
@@ -1023,7 +1044,9 @@ foreach ($source in $sources) {
       $currentSection = $unit.section_slug
       $currentChapter = ''
       if ($unit.section_title -ne $source.work_title -and $unit.section_slug -ne 'text') {
-        [void]$page.AppendLine("          <h3 id=""section-$($unit.group_slug)-$($unit.section_slug)"">$(Encode-Html $unit.section_title)</h3>")
+        $sectionUnitsForBadge = @($visibleUnits | Where-Object { $_.group_slug -eq $unit.group_slug -and $_.section_slug -eq $unit.section_slug })
+        $sectionBadge = if (Test-UnitsHaveLexical -WorkOccurrence $workOccurrence -Units $sectionUnitsForBadge) { ' <span class="hud-badge">HUD</span>' } else { '' }
+        [void]$page.AppendLine("          <h3 id=""section-$($unit.group_slug)-$($unit.section_slug)"">$(Encode-Html $unit.section_title)$sectionBadge</h3>")
       }
     }
 

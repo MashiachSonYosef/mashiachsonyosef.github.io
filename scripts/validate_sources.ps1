@@ -244,7 +244,7 @@ if (Test-Path $tokenIndexPath) {
 $occurrenceDir = Join-Path $LexicalDir 'occurrences'
 $lexicalFiles = if (Test-Path $occurrenceDir) { @(Get-ChildItem -Path $occurrenceDir -Filter '*.json') } else { @() }
 if ($lexicalFiles.Count -ne 1 -or ($lexicalFiles.Count -eq 1 -and $lexicalFiles[0].Name -ne 'orot.json')) {
-  $errors.Add("Lexical HUD scope should be limited to data/lexical/occurrences/orot.json for Orot Lights from Darkness")
+  $errors.Add("Lexical HUD scope should be limited to data/lexical/occurrences/orot.json for Orot")
 }
 foreach ($lexicalFile in $lexicalFiles) {
   $lexical = Get-Content -Path $lexicalFile.FullName -Raw -Encoding UTF8 | ConvertFrom-Json
@@ -258,15 +258,18 @@ foreach ($lexicalFile in $lexicalFiles) {
     continue
   }
   $source = $sourceByWorkId[$lexical.work_id]
+  if ($lexical.work_id -eq 'orot') {
+    $orotOccurrenceCount = @($lexical.units.PSObject.Properties).Count
+    if ($orotOccurrenceCount -ne $unitCountByWorkId['orot']) {
+      $errors.Add("Orot lexical occurrence count mismatch: expected $($unitCountByWorkId['orot']), found $orotOccurrenceCount")
+    }
+  }
   foreach ($unitProperty in @($lexical.units.PSObject.Properties)) {
     $unitOccurrence = $unitProperty.Value
     $sourceUnit = $source.units | Where-Object { $_.unit_id -eq $unitOccurrence.unit_id } | Select-Object -First 1
     if ($null -eq $sourceUnit) {
       $errors.Add("Lexical occurrence references missing source unit: $($unitOccurrence.unit_id)")
       continue
-    }
-    if ($sourceUnit.group_slug -ne 'lights-from-darkness') {
-      $errors.Add("Lexical occurrence outside Orot Lights from Darkness scope: $($unitOccurrence.unit_id)")
     }
     foreach ($field in @('unit_id', 'anchor_id', 'source_ref', 'paragraphs')) {
       if (-not $unitOccurrence.$field) {
@@ -296,6 +299,9 @@ foreach ($lexicalFile in $lexicalFiles) {
       if (-not $lexicalPage.Contains($requiredText)) {
         $errors.Add("Lexical target page missing required text '$requiredText' for $($lexical.work_id)")
       }
+    }
+    if ($lexical.work_id -eq 'orot' -and -not $lexicalPage.Contains('<span class="hud-badge">HUD</span>')) {
+      $errors.Add("Orot page missing visible HUD coverage indicators")
     }
     if ($lexicalPage.Contains('data-lexical-json')) {
       $errors.Add("Lexical target page contains stale per-occurrence lexical JSON for $($lexical.work_id)")

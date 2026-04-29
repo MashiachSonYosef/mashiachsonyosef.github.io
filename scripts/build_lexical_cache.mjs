@@ -9,8 +9,7 @@ const lexiconPath = path.join(lexicalDir, 'lexicon.json');
 const tokenIndexPath = path.join(lexicalDir, 'token-index.json');
 const lexicalScope = {
   work_id: 'orot',
-  group_slug: 'lights-from-darkness',
-  label: 'Orot, Lights from Darkness',
+  label: 'Orot',
 };
 
 const tokenRe = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4'"]*/gu;
@@ -95,8 +94,6 @@ for (const fileName of sourceFiles) {
   let workOccurrences = 0;
 
   for (const unit of source.units || []) {
-    if (unit.group_slug !== lexicalScope.group_slug) continue;
-
     totalUnits += 1;
     let unitOrdinal = 0;
     const paragraphs = [];
@@ -149,7 +146,6 @@ for (const fileName of sourceFiles) {
     work_title: source.work_title,
     work_slug: source.work_slug,
     scope_label: lexicalScope.label,
-    scope_group_slug: lexicalScope.group_slug,
     generated_at: new Date().toISOString(),
     total_occurrences: workOccurrences,
     units: occurrenceUnits,
