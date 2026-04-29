@@ -358,7 +358,7 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .overlay-block { border: 1px solid var(--line); background: var(--panel-2); padding: 12px; margin-bottom: 10px; }')
   [void]$Builder.AppendLine('    .overlay-label { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }')
   if ($IncludeLexicalStyles) {
-    [void]$Builder.AppendLine('    .lexical-inline { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; gap: 0 0.35em; direction: ltr; unicode-bidi: isolate; text-align: left; }')
+    [void]$Builder.AppendLine('    .lexical-inline { direction: ltr; unicode-bidi: isolate; text-align: right; }')
     [void]$Builder.AppendLine('    .lexical-word { display: inline-block; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: rtl; unicode-bidi: isolate; white-space: nowrap; }')
     [void]$Builder.AppendLine('    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }')
     [void]$Builder.AppendLine('    .lexical-hud { position: sticky; top: 14px; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }')
@@ -901,11 +901,6 @@ foreach ($source in $sources) {
     if ($null -ne $lexicalSample) {
       [void]$page.AppendLine('                <p class="hebrew lexical-inline" lang="he" dir="ltr">')
       $displayWords = @($lexicalSample.words)
-      if ($displayWords.Count -gt 1 -and $displayWords[-1].trailing_punctuation) {
-        $textWords = @($displayWords[0..($displayWords.Count - 2)])
-        [array]::Reverse($textWords)
-        $displayWords = @($textWords) + @($displayWords[-1])
-      }
       foreach ($word in $displayWords) {
         $buttonText = Convert-HebrewDisplayHtml $word.hebrew_word
         if ($word.trailing_punctuation) {
