@@ -289,6 +289,13 @@ foreach ($lexicalFile in $lexicalFiles) {
     if ($orotOccurrenceCount -ne $unitCountByWorkId['orot']) {
       $errors.Add("Orot lexical occurrence count mismatch: expected $($unitCountByWorkId['orot']), found $orotOccurrenceCount")
     }
+    $manifestPath = Join-Path $LexicalDir 'orot.manifest.json'
+    $chunkPath = Join-Path $LexicalDir 'orot-chunks\orot-core.json'
+    foreach ($externalLexicalPath in @($manifestPath, $chunkPath)) {
+      if (-not (Test-Path $externalLexicalPath)) {
+        $errors.Add("Missing external Orot lexical payload file: $externalLexicalPath")
+      }
+    }
   }
   foreach ($unitProperty in @($lexical.units.PSObject.Properties)) {
     $unitOccurrence = $unitProperty.Value
@@ -321,9 +328,14 @@ foreach ($lexicalFile in $lexicalFiles) {
   $lexicalPagePath = Join-Path $source.work_slug 'index.html'
   if (Test-Path $lexicalPagePath) {
     $lexicalPage = Get-Content -Path $lexicalPagePath -Raw -Encoding UTF8
-    foreach ($requiredText in @('data-lexical-occurrences', 'data-lexical-token-index', 'data-lexical-lexicon', 'data-lexical-slot', 'data-lexical-hud', 'Clicked Hebrew form', 'Strict renderings', 'Breakdown', 'Possible lexical entries', 'Show other possible entries', 'Sources / licenses', 'No lexical entry yet.')) {
+    foreach ($requiredText in @('data-lexical-occurrences', 'data-lexical-config', 'data-lexical-slot', 'data-lexical-hud', 'Clicked Hebrew form', 'Strict renderings', 'Breakdown', 'Possible lexical entries', 'Show other possible entries', 'Sources / licenses', 'No lexical entry yet.')) {
       if (-not $lexicalPage.Contains($requiredText)) {
         $errors.Add("Lexical target page missing required text '$requiredText' for $($lexical.work_id)")
+      }
+    }
+    foreach ($embeddedPayloadMarker in @('data-lexical-token-index>', 'data-lexical-lexicon>')) {
+      if ($lexicalPage.Contains($embeddedPayloadMarker)) {
+        $errors.Add("Lexical target page still embeds full lexical payload marker '$embeddedPayloadMarker' for $($lexical.work_id)")
       }
     }
     if ($lexical.work_id -eq 'orot' -and -not $lexicalPage.Contains('<span class="hud-badge">Lexical layer active</span>')) {

@@ -155,27 +155,41 @@ if (@($betorEntry.source_rows).Count -ne 1 -or @($betorEntry.source_rows)[0].sou
 $orotHtmlPath = Join-Path $PSScriptRoot '..\orot\index.html'
 if (Test-Path -LiteralPath $orotHtmlPath) {
   $orotHtml = Get-Content -LiteralPath $orotHtmlPath -Raw -Encoding UTF8
-  $tokenMarker = 'data-lexical-token-index>'
-  $tokenStart = $orotHtml.IndexOf($tokenMarker)
-  if ($tokenStart -lt 0) { throw "Orot page missing embedded token-index JSON." }
-  $tokenStart += $tokenMarker.Length
-  $tokenEnd = $orotHtml.IndexOf('</script>', $tokenStart)
-  $pageTokenIndex = $orotHtml.Substring($tokenStart, $tokenEnd - $tokenStart) | ConvertFrom-Json
-  $pageLaUmmah = @($pageTokenIndex.forms | Where-Object { $_.surface_word -eq $laUmmahSurface }) | Select-Object -First 1
-
-  $lexiconMarker = 'data-lexical-lexicon>'
-  $lexiconStart = $orotHtml.IndexOf($lexiconMarker)
-  if ($lexiconStart -lt 0) { throw "Orot page missing embedded lexicon JSON." }
-  $lexiconStart += $lexiconMarker.Length
-  $lexiconEnd = $orotHtml.IndexOf('</script>', $lexiconStart)
-  $pageLexicon = $orotHtml.Substring($lexiconStart, $lexiconEnd - $lexiconStart) | ConvertFrom-Json
-  $pageLaUmmahEntry = @($pageLexicon.entries | Where-Object { $_.entry_id -eq $pageLaUmmah.lexicon_entry_id }) | Select-Object -First 1
-  $pageLaUmmahSources = @($pageLaUmmahEntry.source_rows)
-  if ($pageLaUmmahSources.Count -ne 1 -or $pageLaUmmahSources[0].source_id -ne 'L63772') {
-    throw "Expected la-ummah embedded default source rows to include only Wikidata L63772."
+  foreach ($requiredExternalMarker in @('data-lexical-config>', 'loadTokenRow', 'chunkPromises', 'fetchJson')) {
+    if (-not $orotHtml.Contains($requiredExternalMarker)) {
+      throw "Orot page missing external lexical payload marker: $requiredExternalMarker"
+    }
   }
-  if (@($pageLaUmmahEntry.secondary_source_rows).Count -ne 0) {
-    throw "Expected la-ummah embedded secondary source rows to be empty after noise filtering."
+  foreach ($forbiddenEmbeddedMarker in @('data-lexical-token-index>', 'data-lexical-lexicon>')) {
+    if ($orotHtml.Contains($forbiddenEmbeddedMarker)) {
+      throw "Orot page still embeds full lexical payload marker: $forbiddenEmbeddedMarker"
+    }
+  }
+
+  $manifestPath = Join-Path $PSScriptRoot '..\data\lexical\orot.manifest.json'
+  $chunkPath = Join-Path $PSScriptRoot '..\data\lexical\orot-chunks\orot-core.json'
+  foreach ($path in @($manifestPath, $chunkPath)) {
+    if (-not (Test-Path -LiteralPath $path)) {
+      throw "Required external Orot lexical payload file not found: $path"
+    }
+  }
+  $manifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
+  $chunk = Get-Content -LiteralPath $chunkPath -Raw -Encoding UTF8 | ConvertFrom-Json
+  $pageTokenIndex = $chunk.token_index
+  $pageLaUmmah = @($pageTokenIndex.forms | Where-Object { $_.surface_word -eq $laUmmahSurface }) | Select-Object -First 1
+  if ($manifest.token_chunks.PSObject.Properties.Name -notcontains [string]$pageLaUmmah.token_index_id) {
+    throw "Orot manifest does not map la-ummah token to a chunk."
+  }
+
+  $pageLexicon = $chunk.lexicon
+  $pageSourceRows = $chunk.source_rows
+  $pageLaUmmahEntry = @($pageLexicon.entries | Where-Object { $_.entry_id -eq $pageLaUmmah.lexicon_entry_id }) | Select-Object -First 1
+  $pageLaUmmahSources = @($pageLaUmmahEntry.source_row_ids | ForEach-Object { $pageSourceRows.PSObject.Properties[[string]$_].Value })
+  if ($pageLaUmmahSources.Count -ne 1 -or $pageLaUmmahSources[0].source_id -ne 'L63772') {
+    throw "Expected la-ummah external default source rows to include only Wikidata L63772."
+  }
+  if (@($pageLaUmmahEntry.secondary_source_row_ids).Count -ne 0) {
+    throw "Expected la-ummah external secondary source rows to be empty after noise filtering."
   }
   foreach ($noise in @('L65883', 'L204490', 'H519', 'H520', 'H522', 'H4965')) {
     if ($orotHtml.Contains($noise) -and @($pageLaUmmahSources.source_id) -contains $noise) {
@@ -184,14 +198,18 @@ if (Test-Path -LiteralPath $orotHtmlPath) {
   }
 
   $pageBetor = @($pageTokenIndex.forms | Where-Object { $_.surface_word -eq $betorSurface }) | Select-Object -First 1
+  if ($manifest.token_chunks.PSObject.Properties.Name -notcontains [string]$pageBetor.token_index_id) {
+    throw "Orot manifest does not map betor token to a chunk."
+  }
   Assert-Codepoints -Label 'page betor clicked token' -Value $pageBetor.surface_word -Expected @(0x05D1, 0x05B0, 0x05BC, 0x05EA, 0x05D5, 0x05B9, 0x05E8)
   Assert-Codepoints -Label 'page betor prefix breakdown' -Value @($pageBetor.breakdown)[0].hebrew -Expected @(0x05D1, 0x05B0, 0x05BC, 0x05BE)
   Assert-Codepoints -Label 'page betor base breakdown' -Value @($pageBetor.breakdown)[1].hebrew -Expected @(0x05EA, 0x05D5, 0x05B9, 0x05E8)
   $pageBetorEntry = @($pageLexicon.entries | Where-Object { $_.entry_id -eq $pageBetor.lexicon_entry_id }) | Select-Object -First 1
-  if ($null -eq $pageBetorEntry -or @($pageBetorEntry.possible_entries).Count -ne 1 -or @($pageBetorEntry.secondary_source_rows).Count -ne 0) {
+  if ($null -eq $pageBetorEntry -or @($pageBetorEntry.possible_entries).Count -ne 1 -or @($pageBetorEntry.secondary_source_row_ids).Count -ne 0) {
     throw "Expected generated betor payload to expose only the fixed-expression contextual entry by default."
   }
-  if (@($pageBetorEntry.source_rows).Count -ne 1 -or @($pageBetorEntry.source_rows)[0].source_family -ne 'workspace') {
+  $pageBetorSources = @($pageBetorEntry.source_row_ids | ForEach-Object { $pageSourceRows.PSObject.Properties[[string]$_].Value })
+  if ($pageBetorSources.Count -ne 1 -or $pageBetorSources[0].source_family -ne 'workspace') {
     throw "Expected generated betor payload sources to be limited to the workspace fixed-expression rule."
   }
 }
@@ -253,7 +271,7 @@ function Test-LexicalSample {
     throw "Generated HTML contains pre-rendered lexical token spans for $($Sample.Label); wrapping should happen client-side."
   }
 
-  foreach ($requiredPattern in @('data-lexical-occurrences', 'data-lexical-token-index', 'data-lexical-lexicon', 'data-lexical-slot', 'data-lexical-hud', 'data-hud-surface-renderings', 'data-hud-breakdown', 'Show other possible entries')) {
+  foreach ($requiredPattern in @('data-lexical-occurrences', 'data-lexical-config', 'data-lexical-slot', 'data-lexical-hud', 'data-hud-surface-renderings', 'data-hud-breakdown', 'Show other possible entries')) {
     if (-not $html.Contains($requiredPattern)) {
       throw "Generated page missing lexical renderer marker for $($Sample.Label): $requiredPattern"
     }
@@ -264,7 +282,7 @@ function Test-LexicalSample {
     }
   }
 
-  foreach ($requiredRendererText in @('.lexical-word { display: inline;', 'direction: inherit;', 'unicode-bidi: normal;', 'span.dataset.lexicalIndex = tokenIndexId || "";', 'const tokenRow = tokenRows.get(button.dataset.lexicalIndex) || {};', 'const groupedEntries = new Map();')) {
+  foreach ($requiredRendererText in @('.lexical-word { display: inline;', 'direction: inherit;', 'unicode-bidi: normal;', 'span.dataset.lexicalIndex = tokenIndexId || "";', 'const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);', 'const groupedEntries = new Map();')) {
     if (-not $html.Contains($requiredRendererText)) {
       throw "Generated page missing global bidi-safe lexical renderer rule for $($Sample.Label): $requiredRendererText"
     }
