@@ -377,6 +377,7 @@ function Append-SiteHead {
     [void]$Builder.AppendLine('    .lexical-entry .entry-hebrew { color: var(--hebrew); }')
     [void]$Builder.AppendLine('    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }')
     [void]$Builder.AppendLine('    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }')
+    [void]$Builder.AppendLine('    .other-entries { margin-top: 12px; }')
     [void]$Builder.AppendLine('    .source-details { margin-top: 16px; }')
     [void]$Builder.AppendLine('    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }')
     [void]$Builder.AppendLine('    .source-row:first-child { border-top: 0; }')
@@ -521,21 +522,7 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        });')
   [void]$Builder.AppendLine('        node.appendChild(list);')
   [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const renderPossibleEntries = (root, view, hasLexicalEntry) => {')
-  [void]$Builder.AppendLine('        const label = root.querySelector("[data-hud-renderings-label]");')
-  [void]$Builder.AppendLine('        const node = root.querySelector("[data-hud-renderings]");')
-  [void]$Builder.AppendLine('        if (!node) return;')
-  [void]$Builder.AppendLine('        node.replaceChildren();')
-  [void]$Builder.AppendLine('        if (label) label.textContent = "Possible lexical entries";')
-  [void]$Builder.AppendLine('        if (!hasLexicalEntry) { node.textContent = "No lexical entry yet."; return; }')
-  [void]$Builder.AppendLine('        let entries = Array.isArray(view.possible_entries) ? view.possible_entries : [];')
-  [void]$Builder.AppendLine('        if (view.surface_context_status === "resolved_prefix_base") entries = entries.filter((entry) => entry.context_role === "likely_contextual");')
-  [void]$Builder.AppendLine('        entries = entries.filter((entry) => entry.relation_label !== "related root-field");')
-  [void]$Builder.AppendLine('        if (!entries.length) { setList(root, "[data-hud-renderings]", view.strict_renderings || ["No lexical entry yet."]); return; }')
-  [void]$Builder.AppendLine('        const note = document.createElement("p");')
-  [void]$Builder.AppendLine('        note.className = "lexical-context-note";')
-  [void]$Builder.AppendLine('        note.textContent = view.surface_context_note || view.context_note || "Context not resolved.";')
-  [void]$Builder.AppendLine('        node.appendChild(note);')
+  [void]$Builder.AppendLine('      const renderEntryList = (entries) => {')
   [void]$Builder.AppendLine('        const list = document.createElement("div");')
   [void]$Builder.AppendLine('        list.className = "lexical-entry-list";')
   [void]$Builder.AppendLine('        const groupedEntries = new Map();')
@@ -552,7 +539,7 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('          const card = document.createElement("section");')
   [void]$Builder.AppendLine('          card.className = "lexical-entry";')
   [void]$Builder.AppendLine('          const title = document.createElement("h3");')
-  [void]$Builder.AppendLine('          const role = entry.context_role === "likely_contextual" ? "Likely contextual entry" : "Other possible entries";')
+  [void]$Builder.AppendLine('          const role = entry.context_role === "likely_contextual" ? "Likely contextual entry" : "Other possible entry";')
   [void]$Builder.AppendLine('          title.append(role, ": ");')
   [void]$Builder.AppendLine('          const spelling = document.createElement("span");')
   [void]$Builder.AppendLine('          spelling.className = "entry-hebrew";')
@@ -573,7 +560,34 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('          card.append(title, meta, renderings);')
   [void]$Builder.AppendLine('          list.appendChild(card);')
   [void]$Builder.AppendLine('        });')
-  [void]$Builder.AppendLine('        node.appendChild(list);')
+  [void]$Builder.AppendLine('        return list;')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const renderPossibleEntries = (root, view, hasLexicalEntry) => {')
+  [void]$Builder.AppendLine('        const label = root.querySelector("[data-hud-renderings-label]");')
+  [void]$Builder.AppendLine('        const node = root.querySelector("[data-hud-renderings]");')
+  [void]$Builder.AppendLine('        if (!node) return;')
+  [void]$Builder.AppendLine('        node.replaceChildren();')
+  [void]$Builder.AppendLine('        if (label) label.textContent = "Possible lexical entries";')
+  [void]$Builder.AppendLine('        if (!hasLexicalEntry) { node.textContent = "No lexical entry yet."; return; }')
+  [void]$Builder.AppendLine('        let entries = Array.isArray(view.possible_entries) ? view.possible_entries : [];')
+  [void]$Builder.AppendLine('        entries = entries.filter((entry) => entry.relation_label !== "related root-field");')
+  [void]$Builder.AppendLine('        if (!entries.length) { setList(root, "[data-hud-renderings]", view.strict_renderings || ["No lexical entry yet."]); return; }')
+  [void]$Builder.AppendLine('        const likelyEntries = entries.filter((entry) => entry.context_role === "likely_contextual");')
+  [void]$Builder.AppendLine('        const otherEntries = entries.filter((entry) => entry.context_role !== "likely_contextual");')
+  [void]$Builder.AppendLine('        const note = document.createElement("p");')
+  [void]$Builder.AppendLine('        note.className = "lexical-context-note";')
+  [void]$Builder.AppendLine('        note.textContent = likelyEntries.length ? (view.surface_context_note || view.context_note || "Context resolved.") : "Context not resolved.";')
+  [void]$Builder.AppendLine('        node.appendChild(note);')
+  [void]$Builder.AppendLine('        if (likelyEntries.length) node.appendChild(renderEntryList(likelyEntries));')
+  [void]$Builder.AppendLine('        if (otherEntries.length) {')
+  [void]$Builder.AppendLine('          const details = document.createElement("details");')
+  [void]$Builder.AppendLine('          details.className = "other-entries";')
+  [void]$Builder.AppendLine('          const summary = document.createElement("summary");')
+  [void]$Builder.AppendLine('          summary.textContent = "Show other possible entries";')
+  [void]$Builder.AppendLine('          details.appendChild(summary);')
+  [void]$Builder.AppendLine('          details.appendChild(renderEntryList(otherEntries));')
+  [void]$Builder.AppendLine('          node.appendChild(details);')
+  [void]$Builder.AppendLine('        }')
   [void]$Builder.AppendLine('      };')
   [void]$Builder.AppendLine('      const renderSources = (sourceBox, rows) => {')
   [void]$Builder.AppendLine('        if (!sourceBox) return;')
@@ -711,6 +725,30 @@ function Test-UnitsHaveLexical {
   return $false
 }
 
+function Test-ExcludedOtherLexicalEntry {
+  param([object]$Entry)
+
+  if ($Entry.context_role -eq 'likely_contextual') { return $false }
+
+  $renderingText = (@($Entry.lemma, $Entry.match_key, $Entry.source_id) + @($Entry.strict_renderings)) -join ' '
+  $renderingText = $renderingText.ToLowerInvariant()
+  foreach ($pattern in @(
+    'tibetan',
+    'lama, title',
+    'fastener',
+    'threaded hole',
+    '\bnut\b',
+    'metheg-ha-ammah',
+    'epithet of gath',
+    'hill in palestine',
+    '\bpalestine\b'
+  )) {
+    if ($renderingText -match $pattern) { return $true }
+  }
+
+  return $false
+}
+
 function Get-WorkLexicalPayload {
   param(
     [AllowNull()][object]$WorkOccurrence,
@@ -760,7 +798,9 @@ function Get-WorkLexicalPayload {
   $entries = @($entryIds.Keys | Sort-Object | ForEach-Object {
     if ($LexicalCache.lexicon_by_id.ContainsKey($_)) {
       $entry = $LexicalCache.lexicon_by_id[$_]
-      $rawPossibleEntries = @($entry.possible_entries | Where-Object { $_.relation_label -ne 'related root-field' })
+      $rawPossibleEntries = @($entry.possible_entries | Where-Object {
+        $_.relation_label -ne 'related root-field' -and -not (Test-ExcludedOtherLexicalEntry -Entry $_)
+      })
       if ($entry.disambiguation_status -eq 'likely') {
         $rawPossibleEntries = @($rawPossibleEntries | Where-Object { $_.context_role -eq 'likely_contextual' })
       }
