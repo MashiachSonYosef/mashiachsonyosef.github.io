@@ -358,7 +358,7 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .overlay-block { border: 1px solid var(--line); background: var(--panel-2); padding: 12px; margin-bottom: 10px; }')
   [void]$Builder.AppendLine('    .overlay-label { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }')
   if ($IncludeLexicalStyles) {
-    [void]$Builder.AppendLine('    .lexical-inline { direction: ltr; unicode-bidi: isolate; text-align: right; }')
+    [void]$Builder.AppendLine('    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; }')
     [void]$Builder.AppendLine('    .lexical-word { display: inline-block; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: rtl; unicode-bidi: isolate; white-space: nowrap; }')
     [void]$Builder.AppendLine('    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }')
     [void]$Builder.AppendLine('    .lexical-hud { position: sticky; top: 14px; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }')
@@ -469,18 +469,66 @@ function Append-LexicalHudScript {
   $geresh = [char]0x05F3
   [void]$Builder.AppendLine('  <script>')
   [void]$Builder.AppendLine('    (() => {')
-  [void]$Builder.AppendLine('      const indexNode = document.querySelector("[data-lexical-index]");')
-  [void]$Builder.AppendLine('      const lexicalIndex = indexNode ? JSON.parse(indexNode.textContent) : { entries: [] };')
-  [void]$Builder.AppendLine('      const lexiconEntries = new Map((lexicalIndex.entries || []).map((entry) => [entry.entry_id, entry]));')
-  [void]$Builder.AppendLine('      const sampleNodes = Array.from(document.querySelectorAll("[data-lexical-json]"));')
-  [void]$Builder.AppendLine('      if (!sampleNodes.length) return;')
-  [void]$Builder.AppendLine('      const samples = new Map();')
-  [void]$Builder.AppendLine('      sampleNodes.forEach((node) => {')
-  [void]$Builder.AppendLine('        const sample = JSON.parse(node.textContent);')
-  [void]$Builder.AppendLine('        samples.set(sample.sample_id, sample);')
+  [void]$Builder.AppendLine('      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");')
+  [void]$Builder.AppendLine('      const lexiconNode = document.querySelector("[data-lexical-lexicon]");')
+  [void]$Builder.AppendLine('      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };')
+  [void]$Builder.AppendLine('      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };')
+  [void]$Builder.AppendLine('      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");')
+  [void]$Builder.AppendLine('      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };')
+  [void]$Builder.AppendLine('      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));')
+  [void]$Builder.AppendLine('      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));')
+  [void]$Builder.AppendLine('      const hud = document.querySelector("[data-lexical-hud]");')
+  [void]$Builder.AppendLine("      const normalizeHebrewDisplay = (value) => typeof value === ""string"" ? value.replace(/([\u0590-\u05FF])'/g, ""`$1$geresh"") : value;")
+  [void]$Builder.AppendLine('      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27]*/gu;')
+  [void]$Builder.AppendLine('      const makeWordSpan = (text, tokenIndexId, ordinal) => {')
+  [void]$Builder.AppendLine('        const row = tokenRows.get(tokenIndexId) || {};')
+  [void]$Builder.AppendLine('        const span = document.createElement("span");')
+  [void]$Builder.AppendLine('        span.className = "lexical-word";')
+  [void]$Builder.AppendLine('        span.lang = "he";')
+  [void]$Builder.AppendLine('        span.dir = "rtl";')
+  [void]$Builder.AppendLine('        span.role = "button";')
+  [void]$Builder.AppendLine('        span.tabIndex = 0;')
+  [void]$Builder.AppendLine('        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;')
+  [void]$Builder.AppendLine('        span.dataset.lexicalIndex = tokenIndexId || "";')
+  [void]$Builder.AppendLine('        span.dataset.lexicalEntry = row.lexicon_entry_id || "";')
+  [void]$Builder.AppendLine('        span.dataset.lexicalStatus = row.status || "unmatched";')
+  [void]$Builder.AppendLine('        span.setAttribute("aria-pressed", "false");')
+  [void]$Builder.AppendLine('        span.textContent = normalizeHebrewDisplay(text);')
+  [void]$Builder.AppendLine('        return span;')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const wrapTextNode = (node, tokenIds, state) => {')
+  [void]$Builder.AppendLine('        const text = node.nodeValue;')
+  [void]$Builder.AppendLine('        const matches = Array.from(text.matchAll(hebrewTokenPattern));')
+  [void]$Builder.AppendLine('        if (!matches.length) return;')
+  [void]$Builder.AppendLine('        const fragment = document.createDocumentFragment();')
+  [void]$Builder.AppendLine('        let position = 0;')
+  [void]$Builder.AppendLine('        matches.forEach((match) => {')
+  [void]$Builder.AppendLine('          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));')
+  [void]$Builder.AppendLine('          const tokenIndexId = tokenIds[state.index++];')
+  [void]$Builder.AppendLine('          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));')
+  [void]$Builder.AppendLine('          position = match.index + match[0].length;')
+  [void]$Builder.AppendLine('        });')
+  [void]$Builder.AppendLine('        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));')
+  [void]$Builder.AppendLine('        node.parentNode.replaceChild(fragment, node);')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const wrapParagraph = (paragraph, tokenIds) => {')
+  [void]$Builder.AppendLine('        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);')
+  [void]$Builder.AppendLine('        const textNodes = [];')
+  [void]$Builder.AppendLine('        while (walker.nextNode()) textNodes.push(walker.currentNode);')
+  [void]$Builder.AppendLine('        const state = { index: 0 };')
+  [void]$Builder.AppendLine('        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {')
+  [void]$Builder.AppendLine('        const unitData = occurrences.units ? occurrences.units[unit.id] : null;')
+  [void]$Builder.AppendLine('        if (!unitData) return;')
+  [void]$Builder.AppendLine('        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {')
+  [void]$Builder.AppendLine('          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);')
+  [void]$Builder.AppendLine('          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);')
+  [void]$Builder.AppendLine('          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);')
+  [void]$Builder.AppendLine('        });')
   [void]$Builder.AppendLine('      });')
   [void]$Builder.AppendLine('      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));')
-  [void]$Builder.AppendLine("      const normalizeHebrewDisplay = (value) => typeof value === ""string"" ? value.replace(/([\u0590-\u05FF])'/g, ""`$1$geresh"") : value;")
+  [void]$Builder.AppendLine('      if (!buttons.length || !hud) return;')
   [void]$Builder.AppendLine('      const setText = (root, selector, value) => {')
   [void]$Builder.AppendLine('        const node = root.querySelector(selector);')
   [void]$Builder.AppendLine('        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";')
@@ -499,6 +547,7 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('      const renderSources = (sourceBox, rows) => {')
   [void]$Builder.AppendLine('        if (!sourceBox) return;')
   [void]$Builder.AppendLine('        sourceBox.replaceChildren();')
+  [void]$Builder.AppendLine('        if (!rows || !rows.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }')
   [void]$Builder.AppendLine('        (rows || []).forEach((row) => {')
   [void]$Builder.AppendLine('          const section = document.createElement("div");')
   [void]$Builder.AppendLine('          section.className = "source-row";')
@@ -518,14 +567,20 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('          sourceBox.appendChild(section);')
   [void]$Builder.AppendLine('        });')
   [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const buildWordView = (occurrence) => {')
-  [void]$Builder.AppendLine('        const entry = occurrence ? (lexiconEntries.get(occurrence.lexicon_entry_id) || {}) : {};')
-  [void]$Builder.AppendLine('        return { ...entry, ...occurrence, source_rows: entry.source_rows || [] };')
+  [void]$Builder.AppendLine('      const buildWordView = (button) => {')
+  [void]$Builder.AppendLine('        const tokenRow = tokenRows.get(button.dataset.lexicalIndex) || {};')
+  [void]$Builder.AppendLine('        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";')
+  [void]$Builder.AppendLine('        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};')
+  [void]$Builder.AppendLine('        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [] };')
   [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const renderWord = (unit, hud, word) => {')
-  [void]$Builder.AppendLine('        if (!unit || !hud || !word) return;')
-  [void]$Builder.AppendLine('        const view = buildWordView(word);')
-  [void]$Builder.AppendLine('        unit.querySelectorAll("[data-lexical-token]").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.lexicalToken === word.token_id)));')
+  [void]$Builder.AppendLine('      const renderWord = (button) => {')
+  [void]$Builder.AppendLine('        const unit = button.closest("[data-lexical-unit]");')
+  [void]$Builder.AppendLine('        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;')
+  [void]$Builder.AppendLine('        if (!unit || !slot) return;')
+  [void]$Builder.AppendLine('        if (hud.parentElement !== slot) slot.appendChild(hud);')
+  [void]$Builder.AppendLine('        const view = buildWordView(button);')
+  [void]$Builder.AppendLine('        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));')
+  [void]$Builder.AppendLine('        button.setAttribute("aria-pressed", "true");')
   [void]$Builder.AppendLine('        setText(hud, "[data-hud-word]", view.hebrew_word);')
   [void]$Builder.AppendLine('        setText(hud, "[data-hud-transliteration]", view.transliteration);')
   [void]$Builder.AppendLine('        setList(hud, "[data-hud-renderings]", view.strict_renderings);')
@@ -539,11 +594,7 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('      };')
   [void]$Builder.AppendLine('      buttons.forEach((button) => {')
   [void]$Builder.AppendLine('        button.addEventListener("click", () => {')
-  [void]$Builder.AppendLine('          const unit = button.closest("[data-lexical-unit]");')
-  [void]$Builder.AppendLine('          const hud = unit ? unit.querySelector("[data-lexical-hud]") : null;')
-  [void]$Builder.AppendLine('          const sample = unit ? samples.get(unit.dataset.lexicalSample) : null;')
-  [void]$Builder.AppendLine('          const word = sample ? (sample.words || []).find((item) => item.token_id === button.dataset.lexicalToken) : null;')
-  [void]$Builder.AppendLine('          renderWord(unit, hud, word);')
+  [void]$Builder.AppendLine('          renderWord(button);')
   [void]$Builder.AppendLine('        });')
   [void]$Builder.AppendLine('        button.addEventListener("keydown", (event) => {')
   [void]$Builder.AppendLine('          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }')
@@ -552,38 +603,100 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('      document.querySelectorAll("[data-hud-close]").forEach((button) => {')
   [void]$Builder.AppendLine('        button.addEventListener("click", () => {')
   [void]$Builder.AppendLine('          const hud = button.closest("[data-lexical-hud]");')
-  [void]$Builder.AppendLine('          const unit = button.closest("[data-lexical-unit]");')
   [void]$Builder.AppendLine('          if (hud) hud.hidden = true;')
-  [void]$Builder.AppendLine('          if (unit) unit.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));')
+  [void]$Builder.AppendLine('          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));')
   [void]$Builder.AppendLine('        });')
   [void]$Builder.AppendLine('      });')
   [void]$Builder.AppendLine('    })();')
   [void]$Builder.AppendLine('  </script>')
 }
 
-function Get-LexicalSamplesByUnit {
+function Get-LexicalCache {
   param([string]$LexicalDir = 'data/lexical')
 
-  $samples = @{}
-  if (-not (Test-Path $LexicalDir)) { return $samples }
+  $lexiconPath = Join-Path $LexicalDir 'lexicon.json'
+  $tokenIndexPath = Join-Path $LexicalDir 'token-index.json'
+  $occurrencesDir = Join-Path $LexicalDir 'occurrences'
 
-  foreach ($file in @(Get-ChildItem -Path $LexicalDir -Filter '*.json')) {
-    $sample = Read-Json -Path $file.FullName
-    if ($sample.work_id -and $sample.unit_id) {
-      $samples["$($sample.work_id)|$($sample.unit_id)"] = $sample
+  $lexicon = if (Test-Path $lexiconPath) { Read-Json -Path $lexiconPath } else { [pscustomobject]@{ schema_version = 1; entries = @() } }
+  $tokenIndex = if (Test-Path $tokenIndexPath) { Read-Json -Path $tokenIndexPath } else { [pscustomobject]@{ schema_version = 1; forms = @() } }
+
+  $tokenIndexById = @{}
+  foreach ($row in @($tokenIndex.forms)) {
+    if ($row.token_index_id) {
+      $tokenIndexById[[string]$row.token_index_id] = $row
     }
   }
-  return $samples
-}
 
-function Get-LexicalIndex {
-  param([string]$Path = 'data/lexical/lexicon.json')
-
-  if (-not (Test-Path $Path)) {
-    return [pscustomobject]@{ schema_version = 1; entries = @() }
+  $lexiconById = @{}
+  foreach ($entry in @($lexicon.entries)) {
+    if ($entry.entry_id) {
+      $lexiconById[[string]$entry.entry_id] = $entry
+    }
   }
 
-  return Read-Json -Path $Path
+  $occurrencesByWork = @{}
+  if (Test-Path $occurrencesDir) {
+    foreach ($file in @(Get-ChildItem -Path $occurrencesDir -Filter '*.json')) {
+      $occurrence = Read-Json -Path $file.FullName
+      if ($occurrence.work_id) {
+        $occurrencesByWork[[string]$occurrence.work_id] = $occurrence
+      }
+    }
+  }
+
+  return [pscustomobject]@{
+    lexicon = $lexicon
+    token_index = $tokenIndex
+    token_index_by_id = $tokenIndexById
+    lexicon_by_id = $lexiconById
+    occurrences_by_work = $occurrencesByWork
+  }
+}
+
+function Get-LexicalUnitOccurrence {
+  param(
+    [AllowNull()][object]$WorkOccurrence,
+    [string]$UnitId
+  )
+
+  if ($null -eq $WorkOccurrence -or $null -eq $WorkOccurrence.units) { return $null }
+  $property = $WorkOccurrence.units.PSObject.Properties[$UnitId]
+  if ($null -eq $property) { return $null }
+  return $property.Value
+}
+
+function Get-WorkLexicalPayload {
+  param(
+    [AllowNull()][object]$WorkOccurrence,
+    [object]$LexicalCache
+  )
+
+  $tokenIds = @{}
+  $entryIds = @{}
+  if ($null -ne $WorkOccurrence -and $null -ne $WorkOccurrence.units) {
+    foreach ($unitProperty in @($WorkOccurrence.units.PSObject.Properties)) {
+      foreach ($paragraph in @($unitProperty.Value.paragraphs)) {
+        foreach ($tokenIndexId in @($paragraph.token_index_ids)) {
+          if ($tokenIndexId) {
+            $tokenKey = [string]$tokenIndexId
+            $tokenIds[$tokenKey] = $true
+            if ($LexicalCache.token_index_by_id.ContainsKey($tokenKey)) {
+              $row = $LexicalCache.token_index_by_id[$tokenKey]
+              if ($row.lexicon_entry_id) { $entryIds[[string]$row.lexicon_entry_id] = $true }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  $forms = @($tokenIds.Keys | Sort-Object | ForEach-Object { if ($LexicalCache.token_index_by_id.ContainsKey($_)) { $LexicalCache.token_index_by_id[$_] } })
+  $entries = @($entryIds.Keys | Sort-Object | ForEach-Object { if ($LexicalCache.lexicon_by_id.ContainsKey($_)) { $LexicalCache.lexicon_by_id[$_] } })
+  return [pscustomobject]@{
+    token_index = [pscustomobject]@{ schema_version = 1; forms = $forms }
+    lexicon = [pscustomobject]@{ schema_version = 1; entries = $entries }
+  }
 }
 
 function Get-OrderedGroups {
@@ -741,8 +854,7 @@ function Append-WorkToc {
 }
 
 $sources = @(Get-ChildItem -Path $SourceDir -Filter '*.json' | ForEach-Object { Read-Json -Path $_.FullName } | Sort-Object work_title)
-$lexicalSamplesByUnit = Get-LexicalSamplesByUnit
-$lexicalIndex = Get-LexicalIndex
+$lexicalCache = Get-LexicalCache
 
 $homePage = New-Object System.Text.StringBuilder
 Append-SiteHead -Builder $homePage -Title 'Translation Workspace'
@@ -818,15 +930,11 @@ foreach ($source in $sources) {
     }
   }
   $singleSourceNote = ($sourceNotes.Count -eq 1)
-  $workHasLexicalSample = $false
-  foreach ($unit in $visibleUnits) {
-    if ($lexicalSamplesByUnit.ContainsKey("$($source.work_id)|$($unit.unit_id)")) {
-      $workHasLexicalSample = $true
-      break
-    }
-  }
+  $workOccurrence = if ($lexicalCache.occurrences_by_work.ContainsKey([string]$source.work_id)) { $lexicalCache.occurrences_by_work[[string]$source.work_id] } else { $null }
+  $workHasLexical = ($null -ne $workOccurrence)
+  $workLexicalPayload = if ($workHasLexical) { Get-WorkLexicalPayload -WorkOccurrence $workOccurrence -LexicalCache $lexicalCache } else { $null }
 
-  Append-SiteHead -Builder $page -Title $source.work_title -IncludeLexicalStyles:$workHasLexicalSample
+  Append-SiteHead -Builder $page -Title $source.work_title -IncludeLexicalStyles:$workHasLexical
   [void]$page.AppendLine('  <main>')
   [void]$page.AppendLine('    <div class="shell">')
   [void]$page.AppendLine('      <div class="hero" id="work-top">')
@@ -899,11 +1007,10 @@ foreach ($source in $sources) {
     $clean = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'clean_translation'
     $isDone = Test-HasContent $strict
     $completeState = if ($isDone) { 'true' } else { 'false' }
-    $lexicalKey = "$($source.work_id)|$($unit.unit_id)"
-    $lexicalSample = if ($lexicalSamplesByUnit.ContainsKey($lexicalKey)) { $lexicalSamplesByUnit[$lexicalKey] } else { $null }
+    $lexicalUnit = Get-LexicalUnitOccurrence -WorkOccurrence $workOccurrence -UnitId $unit.unit_id
     $lexicalAttrs = ''
-    if ($null -ne $lexicalSample) {
-      $lexicalAttrs = " data-lexical-unit data-lexical-sample=""$(Encode-Html $lexicalSample.sample_id)"""
+    if ($null -ne $lexicalUnit) {
+      $lexicalAttrs = ' data-lexical-unit'
     }
 
     [void]$page.AppendLine("          <section class=""unit"" id=""$($unit.anchor_id)"" data-unit data-complete=""$completeState""$lexicalAttrs>")
@@ -917,19 +1024,11 @@ foreach ($source in $sources) {
     [void]$page.AppendLine('            </div>')
     [void]$page.AppendLine('            <div class="unit-grid">')
     [void]$page.AppendLine('              <div>')
-    if ($null -ne $lexicalSample) {
-      [void]$page.AppendLine('                <p class="hebrew lexical-inline" lang="he" dir="ltr">')
-      $displayWords = @($lexicalSample.words)
-      foreach ($word in $displayWords) {
-        $buttonText = Convert-HebrewDisplayHtml $word.hebrew_word
-        if ($word.trailing_punctuation) {
-          $buttonText += Convert-HebrewDisplayHtml $word.trailing_punctuation
-          $buttonText += '&#8207;'
-        }
-        [void]$page.Append("                  <span class=""lexical-word"" lang=""he"" dir=""rtl"" role=""button"" tabindex=""0"" data-lexical-token=""$(Encode-Html $word.token_id)"" data-lexical-entry=""$(Encode-Html $word.lexicon_entry_id)"" aria-pressed=""false"">$buttonText</span>")
-        [void]$page.AppendLine('')
+    if ($null -ne $lexicalUnit) {
+      $hebrewParagraphs = @($unit.hebrew)
+      for ($paragraphIndex = 0; $paragraphIndex -lt $hebrewParagraphs.Count; $paragraphIndex += 1) {
+        [void]$page.AppendLine("                <p class=""hebrew lexical-inline"" lang=""he"" dir=""rtl"" data-lexical-paragraph=""$paragraphIndex"">$(Convert-SourceHtml $hebrewParagraphs[$paragraphIndex])</p>")
       }
-      [void]$page.AppendLine('                </p>')
     } else {
       foreach ($paragraph in @($unit.hebrew)) {
         [void]$page.AppendLine("                <p class=""hebrew"" lang=""he"" dir=""rtl"">$(Convert-SourceHtml $paragraph)</p>")
@@ -951,29 +1050,11 @@ foreach ($source in $sources) {
       [void]$page.AppendLine('                  <p class="placeholder">N/A</p>')
     }
     [void]$page.AppendLine('                </div>')
-    if ($null -ne $lexicalSample) {
-      [void]$page.AppendLine('                <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">')
-      [void]$page.AppendLine('                  <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>')
-      [void]$page.AppendLine('                  <dl class="lexical-fields">')
-      [void]$page.AppendLine('                    <dt>Hebrew word</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd>')
-      [void]$page.AppendLine('                    <dt>Transliteration</dt><dd data-hud-transliteration>N/A</dd>')
-      [void]$page.AppendLine('                    <dt>Strict renderings</dt><dd data-hud-renderings>N/A</dd>')
-      [void]$page.AppendLine('                    <dt>Root</dt><dd data-hud-root lang="he" dir="rtl">N/A</dd>')
-      [void]$page.AppendLine('                    <dt>Root transliteration</dt><dd data-hud-root-transliteration>N/A</dd>')
-      [void]$page.AppendLine('                    <dt>Root meaning</dt><dd data-hud-root-meaning>N/A</dd>')
-      [void]$page.AppendLine('                  </dl>')
-      [void]$page.AppendLine('                  <details class="source-details">')
-      [void]$page.AppendLine('                    <summary>Sources / licenses</summary>')
-      [void]$page.AppendLine('                    <div data-hud-sources></div>')
-      [void]$page.AppendLine('                  </details>')
-      [void]$page.AppendLine('                </section>')
+    if ($null -ne $lexicalUnit) {
+      [void]$page.AppendLine('                <div data-lexical-slot></div>')
     }
     [void]$page.AppendLine('              </div>')
     [void]$page.AppendLine('            </div>')
-    if ($null -ne $lexicalSample) {
-      $lexicalJson = (ConvertTo-Json -InputObject $lexicalSample -Depth 30 -Compress) -replace '</script', '<\/script'
-      [void]$page.AppendLine("            <script type=""application/json"" data-lexical-json>$lexicalJson</script>")
-    }
     $parentAnchor = Get-UnitParentAnchor -Unit $unit -Source $source
     [void]$page.AppendLine('            <nav class="unit-nav" aria-label="Unit navigation">')
     [void]$page.AppendLine('              <a href="#work-top">Back to top</a>')
@@ -1000,12 +1081,31 @@ foreach ($source in $sources) {
   [void]$page.AppendLine('      </div>')
   [void]$page.AppendLine('    </div>')
   [void]$page.AppendLine('  </main>')
-  if ($workHasLexicalSample) {
-    $lexicalIndexJson = (ConvertTo-Json -InputObject $lexicalIndex -Depth 30 -Compress) -replace '</script', '<\/script'
-    [void]$page.AppendLine("  <script type=""application/json"" data-lexical-index>$lexicalIndexJson</script>")
+  if ($workHasLexical) {
+    [void]$page.AppendLine('  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">')
+    [void]$page.AppendLine('    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>')
+    [void]$page.AppendLine('    <dl class="lexical-fields">')
+    [void]$page.AppendLine('      <dt>Hebrew word</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd>')
+    [void]$page.AppendLine('      <dt>Transliteration</dt><dd data-hud-transliteration>N/A</dd>')
+    [void]$page.AppendLine('      <dt>Strict renderings</dt><dd data-hud-renderings>N/A</dd>')
+    [void]$page.AppendLine('      <dt>Root</dt><dd data-hud-root lang="he" dir="rtl">N/A</dd>')
+    [void]$page.AppendLine('      <dt>Root transliteration</dt><dd data-hud-root-transliteration>N/A</dd>')
+    [void]$page.AppendLine('      <dt>Root meaning</dt><dd data-hud-root-meaning>N/A</dd>')
+    [void]$page.AppendLine('    </dl>')
+    [void]$page.AppendLine('    <details class="source-details">')
+    [void]$page.AppendLine('      <summary>Sources / licenses</summary>')
+    [void]$page.AppendLine('      <div data-hud-sources></div>')
+    [void]$page.AppendLine('    </details>')
+    [void]$page.AppendLine('  </section>')
+    $tokenIndexJson = (ConvertTo-Json -InputObject $workLexicalPayload.token_index -Depth 30 -Compress) -replace '</script', '<\/script'
+    $lexiconJson = (ConvertTo-Json -InputObject $workLexicalPayload.lexicon -Depth 30 -Compress) -replace '</script', '<\/script'
+    $occurrenceJson = (ConvertTo-Json -InputObject $workOccurrence -Depth 30 -Compress) -replace '</script', '<\/script'
+    [void]$page.AppendLine("  <script type=""application/json"" data-lexical-occurrences>$occurrenceJson</script>")
+    [void]$page.AppendLine("  <script type=""application/json"" data-lexical-token-index>$tokenIndexJson</script>")
+    [void]$page.AppendLine("  <script type=""application/json"" data-lexical-lexicon>$lexiconJson</script>")
   }
   Append-ReaderScript -Builder $page
-  if ($workHasLexicalSample) {
+  if ($workHasLexical) {
     Append-LexicalHudScript -Builder $page
   }
   [void]$page.AppendLine('</body>')

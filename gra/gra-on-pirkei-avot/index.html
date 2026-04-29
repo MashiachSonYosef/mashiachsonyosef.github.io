@@ -61,6 +61,23 @@
     .placeholder { color: #8c857c; }
     .overlay-block { border: 1px solid var(--line); background: var(--panel-2); padding: 12px; margin-bottom: 10px; }
     .overlay-label { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; }
+    .lexical-word { display: inline-block; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: rtl; unicode-bidi: isolate; white-space: nowrap; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .lexical-hud { position: sticky; top: 14px; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
     .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
     .source-table { width: 100%; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
@@ -71,7 +88,7 @@
     .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
     .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields { grid-template-columns: 1fr; } .toc, .lexical-hud { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -160,14 +177,14 @@
         </nav>
         <article>
           <h4 id="chapter-gra-on-pirkei-avot-text-1">Chapter 1</h4>
-          <section class="unit" id="gra-on-pirkei-avot-1-1-1" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-1-1-1" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 1:1:1</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-1-1-1" aria-label="Copy link to Gra on Pirkei Avot 1:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>משה קבל כו׳.</strong> שנאמר (ויקרא כ״ו) אלה החקים והמשפטי׳ והתורות כו׳ בהר סיני ביד משה. אדר״נ. בת״כ פ׳ צו כאשר צוה ה׳ את משה בהר סיני כו׳. אלה לרבות את כולם שכולם נאמרו כללותיהם ודקדוקיהם מסיני. ובריש פרשה בהר מה ענין שמיטה אצל סיני כו׳ אלא מה שמיטה כו׳ מסיני אף כלם כו׳ ודקדוקיהם מסיני. ובפרשה בחוקותי שם בהר סיני ביד משה מלמד שנתנה התורה הלכותי׳ ודקדוקיה ופירושי׳ על ידי משה מסיני דדריש שם אלה החקי׳ אלו המדרשות כו׳ ע״ש ושם אלה המצו׳ כו׳ שכולם נמסרו למשה מסיני. ובירושלמי פ״ב דפאה ריב״ל אמר ועליה׳ ככל הדברים מקרא משנה תלמוד ואגדה אפי׳ מה שתלמיד ותיק עתיד להורות לפני רבו כבר נאמר למשה מסיני כו׳ יש דבר ראה זה חדש וגו׳ משיבו חבירו ואומר לו כבר היה לעולמי׳ ע״ש. ובגמרא פ״א דברכות (ה׳ א׳) מאי דכתיב ואתנה לך את לוחות כו׳ מלמד שכולם כו׳ מסיני ובפ״ב דמגילה (י״ט ב׳) מאי דכתיב ועליהם כל הדברים כו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משה קבל כו׳.</strong> שנאמר (ויקרא כ״ו) אלה החקים והמשפטי׳ והתורות כו׳ בהר סיני ביד משה. אדר״נ. בת״כ פ׳ צו כאשר צוה ה׳ את משה בהר סיני כו׳. אלה לרבות את כולם שכולם נאמרו כללותיהם ודקדוקיהם מסיני. ובריש פרשה בהר מה ענין שמיטה אצל סיני כו׳ אלא מה שמיטה כו׳ מסיני אף כלם כו׳ ודקדוקיהם מסיני. ובפרשה בחוקותי שם בהר סיני ביד משה מלמד שנתנה התורה הלכותי׳ ודקדוקיה ופירושי׳ על ידי משה מסיני דדריש שם אלה החקי׳ אלו המדרשות כו׳ ע״ש ושם אלה המצו׳ כו׳ שכולם נמסרו למשה מסיני. ובירושלמי פ״ב דפאה ריב״ל אמר ועליה׳ ככל הדברים מקרא משנה תלמוד ואגדה אפי׳ מה שתלמיד ותיק עתיד להורות לפני רבו כבר נאמר למשה מסיני כו׳ יש דבר ראה זה חדש וגו׳ משיבו חבירו ואומר לו כבר היה לעולמי׳ ע״ש. ובגמרא פ״א דברכות (ה׳ א׳) מאי דכתיב ואתנה לך את לוחות כו׳ מלמד שכולם כו׳ מסיני ובפ״ב דמגילה (י״ט ב׳) מאי דכתיב ועליהם כל הדברים כו׳:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -176,6 +193,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -183,14 +201,14 @@
               <a href="#chapter-gra-on-pirkei-avot-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gra-on-pirkei-avot-1-1-2" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-1-1-2" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 1:1:2</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-1-1-2" aria-label="Copy link to Gra on Pirkei Avot 1:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>ומסרם ליהושע.</strong> שנאמר (במדבר כ״ו) ונתת מהודך עליו למען ישמעו כל עדת בני ישראל. ובתמורה (ט״ז א׳) בשעה שנפטר משה רבינו לג״ע א״ל רבי כלום הנחתיך שעה א׳ והלכתי כו׳ לא כך כתבת בי (שמות ל״ג) ומשרתו יהושע כו׳ לא ימיש כו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומסרם ליהושע.</strong> שנאמר (במדבר כ״ו) ונתת מהודך עליו למען ישמעו כל עדת בני ישראל. ובתמורה (ט״ז א׳) בשעה שנפטר משה רבינו לג״ע א״ל רבי כלום הנחתיך שעה א׳ והלכתי כו׳ לא כך כתבת בי (שמות ל״ג) ומשרתו יהושע כו׳ לא ימיש כו׳:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -199,6 +217,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -206,14 +225,14 @@
               <a href="#chapter-gra-on-pirkei-avot-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gra-on-pirkei-avot-1-1-3" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-1-1-3" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 1:1:3</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-1-1-3" aria-label="Copy link to Gra on Pirkei Avot 1:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>ויהושע לזקנים.</strong> שנא׳ (שופטי׳ ב׳) ויעבדו העם את ה׳ כל ימי יהושע וכל ימי הזקנים אשר האריכו ימים אחרי יהושע אשר ראו את כל מעשה ה׳ וגו׳. אדר״נ:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויהושע לזקנים.</strong> שנא׳ (שופטי׳ ב׳) ויעבדו העם את ה׳ כל ימי יהושע וכל ימי הזקנים אשר האריכו ימים אחרי יהושע אשר ראו את כל מעשה ה׳ וגו׳. אדר״נ:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -222,6 +241,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -229,14 +249,14 @@
               <a href="#chapter-gra-on-pirkei-avot-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gra-on-pirkei-avot-1-1-4" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-1-1-4" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 1:1:4</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-1-1-4" aria-label="Copy link to Gra on Pirkei Avot 1:1:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>וזקני׳ לנביאים.</strong> שנאמר (ירמיה ז׳) ואשלח אליכם את כל עבדי הנביאי׳ יום השכם ושלוח. שם ותיכף אחרי יהושע כתיב (שופטים א׳) ויעל מלאך ה׳ מן הגלגל וגו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וזקני׳ לנביאים.</strong> שנאמר (ירמיה ז׳) ואשלח אליכם את כל עבדי הנביאי׳ יום השכם ושלוח. שם ותיכף אחרי יהושע כתיב (שופטים א׳) ויעל מלאך ה׳ מן הגלגל וגו׳:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -245,6 +265,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -252,14 +273,14 @@
               <a href="#chapter-gra-on-pirkei-avot-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gra-on-pirkei-avot-1-1-5" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-1-1-5" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 1:1:5</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-1-1-5" aria-label="Copy link to Gra on Pirkei Avot 1:1:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>ונביאים כו׳ לאנשי כה״ג.</strong> שהם היו בימי נביאים האחרוני׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונביאים כו׳ לאנשי כה״ג.</strong> שהם היו בימי נביאים האחרוני׳:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -268,6 +289,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -275,14 +297,14 @@
               <a href="#chapter-gra-on-pirkei-avot-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gra-on-pirkei-avot-1-1-6" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-1-1-6" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 1:1:6</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-1-1-6" aria-label="Copy link to Gra on Pirkei Avot 1:1:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>היו</strong> כו׳ כמ״ש (ובסנהדרין ז׳ ב׳) דרש בר קפרא מנא הא מילתא כו׳ הוו מתונים כו׳ דכתיב לא תעלה במעלות וסמוך ליה אלה המשפטי׳ ובספרי ואצוה את שופטיכ׳ שיהיו מתוני׳ בדין כו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היו</strong> כו׳ כמ״ש (ובסנהדרין ז׳ ב׳) דרש בר קפרא מנא הא מילתא כו׳ הוו מתונים כו׳ דכתיב לא תעלה במעלות וסמוך ליה אלה המשפטי׳ ובספרי ואצוה את שופטיכ׳ שיהיו מתוני׳ בדין כו׳:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -291,6 +313,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -298,14 +321,14 @@
               <a href="#chapter-gra-on-pirkei-avot-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gra-on-pirkei-avot-1-1-7" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-1-1-7" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 1:1:7</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-1-1-7" aria-label="Copy link to Gra on Pirkei Avot 1:1:7">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>והעמידו כו׳.</strong> כמ״ש ביבמו׳ (ס״ב ב׳) היו לו תלמידי׳ בילדותו יהיו לו תלמידי׳ בזקנותו שנא׳ בבקר זרע זרעך וגו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והעמידו כו׳.</strong> כמ״ש ביבמו׳ (ס״ב ב׳) היו לו תלמידי׳ בילדותו יהיו לו תלמידי׳ בזקנותו שנא׳ בבקר זרע זרעך וגו׳:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -314,6 +337,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -321,14 +345,14 @@
               <a href="#chapter-gra-on-pirkei-avot-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gra-on-pirkei-avot-1-1-8" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-1-1-8" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 1:1:8</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-1-1-8" aria-label="Copy link to Gra on Pirkei Avot 1:1:8">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>ועשו סיג כו׳.</strong> כדרך שעשתה התורה סייג לדבריה. איזהו סייג שעשתה תורה לדברי׳ ה״ה אומר (ויקרא י״ח) ואל אשה בנדת טומאתה לא תקרב וגו׳ הרי הוא אומר (שם) איש איש אל כל שאר בשרו לא תקרבו כו׳ לדבר המביא כו׳ ובמ״ר פ׳ נשא ק״פ ב׳ כיצד יעשה אדם סייג לדבריו כדרך כו׳ וכ״ה אומר וכל משרת ענבים לא ישתה מכל אשר כו׳ ע״ש.</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ועשו סיג כו׳.</strong> כדרך שעשתה התורה סייג לדבריה. איזהו סייג שעשתה תורה לדברי׳ ה״ה אומר (ויקרא י״ח) ואל אשה בנדת טומאתה לא תקרב וגו׳ הרי הוא אומר (שם) איש איש אל כל שאר בשרו לא תקרבו כו׳ לדבר המביא כו׳ ובמ״ר פ׳ נשא ק״פ ב׳ כיצד יעשה אדם סייג לדבריו כדרך כו׳ וכ״ה אומר וכל משרת ענבים לא ישתה מכל אשר כו׳ ע״ש.</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -337,6 +361,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -345,14 +370,14 @@
             </nav>
           </section>
           <h4 id="chapter-gra-on-pirkei-avot-text-2">Chapter 2</h4>
-          <section class="unit" id="gra-on-pirkei-avot-2-1-1" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-2-1-1" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 2:1:1</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-2-1-1" aria-label="Copy link to Gra on Pirkei Avot 2:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>כל שהוא כו׳.</strong> כמ״ש (משלי ג׳ ד׳) ומצא חן ושכל כו׳ אלקים ואדם. והוי כו׳ שמ״ש (משלי ה׳ ו׳) אורח חיים פן תפלס נעו מעגלותיה לא תדע וע׳ רש״י שם ובילקו׳ ר״פ עקב.</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל שהוא כו׳.</strong> כמ״ש (משלי ג׳ ד׳) ומצא חן ושכל כו׳ אלקים ואדם. והוי כו׳ שמ״ש (משלי ה׳ ו׳) אורח חיים פן תפלס נעו מעגלותיה לא תדע וע׳ רש״י שם ובילקו׳ ר״פ עקב.</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -361,6 +386,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -368,14 +394,14 @@
               <a href="#chapter-gra-on-pirkei-avot-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gra-on-pirkei-avot-2-1-2" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-2-1-2" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 2:1:2</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-2-1-2" aria-label="Copy link to Gra on Pirkei Avot 2:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>והוי מחשב כו׳.</strong> כמ״ש (שם ד׳) פלס מעגל רגליך וכל דרכיך יכונו ובמדרש בחקותי חשבתי דרכי ואשיבה רגלי כו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והוי מחשב כו׳.</strong> כמ״ש (שם ד׳) פלס מעגל רגליך וכל דרכיך יכונו ובמדרש בחקותי חשבתי דרכי ואשיבה רגלי כו׳:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -384,6 +410,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -391,14 +418,14 @@
               <a href="#chapter-gra-on-pirkei-avot-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gra-on-pirkei-avot-2-1-3" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-2-1-3" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 2:1:3</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-2-1-3" aria-label="Copy link to Gra on Pirkei Avot 2:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>חשבה הפסד מצוה כו׳</strong> ובפ״ה דב״ב (ע״ה) באו חשבין אלו שמחשבין כו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חשבה הפסד מצוה כו׳</strong> ובפ״ה דב״ב (ע״ה) באו חשבין אלו שמחשבין כו׳:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -407,6 +434,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -414,14 +442,14 @@
               <a href="#chapter-gra-on-pirkei-avot-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gra-on-pirkei-avot-2-1-4" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-2-1-4" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 2:1:4</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-2-1-4" aria-label="Copy link to Gra on Pirkei Avot 2:1:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>והסתכל כו׳.</strong> כמ״ש בסוף פרק ג׳ דנדרים ובעבור תהיה יראתו על פניכם לבלתי תחטאו זו הבושה כו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והסתכל כו׳.</strong> כמ״ש בסוף פרק ג׳ דנדרים ובעבור תהיה יראתו על פניכם לבלתי תחטאו זו הבושה כו׳:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -430,6 +458,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -437,14 +466,14 @@
               <a href="#chapter-gra-on-pirkei-avot-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gra-on-pirkei-avot-2-1-5" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-2-1-5" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 2:1:5</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-2-1-5" aria-label="Copy link to Gra on Pirkei Avot 2:1:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>דע כו׳ עיין כו׳.</strong> כמ״ש (איוב ל״א:ד׳) כי עיניו על כל דרכי איש וכל צעדיו יספור. (ירמיהו ל״ב:י״ט) אשר עיניך פקוחות על כל דרכי כו׳ (משלי ה׳:כ״א) כי נוכח עיני ה׳ דרכי איש גו׳. וע׳ בילקוט וכיוצא הרבה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דע כו׳ עיין כו׳.</strong> כמ״ש (איוב ל״א:ד׳) כי עיניו על כל דרכי איש וכל צעדיו יספור. (ירמיהו ל״ב:י״ט) אשר עיניך פקוחות על כל דרכי כו׳ (משלי ה׳:כ״א) כי נוכח עיני ה׳ דרכי איש גו׳. וע׳ בילקוט וכיוצא הרבה:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -453,6 +482,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -460,14 +490,14 @@
               <a href="#chapter-gra-on-pirkei-avot-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gra-on-pirkei-avot-2-1-6" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-2-1-6" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 2:1:6</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-2-1-6" aria-label="Copy link to Gra on Pirkei Avot 2:1:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>ואזן כו׳.</strong> כמ״ש (תהילים צ״ד:ט׳) הנוטע אזן הלא ישמע גו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואזן כו׳.</strong> כמ״ש (תהילים צ״ד:ט׳) הנוטע אזן הלא ישמע גו׳:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -476,6 +506,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -483,14 +514,14 @@
               <a href="#chapter-gra-on-pirkei-avot-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gra-on-pirkei-avot-2-1-7" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-2-1-7" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 2:1:7</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-2-1-7" aria-label="Copy link to Gra on Pirkei Avot 2:1:7">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>וכל מעשיך כו׳.</strong> כמ״ש (איוב ל״ז:ז׳) ביד כל אדם יחתום לדעת כל אנשי מעשהו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל מעשיך כו׳.</strong> כמ״ש (איוב ל״ז:ז׳) ביד כל אדם יחתום לדעת כל אנשי מעשהו:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -499,6 +530,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -507,14 +539,14 @@
             </nav>
           </section>
           <h4 id="chapter-gra-on-pirkei-avot-text-3">Chapter 3</h4>
-          <section class="unit" id="gra-on-pirkei-avot-3-1-1" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-3-1-1" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 3:1:1</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-3-1-1" aria-label="Copy link to Gra on Pirkei Avot 3:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>הסתכל בשלשה כו׳.</strong> כמ״ש (קהלת י״ב:א׳) וזכור את בוראך כו׳ ודרש ר״ע בארך זה ליחה סרוחה. בורך זה רמה ותולעה. בוראך זה ממ״ה הקב״ה וע״ש (מדרש רבה קהלת פרשה יב). ואמר בסוטה כתב ועפר ומים, מים - זהו מאין באת, ועפר - לאן אתה הולך, וכתב - ולפני מי כמ״ש (איוב ל״ז:ז׳) ובו כל אדם יחתום כו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הסתכל בשלשה כו׳.</strong> כמ״ש (קהלת י״ב:א׳) וזכור את בוראך כו׳ ודרש ר״ע בארך זה ליחה סרוחה. בורך זה רמה ותולעה. בוראך זה ממ״ה הקב״ה וע״ש (מדרש רבה קהלת פרשה יב). ואמר בסוטה כתב ועפר ומים, מים - זהו מאין באת, ועפר - לאן אתה הולך, וכתב - ולפני מי כמ״ש (איוב ל״ז:ז׳) ובו כל אדם יחתום כו׳:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -523,6 +555,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -530,14 +563,14 @@
               <a href="#chapter-gra-on-pirkei-avot-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gra-on-pirkei-avot-3-1-2" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-3-1-2" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 3:1:2</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-3-1-2" aria-label="Copy link to Gra on Pirkei Avot 3:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>מאין באת כו׳.</strong> כמ״ש (תהילים נ״א:ז׳) הן בעון חוללתי כו׳ (איוב י״ג:ה׳) מי יתן טהור מטמא כו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מאין באת כו׳.</strong> כמ״ש (תהילים נ״א:ז׳) הן בעון חוללתי כו׳ (איוב י״ג:ה׳) מי יתן טהור מטמא כו׳:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -546,6 +579,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -553,14 +587,14 @@
               <a href="#chapter-gra-on-pirkei-avot-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gra-on-pirkei-avot-3-1-3" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-3-1-3" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 3:1:3</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-3-1-3" aria-label="Copy link to Gra on Pirkei Avot 3:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>ולאן כו׳.</strong> כמ״ש (בראש׳ ג׳) כי עפר אתה כו׳ (קהלת י״ב:ז׳) וישב העפר כו׳ וכתיב (איוב כ״ה:ו׳) אנוש רמה ובן אדם תולעה כו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולאן כו׳.</strong> כמ״ש (בראש׳ ג׳) כי עפר אתה כו׳ (קהלת י״ב:ז׳) וישב העפר כו׳ וכתיב (איוב כ״ה:ו׳) אנוש רמה ובן אדם תולעה כו׳:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -569,6 +603,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -576,14 +611,14 @@
               <a href="#chapter-gra-on-pirkei-avot-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gra-on-pirkei-avot-3-1-4" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-3-1-4" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 3:1:4</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-3-1-4" aria-label="Copy link to Gra on Pirkei Avot 3:1:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>ולפני מי כו׳.</strong> כמ״ש (קהלת י״א) כי על כל כו׳. (קהלת י״ב:י״ד) כי את כל מעשה האלקים יביא כו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולפני מי כו׳.</strong> כמ״ש (קהלת י״א) כי על כל כו׳. (קהלת י״ב:י״ד) כי את כל מעשה האלקים יביא כו׳:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -592,6 +627,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -600,14 +636,14 @@
             </nav>
           </section>
           <h4 id="chapter-gra-on-pirkei-avot-text-5">Chapter 5</h4>
-          <section class="unit" id="gra-on-pirkei-avot-5-1-1" data-unit data-complete="false">
+          <section class="unit" id="gra-on-pirkei-avot-5-1-1" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra on Pirkei Avot 5:1:1</h4></div>
               <a class="anchor" href="#gra-on-pirkei-avot-5-1-1" aria-label="Copy link to Gra on Pirkei Avot 5:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>בעשרה מאמרות כו׳.</strong> ואלו הם בראשית. ויאמר אלהים יהי אור. ויאמר אלהים יהי רקיע. ויאמר אלקים יקוו. ויאמר אלקים תדשא. יהי מארת. ישרצו המים. תוציא הארץ. נעשה אדם. הנה נתתי. ופרו ורבו הוא ציוי. וברכה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בעשרה מאמרות כו׳.</strong> ואלו הם בראשית. ויאמר אלהים יהי אור. ויאמר אלהים יהי רקיע. ויאמר אלקים יקוו. ויאמר אלקים תדשא. יהי מארת. ישרצו המים. תוציא הארץ. נעשה אדם. הנה נתתי. ופרו ורבו הוא ציוי. וברכה:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -616,6 +652,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -627,6 +664,24 @@
       </div>
     </div>
   </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <dt>Hebrew word</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd>
+      <dt>Transliteration</dt><dd data-hud-transliteration>N/A</dd>
+      <dt>Strict renderings</dt><dd data-hud-renderings>N/A</dd>
+      <dt>Root</dt><dd data-hud-root lang="he" dir="rtl">N/A</dd>
+      <dt>Root transliteration</dt><dd data-hud-root-transliteration>N/A</dd>
+      <dt>Root meaning</dt><dd data-hud-root-meaning>N/A</dd>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"gra-on-pirkei-avot","work_title":"Gra on Pirkei Avot","work_slug":"gra/gra-on-pirkei-avot","generated_at":"2026-04-29T05:18:37.683Z","total_occurrences":676,"units":{"gra-on-pirkei-avot-1-1-1":{"unit_id":"gra-on-pirkei-avot-1-1-1","anchor_id":"gra-on-pirkei-avot-1-1-1","source_ref":"Gra on Pirkei Avot 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b5da2bbb789b","tok-ec3acdbb813c","tok-cb5f45dfb95a","tok-c35f09077873","tok-8628bad3353a","tok-6cbe0991fb20","tok-9eb3034939ee","tok-daab05bd2ccc","tok-56a3b558697e","tok-fef66ea43594","tok-cb5f45dfb95a","tok-91c46f6caa5b","tok-2014a8b38b63","tok-4f147f532305","tok-b5da2bbb789b","tok-34fd4cff8c65","tok-8f6fce4599d7","tok-03431a6e5981","tok-d48dfeaecaec","tok-7433b8f862e5","tok-0aef39131d76","tok-c2742c4cba06","tok-ee47bc9cdbbd","tok-b5da2bbb789b","tok-91c46f6caa5b","tok-2014a8b38b63","tok-cb5f45dfb95a","tok-9eb3034939ee","tok-bf806afb424d","tok-ee47bc9cdbbd","tok-cd0c93a3ee3e","tok-afd6f76eb660","tok-981fc471bb73","tok-89fd2259f641","tok-9d5606befd19","tok-f7a2211ce238","tok-a1f910e028ad","tok-643962b37b1c","tok-91c46f6caa5b","tok-f0d84aa5b56e","tok-7f214310f769","tok-8f11e94aea34","tok-47956abb48d7","tok-2014a8b38b63","tok-cb5f45dfb95a","tok-fdfa29e2dc05","tok-f0d84aa5b56e","tok-8f11e94aea34","tok-cb5f45dfb95a","tok-f7a2211ce238","tok-793fa7343a25","tok-6e98e66e7a38","tok-cb5f45dfb95a","tok-9d5606befd19","tok-f7a2211ce238","tok-cbda3e7ab7c6","tok-61f55b3572a2","tok-8b1aa6b1d71e","tok-91c46f6caa5b","tok-2014a8b38b63","tok-4f147f532305","tok-b5da2bbb789b","tok-f647de6860eb","tok-f0c8d2e3dca8","tok-a9fcd2e0fd3c","tok-a2bd36c440cc","tok-fad0443f0926","tok-3ea7d1378366","tok-5e9ae20c9a46","tok-266e4eadd68f","tok-b5da2bbb789b","tok-f7a2211ce238","tok-32b181a10932","tok-8b1aa6b1d71e","tok-9eb3034939ee","tok-b20ea5128706","tok-1a66f0c3cf30","tok-210f480303ca","tok-cb5f45dfb95a","tok-700cc5ea281f","tok-b113878db72e","tok-9eb3034939ee","tok-44c00e1fe989","tok-cb5f45dfb95a","tok-afd6f76eb660","tok-96ac9ea8efcb","tok-d07859af60c4","tok-f7a2211ce238","tok-ed1860030c76","tok-1ca34725b220","tok-e7a3ea882277","tok-9be29693ab04","tok-b874f27fdafb","tok-0656f8e433c9","tok-fed998795be1","tok-82ebd2f751e8","tok-9dc28c961de9","tok-0153888937a0","tok-8f51de18b582","tok-962d19f1ce49","tok-5c870472f400","tok-f0d84aa5b56e","tok-ea6da3a4cf32","tok-76aa6b70eb25","tok-edbec70450ee","tok-299bd38de5e5","tok-a2e13a2f6936","tok-4e30043dfefb","tok-19350164a8b9","tok-a905ab429e17","tok-d07859af60c4","tok-f7a2211ce238","tok-cb5f45dfb95a","tok-1f70207bab84","tok-3eee938058d5","tok-034443dd16fc","tok-081376f2036c","tok-08bca18d3b71","tok-9cfdc8a3697f","tok-e55407990094","tok-5c71179b95e3","tok-9c1cdc3f7fc8","tok-5b1ed971f234","tok-19350164a8b9","tok-df3d3157f738","tok-c095f457927f","tok-700cc5ea281f","tok-5df3b027721a","tok-b77e4cf21935","tok-3d1611712d81","tok-c2742c4cba06","tok-b6c4c767eb46","tok-5fa882028798","tok-39e50b4a48eb","tok-9036eebee010","tok-f774e95e91ef","tok-ee47bc9cdbbd","tok-5a3f9be98e3b","tok-cb5f45dfb95a","tok-f647de6860eb","tok-afd6f76eb660","tok-cb5f45dfb95a","tok-f7a2211ce238","tok-4fc1b9b2cc21","tok-373e36479a29","tok-a44acbdf631f","tok-c0505c1097d3","tok-5fa882028798","tok-39e50b4a48eb","tok-f9cde3e0eade","tok-9a903f8da6d0","tok-82ebd2f751e8","tok-cb5f45dfb95a"]}]},"gra-on-pirkei-avot-1-1-2":{"unit_id":"gra-on-pirkei-avot-1-1-2","anchor_id":"gra-on-pirkei-avot-1-1-2","source_ref":"Gra on Pirkei Avot 1:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3739cd89b88a","tok-e8786036b14e","tok-c35f09077873","tok-d2128730a72d","tok-6cbe0991fb20","tok-7fc9eeb8ff43","tok-335e2f6cac84","tok-8d5cc2a4d95b","tok-e7267bd881af","tok-6b49dd8d06ed","tok-9a903f8da6d0","tok-88adb21c0dc2","tok-051ba6ec3537","tok-7810f5bcd243","tok-154e158840f6","tok-760b9a24d452","tok-b6c4c767eb46","tok-c7f5c0f1d94b","tok-544e6bd2e162","tok-b5da2bbb789b","tok-64631297e8ef","tok-f0722332f74d","tok-82f6b26e13ec","tok-aef2aadb42a2","tok-8650c598556a","tok-470347c408a9","tok-326c8cab2207","tok-b6c4c767eb46","tok-5bcd3172d466","tok-cb5f45dfb95a","tok-21a2d9d60e13","tok-8acc536f9d6d","tok-1f1b30725dce","tok-8442897151a0","tok-43a9c62c6a40","tok-2c9e122b9f20","tok-874b00d6a750","tok-1217a7c52d20","tok-cb5f45dfb95a","tok-21a2d9d60e13","tok-cb41e65fa764","tok-cb5f45dfb95a"]}]},"gra-on-pirkei-avot-1-1-3":{"unit_id":"gra-on-pirkei-avot-1-1-3","anchor_id":"gra-on-pirkei-avot-1-1-3","source_ref":"Gra on Pirkei Avot 1:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-799f572d4217","tok-679c4a3b7689","tok-1315b3cd9db3","tok-2a75bbe306c7","tok-c0505c1097d3","tok-3868508ddadb","tok-36050e89de64","tok-ee47bc9cdbbd","tok-c2742c4cba06","tok-9a903f8da6d0","tok-08733ddd3e1e","tok-1217a7c52d20","tok-a5b2db1cd218","tok-08733ddd3e1e","tok-7424b81efe6d","tok-354ef2c709aa","tok-8361b6ddaf69","tok-2be35572e16a","tok-991c1e229b40","tok-1217a7c52d20","tok-354ef2c709aa","tok-6828fcc19a60","tok-ee47bc9cdbbd","tok-9a903f8da6d0","tok-9a126316972a","tok-c2742c4cba06","tok-9cfdc8a3697f","tok-34fd4cff8c65"]}]},"gra-on-pirkei-avot-1-1-4":{"unit_id":"gra-on-pirkei-avot-1-1-4","anchor_id":"gra-on-pirkei-avot-1-1-4","source_ref":"Gra on Pirkei Avot 1:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c6a6ebafc70d","tok-25aa3734ade2","tok-c35f09077873","tok-e895ed36b9f6","tok-01d9e7d42c43","tok-a45bff4e965e","tok-09c2aa9ebcdd","tok-ee47bc9cdbbd","tok-9a903f8da6d0","tok-58797bf48e20","tok-90bc7f4b9c0c","tok-459ead470392","tok-d04babf7ecc3","tok-f032626bfbbe","tok-8b1aa6b1d71e","tok-42d7c11d6567","tok-991c1e229b40","tok-1217a7c52d20","tok-275eab9d2019","tok-9c2edcb5e8c8","tok-b6c4c767eb46","tok-882306bea770","tok-e49189c6c7b4","tok-c2742c4cba06","tok-f16c10109694","tok-fb9f7f058d4b","tok-9cfdc8a3697f"]}]},"gra-on-pirkei-avot-1-1-5":{"unit_id":"gra-on-pirkei-avot-1-1-5","anchor_id":"gra-on-pirkei-avot-1-1-5","source_ref":"Gra on Pirkei Avot 1:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8a0ec777dfa8","tok-cb5f45dfb95a","tok-b57b548c8022","tok-a690ad9088d5","tok-6f490a9a4140","tok-64fa7f231d4b","tok-ba3df7c0aac6","tok-eec00be6228f","tok-247e2ece36fb"]}]},"gra-on-pirkei-avot-1-1-6":{"unit_id":"gra-on-pirkei-avot-1-1-6","anchor_id":"gra-on-pirkei-avot-1-1-6","source_ref":"Gra on Pirkei Avot 1:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-64fa7f231d4b","tok-cb5f45dfb95a","tok-6b03aa3b8a27","tok-7511affd0bec","tok-01d9e7d42c43","tok-c0505c1097d3","tok-09b79e891889","tok-4c74d5b087ce","tok-8ebab2cfbd64","tok-2dd051792f69","tok-85c82ad6861b","tok-b46386f1e54c","tok-cb5f45dfb95a","tok-f94cf0cfd9a2","tok-99f92a2baa2b","tok-cb5f45dfb95a","tok-39e50b4a48eb","tok-21a2d9d60e13","tok-ac9f370468d3","tok-5d98e389ab4c","tok-b44160fee200","tok-27bd47731098","tok-9eb3034939ee","tok-1bcf9f465cc0","tok-979d9fdd203e","tok-df8b5c53248d","tok-ee47bc9cdbbd","tok-d0226c3f059f","tok-c1499536dca0","tok-d1978cd631ce","tok-cfb5f34aa92b","tok-cb5f45dfb95a"]}]},"gra-on-pirkei-avot-1-1-7":{"unit_id":"gra-on-pirkei-avot-1-1-7","anchor_id":"gra-on-pirkei-avot-1-1-7","source_ref":"Gra on Pirkei Avot 1:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-18ed538ca7c7","tok-cb5f45dfb95a","tok-6b03aa3b8a27","tok-935fc2359022","tok-2e498a5df000","tok-c0505c1097d3","tok-64fa7f231d4b","tok-5b1ed971f234","tok-2d3cad25b5bb","tok-d64678106d1d","tok-3bb3eca2793c","tok-5b1ed971f234","tok-2d3cad25b5bb","tok-cc72e0d2fa75","tok-1315b3cd9db3","tok-3a0dddcbb0a1","tok-d047a778ad08","tok-71577151da64","tok-9cfdc8a3697f"]}]},"gra-on-pirkei-avot-1-1-8":{"unit_id":"gra-on-pirkei-avot-1-1-8","anchor_id":"gra-on-pirkei-avot-1-1-8","source_ref":"Gra on Pirkei Avot 1:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-42ae6f5feb33","tok-2f442c03d935","tok-cb5f45dfb95a","tok-f61ff60ce480","tok-be792eddaab5","tok-a9fcd2e0fd3c","tok-28896ac02dc0","tok-4fd197f502ca","tok-9167474fa600","tok-28896ac02dc0","tok-be792eddaab5","tok-01bede4d30ee","tok-b962c11fa4df","tok-0a2449cc1548","tok-171fad81e536","tok-8628bad3353a","tok-1fe4595d59c7","tok-209ee6fdb464","tok-f1bac3115e8c","tok-49f5fbd31d80","tok-3b1b96c82c53","tok-21a2d9d60e13","tok-183e2a6c9c27","tok-9cfdc8a3697f","tok-ce01149cc9fd","tok-b3d9a90a2973","tok-171fad81e536","tok-8b1aa6b1d71e","tok-c9a872526293","tok-c9a872526293","tok-3a771ca39263","tok-9a903f8da6d0","tok-f62b7eefbcca","tok-fa1f8a8a1296","tok-21a2d9d60e13","tok-10b17f3c0935","tok-cb5f45dfb95a","tok-80ec52ec0e88","tok-ba1487ca77a8","tok-cb5f45dfb95a","tok-a4c822513b9f","tok-03431a6e5981","tok-0a1415486fa4","tok-88212c3341bb","tok-c0505c1097d3","tok-3cf00eb06821","tok-10cba772ac90","tok-0114c04cf3ef","tok-28896ac02dc0","tok-886ede62fd43","tok-f61ff60ce480","tok-cb5f45dfb95a","tok-568620bdcc1a","tok-171fad81e536","tok-a5b2db1cd218","tok-6273eb02ae5d","tok-922b64c0070d","tok-21a2d9d60e13","tok-a12df9903c60","tok-1e407b47c2cc","tok-354ef2c709aa","tok-cb5f45dfb95a","tok-700cc5ea281f"]}]},"gra-on-pirkei-avot-2-1-1":{"unit_id":"gra-on-pirkei-avot-2-1-1","anchor_id":"gra-on-pirkei-avot-2-1-1","source_ref":"Gra on Pirkei Avot 2:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9a903f8da6d0","tok-61f873f2c156","tok-cb5f45dfb95a","tok-6b03aa3b8a27","tok-9f46bc7ac664","tok-7b5b7d0c904a","tok-88aa0681e15b","tok-bbf5767a0346","tok-b0525d1aa93a","tok-d620d5e62253","tok-cb5f45dfb95a","tok-1e87ce0d9d30","tok-f6a15419cfa0","tok-b5983eb8dd0b","tok-cb5f45dfb95a","tok-91b16b4d1663","tok-9f46bc7ac664","tok-c2742c4cba06","tok-08e0ffcda5da","tok-0cd9a48c5558","tok-65c81dc490d3","tok-a3d9290334f5","tok-63c458cce686","tok-1dc9683904b6","tok-4f4fef8d58de","tok-21a2d9d60e13","tok-8d8be8444418","tok-5abdf1e53793","tok-b1f686e98e49","tok-8b1aa6b1d71e","tok-eb8f0ae739a0","tok-1f8c99d86c9d","tok-b6fb502a6bb1"]}]},"gra-on-pirkei-avot-2-1-2":{"unit_id":"gra-on-pirkei-avot-2-1-2","anchor_id":"gra-on-pirkei-avot-2-1-2","source_ref":"Gra on Pirkei Avot 2:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b5983eb8dd0b","tok-7a166912044b","tok-cb5f45dfb95a","tok-6b03aa3b8a27","tok-8b1aa6b1d71e","tok-88aa0681e15b","tok-0c0a74cedcf9","tok-0b6c9f4c0da8","tok-913f0442841a","tok-a5b2db1cd218","tok-73f4e414342a","tok-d0fd62a9da01","tok-4decf1f56664","tok-b32383e05680","tok-3568db6caf1c","tok-1edb139b8501","tok-788cf0c79766","tok-6d77244514c7","tok-cb5f45dfb95a"]}]},"gra-on-pirkei-avot-2-1-3":{"unit_id":"gra-on-pirkei-avot-2-1-3","anchor_id":"gra-on-pirkei-avot-2-1-3","source_ref":"Gra on Pirkei Avot 2:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-41150ce21774","tok-0b91abb235e5","tok-73f7e9759be5","tok-cb5f45dfb95a","tok-7e36b919f3f5","tok-c0227660873a","tok-7993fc4da0cf","tok-74dbd912c2f7","tok-705392272738","tok-1a66f0c3cf30","tok-78c411bcb16e","tok-cb5f45dfb95a"]}]},"gra-on-pirkei-avot-2-1-4":{"unit_id":"gra-on-pirkei-avot-2-1-4","anchor_id":"gra-on-pirkei-avot-2-1-4","source_ref":"Gra on Pirkei Avot 2:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3d031d6629c1","tok-cb5f45dfb95a","tok-6b03aa3b8a27","tok-7294adec4fc7","tok-35d8d537a924","tok-7b5b7d0c904a","tok-e360c4f1b268","tok-66f33e4a45d1","tok-e80083a61873","tok-72acf583152d","tok-5e9ae20c9a46","tok-13d049b942a7","tok-53fd73dd89ae","tok-443e1517e9b6","tok-fcb463ba5084","tok-a8050a13c59e","tok-cb5f45dfb95a"]}]},"gra-on-pirkei-avot-2-1-5":{"unit_id":"gra-on-pirkei-avot-2-1-5","anchor_id":"gra-on-pirkei-avot-2-1-5","source_ref":"Gra on Pirkei Avot 2:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1cc33d03839c","tok-cb5f45dfb95a","tok-7ffe80cdf698","tok-cb5f45dfb95a","tok-6b03aa3b8a27","tok-2b9e50287307","tok-117b61e0337f","tok-88aa0681e15b","tok-2a7abc83b760","tok-ab213738fa9b","tok-5e9ae20c9a46","tok-9a903f8da6d0","tok-1edb139b8501","tok-c9a872526293","tok-a5b2db1cd218","tok-57828864818e","tok-1838d586c1b7","tok-2a5fdb88687b","tok-f91142a21d0e","tok-a44acbdf631f","tok-354ef2c709aa","tok-dbd9d222afc1","tok-0ca2f421bc71","tok-5e9ae20c9a46","tok-9a903f8da6d0","tok-1edb139b8501","tok-cb5f45dfb95a","tok-9f46bc7ac664","tok-c2742c4cba06","tok-d037dc164ac9","tok-2a7abc83b760","tok-3086e3b4ce38","tok-14b042ea3f5f","tok-c2742c4cba06","tok-1edb139b8501","tok-c9a872526293","tok-66ade4d77700","tok-5abdf1e53793","tok-35aefd924919","tok-c0e60ec293c9","tok-201f49f75b6a"]}]},"gra-on-pirkei-avot-2-1-6":{"unit_id":"gra-on-pirkei-avot-2-1-6","anchor_id":"gra-on-pirkei-avot-2-1-6","source_ref":"Gra on Pirkei Avot 2:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4e0990bbedc8","tok-cb5f45dfb95a","tok-6b03aa3b8a27","tok-34d7386e160b","tok-200a281731c4","tok-8735dce494f5","tok-e8f0c5fccd0d","tok-9f0462db84a8","tok-d17bd3ef0503","tok-e209a758f420","tok-66ade4d77700"]}]},"gra-on-pirkei-avot-2-1-7":{"unit_id":"gra-on-pirkei-avot-2-1-7","anchor_id":"gra-on-pirkei-avot-2-1-7","source_ref":"Gra on Pirkei Avot 2:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a5b2db1cd218","tok-19f34688ccde","tok-cb5f45dfb95a","tok-6b03aa3b8a27","tok-2b9e50287307","tok-9f4d44e2dfc2","tok-01d9e7d42c43","tok-4f147f532305","tok-9a903f8da6d0","tok-0114c04cf3ef","tok-63e53c3ee839","tok-6363ac9650f6","tok-9a903f8da6d0","tok-d7ee7b6f98b9","tok-d1e4c648a38d"]}]},"gra-on-pirkei-avot-3-1-1":{"unit_id":"gra-on-pirkei-avot-3-1-1","anchor_id":"gra-on-pirkei-avot-3-1-1","source_ref":"Gra on Pirkei Avot 3:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-dc5161d0dbce","tok-feeba0177af3","tok-cb5f45dfb95a","tok-6b03aa3b8a27","tok-56be69fef4f5","tok-2df829baa280","tok-b6c4c767eb46","tok-ac4eb1c38811","tok-ee47bc9cdbbd","tok-6becadb57cd4","tok-cb5f45dfb95a","tok-6035e1b1227c","tok-78139323d4bc","tok-b3fc2048dd9a","tok-081376f2036c","tok-551c11c50c70","tok-bd4485efd4ac","tok-7e6418c03bbf","tok-081376f2036c","tok-d556130b000e","tok-08d0ae0e3bf9","tok-6becadb57cd4","tok-081376f2036c","tok-a54897bc5092","tok-8df9c5d70097","tok-53f63e8b740f","tok-fc5f2477077c","tok-33de8e899ed0","tok-56be69fef4f5","tok-643962b37b1c","tok-308765e6171d","tok-942253413e79","tok-a5a8ffd90c98","tok-aab205fcca0e","tok-15289bd17bd2","tok-4dcc5f1df4b6","tok-97b6278407c5","tok-cdb8e223b2db","tok-b5e9f2f0b12e","tok-54640c891320","tok-15289bd17bd2","tok-a00b5cccc276","tok-99d168184fe8","tok-52f857d39516","tok-6a89b9f41502","tok-ea354327c507","tok-063e499daca8","tok-6b03aa3b8a27","tok-2b9e50287307","tok-9f4d44e2dfc2","tok-01d9e7d42c43","tok-5d3ae8e19890","tok-9a903f8da6d0","tok-0114c04cf3ef","tok-63e53c3ee839","tok-cb5f45dfb95a"]}]},"gra-on-pirkei-avot-3-1-2":{"unit_id":"gra-on-pirkei-avot-3-1-2","anchor_id":"gra-on-pirkei-avot-3-1-2","source_ref":"Gra on Pirkei Avot 3:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b5e9f2f0b12e","tok-54640c891320","tok-cb5f45dfb95a","tok-6b03aa3b8a27","tok-34d7386e160b","tok-9a24c925e0ba","tok-01d9e7d42c43","tok-6db63ea247f5","tok-f6b2742a2140","tok-d8ab6efd64e4","tok-cb5f45dfb95a","tok-2b9e50287307","tok-d21403a8b783","tok-c2742c4cba06","tok-063e499daca8","tok-46e65e5b73dc","tok-083d0e48fabe","tok-1a5a77e24ccc","tok-cb5f45dfb95a"]}]},"gra-on-pirkei-avot-3-1-3":{"unit_id":"gra-on-pirkei-avot-3-1-3","anchor_id":"gra-on-pirkei-avot-3-1-3","source_ref":"Gra on Pirkei Avot 3:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2b466c4cd92b","tok-cb5f45dfb95a","tok-6b03aa3b8a27","tok-397eed3e5fe7","tok-7b5b7d0c904a","tok-2a7abc83b760","tok-347c32c670f8","tok-99d168184fe8","tok-cb5f45dfb95a","tok-56be69fef4f5","tok-2df829baa280","tok-01d9e7d42c43","tok-07d21657d407","tok-41dd2549e035","tok-cb5f45dfb95a","tok-e9f45dedab39","tok-2b9e50287307","tok-c5c2f1825abe","tok-08e0ffcda5da","tok-ed0c54ae67d9","tok-d556130b000e","tok-25304c2a56b2","tok-0114c04cf3ef","tok-05770c9d2007","tok-cb5f45dfb95a"]}]},"gra-on-pirkei-avot-3-1-4":{"unit_id":"gra-on-pirkei-avot-3-1-4","anchor_id":"gra-on-pirkei-avot-3-1-4","source_ref":"Gra on Pirkei Avot 3:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ea354327c507","tok-063e499daca8","tok-cb5f45dfb95a","tok-6b03aa3b8a27","tok-56be69fef4f5","tok-576bf06166c2","tok-2a7abc83b760","tok-5e9ae20c9a46","tok-9a903f8da6d0","tok-cb5f45dfb95a","tok-56be69fef4f5","tok-2df829baa280","tok-f97fe66c0bec","tok-2a7abc83b760","tok-ee47bc9cdbbd","tok-9a903f8da6d0","tok-9a126316972a","tok-8463c79e6650","tok-6ccd05bb06df","tok-cb5f45dfb95a"]}]},"gra-on-pirkei-avot-5-1-1":{"unit_id":"gra-on-pirkei-avot-5-1-1","anchor_id":"gra-on-pirkei-avot-5-1-1","source_ref":"Gra on Pirkei Avot 5:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3e1067aa81ef","tok-d4a290405845","tok-cb5f45dfb95a","tok-0910ea46234e","tok-b223d8880d97","tok-0feab681ba10","tok-5451e39e8c3e","tok-77871b9368a0","tok-0f184e0e80ea","tok-3e7def4c84d1","tok-5451e39e8c3e","tok-77871b9368a0","tok-0f184e0e80ea","tok-0bdce9f895b0","tok-5451e39e8c3e","tok-1e87ce0d9d30","tok-088207873d81","tok-5451e39e8c3e","tok-1e87ce0d9d30","tok-7286fbd6a519","tok-0f184e0e80ea","tok-8fd939e70285","tok-642682503a6e","tok-f24e3e9521b7","tok-53ed75721b90","tok-21a5b06473be","tok-41a0e5ccfaa8","tok-0114c04cf3ef","tok-6b750daf9964","tok-50f8765f0b70","tok-c7160566232e","tok-df0a7416c5a3","tok-b3d9a90a2973","tok-feb13e9f759b","tok-cab6a9c277a2"]}]}}}</script>
+  <script type="application/json" data-lexical-token-index>{"schema_version":1,"forms":[{"token_index_id":"tok-0114c04cf3ef","surface_word":"אדם","normalized_word":"אדמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1534},{"token_index_id":"tok-0153888937a0","surface_word":"משנה","normalized_word":"משנה","lexicon_entry_id":"","status":"unmatched","occurrence_count":144},{"token_index_id":"tok-01bede4d30ee","surface_word":"תורה","normalized_word":"תורה","lexicon_entry_id":"","status":"unmatched","occurrence_count":794},{"token_index_id":"tok-01d9e7d42c43","surface_word":"ז׳","normalized_word":"ז׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":767},{"token_index_id":"tok-03431a6e5981","surface_word":"פ׳","normalized_word":"פ׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":542},{"token_index_id":"tok-034443dd16fc","surface_word":"ראה","normalized_word":"ראה","lexicon_entry_id":"","status":"unmatched","occurrence_count":196},{"token_index_id":"tok-051ba6ec3537","surface_word":"בני","normalized_word":"בני","lexicon_entry_id":"","status":"unmatched","occurrence_count":717},{"token_index_id":"tok-05770c9d2007","surface_word":"תולעה","normalized_word":"תולעה","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-063e499daca8","surface_word":"מי","normalized_word":"מי","lexicon_entry_id":"","status":"unmatched","occurrence_count":1163},{"token_index_id":"tok-0656f8e433c9","surface_word":"ועליה׳","normalized_word":"ועליה׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-07d21657d407","surface_word":"וישב","normalized_word":"וישב","lexicon_entry_id":"","status":"unmatched","occurrence_count":31},{"token_index_id":"tok-081376f2036c","surface_word":"זה","normalized_word":"זה","lexicon_entry_id":"","status":"unmatched","occurrence_count":5173},{"token_index_id":"tok-083d0e48fabe","surface_word":"טהור","normalized_word":"טהור","lexicon_entry_id":"","status":"unmatched","occurrence_count":119},{"token_index_id":"tok-08733ddd3e1e","surface_word":"ימי","normalized_word":"ימי","lexicon_entry_id":"","status":"unmatched","occurrence_count":256},{"token_index_id":"tok-088207873d81","surface_word":"יקוו","normalized_word":"יקוו","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-08bca18d3b71","surface_word":"חדש","normalized_word":"חדש","lexicon_entry_id":"","status":"unmatched","occurrence_count":250},{"token_index_id":"tok-08d0ae0e3bf9","surface_word":"ותולעה","normalized_word":"ותולעה","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-08e0ffcda5da","surface_word":"ו׳","normalized_word":"ו׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":984},{"token_index_id":"tok-0910ea46234e","surface_word":"ואלו","normalized_word":"ואלו","lexicon_entry_id":"","status":"unmatched","occurrence_count":483},{"token_index_id":"tok-09b79e891889","surface_word":"דרש","normalized_word":"דרש","lexicon_entry_id":"","status":"unmatched","occurrence_count":41},{"token_index_id":"tok-09c2aa9ebcdd","surface_word":"אליכם","normalized_word":"אליכמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":18},{"token_index_id":"tok-0a1415486fa4","surface_word":"נשא","normalized_word":"נשא","lexicon_entry_id":"","status":"unmatched","occurrence_count":205},{"token_index_id":"tok-0a2449cc1548","surface_word":"ה״ה","normalized_word":"ה״ה","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-0aef39131d76","surface_word":"צוה","normalized_word":"צוה","lexicon_entry_id":"","status":"unmatched","occurrence_count":44},{"token_index_id":"tok-0b6c9f4c0da8","surface_word":"מעגל","normalized_word":"מעגל","lexicon_entry_id":"","status":"unmatched","occurrence_count":5},{"token_index_id":"tok-0b91abb235e5","surface_word":"הפסד","normalized_word":"הפסד","lexicon_entry_id":"","status":"unmatched","occurrence_count":30},{"token_index_id":"tok-0bdce9f895b0","surface_word":"רקיע","normalized_word":"רקיע","lexicon_entry_id":"","status":"unmatched","occurrence_count":54},{"token_index_id":"tok-0c0a74cedcf9","surface_word":"פלס","normalized_word":"פלס","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-0ca2f421bc71","surface_word":"פקוחות","normalized_word":"פקוחות","lexicon_entry_id":"","status":"unmatched","occurrence_count":7},{"token_index_id":"tok-0cd9a48c5558","surface_word":"אורח","normalized_word":"אורח","lexicon_entry_id":"","status":"unmatched","occurrence_count":22},{"token_index_id":"tok-0f184e0e80ea","surface_word":"יהי","normalized_word":"יהי","lexicon_entry_id":"","status":"unmatched","occurrence_count":99},{"token_index_id":"tok-0feab681ba10","surface_word":"בראשית","normalized_word":"בראשית","lexicon_entry_id":"","status":"unmatched","occurrence_count":532},{"token_index_id":"tok-10b17f3c0935","surface_word":"תקרבו","normalized_word":"תקרבו","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-10cba772ac90","surface_word":"יעשה","normalized_word":"יעשה","lexicon_entry_id":"","status":"unmatched","occurrence_count":133},{"token_index_id":"tok-117b61e0337f","surface_word":"ל״א","normalized_word":"ל״א","lexicon_entry_id":"","status":"unmatched","occurrence_count":20},{"token_index_id":"tok-1217a7c52d20","surface_word":"יהושע","normalized_word":"יהושע","lexicon_entry_id":"","status":"unmatched","occurrence_count":172},{"token_index_id":"tok-1315b3cd9db3","surface_word":"שנא׳","normalized_word":"שנא׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":47},{"token_index_id":"tok-13d049b942a7","surface_word":"פניכם","normalized_word":"פניכמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-14b042ea3f5f","surface_word":"עיני","normalized_word":"עיני","lexicon_entry_id":"","status":"unmatched","occurrence_count":86},{"token_index_id":"tok-15289bd17bd2","surface_word":"ועפר","normalized_word":"ועפר","lexicon_entry_id":"","status":"unmatched","occurrence_count":9},{"token_index_id":"tok-154e158840f6","surface_word":"ובתמורה","normalized_word":"ובתמורה","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-171fad81e536","surface_word":"אומר","normalized_word":"אומר","lexicon_entry_id":"","status":"unmatched","occurrence_count":510},{"token_index_id":"tok-1838d586c1b7","surface_word":"יספור","normalized_word":"יספור","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-183e2a6c9c27","surface_word":"תקרב","normalized_word":"תקרב","lexicon_entry_id":"","status":"unmatched","occurrence_count":9},{"token_index_id":"tok-18ed538ca7c7","surface_word":"והעמידו","normalized_word":"והעמידו","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-19350164a8b9","surface_word":"כבר","normalized_word":"כבר","lexicon_entry_id":"","status":"unmatched","occurrence_count":949},{"token_index_id":"tok-19f34688ccde","surface_word":"מעשיך","normalized_word":"מעשיכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":19},{"token_index_id":"tok-1a5a77e24ccc","surface_word":"מטמא","normalized_word":"מטמא","lexicon_entry_id":"","status":"unmatched","occurrence_count":43},{"token_index_id":"tok-1a66f0c3cf30","surface_word":"אלו","normalized_word":"אלו","lexicon_entry_id":"","status":"unmatched","occurrence_count":2170},{"token_index_id":"tok-1bcf9f465cc0","surface_word":"המשפטי׳","normalized_word":"המשפטי׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-1ca34725b220","surface_word":"פ״ב","normalized_word":"פ״ב","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-1cc33d03839c","surface_word":"דע","normalized_word":"דע","lexicon_entry_id":"","status":"unmatched","occurrence_count":961},{"token_index_id":"tok-1dc9683904b6","surface_word":"נעו","normalized_word":"נעו","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-1e407b47c2cc","surface_word":"מכל","normalized_word":"מכל","lexicon_entry_id":"","status":"unmatched","occurrence_count":805},{"token_index_id":"tok-1e87ce0d9d30","surface_word":"אלקים","normalized_word":"אלקימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":337},{"token_index_id":"tok-1edb139b8501","surface_word":"דרכי","normalized_word":"דרכי","lexicon_entry_id":"","status":"unmatched","occurrence_count":103},{"token_index_id":"tok-1f1b30725dce","surface_word":"כתבת","normalized_word":"כתבת","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-1f70207bab84","surface_word":"יש","normalized_word":"יש","lexicon_entry_id":"","status":"unmatched","occurrence_count":3094},{"token_index_id":"tok-1f8c99d86c9d","surface_word":"ר״פ","normalized_word":"ר״פ","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-1fe4595d59c7","surface_word":"י״ח","normalized_word":"י״ח","lexicon_entry_id":"","status":"unmatched","occurrence_count":7},{"token_index_id":"tok-200a281731c4","surface_word":"צ״ד","normalized_word":"צ״ד","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-2014a8b38b63","surface_word":"סיני","normalized_word":"סיני","lexicon_entry_id":"","status":"unmatched","occurrence_count":61},{"token_index_id":"tok-201f49f75b6a","surface_word":"הרבה","normalized_word":"הרבה","lexicon_entry_id":"","status":"unmatched","occurrence_count":409},{"token_index_id":"tok-209ee6fdb464","surface_word":"ואל","normalized_word":"ואל","lexicon_entry_id":"","status":"unmatched","occurrence_count":266},{"token_index_id":"tok-210f480303ca","surface_word":"המדרשות","normalized_word":"המדרשות","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-21a2d9d60e13","surface_word":"לא","normalized_word":"לא","lexicon_entry_id":"","status":"unmatched","occurrence_count":7169},{"token_index_id":"tok-21a5b06473be","surface_word":"הארץ","normalized_word":"הארצ","lexicon_entry_id":"","status":"unmatched","occurrence_count":529},{"token_index_id":"tok-247e2ece36fb","surface_word":"האחרוני׳","normalized_word":"האחרוני׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-25304c2a56b2","surface_word":"ובן","normalized_word":"ובנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":29},{"token_index_id":"tok-25aa3734ade2","surface_word":"לנביאים","normalized_word":"לנביאימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-266e4eadd68f","surface_word":"ידי","normalized_word":"ידי","lexicon_entry_id":"","status":"unmatched","occurrence_count":933},{"token_index_id":"tok-275eab9d2019","surface_word":"כתיב","normalized_word":"כתיב","lexicon_entry_id":"","status":"unmatched","occurrence_count":502},{"token_index_id":"tok-27bd47731098","surface_word":"ליה","normalized_word":"ליה","lexicon_entry_id":"","status":"unmatched","occurrence_count":531},{"token_index_id":"tok-28896ac02dc0","surface_word":"סייג","normalized_word":"סייג","lexicon_entry_id":"","status":"unmatched","occurrence_count":7},{"token_index_id":"tok-299bd38de5e5","surface_word":"להורות","normalized_word":"להורות","lexicon_entry_id":"","status":"unmatched","occurrence_count":230},{"token_index_id":"tok-2a5fdb88687b","surface_word":"ירמיהו","normalized_word":"ירמיהו","lexicon_entry_id":"","status":"unmatched","occurrence_count":16},{"token_index_id":"tok-2a75bbe306c7","surface_word":"שופטי׳","normalized_word":"שופטי׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-2a7abc83b760","surface_word":"כי","normalized_word":"כי","lexicon_entry_id":"","status":"unmatched","occurrence_count":16386},{"token_index_id":"tok-2b466c4cd92b","surface_word":"ולאן","normalized_word":"ולאנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-2b9e50287307","surface_word":"איוב","normalized_word":"איוב","lexicon_entry_id":"","status":"unmatched","occurrence_count":82},{"token_index_id":"tok-2be35572e16a","surface_word":"ימים","normalized_word":"ימימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":317},{"token_index_id":"tok-2c9e122b9f20","surface_word":"ל״ג","normalized_word":"ל״ג","lexicon_entry_id":"","status":"unmatched","occurrence_count":9},{"token_index_id":"tok-2d3cad25b5bb","surface_word":"תלמידי׳","normalized_word":"תלמידי׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-2dd051792f69","surface_word":"מנא","normalized_word":"מנא","lexicon_entry_id":"","status":"unmatched","occurrence_count":39},{"token_index_id":"tok-2df829baa280","surface_word":"י״ב","normalized_word":"י״ב","lexicon_entry_id":"","status":"unmatched","occurrence_count":10},{"token_index_id":"tok-2e498a5df000","surface_word":"ס״ב","normalized_word":"ס״ב","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-2f442c03d935","surface_word":"סיג","normalized_word":"סיג","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-3086e3b4ce38","surface_word":"נוכח","normalized_word":"נוכח","lexicon_entry_id":"","status":"unmatched","occurrence_count":8},{"token_index_id":"tok-308765e6171d","surface_word":"יב","normalized_word":"יב","lexicon_entry_id":"","status":"unmatched","occurrence_count":93},{"token_index_id":"tok-326c8cab2207","surface_word":"שעה","normalized_word":"שעה","lexicon_entry_id":"","status":"unmatched","occurrence_count":183},{"token_index_id":"tok-32b181a10932","surface_word":"דדריש","normalized_word":"דדריש","lexicon_entry_id":"","status":"unmatched","occurrence_count":11},{"token_index_id":"tok-335e2f6cac84","surface_word":"מהודך","normalized_word":"מהודכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-33de8e899ed0","surface_word":"רבה","normalized_word":"רבה","lexicon_entry_id":"","status":"unmatched","occurrence_count":163},{"token_index_id":"tok-347c32c670f8","surface_word":"עפר","normalized_word":"עפר","lexicon_entry_id":"","status":"unmatched","occurrence_count":82},{"token_index_id":"tok-34d7386e160b","surface_word":"תהילים","normalized_word":"תהילימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":51},{"token_index_id":"tok-34fd4cff8c65","surface_word":"אדר״נ","normalized_word":"אדר״נ","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-354ef2c709aa","surface_word":"אשר","normalized_word":"אשר","lexicon_entry_id":"","status":"unmatched","occurrence_count":3250},{"token_index_id":"tok-3568db6caf1c","surface_word":"חשבתי","normalized_word":"חשבתי","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-35aefd924919","surface_word":"בילקוט","normalized_word":"בילקוט","lexicon_entry_id":"","status":"unmatched","occurrence_count":10},{"token_index_id":"tok-35d8d537a924","surface_word":"פרק","normalized_word":"פרק","lexicon_entry_id":"","status":"unmatched","occurrence_count":152},{"token_index_id":"tok-36050e89de64","surface_word":"העם","normalized_word":"העמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":184},{"token_index_id":"tok-3739cd89b88a","surface_word":"ומסרם","normalized_word":"ומסרמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-373e36479a29","surface_word":"דמגילה","normalized_word":"דמגילה","lexicon_entry_id":"","status":"unmatched","occurrence_count":104},{"token_index_id":"tok-3868508ddadb","surface_word":"ויעבדו","normalized_word":"ויעבדו","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-397eed3e5fe7","surface_word":"בראש׳","normalized_word":"בראש׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-39e50b4a48eb","surface_word":"דכתיב","normalized_word":"דכתיב","lexicon_entry_id":"","status":"unmatched","occurrence_count":263},{"token_index_id":"tok-3a0dddcbb0a1","surface_word":"בבקר","normalized_word":"בבקר","lexicon_entry_id":"","status":"unmatched","occurrence_count":43},{"token_index_id":"tok-3a771ca39263","surface_word":"אל","normalized_word":"אל","lexicon_entry_id":"","status":"unmatched","occurrence_count":4341},{"token_index_id":"tok-3b1b96c82c53","surface_word":"טומאתה","normalized_word":"טומאתה","lexicon_entry_id":"","status":"unmatched","occurrence_count":7},{"token_index_id":"tok-3bb3eca2793c","surface_word":"יהיו","normalized_word":"יהיו","lexicon_entry_id":"","status":"unmatched","occurrence_count":404},{"token_index_id":"tok-3cf00eb06821","surface_word":"כיצד","normalized_word":"כיצד","lexicon_entry_id":"","status":"unmatched","occurrence_count":185},{"token_index_id":"tok-3d031d6629c1","surface_word":"והסתכל","normalized_word":"והסתכל","lexicon_entry_id":"","status":"unmatched","occurrence_count":5},{"token_index_id":"tok-3d1611712d81","surface_word":"דברכות","normalized_word":"דברכות","lexicon_entry_id":"","status":"unmatched","occurrence_count":197},{"token_index_id":"tok-3e1067aa81ef","surface_word":"בעשרה","normalized_word":"בעשרה","lexicon_entry_id":"","status":"unmatched","occurrence_count":22},{"token_index_id":"tok-3e7def4c84d1","surface_word":"אור","normalized_word":"אור","lexicon_entry_id":"","status":"unmatched","occurrence_count":1581},{"token_index_id":"tok-3ea7d1378366","surface_word":"ופירושי׳","normalized_word":"ופירושי׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-3eee938058d5","surface_word":"דבר","normalized_word":"דבר","lexicon_entry_id":"","status":"unmatched","occurrence_count":1072},{"token_index_id":"tok-41150ce21774","surface_word":"חשבה","normalized_word":"חשבה","lexicon_entry_id":"","status":"unmatched","occurrence_count":7},{"token_index_id":"tok-41a0e5ccfaa8","surface_word":"נעשה","normalized_word":"נעשה","lexicon_entry_id":"","status":"unmatched","occurrence_count":661},{"token_index_id":"tok-41dd2549e035","surface_word":"העפר","normalized_word":"העפר","lexicon_entry_id":"","status":"unmatched","occurrence_count":36},{"token_index_id":"tok-42ae6f5feb33","surface_word":"ועשו","normalized_word":"ועשו","lexicon_entry_id":"","status":"unmatched","occurrence_count":45},{"token_index_id":"tok-42d7c11d6567","surface_word":"ותיכף","normalized_word":"ותיכפ","lexicon_entry_id":"","status":"unmatched","occurrence_count":8},{"token_index_id":"tok-43a9c62c6a40","surface_word":"שמות","normalized_word":"שמות","lexicon_entry_id":"","status":"unmatched","occurrence_count":712},{"token_index_id":"tok-443e1517e9b6","surface_word":"תחטאו","normalized_word":"תחטאו","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-44c00e1fe989","surface_word":"המצו׳","normalized_word":"המצו׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":9},{"token_index_id":"tok-459ead470392","surface_word":"יום","normalized_word":"יומ","lexicon_entry_id":"","status":"unmatched","occurrence_count":958},{"token_index_id":"tok-46e65e5b73dc","surface_word":"יתן","normalized_word":"יתנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":85},{"token_index_id":"tok-470347c408a9","surface_word":"הנחתיך","normalized_word":"הנחתיכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-47956abb48d7","surface_word":"אצל","normalized_word":"אצל","lexicon_entry_id":"","status":"unmatched","occurrence_count":259},{"token_index_id":"tok-49f5fbd31d80","surface_word":"בנדת","normalized_word":"בנדת","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-4c74d5b087ce","surface_word":"בר","normalized_word":"בר","lexicon_entry_id":"","status":"unmatched","occurrence_count":903},{"token_index_id":"tok-4dcc5f1df4b6","surface_word":"ומים","normalized_word":"ומימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":22},{"token_index_id":"tok-4decf1f56664","surface_word":"ובמדרש","normalized_word":"ובמדרש","lexicon_entry_id":"","status":"unmatched","occurrence_count":15},{"token_index_id":"tok-4e0990bbedc8","surface_word":"ואזן","normalized_word":"ואזנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-4e30043dfefb","surface_word":"רבו","normalized_word":"רבו","lexicon_entry_id":"","status":"unmatched","occurrence_count":93},{"token_index_id":"tok-4f147f532305","surface_word":"ביד","normalized_word":"ביד","lexicon_entry_id":"","status":"unmatched","occurrence_count":205},{"token_index_id":"tok-4f4fef8d58de","surface_word":"מעגלותיה","normalized_word":"מעגלותיה","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-4fc1b9b2cc21","surface_word":"ובפ״ב","normalized_word":"ובפ״ב","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-4fd197f502ca","surface_word":"לדבריה","normalized_word":"לדבריה","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-50f8765f0b70","surface_word":"נתתי","normalized_word":"נתתי","lexicon_entry_id":"","status":"unmatched","occurrence_count":25},{"token_index_id":"tok-52f857d39516","surface_word":"הולך","normalized_word":"הולכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":307},{"token_index_id":"tok-53ed75721b90","surface_word":"תוציא","normalized_word":"תוציא","lexicon_entry_id":"","status":"unmatched","occurrence_count":9},{"token_index_id":"tok-53f63e8b740f","surface_word":"וע״ש","normalized_word":"וע״ש","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-53fd73dd89ae","surface_word":"לבלתי","normalized_word":"לבלתי","lexicon_entry_id":"","status":"unmatched","occurrence_count":14},{"token_index_id":"tok-544e6bd2e162","surface_word":"שנפטר","normalized_word":"שנפטר","lexicon_entry_id":"","status":"unmatched","occurrence_count":14},{"token_index_id":"tok-5451e39e8c3e","surface_word":"ויאמר","normalized_word":"ויאמר","lexicon_entry_id":"","status":"unmatched","occurrence_count":252},{"token_index_id":"tok-54640c891320","surface_word":"באת","normalized_word":"באת","lexicon_entry_id":"","status":"unmatched","occurrence_count":14},{"token_index_id":"tok-551c11c50c70","surface_word":"ליחה","normalized_word":"ליחה","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-568620bdcc1a","surface_word":"וכ״ה","normalized_word":"וכ״ה","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-56a3b558697e","surface_word":"והמשפטי׳","normalized_word":"והמשפטי׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-56be69fef4f5","surface_word":"קהלת","normalized_word":"קהלת","lexicon_entry_id":"","status":"unmatched","occurrence_count":47},{"token_index_id":"tok-576bf06166c2","surface_word":"י״א","normalized_word":"י״א","lexicon_entry_id":"","status":"unmatched","occurrence_count":10},{"token_index_id":"tok-57828864818e","surface_word":"צעדיו","normalized_word":"צעדיו","lexicon_entry_id":"","status":"unmatched","occurrence_count":7},{"token_index_id":"tok-58797bf48e20","surface_word":"עבדי","normalized_word":"עבדי","lexicon_entry_id":"","status":"unmatched","occurrence_count":46},{"token_index_id":"tok-5a3f9be98e3b","surface_word":"לוחות","normalized_word":"לוחות","lexicon_entry_id":"","status":"unmatched","occurrence_count":36},{"token_index_id":"tok-5abdf1e53793","surface_word":"וע׳","normalized_word":"וע׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":358},{"token_index_id":"tok-5b1ed971f234","surface_word":"לו","normalized_word":"לו","lexicon_entry_id":"","status":"unmatched","occurrence_count":2774},{"token_index_id":"tok-5bcd3172d466","surface_word":"והלכתי","normalized_word":"והלכתי","lexicon_entry_id":"","status":"unmatched","occurrence_count":7},{"token_index_id":"tok-5c71179b95e3","surface_word":"חבירו","normalized_word":"חבירו","lexicon_entry_id":"","status":"unmatched","occurrence_count":141},{"token_index_id":"tok-5c870472f400","surface_word":"אפי׳","normalized_word":"אפי׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":948},{"token_index_id":"tok-5d3ae8e19890","surface_word":"ובו","normalized_word":"ובו","lexicon_entry_id":"","status":"unmatched","occurrence_count":146},{"token_index_id":"tok-5d98e389ab4c","surface_word":"במעלות","normalized_word":"במעלות","lexicon_entry_id":"","status":"unmatched","occurrence_count":29},{"token_index_id":"tok-5df3b027721a","surface_word":"ובגמרא","normalized_word":"ובגמרא","lexicon_entry_id":"","status":"unmatched","occurrence_count":12},{"token_index_id":"tok-5e9ae20c9a46","surface_word":"על","normalized_word":"על","lexicon_entry_id":"","status":"unmatched","occurrence_count":7641},{"token_index_id":"tok-5fa882028798","surface_word":"מאי","normalized_word":"מאי","lexicon_entry_id":"","status":"unmatched","occurrence_count":314},{"token_index_id":"tok-6035e1b1227c","surface_word":"ודרש","normalized_word":"ודרש","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-61f55b3572a2","surface_word":"בחוקותי","normalized_word":"בחוקותי","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-61f873f2c156","surface_word":"שהוא","normalized_word":"שהוא","lexicon_entry_id":"","status":"unmatched","occurrence_count":4794},{"token_index_id":"tok-6273eb02ae5d","surface_word":"משרת","normalized_word":"משרת","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-6363ac9650f6","surface_word":"לדעת","normalized_word":"לדעת","lexicon_entry_id":"","status":"unmatched","occurrence_count":287},{"token_index_id":"tok-63c458cce686","surface_word":"תפלס","normalized_word":"תפלס","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-63e53c3ee839","surface_word":"יחתום","normalized_word":"יחתומ","lexicon_entry_id":"","status":"unmatched","occurrence_count":5},{"token_index_id":"tok-642682503a6e","surface_word":"ישרצו","normalized_word":"ישרצו","lexicon_entry_id":"","status":"unmatched","occurrence_count":11},{"token_index_id":"tok-643962b37b1c","surface_word":"פרשה","normalized_word":"פרשה","lexicon_entry_id":"","status":"unmatched","occurrence_count":69},{"token_index_id":"tok-64631297e8ef","surface_word":"רבינו","normalized_word":"רבינו","lexicon_entry_id":"","status":"unmatched","occurrence_count":102},{"token_index_id":"tok-64fa7f231d4b","surface_word":"היו","normalized_word":"היו","lexicon_entry_id":"","status":"unmatched","occurrence_count":1343},{"token_index_id":"tok-65c81dc490d3","surface_word":"חיים","normalized_word":"חיימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":751},{"token_index_id":"tok-66ade4d77700","surface_word":"גו׳","normalized_word":"גו׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":48},{"token_index_id":"tok-66f33e4a45d1","surface_word":"ובעבור","normalized_word":"ובעבור","lexicon_entry_id":"","status":"unmatched","occurrence_count":5},{"token_index_id":"tok-679c4a3b7689","surface_word":"לזקנים","normalized_word":"לזקנימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-6828fcc19a60","surface_word":"ראו","normalized_word":"ראו","lexicon_entry_id":"","status":"unmatched","occurrence_count":45},{"token_index_id":"tok-6a89b9f41502","surface_word":"וכתב","normalized_word":"וכתב","lexicon_entry_id":"","status":"unmatched","occurrence_count":287},{"token_index_id":"tok-6b03aa3b8a27","surface_word":"כמ״ש","normalized_word":"כמ״ש","lexicon_entry_id":"","status":"unmatched","occurrence_count":24},{"token_index_id":"tok-6b49dd8d06ed","surface_word":"ישמעו","normalized_word":"ישמעו","lexicon_entry_id":"","status":"unmatched","occurrence_count":12},{"token_index_id":"tok-6b750daf9964","surface_word":"הנה","normalized_word":"הנה","lexicon_entry_id":"","status":"unmatched","occurrence_count":1957},{"token_index_id":"tok-6becadb57cd4","surface_word":"בוראך","normalized_word":"בוראכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-6cbe0991fb20","surface_word":"כ״ו","normalized_word":"כ״ו","lexicon_entry_id":"","status":"unmatched","occurrence_count":8},{"token_index_id":"tok-6ccd05bb06df","surface_word":"יביא","normalized_word":"יביא","lexicon_entry_id":"","status":"unmatched","occurrence_count":22},{"token_index_id":"tok-6d77244514c7","surface_word":"רגלי","normalized_word":"רגלי","lexicon_entry_id":"","status":"unmatched","occurrence_count":85},{"token_index_id":"tok-6db63ea247f5","surface_word":"הן","normalized_word":"הנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":937},{"token_index_id":"tok-6e98e66e7a38","surface_word":"כלם","normalized_word":"כלמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":383},{"token_index_id":"tok-6f490a9a4140","surface_word":"שהם","normalized_word":"שהמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":3407},{"token_index_id":"tok-700cc5ea281f","surface_word":"ע״ש","normalized_word":"ע״ש","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-705392272738","surface_word":"חשבין","normalized_word":"חשבינ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-71577151da64","surface_word":"זרעך","normalized_word":"זרעכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":16},{"token_index_id":"tok-7286fbd6a519","surface_word":"תדשא","normalized_word":"תדשא","lexicon_entry_id":"","status":"unmatched","occurrence_count":17},{"token_index_id":"tok-7294adec4fc7","surface_word":"בסוף","normalized_word":"בסופ","lexicon_entry_id":"","status":"unmatched","occurrence_count":291},{"token_index_id":"tok-72acf583152d","surface_word":"יראתו","normalized_word":"יראתו","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-73f4e414342a","surface_word":"דרכיך","normalized_word":"דרכיכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":23},{"token_index_id":"tok-73f7e9759be5","surface_word":"מצוה","normalized_word":"מצוה","lexicon_entry_id":"","status":"unmatched","occurrence_count":325},{"token_index_id":"tok-7424b81efe6d","surface_word":"הזקנים","normalized_word":"הזקנימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":14},{"token_index_id":"tok-7433b8f862e5","surface_word":"כאשר","normalized_word":"כאשר","lexicon_entry_id":"","status":"unmatched","occurrence_count":576},{"token_index_id":"tok-74dbd912c2f7","surface_word":"באו","normalized_word":"באו","lexicon_entry_id":"","status":"unmatched","occurrence_count":211},{"token_index_id":"tok-7511affd0bec","surface_word":"ובסנהדרין","normalized_word":"ובסנהדרינ","lexicon_entry_id":"","status":"unmatched","occurrence_count":15},{"token_index_id":"tok-760b9a24d452","surface_word":"ט״ז","normalized_word":"ט״ז","lexicon_entry_id":"","status":"unmatched","occurrence_count":13},{"token_index_id":"tok-76aa6b70eb25","surface_word":"ותיק","normalized_word":"ותיק","lexicon_entry_id":"","status":"unmatched","occurrence_count":5},{"token_index_id":"tok-77871b9368a0","surface_word":"אלהים","normalized_word":"אלהימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1016},{"token_index_id":"tok-7810f5bcd243","surface_word":"ישראל","normalized_word":"ישראל","lexicon_entry_id":"","status":"unmatched","occurrence_count":2896},{"token_index_id":"tok-78139323d4bc","surface_word":"ר״ע","normalized_word":"ר״ע","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-788cf0c79766","surface_word":"ואשיבה","normalized_word":"ואשיבה","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-78c411bcb16e","surface_word":"שמחשבין","normalized_word":"שמחשבינ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-793fa7343a25","surface_word":"אף","normalized_word":"אפ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1156},{"token_index_id":"tok-7993fc4da0cf","surface_word":"ע״ה","normalized_word":"ע״ה","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-799f572d4217","surface_word":"ויהושע","normalized_word":"ויהושע","lexicon_entry_id":"","status":"unmatched","occurrence_count":19},{"token_index_id":"tok-7a166912044b","surface_word":"מחשב","normalized_word":"מחשב","lexicon_entry_id":"","status":"unmatched","occurrence_count":10},{"token_index_id":"tok-7b5b7d0c904a","surface_word":"ג׳","normalized_word":"ג׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":1918},{"token_index_id":"tok-7e36b919f3f5","surface_word":"ובפ״ה","normalized_word":"ובפ״ה","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-7e6418c03bbf","surface_word":"בורך","normalized_word":"בורכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-7f214310f769","surface_word":"ענין","normalized_word":"ענינ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1693},{"token_index_id":"tok-7fc9eeb8ff43","surface_word":"ונתת","normalized_word":"ונתת","lexicon_entry_id":"","status":"unmatched","occurrence_count":11},{"token_index_id":"tok-7ffe80cdf698","surface_word":"עיין","normalized_word":"עיינ","lexicon_entry_id":"","status":"unmatched","occurrence_count":132},{"token_index_id":"tok-80ec52ec0e88","surface_word":"לדבר","normalized_word":"לדבר","lexicon_entry_id":"","status":"unmatched","occurrence_count":149},{"token_index_id":"tok-82ebd2f751e8","surface_word":"הדברים","normalized_word":"הדברימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":319},{"token_index_id":"tok-82f6b26e13ec","surface_word":"א״ל","normalized_word":"א״ל","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-8361b6ddaf69","surface_word":"האריכו","normalized_word":"האריכו","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-8442897151a0","surface_word":"בי","normalized_word":"בי","lexicon_entry_id":"","status":"unmatched","occurrence_count":504},{"token_index_id":"tok-8463c79e6650","surface_word":"האלקים","normalized_word":"האלקימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":24},{"token_index_id":"tok-85c82ad6861b","surface_word":"הא","normalized_word":"הא","lexicon_entry_id":"","status":"unmatched","occurrence_count":790},{"token_index_id":"tok-8628bad3353a","surface_word":"ויקרא","normalized_word":"ויקרא","lexicon_entry_id":"","status":"unmatched","occurrence_count":156},{"token_index_id":"tok-8650c598556a","surface_word":"כלום","normalized_word":"כלומ","lexicon_entry_id":"","status":"unmatched","occurrence_count":177},{"token_index_id":"tok-8735dce494f5","surface_word":"ט׳","normalized_word":"ט׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":383},{"token_index_id":"tok-874b00d6a750","surface_word":"ומשרתו","normalized_word":"ומשרתו","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-88212c3341bb","surface_word":"ק״פ","normalized_word":"ק״פ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-882306bea770","surface_word":"ויעל","normalized_word":"ויעל","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-886ede62fd43","surface_word":"לדבריו","normalized_word":"לדבריו","lexicon_entry_id":"","status":"unmatched","occurrence_count":20},{"token_index_id":"tok-88aa0681e15b","surface_word":"ד׳","normalized_word":"ד׳","lexicon_entry_id":"lex-yhwh-h3068","status":"matched","occurrence_count":2741},{"token_index_id":"tok-88adb21c0dc2","surface_word":"עדת","normalized_word":"עדת","lexicon_entry_id":"","status":"unmatched","occurrence_count":8},{"token_index_id":"tok-89fd2259f641","surface_word":"כללותיהם","normalized_word":"כללותיהמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-8a0ec777dfa8","surface_word":"ונביאים","normalized_word":"ונביאימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-8acc536f9d6d","surface_word":"כך","normalized_word":"ככ","lexicon_entry_id":"","status":"unmatched","occurrence_count":941},{"token_index_id":"tok-8b1aa6b1d71e","surface_word":"שם","normalized_word":"שמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":12484},{"token_index_id":"tok-8d5cc2a4d95b","surface_word":"עליו","normalized_word":"עליו","lexicon_entry_id":"","status":"unmatched","occurrence_count":881},{"token_index_id":"tok-8d8be8444418","surface_word":"תדע","normalized_word":"תדע","lexicon_entry_id":"","status":"unmatched","occurrence_count":34},{"token_index_id":"tok-8df9c5d70097","surface_word":"הקב״ה","normalized_word":"הקב״ה","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-8ebab2cfbd64","surface_word":"קפרא","normalized_word":"קפרא","lexicon_entry_id":"","status":"unmatched","occurrence_count":21},{"token_index_id":"tok-8f11e94aea34","surface_word":"שמיטה","normalized_word":"שמיטה","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-8f51de18b582","surface_word":"תלמוד","normalized_word":"תלמוד","lexicon_entry_id":"","status":"unmatched","occurrence_count":51},{"token_index_id":"tok-8f6fce4599d7","surface_word":"בת״כ","normalized_word":"בת״כ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-8fd939e70285","surface_word":"מארת","normalized_word":"מארת","lexicon_entry_id":"","status":"unmatched","occurrence_count":8},{"token_index_id":"tok-9036eebee010","surface_word":"ואתנה","normalized_word":"ואתנה","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-90bc7f4b9c0c","surface_word":"הנביאי׳","normalized_word":"הנביאי׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":8},{"token_index_id":"tok-913f0442841a","surface_word":"רגליך","normalized_word":"רגליכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":16},{"token_index_id":"tok-9167474fa600","surface_word":"איזהו","normalized_word":"איזהו","lexicon_entry_id":"","status":"unmatched","occurrence_count":36},{"token_index_id":"tok-91b16b4d1663","surface_word":"שמ״ש","normalized_word":"שמ״ש","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-91c46f6caa5b","surface_word":"בהר","normalized_word":"בהר","lexicon_entry_id":"","status":"unmatched","occurrence_count":64},{"token_index_id":"tok-922b64c0070d","surface_word":"ענבים","normalized_word":"ענבימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":29},{"token_index_id":"tok-935fc2359022","surface_word":"ביבמו׳","normalized_word":"ביבמו׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-942253413e79","surface_word":"ואמר","normalized_word":"ואמר","lexicon_entry_id":"","status":"unmatched","occurrence_count":938},{"token_index_id":"tok-962d19f1ce49","surface_word":"ואגדה","normalized_word":"ואגדה","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-96ac9ea8efcb","surface_word":"נמסרו","normalized_word":"נמסרו","lexicon_entry_id":"","status":"unmatched","occurrence_count":7},{"token_index_id":"tok-979d9fdd203e","surface_word":"ובספרי","normalized_word":"ובספרי","lexicon_entry_id":"","status":"unmatched","occurrence_count":16},{"token_index_id":"tok-97b6278407c5","surface_word":"מים","normalized_word":"מימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":348},{"token_index_id":"tok-981fc471bb73","surface_word":"נאמרו","normalized_word":"נאמרו","lexicon_entry_id":"","status":"unmatched","occurrence_count":22},{"token_index_id":"tok-991c1e229b40","surface_word":"אחרי","normalized_word":"אחרי","lexicon_entry_id":"","status":"unmatched","occurrence_count":266},{"token_index_id":"tok-99d168184fe8","surface_word":"אתה","normalized_word":"אתה","lexicon_entry_id":"","status":"unmatched","occurrence_count":354},{"token_index_id":"tok-99f92a2baa2b","surface_word":"מתונים","normalized_word":"מתונימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-9a126316972a","surface_word":"מעשה","normalized_word":"מעשה","lexicon_entry_id":"","status":"unmatched","occurrence_count":362},{"token_index_id":"tok-9a24c925e0ba","surface_word":"נ״א","normalized_word":"נ״א","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-9a903f8da6d0","surface_word":"כל","normalized_word":"כל","lexicon_entry_id":"","status":"unmatched","occurrence_count":8325},{"token_index_id":"tok-9be29693ab04","surface_word":"ריב״ל","normalized_word":"ריב״ל","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-9c1cdc3f7fc8","surface_word":"ואומר","normalized_word":"ואומר","lexicon_entry_id":"","status":"unmatched","occurrence_count":86},{"token_index_id":"tok-9c2edcb5e8c8","surface_word":"שופטים","normalized_word":"שופטימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":23},{"token_index_id":"tok-9cfdc8a3697f","surface_word":"וגו׳","normalized_word":"וגו׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":600},{"token_index_id":"tok-9d5606befd19","surface_word":"ודקדוקיהם","normalized_word":"ודקדוקיהמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-9dc28c961de9","surface_word":"מקרא","normalized_word":"מקרא","lexicon_entry_id":"","status":"unmatched","occurrence_count":105},{"token_index_id":"tok-9eb3034939ee","surface_word":"אלה","normalized_word":"אלה","lexicon_entry_id":"","status":"unmatched","occurrence_count":464},{"token_index_id":"tok-9f0462db84a8","surface_word":"אזן","normalized_word":"אזנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":25},{"token_index_id":"tok-9f46bc7ac664","surface_word":"משלי","normalized_word":"משלי","lexicon_entry_id":"","status":"unmatched","occurrence_count":95},{"token_index_id":"tok-9f4d44e2dfc2","surface_word":"ל״ז","normalized_word":"ל״ז","lexicon_entry_id":"","status":"unmatched","occurrence_count":7},{"token_index_id":"tok-a00b5cccc276","surface_word":"לאן","normalized_word":"לאנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-a12df9903c60","surface_word":"ישתה","normalized_word":"ישתה","lexicon_entry_id":"","status":"unmatched","occurrence_count":17},{"token_index_id":"tok-a1f910e028ad","surface_word":"ובריש","normalized_word":"ובריש","lexicon_entry_id":"","status":"unmatched","occurrence_count":10},{"token_index_id":"tok-a2bd36c440cc","surface_word":"הלכותי׳","normalized_word":"הלכותי׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-a2e13a2f6936","surface_word":"לפני","normalized_word":"לפני","lexicon_entry_id":"","status":"unmatched","occurrence_count":366},{"token_index_id":"tok-a3d9290334f5","surface_word":"פן","normalized_word":"פנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":40},{"token_index_id":"tok-a44acbdf631f","surface_word":"י״ט","normalized_word":"י״ט","lexicon_entry_id":"","status":"unmatched","occurrence_count":5},{"token_index_id":"tok-a45bff4e965e","surface_word":"ואשלח","normalized_word":"ואשלח","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-a4c822513b9f","surface_word":"ובמ״ר","normalized_word":"ובמ״ר","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-a54897bc5092","surface_word":"ממ״ה","normalized_word":"ממ״ה","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-a5a8ffd90c98","surface_word":"בסוטה","normalized_word":"בסוטה","lexicon_entry_id":"","status":"unmatched","occurrence_count":17},{"token_index_id":"tok-a5b2db1cd218","surface_word":"וכל","normalized_word":"וכל","lexicon_entry_id":"","status":"unmatched","occurrence_count":1740},{"token_index_id":"tok-a690ad9088d5","surface_word":"כה״ג","normalized_word":"כה״ג","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-a8050a13c59e","surface_word":"הבושה","normalized_word":"הבושה","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-a905ab429e17","surface_word":"נאמר","normalized_word":"נאמר","lexicon_entry_id":"","status":"unmatched","occurrence_count":516},{"token_index_id":"tok-a9fcd2e0fd3c","surface_word":"התורה","normalized_word":"התורה","lexicon_entry_id":"","status":"unmatched","occurrence_count":1061},{"token_index_id":"tok-aab205fcca0e","surface_word":"כתב","normalized_word":"כתב","lexicon_entry_id":"","status":"unmatched","occurrence_count":548},{"token_index_id":"tok-ab213738fa9b","surface_word":"עיניו","normalized_word":"עיניו","lexicon_entry_id":"","status":"unmatched","occurrence_count":91},{"token_index_id":"tok-ac4eb1c38811","surface_word":"וזכור","normalized_word":"וזכור","lexicon_entry_id":"","status":"unmatched","occurrence_count":55},{"token_index_id":"tok-ac9f370468d3","surface_word":"תעלה","normalized_word":"תעלה","lexicon_entry_id":"","status":"unmatched","occurrence_count":46},{"token_index_id":"tok-aef2aadb42a2","surface_word":"רבי","normalized_word":"רבי","lexicon_entry_id":"","status":"unmatched","occurrence_count":143},{"token_index_id":"tok-afd6f76eb660","surface_word":"שכולם","normalized_word":"שכולמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":57},{"token_index_id":"tok-b0525d1aa93a","surface_word":"חן","normalized_word":"חנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":55},{"token_index_id":"tok-b113878db72e","surface_word":"ושם","normalized_word":"ושמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1440},{"token_index_id":"tok-b1f686e98e49","surface_word":"רש״י","normalized_word":"רש״י","lexicon_entry_id":"","status":"unmatched","occurrence_count":8},{"token_index_id":"tok-b20ea5128706","surface_word":"החקי׳","normalized_word":"החקי׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-b223d8880d97","surface_word":"הם","normalized_word":"המ","lexicon_entry_id":"","status":"unmatched","occurrence_count":5940},{"token_index_id":"tok-b32383e05680","surface_word":"בחקותי","normalized_word":"בחקותי","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-b3d9a90a2973","surface_word":"הוא","normalized_word":"הוא","lexicon_entry_id":"","status":"unmatched","occurrence_count":12595},{"token_index_id":"tok-b3fc2048dd9a","surface_word":"בארך","normalized_word":"בארכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-b44160fee200","surface_word":"וסמוך","normalized_word":"וסמוכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":5},{"token_index_id":"tok-b46386f1e54c","surface_word":"מילתא","normalized_word":"מילתא","lexicon_entry_id":"","status":"unmatched","occurrence_count":66},{"token_index_id":"tok-b57b548c8022","surface_word":"לאנשי","normalized_word":"לאנשי","lexicon_entry_id":"","status":"unmatched","occurrence_count":13},{"token_index_id":"tok-b5983eb8dd0b","surface_word":"והוי","normalized_word":"והוי","lexicon_entry_id":"","status":"unmatched","occurrence_count":127},{"token_index_id":"tok-b5da2bbb789b","surface_word":"משה","normalized_word":"משה","lexicon_entry_id":"","status":"unmatched","occurrence_count":871},{"token_index_id":"tok-b5e9f2f0b12e","surface_word":"מאין","normalized_word":"מאינ","lexicon_entry_id":"","status":"unmatched","occurrence_count":43},{"token_index_id":"tok-b6c4c767eb46","surface_word":"א׳","normalized_word":"א׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":5066},{"token_index_id":"tok-b6fb502a6bb1","surface_word":"עקב","normalized_word":"עקב","lexicon_entry_id":"","status":"unmatched","occurrence_count":98},{"token_index_id":"tok-b77e4cf21935","surface_word":"פ״א","normalized_word":"פ״א","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-b874f27fdafb","surface_word":"אמר","normalized_word":"אמר","lexicon_entry_id":"","status":"unmatched","occurrence_count":1997},{"token_index_id":"tok-b962c11fa4df","surface_word":"לדברי׳","normalized_word":"לדברי׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-ba1487ca77a8","surface_word":"המביא","normalized_word":"המביא","lexicon_entry_id":"","status":"unmatched","occurrence_count":16},{"token_index_id":"tok-ba3df7c0aac6","surface_word":"בימי","normalized_word":"בימי","lexicon_entry_id":"","status":"unmatched","occurrence_count":209},{"token_index_id":"tok-bbf5767a0346","surface_word":"ומצא","normalized_word":"ומצא","lexicon_entry_id":"","status":"unmatched","occurrence_count":15},{"token_index_id":"tok-bd4485efd4ac","surface_word":"סרוחה","normalized_word":"סרוחה","lexicon_entry_id":"","status":"unmatched","occurrence_count":7},{"token_index_id":"tok-be792eddaab5","surface_word":"שעשתה","normalized_word":"שעשתה","lexicon_entry_id":"","status":"unmatched","occurrence_count":11},{"token_index_id":"tok-bf806afb424d","surface_word":"לרבות","normalized_word":"לרבות","lexicon_entry_id":"","status":"unmatched","occurrence_count":29},{"token_index_id":"tok-c0227660873a","surface_word":"דב״ב","normalized_word":"דב״ב","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-c0505c1097d3","surface_word":"ב׳","normalized_word":"ב׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":5099},{"token_index_id":"tok-c095f457927f","surface_word":"לעולמי׳","normalized_word":"לעולמי׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-c0e60ec293c9","surface_word":"וכיוצא","normalized_word":"וכיוצא","lexicon_entry_id":"","status":"unmatched","occurrence_count":193},{"token_index_id":"tok-c1499536dca0","surface_word":"שיהיו","normalized_word":"שיהיו","lexicon_entry_id":"","status":"unmatched","occurrence_count":192},{"token_index_id":"tok-c2742c4cba06","surface_word":"ה׳","normalized_word":"ה׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":3011},{"token_index_id":"tok-c35f09077873","surface_word":"שנאמר","normalized_word":"שנאמר","lexicon_entry_id":"","status":"unmatched","occurrence_count":315},{"token_index_id":"tok-c5c2f1825abe","surface_word":"כ״ה","normalized_word":"כ״ה","lexicon_entry_id":"","status":"unmatched","occurrence_count":7},{"token_index_id":"tok-c6a6ebafc70d","surface_word":"וזקני׳","normalized_word":"וזקני׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-c7160566232e","surface_word":"ופרו","normalized_word":"ופרו","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-c7f5c0f1d94b","surface_word":"בשעה","normalized_word":"בשעה","lexicon_entry_id":"","status":"unmatched","occurrence_count":97},{"token_index_id":"tok-c9a872526293","surface_word":"איש","normalized_word":"איש","lexicon_entry_id":"","status":"unmatched","occurrence_count":414},{"token_index_id":"tok-cab6a9c277a2","surface_word":"וברכה","normalized_word":"וברכה","lexicon_entry_id":"","status":"unmatched","occurrence_count":19},{"token_index_id":"tok-cb41e65fa764","surface_word":"ימיש","normalized_word":"ימיש","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-cb5f45dfb95a","surface_word":"כו׳","normalized_word":"כו׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":26875},{"token_index_id":"tok-cbda3e7ab7c6","surface_word":"ובפרשה","normalized_word":"ובפרשה","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-cc72e0d2fa75","surface_word":"בזקנותו","normalized_word":"בזקנותו","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-cd0c93a3ee3e","surface_word":"כולם","normalized_word":"כולמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":708},{"token_index_id":"tok-cdb8e223b2db","surface_word":"זהו","normalized_word":"זהו","lexicon_entry_id":"","status":"unmatched","occurrence_count":276},{"token_index_id":"tok-ce01149cc9fd","surface_word":"הרי","normalized_word":"הרי","lexicon_entry_id":"","status":"unmatched","occurrence_count":1499},{"token_index_id":"tok-cfb5f34aa92b","surface_word":"בדין","normalized_word":"בדינ","lexicon_entry_id":"","status":"unmatched","occurrence_count":47},{"token_index_id":"tok-d0226c3f059f","surface_word":"שופטיכ׳","normalized_word":"שופטיכ׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-d037dc164ac9","surface_word":"כ״א","normalized_word":"כ״א","lexicon_entry_id":"","status":"unmatched","occurrence_count":7},{"token_index_id":"tok-d047a778ad08","surface_word":"זרע","normalized_word":"זרע","lexicon_entry_id":"","status":"unmatched","occurrence_count":163},{"token_index_id":"tok-d04babf7ecc3","surface_word":"השכם","normalized_word":"השכמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-d07859af60c4","surface_word":"למשה","normalized_word":"למשה","lexicon_entry_id":"","status":"unmatched","occurrence_count":92},{"token_index_id":"tok-d0fd62a9da01","surface_word":"יכונו","normalized_word":"יכונו","lexicon_entry_id":"","status":"unmatched","occurrence_count":5},{"token_index_id":"tok-d17bd3ef0503","surface_word":"הלא","normalized_word":"הלא","lexicon_entry_id":"","status":"unmatched","occurrence_count":270},{"token_index_id":"tok-d1978cd631ce","surface_word":"מתוני׳","normalized_word":"מתוני׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-d1e4c648a38d","surface_word":"מעשהו","normalized_word":"מעשהו","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-d2128730a72d","surface_word":"במדבר","normalized_word":"במדבר","lexicon_entry_id":"","status":"unmatched","occurrence_count":106},{"token_index_id":"tok-d21403a8b783","surface_word":"י״ג","normalized_word":"י״ג","lexicon_entry_id":"","status":"unmatched","occurrence_count":8},{"token_index_id":"tok-d48dfeaecaec","surface_word":"צו","normalized_word":"צו","lexicon_entry_id":"","status":"unmatched","occurrence_count":28},{"token_index_id":"tok-d4a290405845","surface_word":"מאמרות","normalized_word":"מאמרות","lexicon_entry_id":"","status":"unmatched","occurrence_count":12},{"token_index_id":"tok-d556130b000e","surface_word":"רמה","normalized_word":"רמה","lexicon_entry_id":"","status":"unmatched","occurrence_count":42},{"token_index_id":"tok-d620d5e62253","surface_word":"ושכל","normalized_word":"ושכל","lexicon_entry_id":"","status":"unmatched","occurrence_count":10},{"token_index_id":"tok-d64678106d1d","surface_word":"בילדותו","normalized_word":"בילדותו","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-d7ee7b6f98b9","surface_word":"אנשי","normalized_word":"אנשי","lexicon_entry_id":"","status":"unmatched","occurrence_count":78},{"token_index_id":"tok-d8ab6efd64e4","surface_word":"חוללתי","normalized_word":"חוללתי","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-daab05bd2ccc","surface_word":"החקים","normalized_word":"החקימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":18},{"token_index_id":"tok-dbd9d222afc1","surface_word":"עיניך","normalized_word":"עיניכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":71},{"token_index_id":"tok-dc5161d0dbce","surface_word":"הסתכל","normalized_word":"הסתכל","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-df0a7416c5a3","surface_word":"ורבו","normalized_word":"ורבו","lexicon_entry_id":"","status":"unmatched","occurrence_count":13},{"token_index_id":"tok-df3d3157f738","surface_word":"היה","normalized_word":"היה","lexicon_entry_id":"","status":"unmatched","occurrence_count":2535},{"token_index_id":"tok-df8b5c53248d","surface_word":"ואצוה","normalized_word":"ואצוה","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-e209a758f420","surface_word":"ישמע","normalized_word":"ישמע","lexicon_entry_id":"","status":"unmatched","occurrence_count":19},{"token_index_id":"tok-e360c4f1b268","surface_word":"דנדרים","normalized_word":"דנדרימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":82},{"token_index_id":"tok-e49189c6c7b4","surface_word":"מלאך","normalized_word":"מלאכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":92},{"token_index_id":"tok-e55407990094","surface_word":"משיבו","normalized_word":"משיבו","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-e7267bd881af","surface_word":"למען","normalized_word":"למענ","lexicon_entry_id":"","status":"unmatched","occurrence_count":111},{"token_index_id":"tok-e7a3ea882277","surface_word":"דפאה","normalized_word":"דפאה","lexicon_entry_id":"","status":"unmatched","occurrence_count":36},{"token_index_id":"tok-e80083a61873","surface_word":"תהיה","normalized_word":"תהיה","lexicon_entry_id":"","status":"unmatched","occurrence_count":162},{"token_index_id":"tok-e8786036b14e","surface_word":"ליהושע","normalized_word":"ליהושע","lexicon_entry_id":"","status":"unmatched","occurrence_count":8},{"token_index_id":"tok-e895ed36b9f6","surface_word":"ירמיה","normalized_word":"ירמיה","lexicon_entry_id":"","status":"unmatched","occurrence_count":81},{"token_index_id":"tok-e8f0c5fccd0d","surface_word":"הנוטע","normalized_word":"הנוטע","lexicon_entry_id":"","status":"unmatched","occurrence_count":20},{"token_index_id":"tok-e9f45dedab39","surface_word":"וכתיב","normalized_word":"וכתיב","lexicon_entry_id":"","status":"unmatched","occurrence_count":89},{"token_index_id":"tok-ea354327c507","surface_word":"ולפני","normalized_word":"ולפני","lexicon_entry_id":"","status":"unmatched","occurrence_count":11},{"token_index_id":"tok-ea6da3a4cf32","surface_word":"שתלמיד","normalized_word":"שתלמיד","lexicon_entry_id":"","status":"unmatched","occurrence_count":5},{"token_index_id":"tok-eb8f0ae739a0","surface_word":"ובילקו׳","normalized_word":"ובילקו׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-ec3acdbb813c","surface_word":"קבל","normalized_word":"קבל","lexicon_entry_id":"","status":"unmatched","occurrence_count":30},{"token_index_id":"tok-ed0c54ae67d9","surface_word":"אנוש","normalized_word":"אנוש","lexicon_entry_id":"","status":"unmatched","occurrence_count":22},{"token_index_id":"tok-ed1860030c76","surface_word":"ובירושלמי","normalized_word":"ובירושלמי","lexicon_entry_id":"","status":"unmatched","occurrence_count":124},{"token_index_id":"tok-edbec70450ee","surface_word":"עתיד","normalized_word":"עתיד","lexicon_entry_id":"","status":"unmatched","occurrence_count":71},{"token_index_id":"tok-ee47bc9cdbbd","surface_word":"את","normalized_word":"את","lexicon_entry_id":"","status":"unmatched","occurrence_count":6446},{"token_index_id":"tok-eec00be6228f","surface_word":"נביאים","normalized_word":"נביאימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":40},{"token_index_id":"tok-f032626bfbbe","surface_word":"ושלוח","normalized_word":"ושלוח","lexicon_entry_id":"","status":"unmatched","occurrence_count":3},{"token_index_id":"tok-f0722332f74d","surface_word":"לג״ע","normalized_word":"לג״ע","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-f0c8d2e3dca8","surface_word":"שנתנה","normalized_word":"שנתנה","lexicon_entry_id":"","status":"unmatched","occurrence_count":16},{"token_index_id":"tok-f0d84aa5b56e","surface_word":"מה","normalized_word":"מה","lexicon_entry_id":"","status":"unmatched","occurrence_count":2550},{"token_index_id":"tok-f16c10109694","surface_word":"מן","normalized_word":"מנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":3977},{"token_index_id":"tok-f1bac3115e8c","surface_word":"אשה","normalized_word":"אשה","lexicon_entry_id":"","status":"unmatched","occurrence_count":225},{"token_index_id":"tok-f24e3e9521b7","surface_word":"המים","normalized_word":"המימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":234},{"token_index_id":"tok-f61ff60ce480","surface_word":"כדרך","normalized_word":"כדרכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":108},{"token_index_id":"tok-f62b7eefbcca","surface_word":"שאר","normalized_word":"שאר","lexicon_entry_id":"","status":"unmatched","occurrence_count":415},{"token_index_id":"tok-f647de6860eb","surface_word":"מלמד","normalized_word":"מלמד","lexicon_entry_id":"","status":"unmatched","occurrence_count":47},{"token_index_id":"tok-f6a15419cfa0","surface_word":"ואדם","normalized_word":"ואדמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":43},{"token_index_id":"tok-f6b2742a2140","surface_word":"בעון","normalized_word":"בעונ","lexicon_entry_id":"","status":"unmatched","occurrence_count":40},{"token_index_id":"tok-f774e95e91ef","surface_word":"לך","normalized_word":"לכ","lexicon_entry_id":"","status":"unmatched","occurrence_count":790},{"token_index_id":"tok-f7a2211ce238","surface_word":"מסיני","normalized_word":"מסיני","lexicon_entry_id":"","status":"unmatched","occurrence_count":29},{"token_index_id":"tok-f91142a21d0e","surface_word":"ל״ב","normalized_word":"ל״ב","lexicon_entry_id":"","status":"unmatched","occurrence_count":11},{"token_index_id":"tok-f94cf0cfd9a2","surface_word":"הוו","normalized_word":"הוו","lexicon_entry_id":"","status":"unmatched","occurrence_count":108},{"token_index_id":"tok-f97fe66c0bec","surface_word":"י״ד","normalized_word":"י״ד","lexicon_entry_id":"","status":"unmatched","occurrence_count":11},{"token_index_id":"tok-f9cde3e0eade","surface_word":"ועליהם","normalized_word":"ועליהמ","lexicon_entry_id":"","status":"unmatched","occurrence_count":43},{"token_index_id":"tok-fa1f8a8a1296","surface_word":"בשרו","normalized_word":"בשרו","lexicon_entry_id":"","status":"unmatched","occurrence_count":21},{"token_index_id":"tok-fad0443f0926","surface_word":"ודקדוקיה","normalized_word":"ודקדוקיה","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-fb9f7f058d4b","surface_word":"הגלגל","normalized_word":"הגלגל","lexicon_entry_id":"","status":"unmatched","occurrence_count":6},{"token_index_id":"tok-fc5f2477077c","surface_word":"מדרש","normalized_word":"מדרש","lexicon_entry_id":"","status":"unmatched","occurrence_count":29},{"token_index_id":"tok-fcb463ba5084","surface_word":"זו","normalized_word":"זו","lexicon_entry_id":"","status":"unmatched","occurrence_count":1977},{"token_index_id":"tok-fdfa29e2dc05","surface_word":"אלא","normalized_word":"אלא","lexicon_entry_id":"","status":"unmatched","occurrence_count":4886},{"token_index_id":"tok-feb13e9f759b","surface_word":"ציוי","normalized_word":"ציוי","lexicon_entry_id":"","status":"unmatched","occurrence_count":1},{"token_index_id":"tok-fed998795be1","surface_word":"ככל","normalized_word":"ככל","lexicon_entry_id":"","status":"unmatched","occurrence_count":41},{"token_index_id":"tok-feeba0177af3","surface_word":"בשלשה","normalized_word":"בשלשה","lexicon_entry_id":"","status":"unmatched","occurrence_count":89},{"token_index_id":"tok-fef66ea43594","surface_word":"והתורות","normalized_word":"והתורות","lexicon_entry_id":"","status":"unmatched","occurrence_count":2}]}</script>
+  <script type="application/json" data-lexical-lexicon>{"schema_version":1,"entries":[{"entry_id":"lex-yhwh-h3068","hebrew_word":"ד׳","transliteration":"Hashem; YHWH","strict_renderings":["the Name","YHWH","God"],"root":"יְהֹוָה / הָיָה","root_transliteration":"YHWH / hayah","root_meaning":["self-existent","eternal","be","become"],"source_rows":[{"source_name":"Wikidata Lexeme","source_family":"wikidata","source_id":"L490075; L78221","source_url":"https://www.wikidata.org/wiki/Lexeme:L490075","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","fields_used":["lemma coverage","sense check"],"notes":"Wikidata coverage exists for יהוה. The printed Orot token is the abbreviation ד׳."},{"source_name":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"Lam.4.20 word 25pDQ; lemma 3068; morph HNp","source_url":"https://github.com/openscriptures/morphhb/blob/master/wlc/Lam.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["Biblical phrase token","lemma id","morphology"],"notes":"Used as Biblical phrase enrichment because the selected Orot unit prints ד׳ where Lamentations 4:20 has the Divine Name."},{"source_name":"OpenScriptures HebrewLexicon","source_family":"openscriptures","source_id":"H3068; linked root entry H1961","source_url":"https://github.com/openscriptures/HebrewLexicon/blob/master/HebrewStrong.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","fields_used":["transliteration","strict renderings","root","root meaning"],"notes":"Used for Biblical-Hebrew lexical enrichment, paired with the morphHB token row."}]}]}</script>
   <script>
     (() => {
       const units = Array.from(document.querySelectorAll("[data-unit]"));
@@ -658,6 +713,148 @@
           target.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       }
+    })();
+  </script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const hud = document.querySelector("[data-lexical-hud]");
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const row = tokenRows.get(tokenIndexId) || {};
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.dir = "rtl";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = row.lexicon_entry_id || "";
+        span.dataset.lexicalStatus = row.status || "unmatched";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderSources = (sourceBox, rows) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        if (!rows || !rows.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        (rows || []).forEach((row) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const title = document.createElement("p");
+          const link = document.createElement("a");
+          link.href = row.source_url || "#";
+          link.textContent = row.source_name || "Source";
+          const strong = document.createElement("strong");
+          strong.appendChild(link);
+          title.appendChild(strong);
+          title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+          const fields = document.createElement("p");
+          fields.textContent = `Fields: ${(row.fields_used || []).join(", ") || "N/A"}`;
+          const notes = document.createElement("p");
+          notes.textContent = row.notes || "";
+          section.append(title, fields, notes);
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = (button) => {
+        const tokenRow = tokenRows.get(button.dataset.lexicalIndex) || {};
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [] };
+      };
+      const renderWord = (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        if (hud.parentElement !== slot) slot.appendChild(hud);
+        const view = buildWordView(button);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        setText(hud, "[data-hud-word]", view.hebrew_word);
+        setText(hud, "[data-hud-transliteration]", view.transliteration);
+        setList(hud, "[data-hud-renderings]", view.strict_renderings);
+        setText(hud, "[data-hud-root]", view.root);
+        setText(hud, "[data-hud-root-transliteration]", view.root_transliteration);
+        setList(hud, "[data-hud-root-meaning]", view.root_meaning);
+        renderSources(hud.querySelector("[data-hud-sources]"), view.source_rows);
+        const details = hud.querySelector("details");
+        if (details) details.open = false;
+        hud.hidden = false;
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
     })();
   </script>
 </body>

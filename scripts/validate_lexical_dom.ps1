@@ -2,54 +2,45 @@ $ErrorActionPreference = 'Stop'
 
 $unitId = 'orot-lights-from-darkness-lights-of-rebirth-70-5'
 $htmlPath = Join-Path $PSScriptRoot '..\orot\index.html'
-$lexicalPath = Join-Path $PSScriptRoot '..\data\lexical\orot-lights-from-darkness-lights-of-rebirth-70-5.json'
+$occurrencePath = Join-Path $PSScriptRoot '..\data\lexical\occurrences\orot.json'
+$tokenIndexPath = Join-Path $PSScriptRoot '..\data\lexical\token-index.json'
 $lexiconPath = Join-Path $PSScriptRoot '..\data\lexical\lexicon.json'
 
-$expectedCodepoints = @(
-  @('05D3', '05F3'),
-  @('05E8', '05D5', '05D7'),
-  @('05D0', '05E4', '05E0', '05D5'),
-  @('05DE', '05E9', '05D9', '05D7')
-)
-
-function Get-Codepoints {
-  param([string]$Text)
-
-  $points = @()
-  foreach ($char in $Text.ToCharArray()) {
-    $points += ('{0:X4}' -f [int][char]$char)
-  }
-  return $points
-}
-
-function Assert-Codepoints {
-  param(
-    [string]$Label,
-    [string[]]$Actual,
-    [string[]]$Expected
-  )
-
-  $actualJoined = ($Actual -join ' ')
-  $expectedJoined = ($Expected -join ' ')
-  if ($actualJoined -ne $expectedJoined) {
-    throw "$Label codepoint mismatch. Expected [$expectedJoined], got [$actualJoined]."
+foreach ($path in @($htmlPath, $occurrencePath, $tokenIndexPath, $lexiconPath)) {
+  if (-not (Test-Path -LiteralPath $path)) {
+    throw "Required lexical validation file not found: $path"
   }
 }
 
-if (-not (Test-Path -LiteralPath $htmlPath)) {
-  throw "Generated Orot page not found: $htmlPath"
-}
-if (-not (Test-Path -LiteralPath $lexicalPath)) {
-  throw "Lexical sample data not found: $lexicalPath"
-}
-if (-not (Test-Path -LiteralPath $lexiconPath)) {
-  throw "Lexicon index data not found: $lexiconPath"
+$occurrences = Get-Content -LiteralPath $occurrencePath -Raw -Encoding UTF8 | ConvertFrom-Json
+$unitOccurrence = $occurrences.units.PSObject.Properties[$unitId].Value
+if ($null -eq $unitOccurrence) {
+  throw "Unit occurrence not found: $unitId"
 }
 
-$lexical = Get-Content -LiteralPath $lexicalPath -Raw -Encoding UTF8 | ConvertFrom-Json
-$lexicalWords = @($lexical.words)
-if ($lexicalWords.Count -ne 4) {
-  throw "Expected 4 lexical sample words, found $($lexicalWords.Count)."
+$expectedTokenIndexIds = @()
+foreach ($paragraph in @($unitOccurrence.paragraphs)) {
+  if ($paragraph.PSObject.Properties.Name -contains 'tokens') {
+    throw "Unit occurrence still contains verbose token objects: $unitId"
+  }
+  if ($paragraph.PSObject.Properties.Name -notcontains 'token_index_ids') {
+    throw "Unit occurrence paragraph missing token_index_ids: $unitId"
+  }
+  foreach ($tokenIndexId in @($paragraph.token_index_ids)) {
+    $expectedTokenIndexIds += [string]$tokenIndexId
+  }
+}
+if ($expectedTokenIndexIds.Count -eq 0) {
+  throw "Unit occurrence has no lexical tokens: $unitId"
+}
+
+$tokenIndex = Get-Content -LiteralPath $tokenIndexPath -Raw -Encoding UTF8 | ConvertFrom-Json
+$tokenIds = @{}
+$tokenRows = @{}
+foreach ($row in @($tokenIndex.forms)) {
+  $tokenKey = [string]$row.token_index_id
+  $tokenIds[$tokenKey] = $true
+  $tokenRows[$tokenKey] = $row
 }
 
 $lexicon = Get-Content -LiteralPath $lexiconPath -Raw -Encoding UTF8 | ConvertFrom-Json
@@ -58,28 +49,13 @@ foreach ($entry in @($lexicon.entries)) {
   $entryIds[[string]$entry.entry_id] = $true
 }
 
-$forbiddenOccurrenceFields = @(
-  'transliteration',
-  'strict_renderings',
-  'root',
-  'root_transliteration',
-  'root_meaning',
-  'source_rows'
-)
-
-for ($i = 0; $i -lt $expectedCodepoints.Count; $i++) {
-  $actual = @(Get-Codepoints $lexicalWords[$i].hebrew_word)
-  Assert-Codepoints "Lexical data word[$i]" $actual $expectedCodepoints[$i]
-  if (-not $lexicalWords[$i].lexicon_entry_id) {
-    throw "Lexical occurrence word[$i] is missing lexicon_entry_id."
+foreach ($tokenIndexId in $expectedTokenIndexIds) {
+  if (-not $tokenIds.ContainsKey($tokenIndexId)) {
+    throw "Unit occurrence references missing token_index_id $tokenIndexId`: $unitId"
   }
-  if (-not $entryIds.ContainsKey([string]$lexicalWords[$i].lexicon_entry_id)) {
-    throw "Lexical occurrence word[$i] references missing lexicon entry $($lexicalWords[$i].lexicon_entry_id)."
-  }
-  foreach ($field in $forbiddenOccurrenceFields) {
-    if ($lexicalWords[$i].PSObject.Properties.Name -contains $field) {
-      throw "Lexical occurrence word[$i] contains reusable definition field '$field'; definitions must live in lexicon.json."
-    }
+  $tokenRow = $tokenRows[$tokenIndexId]
+  if ($tokenRow.status -eq 'matched' -and -not $entryIds.ContainsKey([string]$tokenRow.lexicon_entry_id)) {
+    throw "Matched token index row references missing lexicon_entry_id $($tokenRow.lexicon_entry_id): $tokenIndexId"
   }
 }
 
@@ -91,38 +67,22 @@ if (-not $unitMatch.Success) {
   throw "Unit section not found in generated Orot page: $unitId"
 }
 
-$spanPattern = '<span class="lexical-word"[^>]*data-lexical-token="[^"]+"[^>]*>(.*?)</span>'
-$spanMatches = [regex]::Matches($unitMatch.Value, $spanPattern)
-if ($spanMatches.Count -ne 4) {
-  throw "Expected 4 generated lexical spans for $unitId, found $($spanMatches.Count)."
+if (-not $unitMatch.Value.Contains('data-lexical-paragraph')) {
+  throw "Generated unit is missing lexical paragraph markers: $unitId"
 }
 
-for ($i = 0; $i -lt $expectedCodepoints.Count; $i++) {
-  $textContent = [System.Net.WebUtility]::HtmlDecode($spanMatches[$i].Groups[1].Value)
-  $actual = @(Get-Codepoints $textContent)
-  $expected = @(Get-Codepoints $lexicalWords[$i].hebrew_word)
-  Assert-Codepoints "Generated DOM span[$i]" $actual $expected
+if ($unitMatch.Value.Contains('data-lexical-token')) {
+  throw "Generated HTML contains pre-rendered lexical token spans; wrapping should happen client-side."
 }
 
-$indexMatch = [regex]::Match($html, '<script type="application/json" data-lexical-index>(.*?)</script>', [System.Text.RegularExpressions.RegexOptions]::Singleline)
-if (-not $indexMatch.Success) {
-  throw "Generated page is missing page-level lexical index JSON."
-}
-$generatedIndex = [System.Net.WebUtility]::HtmlDecode($indexMatch.Groups[1].Value) | ConvertFrom-Json
-if (@($generatedIndex.entries).Count -lt 4) {
-  throw "Generated lexical index does not include the expected reusable entries."
-}
-
-$sampleMatches = [regex]::Matches($unitMatch.Value, '<script type="application/json" data-lexical-json>(.*?)</script>', [System.Text.RegularExpressions.RegexOptions]::Singleline)
-foreach ($sampleMatch in $sampleMatches) {
-  $generatedSample = [System.Net.WebUtility]::HtmlDecode($sampleMatch.Groups[1].Value) | ConvertFrom-Json
-  foreach ($word in @($generatedSample.words)) {
-    foreach ($field in $forbiddenOccurrenceFields) {
-      if ($word.PSObject.Properties.Name -contains $field) {
-        throw "Generated occurrence JSON contains reusable definition field '$field'; definitions must not be baked per occurrence."
-      }
-    }
+foreach ($requiredPattern in @('data-lexical-occurrences', 'data-lexical-token-index', 'data-lexical-lexicon', 'data-lexical-slot', 'data-lexical-hud')) {
+  if (-not $html.Contains($requiredPattern)) {
+    throw "Generated page missing lexical renderer marker: $requiredPattern"
   }
 }
 
-Write-Host "Lexical DOM validation passed for $unitId."
+if ($html.Contains('data-lexical-json')) {
+  throw 'Generated page still contains stale per-occurrence lexical JSON.'
+}
+
+Write-Host "Lexical DOM validation passed for $unitId with $($expectedTokenIndexIds.Count) indexed token occurrences."

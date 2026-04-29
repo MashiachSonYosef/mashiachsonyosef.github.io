@@ -61,6 +61,23 @@
     .placeholder { color: #8c857c; }
     .overlay-block { border: 1px solid var(--line); background: var(--panel-2); padding: 12px; margin-bottom: 10px; }
     .overlay-label { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; }
+    .lexical-word { display: inline-block; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: rtl; unicode-bidi: isolate; white-space: nowrap; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .lexical-hud { position: sticky; top: 14px; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
     .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
     .source-table { width: 100%; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
@@ -71,7 +88,7 @@
     .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
     .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields { grid-template-columns: 1fr; } .toc, .lexical-hud { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -146,14 +163,14 @@
         </nav>
         <article>
           <h4 id="chapter-gras-nuschah-on-tractate-kallah-text-1">Chapter 1</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-kallah-1-1-1" data-unit data-complete="false">
+          <section class="unit" id="gras-nuschah-on-tractate-kallah-1-1-1" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Kallah 1:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-kallah-1-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Kallah 1:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">אף אלמנה שנאמר (ועי׳ במס׳ כלה רבתי):</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אף אלמנה שנאמר (ועי׳ במס׳ כלה רבתי):</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -162,6 +179,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -170,14 +188,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-kallah-text-2">Chapter 2</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-kallah-2-1-1" data-unit data-complete="false">
+          <section class="unit" id="gras-nuschah-on-tractate-kallah-2-1-1" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Kallah 2:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-kallah-2-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Kallah 2:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">מכאן אמרו חכמים כל המסתכל באצבע קטנה של אשה כאילו מסתכל באותו מקום וכל הנוגע:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מכאן אמרו חכמים כל המסתכל באצבע קטנה של אשה כאילו מסתכל באותו מקום וכל הנוגע:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -186,6 +204,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -194,14 +213,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-kallah-text-3">Chapter 3</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-kallah-3-1-1" data-unit data-complete="false">
+          <section class="unit" id="gras-nuschah-on-tractate-kallah-3-1-1" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Kallah 3:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-kallah-3-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Kallah 3:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">רגליו על הארץ וזו עושה אותה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רגליו על הארץ וזו עושה אותה:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -210,6 +229,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -217,14 +237,14 @@
               <a href="#chapter-gras-nuschah-on-tractate-kallah-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-kallah-3-1-2" data-unit data-complete="false">
+          <section class="unit" id="gras-nuschah-on-tractate-kallah-3-1-2" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Kallah 3:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-kallah-3-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Kallah 3:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שלש פעמים בשלשה ימים וזו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שלש פעמים בשלשה ימים וזו:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -233,6 +253,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -241,14 +262,14 @@
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-kallah-text-5">Chapter 5</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-kallah-5-1-1" data-unit data-complete="false">
+          <section class="unit" id="gras-nuschah-on-tractate-kallah-5-1-1" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Kallah 5:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-kallah-5-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Kallah 5:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">כראוי:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כראוי:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -257,6 +278,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -264,14 +286,14 @@
               <a href="#chapter-gras-nuschah-on-tractate-kallah-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-kallah-5-1-2" data-unit data-complete="false">
+          <section class="unit" id="gras-nuschah-on-tractate-kallah-5-1-2" data-unit data-complete="false" data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Kallah 5:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-kallah-5-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Kallah 5:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">נטלן ר״ע חלקן:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">נטלן ר״ע חלקן:</p>
               </div>
               <div>
                 <div class="overlay-block"><span class="overlay-label">Translation</span>
@@ -280,6 +302,7 @@
                 <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>
                   <p class="placeholder">N/A</p>
                 </div>
+                <div data-lexical-slot></div>
               </div>
             </div>
             <nav class="unit-nav" aria-label="Unit navigation">
@@ -291,6 +314,24 @@
       </div>
     </div>
   </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <dt>Hebrew word</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd>
+      <dt>Transliteration</dt><dd data-hud-transliteration>N/A</dd>
+      <dt>Strict renderings</dt><dd data-hud-renderings>N/A</dd>
+      <dt>Root</dt><dd data-hud-root lang="he" dir="rtl">N/A</dd>
+      <dt>Root transliteration</dt><dd data-hud-root-transliteration>N/A</dd>
+      <dt>Root meaning</dt><dd data-hud-root-meaning>N/A</dd>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"gras-nuschah-on-tractate-kallah","work_title":"Gra\u0027s Nuschah on Tractate Kallah","work_slug":"gra/gras-nuschah-on-tractate-kallah","generated_at":"2026-04-29T05:18:37.694Z","total_occurrences":37,"units":{"gras-nuschah-on-tractate-kallah-1-1-1":{"unit_id":"gras-nuschah-on-tractate-kallah-1-1-1","anchor_id":"gras-nuschah-on-tractate-kallah-1-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-793fa7343a25","tok-4c629298fcbe","tok-c35f09077873","tok-9e6c94a473cc","tok-3290773d42c9","tok-f137ed4e7733","tok-dcf339e4cf83"]}]},"gras-nuschah-on-tractate-kallah-2-1-1":{"unit_id":"gras-nuschah-on-tractate-kallah-2-1-1","anchor_id":"gras-nuschah-on-tractate-kallah-2-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 2:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bfdfabe24691","tok-9d71d8668b61","tok-c78d4c5fb588","tok-9a903f8da6d0","tok-751a96f81856","tok-66b1edf6c057","tok-890aa9b49ddf","tok-2b6526dbcaa3","tok-f1bac3115e8c","tok-77699ac76594","tok-fdd3b46808ec","tok-760702854086","tok-98b9326501b5","tok-a5b2db1cd218","tok-417fd6dda25d"]}]},"gras-nuschah-on-tractate-kallah-3-1-1":{"unit_id":"gras-nuschah-on-tractate-kallah-3-1-1","anchor_id":"gras-nuschah-on-tractate-kallah-3-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 3:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c3680d12b8a4","tok-5e9ae20c9a46","tok-21a5b06473be","tok-0ff81292a4bb","tok-ffd7fe1f76d5","tok-cc7266a68ddb"]}]},"gras-nuschah-on-tractate-kallah-3-1-2":{"unit_id":"gras-nuschah-on-tractate-kallah-3-1-2","anchor_id":"gras-nuschah-on-tractate-kallah-3-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 3:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ed9ada971118","tok-b8d29b82dbf1","tok-feeba0177af3","tok-2be35572e16a","tok-0ff81292a4bb"]}]},"gras-nuschah-on-tractate-kallah-5-1-1":{"unit_id":"gras-nuschah-on-tractate-kallah-5-1-1","anchor_id":"gras-nuschah-on-tractate-kallah-5-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 5:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-43ce9c24370a"]}]},"gras-nuschah-on-tractate-kallah-5-1-2":{"unit_id":"gras-nuschah-on-tractate-kallah-5-1-2","anchor_id":"gras-nuschah-on-tractate-kallah-5-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 5:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3126430fdedd","tok-78139323d4bc","tok-78ddf5e8c6bd"]}]}}}</script>
+  <script type="application/json" data-lexical-token-index>{"schema_version":1,"forms":[{"token_index_id":"tok-0ff81292a4bb","surface_word":"וזו","normalized_word":"וזו","lexicon_entry_id":"","status":"unmatched","occurrence_count":254},{"token_index_id":"tok-21a5b06473be","surface_word":"הארץ","normalized_word":"הארצ","lexicon_entry_id":"","status":"unmatched","occurrence_count":529},{"token_index_id":"tok-2b6526dbcaa3","surface_word":"של","normalized_word":"של","lexicon_entry_id":"","status":"unmatched","occurrence_count":11341},{"token_index_id":"tok-2be35572e16a","surface_word":"ימים","normalized_word":"ימימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":317},{"token_index_id":"tok-3126430fdedd","surface_word":"נטלן","normalized_word":"נטלנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":4},{"token_index_id":"tok-3290773d42c9","surface_word":"במס׳","normalized_word":"במס׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":38},{"token_index_id":"tok-417fd6dda25d","surface_word":"הנוגע","normalized_word":"הנוגע","lexicon_entry_id":"","status":"unmatched","occurrence_count":22},{"token_index_id":"tok-43ce9c24370a","surface_word":"כראוי","normalized_word":"כראוי","lexicon_entry_id":"","status":"unmatched","occurrence_count":69},{"token_index_id":"tok-4c629298fcbe","surface_word":"אלמנה","normalized_word":"אלמנה","lexicon_entry_id":"","status":"unmatched","occurrence_count":11},{"token_index_id":"tok-5e9ae20c9a46","surface_word":"על","normalized_word":"על","lexicon_entry_id":"","status":"unmatched","occurrence_count":7641},{"token_index_id":"tok-66b1edf6c057","surface_word":"באצבע","normalized_word":"באצבע","lexicon_entry_id":"","status":"unmatched","occurrence_count":5},{"token_index_id":"tok-751a96f81856","surface_word":"המסתכל","normalized_word":"המסתכל","lexicon_entry_id":"","status":"unmatched","occurrence_count":7},{"token_index_id":"tok-760702854086","surface_word":"באותו","normalized_word":"באותו","lexicon_entry_id":"","status":"unmatched","occurrence_count":154},{"token_index_id":"tok-77699ac76594","surface_word":"כאילו","normalized_word":"כאילו","lexicon_entry_id":"","status":"unmatched","occurrence_count":88},{"token_index_id":"tok-78139323d4bc","surface_word":"ר״ע","normalized_word":"ר״ע","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-78ddf5e8c6bd","surface_word":"חלקן","normalized_word":"חלקנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":2},{"token_index_id":"tok-793fa7343a25","surface_word":"אף","normalized_word":"אפ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1156},{"token_index_id":"tok-890aa9b49ddf","surface_word":"קטנה","normalized_word":"קטנה","lexicon_entry_id":"","status":"unmatched","occurrence_count":98},{"token_index_id":"tok-98b9326501b5","surface_word":"מקום","normalized_word":"מקומ","lexicon_entry_id":"","status":"unmatched","occurrence_count":1078},{"token_index_id":"tok-9a903f8da6d0","surface_word":"כל","normalized_word":"כל","lexicon_entry_id":"","status":"unmatched","occurrence_count":8325},{"token_index_id":"tok-9d71d8668b61","surface_word":"אמרו","normalized_word":"אמרו","lexicon_entry_id":"","status":"unmatched","occurrence_count":605},{"token_index_id":"tok-9e6c94a473cc","surface_word":"ועי׳","normalized_word":"ועי׳","lexicon_entry_id":"","status":"unmatched","occurrence_count":35},{"token_index_id":"tok-a5b2db1cd218","surface_word":"וכל","normalized_word":"וכל","lexicon_entry_id":"","status":"unmatched","occurrence_count":1740},{"token_index_id":"tok-b8d29b82dbf1","surface_word":"פעמים","normalized_word":"פעמימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":477},{"token_index_id":"tok-bfdfabe24691","surface_word":"מכאן","normalized_word":"מכאנ","lexicon_entry_id":"","status":"unmatched","occurrence_count":195},{"token_index_id":"tok-c35f09077873","surface_word":"שנאמר","normalized_word":"שנאמר","lexicon_entry_id":"","status":"unmatched","occurrence_count":315},{"token_index_id":"tok-c3680d12b8a4","surface_word":"רגליו","normalized_word":"רגליו","lexicon_entry_id":"","status":"unmatched","occurrence_count":93},{"token_index_id":"tok-c78d4c5fb588","surface_word":"חכמים","normalized_word":"חכמימ","lexicon_entry_id":"","status":"unmatched","occurrence_count":145},{"token_index_id":"tok-cc7266a68ddb","surface_word":"אותה","normalized_word":"אותה","lexicon_entry_id":"","status":"unmatched","occurrence_count":630},{"token_index_id":"tok-dcf339e4cf83","surface_word":"רבתי","normalized_word":"רבתי","lexicon_entry_id":"","status":"unmatched","occurrence_count":34},{"token_index_id":"tok-ed9ada971118","surface_word":"שלש","normalized_word":"שלש","lexicon_entry_id":"","status":"unmatched","occurrence_count":169},{"token_index_id":"tok-f137ed4e7733","surface_word":"כלה","normalized_word":"כלה","lexicon_entry_id":"","status":"unmatched","occurrence_count":107},{"token_index_id":"tok-f1bac3115e8c","surface_word":"אשה","normalized_word":"אשה","lexicon_entry_id":"","status":"unmatched","occurrence_count":225},{"token_index_id":"tok-fdd3b46808ec","surface_word":"מסתכל","normalized_word":"מסתכל","lexicon_entry_id":"","status":"unmatched","occurrence_count":25},{"token_index_id":"tok-feeba0177af3","surface_word":"בשלשה","normalized_word":"בשלשה","lexicon_entry_id":"","status":"unmatched","occurrence_count":89},{"token_index_id":"tok-ffd7fe1f76d5","surface_word":"עושה","normalized_word":"עושה","lexicon_entry_id":"","status":"unmatched","occurrence_count":273}]}</script>
+  <script type="application/json" data-lexical-lexicon>{"schema_version":1,"entries":[]}</script>
   <script>
     (() => {
       const units = Array.from(document.querySelectorAll("[data-unit]"));
@@ -322,6 +363,148 @@
           target.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       }
+    })();
+  </script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const hud = document.querySelector("[data-lexical-hud]");
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const row = tokenRows.get(tokenIndexId) || {};
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.dir = "rtl";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = row.lexicon_entry_id || "";
+        span.dataset.lexicalStatus = row.status || "unmatched";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderSources = (sourceBox, rows) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        if (!rows || !rows.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        (rows || []).forEach((row) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const title = document.createElement("p");
+          const link = document.createElement("a");
+          link.href = row.source_url || "#";
+          link.textContent = row.source_name || "Source";
+          const strong = document.createElement("strong");
+          strong.appendChild(link);
+          title.appendChild(strong);
+          title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+          const fields = document.createElement("p");
+          fields.textContent = `Fields: ${(row.fields_used || []).join(", ") || "N/A"}`;
+          const notes = document.createElement("p");
+          notes.textContent = row.notes || "";
+          section.append(title, fields, notes);
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = (button) => {
+        const tokenRow = tokenRows.get(button.dataset.lexicalIndex) || {};
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [] };
+      };
+      const renderWord = (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        if (hud.parentElement !== slot) slot.appendChild(hud);
+        const view = buildWordView(button);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        setText(hud, "[data-hud-word]", view.hebrew_word);
+        setText(hud, "[data-hud-transliteration]", view.transliteration);
+        setList(hud, "[data-hud-renderings]", view.strict_renderings);
+        setText(hud, "[data-hud-root]", view.root);
+        setText(hud, "[data-hud-root-transliteration]", view.root_transliteration);
+        setList(hud, "[data-hud-root-meaning]", view.root_meaning);
+        renderSources(hud.querySelector("[data-hud-sources]"), view.source_rows);
+        const details = hud.querySelector("details");
+        if (details) details.open = false;
+        hud.hidden = false;
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
     })();
   </script>
 </body>

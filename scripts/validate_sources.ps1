@@ -203,42 +203,58 @@ if (Test-Path $lexiconPath) {
   }
 }
 
-$forbiddenOccurrenceFields = @('transliteration', 'strict_renderings', 'root', 'root_transliteration', 'root_meaning', 'source_rows')
-$lexicalFiles = if (Test-Path $LexicalDir) { @(Get-ChildItem -Path $LexicalDir -Filter '*.json' | Where-Object { $_.Name -ne 'lexicon.json' }) } else { @() }
-foreach ($lexicalFile in $lexicalFiles) {
-  $lexical = Get-Content -Path $lexicalFile.FullName -Raw -Encoding UTF8 | ConvertFrom-Json
-  foreach ($field in @('sample_id', 'work_id', 'source_ref', 'unit_id', 'anchor_id', 'words', 'license_policy')) {
-    if (-not $lexical.$field) {
-      $errors.Add("Lexical sample missing $field`: $($lexicalFile.Name)")
+$tokenIndexPath = Join-Path $LexicalDir 'token-index.json'
+$tokenIndexIds = @{}
+if (Test-Path $tokenIndexPath) {
+  $tokenIndex = Get-Content -Path $tokenIndexPath -Raw -Encoding UTF8 | ConvertFrom-Json
+  foreach ($row in @($tokenIndex.forms)) {
+    foreach ($field in @('token_index_id', 'surface_word', 'normalized_word', 'status', 'occurrence_count')) {
+      if (-not $row.$field) {
+        $errors.Add("Token index row missing $field`: $($row.token_index_id)")
+      }
+    }
+    $tokenIndexIds[[string]$row.token_index_id] = $true
+    if ($row.status -eq 'matched' -and -not $lexiconEntryIds.ContainsKey([string]$row.lexicon_entry_id)) {
+      $errors.Add("Matched token index row references missing lexicon_entry_id $($row.lexicon_entry_id): $($row.token_index_id)")
     }
   }
-  if ($lexical.source_ref -eq 'Genesis 1:1') {
-    $errors.Add('Lexical proof of concept should not use Genesis 1:1 unless Genesis is imported and rendered')
+} else {
+  $errors.Add("Missing lexical token index: $tokenIndexPath")
+}
+
+$occurrenceDir = Join-Path $LexicalDir 'occurrences'
+$lexicalFiles = if (Test-Path $occurrenceDir) { @(Get-ChildItem -Path $occurrenceDir -Filter '*.json') } else { @() }
+foreach ($lexicalFile in $lexicalFiles) {
+  $lexical = Get-Content -Path $lexicalFile.FullName -Raw -Encoding UTF8 | ConvertFrom-Json
+  foreach ($field in @('schema_version', 'work_id', 'work_title', 'work_slug', 'total_occurrences', 'units')) {
+    if (-not $lexical.$field) {
+      $errors.Add("Lexical occurrence file missing $field`: $($lexicalFile.Name)")
+    }
   }
   if (-not $sourceByWorkId.ContainsKey($lexical.work_id)) {
-    $errors.Add("Lexical sample references unknown work_id: $($lexical.work_id)")
+    $errors.Add("Lexical occurrence file references unknown work_id: $($lexical.work_id)")
     continue
   }
   $source = $sourceByWorkId[$lexical.work_id]
-  $targetUnit = @($source.units | Where-Object { $_.unit_id -eq $lexical.unit_id })
-  if ($targetUnit.Count -ne 1) {
-    $errors.Add("Lexical sample target unit not found exactly once: $($lexical.unit_id)")
-  }
-  if (@($lexical.words).Count -ne 4) {
-    $errors.Add("Current lexical proof of concept should contain 4 words, found $(@($lexical.words).Count)")
-  }
-  foreach ($word in @($lexical.words)) {
-    foreach ($field in @('token_id', 'hebrew_word', 'lexicon_entry_id')) {
-      if (-not $word.$field) {
-        $errors.Add("Lexical occurrence missing $field`: $($word.token_id)")
+  foreach ($unitProperty in @($lexical.units.PSObject.Properties)) {
+    $unitOccurrence = $unitProperty.Value
+    foreach ($field in @('unit_id', 'anchor_id', 'source_ref', 'paragraphs')) {
+      if (-not $unitOccurrence.$field) {
+        $errors.Add("Lexical unit occurrence missing $field`: $($unitProperty.Name)")
       }
     }
-    if (-not $lexiconEntryIds.ContainsKey([string]$word.lexicon_entry_id)) {
-      $errors.Add("Lexical occurrence references missing lexicon_entry_id $($word.lexicon_entry_id): $($word.token_id)")
-    }
-    foreach ($field in $forbiddenOccurrenceFields) {
-      if ($word.PSObject.Properties.Name -contains $field) {
-        $errors.Add("Lexical occurrence contains reusable definition field $field`: $($word.token_id)")
+    foreach ($paragraph in @($unitOccurrence.paragraphs)) {
+      if ($paragraph.PSObject.Properties.Name -contains 'tokens') {
+        $errors.Add("Lexical paragraph still contains verbose token objects: $($unitOccurrence.unit_id)")
+      }
+      if ($paragraph.PSObject.Properties.Name -notcontains 'token_index_ids') {
+        $errors.Add("Lexical paragraph missing token_index_ids: $($unitOccurrence.unit_id)")
+        continue
+      }
+      foreach ($tokenIndexId in @($paragraph.token_index_ids)) {
+        if (-not $tokenIndexIds.ContainsKey([string]$tokenIndexId)) {
+          $errors.Add("Lexical paragraph references missing token_index_id $tokenIndexId`: $($unitOccurrence.unit_id)")
+        }
       }
     }
   }
@@ -246,10 +262,13 @@ foreach ($lexicalFile in $lexicalFiles) {
   $lexicalPagePath = Join-Path $source.work_slug 'index.html'
   if (Test-Path $lexicalPagePath) {
     $lexicalPage = Get-Content -Path $lexicalPagePath -Raw -Encoding UTF8
-    foreach ($requiredText in @($lexical.anchor_id, 'data-lexical-token', 'data-lexical-entry', 'data-lexical-index', 'data-lexical-hud', 'Hebrew word', 'Transliteration', 'Strict renderings', 'Root', 'Root transliteration', 'Root meaning', 'Sources / licenses', 'CC BY 4.0', 'CC0')) {
+    foreach ($requiredText in @('data-lexical-occurrences', 'data-lexical-token-index', 'data-lexical-lexicon', 'data-lexical-slot', 'data-lexical-hud', 'Hebrew word', 'Transliteration', 'Strict renderings', 'Root', 'Root transliteration', 'Root meaning', 'Sources / licenses')) {
       if (-not $lexicalPage.Contains($requiredText)) {
-        $errors.Add("Lexical proof target page missing required text '$requiredText'")
+        $errors.Add("Lexical target page missing required text '$requiredText' for $($lexical.work_id)")
       }
+    }
+    if ($lexicalPage.Contains('data-lexical-json')) {
+      $errors.Add("Lexical target page contains stale per-occurrence lexical JSON for $($lexical.work_id)")
     }
     foreach ($badText in @('Genesis 1:1 Lexical HUD', 'lexical/genesis-1-1', 'Kaikki', 'Wiktionary', 'machine_draft_translation', 'Translatorâ')) {
       if ($lexicalPage.Contains($badText)) {
