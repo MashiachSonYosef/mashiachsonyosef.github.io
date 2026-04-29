@@ -73,6 +73,30 @@ $otherLaUmmah = @($laUmmahEntry.possible_entries | Where-Object { $_.context_rol
 if ($otherLaUmmah.Count -lt 1) {
   throw "Expected la-ummah homographs to remain available as other possible entries."
 }
+$expectedSurfaceRenderings = @('to the nation', 'for the nation', 'belonging to the nation', 'of the nation')
+if ($laUmmah.surface_transliteration -ne 'la-ummah') {
+  throw "Expected la-ummah token row to preserve full-form transliteration la-ummah."
+}
+foreach ($rendering in $expectedSurfaceRenderings) {
+  if (-not (@($laUmmah.surface_renderings) -contains $rendering)) {
+    throw "Expected la-ummah full surface rendering missing: $rendering"
+  }
+}
+if ($laUmmah.surface_context_status -ne 'resolved_prefix_base') {
+  throw "Expected la-ummah to be resolved as prefix plus base, not lemma-only."
+}
+$laUmmahBreakdown = @($laUmmah.breakdown)
+if ($laUmmahBreakdown.Count -ne 2) {
+  throw "Expected la-ummah breakdown to contain prefix and base rows."
+}
+$expectedPrefix = -join @([char]0x05DC, [char]0x05B8, [char]0x05BE)
+$expectedBase = -join @([char]0x05D0, [char]0x05BB, [char]0x05DE, [char]0x05B8, [char]0x05BC, [char]0x05D4)
+if ($laUmmahBreakdown[0].hebrew -ne $expectedPrefix -or -not (@($laUmmahBreakdown[0].strict_renderings) -contains 'to') -or -not (@($laUmmahBreakdown[0].strict_renderings) -contains 'for')) {
+  throw "Expected la-ummah first breakdown row to preserve lamed-prefix meanings."
+}
+if ($laUmmahBreakdown[1].hebrew -ne $expectedBase -or -not (@($laUmmahBreakdown[1].strict_renderings) -contains 'nation') -or -not (@($laUmmahBreakdown[1].strict_renderings) -contains 'people')) {
+  throw "Expected la-ummah second breakdown row to preserve ummah as nation/people."
+}
 
 function Test-LexicalSample {
   param([object]$Sample)
@@ -131,7 +155,7 @@ function Test-LexicalSample {
     throw "Generated HTML contains pre-rendered lexical token spans for $($Sample.Label); wrapping should happen client-side."
   }
 
-  foreach ($requiredPattern in @('data-lexical-occurrences', 'data-lexical-token-index', 'data-lexical-lexicon', 'data-lexical-slot', 'data-lexical-hud')) {
+  foreach ($requiredPattern in @('data-lexical-occurrences', 'data-lexical-token-index', 'data-lexical-lexicon', 'data-lexical-slot', 'data-lexical-hud', 'data-hud-surface-renderings', 'data-hud-breakdown')) {
     if (-not $html.Contains($requiredPattern)) {
       throw "Generated page missing lexical renderer marker for $($Sample.Label): $requiredPattern"
     }

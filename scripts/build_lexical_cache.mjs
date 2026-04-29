@@ -47,6 +47,24 @@ function normalizeHebrewToken(value) {
   return Array.from(stripped, (char) => finalLetters.get(char) || char).join('');
 }
 
+function normalizeHebrewTokenWithQubutsMater(value) {
+  const text = normalizeHebrewPunctuation(value);
+  const output = [];
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index];
+    if (!/[\u05D0-\u05EA]/u.test(char)) continue;
+    output.push(finalLetters.get(char) || char);
+    let markIndex = index + 1;
+    let hasQubuts = false;
+    while (markIndex < text.length && /[\u0591-\u05C7]/u.test(text[markIndex])) {
+      if (text[markIndex] === '\u05BB') hasQubuts = true;
+      markIndex += 1;
+    }
+    if (hasQubuts && text[markIndex] !== '\u05D5') output.push('\u05D5');
+  }
+  return output.join('');
+}
+
 function getTokens(text) {
   return Array.from(String(text || '').matchAll(tokenRe), (match) => normalizeHebrewPunctuation(match[0]));
 }
@@ -86,7 +104,68 @@ function sourceFamiliesFor(row) {
 function renderingsFor(row) {
   const entry = lexiconById.get(row.lexicon_entry_id);
   const likely = (entry?.possible_entries || []).find((possibleEntry) => possibleEntry.context_role === 'likely_contextual');
-  return (likely?.strict_renderings || entry?.strict_renderings || []).slice(0, 3).join(', ') || 'N/A';
+  const surfaceRenderings = row.surface_renderings?.length ? row.surface_renderings : null;
+  return (surfaceRenderings || likely?.strict_renderings || entry?.strict_renderings || []).slice(0, 3).join(', ') || 'N/A';
+}
+
+function getLeadingLamedBase(surfaceWord) {
+  const normalized = normalizeHebrewPunctuation(surfaceWord);
+  if (!normalized.startsWith('\u05DC')) return null;
+  let index = 1;
+  while (index < normalized.length && /[\u0591-\u05C7]/u.test(normalized[index])) index += 1;
+  const baseSurface = normalized.slice(index);
+  if (!baseSurface) return null;
+  return {
+    prefix_surface: '\u05DC\u05B8\u05BE',
+    prefix_transliteration: 'la-',
+    prefix_renderings: ['to', 'for', 'toward', 'belonging-to'],
+    base_surface: baseSurface,
+    base_normalized: normalizeHebrewTokenWithQubutsMater(baseSurface),
+  };
+}
+
+function analyzeSurfaceForm(surfaceWord, entry) {
+  const likely = (entry?.possible_entries || []).find((possibleEntry) => possibleEntry.context_role === 'likely_contextual');
+  const lamed = getLeadingLamedBase(surfaceWord);
+  if (!likely || !lamed) return null;
+
+  const likelyLemmaNormal = normalizeHebrewTokenWithQubutsMater(likely.lemma || '');
+  const possibleEntries = entry?.possible_entries || [];
+  const baseRenderings = unique([
+    ...(likely.strict_renderings || []),
+    ...possibleEntries
+      .filter((possibleEntry) => normalizeHebrewTokenWithQubutsMater(possibleEntry.lemma || '') === lamed.base_normalized)
+      .flatMap((possibleEntry) => possibleEntry.strict_renderings || []),
+  ]);
+  const hasNation = likelyLemmaNormal === '\u05D0\u05D5\u05DE\u05D4'
+    || lamed.base_normalized === '\u05D0\u05D5\u05DE\u05D4'
+    || baseRenderings.some((rendering) => /nation|people/i.test(rendering));
+
+  if (!hasNation) return null;
+
+  return {
+    surface_transliteration: 'la-ummah',
+    surface_renderings: [
+      'to the nation',
+      'for the nation',
+      'belonging to the nation',
+      'of the nation',
+    ],
+    surface_context_status: 'resolved_prefix_base',
+    surface_context_note: 'Resolved as lamed prefix plus the likely base lemma.',
+    breakdown: [
+      {
+        hebrew: lamed.prefix_surface,
+        transliteration: lamed.prefix_transliteration,
+        strict_renderings: lamed.prefix_renderings,
+      },
+      {
+        hebrew: lamed.base_surface,
+        transliteration: 'ummah',
+        strict_renderings: ['nation', 'people'],
+      },
+    ],
+  };
 }
 
 function formatMatchedSample(row) {
@@ -145,6 +224,8 @@ for (const fileName of sourceFiles) {
         const tokenIndexId = stableId('tok', surfaceWord);
         const lexiconEntryId = lexiconByNormalized.get(normalizedWord) || '';
         const status = lexiconEntryId ? 'matched' : 'unmatched';
+        const entry = lexiconEntryId ? lexiconById.get(lexiconEntryId) : null;
+        const surfaceAnalysis = entry ? analyzeSurfaceForm(surfaceWord, entry) : null;
 
         if (!tokenRows.has(tokenIndexId)) {
           tokenRows.set(tokenIndexId, {
@@ -153,6 +234,11 @@ for (const fileName of sourceFiles) {
             normalized_word: normalizedWord,
             lexicon_entry_id: lexiconEntryId,
             status,
+            surface_transliteration: surfaceAnalysis?.surface_transliteration || '',
+            surface_renderings: surfaceAnalysis?.surface_renderings || [],
+            surface_context_status: surfaceAnalysis?.surface_context_status || '',
+            surface_context_note: surfaceAnalysis?.surface_context_note || '',
+            breakdown: surfaceAnalysis?.breakdown || [],
             first_source_ref: unit.source_ref,
             first_anchor_id: unit.anchor_id,
             occurrence_count: 0,
