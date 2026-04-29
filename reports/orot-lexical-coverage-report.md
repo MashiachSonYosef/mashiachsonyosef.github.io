@@ -1,6 +1,6 @@
 # Orot Lexical Coverage Report
 
-Generated: 2026-04-29T20:49:42.883Z
+Generated: 2026-04-29T22:14:03.950Z
 
 ## Scope
 
@@ -19,7 +19,7 @@ Generated: 2026-04-29T20:49:42.883Z
 - Total matched: 13923
 - Percent matched: 80.4%
 - Matched via Wikidata: 11743
-- Enriched via OpenScriptures: 9487
+- Enriched via OpenScriptures: 9485
 - Unmatched: 3384
 
 ## Sample Matched Words With Refs To Test

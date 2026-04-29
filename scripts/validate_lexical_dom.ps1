@@ -53,6 +53,29 @@ foreach ($entry in @($lexicon.entries)) {
 
 $laUmmahSurface = -join @([char]0x05DC, [char]0x05B8, [char]0x05D0, [char]0x05BB, [char]0x05DE, [char]0x05B8, [char]0x05BC, [char]0x05D4)
 $ummahLemma = -join @([char]0x05D0, [char]0x05D5, [char]0x05DE, [char]0x05D4)
+$betorSurface = -join @([char]0x05D1, [char]0x05B0, [char]0x05BC, [char]0x05EA, [char]0x05D5, [char]0x05B9, [char]0x05E8)
+$betorNormalized = -join @([char]0x05D1, [char]0x05EA, [char]0x05D5, [char]0x05E8)
+$betorPrefix = -join @([char]0x05D1, [char]0x05B0, [char]0x05BC, [char]0x05BE)
+$betorBase = -join @([char]0x05EA, [char]0x05D5, [char]0x05B9, [char]0x05E8)
+
+function Assert-Codepoints {
+  param(
+    [string]$Label,
+    [string]$Value,
+    [int[]]$Expected
+  )
+
+  $actual = @()
+  foreach ($char in $Value.ToCharArray()) {
+    $actual += [int][char]$char
+  }
+  $expectedHex = ($Expected | ForEach-Object { $_.ToString('X4') }) -join ' '
+  $actualHex = ($actual | ForEach-Object { $_.ToString('X4') }) -join ' '
+  if ($actualHex -ne $expectedHex) {
+    throw "$Label codepoints mismatch. Expected $expectedHex, got $actualHex"
+  }
+}
+
 $laUmmah = @($tokenIndex.forms | Where-Object { $_.surface_word -eq $laUmmahSurface }) | Select-Object -First 1
 if ($null -eq $laUmmah) {
   throw "Expected lexical disambiguation canary token not found: la-ummah"
@@ -98,6 +121,37 @@ if ($laUmmahBreakdown[1].hebrew -ne $expectedBase -or -not (@($laUmmahBreakdown[
   throw "Expected la-ummah second breakdown row to preserve ummah as nation/people."
 }
 
+$betor = @($tokenIndex.forms | Where-Object { $_.surface_word -eq $betorSurface }) | Select-Object -First 1
+if ($null -eq $betor) {
+  throw "Expected fixed-expression token not found: betor"
+}
+Assert-Codepoints -Label 'betor clicked token' -Value $betor.surface_word -Expected @(0x05D1, 0x05B0, 0x05BC, 0x05EA, 0x05D5, 0x05B9, 0x05E8)
+if ($betor.normalized_word -ne $betorNormalized -or $betor.surface_context_status -ne 'resolved_fixed_expression') {
+  throw "Expected betor to resolve through the fixed-expression layer before normal lemma fallback."
+}
+foreach ($rendering in @('as', 'in the capacity of', 'in the role of')) {
+  if (-not (@($betor.surface_renderings) -contains $rendering)) {
+    throw "Expected betor fixed-expression rendering missing: $rendering"
+  }
+}
+$betorBreakdown = @($betor.breakdown)
+if ($betorBreakdown.Count -ne 2) {
+  throw "Expected betor breakdown to contain prefix and base rows."
+}
+Assert-Codepoints -Label 'betor prefix breakdown' -Value $betorBreakdown[0].hebrew -Expected @(0x05D1, 0x05B0, 0x05BC, 0x05BE)
+Assert-Codepoints -Label 'betor base breakdown' -Value $betorBreakdown[1].hebrew -Expected @(0x05EA, 0x05D5, 0x05B9, 0x05E8)
+$betorEntry = $entriesById[[string]$betor.lexicon_entry_id]
+if ($null -eq $betorEntry -or $betorEntry.hebrew_word -ne $betorNormalized -or $betorEntry.disambiguation_status -ne 'likely') {
+  throw "Expected betor lexicon entry to be a likely fixed-expression entry."
+}
+$betorLikely = @($betorEntry.possible_entries | Where-Object { $_.context_role -eq 'likely_contextual' }) | Select-Object -First 1
+if ($null -eq $betorLikely -or $betorLikely.lemma -ne $betorNormalized -or -not (@($betorLikely.strict_renderings) -contains 'as')) {
+  throw "Expected betor likely contextual entry to be the fused expression, not the base noun."
+}
+if (@($betorEntry.source_rows).Count -ne 1 -or @($betorEntry.source_rows)[0].source_family -ne 'workspace') {
+  throw "Expected betor fixed-expression entry to use only the workspace expression source row."
+}
+
 $orotHtmlPath = Join-Path $PSScriptRoot '..\orot\index.html'
 if (Test-Path -LiteralPath $orotHtmlPath) {
   $orotHtml = Get-Content -LiteralPath $orotHtmlPath -Raw -Encoding UTF8
@@ -127,6 +181,18 @@ if (Test-Path -LiteralPath $orotHtmlPath) {
     if ($orotHtml.Contains($noise) -and @($pageLaUmmahSources.source_id) -contains $noise) {
       throw "la-ummah default sources still include noisy candidate: $noise"
     }
+  }
+
+  $pageBetor = @($pageTokenIndex.forms | Where-Object { $_.surface_word -eq $betorSurface }) | Select-Object -First 1
+  Assert-Codepoints -Label 'page betor clicked token' -Value $pageBetor.surface_word -Expected @(0x05D1, 0x05B0, 0x05BC, 0x05EA, 0x05D5, 0x05B9, 0x05E8)
+  Assert-Codepoints -Label 'page betor prefix breakdown' -Value @($pageBetor.breakdown)[0].hebrew -Expected @(0x05D1, 0x05B0, 0x05BC, 0x05BE)
+  Assert-Codepoints -Label 'page betor base breakdown' -Value @($pageBetor.breakdown)[1].hebrew -Expected @(0x05EA, 0x05D5, 0x05B9, 0x05E8)
+  $pageBetorEntry = @($pageLexicon.entries | Where-Object { $_.entry_id -eq $pageBetor.lexicon_entry_id }) | Select-Object -First 1
+  if ($null -eq $pageBetorEntry -or @($pageBetorEntry.possible_entries).Count -ne 1 -or @($pageBetorEntry.secondary_source_rows).Count -ne 0) {
+    throw "Expected generated betor payload to expose only the fixed-expression contextual entry by default."
+  }
+  if (@($pageBetorEntry.source_rows).Count -ne 1 -or @($pageBetorEntry.source_rows)[0].source_family -ne 'workspace') {
+    throw "Expected generated betor payload sources to be limited to the workspace fixed-expression rule."
   }
 }
 

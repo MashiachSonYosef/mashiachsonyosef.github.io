@@ -73,6 +73,66 @@ function unique(values) {
   return Array.from(new Set((values || []).filter(Boolean)));
 }
 
+const fixedExpressions = [
+  {
+    normalized_word: '\u05D1\u05EA\u05D5\u05E8',
+    hebrew_word: '\u05D1\u05EA\u05D5\u05E8',
+    surface_forms: [
+      '\u05D1\u05EA\u05D5\u05E8',
+      '\u05D1\u05B0\u05BC\u05EA\u05D5\u05B9\u05E8',
+    ],
+    surface_renderings: [
+      'as',
+      'in the capacity of',
+      'in the role of',
+    ],
+    surface_context_status: 'resolved_fixed_expression',
+    surface_context_note: 'Resolved as a fixed prefixed expression.',
+    breakdown: [
+      {
+        hebrew: '\u05D1\u05B0\u05BC\u05BE',
+        strict_renderings: ['in', 'as', 'with'],
+      },
+      {
+        hebrew: '\u05EA\u05D5\u05B9\u05E8',
+        strict_renderings: ['turn', 'row', 'order'],
+      },
+    ],
+    possible_entry: {
+      entry_key: 'fixed-expression:\u05D1\u05EA\u05D5\u05E8',
+      lemma: '\u05D1\u05EA\u05D5\u05E8',
+      match_key: '\u05D1\u05EA\u05D5\u05E8',
+      source_name: 'Workspace fixed-expression rule',
+      source_family: 'workspace',
+      source_id: 'fixed-expression:\u05D1\u05EA\u05D5\u05E8',
+      transliteration: '',
+      strict_renderings: [
+        'as',
+        'in the capacity of',
+        'in the role of',
+      ],
+      root: '',
+      root_transliteration: '',
+      root_meaning: [],
+      context_role: 'likely_contextual',
+      relation_label: '',
+      source_row_keys: ['workspace|fixed-expression:\u05D1\u05EA\u05D5\u05E8'],
+    },
+    source_row: {
+      source_name: 'Workspace fixed-expression rule',
+      source_family: 'workspace',
+      source_id: 'fixed-expression:\u05D1\u05EA\u05D5\u05E8',
+      source_url: 'local:fixed-expression-rules',
+      license: 'N/A - project lexical rule',
+      license_url: 'local:fixed-expression-rules',
+      fields_used: ['fixed expression lookup', 'strict renderings', 'mechanical breakdown'],
+      notes: 'Project-maintained fixed-expression rule. No external dictionary text imported.',
+    },
+  },
+];
+
+const fixedExpressionByNormalized = new Map(fixedExpressions.map((expression) => [expression.normalized_word, expression]));
+
 function formatList(items) {
   return items.map((item) => `- ${item}`).join('\n');
 }
@@ -94,6 +154,43 @@ function loadLexicon() {
     };
   }
   return readJson(lexiconPath);
+}
+
+function ensureFixedExpressionEntries(lexicon) {
+  let changed = false;
+  const entries = Array.isArray(lexicon.entries) ? lexicon.entries : [];
+  for (const expression of fixedExpressions) {
+    const entryId = stableId('lex-expr', expression.normalized_word);
+    const nextEntry = {
+      entry_id: entryId,
+      hebrew_word: expression.hebrew_word,
+      surface_forms: expression.surface_forms,
+      transliteration: '',
+      strict_renderings: expression.surface_renderings,
+      root: '',
+      root_transliteration: '',
+      root_meaning: [],
+      disambiguation_status: 'likely',
+      context_note: expression.surface_context_note,
+      possible_entries_truncated: 0,
+      possible_entries: [expression.possible_entry],
+      source_rows: [expression.source_row],
+    };
+
+    const existingIndex = entries.findIndex((entry) => entry.entry_id === entryId);
+    if (existingIndex >= 0) {
+      if (JSON.stringify(entries[existingIndex]) !== JSON.stringify(nextEntry)) {
+        entries[existingIndex] = nextEntry;
+        changed = true;
+      }
+    } else {
+      entries.push(nextEntry);
+      changed = true;
+    }
+    expression.entry_id = entryId;
+  }
+  lexicon.entries = entries;
+  return changed;
 }
 
 function sourceFamiliesFor(row) {
@@ -125,6 +222,17 @@ function getLeadingLamedBase(surfaceWord) {
 }
 
 function analyzeSurfaceForm(surfaceWord, entry) {
+  const fixedExpression = fixedExpressionByNormalized.get(normalizeHebrewToken(surfaceWord));
+  if (fixedExpression) {
+    return {
+      surface_transliteration: '',
+      surface_renderings: fixedExpression.surface_renderings,
+      surface_context_status: fixedExpression.surface_context_status,
+      surface_context_note: fixedExpression.surface_context_note,
+      breakdown: fixedExpression.breakdown,
+    };
+  }
+
   const likely = (entry?.possible_entries || []).find((possibleEntry) => possibleEntry.context_role === 'likely_contextual');
   const lamed = getLeadingLamedBase(surfaceWord);
   if (!likely || !lamed) return null;
@@ -178,8 +286,13 @@ function formatUnmatchedSample(row) {
 }
 
 const lexicon = loadLexicon();
+const lexiconChanged = ensureFixedExpressionEntries(lexicon);
+if (lexiconChanged) writeJson(lexiconPath, lexicon);
 const lexiconByNormalized = new Map();
 const lexiconById = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+for (const expression of fixedExpressions) {
+  lexiconByNormalized.set(expression.normalized_word, expression.entry_id);
+}
 for (const entry of lexicon.entries || []) {
   const forms = [entry.hebrew_word, ...(entry.surface_forms || [])].filter(Boolean);
   for (const form of forms) {
