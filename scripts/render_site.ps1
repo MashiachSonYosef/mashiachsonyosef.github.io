@@ -359,7 +359,7 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .overlay-label { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }')
   if ($IncludeLexicalStyles) {
     [void]$Builder.AppendLine('    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; }')
-    [void]$Builder.AppendLine('    .lexical-word { display: inline-block; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: rtl; unicode-bidi: isolate; white-space: nowrap; }')
+    [void]$Builder.AppendLine('    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }')
     [void]$Builder.AppendLine('    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }')
     [void]$Builder.AppendLine('    .lexical-hud { position: sticky; top: 14px; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }')
     [void]$Builder.AppendLine('    .lexical-hud[hidden] { display: none; }')
@@ -467,6 +467,7 @@ function Append-LexicalHudScript {
   param([System.Text.StringBuilder]$Builder)
 
   $geresh = [char]0x05F3
+  $gershayim = [char]0x05F4
   [void]$Builder.AppendLine('  <script>')
   [void]$Builder.AppendLine('    (() => {')
   [void]$Builder.AppendLine('      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");')
@@ -478,14 +479,13 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));')
   [void]$Builder.AppendLine('      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));')
   [void]$Builder.AppendLine('      const hud = document.querySelector("[data-lexical-hud]");')
-  [void]$Builder.AppendLine("      const normalizeHebrewDisplay = (value) => typeof value === ""string"" ? value.replace(/([\u0590-\u05FF])'/g, ""`$1$geresh"") : value;")
-  [void]$Builder.AppendLine('      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27]*/gu;')
+  [void]$Builder.AppendLine("      const normalizeHebrewDisplay = (value) => typeof value === ""string"" ? value.replace(/([\u0590-\u05FF])'/g, ""`$1$geresh"").replace(/([\u0590-\u05FF])\""(?=[\u0590-\u05FF])/g, ""`$1$gershayim"") : value;")
+  [void]$Builder.AppendLine('      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;')
   [void]$Builder.AppendLine('      const makeWordSpan = (text, tokenIndexId, ordinal) => {')
   [void]$Builder.AppendLine('        const row = tokenRows.get(tokenIndexId) || {};')
   [void]$Builder.AppendLine('        const span = document.createElement("span");')
   [void]$Builder.AppendLine('        span.className = "lexical-word";')
   [void]$Builder.AppendLine('        span.lang = "he";')
-  [void]$Builder.AppendLine('        span.dir = "rtl";')
   [void]$Builder.AppendLine('        span.role = "button";')
   [void]$Builder.AppendLine('        span.tabIndex = 0;')
   [void]$Builder.AppendLine('        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;')

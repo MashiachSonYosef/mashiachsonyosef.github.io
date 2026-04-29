@@ -8,7 +8,7 @@ const occurrencesDir = path.join(lexicalDir, 'occurrences');
 const lexiconPath = path.join(lexicalDir, 'lexicon.json');
 const tokenIndexPath = path.join(lexicalDir, 'token-index.json');
 
-const tokenRe = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4']*/gu;
+const tokenRe = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4'"]*/gu;
 const niqqudRe = /[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/gu;
 const finalLetters = new Map([
   ['ך', 'כ'],
@@ -31,17 +31,19 @@ function stableId(prefix, value) {
   return `${prefix}-${crypto.createHash('sha1').update(value).digest('hex').slice(0, 12)}`;
 }
 
-function normalizeGeresh(value) {
-  return String(value || '').replace(/([\u0590-\u05FF])'/gu, '$1׳');
+function normalizeHebrewPunctuation(value) {
+  return String(value || '')
+    .replace(/([\u0590-\u05FF])'/gu, '$1\u05F3')
+    .replace(/([\u0590-\u05FF])"(?=[\u0590-\u05FF])/gu, '$1\u05F4');
 }
 
 function normalizeHebrewToken(value) {
-  const stripped = normalizeGeresh(value).replace(niqqudRe, '');
+  const stripped = normalizeHebrewPunctuation(value).replace(niqqudRe, '');
   return Array.from(stripped, (char) => finalLetters.get(char) || char).join('');
 }
 
 function getTokens(text) {
-  return Array.from(String(text || '').matchAll(tokenRe), (match) => normalizeGeresh(match[0]));
+  return Array.from(String(text || '').matchAll(tokenRe), (match) => normalizeHebrewPunctuation(match[0]));
 }
 
 function loadLexicon() {
@@ -155,6 +157,7 @@ writeJson(tokenIndexPath, {
   source_dir: sourceDir,
   normalization_policy: {
     geresh: "ASCII apostrophe after Hebrew letters is normalized to Hebrew geresh U+05F3 for display/indexing.",
+    gershayim: "ASCII double quote between Hebrew letters is normalized to Hebrew gershayim U+05F4 for display/indexing.",
     niqqud: 'Hebrew combining marks are stripped from normalized_word.',
     final_letters: 'Final kaf/mem/nun/pe/tsadi are normalized to medial forms in normalized_word.',
     surface_word: 'surface_word preserves the displayed source token apart from safe geresh normalization.',
