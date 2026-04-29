@@ -85,16 +85,17 @@ function sourceFamiliesFor(row) {
 
 function renderingsFor(row) {
   const entry = lexiconById.get(row.lexicon_entry_id);
-  return (entry?.strict_renderings || []).slice(0, 3).join(', ') || 'N/A';
+  const likely = (entry?.possible_entries || []).find((possibleEntry) => possibleEntry.context_role === 'likely_contextual');
+  return (likely?.strict_renderings || entry?.strict_renderings || []).slice(0, 3).join(', ') || 'N/A';
 }
 
 function formatMatchedSample(row) {
   const families = sourceFamiliesFor(row).join(' + ') || 'source metadata available';
-  return `${row.surface_word} -> ${renderingsFor(row)} (${families}) — ${row.first_source_ref} (#${row.first_anchor_id})`;
+  return `${row.surface_word} -> ${renderingsFor(row)} (${families}) -- ${row.first_source_ref} (#${row.first_anchor_id})`;
 }
 
 function formatUnmatchedSample(row) {
-  return `${row.surface_word} — ${row.first_source_ref} (#${row.first_anchor_id})`;
+  return `${row.surface_word} -- ${row.first_source_ref} (#${row.first_anchor_id})`;
 }
 
 const lexicon = loadLexicon();
@@ -221,7 +222,7 @@ writeJson(tokenIndexPath, {
   forms,
 });
 
-const matchedSamples = matchedForms.slice(0, 20).map(formatMatchedSample);
+const matchedSamples = matchedForms.filter((row) => renderingsFor(row) !== 'N/A').slice(0, 20).map(formatMatchedSample);
 const unmatchedSamples = unmatchedForms
   .filter((row) => row.normalized_word.length > 2 && !/[\u05F3\u05F4'"]/.test(row.normalized_word))
   .slice(0, 20)
@@ -245,6 +246,7 @@ Generated: ${new Date().toISOString()}
 - Sources used: Wikidata Lexemes first; OpenScriptures morphHB + HebrewLexicon as fallback/enrichment
 - Sources not used: Kaikki, Wiktionary, copyrighted translations
 - Count source: generated HUD token index, which is the page-render source of truth
+- TODO: externalize lexical JSON instead of embedding the full Orot lexical payload in the page HTML.
 
 ## Counts
 

@@ -6,6 +6,7 @@ const sourcePath = 'data/sources/orot.json';
 const lexicalDir = 'data/lexical';
 const lexiconPath = path.join(lexicalDir, 'lexicon.json');
 const reportPath = 'reports/orot-lexical-coverage-report.md';
+const maxPossibleEntriesPerEntry = 12;
 
 const userAgent = 'translation-workspace/1.0 (Orot lexical coverage; local research workspace)';
 const wikidataLicense = {
@@ -344,6 +345,7 @@ OFFSET ${offset}`;
     if (!normals.length) continue;
     const row = {
       lexeme_id: lexemeId,
+      lemma: representations[0] || '',
       source_url: `https://www.wikidata.org/wiki/Lexeme:${lexemeId}`,
       strict_renderings: unique(strictRenderings).slice(0, 8),
       forms: unique(representations),
@@ -536,11 +538,17 @@ function displaySurface(record) {
 }
 
 function findFirstMatch(candidates, map) {
+  const matches = [];
+  const seen = new Set();
   for (const candidate of candidates) {
-    const match = map.get(candidate);
-    if (match && match.length) return { key: candidate, matches: match };
+    for (const match of map.get(candidate) || []) {
+      const sourceId = match.lexeme_id || match.entry?.strong_id || JSON.stringify(match);
+      if (seen.has(sourceId)) continue;
+      seen.add(sourceId);
+      matches.push({ ...match, match_key: candidate });
+    }
   }
-  return null;
+  return matches.length ? { key: matches[0].match_key, matches } : null;
 }
 
 function findExistingEntry(candidates, map) {
@@ -551,32 +559,182 @@ function findExistingEntry(candidates, map) {
   return null;
 }
 
-function createOrUpdateEntry({ record, existingEntry, wikidataMatch, openMatch }) {
-  const strictRenderings = [];
-  const sourceRows = [];
-  let transliteration = existingEntry?.transliteration || '';
-  let root = existingEntry?.root || '';
-  let rootTransliteration = existingEntry?.root_transliteration || '';
-  const rootMeaning = [];
+function makeWikidataPossibleEntries(matchGroup) {
+  if (!matchGroup) return [];
+  return matchGroup.matches.map((match) => {
+    const sourceRow = makeWikidataSourceRow([match]);
+    return {
+      entry_key: `wikidata:${match.lexeme_id}`,
+      lemma: match.lemma || match.forms?.[0] || '',
+      match_key: match.match_key || matchGroup.key,
+      source_name: 'Wikidata Lexeme',
+      source_family: 'wikidata',
+      source_id: match.lexeme_id,
+      transliteration: '',
+      strict_renderings: unique(match.strict_renderings || []).slice(0, 8),
+      root: '',
+      root_transliteration: '',
+      root_meaning: [],
+      source_rows: [sourceRow],
+    };
+  }).filter((entry) => entry.lemma || entry.strict_renderings.length);
+}
 
-  if (existingEntry?.strict_renderings) strictRenderings.push(...existingEntry.strict_renderings);
-  if (existingEntry?.root_meaning) rootMeaning.push(...existingEntry.root_meaning);
-  if (existingEntry?.source_rows) sourceRows.push(...existingEntry.source_rows);
+function makeOpenScripturesPossibleEntries(matchGroup) {
+  if (!matchGroup) return [];
+  return matchGroup.matches.map((match) => {
+    const sourceRows = makeOpenScripturesRows([match], match.via === 'morphhb');
+    return {
+      entry_key: `openscriptures:${match.entry.strong_id}`,
+      lemma: match.entry.hebrew_word || '',
+      match_key: match.match_key || matchGroup.key,
+      source_name: 'OpenScriptures HebrewLexicon',
+      source_family: 'openscriptures',
+      source_id: match.entry.strong_id,
+      transliteration: match.entry.transliteration || '',
+      strict_renderings: unique(match.entry.strict_renderings || []).slice(0, 8),
+      root: '',
+      root_transliteration: '',
+      root_meaning: [],
+      source_rows: sourceRows,
+    };
+  }).filter((entry) => entry.lemma || entry.strict_renderings.length || entry.transliteration);
+}
 
-  const useWikidata = Boolean(wikidataMatch && !(record.normalized_word.length <= 2 && openMatch));
-  if (useWikidata) {
-    for (const match of wikidataMatch.matches) strictRenderings.push(...(match.strict_renderings || []));
-    sourceRows.push(makeWikidataSourceRow(wikidataMatch.matches));
+function makeExistingPossibleEntries(existingEntry) {
+  if (!existingEntry) return [];
+  if (Array.isArray(existingEntry.possible_entries) && existingEntry.possible_entries.length) {
+    return existingEntry.possible_entries;
   }
+  return [{
+    entry_key: `curated:${existingEntry.entry_id}`,
+    lemma: existingEntry.hebrew_word || '',
+    match_key: normalizeHebrewToken(existingEntry.hebrew_word || ''),
+    source_name: 'Curated lexical entry',
+    source_family: 'curated',
+    source_id: existingEntry.entry_id,
+    transliteration: existingEntry.transliteration || '',
+    strict_renderings: unique(existingEntry.strict_renderings || []),
+    root: existingEntry.root || '',
+    root_transliteration: existingEntry.root_transliteration || '',
+    root_meaning: unique(existingEntry.root_meaning || []),
+    source_rows: existingEntry.source_rows || [],
+  }];
+}
 
-  if (openMatch) {
-    const usedMorphHB = openMatch.matches.some((match) => match.via === 'morphhb');
-    for (const match of openMatch.matches) {
-      if (!transliteration && match.entry.transliteration) transliteration = match.entry.transliteration;
-      strictRenderings.push(...(match.entry.strict_renderings || []));
+function mergePossibleEntries(entries) {
+  const merged = new Map();
+  for (const entry of entries || []) {
+    const key = entry.entry_key || `${entry.source_family}:${entry.source_id}:${entry.match_key}`;
+    if (!merged.has(key)) {
+      merged.set(key, {
+        ...entry,
+        strict_renderings: unique(entry.strict_renderings || []),
+        root_meaning: unique(entry.root_meaning || []),
+        source_rows: mergeSourceRows([], entry.source_rows || []),
+      });
+      continue;
     }
-    sourceRows.push(...makeOpenScripturesRows(openMatch.matches, usedMorphHB));
+    const existing = merged.get(key);
+    existing.strict_renderings = unique([...(existing.strict_renderings || []), ...(entry.strict_renderings || [])]);
+    existing.root_meaning = unique([...(existing.root_meaning || []), ...(entry.root_meaning || [])]);
+    existing.source_rows = mergeSourceRows(existing.source_rows || [], entry.source_rows || []);
+    if (!existing.transliteration && entry.transliteration) existing.transliteration = entry.transliteration;
   }
+  return Array.from(merged.values());
+}
+
+function hasNationVowels(record) {
+  return (record.surface_forms || []).some((surface) => {
+    const word = surface.surface_word || '';
+    return word.includes('\u05BB') && getCandidateNormalsForRecord(record.normalized_word, [word]).includes('\u05D0\u05D5\u05DE\u05D4');
+  });
+}
+
+function containsAny(values, patterns) {
+  const text = unique(values || []).join(' ').toLowerCase();
+  return patterns.some((pattern) => text.includes(pattern));
+}
+
+function scorePossibleEntry(record, entry) {
+  let score = 0;
+  const qubutsCandidate = getCandidateNormalsForRecord(record.normalized_word, (record.surface_forms || []).map((surface) => surface.surface_word))[0];
+  if (entry.match_key && entry.match_key === qubutsCandidate) score += 5;
+  if (entry.match_key && entry.match_key === record.normalized_word) score += 2;
+  if (entry.source_family === 'wikidata') score += 1;
+
+  if (hasNationVowels(record)) {
+    const lemmaNormal = normalizeHebrewToken(entry.lemma || '');
+    if (lemmaNormal === '\u05D0\u05D5\u05DE\u05D4') score += 8;
+    if (containsAny(entry.strict_renderings, ['nation', 'people'])) score += 10;
+    if (containsAny(entry.strict_renderings, ['people'])) score += 2;
+    if (containsAny(entry.strict_renderings, ['nut', 'maid', 'slave', 'mother', 'cubit', 'measure'])) score -= 6;
+  }
+
+  return score;
+}
+
+function chooseLikelyEntryIndex(record, possibleEntries) {
+  if (!possibleEntries.length) return -1;
+  if (possibleEntries.length === 1) return 0;
+  const scored = possibleEntries.map((entry, index) => ({ index, score: scorePossibleEntry(record, entry) }))
+    .sort((a, b) => b.score - a.score || a.index - b.index);
+  if (!scored.length || scored[0].score < 6) return -1;
+  if (scored.length > 1 && scored[0].score === scored[1].score) return -1;
+  return scored[0].index;
+}
+
+function relationLabelFor(entry, likelyEntry) {
+  if (entry.context_role === 'likely_contextual') return '';
+  if (containsAny(entry.strict_renderings, ['mother'])) return 'related root-field';
+  if (likelyEntry && entry.match_key && likelyEntry.match_key && entry.match_key !== likelyEntry.match_key) {
+    return 'other possible entry';
+  }
+  return 'other possible entry';
+}
+
+function createOrUpdateEntry({ record, existingEntry, wikidataMatch, openMatch }) {
+  const useWikidata = Boolean(wikidataMatch && !(record.normalized_word.length <= 2 && openMatch));
+  let possibleEntries = mergePossibleEntries([
+    ...makeExistingPossibleEntries(existingEntry),
+    ...(useWikidata ? makeWikidataPossibleEntries(wikidataMatch) : []),
+    ...makeOpenScripturesPossibleEntries(openMatch),
+  ]);
+  const likelyIndex = chooseLikelyEntryIndex(record, possibleEntries);
+  const likelyEntry = likelyIndex >= 0 ? possibleEntries[likelyIndex] : null;
+  const totalPossibleEntries = possibleEntries.length;
+  possibleEntries = possibleEntries.map((entry, index) => {
+    const withRole = {
+      ...entry,
+      context_role: index === likelyIndex ? 'likely_contextual' : 'other_possible',
+    };
+    return {
+      ...withRole,
+      relation_label: relationLabelFor(withRole, likelyEntry),
+    };
+  }).sort((left, right) => {
+    if (left.context_role === 'likely_contextual' && right.context_role !== 'likely_contextual') return -1;
+    if (right.context_role === 'likely_contextual' && left.context_role !== 'likely_contextual') return 1;
+    return scorePossibleEntry(record, right) - scorePossibleEntry(record, left)
+      || String(left.source_family).localeCompare(String(right.source_family))
+      || String(left.source_id).localeCompare(String(right.source_id));
+  }).slice(0, maxPossibleEntriesPerEntry);
+  const hiddenPossibleEntryCount = Math.max(0, totalPossibleEntries - possibleEntries.length);
+
+  const strictRenderings = likelyEntry ? likelyEntry.strict_renderings : [];
+  const rootMeaning = likelyEntry ? likelyEntry.root_meaning : [];
+  const sourceRows = [
+    ...(existingEntry?.source_rows || []),
+    ...possibleEntries.flatMap((entry) => entry.source_rows || []),
+  ];
+  const displayPossibleEntries = possibleEntries.map((possibleEntry) => {
+    const sourceRowKeys = (possibleEntry.source_rows || []).map(sourceRowKey);
+    const { source_rows: _sourceRows, ...rest } = possibleEntry;
+    return {
+      ...rest,
+      source_row_keys: sourceRowKeys,
+    };
+  });
 
   const entry = {
     entry_id: existingEntry?.entry_id || stableId('lex', record.normalized_word),
@@ -585,11 +743,15 @@ function createOrUpdateEntry({ record, existingEntry, wikidataMatch, openMatch }
       ...(existingEntry?.surface_forms || []),
       ...record.surface_forms.map((surface) => surface.surface_word),
     ]),
-    transliteration,
+    transliteration: likelyEntry?.transliteration || existingEntry?.transliteration || '',
     strict_renderings: unique(strictRenderings).slice(0, 12),
-    root,
-    root_transliteration: rootTransliteration,
+    root: likelyEntry?.root || existingEntry?.root || '',
+    root_transliteration: likelyEntry?.root_transliteration || existingEntry?.root_transliteration || '',
     root_meaning: unique(rootMeaning),
+    disambiguation_status: likelyEntry ? 'likely' : 'unresolved',
+    context_note: likelyEntry ? 'Likely contextual entry selected from available lexical matches; not a full semantic parse.' : 'Context not resolved.',
+    possible_entries_truncated: hiddenPossibleEntryCount,
+    possible_entries: displayPossibleEntries,
     source_rows: mergeSourceRows([], sourceRows),
   };
 
@@ -624,11 +786,11 @@ function getSampleRef(record) {
 function formatMatchedSample(record, entry) {
   const renderings = entry.strict_renderings.slice(0, 3).join(', ') || 'N/A';
   const sourceFamilies = unique(entry.source_rows.map((row) => row.source_family || row.source_name)).join(' + ') || 'source metadata available';
-  return `${displaySurface(record)} -> ${renderings} (${sourceFamilies}) — ${getSampleRef(record)}`;
+  return `${displaySurface(record)} -> ${renderings} (${sourceFamilies}) -- ${getSampleRef(record)}`;
 }
 
 function formatUnmatchedSample(record) {
-  return `${displaySurface(record)} — ${getSampleRef(record)}`;
+  return `${displaySurface(record)} -- ${getSampleRef(record)}`;
 }
 
 function percent(part, whole) {

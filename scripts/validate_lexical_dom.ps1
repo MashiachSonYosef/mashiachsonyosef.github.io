@@ -45,8 +45,33 @@ foreach ($row in @($tokenIndex.forms)) {
 
 $lexicon = Get-Content -LiteralPath $lexiconPath -Raw -Encoding UTF8 | ConvertFrom-Json
 $entryIds = @{}
+$entriesById = @{}
 foreach ($entry in @($lexicon.entries)) {
   $entryIds[[string]$entry.entry_id] = $true
+  $entriesById[[string]$entry.entry_id] = $entry
+}
+
+$laUmmahSurface = -join @([char]0x05DC, [char]0x05B8, [char]0x05D0, [char]0x05BB, [char]0x05DE, [char]0x05B8, [char]0x05BC, [char]0x05D4)
+$ummahLemma = -join @([char]0x05D0, [char]0x05D5, [char]0x05DE, [char]0x05D4)
+$laUmmah = @($tokenIndex.forms | Where-Object { $_.surface_word -eq $laUmmahSurface }) | Select-Object -First 1
+if ($null -eq $laUmmah) {
+  throw "Expected lexical disambiguation canary token not found: la-ummah"
+}
+$laUmmahEntry = $entriesById[[string]$laUmmah.lexicon_entry_id]
+if ($null -eq $laUmmahEntry) {
+  throw "Expected lexical disambiguation canary entry not found for token: la-ummah"
+}
+$likelyLaUmmah = @($laUmmahEntry.possible_entries | Where-Object { $_.context_role -eq 'likely_contextual' }) | Select-Object -First 1
+if ($null -eq $likelyLaUmmah -or $likelyLaUmmah.lemma -ne $ummahLemma -or -not (@($likelyLaUmmah.strict_renderings) -contains 'nation')) {
+  throw "Expected la-ummah to keep ummah/nation as the likely contextual entry."
+}
+$mergedBadRenderings = @($laUmmahEntry.strict_renderings | Where-Object { $_ -match 'maid|slave|mother|nut|cubit' })
+if ($mergedBadRenderings.Count -gt 0) {
+  throw "la-ummah top-level renderings still merge unrelated homographs: $($mergedBadRenderings -join ', ')"
+}
+$otherLaUmmah = @($laUmmahEntry.possible_entries | Where-Object { $_.context_role -eq 'other_possible' })
+if ($otherLaUmmah.Count -lt 1) {
+  throw "Expected la-ummah homographs to remain available as other possible entries."
 }
 
 function Test-LexicalSample {
