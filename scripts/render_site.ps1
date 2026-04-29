@@ -351,6 +351,7 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .overlay-label { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }')
   if ($IncludeLexicalStyles) {
     [void]$Builder.AppendLine('    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; }')
+    [void]$Builder.AppendLine('    .lexical-coverage strong { color: var(--text); font-weight: 400; }')
     [void]$Builder.AppendLine('    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }')
     [void]$Builder.AppendLine('    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }')
     [void]$Builder.AppendLine('    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }')
@@ -639,7 +640,18 @@ function Get-WorkLexicalPayload {
     }
   }
 
-  $forms = @($tokenIds.Keys | Sort-Object | ForEach-Object { if ($LexicalCache.token_index_by_id.ContainsKey($_)) { $LexicalCache.token_index_by_id[$_] } })
+  $forms = @($tokenIds.Keys | Sort-Object | ForEach-Object {
+    if ($LexicalCache.token_index_by_id.ContainsKey($_)) {
+      $row = $LexicalCache.token_index_by_id[$_]
+      [pscustomobject]@{
+        token_index_id = $row.token_index_id
+        surface_word = $row.surface_word
+        normalized_word = $row.normalized_word
+        lexicon_entry_id = $row.lexicon_entry_id
+        status = $row.status
+      }
+    }
+  })
   $entries = @($entryIds.Keys | Sort-Object | ForEach-Object { if ($LexicalCache.lexicon_by_id.ContainsKey($_)) { $LexicalCache.lexicon_by_id[$_] } })
   return [pscustomobject]@{
     token_index = [pscustomobject]@{ schema_version = 1; forms = $forms }
@@ -923,6 +935,13 @@ foreach ($source in $sources) {
     [void]$page.AppendLine("        <p class=""meta source-citation"">$(Get-SourceSummaryHtml -Note $sourceNotes[0])</p>")
   } else {
     [void]$page.AppendLine("        <p class=""meta source-citation"">$($sourceNotes.Count) source/license notes. See footer table for details.</p>")
+  }
+  if ($workHasLexical -and [string]$source.work_id -eq 'orot') {
+    $lexicalMatched = [int]$lexicalCache.token_index.matched_surface_forms
+    $lexicalTotal = [int]$lexicalCache.token_index.total_unique_surface_forms
+    if ($lexicalTotal -gt 0) {
+      [void]$page.AppendLine("        <p class=""meta lexical-coverage"">Lexical HUD coverage: <strong>$lexicalMatched matched</strong> / $lexicalTotal unique forms.</p>")
+    }
   }
   [void]$page.AppendLine("        <div class=""license-notice""><strong>English overlay license:</strong> $(Encode-Html $overlayLicenseNotice)</div>")
   [void]$page.AppendLine('        <div class="export-actions" aria-label="Overlay exports">')

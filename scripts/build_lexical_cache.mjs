@@ -7,6 +7,7 @@ const lexicalDir = process.argv[3] || 'data/lexical';
 const occurrencesDir = path.join(lexicalDir, 'occurrences');
 const lexiconPath = path.join(lexicalDir, 'lexicon.json');
 const tokenIndexPath = path.join(lexicalDir, 'token-index.json');
+const reportPath = 'reports/orot-lexical-coverage-report.md';
 const lexicalScope = {
   work_id: 'orot',
   label: 'Orot',
@@ -50,6 +51,19 @@ function getTokens(text) {
   return Array.from(String(text || '').matchAll(tokenRe), (match) => normalizeHebrewPunctuation(match[0]));
 }
 
+function unique(values) {
+  return Array.from(new Set((values || []).filter(Boolean)));
+}
+
+function formatList(items) {
+  return items.map((item) => `- ${item}`).join('\n');
+}
+
+function percent(part, whole) {
+  if (!whole) return '0.0%';
+  return `${((part / whole) * 100).toFixed(1)}%`;
+}
+
 function loadLexicon() {
   if (!fs.existsSync(lexiconPath)) {
     return {
@@ -64,8 +78,28 @@ function loadLexicon() {
   return readJson(lexiconPath);
 }
 
+function sourceFamiliesFor(row) {
+  const entry = lexiconById.get(row.lexicon_entry_id);
+  return unique((entry?.source_rows || []).map((sourceRow) => sourceRow.source_family || sourceRow.source_name));
+}
+
+function renderingsFor(row) {
+  const entry = lexiconById.get(row.lexicon_entry_id);
+  return (entry?.strict_renderings || []).slice(0, 3).join(', ') || 'N/A';
+}
+
+function formatMatchedSample(row) {
+  const families = sourceFamiliesFor(row).join(' + ') || 'source metadata available';
+  return `${row.surface_word} -> ${renderingsFor(row)} (${families}) — ${row.first_source_ref} (#${row.first_anchor_id})`;
+}
+
+function formatUnmatchedSample(row) {
+  return `${row.surface_word} — ${row.first_source_ref} (#${row.first_anchor_id})`;
+}
+
 const lexicon = loadLexicon();
 const lexiconByNormalized = new Map();
+const lexiconById = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
 for (const entry of lexicon.entries || []) {
   const forms = [entry.hebrew_word, ...(entry.surface_forms || [])].filter(Boolean);
   for (const form of forms) {
@@ -118,6 +152,8 @@ for (const fileName of sourceFiles) {
             normalized_word: normalizedWord,
             lexicon_entry_id: lexiconEntryId,
             status,
+            first_source_ref: unit.source_ref,
+            first_anchor_id: unit.anchor_id,
             occurrence_count: 0,
           });
         }
@@ -158,6 +194,11 @@ const forms = Array.from(tokenRows.values()).sort((a, b) => {
   return a.surface_word.localeCompare(b.surface_word, 'he');
 });
 
+const matchedForms = forms.filter((row) => row.status === 'matched');
+const unmatchedForms = forms.filter((row) => row.status !== 'matched');
+const wikidataMatchedForms = matchedForms.filter((row) => sourceFamiliesFor(row).includes('wikidata'));
+const openScripturesMatchedForms = matchedForms.filter((row) => sourceFamiliesFor(row).includes('openscriptures'));
+
 writeJson(tokenIndexPath, {
   schema_version: 1,
   generated_at: new Date().toISOString(),
@@ -173,15 +214,67 @@ writeJson(tokenIndexPath, {
   total_units: totalUnits,
   total_occurrences: totalOccurrences,
   total_unique_surface_forms: forms.length,
-  matched_surface_forms: forms.filter((row) => row.status === 'matched').length,
-  unmatched_surface_forms: forms.filter((row) => row.status !== 'matched').length,
+  matched_surface_forms: matchedForms.length,
+  matched_wikidata_surface_forms: wikidataMatchedForms.length,
+  enriched_openscriptures_surface_forms: openScripturesMatchedForms.length,
+  unmatched_surface_forms: unmatchedForms.length,
   forms,
 });
+
+const matchedSamples = matchedForms.slice(0, 20).map(formatMatchedSample);
+const unmatchedSamples = unmatchedForms
+  .filter((row) => row.normalized_word.length > 2 && !/[\u05F3\u05F4'"]/.test(row.normalized_word))
+  .slice(0, 20)
+  .map(formatUnmatchedSample);
+const testRefs = [
+  'Orot, Lights from Darkness, Land of Israel 1:1',
+  'Orot, Lights from Darkness, War 1:1',
+  'Orot, Lights from Darkness, Lights of Rebirth 70:5',
+];
+
+fs.mkdirSync(path.dirname(reportPath), { recursive: true });
+fs.writeFileSync(reportPath, `# Orot Lexical Coverage Report
+
+Generated: ${new Date().toISOString()}
+
+## Scope
+
+- Work: Orot only
+- Hebrew source text changed: no
+- Translation overlays changed: no
+- Sources used: Wikidata Lexemes first; OpenScriptures morphHB + HebrewLexicon as fallback/enrichment
+- Sources not used: Kaikki, Wiktionary, copyrighted translations
+- Count source: generated HUD token index, which is the page-render source of truth
+
+## Counts
+
+- Total Orot unique surface forms: ${forms.length}
+- Total Orot token occurrences: ${totalOccurrences}
+- Total matched: ${matchedForms.length}
+- Percent matched: ${percent(matchedForms.length, forms.length)}
+- Matched via Wikidata: ${wikidataMatchedForms.length}
+- Enriched via OpenScriptures: ${openScripturesMatchedForms.length}
+- Unmatched: ${unmatchedForms.length}
+
+## Sample Matched Words With Refs To Test
+
+${formatList(matchedSamples)}
+
+## Sample Unmatched Words
+
+${formatList(unmatchedSamples)}
+
+## Exact Orot Refs To Test
+
+${formatList(testRefs)}
+`, 'utf8');
 
 console.log(JSON.stringify({
   total_units: totalUnits,
   total_occurrences: totalOccurrences,
   total_unique_surface_forms: forms.length,
-  matched_surface_forms: forms.filter((row) => row.status === 'matched').length,
-  unmatched_surface_forms: forms.filter((row) => row.status !== 'matched').length,
+  matched_surface_forms: matchedForms.length,
+  matched_wikidata_surface_forms: wikidataMatchedForms.length,
+  enriched_openscriptures_surface_forms: openScripturesMatchedForms.length,
+  unmatched_surface_forms: unmatchedForms.length,
 }, null, 2));

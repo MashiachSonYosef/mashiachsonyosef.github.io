@@ -218,6 +218,7 @@ function extractOrotForms() {
           formsByNormalized.set(normalized, {
             normalized_word: normalized,
             surface_forms: new Map(),
+            first_refs: new Map(),
             occurrence_count: 0,
             candidates: getCandidateNormals(normalized),
           });
@@ -225,6 +226,13 @@ function extractOrotForms() {
         const row = formsByNormalized.get(normalized);
         row.occurrence_count += 1;
         row.surface_forms.set(surface, (row.surface_forms.get(surface) || 0) + 1);
+        if (!row.first_refs.has(surface)) {
+          row.first_refs.set(surface, {
+            surface_word: surface,
+            source_ref: unit.source_ref,
+            anchor_id: unit.anchor_id,
+          });
+        }
       }
     }
   }
@@ -236,6 +244,7 @@ function extractOrotForms() {
     return {
       ...row,
       surface_forms: surfaceForms,
+      first_refs: Array.from(row.first_refs.values()),
       candidates: getCandidateNormalsForRecord(row.normalized_word, surfaceForms.map((surface) => surface.surface_word)),
     };
   });
@@ -606,6 +615,27 @@ function formatList(items) {
   return items.map((item) => `- ${item}`).join('\n');
 }
 
+function getSampleRef(record) {
+  const first = record.first_refs?.[0];
+  if (!first) return 'ref unavailable';
+  return `${first.source_ref} (#${first.anchor_id})`;
+}
+
+function formatMatchedSample(record, entry) {
+  const renderings = entry.strict_renderings.slice(0, 3).join(', ') || 'N/A';
+  const sourceFamilies = unique(entry.source_rows.map((row) => row.source_family || row.source_name)).join(' + ') || 'source metadata available';
+  return `${displaySurface(record)} -> ${renderings} (${sourceFamilies}) — ${getSampleRef(record)}`;
+}
+
+function formatUnmatchedSample(record) {
+  return `${displaySurface(record)} — ${getSampleRef(record)}`;
+}
+
+function percent(part, whole) {
+  if (!whole) return '0.0%';
+  return `${((part / whole) * 100).toFixed(1)}%`;
+}
+
 async function main() {
   const { records, occurrences } = extractOrotForms();
   const candidateSet = new Set(records.filter((record) => isAutoMatchable(record.normalized_word)).flatMap((record) => record.candidates));
@@ -650,12 +680,14 @@ async function main() {
       const families = new Set(entry.source_rows.map((row) => row.source_family));
       if (families.has('wikidata')) stats.matched_wikidata += surfaceFormCount;
       if (families.has('openscriptures')) stats.enriched_openscriptures += surfaceFormCount;
-      if (matchedSamples.length < 10) {
-        matchedSamples.push(`${displaySurface(record)} -> ${entry.strict_renderings.slice(0, 3).join(', ') || 'N/A'} (${entry.source_rows.map((row) => row.source_name).join(' + ')})`);
+      if (matchedSamples.length < 20) {
+        matchedSamples.push(formatMatchedSample(record, entry));
       }
     } else {
       stats.unmatched += surfaceFormCount;
-      if (unmatchedSamples.length < 10) unmatchedSamples.push(displaySurface(record));
+      if (unmatchedSamples.length < 20 && record.normalized_word.length > 2 && !hasAbbreviationMark(record.normalized_word)) {
+        unmatchedSamples.push(formatUnmatchedSample(record));
+      }
     }
   }
 
@@ -686,6 +718,7 @@ Generated: ${new Date().toISOString()}
 - Matched via Wikidata: ${stats.matched_wikidata}
 - Enriched via OpenScriptures: ${stats.enriched_openscriptures}
 - Matched by any source: ${stats.matched_any}
+- Percent matched: ${percent(stats.matched_any, stats.total_unique_surface_forms)}
 - Unmatched: ${stats.unmatched}
 
 ## Sample Matched Words
