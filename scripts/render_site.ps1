@@ -342,13 +342,11 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }')
   [void]$Builder.AppendLine('    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }')
   [void]$Builder.AppendLine('    .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }')
-  [void]$Builder.AppendLine('    .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }')
+  [void]$Builder.AppendLine('    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }')
   [void]$Builder.AppendLine('    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; }')
   [void]$Builder.AppendLine('    .hebrew strong { color: #fff5df; font-weight: 700; }')
   [void]$Builder.AppendLine('    .source-small { font-size: 0.82em; color: var(--muted); }')
   [void]$Builder.AppendLine('    .placeholder { color: #8c857c; }')
-  [void]$Builder.AppendLine('    .overlay-block { border: 1px solid var(--line); background: var(--panel-2); padding: 12px; margin-bottom: 10px; }')
-  [void]$Builder.AppendLine('    .overlay-label { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }')
   if ($IncludeLexicalStyles) {
     [void]$Builder.AppendLine('    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; }')
     [void]$Builder.AppendLine('    .lexical-coverage strong { color: var(--text); font-weight: 400; }')
@@ -1039,19 +1037,12 @@ foreach ($source in $sources) {
 $lexicalCache = Get-LexicalCache
 
 $homePage = New-Object System.Text.StringBuilder
-Append-SiteHead -Builder $homePage -Title 'Translation Workspace'
+Append-SiteHead -Builder $homePage -Title 'Hebrew Source Workbench'
 [void]$homePage.AppendLine('  <main>')
 [void]$homePage.AppendLine('    <div class="shell">')
 [void]$homePage.AppendLine('      <div class="hero">')
-[void]$homePage.AppendLine('        <h1>Translation Workspace</h1>')
-[void]$homePage.AppendLine('        <p>Hebrew source infrastructure first. Overlays stay separate. English remains placeholder-only until you write it.</p>')
-[void]$homePage.AppendLine("        <div class=""license-notice""><strong>English overlay license:</strong> $(Encode-Html $overlayLicenseNotice)</div>")
-[void]$homePage.AppendLine('        <div class="export-actions" aria-label="Full-site overlay exports">')
-[void]$homePage.AppendLine('          <span>Full overlay export:</span>')
-[void]$homePage.AppendLine('          <a class="export-button" href="overlay-export.csv" download>CSV</a>')
-[void]$homePage.AppendLine('          <a class="export-button" href="overlay-export.json" download>JSON</a>')
-[void]$homePage.AppendLine('          <a class="export-button" href="overlay-export.md" download>Markdown</a>')
-[void]$homePage.AppendLine('        </div>')
+[void]$homePage.AppendLine('        <h1>Hebrew Source Workbench</h1>')
+[void]$homePage.AppendLine('        <p>Hebrew source texts with stable anchors, source metadata, and lexical HUD support.</p>')
 [void]$homePage.AppendLine('      </div>')
 [void]$homePage.AppendLine('      <div style="padding:22px">')
 $homeGroups = $sources | Group-Object { Get-HomeGroup $_ } | Sort-Object @{ Expression = { if ($_.Name -eq 'Works') { 0 } elseif ($_.Name -eq 'Tanakh') { 1 } else { 2 } } }, Name
@@ -1158,13 +1149,6 @@ foreach ($source in $sources) {
       [void]$page.AppendLine("        <p class=""meta lexical-coverage"">Lexical HUD coverage: <strong>$lexicalMatched matched</strong> / $lexicalTotal unique forms.</p>")
     }
   }
-  [void]$page.AppendLine("        <div class=""license-notice""><strong>English overlay license:</strong> $(Encode-Html $overlayLicenseNotice)</div>")
-  [void]$page.AppendLine('        <div class="export-actions" aria-label="Overlay exports">')
-  [void]$page.AppendLine('          <span>Overlay export:</span>')
-  [void]$page.AppendLine('          <a class="export-button" href="overlay-export.csv" download>CSV</a>')
-  [void]$page.AppendLine('          <a class="export-button" href="overlay-export.json" download>JSON</a>')
-  [void]$page.AppendLine('          <a class="export-button" href="overlay-export.md" download>Markdown</a>')
-  [void]$page.AppendLine('        </div>')
   if ($MaxUnits -gt 0) {
     [void]$page.AppendLine("        <p class=""fallback-note"">Fallback render active. Showing first $MaxUnits units only while route stability is verified.</p>")
   }
@@ -1204,10 +1188,6 @@ foreach ($source in $sources) {
     }
 
     $sourceNoteNumber = $sourceNoteByKey[(Get-SourceKey -Unit $unit)]
-    $overlayUnit = Get-OverlayUnit -Overlay $overlay -UnitId $unit.unit_id
-    $strict = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'strict_translation'
-    $clean = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'clean_translation'
-    $isDone = Test-HasContent $strict
     $lexicalUnit = Get-LexicalUnitOccurrence -WorkOccurrence $workOccurrence -UnitId $unit.unit_id
     $lexicalAttrs = ''
     if ($null -ne $lexicalUnit) {
@@ -1235,22 +1215,6 @@ foreach ($source in $sources) {
         [void]$page.AppendLine("                <p class=""hebrew"" lang=""he"" dir=""rtl"">$(Convert-SourceHtml $paragraph)</p>")
       }
     }
-    [void]$page.AppendLine('              </div>')
-    [void]$page.AppendLine('              <div>')
-    [void]$page.AppendLine('                <div class="overlay-block"><span class="overlay-label">Translation</span>')
-    if ($isDone) {
-      [void]$page.AppendLine("                  <p>$(Encode-Html $strict)</p>")
-    } else {
-      [void]$page.AppendLine('                  <p class="placeholder">N/A</p>')
-    }
-    [void]$page.AppendLine('                </div>')
-    [void]$page.AppendLine('                <div class="overlay-block"><span class="overlay-label">Translator&rsquo;s Notes</span>')
-    if (Test-HasContent $clean) {
-      [void]$page.AppendLine("                  <p>$(Encode-Html $clean)</p>")
-    } else {
-      [void]$page.AppendLine('                  <p class="placeholder">N/A</p>')
-    }
-    [void]$page.AppendLine('                </div>')
     [void]$page.AppendLine('              </div>')
     [void]$page.AppendLine('            </div>')
     if ($null -ne $lexicalUnit) {

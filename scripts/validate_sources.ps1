@@ -161,9 +161,14 @@ $sourceFiles | ForEach-Object {
         $errors.Add("Generated work page contains removed progress UI '$badUi' for $($source.work_id)")
       }
     }
-    foreach ($requiredText in @('License', 'CC0 1.0 Universal', 'Translation', 'Translator&rsquo;s Notes')) {
+    foreach ($requiredText in @('License')) {
       if (-not $workPage.Contains($requiredText)) {
         $errors.Add("Generated work page missing required text '$requiredText' for $($source.work_id)")
+      }
+    }
+    foreach ($badOverlayText in @('<span class="overlay-label">Translation</span>', '<span class="overlay-label">Translator&rsquo;s Notes</span>', 'English overlay license')) {
+      if ($workPage.Contains($badOverlayText)) {
+        $errors.Add("Generated work page contains removed overlay UI '$badOverlayText' for $($source.work_id)")
       }
     }
     if ($source.work_type -eq 'commentary') {
@@ -201,7 +206,7 @@ if (Test-Path $homePagePath) {
       $errors.Add("Homepage contains removed progress UI '$badUi'")
     }
   }
-  foreach ($requiredText in @('CC0 1.0 Universal', 'Full overlay export:')) {
+  foreach ($requiredText in @('Hebrew Source Workbench', 'lexical HUD support')) {
     if (-not $homePage.Contains($requiredText)) {
       $errors.Add("Homepage missing required text '$requiredText'")
     }

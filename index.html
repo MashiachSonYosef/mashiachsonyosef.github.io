@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Translation Workspace</title>
+  <title>Hebrew Source Workbench</title>
   <style>
     :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
     * { box-sizing: border-box; }
@@ -46,13 +46,11 @@
     .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
-    .unit-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 18px; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
     .placeholder { color: #8c857c; }
-    .overlay-block { border: 1px solid var(--line); background: var(--panel-2); padding: 12px; margin-bottom: 10px; }
-    .overlay-label { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
     .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
     .source-table { width: 100%; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
@@ -75,15 +73,8 @@
   <main>
     <div class="shell">
       <div class="hero">
-        <h1>Translation Workspace</h1>
-        <p>Hebrew source infrastructure first. Overlays stay separate. English remains placeholder-only until you write it.</p>
-        <div class="license-notice"><strong>English overlay license:</strong> English translations and translator&#39;s notes by the owner are released under CC0 1.0 Universal. You may copy, modify, distribute, and use them for any purpose without attribution. Hebrew source texts retain their original source/version licenses.</div>
-        <div class="export-actions" aria-label="Full-site overlay exports">
-          <span>Full overlay export:</span>
-          <a class="export-button" href="overlay-export.csv" download>CSV</a>
-          <a class="export-button" href="overlay-export.json" download>JSON</a>
-          <a class="export-button" href="overlay-export.md" download>Markdown</a>
-        </div>
+        <h1>Hebrew Source Workbench</h1>
+        <p>Hebrew source texts with stable anchors, source metadata, and lexical HUD support.</p>
       </div>
       <div style="padding:22px">
         <section class="home-section">
