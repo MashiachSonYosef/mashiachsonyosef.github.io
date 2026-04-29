@@ -374,6 +374,7 @@ function Append-SiteHead {
     [void]$Builder.AppendLine('    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }')
     [void]$Builder.AppendLine('    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }')
     [void]$Builder.AppendLine('    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }')
+    [void]$Builder.AppendLine('    .lexical-entry .entry-hebrew { color: var(--hebrew); }')
     [void]$Builder.AppendLine('    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }')
     [void]$Builder.AppendLine('    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }')
     [void]$Builder.AppendLine('    .source-details { margin-top: 16px; }')
@@ -512,7 +513,6 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('          hebrew.dir = "rtl";')
   [void]$Builder.AppendLine('          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");')
   [void]$Builder.AppendLine('          head.appendChild(hebrew);')
-  [void]$Builder.AppendLine('          if (row.transliteration) head.append(` | ${row.transliteration}`);')
   [void]$Builder.AppendLine('          section.appendChild(head);')
   [void]$Builder.AppendLine('          const renderings = document.createElement("div");')
   [void]$Builder.AppendLine('          appendRenderings(renderings, row.strict_renderings || []);')
@@ -528,26 +528,42 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        node.replaceChildren();')
   [void]$Builder.AppendLine('        if (label) label.textContent = "Possible lexical entries";')
   [void]$Builder.AppendLine('        if (!hasLexicalEntry) { node.textContent = "No lexical entry yet."; return; }')
-  [void]$Builder.AppendLine('        const entries = Array.isArray(view.possible_entries) ? view.possible_entries : [];')
+  [void]$Builder.AppendLine('        let entries = Array.isArray(view.possible_entries) ? view.possible_entries : [];')
+  [void]$Builder.AppendLine('        if (view.surface_context_status === "resolved_prefix_base") entries = entries.filter((entry) => entry.context_role === "likely_contextual");')
+  [void]$Builder.AppendLine('        entries = entries.filter((entry) => entry.relation_label !== "related root-field");')
   [void]$Builder.AppendLine('        if (!entries.length) { setList(root, "[data-hud-renderings]", view.strict_renderings || ["No lexical entry yet."]); return; }')
   [void]$Builder.AppendLine('        const note = document.createElement("p");')
   [void]$Builder.AppendLine('        note.className = "lexical-context-note";')
   [void]$Builder.AppendLine('        note.textContent = view.surface_context_note || view.context_note || "Context not resolved.";')
   [void]$Builder.AppendLine('        node.appendChild(note);')
-  [void]$Builder.AppendLine('        if (view.possible_entries_truncated) { const truncation = document.createElement("p"); truncation.className = "lexical-context-note"; truncation.textContent = `${view.possible_entries_truncated} lower-priority possible entries hidden.`; node.appendChild(truncation); }')
   [void]$Builder.AppendLine('        const list = document.createElement("div");')
   [void]$Builder.AppendLine('        list.className = "lexical-entry-list";')
-  [void]$Builder.AppendLine('        const sorted = [...entries].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));')
+  [void]$Builder.AppendLine('        const groupedEntries = new Map();')
+  [void]$Builder.AppendLine('        entries.forEach((entry) => {')
+  [void]$Builder.AppendLine('          const spelling = entry.lemma || entry.match_key || "N/A";')
+  [void]$Builder.AppendLine('          const key = `${entry.context_role || "entry"}|${spelling}`;')
+  [void]$Builder.AppendLine('          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });')
+  [void]$Builder.AppendLine('          const group = groupedEntries.get(key);')
+  [void]$Builder.AppendLine('          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());')
+  [void]$Builder.AppendLine('          (entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });')
+  [void]$Builder.AppendLine('        });')
+  [void]$Builder.AppendLine('        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));')
   [void]$Builder.AppendLine('        sorted.forEach((entry) => {')
   [void]$Builder.AppendLine('          const card = document.createElement("section");')
   [void]$Builder.AppendLine('          card.className = "lexical-entry";')
   [void]$Builder.AppendLine('          const title = document.createElement("h3");')
   [void]$Builder.AppendLine('          const role = entry.context_role === "likely_contextual" ? "Likely contextual entry" : "Other possible entries";')
-  [void]$Builder.AppendLine('          title.textContent = role;')
+  [void]$Builder.AppendLine('          title.append(role, ": ");')
+  [void]$Builder.AppendLine('          const spelling = document.createElement("span");')
+  [void]$Builder.AppendLine('          spelling.className = "entry-hebrew";')
+  [void]$Builder.AppendLine('          spelling.lang = "he";')
+  [void]$Builder.AppendLine('          spelling.dir = "rtl";')
+  [void]$Builder.AppendLine('          spelling.textContent = normalizeHebrewDisplay(entry.spelling);')
+  [void]$Builder.AppendLine('          title.appendChild(spelling);')
   [void]$Builder.AppendLine('          const meta = document.createElement("p");')
   [void]$Builder.AppendLine('          meta.className = "entry-meta";')
   [void]$Builder.AppendLine('          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";')
-  [void]$Builder.AppendLine('          meta.textContent = `${entry.lemma || "lemma N/A"} | ${entry.source_name || "source N/A"} ${entry.source_id || ""}${relation}`;')
+  [void]$Builder.AppendLine('          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;')
   [void]$Builder.AppendLine('          const renderings = document.createElement("div");')
   [void]$Builder.AppendLine('          const renderLabel = document.createElement("p");')
   [void]$Builder.AppendLine('          renderLabel.className = "entry-label";')
@@ -597,14 +613,10 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));')
   [void]$Builder.AppendLine('        button.setAttribute("aria-pressed", "true");')
   [void]$Builder.AppendLine('        setText(hud, "[data-hud-word]", view.hebrew_word);')
-  [void]$Builder.AppendLine('        setText(hud, "[data-hud-transliteration]", view.surface_transliteration || view.transliteration);')
   [void]$Builder.AppendLine('        const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);')
   [void]$Builder.AppendLine('        setList(hud, "[data-hud-surface-renderings]", (view.surface_renderings && view.surface_renderings.length) ? view.surface_renderings : (hasLexicalEntry ? view.strict_renderings : ["No lexical entry yet."]));')
   [void]$Builder.AppendLine('        renderBreakdown(hud, view);')
   [void]$Builder.AppendLine('        renderPossibleEntries(hud, view, hasLexicalEntry);')
-  [void]$Builder.AppendLine('        setText(hud, "[data-hud-root]", view.root);')
-  [void]$Builder.AppendLine('        setText(hud, "[data-hud-root-transliteration]", view.root_transliteration);')
-  [void]$Builder.AppendLine('        setList(hud, "[data-hud-root-meaning]", view.root_meaning);')
   [void]$Builder.AppendLine('        renderSources(hud.querySelector("[data-hud-sources]"), view.source_rows);')
   [void]$Builder.AppendLine('        const details = hud.querySelector("details");')
   [void]$Builder.AppendLine('        if (details) details.open = false;')
@@ -733,18 +745,26 @@ function Get-WorkLexicalPayload {
         normalized_word = $row.normalized_word
         lexicon_entry_id = $row.lexicon_entry_id
         status = $row.status
-        surface_transliteration = $row.surface_transliteration
         surface_renderings = $row.surface_renderings
         surface_context_status = $row.surface_context_status
         surface_context_note = $row.surface_context_note
-        breakdown = $row.breakdown
+        breakdown = @($row.breakdown | ForEach-Object {
+          [pscustomobject]@{
+            hebrew = $_.hebrew
+            strict_renderings = $_.strict_renderings
+          }
+        })
       }
     }
   })
   $entries = @($entryIds.Keys | Sort-Object | ForEach-Object {
     if ($LexicalCache.lexicon_by_id.ContainsKey($_)) {
       $entry = $LexicalCache.lexicon_by_id[$_]
-      $possibleEntries = @($entry.possible_entries | ForEach-Object {
+      $rawPossibleEntries = @($entry.possible_entries | Where-Object { $_.relation_label -ne 'related root-field' })
+      if ($entry.disambiguation_status -eq 'likely') {
+        $rawPossibleEntries = @($rawPossibleEntries | Where-Object { $_.context_role -eq 'likely_contextual' })
+      }
+      $possibleEntries = @($rawPossibleEntries | ForEach-Object {
         [pscustomobject]@{
           entry_key = $_.entry_key
           lemma = $_.lemma
@@ -752,11 +772,7 @@ function Get-WorkLexicalPayload {
           source_name = $_.source_name
           source_family = $_.source_family
           source_id = $_.source_id
-          transliteration = $_.transliteration
           strict_renderings = $_.strict_renderings
-          root = $_.root
-          root_transliteration = $_.root_transliteration
-          root_meaning = $_.root_meaning
           context_role = $_.context_role
           relation_label = $_.relation_label
         }
@@ -764,14 +780,9 @@ function Get-WorkLexicalPayload {
       [pscustomobject]@{
         entry_id = $entry.entry_id
         hebrew_word = $entry.hebrew_word
-        transliteration = $entry.transliteration
         strict_renderings = $entry.strict_renderings
-        root = $entry.root
-        root_transliteration = $entry.root_transliteration
-        root_meaning = $entry.root_meaning
         disambiguation_status = $entry.disambiguation_status
         context_note = $entry.context_note
-        possible_entries_truncated = $entry.possible_entries_truncated
         possible_entries = $possibleEntries
         source_rows = $entry.source_rows
       }
@@ -1195,14 +1206,10 @@ foreach ($source in $sources) {
     [void]$page.AppendLine('  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">')
     [void]$page.AppendLine('    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>')
     [void]$page.AppendLine('    <dl class="lexical-fields">')
-    [void]$page.AppendLine('      <dt>Hebrew word</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd>')
-    [void]$page.AppendLine('      <dt>Transliteration</dt><dd data-hud-transliteration>N/A</dd>')
+    [void]$page.AppendLine('      <dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd>')
     [void]$page.AppendLine('      <dt>Strict renderings</dt><dd data-hud-surface-renderings>N/A</dd>')
     [void]$page.AppendLine('      <dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd>')
     [void]$page.AppendLine('      <dt data-hud-renderings-label>Possible lexical entries</dt><dd data-hud-renderings>N/A</dd>')
-    [void]$page.AppendLine('      <dt>Root</dt><dd data-hud-root lang="he" dir="rtl">N/A</dd>')
-    [void]$page.AppendLine('      <dt>Root transliteration</dt><dd data-hud-root-transliteration>N/A</dd>')
-    [void]$page.AppendLine('      <dt>Root meaning</dt><dd data-hud-root-meaning>N/A</dd>')
     [void]$page.AppendLine('    </dl>')
     [void]$page.AppendLine('    <details class="source-details">')
     [void]$page.AppendLine('      <summary>Sources / licenses</summary>')

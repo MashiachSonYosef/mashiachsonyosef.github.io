@@ -316,7 +316,7 @@ foreach ($lexicalFile in $lexicalFiles) {
   $lexicalPagePath = Join-Path $source.work_slug 'index.html'
   if (Test-Path $lexicalPagePath) {
     $lexicalPage = Get-Content -Path $lexicalPagePath -Raw -Encoding UTF8
-    foreach ($requiredText in @('data-lexical-occurrences', 'data-lexical-token-index', 'data-lexical-lexicon', 'data-lexical-slot', 'data-lexical-hud', 'Hebrew word', 'Transliteration', 'Strict renderings', 'Root', 'Root transliteration', 'Root meaning', 'Sources / licenses', 'No lexical entry yet.')) {
+    foreach ($requiredText in @('data-lexical-occurrences', 'data-lexical-token-index', 'data-lexical-lexicon', 'data-lexical-slot', 'data-lexical-hud', 'Clicked Hebrew form', 'Strict renderings', 'Breakdown', 'Possible lexical entries', 'Sources / licenses', 'No lexical entry yet.')) {
       if (-not $lexicalPage.Contains($requiredText)) {
         $errors.Add("Lexical target page missing required text '$requiredText' for $($lexical.work_id)")
       }

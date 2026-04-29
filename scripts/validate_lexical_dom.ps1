@@ -160,8 +160,13 @@ function Test-LexicalSample {
       throw "Generated page missing lexical renderer marker for $($Sample.Label): $requiredPattern"
     }
   }
+  foreach ($forbiddenHudPattern in @('data-hud-transliteration', 'data-hud-root', 'data-hud-root-transliteration', 'data-hud-root-meaning')) {
+    if ($html.Contains($forbiddenHudPattern)) {
+      throw "Generated page still foregrounds removed HUD field for $($Sample.Label): $forbiddenHudPattern"
+    }
+  }
 
-  foreach ($requiredRendererText in @('.lexical-word { display: inline;', 'direction: inherit;', 'unicode-bidi: normal;', 'span.dataset.lexicalIndex = tokenIndexId || "";', 'const tokenRow = tokenRows.get(button.dataset.lexicalIndex) || {};')) {
+  foreach ($requiredRendererText in @('.lexical-word { display: inline;', 'direction: inherit;', 'unicode-bidi: normal;', 'span.dataset.lexicalIndex = tokenIndexId || "";', 'const tokenRow = tokenRows.get(button.dataset.lexicalIndex) || {};', 'const groupedEntries = new Map();')) {
     if (-not $html.Contains($requiredRendererText)) {
       throw "Generated page missing global bidi-safe lexical renderer rule for $($Sample.Label): $requiredRendererText"
     }
