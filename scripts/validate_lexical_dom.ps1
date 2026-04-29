@@ -98,6 +98,38 @@ if ($laUmmahBreakdown[1].hebrew -ne $expectedBase -or -not (@($laUmmahBreakdown[
   throw "Expected la-ummah second breakdown row to preserve ummah as nation/people."
 }
 
+$orotHtmlPath = Join-Path $PSScriptRoot '..\orot\index.html'
+if (Test-Path -LiteralPath $orotHtmlPath) {
+  $orotHtml = Get-Content -LiteralPath $orotHtmlPath -Raw -Encoding UTF8
+  $tokenMarker = 'data-lexical-token-index>'
+  $tokenStart = $orotHtml.IndexOf($tokenMarker)
+  if ($tokenStart -lt 0) { throw "Orot page missing embedded token-index JSON." }
+  $tokenStart += $tokenMarker.Length
+  $tokenEnd = $orotHtml.IndexOf('</script>', $tokenStart)
+  $pageTokenIndex = $orotHtml.Substring($tokenStart, $tokenEnd - $tokenStart) | ConvertFrom-Json
+  $pageLaUmmah = @($pageTokenIndex.forms | Where-Object { $_.surface_word -eq $laUmmahSurface }) | Select-Object -First 1
+
+  $lexiconMarker = 'data-lexical-lexicon>'
+  $lexiconStart = $orotHtml.IndexOf($lexiconMarker)
+  if ($lexiconStart -lt 0) { throw "Orot page missing embedded lexicon JSON." }
+  $lexiconStart += $lexiconMarker.Length
+  $lexiconEnd = $orotHtml.IndexOf('</script>', $lexiconStart)
+  $pageLexicon = $orotHtml.Substring($lexiconStart, $lexiconEnd - $lexiconStart) | ConvertFrom-Json
+  $pageLaUmmahEntry = @($pageLexicon.entries | Where-Object { $_.entry_id -eq $pageLaUmmah.lexicon_entry_id }) | Select-Object -First 1
+  $pageLaUmmahSources = @($pageLaUmmahEntry.source_rows)
+  if ($pageLaUmmahSources.Count -ne 1 -or $pageLaUmmahSources[0].source_id -ne 'L63772') {
+    throw "Expected la-ummah embedded default source rows to include only Wikidata L63772."
+  }
+  if (@($pageLaUmmahEntry.secondary_source_rows).Count -ne 0) {
+    throw "Expected la-ummah embedded secondary source rows to be empty after noise filtering."
+  }
+  foreach ($noise in @('L65883', 'L204490', 'H519', 'H520', 'H522', 'H4965')) {
+    if ($orotHtml.Contains($noise) -and @($pageLaUmmahSources.source_id) -contains $noise) {
+      throw "la-ummah default sources still include noisy candidate: $noise"
+    }
+  }
+}
+
 function Test-LexicalSample {
   param([object]$Sample)
 

@@ -586,14 +586,25 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('          summary.textContent = "Show other possible entries";')
   [void]$Builder.AppendLine('          details.appendChild(summary);')
   [void]$Builder.AppendLine('          details.appendChild(renderEntryList(otherEntries));')
+  [void]$Builder.AppendLine('          if (view.secondary_source_rows && view.secondary_source_rows.length) {')
+  [void]$Builder.AppendLine('            const sourceDetails = document.createElement("details");')
+  [void]$Builder.AppendLine('            sourceDetails.className = "source-details";')
+  [void]$Builder.AppendLine('            const sourceSummary = document.createElement("summary");')
+  [void]$Builder.AppendLine('            sourceSummary.textContent = "Sources / licenses for other possible entries";')
+  [void]$Builder.AppendLine('            const sourceBox = document.createElement("div");')
+  [void]$Builder.AppendLine('            sourceDetails.append(sourceSummary, sourceBox);')
+  [void]$Builder.AppendLine('            renderSources(sourceBox, view.secondary_source_rows);')
+  [void]$Builder.AppendLine('            details.appendChild(sourceDetails);')
+  [void]$Builder.AppendLine('          }')
   [void]$Builder.AppendLine('          node.appendChild(details);')
   [void]$Builder.AppendLine('        }')
   [void]$Builder.AppendLine('      };')
   [void]$Builder.AppendLine('      const renderSources = (sourceBox, rows) => {')
   [void]$Builder.AppendLine('        if (!sourceBox) return;')
   [void]$Builder.AppendLine('        sourceBox.replaceChildren();')
-  [void]$Builder.AppendLine('        if (!rows || !rows.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }')
-  [void]$Builder.AppendLine('        (rows || []).forEach((row) => {')
+  [void]$Builder.AppendLine('        const sourceRows = Array.isArray(rows) ? rows : (rows && rows.source_id ? [rows] : []);')
+  [void]$Builder.AppendLine('        if (!sourceRows.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }')
+  [void]$Builder.AppendLine('        sourceRows.forEach((row) => {')
   [void]$Builder.AppendLine('          const section = document.createElement("div");')
   [void]$Builder.AppendLine('          section.className = "source-row";')
   [void]$Builder.AppendLine('          const title = document.createElement("p");')
@@ -616,7 +627,7 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        const tokenRow = tokenRows.get(button.dataset.lexicalIndex) || {};')
   [void]$Builder.AppendLine('        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";')
   [void]$Builder.AppendLine('        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};')
-  [void]$Builder.AppendLine('        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [] };')
+  [void]$Builder.AppendLine('        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };')
   [void]$Builder.AppendLine('      };')
   [void]$Builder.AppendLine('      const renderWord = (button) => {')
   [void]$Builder.AppendLine('        const unit = button.closest("[data-lexical-unit]");')
@@ -749,6 +760,30 @@ function Test-ExcludedOtherLexicalEntry {
   return $false
 }
 
+function Get-LexicalSourceRowKey {
+  param([object]$Row)
+
+  if ($null -eq $Row) { return '' }
+  return "$($Row.source_family)|$($Row.source_id)"
+}
+
+function Select-LexicalSourceRows {
+  param(
+    [object[]]$SourceRows,
+    [string[]]$Keys
+  )
+
+  $keySet = @{}
+  foreach ($key in @($Keys)) {
+    if ($key) { $keySet[[string]$key] = $true }
+  }
+
+  return @($SourceRows | Where-Object {
+    $key = Get-LexicalSourceRowKey -Row $_
+    $key -and $keySet.ContainsKey($key)
+  })
+}
+
 function Get-WorkLexicalPayload {
   param(
     [AllowNull()][object]$WorkOccurrence,
@@ -804,6 +839,10 @@ function Get-WorkLexicalPayload {
       if ($entry.disambiguation_status -eq 'likely') {
         $rawPossibleEntries = @($rawPossibleEntries | Where-Object { $_.context_role -eq 'likely_contextual' })
       }
+      $primaryEntries = @($rawPossibleEntries | Where-Object { $_.context_role -eq 'likely_contextual' })
+      $secondaryEntries = @($rawPossibleEntries | Where-Object { $_.context_role -ne 'likely_contextual' })
+      $primarySourceRows = Select-LexicalSourceRows -SourceRows @($entry.source_rows) -Keys @($primaryEntries | ForEach-Object { @($_.source_row_keys) })
+      $secondarySourceRows = Select-LexicalSourceRows -SourceRows @($entry.source_rows) -Keys @($secondaryEntries | ForEach-Object { @($_.source_row_keys) })
       $possibleEntries = @($rawPossibleEntries | ForEach-Object {
         [pscustomobject]@{
           entry_key = $_.entry_key
@@ -824,7 +863,8 @@ function Get-WorkLexicalPayload {
         disambiguation_status = $entry.disambiguation_status
         context_note = $entry.context_note
         possible_entries = $possibleEntries
-        source_rows = $entry.source_rows
+        source_rows = [object[]]@($primarySourceRows)
+        secondary_source_rows = [object[]]@($secondarySourceRows)
       }
     }
   })
