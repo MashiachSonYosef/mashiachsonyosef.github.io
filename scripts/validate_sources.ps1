@@ -219,9 +219,15 @@ if (Test-Path $lexiconPath) {
   $lexicon = Get-Content -Path $lexiconPath -Raw -Encoding UTF8 | ConvertFrom-Json
   foreach ($entry in @($lexicon.entries)) {
     foreach ($field in @('entry_id', 'hebrew_word', 'transliteration', 'strict_renderings', 'root', 'root_transliteration', 'root_meaning', 'source_rows')) {
-      if (-not $entry.$field) {
-        $errors.Add("Lexicon entry missing $field`: $($entry.entry_id)")
+      if ($entry.PSObject.Properties.Name -notcontains $field) {
+        $errors.Add("Lexicon entry missing property $field`: $($entry.entry_id)")
       }
+    }
+    if (-not $entry.entry_id -or -not $entry.hebrew_word) {
+      $errors.Add("Lexicon entry missing required identity fields: $($entry.entry_id)")
+    }
+    if (-not $entry.source_rows -or @($entry.source_rows).Count -eq 0) {
+      $errors.Add("Lexicon entry missing source rows: $($entry.entry_id)")
     }
     $lexiconEntryIds[[string]$entry.entry_id] = $true
     foreach ($row in @($entry.source_rows)) {
