@@ -179,7 +179,32 @@ if (Test-Path $homePagePath) {
   $errors.Add('Missing homepage index.html')
 }
 
-$lexicalFiles = if (Test-Path $LexicalDir) { @(Get-ChildItem -Path $LexicalDir -Filter '*.json') } else { @() }
+$lexiconEntryIds = @{}
+$lexiconPath = Join-Path $LexicalDir 'lexicon.json'
+if (Test-Path $lexiconPath) {
+  $lexicon = Get-Content -Path $lexiconPath -Raw -Encoding UTF8 | ConvertFrom-Json
+  foreach ($entry in @($lexicon.entries)) {
+    foreach ($field in @('entry_id', 'hebrew_word', 'transliteration', 'strict_renderings', 'root', 'root_transliteration', 'root_meaning', 'source_rows')) {
+      if (-not $entry.$field) {
+        $errors.Add("Lexicon entry missing $field`: $($entry.entry_id)")
+      }
+    }
+    $lexiconEntryIds[[string]$entry.entry_id] = $true
+    foreach ($row in @($entry.source_rows)) {
+      foreach ($field in @('source_name', 'source_family', 'source_id', 'source_url', 'license', 'license_url', 'fields_used', 'notes')) {
+        if (-not $row.$field) {
+          $errors.Add("Lexical source row missing $field for $($entry.entry_id)")
+        }
+      }
+      if ($row.source_family -eq 'wiktionary' -or $row.source_family -eq 'kaikki') {
+        $errors.Add("Lexicon includes disallowed Wiktionary/Kaikki row for $($entry.entry_id)")
+      }
+    }
+  }
+}
+
+$forbiddenOccurrenceFields = @('transliteration', 'strict_renderings', 'root', 'root_transliteration', 'root_meaning', 'source_rows')
+$lexicalFiles = if (Test-Path $LexicalDir) { @(Get-ChildItem -Path $LexicalDir -Filter '*.json' | Where-Object { $_.Name -ne 'lexicon.json' }) } else { @() }
 foreach ($lexicalFile in $lexicalFiles) {
   $lexical = Get-Content -Path $lexicalFile.FullName -Raw -Encoding UTF8 | ConvertFrom-Json
   foreach ($field in @('sample_id', 'work_id', 'source_ref', 'unit_id', 'anchor_id', 'words', 'license_policy')) {
@@ -203,19 +228,17 @@ foreach ($lexicalFile in $lexicalFiles) {
     $errors.Add("Current lexical proof of concept should contain 4 words, found $(@($lexical.words).Count)")
   }
   foreach ($word in @($lexical.words)) {
-    foreach ($field in @('token_id', 'hebrew_word', 'transliteration', 'strict_renderings', 'root', 'root_transliteration', 'root_meaning', 'source_rows')) {
+    foreach ($field in @('token_id', 'hebrew_word', 'lexicon_entry_id')) {
       if (-not $word.$field) {
-        $errors.Add("Lexical word missing $field`: $($word.token_id)")
+        $errors.Add("Lexical occurrence missing $field`: $($word.token_id)")
       }
     }
-    foreach ($row in @($word.source_rows)) {
-      foreach ($field in @('source_name', 'source_family', 'source_id', 'source_url', 'license', 'license_url', 'fields_used', 'notes')) {
-        if (-not $row.$field) {
-          $errors.Add("Lexical source row missing $field for $($word.token_id)")
-        }
-      }
-      if ($row.source_family -eq 'wiktionary' -or $row.source_family -eq 'kaikki') {
-        $errors.Add("Lexical proof of concept includes disallowed Wiktionary/Kaikki row for $($word.token_id)")
+    if (-not $lexiconEntryIds.ContainsKey([string]$word.lexicon_entry_id)) {
+      $errors.Add("Lexical occurrence references missing lexicon_entry_id $($word.lexicon_entry_id): $($word.token_id)")
+    }
+    foreach ($field in $forbiddenOccurrenceFields) {
+      if ($word.PSObject.Properties.Name -contains $field) {
+        $errors.Add("Lexical occurrence contains reusable definition field $field`: $($word.token_id)")
       }
     }
   }
@@ -223,7 +246,7 @@ foreach ($lexicalFile in $lexicalFiles) {
   $lexicalPagePath = Join-Path $source.work_slug 'index.html'
   if (Test-Path $lexicalPagePath) {
     $lexicalPage = Get-Content -Path $lexicalPagePath -Raw -Encoding UTF8
-    foreach ($requiredText in @($lexical.anchor_id, 'data-lexical-token', 'data-lexical-hud', 'Hebrew word', 'Transliteration', 'Strict renderings', 'Root', 'Root transliteration', 'Root meaning', 'Sources / licenses', 'CC BY 4.0', 'CC0')) {
+    foreach ($requiredText in @($lexical.anchor_id, 'data-lexical-token', 'data-lexical-entry', 'data-lexical-index', 'data-lexical-hud', 'Hebrew word', 'Transliteration', 'Strict renderings', 'Root', 'Root transliteration', 'Root meaning', 'Sources / licenses', 'CC BY 4.0', 'CC0')) {
       if (-not $lexicalPage.Contains($requiredText)) {
         $errors.Add("Lexical proof target page missing required text '$requiredText'")
       }
