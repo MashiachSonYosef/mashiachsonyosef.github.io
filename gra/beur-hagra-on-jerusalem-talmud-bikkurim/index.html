@@ -23,15 +23,6 @@
     .license-notice strong { color: var(--text); font-weight: 400; }
     .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
     .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
-    .progress-panel { margin-top: 14px; border: 1px solid var(--line); background: rgba(20,24,31,0.58); padding: 12px; }
-    .progress-summary { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; color: var(--muted); font-size: 0.92rem; }
-    .progress-summary strong { color: var(--text); font-weight: 400; }
-    .progress-meter { height: 5px; margin-top: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); overflow: hidden; }
-    .progress-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
-    .progress-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-    .filter-button { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 6px 10px; font: inherit; cursor: pointer; }
-    .filter-button[aria-pressed="true"], .filter-button:hover { color: var(--text); border-color: var(--accent); background: rgba(214,190,138,0.08); }
-    .filter-button:disabled { cursor: default; opacity: 0.45; }
     .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
     .home-section { margin-top: 26px; }
     .home-section:first-child { margin-top: 0; }
@@ -72,9 +63,12 @@
     .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
     .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
-    .paired-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--muted); }
-    .paired-note a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -84,9 +78,16 @@
         <p class="crumbs"><a href="../../">Home</a></p>
         <h1>Beur HaGra on Jerusalem Talmud Bikkurim</h1>
         <p class="work-label">Commentary on Jerusalem Talmud Bikkurim</p>
-        <div class="paired-note">
-          <strong>Commentary on Jerusalem Talmud Bikkurim</strong>
-          <p>Base text not imported yet.</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Jerusalem Talmud Bikkurim</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
         </div>
         <p class="meta">170 total source units | imported 2026-04-27</p>
         <p class="meta source-citation">Hebrew version: Piotrk&#243;w, 1898-1900 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001886777/NLI">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
@@ -96,16 +97,6 @@
           <a class="export-button" href="overlay-export.csv" download>CSV</a>
           <a class="export-button" href="overlay-export.json" download>JSON</a>
           <a class="export-button" href="overlay-export.md" download>Markdown</a>
-        </div>
-        <div class="progress-panel" data-progress-panel>
-          <div class="progress-summary"><span>Progress</span><strong>0 / 170 done</strong><span>0% complete</span></div>
-          <div class="progress-meter" aria-label="0% complete"><span style="width:0%"></span></div>
-          <div class="progress-controls" aria-label="Progress filters">
-            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
-            <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Done</button>
-            <button class="filter-button" type="button" data-filter="not-done" aria-pressed="false">Not done</button>
-            <button class="filter-button" type="button" data-next-not-done>Next not done</button>
-          </div>
         </div>
       </div>
       <div class="reader-shell">
@@ -312,7 +303,7 @@
         </nav>
         <article>
           <h4 id="chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Chapter 1</h4>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-1-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:1:1:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-1-1-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:1:1:1">#</a>
@@ -335,7 +326,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-2-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-2-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:1:2:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-1-2-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:1:2:1">#</a>
@@ -358,7 +349,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-3-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-3-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:1:3:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-1-3-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:1:3:1">#</a>
@@ -381,7 +372,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-3-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-3-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:1:3:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-1-3-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:1:3:2">#</a>
@@ -404,7 +395,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-4-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-4-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:1:4:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-1-4-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:1:4:1">#</a>
@@ -427,7 +418,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-4-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-4-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:1:4:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-1-4-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:1:4:2">#</a>
@@ -450,7 +441,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-4-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-4-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:1:4:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-1-4-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:1:4:3">#</a>
@@ -473,7 +464,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-5-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-5-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:1:5:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-1-5-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:1:5:1">#</a>
@@ -496,7 +487,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-7-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-7-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:1:7:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-1-7-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:1:7:1">#</a>
@@ -519,7 +510,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-7-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-7-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:1:7:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-1-7-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:1:7:2">#</a>
@@ -542,7 +533,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-7-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-1-7-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:1:7:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-1-7-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:1:7:3">#</a>
@@ -565,7 +556,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-2-2-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-2-2-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:2:2:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-2-2-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:2:2:1">#</a>
@@ -588,7 +579,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-2-2-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-2-2-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:2:2:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-2-2-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:2:2:2">#</a>
@@ -611,7 +602,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-2-2-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-2-2-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:2:2:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-2-2-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:2:2:3">#</a>
@@ -634,7 +625,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-2-2-4" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-2-2-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:2:2:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-2-2-4" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:2:2:4">#</a>
@@ -657,7 +648,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-2-3-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-2-3-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:2:3:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-2-3-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:2:3:1">#</a>
@@ -680,7 +671,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-2-3-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-2-3-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:2:3:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-2-3-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:2:3:2">#</a>
@@ -703,7 +694,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-3-3-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-3-3-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:3:3:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-3-3-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:3:3:1">#</a>
@@ -726,7 +717,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-3-6-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-3-6-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:3:6:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-3-6-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:3:6:1">#</a>
@@ -749,7 +740,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-3-6-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-3-6-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:3:6:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-3-6-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:3:6:2">#</a>
@@ -772,7 +763,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-3-6-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-3-6-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:3:6:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-3-6-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:3:6:3">#</a>
@@ -795,7 +786,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-3-6-4" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-3-6-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:3:6:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-3-6-4" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:3:6:4">#</a>
@@ -818,7 +809,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-3-6-5" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-3-6-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:3:6:5</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-3-6-5" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:3:6:5">#</a>
@@ -841,7 +832,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-3-7-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-3-7-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:3:7:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-3-7-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:3:7:1">#</a>
@@ -864,7 +855,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-3-7-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-3-7-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:3:7:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-3-7-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:3:7:2">#</a>
@@ -887,7 +878,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-4-2-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-4-2-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:4:2:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-4-2-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:4:2:1">#</a>
@@ -910,7 +901,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-4-2-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-4-2-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:4:2:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-4-2-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:4:2:2">#</a>
@@ -933,7 +924,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-3-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-3-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:5:3:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-5-3-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:5:3:1">#</a>
@@ -956,7 +947,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-4-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-4-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:5:4:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-5-4-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:5:4:1">#</a>
@@ -979,7 +970,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-4-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-4-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:5:4:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-5-4-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:5:4:2">#</a>
@@ -1002,7 +993,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:5:5:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:5:5:1">#</a>
@@ -1025,7 +1016,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:5:5:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:5:5:2">#</a>
@@ -1048,7 +1039,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:5:5:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:5:5:3">#</a>
@@ -1071,7 +1062,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-4" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:5:5:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-4" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:5:5:4">#</a>
@@ -1094,7 +1085,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-5" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:5:5:5</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-5" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:5:5:5">#</a>
@@ -1117,7 +1108,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-6" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:5:5:6</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-5-5-6" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:5:5:6">#</a>
@@ -1140,7 +1131,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-7-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-7-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:5:7:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-5-7-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:5:7:1">#</a>
@@ -1163,7 +1154,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-7-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-7-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:5:7:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-5-7-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:5:7:2">#</a>
@@ -1186,7 +1177,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-8-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-8-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:5:8:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-5-8-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:5:8:1">#</a>
@@ -1209,7 +1200,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-8-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-8-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:5:8:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-5-8-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:5:8:2">#</a>
@@ -1232,7 +1223,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-8-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-8-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:5:8:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-5-8-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:5:8:3">#</a>
@@ -1255,7 +1246,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-8-4" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-5-8-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:5:8:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-5-8-4" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:5:8:4">#</a>
@@ -1278,7 +1269,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-1-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:6:1:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-6-1-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:6:1:1">#</a>
@@ -1301,7 +1292,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-2-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-2-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:6:2:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-6-2-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:6:2:1">#</a>
@@ -1324,7 +1315,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-2-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-2-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:6:2:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-6-2-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:6:2:2">#</a>
@@ -1347,7 +1338,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-4-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-4-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:6:4:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-6-4-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:6:4:1">#</a>
@@ -1370,7 +1361,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-4-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-4-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:6:4:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-6-4-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:6:4:2">#</a>
@@ -1393,7 +1384,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-4-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-4-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:6:4:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-6-4-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:6:4:3">#</a>
@@ -1416,7 +1407,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-4-4" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-4-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:6:4:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-6-4-4" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:6:4:4">#</a>
@@ -1439,7 +1430,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-5-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-5-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:6:5:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-6-5-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:6:5:1">#</a>
@@ -1462,7 +1453,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-5-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-5-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:6:5:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-6-5-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:6:5:2">#</a>
@@ -1485,7 +1476,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-6-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-6-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:6:6:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-6-6-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:6:6:1">#</a>
@@ -1508,7 +1499,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-6-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-6-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:6:6:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-6-6-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:6:6:2">#</a>
@@ -1531,7 +1522,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-6-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-6-6-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:6:6:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-6-6-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:6:6:3">#</a>
@@ -1554,7 +1545,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-7-2-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-7-2-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:7:2:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-7-2-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:7:2:1">#</a>
@@ -1577,7 +1568,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-7-3-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-7-3-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:7:3:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-7-3-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:7:3:1">#</a>
@@ -1600,7 +1591,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-7-4-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-7-4-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:7:4:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-7-4-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:7:4:1">#</a>
@@ -1623,7 +1614,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-7-4-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-7-4-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:7:4:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-7-4-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:7:4:2">#</a>
@@ -1646,7 +1637,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-7-5-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-7-5-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:7:5:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-7-5-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:7:5:1">#</a>
@@ -1669,7 +1660,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-7-5-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-7-5-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:7:5:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-7-5-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:7:5:2">#</a>
@@ -1692,7 +1683,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-8-2-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-8-2-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:8:2:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-8-2-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:8:2:1">#</a>
@@ -1715,7 +1706,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-8-2-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-8-2-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:8:2:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-8-2-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:8:2:2">#</a>
@@ -1738,7 +1729,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-8-3-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-8-3-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:8:3:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-8-3-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:8:3:1">#</a>
@@ -1761,7 +1752,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-8-3-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-8-3-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:8:3:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-8-3-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:8:3:2">#</a>
@@ -1784,7 +1775,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-8-3-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-8-3-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:8:3:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-8-3-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:8:3:3">#</a>
@@ -1807,7 +1798,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-9-3-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-9-3-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:9:3:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-9-3-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:9:3:1">#</a>
@@ -1830,7 +1821,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-9-3-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-1-9-3-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 1:9:3:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-1-9-3-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 1:9:3:2">#</a>
@@ -1854,7 +1845,7 @@
             </nav>
           </section>
           <h4 id="chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Chapter 2</h4>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-2-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-2-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:2:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-2-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:2:1">#</a>
@@ -1877,7 +1868,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-2-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-2-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:2:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-2-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:2:2">#</a>
@@ -1900,7 +1891,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-4-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-4-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:4:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-4-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:4:1">#</a>
@@ -1923,7 +1914,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-5-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-5-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:5:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-5-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:5:1">#</a>
@@ -1946,7 +1937,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-5-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-5-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:5:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-5-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:5:2">#</a>
@@ -1969,7 +1960,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-9-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-9-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:9:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-9-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:9:1">#</a>
@@ -1992,7 +1983,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-9-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-9-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:9:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-9-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:9:2">#</a>
@@ -2015,7 +2006,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-10-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-10-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:10:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-10-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:10:1">#</a>
@@ -2038,7 +2029,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-10-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-10-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:10:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-10-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:10:2">#</a>
@@ -2061,7 +2052,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-12-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-12-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:12:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-12-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:12:1">#</a>
@@ -2084,7 +2075,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-12-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-12-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:12:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-12-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:12:2">#</a>
@@ -2107,7 +2098,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-13-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-13-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:13:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-13-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:13:1">#</a>
@@ -2130,7 +2121,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-13-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-13-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:13:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-13-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:13:2">#</a>
@@ -2153,7 +2144,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-13-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-13-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:13:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-13-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:13:3">#</a>
@@ -2176,7 +2167,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-14-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-14-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:14:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-14-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:14:1">#</a>
@@ -2199,7 +2190,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-14-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-14-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:14:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-14-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:14:2">#</a>
@@ -2222,7 +2213,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-14-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-14-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:14:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-14-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:14:3">#</a>
@@ -2245,7 +2236,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-14-4" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-14-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:14:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-14-4" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:14:4">#</a>
@@ -2268,7 +2259,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:15:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:15:1">#</a>
@@ -2291,7 +2282,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:15:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:15:2">#</a>
@@ -2314,7 +2305,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:15:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:15:3">#</a>
@@ -2337,7 +2328,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-4" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:15:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-4" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:15:4">#</a>
@@ -2360,7 +2351,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-5" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:15:5</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-5" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:15:5">#</a>
@@ -2383,7 +2374,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-6" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:1:15:6</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-1-15-6" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:1:15:6">#</a>
@@ -2406,7 +2397,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-1-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:2:1:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-2-1-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:2:1:1">#</a>
@@ -2429,7 +2420,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-1-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:2:1:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-2-1-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:2:1:2">#</a>
@@ -2452,7 +2443,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-3-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-3-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:2:3:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-2-3-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:2:3:1">#</a>
@@ -2475,7 +2466,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-7-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-7-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:2:7:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-2-7-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:2:7:1">#</a>
@@ -2498,7 +2489,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-7-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-7-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:2:7:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-2-7-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:2:7:2">#</a>
@@ -2521,7 +2512,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-7-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-7-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:2:7:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-2-7-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:2:7:3">#</a>
@@ -2544,7 +2535,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-7-4" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-7-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:2:7:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-2-7-4" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:2:7:4">#</a>
@@ -2567,7 +2558,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-7-5" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-7-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:2:7:5</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-2-7-5" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:2:7:5">#</a>
@@ -2590,7 +2581,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-8-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-8-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:2:8:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-2-8-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:2:8:1">#</a>
@@ -2613,7 +2604,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-8-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-8-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:2:8:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-2-8-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:2:8:2">#</a>
@@ -2636,7 +2627,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-9-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-9-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:2:9:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-2-9-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:2:9:1">#</a>
@@ -2659,7 +2650,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-9-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-9-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:2:9:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-2-9-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:2:9:2">#</a>
@@ -2682,7 +2673,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-9-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-9-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:2:9:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-2-9-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:2:9:3">#</a>
@@ -2705,7 +2696,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-9-4" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-9-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:2:9:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-2-9-4" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:2:9:4">#</a>
@@ -2728,7 +2719,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-10-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-2-10-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:2:10:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-2-10-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:2:10:1">#</a>
@@ -2751,7 +2742,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:3:1:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:3:1:1">#</a>
@@ -2774,7 +2765,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:3:1:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:3:1:2">#</a>
@@ -2797,7 +2788,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:3:1:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:3:1:3">#</a>
@@ -2820,7 +2811,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-4" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:3:1:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-4" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:3:1:4">#</a>
@@ -2843,7 +2834,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-5" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:3:1:5</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-5" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:3:1:5">#</a>
@@ -2866,7 +2857,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-6" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:3:1:6</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-6" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:3:1:6">#</a>
@@ -2889,7 +2880,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-7" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:3:1:7</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-3-1-7" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:3:1:7">#</a>
@@ -2912,7 +2903,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-9-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-9-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:3:9:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-3-9-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:3:9:1">#</a>
@@ -2935,7 +2926,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-10-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-10-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:3:10:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-3-10-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:3:10:1">#</a>
@@ -2958,7 +2949,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-10-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-3-10-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:3:10:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-3-10-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:3:10:2">#</a>
@@ -2981,7 +2972,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-1-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:4:1:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-4-1-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:4:1:1">#</a>
@@ -3004,7 +2995,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-1-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:4:1:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-4-1-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:4:1:2">#</a>
@@ -3027,7 +3018,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-1-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:4:1:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-4-1-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:4:1:3">#</a>
@@ -3050,7 +3041,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-2-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-2-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:4:2:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-4-2-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:4:2:1">#</a>
@@ -3073,7 +3064,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-2-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-2-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:4:2:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-4-2-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:4:2:2">#</a>
@@ -3096,7 +3087,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-3-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-3-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:4:3:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-4-3-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:4:3:1">#</a>
@@ -3119,7 +3110,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-3-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-3-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:4:3:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-4-3-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:4:3:2">#</a>
@@ -3142,7 +3133,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-3-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-3-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:4:3:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-4-3-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:4:3:3">#</a>
@@ -3165,7 +3156,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-3-4" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-3-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:4:3:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-4-3-4" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:4:3:4">#</a>
@@ -3188,7 +3179,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-3-5" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-3-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:4:3:5</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-4-3-5" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:4:3:5">#</a>
@@ -3211,7 +3202,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-4-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-4-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:4:4:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-4-4-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:4:4:1">#</a>
@@ -3234,7 +3225,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-4-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-4-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:4:4:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-4-4-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:4:4:2">#</a>
@@ -3257,7 +3248,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-4-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-4-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:4:4:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-4-4-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:4:4:3">#</a>
@@ -3280,7 +3271,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-5-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-5-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:4:5:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-4-5-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:4:5:1">#</a>
@@ -3303,7 +3294,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-5-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-5-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:4:5:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-4-5-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:4:5:2">#</a>
@@ -3326,7 +3317,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-5-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-5-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:4:5:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-4-5-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:4:5:3">#</a>
@@ -3349,7 +3340,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-5-4" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-4-5-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:4:5:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-4-5-4" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:4:5:4">#</a>
@@ -3372,7 +3363,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-5-1-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-5-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:5:1:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-5-1-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:5:1:1">#</a>
@@ -3395,7 +3386,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-5-1-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-5-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:5:1:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-5-1-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:5:1:2">#</a>
@@ -3418,7 +3409,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-5-1-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-5-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:5:1:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-5-1-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:5:1:3">#</a>
@@ -3441,7 +3432,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-5-2-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-5-2-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:5:2:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-5-2-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:5:2:1">#</a>
@@ -3464,7 +3455,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-5-2-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-5-2-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:5:2:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-5-2-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:5:2:2">#</a>
@@ -3487,7 +3478,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-1-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:6:1:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-6-1-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:6:1:1">#</a>
@@ -3510,7 +3501,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-1-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:6:1:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-6-1-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:6:1:2">#</a>
@@ -3533,7 +3524,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-4-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-4-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:6:4:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-6-4-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:6:4:1">#</a>
@@ -3556,7 +3547,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-4-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-4-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:6:4:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-6-4-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:6:4:2">#</a>
@@ -3579,7 +3570,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-5-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-5-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:6:5:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-6-5-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:6:5:1">#</a>
@@ -3602,7 +3593,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-5-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-5-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:6:5:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-6-5-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:6:5:2">#</a>
@@ -3625,7 +3616,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-6-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-6-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:6:6:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-6-6-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:6:6:1">#</a>
@@ -3648,7 +3639,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-7-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-7-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:6:7:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-6-7-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:6:7:1">#</a>
@@ -3671,7 +3662,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-8-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-8-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:6:8:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-6-8-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:6:8:1">#</a>
@@ -3694,7 +3685,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-9-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-2-6-9-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 2:6:9:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-2-6-9-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 2:6:9:1">#</a>
@@ -3718,7 +3709,7 @@
             </nav>
           </section>
           <h4 id="chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Chapter 3</h4>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-1-3-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-1-3-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:1:3:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-1-3-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:1:3:1">#</a>
@@ -3741,7 +3732,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-2-2-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-2-2-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:2:2:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-2-2-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:2:2:1">#</a>
@@ -3764,7 +3755,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-2-3-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-2-3-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:2:3:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-2-3-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:2:3:1">#</a>
@@ -3787,7 +3778,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-3-9-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-3-9-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:3:9:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-3-9-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:3:9:1">#</a>
@@ -3810,7 +3801,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-3-18-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-3-18-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:3:18:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-3-18-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:3:18:1">#</a>
@@ -3833,7 +3824,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-3-18-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-3-18-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:3:18:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-3-18-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:3:18:2">#</a>
@@ -3856,7 +3847,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-3-18-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-3-18-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:3:18:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-3-18-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:3:18:3">#</a>
@@ -3879,7 +3870,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-2-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-2-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:4:2:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-4-2-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:4:2:1">#</a>
@@ -3902,7 +3893,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-3-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-3-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:4:3:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-4-3-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:4:3:1">#</a>
@@ -3925,7 +3916,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-5-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-5-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:4:5:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-4-5-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:4:5:1">#</a>
@@ -3948,7 +3939,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-5-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-5-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:4:5:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-4-5-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:4:5:2">#</a>
@@ -3971,7 +3962,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-6-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-6-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:4:6:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-4-6-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:4:6:1">#</a>
@@ -3994,7 +3985,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-6-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-6-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:4:6:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-4-6-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:4:6:2">#</a>
@@ -4017,7 +4008,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-6-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-6-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:4:6:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-4-6-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:4:6:3">#</a>
@@ -4040,7 +4031,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-6-4" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-6-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:4:6:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-4-6-4" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:4:6:4">#</a>
@@ -4063,7 +4054,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-10-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-10-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:4:10:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-4-10-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:4:10:1">#</a>
@@ -4086,7 +4077,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-10-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-10-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:4:10:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-4-10-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:4:10:2">#</a>
@@ -4109,7 +4100,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-10-3" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-10-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:4:10:3</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-4-10-3" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:4:10:3">#</a>
@@ -4132,7 +4123,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-10-4" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-4-10-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:4:10:4</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-4-10-4" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:4:10:4">#</a>
@@ -4155,7 +4146,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-5-2-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-5-2-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:5:2:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-5-2-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:5:2:1">#</a>
@@ -4178,7 +4169,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-5-2-2" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-5-2-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:5:2:2</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-5-2-2" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:5:2:2">#</a>
@@ -4201,7 +4192,7 @@
               <a href="#chapter-beur-hagra-on-jerusalem-talmud-bikkurim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-6-4-1" data-unit data-complete="false">
+          <section class="unit" id="beur-hagra-on-jerusalem-talmud-bikkurim-3-6-4-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Beur HaGra on Jerusalem Talmud Bikkurim 3:6:4:1</h4></div>
               <a class="anchor" href="#beur-hagra-on-jerusalem-talmud-bikkurim-3-6-4-1" aria-label="Copy link to Beur HaGra on Jerusalem Talmud Bikkurim 3:6:4:1">#</a>
@@ -4228,38 +4219,5 @@
       </div>
     </div>
   </main>
-  <script>
-    (() => {
-      const units = Array.from(document.querySelectorAll("[data-unit]"));
-      const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
-      const nextButton = document.querySelector("[data-next-not-done]");
-      let currentFilter = "all";
-      const matchesFilter = (unit, filter) => {
-        const done = unit.dataset.complete === "true";
-        return filter === "all" || (filter === "done" && done) || (filter === "not-done" && !done);
-      };
-      const applyFilter = (filter) => {
-        currentFilter = filter;
-        units.forEach((unit) => { unit.hidden = !matchesFilter(unit, filter); });
-        filterButtons.forEach((button) => {
-          button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
-        });
-      };
-      filterButtons.forEach((button) => {
-        button.addEventListener("click", () => applyFilter(button.dataset.filter));
-      });
-      if (nextButton) {
-        nextButton.addEventListener("click", () => {
-          const incomplete = units.filter((unit) => unit.dataset.complete !== "true");
-          if (!incomplete.length) return;
-          if (currentFilter === "done") applyFilter("not-done");
-          const currentY = window.scrollY + 12;
-          const target = incomplete.find((unit) => unit.getBoundingClientRect().top + window.scrollY > currentY) || incomplete[0];
-          if (target.id) history.replaceState(null, "", "#" + target.id);
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-        });
-      }
-    })();
-  </script>
 </body>
 </html>

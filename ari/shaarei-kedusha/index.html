@@ -23,15 +23,6 @@
     .license-notice strong { color: var(--text); font-weight: 400; }
     .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
     .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
-    .progress-panel { margin-top: 14px; border: 1px solid var(--line); background: rgba(20,24,31,0.58); padding: 12px; }
-    .progress-summary { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; color: var(--muted); font-size: 0.92rem; }
-    .progress-summary strong { color: var(--text); font-weight: 400; }
-    .progress-meter { height: 5px; margin-top: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); overflow: hidden; }
-    .progress-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
-    .progress-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-    .filter-button { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 6px 10px; font: inherit; cursor: pointer; }
-    .filter-button[aria-pressed="true"], .filter-button:hover { color: var(--text); border-color: var(--accent); background: rgba(214,190,138,0.08); }
-    .filter-button:disabled { cursor: default; opacity: 0.45; }
     .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
     .home-section { margin-top: 26px; }
     .home-section:first-child { margin-top: 0; }
@@ -72,9 +63,12 @@
     .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
     .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
-    .paired-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--muted); }
-    .paired-note a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -91,16 +85,6 @@
           <a class="export-button" href="overlay-export.csv" download>CSV</a>
           <a class="export-button" href="overlay-export.json" download>JSON</a>
           <a class="export-button" href="overlay-export.md" download>Markdown</a>
-        </div>
-        <div class="progress-panel" data-progress-panel>
-          <div class="progress-summary"><span>Progress</span><strong>0 / 66 done</strong><span>0% complete</span></div>
-          <div class="progress-meter" aria-label="0% complete"><span style="width:0%"></span></div>
-          <div class="progress-controls" aria-label="Progress filters">
-            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
-            <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Done</button>
-            <button class="filter-button" type="button" data-filter="not-done" aria-pressed="false">Not done</button>
-            <button class="filter-button" type="button" data-next-not-done>Next not done</button>
-          </div>
         </div>
       </div>
       <div class="reader-shell">
@@ -321,7 +305,7 @@
           <h2 id="group-introduction">Introduction</h2>
           <h3 id="section-introduction-introduction">Introduction</h3>
           <h4 id="chapter-introduction-introduction-1">Chapter 1</h4>
-          <section class="unit" id="shaarei-kedusha-introduction-introduction-1" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-introduction-introduction-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Introduction:1</h4></div>
               <a class="anchor" href="#shaarei-kedusha-introduction-introduction-1" aria-label="Copy link to Sha'arei Kedusha, Introduction:1">#</a>
@@ -345,7 +329,7 @@
             </nav>
           </section>
           <h4 id="chapter-introduction-introduction-2">Chapter 2</h4>
-          <section class="unit" id="shaarei-kedusha-introduction-introduction-2" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-introduction-introduction-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Introduction:2</h4></div>
               <a class="anchor" href="#shaarei-kedusha-introduction-introduction-2" aria-label="Copy link to Sha'arei Kedusha, Introduction:2">#</a>
@@ -369,7 +353,7 @@
             </nav>
           </section>
           <h4 id="chapter-introduction-introduction-3">Chapter 3</h4>
-          <section class="unit" id="shaarei-kedusha-introduction-introduction-3" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-introduction-introduction-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Introduction:3</h4></div>
               <a class="anchor" href="#shaarei-kedusha-introduction-introduction-3" aria-label="Copy link to Sha'arei Kedusha, Introduction:3">#</a>
@@ -393,7 +377,7 @@
             </nav>
           </section>
           <h4 id="chapter-introduction-introduction-4">Chapter 4</h4>
-          <section class="unit" id="shaarei-kedusha-introduction-introduction-4" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-introduction-introduction-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Introduction:4</h4></div>
               <a class="anchor" href="#shaarei-kedusha-introduction-introduction-4" aria-label="Copy link to Sha'arei Kedusha, Introduction:4">#</a>
@@ -417,7 +401,7 @@
             </nav>
           </section>
           <h4 id="chapter-introduction-introduction-5">Chapter 5</h4>
-          <section class="unit" id="shaarei-kedusha-introduction-introduction-5" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-introduction-introduction-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Introduction:5</h4></div>
               <a class="anchor" href="#shaarei-kedusha-introduction-introduction-5" aria-label="Copy link to Sha'arei Kedusha, Introduction:5">#</a>
@@ -441,7 +425,7 @@
             </nav>
           </section>
           <h4 id="chapter-introduction-introduction-6">Chapter 6</h4>
-          <section class="unit" id="shaarei-kedusha-introduction-introduction-6" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-introduction-introduction-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Introduction:6</h4></div>
               <a class="anchor" href="#shaarei-kedusha-introduction-introduction-6" aria-label="Copy link to Sha'arei Kedusha, Introduction:6">#</a>
@@ -465,7 +449,7 @@
             </nav>
           </section>
           <h4 id="chapter-introduction-introduction-7">Chapter 7</h4>
-          <section class="unit" id="shaarei-kedusha-introduction-introduction-7" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-introduction-introduction-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Introduction:7</h4></div>
               <a class="anchor" href="#shaarei-kedusha-introduction-introduction-7" aria-label="Copy link to Sha'arei Kedusha, Introduction:7">#</a>
@@ -489,7 +473,7 @@
             </nav>
           </section>
           <h4 id="chapter-introduction-introduction-8">Chapter 8</h4>
-          <section class="unit" id="shaarei-kedusha-introduction-introduction-8" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-introduction-introduction-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Introduction:8</h4></div>
               <a class="anchor" href="#shaarei-kedusha-introduction-introduction-8" aria-label="Copy link to Sha'arei Kedusha, Introduction:8">#</a>
@@ -513,7 +497,7 @@
             </nav>
           </section>
           <h4 id="chapter-introduction-introduction-9">Chapter 9</h4>
-          <section class="unit" id="shaarei-kedusha-introduction-introduction-9" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-introduction-introduction-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Introduction:9</h4></div>
               <a class="anchor" href="#shaarei-kedusha-introduction-introduction-9" aria-label="Copy link to Sha'arei Kedusha, Introduction:9">#</a>
@@ -537,7 +521,7 @@
             </nav>
           </section>
           <h4 id="chapter-introduction-introduction-10">Chapter 10</h4>
-          <section class="unit" id="shaarei-kedusha-introduction-introduction-10" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-introduction-introduction-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Introduction:10</h4></div>
               <a class="anchor" href="#shaarei-kedusha-introduction-introduction-10" aria-label="Copy link to Sha'arei Kedusha, Introduction:10">#</a>
@@ -561,7 +545,7 @@
             </nav>
           </section>
           <h4 id="chapter-introduction-introduction-11">Chapter 11</h4>
-          <section class="unit" id="shaarei-kedusha-introduction-introduction-11" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-introduction-introduction-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Introduction:11</h4></div>
               <a class="anchor" href="#shaarei-kedusha-introduction-introduction-11" aria-label="Copy link to Sha'arei Kedusha, Introduction:11">#</a>
@@ -585,7 +569,7 @@
             </nav>
           </section>
           <h4 id="chapter-introduction-introduction-12">Chapter 12</h4>
-          <section class="unit" id="shaarei-kedusha-introduction-introduction-12" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-introduction-introduction-12" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Introduction:12</h4></div>
               <a class="anchor" href="#shaarei-kedusha-introduction-introduction-12" aria-label="Copy link to Sha'arei Kedusha, Introduction:12">#</a>
@@ -609,7 +593,7 @@
             </nav>
           </section>
           <h4 id="chapter-introduction-introduction-13">Chapter 13</h4>
-          <section class="unit" id="shaarei-kedusha-introduction-introduction-13" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-introduction-introduction-13" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Introduction:13</h4></div>
               <a class="anchor" href="#shaarei-kedusha-introduction-introduction-13" aria-label="Copy link to Sha'arei Kedusha, Introduction:13">#</a>
@@ -635,7 +619,7 @@
           <h2 id="group-part-1">Part 1</h2>
           <h3 id="section-part-1-part-1">Part 1</h3>
           <h4 id="chapter-part-1-part-1-1">Chapter 1</h4>
-          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 1 1:1</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-1-part-1-1-1" aria-label="Copy link to Sha'arei Kedusha, Part 1 1:1">#</a>
@@ -658,7 +642,7 @@
               <a href="#chapter-part-1-part-1-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 1 1:2</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-1-part-1-1-2" aria-label="Copy link to Sha'arei Kedusha, Part 1 1:2">#</a>
@@ -681,7 +665,7 @@
               <a href="#chapter-part-1-part-1-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-3" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 1 1:3</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-1-part-1-1-3" aria-label="Copy link to Sha'arei Kedusha, Part 1 1:3">#</a>
@@ -704,7 +688,7 @@
               <a href="#chapter-part-1-part-1-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-4" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 1 1:4</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-1-part-1-1-4" aria-label="Copy link to Sha'arei Kedusha, Part 1 1:4">#</a>
@@ -727,7 +711,7 @@
               <a href="#chapter-part-1-part-1-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-5" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 1 1:5</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-1-part-1-1-5" aria-label="Copy link to Sha'arei Kedusha, Part 1 1:5">#</a>
@@ -750,7 +734,7 @@
               <a href="#chapter-part-1-part-1-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-6" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 1 1:6</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-1-part-1-1-6" aria-label="Copy link to Sha'arei Kedusha, Part 1 1:6">#</a>
@@ -773,7 +757,7 @@
               <a href="#chapter-part-1-part-1-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-7" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 1 1:7</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-1-part-1-1-7" aria-label="Copy link to Sha'arei Kedusha, Part 1 1:7">#</a>
@@ -796,7 +780,7 @@
               <a href="#chapter-part-1-part-1-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-8" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 1 1:8</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-1-part-1-1-8" aria-label="Copy link to Sha'arei Kedusha, Part 1 1:8">#</a>
@@ -819,7 +803,7 @@
               <a href="#chapter-part-1-part-1-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-9" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 1 1:9</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-1-part-1-1-9" aria-label="Copy link to Sha'arei Kedusha, Part 1 1:9">#</a>
@@ -842,7 +826,7 @@
               <a href="#chapter-part-1-part-1-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-10" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 1 1:10</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-1-part-1-1-10" aria-label="Copy link to Sha'arei Kedusha, Part 1 1:10">#</a>
@@ -865,7 +849,7 @@
               <a href="#chapter-part-1-part-1-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-11" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 1 1:11</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-1-part-1-1-11" aria-label="Copy link to Sha'arei Kedusha, Part 1 1:11">#</a>
@@ -888,7 +872,7 @@
               <a href="#chapter-part-1-part-1-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-12" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-12" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 1 1:12</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-1-part-1-1-12" aria-label="Copy link to Sha'arei Kedusha, Part 1 1:12">#</a>
@@ -911,7 +895,7 @@
               <a href="#chapter-part-1-part-1-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-13" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-13" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 1 1:13</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-1-part-1-1-13" aria-label="Copy link to Sha'arei Kedusha, Part 1 1:13">#</a>
@@ -934,7 +918,7 @@
               <a href="#chapter-part-1-part-1-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-14" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-1-part-1-1-14" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 1 1:14</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-1-part-1-1-14" aria-label="Copy link to Sha'arei Kedusha, Part 1 1:14">#</a>
@@ -960,7 +944,7 @@
           <h2 id="group-part-2">Part 2</h2>
           <h3 id="section-part-2-part-2">Part 2</h3>
           <h4 id="chapter-part-2-part-2-1">Chapter 1</h4>
-          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 2 1:1</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-2-part-2-1-1" aria-label="Copy link to Sha'arei Kedusha, Part 2 1:1">#</a>
@@ -983,7 +967,7 @@
               <a href="#chapter-part-2-part-2-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 2 1:2</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-2-part-2-1-2" aria-label="Copy link to Sha'arei Kedusha, Part 2 1:2">#</a>
@@ -1006,7 +990,7 @@
               <a href="#chapter-part-2-part-2-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-3" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 2 1:3</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-2-part-2-1-3" aria-label="Copy link to Sha'arei Kedusha, Part 2 1:3">#</a>
@@ -1029,7 +1013,7 @@
               <a href="#chapter-part-2-part-2-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-4" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 2 1:4</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-2-part-2-1-4" aria-label="Copy link to Sha'arei Kedusha, Part 2 1:4">#</a>
@@ -1052,7 +1036,7 @@
               <a href="#chapter-part-2-part-2-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-5" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 2 1:5</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-2-part-2-1-5" aria-label="Copy link to Sha'arei Kedusha, Part 2 1:5">#</a>
@@ -1075,7 +1059,7 @@
               <a href="#chapter-part-2-part-2-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-6" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 2 1:6</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-2-part-2-1-6" aria-label="Copy link to Sha'arei Kedusha, Part 2 1:6">#</a>
@@ -1098,7 +1082,7 @@
               <a href="#chapter-part-2-part-2-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-7" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 2 1:7</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-2-part-2-1-7" aria-label="Copy link to Sha'arei Kedusha, Part 2 1:7">#</a>
@@ -1121,7 +1105,7 @@
               <a href="#chapter-part-2-part-2-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-8" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 2 1:8</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-2-part-2-1-8" aria-label="Copy link to Sha'arei Kedusha, Part 2 1:8">#</a>
@@ -1144,7 +1128,7 @@
               <a href="#chapter-part-2-part-2-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-9" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 2 1:9</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-2-part-2-1-9" aria-label="Copy link to Sha'arei Kedusha, Part 2 1:9">#</a>
@@ -1167,7 +1151,7 @@
               <a href="#chapter-part-2-part-2-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-10" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 2 1:10</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-2-part-2-1-10" aria-label="Copy link to Sha'arei Kedusha, Part 2 1:10">#</a>
@@ -1190,7 +1174,7 @@
               <a href="#chapter-part-2-part-2-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-11" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 2 1:11</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-2-part-2-1-11" aria-label="Copy link to Sha'arei Kedusha, Part 2 1:11">#</a>
@@ -1213,7 +1197,7 @@
               <a href="#chapter-part-2-part-2-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-12" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-12" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 2 1:12</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-2-part-2-1-12" aria-label="Copy link to Sha'arei Kedusha, Part 2 1:12">#</a>
@@ -1236,7 +1220,7 @@
               <a href="#chapter-part-2-part-2-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-13" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-2-part-2-1-13" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 2 1:13</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-2-part-2-1-13" aria-label="Copy link to Sha'arei Kedusha, Part 2 1:13">#</a>
@@ -1262,7 +1246,7 @@
           <h2 id="group-part-3">Part 3</h2>
           <h3 id="section-part-3-part-3">Part 3</h3>
           <h4 id="chapter-part-3-part-3-1">Chapter 1</h4>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:1</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-1" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:1">#</a>
@@ -1285,7 +1269,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:2</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-2" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:2">#</a>
@@ -1308,7 +1292,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-4" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:4</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-4" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:4">#</a>
@@ -1331,7 +1315,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-5" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:5</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-5" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:5">#</a>
@@ -1354,7 +1338,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-6" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:6</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-6" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:6">#</a>
@@ -1377,7 +1361,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-7" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:7</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-7" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:7">#</a>
@@ -1400,7 +1384,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-8" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:8</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-8" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:8">#</a>
@@ -1423,7 +1407,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-9" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:9</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-9" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:9">#</a>
@@ -1446,7 +1430,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-10" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:10</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-10" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:10">#</a>
@@ -1469,7 +1453,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-11" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:11</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-11" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:11">#</a>
@@ -1492,7 +1476,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-12" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-12" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:12</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-12" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:12">#</a>
@@ -1515,7 +1499,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-13" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-13" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:13</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-13" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:13">#</a>
@@ -1538,7 +1522,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-14" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-14" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:14</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-14" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:14">#</a>
@@ -1561,7 +1545,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-15" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-15" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:15</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-15" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:15">#</a>
@@ -1584,7 +1568,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-16" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-16" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:16</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-16" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:16">#</a>
@@ -1607,7 +1591,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-17" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-17" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:17</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-17" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:17">#</a>
@@ -1630,7 +1614,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-18" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-18" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:18</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-18" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:18">#</a>
@@ -1653,7 +1637,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-19" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-19" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:19</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-19" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:19">#</a>
@@ -1676,7 +1660,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-20" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-20" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:20</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-20" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:20">#</a>
@@ -1699,7 +1683,7 @@
               <a href="#chapter-part-3-part-3-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-21" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-3-part-3-1-21" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 3 1:21</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-3-part-3-1-21" aria-label="Copy link to Sha'arei Kedusha, Part 3 1:21">#</a>
@@ -1725,7 +1709,7 @@
           <h2 id="group-part-4">Part 4</h2>
           <h3 id="section-part-4-part-4">Part 4</h3>
           <h4 id="chapter-part-4-part-4-1">Chapter 1</h4>
-          <section class="unit" id="shaarei-kedusha-part-4-part-4-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-4-part-4-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 4 1:1</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-4-part-4-1-1" aria-label="Copy link to Sha'arei Kedusha, Part 4 1:1">#</a>
@@ -1748,7 +1732,7 @@
               <a href="#chapter-part-4-part-4-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-4-part-4-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-4-part-4-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 4 1:2</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-4-part-4-1-2" aria-label="Copy link to Sha'arei Kedusha, Part 4 1:2">#</a>
@@ -1771,7 +1755,7 @@
               <a href="#chapter-part-4-part-4-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-4-part-4-1-3" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-4-part-4-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 4 1:3</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-4-part-4-1-3" aria-label="Copy link to Sha'arei Kedusha, Part 4 1:3">#</a>
@@ -1794,7 +1778,7 @@
               <a href="#chapter-part-4-part-4-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-4-part-4-1-4" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-4-part-4-1-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 4 1:4</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-4-part-4-1-4" aria-label="Copy link to Sha'arei Kedusha, Part 4 1:4">#</a>
@@ -1817,7 +1801,7 @@
               <a href="#chapter-part-4-part-4-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-4-part-4-1-5" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-4-part-4-1-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 4 1:5</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-4-part-4-1-5" aria-label="Copy link to Sha'arei Kedusha, Part 4 1:5">#</a>
@@ -1840,7 +1824,7 @@
               <a href="#chapter-part-4-part-4-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaarei-kedusha-part-4-part-4-1-6" data-unit data-complete="false">
+          <section class="unit" id="shaarei-kedusha-part-4-part-4-1-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;arei Kedusha, Part 4 1:6</h4></div>
               <a class="anchor" href="#shaarei-kedusha-part-4-part-4-1-6" aria-label="Copy link to Sha'arei Kedusha, Part 4 1:6">#</a>
@@ -1867,38 +1851,5 @@
       </div>
     </div>
   </main>
-  <script>
-    (() => {
-      const units = Array.from(document.querySelectorAll("[data-unit]"));
-      const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
-      const nextButton = document.querySelector("[data-next-not-done]");
-      let currentFilter = "all";
-      const matchesFilter = (unit, filter) => {
-        const done = unit.dataset.complete === "true";
-        return filter === "all" || (filter === "done" && done) || (filter === "not-done" && !done);
-      };
-      const applyFilter = (filter) => {
-        currentFilter = filter;
-        units.forEach((unit) => { unit.hidden = !matchesFilter(unit, filter); });
-        filterButtons.forEach((button) => {
-          button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
-        });
-      };
-      filterButtons.forEach((button) => {
-        button.addEventListener("click", () => applyFilter(button.dataset.filter));
-      });
-      if (nextButton) {
-        nextButton.addEventListener("click", () => {
-          const incomplete = units.filter((unit) => unit.dataset.complete !== "true");
-          if (!incomplete.length) return;
-          if (currentFilter === "done") applyFilter("not-done");
-          const currentY = window.scrollY + 12;
-          const target = incomplete.find((unit) => unit.getBoundingClientRect().top + window.scrollY > currentY) || incomplete[0];
-          if (target.id) history.replaceState(null, "", "#" + target.id);
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-        });
-      }
-    })();
-  </script>
 </body>
 </html>

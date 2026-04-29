@@ -23,15 +23,6 @@
     .license-notice strong { color: var(--text); font-weight: 400; }
     .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
     .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
-    .progress-panel { margin-top: 14px; border: 1px solid var(--line); background: rgba(20,24,31,0.58); padding: 12px; }
-    .progress-summary { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; color: var(--muted); font-size: 0.92rem; }
-    .progress-summary strong { color: var(--text); font-weight: 400; }
-    .progress-meter { height: 5px; margin-top: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); overflow: hidden; }
-    .progress-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
-    .progress-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-    .filter-button { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 6px 10px; font: inherit; cursor: pointer; }
-    .filter-button[aria-pressed="true"], .filter-button:hover { color: var(--text); border-color: var(--accent); background: rgba(214,190,138,0.08); }
-    .filter-button:disabled { cursor: default; opacity: 0.45; }
     .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
     .home-section { margin-top: 26px; }
     .home-section:first-child { margin-top: 0; }
@@ -72,9 +63,12 @@
     .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
     .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
-    .paired-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--muted); }
-    .paired-note a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -84,9 +78,17 @@
         <p class="crumbs"><a href="../../">Home</a></p>
         <h1>HaGra on Sefer Yetzirah Gra Version</h1>
         <p class="work-label">Commentary on Sefer Yetzirah Gra Version</p>
-        <div class="paired-note">
-          <strong>Commentary on Sefer Yetzirah Gra Version</strong>
-          <p><a href="../../gra/sefer-yetzirah-gra-version/">Show base text</a></p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p><a href="../../gra/sefer-yetzirah-gra-version/">Open Sefer Yetzirah Gra Version</a></p>
+            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Sefer Yetzirah Gra Version</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
         </div>
         <p class="meta">35 total source units | imported 2026-04-27</p>
         <p class="meta source-citation">Hebrew version: Sefer Yetzirah, Warsaw 1884 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001310968">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
@@ -96,16 +98,6 @@
           <a class="export-button" href="overlay-export.csv" download>CSV</a>
           <a class="export-button" href="overlay-export.json" download>JSON</a>
           <a class="export-button" href="overlay-export.md" download>Markdown</a>
-        </div>
-        <div class="progress-panel" data-progress-panel>
-          <div class="progress-summary"><span>Progress</span><strong>0 / 35 done</strong><span>0% complete</span></div>
-          <div class="progress-meter" aria-label="0% complete"><span style="width:0%"></span></div>
-          <div class="progress-controls" aria-label="Progress filters">
-            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
-            <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Done</button>
-            <button class="filter-button" type="button" data-filter="not-done" aria-pressed="false">Not done</button>
-            <button class="filter-button" type="button" data-next-not-done>Next not done</button>
-          </div>
         </div>
       </div>
       <div class="reader-shell">
@@ -165,7 +157,7 @@
         </nav>
         <article>
           <h4 id="chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Chapter 1</h4>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-1" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:1</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-1" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:1">#</a>
@@ -188,7 +180,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-2" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:2</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-2" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:2">#</a>
@@ -211,7 +203,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-3" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:3</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-3" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:3">#</a>
@@ -234,7 +226,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-4" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:4</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-4" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:4">#</a>
@@ -257,7 +249,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-5" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:5</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-5" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:5">#</a>
@@ -280,7 +272,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-6" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:6</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-6" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:6">#</a>
@@ -303,7 +295,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-7" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:7</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-7" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:7">#</a>
@@ -326,7 +318,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-8" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:8</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-8" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:8">#</a>
@@ -349,7 +341,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-9" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:9</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-9" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:9">#</a>
@@ -372,7 +364,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-10" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:10</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-10" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:10">#</a>
@@ -395,7 +387,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-11" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:11</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-11" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:11">#</a>
@@ -418,7 +410,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-12" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-12" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:12</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-12" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:12">#</a>
@@ -441,7 +433,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-13" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-13" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:13</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-13" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:13">#</a>
@@ -464,7 +456,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-14" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-14" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:14</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-14" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:14">#</a>
@@ -487,7 +479,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-15" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-15" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:15</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-15" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:15">#</a>
@@ -510,7 +502,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-16" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-16" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:16</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-16" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:16">#</a>
@@ -533,7 +525,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-17" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-17" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:17</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-17" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:17">#</a>
@@ -556,7 +548,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-18" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-18" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:18</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-18" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:18">#</a>
@@ -579,7 +571,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-19" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-19" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:19</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-19" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:19">#</a>
@@ -602,7 +594,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-20" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-20" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:20</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-20" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:20">#</a>
@@ -625,7 +617,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-21" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-21" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:21</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-21" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:21">#</a>
@@ -648,7 +640,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-22" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-22" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:22</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-22" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:22">#</a>
@@ -671,7 +663,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-23" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-23" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:23</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-23" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:23">#</a>
@@ -694,7 +686,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-24" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-24" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:24</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-24" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:24">#</a>
@@ -717,7 +709,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-25" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-25" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:25</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-25" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:25">#</a>
@@ -740,7 +732,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-26" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-26" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:26</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-26" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:26">#</a>
@@ -763,7 +755,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-27" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-27" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:27</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-27" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:27">#</a>
@@ -786,7 +778,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-28" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-28" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:28</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-28" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:28">#</a>
@@ -809,7 +801,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-29" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-29" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:29</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-29" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:29">#</a>
@@ -832,7 +824,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-30" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-30" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:30</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-30" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:30">#</a>
@@ -855,7 +847,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-31" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-31" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:31</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-31" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:31">#</a>
@@ -878,7 +870,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-32" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-32" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:32</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-32" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:32">#</a>
@@ -901,7 +893,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-33" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-33" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:33</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-33" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:33">#</a>
@@ -924,7 +916,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-34" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-34" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:34</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-34" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:34">#</a>
@@ -947,7 +939,7 @@
               <a href="#chapter-hagra-on-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-35" data-unit data-complete="false">
+          <section class="unit" id="hagra-on-sefer-yetzirah-gra-version-1-1-35" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">HaGra on Sefer Yetzirah Gra Version 1:1:35</h4></div>
               <a class="anchor" href="#hagra-on-sefer-yetzirah-gra-version-1-1-35" aria-label="Copy link to HaGra on Sefer Yetzirah Gra Version 1:1:35">#</a>
@@ -974,38 +966,5 @@
       </div>
     </div>
   </main>
-  <script>
-    (() => {
-      const units = Array.from(document.querySelectorAll("[data-unit]"));
-      const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
-      const nextButton = document.querySelector("[data-next-not-done]");
-      let currentFilter = "all";
-      const matchesFilter = (unit, filter) => {
-        const done = unit.dataset.complete === "true";
-        return filter === "all" || (filter === "done" && done) || (filter === "not-done" && !done);
-      };
-      const applyFilter = (filter) => {
-        currentFilter = filter;
-        units.forEach((unit) => { unit.hidden = !matchesFilter(unit, filter); });
-        filterButtons.forEach((button) => {
-          button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
-        });
-      };
-      filterButtons.forEach((button) => {
-        button.addEventListener("click", () => applyFilter(button.dataset.filter));
-      });
-      if (nextButton) {
-        nextButton.addEventListener("click", () => {
-          const incomplete = units.filter((unit) => unit.dataset.complete !== "true");
-          if (!incomplete.length) return;
-          if (currentFilter === "done") applyFilter("not-done");
-          const currentY = window.scrollY + 12;
-          const target = incomplete.find((unit) => unit.getBoundingClientRect().top + window.scrollY > currentY) || incomplete[0];
-          if (target.id) history.replaceState(null, "", "#" + target.id);
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-        });
-      }
-    })();
-  </script>
 </body>
 </html>

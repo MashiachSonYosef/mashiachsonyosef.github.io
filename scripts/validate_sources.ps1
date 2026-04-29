@@ -156,6 +156,11 @@ $sourceFiles | ForEach-Object {
   $workPagePath = Join-Path $source.work_slug 'index.html'
   if (Test-Path $workPagePath) {
     $workPage = Get-Content -Path $workPagePath -Raw -Encoding UTF8
+    foreach ($badUi in @('progress-panel', 'progress-meter', 'progress-controls', 'filter-button', 'data-filter=', 'data-next-not-done', 'data-complete=', 'Next not done', '% complete')) {
+      if ($workPage.Contains($badUi)) {
+        $errors.Add("Generated work page contains removed progress UI '$badUi' for $($source.work_id)")
+      }
+    }
     foreach ($requiredText in @('License', 'CC0 1.0 Universal', 'Translation', 'Translator&rsquo;s Notes')) {
       if (-not $workPage.Contains($requiredText)) {
         $errors.Add("Generated work page missing required text '$requiredText' for $($source.work_id)")
@@ -166,8 +171,13 @@ $sourceFiles | ForEach-Object {
       if (-not $workPage.Contains($encodedDisplayLabel)) {
         $errors.Add("Generated commentary page missing display label '$($source.display_label)' for $($source.work_id)")
       }
-      if (-not ($workPage.Contains('Base text not imported yet.') -or $workPage.Contains('Show base text'))) {
-        $errors.Add("Generated commentary page missing base text status/link for $($source.work_id)")
+      foreach ($commentaryText in @('Base Text', 'Commentary')) {
+        if (-not $workPage.Contains($commentaryText)) {
+          $errors.Add("Generated commentary page missing paired panel text '$commentaryText' for $($source.work_id)")
+        }
+      }
+      if (-not ($workPage.Contains('[Base text not imported or not linked yet]') -or $workPage.Contains('Base text is imported. Exact paired ref linking is not implemented yet.'))) {
+        $errors.Add("Generated commentary page missing base text paired status for $($source.work_id)")
       }
     }
     if (-not ($workPage.Contains('Hebrew version:') -or $workPage.Contains('Hebrew Version'))) {
@@ -186,7 +196,12 @@ $sourceFiles | ForEach-Object {
 $homePagePath = 'index.html'
 if (Test-Path $homePagePath) {
   $homePage = Get-Content -Path $homePagePath -Raw -Encoding UTF8
-  foreach ($requiredText in @('CC0 1.0 Universal', 'Full overlay export:', 'data-work-filter="done"', 'data-work-filter="not-done"')) {
+  foreach ($badUi in @('progress-controls', 'filter-button', 'data-work-filter', 'data-work-complete', 'Progress:', 'Not done')) {
+    if ($homePage.Contains($badUi)) {
+      $errors.Add("Homepage contains removed progress UI '$badUi'")
+    }
+  }
+  foreach ($requiredText in @('CC0 1.0 Universal', 'Full overlay export:')) {
     if (-not $homePage.Contains($requiredText)) {
       $errors.Add("Homepage missing required text '$requiredText'")
     }
@@ -295,12 +310,12 @@ foreach ($lexicalFile in $lexicalFiles) {
   $lexicalPagePath = Join-Path $source.work_slug 'index.html'
   if (Test-Path $lexicalPagePath) {
     $lexicalPage = Get-Content -Path $lexicalPagePath -Raw -Encoding UTF8
-    foreach ($requiredText in @('data-lexical-occurrences', 'data-lexical-token-index', 'data-lexical-lexicon', 'data-lexical-slot', 'data-lexical-hud', 'Hebrew word', 'Transliteration', 'Strict renderings', 'Root', 'Root transliteration', 'Root meaning', 'Sources / licenses')) {
+    foreach ($requiredText in @('data-lexical-occurrences', 'data-lexical-token-index', 'data-lexical-lexicon', 'data-lexical-slot', 'data-lexical-hud', 'Hebrew word', 'Transliteration', 'Strict renderings', 'Root', 'Root transliteration', 'Root meaning', 'Sources / licenses', 'No lexical entry yet.')) {
       if (-not $lexicalPage.Contains($requiredText)) {
         $errors.Add("Lexical target page missing required text '$requiredText' for $($lexical.work_id)")
       }
     }
-    if ($lexical.work_id -eq 'orot' -and -not $lexicalPage.Contains('<span class="hud-badge">HUD</span>')) {
+    if ($lexical.work_id -eq 'orot' -and -not $lexicalPage.Contains('<span class="hud-badge">Lexical layer active</span>')) {
       $errors.Add("Orot page missing visible HUD coverage indicators")
     }
     if ($lexicalPage.Contains('data-lexical-json')) {

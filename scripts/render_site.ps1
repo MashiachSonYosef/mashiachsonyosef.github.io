@@ -319,15 +319,6 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .license-notice strong { color: var(--text); font-weight: 400; }')
   [void]$Builder.AppendLine('    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }')
   [void]$Builder.AppendLine('    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }')
-  [void]$Builder.AppendLine('    .progress-panel { margin-top: 14px; border: 1px solid var(--line); background: rgba(20,24,31,0.58); padding: 12px; }')
-  [void]$Builder.AppendLine('    .progress-summary { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; color: var(--muted); font-size: 0.92rem; }')
-  [void]$Builder.AppendLine('    .progress-summary strong { color: var(--text); font-weight: 400; }')
-  [void]$Builder.AppendLine('    .progress-meter { height: 5px; margin-top: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); overflow: hidden; }')
-  [void]$Builder.AppendLine('    .progress-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }')
-  [void]$Builder.AppendLine('    .progress-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }')
-  [void]$Builder.AppendLine('    .filter-button { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 6px 10px; font: inherit; cursor: pointer; }')
-  [void]$Builder.AppendLine('    .filter-button[aria-pressed="true"], .filter-button:hover { color: var(--text); border-color: var(--accent); background: rgba(214,190,138,0.08); }')
-  [void]$Builder.AppendLine('    .filter-button:disabled { cursor: default; opacity: 0.45; }')
   [void]$Builder.AppendLine('    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }')
   [void]$Builder.AppendLine('    .home-section { margin-top: 26px; }')
   [void]$Builder.AppendLine('    .home-section:first-child { margin-top: 0; }')
@@ -389,83 +380,19 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }')
   [void]$Builder.AppendLine('    .toc summary { color: var(--accent); font-size: 0.94rem; }')
   [void]$Builder.AppendLine('    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }')
-  [void]$Builder.AppendLine('    .paired-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--muted); }')
-  [void]$Builder.AppendLine('    .paired-note a { color: var(--accent); }')
+  [void]$Builder.AppendLine('    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }')
+  [void]$Builder.AppendLine('    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; }')
+  [void]$Builder.AppendLine('    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }')
+  [void]$Builder.AppendLine('    .paired-panel p { margin: 6px 0 0; }')
+  [void]$Builder.AppendLine('    .paired-panel a { color: var(--accent); }')
   if ($IncludeLexicalStyles) {
-    [void]$Builder.AppendLine('    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }')
+    [void]$Builder.AppendLine('    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }')
   } else {
-    [void]$Builder.AppendLine('    @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }')
+    [void]$Builder.AppendLine('    @media (max-width: 900px) { .reader-shell, .unit-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }')
   }
   [void]$Builder.AppendLine('  </style>')
   [void]$Builder.AppendLine('</head>')
   [void]$Builder.AppendLine('<body>')
-}
-
-function Append-ReaderScript {
-  param([System.Text.StringBuilder]$Builder)
-
-  [void]$Builder.AppendLine('  <script>')
-  [void]$Builder.AppendLine('    (() => {')
-  [void]$Builder.AppendLine('      const units = Array.from(document.querySelectorAll("[data-unit]"));')
-  [void]$Builder.AppendLine('      const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));')
-  [void]$Builder.AppendLine('      const nextButton = document.querySelector("[data-next-not-done]");')
-  [void]$Builder.AppendLine('      let currentFilter = "all";')
-  [void]$Builder.AppendLine('      const matchesFilter = (unit, filter) => {')
-  [void]$Builder.AppendLine('        const done = unit.dataset.complete === "true";')
-  [void]$Builder.AppendLine('        return filter === "all" || (filter === "done" && done) || (filter === "not-done" && !done);')
-  [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const applyFilter = (filter) => {')
-  [void]$Builder.AppendLine('        currentFilter = filter;')
-  [void]$Builder.AppendLine('        units.forEach((unit) => { unit.hidden = !matchesFilter(unit, filter); });')
-  [void]$Builder.AppendLine('        filterButtons.forEach((button) => {')
-  [void]$Builder.AppendLine('          button.setAttribute("aria-pressed", String(button.dataset.filter === filter));')
-  [void]$Builder.AppendLine('        });')
-  [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      filterButtons.forEach((button) => {')
-  [void]$Builder.AppendLine('        button.addEventListener("click", () => applyFilter(button.dataset.filter));')
-  [void]$Builder.AppendLine('      });')
-  [void]$Builder.AppendLine('      if (nextButton) {')
-  [void]$Builder.AppendLine('        nextButton.addEventListener("click", () => {')
-  [void]$Builder.AppendLine('          const incomplete = units.filter((unit) => unit.dataset.complete !== "true");')
-  [void]$Builder.AppendLine('          if (!incomplete.length) return;')
-  [void]$Builder.AppendLine('          if (currentFilter === "done") applyFilter("not-done");')
-  [void]$Builder.AppendLine('          const currentY = window.scrollY + 12;')
-  [void]$Builder.AppendLine('          const target = incomplete.find((unit) => unit.getBoundingClientRect().top + window.scrollY > currentY) || incomplete[0];')
-  [void]$Builder.AppendLine('          if (target.id) history.replaceState(null, "", "#" + target.id);')
-  [void]$Builder.AppendLine('          target.scrollIntoView({ behavior: "smooth", block: "start" });')
-  [void]$Builder.AppendLine('        });')
-  [void]$Builder.AppendLine('      }')
-  [void]$Builder.AppendLine('    })();')
-  [void]$Builder.AppendLine('  </script>')
-}
-
-function Append-HomeScript {
-  param([System.Text.StringBuilder]$Builder)
-
-  [void]$Builder.AppendLine('  <script>')
-  [void]$Builder.AppendLine('    (() => {')
-  [void]$Builder.AppendLine('      const cards = Array.from(document.querySelectorAll("[data-work-card]"));')
-  [void]$Builder.AppendLine('      const sections = Array.from(document.querySelectorAll("[data-home-section]"));')
-  [void]$Builder.AppendLine('      const buttons = Array.from(document.querySelectorAll("[data-work-filter]"));')
-  [void]$Builder.AppendLine('      const matchesFilter = (card, filter) => {')
-  [void]$Builder.AppendLine('        const done = card.dataset.workComplete === "true";')
-  [void]$Builder.AppendLine('        return filter === "all" || (filter === "done" && done) || (filter === "not-done" && !done);')
-  [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const applyFilter = (filter) => {')
-  [void]$Builder.AppendLine('        cards.forEach((card) => { card.hidden = !matchesFilter(card, filter); });')
-  [void]$Builder.AppendLine('        sections.forEach((section) => {')
-  [void]$Builder.AppendLine('          const visibleCard = section.querySelector("[data-work-card]:not([hidden])");')
-  [void]$Builder.AppendLine('          section.hidden = !visibleCard;')
-  [void]$Builder.AppendLine('        });')
-  [void]$Builder.AppendLine('        buttons.forEach((button) => {')
-  [void]$Builder.AppendLine('          button.setAttribute("aria-pressed", String(button.dataset.workFilter === filter));')
-  [void]$Builder.AppendLine('        });')
-  [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      buttons.forEach((button) => {')
-  [void]$Builder.AppendLine('        button.addEventListener("click", () => applyFilter(button.dataset.workFilter));')
-  [void]$Builder.AppendLine('      });')
-  [void]$Builder.AppendLine('    })();')
-  [void]$Builder.AppendLine('  </script>')
 }
 
 function Append-LexicalHudScript {
@@ -588,7 +515,8 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        button.setAttribute("aria-pressed", "true");')
   [void]$Builder.AppendLine('        setText(hud, "[data-hud-word]", view.hebrew_word);')
   [void]$Builder.AppendLine('        setText(hud, "[data-hud-transliteration]", view.transliteration);')
-  [void]$Builder.AppendLine('        setList(hud, "[data-hud-renderings]", view.strict_renderings);')
+  [void]$Builder.AppendLine('        const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);')
+  [void]$Builder.AppendLine('        setList(hud, "[data-hud-renderings]", hasLexicalEntry ? view.strict_renderings : ["No lexical entry yet."]);')
   [void]$Builder.AppendLine('        setText(hud, "[data-hud-root]", view.root);')
   [void]$Builder.AppendLine('        setText(hud, "[data-hud-root-transliteration]", view.root_transliteration);')
   [void]$Builder.AppendLine('        setList(hud, "[data-hud-root-meaning]", view.root_meaning);')
@@ -830,7 +758,7 @@ function Append-WorkToc {
     $firstGroupUnit = $groupUnits[0]
     $groupTitle = if ($firstGroupUnit.group_title -and $firstGroupUnit.group_slug -ne 'text') { $firstGroupUnit.group_title } else { $Source.work_title }
     $groupAnchor = Get-GroupStartAnchor -Unit $firstGroupUnit -Source $Source
-    $groupBadge = if (Test-UnitsHaveLexical -WorkOccurrence $WorkOccurrence -Units $groupUnits) { ' <span class="hud-badge">HUD</span>' } else { '' }
+    $groupBadge = if (Test-UnitsHaveLexical -WorkOccurrence $WorkOccurrence -Units $groupUnits) { ' <span class="hud-badge">Lexical layer active</span>' } else { '' }
 
     [void]$Builder.AppendLine('            <details class="toc-group">')
     [void]$Builder.AppendLine("              <summary>$(Encode-Html $groupTitle)$groupBadge</summary>")
@@ -842,7 +770,7 @@ function Append-WorkToc {
       $firstSectionUnit = $sectionUnits[0]
       $sectionTitle = if ($firstSectionUnit.section_title -and $firstSectionUnit.section_slug -ne 'text') { $firstSectionUnit.section_title } else { $groupTitle }
       $sectionAnchor = Get-SectionStartAnchor -Unit $firstSectionUnit -Source $Source
-      $sectionBadge = if (Test-UnitsHaveLexical -WorkOccurrence $WorkOccurrence -Units $sectionUnits) { ' <span class="hud-badge">HUD</span>' } else { '' }
+      $sectionBadge = if (Test-UnitsHaveLexical -WorkOccurrence $WorkOccurrence -Units $sectionUnits) { ' <span class="hud-badge">Lexical layer active</span>' } else { '' }
 
       [void]$Builder.AppendLine('              <details class="toc-section">')
       [void]$Builder.AppendLine("                <summary>$(Encode-Html $sectionTitle)$sectionBadge</summary>")
@@ -899,27 +827,18 @@ Append-SiteHead -Builder $homePage -Title 'Translation Workspace'
 [void]$homePage.AppendLine('        </div>')
 [void]$homePage.AppendLine('      </div>')
 [void]$homePage.AppendLine('      <div style="padding:22px">')
-[void]$homePage.AppendLine('        <div class="progress-controls" aria-label="Work progress filters">')
-[void]$homePage.AppendLine('          <button class="filter-button" type="button" data-work-filter="all" aria-pressed="true">All</button>')
-[void]$homePage.AppendLine('          <button class="filter-button" type="button" data-work-filter="done" aria-pressed="false">Done</button>')
-[void]$homePage.AppendLine('          <button class="filter-button" type="button" data-work-filter="not-done" aria-pressed="false">Not done</button>')
-[void]$homePage.AppendLine('        </div>')
 $homeGroups = $sources | Group-Object { Get-HomeGroup $_ } | Sort-Object @{ Expression = { if ($_.Name -eq 'Works') { 0 } elseif ($_.Name -eq 'Tanakh') { 1 } else { 2 } } }, Name
 foreach ($homeGroup in $homeGroups) {
-  [void]$homePage.AppendLine('        <section class="home-section" data-home-section>')
+  [void]$homePage.AppendLine('        <section class="home-section">')
   [void]$homePage.AppendLine("          <h2>$(Encode-Html $homeGroup.Name)</h2>")
   [void]$homePage.AppendLine('          <div class="home-grid">')
   foreach ($source in @($homeGroup.Group | Sort-Object work_title)) {
-    $homeOverlay = Get-OverlayForSource -Source $source -OverlayDir $OverlayDir
-    $homeProgress = Get-WorkProgress -Source $source -Overlay $homeOverlay
-    $workComplete = if ($homeProgress.total -gt 0 -and $homeProgress.done -eq $homeProgress.total) { 'true' } else { 'false' }
-    [void]$homePage.AppendLine("            <a class=""work-card"" href=""$($source.work_slug)/"" data-work-card data-work-complete=""$workComplete"">")
+    [void]$homePage.AppendLine("            <a class=""work-card"" href=""$($source.work_slug)/"">")
     [void]$homePage.AppendLine("              <strong>$(Encode-Html $source.work_title)</strong>")
     if ($source.display_label) {
       [void]$homePage.AppendLine("              <span class=""work-label"">$(Encode-Html $source.display_label)</span>")
     }
     [void]$homePage.AppendLine("              <span class=""meta"">$(@($source.units).Count) source units | $(Encode-Html $source.source_system) | imported $(Encode-Html $source.import_date)</span>")
-    [void]$homePage.AppendLine("              <span class=""meta"">Progress: $($homeProgress.done) / $($homeProgress.total) done | $($homeProgress.percent_label)% complete</span>")
     [void]$homePage.AppendLine('            </a>')
   }
   [void]$homePage.AppendLine('          </div>')
@@ -928,7 +847,6 @@ foreach ($homeGroup in $homeGroups) {
 [void]$homePage.AppendLine('      </div>')
 [void]$homePage.AppendLine('    </div>')
 [void]$homePage.AppendLine('  </main>')
-Append-HomeScript -Builder $homePage
 [void]$homePage.AppendLine('</body>')
 [void]$homePage.AppendLine('</html>')
 Write-Utf8 -Path 'index.html' -Content $homePage.ToString()
@@ -936,7 +854,6 @@ Write-Utf8 -Path 'index.html' -Content $homePage.ToString()
 $allExportRows = New-Object System.Collections.Generic.List[object]
 foreach ($source in $sources) {
   $overlay = Get-OverlayForSource -Source $source -OverlayDir $OverlayDir
-  $progress = Get-WorkProgress -Source $source -Overlay $overlay
   $exportRows = Get-OverlayExportRows -Source $source -Overlay $overlay
   Write-OverlayExports -WorkSlug $source.work_slug -Rows $exportRows
   foreach ($row in @($exportRows)) {
@@ -976,18 +893,29 @@ foreach ($source in $sources) {
   if ($source.work_type -eq 'commentary') {
     $baseImported = $false
     $baseHref = ''
+    $baseTitle = if ($source.base_work_title) { [string]$source.base_work_title } else { 'Base Work' }
     if ($source.base_work_id -and $sourceById.ContainsKey([string]$source.base_work_id)) {
       $baseSource = $sourceById[[string]$source.base_work_id]
       $baseHref = "$rootHref$($baseSource.work_slug)/"
+      $baseTitle = [string]$baseSource.work_title
       $baseImported = $true
     }
-    [void]$page.AppendLine('        <div class="paired-note">')
-    [void]$page.AppendLine("          <strong>$(Encode-Html $source.display_label)</strong>")
+    $displayLabel = if ($source.display_label) { [string]$source.display_label } else { "Commentary on $baseTitle" }
+    [void]$page.AppendLine('        <div class="paired-shell" aria-label="Commentary paired-text status">')
+    [void]$page.AppendLine('          <section class="paired-panel">')
+    [void]$page.AppendLine('            <h2>Base Text</h2>')
     if ($baseImported) {
-      [void]$page.AppendLine("          <p><a href=""$baseHref"">Show base text</a></p>")
+      [void]$page.AppendLine("            <p><a href=""$baseHref"">Open $(Encode-Html $baseTitle)</a></p>")
+      [void]$page.AppendLine('            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>')
     } else {
-      [void]$page.AppendLine('          <p>Base text not imported yet.</p>')
+      [void]$page.AppendLine('            <p class="placeholder">[Base text not imported or not linked yet]</p>')
     }
+    [void]$page.AppendLine('          </section>')
+    [void]$page.AppendLine('          <section class="paired-panel">')
+    [void]$page.AppendLine('            <h2>Commentary</h2>')
+    [void]$page.AppendLine("            <p>$(Encode-Html $displayLabel)</p>")
+    [void]$page.AppendLine('            <p class="placeholder">Commentary text appears below.</p>')
+    [void]$page.AppendLine('          </section>')
     [void]$page.AppendLine('        </div>')
   }
   [void]$page.AppendLine("        <p class=""meta"">$(@($source.units).Count) total source units | imported $(Encode-Html $source.import_date)</p>")
@@ -1002,20 +930,6 @@ foreach ($source in $sources) {
   [void]$page.AppendLine('          <a class="export-button" href="overlay-export.csv" download>CSV</a>')
   [void]$page.AppendLine('          <a class="export-button" href="overlay-export.json" download>JSON</a>')
   [void]$page.AppendLine('          <a class="export-button" href="overlay-export.md" download>Markdown</a>')
-  [void]$page.AppendLine('        </div>')
-  [void]$page.AppendLine('        <div class="progress-panel" data-progress-panel>')
-  [void]$page.AppendLine("          <div class=""progress-summary""><span>Progress</span><strong>$($progress.done) / $($progress.total) done</strong><span>$($progress.percent_label)% complete</span></div>")
-  [void]$page.AppendLine("          <div class=""progress-meter"" aria-label=""$($progress.percent_label)% complete""><span style=""width:$($progress.percent)%""></span></div>")
-  [void]$page.AppendLine('          <div class="progress-controls" aria-label="Progress filters">')
-  [void]$page.AppendLine('            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>')
-  [void]$page.AppendLine('            <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Done</button>')
-  [void]$page.AppendLine('            <button class="filter-button" type="button" data-filter="not-done" aria-pressed="false">Not done</button>')
-  if ($progress.done -lt $progress.total) {
-    [void]$page.AppendLine('            <button class="filter-button" type="button" data-next-not-done>Next not done</button>')
-  } else {
-    [void]$page.AppendLine('            <button class="filter-button" type="button" data-next-not-done disabled>Next not done</button>')
-  }
-  [void]$page.AppendLine('          </div>')
   [void]$page.AppendLine('        </div>')
   if ($MaxUnits -gt 0) {
     [void]$page.AppendLine("        <p class=""fallback-note"">Fallback render active. Showing first $MaxUnits units only while route stability is verified.</p>")
@@ -1035,7 +949,7 @@ foreach ($source in $sources) {
       $currentChapter = ''
       if ($unit.group_title -ne $source.work_title -and $unit.group_slug -ne 'text') {
         $groupUnitsForBadge = @($visibleUnits | Where-Object { $_.group_slug -eq $unit.group_slug })
-        $groupBadge = if (Test-UnitsHaveLexical -WorkOccurrence $workOccurrence -Units $groupUnitsForBadge) { ' <span class="hud-badge">HUD</span>' } else { '' }
+        $groupBadge = if (Test-UnitsHaveLexical -WorkOccurrence $workOccurrence -Units $groupUnitsForBadge) { ' <span class="hud-badge">Lexical layer active</span>' } else { '' }
         [void]$page.AppendLine("          <h2 id=""group-$($unit.group_slug)"">$(Encode-Html $unit.group_title)$groupBadge</h2>")
       }
     }
@@ -1045,7 +959,7 @@ foreach ($source in $sources) {
       $currentChapter = ''
       if ($unit.section_title -ne $source.work_title -and $unit.section_slug -ne 'text') {
         $sectionUnitsForBadge = @($visibleUnits | Where-Object { $_.group_slug -eq $unit.group_slug -and $_.section_slug -eq $unit.section_slug })
-        $sectionBadge = if (Test-UnitsHaveLexical -WorkOccurrence $workOccurrence -Units $sectionUnitsForBadge) { ' <span class="hud-badge">HUD</span>' } else { '' }
+        $sectionBadge = if (Test-UnitsHaveLexical -WorkOccurrence $workOccurrence -Units $sectionUnitsForBadge) { ' <span class="hud-badge">Lexical layer active</span>' } else { '' }
         [void]$page.AppendLine("          <h3 id=""section-$($unit.group_slug)-$($unit.section_slug)"">$(Encode-Html $unit.section_title)$sectionBadge</h3>")
       }
     }
@@ -1060,14 +974,13 @@ foreach ($source in $sources) {
     $strict = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'strict_translation'
     $clean = Get-OverlayValue -OverlayUnit $overlayUnit -Field 'clean_translation'
     $isDone = Test-HasContent $strict
-    $completeState = if ($isDone) { 'true' } else { 'false' }
     $lexicalUnit = Get-LexicalUnitOccurrence -WorkOccurrence $workOccurrence -UnitId $unit.unit_id
     $lexicalAttrs = ''
     if ($null -ne $lexicalUnit) {
       $lexicalAttrs = ' data-lexical-unit'
     }
 
-    [void]$page.AppendLine("          <section class=""unit"" id=""$($unit.anchor_id)"" data-unit data-complete=""$completeState""$lexicalAttrs>")
+    [void]$page.AppendLine("          <section class=""unit"" id=""$($unit.anchor_id)"" data-unit$lexicalAttrs>")
     [void]$page.AppendLine('            <div class="unit-head">')
     [void]$page.Append("              <div><h4 style=""margin:0;color:var(--text);text-transform:none;letter-spacing:0"">$(Encode-Html $unit.source_ref)")
     if (-not $singleSourceNote) {
@@ -1158,7 +1071,6 @@ foreach ($source in $sources) {
     [void]$page.AppendLine("  <script type=""application/json"" data-lexical-token-index>$tokenIndexJson</script>")
     [void]$page.AppendLine("  <script type=""application/json"" data-lexical-lexicon>$lexiconJson</script>")
   }
-  Append-ReaderScript -Builder $page
   if ($workHasLexical) {
     Append-LexicalHudScript -Builder $page
   }

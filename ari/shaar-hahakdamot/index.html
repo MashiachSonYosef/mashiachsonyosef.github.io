@@ -23,15 +23,6 @@
     .license-notice strong { color: var(--text); font-weight: 400; }
     .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
     .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
-    .progress-panel { margin-top: 14px; border: 1px solid var(--line); background: rgba(20,24,31,0.58); padding: 12px; }
-    .progress-summary { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; color: var(--muted); font-size: 0.92rem; }
-    .progress-summary strong { color: var(--text); font-weight: 400; }
-    .progress-meter { height: 5px; margin-top: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); overflow: hidden; }
-    .progress-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
-    .progress-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-    .filter-button { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 6px 10px; font: inherit; cursor: pointer; }
-    .filter-button[aria-pressed="true"], .filter-button:hover { color: var(--text); border-color: var(--accent); background: rgba(214,190,138,0.08); }
-    .filter-button:disabled { cursor: default; opacity: 0.45; }
     .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
     .home-section { margin-top: 26px; }
     .home-section:first-child { margin-top: 0; }
@@ -72,9 +63,12 @@
     .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
     .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
-    .paired-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--muted); }
-    .paired-note a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -91,16 +85,6 @@
           <a class="export-button" href="overlay-export.csv" download>CSV</a>
           <a class="export-button" href="overlay-export.json" download>JSON</a>
           <a class="export-button" href="overlay-export.md" download>Markdown</a>
-        </div>
-        <div class="progress-panel" data-progress-panel>
-          <div class="progress-summary"><span>Progress</span><strong>0 / 93 done</strong><span>0% complete</span></div>
-          <div class="progress-meter" aria-label="0% complete"><span style="width:0%"></span></div>
-          <div class="progress-controls" aria-label="Progress filters">
-            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
-            <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Done</button>
-            <button class="filter-button" type="button" data-filter="not-done" aria-pressed="false">Not done</button>
-            <button class="filter-button" type="button" data-next-not-done>Next not done</button>
-          </div>
         </div>
       </div>
       <div class="reader-shell">
@@ -544,7 +528,7 @@
           <h2 id="group-introductions">Introductions</h2>
           <h3 id="section-introductions-introductions">Introductions</h3>
           <h4 id="chapter-introductions-introductions-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Introductions 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-introductions-introductions-1-1" aria-label="Copy link to Sha'ar HaHakdamot, Introductions 1:1">#</a>
@@ -567,7 +551,7 @@
               <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Introductions 1:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-introductions-introductions-1-2" aria-label="Copy link to Sha'ar HaHakdamot, Introductions 1:2">#</a>
@@ -590,7 +574,7 @@
               <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Introductions 1:3</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-introductions-introductions-1-3" aria-label="Copy link to Sha'ar HaHakdamot, Introductions 1:3">#</a>
@@ -613,7 +597,7 @@
               <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Introductions 1:4</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-introductions-introductions-1-4" aria-label="Copy link to Sha'ar HaHakdamot, Introductions 1:4">#</a>
@@ -636,7 +620,7 @@
               <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Introductions 1:5</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-introductions-introductions-1-5" aria-label="Copy link to Sha'ar HaHakdamot, Introductions 1:5">#</a>
@@ -659,7 +643,7 @@
               <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Introductions 1:6</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-introductions-introductions-1-6" aria-label="Copy link to Sha'ar HaHakdamot, Introductions 1:6">#</a>
@@ -682,7 +666,7 @@
               <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-7" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Introductions 1:7</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-introductions-introductions-1-7" aria-label="Copy link to Sha'ar HaHakdamot, Introductions 1:7">#</a>
@@ -705,7 +689,7 @@
               <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-8" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Introductions 1:8</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-introductions-introductions-1-8" aria-label="Copy link to Sha'ar HaHakdamot, Introductions 1:8">#</a>
@@ -728,7 +712,7 @@
               <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-9" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Introductions 1:9</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-introductions-introductions-1-9" aria-label="Copy link to Sha'ar HaHakdamot, Introductions 1:9">#</a>
@@ -751,7 +735,7 @@
               <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-10" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Introductions 1:10</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-introductions-introductions-1-10" aria-label="Copy link to Sha'ar HaHakdamot, Introductions 1:10">#</a>
@@ -774,7 +758,7 @@
               <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-11" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Introductions 1:11</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-introductions-introductions-1-11" aria-label="Copy link to Sha'ar HaHakdamot, Introductions 1:11">#</a>
@@ -797,7 +781,7 @@
               <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-12" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-12" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Introductions 1:12</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-introductions-introductions-1-12" aria-label="Copy link to Sha'ar HaHakdamot, Introductions 1:12">#</a>
@@ -820,7 +804,7 @@
               <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-13" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-13" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Introductions 1:13</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-introductions-introductions-1-13" aria-label="Copy link to Sha'ar HaHakdamot, Introductions 1:13">#</a>
@@ -843,7 +827,7 @@
               <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-14" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-14" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Introductions 1:14</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-introductions-introductions-1-14" aria-label="Copy link to Sha'ar HaHakdamot, Introductions 1:14">#</a>
@@ -866,7 +850,7 @@
               <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-15" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-15" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Introductions 1:15</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-introductions-introductions-1-15" aria-label="Copy link to Sha'ar HaHakdamot, Introductions 1:15">#</a>
@@ -889,7 +873,7 @@
               <a href="#chapter-introductions-introductions-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-16" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-introductions-introductions-1-16" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Introductions 1:16</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-introductions-introductions-1-16" aria-label="Copy link to Sha'ar HaHakdamot, Introductions 1:16">#</a>
@@ -915,7 +899,7 @@
           <h2 id="group-adam-kadmon">Adam Kadmon</h2>
           <h3 id="section-adam-kadmon-adam-kadmon">Adam Kadmon</h3>
           <h4 id="chapter-adam-kadmon-adam-kadmon-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Adam Kadmon 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-1" aria-label="Copy link to Sha'ar HaHakdamot, Adam Kadmon 1:1">#</a>
@@ -938,7 +922,7 @@
               <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Adam Kadmon 1:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-2" aria-label="Copy link to Sha'ar HaHakdamot, Adam Kadmon 1:2">#</a>
@@ -961,7 +945,7 @@
               <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Adam Kadmon 1:3</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-3" aria-label="Copy link to Sha'ar HaHakdamot, Adam Kadmon 1:3">#</a>
@@ -984,7 +968,7 @@
               <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Adam Kadmon 1:4</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-4" aria-label="Copy link to Sha'ar HaHakdamot, Adam Kadmon 1:4">#</a>
@@ -1007,7 +991,7 @@
               <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Adam Kadmon 1:5</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-5" aria-label="Copy link to Sha'ar HaHakdamot, Adam Kadmon 1:5">#</a>
@@ -1030,7 +1014,7 @@
               <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Adam Kadmon 1:6</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-6" aria-label="Copy link to Sha'ar HaHakdamot, Adam Kadmon 1:6">#</a>
@@ -1053,7 +1037,7 @@
               <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-7" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Adam Kadmon 1:7</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-7" aria-label="Copy link to Sha'ar HaHakdamot, Adam Kadmon 1:7">#</a>
@@ -1076,7 +1060,7 @@
               <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-8" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Adam Kadmon 1:8</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-8" aria-label="Copy link to Sha'ar HaHakdamot, Adam Kadmon 1:8">#</a>
@@ -1099,7 +1083,7 @@
               <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-9" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Adam Kadmon 1:9</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-9" aria-label="Copy link to Sha'ar HaHakdamot, Adam Kadmon 1:9">#</a>
@@ -1122,7 +1106,7 @@
               <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-10" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Adam Kadmon 1:10</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-10" aria-label="Copy link to Sha'ar HaHakdamot, Adam Kadmon 1:10">#</a>
@@ -1145,7 +1129,7 @@
               <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-11" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Adam Kadmon 1:11</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-11" aria-label="Copy link to Sha'ar HaHakdamot, Adam Kadmon 1:11">#</a>
@@ -1168,7 +1152,7 @@
               <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-12" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-12" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Adam Kadmon 1:12</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-12" aria-label="Copy link to Sha'ar HaHakdamot, Adam Kadmon 1:12">#</a>
@@ -1191,7 +1175,7 @@
               <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-13" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-13" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Adam Kadmon 1:13</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-13" aria-label="Copy link to Sha'ar HaHakdamot, Adam Kadmon 1:13">#</a>
@@ -1214,7 +1198,7 @@
               <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-14" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-14" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Adam Kadmon 1:14</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-14" aria-label="Copy link to Sha'ar HaHakdamot, Adam Kadmon 1:14">#</a>
@@ -1237,7 +1221,7 @@
               <a href="#chapter-adam-kadmon-adam-kadmon-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-15" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-adam-kadmon-adam-kadmon-1-15" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Adam Kadmon 1:15</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-adam-kadmon-adam-kadmon-1-15" aria-label="Copy link to Sha'ar HaHakdamot, Adam Kadmon 1:15">#</a>
@@ -1263,7 +1247,7 @@
           <h2 id="group-akudim">Akudim</h2>
           <h3 id="section-akudim-akudim">Akudim</h3>
           <h4 id="chapter-akudim-akudim-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-akudim-akudim-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-akudim-akudim-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Akudim 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-akudim-akudim-1-1" aria-label="Copy link to Sha'ar HaHakdamot, Akudim 1:1">#</a>
@@ -1286,7 +1270,7 @@
               <a href="#chapter-akudim-akudim-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-akudim-akudim-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-akudim-akudim-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Akudim 1:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-akudim-akudim-1-2" aria-label="Copy link to Sha'ar HaHakdamot, Akudim 1:2">#</a>
@@ -1312,7 +1296,7 @@
           <h2 id="group-mati-velo-mati">Mati velo Mati</h2>
           <h3 id="section-mati-velo-mati-mati-velo-mati">Mati velo Mati</h3>
           <h4 id="chapter-mati-velo-mati-mati-velo-mati-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-mati-velo-mati-mati-velo-mati-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-mati-velo-mati-mati-velo-mati-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Mati velo Mati 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-mati-velo-mati-mati-velo-mati-1-1" aria-label="Copy link to Sha'ar HaHakdamot, Mati velo Mati 1:1">#</a>
@@ -1335,7 +1319,7 @@
               <a href="#chapter-mati-velo-mati-mati-velo-mati-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-mati-velo-mati-mati-velo-mati-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-mati-velo-mati-mati-velo-mati-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Mati velo Mati 1:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-mati-velo-mati-mati-velo-mati-1-2" aria-label="Copy link to Sha'ar HaHakdamot, Mati velo Mati 1:2">#</a>
@@ -1361,7 +1345,7 @@
           <h2 id="group-nekudim">Nekudim</h2>
           <h3 id="section-nekudim-nekudim">Nekudim</h3>
           <h4 id="chapter-nekudim-nekudim-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-nekudim-nekudim-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-nekudim-nekudim-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Nekudim 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-nekudim-nekudim-1-1" aria-label="Copy link to Sha'ar HaHakdamot, Nekudim 1:1">#</a>
@@ -1384,7 +1368,7 @@
               <a href="#chapter-nekudim-nekudim-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-nekudim-nekudim-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-nekudim-nekudim-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Nekudim 1:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-nekudim-nekudim-1-2" aria-label="Copy link to Sha'ar HaHakdamot, Nekudim 1:2">#</a>
@@ -1407,7 +1391,7 @@
               <a href="#chapter-nekudim-nekudim-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-nekudim-nekudim-1-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-nekudim-nekudim-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Nekudim 1:3</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-nekudim-nekudim-1-3" aria-label="Copy link to Sha'ar HaHakdamot, Nekudim 1:3">#</a>
@@ -1430,7 +1414,7 @@
               <a href="#chapter-nekudim-nekudim-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-nekudim-nekudim-1-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-nekudim-nekudim-1-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Nekudim 1:4</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-nekudim-nekudim-1-4" aria-label="Copy link to Sha'ar HaHakdamot, Nekudim 1:4">#</a>
@@ -1456,7 +1440,7 @@
           <h2 id="group-the-seven-kings-of-edom">The Seven Kings of Edom</h2>
           <h3 id="section-the-seven-kings-of-edom-the-seven-kings-of-edom">The Seven Kings of Edom</h3>
           <h4 id="chapter-the-seven-kings-of-edom-the-seven-kings-of-edom-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, The Seven Kings of Edom 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-1" aria-label="Copy link to Sha'ar HaHakdamot, The Seven Kings of Edom 1:1">#</a>
@@ -1479,7 +1463,7 @@
               <a href="#chapter-the-seven-kings-of-edom-the-seven-kings-of-edom-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, The Seven Kings of Edom 1:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-2" aria-label="Copy link to Sha'ar HaHakdamot, The Seven Kings of Edom 1:2">#</a>
@@ -1502,7 +1486,7 @@
               <a href="#chapter-the-seven-kings-of-edom-the-seven-kings-of-edom-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, The Seven Kings of Edom 1:3</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-3" aria-label="Copy link to Sha'ar HaHakdamot, The Seven Kings of Edom 1:3">#</a>
@@ -1525,7 +1509,7 @@
               <a href="#chapter-the-seven-kings-of-edom-the-seven-kings-of-edom-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, The Seven Kings of Edom 1:4</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-the-seven-kings-of-edom-the-seven-kings-of-edom-1-4" aria-label="Copy link to Sha'ar HaHakdamot, The Seven Kings of Edom 1:4">#</a>
@@ -1551,7 +1535,7 @@
           <h2 id="group-tikkun">Tikkun</h2>
           <h3 id="section-tikkun-tikkun">Tikkun</h3>
           <h4 id="chapter-tikkun-tikkun-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-tikkun-tikkun-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-tikkun-tikkun-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Tikkun 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-tikkun-tikkun-1-1" aria-label="Copy link to Sha'ar HaHakdamot, Tikkun 1:1">#</a>
@@ -1574,7 +1558,7 @@
               <a href="#chapter-tikkun-tikkun-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-tikkun-tikkun-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-tikkun-tikkun-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Tikkun 1:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-tikkun-tikkun-1-2" aria-label="Copy link to Sha'ar HaHakdamot, Tikkun 1:2">#</a>
@@ -1600,7 +1584,7 @@
           <h2 id="group-a-short-discourse-on-adam-kadmon">A Short Discourse on Adam Kadmon</h2>
           <h3 id="section-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon">A Short Discourse on Adam Kadmon</h3>
           <h4 id="chapter-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, A Short Discourse on Adam Kadmon 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon-1-1" aria-label="Copy link to Sha'ar HaHakdamot, A Short Discourse on Adam Kadmon 1:1">#</a>
@@ -1623,7 +1607,7 @@
               <a href="#chapter-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, A Short Discourse on Adam Kadmon 1:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-a-short-discourse-on-adam-kadmon-a-short-discourse-on-adam-kadmon-1-2" aria-label="Copy link to Sha'ar HaHakdamot, A Short Discourse on Adam Kadmon 1:2">#</a>
@@ -1649,7 +1633,7 @@
           <h2 id="group-derush-gadol">Derush Gadol</h2>
           <h3 id="section-derush-gadol-derush-gadol">Derush Gadol</h3>
           <h4 id="chapter-derush-gadol-derush-gadol-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-derush-gadol-derush-gadol-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-derush-gadol-derush-gadol-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Derush Gadol 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-derush-gadol-derush-gadol-1-1" aria-label="Copy link to Sha'ar HaHakdamot, Derush Gadol 1:1">#</a>
@@ -1672,7 +1656,7 @@
               <a href="#chapter-derush-gadol-derush-gadol-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-derush-gadol-derush-gadol-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-derush-gadol-derush-gadol-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Derush Gadol 1:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-derush-gadol-derush-gadol-1-2" aria-label="Copy link to Sha'ar HaHakdamot, Derush Gadol 1:2">#</a>
@@ -1695,7 +1679,7 @@
               <a href="#chapter-derush-gadol-derush-gadol-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-derush-gadol-derush-gadol-1-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-derush-gadol-derush-gadol-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Derush Gadol 1:3</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-derush-gadol-derush-gadol-1-3" aria-label="Copy link to Sha'ar HaHakdamot, Derush Gadol 1:3">#</a>
@@ -1721,7 +1705,7 @@
           <h2 id="group-zeir-anpin-and-nukba">Zeir Anpin and Nukba</h2>
           <h3 id="section-zeir-anpin-and-nukba-zeir-anpin-and-nukba">Zeir Anpin and Nukba</h3>
           <h4 id="chapter-zeir-anpin-and-nukba-zeir-anpin-and-nukba-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-zeir-anpin-and-nukba-zeir-anpin-and-nukba-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-zeir-anpin-and-nukba-zeir-anpin-and-nukba-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Zeir Anpin and Nukba 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-zeir-anpin-and-nukba-zeir-anpin-and-nukba-1-1" aria-label="Copy link to Sha'ar HaHakdamot, Zeir Anpin and Nukba 1:1">#</a>
@@ -1744,7 +1728,7 @@
               <a href="#chapter-zeir-anpin-and-nukba-zeir-anpin-and-nukba-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-zeir-anpin-and-nukba-zeir-anpin-and-nukba-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-zeir-anpin-and-nukba-zeir-anpin-and-nukba-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Zeir Anpin and Nukba 1:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-zeir-anpin-and-nukba-zeir-anpin-and-nukba-1-2" aria-label="Copy link to Sha'ar HaHakdamot, Zeir Anpin and Nukba 1:2">#</a>
@@ -1770,7 +1754,7 @@
           <h2 id="group-atzilut">Atzilut</h2>
           <h3 id="section-atzilut-atzilut">Atzilut</h3>
           <h4 id="chapter-atzilut-atzilut-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-atzilut-atzilut-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-atzilut-atzilut-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Atzilut 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-atzilut-atzilut-1-1" aria-label="Copy link to Sha'ar HaHakdamot, Atzilut 1:1">#</a>
@@ -1793,7 +1777,7 @@
               <a href="#chapter-atzilut-atzilut-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-atzilut-atzilut-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-atzilut-atzilut-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Atzilut 1:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-atzilut-atzilut-1-2" aria-label="Copy link to Sha'ar HaHakdamot, Atzilut 1:2">#</a>
@@ -1816,7 +1800,7 @@
               <a href="#chapter-atzilut-atzilut-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-atzilut-atzilut-1-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-atzilut-atzilut-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Atzilut 1:3</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-atzilut-atzilut-1-3" aria-label="Copy link to Sha'ar HaHakdamot, Atzilut 1:3">#</a>
@@ -1842,7 +1826,7 @@
           <h2 id="group-abba-and-imma">Abba and Imma</h2>
           <h3 id="section-abba-and-imma-abba-and-imma">Abba and Imma</h3>
           <h4 id="chapter-abba-and-imma-abba-and-imma-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-abba-and-imma-abba-and-imma-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-abba-and-imma-abba-and-imma-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Abba and Imma 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-abba-and-imma-abba-and-imma-1-1" aria-label="Copy link to Sha'ar HaHakdamot, Abba and Imma 1:1">#</a>
@@ -1865,7 +1849,7 @@
               <a href="#chapter-abba-and-imma-abba-and-imma-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-abba-and-imma-abba-and-imma-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-abba-and-imma-abba-and-imma-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Abba and Imma 1:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-abba-and-imma-abba-and-imma-1-2" aria-label="Copy link to Sha'ar HaHakdamot, Abba and Imma 1:2">#</a>
@@ -1891,7 +1875,7 @@
           <h2 id="group-daat">Daat</h2>
           <h3 id="section-daat-daat">Daat</h3>
           <h4 id="chapter-daat-daat-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-daat-daat-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-daat-daat-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Daat 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-daat-daat-1-1" aria-label="Copy link to Sha'ar HaHakdamot, Daat 1:1">#</a>
@@ -1914,7 +1898,7 @@
               <a href="#chapter-daat-daat-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-daat-daat-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-daat-daat-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Daat 1:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-daat-daat-1-2" aria-label="Copy link to Sha'ar HaHakdamot, Daat 1:2">#</a>
@@ -1937,7 +1921,7 @@
               <a href="#chapter-daat-daat-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-daat-daat-1-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-daat-daat-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Daat 1:3</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-daat-daat-1-3" aria-label="Copy link to Sha'ar HaHakdamot, Daat 1:3">#</a>
@@ -1960,7 +1944,7 @@
               <a href="#chapter-daat-daat-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-daat-daat-1-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-daat-daat-1-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Daat 1:4</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-daat-daat-1-4" aria-label="Copy link to Sha'ar HaHakdamot, Daat 1:4">#</a>
@@ -1986,7 +1970,7 @@
           <h2 id="group-ohr-penimi-and-ohr-makif">Ohr Penimi and Ohr Makif</h2>
           <h3 id="section-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif">Ohr Penimi and Ohr Makif</h3>
           <h4 id="chapter-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Ohr Penimi and Ohr Makif 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif-1-1" aria-label="Copy link to Sha'ar HaHakdamot, Ohr Penimi and Ohr Makif 1:1">#</a>
@@ -2009,7 +1993,7 @@
               <a href="#chapter-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Ohr Penimi and Ohr Makif 1:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-ohr-penimi-and-ohr-makif-ohr-penimi-and-ohr-makif-1-2" aria-label="Copy link to Sha'ar HaHakdamot, Ohr Penimi and Ohr Makif 1:2">#</a>
@@ -2035,7 +2019,7 @@
           <h2 id="group-chesed-and-gevurah">Chesed and Gevurah</h2>
           <h3 id="section-chesed-and-gevurah-chesed-and-gevurah">Chesed and Gevurah</h3>
           <h4 id="chapter-chesed-and-gevurah-chesed-and-gevurah-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-chesed-and-gevurah-chesed-and-gevurah-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-chesed-and-gevurah-chesed-and-gevurah-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Chesed and Gevurah 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-chesed-and-gevurah-chesed-and-gevurah-1-1" aria-label="Copy link to Sha'ar HaHakdamot, Chesed and Gevurah 1:1">#</a>
@@ -2058,7 +2042,7 @@
               <a href="#chapter-chesed-and-gevurah-chesed-and-gevurah-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-chesed-and-gevurah-chesed-and-gevurah-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-chesed-and-gevurah-chesed-and-gevurah-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Chesed and Gevurah 1:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-chesed-and-gevurah-chesed-and-gevurah-1-2" aria-label="Copy link to Sha'ar HaHakdamot, Chesed and Gevurah 1:2">#</a>
@@ -2081,7 +2065,7 @@
               <a href="#chapter-chesed-and-gevurah-chesed-and-gevurah-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-chesed-and-gevurah-chesed-and-gevurah-1-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-chesed-and-gevurah-chesed-and-gevurah-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Chesed and Gevurah 1:3</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-chesed-and-gevurah-chesed-and-gevurah-1-3" aria-label="Copy link to Sha'ar HaHakdamot, Chesed and Gevurah 1:3">#</a>
@@ -2107,7 +2091,7 @@
           <h2 id="group-zeir-anpin">Zeir Anpin</h2>
           <h3 id="section-zeir-anpin-zeir-anpin">Zeir Anpin</h3>
           <h4 id="chapter-zeir-anpin-zeir-anpin-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Zeir Anpin 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-zeir-anpin-zeir-anpin-1-1" aria-label="Copy link to Sha'ar HaHakdamot, Zeir Anpin 1:1">#</a>
@@ -2130,7 +2114,7 @@
               <a href="#chapter-zeir-anpin-zeir-anpin-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Zeir Anpin 1:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-zeir-anpin-zeir-anpin-1-2" aria-label="Copy link to Sha'ar HaHakdamot, Zeir Anpin 1:2">#</a>
@@ -2153,7 +2137,7 @@
               <a href="#chapter-zeir-anpin-zeir-anpin-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Zeir Anpin 1:3</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-zeir-anpin-zeir-anpin-1-3" aria-label="Copy link to Sha'ar HaHakdamot, Zeir Anpin 1:3">#</a>
@@ -2176,7 +2160,7 @@
               <a href="#chapter-zeir-anpin-zeir-anpin-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Zeir Anpin 1:4</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-zeir-anpin-zeir-anpin-1-4" aria-label="Copy link to Sha'ar HaHakdamot, Zeir Anpin 1:4">#</a>
@@ -2199,7 +2183,7 @@
               <a href="#chapter-zeir-anpin-zeir-anpin-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Zeir Anpin 1:5</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-zeir-anpin-zeir-anpin-1-5" aria-label="Copy link to Sha'ar HaHakdamot, Zeir Anpin 1:5">#</a>
@@ -2222,7 +2206,7 @@
               <a href="#chapter-zeir-anpin-zeir-anpin-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Zeir Anpin 1:6</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-zeir-anpin-zeir-anpin-1-6" aria-label="Copy link to Sha'ar HaHakdamot, Zeir Anpin 1:6">#</a>
@@ -2245,7 +2229,7 @@
               <a href="#chapter-zeir-anpin-zeir-anpin-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-7" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-zeir-anpin-zeir-anpin-1-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Zeir Anpin 1:7</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-zeir-anpin-zeir-anpin-1-7" aria-label="Copy link to Sha'ar HaHakdamot, Zeir Anpin 1:7">#</a>
@@ -2271,7 +2255,7 @@
           <h2 id="group-partzuf-rachel">Partzuf Rachel</h2>
           <h3 id="section-partzuf-rachel-partzuf-rachel">Partzuf Rachel</h3>
           <h4 id="chapter-partzuf-rachel-partzuf-rachel-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-partzuf-rachel-partzuf-rachel-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-partzuf-rachel-partzuf-rachel-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Partzuf Rachel 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-partzuf-rachel-partzuf-rachel-1-1" aria-label="Copy link to Sha'ar HaHakdamot, Partzuf Rachel 1:1">#</a>
@@ -2297,7 +2281,7 @@
           <h2 id="group-the-four-worlds">The Four Worlds</h2>
           <h3 id="section-the-four-worlds-the-four-worlds">The Four Worlds</h3>
           <h4 id="chapter-the-four-worlds-the-four-worlds-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-the-four-worlds-the-four-worlds-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-the-four-worlds-the-four-worlds-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, The Four Worlds 1:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-the-four-worlds-the-four-worlds-1-1" aria-label="Copy link to Sha'ar HaHakdamot, The Four Worlds 1:1">#</a>
@@ -2320,7 +2304,7 @@
               <a href="#chapter-the-four-worlds-the-four-worlds-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-the-four-worlds-the-four-worlds-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-the-four-worlds-the-four-worlds-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, The Four Worlds 1:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-the-four-worlds-the-four-worlds-1-2" aria-label="Copy link to Sha'ar HaHakdamot, The Four Worlds 1:2">#</a>
@@ -2343,7 +2327,7 @@
               <a href="#chapter-the-four-worlds-the-four-worlds-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-the-four-worlds-the-four-worlds-1-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-the-four-worlds-the-four-worlds-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, The Four Worlds 1:3</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-the-four-worlds-the-four-worlds-1-3" aria-label="Copy link to Sha'ar HaHakdamot, The Four Worlds 1:3">#</a>
@@ -2366,7 +2350,7 @@
               <a href="#chapter-the-four-worlds-the-four-worlds-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-the-four-worlds-the-four-worlds-1-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-the-four-worlds-the-four-worlds-1-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, The Four Worlds 1:4</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-the-four-worlds-the-four-worlds-1-4" aria-label="Copy link to Sha'ar HaHakdamot, The Four Worlds 1:4">#</a>
@@ -2389,7 +2373,7 @@
               <a href="#chapter-the-four-worlds-the-four-worlds-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-the-four-worlds-the-four-worlds-1-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-the-four-worlds-the-four-worlds-1-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, The Four Worlds 1:5</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-the-four-worlds-the-four-worlds-1-5" aria-label="Copy link to Sha'ar HaHakdamot, The Four Worlds 1:5">#</a>
@@ -2412,7 +2396,7 @@
               <a href="#chapter-the-four-worlds-the-four-worlds-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hahakdamot-the-four-worlds-the-four-worlds-1-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-the-four-worlds-the-four-worlds-1-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, The Four Worlds 1:6</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-the-four-worlds-the-four-worlds-1-6" aria-label="Copy link to Sha'ar HaHakdamot, The Four Worlds 1:6">#</a>
@@ -2438,7 +2422,7 @@
           <h2 id="group-miscellany">Miscellany</h2>
           <h3 id="section-miscellany-miscellany">Miscellany</h3>
           <h4 id="chapter-miscellany-miscellany-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Miscellany:1</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-miscellany-miscellany-1" aria-label="Copy link to Sha'ar HaHakdamot, Miscellany:1">#</a>
@@ -2462,7 +2446,7 @@
             </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Miscellany:2</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-miscellany-miscellany-2" aria-label="Copy link to Sha'ar HaHakdamot, Miscellany:2">#</a>
@@ -2486,7 +2470,7 @@
             </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Miscellany:3</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-miscellany-miscellany-3" aria-label="Copy link to Sha'ar HaHakdamot, Miscellany:3">#</a>
@@ -2510,7 +2494,7 @@
             </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Miscellany:4</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-miscellany-miscellany-4" aria-label="Copy link to Sha'ar HaHakdamot, Miscellany:4">#</a>
@@ -2534,7 +2518,7 @@
             </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-5">Chapter 5</h4>
-          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Miscellany:5</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-miscellany-miscellany-5" aria-label="Copy link to Sha'ar HaHakdamot, Miscellany:5">#</a>
@@ -2558,7 +2542,7 @@
             </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-6">Chapter 6</h4>
-          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Miscellany:6</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-miscellany-miscellany-6" aria-label="Copy link to Sha'ar HaHakdamot, Miscellany:6">#</a>
@@ -2582,7 +2566,7 @@
             </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-7">Chapter 7</h4>
-          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-7" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Miscellany:7</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-miscellany-miscellany-7" aria-label="Copy link to Sha'ar HaHakdamot, Miscellany:7">#</a>
@@ -2606,7 +2590,7 @@
             </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-8">Chapter 8</h4>
-          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-8" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Miscellany:8</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-miscellany-miscellany-8" aria-label="Copy link to Sha'ar HaHakdamot, Miscellany:8">#</a>
@@ -2630,7 +2614,7 @@
             </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-9">Chapter 9</h4>
-          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-9" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Miscellany:9</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-miscellany-miscellany-9" aria-label="Copy link to Sha'ar HaHakdamot, Miscellany:9">#</a>
@@ -2654,7 +2638,7 @@
             </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-10">Chapter 10</h4>
-          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-10" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Miscellany:10</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-miscellany-miscellany-10" aria-label="Copy link to Sha'ar HaHakdamot, Miscellany:10">#</a>
@@ -2678,7 +2662,7 @@
             </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-11">Chapter 11</h4>
-          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-11" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Miscellany:11</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-miscellany-miscellany-11" aria-label="Copy link to Sha'ar HaHakdamot, Miscellany:11">#</a>
@@ -2702,7 +2686,7 @@
             </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-12">Chapter 12</h4>
-          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-12" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-12" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Miscellany:12</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-miscellany-miscellany-12" aria-label="Copy link to Sha'ar HaHakdamot, Miscellany:12">#</a>
@@ -2726,7 +2710,7 @@
             </nav>
           </section>
           <h4 id="chapter-miscellany-miscellany-13">Chapter 13</h4>
-          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-13" data-unit data-complete="false">
+          <section class="unit" id="shaar-hahakdamot-miscellany-miscellany-13" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaHakdamot, Miscellany:13</h4></div>
               <a class="anchor" href="#shaar-hahakdamot-miscellany-miscellany-13" aria-label="Copy link to Sha'ar HaHakdamot, Miscellany:13">#</a>
@@ -2753,38 +2737,5 @@
       </div>
     </div>
   </main>
-  <script>
-    (() => {
-      const units = Array.from(document.querySelectorAll("[data-unit]"));
-      const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
-      const nextButton = document.querySelector("[data-next-not-done]");
-      let currentFilter = "all";
-      const matchesFilter = (unit, filter) => {
-        const done = unit.dataset.complete === "true";
-        return filter === "all" || (filter === "done" && done) || (filter === "not-done" && !done);
-      };
-      const applyFilter = (filter) => {
-        currentFilter = filter;
-        units.forEach((unit) => { unit.hidden = !matchesFilter(unit, filter); });
-        filterButtons.forEach((button) => {
-          button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
-        });
-      };
-      filterButtons.forEach((button) => {
-        button.addEventListener("click", () => applyFilter(button.dataset.filter));
-      });
-      if (nextButton) {
-        nextButton.addEventListener("click", () => {
-          const incomplete = units.filter((unit) => unit.dataset.complete !== "true");
-          if (!incomplete.length) return;
-          if (currentFilter === "done") applyFilter("not-done");
-          const currentY = window.scrollY + 12;
-          const target = incomplete.find((unit) => unit.getBoundingClientRect().top + window.scrollY > currentY) || incomplete[0];
-          if (target.id) history.replaceState(null, "", "#" + target.id);
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-        });
-      }
-    })();
-  </script>
 </body>
 </html>

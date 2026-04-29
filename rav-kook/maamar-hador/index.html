@@ -23,15 +23,6 @@
     .license-notice strong { color: var(--text); font-weight: 400; }
     .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
     .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
-    .progress-panel { margin-top: 14px; border: 1px solid var(--line); background: rgba(20,24,31,0.58); padding: 12px; }
-    .progress-summary { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; color: var(--muted); font-size: 0.92rem; }
-    .progress-summary strong { color: var(--text); font-weight: 400; }
-    .progress-meter { height: 5px; margin-top: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); overflow: hidden; }
-    .progress-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
-    .progress-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-    .filter-button { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 6px 10px; font: inherit; cursor: pointer; }
-    .filter-button[aria-pressed="true"], .filter-button:hover { color: var(--text); border-color: var(--accent); background: rgba(214,190,138,0.08); }
-    .filter-button:disabled { cursor: default; opacity: 0.45; }
     .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
     .home-section { margin-top: 26px; }
     .home-section:first-child { margin-top: 0; }
@@ -72,9 +63,12 @@
     .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
     .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
-    .paired-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--muted); }
-    .paired-note a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -91,16 +85,6 @@
           <a class="export-button" href="overlay-export.csv" download>CSV</a>
           <a class="export-button" href="overlay-export.json" download>JSON</a>
           <a class="export-button" href="overlay-export.md" download>Markdown</a>
-        </div>
-        <div class="progress-panel" data-progress-panel>
-          <div class="progress-summary"><span>Progress</span><strong>0 / 18 done</strong><span>0% complete</span></div>
-          <div class="progress-meter" aria-label="0% complete"><span style="width:0%"></span></div>
-          <div class="progress-controls" aria-label="Progress filters">
-            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
-            <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Done</button>
-            <button class="filter-button" type="button" data-filter="not-done" aria-pressed="false">Not done</button>
-            <button class="filter-button" type="button" data-next-not-done>Next not done</button>
-          </div>
         </div>
       </div>
       <div class="reader-shell">
@@ -245,7 +229,7 @@
         </nav>
         <article>
           <h4 id="chapter-maamar-hador-text-1">Chapter 1</h4>
-          <section class="unit" id="maamar-hador-1" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:1</h4></div>
               <a class="anchor" href="#maamar-hador-1" aria-label="Copy link to Ma'amar Hador:1">#</a>
@@ -269,7 +253,7 @@
             </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-2">Chapter 2</h4>
-          <section class="unit" id="maamar-hador-2" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:2</h4></div>
               <a class="anchor" href="#maamar-hador-2" aria-label="Copy link to Ma'amar Hador:2">#</a>
@@ -293,7 +277,7 @@
             </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-3">Chapter 3</h4>
-          <section class="unit" id="maamar-hador-3" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:3</h4></div>
               <a class="anchor" href="#maamar-hador-3" aria-label="Copy link to Ma'amar Hador:3">#</a>
@@ -317,7 +301,7 @@
             </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-4">Chapter 4</h4>
-          <section class="unit" id="maamar-hador-4" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:4</h4></div>
               <a class="anchor" href="#maamar-hador-4" aria-label="Copy link to Ma'amar Hador:4">#</a>
@@ -341,7 +325,7 @@
             </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-5">Chapter 5</h4>
-          <section class="unit" id="maamar-hador-5" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:5</h4></div>
               <a class="anchor" href="#maamar-hador-5" aria-label="Copy link to Ma'amar Hador:5">#</a>
@@ -365,7 +349,7 @@
             </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-6">Chapter 6</h4>
-          <section class="unit" id="maamar-hador-6" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:6</h4></div>
               <a class="anchor" href="#maamar-hador-6" aria-label="Copy link to Ma'amar Hador:6">#</a>
@@ -389,7 +373,7 @@
             </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-7">Chapter 7</h4>
-          <section class="unit" id="maamar-hador-7" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:7</h4></div>
               <a class="anchor" href="#maamar-hador-7" aria-label="Copy link to Ma'amar Hador:7">#</a>
@@ -413,7 +397,7 @@
             </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-8">Chapter 8</h4>
-          <section class="unit" id="maamar-hador-8" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:8</h4></div>
               <a class="anchor" href="#maamar-hador-8" aria-label="Copy link to Ma'amar Hador:8">#</a>
@@ -437,7 +421,7 @@
             </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-9">Chapter 9</h4>
-          <section class="unit" id="maamar-hador-9" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:9</h4></div>
               <a class="anchor" href="#maamar-hador-9" aria-label="Copy link to Ma'amar Hador:9">#</a>
@@ -461,7 +445,7 @@
             </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-10">Chapter 10</h4>
-          <section class="unit" id="maamar-hador-10" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:10</h4></div>
               <a class="anchor" href="#maamar-hador-10" aria-label="Copy link to Ma'amar Hador:10">#</a>
@@ -485,7 +469,7 @@
             </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-11">Chapter 11</h4>
-          <section class="unit" id="maamar-hador-11" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:11</h4></div>
               <a class="anchor" href="#maamar-hador-11" aria-label="Copy link to Ma'amar Hador:11">#</a>
@@ -509,7 +493,7 @@
             </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-12">Chapter 12</h4>
-          <section class="unit" id="maamar-hador-12" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-12" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:12</h4></div>
               <a class="anchor" href="#maamar-hador-12" aria-label="Copy link to Ma'amar Hador:12">#</a>
@@ -533,7 +517,7 @@
             </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-13">Chapter 13</h4>
-          <section class="unit" id="maamar-hador-13" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-13" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:13</h4></div>
               <a class="anchor" href="#maamar-hador-13" aria-label="Copy link to Ma'amar Hador:13">#</a>
@@ -557,7 +541,7 @@
             </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-14">Chapter 14</h4>
-          <section class="unit" id="maamar-hador-14" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-14" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:14</h4></div>
               <a class="anchor" href="#maamar-hador-14" aria-label="Copy link to Ma'amar Hador:14">#</a>
@@ -581,7 +565,7 @@
             </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-15">Chapter 15</h4>
-          <section class="unit" id="maamar-hador-15" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-15" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:15</h4></div>
               <a class="anchor" href="#maamar-hador-15" aria-label="Copy link to Ma'amar Hador:15">#</a>
@@ -605,7 +589,7 @@
             </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-16">Chapter 16</h4>
-          <section class="unit" id="maamar-hador-16" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-16" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:16</h4></div>
               <a class="anchor" href="#maamar-hador-16" aria-label="Copy link to Ma'amar Hador:16">#</a>
@@ -629,7 +613,7 @@
             </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-17">Chapter 17</h4>
-          <section class="unit" id="maamar-hador-17" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-17" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:17</h4></div>
               <a class="anchor" href="#maamar-hador-17" aria-label="Copy link to Ma'amar Hador:17">#</a>
@@ -653,7 +637,7 @@
             </nav>
           </section>
           <h4 id="chapter-maamar-hador-text-18">Chapter 18</h4>
-          <section class="unit" id="maamar-hador-18" data-unit data-complete="false">
+          <section class="unit" id="maamar-hador-18" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Hador:18</h4></div>
               <a class="anchor" href="#maamar-hador-18" aria-label="Copy link to Ma'amar Hador:18">#</a>
@@ -680,38 +664,5 @@
       </div>
     </div>
   </main>
-  <script>
-    (() => {
-      const units = Array.from(document.querySelectorAll("[data-unit]"));
-      const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
-      const nextButton = document.querySelector("[data-next-not-done]");
-      let currentFilter = "all";
-      const matchesFilter = (unit, filter) => {
-        const done = unit.dataset.complete === "true";
-        return filter === "all" || (filter === "done" && done) || (filter === "not-done" && !done);
-      };
-      const applyFilter = (filter) => {
-        currentFilter = filter;
-        units.forEach((unit) => { unit.hidden = !matchesFilter(unit, filter); });
-        filterButtons.forEach((button) => {
-          button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
-        });
-      };
-      filterButtons.forEach((button) => {
-        button.addEventListener("click", () => applyFilter(button.dataset.filter));
-      });
-      if (nextButton) {
-        nextButton.addEventListener("click", () => {
-          const incomplete = units.filter((unit) => unit.dataset.complete !== "true");
-          if (!incomplete.length) return;
-          if (currentFilter === "done") applyFilter("not-done");
-          const currentY = window.scrollY + 12;
-          const target = incomplete.find((unit) => unit.getBoundingClientRect().top + window.scrollY > currentY) || incomplete[0];
-          if (target.id) history.replaceState(null, "", "#" + target.id);
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-        });
-      }
-    })();
-  </script>
 </body>
 </html>

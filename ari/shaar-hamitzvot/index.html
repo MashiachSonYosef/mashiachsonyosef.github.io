@@ -23,15 +23,6 @@
     .license-notice strong { color: var(--text); font-weight: 400; }
     .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
     .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
-    .progress-panel { margin-top: 14px; border: 1px solid var(--line); background: rgba(20,24,31,0.58); padding: 12px; }
-    .progress-summary { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; color: var(--muted); font-size: 0.92rem; }
-    .progress-summary strong { color: var(--text); font-weight: 400; }
-    .progress-meter { height: 5px; margin-top: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); overflow: hidden; }
-    .progress-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
-    .progress-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-    .filter-button { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 6px 10px; font: inherit; cursor: pointer; }
-    .filter-button[aria-pressed="true"], .filter-button:hover { color: var(--text); border-color: var(--accent); background: rgba(214,190,138,0.08); }
-    .filter-button:disabled { cursor: default; opacity: 0.45; }
     .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
     .home-section { margin-top: 26px; }
     .home-section:first-child { margin-top: 0; }
@@ -72,9 +63,12 @@
     .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
     .toc summary { color: var(--accent); font-size: 0.94rem; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
-    .paired-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--muted); }
-    .paired-note a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -91,16 +85,6 @@
           <a class="export-button" href="overlay-export.csv" download>CSV</a>
           <a class="export-button" href="overlay-export.json" download>JSON</a>
           <a class="export-button" href="overlay-export.md" download>Markdown</a>
-        </div>
-        <div class="progress-panel" data-progress-panel>
-          <div class="progress-summary"><span>Progress</span><strong>0 / 298 done</strong><span>0% complete</span></div>
-          <div class="progress-meter" aria-label="0% complete"><span style="width:0%"></span></div>
-          <div class="progress-controls" aria-label="Progress filters">
-            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
-            <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Done</button>
-            <button class="filter-button" type="button" data-filter="not-done" aria-pressed="false">Not done</button>
-            <button class="filter-button" type="button" data-next-not-done>Next not done</button>
-          </div>
         </div>
       </div>
       <div class="reader-shell">
@@ -2379,7 +2363,7 @@
           <h2 id="group-introduction">Introduction</h2>
           <h3 id="section-introduction-introduction">Introduction</h3>
           <h4 id="chapter-introduction-introduction-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Introduction 1:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-introduction-introduction-1-1" aria-label="Copy link to Sha'ar HaMitzvot, Introduction 1:1">#</a>
@@ -2402,7 +2386,7 @@
               <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Introduction 1:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-introduction-introduction-1-2" aria-label="Copy link to Sha'ar HaMitzvot, Introduction 1:2">#</a>
@@ -2425,7 +2409,7 @@
               <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Introduction 1:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-introduction-introduction-1-3" aria-label="Copy link to Sha'ar HaMitzvot, Introduction 1:3">#</a>
@@ -2448,7 +2432,7 @@
               <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Introduction 1:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-introduction-introduction-1-4" aria-label="Copy link to Sha'ar HaMitzvot, Introduction 1:4">#</a>
@@ -2471,7 +2455,7 @@
               <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Introduction 1:5</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-introduction-introduction-1-5" aria-label="Copy link to Sha'ar HaMitzvot, Introduction 1:5">#</a>
@@ -2494,7 +2478,7 @@
               <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Introduction 1:6</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-introduction-introduction-1-6" aria-label="Copy link to Sha'ar HaMitzvot, Introduction 1:6">#</a>
@@ -2517,7 +2501,7 @@
               <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-7" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Introduction 1:7</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-introduction-introduction-1-7" aria-label="Copy link to Sha'ar HaMitzvot, Introduction 1:7">#</a>
@@ -2540,7 +2524,7 @@
               <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-8" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Introduction 1:8</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-introduction-introduction-1-8" aria-label="Copy link to Sha'ar HaMitzvot, Introduction 1:8">#</a>
@@ -2563,7 +2547,7 @@
               <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-9" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Introduction 1:9</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-introduction-introduction-1-9" aria-label="Copy link to Sha'ar HaMitzvot, Introduction 1:9">#</a>
@@ -2586,7 +2570,7 @@
               <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-10" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Introduction 1:10</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-introduction-introduction-1-10" aria-label="Copy link to Sha'ar HaMitzvot, Introduction 1:10">#</a>
@@ -2609,7 +2593,7 @@
               <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-11" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Introduction 1:11</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-introduction-introduction-1-11" aria-label="Copy link to Sha'ar HaMitzvot, Introduction 1:11">#</a>
@@ -2632,7 +2616,7 @@
               <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-12" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-12" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Introduction 1:12</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-introduction-introduction-1-12" aria-label="Copy link to Sha'ar HaMitzvot, Introduction 1:12">#</a>
@@ -2655,7 +2639,7 @@
               <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-13" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-13" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Introduction 1:13</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-introduction-introduction-1-13" aria-label="Copy link to Sha'ar HaMitzvot, Introduction 1:13">#</a>
@@ -2678,7 +2662,7 @@
               <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-14" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-introduction-introduction-1-14" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Introduction 1:14</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-introduction-introduction-1-14" aria-label="Copy link to Sha'ar HaMitzvot, Introduction 1:14">#</a>
@@ -2704,7 +2688,7 @@
           <h2 id="group-bereshit">Bereshit</h2>
           <h3 id="section-bereshit-bereshit">Bereshit</h3>
           <h4 id="chapter-bereshit-bereshit-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-bereshit-bereshit-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-bereshit-bereshit-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Bereshit:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-bereshit-bereshit-1" aria-label="Copy link to Sha'ar HaMitzvot, Bereshit:1">#</a>
@@ -2728,7 +2712,7 @@
             </nav>
           </section>
           <h4 id="chapter-bereshit-bereshit-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-bereshit-bereshit-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-bereshit-bereshit-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Bereshit:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-bereshit-bereshit-2" aria-label="Copy link to Sha'ar HaMitzvot, Bereshit:2">#</a>
@@ -2752,7 +2736,7 @@
             </nav>
           </section>
           <h4 id="chapter-bereshit-bereshit-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-bereshit-bereshit-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-bereshit-bereshit-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Bereshit:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-bereshit-bereshit-3" aria-label="Copy link to Sha'ar HaMitzvot, Bereshit:3">#</a>
@@ -2776,7 +2760,7 @@
             </nav>
           </section>
           <h4 id="chapter-bereshit-bereshit-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-bereshit-bereshit-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-bereshit-bereshit-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Bereshit:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-bereshit-bereshit-4" aria-label="Copy link to Sha'ar HaMitzvot, Bereshit:4">#</a>
@@ -2802,7 +2786,7 @@
           <h2 id="group-noach">Noach</h2>
           <h3 id="section-noach-noach">Noach</h3>
           <h4 id="chapter-noach-noach-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-noach-noach-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-noach-noach-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Noach:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-noach-noach-1" aria-label="Copy link to Sha'ar HaMitzvot, Noach:1">#</a>
@@ -2826,7 +2810,7 @@
             </nav>
           </section>
           <h4 id="chapter-noach-noach-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-noach-noach-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-noach-noach-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Noach:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-noach-noach-2" aria-label="Copy link to Sha'ar HaMitzvot, Noach:2">#</a>
@@ -2850,7 +2834,7 @@
             </nav>
           </section>
           <h4 id="chapter-noach-noach-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-noach-noach-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-noach-noach-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Noach:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-noach-noach-3" aria-label="Copy link to Sha'ar HaMitzvot, Noach:3">#</a>
@@ -2876,7 +2860,7 @@
           <h2 id="group-lech-lecha">Lech Lecha</h2>
           <h3 id="section-lech-lecha-lech-lecha">Lech Lecha</h3>
           <h4 id="chapter-lech-lecha-lech-lecha-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-lech-lecha-lech-lecha-1-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-lech-lecha-lech-lecha-1-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Lech Lecha 1:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-lech-lecha-lech-lecha-1-1" aria-label="Copy link to Sha'ar HaMitzvot, Lech Lecha 1:1">#</a>
@@ -2899,7 +2883,7 @@
               <a href="#chapter-lech-lecha-lech-lecha-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="shaar-hamitzvot-lech-lecha-lech-lecha-1-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-lech-lecha-lech-lecha-1-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Lech Lecha 1:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-lech-lecha-lech-lecha-1-2" aria-label="Copy link to Sha'ar HaMitzvot, Lech Lecha 1:2">#</a>
@@ -2925,7 +2909,7 @@
           <h2 id="group-vayechi">Vayechi</h2>
           <h3 id="section-vayechi-vayechi">Vayechi</h3>
           <h4 id="chapter-vayechi-vayechi-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-1" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:1">#</a>
@@ -2949,7 +2933,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-2" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:2">#</a>
@@ -2973,7 +2957,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-3" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:3">#</a>
@@ -2997,7 +2981,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-4" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:4">#</a>
@@ -3021,7 +3005,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-5">Chapter 5</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:5</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-5" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:5">#</a>
@@ -3045,7 +3029,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-6">Chapter 6</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:6</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-6" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:6">#</a>
@@ -3069,7 +3053,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-7">Chapter 7</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-7" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:7</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-7" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:7">#</a>
@@ -3093,7 +3077,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-8">Chapter 8</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-8" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:8</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-8" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:8">#</a>
@@ -3117,7 +3101,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-9">Chapter 9</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-9" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:9</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-9" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:9">#</a>
@@ -3141,7 +3125,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-10">Chapter 10</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-10" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:10</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-10" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:10">#</a>
@@ -3165,7 +3149,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-11">Chapter 11</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-11" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:11</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-11" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:11">#</a>
@@ -3189,7 +3173,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-12">Chapter 12</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-12" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-12" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:12</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-12" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:12">#</a>
@@ -3213,7 +3197,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-13">Chapter 13</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-13" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-13" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:13</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-13" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:13">#</a>
@@ -3237,7 +3221,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-14">Chapter 14</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-14" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-14" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:14</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-14" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:14">#</a>
@@ -3261,7 +3245,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-15">Chapter 15</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-15" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-15" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:15</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-15" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:15">#</a>
@@ -3285,7 +3269,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-16">Chapter 16</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-16" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-16" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:16</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-16" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:16">#</a>
@@ -3309,7 +3293,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-17">Chapter 17</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-17" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-17" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:17</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-17" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:17">#</a>
@@ -3333,7 +3317,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-18">Chapter 18</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-18" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-18" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:18</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-18" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:18">#</a>
@@ -3357,7 +3341,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayechi-vayechi-19">Chapter 19</h4>
-          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-19" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayechi-vayechi-19" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayechi:19</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayechi-vayechi-19" aria-label="Copy link to Sha'ar HaMitzvot, Vayechi:19">#</a>
@@ -3383,7 +3367,7 @@
           <h2 id="group-shemot">Shemot</h2>
           <h3 id="section-shemot-shemot">Shemot</h3>
           <h4 id="chapter-shemot-shemot-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-shemot-shemot-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shemot-shemot-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shemot:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shemot-shemot-1" aria-label="Copy link to Sha'ar HaMitzvot, Shemot:1">#</a>
@@ -3407,7 +3391,7 @@
             </nav>
           </section>
           <h4 id="chapter-shemot-shemot-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-shemot-shemot-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shemot-shemot-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shemot:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shemot-shemot-2" aria-label="Copy link to Sha'ar HaMitzvot, Shemot:2">#</a>
@@ -3433,7 +3417,7 @@
           <h2 id="group-bo">Bo</h2>
           <h3 id="section-bo-bo">Bo</h3>
           <h4 id="chapter-bo-bo-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-bo-bo-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-bo-bo-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Bo:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-bo-bo-1" aria-label="Copy link to Sha'ar HaMitzvot, Bo:1">#</a>
@@ -3459,7 +3443,7 @@
           <h2 id="group-beshalach">Beshalach</h2>
           <h3 id="section-beshalach-beshalach">Beshalach</h3>
           <h4 id="chapter-beshalach-beshalach-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-beshalach-beshalach-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-beshalach-beshalach-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Beshalach:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-beshalach-beshalach-1" aria-label="Copy link to Sha'ar HaMitzvot, Beshalach:1">#</a>
@@ -3483,7 +3467,7 @@
             </nav>
           </section>
           <h4 id="chapter-beshalach-beshalach-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-beshalach-beshalach-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-beshalach-beshalach-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Beshalach:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-beshalach-beshalach-2" aria-label="Copy link to Sha'ar HaMitzvot, Beshalach:2">#</a>
@@ -3507,7 +3491,7 @@
             </nav>
           </section>
           <h4 id="chapter-beshalach-beshalach-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-beshalach-beshalach-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-beshalach-beshalach-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Beshalach:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-beshalach-beshalach-3" aria-label="Copy link to Sha'ar HaMitzvot, Beshalach:3">#</a>
@@ -3531,7 +3515,7 @@
             </nav>
           </section>
           <h4 id="chapter-beshalach-beshalach-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-beshalach-beshalach-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-beshalach-beshalach-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Beshalach:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-beshalach-beshalach-4" aria-label="Copy link to Sha'ar HaMitzvot, Beshalach:4">#</a>
@@ -3555,7 +3539,7 @@
             </nav>
           </section>
           <h4 id="chapter-beshalach-beshalach-5">Chapter 5</h4>
-          <section class="unit" id="shaar-hamitzvot-beshalach-beshalach-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-beshalach-beshalach-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Beshalach:5</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-beshalach-beshalach-5" aria-label="Copy link to Sha'ar HaMitzvot, Beshalach:5">#</a>
@@ -3581,7 +3565,7 @@
           <h2 id="group-yitro">Yitro</h2>
           <h3 id="section-yitro-yitro">Yitro</h3>
           <h4 id="chapter-yitro-yitro-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-yitro-yitro-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-yitro-yitro-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Yitro:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-yitro-yitro-1" aria-label="Copy link to Sha'ar HaMitzvot, Yitro:1">#</a>
@@ -3605,7 +3589,7 @@
             </nav>
           </section>
           <h4 id="chapter-yitro-yitro-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-yitro-yitro-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-yitro-yitro-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Yitro:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-yitro-yitro-2" aria-label="Copy link to Sha'ar HaMitzvot, Yitro:2">#</a>
@@ -3631,7 +3615,7 @@
           <h2 id="group-mishpatim">Mishpatim</h2>
           <h3 id="section-mishpatim-mishpatim">Mishpatim</h3>
           <h4 id="chapter-mishpatim-mishpatim-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-mishpatim-mishpatim-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-mishpatim-mishpatim-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Mishpatim:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-mishpatim-mishpatim-1" aria-label="Copy link to Sha'ar HaMitzvot, Mishpatim:1">#</a>
@@ -3655,7 +3639,7 @@
             </nav>
           </section>
           <h4 id="chapter-mishpatim-mishpatim-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-mishpatim-mishpatim-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-mishpatim-mishpatim-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Mishpatim:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-mishpatim-mishpatim-2" aria-label="Copy link to Sha'ar HaMitzvot, Mishpatim:2">#</a>
@@ -3679,7 +3663,7 @@
             </nav>
           </section>
           <h4 id="chapter-mishpatim-mishpatim-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-mishpatim-mishpatim-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-mishpatim-mishpatim-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Mishpatim:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-mishpatim-mishpatim-3" aria-label="Copy link to Sha'ar HaMitzvot, Mishpatim:3">#</a>
@@ -3703,7 +3687,7 @@
             </nav>
           </section>
           <h4 id="chapter-mishpatim-mishpatim-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-mishpatim-mishpatim-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-mishpatim-mishpatim-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Mishpatim:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-mishpatim-mishpatim-4" aria-label="Copy link to Sha'ar HaMitzvot, Mishpatim:4">#</a>
@@ -3727,7 +3711,7 @@
             </nav>
           </section>
           <h4 id="chapter-mishpatim-mishpatim-5">Chapter 5</h4>
-          <section class="unit" id="shaar-hamitzvot-mishpatim-mishpatim-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-mishpatim-mishpatim-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Mishpatim:5</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-mishpatim-mishpatim-5" aria-label="Copy link to Sha'ar HaMitzvot, Mishpatim:5">#</a>
@@ -3753,7 +3737,7 @@
           <h2 id="group-terumah">Terumah</h2>
           <h3 id="section-terumah-terumah">Terumah</h3>
           <h4 id="chapter-terumah-terumah-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-terumah-terumah-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-terumah-terumah-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Terumah:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-terumah-terumah-1" aria-label="Copy link to Sha'ar HaMitzvot, Terumah:1">#</a>
@@ -3777,7 +3761,7 @@
             </nav>
           </section>
           <h4 id="chapter-terumah-terumah-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-terumah-terumah-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-terumah-terumah-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Terumah:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-terumah-terumah-2" aria-label="Copy link to Sha'ar HaMitzvot, Terumah:2">#</a>
@@ -3801,7 +3785,7 @@
             </nav>
           </section>
           <h4 id="chapter-terumah-terumah-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-terumah-terumah-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-terumah-terumah-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Terumah:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-terumah-terumah-3" aria-label="Copy link to Sha'ar HaMitzvot, Terumah:3">#</a>
@@ -3825,7 +3809,7 @@
             </nav>
           </section>
           <h4 id="chapter-terumah-terumah-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-terumah-terumah-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-terumah-terumah-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Terumah:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-terumah-terumah-4" aria-label="Copy link to Sha'ar HaMitzvot, Terumah:4">#</a>
@@ -3849,7 +3833,7 @@
             </nav>
           </section>
           <h4 id="chapter-terumah-terumah-5">Chapter 5</h4>
-          <section class="unit" id="shaar-hamitzvot-terumah-terumah-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-terumah-terumah-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Terumah:5</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-terumah-terumah-5" aria-label="Copy link to Sha'ar HaMitzvot, Terumah:5">#</a>
@@ -3873,7 +3857,7 @@
             </nav>
           </section>
           <h4 id="chapter-terumah-terumah-6">Chapter 6</h4>
-          <section class="unit" id="shaar-hamitzvot-terumah-terumah-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-terumah-terumah-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Terumah:6</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-terumah-terumah-6" aria-label="Copy link to Sha'ar HaMitzvot, Terumah:6">#</a>
@@ -3897,7 +3881,7 @@
             </nav>
           </section>
           <h4 id="chapter-terumah-terumah-7">Chapter 7</h4>
-          <section class="unit" id="shaar-hamitzvot-terumah-terumah-7" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-terumah-terumah-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Terumah:7</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-terumah-terumah-7" aria-label="Copy link to Sha'ar HaMitzvot, Terumah:7">#</a>
@@ -3921,7 +3905,7 @@
             </nav>
           </section>
           <h4 id="chapter-terumah-terumah-8">Chapter 8</h4>
-          <section class="unit" id="shaar-hamitzvot-terumah-terumah-8" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-terumah-terumah-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Terumah:8</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-terumah-terumah-8" aria-label="Copy link to Sha'ar HaMitzvot, Terumah:8">#</a>
@@ -3945,7 +3929,7 @@
             </nav>
           </section>
           <h4 id="chapter-terumah-terumah-9">Chapter 9</h4>
-          <section class="unit" id="shaar-hamitzvot-terumah-terumah-9" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-terumah-terumah-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Terumah:9</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-terumah-terumah-9" aria-label="Copy link to Sha'ar HaMitzvot, Terumah:9">#</a>
@@ -3969,7 +3953,7 @@
             </nav>
           </section>
           <h4 id="chapter-terumah-terumah-10">Chapter 10</h4>
-          <section class="unit" id="shaar-hamitzvot-terumah-terumah-10" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-terumah-terumah-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Terumah:10</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-terumah-terumah-10" aria-label="Copy link to Sha'ar HaMitzvot, Terumah:10">#</a>
@@ -3995,7 +3979,7 @@
           <h2 id="group-tetzaveh">Tetzaveh</h2>
           <h3 id="section-tetzaveh-tetzaveh">Tetzaveh</h3>
           <h4 id="chapter-tetzaveh-tetzaveh-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-tetzaveh-tetzaveh-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-tetzaveh-tetzaveh-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Tetzaveh:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-tetzaveh-tetzaveh-1" aria-label="Copy link to Sha'ar HaMitzvot, Tetzaveh:1">#</a>
@@ -4019,7 +4003,7 @@
             </nav>
           </section>
           <h4 id="chapter-tetzaveh-tetzaveh-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-tetzaveh-tetzaveh-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-tetzaveh-tetzaveh-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Tetzaveh:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-tetzaveh-tetzaveh-2" aria-label="Copy link to Sha'ar HaMitzvot, Tetzaveh:2">#</a>
@@ -4045,7 +4029,7 @@
           <h2 id="group-ki-tissa">Ki Tissa</h2>
           <h3 id="section-ki-tissa-ki-tissa">Ki Tissa</h3>
           <h4 id="chapter-ki-tissa-ki-tissa-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-tissa-ki-tissa-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-tissa-ki-tissa-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Tissa:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-tissa-ki-tissa-1" aria-label="Copy link to Sha'ar HaMitzvot, Ki Tissa:1">#</a>
@@ -4069,7 +4053,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-tissa-ki-tissa-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-tissa-ki-tissa-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-tissa-ki-tissa-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Tissa:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-tissa-ki-tissa-2" aria-label="Copy link to Sha'ar HaMitzvot, Ki Tissa:2">#</a>
@@ -4095,7 +4079,7 @@
           <h2 id="group-vayikra">Vayikra</h2>
           <h3 id="section-vayikra-vayikra">Vayikra</h3>
           <h4 id="chapter-vayikra-vayikra-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-vayikra-vayikra-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayikra-vayikra-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayikra:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayikra-vayikra-1" aria-label="Copy link to Sha'ar HaMitzvot, Vayikra:1">#</a>
@@ -4119,7 +4103,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayikra-vayikra-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-vayikra-vayikra-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayikra-vayikra-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayikra:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayikra-vayikra-2" aria-label="Copy link to Sha'ar HaMitzvot, Vayikra:2">#</a>
@@ -4145,7 +4129,7 @@
           <h2 id="group-tzav">Tzav</h2>
           <h3 id="section-tzav-tzav">Tzav</h3>
           <h4 id="chapter-tzav-tzav-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-tzav-tzav-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-tzav-tzav-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Tzav:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-tzav-tzav-1" aria-label="Copy link to Sha'ar HaMitzvot, Tzav:1">#</a>
@@ -4171,7 +4155,7 @@
           <h2 id="group-shemini">Shemini</h2>
           <h3 id="section-shemini-shemini">Shemini</h3>
           <h4 id="chapter-shemini-shemini-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-shemini-shemini-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shemini-shemini-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shemini:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shemini-shemini-1" aria-label="Copy link to Sha'ar HaMitzvot, Shemini:1">#</a>
@@ -4195,7 +4179,7 @@
             </nav>
           </section>
           <h4 id="chapter-shemini-shemini-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-shemini-shemini-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shemini-shemini-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shemini:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shemini-shemini-2" aria-label="Copy link to Sha'ar HaMitzvot, Shemini:2">#</a>
@@ -4219,7 +4203,7 @@
             </nav>
           </section>
           <h4 id="chapter-shemini-shemini-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-shemini-shemini-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shemini-shemini-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shemini:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shemini-shemini-3" aria-label="Copy link to Sha'ar HaMitzvot, Shemini:3">#</a>
@@ -4243,7 +4227,7 @@
             </nav>
           </section>
           <h4 id="chapter-shemini-shemini-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-shemini-shemini-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shemini-shemini-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shemini:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shemini-shemini-4" aria-label="Copy link to Sha'ar HaMitzvot, Shemini:4">#</a>
@@ -4267,7 +4251,7 @@
             </nav>
           </section>
           <h4 id="chapter-shemini-shemini-5">Chapter 5</h4>
-          <section class="unit" id="shaar-hamitzvot-shemini-shemini-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shemini-shemini-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shemini:5</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shemini-shemini-5" aria-label="Copy link to Sha'ar HaMitzvot, Shemini:5">#</a>
@@ -4291,7 +4275,7 @@
             </nav>
           </section>
           <h4 id="chapter-shemini-shemini-6">Chapter 6</h4>
-          <section class="unit" id="shaar-hamitzvot-shemini-shemini-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shemini-shemini-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shemini:6</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shemini-shemini-6" aria-label="Copy link to Sha'ar HaMitzvot, Shemini:6">#</a>
@@ -4315,7 +4299,7 @@
             </nav>
           </section>
           <h4 id="chapter-shemini-shemini-7">Chapter 7</h4>
-          <section class="unit" id="shaar-hamitzvot-shemini-shemini-7" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shemini-shemini-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shemini:7</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shemini-shemini-7" aria-label="Copy link to Sha'ar HaMitzvot, Shemini:7">#</a>
@@ -4339,7 +4323,7 @@
             </nav>
           </section>
           <h4 id="chapter-shemini-shemini-8">Chapter 8</h4>
-          <section class="unit" id="shaar-hamitzvot-shemini-shemini-8" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shemini-shemini-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shemini:8</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shemini-shemini-8" aria-label="Copy link to Sha'ar HaMitzvot, Shemini:8">#</a>
@@ -4363,7 +4347,7 @@
             </nav>
           </section>
           <h4 id="chapter-shemini-shemini-9">Chapter 9</h4>
-          <section class="unit" id="shaar-hamitzvot-shemini-shemini-9" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shemini-shemini-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shemini:9</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shemini-shemini-9" aria-label="Copy link to Sha'ar HaMitzvot, Shemini:9">#</a>
@@ -4389,7 +4373,7 @@
           <h2 id="group-tazria">Tazria</h2>
           <h3 id="section-tazria-tazria">Tazria</h3>
           <h4 id="chapter-tazria-tazria-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-tazria-tazria-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-tazria-tazria-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Tazria:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-tazria-tazria-1" aria-label="Copy link to Sha'ar HaMitzvot, Tazria:1">#</a>
@@ -4413,7 +4397,7 @@
             </nav>
           </section>
           <h4 id="chapter-tazria-tazria-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-tazria-tazria-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-tazria-tazria-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Tazria:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-tazria-tazria-2" aria-label="Copy link to Sha'ar HaMitzvot, Tazria:2">#</a>
@@ -4437,7 +4421,7 @@
             </nav>
           </section>
           <h4 id="chapter-tazria-tazria-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-tazria-tazria-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-tazria-tazria-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Tazria:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-tazria-tazria-3" aria-label="Copy link to Sha'ar HaMitzvot, Tazria:3">#</a>
@@ -4461,7 +4445,7 @@
             </nav>
           </section>
           <h4 id="chapter-tazria-tazria-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-tazria-tazria-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-tazria-tazria-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Tazria:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-tazria-tazria-4" aria-label="Copy link to Sha'ar HaMitzvot, Tazria:4">#</a>
@@ -4485,7 +4469,7 @@
             </nav>
           </section>
           <h4 id="chapter-tazria-tazria-5">Chapter 5</h4>
-          <section class="unit" id="shaar-hamitzvot-tazria-tazria-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-tazria-tazria-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Tazria:5</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-tazria-tazria-5" aria-label="Copy link to Sha'ar HaMitzvot, Tazria:5">#</a>
@@ -4509,7 +4493,7 @@
             </nav>
           </section>
           <h4 id="chapter-tazria-tazria-6">Chapter 6</h4>
-          <section class="unit" id="shaar-hamitzvot-tazria-tazria-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-tazria-tazria-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Tazria:6</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-tazria-tazria-6" aria-label="Copy link to Sha'ar HaMitzvot, Tazria:6">#</a>
@@ -4535,7 +4519,7 @@
           <h2 id="group-acharei">Acharei</h2>
           <h3 id="section-acharei-acharei">Acharei</h3>
           <h4 id="chapter-acharei-acharei-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-acharei-acharei-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-acharei-acharei-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Acharei:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-acharei-acharei-1" aria-label="Copy link to Sha'ar HaMitzvot, Acharei:1">#</a>
@@ -4559,7 +4543,7 @@
             </nav>
           </section>
           <h4 id="chapter-acharei-acharei-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-acharei-acharei-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-acharei-acharei-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Acharei:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-acharei-acharei-2" aria-label="Copy link to Sha'ar HaMitzvot, Acharei:2">#</a>
@@ -4583,7 +4567,7 @@
             </nav>
           </section>
           <h4 id="chapter-acharei-acharei-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-acharei-acharei-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-acharei-acharei-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Acharei:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-acharei-acharei-3" aria-label="Copy link to Sha'ar HaMitzvot, Acharei:3">#</a>
@@ -4607,7 +4591,7 @@
             </nav>
           </section>
           <h4 id="chapter-acharei-acharei-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-acharei-acharei-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-acharei-acharei-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Acharei:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-acharei-acharei-4" aria-label="Copy link to Sha'ar HaMitzvot, Acharei:4">#</a>
@@ -4633,7 +4617,7 @@
           <h2 id="group-kedoshim">Kedoshim</h2>
           <h3 id="section-kedoshim-kedoshim">Kedoshim</h3>
           <h4 id="chapter-kedoshim-kedoshim-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-kedoshim-kedoshim-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-kedoshim-kedoshim-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Kedoshim:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-kedoshim-kedoshim-1" aria-label="Copy link to Sha'ar HaMitzvot, Kedoshim:1">#</a>
@@ -4657,7 +4641,7 @@
             </nav>
           </section>
           <h4 id="chapter-kedoshim-kedoshim-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-kedoshim-kedoshim-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-kedoshim-kedoshim-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Kedoshim:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-kedoshim-kedoshim-2" aria-label="Copy link to Sha'ar HaMitzvot, Kedoshim:2">#</a>
@@ -4681,7 +4665,7 @@
             </nav>
           </section>
           <h4 id="chapter-kedoshim-kedoshim-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-kedoshim-kedoshim-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-kedoshim-kedoshim-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Kedoshim:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-kedoshim-kedoshim-3" aria-label="Copy link to Sha'ar HaMitzvot, Kedoshim:3">#</a>
@@ -4705,7 +4689,7 @@
             </nav>
           </section>
           <h4 id="chapter-kedoshim-kedoshim-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-kedoshim-kedoshim-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-kedoshim-kedoshim-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Kedoshim:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-kedoshim-kedoshim-4" aria-label="Copy link to Sha'ar HaMitzvot, Kedoshim:4">#</a>
@@ -4729,7 +4713,7 @@
             </nav>
           </section>
           <h4 id="chapter-kedoshim-kedoshim-5">Chapter 5</h4>
-          <section class="unit" id="shaar-hamitzvot-kedoshim-kedoshim-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-kedoshim-kedoshim-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Kedoshim:5</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-kedoshim-kedoshim-5" aria-label="Copy link to Sha'ar HaMitzvot, Kedoshim:5">#</a>
@@ -4753,7 +4737,7 @@
             </nav>
           </section>
           <h4 id="chapter-kedoshim-kedoshim-6">Chapter 6</h4>
-          <section class="unit" id="shaar-hamitzvot-kedoshim-kedoshim-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-kedoshim-kedoshim-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Kedoshim:6</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-kedoshim-kedoshim-6" aria-label="Copy link to Sha'ar HaMitzvot, Kedoshim:6">#</a>
@@ -4777,7 +4761,7 @@
             </nav>
           </section>
           <h4 id="chapter-kedoshim-kedoshim-7">Chapter 7</h4>
-          <section class="unit" id="shaar-hamitzvot-kedoshim-kedoshim-7" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-kedoshim-kedoshim-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Kedoshim:7</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-kedoshim-kedoshim-7" aria-label="Copy link to Sha'ar HaMitzvot, Kedoshim:7">#</a>
@@ -4801,7 +4785,7 @@
             </nav>
           </section>
           <h4 id="chapter-kedoshim-kedoshim-8">Chapter 8</h4>
-          <section class="unit" id="shaar-hamitzvot-kedoshim-kedoshim-8" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-kedoshim-kedoshim-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Kedoshim:8</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-kedoshim-kedoshim-8" aria-label="Copy link to Sha'ar HaMitzvot, Kedoshim:8">#</a>
@@ -4827,7 +4811,7 @@
           <h2 id="group-emor">Emor</h2>
           <h3 id="section-emor-emor">Emor</h3>
           <h4 id="chapter-emor-emor-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-emor-emor-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-emor-emor-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Emor:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-emor-emor-1" aria-label="Copy link to Sha'ar HaMitzvot, Emor:1">#</a>
@@ -4853,7 +4837,7 @@
           <h2 id="group-behar">Behar</h2>
           <h3 id="section-behar-behar">Behar</h3>
           <h4 id="chapter-behar-behar-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-behar-behar-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-behar-behar-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Behar:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-behar-behar-1" aria-label="Copy link to Sha'ar HaMitzvot, Behar:1">#</a>
@@ -4877,7 +4861,7 @@
             </nav>
           </section>
           <h4 id="chapter-behar-behar-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-behar-behar-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-behar-behar-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Behar:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-behar-behar-2" aria-label="Copy link to Sha'ar HaMitzvot, Behar:2">#</a>
@@ -4901,7 +4885,7 @@
             </nav>
           </section>
           <h4 id="chapter-behar-behar-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-behar-behar-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-behar-behar-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Behar:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-behar-behar-3" aria-label="Copy link to Sha'ar HaMitzvot, Behar:3">#</a>
@@ -4925,7 +4909,7 @@
             </nav>
           </section>
           <h4 id="chapter-behar-behar-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-behar-behar-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-behar-behar-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Behar:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-behar-behar-4" aria-label="Copy link to Sha'ar HaMitzvot, Behar:4">#</a>
@@ -4949,7 +4933,7 @@
             </nav>
           </section>
           <h4 id="chapter-behar-behar-5">Chapter 5</h4>
-          <section class="unit" id="shaar-hamitzvot-behar-behar-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-behar-behar-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Behar:5</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-behar-behar-5" aria-label="Copy link to Sha'ar HaMitzvot, Behar:5">#</a>
@@ -4973,7 +4957,7 @@
             </nav>
           </section>
           <h4 id="chapter-behar-behar-6">Chapter 6</h4>
-          <section class="unit" id="shaar-hamitzvot-behar-behar-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-behar-behar-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Behar:6</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-behar-behar-6" aria-label="Copy link to Sha'ar HaMitzvot, Behar:6">#</a>
@@ -4997,7 +4981,7 @@
             </nav>
           </section>
           <h4 id="chapter-behar-behar-7">Chapter 7</h4>
-          <section class="unit" id="shaar-hamitzvot-behar-behar-7" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-behar-behar-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Behar:7</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-behar-behar-7" aria-label="Copy link to Sha'ar HaMitzvot, Behar:7">#</a>
@@ -5021,7 +5005,7 @@
             </nav>
           </section>
           <h4 id="chapter-behar-behar-8">Chapter 8</h4>
-          <section class="unit" id="shaar-hamitzvot-behar-behar-8" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-behar-behar-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Behar:8</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-behar-behar-8" aria-label="Copy link to Sha'ar HaMitzvot, Behar:8">#</a>
@@ -5045,7 +5029,7 @@
             </nav>
           </section>
           <h4 id="chapter-behar-behar-9">Chapter 9</h4>
-          <section class="unit" id="shaar-hamitzvot-behar-behar-9" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-behar-behar-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Behar:9</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-behar-behar-9" aria-label="Copy link to Sha'ar HaMitzvot, Behar:9">#</a>
@@ -5069,7 +5053,7 @@
             </nav>
           </section>
           <h4 id="chapter-behar-behar-10">Chapter 10</h4>
-          <section class="unit" id="shaar-hamitzvot-behar-behar-10" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-behar-behar-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Behar:10</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-behar-behar-10" aria-label="Copy link to Sha'ar HaMitzvot, Behar:10">#</a>
@@ -5093,7 +5077,7 @@
             </nav>
           </section>
           <h4 id="chapter-behar-behar-11">Chapter 11</h4>
-          <section class="unit" id="shaar-hamitzvot-behar-behar-11" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-behar-behar-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Behar:11</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-behar-behar-11" aria-label="Copy link to Sha'ar HaMitzvot, Behar:11">#</a>
@@ -5117,7 +5101,7 @@
             </nav>
           </section>
           <h4 id="chapter-behar-behar-12">Chapter 12</h4>
-          <section class="unit" id="shaar-hamitzvot-behar-behar-12" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-behar-behar-12" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Behar:12</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-behar-behar-12" aria-label="Copy link to Sha'ar HaMitzvot, Behar:12">#</a>
@@ -5143,7 +5127,7 @@
           <h2 id="group-nasso">Nasso</h2>
           <h3 id="section-nasso-nasso">Nasso</h3>
           <h4 id="chapter-nasso-nasso-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-nasso-nasso-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-nasso-nasso-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Nasso:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-nasso-nasso-1" aria-label="Copy link to Sha'ar HaMitzvot, Nasso:1">#</a>
@@ -5167,7 +5151,7 @@
             </nav>
           </section>
           <h4 id="chapter-nasso-nasso-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-nasso-nasso-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-nasso-nasso-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Nasso:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-nasso-nasso-2" aria-label="Copy link to Sha'ar HaMitzvot, Nasso:2">#</a>
@@ -5191,7 +5175,7 @@
             </nav>
           </section>
           <h4 id="chapter-nasso-nasso-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-nasso-nasso-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-nasso-nasso-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Nasso:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-nasso-nasso-3" aria-label="Copy link to Sha'ar HaMitzvot, Nasso:3">#</a>
@@ -5215,7 +5199,7 @@
             </nav>
           </section>
           <h4 id="chapter-nasso-nasso-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-nasso-nasso-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-nasso-nasso-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Nasso:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-nasso-nasso-4" aria-label="Copy link to Sha'ar HaMitzvot, Nasso:4">#</a>
@@ -5241,7 +5225,7 @@
           <h2 id="group-behaalotcha">Beha&#39;alotcha</h2>
           <h3 id="section-behaalotcha-behaalotcha">Beha&#39;alotcha</h3>
           <h4 id="chapter-behaalotcha-behaalotcha-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-behaalotcha-behaalotcha-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-behaalotcha-behaalotcha-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Beha&#39;alotcha:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-behaalotcha-behaalotcha-1" aria-label="Copy link to Sha'ar HaMitzvot, Beha'alotcha:1">#</a>
@@ -5265,7 +5249,7 @@
             </nav>
           </section>
           <h4 id="chapter-behaalotcha-behaalotcha-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-behaalotcha-behaalotcha-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-behaalotcha-behaalotcha-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Beha&#39;alotcha:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-behaalotcha-behaalotcha-2" aria-label="Copy link to Sha'ar HaMitzvot, Beha'alotcha:2">#</a>
@@ -5289,7 +5273,7 @@
             </nav>
           </section>
           <h4 id="chapter-behaalotcha-behaalotcha-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-behaalotcha-behaalotcha-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-behaalotcha-behaalotcha-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Beha&#39;alotcha:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-behaalotcha-behaalotcha-3" aria-label="Copy link to Sha'ar HaMitzvot, Beha'alotcha:3">#</a>
@@ -5313,7 +5297,7 @@
             </nav>
           </section>
           <h4 id="chapter-behaalotcha-behaalotcha-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-behaalotcha-behaalotcha-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-behaalotcha-behaalotcha-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Beha&#39;alotcha:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-behaalotcha-behaalotcha-4" aria-label="Copy link to Sha'ar HaMitzvot, Beha'alotcha:4">#</a>
@@ -5339,7 +5323,7 @@
           <h2 id="group-shelach">Shelach</h2>
           <h3 id="section-shelach-shelach">Shelach</h3>
           <h4 id="chapter-shelach-shelach-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-shelach-shelach-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shelach-shelach-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shelach:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shelach-shelach-1" aria-label="Copy link to Sha'ar HaMitzvot, Shelach:1">#</a>
@@ -5363,7 +5347,7 @@
             </nav>
           </section>
           <h4 id="chapter-shelach-shelach-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-shelach-shelach-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shelach-shelach-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shelach:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shelach-shelach-2" aria-label="Copy link to Sha'ar HaMitzvot, Shelach:2">#</a>
@@ -5387,7 +5371,7 @@
             </nav>
           </section>
           <h4 id="chapter-shelach-shelach-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-shelach-shelach-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shelach-shelach-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shelach:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shelach-shelach-3" aria-label="Copy link to Sha'ar HaMitzvot, Shelach:3">#</a>
@@ -5411,7 +5395,7 @@
             </nav>
           </section>
           <h4 id="chapter-shelach-shelach-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-shelach-shelach-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shelach-shelach-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shelach:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shelach-shelach-4" aria-label="Copy link to Sha'ar HaMitzvot, Shelach:4">#</a>
@@ -5435,7 +5419,7 @@
             </nav>
           </section>
           <h4 id="chapter-shelach-shelach-5">Chapter 5</h4>
-          <section class="unit" id="shaar-hamitzvot-shelach-shelach-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shelach-shelach-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shelach:5</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shelach-shelach-5" aria-label="Copy link to Sha'ar HaMitzvot, Shelach:5">#</a>
@@ -5461,7 +5445,7 @@
           <h2 id="group-korach">Korach</h2>
           <h3 id="section-korach-korach">Korach</h3>
           <h4 id="chapter-korach-korach-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-korach-korach-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-korach-korach-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Korach:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-korach-korach-1" aria-label="Copy link to Sha'ar HaMitzvot, Korach:1">#</a>
@@ -5487,7 +5471,7 @@
           <h2 id="group-chokat">Chokat</h2>
           <h3 id="section-chokat-chokat">Chokat</h3>
           <h4 id="chapter-chokat-chokat-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-chokat-chokat-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-chokat-chokat-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Chokat:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-chokat-chokat-1" aria-label="Copy link to Sha'ar HaMitzvot, Chokat:1">#</a>
@@ -5511,7 +5495,7 @@
             </nav>
           </section>
           <h4 id="chapter-chokat-chokat-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-chokat-chokat-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-chokat-chokat-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Chokat:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-chokat-chokat-2" aria-label="Copy link to Sha'ar HaMitzvot, Chokat:2">#</a>
@@ -5535,7 +5519,7 @@
             </nav>
           </section>
           <h4 id="chapter-chokat-chokat-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-chokat-chokat-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-chokat-chokat-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Chokat:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-chokat-chokat-3" aria-label="Copy link to Sha'ar HaMitzvot, Chokat:3">#</a>
@@ -5559,7 +5543,7 @@
             </nav>
           </section>
           <h4 id="chapter-chokat-chokat-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-chokat-chokat-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-chokat-chokat-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Chokat:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-chokat-chokat-4" aria-label="Copy link to Sha'ar HaMitzvot, Chokat:4">#</a>
@@ -5583,7 +5567,7 @@
             </nav>
           </section>
           <h4 id="chapter-chokat-chokat-5">Chapter 5</h4>
-          <section class="unit" id="shaar-hamitzvot-chokat-chokat-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-chokat-chokat-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Chokat:5</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-chokat-chokat-5" aria-label="Copy link to Sha'ar HaMitzvot, Chokat:5">#</a>
@@ -5609,7 +5593,7 @@
           <h2 id="group-pinchas">Pinchas</h2>
           <h3 id="section-pinchas-pinchas">Pinchas</h3>
           <h4 id="chapter-pinchas-pinchas-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-pinchas-pinchas-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-pinchas-pinchas-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Pinchas:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-pinchas-pinchas-1" aria-label="Copy link to Sha'ar HaMitzvot, Pinchas:1">#</a>
@@ -5633,7 +5617,7 @@
             </nav>
           </section>
           <h4 id="chapter-pinchas-pinchas-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-pinchas-pinchas-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-pinchas-pinchas-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Pinchas:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-pinchas-pinchas-2" aria-label="Copy link to Sha'ar HaMitzvot, Pinchas:2">#</a>
@@ -5657,7 +5641,7 @@
             </nav>
           </section>
           <h4 id="chapter-pinchas-pinchas-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-pinchas-pinchas-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-pinchas-pinchas-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Pinchas:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-pinchas-pinchas-3" aria-label="Copy link to Sha'ar HaMitzvot, Pinchas:3">#</a>
@@ -5683,7 +5667,7 @@
           <h2 id="group-vaetchanan">Vaetchanan</h2>
           <h3 id="section-vaetchanan-vaetchanan">Vaetchanan</h3>
           <h4 id="chapter-vaetchanan-vaetchanan-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-1" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:1">#</a>
@@ -5707,7 +5691,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-2" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:2">#</a>
@@ -5731,7 +5715,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-3" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:3">#</a>
@@ -5755,7 +5739,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-4" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:4">#</a>
@@ -5779,7 +5763,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-5">Chapter 5</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:5</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-5" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:5">#</a>
@@ -5803,7 +5787,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-6">Chapter 6</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:6</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-6" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:6">#</a>
@@ -5827,7 +5811,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-7">Chapter 7</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-7" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:7</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-7" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:7">#</a>
@@ -5851,7 +5835,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-8">Chapter 8</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-8" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:8</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-8" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:8">#</a>
@@ -5875,7 +5859,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-9">Chapter 9</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-9" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:9</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-9" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:9">#</a>
@@ -5899,7 +5883,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-10">Chapter 10</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-10" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:10</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-10" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:10">#</a>
@@ -5923,7 +5907,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-11">Chapter 11</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-11" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:11</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-11" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:11">#</a>
@@ -5947,7 +5931,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-12">Chapter 12</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-12" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-12" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:12</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-12" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:12">#</a>
@@ -5971,7 +5955,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-13">Chapter 13</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-13" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-13" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:13</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-13" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:13">#</a>
@@ -5995,7 +5979,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-14">Chapter 14</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-14" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-14" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:14</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-14" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:14">#</a>
@@ -6019,7 +6003,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-15">Chapter 15</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-15" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-15" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:15</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-15" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:15">#</a>
@@ -6043,7 +6027,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-16">Chapter 16</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-16" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-16" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:16</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-16" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:16">#</a>
@@ -6067,7 +6051,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-17">Chapter 17</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-17" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-17" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:17</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-17" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:17">#</a>
@@ -6091,7 +6075,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-18">Chapter 18</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-18" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-18" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:18</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-18" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:18">#</a>
@@ -6115,7 +6099,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-19">Chapter 19</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-19" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-19" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:19</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-19" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:19">#</a>
@@ -6139,7 +6123,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-20">Chapter 20</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-20" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-20" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:20</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-20" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:20">#</a>
@@ -6163,7 +6147,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-21">Chapter 21</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-21" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-21" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:21</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-21" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:21">#</a>
@@ -6187,7 +6171,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-22">Chapter 22</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-22" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-22" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:22</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-22" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:22">#</a>
@@ -6211,7 +6195,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-23">Chapter 23</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-23" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-23" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:23</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-23" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:23">#</a>
@@ -6235,7 +6219,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-24">Chapter 24</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-24" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-24" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:24</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-24" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:24">#</a>
@@ -6259,7 +6243,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-25">Chapter 25</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-25" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-25" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:25</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-25" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:25">#</a>
@@ -6283,7 +6267,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-26">Chapter 26</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-26" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-26" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:26</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-26" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:26">#</a>
@@ -6307,7 +6291,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-27">Chapter 27</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-27" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-27" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:27</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-27" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:27">#</a>
@@ -6331,7 +6315,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-28">Chapter 28</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-28" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-28" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:28</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-28" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:28">#</a>
@@ -6355,7 +6339,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-29">Chapter 29</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-29" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-29" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:29</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-29" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:29">#</a>
@@ -6379,7 +6363,7 @@
             </nav>
           </section>
           <h4 id="chapter-vaetchanan-vaetchanan-30">Chapter 30</h4>
-          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-30" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vaetchanan-vaetchanan-30" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vaetchanan:30</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vaetchanan-vaetchanan-30" aria-label="Copy link to Sha'ar HaMitzvot, Vaetchanan:30">#</a>
@@ -6405,7 +6389,7 @@
           <h2 id="group-eikev">Eikev</h2>
           <h3 id="section-eikev-eikev">Eikev</h3>
           <h4 id="chapter-eikev-eikev-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-1" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:1">#</a>
@@ -6429,7 +6413,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-2" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:2">#</a>
@@ -6453,7 +6437,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-3" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:3">#</a>
@@ -6477,7 +6461,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-4" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:4">#</a>
@@ -6501,7 +6485,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-5">Chapter 5</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:5</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-5" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:5">#</a>
@@ -6525,7 +6509,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-6">Chapter 6</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:6</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-6" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:6">#</a>
@@ -6549,7 +6533,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-7">Chapter 7</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-7" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:7</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-7" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:7">#</a>
@@ -6573,7 +6557,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-8">Chapter 8</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-8" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:8</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-8" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:8">#</a>
@@ -6597,7 +6581,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-9">Chapter 9</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-9" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:9</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-9" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:9">#</a>
@@ -6621,7 +6605,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-10">Chapter 10</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-10" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:10</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-10" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:10">#</a>
@@ -6645,7 +6629,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-11">Chapter 11</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-11" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:11</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-11" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:11">#</a>
@@ -6669,7 +6653,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-12">Chapter 12</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-12" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-12" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:12</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-12" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:12">#</a>
@@ -6693,7 +6677,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-13">Chapter 13</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-13" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-13" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:13</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-13" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:13">#</a>
@@ -6717,7 +6701,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-14">Chapter 14</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-14" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-14" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:14</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-14" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:14">#</a>
@@ -6741,7 +6725,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-15">Chapter 15</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-15" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-15" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:15</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-15" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:15">#</a>
@@ -6765,7 +6749,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-16">Chapter 16</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-16" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-16" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:16</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-16" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:16">#</a>
@@ -6789,7 +6773,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-17">Chapter 17</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-17" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-17" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:17</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-17" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:17">#</a>
@@ -6813,7 +6797,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-18">Chapter 18</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-18" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-18" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:18</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-18" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:18">#</a>
@@ -6837,7 +6821,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-19">Chapter 19</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-19" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-19" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:19</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-19" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:19">#</a>
@@ -6861,7 +6845,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-20">Chapter 20</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-20" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-20" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:20</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-20" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:20">#</a>
@@ -6885,7 +6869,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-21">Chapter 21</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-21" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-21" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:21</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-21" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:21">#</a>
@@ -6909,7 +6893,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-22">Chapter 22</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-22" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-22" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:22</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-22" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:22">#</a>
@@ -6933,7 +6917,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-23">Chapter 23</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-23" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-23" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:23</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-23" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:23">#</a>
@@ -6957,7 +6941,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-24">Chapter 24</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-24" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-24" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:24</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-24" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:24">#</a>
@@ -6981,7 +6965,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-25">Chapter 25</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-25" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-25" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:25</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-25" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:25">#</a>
@@ -7005,7 +6989,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-26">Chapter 26</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-26" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-26" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:26</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-26" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:26">#</a>
@@ -7029,7 +7013,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-27">Chapter 27</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-27" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-27" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:27</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-27" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:27">#</a>
@@ -7053,7 +7037,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-28">Chapter 28</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-28" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-28" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:28</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-28" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:28">#</a>
@@ -7077,7 +7061,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-29">Chapter 29</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-29" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-29" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:29</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-29" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:29">#</a>
@@ -7101,7 +7085,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-30">Chapter 30</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-30" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-30" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:30</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-30" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:30">#</a>
@@ -7125,7 +7109,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-31">Chapter 31</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-31" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-31" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:31</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-31" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:31">#</a>
@@ -7149,7 +7133,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-32">Chapter 32</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-32" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-32" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:32</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-32" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:32">#</a>
@@ -7173,7 +7157,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-33">Chapter 33</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-33" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-33" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:33</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-33" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:33">#</a>
@@ -7197,7 +7181,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-34">Chapter 34</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-34" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-34" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:34</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-34" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:34">#</a>
@@ -7221,7 +7205,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-35">Chapter 35</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-35" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-35" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:35</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-35" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:35">#</a>
@@ -7245,7 +7229,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-36">Chapter 36</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-36" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-36" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:36</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-36" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:36">#</a>
@@ -7269,7 +7253,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-37">Chapter 37</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-37" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-37" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:37</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-37" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:37">#</a>
@@ -7293,7 +7277,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-38">Chapter 38</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-38" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-38" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:38</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-38" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:38">#</a>
@@ -7317,7 +7301,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-39">Chapter 39</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-39" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-39" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:39</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-39" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:39">#</a>
@@ -7341,7 +7325,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-40">Chapter 40</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-40" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-40" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:40</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-40" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:40">#</a>
@@ -7365,7 +7349,7 @@
             </nav>
           </section>
           <h4 id="chapter-eikev-eikev-41">Chapter 41</h4>
-          <section class="unit" id="shaar-hamitzvot-eikev-eikev-41" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-eikev-eikev-41" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Eikev:41</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-eikev-eikev-41" aria-label="Copy link to Sha'ar HaMitzvot, Eikev:41">#</a>
@@ -7391,7 +7375,7 @@
           <h2 id="group-reeh">Re&#39;eh</h2>
           <h3 id="section-reeh-reeh">Re&#39;eh</h3>
           <h4 id="chapter-reeh-reeh-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-reeh-reeh-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-reeh-reeh-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Re&#39;eh:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-reeh-reeh-1" aria-label="Copy link to Sha'ar HaMitzvot, Re'eh:1">#</a>
@@ -7415,7 +7399,7 @@
             </nav>
           </section>
           <h4 id="chapter-reeh-reeh-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-reeh-reeh-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-reeh-reeh-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Re&#39;eh:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-reeh-reeh-2" aria-label="Copy link to Sha'ar HaMitzvot, Re'eh:2">#</a>
@@ -7439,7 +7423,7 @@
             </nav>
           </section>
           <h4 id="chapter-reeh-reeh-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-reeh-reeh-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-reeh-reeh-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Re&#39;eh:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-reeh-reeh-3" aria-label="Copy link to Sha'ar HaMitzvot, Re'eh:3">#</a>
@@ -7463,7 +7447,7 @@
             </nav>
           </section>
           <h4 id="chapter-reeh-reeh-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-reeh-reeh-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-reeh-reeh-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Re&#39;eh:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-reeh-reeh-4" aria-label="Copy link to Sha'ar HaMitzvot, Re'eh:4">#</a>
@@ -7487,7 +7471,7 @@
             </nav>
           </section>
           <h4 id="chapter-reeh-reeh-5">Chapter 5</h4>
-          <section class="unit" id="shaar-hamitzvot-reeh-reeh-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-reeh-reeh-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Re&#39;eh:5</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-reeh-reeh-5" aria-label="Copy link to Sha'ar HaMitzvot, Re'eh:5">#</a>
@@ -7511,7 +7495,7 @@
             </nav>
           </section>
           <h4 id="chapter-reeh-reeh-6">Chapter 6</h4>
-          <section class="unit" id="shaar-hamitzvot-reeh-reeh-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-reeh-reeh-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Re&#39;eh:6</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-reeh-reeh-6" aria-label="Copy link to Sha'ar HaMitzvot, Re'eh:6">#</a>
@@ -7535,7 +7519,7 @@
             </nav>
           </section>
           <h4 id="chapter-reeh-reeh-7">Chapter 7</h4>
-          <section class="unit" id="shaar-hamitzvot-reeh-reeh-7" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-reeh-reeh-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Re&#39;eh:7</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-reeh-reeh-7" aria-label="Copy link to Sha'ar HaMitzvot, Re'eh:7">#</a>
@@ -7559,7 +7543,7 @@
             </nav>
           </section>
           <h4 id="chapter-reeh-reeh-8">Chapter 8</h4>
-          <section class="unit" id="shaar-hamitzvot-reeh-reeh-8" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-reeh-reeh-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Re&#39;eh:8</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-reeh-reeh-8" aria-label="Copy link to Sha'ar HaMitzvot, Re'eh:8">#</a>
@@ -7583,7 +7567,7 @@
             </nav>
           </section>
           <h4 id="chapter-reeh-reeh-9">Chapter 9</h4>
-          <section class="unit" id="shaar-hamitzvot-reeh-reeh-9" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-reeh-reeh-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Re&#39;eh:9</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-reeh-reeh-9" aria-label="Copy link to Sha'ar HaMitzvot, Re'eh:9">#</a>
@@ -7607,7 +7591,7 @@
             </nav>
           </section>
           <h4 id="chapter-reeh-reeh-10">Chapter 10</h4>
-          <section class="unit" id="shaar-hamitzvot-reeh-reeh-10" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-reeh-reeh-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Re&#39;eh:10</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-reeh-reeh-10" aria-label="Copy link to Sha'ar HaMitzvot, Re'eh:10">#</a>
@@ -7631,7 +7615,7 @@
             </nav>
           </section>
           <h4 id="chapter-reeh-reeh-11">Chapter 11</h4>
-          <section class="unit" id="shaar-hamitzvot-reeh-reeh-11" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-reeh-reeh-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Re&#39;eh:11</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-reeh-reeh-11" aria-label="Copy link to Sha'ar HaMitzvot, Re'eh:11">#</a>
@@ -7657,7 +7641,7 @@
           <h2 id="group-shoftim">Shoftim</h2>
           <h3 id="section-shoftim-shoftim">Shoftim</h3>
           <h4 id="chapter-shoftim-shoftim-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-1" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:1">#</a>
@@ -7681,7 +7665,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-2" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:2">#</a>
@@ -7705,7 +7689,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-3" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:3">#</a>
@@ -7729,7 +7713,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-4" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:4">#</a>
@@ -7753,7 +7737,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-5">Chapter 5</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:5</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-5" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:5">#</a>
@@ -7777,7 +7761,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-6">Chapter 6</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:6</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-6" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:6">#</a>
@@ -7801,7 +7785,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-7">Chapter 7</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-7" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:7</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-7" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:7">#</a>
@@ -7825,7 +7809,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-8">Chapter 8</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-8" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:8</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-8" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:8">#</a>
@@ -7849,7 +7833,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-9">Chapter 9</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-9" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:9</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-9" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:9">#</a>
@@ -7873,7 +7857,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-10">Chapter 10</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-10" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:10</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-10" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:10">#</a>
@@ -7897,7 +7881,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-11">Chapter 11</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-11" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:11</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-11" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:11">#</a>
@@ -7921,7 +7905,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-12">Chapter 12</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-12" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-12" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:12</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-12" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:12">#</a>
@@ -7945,7 +7929,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-13">Chapter 13</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-13" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-13" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:13</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-13" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:13">#</a>
@@ -7969,7 +7953,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-14">Chapter 14</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-14" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-14" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:14</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-14" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:14">#</a>
@@ -7993,7 +7977,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-15">Chapter 15</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-15" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-15" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:15</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-15" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:15">#</a>
@@ -8017,7 +8001,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-16">Chapter 16</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-16" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-16" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:16</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-16" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:16">#</a>
@@ -8041,7 +8025,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-17">Chapter 17</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-17" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-17" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:17</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-17" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:17">#</a>
@@ -8065,7 +8049,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-18">Chapter 18</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-18" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-18" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:18</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-18" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:18">#</a>
@@ -8089,7 +8073,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-19">Chapter 19</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-19" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-19" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:19</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-19" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:19">#</a>
@@ -8113,7 +8097,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-20">Chapter 20</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-20" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-20" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:20</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-20" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:20">#</a>
@@ -8137,7 +8121,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-21">Chapter 21</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-21" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-21" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:21</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-21" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:21">#</a>
@@ -8161,7 +8145,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-22">Chapter 22</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-22" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-22" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:22</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-22" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:22">#</a>
@@ -8185,7 +8169,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-23">Chapter 23</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-23" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-23" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:23</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-23" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:23">#</a>
@@ -8209,7 +8193,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-24">Chapter 24</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-24" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-24" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:24</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-24" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:24">#</a>
@@ -8233,7 +8217,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-25">Chapter 25</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-25" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-25" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:25</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-25" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:25">#</a>
@@ -8257,7 +8241,7 @@
             </nav>
           </section>
           <h4 id="chapter-shoftim-shoftim-26">Chapter 26</h4>
-          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-26" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-shoftim-shoftim-26" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Shoftim:26</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-shoftim-shoftim-26" aria-label="Copy link to Sha'ar HaMitzvot, Shoftim:26">#</a>
@@ -8283,7 +8267,7 @@
           <h2 id="group-ki-teitzei">Ki Teitzei</h2>
           <h3 id="section-ki-teitzei-ki-teitzei">Ki Teitzei</h3>
           <h4 id="chapter-ki-teitzei-ki-teitzei-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-1" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:1">#</a>
@@ -8307,7 +8291,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-2" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:2">#</a>
@@ -8331,7 +8315,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-3" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:3">#</a>
@@ -8355,7 +8339,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-4" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:4">#</a>
@@ -8379,7 +8363,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-5">Chapter 5</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:5</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-5" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:5">#</a>
@@ -8403,7 +8387,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-6">Chapter 6</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:6</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-6" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:6">#</a>
@@ -8427,7 +8411,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-7">Chapter 7</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-7" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:7</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-7" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:7">#</a>
@@ -8451,7 +8435,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-8">Chapter 8</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-8" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:8</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-8" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:8">#</a>
@@ -8475,7 +8459,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-9">Chapter 9</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-9" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:9</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-9" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:9">#</a>
@@ -8499,7 +8483,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-10">Chapter 10</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-10" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:10</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-10" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:10">#</a>
@@ -8523,7 +8507,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-11">Chapter 11</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-11" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:11</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-11" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:11">#</a>
@@ -8547,7 +8531,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-12">Chapter 12</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-12" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-12" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:12</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-12" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:12">#</a>
@@ -8571,7 +8555,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-13">Chapter 13</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-13" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-13" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:13</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-13" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:13">#</a>
@@ -8595,7 +8579,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-14">Chapter 14</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-14" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-14" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:14</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-14" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:14">#</a>
@@ -8619,7 +8603,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-15">Chapter 15</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-15" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-15" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:15</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-15" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:15">#</a>
@@ -8643,7 +8627,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-16">Chapter 16</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-16" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-16" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:16</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-16" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:16">#</a>
@@ -8667,7 +8651,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-17">Chapter 17</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-17" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-17" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:17</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-17" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:17">#</a>
@@ -8691,7 +8675,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-18">Chapter 18</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-18" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-18" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:18</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-18" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:18">#</a>
@@ -8715,7 +8699,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-19">Chapter 19</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-19" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-19" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:19</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-19" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:19">#</a>
@@ -8739,7 +8723,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-20">Chapter 20</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-20" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-20" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:20</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-20" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:20">#</a>
@@ -8763,7 +8747,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-21">Chapter 21</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-21" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-21" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:21</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-21" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:21">#</a>
@@ -8787,7 +8771,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-22">Chapter 22</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-22" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-22" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:22</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-22" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:22">#</a>
@@ -8811,7 +8795,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-23">Chapter 23</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-23" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-23" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:23</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-23" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:23">#</a>
@@ -8835,7 +8819,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-24">Chapter 24</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-24" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-24" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:24</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-24" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:24">#</a>
@@ -8859,7 +8843,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-25">Chapter 25</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-25" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-25" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:25</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-25" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:25">#</a>
@@ -8883,7 +8867,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-26">Chapter 26</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-26" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-26" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:26</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-26" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:26">#</a>
@@ -8907,7 +8891,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-27">Chapter 27</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-27" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-27" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:27</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-27" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:27">#</a>
@@ -8931,7 +8915,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-28">Chapter 28</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-28" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-28" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:28</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-28" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:28">#</a>
@@ -8955,7 +8939,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-29">Chapter 29</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-29" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-29" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:29</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-29" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:29">#</a>
@@ -8979,7 +8963,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-30">Chapter 30</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-30" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-30" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:30</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-30" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:30">#</a>
@@ -9003,7 +8987,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-31">Chapter 31</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-31" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-31" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:31</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-31" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:31">#</a>
@@ -9027,7 +9011,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-32">Chapter 32</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-32" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-32" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:32</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-32" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:32">#</a>
@@ -9051,7 +9035,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-33">Chapter 33</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-33" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-33" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:33</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-33" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:33">#</a>
@@ -9075,7 +9059,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-34">Chapter 34</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-34" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-34" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:34</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-34" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:34">#</a>
@@ -9099,7 +9083,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-35">Chapter 35</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-35" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-35" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:35</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-35" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:35">#</a>
@@ -9123,7 +9107,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-36">Chapter 36</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-36" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-36" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:36</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-36" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:36">#</a>
@@ -9147,7 +9131,7 @@
             </nav>
           </section>
           <h4 id="chapter-ki-teitzei-ki-teitzei-37">Chapter 37</h4>
-          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-37" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-ki-teitzei-ki-teitzei-37" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Ki Teitzei:37</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-ki-teitzei-ki-teitzei-37" aria-label="Copy link to Sha'ar HaMitzvot, Ki Teitzei:37">#</a>
@@ -9173,7 +9157,7 @@
           <h2 id="group-vayelekh">Vayelekh</h2>
           <h3 id="section-vayelekh-vayelekh">Vayelekh</h3>
           <h4 id="chapter-vayelekh-vayelekh-1">Chapter 1</h4>
-          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-1" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-1" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayelekh:1</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayelekh-vayelekh-1" aria-label="Copy link to Sha'ar HaMitzvot, Vayelekh:1">#</a>
@@ -9197,7 +9181,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayelekh-vayelekh-2">Chapter 2</h4>
-          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-2" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-2" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayelekh:2</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayelekh-vayelekh-2" aria-label="Copy link to Sha'ar HaMitzvot, Vayelekh:2">#</a>
@@ -9221,7 +9205,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayelekh-vayelekh-3">Chapter 3</h4>
-          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-3" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-3" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayelekh:3</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayelekh-vayelekh-3" aria-label="Copy link to Sha'ar HaMitzvot, Vayelekh:3">#</a>
@@ -9245,7 +9229,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayelekh-vayelekh-4">Chapter 4</h4>
-          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-4" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-4" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayelekh:4</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayelekh-vayelekh-4" aria-label="Copy link to Sha'ar HaMitzvot, Vayelekh:4">#</a>
@@ -9269,7 +9253,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayelekh-vayelekh-5">Chapter 5</h4>
-          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-5" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-5" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayelekh:5</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayelekh-vayelekh-5" aria-label="Copy link to Sha'ar HaMitzvot, Vayelekh:5">#</a>
@@ -9293,7 +9277,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayelekh-vayelekh-6">Chapter 6</h4>
-          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-6" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-6" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayelekh:6</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayelekh-vayelekh-6" aria-label="Copy link to Sha'ar HaMitzvot, Vayelekh:6">#</a>
@@ -9317,7 +9301,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayelekh-vayelekh-7">Chapter 7</h4>
-          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-7" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-7" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayelekh:7</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayelekh-vayelekh-7" aria-label="Copy link to Sha'ar HaMitzvot, Vayelekh:7">#</a>
@@ -9341,7 +9325,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayelekh-vayelekh-8">Chapter 8</h4>
-          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-8" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-8" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayelekh:8</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayelekh-vayelekh-8" aria-label="Copy link to Sha'ar HaMitzvot, Vayelekh:8">#</a>
@@ -9365,7 +9349,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayelekh-vayelekh-9">Chapter 9</h4>
-          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-9" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-9" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayelekh:9</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayelekh-vayelekh-9" aria-label="Copy link to Sha'ar HaMitzvot, Vayelekh:9">#</a>
@@ -9389,7 +9373,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayelekh-vayelekh-10">Chapter 10</h4>
-          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-10" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-10" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayelekh:10</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayelekh-vayelekh-10" aria-label="Copy link to Sha'ar HaMitzvot, Vayelekh:10">#</a>
@@ -9413,7 +9397,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayelekh-vayelekh-11">Chapter 11</h4>
-          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-11" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-11" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayelekh:11</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayelekh-vayelekh-11" aria-label="Copy link to Sha'ar HaMitzvot, Vayelekh:11">#</a>
@@ -9437,7 +9421,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayelekh-vayelekh-12">Chapter 12</h4>
-          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-12" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-12" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayelekh:12</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayelekh-vayelekh-12" aria-label="Copy link to Sha'ar HaMitzvot, Vayelekh:12">#</a>
@@ -9461,7 +9445,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayelekh-vayelekh-13">Chapter 13</h4>
-          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-13" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-13" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayelekh:13</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayelekh-vayelekh-13" aria-label="Copy link to Sha'ar HaMitzvot, Vayelekh:13">#</a>
@@ -9485,7 +9469,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayelekh-vayelekh-14">Chapter 14</h4>
-          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-14" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-14" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayelekh:14</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayelekh-vayelekh-14" aria-label="Copy link to Sha'ar HaMitzvot, Vayelekh:14">#</a>
@@ -9509,7 +9493,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayelekh-vayelekh-15">Chapter 15</h4>
-          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-15" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-15" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayelekh:15</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayelekh-vayelekh-15" aria-label="Copy link to Sha'ar HaMitzvot, Vayelekh:15">#</a>
@@ -9533,7 +9517,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayelekh-vayelekh-16">Chapter 16</h4>
-          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-16" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-16" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayelekh:16</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayelekh-vayelekh-16" aria-label="Copy link to Sha'ar HaMitzvot, Vayelekh:16">#</a>
@@ -9557,7 +9541,7 @@
             </nav>
           </section>
           <h4 id="chapter-vayelekh-vayelekh-17">Chapter 17</h4>
-          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-17" data-unit data-complete="false">
+          <section class="unit" id="shaar-hamitzvot-vayelekh-vayelekh-17" data-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sha&#39;ar HaMitzvot, Vayelekh:17</h4></div>
               <a class="anchor" href="#shaar-hamitzvot-vayelekh-vayelekh-17" aria-label="Copy link to Sha'ar HaMitzvot, Vayelekh:17">#</a>
@@ -9584,38 +9568,5 @@
       </div>
     </div>
   </main>
-  <script>
-    (() => {
-      const units = Array.from(document.querySelectorAll("[data-unit]"));
-      const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
-      const nextButton = document.querySelector("[data-next-not-done]");
-      let currentFilter = "all";
-      const matchesFilter = (unit, filter) => {
-        const done = unit.dataset.complete === "true";
-        return filter === "all" || (filter === "done" && done) || (filter === "not-done" && !done);
-      };
-      const applyFilter = (filter) => {
-        currentFilter = filter;
-        units.forEach((unit) => { unit.hidden = !matchesFilter(unit, filter); });
-        filterButtons.forEach((button) => {
-          button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
-        });
-      };
-      filterButtons.forEach((button) => {
-        button.addEventListener("click", () => applyFilter(button.dataset.filter));
-      });
-      if (nextButton) {
-        nextButton.addEventListener("click", () => {
-          const incomplete = units.filter((unit) => unit.dataset.complete !== "true");
-          if (!incomplete.length) return;
-          if (currentFilter === "done") applyFilter("not-done");
-          const currentY = window.scrollY + 12;
-          const target = incomplete.find((unit) => unit.getBoundingClientRect().top + window.scrollY > currentY) || incomplete[0];
-          if (target.id) history.replaceState(null, "", "#" + target.id);
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-        });
-      }
-    })();
-  </script>
 </body>
 </html>
