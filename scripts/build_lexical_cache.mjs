@@ -47,6 +47,10 @@ function normalizeHebrewToken(value) {
   return Array.from(stripped, (char) => finalLetters.get(char) || char).join('');
 }
 
+function hasAbbreviationMark(value) {
+  return /[\u05F3\u05F4'"]/.test(value);
+}
+
 function normalizeHebrewTokenWithQubutsMater(value) {
   const text = normalizeHebrewPunctuation(value);
   const output = [];
@@ -74,6 +78,50 @@ function unique(values) {
 }
 
 const fixedExpressions = [
+  {
+    normalized_word: '\u05E9\u05DC',
+    hebrew_word: '\u05E9\u05DC',
+    surface_forms: [
+      '\u05E9\u05DC',
+      '\u05E9\u05B6\u05C1\u05DC',
+    ],
+    surface_renderings: [
+      'of',
+      'belonging to',
+    ],
+    surface_context_status: 'resolved_particle',
+    surface_context_note: 'Resolved as a fixed Hebrew possessive/relational particle.',
+    breakdown: [],
+    possible_entry: {
+      entry_key: 'grammar-particle:\u05E9\u05DC',
+      lemma: '\u05E9\u05DC',
+      match_key: '\u05E9\u05DC',
+      source_name: 'Workspace grammar rule',
+      source_family: 'workspace',
+      source_id: 'grammar-particle:\u05E9\u05DC',
+      transliteration: '',
+      strict_renderings: [
+        'of',
+        'belonging to',
+      ],
+      root: '',
+      root_transliteration: '',
+      root_meaning: [],
+      context_role: 'likely_contextual',
+      relation_label: '',
+      source_row_keys: ['workspace|grammar-particle:\u05E9\u05DC'],
+    },
+    source_row: {
+      source_name: 'Workspace grammar rule',
+      source_family: 'workspace',
+      source_id: 'grammar-particle:\u05E9\u05DC',
+      source_url: 'local:grammar-rules',
+      license: 'N/A - project lexical rule',
+      license_url: 'local:grammar-rules',
+      fields_used: ['fixed Hebrew particle lookup', 'strict renderings'],
+      notes: 'Project-maintained grammar rule. No external dictionary text imported.',
+    },
+  },
   {
     normalized_word: '\u05D1\u05EA\u05D5\u05E8',
     hebrew_word: '\u05D1\u05EA\u05D5\u05E8',
@@ -132,6 +180,52 @@ const fixedExpressions = [
 ];
 
 const fixedExpressionByNormalized = new Map(fixedExpressions.map((expression) => [expression.normalized_word, expression]));
+
+const prefixRules = new Map([
+  ['\u05D5', { hebrew: '\u05D5\u05BE', renderings: ['and'] }],
+  ['\u05D4', { hebrew: '\u05D4\u05BE', renderings: ['the'] }],
+  ['\u05D1', { hebrew: '\u05D1\u05BE', renderings: ['in', 'with', 'by'] }],
+  ['\u05DB', { hebrew: '\u05DB\u05BE', renderings: ['as', 'like'] }],
+  ['\u05DC', { hebrew: '\u05DC\u05BE', renderings: ['to', 'for', 'of'] }],
+  ['\u05DE', { hebrew: '\u05DE\u05BE', renderings: ['from', 'of'] }],
+  ['\u05E9', { hebrew: '\u05E9\u05BE', renderings: ['that', 'which', 'who'] }],
+]);
+
+const acceptedPrefixSequences = new Set([
+  '',
+  '\u05D5',
+  '\u05D4',
+  '\u05D1',
+  '\u05DB',
+  '\u05DC',
+  '\u05DE',
+  '\u05E9',
+  '\u05D5\u05D4',
+  '\u05D5\u05D1',
+  '\u05D5\u05DC',
+  '\u05D5\u05DB',
+  '\u05DE\u05D4',
+  '\u05E9\u05D4',
+  '\u05D1\u05D4',
+  '\u05DC\u05D4',
+  '\u05DB\u05D4',
+]);
+
+const suffixRules = [
+  { normalized: '\u05D9\u05D4\u05DD', hebrew: '\u05BE\u05D9\u05D4\u05DD', renderings: ['their'] },
+  { normalized: '\u05D9\u05D4\u05DF', hebrew: '\u05BE\u05D9\u05D4\u05DF', renderings: ['their'] },
+  { normalized: '\u05D9\u05D5', hebrew: '\u05BE\u05D9\u05D5', renderings: ['his', 'its'] },
+  { normalized: '\u05D9\u05D4', hebrew: '\u05BE\u05D9\u05D4', renderings: ['her', 'its'] },
+  { normalized: '\u05E0\u05D5', hebrew: '\u05BE\u05E0\u05D5', renderings: ['our'] },
+  { normalized: '\u05DB\u05DD', hebrew: '\u05BE\u05DB\u05DD', renderings: ['your'] },
+  { normalized: '\u05DB\u05DF', hebrew: '\u05BE\u05DB\u05DF', renderings: ['your'] },
+  { normalized: '\u05D5', hebrew: '\u05BE\u05D5', renderings: ['his', 'its'] },
+  { normalized: '\u05D4', hebrew: '\u05BE\u05D4', renderings: ['her', 'its'] },
+  { normalized: '\u05DD', hebrew: '\u05BE\u05DD', renderings: ['their'] },
+  { normalized: '\u05DF', hebrew: '\u05BE\u05DF', renderings: ['their'] },
+  { normalized: '\u05DE', hebrew: '\u05BE\u05DD', renderings: ['their'] },
+  { normalized: '\u05E0', hebrew: '\u05BE\u05DF', renderings: ['their'] },
+].sort((a, b) => b.normalized.length - a.normalized.length);
 
 function formatList(items) {
   return items.map((item) => `- ${item}`).join('\n');
@@ -203,6 +297,149 @@ function renderingsFor(row) {
   const likely = (entry?.possible_entries || []).find((possibleEntry) => possibleEntry.context_role === 'likely_contextual');
   const surfaceRenderings = row.surface_renderings?.length ? row.surface_renderings : null;
   return (surfaceRenderings || likely?.strict_renderings || entry?.strict_renderings || []).slice(0, 3).join(', ') || 'N/A';
+}
+
+function entryRenderings(entry) {
+  const likely = (entry?.possible_entries || []).find((possibleEntry) => possibleEntry.context_role === 'likely_contextual');
+  return unique([
+    ...(likely?.strict_renderings || []),
+    ...(entry?.strict_renderings || []),
+  ])
+    .map((rendering) => String(rendering || '').trim())
+    .map((rendering) => rendering.replace(/\.$/, ''))
+    .filter((rendering) => {
+      if (!rendering || rendering.length > 40) return false;
+      if (/[()[\];]/.test(rendering)) return false;
+      if (/\b(i\.e|literally|figuratively|concretely|implication|name of)\b/i.test(rendering)) return false;
+      if (/\b(good|bad|properly|direct|implied|transitive|advise|appear|compare|enemy|coffee|sea|water|Mediterranean|whether|specifically|infix|hello|salutation|greeting|lust)\b/i.test(rendering)) return false;
+      if (/^(to|be|being|become|became)\s+/i.test(rendering)) return false;
+      if (/^(a|an|the)\s+(good|bad|sea)\b/i.test(rendering)) return false;
+      if (/^[A-Z]/.test(rendering) && !/^(Torah|God|Israel|Jerusalem)\b/.test(rendering)) return false;
+      return true;
+    })
+    .slice(0, 4);
+}
+
+function prefixPhrase(prefixes) {
+  if (!prefixes.length) return [''];
+  const sequence = prefixes.join('');
+  const fixed = {
+    ['\u05D5\u05D4']: ['and the'],
+    ['\u05D5\u05D1']: ['and in', 'and with', 'and by'],
+    ['\u05D5\u05DC']: ['and to', 'and for', 'and of'],
+    ['\u05D5\u05DB']: ['and as', 'and like'],
+    ['\u05DE\u05D4']: ['from the', 'of the'],
+    ['\u05E9\u05D4']: ['that the', 'which the'],
+    ['\u05D1\u05D4']: ['in the', 'with the', 'by the'],
+    ['\u05DC\u05D4']: ['to the', 'for the', 'of the'],
+    ['\u05DB\u05D4']: ['as the', 'like the'],
+  }[sequence];
+  if (fixed) return fixed;
+  let phrases = [''];
+  for (const prefix of prefixes) {
+    const rule = prefixRules.get(prefix);
+    if (!rule) return [];
+    const next = [];
+    for (const phrase of phrases) {
+      for (const rendering of rule.renderings) {
+        next.push(`${phrase} ${rendering}`.trim());
+      }
+    }
+    phrases = next.slice(0, 6);
+  }
+  return phrases;
+}
+
+function stripLeadingEnglishArticle(value) {
+  return String(value || '').replace(/^(a|an|the)\s+/i, '');
+}
+
+function combineSurfaceRenderings(prefixes, baseRenderings, suffix) {
+  const prefixPhrases = prefixPhrase(prefixes);
+  const suffixRenderings = suffix?.renderings || [];
+  const results = [];
+  for (const base of baseRenderings) {
+    const baseText = String(base || '').trim();
+    if (!baseText) continue;
+    const basePhraseOptions = suffixRenderings.length
+      ? suffixRenderings.map((suffixRendering) => `${suffixRendering} ${baseText}`.trim())
+      : [baseText];
+    for (const prefix of prefixPhrases) {
+      for (const basePhrase of basePhraseOptions) {
+        const baseForPrefix = /\bthe$/i.test(prefix) ? stripLeadingEnglishArticle(basePhrase) : basePhrase;
+        const phrase = prefix ? `${prefix} ${baseForPrefix}` : basePhrase;
+        results.push(phrase);
+        if (results.length >= 8) return unique(results);
+      }
+    }
+  }
+  return unique(results).slice(0, 8);
+}
+
+function getPrefixSequences(normalized) {
+  const sequences = [''];
+  for (let length = 1; length <= 2 && length < normalized.length; length += 1) {
+    const sequence = normalized.slice(0, length);
+    if (acceptedPrefixSequences.has(sequence)) sequences.push(sequence);
+  }
+  return sequences.sort((a, b) => b.length - a.length);
+}
+
+function analyzeAffixSurfaceForm(surfaceWord, normalizedWord) {
+  if (!normalizedWord || normalizedWord.length < 3 || hasAbbreviationMark(normalizedWord)) return null;
+  const attempts = [];
+  for (const prefixSequence of getPrefixSequences(normalizedWord)) {
+    const afterPrefix = normalizedWord.slice(prefixSequence.length);
+    if (afterPrefix.length < 2) continue;
+    attempts.push({ prefixSequence, suffix: null, baseNormalized: afterPrefix });
+    for (const suffix of suffixRules) {
+      if (!afterPrefix.endsWith(suffix.normalized)) continue;
+      const baseNormalized = afterPrefix.slice(0, afterPrefix.length - suffix.normalized.length);
+      if (baseNormalized.length < 3) continue;
+      if (suffix.normalized.length < 2) continue;
+      attempts.push({ prefixSequence, suffix, baseNormalized });
+    }
+  }
+
+  for (const attempt of attempts) {
+    const entryId = lexiconByNormalized.get(attempt.baseNormalized);
+    if (!entryId) continue;
+    if ((observedNormalizedCounts.get(attempt.baseNormalized) || 0) < 5) continue;
+    const entry = lexiconById.get(entryId);
+    const baseRenderings = entryRenderings(entry);
+    if (!baseRenderings.length) continue;
+    const prefixes = Array.from(attempt.prefixSequence);
+    const surfaceRenderings = combineSurfaceRenderings(prefixes, baseRenderings, attempt.suffix);
+    if (!surfaceRenderings.length) continue;
+    const breakdown = [
+      ...prefixes.map((prefix) => ({
+        hebrew: prefixRules.get(prefix)?.hebrew || `${prefix}\u05BE`,
+        strict_renderings: prefixRules.get(prefix)?.renderings || [],
+      })),
+      {
+        hebrew: entry?.hebrew_word || attempt.baseNormalized,
+        strict_renderings: baseRenderings,
+      },
+    ];
+    if (attempt.suffix) {
+      breakdown.push({
+        hebrew: attempt.suffix.hebrew,
+        strict_renderings: attempt.suffix.renderings,
+      });
+    }
+    return {
+      lexicon_entry_id: entryId,
+      entry,
+      surfaceAnalysis: {
+        surface_transliteration: '',
+        surface_renderings: surfaceRenderings,
+        surface_context_status: 'resolved_affix_parser',
+        surface_context_note: 'Resolved by conservative prefix/suffix parser using an existing base lexical entry.',
+        breakdown,
+      },
+    };
+  }
+  return null;
 }
 
 function getLeadingLamedBase(surfaceWord) {
@@ -310,8 +547,29 @@ for (const oldFile of fs.readdirSync(occurrencesDir).filter((name) => name.endsW
 
 const tokenRows = new Map();
 const sourceFiles = fs.readdirSync(sourceDir).filter((name) => name.endsWith('.json')).sort();
+const observedNormalizedCounts = new Map();
+
+for (const fileName of sourceFiles) {
+  const source = readJson(path.join(sourceDir, fileName));
+  if (source.work_id !== lexicalScope.work_id) continue;
+  for (const unit of source.units || []) {
+    for (const paragraph of unit.hebrew || []) {
+      for (const surfaceWord of getTokens(paragraph)) {
+        const normalizedWord = normalizeHebrewToken(surfaceWord);
+        if (!normalizedWord) continue;
+        observedNormalizedCounts.set(
+          normalizedWord,
+          (observedNormalizedCounts.get(normalizedWord) || 0) + 1,
+        );
+      }
+    }
+  }
+}
+
 let totalOccurrences = 0;
 let totalUnits = 0;
+let directMatchedUnique = 0;
+let affixResolvedUnique = 0;
 
 for (const fileName of sourceFiles) {
   const source = readJson(path.join(sourceDir, fileName));
@@ -335,18 +593,34 @@ for (const fileName of sourceFiles) {
 
         const normalizedWord = normalizeHebrewToken(surfaceWord);
         const tokenIndexId = stableId('tok', surfaceWord);
-        const lexiconEntryId = lexiconByNormalized.get(normalizedWord) || '';
+        const directLexiconEntryId = lexiconByNormalized.get(normalizedWord) || '';
+        let lexiconEntryId = directLexiconEntryId;
+        let entry = lexiconEntryId ? lexiconById.get(lexiconEntryId) : null;
+        let surfaceAnalysis = entry ? analyzeSurfaceForm(surfaceWord, entry) : null;
+        let matchMethod = lexiconEntryId ? 'direct' : 'unmatched';
+
+        if (!lexiconEntryId) {
+          const affixAnalysis = analyzeAffixSurfaceForm(surfaceWord, normalizedWord);
+          if (affixAnalysis) {
+            lexiconEntryId = affixAnalysis.lexicon_entry_id;
+            entry = affixAnalysis.entry;
+            surfaceAnalysis = affixAnalysis.surfaceAnalysis;
+            matchMethod = 'affix_parser';
+          }
+        }
+
         const status = lexiconEntryId ? 'matched' : 'unmatched';
-        const entry = lexiconEntryId ? lexiconById.get(lexiconEntryId) : null;
-        const surfaceAnalysis = entry ? analyzeSurfaceForm(surfaceWord, entry) : null;
 
         if (!tokenRows.has(tokenIndexId)) {
+          if (matchMethod === 'direct') directMatchedUnique += 1;
+          if (matchMethod === 'affix_parser') affixResolvedUnique += 1;
           tokenRows.set(tokenIndexId, {
             token_index_id: tokenIndexId,
             surface_word: surfaceWord,
             normalized_word: normalizedWord,
             lexicon_entry_id: lexiconEntryId,
             status,
+            match_method: matchMethod,
             surface_transliteration: surfaceAnalysis?.surface_transliteration || '',
             surface_renderings: surfaceAnalysis?.surface_renderings || [],
             surface_context_status: surfaceAnalysis?.surface_context_status || '',
@@ -396,6 +670,8 @@ const forms = Array.from(tokenRows.values()).sort((a, b) => {
 
 const matchedForms = forms.filter((row) => row.status === 'matched');
 const unmatchedForms = forms.filter((row) => row.status !== 'matched');
+const directMatchedForms = matchedForms.filter((row) => row.match_method === 'direct');
+const affixResolvedForms = matchedForms.filter((row) => row.match_method === 'affix_parser');
 const wikidataMatchedForms = matchedForms.filter((row) => sourceFamiliesFor(row).includes('wikidata'));
 const openScripturesMatchedForms = matchedForms.filter((row) => sourceFamiliesFor(row).includes('openscriptures'));
 
@@ -414,6 +690,8 @@ writeJson(tokenIndexPath, {
   total_units: totalUnits,
   total_occurrences: totalOccurrences,
   total_unique_surface_forms: forms.length,
+  direct_matched_surface_forms: directMatchedForms.length,
+  newly_resolved_affix_surface_forms: affixResolvedForms.length,
   matched_surface_forms: matchedForms.length,
   matched_wikidata_surface_forms: wikidataMatchedForms.length,
   enriched_openscriptures_surface_forms: openScripturesMatchedForms.length,
@@ -422,10 +700,20 @@ writeJson(tokenIndexPath, {
 });
 
 const matchedSamples = matchedForms.filter((row) => renderingsFor(row) !== 'N/A').slice(0, 20).map(formatMatchedSample);
+const affixSamples = affixResolvedForms
+  .filter((row) => renderingsFor(row) !== 'N/A')
+  .sort((a, b) => b.occurrence_count - a.occurrence_count || a.surface_word.localeCompare(b.surface_word, 'he'))
+  .slice(0, 20)
+  .map(formatMatchedSample);
 const unmatchedSamples = unmatchedForms
   .filter((row) => row.normalized_word.length > 2 && !/[\u05F3\u05F4'"]/.test(row.normalized_word))
   .slice(0, 20)
   .map(formatUnmatchedSample);
+const topRemainingUnmatched = unmatchedForms
+  .slice()
+  .sort((a, b) => b.occurrence_count - a.occurrence_count || a.surface_word.localeCompare(b.surface_word, 'he'))
+  .slice(0, 50)
+  .map((row) => `${row.occurrence_count}x ${formatUnmatchedSample(row)}`);
 const testRefs = [
   'Orot, Lights from Darkness, Land of Israel 1:1',
   'Orot, Lights from Darkness, War 1:1',
@@ -442,20 +730,27 @@ Generated: ${new Date().toISOString()}
 - Work: Orot only
 - Hebrew source text changed: no
 - Translation overlays changed: no
-- Sources used: Wikidata Lexemes first; OpenScriptures morphHB + HebrewLexicon as fallback/enrichment
+- Sources used: existing local lexical cache generated from Wikidata Lexemes first; OpenScriptures morphHB + HebrewLexicon as fallback/enrichment
 - Sources not used: Kaikki, Wiktionary, copyrighted translations
+- New parser: conservative prefix/suffix parser; accepts only when the remaining base is already present in the approved local lexical layer
 - Count source: generated HUD token index, which is the page-render source of truth
-- TODO: externalize lexical JSON instead of embedding the full Orot lexical payload in the page HTML.
+- Payload: Orot lexical details are externalized through data/lexical/orot.manifest.json and data/lexical/orot-chunks/
 
 ## Counts
 
 - Total Orot unique surface forms: ${forms.length}
 - Total Orot token occurrences: ${totalOccurrences}
-- Total matched: ${matchedForms.length}
+- Matched before prefix/suffix parser: ${directMatchedForms.length}
+- Newly resolved by prefix/suffix parser: ${affixResolvedForms.length}
+- Total matched after parser: ${matchedForms.length}
 - Percent matched: ${percent(matchedForms.length, forms.length)}
 - Matched via Wikidata: ${wikidataMatchedForms.length}
 - Enriched via OpenScriptures: ${openScripturesMatchedForms.length}
 - Unmatched: ${unmatchedForms.length}
+
+## Newly Resolved Parsed Forms
+
+${formatList(affixSamples)}
 
 ## Sample Matched Words With Refs To Test
 
@@ -464,6 +759,10 @@ ${formatList(matchedSamples)}
 ## Sample Unmatched Words
 
 ${formatList(unmatchedSamples)}
+
+## Top 50 Remaining Unmatched By Frequency
+
+${formatList(topRemainingUnmatched)}
 
 ## Exact Orot Refs To Test
 
@@ -474,6 +773,8 @@ console.log(JSON.stringify({
   total_units: totalUnits,
   total_occurrences: totalOccurrences,
   total_unique_surface_forms: forms.length,
+  direct_matched_surface_forms: directMatchedForms.length,
+  newly_resolved_affix_surface_forms: affixResolvedForms.length,
   matched_surface_forms: matchedForms.length,
   matched_wikidata_surface_forms: wikidataMatchedForms.length,
   enriched_openscriptures_surface_forms: openScripturesMatchedForms.length,

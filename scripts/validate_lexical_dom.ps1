@@ -57,6 +57,7 @@ $betorSurface = -join @([char]0x05D1, [char]0x05B0, [char]0x05BC, [char]0x05EA, 
 $betorNormalized = -join @([char]0x05D1, [char]0x05EA, [char]0x05D5, [char]0x05E8)
 $betorPrefix = -join @([char]0x05D1, [char]0x05B0, [char]0x05BC, [char]0x05BE)
 $betorBase = -join @([char]0x05EA, [char]0x05D5, [char]0x05B9, [char]0x05E8)
+$shelNormalized = -join @([char]0x05E9, [char]0x05DC)
 
 function Assert-Codepoints {
   param(
@@ -150,6 +151,24 @@ if ($null -eq $betorLikely -or $betorLikely.lemma -ne $betorNormalized -or -not 
 }
 if (@($betorEntry.source_rows).Count -ne 1 -or @($betorEntry.source_rows)[0].source_family -ne 'workspace') {
   throw "Expected betor fixed-expression entry to use only the workspace expression source row."
+}
+
+$shel = @($tokenIndex.forms | Where-Object { $_.normalized_word -eq $shelNormalized }) | Select-Object -First 1
+if ($null -eq $shel) {
+  throw "Expected grammar particle token not found: shel"
+}
+if ($shel.status -ne 'matched' -or $shel.match_method -ne 'direct') {
+  throw "Expected shel to resolve directly through the workspace grammar-particle rule."
+}
+foreach ($rendering in @('of', 'belonging to')) {
+  if (-not (@($shel.surface_renderings) -contains $rendering)) {
+    throw "Expected shel grammar-particle rendering missing: $rendering"
+  }
+}
+$shelEntry = $entriesById[[string]$shel.lexicon_entry_id]
+$shelSourceId = "grammar-particle:$shelNormalized"
+if ($null -eq $shelEntry -or @($shelEntry.source_rows).Count -ne 1 -or @($shelEntry.source_rows)[0].source_id -ne $shelSourceId) {
+  throw "Expected shel lexicon entry to use only the workspace grammar-particle source row."
 }
 
 $orotHtmlPath = Join-Path $PSScriptRoot '..\orot\index.html'
