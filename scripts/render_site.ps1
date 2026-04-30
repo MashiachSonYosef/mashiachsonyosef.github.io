@@ -625,6 +625,7 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        if (!entries.length) { setList(root, "[data-hud-renderings]", view.strict_renderings || ["No lexical entry yet."]); return; }')
   [void]$Builder.AppendLine('        const likelyEntries = entries.filter((entry) => entry.context_role === "likely_contextual");')
   [void]$Builder.AppendLine('        const otherEntries = entries.filter((entry) => entry.context_role !== "likely_contextual");')
+  [void]$Builder.AppendLine('        if (label) label.textContent = likelyEntries.length ? "Lexical resolution" : "Possible lexical entries";')
   [void]$Builder.AppendLine('        const note = document.createElement("p");')
   [void]$Builder.AppendLine('        note.className = "lexical-context-note";')
   [void]$Builder.AppendLine('        note.textContent = likelyEntries.length ? (view.surface_context_note || view.context_note || "Context resolved.") : "Context not resolved.";')

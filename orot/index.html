@@ -109,7 +109,7 @@
         <h1>Orot</h1>
         <p class="meta">416 total source units | imported 2026-04-27</p>
         <p class="meta source-citation">Hebrew version: Wikisource | Version source: <a href="http://he.wikisource.org">he.wikisource.org</a> | Digitization: Sefaria API | License: CC-BY-SA</p>
-        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>14533 matched</strong> / 17307 unique forms.</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>14722 matched</strong> / 17307 unique forms.</p>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -9998,6 +9998,7 @@
         if (!entries.length) { setList(root, "[data-hud-renderings]", view.strict_renderings || ["No lexical entry yet."]); return; }
         const likelyEntries = entries.filter((entry) => entry.context_role === "likely_contextual");
         const otherEntries = entries.filter((entry) => entry.context_role !== "likely_contextual");
+        if (label) label.textContent = likelyEntries.length ? "Lexical resolution" : "Possible lexical entries";
         const note = document.createElement("p");
         note.className = "lexical-context-note";
         note.textContent = likelyEntries.length ? (view.surface_context_note || view.context_note || "Context resolved.") : "Context not resolved.";
