@@ -214,6 +214,61 @@ const fixedExpressions = [
       notes: 'Project-maintained fixed-expression rule. No external dictionary text imported.',
     },
   },
+  {
+    normalized_word: '\u05D0\u05D9\u05E0\u05E0\u05D4',
+    hebrew_word: '\u05D0\u05D9\u05E0\u05E0\u05D4',
+    surface_forms: [
+      '\u05D0\u05D9\u05E0\u05E0\u05D4',
+      '\u05D0\u05B5\u05D9\u05E0\u05B6\u05E0\u05B8\u05BC\u05D4\u05BC',
+    ],
+    surface_renderings: [
+      'is not',
+      'is not it',
+      'is not her',
+    ],
+    surface_context_status: 'resolved_negative_particle_pronominal',
+    surface_context_note: 'Resolved as a closed-class negative particle with pronominal ending.',
+    breakdown: [
+      {
+        hebrew: '\u05D0\u05D9\u05DF',
+        strict_renderings: ['is not', 'there is not'],
+      },
+      {
+        hebrew: '\u05BE\u05D4\u05BC',
+        strict_renderings: ['it', 'her'],
+      },
+    ],
+    possible_entry: {
+      entry_key: 'grammar-form:\u05D0\u05D9\u05E0\u05E0\u05D4',
+      lemma: '\u05D0\u05D9\u05E0\u05E0\u05D4',
+      match_key: '\u05D0\u05D9\u05E0\u05E0\u05D4',
+      source_name: 'Workspace grammar rule',
+      source_family: 'workspace',
+      source_id: 'grammar-form:\u05D0\u05D9\u05E0\u05E0\u05D4',
+      transliteration: '',
+      strict_renderings: [
+        'is not',
+        'is not it',
+        'is not her',
+      ],
+      root: '',
+      root_transliteration: '',
+      root_meaning: [],
+      context_role: 'likely_contextual',
+      relation_label: '',
+      source_row_keys: ['workspace|grammar-form:\u05D0\u05D9\u05E0\u05E0\u05D4'],
+    },
+    source_row: {
+      source_name: 'Workspace grammar rule',
+      source_family: 'workspace',
+      source_id: 'grammar-form:\u05D0\u05D9\u05E0\u05E0\u05D4',
+      source_url: 'local:grammar-rules',
+      license: 'N/A - project lexical rule',
+      license_url: 'local:grammar-rules',
+      fields_used: ['closed-class Hebrew grammar form lookup', 'strict renderings', 'mechanical breakdown'],
+      notes: 'Project-maintained grammar rule for the Orot opening canary. No external dictionary text imported.',
+    },
+  },
 ];
 
 const fixedExpressionByNormalized = new Map(fixedExpressions.map((expression) => [expression.normalized_word, expression]));

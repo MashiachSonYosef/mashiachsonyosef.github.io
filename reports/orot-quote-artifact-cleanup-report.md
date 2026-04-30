@@ -1,6 +1,6 @@
 # Orot Quote Artifact Cleanup Report
 
-Generated: 2026-04-30T14:01:17.035Z
+Generated: 2026-04-30T14:19:44.654Z
 
 ## Scope
 
@@ -13,10 +13,10 @@ Generated: 2026-04-30T14:01:17.035Z
 
 ## Summary
 
-- Matched before cleanup: 14533
+- Matched before cleanup: 14585
 - Fixed by quote/punctuation cleanup: 189
-- Matched after cleanup: 14722
-- Remaining unmatched: 2585
+- Matched after cleanup: 14774
+- Remaining unmatched: 2533
 
 ## Fixed Tokens
 
@@ -68,7 +68,7 @@ Generated: 2026-04-30T14:01:17.035Z
 | 44 | בינה" | 05D1 05D9 05E0 05D4 0022 | בינה | 1 | direct | Orot, Lights from Darkness, Israel and its Rebirth 27:1 |
 | 45 | ביניהם" | 05D1 05D9 05E0 05D9 05D4 05DD 0022 | ביניהם | 1 | direct | Orot, Lights from Darkness, Lights of Rebirth 55:1 |
 | 46 | בישראל" | 05D1 05D9 05E9 05E8 05D0 05DC 0022 | בישראל | 1 | direct | Orot, Lights from Darkness, Lights of Rebirth 19:1 |
-| 47 | בך" | 05D1 05DA 0022 | בך | 1 | kaikki | Orot, Lights from Darkness, Lights of Rebirth 55:1 |
+| 47 | בך" | 05D1 05DA 0022 | בך | 1 | direct | Orot, Lights from Darkness, Lights of Rebirth 55:1 |
 | 48 | במישור" | 05D1 05DE 05D9 05E9 05D5 05E8 0022 | במישור | 1 | direct | Orot, Lights from Darkness, Israel and its Rebirth 13:1 |
 | 49 | במקומו" | 05D1 05DE 05E7 05D5 05DE 05D5 0022 | במקומו | 1 | direct | Orot, Lights of Israel, The Essence of Israel:9 |
 | 50 | בניך" | 05D1 05E0 05D9 05DA 0022 | בניך | 1 | direct | Orot, Lights of Israel, The Essence of Israel:13 |
@@ -76,7 +76,7 @@ Generated: 2026-04-30T14:01:17.035Z
 | 52 | בציון" | 05D1 05E6 05D9 05D5 05DF 0022 | בציון | 1 | direct | Orot, Lights from Darkness, Lights of Rebirth 3:1 |
 | 53 | בריתו" | 05D1 05E8 05D9 05EA 05D5 0022 | בריתו | 1 | direct | Orot, Lights from Darkness, Lights of Rebirth 20:1 |
 | 54 | בשר" | 05D1 05E9 05E8 0022 | בשר | 1 | direct | Orot, Seeds, The Wise is Preferable to Prophet:4 |
-| 55 | גבוהה" | 05D2 05D1 05D5 05D4 05D4 0022 | גבוהה | 1 | kaikki | Orot, Lights of Israel, The Essence of Israel:13 |
+| 55 | גבוהה" | 05D2 05D1 05D5 05D4 05D4 0022 | גבוהה | 1 | direct | Orot, Lights of Israel, The Essence of Israel:13 |
 | 56 | גדול" | 05D2 05D3 05D5 05DC 0022 | גדול | 1 | direct | Orot, The Process of Ideals in Israel, The Godly and the National Ideal in Israel:2 |
 | 57 | גדולה" | 05D2 05D3 05D5 05DC 05D4 0022 | גדולה | 1 | direct | Orot, The Process of Ideals in Israel, The First and Second Temples; Religion:10 |
 | 58 | גוי" | 05D2 05D5 05D9 0022 | גוי | 1 | direct | Orot, Lights of Israel, Preciousness of Israel:1 |
@@ -121,7 +121,7 @@ Generated: 2026-04-30T14:01:17.035Z
 | 97 | יבואו" | 05D9 05D1 05D5 05D0 05D5 0022 | יבואו | 1 | direct | Orot, The Process of Ideals in Israel, Unification of Ideals:5 |
 | 98 | יופי" | 05D9 05D5 05E4 05D9 0022 | יופי | 1 | direct | Orot, Lights from Darkness, Israel and its Rebirth 30:1 |
 | 99 | יושיבו" | 05D9 05D5 05E9 05D9 05D1 05D5 0022 | יושיבו | 1 | direct | Orot, Lights from Darkness, Lights of Rebirth 15:1 |
-| 100 | יחלוף" | 05D9 05D7 05DC 05D5 05E3 0022 | יחלוף | 1 | kaikki | Orot, Lights from Darkness, Israel and its Rebirth 15:1 |
+| 100 | יחלוף" | 05D9 05D7 05DC 05D5 05E3 0022 | יחלוף | 1 | direct | Orot, Lights from Darkness, Israel and its Rebirth 15:1 |
 | 101 | יחלף" | 05D9 05D7 05DC 05E3 0022 | יחלף | 1 | direct | Orot, The Process of Ideals in Israel, The First and Second Temples; Religion:12 |
 | 102 | ינחם" | 05D9 05E0 05D7 05DD 0022 | ינחם | 1 | direct | Orot, Lights from Darkness, Lights of Rebirth 69:8 |
 | 103 | יעקב" | 05D9 05E2 05E7 05D1 0022 | יעקב | 1 | direct | Orot, Lights from Darkness, Lights of Rebirth 21:1 |

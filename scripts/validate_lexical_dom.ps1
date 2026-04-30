@@ -70,6 +70,49 @@ $betorNormalized = -join @([char]0x05D1, [char]0x05EA, [char]0x05D5, [char]0x05E
 $betorPrefix = -join @([char]0x05D1, [char]0x05B0, [char]0x05BC, [char]0x05BE)
 $betorBase = -join @([char]0x05EA, [char]0x05D5, [char]0x05B9, [char]0x05E8)
 $shelNormalized = -join @([char]0x05E9, [char]0x05DC)
+$einennahNormalized = -join @([char]0x05D0, [char]0x05D9, [char]0x05E0, [char]0x05E0, [char]0x05D4)
+$openingCanaryGroup = @(
+  [pscustomobject]@{
+    Label = 'eretz'
+    Surface = -join @([char]0x05D0, [char]0x05B6, [char]0x05E8, [char]0x05B6, [char]0x05E5)
+    Codepoints = @(0x05D0, 0x05B6, 0x05E8, 0x05B6, 0x05E5)
+    Normalized = -join @([char]0x05D0, [char]0x05E8, [char]0x05E6)
+    LikelyEntryKey = 'openscriptures:H776'
+    Renderings = @('land', 'earth')
+  },
+  [pscustomobject]@{
+    Label = 'yisrael'
+    Surface = -join @([char]0x05D9, [char]0x05B4, [char]0x05E9, [char]0x05B0, [char]0x05C2, [char]0x05E8, [char]0x05B8, [char]0x05D0, [char]0x05B5, [char]0x05DC)
+    Codepoints = @(0x05D9, 0x05B4, 0x05E9, 0x05B0, 0x05C2, 0x05E8, 0x05B8, 0x05D0, 0x05B5, 0x05DC)
+    Normalized = -join @([char]0x05D9, [char]0x05E9, [char]0x05E8, [char]0x05D0, [char]0x05DC)
+    LikelyEntryKey = 'openscriptures:H3479'
+    Renderings = @('Israel')
+  },
+  [pscustomobject]@{
+    Label = 'einennah'
+    Surface = -join @([char]0x05D0, [char]0x05B5, [char]0x05D9, [char]0x05E0, [char]0x05B6, [char]0x05E0, [char]0x05B8, [char]0x05BC, [char]0x05D4, [char]0x05BC)
+    Codepoints = @(0x05D0, 0x05B5, 0x05D9, 0x05E0, 0x05B6, 0x05E0, 0x05B8, 0x05BC, 0x05D4, 0x05BC)
+    Normalized = $einennahNormalized
+    LikelyEntryKey = "grammar-form:$einennahNormalized"
+    Renderings = @('is not', 'is not it', 'is not her')
+  },
+  [pscustomobject]@{
+    Label = 'davar'
+    Surface = -join @([char]0x05D3, [char]0x05B8, [char]0x05BC, [char]0x05D1, [char]0x05B8, [char]0x05E8)
+    Codepoints = @(0x05D3, 0x05B8, 0x05BC, 0x05D1, 0x05B8, 0x05E8)
+    Normalized = -join @([char]0x05D3, [char]0x05D1, [char]0x05E8)
+    LikelyEntryKey = 'openscriptures:H1697'
+    Renderings = @('thing', 'matter', 'word')
+  },
+  [pscustomobject]@{
+    Label = 'hitzoni'
+    Surface = -join @([char]0x05D7, [char]0x05B4, [char]0x05D9, [char]0x05E6, [char]0x05D5, [char]0x05B9, [char]0x05E0, [char]0x05B4, [char]0x05D9)
+    Codepoints = @(0x05D7, 0x05B4, 0x05D9, 0x05E6, 0x05D5, 0x05B9, 0x05E0, 0x05B4, 0x05D9)
+    Normalized = -join @([char]0x05D7, [char]0x05D9, [char]0x05E6, [char]0x05D5, [char]0x05E0, [char]0x05D9)
+    LikelyEntryKey = 'wikidata:L210877'
+    Renderings = @('external', 'exterior')
+  }
+)
 
 function Assert-Codepoints {
   param(
@@ -181,6 +224,34 @@ $shelEntry = $entriesById[[string]$shel.lexicon_entry_id]
 $shelSourceId = "grammar-particle:$shelNormalized"
 if ($null -eq $shelEntry -or @($shelEntry.source_rows).Count -ne 1 -or @($shelEntry.source_rows)[0].source_id -ne $shelSourceId) {
   throw "Expected shel lexicon entry to use only the workspace grammar-particle source row."
+}
+
+foreach ($canary in $openingCanaryGroup) {
+  $row = @($tokenIndex.forms | Where-Object { $_.surface_word -eq $canary.Surface }) | Select-Object -First 1
+  if ($null -eq $row) {
+    throw "Expected Orot opening canary token not found: $($canary.Label)"
+  }
+  Assert-Codepoints -Label "opening canary $($canary.Label)" -Value $row.surface_word -Expected $canary.Codepoints
+  if ($row.normalized_word -ne $canary.Normalized) {
+    throw "Opening canary $($canary.Label) normalized key mismatch. Expected $($canary.Normalized), got $($row.normalized_word)"
+  }
+  if ($row.status -ne 'matched' -or -not $row.lexicon_entry_id) {
+    throw "Opening canary $($canary.Label) is not matched."
+  }
+  $entry = $entriesById[[string]$row.lexicon_entry_id]
+  if ($null -eq $entry) {
+    throw "Opening canary $($canary.Label) references missing lexicon entry: $($row.lexicon_entry_id)"
+  }
+  $likely = @($entry.possible_entries | Where-Object { $_.context_role -eq 'likely_contextual' }) | Select-Object -First 1
+  if ($null -eq $likely -or $likely.entry_key -ne $canary.LikelyEntryKey) {
+    throw "Opening canary $($canary.Label) likely entry mismatch. Expected $($canary.LikelyEntryKey)."
+  }
+  $visibleRenderings = @($row.surface_renderings) + @($entry.strict_renderings) + @($likely.strict_renderings)
+  foreach ($rendering in @($canary.Renderings)) {
+    if (-not ($visibleRenderings -contains $rendering)) {
+      throw "Opening canary $($canary.Label) missing visible rendering: $rendering"
+    }
+  }
 }
 
 $orotHtmlPath = Join-Path $PSScriptRoot '..\orot\index.html'

@@ -1,6 +1,6 @@
 # Orot Lexical Coverage Report
 
-Generated: 2026-04-30T12:09:24.696Z
+Generated: 2026-04-30T14:19:40.490Z
 
 ## Scope
 
@@ -17,36 +17,36 @@ Generated: 2026-04-30T12:09:24.696Z
 
 - Total Orot unique surface forms: 17307
 - Total Orot token occurrences: 59806
-- Matched before prefix/suffix parser: 13923
-- Newly resolved by prefix/suffix parser: 24
-- Total matched after parser: 13947
-- Percent matched: 80.6%
-- Matched via Wikidata: 11759
-- Enriched via OpenScriptures: 9503
-- Unmatched: 3360
+- Matched before prefix/suffix parser: 14512
+- Newly resolved by prefix/suffix parser: 73
+- Total matched after parser: 14585
+- Percent matched: 84.3%
+- Matched via Wikidata: 11756
+- Enriched via OpenScriptures: 9501
+- Unmatched: 2722
 
 ## Newly Resolved Parsed Forms
 
 - הכח -> the vigor, the means (openscriptures) -- Orot, Lights from Darkness, Land of Israel 2:2 (#orot-lights-from-darkness-land-of-israel-2-2)
 - ושל -> and of, and belonging to (workspace) -- Orot, Lights from Darkness, Israel and its Rebirth 16:1 (#orot-lights-from-darkness-israel-and-its-rebirth-16-1)
+- בעומק -> in depth, with depth, by depth (kaikki) -- Orot, Lights from Darkness, Israel and its Rebirth 14:1 (#orot-lights-from-darkness-israel-and-its-rebirth-14-1)
+- מעומק -> from depth, of depth (kaikki) -- Orot, Lights from Darkness, Israel and its Rebirth 4:1 (#orot-lights-from-darkness-israel-and-its-rebirth-4-1)
+- ודוקא -> and unexpectedly, and just to spite, and in fact, actually (kaikki) -- Orot, Lights from Darkness, Lights of Rebirth 46:1 (#orot-lights-from-darkness-lights-of-rebirth-46-1)
+- לתחית -> to rejuvenation, revival, resurrection, for rejuvenation, revival, resurrection, of rejuvenation, revival, resurrection (kaikki) -- Orot, Lights from Darkness, Lights of Rebirth 14:1 (#orot-lights-from-darkness-lights-of-rebirth-14-1)
+- והאידיאה -> and idea (workspace) -- Orot, The Process of Ideals in Israel, The Godly and the National Ideal in the Individual:1 (#orot-the-process-of-ideals-in-israel-the-godly-and-the-national-ideal-in-the-individual-1)
 - כחותיה -> her force, its force (wikidata + openscriptures) -- Orot, Lights from Darkness, War 9:2 (#orot-lights-from-darkness-war-9-2)
+- שהאידיאה -> that idea, which idea, who idea (workspace) -- Orot, The Process of Ideals in Israel, The Situation in Exile:3 (#orot-the-process-of-ideals-in-israel-the-situation-in-exile-3)
+- בתחית -> in rejuvenation, revival, resurrection, with rejuvenation, revival, resurrection, by rejuvenation, revival, resurrection (kaikki) -- Orot, Lights from Darkness, Israel and its Rebirth 20:1 (#orot-lights-from-darkness-israel-and-its-rebirth-20-1)
 - וכחותיו -> and his force, and its force (wikidata + openscriptures) -- Orot, Lights from Darkness, Israel and its Rebirth 2:2 (#orot-lights-from-darkness-israel-and-its-rebirth-2-2)
+- ועומק -> and depth (kaikki) -- Orot, Lights from Darkness, Land of Israel 6:2 (#orot-lights-from-darkness-land-of-israel-6-2)
 - כחותיו -> his force, its force (wikidata + openscriptures) -- Orot, Lights from Darkness, Israel and its Rebirth 16:1 (#orot-lights-from-darkness-israel-and-its-rebirth-16-1)
-- הרז -> the mystery, the secret (openscriptures) -- Orot, Lights from Darkness, Israel and its Rebirth 23:1 (#orot-lights-from-darkness-israel-and-its-rebirth-23-1)
-- שאז -> that at that time, which at that time, who at that time (openscriptures) -- Orot, Seeds, Suffering Cleanses:5 (#orot-seeds-suffering-cleanses-5)
-- שהכח -> that the vigor, which the vigor, that the means (openscriptures) -- Orot, Lights from Darkness, Lights of Rebirth 18:1 (#orot-lights-from-darkness-lights-of-rebirth-18-1)
-- אבותיה -> her father, male parent, its father, male parent, her father (wikidata + openscriptures) -- Orot, Lights of Israel, The Essence of Israel:4 (#orot-lights-of-israel-the-essence-of-israel-4)
-- אבותנו -> our father, male parent, our father (wikidata + openscriptures) -- Orot, Lights from Darkness, Lights of Rebirth 5:8 (#orot-lights-from-darkness-lights-of-rebirth-5-8)
-- בכחותיה -> in her force, in its force, with her force (wikidata + openscriptures) -- Orot, Lights from Darkness, Lights of Rebirth 32:1 (#orot-lights-from-darkness-lights-of-rebirth-32-1)
-- בכחותיו -> in his force, in its force, with his force (wikidata + openscriptures) -- Orot, Lights from Darkness, Lights of Rebirth 4:1 (#orot-lights-from-darkness-lights-of-rebirth-4-1)
-- ברז -> in a mystery, with a mystery, by a mystery (openscriptures) -- Orot, Lights from Darkness, Israel and its Rebirth 21:1 (#orot-lights-from-darkness-israel-and-its-rebirth-21-1)
-- בשלומיו -> in his peace, in its peace, with his peace (wikidata + openscriptures) -- Orot, Lights from Darkness, Lights of Rebirth 20:1 (#orot-lights-from-darkness-lights-of-rebirth-20-1)
-- גילוייו -> his discovery/revelation, its discovery/revelation (wikidata) -- Orot, Seeds, Thirst for the Living God:3 (#orot-seeds-thirst-for-the-living-god-3)
-- האידיאליה -> her ideal, its ideal (wikidata) -- Orot, Lights of Israel, The Individual and the Collective:8 (#orot-lights-of-israel-the-individual-and-the-collective-8)
-- המשיח -> the anointed, the priest, the Messiah (openscriptures + wikidata) -- Orot, Lights from Darkness, War 4:1 (#orot-lights-from-darkness-war-4-1)
-- ואותיותיו -> and his letter, and its letter (wikidata) -- Orot, Lights from Darkness, Israel and its Rebirth 12:1 (#orot-lights-from-darkness-israel-and-its-rebirth-12-1)
-- וכחותיה -> and her force, and its force (wikidata + openscriptures) -- Orot, Lights from Darkness, Israel and its Rebirth 26:1 (#orot-lights-from-darkness-israel-and-its-rebirth-26-1)
-- ומשיח -> and anointed, and priest, and the Messiah (openscriptures + wikidata) -- Orot, Lights from Darkness, Israel and its Rebirth 14:1 (#orot-lights-from-darkness-israel-and-its-rebirth-14-1)
+- בחזיונות -> in spectacle, with spectacle, by spectacle (kaikki) -- Orot, Lights from Darkness, Lights of Rebirth 57:1 (#orot-lights-from-darkness-lights-of-rebirth-57-1)
+- ברוחנו -> in breath, with breath, by breath (kaikki) -- Orot, Lights from Darkness, Land of Israel 7:1 (#orot-lights-from-darkness-land-of-israel-7-1)
+- ותחית -> and rejuvenation, revival, resurrection, and reincarnation, rebirth (kaikki) -- Orot, Lights from Darkness, Lights of Rebirth 17:1 (#orot-lights-from-darkness-lights-of-rebirth-17-1)
+- לחטיבה -> to division, department, bureau, for division, department, bureau, of division, department, bureau (kaikki) -- Orot, Seeds, The War of Ideas:2 (#orot-seeds-the-war-of-ideas-2)
+- מהאידיאה -> from idea, of idea (workspace) -- Orot, Lights from Darkness, Lights of Rebirth 2:1 (#orot-lights-from-darkness-lights-of-rebirth-2-1)
+- מהאלהות -> from divinity, of divinity, from godhood (workspace) -- Orot, Seeds, Suffering Cleanses:10 (#orot-seeds-suffering-cleanses-10)
+- בעושר -> in richness, wealth, with richness, wealth, by richness, wealth (kaikki) -- Orot, Lights of Israel, The Essence of Israel:7 (#orot-lights-of-israel-the-essence-of-israel-7)
 
 ## Sample Matched Words With Refs To Test
 
@@ -59,6 +59,7 @@ Generated: 2026-04-30T12:09:24.696Z
 - אבותינו -> father, in a literal and immediate, figurative and remote application (openscriptures) -- Orot, Lights from Darkness, Israel and its Rebirth 15:1 (#orot-lights-from-darkness-israel-and-its-rebirth-15-1)
 - אבותם -> father, in a literal and immediate, figurative and remote application (openscriptures) -- Orot, Lights from Darkness, Israel and its Rebirth 27:1 (#orot-lights-from-darkness-israel-and-its-rebirth-27-1)
 - אבותנו -> our father, male parent, our father (wikidata + openscriptures) -- Orot, Lights from Darkness, Lights of Rebirth 5:8 (#orot-lights-from-darkness-lights-of-rebirth-5-8)
+- אביבה -> early stage of ripening, especially of grains, season of beginning barley-crop, also, the offering of the first fruits (בכורים) (on Passover) (kaikki) -- Orot, Seeds, The Value of Rebirth:6 (#orot-seeds-the-value-of-rebirth-6)
 - אביונים -> destitute, beggar, needy (openscriptures) -- Orot, Seeds, The Wise is Preferable to Prophet:2 (#orot-seeds-the-wise-is-preferable-to-prophet-2)
 - אבינו -> father, male parent, father, Av (wikidata + openscriptures) -- Orot, Lights from Darkness, Lights of Rebirth 21:1 (#orot-lights-from-darkness-lights-of-rebirth-21-1)
 - אבנר -> given name, Abner (wikidata + openscriptures) -- Orot, Lights from Darkness, Lights of Rebirth 34:2 (#orot-lights-from-darkness-lights-of-rebirth-34-2)
@@ -69,17 +70,13 @@ Generated: 2026-04-30T12:09:24.696Z
 - אדומה -> red (wikidata) -- Orot, Lights from Darkness, Israel and its Rebirth 10:1 (#orot-lights-from-darkness-israel-and-its-rebirth-10-1)
 - אדון -> mister (wikidata + openscriptures) -- Orot, Lights from Darkness, War 1:1 (#orot-lights-from-darkness-war-1-1)
 - אדוני -> mister (wikidata + openscriptures) -- Orot, Lights from Darkness, War 3:1 (#orot-lights-from-darkness-war-3-1)
-- אדוננו -> mister (wikidata) -- Orot, Lights from Darkness, Israel and its Rebirth 25:1 (#orot-lights-from-darkness-israel-and-its-rebirth-25-1)
 
 ## Sample Unmatched Words
 
 - אבוקתה -- Orot, Lights of Israel, Connection to the Collective:9 (#orot-lights-of-israel-connection-to-the-collective-9)
-- אביבה -- Orot, Seeds, The Value of Rebirth:6 (#orot-seeds-the-value-of-rebirth-6)
 - אברין -- Orot, Seeds, Suffering Cleanses:3 (#orot-seeds-suffering-cleanses-3)
 - אגודתם -- Orot, Lights of Israel, The Individual and the Collective:1 (#orot-lights-of-israel-the-individual-and-the-collective-1)
 - אדרין -- Orot, Lights from Darkness, Israel and its Rebirth 21:1 (#orot-lights-from-darkness-israel-and-its-rebirth-21-1)
-- אהבתה -- Orot, Lights from Darkness, Lights of Rebirth 18:1 (#orot-lights-from-darkness-lights-of-rebirth-18-1)
-- אהבתו -- Orot, Lights of Israel, Holiness of Israel:9 (#orot-lights-of-israel-holiness-of-israel-9)
 - אהטר -- Orot, Lights from Darkness, Lights of Rebirth 58:1 (#orot-lights-from-darkness-lights-of-rebirth-58-1)
 - אויבתה -- Orot, Lights from Darkness, Lights of Rebirth 2:1 (#orot-lights-from-darkness-lights-of-rebirth-2-1)
 - אוירא -- Orot, Lights from Darkness, Land of Israel 4:1 (#orot-lights-from-darkness-land-of-israel-4-1)
@@ -89,63 +86,66 @@ Generated: 2026-04-30T12:09:24.696Z
 - אורותיהם -- Orot, Lights from Darkness, Israel and its Rebirth 25:1 (#orot-lights-from-darkness-israel-and-its-rebirth-25-1)
 - אורותיו -- Orot, Lights from Darkness, Israel and its Rebirth 12:1 (#orot-lights-from-darkness-israel-and-its-rebirth-12-1)
 - אוריהם -- Orot, Lights from Darkness, Lights of Rebirth 5:9 (#orot-lights-from-darkness-lights-of-rebirth-5-9)
-- אותות -- Orot, Lights from Darkness, Great Calling:1 (#orot-lights-from-darkness-great-calling-1)
-- אזובים -- Orot, Seeds, The Value of Rebirth:6 (#orot-seeds-the-value-of-rebirth-6)
 - אחדותית -- Orot, Lights of Israel, Preciousness of Israel:1 (#orot-lights-of-israel-preciousness-of-israel-1)
 - אחמיניה -- Orot, Lights from Darkness, Lights of Rebirth 32:1 (#orot-lights-from-darkness-lights-of-rebirth-32-1)
+- אידיאליה -- Orot, Lights from Darkness, Lights of Rebirth 2:1 (#orot-lights-from-darkness-lights-of-rebirth-2-1)
+- אידיאליהם -- Orot, Lights from Darkness, Israel and its Rebirth 20:1 (#orot-lights-from-darkness-israel-and-its-rebirth-20-1)
+- אידיאליותו -- Orot, The Process of Ideals in Israel, The First and Second Temples; Religion:10 (#orot-the-process-of-ideals-in-israel-the-first-and-second-temples-religion-10)
+- אידיאליים -- Orot, Lights from Darkness, Lights of Rebirth 58:1 (#orot-lights-from-darkness-lights-of-rebirth-58-1)
+- אידיאלינו -- Orot, Lights from Darkness, Lights of Rebirth 3:1 (#orot-lights-from-darkness-lights-of-rebirth-3-1)
 
 ## Top 50 Remaining Unmatched By Frequency
 
-- 171x האלהית -- Orot, Lights from Darkness, Land of Israel 5:1 (#orot-lights-from-darkness-land-of-israel-5-1)
-- 117x ע״י -- Orot, Lights from Darkness, Land of Israel 3:2 (#orot-lights-from-darkness-land-of-israel-3-2)
-- 87x הרוח -- Orot, Lights from Darkness, Land of Israel 6:2 (#orot-lights-from-darkness-land-of-israel-6-2)
 - 67x כ״א -- Orot, Lights from Darkness, Israel and its Rebirth 14:1 (#orot-lights-from-darkness-israel-and-its-rebirth-14-1)
-- 65x האידיאה -- Orot, Lights from Darkness, Lights of Rebirth 2:1 (#orot-lights-from-darkness-lights-of-rebirth-2-1)
-- 49x ג״כ -- Orot, Lights from Darkness, Israel and its Rebirth 13:1 (#orot-lights-from-darkness-israel-and-its-rebirth-13-1)
-- 39x דוקא -- Orot, Lights from Darkness, Land of Israel 3:2 (#orot-lights-from-darkness-land-of-israel-3-2)
-- 38x ע״פ -- Orot, Lights from Darkness, Israel and its Rebirth 7:1 (#orot-lights-from-darkness-israel-and-its-rebirth-7-1)
-- 32x האלהות -- Orot, Lights from Darkness, Lights of Rebirth 1:1 (#orot-lights-from-darkness-lights-of-rebirth-1-1)
-- 27x זהו -- Orot, Lights from Darkness, Land of Israel 2:3 (#orot-lights-from-darkness-land-of-israel-2-3)
-- 25x עומק -- Orot, Lights from Darkness, Land of Israel 1:2 (#orot-lights-from-darkness-land-of-israel-1-2)
 - 24x ברוח -- Orot, Lights from Darkness, Land of Israel 1:2 (#orot-lights-from-darkness-land-of-israel-1-2)
-- 24x ע״כ -- Orot, Lights from Darkness, Lights of Rebirth 2:1 (#orot-lights-from-darkness-lights-of-rebirth-2-1)
-- 24x עדיין -- Orot, Lights from Darkness, War 5:1 (#orot-lights-from-darkness-war-5-1)
 - 22x שהן -- Orot, Lights from Darkness, Land of Israel 4:1 (#orot-lights-from-darkness-land-of-israel-4-1)
-- 20x אע״פ -- Orot, Lights from Darkness, Israel and its Rebirth 9:1 (#orot-lights-from-darkness-israel-and-its-rebirth-9-1)
 - 20x התוכן -- Orot, Lights from Darkness, Land of Israel 1:2 (#orot-lights-from-darkness-land-of-israel-1-2)
-- 18x אלהית -- Orot, Lights from Darkness, Israel and its Rebirth 8:1 (#orot-lights-from-darkness-israel-and-its-rebirth-8-1)
 - 18x לרוח -- Orot, Lights from Darkness, Land of Israel 7:1 (#orot-lights-from-darkness-land-of-israel-7-1)
 - 18x ממה -- Orot, Lights from Darkness, Lights of Rebirth 1:1 (#orot-lights-from-darkness-lights-of-rebirth-1-1)
-- 18x תוכן -- Orot, Lights from Darkness, Land of Israel 6:1 (#orot-lights-from-darkness-land-of-israel-6-1)
-- 17x המוסרית -- Orot, Lights from Darkness, War 5:1 (#orot-lights-from-darkness-war-5-1)
 - 17x ורוח -- Orot, Lights from Darkness, Israel and its Rebirth 7:1 (#orot-lights-from-darkness-israel-and-its-rebirth-7-1)
 - 17x ישראל" -- Orot, Lights from Darkness, Land of Israel 7:2 (#orot-lights-from-darkness-land-of-israel-7-2)
-- 17x כ״כ -- Orot, Lights from Darkness, Israel and its Rebirth 7:1 (#orot-lights-from-darkness-israel-and-its-rebirth-7-1)
-- 17x רואים -- Orot, Lights from Darkness, Israel and its Rebirth 2:4 (#orot-lights-from-darkness-israel-and-its-rebirth-2-4)
 - 16x דמשיחא -- Orot, Lights from Darkness, Israel and its Rebirth 14:1 (#orot-lights-from-darkness-israel-and-its-rebirth-14-1)
 - 16x הנטיות -- Orot, Lights from Darkness, War 8:1 (#orot-lights-from-darkness-war-8-1)
-- 15x בעומק -- Orot, Lights from Darkness, Israel and its Rebirth 14:1 (#orot-lights-from-darkness-israel-and-its-rebirth-14-1)
 - 15x לתן -- Orot, Lights from Darkness, Israel and its Rebirth 15:1 (#orot-lights-from-darkness-israel-and-its-rebirth-15-1)
 - 13x ד׳" -- Orot, Lights from Darkness, Land of Israel 8:1 (#orot-lights-from-darkness-land-of-israel-8-1)
-- 13x תחית -- Orot, Lights from Darkness, Israel and its Rebirth 12:1 (#orot-lights-from-darkness-israel-and-its-rebirth-12-1)
-- 12x ב -- Orot, Lights from Darkness, Land of Israel 3:2 (#orot-lights-from-darkness-land-of-israel-3-2)
 - 12x בד׳ -- Orot, Lights from Darkness, Israel and its Rebirth 2:4 (#orot-lights-from-darkness-israel-and-its-rebirth-2-4)
 - 12x הידיעה -- Orot, Lights from Darkness, Israel and its Rebirth 5:1 (#orot-lights-from-darkness-israel-and-its-rebirth-5-1)
-- 11x ד -- Orot, Lights from Darkness, Land of Israel 7:2 (#orot-lights-from-darkness-land-of-israel-7-2)
-- 11x האידיאלית -- Orot, Lights from Darkness, Land of Israel 5:1 (#orot-lights-from-darkness-land-of-israel-5-1)
-- 11x האלהיים -- Orot, Lights from Darkness, Land of Israel 2:2 (#orot-lights-from-darkness-land-of-israel-2-2)
 - 11x הדתית -- Orot, The Process of Ideals in Israel, The First and Second Temples; Religion:2 (#orot-the-process-of-ideals-in-israel-the-first-and-second-temples-religion-2)
-- 11x הנשמתית -- Orot, Lights from Darkness, Israel and its Rebirth 12:1 (#orot-lights-from-darkness-israel-and-its-rebirth-12-1)
-- 11x ו -- Orot, Lights from Darkness, Land of Israel 8:1 (#orot-lights-from-darkness-land-of-israel-8-1)
-- 11x וע״י -- Orot, Lights from Darkness, Israel and its Rebirth 13:1 (#orot-lights-from-darkness-israel-and-its-rebirth-13-1)
-- 11x מ״מ -- Orot, Lights from Darkness, Israel and its Rebirth 6:1 (#orot-lights-from-darkness-israel-and-its-rebirth-6-1)
-- 11x מרוח -- Orot, Lights from Darkness, War 9:2 (#orot-lights-from-darkness-war-9-2)
-- 10x האידיאלים -- Orot, Lights from Darkness, Lights of Rebirth 5:8 (#orot-lights-from-darkness-lights-of-rebirth-5-8)
-- 10x חטיבה -- Orot, Lights from Darkness, Israel and its Rebirth 8:1 (#orot-lights-from-darkness-israel-and-its-rebirth-8-1)
 - 10x לד׳ -- Orot, Lights from Darkness, Israel and its Rebirth 1:1 (#orot-lights-from-darkness-israel-and-its-rebirth-1-1)
-- 10x נובעת -- Orot, Lights from Darkness, Land of Israel 3:2 (#orot-lights-from-darkness-land-of-israel-3-2)
-- 10x ע״ד -- Orot, Lights from Darkness, Lights of Rebirth 2:1 (#orot-lights-from-darkness-lights-of-rebirth-2-1)
-- 10x פעולה -- Orot, Lights from Darkness, Israel and its Rebirth 19:1 (#orot-lights-from-darkness-israel-and-its-rebirth-19-1)
+- 9x הזוהמא -- Orot, Lights from Darkness, Israel and its Rebirth 15:1 (#orot-lights-from-darkness-israel-and-its-rebirth-15-1)
+- 9x וזהו -- Orot, Lights from Darkness, Land of Israel 3:2 (#orot-lights-from-darkness-land-of-israel-3-2)
+- 9x ערכם -- Orot, Lights from Darkness, Israel and its Rebirth 5:1 (#orot-lights-from-darkness-israel-and-its-rebirth-5-1)
+- 8x החוצפא -- Orot, Lights from Darkness, Israel and its Rebirth 14:1 (#orot-lights-from-darkness-israel-and-its-rebirth-14-1)
+- 8x הסבתית -- Orot, Lights from Darkness, Israel and its Rebirth 2:1 (#orot-lights-from-darkness-israel-and-its-rebirth-2-1)
+- 8x הראוי -- Orot, Lights from Darkness, Land of Israel 1:3 (#orot-lights-from-darkness-land-of-israel-1-3)
+- 7x הגס -- Orot, Lights from Darkness, Israel and its Rebirth 15:1 (#orot-lights-from-darkness-israel-and-its-rebirth-15-1)
+- 7x הענינים -- Orot, Lights from Darkness, Israel and its Rebirth 17:1 (#orot-lights-from-darkness-israel-and-its-rebirth-17-1)
+- 6x ה׳ -- Orot, Lights from Darkness, Land of Israel 7:2 (#orot-lights-from-darkness-land-of-israel-7-2)
+- 6x ההשקפה -- Orot, Lights from Darkness, Lights of Rebirth 8:1 (#orot-lights-from-darkness-lights-of-rebirth-8-1)
+- 6x המושך -- Orot, Lights from Darkness, Land of Israel 6:1 (#orot-lights-from-darkness-land-of-israel-6-1)
+- 6x הנובעת -- Orot, Lights from Darkness, Israel and its Rebirth 22:1 (#orot-lights-from-darkness-israel-and-its-rebirth-22-1)
+- 6x וברוח -- Orot, Lights from Darkness, Israel and its Rebirth 2:4 (#orot-lights-from-darkness-israel-and-its-rebirth-2-4)
+- 6x ומ״מ -- Orot, Lights from Darkness, Lights of Rebirth 13:1 (#orot-lights-from-darkness-lights-of-rebirth-13-1)
+- 6x מדאי -- Orot, Lights from Darkness, Israel and its Rebirth 19:2 (#orot-lights-from-darkness-israel-and-its-rebirth-19-2)
+- 6x פעולותיה -- Orot, Lights from Darkness, Israel and its Rebirth 28:1 (#orot-lights-from-darkness-israel-and-its-rebirth-28-1)
+- 6x שזהו -- Orot, Lights from Darkness, Lights of Rebirth 13:1 (#orot-lights-from-darkness-lights-of-rebirth-13-1)
+- 6x תורתה -- Orot, Lights from Darkness, War 9:2 (#orot-lights-from-darkness-war-9-2)
+- 5x אח״כ -- Orot, Lights from Darkness, Israel and its Rebirth 2:3 (#orot-lights-from-darkness-israel-and-its-rebirth-2-3)
+- 5x אמונתה -- Orot, Lights from Darkness, Land of Israel 8:1 (#orot-lights-from-darkness-land-of-israel-8-1)
+- 5x הגסה -- Orot, Lights from Darkness, Lights of Rebirth 3:1 (#orot-lights-from-darkness-lights-of-rebirth-3-1)
+- 5x ההיסתורי -- Orot, Lights from Darkness, Lights of Rebirth 5:4 (#orot-lights-from-darkness-lights-of-rebirth-5-4)
+- 5x ההיסתוריה -- Orot, Lights from Darkness, Israel and its Rebirth 8:1 (#orot-lights-from-darkness-israel-and-its-rebirth-8-1)
+- 5x ההיסתורית -- Orot, Lights from Darkness, Israel and its Rebirth 15:1 (#orot-lights-from-darkness-israel-and-its-rebirth-15-1)
+- 5x הויתה -- Orot, The Process of Ideals in Israel, The Godly and the National Ideal in the Individual:4 (#orot-the-process-of-ideals-in-israel-the-godly-and-the-national-ideal-in-the-individual-4)
+- 5x הישראליים -- Orot, Lights from Darkness, Land of Israel 8:1 (#orot-lights-from-darkness-land-of-israel-8-1)
+- 5x הראויה -- Orot, Lights from Darkness, Lights of Rebirth 18:1 (#orot-lights-from-darkness-lights-of-rebirth-18-1)
+- 5x התכנים -- Orot, Lights from Darkness, Israel and its Rebirth 15:1 (#orot-lights-from-darkness-israel-and-its-rebirth-15-1)
+- 5x ואע״פ -- Orot, Lights from Darkness, Lights of Rebirth 21:1 (#orot-lights-from-darkness-lights-of-rebirth-21-1)
+- 5x והרוח -- Orot, Lights from Darkness, Israel and its Rebirth 21:1 (#orot-lights-from-darkness-israel-and-its-rebirth-21-1)
+- 5x כ״ז -- Orot, Lights from Darkness, Lights of Rebirth 12:1 (#orot-lights-from-darkness-lights-of-rebirth-12-1)
+- 5x עי״ז -- Orot, Lights from Darkness, Lights of Rebirth 5:8 (#orot-lights-from-darkness-lights-of-rebirth-5-8)
+- 5x ערכיו -- Orot, Lights from Darkness, War 1:1 (#orot-lights-from-darkness-war-1-1)
+- 5x פעולתו -- Orot, Lights from Darkness, Lights of Rebirth 59:1 (#orot-lights-from-darkness-lights-of-rebirth-59-1)
 
 ## Exact Orot Refs To Test
 
