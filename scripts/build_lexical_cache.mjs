@@ -22,6 +22,13 @@ const lexicalLayerFiles = [
     description: 'Project-authored fixed expression and grammar override entries.',
   },
   {
+    layer_id: 'project-function-words',
+    source_family: 'workspace',
+    license: 'project-authored / CC0',
+    path: 'source-layers/project-function-words.json',
+    description: 'Project-authored conservative Hebrew function-word grammar rules.',
+  },
+  {
     layer_id: 'wikidata-cc0',
     source_family: 'wikidata',
     license: 'CC0',
@@ -369,6 +376,10 @@ function loadLexicon() {
 }
 
 function entryLayerId(entry) {
+  if (String(entry.entry_id || '').startsWith('lex-function-word-')
+    || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-function-word:'))) {
+    return 'project-function-words';
+  }
   const families = unique((entry.source_rows || []).map((row) => row.source_family || row.source_name).filter(Boolean));
   if (families.some((family) => family === 'kaikki' || family === 'wiktionary')) return 'kaikki-wiktionary-cc-by-sa-gfdl';
   if (families.length && families.every((family) => family === 'workspace')) return 'project-overrides';
