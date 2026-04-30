@@ -222,7 +222,31 @@ $lexiconEntryIds = @{}
 $lexiconPath = Join-Path $LexicalDir 'lexicon.json'
 if (Test-Path $lexiconPath) {
   $lexicon = Get-Content -Path $lexiconPath -Raw -Encoding UTF8 | ConvertFrom-Json
-  foreach ($entry in @($lexicon.entries)) {
+  $lexiconEntries = @($lexicon.entries)
+  if ($lexiconEntries.Count -eq 0 -and $lexicon.PSObject.Properties.Name -contains 'layer_files') {
+    foreach ($layer in @($lexicon.layer_files)) {
+      if (-not $layer.path) {
+        $errors.Add("Lexicon layer missing path: $($layer.layer_id)")
+        continue
+      }
+      $layerPath = Join-Path $LexicalDir ([string]$layer.path)
+      if (-not (Test-Path $layerPath)) {
+        $errors.Add("Missing lexical source layer file: $layerPath")
+        continue
+      }
+      $layerJson = Get-Content -Path $layerPath -Raw -Encoding UTF8 | ConvertFrom-Json
+      foreach ($field in @('schema_version', 'layer_id', 'source_family', 'license', 'entries')) {
+        if ($layerJson.PSObject.Properties.Name -notcontains $field) {
+          $errors.Add("Lexical source layer missing $field`: $layerPath")
+        }
+      }
+      if (($layer.source_family -eq 'kaikki' -or $layer.source_family -eq 'wiktionary') -and @($layerJson.entries).Count -gt 0) {
+        $errors.Add("Kaikki/Wiktionary layer must remain empty until explicitly imported: $layerPath")
+      }
+      $lexiconEntries += @($layerJson.entries)
+    }
+  }
+  foreach ($entry in @($lexiconEntries)) {
     foreach ($field in @('entry_id', 'hebrew_word', 'transliteration', 'strict_renderings', 'root', 'root_transliteration', 'root_meaning', 'source_rows')) {
       if ($entry.PSObject.Properties.Name -notcontains $field) {
         $errors.Add("Lexicon entry missing property $field`: $($entry.entry_id)")
@@ -290,10 +314,26 @@ foreach ($lexicalFile in $lexicalFiles) {
       $errors.Add("Orot lexical occurrence count mismatch: expected $($unitCountByWorkId['orot']), found $orotOccurrenceCount")
     }
     $manifestPath = Join-Path $LexicalDir 'orot.manifest.json'
-    $chunkPath = Join-Path $LexicalDir 'orot-chunks\orot-core.json'
-    foreach ($externalLexicalPath in @($manifestPath, $chunkPath)) {
-      if (-not (Test-Path $externalLexicalPath)) {
-        $errors.Add("Missing external Orot lexical payload file: $externalLexicalPath")
+    if (-not (Test-Path $manifestPath)) {
+      $errors.Add("Missing external Orot lexical payload manifest: $manifestPath")
+    } else {
+      $manifest = Get-Content -Path $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
+      $chunks = @($manifest.chunks)
+      if ($chunks.Count -lt 2) {
+        $errors.Add("Orot lexical payload should be split into multiple external chunks")
+      }
+      foreach ($chunk in $chunks) {
+        $chunkPath = Join-Path $LexicalDir ([string]$chunk.url)
+        if (-not (Test-Path $chunkPath)) {
+          $errors.Add("Missing external Orot lexical payload chunk: $chunkPath")
+          continue
+        }
+        $chunkJson = Get-Content -Path $chunkPath -Raw -Encoding UTF8 | ConvertFrom-Json
+        foreach ($field in @('schema_version', 'chunk_id', 'token_index', 'lexicon', 'source_rows')) {
+          if ($chunkJson.PSObject.Properties.Name -notcontains $field) {
+            $errors.Add("Orot lexical chunk missing $field`: $chunkPath")
+          }
+        }
       }
     }
   }

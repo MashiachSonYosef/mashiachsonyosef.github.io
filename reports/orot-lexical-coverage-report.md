@@ -1,6 +1,6 @@
 # Orot Lexical Coverage Report
 
-Generated: 2026-04-30T10:31:36.847Z
+Generated: 2026-04-30T12:09:24.696Z
 
 ## Scope
 

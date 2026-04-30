@@ -5,8 +5,40 @@ import path from 'node:path';
 const sourcePath = 'data/sources/orot.json';
 const lexicalDir = 'data/lexical';
 const lexiconPath = path.join(lexicalDir, 'lexicon.json');
+const lexiconLayerDir = path.join(lexicalDir, 'source-layers');
 const reportPath = 'reports/orot-lexical-coverage-report.md';
 const maxPossibleEntriesPerEntry = 12;
+const lexicalLayerFiles = [
+  {
+    layer_id: 'project-overrides',
+    source_family: 'workspace',
+    license: 'N/A - project-authored lexical rules',
+    path: 'source-layers/project-overrides.json',
+    description: 'Project-authored fixed expression and grammar override entries.',
+  },
+  {
+    layer_id: 'wikidata-cc0',
+    source_family: 'wikidata',
+    license: 'CC0',
+    path: 'source-layers/wikidata-cc0.json',
+    description: 'Entries whose source rows are entirely Wikidata Lexeme CC0 rows.',
+  },
+  {
+    layer_id: 'openscriptures-cc-by-4',
+    source_family: 'openscriptures',
+    license: 'CC BY 4.0',
+    path: 'source-layers/openscriptures-cc-by-4.json',
+    description: 'Entries containing OpenScriptures CC BY 4.0 rows, including mixed clean-source entries.',
+  },
+  {
+    layer_id: 'kaikki-wiktionary-cc-by-sa-gfdl',
+    source_family: 'kaikki',
+    license: 'CC BY-SA 4.0 / GFDL',
+    path: 'source-layers/kaikki-wiktionary-cc-by-sa-gfdl.json',
+    status: 'placeholder',
+    description: 'Reserved future layer for Wiktionary via Kaikki data. No data is imported by this script unless explicitly added later.',
+  },
+];
 
 const userAgent = 'translation-workspace/1.0 (Orot lexical coverage; local research workspace)';
 const wikidataLicense = {
@@ -42,6 +74,11 @@ function readJson(filePath) {
 function writeJson(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
+}
+
+function writeCompactJson(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(value)}\n`, 'utf8');
 }
 
 function writeText(filePath, value) {
@@ -510,16 +547,90 @@ function makeOpenScripturesRows(matches, usedMorphHB) {
 
 function loadExistingLexicon() {
   if (!fs.existsSync(lexiconPath)) {
-    return {
-      schema_version: 1,
-      title: 'Lexical HUD lexicon entries',
-      scope: 'Reusable lexical entries for HUD rendering. Token occurrence files reference these entries by lexicon_entry_id.',
-      import_date: new Date().toISOString().slice(0, 10),
-      license_policy: 'Lexical source rows remain separately attributed. Lexical data is not part of the owner\'s CC0 English translation overlay unless a row is itself CC0 or public domain.',
-      entries: [],
-    };
+    return emptyLexicon();
   }
-  return readJson(lexiconPath);
+  const lexicon = readJson(lexiconPath);
+  const entries = Array.isArray(lexicon.entries) && lexicon.entries.length
+    ? lexicon.entries
+    : loadLayerEntries(lexicon);
+  return {
+    ...emptyLexicon(),
+    ...lexicon,
+    layer_files: lexicon.layer_files || lexicalLayerFiles,
+    entries,
+  };
+}
+
+function emptyLexicon() {
+  return {
+    schema_version: 2,
+    title: 'Lexical HUD lexicon source-layer manifest',
+    scope: 'Reusable lexical entries for HUD rendering. Token occurrence files reference these entries by lexicon_entry_id.',
+    import_date: new Date().toISOString().slice(0, 10),
+    license_policy: 'Lexical source rows remain separately attributed. Lexical data is not part of the owner\'s CC0 English translation overlay unless a row is itself CC0 or public domain.',
+    layer_files: lexicalLayerFiles,
+    entries: [],
+  };
+}
+
+function loadLayerEntries(manifest) {
+  const entries = [];
+  for (const layer of manifest.layer_files || []) {
+    if (!layer.path) continue;
+    const layerPath = path.join(lexicalDir, layer.path);
+    if (!fs.existsSync(layerPath)) continue;
+    const layerJson = readJson(layerPath);
+    entries.push(...(layerJson.entries || []));
+  }
+  return entries;
+}
+
+function entryLayerId(entry) {
+  const families = unique((entry.source_rows || []).map((row) => row.source_family || row.source_name).filter(Boolean));
+  if (families.some((family) => family === 'kaikki' || family === 'wiktionary')) return 'kaikki-wiktionary-cc-by-sa-gfdl';
+  if (families.length && families.every((family) => family === 'workspace')) return 'project-overrides';
+  if (families.length && families.every((family) => family === 'wikidata')) return 'wikidata-cc0';
+  if (families.some((family) => family === 'openscriptures')) return 'openscriptures-cc-by-4';
+  return 'project-overrides';
+}
+
+function writeLexicon(lexicon) {
+  const entriesByLayer = new Map(lexicalLayerFiles.map((layer) => [layer.layer_id, []]));
+  for (const entry of lexicon.entries || []) {
+    const layerId = entryLayerId(entry);
+    if (!entriesByLayer.has(layerId)) entriesByLayer.set(layerId, []);
+    entriesByLayer.get(layerId).push(entry);
+  }
+
+  for (const layer of lexicalLayerFiles) {
+    const entries = (entriesByLayer.get(layer.layer_id) || [])
+      .slice()
+      .sort((a, b) => String(a.entry_id).localeCompare(String(b.entry_id)));
+    writeCompactJson(path.join(lexicalDir, layer.path), {
+      schema_version: 1,
+      layer_id: layer.layer_id,
+      source_family: layer.source_family,
+      license: layer.license,
+      status: layer.status || 'active',
+      description: layer.description,
+      generated_at: new Date().toISOString(),
+      entries,
+    });
+  }
+
+  writeJson(lexiconPath, {
+    schema_version: 2,
+    title: 'Lexical HUD lexicon source-layer manifest',
+    scope: lexicon.scope || emptyLexicon().scope,
+    import_date: lexicon.import_date || new Date().toISOString().slice(0, 10),
+    generated_at: new Date().toISOString(),
+    license_policy: lexicon.license_policy || emptyLexicon().license_policy,
+    layer_files: lexicalLayerFiles.map((layer) => ({
+      ...layer,
+      entries: (entriesByLayer.get(layer.layer_id) || []).length,
+    })),
+    entries: [],
+  });
 }
 
 function buildLexicon() {
@@ -859,7 +970,7 @@ async function main() {
     return left.localeCompare(right, 'he') || a.entry_id.localeCompare(b.entry_id);
   });
 
-  writeJson(lexiconPath, newLexicon);
+  writeLexicon(newLexicon);
 
   const report = `# Orot Lexical Coverage Report
 

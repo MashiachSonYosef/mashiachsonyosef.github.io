@@ -44,9 +44,24 @@ foreach ($row in @($tokenIndex.forms)) {
 }
 
 $lexicon = Get-Content -LiteralPath $lexiconPath -Raw -Encoding UTF8 | ConvertFrom-Json
+$lexiconEntries = @($lexicon.entries)
+if ($lexiconEntries.Count -eq 0 -and $lexicon.PSObject.Properties.Name -contains 'layer_files') {
+  foreach ($layer in @($lexicon.layer_files)) {
+    if (-not $layer.path) { continue }
+    $layerPath = Join-Path (Join-Path $PSScriptRoot '..\data\lexical') ([string]$layer.path)
+    if (-not (Test-Path -LiteralPath $layerPath)) {
+      throw "Required lexical source layer file not found: $layerPath"
+    }
+    $layerJson = Get-Content -LiteralPath $layerPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    if (($layer.source_family -eq 'kaikki' -or $layer.source_family -eq 'wiktionary') -and @($layerJson.entries).Count -gt 0) {
+      throw "Kaikki/Wiktionary lexical layer should be placeholder-only in this task: $layerPath"
+    }
+    $lexiconEntries += @($layerJson.entries)
+  }
+}
 $entryIds = @{}
 $entriesById = @{}
-foreach ($entry in @($lexicon.entries)) {
+foreach ($entry in @($lexiconEntries)) {
   $entryIds[[string]$entry.entry_id] = $true
   $entriesById[[string]$entry.entry_id] = $entry
 }
@@ -186,17 +201,40 @@ if (Test-Path -LiteralPath $orotHtmlPath) {
   }
 
   $manifestPath = Join-Path $PSScriptRoot '..\data\lexical\orot.manifest.json'
-  $chunkPath = Join-Path $PSScriptRoot '..\data\lexical\orot-chunks\orot-core.json'
-  foreach ($path in @($manifestPath, $chunkPath)) {
-    if (-not (Test-Path -LiteralPath $path)) {
-      throw "Required external Orot lexical payload file not found: $path"
-    }
+  if (-not (Test-Path -LiteralPath $manifestPath)) {
+    throw "Required external Orot lexical payload manifest not found: $manifestPath"
   }
   $manifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
-  $chunk = Get-Content -LiteralPath $chunkPath -Raw -Encoding UTF8 | ConvertFrom-Json
+  if (@($manifest.chunks).Count -lt 2) {
+    throw "Expected Orot lexical payload to be split into multiple external chunks."
+  }
+  $chunkCache = @{}
+  function Get-ChunkForTokenRow {
+    param([object]$TokenRow)
+
+    $tokenId = [string]$TokenRow.token_index_id
+    if ($manifest.token_chunks.PSObject.Properties.Name -notcontains $tokenId) {
+      throw "Orot manifest does not map token to a chunk: $tokenId"
+    }
+    $chunkId = [string]$manifest.token_chunks.$tokenId
+    if (-not $chunkCache.ContainsKey($chunkId)) {
+      $chunkMeta = @($manifest.chunks | Where-Object { $_.chunk_id -eq $chunkId }) | Select-Object -First 1
+      if ($null -eq $chunkMeta -or -not $chunkMeta.url) {
+        throw "Orot manifest chunk metadata missing for chunk: $chunkId"
+      }
+      $chunkPath = Join-Path (Join-Path $PSScriptRoot '..\data\lexical') ([string]$chunkMeta.url)
+      if (-not (Test-Path -LiteralPath $chunkPath)) {
+        throw "Required external Orot lexical payload chunk not found: $chunkPath"
+      }
+      $chunkCache[$chunkId] = Get-Content -LiteralPath $chunkPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    }
+    return $chunkCache[$chunkId]
+  }
+
+  $chunk = Get-ChunkForTokenRow -TokenRow $laUmmah
   $pageTokenIndex = $chunk.token_index
-  $pageLaUmmah = @($pageTokenIndex.forms | Where-Object { $_.surface_word -eq $laUmmahSurface }) | Select-Object -First 1
-  if ($manifest.token_chunks.PSObject.Properties.Name -notcontains [string]$pageLaUmmah.token_index_id) {
+  $pageLaUmmah = @($pageTokenIndex.forms | Where-Object { $_.token_index_id -eq $laUmmah.token_index_id }) | Select-Object -First 1
+  if ($null -eq $pageLaUmmah) {
     throw "Orot manifest does not map la-ummah token to a chunk."
   }
 
@@ -216,8 +254,12 @@ if (Test-Path -LiteralPath $orotHtmlPath) {
     }
   }
 
-  $pageBetor = @($pageTokenIndex.forms | Where-Object { $_.surface_word -eq $betorSurface }) | Select-Object -First 1
-  if ($manifest.token_chunks.PSObject.Properties.Name -notcontains [string]$pageBetor.token_index_id) {
+  $chunk = Get-ChunkForTokenRow -TokenRow $betor
+  $pageTokenIndex = $chunk.token_index
+  $pageLexicon = $chunk.lexicon
+  $pageSourceRows = $chunk.source_rows
+  $pageBetor = @($pageTokenIndex.forms | Where-Object { $_.token_index_id -eq $betor.token_index_id }) | Select-Object -First 1
+  if ($null -eq $pageBetor) {
     throw "Orot manifest does not map betor token to a chunk."
   }
   Assert-Codepoints -Label 'page betor clicked token' -Value $pageBetor.surface_word -Expected @(0x05D1, 0x05B0, 0x05BC, 0x05EA, 0x05D5, 0x05B9, 0x05E8)

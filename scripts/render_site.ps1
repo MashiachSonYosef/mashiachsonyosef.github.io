@@ -736,6 +736,26 @@ function Get-LexicalCache {
   $occurrencesDir = Join-Path $LexicalDir 'occurrences'
 
   $lexicon = if (Test-Path $lexiconPath) { Read-Json -Path $lexiconPath } else { [pscustomobject]@{ schema_version = 1; entries = @() } }
+  $lexiconEntries = @($lexicon.entries)
+  if ($lexiconEntries.Count -eq 0 -and $lexicon.PSObject.Properties.Name -contains 'layer_files') {
+    foreach ($layer in @($lexicon.layer_files)) {
+      if (-not $layer.path) { continue }
+      $layerPath = Join-Path $LexicalDir ([string]$layer.path)
+      if (-not (Test-Path -LiteralPath $layerPath)) { continue }
+      $layerJson = Read-Json -Path $layerPath
+      $lexiconEntries += @($layerJson.entries)
+    }
+    $lexicon = [pscustomobject]@{
+      schema_version = $lexicon.schema_version
+      title = $lexicon.title
+      scope = $lexicon.scope
+      import_date = $lexicon.import_date
+      generated_at = $lexicon.generated_at
+      license_policy = $lexicon.license_policy
+      layer_files = $lexicon.layer_files
+      entries = $lexiconEntries
+    }
+  }
   $tokenIndex = if (Test-Path $tokenIndexPath) { Read-Json -Path $tokenIndexPath } else { [pscustomobject]@{ schema_version = 1; forms = @() } }
 
   $tokenIndexById = @{}
@@ -746,7 +766,7 @@ function Get-LexicalCache {
   }
 
   $lexiconById = @{}
-  foreach ($entry in @($lexicon.entries)) {
+  foreach ($entry in @($lexiconEntries)) {
     if ($entry.entry_id) {
       $lexiconById[[string]$entry.entry_id] = $entry
     }
@@ -948,63 +968,96 @@ function Write-WorkLexicalPayloadFiles {
     return $null
   }
 
-  $chunkId = "$WorkId-core"
   $chunkDir = Join-Path $LexicalDir "$WorkId-chunks"
   if (-not (Test-Path -LiteralPath $chunkDir)) {
     New-Item -ItemType Directory -Path $chunkDir | Out-Null
   }
-
-  $sourceRows = [ordered]@{}
-  $sourceRowIdsByKey = @{}
-
-  $getSourceRowIds = {
-    param([object[]]$Rows)
-
-    $ids = @()
-    foreach ($row in @($Rows)) {
-      if ($null -eq $row) { continue }
-      $key = "$($row.source_family)|$($row.source_id)|$($row.license)"
-      if (-not $sourceRowIdsByKey.ContainsKey($key)) {
-        $sourceRowId = $key
-        $sourceRowIdsByKey[$key] = $sourceRowId
-        $sourceRows[$sourceRowId] = $row
-      }
-      $ids += $sourceRowIdsByKey[$key]
-    }
-    return $ids
+  foreach ($oldChunk in @(Get-ChildItem -Path $chunkDir -Filter '*.json' -ErrorAction SilentlyContinue)) {
+    Remove-Item -LiteralPath $oldChunk.FullName -Force
   }
 
-  $entries = @($WorkLexicalPayload.lexicon.entries | ForEach-Object {
-    [pscustomobject]@{
-      entry_id = $_.entry_id
-      hebrew_word = $_.hebrew_word
-      strict_renderings = $_.strict_renderings
-      disambiguation_status = $_.disambiguation_status
-      context_note = $_.context_note
-      possible_entries = $_.possible_entries
-      source_row_ids = @(& $getSourceRowIds -Rows @($_.source_rows))
-      secondary_source_row_ids = @(& $getSourceRowIds -Rows @($_.secondary_source_rows))
+  $entriesById = @{}
+  foreach ($entry in @($WorkLexicalPayload.lexicon.entries)) {
+    if ($entry.entry_id) {
+      $entriesById[[string]$entry.entry_id] = $entry
     }
-  })
-
-  $chunk = [pscustomobject]@{
-    schema_version = 1
-    chunk_id = $chunkId
-    token_index = $WorkLexicalPayload.token_index
-    lexicon = [pscustomobject]@{
-      schema_version = 1
-      entries = $entries
-    }
-    source_rows = $sourceRows
   }
 
-  $chunkPath = Join-Path $chunkDir "$chunkId.json"
-  Write-Utf8 -Path $chunkPath -Content ((ConvertTo-Json -InputObject $chunk -Depth 40 -Compress) + "`n")
-
+  $forms = @($WorkLexicalPayload.token_index.forms)
+  $maxFormsPerChunk = 1000
+  $chunks = @()
   $tokenChunks = [ordered]@{}
-  foreach ($form in @($WorkLexicalPayload.token_index.forms)) {
-    if ($form.token_index_id) {
-      $tokenChunks[[string]$form.token_index_id] = $chunkId
+  for ($start = 0; $start -lt $forms.Count; $start += $maxFormsPerChunk) {
+    $chunkForms = @($forms[$start..([Math]::Min($start + $maxFormsPerChunk - 1, $forms.Count - 1))])
+    $chunkNumber = [int]($start / $maxFormsPerChunk)
+    $chunkId = ('{0}-{1:D3}' -f $WorkId, $chunkNumber)
+
+    $chunkEntryIds = @{}
+    foreach ($form in @($chunkForms)) {
+      if ($form.token_index_id) {
+        $tokenChunks[[string]$form.token_index_id] = $chunkId
+      }
+      if ($form.lexicon_entry_id) {
+        $chunkEntryIds[[string]$form.lexicon_entry_id] = $true
+      }
+    }
+
+    $sourceRows = [ordered]@{}
+    $sourceRowIdsByKey = @{}
+    $getSourceRowIds = {
+      param([object[]]$Rows)
+
+      $ids = @()
+      foreach ($row in @($Rows)) {
+        if ($null -eq $row) { continue }
+        $key = "$($row.source_family)|$($row.source_id)|$($row.license)"
+        if (-not $sourceRowIdsByKey.ContainsKey($key)) {
+          $sourceRowId = $key
+          $sourceRowIdsByKey[$key] = $sourceRowId
+          $sourceRows[$sourceRowId] = $row
+        }
+        $ids += $sourceRowIdsByKey[$key]
+      }
+      return $ids
+    }
+
+    $entries = @($chunkEntryIds.Keys | Sort-Object | ForEach-Object {
+      if ($entriesById.ContainsKey($_)) {
+        $entry = $entriesById[$_]
+        [pscustomobject]@{
+          entry_id = $entry.entry_id
+          hebrew_word = $entry.hebrew_word
+          strict_renderings = $entry.strict_renderings
+          disambiguation_status = $entry.disambiguation_status
+          context_note = $entry.context_note
+          possible_entries = $entry.possible_entries
+          source_row_ids = @(& $getSourceRowIds -Rows @($entry.source_rows))
+          secondary_source_row_ids = @(& $getSourceRowIds -Rows @($entry.secondary_source_rows))
+        }
+      }
+    })
+
+    $chunk = [pscustomobject]@{
+      schema_version = 1
+      chunk_id = $chunkId
+      token_index = [pscustomobject]@{
+        schema_version = 1
+        forms = $chunkForms
+      }
+      lexicon = [pscustomobject]@{
+        schema_version = 1
+        entries = $entries
+      }
+      source_rows = $sourceRows
+    }
+
+    $chunkPath = Join-Path $chunkDir "$chunkId.json"
+    Write-Utf8 -Path $chunkPath -Content ((ConvertTo-Json -InputObject $chunk -Depth 40 -Compress) + "`n")
+    $chunks += [pscustomobject]@{
+      chunk_id = $chunkId
+      url = "$WorkId-chunks/$chunkId.json"
+      token_count = $chunkForms.Count
+      entry_count = $entries.Count
     }
   }
 
@@ -1012,10 +1065,7 @@ function Write-WorkLexicalPayloadFiles {
     schema_version = 1
     work_id = $WorkId
     generated_at = if ($WorkLexicalPayload.generated_at) { $WorkLexicalPayload.generated_at } else { $null }
-    chunks = @([pscustomobject]@{
-      chunk_id = $chunkId
-      url = "$WorkId-chunks/$chunkId.json"
-    })
+    chunks = $chunks
     token_chunks = $tokenChunks
   }
 
