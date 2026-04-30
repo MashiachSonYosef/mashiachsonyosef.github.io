@@ -53,9 +53,6 @@ if ($lexiconEntries.Count -eq 0 -and $lexicon.PSObject.Properties.Name -contains
       throw "Required lexical source layer file not found: $layerPath"
     }
     $layerJson = Get-Content -LiteralPath $layerPath -Raw -Encoding UTF8 | ConvertFrom-Json
-    if (($layer.source_family -eq 'kaikki' -or $layer.source_family -eq 'wiktionary') -and @($layerJson.entries).Count -gt 0) {
-      throw "Kaikki/Wiktionary lexical layer should be placeholder-only in this task: $layerPath"
-    }
     $lexiconEntries += @($layerJson.entries)
   }
 }

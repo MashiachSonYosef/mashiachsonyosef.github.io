@@ -47,7 +47,7 @@ const layerCounts = {
   wikidata_cc0: matched.filter((row) => entryFamilies(row).has('wikidata')).length,
   openscriptures_cc_by_4: matched.filter((row) => entryFamilies(row).has('openscriptures')).length,
   parser_affix_resolution: matched.filter((row) => row.match_method === 'affix_parser').length,
-  kaikki_placeholder: matched.filter((row) => {
+  kaikki_wiktionary_cc_by_sa_gfdl: matched.filter((row) => {
     const families = entryFamilies(row);
     return families.has('kaikki') || families.has('wiktionary');
   }).length,
@@ -257,7 +257,7 @@ lines.push('- Work: Orot only');
 lines.push('- Source imports: none');
 lines.push('- New definitions added: none');
 lines.push('- HUD behavior changed: no');
-lines.push('- Kaikki/Wiktionary data added: no');
+lines.push(`- Kaikki/Wiktionary data added: ${layerCounts.kaikki_wiktionary_cc_by_sa_gfdl > 0 ? 'yes, separated CC BY-SA/GFDL layer only' : 'no'}`);
 lines.push('- Count source: current `data/lexical/token-index.json` plus `data/lexical/occurrences/orot.json`');
 lines.push('');
 lines.push('## Summary');
@@ -277,7 +277,7 @@ lines.push(`| Project overrides | ${layerCounts.project_overrides} |`);
 lines.push(`| Wikidata CC0 | ${layerCounts.wikidata_cc0} |`);
 lines.push(`| OpenScriptures CC BY 4.0 | ${layerCounts.openscriptures_cc_by_4} |`);
 lines.push(`| Parser/affix resolution | ${layerCounts.parser_affix_resolution} |`);
-lines.push(`| Kaikki/Wiktionary placeholder | ${layerCounts.kaikki_placeholder} |`);
+lines.push(`| Kaikki/Wiktionary CC BY-SA/GFDL | ${layerCounts.kaikki_wiktionary_cc_by_sa_gfdl} |`);
 lines.push('');
 lines.push('## Unmatched Buckets');
 lines.push('');

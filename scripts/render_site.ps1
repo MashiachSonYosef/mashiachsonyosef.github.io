@@ -925,6 +925,12 @@ function Get-WorkLexicalPayload {
       $secondaryEntries = @($rawPossibleEntries | Where-Object { $_.context_role -ne 'likely_contextual' })
       $primarySourceRows = Select-LexicalSourceRows -SourceRows @($entry.source_rows) -Keys @($primaryEntries | ForEach-Object { @($_.source_row_keys) })
       $secondarySourceRows = Select-LexicalSourceRows -SourceRows @($entry.source_rows) -Keys @($secondaryEntries | ForEach-Object { @($_.source_row_keys) })
+      if ($primarySourceRows.Count -eq 0 -and @($entry.strict_renderings).Count -gt 0) {
+        $strictRenderingRows = @($entry.source_rows | Where-Object { $_.source_family -eq 'kaikki' -or $_.source_family -eq 'wiktionary' })
+        if ($strictRenderingRows.Count -gt 0) {
+          $primarySourceRows = $strictRenderingRows
+        }
+      }
       $possibleEntries = @($rawPossibleEntries | ForEach-Object {
         [pscustomobject]@{
           entry_key = $_.entry_key

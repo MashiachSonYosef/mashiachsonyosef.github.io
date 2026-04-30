@@ -240,9 +240,6 @@ if (Test-Path $lexiconPath) {
           $errors.Add("Lexical source layer missing $field`: $layerPath")
         }
       }
-      if (($layer.source_family -eq 'kaikki' -or $layer.source_family -eq 'wiktionary') -and @($layerJson.entries).Count -gt 0) {
-        $errors.Add("Kaikki/Wiktionary layer must remain empty until explicitly imported: $layerPath")
-      }
       $lexiconEntries += @($layerJson.entries)
     }
   }
@@ -266,7 +263,15 @@ if (Test-Path $lexiconPath) {
         }
       }
       if ($row.source_family -eq 'wiktionary' -or $row.source_family -eq 'kaikki') {
-        $errors.Add("Lexicon includes disallowed Wiktionary/Kaikki row for $($entry.entry_id)")
+        if ($row.source_name -ne 'Wiktionary via Kaikki') {
+          $errors.Add("Kaikki/Wiktionary row has unexpected source_name for $($entry.entry_id): $($row.source_name)")
+        }
+        if ($row.license -ne 'CC BY-SA 4.0 / GFDL') {
+          $errors.Add("Kaikki/Wiktionary row has unexpected license for $($entry.entry_id): $($row.license)")
+        }
+        if (-not $row.source_url -or -not $row.source_url.ToString().Contains('kaikki.org/dictionary/Hebrew')) {
+          $errors.Add("Kaikki/Wiktionary row missing Kaikki source URL for $($entry.entry_id)")
+        }
       }
     }
   }
@@ -384,7 +389,7 @@ foreach ($lexicalFile in $lexicalFiles) {
     if ($lexicalPage.Contains('data-lexical-json')) {
       $errors.Add("Lexical target page contains stale per-occurrence lexical JSON for $($lexical.work_id)")
     }
-    foreach ($badText in @('Genesis 1:1 Lexical HUD', 'lexical/genesis-1-1', 'Kaikki', 'Wiktionary', 'machine_draft_translation', 'Translatorâ')) {
+    foreach ($badText in @('Genesis 1:1 Lexical HUD', 'lexical/genesis-1-1', 'machine_draft_translation', 'Translatorâ')) {
       if ($lexicalPage.Contains($badText)) {
         $errors.Add("Lexical proof target page contains disallowed text '$badText'")
       }
