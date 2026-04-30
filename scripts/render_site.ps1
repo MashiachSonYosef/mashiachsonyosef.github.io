@@ -968,10 +968,11 @@ function Write-WorkLexicalPayloadFiles {
   param(
     [string]$WorkId,
     [object]$WorkLexicalPayload,
+    [string]$RootHref = '../',
     [string]$LexicalDir = 'data/lexical'
   )
 
-  if ($WorkId -ne 'orot' -or $null -eq $WorkLexicalPayload) {
+  if ($null -eq $WorkLexicalPayload) {
     return $null
   }
 
@@ -1080,7 +1081,7 @@ function Write-WorkLexicalPayloadFiles {
   Write-Utf8 -Path $manifestPath -Content ((ConvertTo-Json -InputObject $manifest -Depth 40 -Compress) + "`n")
 
   return [pscustomobject]@{
-    manifest_url = "../$LexicalDir/$WorkId.manifest.json"
+    manifest_url = "$RootHref$LexicalDir/$WorkId.manifest.json"
   }
 }
 
@@ -1310,7 +1311,7 @@ foreach ($source in $sources) {
   $workOccurrence = if ($lexicalCache.occurrences_by_work.ContainsKey([string]$source.work_id)) { $lexicalCache.occurrences_by_work[[string]$source.work_id] } else { $null }
   $workHasLexical = ($null -ne $workOccurrence)
   $workLexicalPayload = if ($workHasLexical) { Get-WorkLexicalPayload -WorkOccurrence $workOccurrence -LexicalCache $lexicalCache } else { $null }
-  $workLexicalExternal = if ($workHasLexical) { Write-WorkLexicalPayloadFiles -WorkId $source.work_id -WorkLexicalPayload $workLexicalPayload } else { $null }
+  $workLexicalExternal = if ($workHasLexical) { Write-WorkLexicalPayloadFiles -WorkId $source.work_id -WorkLexicalPayload $workLexicalPayload -RootHref $rootHref } else { $null }
 
   Append-SiteHead -Builder $page -Title $source.work_title -IncludeLexicalStyles:$workHasLexical
   [void]$page.AppendLine('  <main>')

@@ -3,27 +3,59 @@ $ErrorActionPreference = 'Stop'
 $samples = @(
   [pscustomobject]@{
     Label = 'Orot 70:5 HUD canary'
+    WorkId = 'orot'
     UnitId = 'orot-lights-from-darkness-lights-of-rebirth-70-5'
     HtmlPath = Join-Path $PSScriptRoot '..\orot\index.html'
     OccurrencePath = Join-Path $PSScriptRoot '..\data\lexical\occurrences\orot.json'
+    ManifestPath = Join-Path $PSScriptRoot '..\data\lexical\orot.manifest.json'
   },
   [pscustomobject]@{
     Label = 'Orot punctuation sample'
+    WorkId = 'orot'
     UnitId = 'orot-lights-from-darkness-war-1-1'
     HtmlPath = Join-Path $PSScriptRoot '..\orot\index.html'
     OccurrencePath = Join-Path $PSScriptRoot '..\data\lexical\occurrences\orot.json'
+    ManifestPath = Join-Path $PSScriptRoot '..\data\lexical\orot.manifest.json'
   },
   [pscustomobject]@{
     Label = 'Orot Land of Israel punctuation sample'
+    WorkId = 'orot'
     UnitId = 'orot-lights-from-darkness-land-of-israel-1-2'
     HtmlPath = Join-Path $PSScriptRoot '..\orot\index.html'
     OccurrencePath = Join-Path $PSScriptRoot '..\data\lexical\occurrences\orot.json'
+    ManifestPath = Join-Path $PSScriptRoot '..\data\lexical\orot.manifest.json'
   },
   [pscustomobject]@{
     Label = 'Orot non-Lights-from-Darkness sample'
+    WorkId = 'orot'
     UnitId = 'orot-the-process-of-ideals-in-israel-the-godly-and-the-national-ideal-in-the-individual-1'
     HtmlPath = Join-Path $PSScriptRoot '..\orot\index.html'
     OccurrencePath = Join-Path $PSScriptRoot '..\data\lexical\occurrences\orot.json'
+    ManifestPath = Join-Path $PSScriptRoot '..\data\lexical\orot.manifest.json'
+  },
+  [pscustomobject]@{
+    Label = 'Ari School HUD sample'
+    WorkId = 'pri-etz-chaim'
+    UnitId = 'pri-etz-chaim-gate-of-prayer-introduction-1'
+    HtmlPath = Join-Path $PSScriptRoot '..\ari\pri-etz-chaim\index.html'
+    OccurrencePath = Join-Path $PSScriptRoot '..\data\lexical\occurrences\pri-etz-chaim.json'
+    ManifestPath = Join-Path $PSScriptRoot '..\data\lexical\pri-etz-chaim.manifest.json'
+  },
+  [pscustomobject]@{
+    Label = 'Gra School HUD sample'
+    WorkId = 'beur-hagra-on-shulchan-arukh-orach-chayim'
+    UnitId = 'beur-hagra-on-shulchan-arukh-orach-chayim-1-1-1'
+    HtmlPath = Join-Path $PSScriptRoot '..\gra\beur-hagra-on-shulchan-arukh-orach-chayim\index.html'
+    OccurrencePath = Join-Path $PSScriptRoot '..\data\lexical\occurrences\beur-hagra-on-shulchan-arukh-orach-chayim.json'
+    ManifestPath = Join-Path $PSScriptRoot '..\data\lexical\beur-hagra-on-shulchan-arukh-orach-chayim.manifest.json'
+  },
+  [pscustomobject]@{
+    Label = 'Rav Kook School HUD sample'
+    WorkId = 'maamar-hador'
+    UnitId = 'maamar-hador-1'
+    HtmlPath = Join-Path $PSScriptRoot '..\rav-kook\maamar-hador\index.html'
+    OccurrencePath = Join-Path $PSScriptRoot '..\data\lexical\occurrences\maamar-hador.json'
+    ManifestPath = Join-Path $PSScriptRoot '..\data\lexical\maamar-hador.manifest.json'
   }
 )
 
@@ -61,6 +93,25 @@ $entriesById = @{}
 foreach ($entry in @($lexiconEntries)) {
   $entryIds[[string]$entry.entry_id] = $true
   $entriesById[[string]$entry.entry_id] = $entry
+}
+
+function Select-TokenRow {
+  param(
+    [string]$WorkId = 'orot',
+    [AllowNull()][string]$Surface,
+    [AllowNull()][string]$Normalized
+  )
+
+  $matches = @($tokenIndex.forms | Where-Object {
+    ($_.work_id -eq $WorkId) -and
+    ((($Surface -ne $null) -and ($_.surface_word -eq $Surface)) -or (($Normalized -ne $null) -and ($_.normalized_word -eq $Normalized)))
+  })
+  if ($matches.Count -eq 0) {
+    $matches = @($tokenIndex.forms | Where-Object {
+      ((($Surface -ne $null) -and ($_.surface_word -eq $Surface)) -or (($Normalized -ne $null) -and ($_.normalized_word -eq $Normalized)))
+    })
+  }
+  return $matches | Select-Object -First 1
 }
 
 $laUmmahSurface = -join @([char]0x05DC, [char]0x05B8, [char]0x05D0, [char]0x05BB, [char]0x05DE, [char]0x05B8, [char]0x05BC, [char]0x05D4)
@@ -132,7 +183,7 @@ function Assert-Codepoints {
   }
 }
 
-$laUmmah = @($tokenIndex.forms | Where-Object { $_.surface_word -eq $laUmmahSurface }) | Select-Object -First 1
+$laUmmah = Select-TokenRow -WorkId 'orot' -Surface $laUmmahSurface
 if ($null -eq $laUmmah) {
   throw "Expected lexical disambiguation canary token not found: la-ummah"
 }
@@ -177,7 +228,7 @@ if ($laUmmahBreakdown[1].hebrew -ne $expectedBase -or -not (@($laUmmahBreakdown[
   throw "Expected la-ummah second breakdown row to preserve ummah as nation/people."
 }
 
-$betor = @($tokenIndex.forms | Where-Object { $_.surface_word -eq $betorSurface }) | Select-Object -First 1
+$betor = Select-TokenRow -WorkId 'orot' -Surface $betorSurface
 if ($null -eq $betor) {
   throw "Expected fixed-expression token not found: betor"
 }
@@ -208,7 +259,7 @@ if (@($betorEntry.source_rows).Count -ne 1 -or @($betorEntry.source_rows)[0].sou
   throw "Expected betor fixed-expression entry to use only the workspace expression source row."
 }
 
-$shel = @($tokenIndex.forms | Where-Object { $_.normalized_word -eq $shelNormalized }) | Select-Object -First 1
+$shel = Select-TokenRow -WorkId 'orot' -Normalized $shelNormalized
 if ($null -eq $shel) {
   throw "Expected grammar particle token not found: shel"
 }
@@ -227,7 +278,7 @@ if ($null -eq $shelEntry -or @($shelEntry.source_rows).Count -ne 1 -or @($shelEn
 }
 
 foreach ($canary in $openingCanaryGroup) {
-  $row = @($tokenIndex.forms | Where-Object { $_.surface_word -eq $canary.Surface }) | Select-Object -First 1
+  $row = Select-TokenRow -WorkId 'orot' -Surface $canary.Surface
   if ($null -eq $row) {
     throw "Expected Orot opening canary token not found: $($canary.Label)"
   }
@@ -381,6 +432,26 @@ function Test-LexicalSample {
     $tokenRow = $tokenRows[$tokenIndexId]
     if ($tokenRow.status -eq 'matched' -and -not $entryIds.ContainsKey([string]$tokenRow.lexicon_entry_id)) {
       throw "Matched token index row references missing lexicon_entry_id $($tokenRow.lexicon_entry_id): $tokenIndexId"
+    }
+  }
+
+  if ($Sample.PSObject.Properties.Name -contains 'ManifestPath') {
+    if (-not (Test-Path -LiteralPath $Sample.ManifestPath)) {
+      throw "Required lexical manifest not found for $($Sample.Label): $($Sample.ManifestPath)"
+    }
+    $sampleManifest = Get-Content -LiteralPath $Sample.ManifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    $firstTokenId = [string]$expectedTokenIndexIds[0]
+    if ($sampleManifest.token_chunks.PSObject.Properties.Name -notcontains $firstTokenId) {
+      throw "Manifest does not map first sample token to a chunk for $($Sample.Label): $firstTokenId"
+    }
+    $sampleChunkId = [string]$sampleManifest.token_chunks.$firstTokenId
+    $sampleChunkMeta = @($sampleManifest.chunks | Where-Object { $_.chunk_id -eq $sampleChunkId }) | Select-Object -First 1
+    if ($null -eq $sampleChunkMeta -or -not $sampleChunkMeta.url) {
+      throw "Manifest chunk metadata missing for $($Sample.Label): $sampleChunkId"
+    }
+    $sampleChunkPath = Join-Path (Join-Path $PSScriptRoot '..\data\lexical') ([string]$sampleChunkMeta.url)
+    if (-not (Test-Path -LiteralPath $sampleChunkPath)) {
+      throw "Required lexical chunk not found for $($Sample.Label): $sampleChunkPath"
     }
   }
 

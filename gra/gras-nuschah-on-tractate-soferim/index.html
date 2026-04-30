@@ -51,6 +51,38 @@
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
     .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: static; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .other-entries { margin-top: 12px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
     .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
     .source-table { width: 100%; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
@@ -66,7 +98,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -95,10 +127,10 @@
           <details class="toc-root" open>
             <summary>Contents</summary>
             <details class="toc-group">
-              <summary>Gra&#39;s Nuschah on Tractate Soferim</summary>
+              <summary>Gra&#39;s Nuschah on Tractate Soferim <span class="hud-badge">Lexical layer active</span></summary>
               <a class="toc-start" href="#work-top">Start</a>
               <details class="toc-section">
-                <summary>Gra&#39;s Nuschah on Tractate Soferim</summary>
+                <summary>Gra&#39;s Nuschah on Tractate Soferim <span class="hud-badge">Lexical layer active</span></summary>
                 <a class="toc-start" href="#work-top">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -232,466 +264,496 @@
         </nav>
         <article>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-1">Chapter 1</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-1-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-1-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 1:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-1-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 1:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">תפילין ומזוזות:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תפילין ומזוזות:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-1-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-1-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 1:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-1-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 1:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">וסמך לו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וסמך לו:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-1">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-3">Chapter 3</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-3-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-3-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 3:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-3-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 3:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">וכתובים כאחת דברי ר&quot;מ ר׳ יהודה אומר תורה בפני עצמו ונביאים בפני עצמן וכתובים בפ&quot;ע וחכמים אומרים כל אחד ואחד בפ&quot;ע. אמר ר׳ יהודה מעשה בבייתום בן זונין שהיו לו ח׳ נביאים מדובקים כא׳ ע&quot;פ ראב&quot;ע. וי&quot;א לא היו לו כי אם כל אחד ואחד בפני עצמו. אמר ר׳ מעשה באחד שהביא לפנינו תורה ונביאים וכתובים כאחת והכשרנו. במה דברים אמורים בקלף אבל בגויל תורה בפ&quot;ע ונביאים בפ&quot;ע וכתובים בפ&quot;ע לא יניח:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וכתובים כאחת דברי ר&quot;מ ר׳ יהודה אומר תורה בפני עצמו ונביאים בפני עצמן וכתובים בפ&quot;ע וחכמים אומרים כל אחד ואחד בפ&quot;ע. אמר ר׳ יהודה מעשה בבייתום בן זונין שהיו לו ח׳ נביאים מדובקים כא׳ ע&quot;פ ראב&quot;ע. וי&quot;א לא היו לו כי אם כל אחד ואחד בפני עצמו. אמר ר׳ מעשה באחד שהביא לפנינו תורה ונביאים וכתובים כאחת והכשרנו. במה דברים אמורים בקלף אבל בגויל תורה בפ&quot;ע ונביאים בפ&quot;ע וכתובים בפ&quot;ע לא יניח:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-3">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-4">Chapter 4</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-4-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-4-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 4:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-4-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 4:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">(בירושל׳ פ&quot;א דמגילה הגירסא) חגידה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">(בירושל׳ פ&quot;א דמגילה הגירסא) חגידה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-4-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-4-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 4:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-4-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 4:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">אומנים שבירושלים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אומנים שבירושלים:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-4">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-5">Chapter 5</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-5-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-5-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 5:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-5-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 5:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ומחטב:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ומחטב:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-5-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-5-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 5:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-5-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 5:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">מחטב:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מחטב:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-5-1-3" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-5-1-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 5:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-5-1-3" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 5:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">בסוף:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בסוף:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-5">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-6">Chapter 6</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-6-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-6-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 6:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-6-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 6:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">סימן בפרשה ( והם הנונין של ויהי בנסוע):</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">סימן בפרשה ( והם הנונין של ויהי בנסוע):</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-6">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-7">Chapter 7</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-7-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-7-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 7:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-7-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 7:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ויצוו (שופטים כא):</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויצוו (שופטים כא):</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-7">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-7-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-7-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 7:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-7-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 7:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">חנניה (נחמיה ג) מלכיה (שם) וישתחו (בראשית כז) וישתחו (שם מג) וישתחו (מ&quot;א ט). וחילופיהן ויאמר (יהושע ו) ויאמר (שם ט) ויאמר (ש&quot;א טו):</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">חנניה (נחמיה ג) מלכיה (שם) וישתחו (בראשית כז) וישתחו (שם מג) וישתחו (מ&quot;א ט). וחילופיהן ויאמר (יהושע ו) ויאמר (שם ט) ויאמר (ש&quot;א טו):</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-7">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-7-1-3" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-7-1-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 7:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-7-1-3" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 7:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">(מלכים א י״ב:ג׳ ויקראו לו ויבאו כתיב וקרי ויבא):</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">(מלכים א י״ב:ג׳ ויקראו לו ויבאו כתיב וקרי ויבא):</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-7">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-8">Chapter 8</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 8:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-8-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 8:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">דוד לה׳ (ובתהלים למנצח לעבד ה׳ לדוד אשר דבר לה׳). ומכף (ובתהלים ומיד). [ויאמר ה׳ (סלעי ובתהלים ויאמר ארחמך ה׳ חזקי ה׳ סלעי)]. לי. אלהי (וכ&quot;ה בס&quot;א) ומנוסי מושיעי מחמס תושיעני (ובתהלים ליתא). ומאויבי. כי. משברי. נחלי. סבוני (וכ&quot;ה בס&quot;א). אקרא. וישמע. [ושועתי באזניו (ובתהלים ושועתי לפניו תבוא באזניו ויתגעש מוסדות)]:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דוד לה׳ (ובתהלים למנצח לעבד ה׳ לדוד אשר דבר לה׳). ומכף (ובתהלים ומיד). [ויאמר ה׳ (סלעי ובתהלים ויאמר ארחמך ה׳ חזקי ה׳ סלעי)]. לי. אלהי (וכ&quot;ה בס&quot;א) ומנוסי מושיעי מחמס תושיעני (ובתהלים ליתא). ומאויבי. כי. משברי. נחלי. סבוני (וכ&quot;ה בס&quot;א). אקרא. וישמע. [ושועתי באזניו (ובתהלים ושועתי לפניו תבוא באזניו ויתגעש מוסדות)]:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 8:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-8-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 8:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">[חשך סביבותיו (ובתהלים חשך סתרו סביבותיו)]:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[חשך סביבותיו (ובתהלים חשך סתרו סביבותיו)]:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-3" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 8:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-8-1-3" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 8:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">(מנגה נגדו. ובתהלים מנגה נגדו עביו עברו):</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">(מנגה נגדו. ובתהלים מנגה נגדו עביו עברו):</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-4" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 8:1:4</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-8-1-4" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 8:1:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">[קולו וישלח (ובתהלים קולו ברד וגחלי אש וישלח)]. חצים. ברק ויהום (ובתהליס וברקים רב ויהמם). אפיקי ים (וכ&quot;ה בס&quot;א) יגלו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[קולו וישלח (ובתהלים קולו ברד וגחלי אש וישלח)]. חצים. ברק ויהום (ובתהליס וברקים רב ויהמם). אפיקי ים (וכ&quot;ה בס&quot;א) יגלו:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-5" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-5" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 8:1:5</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-8-1-5" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 8:1:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">[אתה נירי (ובתהלים אתה תאיר נרי)]. וה׳ [בכה (ובתהלים בך)]. באלהי. אל. מבלעדי (ובתהלים זולתי). מעוזי. ויתר. [דרכו רגליו כתיב (ובתהלים דרכי רגלי)]. ונחת. [ישעך] וענתך (ובתהלים ישעך וימינך תסעדני וענותך):</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[אתה נירי (ובתהלים אתה תאיר נרי)]. וה׳ [בכה (ובתהלים בך)]. באלהי. אל. מבלעדי (ובתהלים זולתי). מעוזי. ויתר. [דרכו רגליו כתיב (ובתהלים דרכי רגלי)]. ונחת. [ישעך] וענתך (ובתהלים ישעך וימינך תסעדני וענותך):</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-6" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-6" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 8:1:6</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-8-1-6" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 8:1:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">תתה (ובתהלים נתתה):</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תתה (ובתהלים נתתה):</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-7" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-8-1-7" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 8:1:7</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-8-1-7" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 8:1:7">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">(וגם בתהלים האי קרא מהופך דתחלת הפסוק לשמע אזן ישמעו לי ואח&quot;כ בני כו׳):</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">(וגם בתהלים האי קרא מהופך דתחלת הפסוק לשמע אזן ישמעו לי ואח&quot;כ בני כו׳):</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-8">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-9">Chapter 9</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-9-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-9-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 9:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-9-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 9:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">חק עולם (ומלת עולם כ&quot;ה בדפו&quot;י):</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">חק עולם (ומלת עולם כ&quot;ה בדפו&quot;י):</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-9">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-11">Chapter 11</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-11-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-11-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 11:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-11-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 11:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">כל (ובס&quot;א קורא כל):</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כל (ובס&quot;א קורא כל):</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-11">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-13">Chapter 13</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-13-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-13-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 13:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-13-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 13:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">(כס&quot;א כצ&quot;ל):</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">(כס&quot;א כצ&quot;ל):</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-13">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-14">Chapter 14</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-14-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-14-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 14:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-14-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 14:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">בתורה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בתורה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-14">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-15">Chapter 15</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-15-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-15-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 15:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-15-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 15:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">תפלה שבלתה אין עושין אותה מזוזה ומזוזה שבלתה עושין אותה תפילין לפי שמעלין בקדש ולא מורידין:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תפלה שבלתה אין עושין אותה מזוזה ומזוזה שבלתה עושין אותה תפילין לפי שמעלין בקדש ולא מורידין:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-15">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-16">Chapter 16</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-16-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-16-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 16:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-16-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 16:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ואיני מלמד את בני אלא תורה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואיני מלמד את בני אלא תורה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-16">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-18">Chapter 18</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-18-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-18-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 18:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-18-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 18:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">דרשב&quot;ל:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דרשב&quot;ל:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-18">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-18-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-18-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 18:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-18-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 18:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">א&quot;ל:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">א&quot;ל:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-18">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-20">Chapter 20</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-20-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-20-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 20:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-20-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 20:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ששים ושמחים לעשות רצון קונם פועלי אמת שפעולתן:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ששים ושמחים לעשות רצון קונם פועלי אמת שפעולתן:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-20-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-20-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 20:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-20-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 20:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ולפאר ליוצרם על שם כבוד מלכותו ברוך אתה ה׳ מחדש חדשים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ולפאר ליוצרם על שם כבוד מלכותו ברוך אתה ה׳ מחדש חדשים:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-20">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-tractate-soferim-text-21">Chapter 21</h4>
-          <section class="unit" id="gras-nuschah-on-tractate-soferim-21-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-tractate-soferim-21-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Soferim 21:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-soferim-21-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Soferim 21:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">מנהג:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מנהג:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-tractate-soferim-text-21">Back to chapter/section start</a>
@@ -701,5 +763,336 @@
       </div>
     </div>
   </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd>
+      <dt>Strict renderings</dt><dd data-hud-surface-renderings>N/A</dd>
+      <dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd>
+      <dt data-hud-renderings-label>Possible lexical entries</dt><dd data-hud-renderings>N/A</dd>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"gras-nuschah-on-tractate-soferim","work_title":"Gra\u0027s Nuschah on Tractate Soferim","work_slug":"gra/gras-nuschah-on-tractate-soferim","scope_label":"All imported Hebrew works","generated_at":"2026-04-30T15:51:58.247Z","total_occurrences":319,"units":{"gras-nuschah-on-tractate-soferim-1-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-1-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-1-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1f97ef9bfbd8","tok-6391687c97fa"]}]},"gras-nuschah-on-tractate-soferim-1-1-2":{"unit_id":"gras-nuschah-on-tractate-soferim-1-1-2","anchor_id":"gras-nuschah-on-tractate-soferim-1-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 1:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-145aeab02b7a","tok-1cc078831fd9"]}]},"gras-nuschah-on-tractate-soferim-3-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-3-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-3-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 3:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-54427d3d7b76","tok-865c3a176355","tok-bf3457347d66","tok-9674eab33b55","tok-70ef9c313afd","tok-ae19f01b3428","tok-23fcecffb60a","tok-fad7638413f4","tok-1fadc258fd43","tok-6b82717c2382","tok-b5e5120fcc58","tok-1fadc258fd43","tok-9e7349e5a593","tok-54427d3d7b76","tok-909449934dda","tok-529c9bccc8b9","tok-0095a7730a19","tok-24913b4507a2","tok-19cebfb5b75d","tok-ae39ff1f20c6","tok-909449934dda","tok-9d372f024a52","tok-70ef9c313afd","tok-ae19f01b3428","tok-8e543a14bf6b","tok-f2db61b9007f","tok-a98bc540702e","tok-8becbe937005","tok-f8f205eb1c94","tok-1cc078831fd9","tok-44cde060fe8b","tok-fb67029a8fcf","tok-2c91ebfd017f","tok-4dd418656746","tok-5a3294453938","tok-d907f51a143f","tok-169fce4446e3","tok-5e9ed4c90135","tok-e618a6760221","tok-1cc078831fd9","tok-95501fb616b6","tok-c302f8894e82","tok-24913b4507a2","tok-19cebfb5b75d","tok-ae39ff1f20c6","tok-1fadc258fd43","tok-6b82717c2382","tok-9d372f024a52","tok-70ef9c313afd","tok-8e543a14bf6b","tok-04f1bad26df6","tok-aaa5dd0ccbdf","tok-fdcda1e627bb","tok-fad7638413f4","tok-b5e5120fcc58","tok-54427d3d7b76","tok-865c3a176355","tok-ef6cd53d7dbb","tok-c55d03af105f","tok-7abb79a3b846","tok-cac8c94711c8","tok-c1651329e65d","tok-7f23c150f469","tok-5ab30af34331","tok-fad7638413f4","tok-909449934dda","tok-b5e5120fcc58","tok-909449934dda","tok-54427d3d7b76","tok-909449934dda","tok-5e9ed4c90135","tok-df71b382a1c2"]}]},"gras-nuschah-on-tractate-soferim-4-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-4-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-4-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 4:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1a5c9484f24d","tok-c2f4ed0fef0b","tok-ce024309823a","tok-bc28cf36c842","tok-ce2f0627747c"]}]},"gras-nuschah-on-tractate-soferim-4-1-2":{"unit_id":"gras-nuschah-on-tractate-soferim-4-1-2","anchor_id":"gras-nuschah-on-tractate-soferim-4-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 4:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cb3926af074c","tok-f42168f9320c"]}]},"gras-nuschah-on-tractate-soferim-5-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-5-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-5-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 5:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-08e0e1a98250"]}]},"gras-nuschah-on-tractate-soferim-5-1-2":{"unit_id":"gras-nuschah-on-tractate-soferim-5-1-2","anchor_id":"gras-nuschah-on-tractate-soferim-5-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 5:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-350110eed5ad"]}]},"gras-nuschah-on-tractate-soferim-5-1-3":{"unit_id":"gras-nuschah-on-tractate-soferim-5-1-3","anchor_id":"gras-nuschah-on-tractate-soferim-5-1-3","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 5:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4072f5b55410"]}]},"gras-nuschah-on-tractate-soferim-6-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-6-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-6-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 6:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-48b8d1cc2c3f","tok-b31e517c9758","tok-c00ae4e1b6a5","tok-338648f43bc8","tok-3ced97d6ee0a","tok-625b8fd9fe80","tok-4c61223eebc2"]}]},"gras-nuschah-on-tractate-soferim-7-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-7-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-7-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 7:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-dbd749cc0d4a","tok-e3e1e56d7cb1","tok-e8e78449160f"]}]},"gras-nuschah-on-tractate-soferim-7-1-2":{"unit_id":"gras-nuschah-on-tractate-soferim-7-1-2","anchor_id":"gras-nuschah-on-tractate-soferim-7-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 7:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-01af6154b152","tok-2a6ecd4fda15","tok-6e7a0ee952ce","tok-ab26bf0c3b09","tok-e48c80db10d4","tok-3ee39c95a27f","tok-840264435499","tok-b10cfbbd98d5","tok-3ee39c95a27f","tok-e48c80db10d4","tok-373a2fa3b6d8","tok-3ee39c95a27f","tok-3badbac3dc6b","tok-a1fa20f1cf02","tok-c7b956f81a34","tok-a7c59659549d","tok-568300d49ad9","tok-6f69ca0e8929","tok-a7c59659549d","tok-e48c80db10d4","tok-a1fa20f1cf02","tok-a7c59659549d","tok-916c5a6a6921","tok-7047aab023f7"]}]},"gras-nuschah-on-tractate-soferim-7-1-3":{"unit_id":"gras-nuschah-on-tractate-soferim-7-1-3","anchor_id":"gras-nuschah-on-tractate-soferim-7-1-3","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 7:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fd8551e5913a","tok-11c01f0dc506","tok-57225f11e12a","tok-a5fce1961116","tok-3c91bbe765b1","tok-1cc078831fd9","tok-9ed00d68107f","tok-86c51b4488d8","tok-a0a890f208ee","tok-628342feb68f"]}]},"gras-nuschah-on-tractate-soferim-8-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-8-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-8-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 8:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5322479574d8","tok-2277ee01ff74","tok-6561d4057f17","tok-695a4c3eff31","tok-8036d2a63674","tok-27a6405f8d1b","tok-60d6e24de5fc","tok-b4e221064274","tok-2f69f218732d","tok-2277ee01ff74","tok-5bd59742f8c8","tok-6561d4057f17","tok-5b69f3b825aa","tok-a7c59659549d","tok-27a6405f8d1b","tok-d524dda56977","tok-6561d4057f17","tok-a7c59659549d","tok-040ba546c353","tok-27a6405f8d1b","tok-bc048c921ebe","tok-27a6405f8d1b","tok-d524dda56977","tok-a1543f8b348e","tok-0d0ff727cc33","tok-a2929f75ab29","tok-3b578bc9c37d","tok-97ae21a0a41d","tok-a5fc12607e8d","tok-12d62f229169","tok-f4733dfa1f42","tok-6561d4057f17","tok-14289f799115","tok-4832c1860695","tok-95501fb616b6","tok-b50354173415","tok-1db9ad7fc55e","tok-0cc5dbdf8a50","tok-a2929f75ab29","tok-3b578bc9c37d","tok-e971c2804e3f","tok-11523358b47a","tok-cf0330650bf0","tok-ea9468a472d0","tok-6561d4057f17","tok-cf0330650bf0","tok-08157f20dad8","tok-46d05af78837","tok-ea9468a472d0","tok-4cb772589ab2","tok-0142d3604da7"]}]},"gras-nuschah-on-tractate-soferim-8-1-2":{"unit_id":"gras-nuschah-on-tractate-soferim-8-1-2","anchor_id":"gras-nuschah-on-tractate-soferim-8-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 8:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e96e88a5b0ef","tok-1d085a02c854","tok-6561d4057f17","tok-e96e88a5b0ef","tok-b8cd24f0b924","tok-1d085a02c854"]}]},"gras-nuschah-on-tractate-soferim-8-1-3":{"unit_id":"gras-nuschah-on-tractate-soferim-8-1-3","anchor_id":"gras-nuschah-on-tractate-soferim-8-1-3","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 8:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9d72ff38eb22","tok-7f568c4d847a","tok-6561d4057f17","tok-9d72ff38eb22","tok-7f568c4d847a","tok-05ddaa188355","tok-c3e67a48c3ae"]}]},"gras-nuschah-on-tractate-soferim-8-1-4":{"unit_id":"gras-nuschah-on-tractate-soferim-8-1-4","anchor_id":"gras-nuschah-on-tractate-soferim-8-1-4","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 8:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-de4f9ad2dfe7","tok-ec279fa86bcf","tok-6561d4057f17","tok-de4f9ad2dfe7","tok-26aa1ace3176","tok-a56fbabb9b60","tok-a3e3a8fee041","tok-ec279fa86bcf","tok-5df681d3baf8","tok-c28371a10ba8","tok-51fa7917d6af","tok-f2fc72f862bb","tok-6032ac3f4d71","tok-923905d165b4","tok-aa738900e4e4","tok-e7d4753a1e91","tok-6d844cb210db","tok-a2929f75ab29","tok-3b578bc9c37d","tok-4daffc79e3c5"]}]},"gras-nuschah-on-tractate-soferim-8-1-5":{"unit_id":"gras-nuschah-on-tractate-soferim-8-1-5","anchor_id":"gras-nuschah-on-tractate-soferim-8-1-5","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 8:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e3e949f09233","tok-3778663f1a32","tok-6561d4057f17","tok-e3e949f09233","tok-eed13bd088f6","tok-ad328930ebaa","tok-81ad87fe087a","tok-719db0e74256","tok-6561d4057f17","tok-c4c4836372bd","tok-951d7e34907b","tok-8ac8278878f9","tok-f3385a874008","tok-6561d4057f17","tok-b895cd8e56b0","tok-3f35dd36dbcb","tok-079d9e6dade0","tok-c2c045a16102","tok-5e9eea6055e7","tok-86c51b4488d8","tok-6561d4057f17","tok-3b190fa83a6d","tok-2657ce072587","tok-927415ce2358","tok-89a70ef6c955","tok-803f5f0afa4d","tok-6561d4057f17","tok-89a70ef6c955","tok-63ca03637f5c","tok-df2a6f461858","tok-ce787d6ebf8d"]}]},"gras-nuschah-on-tractate-soferim-8-1-6":{"unit_id":"gras-nuschah-on-tractate-soferim-8-1-6","anchor_id":"gras-nuschah-on-tractate-soferim-8-1-6","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 8:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-861a183ef210","tok-6561d4057f17","tok-fd5de3c58fe9"]}]},"gras-nuschah-on-tractate-soferim-8-1-7":{"unit_id":"gras-nuschah-on-tractate-soferim-8-1-7","anchor_id":"gras-nuschah-on-tractate-soferim-8-1-7","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 8:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5edcc9527b84","tok-6b090de0ca9f","tok-43f9a28a7a55","tok-3802ec84659e","tok-d5acb18547ba","tok-654610f97f44","tok-30ca22307e53","tok-1cdd33e14bb1","tok-8cf010519c12","tok-4d1c0802a2c3","tok-a1543f8b348e","tok-6dad5563af75","tok-cf5fb104b2aa","tok-359592ff7e9b"]}]},"gras-nuschah-on-tractate-soferim-9-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-9-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-9-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 9:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c801f873b223","tok-0880181db550","tok-e2acc1503725","tok-0880181db550","tok-b83725b276d2","tok-8eab86e9537d"]}]},"gras-nuschah-on-tractate-soferim-11-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-11-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-11-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 11:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-24913b4507a2","tok-45f4e2483ff6","tok-712e3503ff6c","tok-24913b4507a2"]}]},"gras-nuschah-on-tractate-soferim-13-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-13-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-13-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 13:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-76ba51819e4b","tok-01adedea43a3"]}]},"gras-nuschah-on-tractate-soferim-14-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-14-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-14-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 14:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-67adabc1a306"]}]},"gras-nuschah-on-tractate-soferim-15-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-15-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-15-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 15:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5ef85871d420","tok-fa8a356ffeac","tok-3df1cccb8872","tok-f52fdbff6b27","tok-15a2656e069f","tok-6eb0a9ac0327","tok-7fcc4b9b82c1","tok-fa8a356ffeac","tok-f52fdbff6b27","tok-15a2656e069f","tok-1f97ef9bfbd8","tok-ab596b3daa75","tok-c75ea68f5526","tok-f13cb3e82a43","tok-cc2228d31827","tok-5fe61479cd5f"]}]},"gras-nuschah-on-tractate-soferim-16-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-16-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-16-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 16:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e6965cf883fe","tok-6707d1baed34","tok-80bc8578e3cd","tok-cf5fb104b2aa","tok-1c8f099a68a8","tok-fad7638413f4"]}]},"gras-nuschah-on-tractate-soferim-18-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-18-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-18-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 18:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-84b62cab0ea0"]}]},"gras-nuschah-on-tractate-soferim-18-1-2":{"unit_id":"gras-nuschah-on-tractate-soferim-18-1-2","anchor_id":"gras-nuschah-on-tractate-soferim-18-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 18:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8b064bf79f87"]}]},"gras-nuschah-on-tractate-soferim-20-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-20-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-20-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 20:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0be045d13047","tok-7e6ea4982604","tok-9cfacbb49b80","tok-d4cf562d7126","tok-a32770e13c88","tok-a0b9d15e7c45","tok-2cebe8809daf","tok-82d215678bfb"]}]},"gras-nuschah-on-tractate-soferim-20-1-2":{"unit_id":"gras-nuschah-on-tractate-soferim-20-1-2","anchor_id":"gras-nuschah-on-tractate-soferim-20-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 20:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-79ebf94cc254","tok-5aab1386a895","tok-97f40ec29e78","tok-e48c80db10d4","tok-b52808c2a71d","tok-1419ffc2ff36","tok-bd57d37d80d7","tok-e3e949f09233","tok-27a6405f8d1b","tok-06db2a6efeeb","tok-aae7a812181d"]}]},"gras-nuschah-on-tractate-soferim-21-1-1":{"unit_id":"gras-nuschah-on-tractate-soferim-21-1-1","anchor_id":"gras-nuschah-on-tractate-soferim-21-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Soferim 21:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f07feb50ea94"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/gras-nuschah-on-tractate-soferim.manifest.json"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const renderEntryList = (entries) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          (entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = entry.context_role === "likely_contextual" ? "Likely contextual entry" : "Other possible entry";
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const renderPossibleEntries = (root, view, hasLexicalEntry) => {
+        const label = root.querySelector("[data-hud-renderings-label]");
+        const node = root.querySelector("[data-hud-renderings]");
+        if (!node) return;
+        node.replaceChildren();
+        if (label) label.textContent = "Possible lexical entries";
+        if (!hasLexicalEntry) { node.textContent = "No lexical entry yet."; return; }
+        let entries = Array.isArray(view.possible_entries) ? view.possible_entries : [];
+        entries = entries.filter((entry) => entry.relation_label !== "related root-field");
+        if (!entries.length) { setList(root, "[data-hud-renderings]", view.strict_renderings || ["No lexical entry yet."]); return; }
+        const likelyEntries = entries.filter((entry) => entry.context_role === "likely_contextual");
+        const otherEntries = entries.filter((entry) => entry.context_role !== "likely_contextual");
+        if (label) label.textContent = likelyEntries.length ? "Lexical resolution" : "Possible lexical entries";
+        const note = document.createElement("p");
+        note.className = "lexical-context-note";
+        note.textContent = likelyEntries.length ? (view.surface_context_note || view.context_note || "Context resolved.") : "Context not resolved.";
+        node.appendChild(note);
+        if (likelyEntries.length) node.appendChild(renderEntryList(likelyEntries));
+        if (otherEntries.length) {
+          const details = document.createElement("details");
+          details.className = "other-entries";
+          const summary = document.createElement("summary");
+          summary.textContent = "Show other possible entries";
+          details.appendChild(summary);
+          details.appendChild(renderEntryList(otherEntries));
+          if (view.secondary_source_rows && view.secondary_source_rows.length) {
+            const sourceDetails = document.createElement("details");
+            sourceDetails.className = "source-details";
+            const sourceSummary = document.createElement("summary");
+            sourceSummary.textContent = "Sources / licenses for other possible entries";
+            const sourceBox = document.createElement("div");
+            sourceDetails.append(sourceSummary, sourceBox);
+            renderSources(sourceBox, view.secondary_source_rows);
+            details.appendChild(sourceDetails);
+          }
+          node.appendChild(details);
+        }
+      };
+      const renderSources = (sourceBox, rows) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceRows = Array.isArray(rows) ? rows : (rows && rows.source_id ? [rows] : []);
+        if (!sourceRows.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceRows.forEach((row) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const title = document.createElement("p");
+          const link = document.createElement("a");
+          link.href = row.source_url || "#";
+          link.textContent = row.source_name || "Source";
+          const strong = document.createElement("strong");
+          strong.appendChild(link);
+          title.appendChild(strong);
+          title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+          const fields = document.createElement("p");
+          fields.textContent = `Fields: ${(row.fields_used || []).join(", ") || "N/A"}`;
+          const notes = document.createElement("p");
+          notes.textContent = row.notes || "";
+          section.append(title, fields, notes);
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        if (hud.parentElement !== slot) slot.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setList(hud, "[data-hud-surface-renderings]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPossibleEntries(hud, {}, false);
+        renderSources(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          setList(hud, "[data-hud-surface-renderings]", (view.surface_renderings && view.surface_renderings.length) ? view.surface_renderings : (hasLexicalEntry ? view.strict_renderings : ["No lexical entry yet."]));
+          renderBreakdown(hud, view);
+          renderPossibleEntries(hud, view, hasLexicalEntry);
+          renderSources(hud.querySelector("[data-hud-sources]"), view.source_rows);
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+        } catch (error) {
+          console.error(error);
+          setList(hud, "[data-hud-surface-renderings]", ["No lexical entry yet."]);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -8,10 +8,9 @@ const occurrencesDir = path.join(lexicalDir, 'occurrences');
 const lexiconPath = path.join(lexicalDir, 'lexicon.json');
 const lexiconLayerDir = path.join(lexicalDir, 'source-layers');
 const tokenIndexPath = path.join(lexicalDir, 'token-index.json');
-const reportPath = 'reports/orot-lexical-coverage-report.md';
+const reportPath = 'reports/sitewide-lexical-build-report.md';
 const lexicalScope = {
-  work_id: 'orot',
-  label: 'Orot',
+  label: 'All imported Hebrew works',
 };
 const lexicalLayerFiles = [
   {
@@ -22,11 +21,25 @@ const lexicalLayerFiles = [
     description: 'Project-authored fixed expression and grammar override entries.',
   },
   {
+    layer_id: 'project-abbreviations',
+    source_family: 'workspace',
+    license: 'N/A - project-authored lexical rules',
+    path: 'source-layers/project-abbreviations.json',
+    description: 'Project-authored conservative Hebrew abbreviation expansions.',
+  },
+  {
     layer_id: 'project-function-words',
     source_family: 'workspace',
     license: 'project-authored / CC0',
     path: 'source-layers/project-function-words.json',
     description: 'Project-authored conservative Hebrew function-word grammar rules.',
+  },
+  {
+    layer_id: 'project-orot-technical-terms',
+    source_family: 'workspace',
+    license: 'project-authored / CC0',
+    path: 'source-layers/project-orot-technical-terms.json',
+    description: 'Project-authored Orot-specific technical term rows. Scoped to Orot only.',
   },
   {
     layer_id: 'wikidata-cc0',
@@ -347,9 +360,18 @@ function emptyLexicon() {
   };
 }
 
+function mergeLayerFiles(layerFiles) {
+  const existingById = new Map((layerFiles || []).map((layer) => [layer.layer_id, layer]));
+  return lexicalLayerFiles.map((layer) => ({
+    ...layer,
+    ...(existingById.get(layer.layer_id) || {}),
+    ...layer,
+  }));
+}
+
 function loadLayerEntries(manifest) {
   const entries = [];
-  for (const layer of manifest.layer_files || []) {
+  for (const layer of mergeLayerFiles(manifest.layer_files || [])) {
     if (!layer.path) continue;
     const layerPath = path.join(lexicalDir, layer.path);
     if (!fs.existsSync(layerPath)) continue;
@@ -370,15 +392,23 @@ function loadLexicon() {
   return {
     ...emptyLexicon(),
     ...lexicon,
-    layer_files: lexicon.layer_files || lexicalLayerFiles,
+    layer_files: mergeLayerFiles(lexicon.layer_files || lexicalLayerFiles),
     entries,
   };
 }
 
 function entryLayerId(entry) {
+  if (String(entry.entry_id || '').startsWith('lex-abbrev-')
+    || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-abbreviation:'))) {
+    return 'project-abbreviations';
+  }
   if (String(entry.entry_id || '').startsWith('lex-function-word-')
     || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-function-word:'))) {
     return 'project-function-words';
+  }
+  if (String(entry.entry_id || '').startsWith('lex-orot-term-')
+    || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-orot-technical:'))) {
+    return 'project-orot-technical-terms';
   }
   const families = unique((entry.source_rows || []).map((row) => row.source_family || row.source_name).filter(Boolean));
   if (families.some((family) => family === 'kaikki' || family === 'wiktionary')) return 'kaikki-wiktionary-cc-by-sa-gfdl';
@@ -564,7 +594,37 @@ function getPrefixSequences(normalized) {
   return sequences.sort((a, b) => b.length - a.length);
 }
 
-function analyzeAffixSurfaceForm(surfaceWord, normalizedWord) {
+function isEntryAllowedForWork(entry, workId) {
+  const sourceIds = [
+    ...(entry?.source_rows || []).map((row) => row.source_id),
+    ...(entry?.possible_entries || []).map((row) => row.source_id || row.entry_key),
+  ].filter(Boolean).map(String);
+  if (sourceIds.some((sourceId) => sourceId.startsWith('project-orot-technical:'))) {
+    return workId === 'orot';
+  }
+  return true;
+}
+
+function lookupLexiconEntryId(normalized, workId) {
+  for (const entryId of lexiconByNormalized.get(normalized) || []) {
+    const entry = lexiconById.get(entryId);
+    if (isEntryAllowedForWork(entry, workId)) return entryId;
+  }
+  return '';
+}
+
+function matchMethodForEntry(entry, fallback = 'direct') {
+  const sourceIds = [
+    ...(entry?.source_rows || []).map((row) => row.source_id),
+    ...(entry?.possible_entries || []).map((row) => row.source_id || row.entry_key),
+  ].filter(Boolean).map(String);
+  if (sourceIds.some((sourceId) => sourceId.startsWith('project-function-word:'))) return 'project_function_word';
+  if (sourceIds.some((sourceId) => sourceId.startsWith('project-abbreviation:'))) return 'project_abbreviation';
+  if (sourceIds.some((sourceId) => sourceId.startsWith('project-orot-technical:'))) return 'project_orot_technical';
+  return fallback;
+}
+
+function analyzeAffixSurfaceForm(surfaceWord, normalizedWord, workId) {
   if (!normalizedWord || normalizedWord.length < 3 || hasAbbreviationMark(normalizedWord)) return null;
   const attempts = [];
   for (const prefixSequence of getPrefixSequences(normalizedWord)) {
@@ -581,7 +641,7 @@ function analyzeAffixSurfaceForm(surfaceWord, normalizedWord) {
   }
 
   for (const attempt of attempts) {
-    const entryId = lexiconByNormalized.get(attempt.baseNormalized);
+    const entryId = lookupLexiconEntryId(attempt.baseNormalized, workId);
     if (!entryId) continue;
     if ((observedNormalizedCounts.get(attempt.baseNormalized) || 0) < 5) continue;
     const entry = lexiconById.get(entryId);
@@ -694,11 +754,11 @@ function analyzeSurfaceForm(surfaceWord, entry) {
 
 function formatMatchedSample(row) {
   const families = sourceFamiliesFor(row).join(' + ') || 'source metadata available';
-  return `${row.surface_word} -> ${renderingsFor(row)} (${families}) -- ${row.first_source_ref} (#${row.first_anchor_id})`;
+  return `${row.surface_word} -> ${renderingsFor(row)} (${families}) -- ${row.work_id}`;
 }
 
 function formatUnmatchedSample(row) {
-  return `${row.surface_word} -- ${row.first_source_ref} (#${row.first_anchor_id})`;
+  return `${row.surface_word} -- ${row.work_id}`;
 }
 
 const lexicon = loadLexicon();
@@ -706,16 +766,20 @@ const lexiconChanged = ensureFixedExpressionEntries(lexicon);
 writeLexicon(lexicon);
 const lexiconByNormalized = new Map();
 const lexiconById = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+function addLexiconNormalized(normalized, entryId) {
+  if (!normalized || !entryId) return;
+  if (!lexiconByNormalized.has(normalized)) lexiconByNormalized.set(normalized, []);
+  const entries = lexiconByNormalized.get(normalized);
+  if (!entries.includes(entryId)) entries.push(entryId);
+}
 for (const expression of fixedExpressions) {
-  lexiconByNormalized.set(expression.normalized_word, expression.entry_id);
+  addLexiconNormalized(expression.normalized_word, expression.entry_id);
 }
 for (const entry of lexicon.entries || []) {
   const forms = [entry.hebrew_word, ...(entry.surface_forms || [])].filter(Boolean);
   for (const form of forms) {
     const normalized = normalizeHebrewToken(form);
-    if (normalized && !lexiconByNormalized.has(normalized)) {
-      lexiconByNormalized.set(normalized, entry.entry_id);
-    }
+    addLexiconNormalized(normalized, entry.entry_id);
   }
 }
 
@@ -730,7 +794,6 @@ const observedNormalizedCounts = new Map();
 
 for (const fileName of sourceFiles) {
   const source = readJson(path.join(sourceDir, fileName));
-  if (source.work_id !== lexicalScope.work_id) continue;
   for (const unit of source.units || []) {
     for (const paragraph of unit.hebrew || []) {
       for (const surfaceWord of getTokens(paragraph)) {
@@ -752,7 +815,6 @@ let affixResolvedUnique = 0;
 
 for (const fileName of sourceFiles) {
   const source = readJson(path.join(sourceDir, fileName));
-  if (source.work_id !== lexicalScope.work_id) continue;
 
   const occurrenceUnits = {};
   let workOccurrences = 0;
@@ -771,15 +833,15 @@ for (const fileName of sourceFiles) {
         workOccurrences += 1;
 
         const normalizedWord = normalizeHebrewToken(surfaceWord);
-        const tokenIndexId = stableId('tok', surfaceWord);
-        const directLexiconEntryId = lexiconByNormalized.get(normalizedWord) || '';
+        const tokenIndexId = stableId('tok', `${source.work_id}|${surfaceWord}`);
+        const directLexiconEntryId = lookupLexiconEntryId(normalizedWord, source.work_id);
         let lexiconEntryId = directLexiconEntryId;
         let entry = lexiconEntryId ? lexiconById.get(lexiconEntryId) : null;
         let surfaceAnalysis = entry ? analyzeSurfaceForm(surfaceWord, entry) : null;
-        let matchMethod = lexiconEntryId ? 'direct' : 'unmatched';
+        let matchMethod = lexiconEntryId ? matchMethodForEntry(entry, 'direct') : 'unmatched';
 
         if (!lexiconEntryId) {
-          const affixAnalysis = analyzeAffixSurfaceForm(surfaceWord, normalizedWord);
+          const affixAnalysis = analyzeAffixSurfaceForm(surfaceWord, normalizedWord, source.work_id);
           if (affixAnalysis) {
             lexiconEntryId = affixAnalysis.lexicon_entry_id;
             entry = affixAnalysis.entry;
@@ -795,6 +857,7 @@ for (const fileName of sourceFiles) {
           if (matchMethod === 'affix_parser') affixResolvedUnique += 1;
           tokenRows.set(tokenIndexId, {
             token_index_id: tokenIndexId,
+            work_id: source.work_id,
             surface_word: surfaceWord,
             normalized_word: normalizedWord,
             lexicon_entry_id: lexiconEntryId,
@@ -805,8 +868,6 @@ for (const fileName of sourceFiles) {
             surface_context_status: surfaceAnalysis?.surface_context_status || '',
             surface_context_note: surfaceAnalysis?.surface_context_note || '',
             breakdown: surfaceAnalysis?.breakdown || [],
-            first_source_ref: unit.source_ref,
-            first_anchor_id: unit.anchor_id,
             occurrence_count: 0,
           });
         }
@@ -853,8 +914,16 @@ const directMatchedForms = matchedForms.filter((row) => row.match_method === 'di
 const affixResolvedForms = matchedForms.filter((row) => row.match_method === 'affix_parser');
 const wikidataMatchedForms = matchedForms.filter((row) => sourceFamiliesFor(row).includes('wikidata'));
 const openScripturesMatchedForms = matchedForms.filter((row) => sourceFamiliesFor(row).includes('openscriptures'));
+const sitewideSurfaceGroups = new Map();
+for (const row of forms) {
+  const key = row.surface_word;
+  if (!sitewideSurfaceGroups.has(key)) sitewideSurfaceGroups.set(key, []);
+  sitewideSurfaceGroups.get(key).push(row);
+}
+const sitewideMatchedSurfaceForms = Array.from(sitewideSurfaceGroups.values()).filter((rows) => rows.some((row) => row.status === 'matched'));
+const sitewideUnmatchedSurfaceForms = Array.from(sitewideSurfaceGroups.values()).filter((rows) => rows.every((row) => row.status !== 'matched'));
 
-writeJson(tokenIndexPath, {
+writeCompactJson(tokenIndexPath, {
   schema_version: 1,
   generated_at: new Date().toISOString(),
   source_dir: sourceDir,
@@ -868,6 +937,10 @@ writeJson(tokenIndexPath, {
   },
   total_units: totalUnits,
   total_occurrences: totalOccurrences,
+  total_work_surface_rows: forms.length,
+  total_sitewide_unique_surface_forms: sitewideSurfaceGroups.size,
+  sitewide_matched_surface_forms: sitewideMatchedSurfaceForms.length,
+  sitewide_unmatched_surface_forms: sitewideUnmatchedSurfaceForms.length,
   total_unique_surface_forms: forms.length,
   direct_matched_surface_forms: directMatchedForms.length,
   newly_resolved_affix_surface_forms: affixResolvedForms.length,
@@ -900,25 +973,28 @@ const testRefs = [
 ];
 
 fs.mkdirSync(path.dirname(reportPath), { recursive: true });
-fs.writeFileSync(reportPath, `# Orot Lexical Coverage Report
+fs.writeFileSync(reportPath, `# Sitewide Lexical Build Report
 
 Generated: ${new Date().toISOString()}
 
 ## Scope
 
-- Work: Orot only
+- Work scope: all imported Hebrew works
 - Hebrew source text changed: no
 - Translation overlays changed: no
 - Sources used: existing local lexical cache generated from Wikidata Lexemes first; OpenScriptures morphHB + HebrewLexicon as fallback/enrichment
 - Sources not used: Kaikki, Wiktionary, copyrighted translations
 - New parser: conservative prefix/suffix parser; accepts only when the remaining base is already present in the approved local lexical layer
 - Count source: generated HUD token index, which is the page-render source of truth
-- Payload: Orot lexical details are externalized through data/lexical/orot.manifest.json and data/lexical/orot-chunks/
+- Payload: lexical details are externalized through data/lexical/<work-id>.manifest.json and data/lexical/<work-id>-chunks/
 
 ## Counts
 
-- Total Orot unique surface forms: ${forms.length}
-- Total Orot token occurrences: ${totalOccurrences}
+- Total work-surface rows: ${forms.length}
+- Total sitewide unique surface forms: ${sitewideSurfaceGroups.size}
+- Sitewide unique surface forms matched at least once: ${sitewideMatchedSurfaceForms.length}
+- Sitewide unique surface forms unmatched everywhere: ${sitewideUnmatchedSurfaceForms.length}
+- Total token occurrences: ${totalOccurrences}
 - Matched before prefix/suffix parser: ${directMatchedForms.length}
 - Newly resolved by prefix/suffix parser: ${affixResolvedForms.length}
 - Total matched after parser: ${matchedForms.length}
@@ -951,7 +1027,10 @@ ${formatList(testRefs)}
 console.log(JSON.stringify({
   total_units: totalUnits,
   total_occurrences: totalOccurrences,
-  total_unique_surface_forms: forms.length,
+  total_work_surface_rows: forms.length,
+  total_sitewide_unique_surface_forms: sitewideSurfaceGroups.size,
+  sitewide_matched_surface_forms: sitewideMatchedSurfaceForms.length,
+  sitewide_unmatched_surface_forms: sitewideUnmatchedSurfaceForms.length,
   direct_matched_surface_forms: directMatchedForms.length,
   newly_resolved_affix_surface_forms: affixResolvedForms.length,
   matched_surface_forms: matchedForms.length,

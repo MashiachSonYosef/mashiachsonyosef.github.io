@@ -51,6 +51,38 @@
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
     .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: static; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .other-entries { margin-top: 12px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
     .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
     .source-table { width: 100%; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
@@ -66,7 +98,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -83,10 +115,10 @@
           <details class="toc-root" open>
             <summary>Contents</summary>
             <details class="toc-group">
-              <summary>Sefer Yetzirah Gra Version</summary>
+              <summary>Sefer Yetzirah Gra Version <span class="hud-badge">Lexical layer active</span></summary>
               <a class="toc-start" href="#work-top">Start</a>
               <details class="toc-section">
-                <summary>Sefer Yetzirah Gra Version</summary>
+                <summary>Sefer Yetzirah Gra Version <span class="hud-badge">Lexical layer active</span></summary>
                 <a class="toc-start" href="#work-top">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -192,936 +224,998 @@
         </nav>
         <article>
           <h4 id="chapter-sefer-yetzirah-gra-version-text-1">Chapter 1</h4>
-          <section class="unit" id="sefer-yetzirah-gra-version-1-1" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 1:1</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-1-1" aria-label="Copy link to Sefer Yetzirah Gra Version 1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">בשלשים ושתים נתיבות פליאות חכמה חקק יה יהוה צבאות אלהי ישראל אלהים חיים ומלך עולם אל שדי רחום וחנון רם ונשא שוכן עד וקדוש שמו מרום וקדוש הוא וברא את עולמו בשלשה ספרים בספר וספר וספור:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בשלשים ושתים נתיבות פליאות חכמה חקק יה יהוה צבאות אלהי ישראל אלהים חיים ומלך עולם אל שדי רחום וחנון רם ונשא שוכן עד וקדוש שמו מרום וקדוש הוא וברא את עולמו בשלשה ספרים בספר וספר וספור:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-1-2" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 1:2</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-1-2" aria-label="Copy link to Sefer Yetzirah Gra Version 1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">עשר ספירות בלי מה ועשרים ושתים אותיות יסוד שלש אמות ושבע כפולות ושתים עשרה פשוטות:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עשר ספירות בלי מה ועשרים ושתים אותיות יסוד שלש אמות ושבע כפולות ושתים עשרה פשוטות:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-1-3" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-1-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 1:3</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-1-3" aria-label="Copy link to Sefer Yetzirah Gra Version 1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">עשר ספירות בלימה במספר עשר אצבעות חמש כנגד חמש וברית יחיד מכוון באמצע במילת הלשון ובמילת המעור:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עשר ספירות בלימה במספר עשר אצבעות חמש כנגד חמש וברית יחיד מכוון באמצע במילת הלשון ובמילת המעור:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-1-4" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-1-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 1:4</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-1-4" aria-label="Copy link to Sefer Yetzirah Gra Version 1:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">עשר ספירות בלימה עשר ולא תשע עשר ולא אחת עשרה הבן בחכמה וחכם בבינה בחון בהם וחקור מהם והעמד דבר על בוריו והשב יוצר על מכונו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עשר ספירות בלימה עשר ולא תשע עשר ולא אחת עשרה הבן בחכמה וחכם בבינה בחון בהם וחקור מהם והעמד דבר על בוריו והשב יוצר על מכונו:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-1-5" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-1-5" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 1:5</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-1-5" aria-label="Copy link to Sefer Yetzirah Gra Version 1:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">עשר ספירות בלימה מדתן עשר שאין להם סוף עומק ראשית ועומק אחרית עומק טוב ועומק רע עומק רום ועומק תחת עומק מזרח ועומק מערב עומק צפון ועומק דרום אדון יחיד אל מלך נאמן מושל בכולם ממעון קדשו עד עדי עד:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עשר ספירות בלימה מדתן עשר שאין להם סוף עומק ראשית ועומק אחרית עומק טוב ועומק רע עומק רום ועומק תחת עומק מזרח ועומק מערב עומק צפון ועומק דרום אדון יחיד אל מלך נאמן מושל בכולם ממעון קדשו עד עדי עד:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-1-6" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-1-6" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 1:6</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-1-6" aria-label="Copy link to Sefer Yetzirah Gra Version 1:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">עשר ספירות בלי מה צפייתן כמראה הבזק ותכליתן אין להם קץ ודברו בהן ברצוא ושוב ולמאמרו כסופה ירדופו ולפני כסאו הם משתחוים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עשר ספירות בלי מה צפייתן כמראה הבזק ותכליתן אין להם קץ ודברו בהן ברצוא ושוב ולמאמרו כסופה ירדופו ולפני כסאו הם משתחוים:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-1-7" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-1-7" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 1:7</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-1-7" aria-label="Copy link to Sefer Yetzirah Gra Version 1:7">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">עשר ספירות בלימה נעוץ סופן בתחלתן ותחלתן בסופן כשלהבת קשורה בגחלת שאדון יחיד ואין לו שני ולפני אחד מה אתה סופר:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עשר ספירות בלימה נעוץ סופן בתחלתן ותחלתן בסופן כשלהבת קשורה בגחלת שאדון יחיד ואין לו שני ולפני אחד מה אתה סופר:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-1-8" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-1-8" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 1:8</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-1-8" aria-label="Copy link to Sefer Yetzirah Gra Version 1:8">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">עשר ספירות בלימה בלום פיך מלדבר ולבך מלהרהר ואם רץ פיך לדבר ולבך להרהר שוב למקום שלכך נאמר (יחזקאל א׳) והחיות רצוא ושוב ועל דבר זה נכרת ברית:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עשר ספירות בלימה בלום פיך מלדבר ולבך מלהרהר ואם רץ פיך לדבר ולבך להרהר שוב למקום שלכך נאמר (יחזקאל א׳) והחיות רצוא ושוב ועל דבר זה נכרת ברית:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-1-9" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-1-9" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 1:9</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-1-9" aria-label="Copy link to Sefer Yetzirah Gra Version 1:9">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">עשר ספירות בלימה אחת רוח אלהים חיים ברוך ומבורך שמו של חי העולמים קול ורוח ודבור והוא רוח הקודש:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עשר ספירות בלימה אחת רוח אלהים חיים ברוך ומבורך שמו של חי העולמים קול ורוח ודבור והוא רוח הקודש:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-1-10" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-1-10" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 1:10</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-1-10" aria-label="Copy link to Sefer Yetzirah Gra Version 1:10">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שתים רוח מרוח חקק וחצב בה עשרים ושתים אותיות יסוד שלש אמות ושבע כפולות ושתים עשרה פשוטות ורוח אחת מהן:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שתים רוח מרוח חקק וחצב בה עשרים ושתים אותיות יסוד שלש אמות ושבע כפולות ושתים עשרה פשוטות ורוח אחת מהן:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-1-11" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-1-11" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 1:11</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-1-11" aria-label="Copy link to Sefer Yetzirah Gra Version 1:11">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שלש מים מרוח חקק וחצב בהן  כ&quot;ב אותיות מתהו ובהו רפש וטיט חקקן כמין ערוגה חצבן כמין חומה סיבבם כמין מעזיבה ויצק עליהם שלג ונעשה עפר שנאמר כי לשלג יאמר הוא ארץ:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שלש מים מרוח חקק וחצב בהן  כ&quot;ב אותיות מתהו ובהו רפש וטיט חקקן כמין ערוגה חצבן כמין חומה סיבבם כמין מעזיבה ויצק עליהם שלג ונעשה עפר שנאמר כי לשלג יאמר הוא ארץ:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-1-12" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-1-12" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 1:12</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-1-12" aria-label="Copy link to Sefer Yetzirah Gra Version 1:12">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ארבע אש ממים חקק וחצב בה כסא הכבוד שרפים ואופנים וחיות הקודש ומלאכי השרת ומשלשתן יסד מעונו שנאמר עושה מלאכיו רוחות משרתיו אש לוהט:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ארבע אש ממים חקק וחצב בה כסא הכבוד שרפים ואופנים וחיות הקודש ומלאכי השרת ומשלשתן יסד מעונו שנאמר עושה מלאכיו רוחות משרתיו אש לוהט:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-1-13" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-1-13" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 1:13</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-1-13" aria-label="Copy link to Sefer Yetzirah Gra Version 1:13">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">בירר שלש אותיות מן הפשוטות בסוד שלש אמות אמ&quot;ש וקבעם בשמו הגדול וחתם בהם ששה קצוות. חמש חתם רום ופנה למעלה וחתמו ביה&quot;ו. שש חתם תחת ופנה למטה וחתמו בהי&quot;ו. שבע חתם מזרח ופנה לפניו וחתמו בוי&quot;ה. שמונה חתם מערב ופנה לאחריו וחתמו בוה&quot;י. תשע חתם דרום ופנה לימינו וחתמו ביו&quot;ה. עשר חתם צפון ופנה לשמאלו וחתמו בהו&quot;י:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בירר שלש אותיות מן הפשוטות בסוד שלש אמות אמ&quot;ש וקבעם בשמו הגדול וחתם בהם ששה קצוות. חמש חתם רום ופנה למעלה וחתמו ביה&quot;ו. שש חתם תחת ופנה למטה וחתמו בהי&quot;ו. שבע חתם מזרח ופנה לפניו וחתמו בוי&quot;ה. שמונה חתם מערב ופנה לאחריו וחתמו בוה&quot;י. תשע חתם דרום ופנה לימינו וחתמו ביו&quot;ה. עשר חתם צפון ופנה לשמאלו וחתמו בהו&quot;י:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-1-14" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-1-14" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 1:14</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-1-14" aria-label="Copy link to Sefer Yetzirah Gra Version 1:14">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">אלו עשר ספירות בלימה (אחת) רוח אלהים חיים רוח מרוח מים מרוח אש ממים רום ותחת מזרח ומערב צפון ודרום:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אלו עשר ספירות בלימה (אחת) רוח אלהים חיים רוח מרוח מים מרוח אש ממים רום ותחת מזרח ומערב צפון ודרום:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-1">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-sefer-yetzirah-gra-version-text-2">Chapter 2</h4>
-          <section class="unit" id="sefer-yetzirah-gra-version-2-1" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-2-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 2:1</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-2-1" aria-label="Copy link to Sefer Yetzirah Gra Version 2:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">עשרים ושתים אותיות יסוד שלש אמות ושבע כפולות ושתים עשרה פשוטות. שלש אמות אמ&quot;ש יסודן כף זכות וכף חובה ולשון חק מכריע בינתים. שלש אמות אמ&quot;ש מ׳ דוממת ש׳ שורקת א׳ אויר רוח מכריע בינתים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עשרים ושתים אותיות יסוד שלש אמות ושבע כפולות ושתים עשרה פשוטות. שלש אמות אמ&quot;ש יסודן כף זכות וכף חובה ולשון חק מכריע בינתים. שלש אמות אמ&quot;ש מ׳ דוממת ש׳ שורקת א׳ אויר רוח מכריע בינתים:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-2-2" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-2-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 2:2</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-2-2" aria-label="Copy link to Sefer Yetzirah Gra Version 2:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">עשרים ושתים אותיות יסוד חקקן חצבן צרפן שקלן והמירן וצר בהם את כל היצור ואת כל העתיד לצור:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עשרים ושתים אותיות יסוד חקקן חצבן צרפן שקלן והמירן וצר בהם את כל היצור ואת כל העתיד לצור:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-2-3" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-2-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 2:3</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-2-3" aria-label="Copy link to Sefer Yetzirah Gra Version 2:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">עשרים ושתים אותיות יסוד חקקן בקול חצבן ברוח קבען בפה בחמשה מקומות אחה&quot;ע בגרון גיכ&quot;ק בחיך דטלנ&quot;ת בלשון זסשר&quot;ץ בשינים בומ&quot;ף בשפתים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עשרים ושתים אותיות יסוד חקקן בקול חצבן ברוח קבען בפה בחמשה מקומות אחה&quot;ע בגרון גיכ&quot;ק בחיך דטלנ&quot;ת בלשון זסשר&quot;ץ בשינים בומ&quot;ף בשפתים:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-2-4" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-2-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 2:4</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-2-4" aria-label="Copy link to Sefer Yetzirah Gra Version 2:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">עשרים ושתים אותיות יסוד קבען בגלגל כמין חומה ברל&quot;א שערים וחוזר הגלגל פנים ואחור וסימן לדבר אין בטובה למעלה מענג ואין ברעה למטה מנגע:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עשרים ושתים אותיות יסוד קבען בגלגל כמין חומה ברל&quot;א שערים וחוזר הגלגל פנים ואחור וסימן לדבר אין בטובה למעלה מענג ואין ברעה למטה מנגע:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-2-5" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-2-5" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 2:5</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-2-5" aria-label="Copy link to Sefer Yetzirah Gra Version 2:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">כיצד צרפן שקלן והמירן א׳ עם כולם וכולם עם א׳ ב׳ עם כולם וכולם עם ב׳ וחוזרות חלילה ונמצאות ברל&quot;א שערים ונמצא כל היצור וכל הדבור יוצא משם אחד:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כיצד צרפן שקלן והמירן א׳ עם כולם וכולם עם א׳ ב׳ עם כולם וכולם עם ב׳ וחוזרות חלילה ונמצאות ברל&quot;א שערים ונמצא כל היצור וכל הדבור יוצא משם אחד:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-2-6" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-2-6" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 2:6</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-2-6" aria-label="Copy link to Sefer Yetzirah Gra Version 2:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">יצר ממש מתהו ועשה את אינו ישנו וחצב עמודים גדולים מאויר שאינו נתפש וזה סימן א׳ עם כולם וכולם עם א׳ צופה וממיר ועשה את כל היצור ואת כל הדבור שם אחד וסימן לדבר עשרים ושתים חפצים בגוף אחד:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יצר ממש מתהו ועשה את אינו ישנו וחצב עמודים גדולים מאויר שאינו נתפש וזה סימן א׳ עם כולם וכולם עם א׳ צופה וממיר ועשה את כל היצור ואת כל הדבור שם אחד וסימן לדבר עשרים ושתים חפצים בגוף אחד:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-2">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-sefer-yetzirah-gra-version-text-3">Chapter 3</h4>
-          <section class="unit" id="sefer-yetzirah-gra-version-3-1" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-3-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 3:1</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-3-1" aria-label="Copy link to Sefer Yetzirah Gra Version 3:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שלש אמות אמ&quot;ש יסודן כף זכות וכף חובה ולשון חק מכריע בינתים <span class="source-small">[משנה זו כפולה לעיל רפ&quot;ב בדרך אגב וכאן עיקר מקומה <span class="source-small">(ש&quot;ל)</span>]</span>:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שלש אמות אמ&quot;ש יסודן כף זכות וכף חובה ולשון חק מכריע בינתים <span class="source-small">[משנה זו כפולה לעיל רפ&quot;ב בדרך אגב וכאן עיקר מקומה <span class="source-small">(ש&quot;ל)</span>]</span>:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-3-2" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-3-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 3:2</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-3-2" aria-label="Copy link to Sefer Yetzirah Gra Version 3:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שלש אמות אמ&quot;ש סוד גדול מופלא ומכוסה וחתום בשש טבעות ויצאו מהם אויר מים אש ומהם נולדו אבות ומאבות תולדות:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שלש אמות אמ&quot;ש סוד גדול מופלא ומכוסה וחתום בשש טבעות ויצאו מהם אויר מים אש ומהם נולדו אבות ומאבות תולדות:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-3-3" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-3-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 3:3</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-3-3" aria-label="Copy link to Sefer Yetzirah Gra Version 3:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שלש אמות אמ&quot;ש חקקן חצבן צרפן שקלן והמירן וצר בהם שלש אמות אמ&quot;ש בעולם ושלש אמות אמ&quot;ש בשנה ושלש אמות אמ&quot;ש בנפש זכר ונקבה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שלש אמות אמ&quot;ש חקקן חצבן צרפן שקלן והמירן וצר בהם שלש אמות אמ&quot;ש בעולם ושלש אמות אמ&quot;ש בשנה ושלש אמות אמ&quot;ש בנפש זכר ונקבה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-3-4" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-3-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 3:4</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-3-4" aria-label="Copy link to Sefer Yetzirah Gra Version 3:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שלש אמות אמ&quot;ש בעולם אויר מים אש [<span class="source-small">אולי צריך להוסיף</span> שמים ארץ ואויר]  שמים נבראו מאש וארץ נבראת ממים [<span class="source-small">אולי צריך להוסיף</span> ורוח מאויר] ואויר מרוח מכריע בינתים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שלש אמות אמ&quot;ש בעולם אויר מים אש [<span class="source-small">אולי צריך להוסיף</span> שמים ארץ ואויר]  שמים נבראו מאש וארץ נבראת ממים [<span class="source-small">אולי צריך להוסיף</span> ורוח מאויר] ואויר מרוח מכריע בינתים:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-3-5" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-3-5" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 3:5</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-3-5" aria-label="Copy link to Sefer Yetzirah Gra Version 3:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שלש אמות אמ&quot;ש בשנה חום קור ורויה. חום נברא מאש קור נברא ממים ורויה מרוח מכריע בינתים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שלש אמות אמ&quot;ש בשנה חום קור ורויה. חום נברא מאש קור נברא ממים ורויה מרוח מכריע בינתים:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-3-6" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-3-6" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 3:6</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-3-6" aria-label="Copy link to Sefer Yetzirah Gra Version 3:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שלש אמות אמ&quot;ש בנפש זכר ונקבה ראש ובטן וגויה. ראש נברא מאש ובטן נברא ממים וגויה מרוח מכריע בינתים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שלש אמות אמ&quot;ש בנפש זכר ונקבה ראש ובטן וגויה. ראש נברא מאש ובטן נברא ממים וגויה מרוח מכריע בינתים:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-3-7" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-3-7" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 3:7</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-3-7" aria-label="Copy link to Sefer Yetzirah Gra Version 3:7">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(בבא א׳)</span> המליך אות א׳ ברוח וקשר לו כתר וצרפן זה בזה וצר בהם אויר בעולם ורויה בשנה וגויה בנפש זכר באמ&quot;ש ונקבה באש&quot;ם:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">(בבא א׳)</span> המליך אות א׳ ברוח וקשר לו כתר וצרפן זה בזה וצר בהם אויר בעולם ורויה בשנה וגויה בנפש זכר באמ&quot;ש ונקבה באש&quot;ם:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-3-8" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-3-8" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 3:8</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-3-8" aria-label="Copy link to Sefer Yetzirah Gra Version 3:8">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(בבא ב׳)</span> המליך אות מ׳ במים וקשר לו כתר וצרפן זה בזה וצר בהם ארץ בעולם וקור בשנה ובטן בנפש זכר במא&quot;ש ונקבה במש&quot;א:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">(בבא ב׳)</span> המליך אות מ׳ במים וקשר לו כתר וצרפן זה בזה וצר בהם ארץ בעולם וקור בשנה ובטן בנפש זכר במא&quot;ש ונקבה במש&quot;א:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-3-9" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-3-9" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 3:9</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-3-9" aria-label="Copy link to Sefer Yetzirah Gra Version 3:9">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(בבא ג׳)</span> המליך אות ש׳ באש וקשר לו כתר וצרפן זה בזה וצר בהם (אש) שמים בעולם וחום בשנה וראש בנפש זכר בשא&quot;מ ונקבה בשמ&quot;א:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">(בבא ג׳)</span> המליך אות ש׳ באש וקשר לו כתר וצרפן זה בזה וצר בהם (אש) שמים בעולם וחום בשנה וראש בנפש זכר בשא&quot;מ ונקבה בשמ&quot;א:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-3">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-sefer-yetzirah-gra-version-text-4">Chapter 4</h4>
-          <section class="unit" id="sefer-yetzirah-gra-version-4-1" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-4-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 4:1</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-4-1" aria-label="Copy link to Sefer Yetzirah Gra Version 4:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שבע כפולות בג&quot;ד כפר&quot;ת מתנהגות בשתי לשונות ב&quot;ב, ג&quot;ג, ד&quot;ד, כ&quot;כ, פ&quot;פ, ר&quot;ר, ת&quot;ת. תבנית רך וקשה גבור וחלש:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שבע כפולות בג&quot;ד כפר&quot;ת מתנהגות בשתי לשונות ב&quot;ב, ג&quot;ג, ד&quot;ד, כ&quot;כ, פ&quot;פ, ר&quot;ר, ת&quot;ת. תבנית רך וקשה גבור וחלש:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-4-2" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-4-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 4:2</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-4-2" aria-label="Copy link to Sefer Yetzirah Gra Version 4:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שבע כפולות בג&quot;ד כפר&quot;ת יסודן חכמה עושר זרע חיים ממשלה שלום וחן:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שבע כפולות בג&quot;ד כפר&quot;ת יסודן חכמה עושר זרע חיים ממשלה שלום וחן:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-4-3" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-4-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 4:3</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-4-3" aria-label="Copy link to Sefer Yetzirah Gra Version 4:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שבע כפולות בג&quot;ד כפר&quot;ת בדבור ובתמורה תמורת חכמה אולת תמורת עושר עוני תמורת זרע שממה תמורת חיים מות תמורת ממשלה עבדות תמורת שלום מלחמה תמורת חן כיעור:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שבע כפולות בג&quot;ד כפר&quot;ת בדבור ובתמורה תמורת חכמה אולת תמורת עושר עוני תמורת זרע שממה תמורת חיים מות תמורת ממשלה עבדות תמורת שלום מלחמה תמורת חן כיעור:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-4-4" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-4-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 4:4</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-4-4" aria-label="Copy link to Sefer Yetzirah Gra Version 4:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שבע כפולות בג&quot;ד כפר&quot;ת מעלה ומטה מזרח ומערב צפון ודרום והיכל הקודש מכוון באמצע והוא נושא את כולם:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שבע כפולות בג&quot;ד כפר&quot;ת מעלה ומטה מזרח ומערב צפון ודרום והיכל הקודש מכוון באמצע והוא נושא את כולם:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-4-5" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-4-5" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 4:5</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-4-5" aria-label="Copy link to Sefer Yetzirah Gra Version 4:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שבע כפולות בג&quot;ד כפר&quot;ת שבע ולא שש שבע ולא שמונה בחון בהם וחקור בהם והעמד דבר על בוריו והשב יוצר על מכונו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שבע כפולות בג&quot;ד כפר&quot;ת שבע ולא שש שבע ולא שמונה בחון בהם וחקור בהם והעמד דבר על בוריו והשב יוצר על מכונו:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-4-6" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-4-6" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 4:6</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-4-6" aria-label="Copy link to Sefer Yetzirah Gra Version 4:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שבע כפולות בג&quot;ד כפר&quot;ת יסוד חקקן חצבן צרפן שקלן והמירן וצר בהם שבעה כוכבים בעולם שבעה ימים בשנה שבעה שערים בנפש זכר ונקבה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שבע כפולות בג&quot;ד כפר&quot;ת יסוד חקקן חצבן צרפן שקלן והמירן וצר בהם שבעה כוכבים בעולם שבעה ימים בשנה שבעה שערים בנפש זכר ונקבה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-4-7" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-4-7" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 4:7</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-4-7" aria-label="Copy link to Sefer Yetzirah Gra Version 4:7">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שבעה כוכבים בעולם שבתאי צדק מאדים חמה נוגה כוכב לבנה. שבעה ימים בשנה שבעת ימי השבוע. שבעה שערים בנפש זכר ונקבה שתי עינים שתי אזנים שני נקבי האף והפה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שבעה כוכבים בעולם שבתאי צדק מאדים חמה נוגה כוכב לבנה. שבעה ימים בשנה שבעת ימי השבוע. שבעה שערים בנפש זכר ונקבה שתי עינים שתי אזנים שני נקבי האף והפה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-4-8" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-4-8" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 4:8</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-4-8" aria-label="Copy link to Sefer Yetzirah Gra Version 4:8">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(בבא א׳)</span> המליך אות ב׳ בחכמה וקשר לו כתר וצרפן זה בזה וצר בהם לבנה בעולם יום ראשון בשנה ועין ימין בנפש זכר ונקבה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">(בבא א׳)</span> המליך אות ב׳ בחכמה וקשר לו כתר וצרפן זה בזה וצר בהם לבנה בעולם יום ראשון בשנה ועין ימין בנפש זכר ונקבה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-4-9" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-4-9" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 4:9</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-4-9" aria-label="Copy link to Sefer Yetzirah Gra Version 4:9">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(בבא ב׳)</span> המליך אות ג׳ בעושר וקשר לו כתר וצרפן זה בזה וצר בהם מאדים בעולם יום שני בשנה ואזן ימין בנפש זכר ונקבה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">(בבא ב׳)</span> המליך אות ג׳ בעושר וקשר לו כתר וצרפן זה בזה וצר בהם מאדים בעולם יום שני בשנה ואזן ימין בנפש זכר ונקבה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-4-10" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-4-10" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 4:10</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-4-10" aria-label="Copy link to Sefer Yetzirah Gra Version 4:10">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(בבא ג׳)</span> המליך אות ד׳ בזרע וקשר לו כתר וצרפן זה בזה וצר בהם חמה בעולם יום שלישי בשנה ונחיר ימין בנפש זכר ונקבה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">(בבא ג׳)</span> המליך אות ד׳ בזרע וקשר לו כתר וצרפן זה בזה וצר בהם חמה בעולם יום שלישי בשנה ונחיר ימין בנפש זכר ונקבה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-4-11" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-4-11" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 4:11</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-4-11" aria-label="Copy link to Sefer Yetzirah Gra Version 4:11">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(בבא ד׳)</span> המליך אות כ׳ בחיים וקשר לו כתר וצרפן זה בזה וצר בהם נוגה בעולם יום רביעי בשנה ועין שמאל בנפש זכר ונקבה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">(בבא ד׳)</span> המליך אות כ׳ בחיים וקשר לו כתר וצרפן זה בזה וצר בהם נוגה בעולם יום רביעי בשנה ועין שמאל בנפש זכר ונקבה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-4-12" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-4-12" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 4:12</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-4-12" aria-label="Copy link to Sefer Yetzirah Gra Version 4:12">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(בבא ה׳)</span> המליך אות פ׳ בממשלה וקשר לו כתר וצרפן זה בזה וצר בהם כוכב בעולם יום חמישי בשנה ואזן שמאל בנפש זכר ונקבה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">(בבא ה׳)</span> המליך אות פ׳ בממשלה וקשר לו כתר וצרפן זה בזה וצר בהם כוכב בעולם יום חמישי בשנה ואזן שמאל בנפש זכר ונקבה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-4-13" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-4-13" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 4:13</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-4-13" aria-label="Copy link to Sefer Yetzirah Gra Version 4:13">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(בבא ו׳)</span> המליך אות ר׳ בשלום וקשר לו כתר וצרפן זה בזה וצר בהם שבתאי בעולם יום ששי בשנה ונחיר שמאל בנפש זכר ונקבה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">(בבא ו׳)</span> המליך אות ר׳ בשלום וקשר לו כתר וצרפן זה בזה וצר בהם שבתאי בעולם יום ששי בשנה ונחיר שמאל בנפש זכר ונקבה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-4-14" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-4-14" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 4:14</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-4-14" aria-label="Copy link to Sefer Yetzirah Gra Version 4:14">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(בבא ז׳)</span> המליך אות ת׳ בחן וקשר לו כתר וצרפן זה בזה וצר בהם צדק בעולם יום שבת בשנה ופה בנפש זכר ונקבה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">(בבא ז׳)</span> המליך אות ת׳ בחן וקשר לו כתר וצרפן זה בזה וצר בהם צדק בעולם יום שבת בשנה ופה בנפש זכר ונקבה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-4-15" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-4-15" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 4:15</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-4-15" aria-label="Copy link to Sefer Yetzirah Gra Version 4:15">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שבע כפולות בג&quot;ד כפר&quot;ת שבהן נחקקין שבעה עולמות, שבעה רקיעין, שבע ארצות, שבעה יַמים, שבעה נהרות, שבעה מדברות, שבעה יָמים, שבעה שבועות, שבע שנים, שבע שמיטין, שבעה יובלות, והיכל הקדש, לפיכך חבב את השביעיות תחת כל השמים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שבע כפולות בג&quot;ד כפר&quot;ת שבהן נחקקין שבעה עולמות, שבעה רקיעין, שבע ארצות, שבעה יַמים, שבעה נהרות, שבעה מדברות, שבעה יָמים, שבעה שבועות, שבע שנים, שבע שמיטין, שבעה יובלות, והיכל הקדש, לפיכך חבב את השביעיות תחת כל השמים:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-4-16" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-4-16" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 4:16</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-4-16" aria-label="Copy link to Sefer Yetzirah Gra Version 4:16">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שתי אבנים בונות שני בתים, שלש אבנים בונות ששה בתים, ארבע אבנים בונות ארבעה ועשרים בתים, חמש אבנים בונות מאה ועשרים בתים, שש אבנים בונות שבע מאות ועשרים בתים, שבע אבנים בונות חמשת אלפים וארבעים בתים, מכאן ואילך צא וחשוב מה שאין הפה יכול לדבר ואין האוזן יכולה לשמוע:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שתי אבנים בונות שני בתים, שלש אבנים בונות ששה בתים, ארבע אבנים בונות ארבעה ועשרים בתים, חמש אבנים בונות מאה ועשרים בתים, שש אבנים בונות שבע מאות ועשרים בתים, שבע אבנים בונות חמשת אלפים וארבעים בתים, מכאן ואילך צא וחשוב מה שאין הפה יכול לדבר ואין האוזן יכולה לשמוע:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-4">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-sefer-yetzirah-gra-version-text-5">Chapter 5</h4>
-          <section class="unit" id="sefer-yetzirah-gra-version-5-1" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-5-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 5:1</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-5-1" aria-label="Copy link to Sefer Yetzirah Gra Version 5:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שתים עשרה פשוטות ה׳ ו׳ ז׳, ח׳ ט׳ י׳, ל׳ נ׳ ס׳, ע׳ צ׳ ק׳, יסודן שיחה הרהור הלוך, ראיה שמיעה מעשה, תשמיש ריח שינה, רוגז לעיטה שחוק:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שתים עשרה פשוטות ה׳ ו׳ ז׳, ח׳ ט׳ י׳, ל׳ נ׳ ס׳, ע׳ צ׳ ק׳, יסודן שיחה הרהור הלוך, ראיה שמיעה מעשה, תשמיש ריח שינה, רוגז לעיטה שחוק:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-5-2" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-5-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 5:2</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-5-2" aria-label="Copy link to Sefer Yetzirah Gra Version 5:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שתים עשרה פשוטות ה׳ ו׳ ז׳, ח׳ ט׳ י׳, ל׳ נ׳ ס׳, ע׳ צ׳ ק׳, יסודן שנים עשר גבולי אלכסון, גבול מזרחית רומית גבול מזרחית צפונית גבול מזרחית תחתית, גבול דרומית רומית גבול דרומית מזרחית גבול דרומית תחתית, גבול מערבית רומית גבול מערבית דרומית גבול מערבית תחתית, גבול צפונית רומית גבול צפונית מערבית גבול צפונית תחתית, ומתרחבין והולכין עד עדי עד והן הן גבולות עולם:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שתים עשרה פשוטות ה׳ ו׳ ז׳, ח׳ ט׳ י׳, ל׳ נ׳ ס׳, ע׳ צ׳ ק׳, יסודן שנים עשר גבולי אלכסון, גבול מזרחית רומית גבול מזרחית צפונית גבול מזרחית תחתית, גבול דרומית רומית גבול דרומית מזרחית גבול דרומית תחתית, גבול מערבית רומית גבול מערבית דרומית גבול מערבית תחתית, גבול צפונית רומית גבול צפונית מערבית גבול צפונית תחתית, ומתרחבין והולכין עד עדי עד והן הן גבולות עולם:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-5-3" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-5-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 5:3</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-5-3" aria-label="Copy link to Sefer Yetzirah Gra Version 5:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שתים עשרה פשוטות ה׳ ו׳ ז׳, ח׳ ט׳ י׳, ל׳ נ׳ ס׳, ע׳ צ׳ ק׳, יסודן חקקן חצבן צרפן שקלן והמירן וצר בהם שנים עשר מזלות בעולם שנים עשר חדשים בשנה שנים עשר מנהיגים בנפש זכר ונקבה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שתים עשרה פשוטות ה׳ ו׳ ז׳, ח׳ ט׳ י׳, ל׳ נ׳ ס׳, ע׳ צ׳ ק׳, יסודן חקקן חצבן צרפן שקלן והמירן וצר בהם שנים עשר מזלות בעולם שנים עשר חדשים בשנה שנים עשר מנהיגים בנפש זכר ונקבה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-5-4" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-5-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 5:4</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-5-4" aria-label="Copy link to Sefer Yetzirah Gra Version 5:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שנים עשר מזלות בעולם טלה שור תאומים סרטן אריה בתולה מאזנים עקרב קשת גדי דלי דגים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שנים עשר מזלות בעולם טלה שור תאומים סרטן אריה בתולה מאזנים עקרב קשת גדי דלי דגים:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-5-5" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-5-5" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 5:5</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-5-5" aria-label="Copy link to Sefer Yetzirah Gra Version 5:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שנים עשר חדשים בשנה ניסן אייר סיון תמוז אב אלול תשרי חשון כסלו טבת שבט אדר:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שנים עשר חדשים בשנה ניסן אייר סיון תמוז אב אלול תשרי חשון כסלו טבת שבט אדר:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-5-6" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-5-6" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 5:6</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-5-6" aria-label="Copy link to Sefer Yetzirah Gra Version 5:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שנים עשר מנהיגים בנפש זכר ונקבה שתי ידים שתי רגלים שתי כליות מרה דקין כבד קורקבן קבה טחול:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שנים עשר מנהיגים בנפש זכר ונקבה שתי ידים שתי רגלים שתי כליות מרה דקין כבד קורקבן קבה טחול:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-5-7" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-5-7" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 5:7</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-5-7" aria-label="Copy link to Sefer Yetzirah Gra Version 5:7">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(בבא א׳ מהראשונה)</span> המליך אות ה׳ בשיחה וקשר לו כתר וצרפן זה בזה וצר בהם טלה בעולם וניסן בשנה ורגל ימין בנפש זכר ונקבה: <span class="source-small">(בבא ב׳ מהראשונה)</span> המליך אות ו׳ בהרהור וקשר לו כתר וצרפן זה בזה וצר בהם שור בעולם ואייר בשנה וכוליא ימנית בנפש זכר ונקבה: <span class="source-small">(בבא ג׳ מהראשונה)</span> המליך אות ז׳ בהלוך וקשר לו כתר וצרפן זה בזה וצר בהם תאומים בעולם וסיון בשנה ורגל שמאל בנפש זכר ונקבה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">(בבא א׳ מהראשונה)</span> המליך אות ה׳ בשיחה וקשר לו כתר וצרפן זה בזה וצר בהם טלה בעולם וניסן בשנה ורגל ימין בנפש זכר ונקבה: <span class="source-small">(בבא ב׳ מהראשונה)</span> המליך אות ו׳ בהרהור וקשר לו כתר וצרפן זה בזה וצר בהם שור בעולם ואייר בשנה וכוליא ימנית בנפש זכר ונקבה: <span class="source-small">(בבא ג׳ מהראשונה)</span> המליך אות ז׳ בהלוך וקשר לו כתר וצרפן זה בזה וצר בהם תאומים בעולם וסיון בשנה ורגל שמאל בנפש זכר ונקבה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-5-8" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-5-8" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 5:8</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-5-8" aria-label="Copy link to Sefer Yetzirah Gra Version 5:8">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(בבא א׳ מהשניה)</span> המליך אות ח׳ בראיה וקשר לו כתר וצרפן זה בזה וצר בהם סרטן בעולם ותמוז בשנה ויד ימין בנפש זכר ונקבה: המליך אות ט׳ בשמיעה וקשר לו כתר וצרפן זה בזה וצר בהם אריה בעולם ואב בשנה וכוליא שמאלית בנפש זכר ונקבה:<span class="source-small">(בבא ג׳ מן השניה)</span> המליך אות י׳ במעשה וקשר לו כתר וצרפן זה בזה וצר בהם בתולה בעולם ואלול בשנה ויד שמאל בנפש זכר ונקבה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">(בבא א׳ מהשניה)</span> המליך אות ח׳ בראיה וקשר לו כתר וצרפן זה בזה וצר בהם סרטן בעולם ותמוז בשנה ויד ימין בנפש זכר ונקבה: המליך אות ט׳ בשמיעה וקשר לו כתר וצרפן זה בזה וצר בהם אריה בעולם ואב בשנה וכוליא שמאלית בנפש זכר ונקבה:<span class="source-small">(בבא ג׳ מן השניה)</span> המליך אות י׳ במעשה וקשר לו כתר וצרפן זה בזה וצר בהם בתולה בעולם ואלול בשנה ויד שמאל בנפש זכר ונקבה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-5-9" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-5-9" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 5:9</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-5-9" aria-label="Copy link to Sefer Yetzirah Gra Version 5:9">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(בבא א׳ מן השלישית)</span> המליך אות ל׳ בתשמיש וקשר לו כתר וצרפן זה בזה וצר בהם מאזנים בעולם ותשרי בשנה ומרה בנפש זכר ונקבה:<span class="source-small">(בבא ב׳ מן השלישית)</span> המליך אות נ׳ בריח וקשר לו כתר וצרפן זה בזה וצר בהם עקרב בעולם וחשון בשנה ודקין בנפש זכר ונקבה:<span class="source-small">(בבא ג׳ מן השלישית)</span> המליך אות ס׳ בשינה וקשר לו כתר וצרפן זה בזה וצר בהם קשת בעולם וכסלו בשנה וקבה בנפש זכר ונקבה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">(בבא א׳ מן השלישית)</span> המליך אות ל׳ בתשמיש וקשר לו כתר וצרפן זה בזה וצר בהם מאזנים בעולם ותשרי בשנה ומרה בנפש זכר ונקבה:<span class="source-small">(בבא ב׳ מן השלישית)</span> המליך אות נ׳ בריח וקשר לו כתר וצרפן זה בזה וצר בהם עקרב בעולם וחשון בשנה ודקין בנפש זכר ונקבה:<span class="source-small">(בבא ג׳ מן השלישית)</span> המליך אות ס׳ בשינה וקשר לו כתר וצרפן זה בזה וצר בהם קשת בעולם וכסלו בשנה וקבה בנפש זכר ונקבה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-5-10" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-5-10" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 5:10</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-5-10" aria-label="Copy link to Sefer Yetzirah Gra Version 5:10">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(בבא א׳ מן הרביעית)</span> המליך אות ע׳ ברוגז וקשר לו כתר וצרפן זה בזה וצר בהם גדי בעולם וטבת בשנה וכבד בנפש זכר ונקבה: <span class="source-small">(בבא א׳ מן הרביעית)</span> המליך אות צ׳ בלעיטה וקשר לו כתר וצרפן זה בזה וצר בהם דלי בעולם ושבט בשנה וקורקבן בנפש זכר ונקבה: <span class="source-small">(בבא א׳ מן הרביעית)</span> המליך אות ק׳ בשחוק וקשר לו כתר וצרפן זה בזה וצר בהם דגים בעולם ואדר בשנה וטחול בנפש זכר ונקבה. עשאן כמין עריבה סידרן כמין חומה ערכן כמין מלחמה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">(בבא א׳ מן הרביעית)</span> המליך אות ע׳ ברוגז וקשר לו כתר וצרפן זה בזה וצר בהם גדי בעולם וטבת בשנה וכבד בנפש זכר ונקבה: <span class="source-small">(בבא א׳ מן הרביעית)</span> המליך אות צ׳ בלעיטה וקשר לו כתר וצרפן זה בזה וצר בהם דלי בעולם ושבט בשנה וקורקבן בנפש זכר ונקבה: <span class="source-small">(בבא א׳ מן הרביעית)</span> המליך אות ק׳ בשחוק וקשר לו כתר וצרפן זה בזה וצר בהם דגים בעולם ואדר בשנה וטחול בנפש זכר ונקבה. עשאן כמין עריבה סידרן כמין חומה ערכן כמין מלחמה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-5">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-sefer-yetzirah-gra-version-text-6">Chapter 6</h4>
-          <section class="unit" id="sefer-yetzirah-gra-version-6-1" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-6-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 6:1</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-6-1" aria-label="Copy link to Sefer Yetzirah Gra Version 6:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">אלו הם שלש אמות אמ&quot;ש ויצאו מהם שלשה אבות והם אויר מים אש ומאבות תולדות, שלשה אבות ותולדותיהם ושבעה כוכבים וצבאותיהם ושנים עשר גבולי אלכסון. ראיה לדבר עדים נאמנים בעולם שנה נפש ושנים עשר חק ושבעה ושלשה פקדן בתלי וגלגל ולב:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אלו הם שלש אמות אמ&quot;ש ויצאו מהם שלשה אבות והם אויר מים אש ומאבות תולדות, שלשה אבות ותולדותיהם ושבעה כוכבים וצבאותיהם ושנים עשר גבולי אלכסון. ראיה לדבר עדים נאמנים בעולם שנה נפש ושנים עשר חק ושבעה ושלשה פקדן בתלי וגלגל ולב:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-6-2" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-6-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 6:2</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-6-2" aria-label="Copy link to Sefer Yetzirah Gra Version 6:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שלש אמות אמ&quot;ש אויר מים אש אש למעלה ומים למטה ואויר רוח חק מכריע בינתים וסימן לדבר האש נושא את המים, מ׳ דוממת ש׳ שורקת א׳ אויר רוח חק מכריע בינתים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שלש אמות אמ&quot;ש אויר מים אש אש למעלה ומים למטה ואויר רוח חק מכריע בינתים וסימן לדבר האש נושא את המים, מ׳ דוממת ש׳ שורקת א׳ אויר רוח חק מכריע בינתים:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-6-3" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-6-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 6:3</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-6-3" aria-label="Copy link to Sefer Yetzirah Gra Version 6:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">תלי בעולם כמלך על כסאו גלגל בשנה כמלך  במדינה [<span class="source-small">נ&quot;א</span> על החומה] לב בנפש כמלך במלחמה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תלי בעולם כמלך על כסאו גלגל בשנה כמלך  במדינה [<span class="source-small">נ&quot;א</span> על החומה] לב בנפש כמלך במלחמה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-6-4" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-6-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 6:4</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-6-4" aria-label="Copy link to Sefer Yetzirah Gra Version 6:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">גם את זה לעומת זה עשה אלהים טוב לעומת רע רע לעומת טוב טוב מטוב רע מרע הטוב מבחין את הרע והרע מבחין את הטוב טובה שמורה לטובים ורעה שמורה לרעים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">גם את זה לעומת זה עשה אלהים טוב לעומת רע רע לעומת טוב טוב מטוב רע מרע הטוב מבחין את הרע והרע מבחין את הטוב טובה שמורה לטובים ורעה שמורה לרעים:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-6-5" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-6-5" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 6:5</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-6-5" aria-label="Copy link to Sefer Yetzirah Gra Version 6:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שלשה כל אחד לבדו עומד אחד מזכה ואחד מחייב ואחד מכריע בינתים. שבעה שלשה מול שלשה ואחד חק מכריע בינתים. ושנים עשר עומדין במלחמה שלשה אוהבים שלשה שונאים שלשה מחיים ושלשה ממיתים. שלשה אוהבים הלב והאזנים שלשה שונאים הכבד והמרה והלשון שלשה מחיים שני נקבי האף והטחול ושלשה ממיתים שני הנקבים והפה ואל מלך נאמן מושל בכולם ממעון קדשו עד עדי עד. אחד על גבי שלשה, שלשה על גבי שבעה, שבעה על גבי שנים עשר וכלם אדוקים זה בזה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שלשה כל אחד לבדו עומד אחד מזכה ואחד מחייב ואחד מכריע בינתים. שבעה שלשה מול שלשה ואחד חק מכריע בינתים. ושנים עשר עומדין במלחמה שלשה אוהבים שלשה שונאים שלשה מחיים ושלשה ממיתים. שלשה אוהבים הלב והאזנים שלשה שונאים הכבד והמרה והלשון שלשה מחיים שני נקבי האף והטחול ושלשה ממיתים שני הנקבים והפה ואל מלך נאמן מושל בכולם ממעון קדשו עד עדי עד. אחד על גבי שלשה, שלשה על גבי שבעה, שבעה על גבי שנים עשר וכלם אדוקים זה בזה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-6-6" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-6-6" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 6:6</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-6-6" aria-label="Copy link to Sefer Yetzirah Gra Version 6:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">אלו הם עשרים ושתים אותיות שבהן חקק אהי&quot;ה י&quot;ה יהו&quot;ה אלהים אלהים יהו&quot;ה יהו&quot;ה צבאות אלהים צבאות אל שדי יהו&quot;ה אדני ועשה מהם שלשה ספרים וברא מהם את כל עולמו וצר בהם את כל היצור ואת כל העתיד לצור:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אלו הם עשרים ושתים אותיות שבהן חקק אהי&quot;ה י&quot;ה יהו&quot;ה אלהים אלהים יהו&quot;ה יהו&quot;ה צבאות אלהים צבאות אל שדי יהו&quot;ה אדני ועשה מהם שלשה ספרים וברא מהם את כל עולמו וצר בהם את כל היצור ואת כל העתיד לצור:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="sefer-yetzirah-gra-version-6-7" data-unit>
+          <section class="unit" id="sefer-yetzirah-gra-version-6-7" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Sefer Yetzirah Gra Version 6:7</h4></div>
               <a class="anchor" href="#sefer-yetzirah-gra-version-6-7" aria-label="Copy link to Sefer Yetzirah Gra Version 6:7">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">כשבא אברהם אבינו ע&quot;ה הביט וראה והבין וחקר וחקק וחצב ועלתה בידו הבריאה שנאמר ואת הנפש אשר עשו בחרן מיד נגלה עליו אדון הכל יתברך שמו לעד והושיבו בחיקו ונשקו על ראשו וקראו אברהם אוהבי וכרת ברית לו ולזרעו עד עולם שנאמר והאמין בה׳ ויחשבה לו צדקה. וכרת לו ברית בין עשר אצבעות ידיו והוא ברית הלשון ובין עשר אצבעות רגליו והוא ברית המילה. וקשר עשרים ושתים אותיות התורה בלשונו וגילה לו את סודו משכן במים דלקן באש רעשן ברוח בערן בשבעה נהגן בשנים עשר מזלות:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כשבא אברהם אבינו ע&quot;ה הביט וראה והבין וחקר וחקק וחצב ועלתה בידו הבריאה שנאמר ואת הנפש אשר עשו בחרן מיד נגלה עליו אדון הכל יתברך שמו לעד והושיבו בחיקו ונשקו על ראשו וקראו אברהם אוהבי וכרת ברית לו ולזרעו עד עולם שנאמר והאמין בה׳ ויחשבה לו צדקה. וכרת לו ברית בין עשר אצבעות ידיו והוא ברית הלשון ובין עשר אצבעות רגליו והוא ברית המילה. וקשר עשרים ושתים אותיות התורה בלשונו וגילה לו את סודו משכן במים דלקן באש רעשן ברוח בערן בשבעה נהגן בשנים עשר מזלות:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-sefer-yetzirah-gra-version-text-6">Back to chapter/section start</a>
@@ -1131,5 +1225,336 @@
       </div>
     </div>
   </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd>
+      <dt>Strict renderings</dt><dd data-hud-surface-renderings>N/A</dd>
+      <dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd>
+      <dt data-hud-renderings-label>Possible lexical entries</dt><dd data-hud-renderings>N/A</dd>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"sefer-yetzirah-gra-version","work_title":"Sefer Yetzirah Gra Version","work_slug":"gra/sefer-yetzirah-gra-version","scope_label":"All imported Hebrew works","generated_at":"2026-04-30T15:52:03.590Z","total_occurrences":1950,"units":{"sefer-yetzirah-gra-version-1-1":{"unit_id":"sefer-yetzirah-gra-version-1-1","anchor_id":"sefer-yetzirah-gra-version-1-1","source_ref":"Sefer Yetzirah Gra Version 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-218aac610d30","tok-715445194041","tok-11c1dd121c1a","tok-ca56a6b68c9c","tok-4918d8be4b71","tok-c3d86df79225","tok-210e60c9b98f","tok-94d1cae8e344","tok-52e8e2de51a4","tok-561ccf4d0b7e","tok-fe0a4c24ef54","tok-edae369df6e0","tok-afbb35d72828","tok-5e734e48b1ae","tok-e32ca07f8e86","tok-417f173eb4f5","tok-a5f8165f067a","tok-584d864095db","tok-2d6f796ef8ae","tok-299500ea0d38","tok-aae6d0c8ee2b","tok-a0067b8ce68c","tok-f8042c5c4bfc","tok-b645b2fbfb61","tok-4db301eda1f4","tok-3a78791f80bd","tok-b645b2fbfb61","tok-a16706ee7386","tok-bf8d50cc451b","tok-2cfa4e4aa1f9","tok-a26ee56acca4","tok-fe593b4e750c","tok-c931735aa744","tok-9b694521a281","tok-af28f3c40eb0","tok-b93a279608db"]}]},"sefer-yetzirah-gra-version-1-2":{"unit_id":"sefer-yetzirah-gra-version-1-2","anchor_id":"sefer-yetzirah-gra-version-1-2","source_ref":"Sefer Yetzirah Gra Version 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4f0491a0a41a","tok-db5cd34262ac","tok-807d9bdd9c7e","tok-ae796c71fcc9","tok-6591acb06dcb","tok-715445194041","tok-10f7acc41ae8","tok-f67b67d14068","tok-12b0d59bb97f","tok-6fbb447a34d2","tok-feb3ac8e0989","tok-4c8b2c2ec589","tok-715445194041","tok-1541c5205e73","tok-a107fa80e7d3"]}]},"sefer-yetzirah-gra-version-1-3":{"unit_id":"sefer-yetzirah-gra-version-1-3","anchor_id":"sefer-yetzirah-gra-version-1-3","source_ref":"Sefer Yetzirah Gra Version 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4f0491a0a41a","tok-db5cd34262ac","tok-9fe96f360591","tok-f112fe4b5071","tok-4f0491a0a41a","tok-cc07c3696551","tok-d93c6a78d8a0","tok-2e87debe0c5e","tok-d93c6a78d8a0","tok-5680f80f532d","tok-170dc095228f","tok-712eeb14b5e8","tok-0809b5e057a5","tok-20269fa51bfc","tok-ab8eaf2de09a","tok-5d4948fdbb6e","tok-8aad841d65f7"]}]},"sefer-yetzirah-gra-version-1-4":{"unit_id":"sefer-yetzirah-gra-version-1-4","anchor_id":"sefer-yetzirah-gra-version-1-4","source_ref":"Sefer Yetzirah Gra Version 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4f0491a0a41a","tok-db5cd34262ac","tok-9fe96f360591","tok-4f0491a0a41a","tok-4c4caf0f9c54","tok-364e05dbbd91","tok-4f0491a0a41a","tok-4c4caf0f9c54","tok-b87c652379fa","tok-1541c5205e73","tok-d285e50e4c4a","tok-62980c7fe800","tok-dbe5d38396e7","tok-7e365b5fea13","tok-b6645b919b7b","tok-cbd4c6958a32","tok-d72c9741d4a6","tok-496a4f005f53","tok-432e3496308a","tok-ab0db50ba5e8","tok-f84a98aae5f7","tok-7c4dfc049eac","tok-34e33301cbc9","tok-fb7a87522aee","tok-f84a98aae5f7","tok-afe135306ca8"]}]},"sefer-yetzirah-gra-version-1-5":{"unit_id":"sefer-yetzirah-gra-version-1-5","anchor_id":"sefer-yetzirah-gra-version-1-5","source_ref":"Sefer Yetzirah Gra Version 1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4f0491a0a41a","tok-db5cd34262ac","tok-9fe96f360591","tok-e19bcaaeec0b","tok-4f0491a0a41a","tok-3724d92fca7d","tok-613f36973e3e","tok-b89dd327cba0","tok-4ba964864363","tok-cafbdf1a74ae","tok-00d474ecceea","tok-25b7960c2d88","tok-4ba964864363","tok-1a014d5c502e","tok-00d474ecceea","tok-47aac75bab1a","tok-4ba964864363","tok-b294ac65183c","tok-00d474ecceea","tok-4ee3b1be2d53","tok-4ba964864363","tok-8df033b1921d","tok-00d474ecceea","tok-7ff884d61d08","tok-4ba964864363","tok-4725253d7491","tok-00d474ecceea","tok-ed30e479543a","tok-8d5bd0dda163","tok-170dc095228f","tok-417f173eb4f5","tok-8d50c8c56bb9","tok-8e416742eebe","tok-1ed8773f1650","tok-d487e389e866","tok-810eaa5a9349","tok-f3f0ad919dcc","tok-f8042c5c4bfc","tok-0f312f5d9665","tok-f8042c5c4bfc"]}]},"sefer-yetzirah-gra-version-1-6":{"unit_id":"sefer-yetzirah-gra-version-1-6","anchor_id":"sefer-yetzirah-gra-version-1-6","source_ref":"Sefer Yetzirah Gra Version 1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4f0491a0a41a","tok-db5cd34262ac","tok-807d9bdd9c7e","tok-ae796c71fcc9","tok-5262459e88c2","tok-a31acb65b7fb","tok-f53e2986531c","tok-99db0458ffe5","tok-5d0added2f3f","tok-613f36973e3e","tok-ecf887af57ec","tok-67fd17e4c931","tok-3dad060e2499","tok-dc4d45f36311","tok-76bcceba35d5","tok-984400152c87","tok-62c21615b6e3","tok-65f9082d99fe","tok-37fb0179a60e","tok-2ccdbace2635","tok-1df3dfed54af","tok-79f3e8d43d20"]}]},"sefer-yetzirah-gra-version-1-7":{"unit_id":"sefer-yetzirah-gra-version-1-7","anchor_id":"sefer-yetzirah-gra-version-1-7","source_ref":"Sefer Yetzirah Gra Version 1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4f0491a0a41a","tok-db5cd34262ac","tok-9fe96f360591","tok-b9320677b673","tok-5c0ba922adfa","tok-d9d647f688ff","tok-09139dbeba55","tok-4333de54c536","tok-811ca8c024d3","tok-fc1e67d95e20","tok-d08eb0d8916f","tok-48847d095f15","tok-170dc095228f","tok-dbc320eb669d","tok-f465e0637d20","tok-06ee09fcff43","tok-37fb0179a60e","tok-e275ac0edc17","tok-ae796c71fcc9","tok-ca96c6cbced5","tok-e8299f96c01c"]}]},"sefer-yetzirah-gra-version-1-8":{"unit_id":"sefer-yetzirah-gra-version-1-8","anchor_id":"sefer-yetzirah-gra-version-1-8","source_ref":"Sefer Yetzirah Gra Version 1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4f0491a0a41a","tok-db5cd34262ac","tok-9fe96f360591","tok-9729d601c342","tok-0a51f3568f30","tok-8f4b8fd57bc9","tok-dc6065f19c61","tok-29b3f8619e44","tok-12bffd6e1a02","tok-07928c3f2398","tok-0a51f3568f30","tok-cb50aad30b72","tok-dc6065f19c61","tok-1528acd6141c","tok-0a88d76ad979","tok-dac60e674b48","tok-a2f15777053e","tok-98d939b157c4","tok-80a2bc011bff","tok-ff3c43687000","tok-21517523b7ea","tok-8f85bc72f58e","tok-76bcceba35d5","tok-6bf3e5e2b1a1","tok-ab0db50ba5e8","tok-246f4238aa73","tok-5cff2a039b86","tok-3a20c67ffa95"]}]},"sefer-yetzirah-gra-version-1-9":{"unit_id":"sefer-yetzirah-gra-version-1-9","anchor_id":"sefer-yetzirah-gra-version-1-9","source_ref":"Sefer Yetzirah Gra Version 1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4f0491a0a41a","tok-db5cd34262ac","tok-9fe96f360591","tok-b87c652379fa","tok-47b56bc6f213","tok-edae369df6e0","tok-afbb35d72828","tok-efc67b962479","tok-90730105df68","tok-4db301eda1f4","tok-7f9b245dfa2f","tok-2c6e512750cc","tok-97c9a6498fbe","tok-58e2f0441770","tok-81281489e344","tok-c1d120cd6883","tok-0532d32893d8","tok-47b56bc6f213","tok-36192a1b4f33"]}]},"sefer-yetzirah-gra-version-1-10":{"unit_id":"sefer-yetzirah-gra-version-1-10","anchor_id":"sefer-yetzirah-gra-version-1-10","source_ref":"Sefer Yetzirah Gra Version 1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-34ef9a63386c","tok-47b56bc6f213","tok-b54375575b0e","tok-c3d86df79225","tok-99bd54b42949","tok-58aa092d6dfd","tok-97af4a2ac003","tok-715445194041","tok-10f7acc41ae8","tok-f67b67d14068","tok-12b0d59bb97f","tok-6fbb447a34d2","tok-feb3ac8e0989","tok-4c8b2c2ec589","tok-715445194041","tok-1541c5205e73","tok-a107fa80e7d3","tok-81281489e344","tok-b87c652379fa","tok-f74dcd9aabf8"]}]},"sefer-yetzirah-gra-version-1-11":{"unit_id":"sefer-yetzirah-gra-version-1-11","anchor_id":"sefer-yetzirah-gra-version-1-11","source_ref":"Sefer Yetzirah Gra Version 1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-12b0d59bb97f","tok-1742142186fc","tok-b54375575b0e","tok-c3d86df79225","tok-99bd54b42949","tok-3dad060e2499","tok-b7cffd215a1d","tok-10f7acc41ae8","tok-2b20a3ac72a0","tok-9f4a4c2f1a03","tok-d4964a7f4e5e","tok-26b3234f184f","tok-772bb72530ff","tok-d502656d253f","tok-894458d4874a","tok-e502c0f5834d","tok-d502656d253f","tok-aa983b7a9830","tok-1f0c4da1dcca","tok-d502656d253f","tok-df40afec03e3","tok-6df18074efd1","tok-8fef485b6dc7","tok-7d5a92fba7b6","tok-d711ca9bc63e","tok-61f23d62d17e","tok-9826a8fc3aeb","tok-fa8665bd375b","tok-e12ee84da58d","tok-595fc00ddff9","tok-a16706ee7386","tok-5c3835d57d41"]}]},"sefer-yetzirah-gra-version-1-12":{"unit_id":"sefer-yetzirah-gra-version-1-12","anchor_id":"sefer-yetzirah-gra-version-1-12","source_ref":"Sefer Yetzirah Gra Version 1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b7d032775422","tok-1075bd5db63c","tok-73842074549a","tok-c3d86df79225","tok-99bd54b42949","tok-58aa092d6dfd","tok-3263ff8a3354","tok-060692d82ce9","tok-45fc99dc3851","tok-21c52738712e","tok-0f20420b7eef","tok-36192a1b4f33","tok-5155faf5fd83","tok-cd1d6cb9f946","tok-71124248259e","tok-c904ddc87d6f","tok-63933ff0c381","tok-9826a8fc3aeb","tok-4152121faa8f","tok-87a60317fee7","tok-2fe0482e0880","tok-3aacf7a36d62","tok-1075bd5db63c","tok-b7e02e0b7c06"]}]},"sefer-yetzirah-gra-version-1-13":{"unit_id":"sefer-yetzirah-gra-version-1-13","anchor_id":"sefer-yetzirah-gra-version-1-13","source_ref":"Sefer Yetzirah Gra Version 1:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-013599504ed8","tok-12b0d59bb97f","tok-10f7acc41ae8","tok-2f1073d95096","tok-7a49538c45d2","tok-9a74ffeeaa6f","tok-12b0d59bb97f","tok-6fbb447a34d2","tok-178bcf8c79eb","tok-e201b4da36bb","tok-b9c4314b4ed2","tok-e33788c8d02d","tok-6d457cb308a5","tok-cbd4c6958a32","tok-534262fa8f50","tok-b404c36818b6","tok-d93c6a78d8a0","tok-eb011d3c5729","tok-b294ac65183c","tok-769778ddaf6a","tok-9052c1d6f6d1","tok-00cbff10cf0b","tok-4b09bb3139c9","tok-78e942307c48","tok-eb011d3c5729","tok-4ee3b1be2d53","tok-769778ddaf6a","tok-23d52095e124","tok-00cbff10cf0b","tok-ab92a112f778","tok-3aa12b4291bc","tok-eb011d3c5729","tok-8df033b1921d","tok-769778ddaf6a","tok-8a1db9bdb262","tok-00cbff10cf0b","tok-32a4cdfb9582","tok-2afd7088cd7f","tok-eb011d3c5729","tok-7ff884d61d08","tok-769778ddaf6a","tok-53b63758cb19","tok-00cbff10cf0b","tok-a659a2bc225b","tok-364e05dbbd91","tok-eb011d3c5729","tok-ed30e479543a","tok-769778ddaf6a","tok-8eac9adc86a9","tok-00cbff10cf0b","tok-66bed23827a4","tok-4f0491a0a41a","tok-eb011d3c5729","tok-4725253d7491","tok-769778ddaf6a","tok-435864b66a98","tok-00cbff10cf0b","tok-6b72f89f1a49"]}]},"sefer-yetzirah-gra-version-1-14":{"unit_id":"sefer-yetzirah-gra-version-1-14","anchor_id":"sefer-yetzirah-gra-version-1-14","source_ref":"Sefer Yetzirah Gra Version 1:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7765ba7fc7ba","tok-4f0491a0a41a","tok-db5cd34262ac","tok-9fe96f360591","tok-b87c652379fa","tok-47b56bc6f213","tok-edae369df6e0","tok-afbb35d72828","tok-47b56bc6f213","tok-b54375575b0e","tok-1742142186fc","tok-b54375575b0e","tok-1075bd5db63c","tok-73842074549a","tok-b294ac65183c","tok-40ae763fe4f0","tok-8df033b1921d","tok-32a053d1219b","tok-4725253d7491","tok-d54901542385"]}]},"sefer-yetzirah-gra-version-2-1":{"unit_id":"sefer-yetzirah-gra-version-2-1","anchor_id":"sefer-yetzirah-gra-version-2-1","source_ref":"Sefer Yetzirah Gra Version 2:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-97af4a2ac003","tok-715445194041","tok-10f7acc41ae8","tok-f67b67d14068","tok-12b0d59bb97f","tok-6fbb447a34d2","tok-feb3ac8e0989","tok-4c8b2c2ec589","tok-715445194041","tok-1541c5205e73","tok-a107fa80e7d3","tok-12b0d59bb97f","tok-6fbb447a34d2","tok-178bcf8c79eb","tok-660b147e5f46","tok-6c71f927e2a7","tok-d01021b120b9","tok-d06d6eb25e7b","tok-24841530163a","tok-6cbd8f89cb69","tok-343fbe14d8ee","tok-32cc561e58cb","tok-f410f936a83d","tok-12b0d59bb97f","tok-6fbb447a34d2","tok-178bcf8c79eb","tok-d17df3305fc4","tok-f0165e8dccc1","tok-6d2be6dac180","tok-2f334895aec1","tok-ff3c43687000","tok-298ac19866a1","tok-47b56bc6f213","tok-32cc561e58cb","tok-f410f936a83d"]}]},"sefer-yetzirah-gra-version-2-2":{"unit_id":"sefer-yetzirah-gra-version-2-2","anchor_id":"sefer-yetzirah-gra-version-2-2","source_ref":"Sefer Yetzirah Gra Version 2:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-97af4a2ac003","tok-715445194041","tok-10f7acc41ae8","tok-f67b67d14068","tok-772bb72530ff","tok-e502c0f5834d","tok-5acb842fe6e0","tok-f8387c843226","tok-ed63dcc680ff","tok-110155b0b212","tok-cbd4c6958a32","tok-2cfa4e4aa1f9","tok-b5040367ba68","tok-567cb0cb5a0b","tok-5302395ade2b","tok-b5040367ba68","tok-935ece9cd0fd","tok-984879b2bac1"]}]},"sefer-yetzirah-gra-version-2-3":{"unit_id":"sefer-yetzirah-gra-version-2-3","anchor_id":"sefer-yetzirah-gra-version-2-3","source_ref":"Sefer Yetzirah Gra Version 2:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-97af4a2ac003","tok-715445194041","tok-10f7acc41ae8","tok-f67b67d14068","tok-772bb72530ff","tok-8d30bb4ac426","tok-e502c0f5834d","tok-134d9dcc600b","tok-1082f0428f68","tok-28ca32e15931","tok-1a67212415d1","tok-faf671073b54","tok-be255ce9873d","tok-15ba27fb6f1c","tok-8b62092df567","tok-a3416d493624","tok-2a31ef448c9c","tok-90edd50f6664","tok-1233ea664db6","tok-c7a087ccda51","tok-7f4e5d9e0001","tok-fa09de5e6f2e"]}]},"sefer-yetzirah-gra-version-2-4":{"unit_id":"sefer-yetzirah-gra-version-2-4","anchor_id":"sefer-yetzirah-gra-version-2-4","source_ref":"Sefer Yetzirah Gra Version 2:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-97af4a2ac003","tok-715445194041","tok-10f7acc41ae8","tok-f67b67d14068","tok-1082f0428f68","tok-d33751582cf5","tok-d502656d253f","tok-aa983b7a9830","tok-2e9506bc9b52","tok-3d5576148db0","tok-194caad00dcc","tok-a990862d7513","tok-be2aa4da2ca8","tok-a0fe08de5454","tok-faabef26e4ca","tok-cb50aad30b72","tok-5d0added2f3f","tok-5243a5d12147","tok-9052c1d6f6d1","tok-fc774e116258","tok-dbc320eb669d","tok-db4d7ced25e8","tok-23d52095e124","tok-6ab62fdb6821"]}]},"sefer-yetzirah-gra-version-2-5":{"unit_id":"sefer-yetzirah-gra-version-2-5","anchor_id":"sefer-yetzirah-gra-version-2-5","source_ref":"Sefer Yetzirah Gra Version 2:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3bcaa399fd28","tok-5acb842fe6e0","tok-f8387c843226","tok-ed63dcc680ff","tok-ff3c43687000","tok-641264021419","tok-f9ea0654c3dd","tok-cb0ffd3879f0","tok-641264021419","tok-ff3c43687000","tok-3b593a41d7ab","tok-641264021419","tok-f9ea0654c3dd","tok-cb0ffd3879f0","tok-641264021419","tok-3b593a41d7ab","tok-e19320f07781","tok-f8d9bace63b7","tok-4c750b80457a","tok-2e9506bc9b52","tok-3d5576148db0","tok-2bff1dd4ce38","tok-b5040367ba68","tok-567cb0cb5a0b","tok-6ae6d3ceb749","tok-ea8fcb7e2da7","tok-714a3ab0678e","tok-3a3c3b27619c","tok-e275ac0edc17"]}]},"sefer-yetzirah-gra-version-2-6":{"unit_id":"sefer-yetzirah-gra-version-2-6","anchor_id":"sefer-yetzirah-gra-version-2-6","source_ref":"Sefer Yetzirah Gra Version 2:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e8165c1f7984","tok-bd277bf5f367","tok-2b20a3ac72a0","tok-6f5c636f182c","tok-2cfa4e4aa1f9","tok-3fcf2bcfa9d0","tok-8d34425dceff","tok-99bd54b42949","tok-bbf66db5d5e3","tok-44657455db7a","tok-e6b909e99035","tok-876adb4a3f15","tok-3d3124aef5ab","tok-44ce8ee53301","tok-50e65e0d988a","tok-ff3c43687000","tok-641264021419","tok-f9ea0654c3dd","tok-cb0ffd3879f0","tok-641264021419","tok-ff3c43687000","tok-606d218216e6","tok-d15cc14fd520","tok-6f5c636f182c","tok-2cfa4e4aa1f9","tok-b5040367ba68","tok-567cb0cb5a0b","tok-5302395ade2b","tok-b5040367ba68","tok-ea8fcb7e2da7","tok-246de02e64ba","tok-e275ac0edc17","tok-faabef26e4ca","tok-cb50aad30b72","tok-97af4a2ac003","tok-715445194041","tok-23ae3cc45e35","tok-36e0837bc996","tok-e275ac0edc17"]}]},"sefer-yetzirah-gra-version-3-1":{"unit_id":"sefer-yetzirah-gra-version-3-1","anchor_id":"sefer-yetzirah-gra-version-3-1","source_ref":"Sefer Yetzirah Gra Version 3:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-12b0d59bb97f","tok-6fbb447a34d2","tok-178bcf8c79eb","tok-660b147e5f46","tok-6c71f927e2a7","tok-d01021b120b9","tok-d06d6eb25e7b","tok-24841530163a","tok-6cbd8f89cb69","tok-343fbe14d8ee","tok-32cc561e58cb","tok-f410f936a83d","tok-ac478f56a3d7","tok-e0c09017ac9d","tok-7c5d73e9ab60","tok-382664accecb","tok-649b993dd202","tok-30ab8cfa72e3","tok-e11d032704d7","tok-70197d9c3ce0","tok-58c22111f4a8","tok-c562cd4007c9","tok-c3e7a6db194e"]}]},"sefer-yetzirah-gra-version-3-2":{"unit_id":"sefer-yetzirah-gra-version-3-2","anchor_id":"sefer-yetzirah-gra-version-3-2","source_ref":"Sefer Yetzirah Gra Version 3:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-12b0d59bb97f","tok-6fbb447a34d2","tok-178bcf8c79eb","tok-190f00966cba","tok-6abe49b49d98","tok-0c28c2ff7733","tok-9ebdedd4c04c","tok-f9d9162e09d1","tok-de56fd37e497","tok-0f8845159aec","tok-d49bceb69815","tok-496a4f005f53","tok-298ac19866a1","tok-1742142186fc","tok-1075bd5db63c","tok-fbbfb53b877d","tok-06d969fd740e","tok-4736fa04926e","tok-cf49c8811090","tok-bf387c865786"]}]},"sefer-yetzirah-gra-version-3-3":{"unit_id":"sefer-yetzirah-gra-version-3-3","anchor_id":"sefer-yetzirah-gra-version-3-3","source_ref":"Sefer Yetzirah Gra Version 3:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-12b0d59bb97f","tok-6fbb447a34d2","tok-178bcf8c79eb","tok-772bb72530ff","tok-e502c0f5834d","tok-5acb842fe6e0","tok-f8387c843226","tok-ed63dcc680ff","tok-110155b0b212","tok-cbd4c6958a32","tok-12b0d59bb97f","tok-6fbb447a34d2","tok-178bcf8c79eb","tok-2f54d19484b0","tok-106049a5bc4f","tok-6fbb447a34d2","tok-178bcf8c79eb","tok-c40605a19148","tok-106049a5bc4f","tok-6fbb447a34d2","tok-178bcf8c79eb","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754"]}]},"sefer-yetzirah-gra-version-3-4":{"unit_id":"sefer-yetzirah-gra-version-3-4","anchor_id":"sefer-yetzirah-gra-version-3-4","source_ref":"Sefer Yetzirah Gra Version 3:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-12b0d59bb97f","tok-6fbb447a34d2","tok-178bcf8c79eb","tok-2f54d19484b0","tok-298ac19866a1","tok-1742142186fc","tok-1075bd5db63c","tok-17c754900a6a","tok-2fcc6bc6b910","tok-28e26032e847","tok-4f701c1c39e0","tok-5c3835d57d41","tok-f2f127d4c4ad","tok-4f701c1c39e0","tok-d30c1723d17c","tok-7c4374242e43","tok-4d90226a8e74","tok-93161cecd0a2","tok-73842074549a","tok-17c754900a6a","tok-2fcc6bc6b910","tok-28e26032e847","tok-81281489e344","tok-e6b909e99035","tok-f2f127d4c4ad","tok-b54375575b0e","tok-32cc561e58cb","tok-f410f936a83d"]}]},"sefer-yetzirah-gra-version-3-5":{"unit_id":"sefer-yetzirah-gra-version-3-5","anchor_id":"sefer-yetzirah-gra-version-3-5","source_ref":"Sefer Yetzirah Gra Version 3:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-12b0d59bb97f","tok-6fbb447a34d2","tok-178bcf8c79eb","tok-c40605a19148","tok-a291b1348188","tok-5d015ee90b5f","tok-c559bb260ead","tok-a291b1348188","tok-4bca3d492895","tok-7c4374242e43","tok-5d015ee90b5f","tok-4bca3d492895","tok-73842074549a","tok-c559bb260ead","tok-b54375575b0e","tok-32cc561e58cb","tok-f410f936a83d"]}]},"sefer-yetzirah-gra-version-3-6":{"unit_id":"sefer-yetzirah-gra-version-3-6","anchor_id":"sefer-yetzirah-gra-version-3-6","source_ref":"Sefer Yetzirah Gra Version 3:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-12b0d59bb97f","tok-6fbb447a34d2","tok-178bcf8c79eb","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754","tok-53315ea58f12","tok-f5457cd014d2","tok-78605961758c","tok-53315ea58f12","tok-4bca3d492895","tok-7c4374242e43","tok-f5457cd014d2","tok-4bca3d492895","tok-73842074549a","tok-78605961758c","tok-b54375575b0e","tok-32cc561e58cb","tok-f410f936a83d"]}]},"sefer-yetzirah-gra-version-3-7":{"unit_id":"sefer-yetzirah-gra-version-3-7","anchor_id":"sefer-yetzirah-gra-version-3-7","source_ref":"Sefer Yetzirah Gra Version 3:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-680165bb41fb","tok-ff3c43687000","tok-e84209bc220e","tok-f7b630fc27ed","tok-ff3c43687000","tok-134d9dcc600b","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-298ac19866a1","tok-2f54d19484b0","tok-c559bb260ead","tok-c40605a19148","tok-78605961758c","tok-fb74e49996d6","tok-0538213924dc","tok-5e4f2a0ab2f0","tok-103848182754","tok-239c7d2a7e16"]}]},"sefer-yetzirah-gra-version-3-8":{"unit_id":"sefer-yetzirah-gra-version-3-8","anchor_id":"sefer-yetzirah-gra-version-3-8","source_ref":"Sefer Yetzirah Gra Version 3:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-680165bb41fb","tok-3b593a41d7ab","tok-e84209bc220e","tok-f7b630fc27ed","tok-d17df3305fc4","tok-733d61d855df","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-5c3835d57d41","tok-2f54d19484b0","tok-216e27bacf4b","tok-c40605a19148","tok-f5457cd014d2","tok-fb74e49996d6","tok-0538213924dc","tok-164edbf4e801","tok-103848182754","tok-49d04548f44a"]}]},"sefer-yetzirah-gra-version-3-9":{"unit_id":"sefer-yetzirah-gra-version-3-9","anchor_id":"sefer-yetzirah-gra-version-3-9","source_ref":"Sefer Yetzirah Gra Version 3:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-680165bb41fb","tok-37bd429160ea","tok-e84209bc220e","tok-f7b630fc27ed","tok-6d2be6dac180","tok-bb8d3ee5173d","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-1075bd5db63c","tok-4f701c1c39e0","tok-2f54d19484b0","tok-a4b0046025ce","tok-c40605a19148","tok-9b29d16c3822","tok-fb74e49996d6","tok-0538213924dc","tok-a4806ff9588e","tok-103848182754","tok-4effc35f4c98"]}]},"sefer-yetzirah-gra-version-4-1":{"unit_id":"sefer-yetzirah-gra-version-4-1","anchor_id":"sefer-yetzirah-gra-version-4-1","source_ref":"Sefer Yetzirah Gra Version 4:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3aa12b4291bc","tok-4c8b2c2ec589","tok-8d976d8b0ea7","tok-db710682ddd4","tok-ccb75820cc1a","tok-623299101470","tok-644c080fc9e7","tok-bce2d0d38777","tok-577a9294fbf9","tok-d2920dfd31d0","tok-537496b75698","tok-93a87f4b311f","tok-7fbd02bdd412","tok-b44af1f59264","tok-cd388a93fa14","tok-2bdd8280c7b4","tok-ce4fe25d92b7","tok-ef6b5c44e6db","tok-d3f1aa80f169"]}]},"sefer-yetzirah-gra-version-4-2":{"unit_id":"sefer-yetzirah-gra-version-4-2","anchor_id":"sefer-yetzirah-gra-version-4-2","source_ref":"Sefer Yetzirah Gra Version 4:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3aa12b4291bc","tok-4c8b2c2ec589","tok-8d976d8b0ea7","tok-db710682ddd4","tok-660b147e5f46","tok-4918d8be4b71","tok-330a1ac41fa0","tok-b00915b5beee","tok-afbb35d72828","tok-64c523918a58","tok-0f0df90ad7a0","tok-73d125f390d0"]}]},"sefer-yetzirah-gra-version-4-3":{"unit_id":"sefer-yetzirah-gra-version-4-3","anchor_id":"sefer-yetzirah-gra-version-4-3","source_ref":"Sefer Yetzirah Gra Version 4:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3aa12b4291bc","tok-4c8b2c2ec589","tok-8d976d8b0ea7","tok-db710682ddd4","tok-dd526870ea0c","tok-6aed1b0f637f","tok-b4fd0b7ed0c3","tok-4918d8be4b71","tok-2084ead81483","tok-b4fd0b7ed0c3","tok-330a1ac41fa0","tok-1dce1c9d1d92","tok-b4fd0b7ed0c3","tok-b00915b5beee","tok-a7cdbf1cb953","tok-b4fd0b7ed0c3","tok-afbb35d72828","tok-a56d631981c8","tok-b4fd0b7ed0c3","tok-64c523918a58","tok-034465a8f2fe","tok-b4fd0b7ed0c3","tok-0f0df90ad7a0","tok-bb065b776fc2","tok-b4fd0b7ed0c3","tok-fe1d95d60efe","tok-ae57b4552c30"]}]},"sefer-yetzirah-gra-version-4-4":{"unit_id":"sefer-yetzirah-gra-version-4-4","anchor_id":"sefer-yetzirah-gra-version-4-4","source_ref":"Sefer Yetzirah Gra Version 4:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3aa12b4291bc","tok-4c8b2c2ec589","tok-8d976d8b0ea7","tok-db710682ddd4","tok-1c3e71aee126","tok-65135bc6ff57","tok-8df033b1921d","tok-32a053d1219b","tok-4725253d7491","tok-d54901542385","tok-94508cfe154c","tok-36192a1b4f33","tok-712eeb14b5e8","tok-0809b5e057a5","tok-0532d32893d8","tok-93656f1aa902","tok-2cfa4e4aa1f9","tok-f9ea0654c3dd"]}]},"sefer-yetzirah-gra-version-4-5":{"unit_id":"sefer-yetzirah-gra-version-4-5","anchor_id":"sefer-yetzirah-gra-version-4-5","source_ref":"Sefer Yetzirah Gra Version 4:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3aa12b4291bc","tok-4c8b2c2ec589","tok-8d976d8b0ea7","tok-db710682ddd4","tok-3aa12b4291bc","tok-4c4caf0f9c54","tok-78e942307c48","tok-3aa12b4291bc","tok-4c4caf0f9c54","tok-2afd7088cd7f","tok-b6645b919b7b","tok-cbd4c6958a32","tok-d72c9741d4a6","tok-cbd4c6958a32","tok-432e3496308a","tok-ab0db50ba5e8","tok-f84a98aae5f7","tok-7c4dfc049eac","tok-34e33301cbc9","tok-fb7a87522aee","tok-f84a98aae5f7","tok-afe135306ca8"]}]},"sefer-yetzirah-gra-version-4-6":{"unit_id":"sefer-yetzirah-gra-version-4-6","anchor_id":"sefer-yetzirah-gra-version-4-6","source_ref":"Sefer Yetzirah Gra Version 4:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3aa12b4291bc","tok-4c8b2c2ec589","tok-8d976d8b0ea7","tok-db710682ddd4","tok-f67b67d14068","tok-772bb72530ff","tok-e502c0f5834d","tok-5acb842fe6e0","tok-f8387c843226","tok-ed63dcc680ff","tok-110155b0b212","tok-cbd4c6958a32","tok-7af35341f1f4","tok-28be76f5765b","tok-2f54d19484b0","tok-7af35341f1f4","tok-1f98c2f5c787","tok-c40605a19148","tok-7af35341f1f4","tok-3d5576148db0","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754"]}]},"sefer-yetzirah-gra-version-4-7":{"unit_id":"sefer-yetzirah-gra-version-4-7","anchor_id":"sefer-yetzirah-gra-version-4-7","source_ref":"Sefer Yetzirah Gra Version 4:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7af35341f1f4","tok-28be76f5765b","tok-2f54d19484b0","tok-b8c71675c985","tok-bca900107f62","tok-4677f3d27c5c","tok-022c030f3eb4","tok-52e8158a3d7b","tok-31ce2664f64b","tok-841edd14646d","tok-7af35341f1f4","tok-1f98c2f5c787","tok-c40605a19148","tok-6456f3e9dda5","tok-d293c821a579","tok-cb4ffeaaefdd","tok-7af35341f1f4","tok-3d5576148db0","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754","tok-9289a53b1438","tok-fa7c1133ae3c","tok-9289a53b1438","tok-61a489392902","tok-06ee09fcff43","tok-d72fe9ccf7c9","tok-3f3e1c5dc67e","tok-c39a5b6a16f4"]}]},"sefer-yetzirah-gra-version-4-8":{"unit_id":"sefer-yetzirah-gra-version-4-8","anchor_id":"sefer-yetzirah-gra-version-4-8","source_ref":"Sefer Yetzirah Gra Version 4:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-680165bb41fb","tok-ff3c43687000","tok-e84209bc220e","tok-f7b630fc27ed","tok-3b593a41d7ab","tok-62980c7fe800","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-841edd14646d","tok-2f54d19484b0","tok-ebfb095512f7","tok-dc0a45177663","tok-c40605a19148","tok-e7d65bbcca56","tok-2fb61f5c9505","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754"]}]},"sefer-yetzirah-gra-version-4-9":{"unit_id":"sefer-yetzirah-gra-version-4-9","anchor_id":"sefer-yetzirah-gra-version-4-9","source_ref":"Sefer Yetzirah Gra Version 4:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-680165bb41fb","tok-3b593a41d7ab","tok-e84209bc220e","tok-f7b630fc27ed","tok-37bd429160ea","tok-8f7ec828e911","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-4677f3d27c5c","tok-2f54d19484b0","tok-ebfb095512f7","tok-06ee09fcff43","tok-c40605a19148","tok-e2fa65e87f10","tok-2fb61f5c9505","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754"]}]},"sefer-yetzirah-gra-version-4-10":{"unit_id":"sefer-yetzirah-gra-version-4-10","anchor_id":"sefer-yetzirah-gra-version-4-10","source_ref":"Sefer Yetzirah Gra Version 4:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-680165bb41fb","tok-37bd429160ea","tok-e84209bc220e","tok-f7b630fc27ed","tok-95d50d251f50","tok-1c0fad11ce92","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-022c030f3eb4","tok-2f54d19484b0","tok-ebfb095512f7","tok-48c49cc20a5d","tok-c40605a19148","tok-4a6af718c7d7","tok-2fb61f5c9505","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754"]}]},"sefer-yetzirah-gra-version-4-11":{"unit_id":"sefer-yetzirah-gra-version-4-11","anchor_id":"sefer-yetzirah-gra-version-4-11","source_ref":"Sefer Yetzirah Gra Version 4:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-680165bb41fb","tok-95d50d251f50","tok-e84209bc220e","tok-f7b630fc27ed","tok-f9082c466d2d","tok-ef304edb17f2","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-52e8158a3d7b","tok-2f54d19484b0","tok-ebfb095512f7","tok-9d5aaf9b84de","tok-c40605a19148","tok-e7d65bbcca56","tok-bc9ee2a0d70c","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754"]}]},"sefer-yetzirah-gra-version-4-12":{"unit_id":"sefer-yetzirah-gra-version-4-12","anchor_id":"sefer-yetzirah-gra-version-4-12","source_ref":"Sefer Yetzirah Gra Version 4:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-680165bb41fb","tok-130719102ad6","tok-e84209bc220e","tok-f7b630fc27ed","tok-6eb082a2020d","tok-9805fc61b095","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-31ce2664f64b","tok-2f54d19484b0","tok-ebfb095512f7","tok-c3d505ca646e","tok-c40605a19148","tok-e2fa65e87f10","tok-bc9ee2a0d70c","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754"]}]},"sefer-yetzirah-gra-version-4-13":{"unit_id":"sefer-yetzirah-gra-version-4-13","anchor_id":"sefer-yetzirah-gra-version-4-13","source_ref":"Sefer Yetzirah Gra Version 4:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-680165bb41fb","tok-52f0f01f3682","tok-e84209bc220e","tok-f7b630fc27ed","tok-60714b7c3991","tok-a8b0213559a0","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-b8c71675c985","tok-2f54d19484b0","tok-ebfb095512f7","tok-04887f7c9128","tok-c40605a19148","tok-4a6af718c7d7","tok-bc9ee2a0d70c","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754"]}]},"sefer-yetzirah-gra-version-4-14":{"unit_id":"sefer-yetzirah-gra-version-4-14","anchor_id":"sefer-yetzirah-gra-version-4-14","source_ref":"Sefer Yetzirah Gra Version 4:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-680165bb41fb","tok-4100c2810cfd","tok-e84209bc220e","tok-f7b630fc27ed","tok-e3acb858492a","tok-b8ea47793952","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-bca900107f62","tok-2f54d19484b0","tok-ebfb095512f7","tok-398b430df34c","tok-c40605a19148","tok-1a23b22302a2","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754"]}]},"sefer-yetzirah-gra-version-4-15":{"unit_id":"sefer-yetzirah-gra-version-4-15","anchor_id":"sefer-yetzirah-gra-version-4-15","source_ref":"Sefer Yetzirah Gra Version 4:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3aa12b4291bc","tok-4c8b2c2ec589","tok-8d976d8b0ea7","tok-db710682ddd4","tok-305daf49c28f","tok-20f0076a6335","tok-7af35341f1f4","tok-0e1318b4447a","tok-7af35341f1f4","tok-4e4940fdce48","tok-3aa12b4291bc","tok-b3794683711a","tok-7af35341f1f4","tok-0298ed0b3713","tok-7af35341f1f4","tok-a010cc866fd9","tok-7af35341f1f4","tok-24be66db1aee","tok-7af35341f1f4","tok-43a06acc1433","tok-7af35341f1f4","tok-b9c2f55bd285","tok-3aa12b4291bc","tok-9f8d2e6f9df5","tok-3aa12b4291bc","tok-e1e5bfbb2bb6","tok-7af35341f1f4","tok-9ad789e247e7","tok-94508cfe154c","tok-b618ef51ebd1","tok-01281c5e85fd","tok-8666cf41fda9","tok-2cfa4e4aa1f9","tok-a76e8a33bd94","tok-4ee3b1be2d53","tok-b5040367ba68","tok-4ab2287708f2"]}]},"sefer-yetzirah-gra-version-4-16":{"unit_id":"sefer-yetzirah-gra-version-4-16","anchor_id":"sefer-yetzirah-gra-version-4-16","source_ref":"Sefer Yetzirah Gra Version 4:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9289a53b1438","tok-4ac2fc6772ca","tok-51bba8acd43a","tok-06ee09fcff43","tok-d414368bb6a4","tok-12b0d59bb97f","tok-4ac2fc6772ca","tok-51bba8acd43a","tok-534262fa8f50","tok-d414368bb6a4","tok-b7d032775422","tok-4ac2fc6772ca","tok-51bba8acd43a","tok-893f90174161","tok-6591acb06dcb","tok-d414368bb6a4","tok-d93c6a78d8a0","tok-4ac2fc6772ca","tok-51bba8acd43a","tok-35dcfd5f4cf4","tok-6591acb06dcb","tok-d414368bb6a4","tok-78e942307c48","tok-4ac2fc6772ca","tok-51bba8acd43a","tok-3aa12b4291bc","tok-0bdcfbfb4652","tok-6591acb06dcb","tok-d414368bb6a4","tok-3aa12b4291bc","tok-4ac2fc6772ca","tok-51bba8acd43a","tok-d6379c70d751","tok-7a6447ec9957","tok-125965e41a7f","tok-d414368bb6a4","tok-0667f4c66302","tok-63922b1706c3","tok-d80404fec46c","tok-9e39cf17e3e2","tok-ae796c71fcc9","tok-3724d92fca7d","tok-14958e776ccc","tok-a1dc702bf4ff","tok-cb50aad30b72","tok-dbc320eb669d","tok-e74307329744","tok-cf305406a6b6","tok-a1bdbd60d139"]}]},"sefer-yetzirah-gra-version-5-1":{"unit_id":"sefer-yetzirah-gra-version-5-1","anchor_id":"sefer-yetzirah-gra-version-5-1","source_ref":"Sefer Yetzirah Gra Version 5:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-34ef9a63386c","tok-1541c5205e73","tok-a107fa80e7d3","tok-130719102ad6","tok-52f0f01f3682","tok-4100c2810cfd","tok-eb6f8337c12a","tok-8ef736fee98e","tok-aefbd8e919d0","tok-e915d1020a56","tok-e6e8d1ebcbc0","tok-c9932014b966","tok-0503c5f223e8","tok-406ece1acb46","tok-8768c32fbe55","tok-660b147e5f46","tok-48b592dc9934","tok-d2c5a49161a7","tok-c4cf52827cab","tok-fc2682fd5d39","tok-50e70c4bb1ec","tok-07836f40cad0","tok-8b556e5ef739","tok-a5903617053d","tok-1930f0d23a26","tok-3f38f1eac302","tok-81dff580bbd5","tok-a0d9b20c7e1f"]}]},"sefer-yetzirah-gra-version-5-2":{"unit_id":"sefer-yetzirah-gra-version-5-2","anchor_id":"sefer-yetzirah-gra-version-5-2","source_ref":"Sefer Yetzirah Gra Version 5:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-34ef9a63386c","tok-1541c5205e73","tok-a107fa80e7d3","tok-130719102ad6","tok-52f0f01f3682","tok-4100c2810cfd","tok-eb6f8337c12a","tok-8ef736fee98e","tok-aefbd8e919d0","tok-e915d1020a56","tok-e6e8d1ebcbc0","tok-c9932014b966","tok-0503c5f223e8","tok-406ece1acb46","tok-8768c32fbe55","tok-660b147e5f46","tok-9f8d2e6f9df5","tok-4f0491a0a41a","tok-7df2e482469a","tok-68e9d952da39","tok-b2bd0f1ca7c1","tok-74f94b2f66a6","tok-d410705afe36","tok-b2bd0f1ca7c1","tok-74f94b2f66a6","tok-97395c07e1ed","tok-b2bd0f1ca7c1","tok-74f94b2f66a6","tok-f9b152623845","tok-b2bd0f1ca7c1","tok-52db3947f7d0","tok-d410705afe36","tok-b2bd0f1ca7c1","tok-52db3947f7d0","tok-74f94b2f66a6","tok-b2bd0f1ca7c1","tok-52db3947f7d0","tok-f9b152623845","tok-b2bd0f1ca7c1","tok-f0b3690d0b65","tok-d410705afe36","tok-b2bd0f1ca7c1","tok-f0b3690d0b65","tok-52db3947f7d0","tok-b2bd0f1ca7c1","tok-f0b3690d0b65","tok-f9b152623845","tok-b2bd0f1ca7c1","tok-97395c07e1ed","tok-d410705afe36","tok-b2bd0f1ca7c1","tok-97395c07e1ed","tok-f0b3690d0b65","tok-b2bd0f1ca7c1","tok-97395c07e1ed","tok-f9b152623845","tok-387de2f274a2","tok-ab0743226bf6","tok-f8042c5c4bfc","tok-0f312f5d9665","tok-f8042c5c4bfc","tok-ebdf0e25a02e","tok-707be3011e93","tok-af0152295b53","tok-e32ca07f8e86"]}]},"sefer-yetzirah-gra-version-5-3":{"unit_id":"sefer-yetzirah-gra-version-5-3","anchor_id":"sefer-yetzirah-gra-version-5-3","source_ref":"Sefer Yetzirah Gra Version 5:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-34ef9a63386c","tok-1541c5205e73","tok-a107fa80e7d3","tok-130719102ad6","tok-52f0f01f3682","tok-4100c2810cfd","tok-eb6f8337c12a","tok-8ef736fee98e","tok-aefbd8e919d0","tok-e915d1020a56","tok-e6e8d1ebcbc0","tok-c9932014b966","tok-0503c5f223e8","tok-406ece1acb46","tok-8768c32fbe55","tok-660b147e5f46","tok-772bb72530ff","tok-e502c0f5834d","tok-5acb842fe6e0","tok-f8387c843226","tok-ed63dcc680ff","tok-110155b0b212","tok-cbd4c6958a32","tok-9f8d2e6f9df5","tok-4f0491a0a41a","tok-520ef6f23934","tok-2f54d19484b0","tok-9f8d2e6f9df5","tok-4f0491a0a41a","tok-76f9f445aa28","tok-c40605a19148","tok-9f8d2e6f9df5","tok-4f0491a0a41a","tok-e6afea0c2762","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754"]}]},"sefer-yetzirah-gra-version-5-4":{"unit_id":"sefer-yetzirah-gra-version-5-4","anchor_id":"sefer-yetzirah-gra-version-5-4","source_ref":"Sefer Yetzirah Gra Version 5:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9f8d2e6f9df5","tok-4f0491a0a41a","tok-520ef6f23934","tok-2f54d19484b0","tok-ed0295719a1b","tok-5f1b56374d44","tok-ab2ece7f45e3","tok-a9fd4e40ce24","tok-e53e104521c4","tok-f7e7b090bfe3","tok-61c44fb5099a","tok-1ee246bf985a","tok-2a4ada88bf1c","tok-a36c5f120a02","tok-d3fd3403fbd4","tok-719ddd0e5694"]}]},"sefer-yetzirah-gra-version-5-5":{"unit_id":"sefer-yetzirah-gra-version-5-5","anchor_id":"sefer-yetzirah-gra-version-5-5","source_ref":"Sefer Yetzirah Gra Version 5:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9f8d2e6f9df5","tok-4f0491a0a41a","tok-76f9f445aa28","tok-c40605a19148","tok-3cf12c07247a","tok-eca4234aaa7c","tok-be8e99a4fb82","tok-1a1b78f11e76","tok-d31c78857987","tok-dd9ca18013a6","tok-a08ef35999ca","tok-06354b7c4769","tok-373d2fdb7a39","tok-e4edeba8488e","tok-e59524e74baf","tok-87868696d432"]}]},"sefer-yetzirah-gra-version-5-6":{"unit_id":"sefer-yetzirah-gra-version-5-6","anchor_id":"sefer-yetzirah-gra-version-5-6","source_ref":"Sefer Yetzirah Gra Version 5:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9f8d2e6f9df5","tok-4f0491a0a41a","tok-e6afea0c2762","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754","tok-9289a53b1438","tok-3f7be1bf096e","tok-9289a53b1438","tok-6f39cf70750b","tok-9289a53b1438","tok-d7f5e5461c7b","tok-d8b8df30d529","tok-adde57e5a201","tok-32e064576458","tok-71e8eb4bca31","tok-994160d67d0e","tok-181f0a67c335"]}]},"sefer-yetzirah-gra-version-5-7":{"unit_id":"sefer-yetzirah-gra-version-5-7","anchor_id":"sefer-yetzirah-gra-version-5-7","source_ref":"Sefer Yetzirah Gra Version 5:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-680165bb41fb","tok-ff3c43687000","tok-fb487f839676","tok-e84209bc220e","tok-f7b630fc27ed","tok-130719102ad6","tok-ca382bdc5357","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-ed0295719a1b","tok-2f54d19484b0","tok-2bf6f4eb3701","tok-c40605a19148","tok-5a92239fbc94","tok-2fb61f5c9505","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754","tok-680165bb41fb","tok-3b593a41d7ab","tok-fb487f839676","tok-e84209bc220e","tok-f7b630fc27ed","tok-52f0f01f3682","tok-553178f43f3f","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-5f1b56374d44","tok-2f54d19484b0","tok-2775810b1788","tok-c40605a19148","tok-63d4a00730a1","tok-90804e5a8ddf","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754","tok-680165bb41fb","tok-37bd429160ea","tok-fb487f839676","tok-e84209bc220e","tok-f7b630fc27ed","tok-4100c2810cfd","tok-6669349cf200","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-ab2ece7f45e3","tok-2f54d19484b0","tok-7475ba3dcda0","tok-c40605a19148","tok-5a92239fbc94","tok-bc9ee2a0d70c","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754"]}]},"sefer-yetzirah-gra-version-5-8":{"unit_id":"sefer-yetzirah-gra-version-5-8","anchor_id":"sefer-yetzirah-gra-version-5-8","source_ref":"Sefer Yetzirah Gra Version 5:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-680165bb41fb","tok-ff3c43687000","tok-ae3c201a8985","tok-e84209bc220e","tok-f7b630fc27ed","tok-eb6f8337c12a","tok-0894a9300687","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-a9fd4e40ce24","tok-2f54d19484b0","tok-8c773ad3caa3","tok-c40605a19148","tok-cec2acd420ff","tok-2fb61f5c9505","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754","tok-e84209bc220e","tok-f7b630fc27ed","tok-8ef736fee98e","tok-c801288627ba","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-e53e104521c4","tok-2f54d19484b0","tok-6809bb2cefff","tok-c40605a19148","tok-63d4a00730a1","tok-eff968e0eb28","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754","tok-680165bb41fb","tok-37bd429160ea","tok-2f1073d95096","tok-efffa2a11894","tok-e84209bc220e","tok-f7b630fc27ed","tok-aefbd8e919d0","tok-1ee3039e6c90","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-f7e7b090bfe3","tok-2f54d19484b0","tok-7ac84aa1dd55","tok-c40605a19148","tok-cec2acd420ff","tok-bc9ee2a0d70c","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754"]}]},"sefer-yetzirah-gra-version-5-9":{"unit_id":"sefer-yetzirah-gra-version-5-9","anchor_id":"sefer-yetzirah-gra-version-5-9","source_ref":"Sefer Yetzirah Gra Version 5:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-680165bb41fb","tok-ff3c43687000","tok-2f1073d95096","tok-d0fc0f25c020","tok-e84209bc220e","tok-f7b630fc27ed","tok-e915d1020a56","tok-9ff9206ae84d","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-61c44fb5099a","tok-2f54d19484b0","tok-98a8a3d24ec5","tok-c40605a19148","tok-f9f2869e9943","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754","tok-680165bb41fb","tok-3b593a41d7ab","tok-2f1073d95096","tok-d0fc0f25c020","tok-e84209bc220e","tok-f7b630fc27ed","tok-e6e8d1ebcbc0","tok-f99f3d1c761c","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-1ee246bf985a","tok-2f54d19484b0","tok-07314de5dfdf","tok-c40605a19148","tok-8a4105d9efbf","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754","tok-680165bb41fb","tok-37bd429160ea","tok-2f1073d95096","tok-d0fc0f25c020","tok-e84209bc220e","tok-f7b630fc27ed","tok-c9932014b966","tok-fd197266c3a4","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-2a4ada88bf1c","tok-2f54d19484b0","tok-eb779a5157da","tok-c40605a19148","tok-96510f626242","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754"]}]},"sefer-yetzirah-gra-version-5-10":{"unit_id":"sefer-yetzirah-gra-version-5-10","anchor_id":"sefer-yetzirah-gra-version-5-10","source_ref":"Sefer Yetzirah Gra Version 5:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-680165bb41fb","tok-ff3c43687000","tok-2f1073d95096","tok-b95484bffe5e","tok-e84209bc220e","tok-f7b630fc27ed","tok-0503c5f223e8","tok-4cbbea434e0e","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-a36c5f120a02","tok-2f54d19484b0","tok-4c64c897792d","tok-c40605a19148","tok-49e3f89ea66a","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754","tok-680165bb41fb","tok-ff3c43687000","tok-2f1073d95096","tok-b95484bffe5e","tok-e84209bc220e","tok-f7b630fc27ed","tok-406ece1acb46","tok-0bc67e2222d2","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-d3fd3403fbd4","tok-2f54d19484b0","tok-50d03f4db0b5","tok-c40605a19148","tok-fe3e68fbb90b","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754","tok-680165bb41fb","tok-ff3c43687000","tok-2f1073d95096","tok-b95484bffe5e","tok-e84209bc220e","tok-f7b630fc27ed","tok-8768c32fbe55","tok-5faf1c8044b8","tok-db43d089f61d","tok-f465e0637d20","tok-40adf1e8c721","tok-80121e4caf48","tok-246f4238aa73","tok-39a57959e468","tok-110155b0b212","tok-cbd4c6958a32","tok-719ddd0e5694","tok-2f54d19484b0","tok-a2a88b4a46f7","tok-c40605a19148","tok-36e449f988cb","tok-fb74e49996d6","tok-0538213924dc","tok-103848182754","tok-4cb65a9ad16d","tok-d502656d253f","tok-cb9942407964","tok-1b1f505bbe51","tok-d502656d253f","tok-aa983b7a9830","tok-58be40fda5a6","tok-d502656d253f","tok-bb065b776fc2"]}]},"sefer-yetzirah-gra-version-6-1":{"unit_id":"sefer-yetzirah-gra-version-6-1","anchor_id":"sefer-yetzirah-gra-version-6-1","source_ref":"Sefer Yetzirah Gra Version 6:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7765ba7fc7ba","tok-1df3dfed54af","tok-12b0d59bb97f","tok-6fbb447a34d2","tok-178bcf8c79eb","tok-d49bceb69815","tok-496a4f005f53","tok-1fd41846a558","tok-4736fa04926e","tok-9db9bea025c4","tok-298ac19866a1","tok-1742142186fc","tok-1075bd5db63c","tok-cf49c8811090","tok-bf387c865786","tok-1fd41846a558","tok-4736fa04926e","tok-1fce1c8bb8ff","tok-0efd6604904c","tok-28be76f5765b","tok-23ab02496a1b","tok-5b4db5fbf138","tok-4f0491a0a41a","tok-7df2e482469a","tok-68e9d952da39","tok-fc2682fd5d39","tok-cb50aad30b72","tok-df0e72d753ae","tok-fb6b9b65c203","tok-2f54d19484b0","tok-5dc3cf91b0b8","tok-cf9049f85f5e","tok-5b4db5fbf138","tok-4f0491a0a41a","tok-343fbe14d8ee","tok-0efd6604904c","tok-92c1414619a6","tok-8f12dc35e7e5","tok-25c7ad5daaca","tok-785118c5d06d","tok-5acd5182324e"]}]},"sefer-yetzirah-gra-version-6-2":{"unit_id":"sefer-yetzirah-gra-version-6-2","anchor_id":"sefer-yetzirah-gra-version-6-2","source_ref":"Sefer Yetzirah Gra Version 6:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-12b0d59bb97f","tok-6fbb447a34d2","tok-178bcf8c79eb","tok-298ac19866a1","tok-1742142186fc","tok-1075bd5db63c","tok-1075bd5db63c","tok-9052c1d6f6d1","tok-0d2618b7c442","tok-23d52095e124","tok-f2f127d4c4ad","tok-47b56bc6f213","tok-343fbe14d8ee","tok-32cc561e58cb","tok-f410f936a83d","tok-faabef26e4ca","tok-cb50aad30b72","tok-bfd20b3550e9","tok-93656f1aa902","tok-2cfa4e4aa1f9","tok-b197f31a462d","tok-d17df3305fc4","tok-f0165e8dccc1","tok-6d2be6dac180","tok-2f334895aec1","tok-ff3c43687000","tok-298ac19866a1","tok-47b56bc6f213","tok-343fbe14d8ee","tok-32cc561e58cb","tok-f410f936a83d"]}]},"sefer-yetzirah-gra-version-6-3":{"unit_id":"sefer-yetzirah-gra-version-6-3","anchor_id":"sefer-yetzirah-gra-version-6-3","source_ref":"Sefer Yetzirah Gra Version 6:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-af0f2db47a18","tok-2f54d19484b0","tok-088e8ca234ac","tok-f84a98aae5f7","tok-2ccdbace2635","tok-36fb4a3a11ee","tok-c40605a19148","tok-088e8ca234ac","tok-05fec511c98e","tok-cb9172a9d2d1","tok-f84a98aae5f7","tok-36fdfcb49dd1","tok-f207ebad8c74","tok-fb74e49996d6","tok-088e8ca234ac","tok-71035016068a"]}]},"sefer-yetzirah-gra-version-6-4":{"unit_id":"sefer-yetzirah-gra-version-6-4","anchor_id":"sefer-yetzirah-gra-version-6-4","source_ref":"Sefer Yetzirah Gra Version 6:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-944ac43d5e03","tok-2cfa4e4aa1f9","tok-246f4238aa73","tok-34db4aadb1ff","tok-246f4238aa73","tok-545d871263c8","tok-edae369df6e0","tok-1a014d5c502e","tok-34db4aadb1ff","tok-47aac75bab1a","tok-47aac75bab1a","tok-34db4aadb1ff","tok-1a014d5c502e","tok-1a014d5c502e","tok-a98232117a84","tok-47aac75bab1a","tok-d1334a0734ee","tok-1a562e075018","tok-bba06f7f61c1","tok-2cfa4e4aa1f9","tok-e4e6ce4b70a0","tok-81588381ac60","tok-bba06f7f61c1","tok-2cfa4e4aa1f9","tok-1a562e075018","tok-93b3fb170261","tok-5a6639ff7faa","tok-fd528dfdc25b","tok-42e11427c2c8","tok-5a6639ff7faa","tok-cc11c1935896"]}]},"sefer-yetzirah-gra-version-6-5":{"unit_id":"sefer-yetzirah-gra-version-6-5","anchor_id":"sefer-yetzirah-gra-version-6-5","source_ref":"Sefer Yetzirah Gra Version 6:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1fd41846a558","tok-b5040367ba68","tok-e275ac0edc17","tok-ad6f9c8be6e3","tok-4ea7a99ce847","tok-e275ac0edc17","tok-46943e1d2066","tok-84a4c5e31661","tok-8a996935c838","tok-84a4c5e31661","tok-32cc561e58cb","tok-f410f936a83d","tok-7af35341f1f4","tok-1fd41846a558","tok-74ad99c4f279","tok-1fd41846a558","tok-84a4c5e31661","tok-343fbe14d8ee","tok-32cc561e58cb","tok-f410f936a83d","tok-5b4db5fbf138","tok-4f0491a0a41a","tok-c746e8a9c728","tok-71035016068a","tok-1fd41846a558","tok-0a0769066385","tok-1fd41846a558","tok-663dfbfe83fd","tok-1fd41846a558","tok-1db97134c889","tok-92c1414619a6","tok-759fdb43bea9","tok-1fd41846a558","tok-0a0769066385","tok-38a13a77d3af","tok-00d9f4935307","tok-1fd41846a558","tok-663dfbfe83fd","tok-d92fca672766","tok-ed90ed706177","tok-ded65abc3eb1","tok-1fd41846a558","tok-1db97134c889","tok-06ee09fcff43","tok-d72fe9ccf7c9","tok-3f3e1c5dc67e","tok-9fda116bb169","tok-92c1414619a6","tok-759fdb43bea9","tok-06ee09fcff43","tok-423591b9e9c7","tok-c39a5b6a16f4","tok-d8bc302157a7","tok-8d50c8c56bb9","tok-8e416742eebe","tok-1ed8773f1650","tok-d487e389e866","tok-810eaa5a9349","tok-f3f0ad919dcc","tok-f8042c5c4bfc","tok-0f312f5d9665","tok-f8042c5c4bfc","tok-e275ac0edc17","tok-f84a98aae5f7","tok-c04b5cde93d9","tok-1fd41846a558","tok-1fd41846a558","tok-f84a98aae5f7","tok-c04b5cde93d9","tok-7af35341f1f4","tok-7af35341f1f4","tok-f84a98aae5f7","tok-c04b5cde93d9","tok-9f8d2e6f9df5","tok-4f0491a0a41a","tok-4fdea2b0e1ba","tok-788378d25115","tok-246f4238aa73","tok-39a57959e468"]}]},"sefer-yetzirah-gra-version-6-6":{"unit_id":"sefer-yetzirah-gra-version-6-6","anchor_id":"sefer-yetzirah-gra-version-6-6","source_ref":"Sefer Yetzirah Gra Version 6:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7765ba7fc7ba","tok-1df3dfed54af","tok-97af4a2ac003","tok-715445194041","tok-10f7acc41ae8","tok-305daf49c28f","tok-c3d86df79225","tok-14905168c157","tok-23a8c59e1b81","tok-fe5d663af1b6","tok-edae369df6e0","tok-edae369df6e0","tok-fe5d663af1b6","tok-fe5d663af1b6","tok-52e8e2de51a4","tok-edae369df6e0","tok-52e8e2de51a4","tok-417f173eb4f5","tok-a5f8165f067a","tok-fe5d663af1b6","tok-9d3005703537","tok-6f5c636f182c","tok-496a4f005f53","tok-1fd41846a558","tok-c931735aa744","tok-bf8d50cc451b","tok-496a4f005f53","tok-2cfa4e4aa1f9","tok-b5040367ba68","tok-a26ee56acca4","tok-110155b0b212","tok-cbd4c6958a32","tok-2cfa4e4aa1f9","tok-b5040367ba68","tok-567cb0cb5a0b","tok-5302395ade2b","tok-b5040367ba68","tok-935ece9cd0fd","tok-984879b2bac1"]}]},"sefer-yetzirah-gra-version-6-7":{"unit_id":"sefer-yetzirah-gra-version-6-7","anchor_id":"sefer-yetzirah-gra-version-6-7","source_ref":"Sefer Yetzirah Gra Version 6:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f4d7cb86100a","tok-22cf9c60bf85","tok-034df6b1a0ee","tok-403dc14123ee","tok-0894ab9fa8ea","tok-ebb498490a88","tok-28accc046c24","tok-53d4ada525be","tok-2b7c34c61fe5","tok-99bd54b42949","tok-29f2b3a26eef","tok-10b7d0f50d77","tok-7c6acc087b7e","tok-9826a8fc3aeb","tok-5302395ade2b","tok-56e3d1717e87","tok-a7eb0ad8e14f","tok-724c05ba20b7","tok-c86de92c53f1","tok-c9a941d4c4a4","tok-fe5fcf3db23c","tok-649ac71c9d90","tok-8d5bd0dda163","tok-fdffff832a80","tok-ebe3cf66ea93","tok-4db301eda1f4","tok-311ca86c965b","tok-1fd7fcc1ec6b","tok-80d584a88932","tok-bcc92b2763dd","tok-f84a98aae5f7","tok-a9e552fe6498","tok-ae1305fed0d3","tok-22cf9c60bf85","tok-d1dc1878705e","tok-6c8b9b64319f","tok-3a20c67ffa95","tok-f465e0637d20","tok-cbd09295c136","tok-f8042c5c4bfc","tok-e32ca07f8e86","tok-9826a8fc3aeb","tok-b2ae0b731e10","tok-a6416e1b644d","tok-5c4f91f4e0c3","tok-f465e0637d20","tok-e725099ec517","tok-6c8b9b64319f","tok-f465e0637d20","tok-3a20c67ffa95","tok-0bac660ad191","tok-4f0491a0a41a","tok-cc07c3696551","tok-e74311e39400","tok-0532d32893d8","tok-3a20c67ffa95","tok-ab8eaf2de09a","tok-942de8331518","tok-4f0491a0a41a","tok-cc07c3696551","tok-f370b0b8448a","tok-0532d32893d8","tok-3a20c67ffa95","tok-81ae0c6f7543","tok-db43d089f61d","tok-97af4a2ac003","tok-715445194041","tok-10f7acc41ae8","tok-14102764c462","tok-a3f2928372f1","tok-c1b92e9c86f3","tok-f465e0637d20","tok-2cfa4e4aa1f9","tok-387b733cca10","tok-5073be70ce37","tok-733d61d855df","tok-5885f06ac965","tok-bb8d3ee5173d","tok-0f6671a1f2e9","tok-134d9dcc600b","tok-5f80bf47ef6c","tok-c6ae8ec7001a","tok-66b5f95e3cec","tok-8dabed91c84c","tok-4f0491a0a41a","tok-520ef6f23934"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/sefer-yetzirah-gra-version.manifest.json"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const renderEntryList = (entries) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          (entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = entry.context_role === "likely_contextual" ? "Likely contextual entry" : "Other possible entry";
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const renderPossibleEntries = (root, view, hasLexicalEntry) => {
+        const label = root.querySelector("[data-hud-renderings-label]");
+        const node = root.querySelector("[data-hud-renderings]");
+        if (!node) return;
+        node.replaceChildren();
+        if (label) label.textContent = "Possible lexical entries";
+        if (!hasLexicalEntry) { node.textContent = "No lexical entry yet."; return; }
+        let entries = Array.isArray(view.possible_entries) ? view.possible_entries : [];
+        entries = entries.filter((entry) => entry.relation_label !== "related root-field");
+        if (!entries.length) { setList(root, "[data-hud-renderings]", view.strict_renderings || ["No lexical entry yet."]); return; }
+        const likelyEntries = entries.filter((entry) => entry.context_role === "likely_contextual");
+        const otherEntries = entries.filter((entry) => entry.context_role !== "likely_contextual");
+        if (label) label.textContent = likelyEntries.length ? "Lexical resolution" : "Possible lexical entries";
+        const note = document.createElement("p");
+        note.className = "lexical-context-note";
+        note.textContent = likelyEntries.length ? (view.surface_context_note || view.context_note || "Context resolved.") : "Context not resolved.";
+        node.appendChild(note);
+        if (likelyEntries.length) node.appendChild(renderEntryList(likelyEntries));
+        if (otherEntries.length) {
+          const details = document.createElement("details");
+          details.className = "other-entries";
+          const summary = document.createElement("summary");
+          summary.textContent = "Show other possible entries";
+          details.appendChild(summary);
+          details.appendChild(renderEntryList(otherEntries));
+          if (view.secondary_source_rows && view.secondary_source_rows.length) {
+            const sourceDetails = document.createElement("details");
+            sourceDetails.className = "source-details";
+            const sourceSummary = document.createElement("summary");
+            sourceSummary.textContent = "Sources / licenses for other possible entries";
+            const sourceBox = document.createElement("div");
+            sourceDetails.append(sourceSummary, sourceBox);
+            renderSources(sourceBox, view.secondary_source_rows);
+            details.appendChild(sourceDetails);
+          }
+          node.appendChild(details);
+        }
+      };
+      const renderSources = (sourceBox, rows) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceRows = Array.isArray(rows) ? rows : (rows && rows.source_id ? [rows] : []);
+        if (!sourceRows.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceRows.forEach((row) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const title = document.createElement("p");
+          const link = document.createElement("a");
+          link.href = row.source_url || "#";
+          link.textContent = row.source_name || "Source";
+          const strong = document.createElement("strong");
+          strong.appendChild(link);
+          title.appendChild(strong);
+          title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+          const fields = document.createElement("p");
+          fields.textContent = `Fields: ${(row.fields_used || []).join(", ") || "N/A"}`;
+          const notes = document.createElement("p");
+          notes.textContent = row.notes || "";
+          section.append(title, fields, notes);
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        if (hud.parentElement !== slot) slot.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setList(hud, "[data-hud-surface-renderings]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPossibleEntries(hud, {}, false);
+        renderSources(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          setList(hud, "[data-hud-surface-renderings]", (view.surface_renderings && view.surface_renderings.length) ? view.surface_renderings : (hasLexicalEntry ? view.strict_renderings : ["No lexical entry yet."]));
+          renderBreakdown(hud, view);
+          renderPossibleEntries(hud, view, hasLexicalEntry);
+          renderSources(hud.querySelector("[data-hud-sources]"), view.source_rows);
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+        } catch (error) {
+          console.error(error);
+          setList(hud, "[data-hud-surface-renderings]", ["No lexical entry yet."]);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

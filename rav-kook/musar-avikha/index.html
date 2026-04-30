@@ -51,6 +51,38 @@
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
     .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: static; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .other-entries { margin-top: 12px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
     .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
     .source-table { width: 100%; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
@@ -66,7 +98,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -83,10 +115,10 @@
           <details class="toc-root" open>
             <summary>Contents</summary>
             <details class="toc-group">
-              <summary>Introduction</summary>
+              <summary>Introduction <span class="hud-badge">Lexical layer active</span></summary>
               <a class="toc-start" href="#group-introduction">Start</a>
               <details class="toc-section">
-                <summary>Introduction</summary>
+                <summary>Introduction <span class="hud-badge">Lexical layer active</span></summary>
                 <a class="toc-start" href="#section-introduction-introduction">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -100,10 +132,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>default</summary>
+              <summary>default <span class="hud-badge">Lexical layer active</span></summary>
               <a class="toc-start" href="#group-default">Start</a>
               <details class="toc-section">
-                <summary>default</summary>
+                <summary>default <span class="hud-badge">Lexical layer active</span></summary>
                 <a class="toc-start" href="#section-default-default">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -127,217 +159,231 @@
           </details>
         </nav>
         <article>
-          <h2 id="group-introduction">Introduction</h2>
-          <h3 id="section-introduction-introduction">Introduction</h3>
+          <h2 id="group-introduction">Introduction <span class="hud-badge">Lexical layer active</span></h2>
+          <h3 id="section-introduction-introduction">Introduction <span class="hud-badge">Lexical layer active</span></h3>
           <h4 id="chapter-introduction-introduction-1">Chapter 1</h4>
-          <section class="unit" id="musar-avikha-introduction-introduction-1-1" data-unit>
+          <section class="unit" id="musar-avikha-introduction-introduction-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Musar Avikha, Introduction 1:1</h4></div>
               <a class="anchor" href="#musar-avikha-introduction-introduction-1-1" aria-label="Copy link to Musar Avikha, Introduction 1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שמע בני מוסר אביך וגו׳ (משלי ב ח)<br>שמע בני מוסר אביך וגו׳<br>ר׳ אבא אמר אורייתא בכלא אתכלילת וכו׳ (זהר יתרו פה)<br>ר׳ אלעזר פתח ואמר וכו׳ מאי מוסר – דא אורייתא וכו׳ (זהר פנחס ריג)<br><strong>צורך לכתיבה רשימות ענינים לעיון וללימוד</strong></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שמע בני מוסר אביך וגו׳ (משלי ב ח)<br>שמע בני מוסר אביך וגו׳<br>ר׳ אבא אמר אורייתא בכלא אתכלילת וכו׳ (זהר יתרו פה)<br>ר׳ אלעזר פתח ואמר וכו׳ מאי מוסר – דא אורייתא וכו׳ (זהר פנחס ריג)<br><strong>צורך לכתיבה רשימות ענינים לעיון וללימוד</strong></p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="musar-avikha-introduction-introduction-1-2" data-unit>
+          <section class="unit" id="musar-avikha-introduction-introduction-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Musar Avikha, Introduction 1:2</h4></div>
               <a class="anchor" href="#musar-avikha-introduction-introduction-1-2" aria-label="Copy link to Musar Avikha, Introduction 1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">בע&quot;ה</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בע&quot;ה</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="musar-avikha-introduction-introduction-1-3" data-unit>
+          <section class="unit" id="musar-avikha-introduction-introduction-1-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Musar Avikha, Introduction 1:3</h4></div>
               <a class="anchor" href="#musar-avikha-introduction-introduction-1-3" aria-label="Copy link to Musar Avikha, Introduction 1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>א.</strong><br>נראה שאי־אפשר לצאת ידי חובה בענין חובות הלב רק אם יסדר ספר לעצמו בלימודים הדרושים לו בזה, בין הפרטיים ואפי׳ הכוללים ג&quot;כ יותר יבין ע&quot;י מה שיחדש בהם מרוחו, ומי שהוא כבר באופן זה של הדעת, שיכול להעריך מערכה שכלית בעצמו, אי־אפשר לו לבוא אל השלמות אם לא יעבוד בשכלו בזה.</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>א.</strong><br>נראה שאי־אפשר לצאת ידי חובה בענין חובות הלב רק אם יסדר ספר לעצמו בלימודים הדרושים לו בזה, בין הפרטיים ואפי׳ הכוללים ג&quot;כ יותר יבין ע&quot;י מה שיחדש בהם מרוחו, ומי שהוא כבר באופן זה של הדעת, שיכול להעריך מערכה שכלית בעצמו, אי־אפשר לו לבוא אל השלמות אם לא יעבוד בשכלו בזה.</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-default">default</h2>
-          <h3 id="section-default-default">default</h3>
+          <h2 id="group-default">default <span class="hud-badge">Lexical layer active</span></h2>
+          <h3 id="section-default-default">default <span class="hud-badge">Lexical layer active</span></h3>
           <h4 id="chapter-default-default-1">Chapter 1</h4>
-          <section class="unit" id="musar-avikha-default-default-1-1-1" data-unit>
+          <section class="unit" id="musar-avikha-default-default-1-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Musar Avikha 1:1:1</h4></div>
               <a class="anchor" href="#musar-avikha-default-default-1-1-1" aria-label="Copy link to Musar Avikha 1:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">&lt;big&gt;<strong>מצות יראת־ד׳ ולמודה</strong>&lt;/big&gt;</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;big&gt;<strong>מצות יראת־ד׳ ולמודה</strong>&lt;/big&gt;</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-default-default-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="musar-avikha-default-default-1-1-2" data-unit>
+          <section class="unit" id="musar-avikha-default-default-1-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Musar Avikha 1:1:2</h4></div>
               <a class="anchor" href="#musar-avikha-default-default-1-1-2" aria-label="Copy link to Musar Avikha 1:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl"><strong>א. פנימיות היראה וטבעיותה</strong></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>א. פנימיות היראה וטבעיותה</strong></p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-default-default-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="musar-avikha-default-default-1-1-3" data-unit>
+          <section class="unit" id="musar-avikha-default-default-1-1-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Musar Avikha 1:1:3</h4></div>
               <a class="anchor" href="#musar-avikha-default-default-1-1-3" aria-label="Copy link to Musar Avikha 1:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">בהקדמה לספר מסלת־ישרים כתב החסיד ז&quot;ל, שהענינים הנדונים בספרו אמיתתם גלויה לכל, אלא שנשכחים בטבע ההרגל של פרסומם ופשיטותם.</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בהקדמה לספר מסלת־ישרים כתב החסיד ז&quot;ל, שהענינים הנדונים בספרו אמיתתם גלויה לכל, אלא שנשכחים בטבע ההרגל של פרסומם ופשיטותם.</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-default-default-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="musar-avikha-default-default-1-1-4" data-unit>
+          <section class="unit" id="musar-avikha-default-default-1-1-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Musar Avikha 1:1:4</h4></div>
               <a class="anchor" href="#musar-avikha-default-default-1-1-4" aria-label="Copy link to Musar Avikha 1:1:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">הנה, באמת ענין העבודה בכלל והיראה והאהבה והדבקות ידועים לכל, אבל הידיעה היא רק ידיעת השם לבדו ולא הכונה שהשם נושא בקרבו. כי לפי קדושת עמקי חכמת היראה, שכל החכמות הן הצעות והכנות להם&lt;sup class=&quot;footnote-marker&quot;&gt;10&lt;/sup&gt;&lt;i class=&quot;footnote&quot;&gt;ע׳ שבת ל&quot;א. ואגרת הרמב&quot;ם אל ר׳ יהונתן הכהן &quot;זה הדור בלבושו&quot;.&lt;/i&gt;, לא יודעו לאדם מצד הדיבור החיצוני, אלא בהגיון הלב בדיבור הפנימי. וזהו בעצמו סיבת ההעלם שלהם: מצד שהמון האנשים, אפילו החכמים, מורגלים בחכמות, שבהן ענינן שווה בדיבור הפנימי כמו בדיבור החיצוני. ורוב החכמות, כשידובר בהן, יוכר מצד הדבור ערך העומק שבהן וההכרח לעיין בהן עד שידען, ואי־אפשר לשום בעל־שכל שהוא יצייר לו שהוא יודע אותן אם לא ידען; משא&quot;כ כל עניני חובות הלב, שהמאמרים בעצמם אינם בחיצוניותם לפי עומק החכמה שבהם, כי לא נוסד בלשון כלל לדבר בכל פרטי ההבנה כפי הדרוש להם. ומי שאינו מתבונן לאשורם של דברים, יחשוב שיודע הוא הדברים, בידיעות השמות.</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הנה, באמת ענין העבודה בכלל והיראה והאהבה והדבקות ידועים לכל, אבל הידיעה היא רק ידיעת השם לבדו ולא הכונה שהשם נושא בקרבו. כי לפי קדושת עמקי חכמת היראה, שכל החכמות הן הצעות והכנות להם&lt;sup class=&quot;footnote-marker&quot;&gt;10&lt;/sup&gt;&lt;i class=&quot;footnote&quot;&gt;ע׳ שבת ל&quot;א. ואגרת הרמב&quot;ם אל ר׳ יהונתן הכהן &quot;זה הדור בלבושו&quot;.&lt;/i&gt;, לא יודעו לאדם מצד הדיבור החיצוני, אלא בהגיון הלב בדיבור הפנימי. וזהו בעצמו סיבת ההעלם שלהם: מצד שהמון האנשים, אפילו החכמים, מורגלים בחכמות, שבהן ענינן שווה בדיבור הפנימי כמו בדיבור החיצוני. ורוב החכמות, כשידובר בהן, יוכר מצד הדבור ערך העומק שבהן וההכרח לעיין בהן עד שידען, ואי־אפשר לשום בעל־שכל שהוא יצייר לו שהוא יודע אותן אם לא ידען; משא&quot;כ כל עניני חובות הלב, שהמאמרים בעצמם אינם בחיצוניותם לפי עומק החכמה שבהם, כי לא נוסד בלשון כלל לדבר בכל פרטי ההבנה כפי הדרוש להם. ומי שאינו מתבונן לאשורם של דברים, יחשוב שיודע הוא הדברים, בידיעות השמות.</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-default-default-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="musar-avikha-default-default-1-1-5" data-unit>
+          <section class="unit" id="musar-avikha-default-default-1-1-5" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Musar Avikha 1:1:5</h4></div>
               <a class="anchor" href="#musar-avikha-default-default-1-1-5" aria-label="Copy link to Musar Avikha 1:1:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">על כן, החובה היא לעיין, שיהיה מכיר הדברים בהכרה פנימית, וממילא יתרחבו אצלו הדברים שמביאים לאותה ההכרה, עד שיעלה בידו להעניק מטוב ידיעתו גם לזולתו.</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">על כן, החובה היא לעיין, שיהיה מכיר הדברים בהכרה פנימית, וממילא יתרחבו אצלו הדברים שמביאים לאותה ההכרה, עד שיעלה בידו להעניק מטוב ידיעתו גם לזולתו.</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-default-default-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="musar-avikha-default-default-1-1-6" data-unit>
+          <section class="unit" id="musar-avikha-default-default-1-1-6" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Musar Avikha 1:1:6</h4></div>
               <a class="anchor" href="#musar-avikha-default-default-1-1-6" aria-label="Copy link to Musar Avikha 1:1:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">אמנם, תוכן הדבר, מה שהשמות האלה מצד עצמם הם גלויים לכל מצד הטבע הוא, שכל עניני חובת הלב וטהרתה בזיכוך הנפשות, וכל פרטי המדות, נמצאים באדם בטבע, שהם כלי־מעשהו לכל עניני החיים, כמו עניני היראה, האהבה, החמדה, הדבקות וכיו&quot;ב, שהם נמצאים בנפש האדם ואינו צריך לחדשם מצד עצמם, רק צריך להעלותם שיהיו הולכים אל הדרך הטוב, והוא שיהיו כולם פונים אל השם ית׳ שהוא תכלית כל תקוה. וכל החכמה בזה היא רק להבין, איך יהיו כל עניני המדות נוטים אל השי&quot;ת ושם כבודו. א&quot;כ אין השמות בעצם ענין החכמה הדרושה לעבודה, ומכל מקום אינם דבר זולתה.</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמנם, תוכן הדבר, מה שהשמות האלה מצד עצמם הם גלויים לכל מצד הטבע הוא, שכל עניני חובת הלב וטהרתה בזיכוך הנפשות, וכל פרטי המדות, נמצאים באדם בטבע, שהם כלי־מעשהו לכל עניני החיים, כמו עניני היראה, האהבה, החמדה, הדבקות וכיו&quot;ב, שהם נמצאים בנפש האדם ואינו צריך לחדשם מצד עצמם, רק צריך להעלותם שיהיו הולכים אל הדרך הטוב, והוא שיהיו כולם פונים אל השם ית׳ שהוא תכלית כל תקוה. וכל החכמה בזה היא רק להבין, איך יהיו כל עניני המדות נוטים אל השי&quot;ת ושם כבודו. א&quot;כ אין השמות בעצם ענין החכמה הדרושה לעבודה, ומכל מקום אינם דבר זולתה.</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-default-default-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="musar-avikha-default-default-1-1-7" data-unit>
+          <section class="unit" id="musar-avikha-default-default-1-1-7" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Musar Avikha 1:1:7</h4></div>
               <a class="anchor" href="#musar-avikha-default-default-1-1-7" aria-label="Copy link to Musar Avikha 1:1:7">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ולדבר גדול שם הבורא ית׳ אלו הכוחות קבועות בנו, שאחרי שההישרה האמיתית לעבוד את ד׳ תמיד אינה ראויה שתסור מן האדם כמעט רגע, וכל דבר־קנין שאינו מוטבע באדם הוא נוח לאבדו וקשה לשמרו בכל רגע, על כן שם השם יתברך בחסדו כל אלו הדברים קבועים בטבענו. וכאשר ישכיל השכל להעלותם, אז אם אך ילך בחוקי תורת ד׳ יתברך ישארו קבועים בלבבו תמיד ממש, כמו שהם קבועים בטבע קודם שבאו לכלל דעת.</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ולדבר גדול שם הבורא ית׳ אלו הכוחות קבועות בנו, שאחרי שההישרה האמיתית לעבוד את ד׳ תמיד אינה ראויה שתסור מן האדם כמעט רגע, וכל דבר־קנין שאינו מוטבע באדם הוא נוח לאבדו וקשה לשמרו בכל רגע, על כן שם השם יתברך בחסדו כל אלו הדברים קבועים בטבענו. וכאשר ישכיל השכל להעלותם, אז אם אך ילך בחוקי תורת ד׳ יתברך ישארו קבועים בלבבו תמיד ממש, כמו שהם קבועים בטבע קודם שבאו לכלל דעת.</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-default-default-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="musar-avikha-default-default-1-1-8" data-unit>
+          <section class="unit" id="musar-avikha-default-default-1-1-8" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Musar Avikha 1:1:8</h4></div>
               <a class="anchor" href="#musar-avikha-default-default-1-1-8" aria-label="Copy link to Musar Avikha 1:1:8">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">וממילא יצא לנו מקום לימוד, עד היכן החיוב מגיע לשקוד על ידיעת השם יתברך בהנהגתו השלמה בטובו וחסדו המופלא, שהרי כל חפצינו שאלו המדות, שהן קבועות בטבענו, הן בעצמן, כאשר יתברר לנו, העיקר שראוי להשתמש בהן הוא לעבודת ד׳ ית׳, יהיו קבועות בזה, וזאת היא מעלת הדבקות שהמדות דבוקות בנפש תמיד, וכיון שיתעלו אחרי הדעת לקרבה אל ד׳, יהיה תמיד עמו ית׳, א&quot;כ הרי אי־אפשר שיקבעו אלה המדות על המצב שאינו טבען הראשון באמצעים שלא היו מספיקים אף לטבען הראשון.</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וממילא יצא לנו מקום לימוד, עד היכן החיוב מגיע לשקוד על ידיעת השם יתברך בהנהגתו השלמה בטובו וחסדו המופלא, שהרי כל חפצינו שאלו המדות, שהן קבועות בטבענו, הן בעצמן, כאשר יתברר לנו, העיקר שראוי להשתמש בהן הוא לעבודת ד׳ ית׳, יהיו קבועות בזה, וזאת היא מעלת הדבקות שהמדות דבוקות בנפש תמיד, וכיון שיתעלו אחרי הדעת לקרבה אל ד׳, יהיה תמיד עמו ית׳, א&quot;כ הרי אי־אפשר שיקבעו אלה המדות על המצב שאינו טבען הראשון באמצעים שלא היו מספיקים אף לטבען הראשון.</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-default-default-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="musar-avikha-default-default-1-1-9" data-unit>
+          <section class="unit" id="musar-avikha-default-default-1-1-9" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Musar Avikha 1:1:9</h4></div>
               <a class="anchor" href="#musar-avikha-default-default-1-1-9" aria-label="Copy link to Musar Avikha 1:1:9">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ביאור הדברים: הרינו רואים, שהמידות הטבעיות באדם אינן נקבעות כ&quot;א כפי הדעת; ולפי ידיעתו, בין שתהיה אמתית או כוזבת, ידבקו מדותיו; והקטן, הבלתי־מכיר כלל שום ענין, אין לו מדות כלל; וכשיגדל, ויכיר שהמאכל הוא טוב, יאהבנו, ומי שיקח ממנו והוא צריך לו יכעס עליו, וכל מה שתתפשט הדעת יותר כן יתפשטו המדות. על כן, כשאנו באים לקובען כולן ביראת השם יתברך ואהבתו, צריך עכ&quot;פ שתתפשט הדעת בדרכיו הישרים והכרתו, שעל פיהן יתכוננו המדות, ומה שיחסר מהדעת, כפלי־כפלים בערכו יחסר מהמדות, כיון שהוא שורש להן ונושאן.</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ביאור הדברים: הרינו רואים, שהמידות הטבעיות באדם אינן נקבעות כ&quot;א כפי הדעת; ולפי ידיעתו, בין שתהיה אמתית או כוזבת, ידבקו מדותיו; והקטן, הבלתי־מכיר כלל שום ענין, אין לו מדות כלל; וכשיגדל, ויכיר שהמאכל הוא טוב, יאהבנו, ומי שיקח ממנו והוא צריך לו יכעס עליו, וכל מה שתתפשט הדעת יותר כן יתפשטו המדות. על כן, כשאנו באים לקובען כולן ביראת השם יתברך ואהבתו, צריך עכ&quot;פ שתתפשט הדעת בדרכיו הישרים והכרתו, שעל פיהן יתכוננו המדות, ומה שיחסר מהדעת, כפלי־כפלים בערכו יחסר מהמדות, כיון שהוא שורש להן ונושאן.</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-default-default-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="musar-avikha-default-default-1-1-10" data-unit>
+          <section class="unit" id="musar-avikha-default-default-1-1-10" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Musar Avikha 1:1:10</h4></div>
               <a class="anchor" href="#musar-avikha-default-default-1-1-10" aria-label="Copy link to Musar Avikha 1:1:10">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">אכן, מה שאמרנו, שהמידות כשהן נקבעות כולן לענין העבודה האלהית, שהן שלא על פי טבען הראשון, אין זה כ&quot;א מצד הגוף, דהיינו שעצם המידות ודאי פעולות הנפש הן, אלא שהפעולה דבקה בכלי הגוף, ומשתנה ענינה לפי הגוף הפועל, ומצד כוחות הגוף, הקודם בזמן, הוכרעו המידות כענין טבע ראשון לדברים גופניים ומדומים, שאינם על־פי אמיתת השכל. אבל מצד הנפש, ודאי טבען הראשון הוא לתכלית המעלה, והשינוי שמשנה אותן האדם מטבע הנערות אינו שינוי עצמי כי־אם השבה לטבען הראשון, אשר על־כן ייתכן שיהיו קבועות כפי המעלה, מפני שהיא עצמיית להן, ואם לא היו מצד־עצמן כך הי׳ זה יציאה מגדרן בתורת מקרה, והמקרה לא יתמיד.</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אכן, מה שאמרנו, שהמידות כשהן נקבעות כולן לענין העבודה האלהית, שהן שלא על פי טבען הראשון, אין זה כ&quot;א מצד הגוף, דהיינו שעצם המידות ודאי פעולות הנפש הן, אלא שהפעולה דבקה בכלי הגוף, ומשתנה ענינה לפי הגוף הפועל, ומצד כוחות הגוף, הקודם בזמן, הוכרעו המידות כענין טבע ראשון לדברים גופניים ומדומים, שאינם על־פי אמיתת השכל. אבל מצד הנפש, ודאי טבען הראשון הוא לתכלית המעלה, והשינוי שמשנה אותן האדם מטבע הנערות אינו שינוי עצמי כי־אם השבה לטבען הראשון, אשר על־כן ייתכן שיהיו קבועות כפי המעלה, מפני שהיא עצמיית להן, ואם לא היו מצד־עצמן כך הי׳ זה יציאה מגדרן בתורת מקרה, והמקרה לא יתמיד.</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-default-default-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="musar-avikha-default-default-1-1-11" data-unit>
+          <section class="unit" id="musar-avikha-default-default-1-1-11" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Musar Avikha 1:1:11</h4></div>
               <a class="anchor" href="#musar-avikha-default-default-1-1-11" aria-label="Copy link to Musar Avikha 1:1:11">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">והנה, לפי זה, האמת היא, שעניני האמת חרותים בנו בטבענו, ונפשנו לא תתן לה מנוח (אם לא נבלבל אותה בידים בטרדות מותרות או מגונות שמאפילות אורה), עד שתעמוד על טבעה האמיתי, דהיינו שיהיו כל מידותיה משמשות לעבודת השם יתברך. ולפי זה, המעצים עיניו מהשקיף בעיונו על עניני היראה והעבודה, הוא חומס נפשו מאוד, שמונע ממנה טבעה ממש, כסוגר עיניו מראות או אוטם תמיד אזנו משמע&lt;sup class=&quot;footnote-marker&quot;&gt;11&lt;/sup&gt;&lt;i class=&quot;footnote&quot;&gt;לעין סגירה כל־שהיא היא בלתי־טבעית, ולאוזן – האטימה תמיד. וע׳ כתובות ה: ומהרש&quot;א שם שקצת אטימתה לפעמים שייך לטבע בריאתה.&lt;/i&gt;. עד שלא ישתמש כלל בחוש מהחושים, וק&quot;ו לכל החושים כולם, איש כזה ודאי בחשכה יתהלך, כמו שאמר הכתוב (משלי ד יט): &quot;דרך רשעים כאפלה&quot;.&lt;sup class=&quot;footnote-marker&quot;&gt;12&lt;/sup&gt;&lt;i class=&quot;footnote&quot;&gt;משלי ד יט, שמונה פרקים להרמב&quot;ם פ&quot;ג.&lt;/i&gt;</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והנה, לפי זה, האמת היא, שעניני האמת חרותים בנו בטבענו, ונפשנו לא תתן לה מנוח (אם לא נבלבל אותה בידים בטרדות מותרות או מגונות שמאפילות אורה), עד שתעמוד על טבעה האמיתי, דהיינו שיהיו כל מידותיה משמשות לעבודת השם יתברך. ולפי זה, המעצים עיניו מהשקיף בעיונו על עניני היראה והעבודה, הוא חומס נפשו מאוד, שמונע ממנה טבעה ממש, כסוגר עיניו מראות או אוטם תמיד אזנו משמע&lt;sup class=&quot;footnote-marker&quot;&gt;11&lt;/sup&gt;&lt;i class=&quot;footnote&quot;&gt;לעין סגירה כל־שהיא היא בלתי־טבעית, ולאוזן – האטימה תמיד. וע׳ כתובות ה: ומהרש&quot;א שם שקצת אטימתה לפעמים שייך לטבע בריאתה.&lt;/i&gt;. עד שלא ישתמש כלל בחוש מהחושים, וק&quot;ו לכל החושים כולם, איש כזה ודאי בחשכה יתהלך, כמו שאמר הכתוב (משלי ד יט): &quot;דרך רשעים כאפלה&quot;.&lt;sup class=&quot;footnote-marker&quot;&gt;12&lt;/sup&gt;&lt;i class=&quot;footnote&quot;&gt;משלי ד יט, שמונה פרקים להרמב&quot;ם פ&quot;ג.&lt;/i&gt;</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-default-default-1">Back to chapter/section start</a>
@@ -347,5 +393,336 @@
       </div>
     </div>
   </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd>
+      <dt>Strict renderings</dt><dd data-hud-surface-renderings>N/A</dd>
+      <dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd>
+      <dt data-hud-renderings-label>Possible lexical entries</dt><dd data-hud-renderings>N/A</dd>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"musar-avikha","work_title":"Musar Avikha","work_slug":"rav-kook/musar-avikha","scope_label":"All imported Hebrew works","generated_at":"2026-04-30T15:52:00.391Z","total_occurrences":836,"units":{"musar-avikha-introduction-introduction-1-1":{"unit_id":"musar-avikha-introduction-introduction-1-1","anchor_id":"musar-avikha-introduction-introduction-1-1","source_ref":"Musar Avikha, Introduction 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2aaa5cfb38b9","tok-00d97a1978e9","tok-989638962ee1","tok-7c5f52f27570","tok-740f0a1e6e08","tok-dd23b99e2744","tok-8fd37b82c305","tok-5158b7cd14d5","tok-2aaa5cfb38b9","tok-00d97a1978e9","tok-989638962ee1","tok-7c5f52f27570","tok-740f0a1e6e08","tok-e90db9948e6c","tok-e39ee4f2c8b5","tok-7a59b7ffff37","tok-7b5e405f4f97","tok-796a6d0ac209","tok-24f289dc4b96","tok-7c14ac832731","tok-df162d09f130","tok-526d836faead","tok-ba36c5d1bd72","tok-e90db9948e6c","tok-ae1b50f18b39","tok-615afa0fbfd1","tok-e834c6e748e5","tok-7c14ac832731","tok-04f1d13032d8","tok-989638962ee1","tok-24a74ecb7601","tok-7b5e405f4f97","tok-7c14ac832731","tok-df162d09f130","tok-de0d37974c3f","tok-50279f9e5436","tok-69edc5ada2c3","tok-6a8849b506bc","tok-19debcbdcb20","tok-e01aa0fbed8f","tok-26302c42be71","tok-50a2c38c7729"]}]},"musar-avikha-introduction-introduction-1-2":{"unit_id":"musar-avikha-introduction-introduction-1-2","anchor_id":"musar-avikha-introduction-introduction-1-2","source_ref":"Musar Avikha, Introduction 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3a01bd237b00"]}]},"musar-avikha-introduction-introduction-1-3":{"unit_id":"musar-avikha-introduction-introduction-1-3","anchor_id":"musar-avikha-introduction-introduction-1-3","source_ref":"Musar Avikha, Introduction 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-18ab88bb06aa","tok-11bb1c4e4974","tok-9c47dbe36eac","tok-48671129ee5e","tok-1aea192808f7","tok-112c3b22e63d","tok-0be3bb7f4f5c","tok-6203647c1c29","tok-139d5b3d2c2d","tok-0818c27ee11f","tok-225cc1b78416","tok-3994f8443e00","tok-dca252833719","tok-1da81b4ce843","tok-d383f5388274","tok-04ee5ea67889","tok-ddff846502bb","tok-dbc435e03049","tok-ce8890b20315","tok-3edd1ec2cd66","tok-63e1027b8a30","tok-9aec73223010","tok-b5525bbad8e0","tok-aa06ac60760a","tok-d9ab084dfc64","tok-38084cc5549f","tok-98082c79cf0a","tok-f709b75ea0ad","tok-34ba8fedac81","tok-271ed3fc1a02","tok-f8cd029cd5b7","tok-42c640d43669","tok-c3c05043c39b","tok-defd81e68b2d","tok-dbdc4e078800","tok-440cacb207d4","tok-d3d6a03ea9d2","tok-1b58912d1e17","tok-6ac3097fb457","tok-9ef78daf08f4","tok-61b3fe916c81","tok-516ea63cdebe","tok-f5511cf7a82c","tok-ddff846502bb","tok-9dd960608b37","tok-36c5135dbe7e","tok-f241714e4061","tok-225cc1b78416","tok-3abcd19c9c47","tok-b70662e24945","tok-54cbf975d276","tok-dbc435e03049"]}]},"musar-avikha-default-default-1-1-1":{"unit_id":"musar-avikha-default-default-1-1-1","anchor_id":"musar-avikha-default-default-1-1-1","source_ref":"Musar Avikha 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ee3de22096ed","tok-575d8e7253f3","tok-13edc163d0f1"]}]},"musar-avikha-default-default-1-1-2":{"unit_id":"musar-avikha-default-default-1-1-2","anchor_id":"musar-avikha-default-default-1-1-2","source_ref":"Musar Avikha 1:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-18ab88bb06aa","tok-c3dea9884096","tok-56a2d30aca07","tok-115a0247c7ca"]}]},"musar-avikha-default-default-1-1-3":{"unit_id":"musar-avikha-default-default-1-1-3","anchor_id":"musar-avikha-default-default-1-1-3","source_ref":"Musar Avikha 1:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0b96f80e6103","tok-72848dd5a76f","tok-466486bf4947","tok-87419959d1b7","tok-2cc456a83820","tok-3e54e7053e1b","tok-f0c03b1ecd73","tok-c92c04b81b2b","tok-ad3d88ac636c","tok-e67f5f41e2ab","tok-27cda54359c1","tok-441e9be31a68","tok-2f440543e276","tok-c87a94dcb7df","tok-90a40dd75147","tok-a2428ab27ee7","tok-440cacb207d4","tok-52a178ce1f79","tok-a6b184a94f4a"]}]},"musar-avikha-default-default-1-1-4":{"unit_id":"musar-avikha-default-default-1-1-4","anchor_id":"musar-avikha-default-default-1-1-4","source_ref":"Musar Avikha 1:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0c70d0468515","tok-2e1725ce60f7","tok-e7ac3ff5503b","tok-9214c2626066","tok-e4bbac2238d8","tok-7f1a0ad3509b","tok-b8c0a13b5ec2","tok-95cfbac6b254","tok-830aa007f38a","tok-441e9be31a68","tok-91fcfa2c048e","tok-77aa58b17bc3","tok-4c6135aac782","tok-0818c27ee11f","tok-516a4d84511b","tok-ec0b9bc8daf5","tok-7f93736669b9","tok-4168bb31c246","tok-b547081c95e9","tok-089e6d587861","tok-afb98d8cae2e","tok-00321525b81f","tok-f87c59392ab0","tok-eddee5999765","tok-84999b194c3d","tok-c9cd08b993db","tok-87d23978e320","tok-56a2d30aca07","tok-678b81e28ad3","tok-fe1ab4f98b77","tok-4b0827a02e29","tok-ccd909bfe019","tok-026cfd5edf4f","tok-8cc1bef3e37e","tok-3d7afa9e1dea","tok-437398becdf1","tok-67fd42a580a6","tok-c335e41848f6","tok-566867f853bb","tok-36c5135dbe7e","tok-e90db9948e6c","tok-5a2be0393b6c","tok-c13f3e5e5019","tok-dbdc4e078800","tok-ebc3ae88512d","tok-3bb355326deb","tok-3abcd19c9c47","tok-8ec3c7c31409","tok-b80c32ae525c","tok-e4147d5641b6","tok-741447e7f1f8","tok-faa07ab8cc56","tok-2f440543e276","tok-84f8b36c7cb4","tok-139d5b3d2c2d","tok-76b29246ff76","tok-311744967406","tok-a0d9270398cf","tok-516ea63cdebe","tok-2ffcc8d71a1c","tok-55cdf55ea920","tok-f65e04117a32","tok-e4147d5641b6","tok-9f4c03944784","tok-fa409d377176","tok-cfdf4768e570","tok-fec356c3845a","tok-9c58b216fe4b","tok-26255a03b5dd","tok-0cef07d0c760","tok-0054bbc91234","tok-e85997bcd45f","tok-76b29246ff76","tok-311744967406","tok-e68d5e7f19ab","tok-76b29246ff76","tok-faa07ab8cc56","tok-e263641f345e","tok-fe1ab4f98b77","tok-39cfc3f1680e","tok-d33af2f42684","tok-ca6cdcd5bde3","tok-e4147d5641b6","tok-a90e1e105b03","tok-4090a860de27","tok-66e71025deb3","tok-0cef07d0c760","tok-b91146dd8692","tok-da8166c7a2ce","tok-d33af2f42684","tok-1cf2a09352b0","tok-937e2734b509","tok-dd53816c6a0e","tok-1d20f888e1fc","tok-70fb25c87a61","tok-42c640d43669","tok-93de28d9aef5","tok-ddff846502bb","tok-42c640d43669","tok-51752f38482a","tok-1b7b9529d957","tok-225cc1b78416","tok-3abcd19c9c47","tok-d5f32b43d819","tok-540d342190cc","tok-6b2d2df4548e","tok-d284cf27b0ed","tok-6203647c1c29","tok-139d5b3d2c2d","tok-f5ef6859d5d8","tok-140125c44fd3","tok-3f9ca3d372f4","tok-878897e6bb1a","tok-eddee5999765","tok-0d14b7f82e2a","tok-aaba0364eb34","tok-ebc4dfd8cba4","tok-f87c59392ab0","tok-3abcd19c9c47","tok-90a1351ed5f1","tok-bce97591a4c6","tok-0fb2a406cda3","tok-6a5049731f43","tok-4e4641db9f62","tok-6bf3da05e94a","tok-491c2f3b6155","tok-8884e1444e2d","tok-22a7194f5db6","tok-8cc1bef3e37e","tok-f8cd029cd5b7","tok-922082b82fa2","tok-1836109de34c","tok-a023f625417f","tok-440cacb207d4","tok-3d6355bb4cbf","tok-1971ab1ff015","tok-763d45f32e21","tok-1ac7f7b67355","tok-856e09c571ad","tok-b75bada9edcb","tok-f6fc78ed809b"]}]},"musar-avikha-default-default-1-1-5":{"unit_id":"musar-avikha-default-default-1-1-5","anchor_id":"musar-avikha-default-default-1-1-5","source_ref":"Musar Avikha 1:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3dd91fd78abe","tok-9914cf18c0c0","tok-5d206896bfc5","tok-4c6135aac782","tok-da8166c7a2ce","tok-2ef89ba3bafa","tok-f0f7f8589679","tok-856e09c571ad","tok-b2beef6dd081","tok-f2df9a0f04be","tok-61adaea40411","tok-be74102ca563","tok-e9494bf16643","tok-856e09c571ad","tok-27a954cb7473","tok-3fb2faeac22c","tok-0b530b61925d","tok-1cf2a09352b0","tok-43c52d5d5042","tok-83adddac3609","tok-d11b7183595a","tok-5ea35a9a4284","tok-9f5a518c605a","tok-49cac023ce4d","tok-a6fd8a29e9a4"]}]},"musar-avikha-default-default-1-1-6":{"unit_id":"musar-avikha-default-default-1-1-6","anchor_id":"musar-avikha-default-default-1-1-6","source_ref":"Musar Avikha 1:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-690c9fcc0b98","tok-576989b03de5","tok-91c49a5448c3","tok-98082c79cf0a","tok-76aa93d4d965","tok-8141e946f49a","tok-e4147d5641b6","tok-9afc2418b8aa","tok-08f1f86c4ee7","tok-d9c81a914426","tok-441e9be31a68","tok-e4147d5641b6","tok-cb60abb4d1f4","tok-1ac7f7b67355","tok-678b81e28ad3","tok-d284cf27b0ed","tok-ea12fceaa3dc","tok-139d5b3d2c2d","tok-fd76cb0b461f","tok-f4bd0dea484f","tok-0d4903084f30","tok-c4b652aff4fa","tok-6bf3da05e94a","tok-ee99291b2690","tok-1e0f74c8b723","tok-38ffbf80eaf2","tok-90a40dd75147","tok-fde5362e9ffe","tok-d6f58381a152","tok-441e9be31a68","tok-d284cf27b0ed","tok-4ef30f2af0ea","tok-e68d5e7f19ab","tok-d284cf27b0ed","tok-56a2d30aca07","tok-eac3b9056400","tok-59ef286e4987","tok-7f24b0af9b20","tok-ea1ed70388eb","tok-fde5362e9ffe","tok-1e0f74c8b723","tok-900e5b5e5317","tok-ac683cf3cad8","tok-ad52383c6dca","tok-60d93c9d4913","tok-404570954147","tok-e4147d5641b6","tok-9afc2418b8aa","tok-0818c27ee11f","tok-60d93c9d4913","tok-271bbd2712a3","tok-d2d8c454239c","tok-22a54a97ab25","tok-36c5135dbe7e","tok-7b2bb541400f","tok-b6c7b350b83c","tok-bd64c4bf4294","tok-d2d8c454239c","tok-98d6584ae099","tok-e82d89077447","tok-36c5135dbe7e","tok-ec0b9bc8daf5","tok-e189ae850691","tok-42c640d43669","tok-57014a8492be","tok-6b2d2df4548e","tok-1b49eabfdbb7","tok-c4b652aff4fa","tok-aaba0364eb34","tok-dbc435e03049","tok-4c6135aac782","tok-0818c27ee11f","tok-e2206d55b8b1","tok-a8a5b42a2da7","tok-6ff28cd3e662","tok-6b2d2df4548e","tok-d284cf27b0ed","tok-ee99291b2690","tok-3d132c026bb9","tok-36c5135dbe7e","tok-41fc5f7b86f1","tok-848a1b108fec","tok-9277153b1eb4","tok-6e1b524318b0","tok-3b6ec2e94d68","tok-f6fc78ed809b","tok-a65570bd627c","tok-e7ac3ff5503b","tok-aaba0364eb34","tok-1aaf847d257d","tok-ca1ba2c14981","tok-592b6691bfad","tok-d03dc5941d7d","tok-3f9ca3d372f4","tok-b30b913ceb4c","tok-ce5301951f7d"]}]},"musar-avikha-default-default-1-1-7":{"unit_id":"musar-avikha-default-default-1-1-7","anchor_id":"musar-avikha-default-default-1-1-7","source_ref":"Musar Avikha 1:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-69fffcc4a700","tok-e72138653715","tok-74fb887b7508","tok-c505270e1280","tok-e189ae850691","tok-e939cd80bd5c","tok-c938bcb99a39","tok-5dde94f5082d","tok-32dc79dca674","tok-d3a18e446c40","tok-80195040684f","tok-cd0ddeb10949","tok-f33fb264eadc","tok-efa458b4f0a6","tok-265b628033b0","tok-05bcd43d4aba","tok-58ca34a4a530","tok-68ce432e2946","tok-3dd803d43486","tok-26b8400edf50","tok-ac683cf3cad8","tok-f320d18ef27f","tok-6817fd8e6403","tok-c4b652aff4fa","tok-9e1c5fcd83a7","tok-922082b82fa2","tok-90de41b6d4e3","tok-38ffbf80eaf2","tok-1ac7f7b67355","tok-da31f09c2345","tok-790cce369677","tok-b9070ab20e10","tok-15d9e2fcd729","tok-4e4641db9f62","tok-6817fd8e6403","tok-3dd91fd78abe","tok-9914cf18c0c0","tok-74fb887b7508","tok-ec0b9bc8daf5","tok-1f069ec6d2b2","tok-23a2e35b3ede","tok-6b2d2df4548e","tok-e939cd80bd5c","tok-856e09c571ad","tok-c4598fa30f01","tok-15c8e017b4fb","tok-b1dd96fcb23e","tok-1d0ba83efbc3","tok-61854b290a80","tok-271bbd2712a3","tok-5041fb8e68c3","tok-225cc1b78416","tok-ec62176ce8d0","tok-67d01f81f5ef","tok-cc4942d6278d","tok-b77ab66f543f","tok-265b628033b0","tok-1f069ec6d2b2","tok-65716f837d65","tok-c4598fa30f01","tok-da2d85da7695","tok-05bcd43d4aba","tok-6319354bb0e8","tok-e68d5e7f19ab","tok-fde5362e9ffe","tok-c4598fa30f01","tok-90a40dd75147","tok-c373513cde72","tok-4c9f02c48a0d","tok-76cee509a014","tok-30156b56da66"]}]},"musar-avikha-default-default-1-1-8":{"unit_id":"musar-avikha-default-default-1-1-8","anchor_id":"musar-avikha-default-default-1-1-8","source_ref":"Musar Avikha 1:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-61adaea40411","tok-b12e69f477e6","tok-99c836829b33","tok-d03dc5941d7d","tok-4d85733ae6e5","tok-1cf2a09352b0","tok-a111c9b45496","tok-e4ccf06aac46","tok-6360094390ce","tok-5d6e096b155d","tok-3dd91fd78abe","tok-516a4d84511b","tok-ec0b9bc8daf5","tok-1f069ec6d2b2","tok-aa85ed2b1b1e","tok-1463ebdaf79b","tok-e9bdfb00d41b","tok-d65265ad22ff","tok-0ef9608f0f6f","tok-e6104c7bd597","tok-6b2d2df4548e","tok-4910880a946c","tok-af75e9dcce13","tok-ee99291b2690","tok-09de7ca16213","tok-5dde94f5082d","tok-15c8e017b4fb","tok-4b0827a02e29","tok-8d7931f8e962","tok-b102301b188a","tok-68d6d5b33fb1","tok-99c836829b33","tok-d29fe8f6c2b2","tok-b86d7972ed63","tok-3160d5b27716","tok-d33af2f42684","tok-1ac7f7b67355","tok-4a4755dd2bc8","tok-265b628033b0","tok-e189ae850691","tok-6ff28cd3e662","tok-5dde94f5082d","tok-dbc435e03049","tok-23d3e3378ed0","tok-4c6135aac782","tok-58cebbf6a4f5","tok-7f24b0af9b20","tok-4fc5c1d1ddad","tok-05d4c5cbae42","tok-900e5b5e5317","tok-05bcd43d4aba","tok-bb5ed27c2579","tok-7b60c6a73e15","tok-ecc0812fb3af","tok-d3d6a03ea9d2","tok-eebff834c02c","tok-36c5135dbe7e","tok-265b628033b0","tok-3566289da97a","tok-05bcd43d4aba","tok-63e5aa7be465","tok-e189ae850691","tok-6e1b524318b0","tok-883ef3dc2e40","tok-f5511cf7a82c","tok-976c947df131","tok-4f0c8d3057f9","tok-ee99291b2690","tok-3dd91fd78abe","tok-9ace93db3f16","tok-922082b82fa2","tok-91bba83afa14","tok-e288ff1e6c77","tok-996765862bd0","tok-d569212cb9b8","tok-8a278ab55e1c","tok-835860da1cd6","tok-c26ba2c5d4f3","tok-2097d552b779","tok-e288ff1e6c77"]}]},"musar-avikha-default-default-1-1-9":{"unit_id":"musar-avikha-default-default-1-1-9","anchor_id":"musar-avikha-default-default-1-1-9","source_ref":"Musar Avikha 1:1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-470858a1223b","tok-856e09c571ad","tok-231438658fef","tok-ff5391e24796","tok-e906fbe99e97","tok-6813c2c198a6","tok-38ffbf80eaf2","tok-8855d018771b","tok-c286136297f2","tok-cf347767a55e","tok-8884e1444e2d","tok-d3d6a03ea9d2","tok-50c38cd871e9","tok-9f5a518c605a","tok-ce8890b20315","tok-8abbc50649ea","tok-1aa32a2702c3","tok-2ba0202741dc","tok-efa973ffad06","tok-b13311a19d13","tok-8302384ef263","tok-af7fcc669999","tok-3301a7d3d296","tok-0fb2a406cda3","tok-dadb1fa213c2","tok-e7ac3ff5503b","tok-3b6ec2e94d68","tok-ddff846502bb","tok-9e877f537f71","tok-0fb2a406cda3","tok-b568c52ccd2c","tok-bb6d25a876eb","tok-19ae20967b95","tok-1ac7f7b67355","tok-ebfd9631305a","tok-5170e47a971d","tok-f8cd029cd5b7","tok-d97b6b485be3","tok-9bdc1fcd0e58","tok-bd64c4bf4294","tok-60d93c9d4913","tok-ddff846502bb","tok-9da53e8495d5","tok-6c5939d1ffd1","tok-c4b652aff4fa","tok-98082c79cf0a","tok-aff1de0f4581","tok-d3d6a03ea9d2","tok-aa06ac60760a","tok-9914cf18c0c0","tok-b9e8998c22b8","tok-ee99291b2690","tok-3dd91fd78abe","tok-9914cf18c0c0","tok-8bc8725d823f","tok-984498bf39be","tok-5f050cc937dc","tok-ae9c42ba98d2","tok-bda5f4677266","tok-ec0b9bc8daf5","tok-1f069ec6d2b2","tok-861a805d26bb","tok-60d93c9d4913","tok-caf4f5bcb601","tok-aff1de0f4581","tok-d3d6a03ea9d2","tok-ec6a7d4ac2d7","tok-bc5839bf58c5","tok-b21d031c9497","tok-b1afe88cc562","tok-fc7e777d0918","tok-e9b58373c3ba","tok-ee99291b2690","tok-859c8a00b755","tok-8a66c7b5f4be","tok-0e020eb990b0","tok-0f8243bd37fb","tok-8c667a650f71","tok-48728e6409a4","tok-5a07d6d994f4","tok-cc63035f525f","tok-42c640d43669","tok-1330da35ecf5","tok-49151b52dfb1","tok-2dc9ef7438f0"]}]},"musar-avikha-default-default-1-1-10":{"unit_id":"musar-avikha-default-default-1-1-10","anchor_id":"musar-avikha-default-default-1-1-10","source_ref":"Musar Avikha 1:1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1a8dbace4414","tok-98082c79cf0a","tok-b77e99aa573a","tok-e906fbe99e97","tok-52aa3da86d4c","tok-c286136297f2","tok-ae9c42ba98d2","tok-4aef6871498e","tok-9214c2626066","tok-afbe69240a17","tok-09de7ca16213","tok-d569212cb9b8","tok-3dd91fd78abe","tok-20c5402ef0ed","tok-91bba83afa14","tok-e288ff1e6c77","tok-3b6ec2e94d68","tok-dbdc4e078800","tok-cf347767a55e","tok-e4147d5641b6","tok-aa8f9ff73dba","tok-aff662de38fd","tok-8248b578f4b1","tok-a441b3e0a038","tok-bee2b2f23100","tok-c7bb117a4e78","tok-396d9a3274ed","tok-4b0827a02e29","tok-2f440543e276","tok-b5d13db11e3b","tok-4cfdd010ccc9","tok-94270a6bf7d5","tok-aa8f9ff73dba","tok-4aa4f1bdaffd","tok-5bcc773bb093","tok-eddee5999765","tok-aa8f9ff73dba","tok-f4a8f1f7cb81","tok-75e956537e2e","tok-1177a9607a64","tok-aa8f9ff73dba","tok-8bddab3c0207","tok-d67b443cc533","tok-ffccaf214c9c","tok-a441b3e0a038","tok-f15ac8adcc3a","tok-181b65ddf7dc","tok-97883585ee72","tok-c443014a3645","tok-4738b535f8f8","tok-da66c2986e8b","tok-4fd4a1671848","tok-3604188cb337","tok-c7d1b6409973","tok-61854b290a80","tok-91fcfa2c048e","tok-e4147d5641b6","tok-396d9a3274ed","tok-bee2b2f23100","tok-91bba83afa14","tok-e288ff1e6c77","tok-1ac7f7b67355","tok-3e365350e610","tok-1ea3fae5f45b","tok-e6a228f85170","tok-e6f646964e60","tok-1b7b9529d957","tok-ac683cf3cad8","tok-5d71601b062f","tok-dd0b97438296","tok-34ad57b6aaee","tok-c0cefa86a71e","tok-10b3acdfc89a","tok-f5701609b3f3","tok-0997859eedea","tok-2097d552b779","tok-e288ff1e6c77","tok-fdb6a9976159","tok-900ee46e4dfa","tok-513f4d7079a9","tok-d2d8c454239c","tok-5dde94f5082d","tok-8884e1444e2d","tok-1ea3fae5f45b","tok-55e54325cb70","tok-789e5e7a93b4","tok-7b3df66d0016","tok-49151b52dfb1","tok-2d4a045423f9","tok-3abcd19c9c47","tok-8a278ab55e1c","tok-de9f9387b875","tok-1e9b64227e49","tok-eb62a272a098","tok-dbdc4e078800","tok-77f9f9400e1f","tok-03bbbdaa6c54","tok-da46b9289668","tok-9f54f1b11396","tok-39a0eeffad5a","tok-3abcd19c9c47","tok-d0556d3ce6e3"]}]},"musar-avikha-default-default-1-1-11":{"unit_id":"musar-avikha-default-default-1-1-11","anchor_id":"musar-avikha-default-default-1-1-11","source_ref":"Musar Avikha 1:1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3de1e3b54f00","tok-eddee5999765","tok-dbdc4e078800","tok-13cf121fbc59","tok-4c6135aac782","tok-87ba7ec5d9e9","tok-13cf121fbc59","tok-716a9f7b73b6","tok-32dc79dca674","tok-15c8e017b4fb","tok-6e1abd2fdb7d","tok-3abcd19c9c47","tok-f641c9b55573","tok-40547803666c","tok-f8ccb2cc8820","tok-225cc1b78416","tok-3abcd19c9c47","tok-8c551d2bdd41","tok-d65e2982e8c8","tok-32476c448399","tok-d862d3a56fde","tok-59e1f4bda5f7","tok-2ba0202741dc","tok-ad403e6b0f82","tok-8d83ae834f49","tok-b3996a513da8","tok-1cf2a09352b0","tok-63508c4eb2c4","tok-3dd91fd78abe","tok-f9b5f7528007","tok-e2a3eedeb40a","tok-aff662de38fd","tok-d2d8c454239c","tok-6b2d2df4548e","tok-98dd862551ae","tok-093da046ff98","tok-4a4755dd2bc8","tok-ec0b9bc8daf5","tok-1f069ec6d2b2","tok-50c38cd871e9","tok-dbdc4e078800","tok-28f08fd9423f","tok-4f7a55dcea9c","tok-7b9fdf2715f1","tok-c930e0a7bb73","tok-3dd91fd78abe","tok-d284cf27b0ed","tok-56a2d30aca07","tok-cb098e9dd5e8","tok-1ac7f7b67355","tok-696f61982c34","tok-3f7ec1ecd3be","tok-77d5f6ec50d5","tok-fc081dda98cb","tok-642ddafee5a4","tok-f9b5f7528007","tok-6319354bb0e8","tok-b55265eced0f","tok-4f7a55dcea9c","tok-ba570775af29","tok-2ba0202741dc","tok-92450bbdfcc7","tok-05bcd43d4aba","tok-6babc0cce743","tok-5d655ab16580","tok-0d409fba27d7","tok-1ad360452220","tok-8f24c3c15166","tok-4c6135aac782","tok-fa5df86a113b","tok-a2556096bfc2","tok-5d539a80010c","tok-05bcd43d4aba","tok-580685a541ec","tok-c2daf793d07f","tok-cf41ab959714","tok-50110904f862","tok-74fb887b7508","tok-9a108ffd8555","tok-ef82b10c1c4c","tok-a23811472bf2","tok-a61de287bf95","tok-9b6698246799","tok-3e1eee0abee7","tok-1cf2a09352b0","tok-d569212cb9b8","tok-9918eb765dda","tok-0fb2a406cda3","tok-a7e4cde6ead2","tok-1c566730b3f0","tok-fd02270c1613","tok-441e9be31a68","tok-840750513e9b","tok-98d6584ae099","tok-e0daa108f7b7","tok-5801bf4714f9","tok-bee2b2f23100","tok-1b571b4789bd","tok-fdbf51393b69","tok-e68d5e7f19ab","tok-c47b9e492d1d","tok-656ab63bc4ab","tok-dd23b99e2744","tok-9ebdd967d955","tok-a842e1548a23","tok-6dde883bf3d1","tok-fe25ca97a9f3","tok-228ada1bb7a7","tok-dd23b99e2744","tok-9ebdd967d955","tok-a842e1548a23","tok-581dc404b7f6","tok-a1dd537c8615","tok-d5a6241ccdd2","tok-b05d676762b8"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/musar-avikha.manifest.json"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const renderEntryList = (entries) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          (entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = entry.context_role === "likely_contextual" ? "Likely contextual entry" : "Other possible entry";
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const renderPossibleEntries = (root, view, hasLexicalEntry) => {
+        const label = root.querySelector("[data-hud-renderings-label]");
+        const node = root.querySelector("[data-hud-renderings]");
+        if (!node) return;
+        node.replaceChildren();
+        if (label) label.textContent = "Possible lexical entries";
+        if (!hasLexicalEntry) { node.textContent = "No lexical entry yet."; return; }
+        let entries = Array.isArray(view.possible_entries) ? view.possible_entries : [];
+        entries = entries.filter((entry) => entry.relation_label !== "related root-field");
+        if (!entries.length) { setList(root, "[data-hud-renderings]", view.strict_renderings || ["No lexical entry yet."]); return; }
+        const likelyEntries = entries.filter((entry) => entry.context_role === "likely_contextual");
+        const otherEntries = entries.filter((entry) => entry.context_role !== "likely_contextual");
+        if (label) label.textContent = likelyEntries.length ? "Lexical resolution" : "Possible lexical entries";
+        const note = document.createElement("p");
+        note.className = "lexical-context-note";
+        note.textContent = likelyEntries.length ? (view.surface_context_note || view.context_note || "Context resolved.") : "Context not resolved.";
+        node.appendChild(note);
+        if (likelyEntries.length) node.appendChild(renderEntryList(likelyEntries));
+        if (otherEntries.length) {
+          const details = document.createElement("details");
+          details.className = "other-entries";
+          const summary = document.createElement("summary");
+          summary.textContent = "Show other possible entries";
+          details.appendChild(summary);
+          details.appendChild(renderEntryList(otherEntries));
+          if (view.secondary_source_rows && view.secondary_source_rows.length) {
+            const sourceDetails = document.createElement("details");
+            sourceDetails.className = "source-details";
+            const sourceSummary = document.createElement("summary");
+            sourceSummary.textContent = "Sources / licenses for other possible entries";
+            const sourceBox = document.createElement("div");
+            sourceDetails.append(sourceSummary, sourceBox);
+            renderSources(sourceBox, view.secondary_source_rows);
+            details.appendChild(sourceDetails);
+          }
+          node.appendChild(details);
+        }
+      };
+      const renderSources = (sourceBox, rows) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceRows = Array.isArray(rows) ? rows : (rows && rows.source_id ? [rows] : []);
+        if (!sourceRows.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceRows.forEach((row) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const title = document.createElement("p");
+          const link = document.createElement("a");
+          link.href = row.source_url || "#";
+          link.textContent = row.source_name || "Source";
+          const strong = document.createElement("strong");
+          strong.appendChild(link);
+          title.appendChild(strong);
+          title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+          const fields = document.createElement("p");
+          fields.textContent = `Fields: ${(row.fields_used || []).join(", ") || "N/A"}`;
+          const notes = document.createElement("p");
+          notes.textContent = row.notes || "";
+          section.append(title, fields, notes);
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        if (hud.parentElement !== slot) slot.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setList(hud, "[data-hud-surface-renderings]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPossibleEntries(hud, {}, false);
+        renderSources(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          setList(hud, "[data-hud-surface-renderings]", (view.surface_renderings && view.surface_renderings.length) ? view.surface_renderings : (hasLexicalEntry ? view.strict_renderings : ["No lexical entry yet."]));
+          renderBreakdown(hud, view);
+          renderPossibleEntries(hud, view, hasLexicalEntry);
+          renderSources(hud.querySelector("[data-hud-sources]"), view.source_rows);
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+        } catch (error) {
+          console.error(error);
+          setList(hud, "[data-hud-surface-renderings]", ["No lexical entry yet."]);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

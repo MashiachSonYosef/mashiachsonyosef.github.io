@@ -51,6 +51,38 @@
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
     .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: static; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .other-entries { margin-top: 12px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
     .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
     .source-table { width: 100%; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
@@ -66,7 +98,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -95,10 +127,10 @@
           <details class="toc-root" open>
             <summary>Contents</summary>
             <details class="toc-group">
-              <summary>Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan</summary>
+              <summary>Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan <span class="hud-badge">Lexical layer active</span></summary>
               <a class="toc-start" href="#work-top">Start</a>
               <details class="toc-section">
-                <summary>Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan</summary>
+                <summary>Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan <span class="hud-badge">Lexical layer active</span></summary>
                 <a class="toc-start" href="#work-top">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -359,1570 +391,1673 @@
         </nav>
         <article>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Chapter 1</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-1-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 1:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">עלה בענן ונתכסה בענן ונתקדש בענן כדי לקבל תורה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עלה בענן ונתכסה בענן ונתקדש בענן כדי לקבל תורה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-1-1-2" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 1:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ויכסהו הענן למשה לקדשו זה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויכסהו הענן למשה לקדשו זה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-3" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-1-1-3" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 1:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">וישכון כבוד ה׳ מר״ח:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וישכון כבוד ה׳ מר״ח:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-4" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:4</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-1-1-4" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 1:1:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">להר ולא למשה ויקרא:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">להר ולא למשה ויקרא:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-5" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-5" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:5</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-1-1-5" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 1:1:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">משה וכל ישראל עומדין ולא בא הכתוב אלא:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">משה וכל ישראל עומדין ולא בא הכתוב אלא:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-6" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-6" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:6</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-1-1-6" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 1:1:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שיתקדש ויהא:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שיתקדש ויהא:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-7" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-7" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:7</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-1-1-7" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 1:1:7">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">לא בא הכתוב אלא:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לא בא הכתוב אלא:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-8" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-8" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:8</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-1-1-8" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 1:1:8">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שאירע ל״ג:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שאירע ל״ג:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-9" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-1-1-9" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 1:1:9</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-1-1-9" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 1:1:9">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">דומין למקנאין:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דומין למקנאין:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-1">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-2">Chapter 2</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-2-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-2-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 2:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-2-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 2:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שיכול:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שיכול:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-2-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-2-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 2:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-2-1-2" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 2:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">דברים בטלים וישן עמה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דברים בטלים וישן עמה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-2">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-4">Chapter 4</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-4-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-4-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 4:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-4-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 4:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ועולה היא:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ועולה היא:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-4-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-4-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 4:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-4-1-2" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 4:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">מעשה בר&quot;ט שישב ושנה לתלמידיו ועברה כלה לפניו צוה עליה והכניסה בתוך ביתו ואמר לאמו ולאשתו רחצוה וסכוה וקשטוה ורקדו לפניה עד שתלך לבית בעלה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מעשה בר&quot;ט שישב ושנה לתלמידיו ועברה כלה לפניו צוה עליה והכניסה בתוך ביתו ואמר לאמו ולאשתו רחצוה וסכוה וקשטוה ורקדו לפניה עד שתלך לבית בעלה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-4">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-6">Chapter 6</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-6-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-6-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 6:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-6-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 6:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ואדם אומר:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואדם אומר:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-6-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-6-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 6:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-6-1-2" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 6:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">משמש:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">משמש:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-6">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-7">Chapter 7</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-7-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-7-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 7:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-7-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 7:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">הפורענות הגדול אמר:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הפורענות הגדול אמר:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-7">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-8">Chapter 8</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-8-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-8-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 8:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-8-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 8:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">רב קבוע וילמד:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רב קבוע וילמד:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-8">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-9">Chapter 9</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-9-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-9-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 9:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-9-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 9:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">וע&quot;ז אמרו אוי לרשע וכו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וע&quot;ז אמרו אוי לרשע וכו׳:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-9">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-11">Chapter 11</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 11:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-11-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 11:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">יעשה מלאכה וביום השביעי שבת שבתון קדש לה׳ כל העושה מלאכה ביום השבת מות יומת ושמרו גו׳ ברית עולם גו׳ כי ששת ימים וגו׳ (שמות ל״א:ט״ו-ט״ז):</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יעשה מלאכה וביום השביעי שבת שבתון קדש לה׳ כל העושה מלאכה ביום השבת מות יומת ושמרו גו׳ ברית עולם גו׳ כי ששת ימים וגו׳ (שמות ל״א:ט״ו-ט״ז):</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-11">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 11:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-11-1-2" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 11:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ששת ימים תעשה מעשיך וביום השביעי תשבות (שם כג) הרי שלא עשה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ששת ימים תעשה מעשיך וביום השביעי תשבות (שם כג) הרי שלא עשה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-11">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-3" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 11:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-11-1-3" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 11:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">גורם לו שיעשה מלאכה בשביעי:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">גורם לו שיעשה מלאכה בשביעי:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-11">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-4" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 11:1:4</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-11-1-4" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 11:1:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">גרם שלא:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">גרם שלא:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-11">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-5" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-5" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 11:1:5</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-11-1-5" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 11:1:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ואח”כ:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואח”כ:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-11">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-6" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-6" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 11:1:6</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-11-1-6" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 11:1:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">כאן צ״ל מ״ש למטה שמענו לאנשים לנשים מנין כו׳ עד אבני השהם:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כאן צ״ל מ״ש למטה שמענו לאנשים לנשים מנין כו׳ עד אבני השהם:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-11">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-7" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-11-1-7" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 11:1:7</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-11-1-7" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 11:1:7">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">יוסי הגלילי:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יוסי הגלילי:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-11">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-12">Chapter 12</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-12-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-12-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 12:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-12-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 12:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">אדם לחבית ובין:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אדם לחבית ובין:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-12">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-14">Chapter 14</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-14-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-14-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 14:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-14-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 14:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">זכאין:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">זכאין:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-14">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-14-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-14-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 14:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-14-1-2" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 14:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">לעמוד להם חמה כיהושע בן נון:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לעמוד להם חמה כיהושע בן נון:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-14">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-15">Chapter 15</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-15-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-15-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 15:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-15-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 15:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שיצא שם:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שיצא שם:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-15">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Chapter 20</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ונתן עול ברזל על צוארך וגו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ונתן עול ברזל על צוארך וגו׳:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-2" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שתואב:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שתואב:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-3" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-3" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ואויביו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואויביו:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-4" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:4</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-4" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">כיצד שמתאוה לשתות:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כיצד שמתאוה לשתות:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-5" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-5" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:5</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-5" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ואויביו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואויביו:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-6" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-6" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:6</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-6" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שמבקש ללבוש:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שמבקש ללבוש:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-7" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-7" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:7</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-7" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:7">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ואויביו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואויביו:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-8" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-8" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:8</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-8" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:8">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">הטוב:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הטוב:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-9" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-9" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:9</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-9" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:9">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">בני אמי נחרו בי:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בני אמי נחרו בי:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-10" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-10" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:10</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-10" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:10">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ששזפתני השמש זה משה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ששזפתני השמש זה משה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-11" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-11" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:11</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-11" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:11">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">דתן ואבירם שנא׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דתן ואבירם שנא׳:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-12" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-12" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:12</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-12" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:12">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">עמד והושיען:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עמד והושיען:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-13" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-13" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:13</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-13" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:13">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">כרמי שלי לא נטרתי:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כרמי שלי לא נטרתי:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-14" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-14" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:14</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-14" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:14">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">בשלוה והם דחופים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בשלוה והם דחופים:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-15" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-15" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:15</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-15" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:15">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">בא׳׳י:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בא׳׳י:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-16" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-16" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:16</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-16" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:16">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">אנו צריכים להפריש תרומות:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אנו צריכים להפריש תרומות:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-17" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-17" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:17</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-17" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:17">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">בבבל:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בבבל:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-18" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-20-1-18" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 20:1:18</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-20-1-18" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 20:1:18">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">כרמי שלי לא נטרתי:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כרמי שלי לא נטרתי:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-20">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Chapter 21</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 21:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-21-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 21:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">הק״ש:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הק״ש:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 21:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-21-1-2" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 21:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">הדלת תסוב על צירה ועצל על מטתו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הדלת תסוב על צירה ועצל על מטתו:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-3" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 21:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-21-1-3" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 21:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">מדברי תורה שנאמר:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מדברי תורה שנאמר:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-4" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 21:1:4</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-21-1-4" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 21:1:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ושריך בעת יאכלו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ושריך בעת יאכלו:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-5" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-5" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 21:1:5</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-21-1-5" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 21:1:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ובדרך חטאים לא עמד ובמושב לצים לא ישב:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ובדרך חטאים לא עמד ובמושב לצים לא ישב:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-6" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-6" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 21:1:6</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-21-1-6" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 21:1:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">וקרקסיאות שלהן:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וקרקסיאות שלהן:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-7" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-7" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 21:1:7</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-21-1-7" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 21:1:7">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ומהו פורענותן לעתיד לבא שנאמר (תהלים לז) כי מרעים יכרתון ואין מרעים אלא רשעים שנאמר:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ומהו פורענותן לעתיד לבא שנאמר (תהלים לז) כי מרעים יכרתון ואין מרעים אלא רשעים שנאמר:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-8" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-21-1-8" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 21:1:8</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-21-1-8" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 21:1:8">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ואומר כי הנה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואומר כי הנה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-21">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-23">Chapter 23</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-23-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-23-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 23:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-23-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 23:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ד״א אין:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ד״א אין:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-23">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-25">Chapter 25</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 25:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-25-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 25:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">בשעת מיתה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בשעת מיתה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-25">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 25:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-25-1-2" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 25:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">הימיני:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הימיני:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-25">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-3" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 25:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-25-1-3" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 25:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ואם אוסרני אסורו בעוה״ז ובעוה&quot;ב ואם ממיתני מיתתי בעוה״ז ובעוה״ב:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואם אוסרני אסורו בעוה״ז ובעוה&quot;ב ואם ממיתני מיתתי בעוה״ז ובעוה״ב:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-25">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-4" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 25:1:4</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-25-1-4" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 25:1:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">לפני:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לפני:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-25">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-5" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-5" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 25:1:5</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-25-1-5" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 25:1:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">לגן עדן שנאמר לפניו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לגן עדן שנאמר לפניו:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-25">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-6" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-6" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 25:1:6</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-25-1-6" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 25:1:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">וראית את אחורי ופני לא יראו פני בעוה״ז ואחורי לעוה״ב:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וראית את אחורי ופני לא יראו פני בעוה״ז ואחורי לעוה״ב:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-25">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-7" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-25-1-7" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 25:1:7</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-25-1-7" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 25:1:7">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ואומר ויפרוש אותה לפני והנה כתובה פנים ואחור:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואומר ויפרוש אותה לפני והנה כתובה פנים ואחור:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-25">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-27">Chapter 27</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-27-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-27-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 27:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-27-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 27:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ד״א:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ד״א:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-27">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-27-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-27-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 27:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-27-1-2" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 27:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שנהג:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שנהג:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-27">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-29">Chapter 29</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-29-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-29-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 29:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-29-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 29:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">בשעה שמתו מוטל לפניו ואל:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בשעה שמתו מוטל לפניו ואל:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-29">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-29-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-29-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 29:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-29-1-2" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 29:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">בשעת קלקלתו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בשעת קלקלתו:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-29">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-29-1-3" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-29-1-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 29:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-29-1-3" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 29:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">כל זמן:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כל זמן:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-29">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-29-1-4" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-29-1-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 29:1:4</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-29-1-4" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 29:1:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">לבו יושבת. הוא היה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לבו יושבת. הוא היה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-29">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-30">Chapter 30</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-30-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-30-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 30:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-30-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 30:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">יונתן:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יונתן:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-30">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-32">Chapter 32</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-32-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-32-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 32:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-32-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 32:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">וכל זמן:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וכל זמן:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-32">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-34">Chapter 34</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-34-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-34-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 34:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-34-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 34:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">במדבר זה כלל כל מה שעשו במדבר שנאמר (תהילים ע״ח:מ׳) כמה ימרוהו במדבר וגו׳. בערבה מה שעשו במרה על המים שנאמר (שמות ט״ו:כ״ד) וילונו העם על משה וגו׳ מול סוף:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">במדבר זה כלל כל מה שעשו במדבר שנאמר (תהילים ע״ח:מ׳) כמה ימרוהו במדבר וגו׳. בערבה מה שעשו במרה על המים שנאמר (שמות ט״ו:כ״ד) וילונו העם על משה וגו׳ מול סוף:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-34">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-34-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-34-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 34:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-34-1-2" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 34:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">השליו ראשון ולבן במן והצירות:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">השליו ראשון ולבן במן והצירות:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-34">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-34-1-3" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-34-1-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 34:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-34-1-3" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 34:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">על השבת ודי זהב:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">על השבת ודי זהב:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-34">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-34-1-4" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-34-1-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 34:1:4</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-34-1-4" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 34:1:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">זה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">זה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-34">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-34-1-5" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-34-1-5" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 34:1:5</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-34-1-5" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 34:1:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">הרי שבעה ובמקום אחר הוא אומר ובתבערה ובמסה ובקברות התאוה הרי עשרה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הרי שבעה ובמקום אחר הוא אומר ובתבערה ובמסה ובקברות התאוה הרי עשרה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-34">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-35">Chapter 35</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-35-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-35-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 35:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-35-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 35:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">בירושלים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בירושלים:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-35">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-36">Chapter 36</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-36-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-36-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 36:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-36-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 36:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ברכת:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ברכת:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-36">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-36-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-36-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 36:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-36-1-2" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 36:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">וכתיב על כן לא יקומו רשעים במשפט וחטאים בעדת צדיקים וע״כ לא יקומו רשעים במשפט זה דור המבול. וחטאים בעדת צדיקים אלו אנשי סדום:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וכתיב על כן לא יקומו רשעים במשפט וחטאים בעדת צדיקים וע״כ לא יקומו רשעים במשפט זה דור המבול. וחטאים בעדת צדיקים אלו אנשי סדום:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-36">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-36-1-3" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-36-1-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 36:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-36-1-3" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 36:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ומה אני מקיים שורש וענף בגופן וכן הוא אומר:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ומה אני מקיים שורש וענף בגופן וכן הוא אומר:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-36">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-36-1-4" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-36-1-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 36:1:4</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-36-1-4" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 36:1:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ת״ל:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ת״ל:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-36">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-36-1-5" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-36-1-5" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 36:1:5</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-36-1-5" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 36:1:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">רשעים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רשעים:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-36">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-38">Chapter 38</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 38:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-38-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 38:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">רעבים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רעבים:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-38">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 38:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-38-1-2" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 38:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שבעים. גמרו שלא לעשר:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שבעים. גמרו שלא לעשר:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-38">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-3" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 38:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-38-1-3" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 38:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ובשביל שאין מפרישין:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ובשביל שאין מפרישין:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-38">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-4" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 38:1:4</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-38-1-4" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 38:1:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ר׳ יוסי אומר בעון חלה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ר׳ יוסי אומר בעון חלה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-38">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-5" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-5" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 38:1:5</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-38-1-5" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 38:1:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">והעם נמסר לאויביהם שנ׳ (ויקרא כ״ו:ט״ז-י״ז) וזרעתם לריק זרעכם ואכלוהו אויביכם. בעון תרומות ומעשרות השמים נעצרין מלהוריד טל ומטר:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והעם נמסר לאויביהם שנ׳ (ויקרא כ״ו:ט״ז-י״ז) וזרעתם לריק זרעכם ואכלוהו אויביכם. בעון תרומות ומעשרות השמים נעצרין מלהוריד טל ומטר:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-38">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-6" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-38-1-6" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 38:1:6</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-38-1-6" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 38:1:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שנא׳ (איוב כ״ד:י״ט) ציה גם חום יגזלו מימי שלג וגו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שנא׳ (איוב כ״ד:י״ט) ציה גם חום יגזלו מימי שלג וגו׳:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-38">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Chapter 39</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-39-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 39:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ששה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ששה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-39-1-2" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 39:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">והמרבה לשוב:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והמרבה לשוב:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-3" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-39-1-3" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 39:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">והחוטא ע״מ שיוה״כ מכפר. והמחטיא את הרבים. ומי שיש:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והחוטא ע״מ שיוה״כ מכפר. והמחטיא את הרבים. ומי שיש:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-4" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-4" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:4</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-39-1-4" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 39:1:4">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">אדם חוטא היו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אדם חוטא היו:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-5" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-5" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:5</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-39-1-5" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 39:1:5">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">והיה אדם יודע מה דמות למעלה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והיה אדם יודע מה דמות למעלה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-6" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-6" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:6</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-39-1-6" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 39:1:6">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">אע״פ שגזר דינם נחתם:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אע״פ שגזר דינם נחתם:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-7" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-7" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:7</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-39-1-7" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 39:1:7">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ערום נכנס וערום יוצא ממנה והלואי שתהא יציאה כביאה. ועל חלול השם אין תשובה תולה ואין יוה״כ מכפר:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ערום נכנס וערום יוצא ממנה והלואי שתהא יציאה כביאה. ועל חלול השם אין תשובה תולה ואין יוה״כ מכפר:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-8" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-8" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:8</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-39-1-8" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 39:1:8">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">והמנין מרובה מונח להם:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והמנין מרובה מונח להם:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-9" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-9" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:9</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-39-1-9" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 39:1:9">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ושוכה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ושוכה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-10" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-10" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:10</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-39-1-10" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 39:1:10">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שוכה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שוכה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-11" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-11" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:11</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-39-1-11" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 39:1:11">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ושוכה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ושוכה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-12" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-39-1-12" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 39:1:12</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-39-1-12" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 39:1:12">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">שוכה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שוכה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-39">Back to chapter/section start</a>
             </nav>
           </section>
           <h4 id="chapter-gras-nuschah-on-avot-drabbi-natan-text-41">Chapter 41</h4>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-41-1-1" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-41-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 41:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-41-1-1" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 41:1:1">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">לבקש:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לבקש:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-41">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-41-1-2" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-41-1-2" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 41:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-41-1-2" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 41:1:2">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">והיה מטייל אחריו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והיה מטייל אחריו:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-41">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-41-1-3" data-unit>
+          <section class="unit" id="gras-nuschah-on-avot-drabbi-natan-41-1-3" data-unit data-lexical-unit>
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan 41:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-avot-drabbi-natan-41-1-3" aria-label="Copy link to Gra's Nuschah on Avot D'Rabbi Natan 41:1:3">#</a>
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew" lang="he" dir="rtl">ולא עוד שזכה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ולא עוד שזכה:</p>
               </div>
             </div>
+            <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
               <a href="#chapter-gras-nuschah-on-avot-drabbi-natan-text-41">Back to chapter/section start</a>
@@ -1932,5 +2067,336 @@
       </div>
     </div>
   </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd>
+      <dt>Strict renderings</dt><dd data-hud-surface-renderings>N/A</dd>
+      <dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd>
+      <dt data-hud-renderings-label>Possible lexical entries</dt><dd data-hud-renderings>N/A</dd>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"gras-nuschah-on-avot-drabbi-natan","work_title":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan","work_slug":"gra/gras-nuschah-on-avot-drabbi-natan","scope_label":"All imported Hebrew works","generated_at":"2026-04-30T15:51:58.229Z","total_occurrences":499,"units":{"gras-nuschah-on-avot-drabbi-natan-1-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0e68fb0d6f47","tok-24f24a537274","tok-6858ad831272","tok-24f24a537274","tok-62fada71b591","tok-24f24a537274","tok-999e03fe554e","tok-b453c02bb171","tok-4dd320235d66"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c74d8ac4d3b6","tok-3537de585cac","tok-6a9f2199b55a","tok-0175c2965db3","tok-0cb9a6af925a"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-77184c4020f4","tok-85fe0e20352f","tok-fc40a0ac4f67","tok-ba24a4a649de"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3712abc3b5e0","tok-1b5fce7fa663","tok-6a9f2199b55a","tok-95de83c7207e"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9b6322696f85","tok-80e0be80d6ee","tok-2f18616cda02","tok-3fb0b561a939","tok-1b5fce7fa663","tok-f7eb808e62af","tok-3a5fb16f6673","tok-3fcff29003cc"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-59f2f83f5aa0","tok-91972d320b8c"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7df2d0f1fb97","tok-f7eb808e62af","tok-3a5fb16f6673","tok-3fcff29003cc"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-8":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-8","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-8","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-35cf0a40079c","tok-446f0f572727"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-9":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-9","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-9","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-21caa69a30fb","tok-b7e172071db3"]}]},"gras-nuschah-on-avot-drabbi-natan-2-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-2-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-2-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 2:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-40903b324f4b"]}]},"gras-nuschah-on-avot-drabbi-natan-2-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-2-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-2-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 2:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-00cbea36556c","tok-4fd2e380b0ba","tok-bad128c91cb2","tok-122da0c18d7f"]}]},"gras-nuschah-on-avot-drabbi-natan-4-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-4-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-4-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 4:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-43e99fad0ded","tok-cad7b8456ca7"]}]},"gras-nuschah-on-avot-drabbi-natan-4-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-4-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-4-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 4:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e9a64273fa92","tok-e39663b28781","tok-5c4a8d528445","tok-096c87bde4c9","tok-6418964439d7","tok-6b3f585c7cca","tok-46f4bffc2a85","tok-ce079c046a9b","tok-6c3630895d8b","tok-ba8056739f36","tok-c95af91ac824","tok-acd623923b61","tok-9f72b951dd3a","tok-c8a1f4e49c21","tok-380f759183f6","tok-2bd83066dc14","tok-ebd62aef5eb3","tok-21ee5886aabe","tok-4bc31b7d92aa","tok-79c124bf44bc","tok-a09c7dd3ea9e","tok-18ef00222b18","tok-c27d7a6bb06d","tok-b408cd7dfd8e","tok-dce55e064a3c"]}]},"gras-nuschah-on-avot-drabbi-natan-6-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-6-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-6-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 6:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4a3833a780ce","tok-7b1725d9b1bc"]}]},"gras-nuschah-on-avot-drabbi-natan-6-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-6-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-6-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 6:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8533baa94d7d"]}]},"gras-nuschah-on-avot-drabbi-natan-7-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-7-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-7-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 7:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7e764354d5d0","tok-1de10def25bb","tok-e7c93800fac9"]}]},"gras-nuschah-on-avot-drabbi-natan-8-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-8-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-8-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 8:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-689fbd2f210c","tok-3baa107d8e0c","tok-06ca828fed22"]}]},"gras-nuschah-on-avot-drabbi-natan-9-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-9-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-9-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 9:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0254eb9574e8","tok-aa4d44852cdb","tok-1a519bcd1412","tok-f3d65fc7438a","tok-da5d707ac2d3"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-432539db5fd3","tok-90360a5be6cf","tok-913e9b2d3b78","tok-70443adf54cb","tok-b65c603e4d87","tok-910801587cdb","tok-fc7269e924ab","tok-1985041e53ca","tok-84846bd4f7e6","tok-cdd57dfdb888","tok-90360a5be6cf","tok-d2186964ec6d","tok-786152a996ed","tok-13b7e2ad3fa3","tok-ce6d0d1ba1e7","tok-fbeee276b0df","tok-ee81288f9294","tok-b03c53f1a6f3","tok-027b9cf628c6","tok-ee81288f9294","tok-a6cf049937cb","tok-7d2dd28dd5a3","tok-9e89489ecc88","tok-fdaf7cb698d4","tok-aab0407c825c","tok-a1fa22582761","tok-e1db97d02ce3","tok-36886a9d20ca"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7d2dd28dd5a3","tok-9e89489ecc88","tok-60b870e4171d","tok-450e9e667880","tok-913e9b2d3b78","tok-70443adf54cb","tok-bd58c616c2ed","tok-a81c5d546354","tok-bf641b3e7502","tok-9d69e2ae020d","tok-0782afe08829","tok-d6b68ec3fb71"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2410d1223b62","tok-005341287e47","tok-23823b00b048","tok-90360a5be6cf","tok-112c990812f5"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1dc90d6b3762","tok-0782afe08829"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-95c94cd7b78d","tok-1584ab3a2aaa"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-00eeebf7858f","tok-8aa468d687e7","tok-16458cea3bb0","tok-f1a0fa740b0f","tok-f830140d427c","tok-035d2418dbd9","tok-042b47ef9d91","tok-a08b82f17a1b","tok-dcbf0223e9be","tok-18ef00222b18","tok-ab9226f2371f","tok-c2954147618a"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f51cab230916","tok-7aa64a9e195d"]}]},"gras-nuschah-on-avot-drabbi-natan-12-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-12-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-12-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 12:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0390d437102e","tok-10e1e038a88f","tok-f9e9334a2644"]}]},"gras-nuschah-on-avot-drabbi-natan-14-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-14-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-14-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 14:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4f05a0479f9e"]}]},"gras-nuschah-on-avot-drabbi-natan-14-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-14-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-14-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 14:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-45e854a7aff3","tok-52611d4c077c","tok-a20f4edcf7c4","tok-51d9a009e078","tok-11de77f35d1a","tok-67e4e3d7ab70"]}]},"gras-nuschah-on-avot-drabbi-natan-15-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-15-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-15-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 15:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-416e0618538f","tok-a81c5d546354"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b6f31db5467d","tok-5cbdfc239ff2","tok-c66fec5f01d9","tok-2d7650d25b2b","tok-330119222d18","tok-fdaf7cb698d4"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-86baf3bf98af"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3afd1d8c387f"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3a347b83498c","tok-8e4e068ff783","tok-b18eb98537aa"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3afd1d8c387f"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f30e76a093c8","tok-d89ac55b87c8"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3afd1d8c387f"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-8":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-8","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-8","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0361a94e6ea7"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-9":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-9","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-9","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4a5120e095d3","tok-894e1c51fb18","tok-8b7ba3edd124","tok-73f67f38490c"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-10":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-10","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-10","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5085a0f927a1","tok-3b3c956fa7fc","tok-0cb9a6af925a","tok-9b6322696f85"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-11":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-11","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-11","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a9e49f66d60a","tok-59400c3b2cf3","tok-82b0072b162f"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-12":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-12","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-12","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-628d37869c84","tok-9f74dada07f5"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-13":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-13","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-13","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8aa6ad5b5428","tok-9464eb3f490c","tok-7df2d0f1fb97","tok-84df36ad1a27"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-14":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-14","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-14","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c6359dd30e7f","tok-b3f26ebef516","tok-706e67ce6770"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-15":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-15","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-15","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7fabf466e438"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-16":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-16","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-16","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c9b841d11074","tok-c45de6e1823e","tok-5ec81a88cb24","tok-a4c26df5d10a"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-17":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-17","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-17","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ae8415fee78d"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-18":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-18","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-18","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8aa6ad5b5428","tok-9464eb3f490c","tok-7df2d0f1fb97","tok-84df36ad1a27"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-926ee1a16b46"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b5ae7d5394f7","tok-89920178b0d7","tok-2d7650d25b2b","tok-2adebc93bb88","tok-753d476455dc","tok-2d7650d25b2b","tok-c39e0085d835"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1fe8222a17ba","tok-4dd320235d66","tok-782002d10aae"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9b6c51539f8b","tok-11ada29caed7","tok-7c34b0f9e4d9"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6cd99482382f","tok-814c41459aef","tok-7df2d0f1fb97","tok-628d37869c84","tok-b01e4c3d177b","tok-0bf5719cdd8f","tok-7df2d0f1fb97","tok-fc4e55a1c879"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6ebd3b2c4e8d","tok-1ce4af48cbea"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-538ccb4f426e","tok-80b53ab3ed20","tok-5bce8cab6044","tok-0e8c0197bee4","tok-782002d10aae","tok-b60aa5b0a7af","tok-d7ae009eb27f","tok-a6cf049937cb","tok-c918c946b93e","tok-12e3d9bd8cc0","tok-37c6aee8280a","tok-c918c946b93e","tok-3fcff29003cc","tok-264d2b5aa45c","tok-782002d10aae"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-8":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-8","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-8","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7897f6f4f19d","tok-a6cf049937cb","tok-718051a967d9"]}]},"gras-nuschah-on-avot-drabbi-natan-23-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-23-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-23-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 23:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-862615253511","tok-ae78180114e7"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1fad1373195f","tok-185f77515a57"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1c9203c1ae5d"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3fa362d696df","tok-3b5014d1dcf8","tok-db705b78e0c9","tok-87b8b31a014a","tok-f7369f30027d","tok-3fa362d696df","tok-63f9767cb0e8","tok-126908f23e92","tok-87b8b31a014a","tok-f7369f30027d"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b3fb6fa918ce"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c93c69ffd68f","tok-867dd7769df9","tok-782002d10aae","tok-ce079c046a9b"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-94395b1c3cc0","tok-8c148373ef10","tok-c7a9681d6eed","tok-8e6beadbff9e","tok-7df2d0f1fb97","tok-c7f47a23f755","tok-8731e114b408","tok-87b8b31a014a","tok-cdb7ea3d6d75","tok-e18788abfd03"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7897f6f4f19d","tok-b9b2ea85d834","tok-04d13cae1a08","tok-b3fb6fa918ce","tok-f61ebbd5c078","tok-bd822a93c554","tok-a6951e0ea167","tok-a180ec2e03f3"]}]},"gras-nuschah-on-avot-drabbi-natan-27-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-27-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-27-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 27:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-862615253511"]}]},"gras-nuschah-on-avot-drabbi-natan-27-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-27-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-27-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 27:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a04ffe8deaa4"]}]},"gras-nuschah-on-avot-drabbi-natan-29-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-29-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-29-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 29:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f9501d36e757","tok-7750498ce490","tok-ae2bc7964454","tok-ce079c046a9b","tok-b5154e7a972d"]}]},"gras-nuschah-on-avot-drabbi-natan-29-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-29-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-29-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 29:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1fad1373195f","tok-457de2fcb6eb"]}]},"gras-nuschah-on-avot-drabbi-natan-29-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-29-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-29-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 29:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-84846bd4f7e6","tok-4ac1b8df9c82"]}]},"gras-nuschah-on-avot-drabbi-natan-29-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-29-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-29-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 29:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bc47d02bae01","tok-5e3f81de3dcc","tok-18731a14c1e3","tok-e799dd339fc3"]}]},"gras-nuschah-on-avot-drabbi-natan-30-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-30-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-30-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 30:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-802ecb3d61e4"]}]},"gras-nuschah-on-avot-drabbi-natan-32-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-32-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-32-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 32:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-80e0be80d6ee","tok-4ac1b8df9c82"]}]},"gras-nuschah-on-avot-drabbi-natan-34-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-34-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-34-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 34:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7d0c949b9e97","tok-0cb9a6af925a","tok-4cf043c79767","tok-84846bd4f7e6","tok-778fdf0ef83e","tok-8ae62c4a2b9e","tok-7d0c949b9e97","tok-782002d10aae","tok-8948432bb180","tok-a5b7ca919899","tok-aae57cae75b9","tok-e2adaa0b0d2d","tok-fa502beade01","tok-7d0c949b9e97","tok-fdaf7cb698d4","tok-1b72e1aaad1b","tok-778fdf0ef83e","tok-8ae62c4a2b9e","tok-1a2f695707a5","tok-2d7650d25b2b","tok-96095829f17b","tok-782002d10aae","tok-aab0407c825c","tok-e1db97d02ce3","tok-043dd82e9aba","tok-6ec15c4ad290","tok-eee2c23d174d","tok-2d7650d25b2b","tok-9b6322696f85","tok-fdaf7cb698d4","tok-f5a9747edfe2","tok-602a1cdc1a78"]}]},"gras-nuschah-on-avot-drabbi-natan-34-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-34-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-34-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 34:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-98ccc73f0523","tok-dcb6e9cc0980","tok-7139f206e321","tok-7d05cab5fa06","tok-ed6661513586"]}]},"gras-nuschah-on-avot-drabbi-natan-34-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-34-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-34-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 34:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2d7650d25b2b","tok-786152a996ed","tok-e5a47e1dae37","tok-7eeea21792db"]}]},"gras-nuschah-on-avot-drabbi-natan-34-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-34-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-34-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 34:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0cb9a6af925a"]}]},"gras-nuschah-on-avot-drabbi-natan-34-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-34-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-34-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 34:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9d69e2ae020d","tok-ce24dc358ee3","tok-65a780dedf9f","tok-dd82ce85f001","tok-18731a14c1e3","tok-7b1725d9b1bc","tok-12c2fac5f785","tok-a1959b4fe4ce","tok-4621d951f2e9","tok-ef3e52e7c859","tok-9d69e2ae020d","tok-bbd4c142eaae"]}]},"gras-nuschah-on-avot-drabbi-natan-35-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-35-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-35-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 35:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a5f0ba1907b6"]}]},"gras-nuschah-on-avot-drabbi-natan-36-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-36-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-36-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 36:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-17a239de3919"]}]},"gras-nuschah-on-avot-drabbi-natan-36-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-36-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-36-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 36:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fd54747eb7c1","tok-2d7650d25b2b","tok-155629fd17e5","tok-7df2d0f1fb97","tok-2541328f15c5","tok-264d2b5aa45c","tok-208658ffd737","tok-77f5ac61fd6e","tok-0126a8497341","tok-d83511589e06","tok-5d86edca6121","tok-7df2d0f1fb97","tok-2541328f15c5","tok-264d2b5aa45c","tok-208658ffd737","tok-0cb9a6af925a","tok-b26770a6425f","tok-75eaa632fe09","tok-77f5ac61fd6e","tok-0126a8497341","tok-d83511589e06","tok-3648f4e252dc","tok-79cd8d365e50","tok-70beb9175789"]}]},"gras-nuschah-on-avot-drabbi-natan-36-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-36-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-36-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 36:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3e1680c6f591","tok-5acd9e2ee529","tok-0c1989d3f046","tok-e893fce02204","tok-58fa5bceae85","tok-7c92e2a0e287","tok-02d4fe303d31","tok-18731a14c1e3","tok-7b1725d9b1bc"]}]},"gras-nuschah-on-avot-drabbi-natan-36-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-36-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-36-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 36:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-24b49b9b4f5d"]}]},"gras-nuschah-on-avot-drabbi-natan-36-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-36-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-36-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 36:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-264d2b5aa45c"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-63689be3ee39"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-20964783e3bf","tok-83037951a2c8","tok-0782afe08829","tok-ebd4d1be0fc5"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-31f2769c1711","tok-63f5bafa4558","tok-62cb630d9764"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1a6bed7e78e7","tok-f51cab230916","tok-7b1725d9b1bc","tok-6bb75033e4c0","tok-d08f286c48c6"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-707ba660e557","tok-5db061575f42","tok-016d8d3627e5","tok-b311b07a9b10","tok-95de83c7207e","tok-2cd88df0f519","tok-36886a9d20ca","tok-b64c147ce6b8","tok-13fcf3405cf1","tok-6e2c5959b570","tok-f07c71bd8e70","tok-f8210d7df729","tok-3891fc1a74b4","tok-6bb75033e4c0","tok-a4c26df5d10a","tok-a5cb20d700aa","tok-dcf57dfd4903","tok-c22808251d27","tok-e59ae6fcd5db","tok-3dd1960c4835","tok-f3b08e8c33ef"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-82b0072b162f","tok-74afb6b06ccf","tok-043dd82e9aba","tok-dc081b0a23ef","tok-911a3aab1a99","tok-591189229046","tok-60d35e7322d3","tok-58a72e241aa9","tok-59cbe655a463","tok-7c579e7c2493","tok-fdaf7cb698d4"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-96cf3d01d860"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-87f205db0069","tok-8cc9166a8cd2"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1e1ce25df36c","tok-cfe0b29ef9ab","tok-37f6709e3c43","tok-bbf039b8b960","tok-22cae34d211d","tok-8c148373ef10","tok-9d64f5d36da2","tok-4e0a151d7792","tok-634367c1e2be"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0390d437102e","tok-be0c7876ea94","tok-b2de6e56b969"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4338e0073401","tok-0390d437102e","tok-c5deead3001a","tok-778fdf0ef83e","tok-71c942d807d8","tok-d34ada30c9fa"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-18be2f535c84","tok-a0afcbeba73a","tok-28c2f92bcd09","tok-a5a32096b7a3"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-907d5a4ba908","tok-d424897a59ed","tok-c4964a6a8051","tok-5306729ca621","tok-7abca28bbd89","tok-b5f8148999f4","tok-81d0ff99c41a","tok-1dd500ae6604","tok-80ecea9e8763","tok-c3207045c399","tok-58b74124460d","tok-162d2cae1a83","tok-ae78180114e7","tok-7e77413a8d19","tok-20678d3d4c65","tok-37c6aee8280a","tok-1c014d4b95cf","tok-bbf039b8b960"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-8":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-8","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-8","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0ab5d22d91d5","tok-848b27763bef","tok-075f2cc3988f","tok-52611d4c077c"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-9":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-9","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-9","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3e7f67f6d6ce"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-10":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-10","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-10","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e4f35ea7bf1c"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-11":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-11","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-11","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3e7f67f6d6ce"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-12":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-12","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-12","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e4f35ea7bf1c"]}]},"gras-nuschah-on-avot-drabbi-natan-41-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-41-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-41-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 41:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-17c7b10b1bee"]}]},"gras-nuschah-on-avot-drabbi-natan-41-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-41-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-41-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 41:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4338e0073401","tok-99411cb12377","tok-0168d9e0667c"]}]},"gras-nuschah-on-avot-drabbi-natan-41-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-41-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-41-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 41:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1b5fce7fa663","tok-7211934f01cb","tok-3fa0b31aab05"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/gras-nuschah-on-avot-drabbi-natan.manifest.json"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const renderEntryList = (entries) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          (entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = entry.context_role === "likely_contextual" ? "Likely contextual entry" : "Other possible entry";
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const renderPossibleEntries = (root, view, hasLexicalEntry) => {
+        const label = root.querySelector("[data-hud-renderings-label]");
+        const node = root.querySelector("[data-hud-renderings]");
+        if (!node) return;
+        node.replaceChildren();
+        if (label) label.textContent = "Possible lexical entries";
+        if (!hasLexicalEntry) { node.textContent = "No lexical entry yet."; return; }
+        let entries = Array.isArray(view.possible_entries) ? view.possible_entries : [];
+        entries = entries.filter((entry) => entry.relation_label !== "related root-field");
+        if (!entries.length) { setList(root, "[data-hud-renderings]", view.strict_renderings || ["No lexical entry yet."]); return; }
+        const likelyEntries = entries.filter((entry) => entry.context_role === "likely_contextual");
+        const otherEntries = entries.filter((entry) => entry.context_role !== "likely_contextual");
+        if (label) label.textContent = likelyEntries.length ? "Lexical resolution" : "Possible lexical entries";
+        const note = document.createElement("p");
+        note.className = "lexical-context-note";
+        note.textContent = likelyEntries.length ? (view.surface_context_note || view.context_note || "Context resolved.") : "Context not resolved.";
+        node.appendChild(note);
+        if (likelyEntries.length) node.appendChild(renderEntryList(likelyEntries));
+        if (otherEntries.length) {
+          const details = document.createElement("details");
+          details.className = "other-entries";
+          const summary = document.createElement("summary");
+          summary.textContent = "Show other possible entries";
+          details.appendChild(summary);
+          details.appendChild(renderEntryList(otherEntries));
+          if (view.secondary_source_rows && view.secondary_source_rows.length) {
+            const sourceDetails = document.createElement("details");
+            sourceDetails.className = "source-details";
+            const sourceSummary = document.createElement("summary");
+            sourceSummary.textContent = "Sources / licenses for other possible entries";
+            const sourceBox = document.createElement("div");
+            sourceDetails.append(sourceSummary, sourceBox);
+            renderSources(sourceBox, view.secondary_source_rows);
+            details.appendChild(sourceDetails);
+          }
+          node.appendChild(details);
+        }
+      };
+      const renderSources = (sourceBox, rows) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceRows = Array.isArray(rows) ? rows : (rows && rows.source_id ? [rows] : []);
+        if (!sourceRows.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceRows.forEach((row) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const title = document.createElement("p");
+          const link = document.createElement("a");
+          link.href = row.source_url || "#";
+          link.textContent = row.source_name || "Source";
+          const strong = document.createElement("strong");
+          strong.appendChild(link);
+          title.appendChild(strong);
+          title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+          const fields = document.createElement("p");
+          fields.textContent = `Fields: ${(row.fields_used || []).join(", ") || "N/A"}`;
+          const notes = document.createElement("p");
+          notes.textContent = row.notes || "";
+          section.append(title, fields, notes);
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        if (hud.parentElement !== slot) slot.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setList(hud, "[data-hud-surface-renderings]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPossibleEntries(hud, {}, false);
+        renderSources(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          setList(hud, "[data-hud-surface-renderings]", (view.surface_renderings && view.surface_renderings.length) ? view.surface_renderings : (hasLexicalEntry ? view.strict_renderings : ["No lexical entry yet."]));
+          renderBreakdown(hud, view);
+          renderPossibleEntries(hud, view, hasLexicalEntry);
+          renderSources(hud.querySelector("[data-hud-sources]"), view.source_rows);
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+        } catch (error) {
+          console.error(error);
+          setList(hud, "[data-hud-surface-renderings]", ["No lexical entry yet."]);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

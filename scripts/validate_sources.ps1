@@ -298,9 +298,10 @@ if (Test-Path $tokenIndexPath) {
 
 $occurrenceDir = Join-Path $LexicalDir 'occurrences'
 $lexicalFiles = if (Test-Path $occurrenceDir) { @(Get-ChildItem -Path $occurrenceDir -Filter '*.json') } else { @() }
-if ($lexicalFiles.Count -ne 1 -or ($lexicalFiles.Count -eq 1 -and $lexicalFiles[0].Name -ne 'orot.json')) {
-  $errors.Add("Lexical HUD scope should be limited to data/lexical/occurrences/orot.json for Orot")
+if ($lexicalFiles.Count -ne $sourceByWorkId.Keys.Count) {
+  $errors.Add("Lexical HUD occurrence scope should cover every imported work. Expected $($sourceByWorkId.Keys.Count), found $($lexicalFiles.Count)")
 }
+$lexicalWorkIds = @{}
 foreach ($lexicalFile in $lexicalFiles) {
   $lexical = Get-Content -Path $lexicalFile.FullName -Raw -Encoding UTF8 | ConvertFrom-Json
   foreach ($field in @('schema_version', 'work_id', 'work_title', 'work_slug', 'total_occurrences', 'units')) {
@@ -312,32 +313,34 @@ foreach ($lexicalFile in $lexicalFiles) {
     $errors.Add("Lexical occurrence file references unknown work_id: $($lexical.work_id)")
     continue
   }
+  $lexicalWorkIds[[string]$lexical.work_id] = $true
   $source = $sourceByWorkId[$lexical.work_id]
-  if ($lexical.work_id -eq 'orot') {
-    $orotOccurrenceCount = @($lexical.units.PSObject.Properties).Count
-    if ($orotOccurrenceCount -ne $unitCountByWorkId['orot']) {
-      $errors.Add("Orot lexical occurrence count mismatch: expected $($unitCountByWorkId['orot']), found $orotOccurrenceCount")
+  $occurrenceCount = @($lexical.units.PSObject.Properties).Count
+  if ($occurrenceCount -ne $unitCountByWorkId[[string]$lexical.work_id]) {
+    $errors.Add("Lexical occurrence count mismatch for $($lexical.work_id): expected $($unitCountByWorkId[[string]$lexical.work_id]), found $occurrenceCount")
+  }
+  $manifestPath = Join-Path $LexicalDir "$($lexical.work_id).manifest.json"
+  if (-not (Test-Path $manifestPath)) {
+    $errors.Add("Missing external lexical payload manifest for $($lexical.work_id): $manifestPath")
+  } else {
+    $manifest = Get-Content -Path $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    $chunks = @($manifest.chunks)
+    if ($chunks.Count -lt 1) {
+      $errors.Add("Lexical payload should have at least one external chunk for $($lexical.work_id)")
     }
-    $manifestPath = Join-Path $LexicalDir 'orot.manifest.json'
-    if (-not (Test-Path $manifestPath)) {
-      $errors.Add("Missing external Orot lexical payload manifest: $manifestPath")
-    } else {
-      $manifest = Get-Content -Path $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
-      $chunks = @($manifest.chunks)
-      if ($chunks.Count -lt 2) {
-        $errors.Add("Orot lexical payload should be split into multiple external chunks")
+    if ($lexical.work_id -eq 'orot' -and $chunks.Count -lt 2) {
+      $errors.Add("Orot lexical payload should be split into multiple external chunks")
+    }
+    foreach ($chunk in $chunks) {
+      $chunkPath = Join-Path $LexicalDir ([string]$chunk.url)
+      if (-not (Test-Path $chunkPath)) {
+        $errors.Add("Missing external lexical payload chunk for $($lexical.work_id): $chunkPath")
+        continue
       }
-      foreach ($chunk in $chunks) {
-        $chunkPath = Join-Path $LexicalDir ([string]$chunk.url)
-        if (-not (Test-Path $chunkPath)) {
-          $errors.Add("Missing external Orot lexical payload chunk: $chunkPath")
-          continue
-        }
-        $chunkJson = Get-Content -Path $chunkPath -Raw -Encoding UTF8 | ConvertFrom-Json
-        foreach ($field in @('schema_version', 'chunk_id', 'token_index', 'lexicon', 'source_rows')) {
-          if ($chunkJson.PSObject.Properties.Name -notcontains $field) {
-            $errors.Add("Orot lexical chunk missing $field`: $chunkPath")
-          }
+      $chunkJson = Get-Content -Path $chunkPath -Raw -Encoding UTF8 | ConvertFrom-Json
+      foreach ($field in @('schema_version', 'chunk_id', 'token_index', 'lexicon', 'source_rows')) {
+        if ($chunkJson.PSObject.Properties.Name -notcontains $field) {
+          $errors.Add("Lexical chunk missing $field for $($lexical.work_id): $chunkPath")
         }
       }
     }
@@ -396,6 +399,12 @@ foreach ($lexicalFile in $lexicalFiles) {
     }
   } else {
     $errors.Add("Missing lexical proof target page: $lexicalPagePath")
+  }
+}
+
+foreach ($workId in $sourceByWorkId.Keys) {
+  if (-not $lexicalWorkIds.ContainsKey([string]$workId)) {
+    $errors.Add("Missing lexical occurrence file for imported work: $workId")
   }
 }
 
