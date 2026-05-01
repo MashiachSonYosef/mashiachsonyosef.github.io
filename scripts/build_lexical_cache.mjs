@@ -23,7 +23,7 @@ const lexicalLayerFiles = [
   {
     layer_id: 'project-abbreviations',
     source_family: 'workspace',
-    license: 'N/A - project-authored lexical rules',
+    license: 'project-authored / CC0',
     path: 'source-layers/project-abbreviations.json',
     description: 'Project-authored conservative Hebrew abbreviation expansions.',
   },
@@ -133,6 +133,74 @@ function getTokens(text) {
 function unique(values) {
   return Array.from(new Set((values || []).filter(Boolean)));
 }
+
+function abbreviationSurfaceForms(surface) {
+  const canonical = normalizeHebrewPunctuation(surface);
+  const asciiVariant = canonical.replace(/\u05F4/gu, '"').replace(/\u05F3/gu, "'");
+  return unique([canonical, asciiVariant]);
+}
+
+const projectAbbreviationDefinitions = [
+  { source_id: 'project-abbreviation:ayin-yod', surface: 'ע״י', expansion: 'על ידי', renderings: ['by', 'through', 'by means of'] },
+  { source_id: 'project-abbreviation:vav-ayin-yod', surface: 'וע״י', expansion: 'על ידי', renderings: ['and by', 'and through', 'and by means of'], breakdown: [{ hebrew: 'ו־', strict_renderings: ['and'] }, { hebrew: 'ע״י', strict_renderings: ['by', 'through', 'by means of'] }] },
+  { source_id: 'project-abbreviation:shin-ayin-yod', surface: 'שע״י', expansion: 'על ידי', renderings: ['that by', 'which through', 'by which'], breakdown: [{ hebrew: 'ש־', strict_renderings: ['that', 'which'] }, { hebrew: 'ע״י', strict_renderings: ['by', 'through', 'by means of'] }] },
+  { source_id: 'project-abbreviation:gimel-kaf', surface: 'ג״כ', expansion: 'גם כן', renderings: ['also', 'likewise'] },
+  { source_id: 'project-abbreviation:af-al-pi', surface: 'אע״פ', expansion: 'אף על פי', renderings: ['although', 'even though'] },
+  { source_id: 'project-abbreviation:vav-af-al-pi', surface: 'ואע״פ', expansion: 'אף על פי', renderings: ['and although', 'even though'], breakdown: [{ hebrew: 'ו־', strict_renderings: ['and'] }, { hebrew: 'אע״פ', strict_renderings: ['although', 'even though'] }] },
+  { source_id: 'project-abbreviation:kaf-kaf', surface: 'כ״כ', expansion: 'כל כך', renderings: ['so much', 'so', 'to such an extent'] },
+  { source_id: 'project-abbreviation:mem-mem', surface: 'מ״מ', expansion: 'מכל מקום', renderings: ['nevertheless', 'in any case'] },
+  { source_id: 'project-abbreviation:ayin-pe', surface: 'ע״פ', expansion: 'על פי', renderings: ['according to', 'based on', 'by'] },
+  { source_id: 'project-abbreviation:ayin-kaf', surface: 'ע״כ', expansion: 'על כן', renderings: ['therefore', 'therefore so', 'on account of this'] },
+  { source_id: 'project-abbreviation:ayin-dalet', surface: 'ע״ד', expansion: 'על דבר', renderings: ['concerning', 'regarding', 'about'] },
+  { source_id: 'project-abbreviation:kaf-vav', surface: 'כו׳', expansion: 'וכו׳', renderings: ['etc.', 'and so forth'] },
+  { source_id: 'project-abbreviation:vav-kaf-vav', surface: 'וכו׳', expansion: 'וכו׳', renderings: ['etc.', 'and so forth'] },
+  { source_id: 'project-abbreviation:vav-gimel-vav', surface: 'וגו׳', expansion: 'וגומר', renderings: ['etc.', 'and the rest'] },
+  { source_id: 'project-abbreviation:dibbur-hamatchil', surface: 'ד״ה', expansion: 'דיבור המתחיל', renderings: ['opening words', 'comment beginning'] },
+  { source_id: 'project-abbreviation:kemo-shekatuv', surface: 'כמ״ש', expansion: 'כמו שכתוב / כמו שנאמר', renderings: ['as written', 'as stated'] },
+  { source_id: 'project-abbreviation:vav-kemo-shekatuv', surface: 'וכמ״ש', expansion: 'כמו שכתוב / כמו שנאמר', renderings: ['and as written', 'and as stated'], breakdown: [{ hebrew: 'ו־', strict_renderings: ['and'] }, { hebrew: 'כמ״ש', strict_renderings: ['as written', 'as stated'] }] },
+  { source_id: 'project-abbreviation:kemo-shema-sham', surface: 'כמש״ש', expansion: 'כמו שכתב שם / כמו שנאמר שם', renderings: ['as written there', 'as stated there'] },
+  { source_id: 'project-abbreviation:vav-kemo-shema-sham', surface: 'וכמש״ש', expansion: 'כמו שכתב שם / כמו שנאמר שם', renderings: ['and as written there', 'and as stated there'], breakdown: [{ hebrew: 'ו־', strict_renderings: ['and'] }, { hebrew: 'כמש״ש', strict_renderings: ['as written there', 'as stated there'] }] },
+  { source_id: 'project-abbreviation:siman', surface: 'סי׳', expansion: 'סימן', renderings: ['section', 'sign', 'siman'] },
+  { source_id: 'project-abbreviation:tosafot', surface: 'תוס׳', expansion: 'תוספות', renderings: ['Tosafot'] },
+  { source_id: 'project-abbreviation:ayin-tosafot', surface: 'עתוס׳', expansion: 'עיין תוספות', renderings: ['see Tosafot'] },
+  { source_id: 'project-abbreviation:vav-ayin-tosafot', surface: 'ועתוס׳', expansion: 'עיין תוספות', renderings: ['and see Tosafot'], breakdown: [{ hebrew: 'ו־', strict_renderings: ['and'] }, { hebrew: 'עתוס׳', strict_renderings: ['see Tosafot'] }] },
+  { source_id: 'project-abbreviation:kanal', surface: 'כנ״ל', expansion: 'כנזכר לעיל', renderings: ['as mentioned above'] },
+  { source_id: 'project-abbreviation:hanal', surface: 'הנ״ל', expansion: 'הנזכר לעיל', renderings: ['the above-mentioned'] },
+  { source_id: 'project-abbreviation:hanizkar', surface: 'הנז׳', expansion: 'הנזכר', renderings: ['the mentioned', 'the aforementioned'] },
+  { source_id: 'project-abbreviation:kanizkar', surface: 'כנז׳', expansion: 'כנזכר', renderings: ['as mentioned'] },
+  { source_id: 'project-abbreviation:kanizkar-full', surface: 'כנזכר', expansion: 'כנזכר', renderings: ['as mentioned'] },
+  { source_id: 'project-abbreviation:hanizkar-full', surface: 'הנזכר', expansion: 'הנזכר', renderings: ['the mentioned', 'the aforementioned'] },
+  { source_id: 'project-abbreviation:perush', surface: 'פי׳', expansion: 'פירוש', renderings: ['explanation', 'commentary', 'meaning'] },
+  { source_id: 'project-abbreviation:ayin-sham', surface: 'ע״ש', expansion: 'עיין שם', renderings: ['see there'] },
+  { source_id: 'project-abbreviation:bechina', surface: 'בחי׳', expansion: 'בחינה / בחינת', renderings: ['aspect', 'category', 'mode'] },
+  { source_id: 'project-abbreviation:gemara', surface: 'גמ׳', expansion: 'גמרא', renderings: ['Gemara'] },
+  { source_id: 'project-abbreviation:be-gemara', surface: 'בגמ׳', expansion: 'בגמרא', renderings: ['in the Gemara'], breakdown: [{ hebrew: 'ב־', strict_renderings: ['in'] }, { hebrew: 'גמ׳', strict_renderings: ['Gemara'] }] },
+  { source_id: 'project-abbreviation:matnitin', surface: 'מתני׳', expansion: 'מתניתין / משנה', renderings: ['Mishnah'] },
+  { source_id: 'project-abbreviation:be-matnitin', surface: 'במתני׳', expansion: 'במתניתין / במשנה', renderings: ['in the Mishnah'], breakdown: [{ hebrew: 'ב־', strict_renderings: ['in'] }, { hebrew: 'מתני׳', strict_renderings: ['Mishnah'] }] },
+  { source_id: 'project-abbreviation:afilu', surface: 'אפי׳', expansion: 'אפילו', renderings: ['even', 'even if'] },
+  { source_id: 'project-abbreviation:rabbi', surface: 'ר׳', expansion: 'רבי / רב', renderings: ['Rabbi', 'Rav'] },
+  { source_id: 'project-abbreviation:rashi', surface: 'רש״י', expansion: 'רבי שלמה יצחקי', renderings: ['Rashi'] },
+  { source_id: 'project-abbreviation:rambam', surface: 'הרמב״ם', expansion: 'רבי משה בן מימון', renderings: ['Rambam', 'Maimonides'] },
+  { source_id: 'project-abbreviation:rashba', surface: 'הרשב״א', expansion: 'רבי שלמה בן אדרת', renderings: ['Rashba'] },
+  { source_id: 'project-abbreviation:rotzeh-lomar', surface: 'ר״ל', expansion: 'רוצה לומר', renderings: ['that is to say', 'meaning'] },
+  { source_id: 'project-abbreviation:vezeh-leshono', surface: 'וז״ל', expansion: 'וזה לשונו', renderings: ['and this is his language', 'as follows'] },
+  { source_id: 'project-abbreviation:zichrono-livracha', surface: 'ז״ל', expansion: 'זכרונו לברכה', renderings: ['of blessed memory'] },
+  { source_id: 'project-abbreviation:veyesh-omrim', surface: 'וי״א', expansion: 'ויש אומרים', renderings: ['and some say'] },
+  { source_id: 'project-abbreviation:savira-lei', surface: 'ס״ל', expansion: 'סבירא ליה', renderings: ['he holds', 'he maintains'] },
+  { source_id: 'project-abbreviation:im-ken', surface: 'א״כ', expansion: 'אם כן', renderings: ['if so', 'therefore'] },
+  { source_id: 'project-abbreviation:mah-she-ein-ken', surface: 'משא״כ', expansion: 'מה שאין כן', renderings: ['unlike', 'which is not so'] },
+  { source_id: 'project-abbreviation:vehu-hadin', surface: 'וה״ה', expansion: 'והוא הדין', renderings: ['and the same law applies'] },
+  { source_id: 'project-abbreviation:af-al-gav', surface: 'אע״ג', expansion: 'אף על גב', renderings: ['even though', 'although'] },
+  { source_id: 'project-abbreviation:vekol-sheken', surface: 'וכ״ש', expansion: 'וכל שכן', renderings: ['all the more so'] },
+  { source_id: 'project-abbreviation:kol-zeh', surface: 'כ״ז', expansion: 'כל זה', renderings: ['all this'] },
+  { source_id: 'project-abbreviation:al-yedei-zeh', surface: 'עי״ז', expansion: 'על ידי זה', renderings: ['by this', 'through this'] },
+  { source_id: 'project-abbreviation:achar-kach', surface: 'אח״כ', expansion: 'אחר כך', renderings: ['afterward', 'after that'] },
+  { source_id: 'project-abbreviation:zeir-anpin', surface: 'ז״א', expansion: 'זעיר אנפין', renderings: ['Zeir Anpin'], work_scope: 'kabbalah' },
+  { source_id: 'project-abbreviation:de-zeir-anpin', surface: 'דז״א', expansion: 'דזעיר אנפין', renderings: ['of Zeir Anpin'], work_scope: 'kabbalah', breakdown: [{ hebrew: 'ד־', strict_renderings: ['of'] }, { hebrew: 'ז״א', strict_renderings: ['Zeir Anpin'] }] },
+  { source_id: 'project-abbreviation:de-zeir', surface: 'דזעיר', expansion: 'דזעיר אנפין', renderings: ['of Zeir Anpin'], work_scope: 'kabbalah', breakdown: [{ hebrew: 'ד־', strict_renderings: ['of'] }, { hebrew: 'זעיר', strict_renderings: ['Zeir'] }] },
+  { source_id: 'project-abbreviation:arikh-anpin', surface: 'א״א', expansion: 'אריך אנפין', renderings: ['Arikh Anpin'], work_scope: 'kabbalah' },
+  { source_id: 'project-abbreviation:de-arikh-anpin', surface: 'דא״א', expansion: 'דאריך אנפין', renderings: ['of Arikh Anpin'], work_scope: 'kabbalah', breakdown: [{ hebrew: 'ד־', strict_renderings: ['of'] }, { hebrew: 'א״א', strict_renderings: ['Arikh Anpin'] }] },
+];
 
 const fixedExpressions = [
   {
@@ -496,6 +564,78 @@ function ensureFixedExpressionEntries(lexicon) {
   return changed;
 }
 
+function makeProjectAbbreviationEntry(definition) {
+  const surfaceForms = abbreviationSurfaceForms(definition.surface);
+  const canonicalSurface = surfaceForms[0];
+  const expansion = normalizeHebrewPunctuation(definition.expansion || '');
+  const sourceId = definition.source_id;
+  const entryId = stableId('lex-abbrev', sourceId);
+  const breakdown = definition.breakdown || (expansion ? [{
+    hebrew: expansion,
+    strict_renderings: definition.renderings,
+  }] : []);
+  const sourceRowKey = `workspace|${sourceId}`;
+  const possibleEntry = {
+    entry_key: sourceId,
+    lemma: canonicalSurface,
+    match_key: normalizeHebrewToken(canonicalSurface),
+    expansion,
+    source_name: 'Project-authored abbreviation table',
+    source_family: 'workspace',
+    source_id: sourceId,
+    transliteration: '',
+    strict_renderings: definition.renderings,
+    root: '',
+    root_transliteration: '',
+    root_meaning: [],
+    context_role: 'likely_contextual',
+    relation_label: expansion ? `common abbreviation for ${expansion}` : 'common abbreviation',
+    source_row_keys: [sourceRowKey],
+  };
+  const sourceRow = {
+    source_name: 'Project-authored abbreviation table',
+    source_family: 'workspace',
+    source_id: sourceId,
+    source_url: 'local:project-abbreviation-table',
+    license: 'project-authored / CC0',
+    license_url: 'local:project-abbreviation-table',
+    fields_used: ['abbreviation surface form', 'expansion', 'strict renderings'],
+    notes: 'Project-maintained abbreviation expansion. No external dictionary text imported.',
+  };
+  return {
+    entry_id: entryId,
+    hebrew_word: canonicalSurface,
+    surface_forms: surfaceForms,
+    transliteration: '',
+    strict_renderings: definition.renderings,
+    root: '',
+    root_transliteration: '',
+    root_meaning: [],
+    disambiguation_status: 'likely',
+    context_note: expansion
+      ? `Resolved as a common abbreviation: ${expansion}.`
+      : 'Resolved as a common abbreviation.',
+    expansion,
+    breakdown,
+    work_scope: definition.work_scope || '',
+    possible_entries_truncated: 0,
+    possible_entries: [possibleEntry],
+    source_rows: [sourceRow],
+  };
+}
+
+function ensureProjectAbbreviationEntries(lexicon) {
+  const entries = Array.isArray(lexicon.entries) ? lexicon.entries : [];
+  const withoutProjectAbbreviations = entries.filter((entry) => entryLayerId(entry) !== 'project-abbreviations');
+  const nextEntries = [
+    ...withoutProjectAbbreviations,
+    ...projectAbbreviationDefinitions.map(makeProjectAbbreviationEntry),
+  ];
+  const changed = JSON.stringify(entries) !== JSON.stringify(nextEntries);
+  lexicon.entries = nextEntries;
+  return changed;
+}
+
 function sourceFamiliesFor(row) {
   const entry = lexiconById.get(row.lexicon_entry_id);
   return unique((entry?.source_rows || []).map((sourceRow) => sourceRow.source_family || sourceRow.source_name));
@@ -595,6 +735,7 @@ function getPrefixSequences(normalized) {
 }
 
 function isEntryAllowedForWork(entry, workId) {
+  if (entry?.work_scope === 'kabbalah' && !isKabbalahWork(workId)) return false;
   const sourceIds = [
     ...(entry?.source_rows || []).map((row) => row.source_id),
     ...(entry?.possible_entries || []).map((row) => row.source_id || row.entry_key),
@@ -603,6 +744,19 @@ function isEntryAllowedForWork(entry, workId) {
     return workId === 'orot';
   }
   return true;
+}
+
+function isKabbalahWork(workId) {
+  return String(workId || '').startsWith('shaar-')
+    || [
+      'pri-etz-chaim',
+      'sefer-etz-chaim',
+      'shaarei-kedusha',
+      'beur-hagra-on-sifra-detzniuta',
+      'hagra-on-sefer-yetzirah-gra-version',
+      'sefer-yetzirah-gra-version',
+      'yahel-ohr-on-zohar',
+    ].includes(workId);
 }
 
 function lookupLexiconEntryId(normalized, workId) {
@@ -709,6 +863,20 @@ function analyzeSurfaceForm(surfaceWord, entry) {
     };
   }
 
+  const sourceIds = [
+    ...(entry?.source_rows || []).map((row) => row.source_id),
+    ...(entry?.possible_entries || []).map((row) => row.source_id || row.entry_key),
+  ].filter(Boolean).map(String);
+  if (sourceIds.some((sourceId) => sourceId.startsWith('project-abbreviation:'))) {
+    return {
+      surface_transliteration: '',
+      surface_renderings: entry?.strict_renderings || [],
+      surface_context_status: 'resolved_abbreviation',
+      surface_context_note: entry?.context_note || 'Resolved as a common abbreviation.',
+      breakdown: entry?.breakdown || [],
+    };
+  }
+
   const likely = (entry?.possible_entries || []).find((possibleEntry) => possibleEntry.context_role === 'likely_contextual');
   const lamed = getLeadingLamedBase(surfaceWord);
   if (!likely || !lamed) return null;
@@ -762,7 +930,9 @@ function formatUnmatchedSample(row) {
 }
 
 const lexicon = loadLexicon();
-const lexiconChanged = ensureFixedExpressionEntries(lexicon);
+const fixedExpressionEntriesChanged = ensureFixedExpressionEntries(lexicon);
+const abbreviationEntriesChanged = ensureProjectAbbreviationEntries(lexicon);
+const lexiconChanged = fixedExpressionEntriesChanged || abbreviationEntriesChanged;
 writeLexicon(lexicon);
 const lexiconByNormalized = new Map();
 const lexiconById = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
