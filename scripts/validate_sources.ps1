@@ -281,7 +281,31 @@ $tokenIndexPath = Join-Path $LexicalDir 'token-index.json'
 $tokenIndexIds = @{}
 if (Test-Path $tokenIndexPath) {
   $tokenIndex = Get-Content -Path $tokenIndexPath -Raw -Encoding UTF8 | ConvertFrom-Json
-  foreach ($row in @($tokenIndex.forms)) {
+  $tokenIndexRows = @()
+  if ($tokenIndex.PSObject.Properties.Name -contains 'forms') {
+    $tokenIndexRows = @($tokenIndex.forms)
+  }
+  if ($tokenIndexRows.Count -eq 0 -and $tokenIndex.PSObject.Properties.Name -contains 'work_indexes') {
+    foreach ($indexFile in @($tokenIndex.work_indexes)) {
+      if (-not $indexFile.path) {
+        $errors.Add("Token index manifest work index missing path: $($indexFile.work_id)")
+        continue
+      }
+      $indexPath = Join-Path $LexicalDir ([string]$indexFile.path)
+      if (-not (Test-Path -LiteralPath $indexPath)) {
+        $errors.Add("Missing per-work token index: $indexPath")
+        continue
+      }
+      $workTokenIndex = Get-Content -Path $indexPath -Raw -Encoding UTF8 | ConvertFrom-Json
+      foreach ($field in @('schema_version', 'work_id', 'work_title', 'work_slug', 'forms')) {
+        if ($workTokenIndex.PSObject.Properties.Name -notcontains $field) {
+          $errors.Add("Per-work token index missing $field`: $indexPath")
+        }
+      }
+      $tokenIndexRows += @($workTokenIndex.forms)
+    }
+  }
+  foreach ($row in @($tokenIndexRows)) {
     foreach ($field in @('token_index_id', 'surface_word', 'normalized_word', 'status', 'occurrence_count')) {
       if (-not $row.$field) {
         $errors.Add("Token index row missing $field`: $($row.token_index_id)")

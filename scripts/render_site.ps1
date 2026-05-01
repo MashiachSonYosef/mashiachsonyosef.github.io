@@ -758,9 +758,22 @@ function Get-LexicalCache {
     }
   }
   $tokenIndex = if (Test-Path $tokenIndexPath) { Read-Json -Path $tokenIndexPath } else { [pscustomobject]@{ schema_version = 1; forms = @() } }
+  $tokenIndexRows = @()
+  if ($tokenIndex.PSObject.Properties.Name -contains 'forms') {
+    $tokenIndexRows = @($tokenIndex.forms)
+  }
+  if ($tokenIndexRows.Count -eq 0 -and $tokenIndex.PSObject.Properties.Name -contains 'work_indexes') {
+    foreach ($indexFile in @($tokenIndex.work_indexes)) {
+      if (-not $indexFile.path) { continue }
+      $indexPath = Join-Path $LexicalDir ([string]$indexFile.path)
+      if (-not (Test-Path -LiteralPath $indexPath)) { continue }
+      $workTokenIndex = Read-Json -Path $indexPath
+      $tokenIndexRows += @($workTokenIndex.forms)
+    }
+  }
 
   $tokenIndexById = @{}
-  foreach ($row in @($tokenIndex.forms)) {
+  foreach ($row in @($tokenIndexRows)) {
     if ($row.token_index_id) {
       $tokenIndexById[[string]$row.token_index_id] = $row
     }

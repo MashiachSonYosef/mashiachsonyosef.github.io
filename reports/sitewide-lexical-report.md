@@ -1,6 +1,6 @@
 # Sitewide Lexical HUD Report
 
-Generated: 2026-05-01T12:57:57.547Z
+Generated: 2026-05-01T17:38:30.598Z
 
 ## Scope
 
@@ -15,54 +15,54 @@ Generated: 2026-05-01T12:57:57.547Z
 - Total works/pages processed: 39
 - Total unique surface forms sitewide: 100759
 - Total work-surface rows: 243663
-- Total matched work-surface rows: 84456
-- Total unmatched work-surface rows: 159207
+- Total matched work-surface rows: 84509
+- Total unmatched work-surface rows: 159154
 - Total token occurrences: 1337888
-- Matched by source layer: Wikidata 15218; OpenScriptures 63935; Kaikki 2621; project overrides 562; function words 1115; abbreviations 963; technical 42; parser 8630
+- Matched by source layer: Wikidata 15218; OpenScriptures 63873; Kaikki 2621; project overrides 562; function words 1230; abbreviations 963; technical 42; parser 8683
 
 ## Per-Work Summary
 
 | Work | Category | Unique work forms | Matched | Unmatched | Percent matched | Token occurrences | Matched by layer | Page size | Largest chunk | Chunks | HUD |
 |---|---|---:|---:|---:|---:|---:|---|---:|---:|---:|---|
-| Aderet Eliyahu | Gra School | 3711 | 1647 | 2064 | 44.4% | 8802 | Wikidata 148; OpenScriptures 1397; Kaikki 48; project overrides 4; function words 29; abbreviations 21; technical 0; parser 144 | 360.97 KB | 1.10 MB | 4 | yes |
-| Beur HaGra on Jerusalem Talmud Bikkurim | Gra School | 2487 | 825 | 1662 | 33.2% | 6613 | Wikidata 76; OpenScriptures 671; Kaikki 21; project overrides 7; function words 25; abbreviations 25; technical 0; parser 74 | 470.07 KB | 886.08 KB | 3 | yes |
-| Beur HaGra on Jerusalem Talmud Challah | Gra School | 3544 | 1022 | 2522 | 28.8% | 17016 | Wikidata 121; OpenScriptures 812; Kaikki 18; project overrides 11; function words 34; abbreviations 26; technical 0; parser 121 | 1.44 MB | 828.72 KB | 4 | yes |
-| Beur HaGra on Shulchan Arukh, Choshen Mishpat | Gra School | 1106 | 309 | 797 | 27.9% | 2635 | Wikidata 28; OpenScriptures 199; Kaikki 18; project overrides 8; function words 19; abbreviations 37; technical 0; parser 25 | 177.91 KB | 748.69 KB | 2 | yes |
-| Beur HaGra on Shulchan Arukh, Even HaEzer | Gra School | 2159 | 582 | 1577 | 27.0% | 5424 | Wikidata 53; OpenScriptures 447; Kaikki 5; project overrides 8; function words 26; abbreviations 43; technical 0; parser 45 | 729.99 KB | 796.34 KB | 3 | yes |
-| Beur HaGra on Shulchan Arukh, Orach Chayim | Gra School | 12656 | 2525 | 10131 | 20.0% | 68808 | Wikidata 327; OpenScriptures 2015; Kaikki 70; project overrides 16; function words 48; abbreviations 49; technical 0; parser 367 | 5.82 MB | 694.89 KB | 13 | yes |
-| Beur HaGra on Shulchan Arukh, Yoreh De'ah | Gra School | 25673 | 3956 | 21717 | 15.4% | 234890 | Wikidata 526; OpenScriptures 3182; Kaikki 111; project overrides 24; function words 63; abbreviations 50; technical 0; parser 735 | 17.62 MB | 598.63 KB | 26 | yes |
-| Beur HaGra on Sifra DeTzniuta | Gra School | 10860 | 2828 | 8032 | 26.0% | 67036 | Wikidata 319; OpenScriptures 2308; Kaikki 63; project overrides 53; function words 39; abbreviations 46; technical 0; parser 391 | 2.26 MB | 801.30 KB | 11 | yes |
+| Aderet Eliyahu | Gra School | 3711 | 1649 | 2062 | 44.4% | 8802 | Wikidata 148; OpenScriptures 1395; Kaikki 48; project overrides 4; function words 33; abbreviations 21; technical 0; parser 146 | 360.97 KB | 1.10 MB | 4 | yes |
+| Beur HaGra on Jerusalem Talmud Bikkurim | Gra School | 2487 | 826 | 1661 | 33.2% | 6613 | Wikidata 76; OpenScriptures 669; Kaikki 21; project overrides 7; function words 28; abbreviations 25; technical 0; parser 75 | 470.07 KB | 885.29 KB | 3 | yes |
+| Beur HaGra on Jerusalem Talmud Challah | Gra School | 3544 | 1024 | 2520 | 28.9% | 17016 | Wikidata 121; OpenScriptures 810; Kaikki 18; project overrides 11; function words 38; abbreviations 26; technical 0; parser 123 | 1.44 MB | 828.72 KB | 4 | yes |
+| Beur HaGra on Shulchan Arukh, Choshen Mishpat | Gra School | 1106 | 310 | 796 | 28.0% | 2635 | Wikidata 28; OpenScriptures 197; Kaikki 18; project overrides 8; function words 22; abbreviations 37; technical 0; parser 26 | 177.91 KB | 744.88 KB | 2 | yes |
+| Beur HaGra on Shulchan Arukh, Even HaEzer | Gra School | 2159 | 583 | 1576 | 27.0% | 5424 | Wikidata 53; OpenScriptures 446; Kaikki 5; project overrides 8; function words 28; abbreviations 43; technical 0; parser 46 | 729.99 KB | 797.69 KB | 3 | yes |
+| Beur HaGra on Shulchan Arukh, Orach Chayim | Gra School | 12656 | 2527 | 10129 | 20.0% | 68808 | Wikidata 327; OpenScriptures 2013; Kaikki 70; project overrides 16; function words 52; abbreviations 49; technical 0; parser 369 | 5.82 MB | 694.89 KB | 13 | yes |
+| Beur HaGra on Shulchan Arukh, Yoreh De'ah | Gra School | 25673 | 3960 | 21713 | 15.4% | 234890 | Wikidata 526; OpenScriptures 3180; Kaikki 111; project overrides 24; function words 69; abbreviations 50; technical 0; parser 739 | 17.62 MB | 598.63 KB | 26 | yes |
+| Beur HaGra on Sifra DeTzniuta | Gra School | 10860 | 2830 | 8030 | 26.1% | 67036 | Wikidata 319; OpenScriptures 2306; Kaikki 63; project overrides 53; function words 43; abbreviations 46; technical 0; parser 393 | 2.26 MB | 801.30 KB | 11 | yes |
 | Gra on Pirkei Avot | Gra School | 419 | 196 | 223 | 46.8% | 676 | Wikidata 6; OpenScriptures 167; Kaikki 3; project overrides 1; function words 13; abbreviations 6; technical 0; parser 12 | 74.79 KB | 532.63 KB | 1 | yes |
 | Gra's Nuschah on Avot D'Rabbi Natan | Gra School | 387 | 201 | 186 | 51.9% | 499 | Wikidata 12; OpenScriptures 170; Kaikki 1; project overrides 0; function words 13; abbreviations 5; technical 0; parser 9 | 200.68 KB | 543.59 KB | 1 | yes |
-| Gra's Nuschah on Tractate Derekh Eretz Rabbah | Gra School | 121 | 52 | 69 | 43.0% | 137 | Wikidata 2; OpenScriptures 40; Kaikki 0; project overrides 0; function words 6; abbreviations 4; technical 0; parser 2 | 61.81 KB | 152.78 KB | 1 | yes |
+| Gra's Nuschah on Tractate Derekh Eretz Rabbah | Gra School | 121 | 52 | 69 | 43.0% | 137 | Wikidata 2; OpenScriptures 39; Kaikki 0; project overrides 0; function words 7; abbreviations 4; technical 0; parser 2 | 61.81 KB | 152.01 KB | 1 | yes |
 | Gra's Nuschah on Tractate Derekh Eretz Zuta | Gra School | 24 | 18 | 6 | 75.0% | 25 | Wikidata 0; OpenScriptures 14; Kaikki 0; project overrides 0; function words 2; abbreviations 2; technical 0; parser 0 | 39.52 KB | 64.32 KB | 1 | yes |
 | Gra's Nuschah on Tractate Kallah | Gra School | 36 | 25 | 11 | 69.4% | 37 | Wikidata 2; OpenScriptures 19; Kaikki 0; project overrides 1; function words 3; abbreviations 0; technical 0; parser 1 | 41.15 KB | 59.65 KB | 1 | yes |
 | Gra's Nuschah on Tractate Semachot | Gra School | 110 | 52 | 58 | 47.3% | 140 | Wikidata 2; OpenScriptures 42; Kaikki 0; project overrides 0; function words 5; abbreviations 3; technical 0; parser 3 | 66.67 KB | 150.25 KB | 1 | yes |
 | Gra's Nuschah on Tractate Soferim | Gra School | 236 | 124 | 112 | 52.5% | 319 | Wikidata 4; OpenScriptures 99; Kaikki 7; project overrides 1; function words 9; abbreviations 4; technical 0; parser 5 | 87.34 KB | 329.45 KB | 1 | yes |
-| HaGra on Sefer Yetzirah Gra Version | Gra School | 2250 | 892 | 1358 | 39.6% | 6422 | Wikidata 109; OpenScriptures 712; Kaikki 12; project overrides 15; function words 15; abbreviations 29; technical 0; parser 76 | 262.70 KB | 1.00 MB | 3 | yes |
-| Iggeret HaGra | Gra School | 1069 | 560 | 509 | 52.4% | 1872 | Wikidata 54; OpenScriptures 459; Kaikki 20; project overrides 1; function words 20; abbreviations 6; technical 0; parser 30 | 105.50 KB | 1.20 MB | 2 | yes |
-| Kol HaTor | Gra School | 4308 | 1906 | 2402 | 44.2% | 15084 | Wikidata 275; OpenScriptures 1520; Kaikki 54; project overrides 7; function words 29; abbreviations 21; technical 0; parser 176 | 717.24 KB | 1.08 MB | 5 | yes |
-| Ma'amar Hador | Rav Kook School | 1965 | 1273 | 692 | 64.8% | 3375 | Wikidata 208; OpenScriptures 1005; Kaikki 30; project overrides 4; function words 21; abbreviations 5; technical 0; parser 62 | 151.12 KB | 1.45 MB | 2 | yes |
-| Maaseh Rav | Gra School | 2700 | 1026 | 1674 | 38.0% | 6238 | Wikidata 112; OpenScriptures 836; Kaikki 20; project overrides 6; function words 25; abbreviations 27; technical 0; parser 89 | 572.07 KB | 1.02 MB | 3 | yes |
-| Midbar Shur | Rav Kook School | 19798 | 6380 | 13418 | 32.2% | 107115 | Wikidata 1206; OpenScriptures 4854; Kaikki 211; project overrides 13; function words 55; abbreviations 41; technical 0; parser 919 | 3.28 MB | 913.34 KB | 20 | yes |
-| Musar Avikha | Rav Kook School | 567 | 370 | 197 | 65.3% | 836 | Wikidata 48; OpenScriptures 275; Kaikki 19; project overrides 1; function words 18; abbreviations 9; technical 0; parser 17 | 73.14 KB | 830.52 KB | 1 | yes |
-| Nefesh HaChayim | Gra School | 4430 | 1854 | 2576 | 41.9% | 9475 | Wikidata 239; OpenScriptures 1491; Kaikki 51; project overrides 7; function words 36; abbreviations 30; technical 0; parser 175 | 618.02 KB | 1.04 MB | 5 | yes |
-| Orot | Rav Kook School | 17307 | 14674 | 2633 | 84.8% | 59806 | Wikidata 4437; OpenScriptures 9502; Kaikki 635; project overrides 13; function words 27; abbreviations 18; technical 42; parser 149 | 2.43 MB | 1.75 MB | 18 | yes |
-| Orot HaKodesh | Rav Kook School | 18735 | 7902 | 10833 | 42.2% | 75959 | Wikidata 1955; OpenScriptures 5567; Kaikki 316; project overrides 12; function words 40; abbreviations 12; technical 0; parser 920 | 2.67 MB | 1.06 MB | 19 | yes |
-| Orot HaTorah | Rav Kook School | 807 | 541 | 266 | 67.0% | 1139 | Wikidata 59; OpenScriptures 446; Kaikki 12; project overrides 1; function words 19; abbreviations 4; technical 0; parser 23 | 86.56 KB | 1.22 MB | 1 | yes |
-| Pri Etz Chaim | Ari School | 9512 | 3178 | 6334 | 33.4% | 52464 | Wikidata 488; OpenScriptures 2486; Kaikki 87; project overrides 37; function words 38; abbreviations 42; technical 0; parser 376 | 2.40 MB | 1006.65 KB | 10 | yes |
-| Sefer Etz Chaim | Ari School | 974 | 551 | 423 | 56.6% | 1925 | Wikidata 82; OpenScriptures 413; Kaikki 10; project overrides 4; function words 20; abbreviations 22; technical 0; parser 42 | 94.38 KB | 1.15 MB | 1 | yes |
-| Sefer Yetzirah Gra Version | Gra School | 743 | 358 | 385 | 48.2% | 1950 | Wikidata 28; OpenScriptures 307; Kaikki 5; project overrides 1; function words 15; abbreviations 2; technical 0; parser 25 | 166.21 KB | 898.61 KB | 1 | yes |
-| Sha'ar HaGilgulim | Ari School | 13104 | 4068 | 9036 | 31.0% | 91339 | Wikidata 638; OpenScriptures 3195; Kaikki 106; project overrides 36; function words 44; abbreviations 49; technical 0; parser 565 | 3.53 MB | 877.71 KB | 14 | yes |
-| Sha'ar HaHakdamot | Ari School | 9189 | 2906 | 6283 | 31.6% | 45700 | Wikidata 447; OpenScriptures 2266; Kaikki 71; project overrides 37; function words 40; abbreviations 45; technical 0; parser 323 | 1.43 MB | 901.90 KB | 10 | yes |
-| Sha'ar HaKavanot | Ari School | 10910 | 3359 | 7551 | 30.8% | 61771 | Wikidata 502; OpenScriptures 2632; Kaikki 96; project overrides 37; function words 46; abbreviations 46; technical 0; parser 428 | 2.42 MB | 870.02 KB | 11 | yes |
-| Sha'ar HaMitzvot | Ari School | 11959 | 3432 | 8527 | 28.7% | 59268 | Wikidata 552; OpenScriptures 2658; Kaikki 92; project overrides 38; function words 47; abbreviations 45; technical 0; parser 410 | 2.14 MB | 845.06 KB | 12 | yes |
-| Sha'ar HaPesukim | Ari School | 16032 | 4573 | 11459 | 28.5% | 119822 | Wikidata 687; OpenScriptures 3615; Kaikki 126; project overrides 45; function words 54; abbreviations 46; technical 0; parser 658 | 7.02 MB | 839.63 KB | 17 | yes |
-| Sha'ar Ma'amarei Rashbi | Ari School | 19780 | 4676 | 15104 | 23.6% | 163327 | Wikidata 788; OpenScriptures 3593; Kaikki 131; project overrides 58; function words 61; abbreviations 45; technical 0; parser 741 | 5.65 MB | 742.84 KB | 20 | yes |
-| Sha'ar Ma'amarei Razal | Ari School | 5388 | 2046 | 3342 | 38.0% | 18490 | Wikidata 286; OpenScriptures 1627; Kaikki 41; project overrides 21; function words 32; abbreviations 39; technical 0; parser 179 | 746.03 KB | 987.88 KB | 6 | yes |
-| Sha'ar Ruach HaKodesh | Ari School | 2004 | 903 | 1101 | 45.1% | 4600 | Wikidata 82; OpenScriptures 716; Kaikki 52; project overrides 6; function words 25; abbreviations 22; technical 0; parser 53 | 204.59 KB | 1.11 MB | 3 | yes |
-| Sha'arei Kedusha | Ari School | 1732 | 933 | 799 | 53.9% | 3389 | Wikidata 115; OpenScriptures 769; Kaikki 17; project overrides 1; function words 24; abbreviations 7; technical 0; parser 69 | 220.33 KB | 1.26 MB | 2 | yes |
-| Yahel Ohr on Zohar | Gra School | 4871 | 1733 | 3138 | 35.6% | 13465 | Wikidata 195; OpenScriptures 1409; Kaikki 42; project overrides 27; function words 30; abbreviations 30; technical 0; parser 191 | 799.38 KB | 1013.16 KB | 5 | yes |
+| HaGra on Sefer Yetzirah Gra Version | Gra School | 2250 | 892 | 1358 | 39.6% | 6422 | Wikidata 109; OpenScriptures 711; Kaikki 12; project overrides 15; function words 16; abbreviations 29; technical 0; parser 76 | 262.70 KB | 1.00 MB | 3 | yes |
+| Iggeret HaGra | Gra School | 1069 | 560 | 509 | 52.4% | 1872 | Wikidata 54; OpenScriptures 458; Kaikki 20; project overrides 1; function words 21; abbreviations 6; technical 0; parser 30 | 105.50 KB | 1.20 MB | 2 | yes |
+| Kol HaTor | Gra School | 4308 | 1908 | 2400 | 44.3% | 15084 | Wikidata 275; OpenScriptures 1518; Kaikki 54; project overrides 7; function words 33; abbreviations 21; technical 0; parser 178 | 717.24 KB | 1.08 MB | 5 | yes |
+| Ma'amar Hador | Rav Kook School | 1965 | 1273 | 692 | 64.8% | 3375 | Wikidata 208; OpenScriptures 1003; Kaikki 30; project overrides 4; function words 23; abbreviations 5; technical 0; parser 62 | 151.12 KB | 1.45 MB | 2 | yes |
+| Maaseh Rav | Gra School | 2700 | 1028 | 1672 | 38.1% | 6238 | Wikidata 112; OpenScriptures 834; Kaikki 20; project overrides 6; function words 29; abbreviations 27; technical 0; parser 91 | 572.07 KB | 1.02 MB | 3 | yes |
+| Midbar Shur | Rav Kook School | 19798 | 6383 | 13415 | 32.2% | 107115 | Wikidata 1206; OpenScriptures 4852; Kaikki 211; project overrides 13; function words 60; abbreviations 41; technical 0; parser 922 | 3.28 MB | 913.34 KB | 20 | yes |
+| Musar Avikha | Rav Kook School | 567 | 370 | 197 | 65.3% | 836 | Wikidata 48; OpenScriptures 274; Kaikki 19; project overrides 1; function words 19; abbreviations 9; technical 0; parser 17 | 73.14 KB | 829.76 KB | 1 | yes |
+| Nefesh HaChayim | Gra School | 4430 | 1856 | 2574 | 41.9% | 9475 | Wikidata 239; OpenScriptures 1489; Kaikki 51; project overrides 7; function words 40; abbreviations 30; technical 0; parser 177 | 618.02 KB | 1.04 MB | 5 | yes |
+| Orot | Rav Kook School | 17307 | 14674 | 2633 | 84.8% | 59806 | Wikidata 4437; OpenScriptures 9498; Kaikki 635; project overrides 13; function words 31; abbreviations 18; technical 42; parser 149 | 2.43 MB | 1.75 MB | 18 | yes |
+| Orot HaKodesh | Rav Kook School | 18735 | 7905 | 10830 | 42.2% | 75959 | Wikidata 1955; OpenScriptures 5565; Kaikki 316; project overrides 12; function words 45; abbreviations 12; technical 0; parser 923 | 2.67 MB | 1.06 MB | 19 | yes |
+| Orot HaTorah | Rav Kook School | 807 | 541 | 266 | 67.0% | 1139 | Wikidata 59; OpenScriptures 444; Kaikki 12; project overrides 1; function words 21; abbreviations 4; technical 0; parser 23 | 86.56 KB | 1.22 MB | 1 | yes |
+| Pri Etz Chaim | Ari School | 9512 | 3180 | 6332 | 33.4% | 52464 | Wikidata 488; OpenScriptures 2484; Kaikki 87; project overrides 37; function words 42; abbreviations 42; technical 0; parser 378 | 2.40 MB | 1008.00 KB | 10 | yes |
+| Sefer Etz Chaim | Ari School | 974 | 552 | 422 | 56.7% | 1925 | Wikidata 82; OpenScriptures 411; Kaikki 10; project overrides 4; function words 23; abbreviations 22; technical 0; parser 43 | 94.38 KB | 1.15 MB | 1 | yes |
+| Sefer Yetzirah Gra Version | Gra School | 743 | 358 | 385 | 48.2% | 1950 | Wikidata 28; OpenScriptures 306; Kaikki 5; project overrides 1; function words 16; abbreviations 2; technical 0; parser 25 | 166.21 KB | 895.31 KB | 1 | yes |
+| Sha'ar HaGilgulim | Ari School | 13104 | 4072 | 9032 | 31.1% | 91339 | Wikidata 638; OpenScriptures 3193; Kaikki 106; project overrides 36; function words 50; abbreviations 49; technical 0; parser 569 | 3.53 MB | 879.06 KB | 14 | yes |
+| Sha'ar HaHakdamot | Ari School | 9189 | 2909 | 6280 | 31.7% | 45700 | Wikidata 447; OpenScriptures 2264; Kaikki 71; project overrides 37; function words 45; abbreviations 45; technical 0; parser 326 | 1.43 MB | 901.90 KB | 10 | yes |
+| Sha'ar HaKavanot | Ari School | 10910 | 3362 | 7548 | 30.8% | 61771 | Wikidata 502; OpenScriptures 2630; Kaikki 96; project overrides 37; function words 51; abbreviations 46; technical 0; parser 431 | 2.42 MB | 870.02 KB | 11 | yes |
+| Sha'ar HaMitzvot | Ari School | 11959 | 3437 | 8522 | 28.7% | 59268 | Wikidata 552; OpenScriptures 2656; Kaikki 92; project overrides 38; function words 54; abbreviations 45; technical 0; parser 415 | 2.14 MB | 845.06 KB | 12 | yes |
+| Sha'ar HaPesukim | Ari School | 16032 | 4576 | 11456 | 28.5% | 119822 | Wikidata 687; OpenScriptures 3613; Kaikki 126; project overrides 45; function words 59; abbreviations 46; technical 0; parser 661 | 7.02 MB | 839.63 KB | 17 | yes |
+| Sha'ar Ma'amarei Rashbi | Ari School | 19780 | 4681 | 15099 | 23.7% | 163327 | Wikidata 788; OpenScriptures 3591; Kaikki 131; project overrides 58; function words 68; abbreviations 45; technical 0; parser 746 | 5.65 MB | 742.84 KB | 20 | yes |
+| Sha'ar Ma'amarei Razal | Ari School | 5388 | 2046 | 3342 | 38.0% | 18490 | Wikidata 286; OpenScriptures 1625; Kaikki 41; project overrides 21; function words 34; abbreviations 39; technical 0; parser 179 | 746.03 KB | 986.28 KB | 6 | yes |
+| Sha'ar Ruach HaKodesh | Ari School | 2004 | 903 | 1101 | 45.1% | 4600 | Wikidata 82; OpenScriptures 714; Kaikki 52; project overrides 6; function words 27; abbreviations 22; technical 0; parser 53 | 204.59 KB | 1.11 MB | 3 | yes |
+| Sha'arei Kedusha | Ari School | 1732 | 933 | 799 | 53.9% | 3389 | Wikidata 115; OpenScriptures 767; Kaikki 17; project overrides 1; function words 26; abbreviations 7; technical 0; parser 69 | 220.33 KB | 1.26 MB | 2 | yes |
+| Yahel Ohr on Zohar | Gra School | 4871 | 1733 | 3138 | 35.6% | 13465 | Wikidata 195; OpenScriptures 1407; Kaikki 42; project overrides 27; function words 32; abbreviations 30; technical 0; parser 191 | 799.38 KB | 1013.16 KB | 5 | yes |
 
 ## Sitewide Unmatched Top 300
 
@@ -268,106 +268,106 @@ Generated: 2026-05-01T12:57:57.547Z
 | 198 | ב׳ | ב׳ | 139 | abbreviation | Beur HaGra on Sifra DeTzniuta 1:2; Beur HaGra on Sifra DeTzniuta 1:9; Beur HaGra on Sifra DeTzniuta 1:23; Beur HaGra on Sifra DeTzniuta 1:25; Beur HaGra on Sifra DeTzniuta 1:26 |
 | 199 | דפסחים | דפסחימ | 139 | Aramaic/rabbinic form | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:27; Beur HaGra on Shulchan Arukh, Yoreh De'ah 19:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 22:6; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:22 |
 | 200 | כ״ה | כ״ה | 139 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 5:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 17:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 19:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 24:32; Beur HaGra on Shulchan Arukh, Yoreh De'ah 33:12 |
-| 201 | לאו | לאו | 139 | unknown | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:13; Beur HaGra on Shulchan Arukh, Yoreh De'ah 29:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 29:2 |
-| 202 | נוקבין | נוקבינ | 139 | inflected verb | Sha'ar Ma'amarei Rashbi, Introduction:35; Sha'ar Ma'amarei Rashbi, Introduction:37; Sha'ar Ma'amarei Rashbi, Introduction:81; Sha'ar Ma'amarei Rashbi, Introduction:111; Sha'ar Ma'amarei Rashbi, Introduction:116 |
-| 203 | ע״ג | ע״ג | 139 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 9:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 23:12; Beur HaGra on Shulchan Arukh, Yoreh De'ah 25:3; Beur HaGra on Shulchan Arukh, Yoreh De'ah 62:2; Beur HaGra on Shulchan Arukh, Yoreh De'ah 64:8 |
-| 204 | פ״ב | פ״ב | 139 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 16:2; Beur HaGra on Shulchan Arukh, Yoreh De'ah 16:6; Beur HaGra on Shulchan Arukh, Yoreh De'ah 24:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 36:10; Beur HaGra on Shulchan Arukh, Yoreh De'ah 69:54 |
-| 205 | שבעה | שבעה | 139 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:35; Sha'ar Ma'amarei Rashbi, Introduction:53; Sha'ar Ma'amarei Rashbi, Introduction:70; Sha'ar Ma'amarei Rashbi, Introduction:71; Sha'ar Ma'amarei Rashbi, Introduction:81 |
-| 206 | דע | דע | 138 | Aramaic/rabbinic form | Sha'ar HaGilgulim 1:2; Sha'ar HaGilgulim 1:4; Sha'ar HaGilgulim 1:8; Sha'ar HaGilgulim 1:15; Sha'ar HaGilgulim 2:6 |
-| 207 | נקראת | נקראת | 138 | inflected verb | Sha'ar Ma'amarei Rashbi, Introduction:9; Sha'ar Ma'amarei Rashbi, Introduction:22; Sha'ar Ma'amarei Rashbi, Introduction:32; Sha'ar Ma'amarei Rashbi, Introduction:37; Sha'ar Ma'amarei Rashbi, Introduction:39 |
-| 208 | ספירות | ספירות | 138 | inflected noun/adjective | Sha'ar Ma'amarei Rashbi, Introduction:12; Sha'ar Ma'amarei Rashbi, Introduction:33; Sha'ar Ma'amarei Rashbi, Introduction:67; Sha'ar Ma'amarei Rashbi, Introduction:70; Sha'ar Ma'amarei Rashbi, Introduction:75 |
-| 209 | שהי׳ | שהי׳ | 138 | abbreviation | Midbar Shur 4:2; Midbar Shur 4:4; Midbar Shur 5:1; Midbar Shur 7:4; Midbar Shur 8:1 |
-| 210 | ותוס׳ | ותוס׳ | 137 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:21; Beur HaGra on Shulchan Arukh, Yoreh De'ah 4:6; Beur HaGra on Shulchan Arukh, Yoreh De'ah 13:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 19:10 |
-| 211 | אלקים | אלקימ | 136 | unknown | Sha'ar HaKavanot, Sermons on the Intentions of Blessings:10; Sha'ar HaKavanot, Sermons on the Intentions of Blessings:12; Sha'ar HaKavanot, Sermons on the Intentions of Blessings:17; Sha'ar HaKavanot, Morning Prayers:7; Sha'ar HaKavanot, Morning Prayers:8 |
-| 212 | כמנין | כמנינ | 136 | prefix/function form | Sha'ar HaPesukim, Parashat Bereshit:54; Sha'ar HaPesukim, Parashat Bereshit:93; Sha'ar HaPesukim, Parashat Bereshit:119; Sha'ar HaPesukim, Parashat Bereshit:120; Sha'ar HaPesukim, Parashat Bereshit:121 |
-| 213 | ע״ז | ע״ז | 136 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:14; Beur HaGra on Shulchan Arukh, Yoreh De'ah 6:11; Beur HaGra on Shulchan Arukh, Yoreh De'ah 10:3; Beur HaGra on Shulchan Arukh, Yoreh De'ah 52:9; Beur HaGra on Shulchan Arukh, Yoreh De'ah 55:12 |
-| 214 | הת״ת | הת״ת | 135 | abbreviation | Sha'ar Ma'amarei Rashbi, Introduction:3; Sha'ar Ma'amarei Rashbi, Introduction:4; Sha'ar Ma'amarei Rashbi, Introduction:12; Sha'ar Ma'amarei Rashbi, Introduction:25; Sha'ar Ma'amarei Rashbi, Introduction:42 |
-| 215 | ורא״ש | ורא״ש | 135 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:7; Beur HaGra on Shulchan Arukh, Yoreh De'ah 14:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 14:3 |
-| 216 | דרב | דרב | 134 | Aramaic/rabbinic form | Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:3; Beur HaGra on Shulchan Arukh, Yoreh De'ah 4:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 10:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 15:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:6 |
-| 217 | הר״ן | הר״נ | 134 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 20:8; Beur HaGra on Shulchan Arukh, Yoreh De'ah 22:8; Beur HaGra on Shulchan Arukh, Yoreh De'ah 22:9 |
-| 218 | וכמש״ל | וכמש״ל | 134 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:12; Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:12; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 10:5 |
-| 219 | ועש״ך | ועש״כ | 134 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:36; Beur HaGra on Shulchan Arukh, Yoreh De'ah 13:12; Beur HaGra on Shulchan Arukh, Yoreh De'ah 22:6; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:16 |
-| 220 | דס״ל | דס״ל | 133 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 22:7; Beur HaGra on Shulchan Arukh, Yoreh De'ah 23:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 24:2; Beur HaGra on Shulchan Arukh, Yoreh De'ah 24:9; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:11 |
-| 221 | פסוק | פסוק | 133 | unknown | Sha'ar HaPesukim, Parashat Bereshit:48; Sha'ar HaPesukim, Parashat Bereshit:50; Sha'ar HaPesukim, Parashat Bereshit:53; Sha'ar HaPesukim, Parashat Bereshit:86; Sha'ar HaPesukim, Parashat Bereshit:87 |
-| 222 | ואמר | ואמר | 132 | prefix/function form | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:16; Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:38; Beur HaGra on Shulchan Arukh, Yoreh De'ah 14:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 24:24; Beur HaGra on Shulchan Arukh, Yoreh De'ah 29:2 |
-| 223 | וזהו | וזהו | 132 | prefix/function form | Beur HaGra on Sifra DeTzniuta 1:4; Beur HaGra on Sifra DeTzniuta 1:6; Beur HaGra on Sifra DeTzniuta 1:12; Beur HaGra on Sifra DeTzniuta 1:26; Beur HaGra on Sifra DeTzniuta 1:28 |
-| 224 | מ״ש | מ״ש | 132 | abbreviation | Sha'ar Ma'amarei Rashbi, Introduction:4; Sha'ar Ma'amarei Rashbi, Introduction:5; Sha'ar Ma'amarei Rashbi, Introduction:8; Sha'ar Ma'amarei Rashbi, Introduction:9; Sha'ar Ma'amarei Rashbi, Introduction:12 |
-| 225 | מאי | מאי | 132 | unknown | Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:16; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 14:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:7 |
-| 226 | קדישא | קדישא | 132 | Aramaic/rabbinic form | Sha'ar Ma'amarei Rashbi, Introduction:49; Sha'ar Ma'amarei Rashbi, Introduction:56; Sha'ar Ma'amarei Rashbi, Introduction:57; Sha'ar Ma'amarei Rashbi, Introduction:59; Sha'ar Ma'amarei Rashbi, Introduction:67 |
-| 227 | דיקנא | דיקנא | 131 | Aramaic/rabbinic form | Sha'ar Ma'amarei Rashbi, Introduction:32; Sha'ar Ma'amarei Rashbi, Introduction:39; Sha'ar Ma'amarei Rashbi, Introduction:42; Sha'ar Ma'amarei Rashbi, Parashat Terumah:13; Sha'ar Ma'amarei Rashbi, Parashat Terumah:14 |
-| 228 | בגי׳ | בגי׳ | 129 | abbreviation | Sha'ar HaMitzvot, Noach:1; Sha'ar HaMitzvot, Noach:3; Sha'ar HaMitzvot, Vayechi:2; Sha'ar HaMitzvot, Bo:1; Sha'ar HaMitzvot, Beshalach:1 |
-| 229 | ופי׳ | ופי׳ | 129 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:22; Beur HaGra on Shulchan Arukh, Yoreh De'ah 24:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 31:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 32:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 41:5 |
-| 230 | כפי׳ | כפי׳ | 129 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:8; Beur HaGra on Shulchan Arukh, Yoreh De'ah 20:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 24:35; Beur HaGra on Shulchan Arukh, Yoreh De'ah 26:2; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:26 |
-| 231 | ס״ט | ס״ט | 129 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:21; Beur HaGra on Shulchan Arukh, Yoreh De'ah 10:6; Beur HaGra on Shulchan Arukh, Yoreh De'ah 14:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 22:7; Beur HaGra on Shulchan Arukh, Yoreh De'ah 41:8 |
-| 232 | שתהי׳ | שתהי׳ | 129 | abbreviation | Midbar Shur 1:7; Midbar Shur 1:12; Midbar Shur 4:1; Midbar Shur 4:3; Midbar Shur 4:4 |
-| 233 | כנז״ל | כנז״ל | 128 | abbreviation | Sha'ar HaGilgulim 2:6; Sha'ar HaGilgulim 2:14; Sha'ar HaGilgulim 2:18; Sha'ar HaGilgulim 3:1; Sha'ar HaGilgulim 3:10 |
-| 234 | קאי | קאי | 128 | unknown | Beur HaGra on Shulchan Arukh, Yoreh De'ah 10:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 13:7; Beur HaGra on Shulchan Arukh, Yoreh De'ah 13:10; Beur HaGra on Shulchan Arukh, Yoreh De'ah 20:8; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:11 |
-| 235 | א׳ | א׳ | 127 | abbreviation | Sha'ar HaMitzvot, Introduction 1:14; Sha'ar HaMitzvot, Bereshit:1; Sha'ar HaMitzvot, Bereshit:4; Sha'ar HaMitzvot, Noach:1; Sha'ar HaMitzvot, Noach:3 |
-| 236 | ב׳ | ב׳ | 127 | abbreviation | Sha'ar HaMitzvot, Introduction 1:14; Sha'ar HaMitzvot, Bereshit:1; Sha'ar HaMitzvot, Noach:1; Sha'ar HaMitzvot, Noach:3; Sha'ar HaMitzvot, Vayechi:4 |
-| 237 | דאמר | דאמר | 127 | Aramaic/rabbinic form | Beur HaGra on Shulchan Arukh, Yoreh De'ah 13:7; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:15; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:31; Beur HaGra on Shulchan Arukh, Yoreh De'ah 29:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 33:18 |
-| 238 | הנק׳ | הנק׳ | 127 | abbreviation | Sha'ar HaMitzvot, Bereshit:4; Sha'ar HaMitzvot, Vayechi:4; Sha'ar HaMitzvot, Vayechi:7; Sha'ar HaMitzvot, Vayechi:10; Sha'ar HaMitzvot, Bo:1 |
-| 239 | קי״ל | קי״ל | 127 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:10; Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:9; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:21 |
-| 240 | הנקראת | הנקראת | 126 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:31; Sha'ar Ma'amarei Rashbi, Introduction:32; Sha'ar Ma'amarei Rashbi, Introduction:39; Sha'ar Ma'amarei Rashbi, Introduction:42; Sha'ar Ma'amarei Rashbi, Introduction:56 |
-| 241 | ואח״כ | ואח״כ | 126 | abbreviation | Sha'ar Ma'amarei Rashbi, Introduction:25; Sha'ar Ma'amarei Rashbi, Introduction:41; Sha'ar Ma'amarei Rashbi, Introduction:46; Sha'ar Ma'amarei Rashbi, Introduction:55; Sha'ar Ma'amarei Rashbi, Introduction:59 |
-| 242 | ודע | ודע | 126 | unknown | Sha'ar Ma'amarei Rashbi, Introduction:4; Sha'ar Ma'amarei Rashbi, Introduction:9; Sha'ar Ma'amarei Rashbi, Introduction:49; Sha'ar Ma'amarei Rashbi, Introduction:55; Sha'ar Ma'amarei Rashbi, Introduction:56 |
-| 243 | ביארנו | ביארנו | 125 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:23; Sha'ar Ma'amarei Rashbi, Parashat Bereshit:5; Sha'ar Ma'amarei Rashbi, Parashat Vayechi:1; Sha'ar Ma'amarei Rashbi, Parashat Vayechi:2; Sha'ar Ma'amarei Rashbi, Parashat Vayechi:3 |
-| 244 | הנקבה | הנקבה | 125 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:2; Sha'ar Ma'amarei Rashbi, Introduction:9; Sha'ar Ma'amarei Rashbi, Introduction:21; Sha'ar Ma'amarei Rashbi, Introduction:22; Sha'ar Ma'amarei Rashbi, Introduction:23 |
-| 245 | דכל | דכל | 124 | Aramaic/rabbinic form | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:15; Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:9; Beur HaGra on Shulchan Arukh, Yoreh De'ah 21:2; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:11; Beur HaGra on Shulchan Arukh, Yoreh De'ah 29:1 |
-| 246 | ואמא | ואמא | 124 | prefix/function form | Beur HaGra on Sifra DeTzniuta 1:23; Beur HaGra on Sifra DeTzniuta 1:25; Beur HaGra on Sifra DeTzniuta 1:27; Beur HaGra on Sifra DeTzniuta 1:28; Beur HaGra on Sifra DeTzniuta 1:31 |
-| 247 | כלם | כלמ | 124 | unknown | Sha'ar HaGilgulim 1:2; Sha'ar HaGilgulim 2:10; Sha'ar HaGilgulim 2:16; Sha'ar HaGilgulim 4:1; Sha'ar HaGilgulim 4:7 |
-| 248 | א״ש | א״ש | 123 | abbreviation | Sha'ar HaPesukim, Parashat Bereshit:10; Sha'ar HaPesukim, Parashat Bereshit:11; Sha'ar HaPesukim, Parashat Bereshit:72; Sha'ar HaPesukim, Parashat Bereshit:82; Sha'ar HaPesukim, Parashat Bereshit:126 |
-| 249 | ו׳ | ו׳ | 123 | abbreviation | Beur HaGra on Sifra DeTzniuta 1:19; Beur HaGra on Sifra DeTzniuta 1:28; Beur HaGra on Sifra DeTzniuta 1:36; Beur HaGra on Sifra DeTzniuta 1:44; Beur HaGra on Sifra DeTzniuta 1:54 |
-| 250 | ואח״כ | ואח״כ | 123 | abbreviation | Sha'ar HaHakdamot, Introductions 1:6; Sha'ar HaHakdamot, Introductions 1:8; Sha'ar HaHakdamot, Adam Kadmon 1:3; Sha'ar HaHakdamot, Adam Kadmon 1:4; Sha'ar HaHakdamot, Adam Kadmon 1:5 |
-| 251 | מ״ט | מ״ט | 123 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 29:2; Beur HaGra on Shulchan Arukh, Yoreh De'ah 31:11; Beur HaGra on Shulchan Arukh, Yoreh De'ah 37:11; Beur HaGra on Shulchan Arukh, Yoreh De'ah 38:1 |
-| 252 | מבחי׳ | מבחי׳ | 123 | abbreviation | Sha'ar HaGilgulim 1:7; Sha'ar HaGilgulim 1:8; Sha'ar HaGilgulim 5:3; Sha'ar HaGilgulim 5:7; Sha'ar HaGilgulim 6:3 |
-| 253 | מיין | מיינ | 123 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:35; Sha'ar Ma'amarei Rashbi, Introduction:36; Sha'ar Ma'amarei Rashbi, Introduction:37; Sha'ar Ma'amarei Rashbi, Introduction:81; Sha'ar Ma'amarei Rashbi, Introduction:111 |
-| 254 | בש״ע | בש״ע | 122 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:15; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:13; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 10:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:1 |
-| 255 | ו׳ | ו׳ | 122 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:10; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:20; Beur HaGra on Shulchan Arukh, Yoreh De'ah 14:6; Beur HaGra on Shulchan Arukh, Yoreh De'ah 16:9 |
-| 256 | וז״ש | וז״ש | 122 | abbreviation | Sha'ar HaPesukim, Parashat Lech Lecha:3; Sha'ar HaPesukim, Parashat Lech Lecha:40; Sha'ar HaPesukim, Parashat Lech Lecha:42; Sha'ar HaPesukim, Parashat Vayera:23; Sha'ar HaPesukim, Parashat Vayera:24 |
-| 257 | יו״ד | יו״ד | 122 | abbreviation | Sha'ar Ma'amarei Rashbi, Introduction:10; Sha'ar Ma'amarei Rashbi, Introduction:16; Sha'ar Ma'amarei Rashbi, Introduction:44; Sha'ar Ma'amarei Rashbi, Introduction:56; Sha'ar Ma'amarei Rashbi, Introduction:69 |
-| 258 | ה׳ | ה׳ | 121 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:23; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:9; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:13; Beur HaGra on Shulchan Arukh, Yoreh De'ah 4:8 |
-| 259 | א׳ | א׳ | 120 | abbreviation | Sha'ar HaHakdamot, Introductions 1:2; Sha'ar HaHakdamot, Introductions 1:7; Sha'ar HaHakdamot, Introductions 1:8; Sha'ar HaHakdamot, Introductions 1:12; Sha'ar HaHakdamot, Introductions 1:15 |
-| 260 | בחינות | בחינות | 120 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:21; Sha'ar Ma'amarei Rashbi, Introduction:28; Sha'ar Ma'amarei Rashbi, Introduction:41; Sha'ar Ma'amarei Rashbi, Introduction:42; Sha'ar Ma'amarei Rashbi, Introduction:43 |
-| 261 | ג׳ | ג׳ | 120 | abbreviation | Beur HaGra on Sifra DeTzniuta 1:3; Beur HaGra on Sifra DeTzniuta 1:9; Beur HaGra on Sifra DeTzniuta 1:10; Beur HaGra on Sifra DeTzniuta 1:25; Beur HaGra on Sifra DeTzniuta 1:26 |
-| 262 | מיירי | מיירי | 120 | prefix/function form | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 4:3; Beur HaGra on Shulchan Arukh, Yoreh De'ah 24:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:9; Beur HaGra on Shulchan Arukh, Yoreh De'ah 55:8 |
-| 263 | סד״ה | סד״ה | 120 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 19:12; Beur HaGra on Shulchan Arukh, Yoreh De'ah 33:18; Beur HaGra on Shulchan Arukh, Yoreh De'ah 44:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 48:8; Beur HaGra on Shulchan Arukh, Yoreh De'ah 48:11 |
-| 264 | הנקראת | הנקראת | 119 | prefix/function form | Sha'ar HaPesukim, Parashat Bereshit:39; Sha'ar HaPesukim, Parashat Bereshit:59; Sha'ar HaPesukim, Parashat Bereshit:71; Sha'ar HaPesukim, Parashat Bereshit:73; Sha'ar HaPesukim, Parashat Bereshit:76 |
-| 265 | י׳ | י׳ | 119 | abbreviation | Beur HaGra on Sifra DeTzniuta 1:16; Beur HaGra on Sifra DeTzniuta 1:17; Beur HaGra on Sifra DeTzniuta 1:27; Beur HaGra on Sifra DeTzniuta 1:44; Beur HaGra on Sifra DeTzniuta 1:52 |
-| 266 | כמבואר | כמבואר | 119 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:2; Sha'ar Ma'amarei Rashbi, Introduction:3; Sha'ar Ma'amarei Rashbi, Introduction:13; Sha'ar Ma'amarei Rashbi, Introduction:21; Sha'ar Ma'amarei Rashbi, Introduction:26 |
-| 267 | תלת | תלת | 119 | unknown | Sha'ar Ma'amarei Rashbi, Parashat Vayechi:1; Sha'ar Ma'amarei Rashbi, Parashat Vayechi:2; Sha'ar Ma'amarei Rashbi, Parashat Vayechi:3; Sha'ar Ma'amarei Rashbi, Parashat Vayechi:7; Sha'ar Ma'amarei Rashbi, Parashat Bo:3 |
-| 268 | בז״א | בז״א | 118 | abbreviation | Sha'ar Ma'amarei Rashbi, Introduction:2; Sha'ar Ma'amarei Rashbi, Introduction:10; Sha'ar Ma'amarei Rashbi, Introduction:99; Sha'ar Ma'amarei Rashbi, Introduction:103; Sha'ar Ma'amarei Rashbi, Introduction:113 |
-| 269 | בת״ה | בת״ה | 118 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:16; Beur HaGra on Shulchan Arukh, Yoreh De'ah 4:3; Beur HaGra on Shulchan Arukh, Yoreh De'ah 4:9; Beur HaGra on Shulchan Arukh, Yoreh De'ah 6:11; Beur HaGra on Shulchan Arukh, Yoreh De'ah 13:7 |
-| 270 | אינון | אינונ | 117 | unknown | Sha'ar Ma'amarei Rashbi, Introduction:8; Sha'ar Ma'amarei Rashbi, Introduction:11; Sha'ar Ma'amarei Rashbi, Introduction:26; Sha'ar Ma'amarei Rashbi, Introduction:37; Sha'ar Ma'amarei Rashbi, Introduction:42 |
-| 271 | דחולין | דחולינ | 117 | Aramaic/rabbinic form | Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 4:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 15:2; Beur HaGra on Shulchan Arukh, Yoreh De'ah 19:10; Beur HaGra on Shulchan Arukh, Yoreh De'ah 31:8 |
-| 272 | ה׳ | ה׳ | 117 | abbreviation | Sha'ar HaHakdamot, Introductions 1:2; Sha'ar HaHakdamot, Introductions 1:5; Sha'ar HaHakdamot, Introductions 1:6; Sha'ar HaHakdamot, Introductions 1:7; Sha'ar HaHakdamot, Introductions 1:8 |
-| 273 | הרי״ף | הרי״פ | 117 | abbreviation | Beur HaGra on Shulchan Arukh, Orach Chayim 6:1:8; Beur HaGra on Shulchan Arukh, Orach Chayim 41:1:3; Beur HaGra on Shulchan Arukh, Orach Chayim 46:1:3; Beur HaGra on Shulchan Arukh, Orach Chayim 49:1:2; Beur HaGra on Shulchan Arukh, Orach Chayim 52:1:3 |
-| 274 | ת״ה | ת״ה | 117 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:16; Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:21; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:3; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:12 |
-| 275 | באדרת | באדרת | 116 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:2; Sha'ar Ma'amarei Rashbi, Introduction:16; Sha'ar Ma'amarei Rashbi, Parashat Chayei Sarah:1; Sha'ar Ma'amarei Rashbi, Parashat Vayechi:1; Sha'ar Ma'amarei Rashbi, Parashat Vayechi:3 |
-| 276 | האזינו | האזינו | 116 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:2; Sha'ar Ma'amarei Rashbi, Introduction:16; Sha'ar Ma'amarei Rashbi, Introduction:53; Sha'ar Ma'amarei Rashbi, Parashat Bereshit:19; Sha'ar Ma'amarei Rashbi, Parashat Noach:7 |
-| 277 | ח׳ | ח׳ | 116 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 16:13; Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:21; Beur HaGra on Shulchan Arukh, Yoreh De'ah 22:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:10; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:15 |
-| 278 | יין | יינ | 116 | unknown | Beur HaGra on Shulchan Arukh, Yoreh De'ah 98:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 99:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 101:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 103:16; Beur HaGra on Shulchan Arukh, Yoreh De'ah 105:9 |
-| 279 | עילאה | עילאה | 116 | unknown | Sha'ar HaPesukim, Parashat Bereshit:4; Sha'ar HaPesukim, Parashat Bereshit:38; Sha'ar HaPesukim, Parashat Bereshit:39; Sha'ar HaPesukim, Parashat Bereshit:59; Sha'ar HaPesukim, Parashat Bereshit:70 |
-| 280 | ה׳ | ה׳ | 115 | abbreviation | Sha'ar HaGilgulim 1:13; Sha'ar HaGilgulim 6:9; Sha'ar HaGilgulim 7:14; Sha'ar HaGilgulim 11:1; Sha'ar HaGilgulim 11:3 |
-| 281 | וז״ס | וז״ס | 115 | abbreviation | Sha'ar HaGilgulim 1:11; Sha'ar HaGilgulim 1:16; Sha'ar HaGilgulim 2:10; Sha'ar HaGilgulim 2:12; Sha'ar HaGilgulim 2:13 |
-| 282 | חז״ל | חז״ל | 115 | abbreviation | Sha'ar HaPesukim, Parashat Bereshit:50; Sha'ar HaPesukim, Parashat Bereshit:60; Sha'ar HaPesukim, Parashat Bereshit:62; Sha'ar HaPesukim, Parashat Bereshit:63; Sha'ar HaPesukim, Parashat Bereshit:86 |
-| 283 | נה״י | נה״י | 115 | abbreviation | Sha'ar Ma'amarei Rashbi, Introduction:6; Sha'ar Ma'amarei Rashbi, Introduction:9; Sha'ar Ma'amarei Rashbi, Introduction:10; Sha'ar Ma'amarei Rashbi, Introduction:17; Sha'ar Ma'amarei Rashbi, Introduction:57 |
-| 284 | ב׳ | ב׳ | 114 | abbreviation | Sha'ar HaHakdamot, Introductions 1:6; Sha'ar HaHakdamot, Introductions 1:8; Sha'ar HaHakdamot, Adam Kadmon 1:12; Sha'ar HaHakdamot, Mati velo Mati 1:2; Sha'ar HaHakdamot, The Seven Kings of Edom 1:2 |
-| 285 | בפ״ב | בפ״ב | 114 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 11:2; Beur HaGra on Shulchan Arukh, Yoreh De'ah 35:14; Beur HaGra on Shulchan Arukh, Yoreh De'ah 55:19; Beur HaGra on Shulchan Arukh, Yoreh De'ah 61:6; Beur HaGra on Shulchan Arukh, Yoreh De'ah 63:2 |
-| 286 | דע | דע | 114 | Aramaic/rabbinic form | Sha'ar Ma'amarei Rashbi, Introduction:3; Sha'ar Ma'amarei Rashbi, Introduction:9; Sha'ar Ma'amarei Rashbi, Introduction:16; Sha'ar Ma'amarei Rashbi, Introduction:23; Sha'ar Ma'amarei Rashbi, Introduction:25 |
-| 287 | דרבנן | דרבננ | 114 | Aramaic/rabbinic form | Beur HaGra on Shulchan Arukh, Yoreh De'ah 6:12; Beur HaGra on Shulchan Arukh, Yoreh De'ah 15:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 21:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 56:9; Beur HaGra on Shulchan Arukh, Yoreh De'ah 57:47 |
-| 288 | זווג | זווג | 114 | unknown | Sha'ar Ma'amarei Rashbi, Introduction:19; Sha'ar Ma'amarei Rashbi, Introduction:53; Sha'ar Ma'amarei Rashbi, Introduction:55; Sha'ar Ma'amarei Rashbi, Introduction:57; Sha'ar Ma'amarei Rashbi, Introduction:87 |
-| 289 | מבחי׳ | מבחי׳ | 114 | abbreviation | Sha'ar HaPesukim, Parashat Bereshit:28; Sha'ar HaPesukim, Parashat Bereshit:32; Sha'ar HaPesukim, Parashat Bereshit:34; Sha'ar HaPesukim, Parashat Bereshit:41; Sha'ar HaPesukim, Parashat Bereshit:58 |
-| 290 | נק׳ | נק׳ | 114 | abbreviation | Sha'ar HaMitzvot, Vayechi:7; Sha'ar HaMitzvot, Vayechi:8; Sha'ar HaMitzvot, Beshalach:1; Sha'ar HaMitzvot, Beshalach:2; Sha'ar HaMitzvot, Beshalach:3 |
-| 291 | פסוק | פסוק | 114 | unknown | Sha'ar HaGilgulim 1:11; Sha'ar HaGilgulim 3:1; Sha'ar HaGilgulim 3:2; Sha'ar HaGilgulim 3:9; Sha'ar HaGilgulim 3:12 |
-| 292 | בזוהר | בזוהר | 113 | prefix/function form | Beur HaGra on Sifra DeTzniuta 1:2; Beur HaGra on Sifra DeTzniuta 1:10; Beur HaGra on Sifra DeTzniuta 1:25; Beur HaGra on Sifra DeTzniuta 1:26; Beur HaGra on Sifra DeTzniuta 1:28 |
-| 293 | גבורות | גבורות | 113 | inflected noun/adjective | Sha'ar Ma'amarei Rashbi, Introduction:17; Sha'ar Ma'amarei Rashbi, Introduction:33; Sha'ar Ma'amarei Rashbi, Introduction:34; Sha'ar Ma'amarei Rashbi, Introduction:35; Sha'ar Ma'amarei Rashbi, Introduction:44 |
-| 294 | גלגלתא | גלגלתא | 113 | Aramaic/rabbinic form | Sha'ar Ma'amarei Rashbi, Commentary on Sifra DeTzeniuta 1:3; Sha'ar Ma'amarei Rashbi, Commentary on Sifra DeTzeniuta 1:4; Sha'ar Ma'amarei Rashbi, Commentary on Sifra DeTzeniuta 1:5; Sha'ar Ma'amarei Rashbi, Commentary on Sifra DeTzeniuta 1:11; Sha'ar Ma'amarei Rashbi, Commentary on Sifra DeTzeniuta 1:25 |
-| 295 | ואח״כ | ואח״כ | 113 | abbreviation | Pri Etz Chaim, Gate of Prayer 1:1; Pri Etz Chaim, Gate of Prayer 1:3; Pri Etz Chaim, Gate of Blessings 1:5; Pri Etz Chaim, Gate of Blessings 1:9; Pri Etz Chaim, Gate of Blessings 1:11 |
-| 296 | והבל | והבל | 113 | prefix/function form | Sha'ar HaGilgulim 3:2; Sha'ar HaGilgulim 6:5; Sha'ar HaGilgulim 7:1; Sha'ar HaGilgulim 7:4; Sha'ar HaGilgulim 7:5 |
-| 297 | ס״ז | ס״ז | 113 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 10:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 15:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 24:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 33:10; Beur HaGra on Shulchan Arukh, Yoreh De'ah 37:4 |
-| 298 | הנקבה | הנקבה | 112 | prefix/function form | Sha'ar HaPesukim, Parashat Bereshit:40; Sha'ar HaPesukim, Parashat Bereshit:52; Sha'ar HaPesukim, Parashat Bereshit:55; Sha'ar HaPesukim, Parashat Bereshit:58; Sha'ar HaPesukim, Parashat Bereshit:88 |
-| 299 | ודע | ודע | 112 | unknown | Sha'ar HaGilgulim 1:16; Sha'ar HaGilgulim 2:5; Sha'ar HaGilgulim 2:14; Sha'ar HaGilgulim 2:16; Sha'ar HaGilgulim 5:3 |
-| 300 | כלם | כלמ | 112 | unknown | Sha'ar HaPesukim, Parashat Bereshit:43; Sha'ar HaPesukim, Parashat Bereshit:45; Sha'ar HaPesukim, Parashat Bereshit:57; Sha'ar HaPesukim, Parashat Bereshit:67; Sha'ar HaPesukim, Parashat Bereshit:68 |
+| 201 | נוקבין | נוקבינ | 139 | inflected verb | Sha'ar Ma'amarei Rashbi, Introduction:35; Sha'ar Ma'amarei Rashbi, Introduction:37; Sha'ar Ma'amarei Rashbi, Introduction:81; Sha'ar Ma'amarei Rashbi, Introduction:111; Sha'ar Ma'amarei Rashbi, Introduction:116 |
+| 202 | ע״ג | ע״ג | 139 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 9:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 23:12; Beur HaGra on Shulchan Arukh, Yoreh De'ah 25:3; Beur HaGra on Shulchan Arukh, Yoreh De'ah 62:2; Beur HaGra on Shulchan Arukh, Yoreh De'ah 64:8 |
+| 203 | פ״ב | פ״ב | 139 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 16:2; Beur HaGra on Shulchan Arukh, Yoreh De'ah 16:6; Beur HaGra on Shulchan Arukh, Yoreh De'ah 24:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 36:10; Beur HaGra on Shulchan Arukh, Yoreh De'ah 69:54 |
+| 204 | שבעה | שבעה | 139 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:35; Sha'ar Ma'amarei Rashbi, Introduction:53; Sha'ar Ma'amarei Rashbi, Introduction:70; Sha'ar Ma'amarei Rashbi, Introduction:71; Sha'ar Ma'amarei Rashbi, Introduction:81 |
+| 205 | דע | דע | 138 | Aramaic/rabbinic form | Sha'ar HaGilgulim 1:2; Sha'ar HaGilgulim 1:4; Sha'ar HaGilgulim 1:8; Sha'ar HaGilgulim 1:15; Sha'ar HaGilgulim 2:6 |
+| 206 | נקראת | נקראת | 138 | inflected verb | Sha'ar Ma'amarei Rashbi, Introduction:9; Sha'ar Ma'amarei Rashbi, Introduction:22; Sha'ar Ma'amarei Rashbi, Introduction:32; Sha'ar Ma'amarei Rashbi, Introduction:37; Sha'ar Ma'amarei Rashbi, Introduction:39 |
+| 207 | ספירות | ספירות | 138 | inflected noun/adjective | Sha'ar Ma'amarei Rashbi, Introduction:12; Sha'ar Ma'amarei Rashbi, Introduction:33; Sha'ar Ma'amarei Rashbi, Introduction:67; Sha'ar Ma'amarei Rashbi, Introduction:70; Sha'ar Ma'amarei Rashbi, Introduction:75 |
+| 208 | שהי׳ | שהי׳ | 138 | abbreviation | Midbar Shur 4:2; Midbar Shur 4:4; Midbar Shur 5:1; Midbar Shur 7:4; Midbar Shur 8:1 |
+| 209 | ותוס׳ | ותוס׳ | 137 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:21; Beur HaGra on Shulchan Arukh, Yoreh De'ah 4:6; Beur HaGra on Shulchan Arukh, Yoreh De'ah 13:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 19:10 |
+| 210 | אלקים | אלקימ | 136 | unknown | Sha'ar HaKavanot, Sermons on the Intentions of Blessings:10; Sha'ar HaKavanot, Sermons on the Intentions of Blessings:12; Sha'ar HaKavanot, Sermons on the Intentions of Blessings:17; Sha'ar HaKavanot, Morning Prayers:7; Sha'ar HaKavanot, Morning Prayers:8 |
+| 211 | כמנין | כמנינ | 136 | prefix/function form | Sha'ar HaPesukim, Parashat Bereshit:54; Sha'ar HaPesukim, Parashat Bereshit:93; Sha'ar HaPesukim, Parashat Bereshit:119; Sha'ar HaPesukim, Parashat Bereshit:120; Sha'ar HaPesukim, Parashat Bereshit:121 |
+| 212 | ע״ז | ע״ז | 136 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:14; Beur HaGra on Shulchan Arukh, Yoreh De'ah 6:11; Beur HaGra on Shulchan Arukh, Yoreh De'ah 10:3; Beur HaGra on Shulchan Arukh, Yoreh De'ah 52:9; Beur HaGra on Shulchan Arukh, Yoreh De'ah 55:12 |
+| 213 | הת״ת | הת״ת | 135 | abbreviation | Sha'ar Ma'amarei Rashbi, Introduction:3; Sha'ar Ma'amarei Rashbi, Introduction:4; Sha'ar Ma'amarei Rashbi, Introduction:12; Sha'ar Ma'amarei Rashbi, Introduction:25; Sha'ar Ma'amarei Rashbi, Introduction:42 |
+| 214 | ורא״ש | ורא״ש | 135 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:7; Beur HaGra on Shulchan Arukh, Yoreh De'ah 14:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 14:3 |
+| 215 | דרב | דרב | 134 | Aramaic/rabbinic form | Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:3; Beur HaGra on Shulchan Arukh, Yoreh De'ah 4:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 10:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 15:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:6 |
+| 216 | הר״ן | הר״נ | 134 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 20:8; Beur HaGra on Shulchan Arukh, Yoreh De'ah 22:8; Beur HaGra on Shulchan Arukh, Yoreh De'ah 22:9 |
+| 217 | וכמש״ל | וכמש״ל | 134 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:12; Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:12; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 10:5 |
+| 218 | ועש״ך | ועש״כ | 134 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:36; Beur HaGra on Shulchan Arukh, Yoreh De'ah 13:12; Beur HaGra on Shulchan Arukh, Yoreh De'ah 22:6; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:16 |
+| 219 | דס״ל | דס״ל | 133 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 22:7; Beur HaGra on Shulchan Arukh, Yoreh De'ah 23:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 24:2; Beur HaGra on Shulchan Arukh, Yoreh De'ah 24:9; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:11 |
+| 220 | פסוק | פסוק | 133 | unknown | Sha'ar HaPesukim, Parashat Bereshit:48; Sha'ar HaPesukim, Parashat Bereshit:50; Sha'ar HaPesukim, Parashat Bereshit:53; Sha'ar HaPesukim, Parashat Bereshit:86; Sha'ar HaPesukim, Parashat Bereshit:87 |
+| 221 | ואמר | ואמר | 132 | prefix/function form | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:16; Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:38; Beur HaGra on Shulchan Arukh, Yoreh De'ah 14:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 24:24; Beur HaGra on Shulchan Arukh, Yoreh De'ah 29:2 |
+| 222 | וזהו | וזהו | 132 | prefix/function form | Beur HaGra on Sifra DeTzniuta 1:4; Beur HaGra on Sifra DeTzniuta 1:6; Beur HaGra on Sifra DeTzniuta 1:12; Beur HaGra on Sifra DeTzniuta 1:26; Beur HaGra on Sifra DeTzniuta 1:28 |
+| 223 | מ״ש | מ״ש | 132 | abbreviation | Sha'ar Ma'amarei Rashbi, Introduction:4; Sha'ar Ma'amarei Rashbi, Introduction:5; Sha'ar Ma'amarei Rashbi, Introduction:8; Sha'ar Ma'amarei Rashbi, Introduction:9; Sha'ar Ma'amarei Rashbi, Introduction:12 |
+| 224 | מאי | מאי | 132 | unknown | Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:16; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 14:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:7 |
+| 225 | קדישא | קדישא | 132 | Aramaic/rabbinic form | Sha'ar Ma'amarei Rashbi, Introduction:49; Sha'ar Ma'amarei Rashbi, Introduction:56; Sha'ar Ma'amarei Rashbi, Introduction:57; Sha'ar Ma'amarei Rashbi, Introduction:59; Sha'ar Ma'amarei Rashbi, Introduction:67 |
+| 226 | דיקנא | דיקנא | 131 | Aramaic/rabbinic form | Sha'ar Ma'amarei Rashbi, Introduction:32; Sha'ar Ma'amarei Rashbi, Introduction:39; Sha'ar Ma'amarei Rashbi, Introduction:42; Sha'ar Ma'amarei Rashbi, Parashat Terumah:13; Sha'ar Ma'amarei Rashbi, Parashat Terumah:14 |
+| 227 | בגי׳ | בגי׳ | 129 | abbreviation | Sha'ar HaMitzvot, Noach:1; Sha'ar HaMitzvot, Noach:3; Sha'ar HaMitzvot, Vayechi:2; Sha'ar HaMitzvot, Bo:1; Sha'ar HaMitzvot, Beshalach:1 |
+| 228 | ופי׳ | ופי׳ | 129 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:22; Beur HaGra on Shulchan Arukh, Yoreh De'ah 24:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 31:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 32:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 41:5 |
+| 229 | כפי׳ | כפי׳ | 129 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:8; Beur HaGra on Shulchan Arukh, Yoreh De'ah 20:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 24:35; Beur HaGra on Shulchan Arukh, Yoreh De'ah 26:2; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:26 |
+| 230 | ס״ט | ס״ט | 129 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:21; Beur HaGra on Shulchan Arukh, Yoreh De'ah 10:6; Beur HaGra on Shulchan Arukh, Yoreh De'ah 14:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 22:7; Beur HaGra on Shulchan Arukh, Yoreh De'ah 41:8 |
+| 231 | שתהי׳ | שתהי׳ | 129 | abbreviation | Midbar Shur 1:7; Midbar Shur 1:12; Midbar Shur 4:1; Midbar Shur 4:3; Midbar Shur 4:4 |
+| 232 | כנז״ל | כנז״ל | 128 | abbreviation | Sha'ar HaGilgulim 2:6; Sha'ar HaGilgulim 2:14; Sha'ar HaGilgulim 2:18; Sha'ar HaGilgulim 3:1; Sha'ar HaGilgulim 3:10 |
+| 233 | קאי | קאי | 128 | unknown | Beur HaGra on Shulchan Arukh, Yoreh De'ah 10:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 13:7; Beur HaGra on Shulchan Arukh, Yoreh De'ah 13:10; Beur HaGra on Shulchan Arukh, Yoreh De'ah 20:8; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:11 |
+| 234 | א׳ | א׳ | 127 | abbreviation | Sha'ar HaMitzvot, Introduction 1:14; Sha'ar HaMitzvot, Bereshit:1; Sha'ar HaMitzvot, Bereshit:4; Sha'ar HaMitzvot, Noach:1; Sha'ar HaMitzvot, Noach:3 |
+| 235 | ב׳ | ב׳ | 127 | abbreviation | Sha'ar HaMitzvot, Introduction 1:14; Sha'ar HaMitzvot, Bereshit:1; Sha'ar HaMitzvot, Noach:1; Sha'ar HaMitzvot, Noach:3; Sha'ar HaMitzvot, Vayechi:4 |
+| 236 | דאמר | דאמר | 127 | Aramaic/rabbinic form | Beur HaGra on Shulchan Arukh, Yoreh De'ah 13:7; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:15; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:31; Beur HaGra on Shulchan Arukh, Yoreh De'ah 29:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 33:18 |
+| 237 | הנק׳ | הנק׳ | 127 | abbreviation | Sha'ar HaMitzvot, Bereshit:4; Sha'ar HaMitzvot, Vayechi:4; Sha'ar HaMitzvot, Vayechi:7; Sha'ar HaMitzvot, Vayechi:10; Sha'ar HaMitzvot, Bo:1 |
+| 238 | קי״ל | קי״ל | 127 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:10; Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:9; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:21 |
+| 239 | הנקראת | הנקראת | 126 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:31; Sha'ar Ma'amarei Rashbi, Introduction:32; Sha'ar Ma'amarei Rashbi, Introduction:39; Sha'ar Ma'amarei Rashbi, Introduction:42; Sha'ar Ma'amarei Rashbi, Introduction:56 |
+| 240 | ואח״כ | ואח״כ | 126 | abbreviation | Sha'ar Ma'amarei Rashbi, Introduction:25; Sha'ar Ma'amarei Rashbi, Introduction:41; Sha'ar Ma'amarei Rashbi, Introduction:46; Sha'ar Ma'amarei Rashbi, Introduction:55; Sha'ar Ma'amarei Rashbi, Introduction:59 |
+| 241 | ודע | ודע | 126 | unknown | Sha'ar Ma'amarei Rashbi, Introduction:4; Sha'ar Ma'amarei Rashbi, Introduction:9; Sha'ar Ma'amarei Rashbi, Introduction:49; Sha'ar Ma'amarei Rashbi, Introduction:55; Sha'ar Ma'amarei Rashbi, Introduction:56 |
+| 242 | ביארנו | ביארנו | 125 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:23; Sha'ar Ma'amarei Rashbi, Parashat Bereshit:5; Sha'ar Ma'amarei Rashbi, Parashat Vayechi:1; Sha'ar Ma'amarei Rashbi, Parashat Vayechi:2; Sha'ar Ma'amarei Rashbi, Parashat Vayechi:3 |
+| 243 | הנקבה | הנקבה | 125 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:2; Sha'ar Ma'amarei Rashbi, Introduction:9; Sha'ar Ma'amarei Rashbi, Introduction:21; Sha'ar Ma'amarei Rashbi, Introduction:22; Sha'ar Ma'amarei Rashbi, Introduction:23 |
+| 244 | דכל | דכל | 124 | Aramaic/rabbinic form | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:15; Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:9; Beur HaGra on Shulchan Arukh, Yoreh De'ah 21:2; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:11; Beur HaGra on Shulchan Arukh, Yoreh De'ah 29:1 |
+| 245 | ואמא | ואמא | 124 | prefix/function form | Beur HaGra on Sifra DeTzniuta 1:23; Beur HaGra on Sifra DeTzniuta 1:25; Beur HaGra on Sifra DeTzniuta 1:27; Beur HaGra on Sifra DeTzniuta 1:28; Beur HaGra on Sifra DeTzniuta 1:31 |
+| 246 | כלם | כלמ | 124 | unknown | Sha'ar HaGilgulim 1:2; Sha'ar HaGilgulim 2:10; Sha'ar HaGilgulim 2:16; Sha'ar HaGilgulim 4:1; Sha'ar HaGilgulim 4:7 |
+| 247 | א״ש | א״ש | 123 | abbreviation | Sha'ar HaPesukim, Parashat Bereshit:10; Sha'ar HaPesukim, Parashat Bereshit:11; Sha'ar HaPesukim, Parashat Bereshit:72; Sha'ar HaPesukim, Parashat Bereshit:82; Sha'ar HaPesukim, Parashat Bereshit:126 |
+| 248 | ו׳ | ו׳ | 123 | abbreviation | Beur HaGra on Sifra DeTzniuta 1:19; Beur HaGra on Sifra DeTzniuta 1:28; Beur HaGra on Sifra DeTzniuta 1:36; Beur HaGra on Sifra DeTzniuta 1:44; Beur HaGra on Sifra DeTzniuta 1:54 |
+| 249 | ואח״כ | ואח״כ | 123 | abbreviation | Sha'ar HaHakdamot, Introductions 1:6; Sha'ar HaHakdamot, Introductions 1:8; Sha'ar HaHakdamot, Adam Kadmon 1:3; Sha'ar HaHakdamot, Adam Kadmon 1:4; Sha'ar HaHakdamot, Adam Kadmon 1:5 |
+| 250 | מ״ט | מ״ט | 123 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 29:2; Beur HaGra on Shulchan Arukh, Yoreh De'ah 31:11; Beur HaGra on Shulchan Arukh, Yoreh De'ah 37:11; Beur HaGra on Shulchan Arukh, Yoreh De'ah 38:1 |
+| 251 | מבחי׳ | מבחי׳ | 123 | abbreviation | Sha'ar HaGilgulim 1:7; Sha'ar HaGilgulim 1:8; Sha'ar HaGilgulim 5:3; Sha'ar HaGilgulim 5:7; Sha'ar HaGilgulim 6:3 |
+| 252 | מיין | מיינ | 123 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:35; Sha'ar Ma'amarei Rashbi, Introduction:36; Sha'ar Ma'amarei Rashbi, Introduction:37; Sha'ar Ma'amarei Rashbi, Introduction:81; Sha'ar Ma'amarei Rashbi, Introduction:111 |
+| 253 | בש״ע | בש״ע | 122 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:15; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:13; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 10:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:1 |
+| 254 | ו׳ | ו׳ | 122 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:10; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:20; Beur HaGra on Shulchan Arukh, Yoreh De'ah 14:6; Beur HaGra on Shulchan Arukh, Yoreh De'ah 16:9 |
+| 255 | וז״ש | וז״ש | 122 | abbreviation | Sha'ar HaPesukim, Parashat Lech Lecha:3; Sha'ar HaPesukim, Parashat Lech Lecha:40; Sha'ar HaPesukim, Parashat Lech Lecha:42; Sha'ar HaPesukim, Parashat Vayera:23; Sha'ar HaPesukim, Parashat Vayera:24 |
+| 256 | יו״ד | יו״ד | 122 | abbreviation | Sha'ar Ma'amarei Rashbi, Introduction:10; Sha'ar Ma'amarei Rashbi, Introduction:16; Sha'ar Ma'amarei Rashbi, Introduction:44; Sha'ar Ma'amarei Rashbi, Introduction:56; Sha'ar Ma'amarei Rashbi, Introduction:69 |
+| 257 | ה׳ | ה׳ | 121 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:23; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:9; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:13; Beur HaGra on Shulchan Arukh, Yoreh De'ah 4:8 |
+| 258 | א׳ | א׳ | 120 | abbreviation | Sha'ar HaHakdamot, Introductions 1:2; Sha'ar HaHakdamot, Introductions 1:7; Sha'ar HaHakdamot, Introductions 1:8; Sha'ar HaHakdamot, Introductions 1:12; Sha'ar HaHakdamot, Introductions 1:15 |
+| 259 | בחינות | בחינות | 120 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:21; Sha'ar Ma'amarei Rashbi, Introduction:28; Sha'ar Ma'amarei Rashbi, Introduction:41; Sha'ar Ma'amarei Rashbi, Introduction:42; Sha'ar Ma'amarei Rashbi, Introduction:43 |
+| 260 | ג׳ | ג׳ | 120 | abbreviation | Beur HaGra on Sifra DeTzniuta 1:3; Beur HaGra on Sifra DeTzniuta 1:9; Beur HaGra on Sifra DeTzniuta 1:10; Beur HaGra on Sifra DeTzniuta 1:25; Beur HaGra on Sifra DeTzniuta 1:26 |
+| 261 | מיירי | מיירי | 120 | prefix/function form | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 4:3; Beur HaGra on Shulchan Arukh, Yoreh De'ah 24:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:9; Beur HaGra on Shulchan Arukh, Yoreh De'ah 55:8 |
+| 262 | סד״ה | סד״ה | 120 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 19:12; Beur HaGra on Shulchan Arukh, Yoreh De'ah 33:18; Beur HaGra on Shulchan Arukh, Yoreh De'ah 44:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 48:8; Beur HaGra on Shulchan Arukh, Yoreh De'ah 48:11 |
+| 263 | הנקראת | הנקראת | 119 | prefix/function form | Sha'ar HaPesukim, Parashat Bereshit:39; Sha'ar HaPesukim, Parashat Bereshit:59; Sha'ar HaPesukim, Parashat Bereshit:71; Sha'ar HaPesukim, Parashat Bereshit:73; Sha'ar HaPesukim, Parashat Bereshit:76 |
+| 264 | י׳ | י׳ | 119 | abbreviation | Beur HaGra on Sifra DeTzniuta 1:16; Beur HaGra on Sifra DeTzniuta 1:17; Beur HaGra on Sifra DeTzniuta 1:27; Beur HaGra on Sifra DeTzniuta 1:44; Beur HaGra on Sifra DeTzniuta 1:52 |
+| 265 | כמבואר | כמבואר | 119 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:2; Sha'ar Ma'amarei Rashbi, Introduction:3; Sha'ar Ma'amarei Rashbi, Introduction:13; Sha'ar Ma'amarei Rashbi, Introduction:21; Sha'ar Ma'amarei Rashbi, Introduction:26 |
+| 266 | תלת | תלת | 119 | unknown | Sha'ar Ma'amarei Rashbi, Parashat Vayechi:1; Sha'ar Ma'amarei Rashbi, Parashat Vayechi:2; Sha'ar Ma'amarei Rashbi, Parashat Vayechi:3; Sha'ar Ma'amarei Rashbi, Parashat Vayechi:7; Sha'ar Ma'amarei Rashbi, Parashat Bo:3 |
+| 267 | בז״א | בז״א | 118 | abbreviation | Sha'ar Ma'amarei Rashbi, Introduction:2; Sha'ar Ma'amarei Rashbi, Introduction:10; Sha'ar Ma'amarei Rashbi, Introduction:99; Sha'ar Ma'amarei Rashbi, Introduction:103; Sha'ar Ma'amarei Rashbi, Introduction:113 |
+| 268 | בת״ה | בת״ה | 118 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:16; Beur HaGra on Shulchan Arukh, Yoreh De'ah 4:3; Beur HaGra on Shulchan Arukh, Yoreh De'ah 4:9; Beur HaGra on Shulchan Arukh, Yoreh De'ah 6:11; Beur HaGra on Shulchan Arukh, Yoreh De'ah 13:7 |
+| 269 | אינון | אינונ | 117 | unknown | Sha'ar Ma'amarei Rashbi, Introduction:8; Sha'ar Ma'amarei Rashbi, Introduction:11; Sha'ar Ma'amarei Rashbi, Introduction:26; Sha'ar Ma'amarei Rashbi, Introduction:37; Sha'ar Ma'amarei Rashbi, Introduction:42 |
+| 270 | דחולין | דחולינ | 117 | Aramaic/rabbinic form | Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 4:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 15:2; Beur HaGra on Shulchan Arukh, Yoreh De'ah 19:10; Beur HaGra on Shulchan Arukh, Yoreh De'ah 31:8 |
+| 271 | ה׳ | ה׳ | 117 | abbreviation | Sha'ar HaHakdamot, Introductions 1:2; Sha'ar HaHakdamot, Introductions 1:5; Sha'ar HaHakdamot, Introductions 1:6; Sha'ar HaHakdamot, Introductions 1:7; Sha'ar HaHakdamot, Introductions 1:8 |
+| 272 | הרי״ף | הרי״פ | 117 | abbreviation | Beur HaGra on Shulchan Arukh, Orach Chayim 6:1:8; Beur HaGra on Shulchan Arukh, Orach Chayim 41:1:3; Beur HaGra on Shulchan Arukh, Orach Chayim 46:1:3; Beur HaGra on Shulchan Arukh, Orach Chayim 49:1:2; Beur HaGra on Shulchan Arukh, Orach Chayim 52:1:3 |
+| 273 | ת״ה | ת״ה | 117 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:16; Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:21; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:3; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:12 |
+| 274 | באדרת | באדרת | 116 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:2; Sha'ar Ma'amarei Rashbi, Introduction:16; Sha'ar Ma'amarei Rashbi, Parashat Chayei Sarah:1; Sha'ar Ma'amarei Rashbi, Parashat Vayechi:1; Sha'ar Ma'amarei Rashbi, Parashat Vayechi:3 |
+| 275 | האזינו | האזינו | 116 | prefix/function form | Sha'ar Ma'amarei Rashbi, Introduction:2; Sha'ar Ma'amarei Rashbi, Introduction:16; Sha'ar Ma'amarei Rashbi, Introduction:53; Sha'ar Ma'amarei Rashbi, Parashat Bereshit:19; Sha'ar Ma'amarei Rashbi, Parashat Noach:7 |
+| 276 | ח׳ | ח׳ | 116 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 16:13; Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:21; Beur HaGra on Shulchan Arukh, Yoreh De'ah 22:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:10; Beur HaGra on Shulchan Arukh, Yoreh De'ah 28:15 |
+| 277 | יין | יינ | 116 | unknown | Beur HaGra on Shulchan Arukh, Yoreh De'ah 98:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 99:17; Beur HaGra on Shulchan Arukh, Yoreh De'ah 101:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 103:16; Beur HaGra on Shulchan Arukh, Yoreh De'ah 105:9 |
+| 278 | עילאה | עילאה | 116 | unknown | Sha'ar HaPesukim, Parashat Bereshit:4; Sha'ar HaPesukim, Parashat Bereshit:38; Sha'ar HaPesukim, Parashat Bereshit:39; Sha'ar HaPesukim, Parashat Bereshit:59; Sha'ar HaPesukim, Parashat Bereshit:70 |
+| 279 | ה׳ | ה׳ | 115 | abbreviation | Sha'ar HaGilgulim 1:13; Sha'ar HaGilgulim 6:9; Sha'ar HaGilgulim 7:14; Sha'ar HaGilgulim 11:1; Sha'ar HaGilgulim 11:3 |
+| 280 | וז״ס | וז״ס | 115 | abbreviation | Sha'ar HaGilgulim 1:11; Sha'ar HaGilgulim 1:16; Sha'ar HaGilgulim 2:10; Sha'ar HaGilgulim 2:12; Sha'ar HaGilgulim 2:13 |
+| 281 | חז״ל | חז״ל | 115 | abbreviation | Sha'ar HaPesukim, Parashat Bereshit:50; Sha'ar HaPesukim, Parashat Bereshit:60; Sha'ar HaPesukim, Parashat Bereshit:62; Sha'ar HaPesukim, Parashat Bereshit:63; Sha'ar HaPesukim, Parashat Bereshit:86 |
+| 282 | נה״י | נה״י | 115 | abbreviation | Sha'ar Ma'amarei Rashbi, Introduction:6; Sha'ar Ma'amarei Rashbi, Introduction:9; Sha'ar Ma'amarei Rashbi, Introduction:10; Sha'ar Ma'amarei Rashbi, Introduction:17; Sha'ar Ma'amarei Rashbi, Introduction:57 |
+| 283 | ב׳ | ב׳ | 114 | abbreviation | Sha'ar HaHakdamot, Introductions 1:6; Sha'ar HaHakdamot, Introductions 1:8; Sha'ar HaHakdamot, Adam Kadmon 1:12; Sha'ar HaHakdamot, Mati velo Mati 1:2; Sha'ar HaHakdamot, The Seven Kings of Edom 1:2 |
+| 284 | בפ״ב | בפ״ב | 114 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 11:2; Beur HaGra on Shulchan Arukh, Yoreh De'ah 35:14; Beur HaGra on Shulchan Arukh, Yoreh De'ah 55:19; Beur HaGra on Shulchan Arukh, Yoreh De'ah 61:6; Beur HaGra on Shulchan Arukh, Yoreh De'ah 63:2 |
+| 285 | דע | דע | 114 | Aramaic/rabbinic form | Sha'ar Ma'amarei Rashbi, Introduction:3; Sha'ar Ma'amarei Rashbi, Introduction:9; Sha'ar Ma'amarei Rashbi, Introduction:16; Sha'ar Ma'amarei Rashbi, Introduction:23; Sha'ar Ma'amarei Rashbi, Introduction:25 |
+| 286 | דרבנן | דרבננ | 114 | Aramaic/rabbinic form | Beur HaGra on Shulchan Arukh, Yoreh De'ah 6:12; Beur HaGra on Shulchan Arukh, Yoreh De'ah 15:1; Beur HaGra on Shulchan Arukh, Yoreh De'ah 21:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 56:9; Beur HaGra on Shulchan Arukh, Yoreh De'ah 57:47 |
+| 287 | זווג | זווג | 114 | unknown | Sha'ar Ma'amarei Rashbi, Introduction:19; Sha'ar Ma'amarei Rashbi, Introduction:53; Sha'ar Ma'amarei Rashbi, Introduction:55; Sha'ar Ma'amarei Rashbi, Introduction:57; Sha'ar Ma'amarei Rashbi, Introduction:87 |
+| 288 | מבחי׳ | מבחי׳ | 114 | abbreviation | Sha'ar HaPesukim, Parashat Bereshit:28; Sha'ar HaPesukim, Parashat Bereshit:32; Sha'ar HaPesukim, Parashat Bereshit:34; Sha'ar HaPesukim, Parashat Bereshit:41; Sha'ar HaPesukim, Parashat Bereshit:58 |
+| 289 | נק׳ | נק׳ | 114 | abbreviation | Sha'ar HaMitzvot, Vayechi:7; Sha'ar HaMitzvot, Vayechi:8; Sha'ar HaMitzvot, Beshalach:1; Sha'ar HaMitzvot, Beshalach:2; Sha'ar HaMitzvot, Beshalach:3 |
+| 290 | פסוק | פסוק | 114 | unknown | Sha'ar HaGilgulim 1:11; Sha'ar HaGilgulim 3:1; Sha'ar HaGilgulim 3:2; Sha'ar HaGilgulim 3:9; Sha'ar HaGilgulim 3:12 |
+| 291 | בזוהר | בזוהר | 113 | prefix/function form | Beur HaGra on Sifra DeTzniuta 1:2; Beur HaGra on Sifra DeTzniuta 1:10; Beur HaGra on Sifra DeTzniuta 1:25; Beur HaGra on Sifra DeTzniuta 1:26; Beur HaGra on Sifra DeTzniuta 1:28 |
+| 292 | גבורות | גבורות | 113 | inflected noun/adjective | Sha'ar Ma'amarei Rashbi, Introduction:17; Sha'ar Ma'amarei Rashbi, Introduction:33; Sha'ar Ma'amarei Rashbi, Introduction:34; Sha'ar Ma'amarei Rashbi, Introduction:35; Sha'ar Ma'amarei Rashbi, Introduction:44 |
+| 293 | גלגלתא | גלגלתא | 113 | Aramaic/rabbinic form | Sha'ar Ma'amarei Rashbi, Commentary on Sifra DeTzeniuta 1:3; Sha'ar Ma'amarei Rashbi, Commentary on Sifra DeTzeniuta 1:4; Sha'ar Ma'amarei Rashbi, Commentary on Sifra DeTzeniuta 1:5; Sha'ar Ma'amarei Rashbi, Commentary on Sifra DeTzeniuta 1:11; Sha'ar Ma'amarei Rashbi, Commentary on Sifra DeTzeniuta 1:25 |
+| 294 | ואח״כ | ואח״כ | 113 | abbreviation | Pri Etz Chaim, Gate of Prayer 1:1; Pri Etz Chaim, Gate of Prayer 1:3; Pri Etz Chaim, Gate of Blessings 1:5; Pri Etz Chaim, Gate of Blessings 1:9; Pri Etz Chaim, Gate of Blessings 1:11 |
+| 295 | והבל | והבל | 113 | prefix/function form | Sha'ar HaGilgulim 3:2; Sha'ar HaGilgulim 6:5; Sha'ar HaGilgulim 7:1; Sha'ar HaGilgulim 7:4; Sha'ar HaGilgulim 7:5 |
+| 296 | ס״ז | ס״ז | 113 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 10:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 15:4; Beur HaGra on Shulchan Arukh, Yoreh De'ah 24:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 33:10; Beur HaGra on Shulchan Arukh, Yoreh De'ah 37:4 |
+| 297 | הנקבה | הנקבה | 112 | prefix/function form | Sha'ar HaPesukim, Parashat Bereshit:40; Sha'ar HaPesukim, Parashat Bereshit:52; Sha'ar HaPesukim, Parashat Bereshit:55; Sha'ar HaPesukim, Parashat Bereshit:58; Sha'ar HaPesukim, Parashat Bereshit:88 |
+| 298 | ודע | ודע | 112 | unknown | Sha'ar HaGilgulim 1:16; Sha'ar HaGilgulim 2:5; Sha'ar HaGilgulim 2:14; Sha'ar HaGilgulim 2:16; Sha'ar HaGilgulim 5:3 |
+| 299 | כלם | כלמ | 112 | unknown | Sha'ar HaPesukim, Parashat Bereshit:43; Sha'ar HaPesukim, Parashat Bereshit:45; Sha'ar HaPesukim, Parashat Bereshit:57; Sha'ar HaPesukim, Parashat Bereshit:67; Sha'ar HaPesukim, Parashat Bereshit:68 |
+| 300 | ע״ל | ע״ל | 112 | abbreviation | Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:27; Beur HaGra on Shulchan Arukh, Yoreh De'ah 1:40; Beur HaGra on Shulchan Arukh, Yoreh De'ah 2:9; Beur HaGra on Shulchan Arukh, Yoreh De'ah 6:5; Beur HaGra on Shulchan Arukh, Yoreh De'ah 18:1 |
 
 ## Risk / Noise Report
 
@@ -403,39 +403,33 @@ Generated: 2026-05-01T12:57:57.547Z
 
 ## Size Report
 
-- Total lexical data size: 439.86 MB
-- Files near/above GitHub warning threshold (50.00 MB): 1
-
-### Files Near/Above GitHub Warning Threshold
-
-| Path | Size |
-|---|---:|
-| data/lexical/token-index.json | 83.55 MB |
+- Total lexical data size: 439.87 MB
+- Files near/above GitHub warning threshold (50.00 MB): 0
 
 ### Largest Lexical Data Files Overall
 
 | Path | Size |
 |---|---:|
-| data/lexical/token-index.json | 83.55 MB |
 | data/lexical/.cache/kaikki.org-dictionary-Hebrew.jsonl | 46.45 MB |
 | data/lexical/source-layers/openscriptures-cc-by-4.json | 32.24 MB |
 | data/lexical/occurrences/beur-hagra-on-shulchan-arukh-yoreh-deah.json | 9.98 MB |
+| data/lexical/token-indexes/gra/beur-hagra-on-shulchan-arukh-yoreh-deah.json | 9.16 MB |
+| data/lexical/token-indexes/ari/shaar-maamarei-rashbi.json | 6.79 MB |
+| data/lexical/token-indexes/rav-kook/midbar-shur.json | 6.69 MB |
+| data/lexical/token-indexes/rav-kook/orot-ha-kodesh.json | 6.43 MB |
 | data/lexical/source-layers/wikidata-cc0.json | 6.08 MB |
+| data/lexical/token-indexes/orot.json | 5.65 MB |
+| data/lexical/token-indexes/ari/shaar-hapesukim.json | 5.43 MB |
 | data/lexical/occurrences/shaar-maamarei-rashbi.json | 5.24 MB |
+| data/lexical/token-indexes/gra/beur-hagra-on-shulchan-arukh-orach-chayim.json | 4.54 MB |
+| data/lexical/token-indexes/ari/shaar-hagilgulim.json | 4.47 MB |
 | data/lexical/occurrences/shaar-hapesukim.json | 4.44 MB |
+| data/lexical/token-indexes/ari/shaar-hamitzvot.json | 4.03 MB |
+| data/lexical/token-indexes/gra/beur-hagra-on-sifra-detzniuta.json | 3.81 MB |
+| data/lexical/token-indexes/ari/shaar-hakavanot.json | 3.69 MB |
 | data/lexical/occurrences/midbar-shur.json | 3.33 MB |
-| data/lexical/occurrences/beur-hagra-on-shulchan-arukh-orach-chayim.json | 3.06 MB |
-| data/lexical/occurrences/shaar-hagilgulim.json | 3.03 MB |
-| data/lexical/occurrences/orot-ha-kodesh.json | 2.45 MB |
-| data/lexical/occurrences/beur-hagra-on-sifra-detzniuta.json | 2.14 MB |
-| data/lexical/occurrences/shaar-hakavanot.json | 2.06 MB |
-| data/lexical/occurrences/orot.json | 1.99 MB |
-| data/lexical/occurrences/shaar-hamitzvot.json | 1.91 MB |
-| data/lexical/occurrences/pri-etz-chaim.json | 1.85 MB |
-| data/lexical/orot-chunks/orot-000.json | 1.75 MB |
-| data/lexical/orot-chunks/orot-013.json | 1.72 MB |
-| data/lexical/orot-chunks/orot-008.json | 1.71 MB |
-| data/lexical/orot-chunks/orot-001.json | 1.69 MB |
+| data/lexical/token-indexes/ari/pri-etz-chaim.json | 3.20 MB |
+| data/lexical/token-indexes/ari/shaar-hahakdamot.json | 3.11 MB |
 
 ### Largest HTML Pages
 
@@ -495,9 +489,9 @@ Generated: 2026-05-01T12:57:57.547Z
 | data/lexical/source-layers/wikidata-cc0.json | 6.08 MB |
 | data/lexical/source-layers/kaikki-wiktionary-cc-by-sa-gfdl.json | 870.66 KB |
 | data/lexical/source-layers/project-abbreviations.json | 86.37 KB |
+| data/lexical/source-layers/project-function-words.json | 27.67 KB |
 | data/lexical/source-layers/project-orot-technical-terms.json | 26.96 KB |
 | data/lexical/source-layers/project-zohar-ari-technical-terms.json | 26.64 KB |
-| data/lexical/source-layers/project-function-words.json | 25.23 KB |
 | data/lexical/source-layers/project-aramaic-grammar.json | 16.38 KB |
 | data/lexical/source-layers/project-overrides.json | 3.92 KB |
 

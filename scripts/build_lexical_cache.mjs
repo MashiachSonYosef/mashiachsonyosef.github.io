@@ -8,6 +8,7 @@ const occurrencesDir = path.join(lexicalDir, 'occurrences');
 const lexiconPath = path.join(lexicalDir, 'lexicon.json');
 const lexiconLayerDir = path.join(lexicalDir, 'source-layers');
 const tokenIndexPath = path.join(lexicalDir, 'token-index.json');
+const tokenIndexesDir = path.join(lexicalDir, 'token-indexes');
 const reportPath = 'reports/sitewide-lexical-build-report.md';
 const lexicalScope = {
   label: 'All imported Hebrew works',
@@ -1337,13 +1338,21 @@ fs.mkdirSync(occurrencesDir, { recursive: true });
 for (const oldFile of fs.readdirSync(occurrencesDir).filter((name) => name.endsWith('.json'))) {
   fs.unlinkSync(path.join(occurrencesDir, oldFile));
 }
+fs.rmSync(tokenIndexesDir, { recursive: true, force: true });
+fs.mkdirSync(tokenIndexesDir, { recursive: true });
 
 const tokenRows = new Map();
 const sourceFiles = fs.readdirSync(sourceDir).filter((name) => name.endsWith('.json')).sort();
 const observedNormalizedCounts = new Map();
+const sourceMetaByWorkId = new Map();
 
 for (const fileName of sourceFiles) {
   const source = readJson(path.join(sourceDir, fileName));
+  sourceMetaByWorkId.set(source.work_id, {
+    work_id: source.work_id,
+    work_title: source.work_title,
+    work_slug: source.work_slug || source.work_id,
+  });
   for (const unit of source.units || []) {
     for (const paragraph of unit.hebrew || []) {
       for (const surfaceWord of getTokens(paragraph)) {
@@ -1472,12 +1481,52 @@ for (const row of forms) {
 }
 const sitewideMatchedSurfaceForms = Array.from(sitewideSurfaceGroups.values()).filter((rows) => rows.some((row) => row.status === 'matched'));
 const sitewideUnmatchedSurfaceForms = Array.from(sitewideSurfaceGroups.values()).filter((rows) => rows.every((row) => row.status !== 'matched'));
+const generatedAt = new Date().toISOString();
+
+const formsByWork = new Map();
+for (const row of forms) {
+  if (!formsByWork.has(row.work_id)) formsByWork.set(row.work_id, []);
+  formsByWork.get(row.work_id).push(row);
+}
+
+const workIndexes = [];
+for (const [workId, workForms] of Array.from(formsByWork.entries()).sort((a, b) => a[0].localeCompare(b[0]))) {
+  const meta = sourceMetaByWorkId.get(workId) || { work_id: workId, work_title: workId, work_slug: workId };
+  const workMatchedForms = workForms.filter((row) => row.status === 'matched');
+  const workUnmatchedForms = workForms.filter((row) => row.status !== 'matched');
+  const workPath = `token-indexes/${meta.work_slug}.json`;
+  writeCompactJson(path.join(lexicalDir, workPath), {
+    schema_version: 1,
+    generated_at: generatedAt,
+    work_id: workId,
+    work_title: meta.work_title,
+    work_slug: meta.work_slug,
+    total_unique_surface_forms: workForms.length,
+    total_occurrences: workForms.reduce((sum, row) => sum + (row.occurrence_count || 0), 0),
+    matched_surface_forms: workMatchedForms.length,
+    unmatched_surface_forms: workUnmatchedForms.length,
+    forms: workForms,
+  });
+  workIndexes.push({
+    work_id: workId,
+    work_title: meta.work_title,
+    work_slug: meta.work_slug,
+    path: workPath.replace(/\\/g, '/'),
+    row_count: workForms.length,
+    total_occurrences: workForms.reduce((sum, row) => sum + (row.occurrence_count || 0), 0),
+    matched_surface_forms: workMatchedForms.length,
+    unmatched_surface_forms: workUnmatchedForms.length,
+  });
+}
 
 writeCompactJson(tokenIndexPath, {
   schema_version: 1,
-  generated_at: new Date().toISOString(),
+  generated_at: generatedAt,
   source_dir: sourceDir,
   scope: lexicalScope,
+  layout: 'per-work-token-indexes',
+  index_dir: 'token-indexes',
+  work_indexes: workIndexes,
   normalization_policy: {
     geresh: "ASCII apostrophe after Hebrew letters is normalized to Hebrew geresh U+05F3 for display/indexing.",
     gershayim: "ASCII double quote between Hebrew letters is normalized to Hebrew gershayim U+05F4 for display/indexing.",
@@ -1498,7 +1547,6 @@ writeCompactJson(tokenIndexPath, {
   matched_wikidata_surface_forms: wikidataMatchedForms.length,
   enriched_openscriptures_surface_forms: openScripturesMatchedForms.length,
   unmatched_surface_forms: unmatchedForms.length,
-  forms,
 });
 
 const matchedSamples = matchedForms.filter((row) => renderingsFor(row) !== 'N/A').slice(0, 20).map(formatMatchedSample);

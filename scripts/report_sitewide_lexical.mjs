@@ -162,7 +162,19 @@ const tokenIndex = readJson(path.join(lexicalDir, 'token-index.json'));
 const lexiconManifest = readJson(path.join(lexicalDir, 'lexicon.json'));
 const entries = loadLexiconEntries(lexiconManifest);
 const entriesById = new Map(entries.map((entry) => [entry.entry_id, entry]));
-const forms = tokenIndex.forms || [];
+function loadTokenIndexForms(indexManifest) {
+  if (Array.isArray(indexManifest.forms) && indexManifest.forms.length) return indexManifest.forms;
+  const rows = [];
+  for (const indexFile of indexManifest.work_indexes || []) {
+    if (!indexFile.path) continue;
+    const indexPath = path.join(lexicalDir, indexFile.path);
+    if (!fs.existsSync(indexPath)) continue;
+    rows.push(...(readJson(indexPath).forms || []));
+  }
+  return rows;
+}
+
+const forms = loadTokenIndexForms(tokenIndex);
 const formsByWork = new Map();
 for (const row of forms) {
   if (!formsByWork.has(row.work_id)) formsByWork.set(row.work_id, []);

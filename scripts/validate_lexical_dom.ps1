@@ -69,8 +69,23 @@ foreach ($path in @($tokenIndexPath, $lexiconPath)) {
 }
 
 $tokenIndex = Get-Content -LiteralPath $tokenIndexPath -Raw -Encoding UTF8 | ConvertFrom-Json
+$tokenIndexRows = @()
+if ($tokenIndex.PSObject.Properties.Name -contains 'forms') {
+  $tokenIndexRows = @($tokenIndex.forms)
+}
+if ($tokenIndexRows.Count -eq 0 -and $tokenIndex.PSObject.Properties.Name -contains 'work_indexes') {
+  foreach ($indexFile in @($tokenIndex.work_indexes)) {
+    if (-not $indexFile.path) { continue }
+    $indexPath = Join-Path (Join-Path $PSScriptRoot '..\data\lexical') ([string]$indexFile.path)
+    if (-not (Test-Path -LiteralPath $indexPath)) {
+      throw "Required per-work token index file not found: $indexPath"
+    }
+    $workTokenIndex = Get-Content -LiteralPath $indexPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    $tokenIndexRows += @($workTokenIndex.forms)
+  }
+}
 $tokenRows = @{}
-foreach ($row in @($tokenIndex.forms)) {
+foreach ($row in @($tokenIndexRows)) {
   $tokenKey = [string]$row.token_index_id
   $tokenRows[$tokenKey] = $row
 }
@@ -102,12 +117,12 @@ function Select-TokenRow {
     [AllowNull()][string]$Normalized
   )
 
-  $matches = @($tokenIndex.forms | Where-Object {
+  $matches = @($tokenIndexRows | Where-Object {
     ($_.work_id -eq $WorkId) -and
     ((($Surface -ne $null) -and ($_.surface_word -eq $Surface)) -or (($Normalized -ne $null) -and ($_.normalized_word -eq $Normalized)))
   })
   if ($matches.Count -eq 0) {
-    $matches = @($tokenIndex.forms | Where-Object {
+    $matches = @($tokenIndexRows | Where-Object {
       ((($Surface -ne $null) -and ($_.surface_word -eq $Surface)) -or (($Normalized -ne $null) -and ($_.normalized_word -eq $Normalized)))
     })
   }
