@@ -35,6 +35,13 @@ const lexicalLayerFiles = [
     description: 'Project-authored conservative Aramaic grammar and common-form rows.',
   },
   {
+    layer_id: 'project-zohar-ari-technical-terms',
+    source_family: 'workspace',
+    license: 'project-authored / CC0',
+    path: 'source-layers/project-zohar-ari-technical-terms.json',
+    description: 'Project-authored scoped Zohar/Ari technical term rows. Short factual mappings only.',
+  },
+  {
     layer_id: 'project-function-words',
     source_family: 'workspace',
     license: 'project-authored / CC0',
@@ -285,15 +292,117 @@ const projectAramaicGrammarDefinitions = [
       { hebrew: '\u05E2\u05E7\u05D1\u05EA\u05D0', strict_renderings: ['heel', 'footstep', 'end-period'] },
     ],
   },
+];
+
+const projectZoharAriTechnicalTermDefinitions = [
   {
-    source_id: 'project-aramaic:de-imma',
+    source_id: 'project-zohar-ari-technical:abba',
+    surface: '\u05D0\u05D1\u05D0',
+    renderings: ['Abba'],
+  },
+  {
+    source_id: 'project-zohar-ari-technical:de-abba',
+    surface: '\u05D3\u05D0\u05D1\u05D0',
+    renderings: ['of Abba'],
+    breakdown: [
+      { hebrew: '\u05D3\u05BE', strict_renderings: ['of'] },
+      { hebrew: '\u05D0\u05D1\u05D0', strict_renderings: ['Abba'] },
+    ],
+  },
+  {
+    source_id: 'project-zohar-ari-technical:imma',
+    surface: '\u05D0\u05D9\u05DE\u05D0',
+    renderings: ['Imma'],
+  },
+  {
+    source_id: 'project-zohar-ari-technical:ve-imma',
+    surface: '\u05D5\u05D0\u05D9\u05DE\u05D0',
+    renderings: ['and Imma'],
+    breakdown: [
+      { hebrew: '\u05D5\u05BE', strict_renderings: ['and'] },
+      { hebrew: '\u05D0\u05D9\u05DE\u05D0', strict_renderings: ['Imma'] },
+    ],
+  },
+  {
+    source_id: 'project-zohar-ari-technical:de-imma',
     surface: '\u05D3\u05D0\u05D9\u05DE\u05D0',
     renderings: ['of Imma'],
-    work_scope: 'kabbalah',
     breakdown: [
       { hebrew: '\u05D3\u05BE', strict_renderings: ['of'] },
       { hebrew: '\u05D0\u05D9\u05DE\u05D0', strict_renderings: ['Imma'] },
     ],
+  },
+  {
+    source_id: 'project-zohar-ari-technical:zeir',
+    surface: '\u05D6\u05E2\u05D9\u05E8',
+    renderings: ['Zeir', 'small'],
+  },
+  {
+    source_id: 'project-zohar-ari-technical:anpin',
+    surface: '\u05D0\u05E0\u05E4\u05D9\u05DF',
+    renderings: ['Anpin', 'faces'],
+  },
+  {
+    source_id: 'project-zohar-ari-technical:nukva',
+    surface: '\u05E0\u05D5\u05E7\u05D1\u05D0',
+    renderings: ['Nukva', 'female'],
+  },
+  {
+    source_id: 'project-zohar-ari-technical:de-nukva',
+    surface: '\u05D3\u05E0\u05D5\u05E7\u05D1\u05D0',
+    renderings: ['of Nukva'],
+    breakdown: [
+      { hebrew: '\u05D3\u05BE', strict_renderings: ['of'] },
+      { hebrew: '\u05E0\u05D5\u05E7\u05D1\u05D0', strict_renderings: ['Nukva', 'female'] },
+    ],
+  },
+  {
+    source_id: 'project-zohar-ari-technical:atika',
+    surface: '\u05E2\u05EA\u05D9\u05E7\u05D0',
+    renderings: ['Atika', 'Ancient One'],
+  },
+  {
+    source_id: 'project-zohar-ari-technical:de-atika',
+    surface: '\u05D3\u05E2\u05EA\u05D9\u05E7\u05D0',
+    renderings: ['of Atika', 'of the Ancient One'],
+    breakdown: [
+      { hebrew: '\u05D3\u05BE', strict_renderings: ['of'] },
+      { hebrew: '\u05E2\u05EA\u05D9\u05E7\u05D0', strict_renderings: ['Atika', 'Ancient One'] },
+    ],
+  },
+  {
+    source_id: 'project-zohar-ari-technical:partzuf',
+    surface: '\u05E4\u05E8\u05E6\u05D5\u05E3',
+    renderings: ['partzuf', 'configuration'],
+  },
+  {
+    source_id: 'project-zohar-ari-technical:partzufim',
+    surface: '\u05E4\u05E8\u05E6\u05D5\u05E4\u05D9\u05DD',
+    renderings: ['partzufim', 'configurations'],
+  },
+  {
+    source_id: 'project-zohar-ari-technical:partzufin',
+    surface: '\u05E4\u05E8\u05E6\u05D5\u05E4\u05D9\u05DF',
+    renderings: ['partzufin', 'configurations'],
+  },
+  {
+    source_id: 'project-zohar-ari-technical:idra',
+    surface: '\u05D0\u05D3\u05E8\u05D0',
+    renderings: ['Idra'],
+  },
+  {
+    source_id: 'project-zohar-ari-technical:be-idra',
+    surface: '\u05D1\u05D0\u05D3\u05E8\u05D0',
+    renderings: ['in the Idra'],
+    breakdown: [
+      { hebrew: '\u05D1\u05BE', strict_renderings: ['in'] },
+      { hebrew: '\u05D0\u05D3\u05E8\u05D0', strict_renderings: ['Idra'] },
+    ],
+  },
+  {
+    source_id: 'project-zohar-ari-technical:zuta',
+    surface: '\u05D6\u05D5\u05D8\u05D0',
+    renderings: ['Zuta', 'lesser'],
   },
 ];
 
@@ -569,6 +678,10 @@ function entryLayerId(entry) {
     || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-aramaic:'))) {
     return 'project-aramaic-grammar';
   }
+  if (String(entry.entry_id || '').startsWith('lex-zohar-ari-term-')
+    || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-zohar-ari-technical:'))) {
+    return 'project-zohar-ari-technical-terms';
+  }
   if (String(entry.entry_id || '').startsWith('lex-function-word-')
     || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-function-word:'))) {
     return 'project-function-words';
@@ -801,6 +914,72 @@ function ensureProjectAramaicGrammarEntries(lexicon) {
   return changed;
 }
 
+function makeProjectZoharAriTechnicalTermEntry(definition) {
+  const surface = normalizeHebrewPunctuation(definition.surface);
+  const sourceId = definition.source_id;
+  const entryId = stableId('lex-zohar-ari-term', sourceId);
+  const sourceRowKey = `workspace|${sourceId}`;
+  const possibleEntry = {
+    entry_key: sourceId,
+    lemma: surface,
+    match_key: normalizeHebrewToken(surface),
+    language: definition.language || 'Hebrew/Aramaic',
+    register: 'Zohar/Ari technical term',
+    source_name: 'Project-authored Zohar/Ari technical term table',
+    source_family: 'workspace',
+    source_id: sourceId,
+    transliteration: '',
+    strict_renderings: definition.renderings,
+    root: '',
+    root_transliteration: '',
+    root_meaning: [],
+    context_role: 'likely_contextual',
+    relation_label: 'Zohar/Ari technical term',
+    source_row_keys: [sourceRowKey],
+  };
+  const sourceRow = {
+    source_name: 'Project-authored Zohar/Ari technical term table',
+    source_family: 'workspace',
+    source_id: sourceId,
+    source_url: 'local:project-zohar-ari-technical-term-table',
+    license: 'project-authored / CC0',
+    license_url: 'local:project-zohar-ari-technical-term-table',
+    fields_used: ['technical surface form', 'short factual mapping', 'mechanical breakdown where present'],
+    notes: 'Project-maintained Zohar/Ari technical term row. No external dictionary prose imported.',
+  };
+  return {
+    entry_id: entryId,
+    hebrew_word: surface,
+    surface_forms: [surface, ...(definition.surface_forms || [])].map(normalizeHebrewPunctuation),
+    language: definition.language || 'Hebrew/Aramaic',
+    register: 'Zohar/Ari technical term',
+    transliteration: '',
+    strict_renderings: definition.renderings,
+    root: '',
+    root_transliteration: '',
+    root_meaning: [],
+    disambiguation_status: 'likely',
+    context_note: 'Resolved as a scoped Zohar/Ari technical term.',
+    breakdown: definition.breakdown || [],
+    work_scope: 'zohar_ari',
+    possible_entries_truncated: 0,
+    possible_entries: [possibleEntry],
+    source_rows: [sourceRow],
+  };
+}
+
+function ensureProjectZoharAriTechnicalTermEntries(lexicon) {
+  const entries = Array.isArray(lexicon.entries) ? lexicon.entries : [];
+  const withoutProjectTerms = entries.filter((entry) => entryLayerId(entry) !== 'project-zohar-ari-technical-terms');
+  const nextEntries = [
+    ...withoutProjectTerms,
+    ...projectZoharAriTechnicalTermDefinitions.map(makeProjectZoharAriTechnicalTermEntry),
+  ];
+  const changed = JSON.stringify(entries) !== JSON.stringify(nextEntries);
+  lexicon.entries = nextEntries;
+  return changed;
+}
+
 function sourceFamiliesFor(row) {
   const entry = lexiconById.get(row.lexicon_entry_id);
   return unique((entry?.source_rows || []).map((sourceRow) => sourceRow.source_family || sourceRow.source_name));
@@ -901,6 +1080,7 @@ function getPrefixSequences(normalized) {
 
 function isEntryAllowedForWork(entry, workId) {
   if (entry?.work_scope === 'kabbalah' && !isKabbalahWork(workId)) return false;
+  if (entry?.work_scope === 'zohar_ari' && !isZoharAriWork(workId)) return false;
   const sourceIds = [
     ...(entry?.source_rows || []).map((row) => row.source_id),
     ...(entry?.possible_entries || []).map((row) => row.source_id || row.entry_key),
@@ -909,6 +1089,19 @@ function isEntryAllowedForWork(entry, workId) {
     return workId === 'orot';
   }
   return true;
+}
+
+function isZoharAriWork(workId) {
+  return String(workId || '').startsWith('shaar-')
+    || [
+      'pri-etz-chaim',
+      'sefer-etz-chaim',
+      'shaarei-kedusha',
+      'beur-hagra-on-sifra-detzniuta',
+      'hagra-on-sefer-yetzirah-gra-version',
+      'sefer-yetzirah-gra-version',
+      'yahel-ohr-on-zohar',
+    ].includes(workId);
 }
 
 function isKabbalahWork(workId) {
@@ -940,6 +1133,7 @@ function matchMethodForEntry(entry, fallback = 'direct') {
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-function-word:'))) return 'project_function_word';
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-abbreviation:'))) return 'project_abbreviation';
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-aramaic:'))) return 'project_aramaic_grammar';
+  if (sourceIds.some((sourceId) => sourceId.startsWith('project-zohar-ari-technical:'))) return 'project_zohar_ari_technical';
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-orot-technical:'))) return 'project_orot_technical';
   return fallback;
 }
@@ -1051,6 +1245,15 @@ function analyzeSurfaceForm(surfaceWord, entry) {
       breakdown: entry?.breakdown || [],
     };
   }
+  if (sourceIds.some((sourceId) => sourceId.startsWith('project-zohar-ari-technical:'))) {
+    return {
+      surface_transliteration: '',
+      surface_renderings: entry?.strict_renderings || [],
+      surface_context_status: 'resolved_zohar_ari_technical',
+      surface_context_note: entry?.context_note || 'Resolved as a scoped Zohar/Ari technical term.',
+      breakdown: entry?.breakdown || [],
+    };
+  }
 
   const likely = (entry?.possible_entries || []).find((possibleEntry) => possibleEntry.context_role === 'likely_contextual');
   const lamed = getLeadingLamedBase(surfaceWord);
@@ -1108,7 +1311,8 @@ const lexicon = loadLexicon();
 const fixedExpressionEntriesChanged = ensureFixedExpressionEntries(lexicon);
 const abbreviationEntriesChanged = ensureProjectAbbreviationEntries(lexicon);
 const aramaicGrammarEntriesChanged = ensureProjectAramaicGrammarEntries(lexicon);
-const lexiconChanged = fixedExpressionEntriesChanged || abbreviationEntriesChanged || aramaicGrammarEntriesChanged;
+const zoharAriTermEntriesChanged = ensureProjectZoharAriTechnicalTermEntries(lexicon);
+const lexiconChanged = fixedExpressionEntriesChanged || abbreviationEntriesChanged || aramaicGrammarEntriesChanged || zoharAriTermEntriesChanged;
 writeLexicon(lexicon);
 const lexiconByNormalized = new Map();
 const lexiconById = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));

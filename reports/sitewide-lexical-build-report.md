@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-01T10:57:15.319Z
+Generated: 2026-05-01T12:42:53.812Z
 
 ## Scope
 
@@ -17,16 +17,16 @@ Generated: 2026-05-01T10:57:15.319Z
 
 - Total work-surface rows: 243663
 - Total sitewide unique surface forms: 100759
-- Sitewide unique surface forms matched at least once: 18555
-- Sitewide unique surface forms unmatched everywhere: 82204
+- Sitewide unique surface forms matched at least once: 18608
+- Sitewide unique surface forms unmatched everywhere: 82151
 - Total token occurrences: 1337888
 - Matched before prefix/suffix parser: 73921
-- Newly resolved by prefix/suffix parser: 8498
-- Total matched after parser: 84178
-- Percent matched: 34.5%
+- Newly resolved by prefix/suffix parser: 8630
+- Total matched after parser: 84456
+- Percent matched: 34.7%
 - Matched via Wikidata: 64432
 - Enriched via OpenScriptures: 63935
-- Unmatched: 159485
+- Unmatched: 159207
 
 ## Newly Resolved Parsed Forms
 
@@ -49,7 +49,7 @@ Generated: 2026-05-01T10:57:15.319Z
 - האלו -> the this/that, the demonstrative pronoun (wikidata + openscriptures) -- shaar-maamarei-rashbi
 - ואלו -> and this/that, and demonstrative pronoun (wikidata + openscriptures) -- shaar-hagilgulim
 - המלכים -> the king (wikidata + openscriptures) -- shaar-maamarei-rashbi
-- הכי -> the because, the for, the that (workspace) -- shaar-maamarei-rashbi
+- ובאדרא -> and in the Idra (workspace) -- beur-hagra-on-sifra-detzniuta
 
 ## Sample Matched Words With Refs To Test
 
@@ -95,7 +95,7 @@ Generated: 2026-05-01T10:57:15.319Z
 - אבא -- beur-hagra-on-jerusalem-talmud-challah
 - אבא -- beur-hagra-on-shulchan-arukh-orach-chayim
 - אבא -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- אבא -- beur-hagra-on-sifra-detzniuta
+- אבא -- midbar-shur
 
 ## Top 50 Remaining Unmatched By Frequency
 
@@ -120,7 +120,6 @@ Generated: 2026-05-01T10:57:15.319Z
 - 460x ע״א -- shaar-maamarei-rashbi
 - 437x כתב -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 433x משמע -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- 427x באדרא -- beur-hagra-on-sifra-detzniuta
 - 412x כנודע -- shaar-hapesukim
 - 406x וזהו -- shaar-maamarei-rashbi
 - 395x וז״ש -- beur-hagra-on-sifra-detzniuta
@@ -149,6 +148,7 @@ Generated: 2026-05-01T10:57:15.319Z
 - 275x שהן -- beur-hagra-on-sifra-detzniuta
 - 259x בסי׳ -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 255x ד״ש -- shaar-maamarei-rashbi
+- 250x א׳ -- shaar-hakavanot
 
 ## Exact Orot Refs To Test
 
