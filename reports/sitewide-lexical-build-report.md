@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-04-30T23:22:01.348Z
+Generated: 2026-05-01T10:57:15.319Z
 
 ## Scope
 
@@ -17,21 +17,22 @@ Generated: 2026-04-30T23:22:01.348Z
 
 - Total work-surface rows: 243663
 - Total sitewide unique surface forms: 100759
-- Sitewide unique surface forms matched at least once: 18523
-- Sitewide unique surface forms unmatched everywhere: 82236
+- Sitewide unique surface forms matched at least once: 18555
+- Sitewide unique surface forms unmatched everywhere: 82204
 - Total token occurrences: 1337888
 - Matched before prefix/suffix parser: 73921
-- Newly resolved by prefix/suffix parser: 8426
-- Total matched after parser: 83988
+- Newly resolved by prefix/suffix parser: 8498
+- Total matched after parser: 84178
 - Percent matched: 34.5%
-- Matched via Wikidata: 64435
-- Enriched via OpenScriptures: 63938
-- Unmatched: 159675
+- Matched via Wikidata: 64432
+- Enriched via OpenScriptures: 63935
+- Unmatched: 159485
 
 ## Newly Resolved Parsed Forms
 
 - ודוקא -> and unexpectedly, and just to spite, and in fact, actually (kaikki) -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - כנגד -> as resistor, like resistor (wikidata + openscriptures) -- shaar-maamarei-rashbi
+- והא -> and behold, and this (workspace) -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - והענין -> and ado, and business, and travail (openscriptures) -- shaar-hapesukim
 - כנגד -> as resistor, like resistor (wikidata + openscriptures) -- shaar-hapesukim
 - והענין -> and ado, and business, and travail (openscriptures) -- shaar-maamarei-rashbi
@@ -39,6 +40,8 @@ Generated: 2026-04-30T23:22:01.348Z
 - כנגד -> as resistor, like resistor (wikidata + openscriptures) -- shaar-hakavanot
 - הכח -> the vigor, the means (openscriptures) -- midbar-shur
 - ואלו -> and this/that, and demonstrative pronoun (wikidata + openscriptures) -- shaar-maamarei-rashbi
+- ודלא -> and that not, and which does not, and without (workspace) -- beur-hagra-on-shulchan-arukh-yoreh-deah
+- מהא -> from behold, of behold, from this (workspace) -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - כלא -> as not, like not, as no (workspace) -- beur-hagra-on-sifra-detzniuta
 - לחוץ -> to exterior, for exterior, of exterior (wikidata + openscriptures) -- shaar-maamarei-rashbi
 - ולמטה -> and to bed, and for bed, and of bed (wikidata + openscriptures) -- shaar-hapesukim
@@ -47,9 +50,6 @@ Generated: 2026-04-30T23:22:01.348Z
 - ואלו -> and this/that, and demonstrative pronoun (wikidata + openscriptures) -- shaar-hagilgulim
 - המלכים -> the king (wikidata + openscriptures) -- shaar-maamarei-rashbi
 - הכי -> the because, the for, the that (workspace) -- shaar-maamarei-rashbi
-- ולמטה -> and to bed, and for bed, and of bed (wikidata + openscriptures) -- shaar-maamarei-rashbi
-- שבבינה -> that understanding, which understanding, who understanding (openscriptures) -- shaar-maamarei-rashbi
-- והענין -> and ado, and business, and travail (openscriptures) -- shaar-hakavanot
 
 ## Sample Matched Words With Refs To Test
 
@@ -102,7 +102,6 @@ Generated: 2026-04-30T23:22:01.348Z
 - 2533x א׳ -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 2433x ב׳ -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 1007x ליקוט -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- 798x דלא -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 743x אסור -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 710x ב׳ -- beur-hagra-on-shulchan-arukh-orach-chayim
 - 706x א׳ -- beur-hagra-on-shulchan-arukh-orach-chayim
@@ -122,7 +121,6 @@ Generated: 2026-04-30T23:22:01.348Z
 - 437x כתב -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 433x משמע -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 427x באדרא -- beur-hagra-on-sifra-detzniuta
-- 416x עלאה -- shaar-maamarei-rashbi
 - 412x כנודע -- shaar-hapesukim
 - 406x וזהו -- shaar-maamarei-rashbi
 - 395x וז״ש -- beur-hagra-on-sifra-detzniuta
@@ -133,22 +131,24 @@ Generated: 2026-04-30T23:22:01.348Z
 - 363x בהג״ה -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 350x ע״א -- beur-hagra-on-sifra-detzniuta
 - 341x ה׳ -- beur-hagra-on-sifra-detzniuta
-- 340x דאימא -- shaar-hapesukim
 - 336x א׳ -- pri-etz-chaim
 - 336x ב׳ -- shaar-hapesukim
 - 332x ב׳ -- pri-etz-chaim
 - 331x ה׳ -- shaar-maamarei-rashbi
 - 330x ע״ב -- beur-hagra-on-sifra-detzniuta
 - 326x רבא -- beur-hagra-on-sifra-detzniuta
-- 325x דהא -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 324x ג׳ -- shaar-hapesukim
-- 322x הא -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 320x כ׳ -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 313x בפ׳ -- shaar-maamarei-rashbi
 - 310x ית׳ -- midbar-shur
 - 300x ה׳ -- shaar-hakavanot
 - 297x וזמ״ש -- shaar-maamarei-rashbi
 - 290x ממ״ש -- beur-hagra-on-shulchan-arukh-yoreh-deah
+- 280x קצוות -- shaar-maamarei-rashbi
+- 278x ה׳ -- pri-etz-chaim
+- 275x שהן -- beur-hagra-on-sifra-detzniuta
+- 259x בסי׳ -- beur-hagra-on-shulchan-arukh-yoreh-deah
+- 255x ד״ש -- shaar-maamarei-rashbi
 
 ## Exact Orot Refs To Test
 

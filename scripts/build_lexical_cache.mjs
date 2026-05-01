@@ -28,6 +28,13 @@ const lexicalLayerFiles = [
     description: 'Project-authored conservative Hebrew abbreviation expansions.',
   },
   {
+    layer_id: 'project-aramaic-grammar',
+    source_family: 'workspace',
+    license: 'project-authored / CC0',
+    path: 'source-layers/project-aramaic-grammar.json',
+    description: 'Project-authored conservative Aramaic grammar and common-form rows.',
+  },
+  {
     layer_id: 'project-function-words',
     source_family: 'workspace',
     license: 'project-authored / CC0',
@@ -200,6 +207,94 @@ const projectAbbreviationDefinitions = [
   { source_id: 'project-abbreviation:de-zeir', surface: 'דזעיר', expansion: 'דזעיר אנפין', renderings: ['of Zeir Anpin'], work_scope: 'kabbalah', breakdown: [{ hebrew: 'ד־', strict_renderings: ['of'] }, { hebrew: 'זעיר', strict_renderings: ['Zeir'] }] },
   { source_id: 'project-abbreviation:arikh-anpin', surface: 'א״א', expansion: 'אריך אנפין', renderings: ['Arikh Anpin'], work_scope: 'kabbalah' },
   { source_id: 'project-abbreviation:de-arikh-anpin', surface: 'דא״א', expansion: 'דאריך אנפין', renderings: ['of Arikh Anpin'], work_scope: 'kabbalah', breakdown: [{ hebrew: 'ד־', strict_renderings: ['of'] }, { hebrew: 'א״א', strict_renderings: ['Arikh Anpin'] }] },
+];
+
+const projectAramaicGrammarDefinitions = [
+  {
+    source_id: 'project-aramaic:dela',
+    surface: '\u05D3\u05DC\u05D0',
+    renderings: ['that not', 'which does not', 'without'],
+    breakdown: [
+      { hebrew: '\u05D3\u05BE', strict_renderings: ['of', 'that', 'which'] },
+      { hebrew: '\u05DC\u05D0', strict_renderings: ['not'] },
+    ],
+  },
+  {
+    source_id: 'project-aramaic:de-ein',
+    surface: '\u05D3\u05D0\u05D9\u05DF',
+    renderings: ['that there is not', 'for there is not'],
+    breakdown: [
+      { hebrew: '\u05D3\u05BE', strict_renderings: ['that', 'for'] },
+      { hebrew: '\u05D0\u05D9\u05DF', strict_renderings: ['there is not', 'is not'] },
+    ],
+  },
+  {
+    source_id: 'project-aramaic:de-ha',
+    surface: '\u05D3\u05D4\u05D0',
+    renderings: ['for behold', 'since', 'for'],
+    breakdown: [
+      { hebrew: '\u05D3\u05BE', strict_renderings: ['that', 'for', 'which'] },
+      { hebrew: '\u05D4\u05D0', strict_renderings: ['behold', 'this'] },
+    ],
+  },
+  {
+    source_id: 'project-aramaic:da',
+    surface: '\u05D3\u05D0',
+    renderings: ['this', 'that'],
+  },
+  {
+    source_id: 'project-aramaic:ha',
+    surface: '\u05D4\u05D0',
+    renderings: ['behold', 'this'],
+  },
+  {
+    source_id: 'project-aramaic:ilaah',
+    surface: '\u05E2\u05DC\u05D0\u05D4',
+    renderings: ['upper', 'supernal'],
+  },
+  {
+    source_id: 'project-aramaic:avira',
+    surface: '\u05D0\u05D5\u05D9\u05E8\u05D0',
+    renderings: ['air', 'atmosphere'],
+  },
+  {
+    source_id: 'project-aramaic:meshicha',
+    surface: '\u05DE\u05E9\u05D9\u05D7\u05D0',
+    renderings: ['Messiah', 'Mashiach'],
+  },
+  {
+    source_id: 'project-aramaic:de-meshicha',
+    surface: '\u05D3\u05DE\u05E9\u05D9\u05D7\u05D0',
+    renderings: ['of the Messiah', 'of Mashiach'],
+    breakdown: [
+      { hebrew: '\u05D3\u05BE', strict_renderings: ['of'] },
+      { hebrew: '\u05DE\u05E9\u05D9\u05D7\u05D0', strict_renderings: ['Messiah', 'Mashiach'] },
+    ],
+  },
+  {
+    source_id: 'project-aramaic:ikveta',
+    surface: '\u05E2\u05E7\u05D1\u05EA\u05D0',
+    renderings: ['heel', 'footstep', 'end-period'],
+  },
+  {
+    source_id: 'project-aramaic:be-ikveta',
+    surface: '\u05D1\u05E2\u05E7\u05D1\u05EA\u05D0',
+    renderings: ['in the heel', 'in the footsteps', 'in the end-period'],
+    breakdown: [
+      { hebrew: '\u05D1\u05BE', strict_renderings: ['in', 'with', 'by'] },
+      { hebrew: '\u05E2\u05E7\u05D1\u05EA\u05D0', strict_renderings: ['heel', 'footstep', 'end-period'] },
+    ],
+  },
+  {
+    source_id: 'project-aramaic:de-imma',
+    surface: '\u05D3\u05D0\u05D9\u05DE\u05D0',
+    renderings: ['of Imma'],
+    work_scope: 'kabbalah',
+    breakdown: [
+      { hebrew: '\u05D3\u05BE', strict_renderings: ['of'] },
+      { hebrew: '\u05D0\u05D9\u05DE\u05D0', strict_renderings: ['Imma'] },
+    ],
+  },
 ];
 
 const fixedExpressions = [
@@ -470,6 +565,10 @@ function entryLayerId(entry) {
     || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-abbreviation:'))) {
     return 'project-abbreviations';
   }
+  if (String(entry.entry_id || '').startsWith('lex-aram-')
+    || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-aramaic:'))) {
+    return 'project-aramaic-grammar';
+  }
   if (String(entry.entry_id || '').startsWith('lex-function-word-')
     || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-function-word:'))) {
     return 'project-function-words';
@@ -636,6 +735,72 @@ function ensureProjectAbbreviationEntries(lexicon) {
   return changed;
 }
 
+function makeProjectAramaicGrammarEntry(definition) {
+  const surface = normalizeHebrewPunctuation(definition.surface);
+  const sourceId = definition.source_id;
+  const entryId = stableId('lex-aram', sourceId);
+  const sourceRowKey = `workspace|${sourceId}`;
+  const possibleEntry = {
+    entry_key: sourceId,
+    lemma: surface,
+    match_key: normalizeHebrewToken(surface),
+    language: 'Aramaic',
+    register: definition.register || 'Aramaic',
+    source_name: 'Project-authored Aramaic grammar table',
+    source_family: 'workspace',
+    source_id: sourceId,
+    transliteration: '',
+    strict_renderings: definition.renderings,
+    root: '',
+    root_transliteration: '',
+    root_meaning: [],
+    context_role: 'likely_contextual',
+    relation_label: 'Aramaic grammar/common form',
+    source_row_keys: [sourceRowKey],
+  };
+  const sourceRow = {
+    source_name: 'Project-authored Aramaic grammar table',
+    source_family: 'workspace',
+    source_id: sourceId,
+    source_url: 'local:project-aramaic-grammar-table',
+    license: 'project-authored / CC0',
+    license_url: 'local:project-aramaic-grammar-table',
+    fields_used: ['Aramaic surface form', 'short strict renderings', 'mechanical breakdown where present'],
+    notes: 'Project-maintained Aramaic grammar/common-form row. No external dictionary text imported.',
+  };
+  return {
+    entry_id: entryId,
+    hebrew_word: surface,
+    surface_forms: [surface],
+    language: 'Aramaic',
+    register: definition.register || 'Aramaic',
+    transliteration: '',
+    strict_renderings: definition.renderings,
+    root: '',
+    root_transliteration: '',
+    root_meaning: [],
+    disambiguation_status: 'likely',
+    context_note: `Aramaic: ${definition.note || 'resolved by project-authored Aramaic grammar/common-form table.'}`,
+    breakdown: definition.breakdown || [],
+    work_scope: definition.work_scope || '',
+    possible_entries_truncated: 0,
+    possible_entries: [possibleEntry],
+    source_rows: [sourceRow],
+  };
+}
+
+function ensureProjectAramaicGrammarEntries(lexicon) {
+  const entries = Array.isArray(lexicon.entries) ? lexicon.entries : [];
+  const withoutProjectAramaic = entries.filter((entry) => entryLayerId(entry) !== 'project-aramaic-grammar');
+  const nextEntries = [
+    ...withoutProjectAramaic,
+    ...projectAramaicGrammarDefinitions.map(makeProjectAramaicGrammarEntry),
+  ];
+  const changed = JSON.stringify(entries) !== JSON.stringify(nextEntries);
+  lexicon.entries = nextEntries;
+  return changed;
+}
+
 function sourceFamiliesFor(row) {
   const entry = lexiconById.get(row.lexicon_entry_id);
   return unique((entry?.source_rows || []).map((sourceRow) => sourceRow.source_family || sourceRow.source_name));
@@ -774,6 +939,7 @@ function matchMethodForEntry(entry, fallback = 'direct') {
   ].filter(Boolean).map(String);
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-function-word:'))) return 'project_function_word';
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-abbreviation:'))) return 'project_abbreviation';
+  if (sourceIds.some((sourceId) => sourceId.startsWith('project-aramaic:'))) return 'project_aramaic_grammar';
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-orot-technical:'))) return 'project_orot_technical';
   return fallback;
 }
@@ -876,6 +1042,15 @@ function analyzeSurfaceForm(surfaceWord, entry) {
       breakdown: entry?.breakdown || [],
     };
   }
+  if (sourceIds.some((sourceId) => sourceId.startsWith('project-aramaic:'))) {
+    return {
+      surface_transliteration: '',
+      surface_renderings: entry?.strict_renderings || [],
+      surface_context_status: 'resolved_aramaic',
+      surface_context_note: entry?.context_note || 'Aramaic: resolved by project-authored Aramaic grammar/common-form table.',
+      breakdown: entry?.breakdown || [],
+    };
+  }
 
   const likely = (entry?.possible_entries || []).find((possibleEntry) => possibleEntry.context_role === 'likely_contextual');
   const lamed = getLeadingLamedBase(surfaceWord);
@@ -932,7 +1107,8 @@ function formatUnmatchedSample(row) {
 const lexicon = loadLexicon();
 const fixedExpressionEntriesChanged = ensureFixedExpressionEntries(lexicon);
 const abbreviationEntriesChanged = ensureProjectAbbreviationEntries(lexicon);
-const lexiconChanged = fixedExpressionEntriesChanged || abbreviationEntriesChanged;
+const aramaicGrammarEntriesChanged = ensureProjectAramaicGrammarEntries(lexicon);
+const lexiconChanged = fixedExpressionEntriesChanged || abbreviationEntriesChanged || aramaicGrammarEntriesChanged;
 writeLexicon(lexicon);
 const lexiconByNormalized = new Map();
 const lexiconById = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
