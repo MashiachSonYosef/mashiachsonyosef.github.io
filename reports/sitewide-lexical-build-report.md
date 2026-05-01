@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-01T12:42:53.812Z
+Generated: 2026-05-01T15:28:21.641Z
 
 ## Scope
 
@@ -17,16 +17,16 @@ Generated: 2026-05-01T12:42:53.812Z
 
 - Total work-surface rows: 243663
 - Total sitewide unique surface forms: 100759
-- Sitewide unique surface forms matched at least once: 18608
-- Sitewide unique surface forms unmatched everywhere: 82151
+- Sitewide unique surface forms matched at least once: 18617
+- Sitewide unique surface forms unmatched everywhere: 82142
 - Total token occurrences: 1337888
-- Matched before prefix/suffix parser: 73921
-- Newly resolved by prefix/suffix parser: 8630
-- Total matched after parser: 84456
+- Matched before prefix/suffix parser: 73859
+- Newly resolved by prefix/suffix parser: 8683
+- Total matched after parser: 84509
 - Percent matched: 34.7%
 - Matched via Wikidata: 64432
-- Enriched via OpenScriptures: 63935
-- Unmatched: 159207
+- Enriched via OpenScriptures: 63873
+- Unmatched: 159154
 
 ## Newly Resolved Parsed Forms
 
@@ -35,6 +35,7 @@ Generated: 2026-05-01T12:42:53.812Z
 - והא -> and behold, and this (workspace) -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - והענין -> and ado, and business, and travail (openscriptures) -- shaar-hapesukim
 - כנגד -> as resistor, like resistor (wikidata + openscriptures) -- shaar-hapesukim
+- לאו -> to or, for or, of or (workspace) -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - והענין -> and ado, and business, and travail (openscriptures) -- shaar-maamarei-rashbi
 - כדברי -> as thing, like thing, as entity (wikidata + openscriptures) -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - כנגד -> as resistor, like resistor (wikidata + openscriptures) -- shaar-hakavanot
@@ -49,7 +50,6 @@ Generated: 2026-05-01T12:42:53.812Z
 - האלו -> the this/that, the demonstrative pronoun (wikidata + openscriptures) -- shaar-maamarei-rashbi
 - ואלו -> and this/that, and demonstrative pronoun (wikidata + openscriptures) -- shaar-hagilgulim
 - המלכים -> the king (wikidata + openscriptures) -- shaar-maamarei-rashbi
-- ובאדרא -> and in the Idra (workspace) -- beur-hagra-on-sifra-detzniuta
 
 ## Sample Matched Words With Refs To Test
 

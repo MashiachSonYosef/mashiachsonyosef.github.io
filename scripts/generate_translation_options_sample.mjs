@@ -84,6 +84,10 @@ function renderingObjects(renderings, role, sources, extra = {}) {
   }));
 }
 
+function isSafeRole(role) {
+  return /surface|likely|fixed|function|abbreviation|grammar|prefix|breakdown/u.test(String(role || ''));
+}
+
 function sourceRowIdsForPossibleEntry(possibleEntry) {
   if (Array.isArray(possibleEntry?.source_row_keys)) return possibleEntry.source_row_keys;
   return [];
@@ -211,16 +215,21 @@ function buildToken(tokenIndexId, position) {
   const entry = form?.lexicon_entry_id ? chunk?.__entryById.get(form.lexicon_entry_id) : null;
   const status = lexicalStatus(form, entry);
   const primarySources = getSourceRows(chunk, entry);
-  const options = [];
+  const safeOptions = [];
+  const cautionOptions = [];
 
   if (form?.surface_renderings?.length) {
-    options.push(...renderingObjects(form.surface_renderings, 'full-form surface rendering', primarySources, {
+    safeOptions.push(...renderingObjects(form.surface_renderings, 'full-form surface rendering', primarySources, {
       source_entry_id: entry?.entry_id || '',
     }));
   }
 
-  if (entry?.strict_renderings?.length) {
-    options.push(...renderingObjects(entry.strict_renderings, entry.disambiguation_status === 'likely' ? 'likely contextual entry' : 'entry strict rendering', primarySources, {
+  if (entry?.strict_renderings?.length && status === 'resolved' && entry.disambiguation_status === 'likely') {
+    safeOptions.push(...renderingObjects(entry.strict_renderings, 'likely contextual entry', primarySources, {
+      source_entry_id: entry.entry_id,
+    }));
+  } else if (entry?.strict_renderings?.length) {
+    cautionOptions.push(...renderingObjects(entry.strict_renderings, 'entry strict rendering; context not resolved', primarySources, {
       source_entry_id: entry.entry_id,
     }));
   }
@@ -233,7 +242,8 @@ function buildToken(tokenIndexId, position) {
       lemma: candidate.lemma || '',
       relation_label: candidate.relation_label || '',
     });
-    options.push(...candidateOptions);
+    if (candidate.context_role === 'likely_contextual') safeOptions.push(...candidateOptions);
+    else cautionOptions.push(...candidateOptions);
     return {
       entry_key: candidate.entry_key || '',
       lemma: candidate.lemma || '',
@@ -249,10 +259,15 @@ function buildToken(tokenIndexId, position) {
   const breakdownSources = primarySources;
   const breakdown = (form?.breakdown || []).map((part) => ({
     hebrew: part.hebrew || '',
-    strict_rendering_options: renderingObjects(part.strict_renderings || [], 'reliable breakdown', breakdownSources, {
+    safe_options: renderingObjects(part.strict_renderings || [], 'reliable breakdown', breakdownSources, {
       source_entry_id: entry?.entry_id || '',
     }),
   }));
+
+  const safe = uniqueOptionObjects(safeOptions);
+  const caution = uniqueOptionObjects(cautionOptions)
+    .filter((option) => !safe.some((safeOption) => safeOption.text === option.text && safeOption.role === option.role));
+  const optionStatus = safe.length ? 'has-safe-options' : caution.length ? 'caution-only' : 'unresolved';
 
   return {
     position,
@@ -260,9 +275,12 @@ function buildToken(tokenIndexId, position) {
     clicked_surface_form: form?.surface_word || '',
     normalized_form: form?.normalized_word || '',
     lexical_status: status,
+    option_status: optionStatus,
     surface_context_status: form?.surface_context_status || '',
     context_note: form?.surface_context_note || entry?.context_note || '',
-    strict_rendering_options: uniqueOptionObjects(options),
+    safe_options: safe,
+    caution_options: caution,
+    unresolved: optionStatus === 'unresolved',
     breakdown,
     possible_lexical_entries: possibleEntries,
   };
@@ -271,11 +289,12 @@ function buildToken(tokenIndexId, position) {
 function uniqueOptionObjects(options) {
   const seen = new Set();
   return options.filter((option) => {
+    const sourceKey = option.source_rows?.map(rowKey).join('|') || '';
+    const entryKey = sourceKey || option.lexical_entry_key || option.source_entry_id || '';
     const key = JSON.stringify({
       text: option.text,
-      role: option.role,
-      source: option.source_rows?.map(rowKey),
-      lexical_entry_key: option.lexical_entry_key,
+      source: sourceKey,
+      entry: entryKey,
     });
     if (seen.has(key)) return false;
     seen.add(key);
@@ -284,24 +303,26 @@ function uniqueOptionObjects(options) {
 }
 
 function choosePathOption(token) {
-  if (token.lexical_status === 'unresolved') {
+  if (!token.safe_options.length) {
     return {
       surface: token.clicked_surface_form,
-      chosen_rendering: `[${token.clicked_surface_form || 'unresolved'}]`,
-      status: 'unresolved',
+      chosen_rendering: token.caution_options.length
+        ? `[${token.clicked_surface_form || 'caution-only'}: caution-only]`
+        : `[${token.clicked_surface_form || 'unresolved'}]`,
+      status: token.option_status,
       uncertain: true,
       source_rows: [],
     };
   }
 
-  const preferred = token.strict_rendering_options.find((option) => /surface|likely|common|fixed|function|abbreviation/u.test(option.role))
-    || token.strict_rendering_options[0];
+  const preferred = token.safe_options.find((option) => isSafeRole(option.role))
+    || token.safe_options[0];
 
   if (!preferred) {
     return {
       surface: token.clicked_surface_form,
       chosen_rendering: `[${token.clicked_surface_form || 'unresolved'}]`,
-      status: token.lexical_status,
+      status: token.option_status,
       uncertain: true,
       source_rows: [],
     };
@@ -309,9 +330,9 @@ function choosePathOption(token) {
 
   return {
     surface: token.clicked_surface_form,
-    chosen_rendering: token.lexical_status === 'possible-only' ? `?${preferred.text}` : preferred.text,
-    status: token.lexical_status,
-    uncertain: token.lexical_status !== 'resolved',
+    chosen_rendering: preferred.text,
+    status: token.option_status,
+    uncertain: false,
     source_rows: preferred.source_rows,
   };
 }
@@ -352,7 +373,7 @@ const selectedUnits = selectedRefs.map((ref) => {
 const allTokens = selectedUnits.flatMap((unit) => unit.tokens);
 const licenseSet = new Set();
 for (const token of allTokens) {
-  for (const option of token.strict_rendering_options) {
+  for (const option of [...token.safe_options, ...token.caution_options]) {
     for (const row of option.source_rows || []) {
       if (row.license) licenseSet.add(`${row.source_family || row.source_name}: ${row.license}`);
     }
@@ -362,9 +383,11 @@ for (const token of allTokens) {
 const summary = {
   units_processed: selectedUnits.length,
   token_count: allTokens.length,
-  resolved: allTokens.filter((token) => token.lexical_status === 'resolved').length,
-  possible_only: allTokens.filter((token) => token.lexical_status === 'possible-only').length,
-  unresolved: allTokens.filter((token) => token.lexical_status === 'unresolved').length,
+  safe_option_count: allTokens.reduce((sum, token) => sum + token.safe_options.length, 0),
+  tokens_with_safe_options: allTokens.filter((token) => token.safe_options.length).length,
+  caution_only_token_count: allTokens.filter((token) => token.option_status === 'caution-only').length,
+  unresolved_token_count: allTokens.filter((token) => token.option_status === 'unresolved').length,
+  caution_option_count: allTokens.reduce((sum, token) => sum + token.caution_options.length, 0),
   licenses_represented: Array.from(licenseSet).sort(),
 };
 
@@ -386,9 +409,20 @@ const exportObject = {
 
 writeJson(outputPath, exportObject);
 
-const unresolvedRows = allTokens
-  .filter((token) => token.lexical_status !== 'resolved')
-  .map((token) => `| ${token.clicked_surface_form || ''} | ${token.normalized_form || ''} | ${token.lexical_status} | ${token.strict_rendering_options.slice(0, 3).map((option) => option.text).join('; ') || 'N/A'} |`);
+const excludedRows = allTokens
+  .filter((token) => token.option_status !== 'has-safe-options')
+  .map((token) => `| ${token.clicked_surface_form || ''} | ${token.normalized_form || ''} | ${token.option_status} | ${token.caution_options.slice(0, 3).map((option) => option.text).join('; ') || 'N/A'} |`);
+
+function hasSafeRendering(surface, rendering) {
+  return allTokens.some((token) => token.clicked_surface_form === surface
+    && token.safe_options.some((option) => option.text === rendering));
+}
+
+function hasSafeNoise(surface, pattern) {
+  const re = new RegExp(pattern, 'i');
+  return allTokens.some((token) => token.clicked_surface_form === surface
+    && token.safe_options.some((option) => re.test(option.text)));
+}
 
 const report = [
   '# Translation Options Sample Report',
@@ -399,9 +433,11 @@ const report = [
   '',
   `- Units processed: ${summary.units_processed}`,
   `- Tokens processed: ${summary.token_count}`,
-  `- Resolved tokens: ${summary.resolved}`,
-  `- Possible-only tokens: ${summary.possible_only}`,
-  `- Unresolved tokens: ${summary.unresolved}`,
+  `- Safe option count: ${summary.safe_option_count}`,
+  `- Tokens with safe options: ${summary.tokens_with_safe_options}`,
+  `- Caution-only tokens: ${summary.caution_only_token_count}`,
+  `- Unresolved tokens: ${summary.unresolved_token_count}`,
+  `- Caution option count: ${summary.caution_option_count}`,
   `- Output JSON: \`${outputPath.replace(/\\/g, '/')}\``,
   '',
   '## Licenses Represented',
@@ -412,18 +448,24 @@ const report = [
   '',
   ...selectedUnits.map((unit) => {
     const counts = {
-      resolved: unit.tokens.filter((token) => token.lexical_status === 'resolved').length,
-      possibleOnly: unit.tokens.filter((token) => token.lexical_status === 'possible-only').length,
-      unresolved: unit.tokens.filter((token) => token.lexical_status === 'unresolved').length,
+      safe: unit.tokens.filter((token) => token.safe_options.length).length,
+      cautionOnly: unit.tokens.filter((token) => token.option_status === 'caution-only').length,
+      unresolved: unit.tokens.filter((token) => token.option_status === 'unresolved').length,
     };
-    return `- ${unit.ref}: ${unit.token_count} tokens; ${counts.resolved} resolved, ${counts.possibleOnly} possible-only, ${counts.unresolved} unresolved`;
+    return `- ${unit.ref}: ${unit.token_count} tokens; ${counts.safe} with safe options, ${counts.cautionOnly} caution-only, ${counts.unresolved} unresolved`;
   }),
   '',
-  '## Unresolved / High-Risk Tokens',
+  '## Tokens Excluded From safe_options',
   '',
   '| Surface | Normalized | Status | Available Options |',
   '| --- | --- | --- | --- |',
-  ...(unresolvedRows.length ? unresolvedRows : ['| None |  |  |  |']),
+  ...(excludedRows.length ? excludedRows : ['| None |  |  |  |']),
+  '',
+  '## Specific Checks',
+  '',
+  `- עִם / עם has safe grammar option "with": ${hasSafeRendering('עִם', 'with') ? 'yes' : 'no'}`,
+  `- אוֹ / או has safe grammar option "or": ${hasSafeRendering('אוֹ', 'or') ? 'yes' : 'no'}`,
+  `- הֶחָמְרִי donkey/ass noise appears in safe_options: ${hasSafeNoise('הֶחָמְרִי', 'ass|donkey') ? 'yes' : 'no'}`,
   '',
 ].join('\n');
 
