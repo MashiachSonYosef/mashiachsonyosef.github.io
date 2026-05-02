@@ -1370,8 +1370,9 @@ foreach ($source in $sources) {
     [void]$page.AppendLine("        <p class=""meta source-citation"">$($sourceNotes.Count) source/license notes. See footer table for details.</p>")
   }
   if ($workHasLexical -and [string]$source.work_id -eq 'orot') {
-    $lexicalMatched = [int]$lexicalCache.token_index.matched_surface_forms
-    $lexicalTotal = [int]$lexicalCache.token_index.total_unique_surface_forms
+    $workLexicalForms = @($workLexicalPayload.token_index.forms)
+    $lexicalMatched = @($workLexicalForms | Where-Object { $_.status -eq 'matched' -and $_.lexicon_entry_id }).Count
+    $lexicalTotal = $workLexicalForms.Count
     if ($lexicalTotal -gt 0) {
       [void]$page.AppendLine("        <p class=""meta lexical-coverage"">Lexical HUD coverage: <strong>$lexicalMatched matched</strong> / $lexicalTotal unique forms.</p>")
     }
