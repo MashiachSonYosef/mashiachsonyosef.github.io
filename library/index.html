@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Library</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; }
+    .shell { border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { padding: 22px 22px 18px; border-bottom: 1px solid var(--line); }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero">
+        <p class="crumbs"><a href="../">Home</a></p>
+        <h1>Full Library</h1>
+        <p>All imported source works remain available here. The homepage only presents the main path.</p>
+      </div>
+      <div style="padding:22px">
+        <section class="home-section">
+          <h2>Ari School</h2>
+          <div class="home-grid">
+            <a class="work-card" href="../ari/pri-etz-chaim/">
+              <strong>Pri Etz Chaim</strong>
+              <span class="meta">589 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../ari/sefer-etz-chaim/">
+              <strong>Sefer Etz Chaim</strong>
+              <span class="meta">7 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../ari/shaar-hagilgulim/">
+              <strong>Sha&#39;ar HaGilgulim</strong>
+              <span class="meta">854 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../ari/shaar-hahakdamot/">
+              <strong>Sha&#39;ar HaHakdamot</strong>
+              <span class="meta">93 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../ari/shaar-hakavanot/">
+              <strong>Sha&#39;ar HaKavanot</strong>
+              <span class="meta">366 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../ari/shaar-hamitzvot/">
+              <strong>Sha&#39;ar HaMitzvot</strong>
+              <span class="meta">298 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../ari/shaar-hapesukim/">
+              <strong>Sha&#39;ar HaPesukim</strong>
+              <span class="meta">2051 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../ari/shaar-maamarei-rashbi/">
+              <strong>Sha&#39;ar Ma&#39;amarei Rashbi</strong>
+              <span class="meta">585 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../ari/shaar-maamarei-razal/">
+              <strong>Sha&#39;ar Ma&#39;amarei Razal</strong>
+              <span class="meta">103 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../ari/shaar-ruach-hakodesh/">
+              <strong>Sha&#39;ar Ruach HaKodesh</strong>
+              <span class="meta">22 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../ari/shaarei-kedusha/">
+              <strong>Sha&#39;arei Kedusha</strong>
+              <span class="meta">66 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+          </div>
+        </section>
+        <section class="home-section">
+          <h2>Gra School</h2>
+          <div class="home-grid">
+            <a class="work-card" href="../gra/aderet-eliyahu/">
+              <strong>Aderet Eliyahu</strong>
+              <span class="work-label">Commentary on Torah</span>
+              <span class="meta">59 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/beur-hagra-on-jerusalem-talmud-bikkurim/">
+              <strong>Beur HaGra on Jerusalem Talmud Bikkurim</strong>
+              <span class="work-label">Commentary on Jerusalem Talmud Bikkurim</span>
+              <span class="meta">170 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/beur-hagra-on-jerusalem-talmud-challah/">
+              <strong>Beur HaGra on Jerusalem Talmud Challah</strong>
+              <span class="work-label">Commentary on Jerusalem Talmud Challah</span>
+              <span class="meta">657 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/beur-hagra-on-shulchan-arukh-choshen-mishpat/">
+              <strong>Beur HaGra on Shulchan Arukh, Choshen Mishpat</strong>
+              <span class="work-label">Commentary on Shulchan Arukh, Choshen Mishpat</span>
+              <span class="meta">41 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/beur-hagra-on-shulchan-arukh-even-haezer/">
+              <strong>Beur HaGra on Shulchan Arukh, Even HaEzer</strong>
+              <span class="work-label">Commentary on Shulchan Arukh, Even HaEzer</span>
+              <span class="meta">281 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/beur-hagra-on-shulchan-arukh-orach-chayim/">
+              <strong>Beur HaGra on Shulchan Arukh, Orach Chayim</strong>
+              <span class="work-label">Commentary on Shulchan Arukh, Orach Chayim</span>
+              <span class="meta">2479 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/beur-hagra-on-shulchan-arukh-yoreh-deah/">
+              <strong>Beur HaGra on Shulchan Arukh, Yoreh De&#39;ah</strong>
+              <span class="work-label">Commentary on Shulchan Arukh, Yoreh De&#39;ah</span>
+              <span class="meta">7500 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/beur-hagra-on-sifra-detzniuta/">
+              <strong>Beur HaGra on Sifra DeTzniuta</strong>
+              <span class="work-label">Commentary on Sifra DeTzniuta</span>
+              <span class="meta">297 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/gra-on-pirkei-avot/">
+              <strong>Gra on Pirkei Avot</strong>
+              <span class="work-label">Commentary on Pirkei Avot</span>
+              <span class="meta">20 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/gras-nuschah-on-avot-drabbi-natan/">
+              <strong>Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan</strong>
+              <span class="work-label">Commentary on Avot D&#39;Rabbi Natan</span>
+              <span class="meta">103 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/gras-nuschah-on-tractate-derekh-eretz-rabbah/">
+              <strong>Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah</strong>
+              <span class="work-label">Commentary on Tractate Derekh Eretz Rabbah</span>
+              <span class="meta">16 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/gras-nuschah-on-tractate-derekh-eretz-zuta/">
+              <strong>Gra&#39;s Nuschah on Tractate Derekh Eretz Zuta</strong>
+              <span class="work-label">Commentary on Tractate Derekh Eretz Zuta</span>
+              <span class="meta">4 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/gras-nuschah-on-tractate-kallah/">
+              <strong>Gra&#39;s Nuschah on Tractate Kallah</strong>
+              <span class="work-label">Commentary on Tractate Kallah</span>
+              <span class="meta">6 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/gras-nuschah-on-tractate-semachot/">
+              <strong>Gra&#39;s Nuschah on Tractate Semachot</strong>
+              <span class="work-label">Commentary on Tractate Semachot</span>
+              <span class="meta">20 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/gras-nuschah-on-tractate-soferim/">
+              <strong>Gra&#39;s Nuschah on Tractate Soferim</strong>
+              <span class="work-label">Commentary on Tractate Soferim</span>
+              <span class="meta">30 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/hagra-on-sefer-yetzirah-gra-version/">
+              <strong>HaGra on Sefer Yetzirah Gra Version</strong>
+              <span class="work-label">Commentary on Sefer Yetzirah Gra Version</span>
+              <span class="meta">35 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/iggeret-hagra/">
+              <strong>Iggeret HaGra</strong>
+              <span class="meta">16 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/kol-hator/">
+              <strong>Kol HaTor</strong>
+              <span class="meta">228 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/maaseh-rav/">
+              <strong>Maaseh Rav</strong>
+              <span class="meta">250 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/nefesh-hachayim/">
+              <strong>Nefesh HaChayim</strong>
+              <span class="meta">164 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/sefer-yetzirah-gra-version/">
+              <strong>Sefer Yetzirah Gra Version</strong>
+              <span class="meta">62 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../gra/yahel-ohr-on-zohar/">
+              <strong>Yahel Ohr on Zohar</strong>
+              <span class="work-label">Commentary on Zohar</span>
+              <span class="meta">238 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+          </div>
+        </section>
+        <section class="home-section">
+          <h2>Rav Kook School</h2>
+          <div class="home-grid">
+            <a class="work-card" href="../rav-kook/maamar-hador/">
+              <strong>Ma&#39;amar Hador</strong>
+              <span class="meta">18 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../rav-kook/midbar-shur/">
+              <strong>Midbar Shur</strong>
+              <span class="meta">243 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../rav-kook/musar-avikha/">
+              <strong>Musar Avikha</strong>
+              <span class="meta">14 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../orot/">
+              <strong>Orot</strong>
+              <span class="meta">416 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../rav-kook/orot-ha-kodesh/">
+              <strong>Orot HaKodesh</strong>
+              <span class="meta">458 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../rav-kook/orot-ha-torah/">
+              <strong>Orot HaTorah</strong>
+              <span class="meta">10 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

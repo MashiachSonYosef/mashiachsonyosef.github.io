@@ -326,6 +326,9 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }')
   [void]$Builder.AppendLine('    .work-card .meta { display: block; margin-top: 6px; }')
   [void]$Builder.AppendLine('    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }')
+  [void]$Builder.AppendLine('    .work-card.placeholder-card { opacity: 0.72; }')
+  [void]$Builder.AppendLine('    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }')
+  [void]$Builder.AppendLine('    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }')
   [void]$Builder.AppendLine('    .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }')
   [void]$Builder.AppendLine('    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border: 1px solid var(--line); background: var(--panel); padding: 14px; }')
   [void]$Builder.AppendLine('    .toc ul { list-style: none; padding: 0; margin: 0; }')
@@ -1262,38 +1265,150 @@ foreach ($source in $sources) {
 }
 $lexicalCache = Get-LexicalCache
 
+function Find-SourceForFeature {
+  param(
+    [hashtable]$SourceById,
+    [object[]]$Sources,
+    [string[]]$Ids,
+    [string[]]$Titles
+  )
+
+  foreach ($id in @($Ids)) {
+    if ($id -and $SourceById.ContainsKey($id)) {
+      return $SourceById[$id]
+    }
+  }
+
+  foreach ($title in @($Titles)) {
+    if (-not $title) { continue }
+    $match = @($Sources | Where-Object { $_.work_title -eq $title } | Select-Object -First 1)
+    if ($match.Count -gt 0) {
+      return $match[0]
+    }
+  }
+
+  return $null
+}
+
+function Append-FeatureCard {
+  param(
+    [System.Text.StringBuilder]$Builder,
+    [string]$Label,
+    [string]$Role,
+    [AllowNull()][object]$Source,
+    [string]$Placeholder = 'Coming soon'
+  )
+
+  if ($null -ne $Source) {
+    [void]$Builder.AppendLine("            <a class=""work-card"" href=""$($Source.work_slug)/"">")
+    [void]$Builder.AppendLine("              <strong>$(Encode-Html $Label)</strong>")
+    [void]$Builder.AppendLine("              <span class=""work-label"">$(Encode-Html $Role)</span>")
+    [void]$Builder.AppendLine("              <span class=""meta"">$(@($Source.units).Count) source units | $(Encode-Html $Source.source_system) | imported $(Encode-Html $Source.import_date)</span>")
+    [void]$Builder.AppendLine('            </a>')
+  } else {
+    [void]$Builder.AppendLine('            <div class="work-card placeholder-card">')
+    [void]$Builder.AppendLine("              <strong>$(Encode-Html $Label)</strong>")
+    [void]$Builder.AppendLine("              <span class=""work-label"">$(Encode-Html $Role)</span>")
+    [void]$Builder.AppendLine("              <span class=""meta"">$(Encode-Html $Placeholder)</span>")
+    [void]$Builder.AppendLine('            </div>')
+  }
+}
+
+function Append-LibrarySections {
+  param(
+    [System.Text.StringBuilder]$Builder,
+    [object[]]$Sources,
+    [string]$HrefPrefix = ''
+  )
+
+  $homeGroups = $Sources | Group-Object { Get-HomeGroup $_ } | Sort-Object @{ Expression = { if ($_.Name -eq 'Works') { 0 } elseif ($_.Name -eq 'Tanakh') { 1 } else { 2 } } }, Name
+  foreach ($homeGroup in $homeGroups) {
+    [void]$Builder.AppendLine('        <section class="home-section">')
+    [void]$Builder.AppendLine("          <h2>$(Encode-Html $homeGroup.Name)</h2>")
+    [void]$Builder.AppendLine('          <div class="home-grid">')
+    foreach ($source in @($homeGroup.Group | Sort-Object work_title)) {
+      [void]$Builder.AppendLine("            <a class=""work-card"" href=""$HrefPrefix$($source.work_slug)/"">")
+      [void]$Builder.AppendLine("              <strong>$(Encode-Html $source.work_title)</strong>")
+      if ($source.display_label) {
+        [void]$Builder.AppendLine("              <span class=""work-label"">$(Encode-Html $source.display_label)</span>")
+      }
+      [void]$Builder.AppendLine("              <span class=""meta"">$(@($source.units).Count) source units | $(Encode-Html $source.source_system) | imported $(Encode-Html $source.import_date)</span>")
+      [void]$Builder.AppendLine('            </a>')
+    }
+    [void]$Builder.AppendLine('          </div>')
+    [void]$Builder.AppendLine('        </section>')
+  }
+}
+
+$featureCards = @(
+  [pscustomobject]@{
+    Label = 'Kol HaTor'
+    Role = 'origin of fire / ox / MbY charge'
+    Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('kol-hator') -Titles @('Kol HaTor'))
+    Placeholder = 'Coming soon'
+  },
+  [pscustomobject]@{
+    Label = "Rav Kook's Orot"
+    Role = 'receiver of fire / stick / national body'
+    Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('orot') -Titles @('Orot'))
+    Placeholder = 'Coming soon'
+  },
+  [pscustomobject]@{
+    Label = 'Gra on Tikkunei Zohar'
+    Role = 'goal of fire / tikkun'
+    Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('gra-on-tikkunei-zohar', 'beur-hagra-on-tikkunei-zohar') -Titles @('Gra on Tikkunei Zohar', 'Beur HaGra on Tikkunei Zohar', 'Vilna Gaon on Tikkunei Zohar'))
+    Placeholder = 'Coming soon'
+  },
+  [pscustomobject]@{
+    Label = 'Book of Joshua'
+    Role = 'rain of fire / mechanism / land-entry'
+    Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('joshua', 'book-of-joshua', 'tanakh-joshua') -Titles @('Joshua', 'Book of Joshua'))
+    Placeholder = 'Book of Joshua - coming soon'
+  }
+)
+
 $homePage = New-Object System.Text.StringBuilder
 Append-SiteHead -Builder $homePage -Title 'Hebrew Source Workbench'
 [void]$homePage.AppendLine('  <main>')
 [void]$homePage.AppendLine('    <div class="shell">')
 [void]$homePage.AppendLine('      <div class="hero">')
 [void]$homePage.AppendLine('        <h1>Hebrew Source Workbench</h1>')
-[void]$homePage.AppendLine('        <p>Hebrew source texts with stable anchors, source metadata, and lexical HUD support.</p>')
+[void]$homePage.AppendLine('        <p>Main path through the Hebrew source workbench with lexical HUD support. All other imported works are preserved in the full library.</p>')
+[void]$homePage.AppendLine('        <div class="home-actions"><a href="library/">Full Library</a></div>')
 [void]$homePage.AppendLine('      </div>')
 [void]$homePage.AppendLine('      <div style="padding:22px">')
-$homeGroups = $sources | Group-Object { Get-HomeGroup $_ } | Sort-Object @{ Expression = { if ($_.Name -eq 'Works') { 0 } elseif ($_.Name -eq 'Tanakh') { 1 } else { 2 } } }, Name
-foreach ($homeGroup in $homeGroups) {
-  [void]$homePage.AppendLine('        <section class="home-section">')
-  [void]$homePage.AppendLine("          <h2>$(Encode-Html $homeGroup.Name)</h2>")
-  [void]$homePage.AppendLine('          <div class="home-grid">')
-  foreach ($source in @($homeGroup.Group | Sort-Object work_title)) {
-    [void]$homePage.AppendLine("            <a class=""work-card"" href=""$($source.work_slug)/"">")
-    [void]$homePage.AppendLine("              <strong>$(Encode-Html $source.work_title)</strong>")
-    if ($source.display_label) {
-      [void]$homePage.AppendLine("              <span class=""work-label"">$(Encode-Html $source.display_label)</span>")
-    }
-    [void]$homePage.AppendLine("              <span class=""meta"">$(@($source.units).Count) source units | $(Encode-Html $source.source_system) | imported $(Encode-Html $source.import_date)</span>")
-    [void]$homePage.AppendLine('            </a>')
-  }
-  [void]$homePage.AppendLine('          </div>')
-  [void]$homePage.AppendLine('        </section>')
+[void]$homePage.AppendLine('        <section class="home-section">')
+[void]$homePage.AppendLine('          <h2>Main Path</h2>')
+[void]$homePage.AppendLine('          <div class="home-grid">')
+foreach ($card in $featureCards) {
+  Append-FeatureCard -Builder $homePage -Label $card.Label -Role $card.Role -Source $card.Source -Placeholder $card.Placeholder
 }
+[void]$homePage.AppendLine('          </div>')
+[void]$homePage.AppendLine('        </section>')
 [void]$homePage.AppendLine('      </div>')
 [void]$homePage.AppendLine('    </div>')
 [void]$homePage.AppendLine('  </main>')
 [void]$homePage.AppendLine('</body>')
 [void]$homePage.AppendLine('</html>')
 Write-Utf8 -Path 'index.html' -Content $homePage.ToString()
+
+$libraryPage = New-Object System.Text.StringBuilder
+Append-SiteHead -Builder $libraryPage -Title 'Full Library'
+[void]$libraryPage.AppendLine('  <main>')
+[void]$libraryPage.AppendLine('    <div class="shell">')
+[void]$libraryPage.AppendLine('      <div class="hero">')
+[void]$libraryPage.AppendLine('        <p class="crumbs"><a href="../">Home</a></p>')
+[void]$libraryPage.AppendLine('        <h1>Full Library</h1>')
+[void]$libraryPage.AppendLine('        <p>All imported source works remain available here. The homepage only presents the main path.</p>')
+[void]$libraryPage.AppendLine('      </div>')
+[void]$libraryPage.AppendLine('      <div style="padding:22px">')
+Append-LibrarySections -Builder $libraryPage -Sources $sources -HrefPrefix '../'
+[void]$libraryPage.AppendLine('      </div>')
+[void]$libraryPage.AppendLine('    </div>')
+[void]$libraryPage.AppendLine('  </main>')
+[void]$libraryPage.AppendLine('</body>')
+[void]$libraryPage.AppendLine('</html>')
+Write-Utf8 -Path 'library\index.html' -Content $libraryPage.ToString()
 
 $allExportRows = New-Object System.Collections.Generic.List[object]
 foreach ($source in $sources) {
