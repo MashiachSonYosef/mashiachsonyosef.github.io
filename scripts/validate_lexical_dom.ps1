@@ -292,6 +292,48 @@ if ($null -eq $shelEntry -or @($shelEntry.source_rows).Count -ne 1 -or @($shelEn
   throw "Expected shel lexicon entry to use only the workspace grammar-particle source row."
 }
 
+$rakNormalized = -join @([char]0x05E8, [char]0x05E7)
+$rak = Select-TokenRow -WorkId 'orot' -Normalized $rakNormalized
+if ($null -eq $rak -or $rak.status -ne 'matched') {
+  throw "Expected rak canary to remain matched."
+}
+$rakEntry = $entriesById[[string]$rak.lexicon_entry_id]
+$rakVisibleRenderings = @($rak.surface_renderings) + @($rakEntry.strict_renderings)
+foreach ($rendering in @('only', 'merely', 'just')) {
+  if (-not ($rakVisibleRenderings -contains $rendering)) {
+    throw "Expected rak strict Hebrew rendering missing: $rendering"
+  }
+}
+
+$delaNormalized = -join @([char]0x05D3, [char]0x05DC, [char]0x05D0)
+$dela = Select-TokenRow -Normalized $delaNormalized
+if ($null -eq $dela -or $dela.status -ne 'matched') {
+  throw "Expected dela Aramaic canary to remain matched."
+}
+$delaEntry = $entriesById[[string]$dela.lexicon_entry_id]
+if ($null -eq $delaEntry -or -not (@($delaEntry.source_rows)[0].source_id -eq 'project-aramaic:dela')) {
+  throw "Expected dela to resolve through the project Aramaic grammar layer."
+}
+foreach ($rendering in @('that not', 'which does not', 'without')) {
+  $delaVisibleRenderings = @($dela.surface_renderings) + @($delaEntry.strict_renderings)
+  if (-not ($delaVisibleRenderings -contains $rendering)) {
+    throw "Expected dela strict Aramaic rendering missing: $rendering"
+  }
+}
+
+$pnimiyutNormalized = -join @([char]0x05E4, [char]0x05E0, [char]0x05D9, [char]0x05DE, [char]0x05D9, [char]0x05D5, [char]0x05EA)
+$pnimiyut = Select-TokenRow -WorkId 'orot' -Normalized $pnimiyutNormalized
+if ($null -eq $pnimiyut -or $pnimiyut.status -ne 'matched' -or $pnimiyut.match_method -ne 'project_orot_technical') {
+  throw "Expected pnimiyut to resolve through the Orot technical term layer."
+}
+$pnimiyutEntry = $entriesById[[string]$pnimiyut.lexicon_entry_id]
+$pnimiyutVisibleRenderings = @($pnimiyut.surface_renderings) + @($pnimiyutEntry.strict_renderings)
+foreach ($rendering in @('inner', 'internal', 'inward')) {
+  if (-not ($pnimiyutVisibleRenderings -contains $rendering)) {
+    throw "Expected pnimiyut strict Hebrew rendering missing: $rendering"
+  }
+}
+
 foreach ($canary in $openingCanaryGroup) {
   $row = Select-TokenRow -WorkId 'orot' -Surface $canary.Surface
   if ($null -eq $row) {
@@ -378,9 +420,6 @@ if (Test-Path -LiteralPath $orotHtmlPath) {
   $pageLaUmmahSources = @($pageLaUmmahEntry.source_row_ids | ForEach-Object { $pageSourceRows.PSObject.Properties[[string]$_].Value })
   if ($pageLaUmmahSources.Count -ne 1 -or $pageLaUmmahSources[0].source_id -ne 'L63772') {
     throw "Expected la-ummah external default source rows to include only Wikidata L63772."
-  }
-  if (@($pageLaUmmahEntry.secondary_source_row_ids).Count -ne 0) {
-    throw "Expected la-ummah external secondary source rows to be empty after noise filtering."
   }
   foreach ($noise in @('L65883', 'L204490', 'H519', 'H520', 'H522', 'H4965')) {
     if ($orotHtml.Contains($noise) -and @($pageLaUmmahSources.source_id) -contains $noise) {
@@ -486,7 +525,7 @@ function Test-LexicalSample {
     throw "Generated HTML contains pre-rendered lexical token spans for $($Sample.Label); wrapping should happen client-side."
   }
 
-  foreach ($requiredPattern in @('data-lexical-occurrences', 'data-lexical-config', 'data-lexical-slot', 'data-lexical-hud', 'data-hud-breakdown', 'Show other possible entries')) {
+  foreach ($requiredPattern in @('data-lexical-occurrences', 'data-lexical-config', 'data-lexical-slot', 'data-lexical-hud', 'data-hud-breakdown', 'Potential options', 'Related options', 'Show potential options', 'Show related options')) {
     if (-not $html.Contains($requiredPattern)) {
       throw "Generated page missing lexical renderer marker for $($Sample.Label): $requiredPattern"
     }

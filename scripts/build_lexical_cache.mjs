@@ -700,6 +700,12 @@ const projectOrotFinalTechnicalDefinitions = [
     renderings: ['ideality', 'ideal qualities'],
     forms: ['\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05D5\u05EA', '\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05D5\u05EA', '\u05D5\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05D5\u05EA'],
   },
+  {
+    key: 'pnimi',
+    lemma: '\u05E4\u05E0\u05D9\u05DE\u05D9',
+    renderings: ['inner', 'internal', 'inward'],
+    forms: ['\u05E4\u05E0\u05D9\u05DE\u05D9', '\u05E4\u05E0\u05D9\u05DE\u05D9\u05EA', '\u05E4\u05E0\u05D9\u05DE\u05D9\u05D5\u05EA', '\u05D4\u05E4\u05E0\u05D9\u05DE\u05D9\u05D5\u05EA'],
+  },
 ];
 
 const prefixRules = new Map([
@@ -1357,12 +1363,24 @@ function isKabbalahWork(workId) {
     ].includes(workId);
 }
 
+function isProjectOrotTechnicalEntry(entry) {
+  const sourceIds = [
+    ...(entry?.source_rows || []).map((row) => row.source_id),
+    ...(entry?.possible_entries || []).map((row) => row.source_id || row.entry_key),
+  ].filter(Boolean).map(String);
+  return sourceIds.some((sourceId) => sourceId.startsWith('project-orot-technical:'));
+}
+
 function lookupLexiconEntryId(normalized, workId) {
-  for (const entryId of lexiconByNormalized.get(normalized) || []) {
-    const entry = lexiconById.get(entryId);
-    if (isEntryAllowedForWork(entry, workId)) return entryId;
+  const candidates = (lexiconByNormalized.get(normalized) || [])
+    .map((entryId) => lexiconById.get(entryId))
+    .filter((entry) => isEntryAllowedForWork(entry, workId));
+  if (!candidates.length) return '';
+  if (workId === 'orot') {
+    const projectOrotEntry = candidates.find(isProjectOrotTechnicalEntry);
+    if (projectOrotEntry) return projectOrotEntry.entry_id;
   }
-  return '';
+  return candidates[0].entry_id || '';
 }
 
 function stripEdgeQuoteArtifact(value) {
