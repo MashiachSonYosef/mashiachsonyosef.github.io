@@ -67,6 +67,8 @@
     .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
     .hud-close:hover { color: var(--text); border-color: var(--accent); }
     .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
     .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
     .lexical-fields dd { margin: 0; color: var(--text); }
     .lexical-fields ul { margin: 0; padding-left: 18px; }
@@ -9775,10 +9777,11 @@
   <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
     <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
     <dl class="lexical-fields">
-      <dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd>
-      <dt>Strict renderings</dt><dd data-hud-surface-renderings>N/A</dd>
-      <dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd>
-      <dt data-hud-renderings-label>Possible lexical entries</dt><dd data-hud-renderings>N/A</dd>
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Hebrew strict</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Aramaic strict</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-renderings-row><dt data-hud-renderings-label>Possible entries</dt><dd data-hud-renderings>N/A</dd></div>
     </dl>
     <details class="source-details">
       <summary>Sources / licenses</summary>
@@ -9916,6 +9919,17 @@
         values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
         node.appendChild(ul);
       };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const getStrictRenderings = (view) => cleanValues((view.surface_renderings && view.surface_renderings.length) ? view.surface_renderings : view.strict_renderings);
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code].filter(Boolean).join(" ").toLowerCase().includes("aramaic"));
+      };
       const appendRenderings = (node, values) => {
         const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
         if (!filtered.length) { node.append("N/A"); return; }
@@ -9929,7 +9943,8 @@
         if (!node) return;
         node.replaceChildren();
         const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
-        if (!rows.length) { node.textContent = "N/A"; return; }
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
         const list = document.createElement("div");
         list.className = "breakdown-list";
         rows.forEach((row) => {
@@ -9994,18 +10009,20 @@
         const node = root.querySelector("[data-hud-renderings]");
         if (!node) return;
         node.replaceChildren();
-        if (label) label.textContent = "Possible lexical entries";
-        if (!hasLexicalEntry) { node.textContent = "No lexical entry yet."; return; }
+        if (label) label.textContent = "Possible entries";
+        const strictValues = getStrictRenderings(view);
+        const hasStrict = strictValues.length > 0;
+        if (!hasLexicalEntry) { setRowHidden(root, "[data-hud-renderings-row]", false); node.textContent = "No lexical entry yet."; return; }
         let entries = Array.isArray(view.possible_entries) ? view.possible_entries : [];
         entries = entries.filter((entry) => entry.relation_label !== "related root-field");
-        if (!entries.length) { setList(root, "[data-hud-renderings]", view.strict_renderings || ["No lexical entry yet."]); return; }
-        const likelyEntries = entries.filter((entry) => entry.context_role === "likely_contextual");
-        const otherEntries = entries.filter((entry) => entry.context_role !== "likely_contextual");
-        if (label) label.textContent = likelyEntries.length ? "Lexical resolution" : "Possible lexical entries";
+        const likelyEntries = hasStrict ? [] : entries.filter((entry) => entry.context_role === "likely_contextual");
+        const otherEntries = hasStrict ? entries.filter((entry) => entry.context_role !== "likely_contextual") : entries.filter((entry) => entry.context_role !== "likely_contextual");
+        if (!likelyEntries.length && !otherEntries.length) { setRowHidden(root, "[data-hud-renderings-row]", hasStrict); if (!hasStrict) node.textContent = "Context not resolved."; return; }
+        setRowHidden(root, "[data-hud-renderings-row]", false);
         const note = document.createElement("p");
         note.className = "lexical-context-note";
-        note.textContent = likelyEntries.length ? (view.surface_context_note || view.context_note || "Context resolved.") : "Context not resolved.";
-        node.appendChild(note);
+        note.textContent = likelyEntries.length ? (view.surface_context_note || view.context_note || "Context resolved.") : (hasStrict ? "Alternate / caution entries." : "Context not resolved.");
+        if (!hasStrict || likelyEntries.length) node.appendChild(note);
         if (likelyEntries.length) node.appendChild(renderEntryList(likelyEntries));
         if (otherEntries.length) {
           const details = document.createElement("details");
@@ -10066,7 +10083,9 @@
         button.setAttribute("aria-pressed", "true");
         hud.hidden = false;
         setText(hud, "[data-hud-word]", button.textContent.trim());
-        setList(hud, "[data-hud-surface-renderings]", ["Loading lexical entry..."]);
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
         renderBreakdown(hud, {});
         renderPossibleEntries(hud, {}, false);
         renderSources(hud.querySelector("[data-hud-sources]"), []);
@@ -10075,7 +10094,11 @@
           if (button.getAttribute("aria-pressed") !== "true") return;
           setText(hud, "[data-hud-word]", view.hebrew_word);
           const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
-          setList(hud, "[data-hud-surface-renderings]", (view.surface_renderings && view.surface_renderings.length) ? view.surface_renderings : (hasLexicalEntry ? view.strict_renderings : ["No lexical entry yet."]));
+          const strictValues = hasLexicalEntry ? getStrictRenderings(view) : [];
+          const isAramaic = hasLexicalEntry && isAramaicView(view);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", isAramaic || !strictValues.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !isAramaic || !strictValues.length);
+          setList(hud, isAramaic ? "[data-hud-aramaic-strict]" : "[data-hud-hebrew-strict]", strictValues);
           renderBreakdown(hud, view);
           renderPossibleEntries(hud, view, hasLexicalEntry);
           renderSources(hud.querySelector("[data-hud-sources]"), view.source_rows);
@@ -10083,7 +10106,9 @@
           if (details) details.open = false;
         } catch (error) {
           console.error(error);
-          setList(hud, "[data-hud-surface-renderings]", ["No lexical entry yet."]);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
         }
       };
       buttons.forEach((button) => {

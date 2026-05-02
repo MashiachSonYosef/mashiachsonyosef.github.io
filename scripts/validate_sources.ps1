@@ -400,10 +400,16 @@ foreach ($lexicalFile in $lexicalFiles) {
   $lexicalPagePath = Join-Path $source.work_slug 'index.html'
   if (Test-Path $lexicalPagePath) {
     $lexicalPage = Get-Content -Path $lexicalPagePath -Raw -Encoding UTF8
-    foreach ($requiredText in @('data-lexical-occurrences', 'data-lexical-config', 'data-lexical-slot', 'data-lexical-hud', 'Clicked Hebrew form', 'Strict renderings', 'Breakdown', 'Possible lexical entries', 'Show other possible entries', 'Sources / licenses', 'No lexical entry yet.')) {
+    foreach ($requiredText in @('data-lexical-occurrences', 'data-lexical-config', 'data-lexical-slot', 'data-lexical-hud', 'Clicked Hebrew form', 'Breakdown', 'Show other possible entries', 'Sources / licenses', 'No lexical entry yet.')) {
       if (-not $lexicalPage.Contains($requiredText)) {
         $errors.Add("Lexical target page missing required text '$requiredText' for $($lexical.work_id)")
       }
+    }
+    if (-not ($lexicalPage.Contains('Hebrew strict') -or $lexicalPage.Contains('Strict renderings'))) {
+      $errors.Add("Lexical target page missing strict-rendering label for $($lexical.work_id)")
+    }
+    if (-not ($lexicalPage.Contains('Possible entries') -or $lexicalPage.Contains('Possible lexical entries'))) {
+      $errors.Add("Lexical target page missing possible-entry label for $($lexical.work_id)")
     }
     foreach ($embeddedPayloadMarker in @('data-lexical-token-index>', 'data-lexical-lexicon>')) {
       if ($lexicalPage.Contains($embeddedPayloadMarker)) {
