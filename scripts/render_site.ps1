@@ -1,7 +1,8 @@
 param(
   [string]$SourceDir = 'data/sources',
   [string]$OverlayDir = 'data/overlays',
-  [int]$MaxUnits = 0
+  [int]$MaxUnits = 0,
+  [string[]]$WorkIds = @()
 )
 
 $ErrorActionPreference = 'Stop'
@@ -1410,13 +1411,22 @@ Append-LibrarySections -Builder $libraryPage -Sources $sources -HrefPrefix '../'
 [void]$libraryPage.AppendLine('</html>')
 Write-Utf8 -Path 'library\index.html' -Content $libraryPage.ToString()
 
+$targetWorkIds = @($WorkIds | Where-Object { $_ -and $_.ToString().Trim() } | ForEach-Object { $_.ToString().Trim() })
+$renderSources = if ($targetWorkIds.Count -gt 0) {
+  @($sources | Where-Object { $targetWorkIds -contains [string]$_.work_id })
+} else {
+  $sources
+}
+
 $allExportRows = New-Object System.Collections.Generic.List[object]
-foreach ($source in $sources) {
+foreach ($source in $renderSources) {
   $overlay = Get-OverlayForSource -Source $source -OverlayDir $OverlayDir
   $exportRows = Get-OverlayExportRows -Source $source -Overlay $overlay
-  Write-OverlayExports -WorkSlug $source.work_slug -Rows $exportRows
-  foreach ($row in @($exportRows)) {
-    $allExportRows.Add($row)
+  if ($targetWorkIds.Count -eq 0) {
+    Write-OverlayExports -WorkSlug $source.work_slug -Rows $exportRows
+    foreach ($row in @($exportRows)) {
+      $allExportRows.Add($row)
+    }
   }
   $page = New-Object System.Text.StringBuilder
   $visibleUnits = if ($MaxUnits -gt 0) { @($source.units | Select-Object -First $MaxUnits) } else { @($source.units) }
@@ -1624,4 +1634,6 @@ foreach ($source in $sources) {
   Write-Utf8 -Path "$($source.work_slug)\index.html" -Content $page.ToString()
 }
 
-Write-OverlayExports -WorkSlug '.' -Rows $allExportRows.ToArray()
+if ($targetWorkIds.Count -eq 0) {
+  Write-OverlayExports -WorkSlug '.' -Rows $allExportRows.ToArray()
+}

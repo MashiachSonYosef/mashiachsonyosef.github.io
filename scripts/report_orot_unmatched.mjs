@@ -5,7 +5,11 @@ const lexicalDir = 'data/lexical';
 const reportPath = 'reports/orot-unmatched-token-frequency-report.md';
 
 const cp = (...hex) => hex.map((value) => String.fromCharCode(Number.parseInt(value, 16))).join('');
-const tokenIndex = JSON.parse(fs.readFileSync(path.join(lexicalDir, 'token-index.json'), 'utf8'));
+const tokenIndexManifest = JSON.parse(fs.readFileSync(path.join(lexicalDir, 'token-index.json'), 'utf8'));
+const orotIndexRef = (tokenIndexManifest.work_indexes || []).find((row) => row.work_id === 'orot');
+const tokenIndex = orotIndexRef
+  ? JSON.parse(fs.readFileSync(path.join(lexicalDir, orotIndexRef.path), 'utf8'))
+  : tokenIndexManifest;
 const occurrences = JSON.parse(fs.readFileSync(path.join(lexicalDir, 'occurrences', 'orot.json'), 'utf8'));
 const manifest = JSON.parse(fs.readFileSync(path.join(lexicalDir, 'lexicon.json'), 'utf8'));
 
@@ -47,6 +51,11 @@ const layerCounts = {
   wikidata_cc0: matched.filter((row) => entryFamilies(row).has('wikidata')).length,
   openscriptures_cc_by_4: matched.filter((row) => entryFamilies(row).has('openscriptures')).length,
   parser_affix_resolution: matched.filter((row) => row.match_method === 'affix_parser').length,
+  prefix_known_entry_parser: matched.filter((row) => row.match_method === 'prefix_known_entry_parser').length,
+  quote_artifact_cleanup: matched.filter((row) => row.match_method === 'quote_artifact_cleanup').length,
+  project_abbreviations: matched.filter((row) => row.match_method === 'project_abbreviation').length,
+  project_function_words: matched.filter((row) => row.match_method === 'project_function_word').length,
+  project_orot_technical_terms: matched.filter((row) => row.match_method === 'project_orot_technical').length,
   kaikki_wiktionary_cc_by_sa_gfdl: matched.filter((row) => {
     const families = entryFamilies(row);
     return families.has('kaikki') || families.has('wiktionary');
@@ -255,10 +264,10 @@ lines.push('## Scope');
 lines.push('');
 lines.push('- Work: Orot only');
 lines.push('- Source imports: none');
-lines.push('- New definitions added: none');
+lines.push('- New definitions added: project-authored safe cleanup rows only; no external source imports');
 lines.push('- HUD behavior changed: no');
-lines.push(`- Kaikki/Wiktionary data added: ${layerCounts.kaikki_wiktionary_cc_by_sa_gfdl > 0 ? 'yes, separated CC BY-SA/GFDL layer only' : 'no'}`);
-lines.push('- Count source: current `data/lexical/token-index.json` plus `data/lexical/occurrences/orot.json`');
+lines.push(`- Kaikki/Wiktionary layer present: ${layerCounts.kaikki_wiktionary_cc_by_sa_gfdl > 0 ? 'yes, separated CC BY-SA/GFDL layer only' : 'no'}`);
+lines.push('- Count source: current `data/lexical/token-indexes/orot.json` plus `data/lexical/occurrences/orot.json`');
 lines.push('');
 lines.push('## Summary');
 lines.push('');
@@ -277,6 +286,11 @@ lines.push(`| Project overrides | ${layerCounts.project_overrides} |`);
 lines.push(`| Wikidata CC0 | ${layerCounts.wikidata_cc0} |`);
 lines.push(`| OpenScriptures CC BY 4.0 | ${layerCounts.openscriptures_cc_by_4} |`);
 lines.push(`| Parser/affix resolution | ${layerCounts.parser_affix_resolution} |`);
+lines.push(`| Prefix + known entry parser | ${layerCounts.prefix_known_entry_parser} |`);
+lines.push(`| Quote artifact cleanup | ${layerCounts.quote_artifact_cleanup} |`);
+lines.push(`| Project abbreviations | ${layerCounts.project_abbreviations} |`);
+lines.push(`| Project function words | ${layerCounts.project_function_words} |`);
+lines.push(`| Orot technical terms | ${layerCounts.project_orot_technical_terms} |`);
 lines.push(`| Kaikki/Wiktionary CC BY-SA/GFDL | ${layerCounts.kaikki_wiktionary_cc_by_sa_gfdl} |`);
 lines.push('');
 lines.push('## Unmatched Buckets');

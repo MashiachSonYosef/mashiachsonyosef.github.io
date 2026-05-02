@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-01T16:48:37.565Z
+Generated: 2026-05-02T08:23:09.545Z
 
 ## Scope
 
@@ -17,20 +17,20 @@ Generated: 2026-05-01T16:48:37.565Z
 
 - Total work-surface rows: 243663
 - Total sitewide unique surface forms: 100759
-- Sitewide unique surface forms matched at least once: 18617
-- Sitewide unique surface forms unmatched everywhere: 82142
+- Sitewide unique surface forms matched at least once: 18788
+- Sitewide unique surface forms unmatched everywhere: 81971
 - Total token occurrences: 1337888
-- Matched before prefix/suffix parser: 73859
-- Newly resolved by prefix/suffix parser: 8683
-- Total matched after parser: 84509
-- Percent matched: 34.7%
-- Matched via Wikidata: 64432
-- Enriched via OpenScriptures: 63873
-- Unmatched: 159154
+- Matched before prefix/suffix parser: 73878
+- Newly resolved by prefix/suffix parser: 8727
+- Total matched after parser: 84700
+- Percent matched: 34.8%
+- Matched via Wikidata: 64509
+- Enriched via OpenScriptures: 63960
+- Unmatched: 158963
 
 ## Newly Resolved Parsed Forms
 
-- ודוקא -> and unexpectedly, and just to spite, and in fact, actually (kaikki) -- beur-hagra-on-shulchan-arukh-yoreh-deah
+- ודוקא -> and in fact, actually (kaikki) -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - כנגד -> as resistor, like resistor (wikidata + openscriptures) -- shaar-maamarei-rashbi
 - והא -> and behold, and this (workspace) -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - והענין -> and ado, and business, and travail (openscriptures) -- shaar-hapesukim
@@ -55,6 +55,7 @@ Generated: 2026-05-01T16:48:37.565Z
 
 - א״א -> Arikh Anpin (workspace) -- beur-hagra-on-sifra-detzniuta
 - א״א -> Arikh Anpin (workspace) -- hagra-on-sefer-yetzirah-gra-version
+- א״א -> impossible, it is not possible (workspace) -- orot
 - א״א -> Arikh Anpin (workspace) -- pri-etz-chaim
 - א״א -> Arikh Anpin (workspace) -- shaar-hagilgulim
 - א״א -> Arikh Anpin (workspace) -- shaar-hahakdamot
@@ -72,7 +73,6 @@ Generated: 2026-05-01T16:48:37.565Z
 - א״כ -> if so, therefore (workspace) -- beur-hagra-on-shulchan-arukh-orach-chayim
 - א״כ -> if so, therefore (workspace) -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - א״כ -> if so, therefore (workspace) -- hagra-on-sefer-yetzirah-gra-version
-- א״כ -> if so, therefore (workspace) -- midbar-shur
 
 ## Sample Unmatched Words
 
@@ -145,10 +145,10 @@ Generated: 2026-05-01T16:48:37.565Z
 - 290x ממ״ש -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 280x קצוות -- shaar-maamarei-rashbi
 - 278x ה׳ -- pri-etz-chaim
-- 275x שהן -- beur-hagra-on-sifra-detzniuta
 - 259x בסי׳ -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 255x ד״ש -- shaar-maamarei-rashbi
 - 250x א׳ -- shaar-hakavanot
+- 247x א״ל -- beur-hagra-on-shulchan-arukh-yoreh-deah
 
 ## Exact Orot Refs To Test
 

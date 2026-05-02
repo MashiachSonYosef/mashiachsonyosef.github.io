@@ -210,6 +210,8 @@ const projectAbbreviationDefinitions = [
   { source_id: 'project-abbreviation:kol-zeh', surface: 'כ״ז', expansion: 'כל זה', renderings: ['all this'] },
   { source_id: 'project-abbreviation:al-yedei-zeh', surface: 'עי״ז', expansion: 'על ידי זה', renderings: ['by this', 'through this'] },
   { source_id: 'project-abbreviation:achar-kach', surface: 'אח״כ', expansion: 'אחר כך', renderings: ['afterward', 'after that'] },
+  { source_id: 'project-abbreviation:hakadosh-baruch-hu', surface: '\u05D4\u05E7\u05D1\u05F4\u05D4', expansion: '\u05D4\u05E7\u05D3\u05D5\u05E9 \u05D1\u05E8\u05D5\u05DA \u05D4\u05D5\u05D0', renderings: ['the Holy One, blessed be He'] },
+  { source_id: 'project-abbreviation:orot-ei-efshar', surface: '\u05D0\u05F4\u05D0', expansion: '\u05D0\u05D9 \u05D0\u05E4\u05E9\u05E8', renderings: ['impossible', 'it is not possible'], work_scope: 'orot' },
   { source_id: 'project-abbreviation:zeir-anpin', surface: 'ז״א', expansion: 'זעיר אנפין', renderings: ['Zeir Anpin'], work_scope: 'kabbalah' },
   { source_id: 'project-abbreviation:de-zeir-anpin', surface: 'דז״א', expansion: 'דזעיר אנפין', renderings: ['of Zeir Anpin'], work_scope: 'kabbalah', breakdown: [{ hebrew: 'ד־', strict_renderings: ['of'] }, { hebrew: 'ז״א', strict_renderings: ['Zeir Anpin'] }] },
   { source_id: 'project-abbreviation:de-zeir', surface: 'דזעיר', expansion: 'דזעיר אנפין', renderings: ['of Zeir Anpin'], work_scope: 'kabbalah', breakdown: [{ hebrew: 'ד־', strict_renderings: ['of'] }, { hebrew: 'זעיר', strict_renderings: ['Zeir'] }] },
@@ -453,6 +455,59 @@ const fixedExpressions = [
     },
   },
   {
+    normalized_word: '\u05E9\u05D4\u05E0',
+    hebrew_word: '\u05E9\u05D4\u05DF',
+    surface_forms: [
+      '\u05E9\u05D4\u05DF',
+      '\u05E9\u05B6\u05C1\u05D4\u05B5\u05DF',
+    ],
+    surface_renderings: [
+      'that they are',
+      'which are',
+    ],
+    surface_context_status: 'resolved_grammar_form',
+    surface_context_note: 'Resolved as a closed-class Hebrew relative prefix plus pronoun form.',
+    breakdown: [
+      {
+        hebrew: '\u05E9\u05BE',
+        strict_renderings: ['that', 'which'],
+      },
+      {
+        hebrew: '\u05D4\u05DF',
+        strict_renderings: ['they', 'they are'],
+      },
+    ],
+    possible_entry: {
+      entry_key: 'grammar-form:\u05E9\u05D4\u05DF',
+      lemma: '\u05E9\u05D4\u05DF',
+      match_key: '\u05E9\u05D4\u05E0',
+      source_name: 'Workspace grammar rule',
+      source_family: 'workspace',
+      source_id: 'grammar-form:\u05E9\u05D4\u05DF',
+      transliteration: '',
+      strict_renderings: [
+        'that they are',
+        'which are',
+      ],
+      root: '',
+      root_transliteration: '',
+      root_meaning: [],
+      context_role: 'likely_contextual',
+      relation_label: '',
+      source_row_keys: ['workspace|grammar-form:\u05E9\u05D4\u05DF'],
+    },
+    source_row: {
+      source_name: 'Workspace grammar rule',
+      source_family: 'workspace',
+      source_id: 'grammar-form:\u05E9\u05D4\u05DF',
+      source_url: 'local:grammar-rules',
+      license: 'N/A - project lexical rule',
+      license_url: 'local:grammar-rules',
+      fields_used: ['closed-class Hebrew grammar form lookup', 'strict renderings', 'mechanical breakdown'],
+      notes: 'Project-maintained grammar rule. No external dictionary text imported.',
+    },
+  },
+  {
     normalized_word: '\u05D1\u05EA\u05D5\u05E8',
     hebrew_word: '\u05D1\u05EA\u05D5\u05E8',
     surface_forms: [
@@ -566,6 +621,87 @@ const fixedExpressions = [
 
 const fixedExpressionByNormalized = new Map(fixedExpressions.map((expression) => [expression.normalized_word, expression]));
 
+const projectOrotFinalTechnicalDefinitions = [
+  {
+    key: 'tokhen',
+    lemma: '\u05EA\u05D5\u05DB\u05DF',
+    renderings: ['content', 'substance'],
+    forms: ['\u05EA\u05D5\u05DB\u05DF', '\u05D4\u05EA\u05D5\u05DB\u05DF', '\u05D5\u05EA\u05D5\u05DB\u05DF', '\u05DE\u05EA\u05D5\u05DB\u05DF'],
+  },
+  {
+    key: 'netiyot',
+    lemma: '\u05E0\u05D8\u05D9\u05D5\u05EA',
+    renderings: ['tendencies', 'inclinations'],
+    forms: ['\u05E0\u05D8\u05D9\u05D5\u05EA', '\u05D4\u05E0\u05D8\u05D9\u05D5\u05EA'],
+  },
+  {
+    key: 'datit',
+    lemma: '\u05D3\u05EA\u05D9\u05EA',
+    renderings: ['religious'],
+    forms: ['\u05D3\u05EA\u05D9\u05EA', '\u05D4\u05D3\u05EA\u05D9\u05EA'],
+  },
+  {
+    key: 'zuhama',
+    lemma: '\u05D6\u05D5\u05D4\u05DE\u05D0',
+    renderings: ['filth', 'pollution'],
+    forms: ['\u05D6\u05D5\u05D4\u05DE\u05D0', '\u05D4\u05D6\u05D5\u05D4\u05DE\u05D0'],
+  },
+  {
+    key: 'hutzpa',
+    lemma: '\u05D7\u05D5\u05E6\u05E4\u05D0',
+    renderings: ['brazenness', 'insolence'],
+    forms: ['\u05D7\u05D5\u05E6\u05E4\u05D0', '\u05D4\u05D7\u05D5\u05E6\u05E4\u05D0'],
+  },
+  {
+    key: 'hashkafah',
+    lemma: '\u05D4\u05E9\u05E7\u05E4\u05D4',
+    renderings: ['outlook', 'perspective'],
+    forms: ['\u05D4\u05E9\u05E7\u05E4\u05D4', '\u05D4\u05D4\u05E9\u05E7\u05E4\u05D4'],
+  },
+  {
+    key: 'histori',
+    lemma: '\u05D4\u05D9\u05E1\u05D8\u05D5\u05E8\u05D9',
+    renderings: ['historical'],
+    forms: ['\u05D4\u05D9\u05E1\u05D8\u05D5\u05E8\u05D9', '\u05D4\u05D4\u05D9\u05E1\u05EA\u05D5\u05E8\u05D9', '\u05D4\u05D4\u05D9\u05E1\u05EA\u05D5\u05E8\u05D9\u05EA'],
+  },
+  {
+    key: 'historia',
+    lemma: '\u05D4\u05D9\u05E1\u05D8\u05D5\u05E8\u05D9\u05D4',
+    renderings: ['history'],
+    forms: ['\u05D4\u05D9\u05E1\u05D8\u05D5\u05E8\u05D9\u05D4', '\u05D4\u05D4\u05D9\u05E1\u05EA\u05D5\u05E8\u05D9\u05D4'],
+  },
+  {
+    key: 'yisraeli',
+    lemma: '\u05D9\u05E9\u05E8\u05D0\u05DC\u05D9',
+    renderings: ['Israelite', 'Israeli'],
+    forms: ['\u05D9\u05E9\u05E8\u05D0\u05DC\u05D9', '\u05D4\u05D9\u05E9\u05E8\u05D0\u05DC\u05D9\u05D9\u05DD', '\u05D4\u05D9\u05E9\u05E8\u05D0\u05DC\u05D9\u05D5\u05EA'],
+  },
+  {
+    key: 'homriyut',
+    lemma: '\u05D7\u05DE\u05E8\u05D9\u05D5\u05EA',
+    renderings: ['materiality', 'physicality'],
+    forms: ['\u05D7\u05DE\u05E8\u05D9\u05D5\u05EA', '\u05D4\u05D7\u05DE\u05E8\u05D9\u05D5\u05EA'],
+  },
+  {
+    key: 'tzinorot',
+    lemma: '\u05E6\u05E0\u05D5\u05E8\u05D5\u05EA',
+    renderings: ['channels', 'conduits'],
+    forms: ['\u05E6\u05E0\u05D5\u05E8\u05D5\u05EA', '\u05D4\u05E6\u05E0\u05D5\u05E8\u05D5\u05EA'],
+  },
+  {
+    key: 'kultura',
+    lemma: '\u05E7\u05D5\u05DC\u05D8\u05D5\u05E8\u05D4',
+    renderings: ['culture'],
+    forms: ['\u05E7\u05D5\u05DC\u05D8\u05D5\u05E8\u05D4', '\u05D4\u05E7\u05D5\u05DC\u05D8\u05D5\u05E8\u05D4'],
+  },
+  {
+    key: 'idealiyut',
+    lemma: '\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05D5\u05EA',
+    renderings: ['ideality', 'ideal qualities'],
+    forms: ['\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05D5\u05EA', '\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05D5\u05EA', '\u05D5\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05D5\u05EA'],
+  },
+];
+
 const prefixRules = new Map([
   ['\u05D5', { hebrew: '\u05D5\u05BE', renderings: ['and'] }],
   ['\u05D4', { hebrew: '\u05D4\u05BE', renderings: ['the'] }],
@@ -611,6 +747,16 @@ const suffixRules = [
   { normalized: '\u05DE', hebrew: '\u05BE\u05DD', renderings: ['their'] },
   { normalized: '\u05E0', hebrew: '\u05BE\u05DF', renderings: ['their'] },
 ].sort((a, b) => b.normalized.length - a.normalized.length);
+
+const unsafeAffixBaseNormalizations = new Set([
+  '\u05D4\u05E0', // הן: too ambiguous for loose prefix parsing; requires explicit grammar handling.
+]);
+
+const safeQuoteArtifactBaseNormalizations = new Set([
+  '\u05D9\u05E9\u05E8\u05D0\u05DC', // ישראל
+  '\u05D3\u05F3', // ד׳
+  '\u05D0\u05DC\u05D4\u05D9\u05DE', // אלהים
+]);
 
 function formatList(items) {
   return items.map((item) => `- ${item}`).join('\n');
@@ -981,6 +1127,73 @@ function ensureProjectZoharAriTechnicalTermEntries(lexicon) {
   return changed;
 }
 
+function makeProjectOrotFinalTechnicalEntry(definition) {
+  const lemma = normalizeHebrewPunctuation(definition.lemma);
+  const sourceId = `project-orot-technical:final-${definition.key}`;
+  const entryId = stableId('lex-orot-term', sourceId);
+  const sourceRowKey = `workspace|${sourceId}`;
+  const surfaceForms = unique([lemma, ...(definition.forms || [])].map(normalizeHebrewPunctuation));
+  const possibleEntry = {
+    entry_key: sourceId,
+    lemma,
+    match_key: normalizeHebrewToken(lemma),
+    source_name: 'Project Orot technical term table',
+    source_family: 'workspace',
+    source_id: sourceId,
+    transliteration: '',
+    strict_renderings: definition.renderings,
+    root: '',
+    root_transliteration: '',
+    root_meaning: [],
+    context_role: 'likely_contextual',
+    relation_label: 'project Orot technical term',
+    source_row_keys: [sourceRowKey],
+  };
+  const sourceRow = {
+    source_name: 'Project Orot technical term table',
+    source_family: 'workspace',
+    source_id: sourceId,
+    source_url: 'local:project-orot-technical-term-table',
+    license: 'project-authored / CC0',
+    license_url: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    fields_used: ['surface form', 'mechanical normalization', 'short lexical renderings'],
+    notes: 'Project-authored Orot technical term row. Short lexical renderings only; no external dictionary prose imported.',
+  };
+  return {
+    entry_id: entryId,
+    hebrew_word: lemma,
+    surface_forms: surfaceForms,
+    transliteration: '',
+    strict_renderings: definition.renderings,
+    root: '',
+    root_transliteration: '',
+    root_meaning: [],
+    disambiguation_status: 'likely',
+    context_note: 'Resolved as a repeated Orot technical term.',
+    possible_entries_truncated: 0,
+    possible_entries: [possibleEntry],
+    source_rows: [sourceRow],
+  };
+}
+
+function ensureProjectOrotFinalTechnicalEntries(lexicon) {
+  const entries = Array.isArray(lexicon.entries) ? lexicon.entries : [];
+  const withoutFinalTerms = entries.filter((entry) => {
+    const ids = [
+      ...(entry?.source_rows || []).map((row) => row.source_id),
+      ...(entry?.possible_entries || []).map((row) => row.source_id || row.entry_key),
+    ].filter(Boolean).map(String);
+    return !ids.some((sourceId) => sourceId.startsWith('project-orot-technical:final-'));
+  });
+  const nextEntries = [
+    ...withoutFinalTerms,
+    ...projectOrotFinalTechnicalDefinitions.map(makeProjectOrotFinalTechnicalEntry),
+  ];
+  const changed = JSON.stringify(entries) !== JSON.stringify(nextEntries);
+  lexicon.entries = nextEntries;
+  return changed;
+}
+
 function sourceFamiliesFor(row) {
   const entry = lexiconById.get(row.lexicon_entry_id);
   return unique((entry?.source_rows || []).map((sourceRow) => sourceRow.source_family || sourceRow.source_name));
@@ -995,23 +1208,48 @@ function renderingsFor(row) {
 
 function entryRenderings(entry) {
   const likely = (entry?.possible_entries || []).find((possibleEntry) => possibleEntry.context_role === 'likely_contextual');
-  return unique([
+  return cleanLexicalRenderings([
     ...(likely?.strict_renderings || []),
     ...(entry?.strict_renderings || []),
-  ])
+  ]);
+}
+
+function cleanLexicalRenderings(values) {
+  return unique(values)
     .map((rendering) => String(rendering || '').trim())
     .map((rendering) => rendering.replace(/\.$/, ''))
     .filter((rendering) => {
       if (!rendering || rendering.length > 40) return false;
+      if (/×/.test(rendering)) return false;
       if (/[()[\];]/.test(rendering)) return false;
-      if (/\b(i\.e|literally|figuratively|concretely|implication|name of)\b/i.test(rendering)) return false;
-      if (/\b(good|bad|properly|direct|implied|transitive|advise|appear|compare|enemy|coffee|sea|water|Mediterranean|whether|specifically|infix|hello|salutation|greeting|lust)\b/i.test(rendering)) return false;
+      if (/\b(i\.e|literally|figuratively|concretely|implication|name of|by resemblance)\b/i.test(rendering)) return false;
+      if (/\b(good|bad|properly|direct|implied|transitive|advise|appear|compare|enemy|coffee|sea|water|Mediterranean|whether|specifically|infix|hello|salutation|greeting|lust|probably|gleesome|spite|unexpectedly|thereby|copula|beacon|dwell|continue)\b/i.test(rendering)) return false;
+      if (/\b(go one way or other|turn rosy|such like|that's that|cheer up|ordinary sense|literal and immediate|figurative and remote|superlative)\b/i.test(rendering)) return false;
       if (/^(to|be|being|become|became)\s+/i.test(rendering)) return false;
       if (/^(a|an|the)\s+(good|bad|sea)\b/i.test(rendering)) return false;
       if (/^[A-Z]/.test(rendering) && !/^(Torah|God|Israel|Jerusalem)\b/.test(rendering)) return false;
       return true;
     })
     .slice(0, 4);
+}
+
+function exactCandidateRenderings(entry, normalized) {
+  const values = [];
+  for (const candidate of entry?.possible_entries || []) {
+    const lemma = candidate.lemma || '';
+    const exact = normalizeHebrewToken(lemma) === normalized
+      || normalizeHebrewTokenWithQubutsMater(lemma) === normalized;
+    if (!exact) continue;
+    values.push(...(candidate.strict_renderings || []));
+  }
+  return cleanLexicalRenderings(values);
+}
+
+function conservativeBaseRenderings(entry, normalized, workId) {
+  const direct = entryRenderings(entry);
+  if (direct.length) return direct;
+  if (workId !== 'orot') return [];
+  return exactCandidateRenderings(entry, normalized);
 }
 
 function prefixPhrase(prefixes) {
@@ -1080,6 +1318,7 @@ function getPrefixSequences(normalized) {
 }
 
 function isEntryAllowedForWork(entry, workId) {
+  if (entry?.work_scope === 'orot' && workId !== 'orot') return false;
   if (entry?.work_scope === 'kabbalah' && !isKabbalahWork(workId)) return false;
   if (entry?.work_scope === 'zohar_ari' && !isZoharAriWork(workId)) return false;
   const sourceIds = [
@@ -1126,6 +1365,73 @@ function lookupLexiconEntryId(normalized, workId) {
   return '';
 }
 
+function stripEdgeQuoteArtifact(value) {
+  return normalizeHebrewPunctuation(value).replace(/^["\u201C\u201D]+|["\u201C\u201D]+$/gu, '');
+}
+
+function analyzeQuoteArtifactSurfaceForm(surfaceWord, normalizedWord, workId) {
+  if (workId !== 'orot') return null;
+  const strippedSurface = stripEdgeQuoteArtifact(surfaceWord);
+  const strippedNormalized = normalizeHebrewToken(strippedSurface);
+  if (!strippedSurface || strippedSurface === surfaceWord || strippedNormalized === normalizedWord) return null;
+  const entryId = lookupLexiconEntryId(strippedNormalized, workId);
+  if (!entryId) return null;
+  const entry = lexiconById.get(entryId);
+  const baseRenderings = entryRenderings(entry);
+  if (!baseRenderings.length) return null;
+  return {
+    lexicon_entry_id: entryId,
+    entry,
+    surfaceAnalysis: {
+      surface_transliteration: '',
+      surface_renderings: baseRenderings,
+      surface_context_status: 'resolved_quote_artifact',
+      surface_context_note: 'Resolved by stripping edge quote punctuation and using the already-resolved base token.',
+      breakdown: [{
+        hebrew: strippedSurface,
+        strict_renderings: baseRenderings,
+      }],
+    },
+  };
+}
+
+function analyzePrefixedKnownEntrySurfaceForm(surfaceWord, normalizedWord, workId) {
+  if (workId !== 'orot' || !normalizedWord || normalizedWord.length < 3 || !hasAbbreviationMark(normalizedWord)) return null;
+  for (const prefix of Array.from(normalizedWord.slice(0, 1))) {
+    if (!prefixRules.has(prefix)) continue;
+    const baseNormalized = normalizedWord.slice(prefix.length);
+    if (!baseNormalized || !hasAbbreviationMark(baseNormalized)) continue;
+    const entryId = lookupLexiconEntryId(baseNormalized, workId);
+    if (!entryId) continue;
+    const entry = lexiconById.get(entryId);
+    const baseRenderings = conservativeBaseRenderings(entry, baseNormalized, workId);
+    if (!baseRenderings.length) continue;
+    const surfaceRenderings = combineSurfaceRenderings([prefix], baseRenderings, null);
+    if (!surfaceRenderings.length) continue;
+    return {
+      lexicon_entry_id: entryId,
+      entry,
+      surfaceAnalysis: {
+        surface_transliteration: '',
+        surface_renderings: surfaceRenderings,
+        surface_context_status: 'resolved_prefix_base',
+        surface_context_note: 'Resolved by conservative prefix parser using an already-known abbreviated base token.',
+        breakdown: [
+          {
+            hebrew: prefixRules.get(prefix)?.hebrew || `${prefix}\u05BE`,
+            strict_renderings: prefixRules.get(prefix)?.renderings || [],
+          },
+          {
+            hebrew: entry?.hebrew_word || baseNormalized,
+            strict_renderings: baseRenderings,
+          },
+        ],
+      },
+    };
+  }
+  return null;
+}
+
 function matchMethodForEntry(entry, fallback = 'direct') {
   const sourceIds = [
     ...(entry?.source_rows || []).map((row) => row.source_id),
@@ -1156,11 +1462,14 @@ function analyzeAffixSurfaceForm(surfaceWord, normalizedWord, workId) {
   }
 
   for (const attempt of attempts) {
+    if (unsafeAffixBaseNormalizations.has(attempt.baseNormalized)) continue;
     const entryId = lookupLexiconEntryId(attempt.baseNormalized, workId);
     if (!entryId) continue;
-    if ((observedNormalizedCounts.get(attempt.baseNormalized) || 0) < 5) continue;
     const entry = lexiconById.get(entryId);
-    const baseRenderings = entryRenderings(entry);
+    const matchMethod = matchMethodForEntry(entry, 'direct');
+    const trustedProjectBase = ['project_orot_technical', 'project_function_word', 'project_abbreviation'].includes(matchMethod);
+    if (!trustedProjectBase && (observedNormalizedCounts.get(attempt.baseNormalized) || 0) < 5) continue;
+    const baseRenderings = conservativeBaseRenderings(entry, attempt.baseNormalized, workId);
     if (!baseRenderings.length) continue;
     const prefixes = Array.from(attempt.prefixSequence);
     const surfaceRenderings = combineSurfaceRenderings(prefixes, baseRenderings, attempt.suffix);
@@ -1313,7 +1622,8 @@ const fixedExpressionEntriesChanged = ensureFixedExpressionEntries(lexicon);
 const abbreviationEntriesChanged = ensureProjectAbbreviationEntries(lexicon);
 const aramaicGrammarEntriesChanged = ensureProjectAramaicGrammarEntries(lexicon);
 const zoharAriTermEntriesChanged = ensureProjectZoharAriTechnicalTermEntries(lexicon);
-const lexiconChanged = fixedExpressionEntriesChanged || abbreviationEntriesChanged || aramaicGrammarEntriesChanged || zoharAriTermEntriesChanged;
+const orotFinalTechnicalEntriesChanged = ensureProjectOrotFinalTechnicalEntries(lexicon);
+const lexiconChanged = fixedExpressionEntriesChanged || abbreviationEntriesChanged || aramaicGrammarEntriesChanged || zoharAriTermEntriesChanged || orotFinalTechnicalEntriesChanged;
 writeLexicon(lexicon);
 const lexiconByNormalized = new Map();
 const lexiconById = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
@@ -1398,6 +1708,26 @@ for (const fileName of sourceFiles) {
         let entry = lexiconEntryId ? lexiconById.get(lexiconEntryId) : null;
         let surfaceAnalysis = entry ? analyzeSurfaceForm(surfaceWord, entry) : null;
         let matchMethod = lexiconEntryId ? matchMethodForEntry(entry, 'direct') : 'unmatched';
+
+        if (!lexiconEntryId) {
+          const quoteArtifactAnalysis = analyzeQuoteArtifactSurfaceForm(surfaceWord, normalizedWord, source.work_id);
+          if (quoteArtifactAnalysis) {
+            lexiconEntryId = quoteArtifactAnalysis.lexicon_entry_id;
+            entry = quoteArtifactAnalysis.entry;
+            surfaceAnalysis = quoteArtifactAnalysis.surfaceAnalysis;
+            matchMethod = 'quote_artifact_cleanup';
+          }
+        }
+
+        if (!lexiconEntryId) {
+          const prefixedKnownEntryAnalysis = analyzePrefixedKnownEntrySurfaceForm(surfaceWord, normalizedWord, source.work_id);
+          if (prefixedKnownEntryAnalysis) {
+            lexiconEntryId = prefixedKnownEntryAnalysis.lexicon_entry_id;
+            entry = prefixedKnownEntryAnalysis.entry;
+            surfaceAnalysis = prefixedKnownEntryAnalysis.surfaceAnalysis;
+            matchMethod = 'prefix_known_entry_parser';
+          }
+        }
 
         if (!lexiconEntryId) {
           const affixAnalysis = analyzeAffixSurfaceForm(surfaceWord, normalizedWord, source.work_id);
