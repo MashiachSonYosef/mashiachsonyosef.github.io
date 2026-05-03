@@ -334,6 +334,29 @@ foreach ($rendering in @('inner', 'internal', 'inward')) {
   }
 }
 
+$bSegulotSurface = -join @([char]0x05D1, [char]0x05B4, [char]0x05BC, [char]0x05E1, [char]0x05B0, [char]0x05D2, [char]0x05BB, [char]0x05DC, [char]0x05D5, [char]0x05B9, [char]0x05EA)
+$bSegulot = Select-TokenRow -WorkId 'orot' -Surface $bSegulotSurface
+if ($null -eq $bSegulot -or $bSegulot.status -ne 'matched' -or $bSegulot.match_method -ne 'project_orot_technical') {
+  throw "Expected bisegulot to resolve through the Orot technical term layer."
+}
+Assert-Codepoints -Label 'bisegulot surface' -Value $bSegulot.surface_word -Expected @(0x05D1, 0x05B4, 0x05BC, 0x05E1, 0x05B0, 0x05D2, 0x05BB, 0x05DC, 0x05D5, 0x05B9, 0x05EA)
+foreach ($rendering in @('with qualities', 'with properties', 'in qualities', 'by qualities')) {
+  if (-not (@($bSegulot.surface_renderings) -contains $rendering)) {
+    throw "Expected bisegulot strict Hebrew surface rendering missing: $rendering"
+  }
+}
+$bSegulotBreakdown = @($bSegulot.breakdown)
+if ($bSegulotBreakdown.Count -ne 2) {
+  throw "Expected bisegulot breakdown to contain prefix and base rows."
+}
+Assert-Codepoints -Label 'bisegulot prefix breakdown' -Value $bSegulotBreakdown[0].hebrew -Expected @(0x05D1, 0x05B4, 0x05BC, 0x05BE)
+Assert-Codepoints -Label 'bisegulot base breakdown' -Value $bSegulotBreakdown[1].hebrew -Expected @(0x05E1, 0x05B0, 0x05D2, 0x05BB, 0x05DC, 0x05D5, 0x05B9, 0x05EA)
+foreach ($rendering in @('qualities', 'properties', 'special qualities')) {
+  if (-not (@($bSegulotBreakdown[1].strict_renderings) -contains $rendering)) {
+    throw "Expected bisegulot base breakdown rendering missing: $rendering"
+  }
+}
+
 foreach ($canary in $openingCanaryGroup) {
   $row = Select-TokenRow -WorkId 'orot' -Surface $canary.Surface
   if ($null -eq $row) {

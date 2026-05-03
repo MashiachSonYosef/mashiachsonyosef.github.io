@@ -706,6 +706,18 @@ const projectOrotFinalTechnicalDefinitions = [
     renderings: ['inner', 'internal', 'inward'],
     forms: ['\u05E4\u05E0\u05D9\u05DE\u05D9', '\u05E4\u05E0\u05D9\u05DE\u05D9\u05EA', '\u05E4\u05E0\u05D9\u05DE\u05D9\u05D5\u05EA', '\u05D4\u05E4\u05E0\u05D9\u05DE\u05D9\u05D5\u05EA'],
   },
+  {
+    key: 'segulot',
+    lemma: '\u05E1\u05D2\u05D5\u05DC\u05D5\u05EA',
+    renderings: ['quality', 'property', 'special quality', 'distinctive quality', 'treasured quality'],
+    forms: [
+      '\u05E1\u05D2\u05D5\u05DC\u05D4',
+      '\u05E1\u05D2\u05D5\u05DC\u05D5\u05EA',
+      '\u05E1\u05B0\u05D2\u05BB\u05DC\u05D5\u05B9\u05EA',
+      '\u05D1\u05E1\u05D2\u05D5\u05DC\u05D5\u05EA',
+      '\u05D1\u05B4\u05BC\u05E1\u05B0\u05D2\u05BB\u05DC\u05D5\u05B9\u05EA',
+    ],
+  },
 ];
 
 const prefixRules = new Map([
@@ -1579,6 +1591,40 @@ function analyzeSurfaceForm(surfaceWord, entry) {
       surface_renderings: entry?.strict_renderings || [],
       surface_context_status: 'resolved_zohar_ari_technical',
       surface_context_note: entry?.context_note || 'Resolved as a scoped Zohar/Ari technical term.',
+      breakdown: entry?.breakdown || [],
+    };
+  }
+  if (sourceIds.some((sourceId) => sourceId.startsWith('project-orot-technical:final-segulot'))) {
+    const normalized = normalizeHebrewToken(surfaceWord);
+    const normalizedWithQubutsMater = normalizeHebrewTokenWithQubutsMater(surfaceWord);
+    const isBetSegulot = normalized === '\u05D1\u05E1\u05D2\u05D5\u05DC\u05D5\u05EA'
+      || normalized === '\u05D1\u05E1\u05D2\u05DC\u05D5\u05EA'
+      || normalizedWithQubutsMater === '\u05D1\u05E1\u05D2\u05D5\u05DC\u05D5\u05EA';
+    if (isBetSegulot) {
+      return {
+        surface_transliteration: '',
+        surface_renderings: ['with qualities', 'with properties', 'in qualities', 'by qualities'],
+        surface_context_status: 'resolved_prefix_base',
+        surface_context_note: 'Resolved as bet prefix plus the Orot technical base term.',
+        breakdown: [
+          {
+            hebrew: '\u05D1\u05B4\u05BC\u05BE',
+            strict_renderings: ['in', 'with', 'by'],
+          },
+          {
+            hebrew: '\u05E1\u05B0\u05D2\u05BB\u05DC\u05D5\u05B9\u05EA',
+            strict_renderings: ['qualities', 'properties', 'special qualities'],
+          },
+        ],
+      };
+    }
+  }
+  if (sourceIds.some((sourceId) => sourceId.startsWith('project-orot-technical:'))) {
+    return {
+      surface_transliteration: '',
+      surface_renderings: entry?.strict_renderings || [],
+      surface_context_status: 'resolved_orot_technical',
+      surface_context_note: entry?.context_note || 'Resolved as a repeated Orot technical term.',
       breakdown: entry?.breakdown || [],
     };
   }
