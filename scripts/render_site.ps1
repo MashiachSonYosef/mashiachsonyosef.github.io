@@ -731,6 +731,14 @@ function Append-LexicalHudScript {
       [void]$Builder.AppendLine('        if (!groups.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) groups.push(makeSourceGroup(view.hebrew_word || view.surface_word || "Clicked form", [...strictBuckets.hebrew, ...strictBuckets.aramaic], view.source_rows));')
       [void]$Builder.AppendLine('        return uniqueSourceGroups(groups);')
       [void]$Builder.AppendLine('      };')
+      [void]$Builder.AppendLine('      const sourceGroupsForVisible = (view, strictBuckets, hasStrict) => {')
+      [void]$Builder.AppendLine('        const strictGroups = sourceGroupsForStrict(view, strictBuckets);')
+      [void]$Builder.AppendLine('        if (strictGroups.length || hasStrict) return strictGroups;')
+      [void]$Builder.AppendLine('        const entries = cleanValues(view.possible_entries);')
+      [void]$Builder.AppendLine('        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry));')
+      [void]$Builder.AppendLine('        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry));')
+      [void]$Builder.AppendLine('        return uniqueSourceGroups([...sourceGroupsForEntries(view, potentialEntries), ...sourceGroupsForEntries(view, relatedEntries)]);')
+      [void]$Builder.AppendLine('      };')
       [void]$Builder.AppendLine('      const appendSecondarySources = (container, view, entries, label) => {')
       [void]$Builder.AppendLine('        const groups = sourceGroupsForEntries(view, entries);')
       [void]$Builder.AppendLine('        if (!groups.length) return;')
@@ -864,7 +872,7 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('          setList(hud, "[data-hud-aramaic-strict]", strictBuckets.aramaic);')
   [void]$Builder.AppendLine('          renderBreakdown(hud, view);')
   [void]$Builder.AppendLine('          renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);')
-  [void]$Builder.AppendLine('          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForStrict(view, strictBuckets));')
+  [void]$Builder.AppendLine('          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictBuckets, hasStrict));')
   [void]$Builder.AppendLine('          const details = hud.querySelector("details");')
   [void]$Builder.AppendLine('          if (details) details.open = false;')
   [void]$Builder.AppendLine('        } catch (error) {')
@@ -1027,6 +1035,19 @@ function Get-LexicalSourceRowKey {
   return "$($Row.source_family)|$($Row.source_id)"
 }
 
+function Get-LexicalEntrySourceKeys {
+  param([object]$Entry)
+
+  $keys = @()
+  foreach ($key in @($Entry.source_row_keys)) {
+    if ($key) { $keys += [string]$key }
+  }
+  if ($Entry.source_family -or $Entry.source_id) {
+    $keys += "$($Entry.source_family)|$($Entry.source_id)"
+  }
+  return @($keys | Where-Object { $_ -and $_ -ne '|' } | Select-Object -Unique)
+}
+
 function Select-LexicalSourceRows {
   param(
     [object[]]$SourceRows,
@@ -1042,6 +1063,94 @@ function Select-LexicalSourceRows {
     $key = Get-LexicalSourceRowKey -Row $_
     $key -and $keySet.ContainsKey($key)
   })
+}
+
+function New-LexicalFallbackSourceRow {
+  param([object]$Entry)
+
+  if ($null -eq $Entry -or (-not $Entry.source_family -and -not $Entry.source_id)) { return $null }
+  $family = [string]$Entry.source_family
+  $sourceId = [string]$Entry.source_id
+  if (-not $sourceId) { return $null }
+
+  if ($family -eq 'wikidata') {
+    return [pscustomobject]@{
+      source_name = if ($Entry.source_name) { $Entry.source_name } else { 'Wikidata Lexeme' }
+      source_family = 'wikidata'
+      source_id = $sourceId
+      source_url = "https://www.wikidata.org/wiki/Lexeme:$sourceId"
+      license = 'CC0'
+      license_url = 'https://www.wikidata.org/wiki/Wikidata:Licensing'
+      fields_used = @('lemma/form coverage', 'English sense glosses or sense-item labels where available')
+      notes = 'Fallback source row reconstructed from rendered lexical candidate metadata.'
+    }
+  }
+
+  if ($family -eq 'openscriptures') {
+    $sourceName = if ($Entry.source_name) { [string]$Entry.source_name } else { 'OpenScriptures HebrewLexicon' }
+    $sourceUrl = if ($sourceName -match 'morphHB') {
+      'https://github.com/openscriptures/morphhb/tree/master/wlc'
+    } else {
+      'https://github.com/openscriptures/HebrewLexicon/blob/master/HebrewStrong.xml'
+    }
+    return [pscustomobject]@{
+      source_name = $sourceName
+      source_family = 'openscriptures'
+      source_id = $sourceId
+      source_url = $sourceUrl
+      license = 'CC BY 4.0'
+      license_url = 'https://creativecommons.org/licenses/by/4.0/'
+      fields_used = @('lexical candidate metadata')
+      notes = 'Fallback source row reconstructed from rendered lexical candidate metadata.'
+    }
+  }
+
+  if ($family -eq 'kaikki' -or $family -eq 'wiktionary') {
+    return [pscustomobject]@{
+      source_name = if ($Entry.source_name) { $Entry.source_name } else { 'Wiktionary via Kaikki' }
+      source_family = $family
+      source_id = $sourceId
+      source_url = 'https://kaikki.org/dictionary/Hebrew/index.html'
+      license = 'CC BY-SA 4.0 / GFDL'
+      license_url = 'https://creativecommons.org/licenses/by-sa/4.0/'
+      fields_used = @('lexical candidate metadata')
+      notes = 'Fallback source row reconstructed from rendered lexical candidate metadata.'
+    }
+  }
+
+  return [pscustomobject]@{
+    source_name = if ($Entry.source_name) { $Entry.source_name } else { 'Lexical candidate source' }
+    source_family = $family
+    source_id = $sourceId
+    source_url = ''
+    license = 'source metadata incomplete'
+    license_url = ''
+    fields_used = @('lexical candidate metadata')
+    notes = 'Rendered candidate carried a source id, but no full cached source/license row was available. Treat as caution/incomplete metadata.'
+  }
+}
+
+function Add-LexicalFallbackSourceRows {
+  param(
+    [object[]]$SourceRows,
+    [object[]]$Entries
+  )
+
+  $rows = @($SourceRows)
+  $known = @{}
+  foreach ($row in @($rows)) {
+    $key = Get-LexicalSourceRowKey -Row $row
+    if ($key) { $known[$key] = $true }
+  }
+  foreach ($entry in @($Entries)) {
+    $key = Get-LexicalSourceRowKey -Row $entry
+    if (-not $key -or $known.ContainsKey($key)) { continue }
+    $fallback = New-LexicalFallbackSourceRow -Entry $entry
+    if ($null -eq $fallback) { continue }
+    $rows += $fallback
+    $known[$key] = $true
+  }
+  return @($rows)
 }
 
 function Get-WorkLexicalPayload {
@@ -1108,10 +1217,11 @@ function Get-WorkLexicalPayload {
         if ($primaryEntry.entry_key) { $primaryEntryKeys[[string]$primaryEntry.entry_key] = $true }
       }
       $secondaryEntries = @($rawPossibleEntries | Where-Object { -not ($_.entry_key -and $primaryEntryKeys.ContainsKey([string]$_.entry_key)) })
-      $primarySourceRows = Select-LexicalSourceRows -SourceRows @($entry.source_rows) -Keys @($primaryEntries | ForEach-Object { @($_.source_row_keys) })
-      $secondarySourceRows = Select-LexicalSourceRows -SourceRows @($entry.source_rows) -Keys @($secondaryEntries | ForEach-Object { @($_.source_row_keys) })
+      $selectionSourceRows = Add-LexicalFallbackSourceRows -SourceRows @($entry.source_rows) -Entries @($rawPossibleEntries)
+      $primarySourceRows = Select-LexicalSourceRows -SourceRows @($selectionSourceRows) -Keys @($primaryEntries | ForEach-Object { @(Get-LexicalEntrySourceKeys -Entry $_) })
+      $secondarySourceRows = Select-LexicalSourceRows -SourceRows @($selectionSourceRows) -Keys @($secondaryEntries | ForEach-Object { @(Get-LexicalEntrySourceKeys -Entry $_) })
       if ($primarySourceRows.Count -eq 0 -and @($entry.strict_renderings).Count -gt 0) {
-        $strictRenderingRows = @($entry.source_rows | Where-Object { $_.source_family -eq 'kaikki' -or $_.source_family -eq 'wiktionary' })
+        $strictRenderingRows = @($selectionSourceRows | Where-Object { $_.source_family -eq 'kaikki' -or $_.source_family -eq 'wiktionary' })
         if ($strictRenderingRows.Count -gt 0) {
           $primarySourceRows = $strictRenderingRows
         }

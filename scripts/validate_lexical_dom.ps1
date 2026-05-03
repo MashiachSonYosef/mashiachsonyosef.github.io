@@ -380,6 +380,36 @@ if ($segulatVisibleRenderings -contains 'dotted with a segol') {
   throw "Segulat strict renderings still include orthographic segol noise."
 }
 
+$machshavahSurface = -join @([char]0x05D4, [char]0x05DE, [char]0x05D7, [char]0x05E9, [char]0x05D1, [char]0x05D4)
+$machshavah = Select-TokenRow -WorkId 'orot' -Surface $machshavahSurface
+if ($null -eq $machshavah -or $machshavah.status -ne 'matched' -or $machshavah.match_method -ne 'project_orot_technical') {
+  throw "Expected ha-machshavah to resolve through the Orot technical term layer."
+}
+Assert-Codepoints -Label 'ha-machshavah surface' -Value $machshavah.surface_word -Expected @(0x05D4, 0x05DE, 0x05D7, 0x05E9, 0x05D1, 0x05D4)
+foreach ($rendering in @('the thought', 'the thinking', 'the idea', 'the contemplation')) {
+  if (-not (@($machshavah.surface_renderings) -contains $rendering)) {
+    throw "Expected ha-machshavah strict Hebrew surface rendering missing: $rendering"
+  }
+}
+$machshavahBreakdown = @($machshavah.breakdown)
+if ($machshavahBreakdown.Count -ne 2) {
+  throw "Expected ha-machshavah breakdown to contain prefix and base rows."
+}
+Assert-Codepoints -Label 'ha-machshavah prefix breakdown' -Value $machshavahBreakdown[0].hebrew -Expected @(0x05D4, 0x05BE)
+Assert-Codepoints -Label 'ha-machshavah base breakdown' -Value $machshavahBreakdown[1].hebrew -Expected @(0x05DE, 0x05D7, 0x05E9, 0x05D1, 0x05D4)
+foreach ($rendering in @('thought', 'thinking', 'idea', 'contemplation')) {
+  if (-not (@($machshavahBreakdown[1].strict_renderings) -contains $rendering)) {
+    throw "Expected ha-machshavah base breakdown rendering missing: $rendering"
+  }
+}
+$machshavahEntry = $entriesById[[string]$machshavah.lexicon_entry_id]
+$machshavahVisibleRenderings = @($machshavah.surface_renderings) + @($machshavahEntry.strict_renderings)
+foreach ($noise in @('contrivance', 'machine', 'plot')) {
+  if ($machshavahVisibleRenderings -contains $noise) {
+    throw "Ha-machshavah strict renderings still include noisy OpenScriptures rendering: $noise"
+  }
+}
+
 foreach ($canary in $openingCanaryGroup) {
   $row = Select-TokenRow -WorkId 'orot' -Surface $canary.Surface
   if ($null -eq $row) {

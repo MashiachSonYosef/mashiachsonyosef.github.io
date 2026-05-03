@@ -707,6 +707,18 @@ const projectOrotFinalTechnicalDefinitions = [
     forms: ['\u05E4\u05E0\u05D9\u05DE\u05D9', '\u05E4\u05E0\u05D9\u05DE\u05D9\u05EA', '\u05E4\u05E0\u05D9\u05DE\u05D9\u05D5\u05EA', '\u05D4\u05E4\u05E0\u05D9\u05DE\u05D9\u05D5\u05EA'],
   },
   {
+    key: 'machshavah',
+    lemma: '\u05DE\u05D7\u05E9\u05D1\u05D4',
+    renderings: ['thought', 'thinking', 'idea', 'contemplation'],
+    forms: [
+      '\u05DE\u05D7\u05E9\u05D1\u05D4',
+      '\u05D4\u05DE\u05D7\u05E9\u05D1\u05D4',
+      '\u05DE\u05D7\u05E9\u05D1\u05EA',
+      '\u05DE\u05D7\u05E9\u05D1\u05D5\u05EA',
+      '\u05D1\u05DE\u05D7\u05E9\u05D1\u05D4',
+    ],
+  },
+  {
     key: 'segulot',
     lemma: '\u05E1\u05D2\u05D5\u05DC\u05D5\u05EA',
     renderings: ['quality', 'property', 'special quality', 'distinctive quality', 'treasured quality'],
@@ -1594,6 +1606,61 @@ function analyzeSurfaceForm(surfaceWord, entry) {
       surface_context_note: entry?.context_note || 'Resolved as a scoped Zohar/Ari technical term.',
       breakdown: entry?.breakdown || [],
     };
+  }
+  if (sourceIds.some((sourceId) => sourceId.startsWith('project-orot-technical:final-machshavah'))) {
+    const normalized = normalizeHebrewToken(surfaceWord);
+    const baseBreakdown = {
+      hebrew: '\u05DE\u05D7\u05E9\u05D1\u05D4',
+      strict_renderings: ['thought', 'thinking', 'idea', 'contemplation'],
+    };
+    const machshavahForms = {
+      ['\u05DE\u05D7\u05E9\u05D1\u05D4']: {
+        surface_renderings: ['thought', 'thinking', 'idea', 'contemplation'],
+        breakdown: [],
+      },
+      ['\u05D4\u05DE\u05D7\u05E9\u05D1\u05D4']: {
+        surface_renderings: ['the thought', 'the thinking', 'the idea', 'the contemplation'],
+        breakdown: [
+          { hebrew: '\u05D4\u05BE', strict_renderings: ['the'] },
+          baseBreakdown,
+        ],
+      },
+      ['\u05DE\u05D7\u05E9\u05D1\u05EA']: {
+        surface_renderings: ['thought of', 'thinking of', 'idea of', 'contemplation of'],
+        breakdown: [
+          {
+            hebrew: '\u05DE\u05D7\u05E9\u05D1\u05EA',
+            strict_renderings: ['construct form of \u05DE\u05D7\u05E9\u05D1\u05D4'],
+          },
+        ],
+      },
+      ['\u05DE\u05D7\u05E9\u05D1\u05D5\u05EA']: {
+        surface_renderings: ['thoughts', 'ideas', 'contemplations'],
+        breakdown: [
+          {
+            hebrew: '\u05DE\u05D7\u05E9\u05D1\u05D5\u05EA',
+            strict_renderings: ['plural form of \u05DE\u05D7\u05E9\u05D1\u05D4'],
+          },
+        ],
+      },
+      ['\u05D1\u05DE\u05D7\u05E9\u05D1\u05D4']: {
+        surface_renderings: ['in thought', 'with thought', 'by thought', 'in thinking', 'with thinking', 'by thinking'],
+        breakdown: [
+          { hebrew: '\u05D1\u05BE', strict_renderings: ['in', 'with', 'by'] },
+          baseBreakdown,
+        ],
+      },
+    };
+    const formAnalysis = machshavahForms[normalized];
+    if (formAnalysis) {
+      return {
+        surface_transliteration: '',
+        surface_renderings: formAnalysis.surface_renderings,
+        surface_context_status: 'resolved_orot_technical',
+        surface_context_note: 'Resolved as the Orot machshavah/thought technical field.',
+        breakdown: formAnalysis.breakdown,
+      };
+    }
   }
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-orot-technical:final-segulot'))) {
     const normalized = normalizeHebrewToken(surfaceWord);
