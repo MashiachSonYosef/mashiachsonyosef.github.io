@@ -76,13 +76,19 @@
     .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
     .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
     .breakdown-row p { margin: 0 0 4px; }
-    .lexical-entry-list { display: grid; gap: 10px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
     .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
     .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
     .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
     .lexical-entry .entry-hebrew { color: var(--hebrew); }
     .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
     .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
     .other-entries { margin-top: 12px; }
     .source-details { margin-top: 16px; }
     .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
@@ -9785,6 +9791,7 @@
       <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
       <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
       <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
     </dl>
     <details class="source-details">
       <summary>Sources / licenses</summary>
@@ -10081,6 +10088,94 @@
         const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
         return row ? [row] : [];
       };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "") => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        return { status: rowStatus, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanStrictRenderings(renderings || []), rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "");
+      const sourceSummary = (rows) => {
+        const row = cleanValues(rows)[0];
+        if (!row) return { source: "Source metadata incomplete", license: "N/A" };
+        const sourceId = row.source_id ? ` ${row.source_id}` : "";
+        return { source: `${row.source_name || "Source"}${sourceId}`, license: row.license || "N/A" };
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = uniqueClaims(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        rows.forEach((claim) => {
+          const card = document.createElement("section");
+          card.className = "claim-row";
+          const head = document.createElement("div");
+          head.className = "claim-row-head";
+          const badge = document.createElement("span");
+          badge.className = "claim-status";
+          badge.textContent = claim.status || "Potential";
+          const hebrew = document.createElement("strong");
+          hebrew.className = "claim-hebrew";
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+          head.append(badge, hebrew);
+          card.appendChild(head);
+          if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+          const renderings = document.createElement("p");
+          renderings.className = "claim-renderings";
+          renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+          card.appendChild(renderings);
+          const source = sourceSummary(claim.rows);
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+          list.appendChild(card);
+        });
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "");
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || ""));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || ""));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
       const makeSourceGroup = (label, renderings, rows) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows) });
       const uniqueSourceGroups = (groups) => {
         const seen = new Set();
@@ -10093,20 +10188,10 @@
         });
       };
       const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
-      const sourceGroupsForStrict = (view, strictBuckets) => {
-        const groups = [];
-        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
-        if (surfaceRenderings.length) groups.push(makeSourceGroup(view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows));
-        strictEntriesForView(view).forEach((entry) => {
-          const bucket = isAramaicEntry(entry) ? strictBuckets.aramaic : strictBuckets.hebrew;
-          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
-          if (renderings.length) groups.push(makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, renderings, sourceRowsForEntry(view, entry)));
-        });
-        if (!groups.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) groups.push(makeSourceGroup(view.hebrew_word || view.surface_word || "Clicked form", [...strictBuckets.hebrew, ...strictBuckets.aramaic], view.source_rows));
-        return uniqueSourceGroups(groups);
-      };
-      const sourceGroupsForVisible = (view, strictBuckets, hasStrict) => {
-        const strictGroups = sourceGroupsForStrict(view, strictBuckets);
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, hasStrict) => {
+        const strictGroups = sourceGroupsForStrict(strictClaims);
         if (strictGroups.length || hasStrict) return strictGroups;
         const entries = cleanValues(view.possible_entries);
         const relatedEntries = entries.filter((entry) => isRelatedEntry(entry));
@@ -10128,18 +10213,26 @@
       const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
         const potentialNode = root.querySelector("[data-hud-potential]");
         const relatedNode = root.querySelector("[data-hud-related]");
-        if (!potentialNode || !relatedNode) return;
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        if (!potentialNode || !relatedNode || !cautionNode) return;
         potentialNode.replaceChildren();
         relatedNode.replaceChildren();
-        if (!hasLexicalEntry) { setRowHidden(root, "[data-hud-potential-row]", false); setRowHidden(root, "[data-hud-related-row]", true); potentialNode.textContent = "Context unresolved. No lexical entry yet."; return; }
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) { setRowHidden(root, "[data-hud-potential-row]", false); setRowHidden(root, "[data-hud-related-row]", true); setRowHidden(root, "[data-hud-caution-row]", true); appendClaimRows(potentialNode, [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])]); return; }
         const entries = cleanValues(view.possible_entries);
         const strictKeys = strictEntryKeys(view);
         const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
         const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        setRowHidden(root, "[data-hud-potential-row]", hasStrict ? !potentialEntries.length : false);
-        setRowHidden(root, "[data-hud-related-row]", !relatedEntries.length);
-        if (!potentialEntries.length) {
-          if (!hasStrict) potentialNode.textContent = "Context unresolved.";
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution"));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        setRowHidden(root, "[data-hud-potential-row]", hasStrict ? !visiblePotentialClaims.length : false);
+        setRowHidden(root, "[data-hud-related-row]", !visibleRelatedClaims.length);
+        setRowHidden(root, "[data-hud-caution-row]", !cautionClaims.length);
+        if (!visiblePotentialClaims.length) {
+          if (!hasStrict) appendClaimRows(potentialNode, [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["Context unresolved."], [])]);
         } else {
           const details = document.createElement("details");
           details.className = "other-entries";
@@ -10147,27 +10240,46 @@
             const summary = document.createElement("summary");
             summary.textContent = "Show potential options";
             details.appendChild(summary);
-            details.appendChild(renderEntryList(potentialEntries, "Potential option"));
-            appendSecondarySources(details, view, potentialEntries, "Sources / licenses for potential options");
+            const claimBox = document.createElement("div");
+            appendClaimRows(claimBox, visiblePotentialClaims);
+            details.appendChild(claimBox);
+            const sourceDetails = document.createElement("details");
+            sourceDetails.className = "source-details";
+            const sourceSummary = document.createElement("summary");
+            sourceSummary.textContent = "Sources / licenses for potential options";
+            const sourceBox = document.createElement("div");
+            sourceDetails.append(sourceSummary, sourceBox);
+            renderSourceGroups(sourceBox, sourceGroupsForClaims(visiblePotentialClaims));
+            details.appendChild(sourceDetails);
             potentialNode.appendChild(details);
           } else {
             const note = document.createElement("p");
             note.className = "lexical-context-note";
             note.textContent = "Context unresolved.";
             potentialNode.appendChild(note);
-            potentialNode.appendChild(renderEntryList(potentialEntries, "Potential option"));
+            appendClaimRows(potentialNode, visiblePotentialClaims);
           }
         }
-        if (relatedEntries.length) {
+        if (visibleRelatedClaims.length) {
           const details = document.createElement("details");
           details.className = "other-entries";
           const summary = document.createElement("summary");
           summary.textContent = "Show related options";
           details.appendChild(summary);
-          details.appendChild(renderEntryList(relatedEntries, "Related option"));
-          appendSecondarySources(details, view, relatedEntries, "Sources / licenses for related options");
+          const claimBox = document.createElement("div");
+          appendClaimRows(claimBox, visibleRelatedClaims);
+          details.appendChild(claimBox);
+          const sourceDetails = document.createElement("details");
+          sourceDetails.className = "source-details";
+          const sourceSummary = document.createElement("summary");
+          sourceSummary.textContent = "Sources / licenses for related options";
+          const sourceBox = document.createElement("div");
+          sourceDetails.append(sourceSummary, sourceBox);
+          renderSourceGroups(sourceBox, sourceGroupsForClaims(visibleRelatedClaims));
+          details.appendChild(sourceDetails);
           relatedNode.appendChild(details);
         }
+        if (cautionClaims.length) appendClaimRows(cautionNode, cautionClaims);
       };
       const renderSourceRow = (row) => {
         const title = document.createElement("p");
@@ -10229,6 +10341,7 @@
         setText(hud, "[data-hud-word]", button.textContent.trim());
         setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
         setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
         setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
         renderBreakdown(hud, {});
         renderPotentialAndRelatedEntries(hud, {}, false, false);
@@ -10239,14 +10352,15 @@
           setText(hud, "[data-hud-word]", view.hebrew_word);
           const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
           const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
-          const hasStrict = strictBuckets.hebrew.length > 0 || strictBuckets.aramaic.length > 0;
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictBuckets.hebrew.length);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictBuckets.aramaic.length);
-          setList(hud, "[data-hud-hebrew-strict]", strictBuckets.hebrew);
-          setList(hud, "[data-hud-aramaic-strict]", strictBuckets.aramaic);
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
           renderBreakdown(hud, view);
           renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
-          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictBuckets, hasStrict));
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, hasStrict));
           const details = hud.querySelector("details");
           if (details) details.open = false;
         } catch (error) {
