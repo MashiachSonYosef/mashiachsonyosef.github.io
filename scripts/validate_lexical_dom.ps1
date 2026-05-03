@@ -356,6 +356,29 @@ foreach ($rendering in @('qualities', 'properties', 'special qualities')) {
     throw "Expected bisegulot base breakdown rendering missing: $rendering"
   }
 }
+if (@($bSegulot.surface_renderings) -contains 'dotted with a segol') {
+  throw "Bisegulot strict renderings still include orthographic segol noise."
+}
+
+$segulatSurface = -join @([char]0x05E1, [char]0x05D2, [char]0x05D5, [char]0x05DC, [char]0x05EA)
+$segulat = Select-TokenRow -WorkId 'orot' -Surface $segulatSurface
+if ($null -eq $segulat -or $segulat.status -ne 'matched' -or $segulat.match_method -ne 'project_orot_technical') {
+  throw "Expected segulat to resolve through the Orot technical term layer."
+}
+Assert-Codepoints -Label 'segulat surface' -Value $segulat.surface_word -Expected @(0x05E1, 0x05D2, 0x05D5, 0x05DC, 0x05EA)
+$segulatEntry = $entriesById[[string]$segulat.lexicon_entry_id]
+if ($null -eq $segulatEntry) {
+  throw "Expected segulat lexical entry to exist."
+}
+$segulatVisibleRenderings = @($segulat.surface_renderings) + @($segulatEntry.strict_renderings)
+foreach ($rendering in @('quality', 'special quality', 'distinctive quality', 'property', 'treasured quality')) {
+  if (-not ($segulatVisibleRenderings -contains $rendering)) {
+    throw "Expected segulat strict Hebrew rendering missing: $rendering"
+  }
+}
+if ($segulatVisibleRenderings -contains 'dotted with a segol') {
+  throw "Segulat strict renderings still include orthographic segol noise."
+}
 
 foreach ($canary in $openingCanaryGroup) {
   $row = Select-TokenRow -WorkId 'orot' -Surface $canary.Surface

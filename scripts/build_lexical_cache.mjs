@@ -712,6 +712,7 @@ const projectOrotFinalTechnicalDefinitions = [
     renderings: ['quality', 'property', 'special quality', 'distinctive quality', 'treasured quality'],
     forms: [
       '\u05E1\u05D2\u05D5\u05DC\u05D4',
+      '\u05E1\u05D2\u05D5\u05DC\u05EA',
       '\u05E1\u05D2\u05D5\u05DC\u05D5\u05EA',
       '\u05E1\u05B0\u05D2\u05BB\u05DC\u05D5\u05B9\u05EA',
       '\u05D1\u05E1\u05D2\u05D5\u05DC\u05D5\u05EA',
