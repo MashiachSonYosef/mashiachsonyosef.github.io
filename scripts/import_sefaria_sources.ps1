@@ -406,6 +406,7 @@ foreach ($work in $config.works) {
     work_title = $work.work_title
     work_slug = $work.work_slug
     sefaria_ref = $work.sefaria_ref
+    work_type = if ($work.work_type) { $work.work_type } else { 'primary_text' }
     source_system = $work.source_system
     source_base_url = $work.source_base_url
     import_date = $importDate
