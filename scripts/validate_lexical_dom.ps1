@@ -388,7 +388,7 @@ foreach ($canary in $openingCanaryGroup) {
 $orotHtmlPath = Join-Path $PSScriptRoot '..\orot\index.html'
 if (Test-Path -LiteralPath $orotHtmlPath) {
   $orotHtml = Get-Content -LiteralPath $orotHtmlPath -Raw -Encoding UTF8
-  foreach ($requiredExternalMarker in @('data-lexical-config>', 'loadTokenRow', 'chunkPromises', 'fetchJson')) {
+  foreach ($requiredExternalMarker in @('data-lexical-config>', 'loadTokenRow', 'chunkPromises', 'fetchJson', 'sourceGroupsForStrict', 'source-claim', 'insertAdjacentElement("afterend", hud)')) {
     if (-not $orotHtml.Contains($requiredExternalMarker)) {
       throw "Orot page missing external lexical payload marker: $requiredExternalMarker"
     }
@@ -468,6 +468,29 @@ if (Test-Path -LiteralPath $orotHtmlPath) {
   $pageBetorSources = @($pageBetorEntry.source_row_ids | ForEach-Object { $pageSourceRows.PSObject.Properties[[string]$_].Value })
   if ($pageBetorSources.Count -ne 1 -or $pageBetorSources[0].source_family -ne 'workspace') {
     throw "Expected generated betor payload sources to be limited to the workspace fixed-expression rule."
+  }
+
+  $hitzoniCanary = @($openingCanaryGroup | Where-Object { $_.Label -eq 'hitzoni' }) | Select-Object -First 1
+  $hitzoni = Select-TokenRow -WorkId 'orot' -Surface $hitzoniCanary.Surface
+  $chunk = Get-ChunkForTokenRow -TokenRow $hitzoni
+  $pageTokenIndex = $chunk.token_index
+  $pageLexicon = $chunk.lexicon
+  $pageSourceRows = $chunk.source_rows
+  $pageHitzoni = @($pageTokenIndex.forms | Where-Object { $_.token_index_id -eq $hitzoni.token_index_id }) | Select-Object -First 1
+  $pageHitzoniEntry = @($pageLexicon.entries | Where-Object { $_.entry_id -eq $pageHitzoni.lexicon_entry_id }) | Select-Object -First 1
+  $pageHitzoniLikely = @($pageHitzoniEntry.possible_entries | Where-Object { $_.context_role -eq 'likely_contextual' -and $_.entry_key -eq 'wikidata:L210877' }) | Select-Object -First 1
+  if ($null -eq $pageHitzoniLikely) {
+    throw "Expected hitzoni to keep Wikidata L210877 as the likely contextual source group."
+  }
+  foreach ($rendering in @('external', 'exterior')) {
+    if (-not (@($pageHitzoniLikely.strict_renderings) -contains $rendering)) {
+      throw "Expected hitzoni source-mapped rendering missing from L210877: $rendering"
+    }
+  }
+  $pageHitzoniSources = @($pageHitzoniEntry.source_row_ids | ForEach-Object { $pageSourceRows.PSObject.Properties[[string]$_].Value })
+  $pageHitzoniStrictSource = @($pageHitzoniSources | Where-Object { $_.source_family -eq $pageHitzoniLikely.source_family -and $_.source_id -eq $pageHitzoniLikely.source_id })
+  if ($pageHitzoniStrictSource.Count -ne 1 -or $pageHitzoniStrictSource[0].license -ne 'CC0') {
+    throw "Expected hitzoni strict renderings to map to exactly Wikidata L210877 | CC0."
   }
 }
 
