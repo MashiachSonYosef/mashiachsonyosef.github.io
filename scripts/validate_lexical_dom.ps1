@@ -624,10 +624,16 @@ function Test-LexicalSample {
     throw "Generated HTML contains pre-rendered lexical token spans for $($Sample.Label); wrapping should happen client-side."
   }
 
-  foreach ($requiredPattern in @('data-lexical-occurrences', 'data-lexical-config', 'data-lexical-slot', 'data-lexical-hud', 'data-hud-breakdown', 'Potential options', 'Related options', 'Show potential options', 'Show related options')) {
+  foreach ($requiredPattern in @('data-lexical-occurrences', 'data-lexical-config', 'data-lexical-slot', 'data-lexical-hud', 'data-hud-breakdown', 'Potential options', 'Related options')) {
     if (-not $html.Contains($requiredPattern)) {
       throw "Generated page missing lexical renderer marker for $($Sample.Label): $requiredPattern"
     }
+  }
+  if (-not ($html.Contains('Show more') -or $html.Contains('Show potential options'))) {
+    throw "Generated page missing lexical option expansion marker for $($Sample.Label)"
+  }
+  if (-not ($html.Contains('Show low-confidence rows') -or $html.Contains('Show related options'))) {
+    throw "Generated page missing lexical secondary expansion marker for $($Sample.Label)"
   }
   if (-not ($html.Contains('data-hud-hebrew-strict') -or $html.Contains('data-hud-surface-renderings'))) {
     throw "Generated page missing lexical strict-rendering marker for $($Sample.Label)"

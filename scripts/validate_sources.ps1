@@ -400,10 +400,16 @@ foreach ($lexicalFile in $lexicalFiles) {
   $lexicalPagePath = Join-Path $source.work_slug 'index.html'
   if (Test-Path $lexicalPagePath) {
     $lexicalPage = Get-Content -Path $lexicalPagePath -Raw -Encoding UTF8
-    foreach ($requiredText in @('data-lexical-occurrences', 'data-lexical-config', 'data-lexical-slot', 'data-lexical-hud', 'Clicked Hebrew form', 'Breakdown', 'Potential options', 'Related options', 'Show potential options', 'Sources / licenses', 'No lexical entry yet.')) {
+    foreach ($requiredText in @('data-lexical-occurrences', 'data-lexical-config', 'data-lexical-slot', 'data-lexical-hud', 'Clicked Hebrew form', 'Breakdown', 'Potential options', 'Related options', 'Sources / licenses', 'No lexical entry yet.')) {
       if (-not $lexicalPage.Contains($requiredText)) {
         $errors.Add("Lexical target page missing required text '$requiredText' for $($lexical.work_id)")
       }
+    }
+    if (-not ($lexicalPage.Contains('Show more') -or $lexicalPage.Contains('Show potential options'))) {
+      $errors.Add("Lexical target page missing option expansion text for $($lexical.work_id)")
+    }
+    if (-not ($lexicalPage.Contains('Show low-confidence rows') -or $lexicalPage.Contains('Show related options'))) {
+      $errors.Add("Lexical target page missing secondary expansion text for $($lexical.work_id)")
     }
     if (-not ($lexicalPage.Contains('Strict Hebrew') -or $lexicalPage.Contains('Strict renderings'))) {
       $errors.Add("Lexical target page missing strict-rendering label for $($lexical.work_id)")
