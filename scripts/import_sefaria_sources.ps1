@@ -9,6 +9,19 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+$AllowedHebrewSourceLicenses = @(
+  'Public Domain',
+  'CC0',
+  'CC-BY',
+  'CC BY',
+  'CC-BY 4.0',
+  'CC BY 4.0',
+  'CC-BY-SA',
+  'CC BY-SA',
+  'CC-BY-SA 4.0',
+  'CC BY-SA 4.0'
+)
+
 function New-Slug {
   param([string]$Text)
   $slug = $Text.ToLowerInvariant()
@@ -23,6 +36,12 @@ function New-Slug {
 function Read-Json {
   param([string]$Path)
   Get-Content -Path $Path -Raw -Encoding UTF8 | ConvertFrom-Json
+}
+
+function Test-AllowedHebrewSourceLicense {
+  param([string]$License)
+  if (-not $License) { return $false }
+  return $AllowedHebrewSourceLicenses -contains $License.Trim()
 }
 
 function Write-Utf8Json {
@@ -141,6 +160,52 @@ function Get-HebrewTexts {
   return $items
 }
 
+function Get-AddressedValue {
+  param(
+    [object]$Value,
+    [int[]]$Address = @()
+  )
+
+  $current = $Value
+  foreach ($part in $Address) {
+    if ($null -eq $current) { return $null }
+    $items = @($current)
+    $index = [int]$part - 1
+    if ($index -lt 0 -or $index -ge $items.Count) { return $null }
+    $current = $items[$index]
+  }
+  return $current
+}
+
+function Get-HebrewVersionMeta {
+  param(
+    [object]$Payload,
+    [int[]]$Address = @()
+  )
+
+  $sourceTitle = Get-AddressedValue -Value $Payload.heSources -Address $Address
+  if ($sourceTitle -is [array]) { $sourceTitle = ($sourceTitle -join ' / ') }
+  if (-not $sourceTitle -and $Payload.heVersionTitle) { $sourceTitle = $Payload.heVersionTitle }
+
+  $version = $null
+  if ($sourceTitle -and $Payload.versions) {
+    $version = @($Payload.versions | Where-Object { $_.language -eq 'he' -and $_.versionTitle -eq $sourceTitle } | Select-Object -First 1)[0]
+  }
+  if (-not $version -and $Payload.heVersionTitle -and $Payload.versions) {
+    $version = @($Payload.versions | Where-Object { $_.language -eq 'he' -and $_.versionTitle -eq $Payload.heVersionTitle } | Select-Object -First 1)[0]
+  }
+
+  $license = if ($Payload.heLicense) { $Payload.heLicense } elseif ($version -and $version.license) { $version.license } else { 'unknown' }
+  $versionTitle = if ($Payload.heVersionTitle) { $Payload.heVersionTitle } elseif ($sourceTitle) { $sourceTitle } elseif ($version -and $version.versionTitle) { $version.versionTitle } else { 'unknown' }
+  $versionSource = if ($Payload.heVersionSource) { $Payload.heVersionSource } elseif ($version -and $version.versionSource) { $version.versionSource } else { '' }
+
+  [ordered]@{
+    license = $license
+    version_title = $versionTitle
+    version_source = $versionSource
+  }
+}
+
 function Get-LeafRef {
   param(
     [string]$WorkRef,
@@ -256,7 +321,23 @@ function Test-UseNextTraversal {
   param([object]$Leaf)
 
   if ($Leaf.depth -ge 4) { return $true }
-  if ($Leaf.lengths.Count -eq 0 -and $Leaf.title_path.Count -gt 0 -and $Leaf.title_path[-1] -eq 'default') { return $true }
+  if ($Leaf.depth -gt 1 -and ($Leaf.lengths.Count -eq 0 -or -not $Leaf.lengths[0])) { return $true }
+  if (($Leaf.lengths.Count -eq 0 -or -not $Leaf.lengths[0]) -and $Leaf.title_path.Count -gt 0 -and $Leaf.title_path[-1] -eq 'default') { return $true }
+  return $false
+}
+
+function Test-RefWithinPrefixes {
+  param(
+    [string]$Ref,
+    [string[]]$Prefixes = @()
+  )
+
+  foreach ($prefix in $Prefixes) {
+    if (-not $prefix) { continue }
+    if ($Ref -eq $prefix -or $Ref.StartsWith("$prefix ") -or $Ref.StartsWith("${prefix}:")) {
+      return $true
+    }
+  }
   return $false
 }
 
@@ -271,6 +352,15 @@ function Add-UnitsFromPayload {
 
   $texts = Get-HebrewTexts -Value $Payload.he
   foreach ($text in $texts) {
+    $versionMeta = Get-HebrewVersionMeta -Payload $Payload -Address @($text.address)
+    $sourceRef = "$($Payload.ref):$(($text.address) -join ':')"
+    if (-not $text.address -or @($text.address).Count -eq 0) { $sourceRef = $Payload.ref }
+
+    if (-not (Test-AllowedHebrewSourceLicense -License $versionMeta.license)) {
+      Write-Warning "Skipping $sourceRef with unsupported Hebrew source license '$($versionMeta.license)' from '$($versionMeta.version_title)'"
+      continue
+    }
+
     $SequenceRef.Value += 1
     $addressParts = @()
     if ($Payload.sections) { $addressParts += @($Payload.sections) }
@@ -280,8 +370,6 @@ function Add-UnitsFromPayload {
     $unitSuffix = ($addressParts -join '-')
     $pathSlug = if ($Meta.section_slug -eq 'text') { '' } else { "$($Meta.group_slug)-$($Meta.section_slug)-" }
     $unitId = "$($Work.work_id)-$pathSlug$unitSuffix"
-    $sourceRef = "$($Payload.ref):$(($text.address) -join ':')"
-    if (-not $text.address -or @($text.address).Count -eq 0) { $sourceRef = $Payload.ref }
 
     $chapterNumber = if ($addressParts.Count -ge 1) { $addressParts[0] } else { $null }
     $paragraphNumber = if ($addressParts.Count -ge 2) { $addressParts[-1] } else { $addressParts[0] }
@@ -303,9 +391,9 @@ function Add-UnitsFromPayload {
       source_ref = $sourceRef
       sefaria_ref = $sourceRef
       hebrew = @($text.text)
-      license = if ($Payload.heLicense) { $Payload.heLicense } else { 'unknown' }
-      version_title = if ($Payload.heVersionTitle) { $Payload.heVersionTitle } else { 'unknown' }
-      version_source = if ($Payload.heVersionSource) { $Payload.heVersionSource } else { '' }
+      license = $versionMeta.license
+      version_title = $versionMeta.version_title
+      version_source = $versionMeta.version_source
       digitization = 'Sefaria API'
       source_url = "https://www.sefaria.org/$($sourceRef -replace ' ', '_' -replace ',', '%2C')"
       import_date = $importDate
@@ -319,13 +407,18 @@ function Add-UnitsByNextTraversal {
     [ref]$SequenceRef,
     [object]$Work,
     [hashtable]$Meta,
-    [string]$StartRef
+    [string]$StartRef,
+    [string[]]$StopPrefixes = @()
   )
 
   $seenRefs = @{}
   $nextRef = $StartRef
   $step = 0
   while ($nextRef) {
+    if ($StopPrefixes.Count -gt 0 -and -not (Test-RefWithinPrefixes -Ref $nextRef -Prefixes $StopPrefixes)) {
+      break
+    }
+
     $step += 1
     if ($step -gt 20000) {
       Write-Warning "Stopping next-link traversal after 20000 refs for $StartRef"
@@ -382,11 +475,12 @@ foreach ($work in $config.works) {
 
   foreach ($leaf in Get-LeafNodes -Node $index.schema) {
     $leafRef = Get-LeafRef -WorkRef $work.sefaria_ref -TitlePath $leaf.title_path
+    $canonicalLeafRef = Get-LeafRef -WorkRef $index.title -TitlePath $leaf.title_path
     $meta = Get-OutlineEntry -Work $work -Leaf $leaf
     Add-OutlineSection -Outline $outline -SeenGroups $seenGroups -SeenSections $seenSections -Meta $meta
 
     if (Test-UseNextTraversal -Leaf $leaf) {
-      Add-UnitsByNextTraversal -Units $units -SequenceRef ([ref]$sequence) -Work $work -Meta $meta -StartRef $leafRef
+      Add-UnitsByNextTraversal -Units $units -SequenceRef ([ref]$sequence) -Work $work -Meta $meta -StartRef $leafRef -StopPrefixes @($leafRef, $canonicalLeafRef)
       continue
     }
 

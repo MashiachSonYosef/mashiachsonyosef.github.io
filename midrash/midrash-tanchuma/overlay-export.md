@@ -1,0 +1,2123 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:1 | midrash-tanchuma-bereshit-bereshit-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:2 | midrash-tanchuma-bereshit-bereshit-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:3 | midrash-tanchuma-bereshit-bereshit-1-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:4 | midrash-tanchuma-bereshit-bereshit-1-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:5 | midrash-tanchuma-bereshit-bereshit-1-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:6 | midrash-tanchuma-bereshit-bereshit-1-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:7 | midrash-tanchuma-bereshit-bereshit-1-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:8 | midrash-tanchuma-bereshit-bereshit-1-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:9 | midrash-tanchuma-bereshit-bereshit-1-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:10 | midrash-tanchuma-bereshit-bereshit-1-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:11 | midrash-tanchuma-bereshit-bereshit-1-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:12 | midrash-tanchuma-bereshit-bereshit-1-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:13 | midrash-tanchuma-bereshit-bereshit-1-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:14 | midrash-tanchuma-bereshit-bereshit-1-14 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:15 | midrash-tanchuma-bereshit-bereshit-1-15 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:16 | midrash-tanchuma-bereshit-bereshit-1-16 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:17 | midrash-tanchuma-bereshit-bereshit-1-17 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:18 | midrash-tanchuma-bereshit-bereshit-1-18 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:19 | midrash-tanchuma-bereshit-bereshit-1-19 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 1:20 | midrash-tanchuma-bereshit-bereshit-1-20 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 2:1 | midrash-tanchuma-bereshit-bereshit-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 2:2 | midrash-tanchuma-bereshit-bereshit-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 2:3 | midrash-tanchuma-bereshit-bereshit-2-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 2:4 | midrash-tanchuma-bereshit-bereshit-2-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 2:5 | midrash-tanchuma-bereshit-bereshit-2-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 2:6 | midrash-tanchuma-bereshit-bereshit-2-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 2:7 | midrash-tanchuma-bereshit-bereshit-2-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 2:8 | midrash-tanchuma-bereshit-bereshit-2-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 2:9 | midrash-tanchuma-bereshit-bereshit-2-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 2:10 | midrash-tanchuma-bereshit-bereshit-2-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 2:11 | midrash-tanchuma-bereshit-bereshit-2-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 2:12 | midrash-tanchuma-bereshit-bereshit-2-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 2:13 | midrash-tanchuma-bereshit-bereshit-2-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 3:1 | midrash-tanchuma-bereshit-bereshit-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 3:2 | midrash-tanchuma-bereshit-bereshit-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 3:3 | midrash-tanchuma-bereshit-bereshit-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 3:4 | midrash-tanchuma-bereshit-bereshit-3-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 3:5 | midrash-tanchuma-bereshit-bereshit-3-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 3:6 | midrash-tanchuma-bereshit-bereshit-3-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 3:7 | midrash-tanchuma-bereshit-bereshit-3-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 3:8 | midrash-tanchuma-bereshit-bereshit-3-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 3:9 | midrash-tanchuma-bereshit-bereshit-3-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 3:10 | midrash-tanchuma-bereshit-bereshit-3-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 3:11 | midrash-tanchuma-bereshit-bereshit-3-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 3:12 | midrash-tanchuma-bereshit-bereshit-3-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 4:1 | midrash-tanchuma-bereshit-bereshit-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 4:2 | midrash-tanchuma-bereshit-bereshit-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 4:3 | midrash-tanchuma-bereshit-bereshit-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 4:4 | midrash-tanchuma-bereshit-bereshit-4-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 4:5 | midrash-tanchuma-bereshit-bereshit-4-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 4:6 | midrash-tanchuma-bereshit-bereshit-4-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 4:7 | midrash-tanchuma-bereshit-bereshit-4-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 5:1 | midrash-tanchuma-bereshit-bereshit-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 5:2 | midrash-tanchuma-bereshit-bereshit-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 5:3 | midrash-tanchuma-bereshit-bereshit-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 5:4 | midrash-tanchuma-bereshit-bereshit-5-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 5:5 | midrash-tanchuma-bereshit-bereshit-5-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 5:6 | midrash-tanchuma-bereshit-bereshit-5-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 5:7 | midrash-tanchuma-bereshit-bereshit-5-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 5:8 | midrash-tanchuma-bereshit-bereshit-5-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 5:9 | midrash-tanchuma-bereshit-bereshit-5-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 5:10 | midrash-tanchuma-bereshit-bereshit-5-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 5:11 | midrash-tanchuma-bereshit-bereshit-5-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 5:12 | midrash-tanchuma-bereshit-bereshit-5-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 5:13 | midrash-tanchuma-bereshit-bereshit-5-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 5:14 | midrash-tanchuma-bereshit-bereshit-5-14 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 5:15 | midrash-tanchuma-bereshit-bereshit-5-15 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 5:16 | midrash-tanchuma-bereshit-bereshit-5-16 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 6:1 | midrash-tanchuma-bereshit-bereshit-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 6:2 | midrash-tanchuma-bereshit-bereshit-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 6:3 | midrash-tanchuma-bereshit-bereshit-6-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 6:4 | midrash-tanchuma-bereshit-bereshit-6-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 7:1 | midrash-tanchuma-bereshit-bereshit-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 7:2 | midrash-tanchuma-bereshit-bereshit-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 7:3 | midrash-tanchuma-bereshit-bereshit-7-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 7:4 | midrash-tanchuma-bereshit-bereshit-7-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 7:5 | midrash-tanchuma-bereshit-bereshit-7-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 7:6 | midrash-tanchuma-bereshit-bereshit-7-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 7:7 | midrash-tanchuma-bereshit-bereshit-7-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 7:8 | midrash-tanchuma-bereshit-bereshit-7-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 7:9 | midrash-tanchuma-bereshit-bereshit-7-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 7:10 | midrash-tanchuma-bereshit-bereshit-7-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 7:11 | midrash-tanchuma-bereshit-bereshit-7-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 7:12 | midrash-tanchuma-bereshit-bereshit-7-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 7:13 | midrash-tanchuma-bereshit-bereshit-7-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 7:14 | midrash-tanchuma-bereshit-bereshit-7-14 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 8:1 | midrash-tanchuma-bereshit-bereshit-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 8:2 | midrash-tanchuma-bereshit-bereshit-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 8:3 | midrash-tanchuma-bereshit-bereshit-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 9:1 | midrash-tanchuma-bereshit-bereshit-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 9:2 | midrash-tanchuma-bereshit-bereshit-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 9:3 | midrash-tanchuma-bereshit-bereshit-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 9:4 | midrash-tanchuma-bereshit-bereshit-9-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 9:5 | midrash-tanchuma-bereshit-bereshit-9-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 9:6 | midrash-tanchuma-bereshit-bereshit-9-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 9:7 | midrash-tanchuma-bereshit-bereshit-9-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 9:8 | midrash-tanchuma-bereshit-bereshit-9-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 10:1 | midrash-tanchuma-bereshit-bereshit-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 10:2 | midrash-tanchuma-bereshit-bereshit-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 11:1 | midrash-tanchuma-bereshit-bereshit-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 11:2 | midrash-tanchuma-bereshit-bereshit-11-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 11:3 | midrash-tanchuma-bereshit-bereshit-11-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 11:4 | midrash-tanchuma-bereshit-bereshit-11-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 11:5 | midrash-tanchuma-bereshit-bereshit-11-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 11:6 | midrash-tanchuma-bereshit-bereshit-11-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 12:1 | midrash-tanchuma-bereshit-bereshit-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 12:2 | midrash-tanchuma-bereshit-bereshit-12-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 12:3 | midrash-tanchuma-bereshit-bereshit-12-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 12:4 | midrash-tanchuma-bereshit-bereshit-12-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 12:5 | midrash-tanchuma-bereshit-bereshit-12-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 13:1 | midrash-tanchuma-bereshit-bereshit-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 13:2 | midrash-tanchuma-bereshit-bereshit-13-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 13:3 | midrash-tanchuma-bereshit-bereshit-13-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 13:4 | midrash-tanchuma-bereshit-bereshit-13-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bereshit 13:5 | midrash-tanchuma-bereshit-bereshit-13-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 1:1 | midrash-tanchuma-noach-noach-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 1:2 | midrash-tanchuma-noach-noach-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 1:3 | midrash-tanchuma-noach-noach-1-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 1:4 | midrash-tanchuma-noach-noach-1-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 1:5 | midrash-tanchuma-noach-noach-1-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 2:1 | midrash-tanchuma-noach-noach-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 2:2 | midrash-tanchuma-noach-noach-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 2:3 | midrash-tanchuma-noach-noach-2-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 2:4 | midrash-tanchuma-noach-noach-2-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 2:5 | midrash-tanchuma-noach-noach-2-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 3:1 | midrash-tanchuma-noach-noach-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 3:2 | midrash-tanchuma-noach-noach-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 3:3 | midrash-tanchuma-noach-noach-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 3:4 | midrash-tanchuma-noach-noach-3-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 3:5 | midrash-tanchuma-noach-noach-3-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 3:6 | midrash-tanchuma-noach-noach-3-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 3:7 | midrash-tanchuma-noach-noach-3-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 3:8 | midrash-tanchuma-noach-noach-3-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 3:9 | midrash-tanchuma-noach-noach-3-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 3:10 | midrash-tanchuma-noach-noach-3-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 3:11 | midrash-tanchuma-noach-noach-3-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 3:12 | midrash-tanchuma-noach-noach-3-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 3:13 | midrash-tanchuma-noach-noach-3-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 4:1 | midrash-tanchuma-noach-noach-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 4:2 | midrash-tanchuma-noach-noach-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 4:3 | midrash-tanchuma-noach-noach-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 4:4 | midrash-tanchuma-noach-noach-4-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 4:5 | midrash-tanchuma-noach-noach-4-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 4:6 | midrash-tanchuma-noach-noach-4-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 4:7 | midrash-tanchuma-noach-noach-4-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 4:8 | midrash-tanchuma-noach-noach-4-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 4:9 | midrash-tanchuma-noach-noach-4-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 5:1 | midrash-tanchuma-noach-noach-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 5:2 | midrash-tanchuma-noach-noach-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 5:3 | midrash-tanchuma-noach-noach-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 5:4 | midrash-tanchuma-noach-noach-5-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 5:5 | midrash-tanchuma-noach-noach-5-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 5:6 | midrash-tanchuma-noach-noach-5-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 6:1 | midrash-tanchuma-noach-noach-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 6:2 | midrash-tanchuma-noach-noach-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 6:3 | midrash-tanchuma-noach-noach-6-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 7:1 | midrash-tanchuma-noach-noach-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 7:2 | midrash-tanchuma-noach-noach-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 7:3 | midrash-tanchuma-noach-noach-7-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 7:4 | midrash-tanchuma-noach-noach-7-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 7:5 | midrash-tanchuma-noach-noach-7-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 8:1 | midrash-tanchuma-noach-noach-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 8:2 | midrash-tanchuma-noach-noach-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 9:1 | midrash-tanchuma-noach-noach-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 9:2 | midrash-tanchuma-noach-noach-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 9:3 | midrash-tanchuma-noach-noach-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 10:1 | midrash-tanchuma-noach-noach-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 10:2 | midrash-tanchuma-noach-noach-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 10:3 | midrash-tanchuma-noach-noach-10-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 10:4 | midrash-tanchuma-noach-noach-10-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 10:5 | midrash-tanchuma-noach-noach-10-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 10:6 | midrash-tanchuma-noach-noach-10-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 10:7 | midrash-tanchuma-noach-noach-10-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 10:8 | midrash-tanchuma-noach-noach-10-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 11:1 | midrash-tanchuma-noach-noach-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 11:2 | midrash-tanchuma-noach-noach-11-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 11:3 | midrash-tanchuma-noach-noach-11-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 11:4 | midrash-tanchuma-noach-noach-11-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 11:5 | midrash-tanchuma-noach-noach-11-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 11:6 | midrash-tanchuma-noach-noach-11-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 11:7 | midrash-tanchuma-noach-noach-11-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 11:8 | midrash-tanchuma-noach-noach-11-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 11:9 | midrash-tanchuma-noach-noach-11-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 11:10 | midrash-tanchuma-noach-noach-11-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 11:11 | midrash-tanchuma-noach-noach-11-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 11:12 | midrash-tanchuma-noach-noach-11-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 12:1 | midrash-tanchuma-noach-noach-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 12:2 | midrash-tanchuma-noach-noach-12-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 12:3 | midrash-tanchuma-noach-noach-12-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 12:4 | midrash-tanchuma-noach-noach-12-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 12:5 | midrash-tanchuma-noach-noach-12-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 12:6 | midrash-tanchuma-noach-noach-12-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 12:7 | midrash-tanchuma-noach-noach-12-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 12:8 | midrash-tanchuma-noach-noach-12-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 12:9 | midrash-tanchuma-noach-noach-12-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 13:1 | midrash-tanchuma-noach-noach-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 13:2 | midrash-tanchuma-noach-noach-13-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 13:3 | midrash-tanchuma-noach-noach-13-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 13:4 | midrash-tanchuma-noach-noach-13-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 13:5 | midrash-tanchuma-noach-noach-13-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 13:6 | midrash-tanchuma-noach-noach-13-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 13:7 | midrash-tanchuma-noach-noach-13-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 14:1 | midrash-tanchuma-noach-noach-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 14:2 | midrash-tanchuma-noach-noach-14-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 14:3 | midrash-tanchuma-noach-noach-14-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 14:4 | midrash-tanchuma-noach-noach-14-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 14:5 | midrash-tanchuma-noach-noach-14-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 14:6 | midrash-tanchuma-noach-noach-14-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 14:7 | midrash-tanchuma-noach-noach-14-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 15:1 | midrash-tanchuma-noach-noach-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 15:2 | midrash-tanchuma-noach-noach-15-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 15:3 | midrash-tanchuma-noach-noach-15-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 15:4 | midrash-tanchuma-noach-noach-15-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 15:5 | midrash-tanchuma-noach-noach-15-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 15:6 | midrash-tanchuma-noach-noach-15-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 16:1 | midrash-tanchuma-noach-noach-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 17:1 | midrash-tanchuma-noach-noach-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 17:2 | midrash-tanchuma-noach-noach-17-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 17:3 | midrash-tanchuma-noach-noach-17-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 18:1 | midrash-tanchuma-noach-noach-18-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 18:2 | midrash-tanchuma-noach-noach-18-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 18:3 | midrash-tanchuma-noach-noach-18-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 18:4 | midrash-tanchuma-noach-noach-18-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 18:5 | midrash-tanchuma-noach-noach-18-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 18:6 | midrash-tanchuma-noach-noach-18-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 18:7 | midrash-tanchuma-noach-noach-18-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 18:8 | midrash-tanchuma-noach-noach-18-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 18:9 | midrash-tanchuma-noach-noach-18-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 18:10 | midrash-tanchuma-noach-noach-18-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 18:11 | midrash-tanchuma-noach-noach-18-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 18:12 | midrash-tanchuma-noach-noach-18-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 18:13 | midrash-tanchuma-noach-noach-18-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 18:14 | midrash-tanchuma-noach-noach-18-14 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 18:15 | midrash-tanchuma-noach-noach-18-15 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 19:1 | midrash-tanchuma-noach-noach-19-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 19:2 | midrash-tanchuma-noach-noach-19-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Noach 19:3 | midrash-tanchuma-noach-noach-19-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 1:1 | midrash-tanchuma-lech-lecha-lech-lecha-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 1:2 | midrash-tanchuma-lech-lecha-lech-lecha-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 2:1 | midrash-tanchuma-lech-lecha-lech-lecha-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 2:2 | midrash-tanchuma-lech-lecha-lech-lecha-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 2:3 | midrash-tanchuma-lech-lecha-lech-lecha-2-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 3:1 | midrash-tanchuma-lech-lecha-lech-lecha-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 3:2 | midrash-tanchuma-lech-lecha-lech-lecha-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 3:3 | midrash-tanchuma-lech-lecha-lech-lecha-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 3:4 | midrash-tanchuma-lech-lecha-lech-lecha-3-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 4:1 | midrash-tanchuma-lech-lecha-lech-lecha-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 4:2 | midrash-tanchuma-lech-lecha-lech-lecha-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 4:3 | midrash-tanchuma-lech-lecha-lech-lecha-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 4:4 | midrash-tanchuma-lech-lecha-lech-lecha-4-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 5:1 | midrash-tanchuma-lech-lecha-lech-lecha-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 5:2 | midrash-tanchuma-lech-lecha-lech-lecha-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 5:3 | midrash-tanchuma-lech-lecha-lech-lecha-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 5:4 | midrash-tanchuma-lech-lecha-lech-lecha-5-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 6:1 | midrash-tanchuma-lech-lecha-lech-lecha-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 6:2 | midrash-tanchuma-lech-lecha-lech-lecha-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 6:3 | midrash-tanchuma-lech-lecha-lech-lecha-6-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 7:1 | midrash-tanchuma-lech-lecha-lech-lecha-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 7:2 | midrash-tanchuma-lech-lecha-lech-lecha-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 8:1 | midrash-tanchuma-lech-lecha-lech-lecha-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 8:2 | midrash-tanchuma-lech-lecha-lech-lecha-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 8:3 | midrash-tanchuma-lech-lecha-lech-lecha-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 8:4 | midrash-tanchuma-lech-lecha-lech-lecha-8-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 8:5 | midrash-tanchuma-lech-lecha-lech-lecha-8-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 9:1 | midrash-tanchuma-lech-lecha-lech-lecha-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 9:2 | midrash-tanchuma-lech-lecha-lech-lecha-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 9:3 | midrash-tanchuma-lech-lecha-lech-lecha-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 9:4 | midrash-tanchuma-lech-lecha-lech-lecha-9-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 10:1 | midrash-tanchuma-lech-lecha-lech-lecha-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 10:2 | midrash-tanchuma-lech-lecha-lech-lecha-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 11:1 | midrash-tanchuma-lech-lecha-lech-lecha-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 11:2 | midrash-tanchuma-lech-lecha-lech-lecha-11-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 11:3 | midrash-tanchuma-lech-lecha-lech-lecha-11-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 12:1 | midrash-tanchuma-lech-lecha-lech-lecha-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 12:2 | midrash-tanchuma-lech-lecha-lech-lecha-12-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 12:3 | midrash-tanchuma-lech-lecha-lech-lecha-12-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 13:1 | midrash-tanchuma-lech-lecha-lech-lecha-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 13:2 | midrash-tanchuma-lech-lecha-lech-lecha-13-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 13:3 | midrash-tanchuma-lech-lecha-lech-lecha-13-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 13:4 | midrash-tanchuma-lech-lecha-lech-lecha-13-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 13:5 | midrash-tanchuma-lech-lecha-lech-lecha-13-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 13:6 | midrash-tanchuma-lech-lecha-lech-lecha-13-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 14:1 | midrash-tanchuma-lech-lecha-lech-lecha-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 14:2 | midrash-tanchuma-lech-lecha-lech-lecha-14-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 15:1 | midrash-tanchuma-lech-lecha-lech-lecha-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 15:2 | midrash-tanchuma-lech-lecha-lech-lecha-15-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 15:3 | midrash-tanchuma-lech-lecha-lech-lecha-15-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 16:1 | midrash-tanchuma-lech-lecha-lech-lecha-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 16:2 | midrash-tanchuma-lech-lecha-lech-lecha-16-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 16:3 | midrash-tanchuma-lech-lecha-lech-lecha-16-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 17:1 | midrash-tanchuma-lech-lecha-lech-lecha-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 17:2 | midrash-tanchuma-lech-lecha-lech-lecha-17-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 17:3 | midrash-tanchuma-lech-lecha-lech-lecha-17-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 17:4 | midrash-tanchuma-lech-lecha-lech-lecha-17-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 18:1 | midrash-tanchuma-lech-lecha-lech-lecha-18-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 18:2 | midrash-tanchuma-lech-lecha-lech-lecha-18-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 18:3 | midrash-tanchuma-lech-lecha-lech-lecha-18-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 19:1 | midrash-tanchuma-lech-lecha-lech-lecha-19-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 19:2 | midrash-tanchuma-lech-lecha-lech-lecha-19-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 20:1 | midrash-tanchuma-lech-lecha-lech-lecha-20-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 20:2 | midrash-tanchuma-lech-lecha-lech-lecha-20-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 20:3 | midrash-tanchuma-lech-lecha-lech-lecha-20-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 20:4 | midrash-tanchuma-lech-lecha-lech-lecha-20-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 20:5 | midrash-tanchuma-lech-lecha-lech-lecha-20-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Lech Lecha 20:6 | midrash-tanchuma-lech-lecha-lech-lecha-20-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 1:1 | midrash-tanchuma-vayera-vayera-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 1:2 | midrash-tanchuma-vayera-vayera-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 1:3 | midrash-tanchuma-vayera-vayera-1-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 1:4 | midrash-tanchuma-vayera-vayera-1-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 1:5 | midrash-tanchuma-vayera-vayera-1-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 1:6 | midrash-tanchuma-vayera-vayera-1-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 1:7 | midrash-tanchuma-vayera-vayera-1-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 2:1 | midrash-tanchuma-vayera-vayera-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 2:2 | midrash-tanchuma-vayera-vayera-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 2:3 | midrash-tanchuma-vayera-vayera-2-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 2:4 | midrash-tanchuma-vayera-vayera-2-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 2:5 | midrash-tanchuma-vayera-vayera-2-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 2:6 | midrash-tanchuma-vayera-vayera-2-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 3:1 | midrash-tanchuma-vayera-vayera-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 3:2 | midrash-tanchuma-vayera-vayera-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 3:3 | midrash-tanchuma-vayera-vayera-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 3:4 | midrash-tanchuma-vayera-vayera-3-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 3:5 | midrash-tanchuma-vayera-vayera-3-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 4:1 | midrash-tanchuma-vayera-vayera-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 4:2 | midrash-tanchuma-vayera-vayera-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 4:3 | midrash-tanchuma-vayera-vayera-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 4:4 | midrash-tanchuma-vayera-vayera-4-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 4:5 | midrash-tanchuma-vayera-vayera-4-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 4:6 | midrash-tanchuma-vayera-vayera-4-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 4:7 | midrash-tanchuma-vayera-vayera-4-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 4:8 | midrash-tanchuma-vayera-vayera-4-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 5:1 | midrash-tanchuma-vayera-vayera-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 5:2 | midrash-tanchuma-vayera-vayera-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 5:3 | midrash-tanchuma-vayera-vayera-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 5:4 | midrash-tanchuma-vayera-vayera-5-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 5:5 | midrash-tanchuma-vayera-vayera-5-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 5:6 | midrash-tanchuma-vayera-vayera-5-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 5:7 | midrash-tanchuma-vayera-vayera-5-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 5:8 | midrash-tanchuma-vayera-vayera-5-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 5:9 | midrash-tanchuma-vayera-vayera-5-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 6:1 | midrash-tanchuma-vayera-vayera-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 6:2 | midrash-tanchuma-vayera-vayera-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 6:3 | midrash-tanchuma-vayera-vayera-6-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 6:4 | midrash-tanchuma-vayera-vayera-6-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 6:5 | midrash-tanchuma-vayera-vayera-6-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 6:6 | midrash-tanchuma-vayera-vayera-6-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 6:7 | midrash-tanchuma-vayera-vayera-6-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 6:8 | midrash-tanchuma-vayera-vayera-6-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 6:9 | midrash-tanchuma-vayera-vayera-6-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 7:1 | midrash-tanchuma-vayera-vayera-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 7:2 | midrash-tanchuma-vayera-vayera-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 8:1 | midrash-tanchuma-vayera-vayera-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 8:2 | midrash-tanchuma-vayera-vayera-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 8:3 | midrash-tanchuma-vayera-vayera-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 8:4 | midrash-tanchuma-vayera-vayera-8-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 8:5 | midrash-tanchuma-vayera-vayera-8-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 8:6 | midrash-tanchuma-vayera-vayera-8-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 9:1 | midrash-tanchuma-vayera-vayera-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 9:2 | midrash-tanchuma-vayera-vayera-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 9:3 | midrash-tanchuma-vayera-vayera-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 9:4 | midrash-tanchuma-vayera-vayera-9-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 10:1 | midrash-tanchuma-vayera-vayera-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 11:1 | midrash-tanchuma-vayera-vayera-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 12:1 | midrash-tanchuma-vayera-vayera-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 12:2 | midrash-tanchuma-vayera-vayera-12-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 13:1 | midrash-tanchuma-vayera-vayera-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 13:2 | midrash-tanchuma-vayera-vayera-13-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 13:3 | midrash-tanchuma-vayera-vayera-13-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 13:4 | midrash-tanchuma-vayera-vayera-13-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 13:5 | midrash-tanchuma-vayera-vayera-13-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 13:6 | midrash-tanchuma-vayera-vayera-13-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 14:1 | midrash-tanchuma-vayera-vayera-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 14:2 | midrash-tanchuma-vayera-vayera-14-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 15:1 | midrash-tanchuma-vayera-vayera-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 16:1 | midrash-tanchuma-vayera-vayera-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 16:2 | midrash-tanchuma-vayera-vayera-16-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 17:1 | midrash-tanchuma-vayera-vayera-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 17:2 | midrash-tanchuma-vayera-vayera-17-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 17:3 | midrash-tanchuma-vayera-vayera-17-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 18:1 | midrash-tanchuma-vayera-vayera-18-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 18:2 | midrash-tanchuma-vayera-vayera-18-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 18:3 | midrash-tanchuma-vayera-vayera-18-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 19:1 | midrash-tanchuma-vayera-vayera-19-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 20:1 | midrash-tanchuma-vayera-vayera-20-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 20:2 | midrash-tanchuma-vayera-vayera-20-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 20:3 | midrash-tanchuma-vayera-vayera-20-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 21:1 | midrash-tanchuma-vayera-vayera-21-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 21:2 | midrash-tanchuma-vayera-vayera-21-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 22:1 | midrash-tanchuma-vayera-vayera-22-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 22:2 | midrash-tanchuma-vayera-vayera-22-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 22:3 | midrash-tanchuma-vayera-vayera-22-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 22:4 | midrash-tanchuma-vayera-vayera-22-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 22:5 | midrash-tanchuma-vayera-vayera-22-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 22:6 | midrash-tanchuma-vayera-vayera-22-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 22:7 | midrash-tanchuma-vayera-vayera-22-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 22:8 | midrash-tanchuma-vayera-vayera-22-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 22:9 | midrash-tanchuma-vayera-vayera-22-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 22:10 | midrash-tanchuma-vayera-vayera-22-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 22:11 | midrash-tanchuma-vayera-vayera-22-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 22:12 | midrash-tanchuma-vayera-vayera-22-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 22:13 | midrash-tanchuma-vayera-vayera-22-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 22:14 | midrash-tanchuma-vayera-vayera-22-14 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 23:1 | midrash-tanchuma-vayera-vayera-23-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 23:2 | midrash-tanchuma-vayera-vayera-23-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 23:3 | midrash-tanchuma-vayera-vayera-23-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 23:4 | midrash-tanchuma-vayera-vayera-23-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 23:5 | midrash-tanchuma-vayera-vayera-23-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 23:6 | midrash-tanchuma-vayera-vayera-23-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 23:7 | midrash-tanchuma-vayera-vayera-23-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 23:8 | midrash-tanchuma-vayera-vayera-23-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 23:9 | midrash-tanchuma-vayera-vayera-23-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayera 23:10 | midrash-tanchuma-vayera-vayera-23-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 1:1 | midrash-tanchuma-chayei-sara-chayei-sara-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 1:2 | midrash-tanchuma-chayei-sara-chayei-sara-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 2:1 | midrash-tanchuma-chayei-sara-chayei-sara-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 3:1 | midrash-tanchuma-chayei-sara-chayei-sara-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 3:2 | midrash-tanchuma-chayei-sara-chayei-sara-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 3:3 | midrash-tanchuma-chayei-sara-chayei-sara-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 3:4 | midrash-tanchuma-chayei-sara-chayei-sara-3-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 3:5 | midrash-tanchuma-chayei-sara-chayei-sara-3-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 3:6 | midrash-tanchuma-chayei-sara-chayei-sara-3-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 3:7 | midrash-tanchuma-chayei-sara-chayei-sara-3-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 3:8 | midrash-tanchuma-chayei-sara-chayei-sara-3-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 3:9 | midrash-tanchuma-chayei-sara-chayei-sara-3-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 3:10 | midrash-tanchuma-chayei-sara-chayei-sara-3-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 3:11 | midrash-tanchuma-chayei-sara-chayei-sara-3-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 4:1 | midrash-tanchuma-chayei-sara-chayei-sara-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 4:2 | midrash-tanchuma-chayei-sara-chayei-sara-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 4:3 | midrash-tanchuma-chayei-sara-chayei-sara-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 4:4 | midrash-tanchuma-chayei-sara-chayei-sara-4-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 4:5 | midrash-tanchuma-chayei-sara-chayei-sara-4-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 5:1 | midrash-tanchuma-chayei-sara-chayei-sara-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 5:2 | midrash-tanchuma-chayei-sara-chayei-sara-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 5:3 | midrash-tanchuma-chayei-sara-chayei-sara-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 6:1 | midrash-tanchuma-chayei-sara-chayei-sara-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 6:2 | midrash-tanchuma-chayei-sara-chayei-sara-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 6:3 | midrash-tanchuma-chayei-sara-chayei-sara-6-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 6:4 | midrash-tanchuma-chayei-sara-chayei-sara-6-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 6:5 | midrash-tanchuma-chayei-sara-chayei-sara-6-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 6:6 | midrash-tanchuma-chayei-sara-chayei-sara-6-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 6:7 | midrash-tanchuma-chayei-sara-chayei-sara-6-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 6:8 | midrash-tanchuma-chayei-sara-chayei-sara-6-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 7:1 | midrash-tanchuma-chayei-sara-chayei-sara-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 7:2 | midrash-tanchuma-chayei-sara-chayei-sara-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 8:1 | midrash-tanchuma-chayei-sara-chayei-sara-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 8:2 | midrash-tanchuma-chayei-sara-chayei-sara-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chayei Sara 8:3 | midrash-tanchuma-chayei-sara-chayei-sara-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 1:1 | midrash-tanchuma-toldot-toldot-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 1:2 | midrash-tanchuma-toldot-toldot-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 1:3 | midrash-tanchuma-toldot-toldot-1-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 1:4 | midrash-tanchuma-toldot-toldot-1-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 2:1 | midrash-tanchuma-toldot-toldot-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 3:1 | midrash-tanchuma-toldot-toldot-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 4:1 | midrash-tanchuma-toldot-toldot-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 4:2 | midrash-tanchuma-toldot-toldot-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 5:1 | midrash-tanchuma-toldot-toldot-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 5:2 | midrash-tanchuma-toldot-toldot-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 5:3 | midrash-tanchuma-toldot-toldot-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 6:1 | midrash-tanchuma-toldot-toldot-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 6:2 | midrash-tanchuma-toldot-toldot-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 7:1 | midrash-tanchuma-toldot-toldot-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 7:2 | midrash-tanchuma-toldot-toldot-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 8:1 | midrash-tanchuma-toldot-toldot-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 8:2 | midrash-tanchuma-toldot-toldot-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 8:3 | midrash-tanchuma-toldot-toldot-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 8:4 | midrash-tanchuma-toldot-toldot-8-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 8:5 | midrash-tanchuma-toldot-toldot-8-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 8:6 | midrash-tanchuma-toldot-toldot-8-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 9:1 | midrash-tanchuma-toldot-toldot-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 9:2 | midrash-tanchuma-toldot-toldot-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 10:1 | midrash-tanchuma-toldot-toldot-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 10:2 | midrash-tanchuma-toldot-toldot-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 11:1 | midrash-tanchuma-toldot-toldot-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 11:2 | midrash-tanchuma-toldot-toldot-11-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 11:3 | midrash-tanchuma-toldot-toldot-11-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 11:4 | midrash-tanchuma-toldot-toldot-11-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 11:5 | midrash-tanchuma-toldot-toldot-11-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 12:1 | midrash-tanchuma-toldot-toldot-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 12:2 | midrash-tanchuma-toldot-toldot-12-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 12:3 | midrash-tanchuma-toldot-toldot-12-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 12:4 | midrash-tanchuma-toldot-toldot-12-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 12:5 | midrash-tanchuma-toldot-toldot-12-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 12:6 | midrash-tanchuma-toldot-toldot-12-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 12:7 | midrash-tanchuma-toldot-toldot-12-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 13:1 | midrash-tanchuma-toldot-toldot-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 14:1 | midrash-tanchuma-toldot-toldot-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 14:2 | midrash-tanchuma-toldot-toldot-14-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Toldot 14:3 | midrash-tanchuma-toldot-toldot-14-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 1:1 | midrash-tanchuma-vayetzei-vayetzei-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 2:1 | midrash-tanchuma-vayetzei-vayetzei-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 2:2 | midrash-tanchuma-vayetzei-vayetzei-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 2:3 | midrash-tanchuma-vayetzei-vayetzei-2-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 3:1 | midrash-tanchuma-vayetzei-vayetzei-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 3:2 | midrash-tanchuma-vayetzei-vayetzei-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 3:3 | midrash-tanchuma-vayetzei-vayetzei-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 3:4 | midrash-tanchuma-vayetzei-vayetzei-3-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 4:1 | midrash-tanchuma-vayetzei-vayetzei-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 4:2 | midrash-tanchuma-vayetzei-vayetzei-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 5:1 | midrash-tanchuma-vayetzei-vayetzei-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 5:2 | midrash-tanchuma-vayetzei-vayetzei-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 5:3 | midrash-tanchuma-vayetzei-vayetzei-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 6:1 | midrash-tanchuma-vayetzei-vayetzei-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 6:2 | midrash-tanchuma-vayetzei-vayetzei-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 6:3 | midrash-tanchuma-vayetzei-vayetzei-6-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 6:4 | midrash-tanchuma-vayetzei-vayetzei-6-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 6:5 | midrash-tanchuma-vayetzei-vayetzei-6-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 7:1 | midrash-tanchuma-vayetzei-vayetzei-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 7:2 | midrash-tanchuma-vayetzei-vayetzei-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 7:3 | midrash-tanchuma-vayetzei-vayetzei-7-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 8:1 | midrash-tanchuma-vayetzei-vayetzei-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 8:2 | midrash-tanchuma-vayetzei-vayetzei-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 8:3 | midrash-tanchuma-vayetzei-vayetzei-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 8:4 | midrash-tanchuma-vayetzei-vayetzei-8-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 9:1 | midrash-tanchuma-vayetzei-vayetzei-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 9:2 | midrash-tanchuma-vayetzei-vayetzei-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 9:3 | midrash-tanchuma-vayetzei-vayetzei-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 9:4 | midrash-tanchuma-vayetzei-vayetzei-9-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 10:1 | midrash-tanchuma-vayetzei-vayetzei-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 10:2 | midrash-tanchuma-vayetzei-vayetzei-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 11:1 | midrash-tanchuma-vayetzei-vayetzei-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 11:2 | midrash-tanchuma-vayetzei-vayetzei-11-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 11:3 | midrash-tanchuma-vayetzei-vayetzei-11-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 11:4 | midrash-tanchuma-vayetzei-vayetzei-11-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 11:5 | midrash-tanchuma-vayetzei-vayetzei-11-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 11:6 | midrash-tanchuma-vayetzei-vayetzei-11-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 12:1 | midrash-tanchuma-vayetzei-vayetzei-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 12:2 | midrash-tanchuma-vayetzei-vayetzei-12-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 13:1 | midrash-tanchuma-vayetzei-vayetzei-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 13:2 | midrash-tanchuma-vayetzei-vayetzei-13-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 13:3 | midrash-tanchuma-vayetzei-vayetzei-13-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayetzei 13:4 | midrash-tanchuma-vayetzei-vayetzei-13-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 1:1 | midrash-tanchuma-vayishlach-vayishlach-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 1:2 | midrash-tanchuma-vayishlach-vayishlach-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 1:3 | midrash-tanchuma-vayishlach-vayishlach-1-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 1:4 | midrash-tanchuma-vayishlach-vayishlach-1-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 2:1 | midrash-tanchuma-vayishlach-vayishlach-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 2:2 | midrash-tanchuma-vayishlach-vayishlach-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 2:3 | midrash-tanchuma-vayishlach-vayishlach-2-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 2:4 | midrash-tanchuma-vayishlach-vayishlach-2-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 2:5 | midrash-tanchuma-vayishlach-vayishlach-2-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 2:6 | midrash-tanchuma-vayishlach-vayishlach-2-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 2:7 | midrash-tanchuma-vayishlach-vayishlach-2-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 3:1 | midrash-tanchuma-vayishlach-vayishlach-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 3:2 | midrash-tanchuma-vayishlach-vayishlach-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 3:3 | midrash-tanchuma-vayishlach-vayishlach-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 3:4 | midrash-tanchuma-vayishlach-vayishlach-3-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 3:5 | midrash-tanchuma-vayishlach-vayishlach-3-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 3:6 | midrash-tanchuma-vayishlach-vayishlach-3-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 3:7 | midrash-tanchuma-vayishlach-vayishlach-3-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 4:1 | midrash-tanchuma-vayishlach-vayishlach-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 4:2 | midrash-tanchuma-vayishlach-vayishlach-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 4:3 | midrash-tanchuma-vayishlach-vayishlach-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 4:4 | midrash-tanchuma-vayishlach-vayishlach-4-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 4:5 | midrash-tanchuma-vayishlach-vayishlach-4-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 5:1 | midrash-tanchuma-vayishlach-vayishlach-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 5:2 | midrash-tanchuma-vayishlach-vayishlach-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 6:1 | midrash-tanchuma-vayishlach-vayishlach-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 6:2 | midrash-tanchuma-vayishlach-vayishlach-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 6:3 | midrash-tanchuma-vayishlach-vayishlach-6-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 7:1 | midrash-tanchuma-vayishlach-vayishlach-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 7:2 | midrash-tanchuma-vayishlach-vayishlach-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 7:3 | midrash-tanchuma-vayishlach-vayishlach-7-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 7:4 | midrash-tanchuma-vayishlach-vayishlach-7-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 7:5 | midrash-tanchuma-vayishlach-vayishlach-7-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 7:6 | midrash-tanchuma-vayishlach-vayishlach-7-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 8:1 | midrash-tanchuma-vayishlach-vayishlach-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 8:2 | midrash-tanchuma-vayishlach-vayishlach-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 8:3 | midrash-tanchuma-vayishlach-vayishlach-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 8:4 | midrash-tanchuma-vayishlach-vayishlach-8-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 8:5 | midrash-tanchuma-vayishlach-vayishlach-8-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 8:6 | midrash-tanchuma-vayishlach-vayishlach-8-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 8:7 | midrash-tanchuma-vayishlach-vayishlach-8-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 9:1 | midrash-tanchuma-vayishlach-vayishlach-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 9:2 | midrash-tanchuma-vayishlach-vayishlach-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 9:3 | midrash-tanchuma-vayishlach-vayishlach-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 9:4 | midrash-tanchuma-vayishlach-vayishlach-9-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 10:1 | midrash-tanchuma-vayishlach-vayishlach-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 10:2 | midrash-tanchuma-vayishlach-vayishlach-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 10:3 | midrash-tanchuma-vayishlach-vayishlach-10-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 10:4 | midrash-tanchuma-vayishlach-vayishlach-10-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 10:5 | midrash-tanchuma-vayishlach-vayishlach-10-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayishlach 10:6 | midrash-tanchuma-vayishlach-vayishlach-10-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 1:1 | midrash-tanchuma-vayeshev-vayeshev-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 1:2 | midrash-tanchuma-vayeshev-vayeshev-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 1:3 | midrash-tanchuma-vayeshev-vayeshev-1-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 1:4 | midrash-tanchuma-vayeshev-vayeshev-1-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 1:5 | midrash-tanchuma-vayeshev-vayeshev-1-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 1:6 | midrash-tanchuma-vayeshev-vayeshev-1-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 1:7 | midrash-tanchuma-vayeshev-vayeshev-1-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 1:8 | midrash-tanchuma-vayeshev-vayeshev-1-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 2:1 | midrash-tanchuma-vayeshev-vayeshev-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 2:2 | midrash-tanchuma-vayeshev-vayeshev-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 2:3 | midrash-tanchuma-vayeshev-vayeshev-2-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 2:4 | midrash-tanchuma-vayeshev-vayeshev-2-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 2:5 | midrash-tanchuma-vayeshev-vayeshev-2-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 2:6 | midrash-tanchuma-vayeshev-vayeshev-2-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 2:7 | midrash-tanchuma-vayeshev-vayeshev-2-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 2:8 | midrash-tanchuma-vayeshev-vayeshev-2-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 2:9 | midrash-tanchuma-vayeshev-vayeshev-2-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 2:10 | midrash-tanchuma-vayeshev-vayeshev-2-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 2:11 | midrash-tanchuma-vayeshev-vayeshev-2-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 2:12 | midrash-tanchuma-vayeshev-vayeshev-2-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 2:13 | midrash-tanchuma-vayeshev-vayeshev-2-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 2:14 | midrash-tanchuma-vayeshev-vayeshev-2-14 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 2:15 | midrash-tanchuma-vayeshev-vayeshev-2-15 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 3:1 | midrash-tanchuma-vayeshev-vayeshev-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 3:2 | midrash-tanchuma-vayeshev-vayeshev-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 3:3 | midrash-tanchuma-vayeshev-vayeshev-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 3:4 | midrash-tanchuma-vayeshev-vayeshev-3-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 3:5 | midrash-tanchuma-vayeshev-vayeshev-3-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 4:1 | midrash-tanchuma-vayeshev-vayeshev-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 4:2 | midrash-tanchuma-vayeshev-vayeshev-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 4:3 | midrash-tanchuma-vayeshev-vayeshev-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 4:4 | midrash-tanchuma-vayeshev-vayeshev-4-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 4:5 | midrash-tanchuma-vayeshev-vayeshev-4-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 5:1 | midrash-tanchuma-vayeshev-vayeshev-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 5:2 | midrash-tanchuma-vayeshev-vayeshev-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 6:1 | midrash-tanchuma-vayeshev-vayeshev-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 6:2 | midrash-tanchuma-vayeshev-vayeshev-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 6:3 | midrash-tanchuma-vayeshev-vayeshev-6-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 6:4 | midrash-tanchuma-vayeshev-vayeshev-6-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 7:1 | midrash-tanchuma-vayeshev-vayeshev-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 7:2 | midrash-tanchuma-vayeshev-vayeshev-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 7:3 | midrash-tanchuma-vayeshev-vayeshev-7-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 7:4 | midrash-tanchuma-vayeshev-vayeshev-7-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 8:1 | midrash-tanchuma-vayeshev-vayeshev-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 8:2 | midrash-tanchuma-vayeshev-vayeshev-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 8:3 | midrash-tanchuma-vayeshev-vayeshev-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 8:4 | midrash-tanchuma-vayeshev-vayeshev-8-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 8:5 | midrash-tanchuma-vayeshev-vayeshev-8-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 8:6 | midrash-tanchuma-vayeshev-vayeshev-8-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 9:1 | midrash-tanchuma-vayeshev-vayeshev-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 9:2 | midrash-tanchuma-vayeshev-vayeshev-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 9:3 | midrash-tanchuma-vayeshev-vayeshev-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 9:4 | midrash-tanchuma-vayeshev-vayeshev-9-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 9:5 | midrash-tanchuma-vayeshev-vayeshev-9-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 9:6 | midrash-tanchuma-vayeshev-vayeshev-9-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeshev 9:7 | midrash-tanchuma-vayeshev-vayeshev-9-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 1:1 | midrash-tanchuma-miketz-miketz-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 1:2 | midrash-tanchuma-miketz-miketz-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 2:1 | midrash-tanchuma-miketz-miketz-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 2:2 | midrash-tanchuma-miketz-miketz-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 2:3 | midrash-tanchuma-miketz-miketz-2-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 2:4 | midrash-tanchuma-miketz-miketz-2-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 2:5 | midrash-tanchuma-miketz-miketz-2-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 2:6 | midrash-tanchuma-miketz-miketz-2-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 3:1 | midrash-tanchuma-miketz-miketz-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 3:2 | midrash-tanchuma-miketz-miketz-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 3:3 | midrash-tanchuma-miketz-miketz-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 3:4 | midrash-tanchuma-miketz-miketz-3-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 3:5 | midrash-tanchuma-miketz-miketz-3-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 3:6 | midrash-tanchuma-miketz-miketz-3-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 3:7 | midrash-tanchuma-miketz-miketz-3-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 4:1 | midrash-tanchuma-miketz-miketz-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 4:2 | midrash-tanchuma-miketz-miketz-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 4:3 | midrash-tanchuma-miketz-miketz-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 5:1 | midrash-tanchuma-miketz-miketz-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 5:2 | midrash-tanchuma-miketz-miketz-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 6:1 | midrash-tanchuma-miketz-miketz-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 6:2 | midrash-tanchuma-miketz-miketz-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 6:3 | midrash-tanchuma-miketz-miketz-6-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 6:4 | midrash-tanchuma-miketz-miketz-6-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 6:5 | midrash-tanchuma-miketz-miketz-6-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 7:1 | midrash-tanchuma-miketz-miketz-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 7:2 | midrash-tanchuma-miketz-miketz-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 8:1 | midrash-tanchuma-miketz-miketz-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 8:2 | midrash-tanchuma-miketz-miketz-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 8:3 | midrash-tanchuma-miketz-miketz-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 8:4 | midrash-tanchuma-miketz-miketz-8-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 9:1 | midrash-tanchuma-miketz-miketz-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 9:2 | midrash-tanchuma-miketz-miketz-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 9:3 | midrash-tanchuma-miketz-miketz-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 9:4 | midrash-tanchuma-miketz-miketz-9-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 10:1 | midrash-tanchuma-miketz-miketz-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 10:2 | midrash-tanchuma-miketz-miketz-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 10:3 | midrash-tanchuma-miketz-miketz-10-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 10:4 | midrash-tanchuma-miketz-miketz-10-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 10:5 | midrash-tanchuma-miketz-miketz-10-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 10:6 | midrash-tanchuma-miketz-miketz-10-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 10:7 | midrash-tanchuma-miketz-miketz-10-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 10:8 | midrash-tanchuma-miketz-miketz-10-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 10:9 | midrash-tanchuma-miketz-miketz-10-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 10:10 | midrash-tanchuma-miketz-miketz-10-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 10:11 | midrash-tanchuma-miketz-miketz-10-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 10:12 | midrash-tanchuma-miketz-miketz-10-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Miketz 10:13 | midrash-tanchuma-miketz-miketz-10-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 1:1 | midrash-tanchuma-vayigash-vayigash-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 1:2 | midrash-tanchuma-vayigash-vayigash-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 1:3 | midrash-tanchuma-vayigash-vayigash-1-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 1:4 | midrash-tanchuma-vayigash-vayigash-1-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 2:1 | midrash-tanchuma-vayigash-vayigash-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 2:2 | midrash-tanchuma-vayigash-vayigash-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 2:3 | midrash-tanchuma-vayigash-vayigash-2-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 3:1 | midrash-tanchuma-vayigash-vayigash-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 3:2 | midrash-tanchuma-vayigash-vayigash-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 3:3 | midrash-tanchuma-vayigash-vayigash-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 3:4 | midrash-tanchuma-vayigash-vayigash-3-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 3:5 | midrash-tanchuma-vayigash-vayigash-3-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 3:6 | midrash-tanchuma-vayigash-vayigash-3-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 4:1 | midrash-tanchuma-vayigash-vayigash-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 4:2 | midrash-tanchuma-vayigash-vayigash-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 4:3 | midrash-tanchuma-vayigash-vayigash-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 4:4 | midrash-tanchuma-vayigash-vayigash-4-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 4:5 | midrash-tanchuma-vayigash-vayigash-4-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 4:6 | midrash-tanchuma-vayigash-vayigash-4-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 4:7 | midrash-tanchuma-vayigash-vayigash-4-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 4:8 | midrash-tanchuma-vayigash-vayigash-4-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 4:9 | midrash-tanchuma-vayigash-vayigash-4-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 5:1 | midrash-tanchuma-vayigash-vayigash-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 5:2 | midrash-tanchuma-vayigash-vayigash-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 5:3 | midrash-tanchuma-vayigash-vayigash-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 5:4 | midrash-tanchuma-vayigash-vayigash-5-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 5:5 | midrash-tanchuma-vayigash-vayigash-5-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 5:6 | midrash-tanchuma-vayigash-vayigash-5-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 5:7 | midrash-tanchuma-vayigash-vayigash-5-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 5:8 | midrash-tanchuma-vayigash-vayigash-5-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 5:9 | midrash-tanchuma-vayigash-vayigash-5-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 5:10 | midrash-tanchuma-vayigash-vayigash-5-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 5:11 | midrash-tanchuma-vayigash-vayigash-5-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 5:12 | midrash-tanchuma-vayigash-vayigash-5-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 5:13 | midrash-tanchuma-vayigash-vayigash-5-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 5:14 | midrash-tanchuma-vayigash-vayigash-5-14 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 5:15 | midrash-tanchuma-vayigash-vayigash-5-15 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 6:1 | midrash-tanchuma-vayigash-vayigash-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 6:2 | midrash-tanchuma-vayigash-vayigash-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 6:3 | midrash-tanchuma-vayigash-vayigash-6-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 6:4 | midrash-tanchuma-vayigash-vayigash-6-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 7:1 | midrash-tanchuma-vayigash-vayigash-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 7:2 | midrash-tanchuma-vayigash-vayigash-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 8:1 | midrash-tanchuma-vayigash-vayigash-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 8:2 | midrash-tanchuma-vayigash-vayigash-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 8:3 | midrash-tanchuma-vayigash-vayigash-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 8:4 | midrash-tanchuma-vayigash-vayigash-8-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 8:5 | midrash-tanchuma-vayigash-vayigash-8-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 8:6 | midrash-tanchuma-vayigash-vayigash-8-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 8:7 | midrash-tanchuma-vayigash-vayigash-8-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 9:1 | midrash-tanchuma-vayigash-vayigash-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 9:2 | midrash-tanchuma-vayigash-vayigash-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 9:3 | midrash-tanchuma-vayigash-vayigash-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 9:4 | midrash-tanchuma-vayigash-vayigash-9-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 10:1 | midrash-tanchuma-vayigash-vayigash-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 10:2 | midrash-tanchuma-vayigash-vayigash-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 11:1 | midrash-tanchuma-vayigash-vayigash-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 11:2 | midrash-tanchuma-vayigash-vayigash-11-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayigash 11:3 | midrash-tanchuma-vayigash-vayigash-11-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 1:1 | midrash-tanchuma-vayechi-vayechi-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 1:2 | midrash-tanchuma-vayechi-vayechi-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 2:1 | midrash-tanchuma-vayechi-vayechi-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 2:2 | midrash-tanchuma-vayechi-vayechi-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 2:3 | midrash-tanchuma-vayechi-vayechi-2-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 2:4 | midrash-tanchuma-vayechi-vayechi-2-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 2:5 | midrash-tanchuma-vayechi-vayechi-2-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 2:6 | midrash-tanchuma-vayechi-vayechi-2-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 2:7 | midrash-tanchuma-vayechi-vayechi-2-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 2:8 | midrash-tanchuma-vayechi-vayechi-2-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 3:1 | midrash-tanchuma-vayechi-vayechi-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 3:2 | midrash-tanchuma-vayechi-vayechi-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 3:3 | midrash-tanchuma-vayechi-vayechi-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 3:4 | midrash-tanchuma-vayechi-vayechi-3-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 3:5 | midrash-tanchuma-vayechi-vayechi-3-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 3:6 | midrash-tanchuma-vayechi-vayechi-3-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 3:7 | midrash-tanchuma-vayechi-vayechi-3-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 3:8 | midrash-tanchuma-vayechi-vayechi-3-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 3:9 | midrash-tanchuma-vayechi-vayechi-3-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 4:1 | midrash-tanchuma-vayechi-vayechi-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 4:2 | midrash-tanchuma-vayechi-vayechi-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 4:3 | midrash-tanchuma-vayechi-vayechi-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 5:1 | midrash-tanchuma-vayechi-vayechi-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 6:1 | midrash-tanchuma-vayechi-vayechi-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 6:2 | midrash-tanchuma-vayechi-vayechi-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 6:3 | midrash-tanchuma-vayechi-vayechi-6-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 6:4 | midrash-tanchuma-vayechi-vayechi-6-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 6:5 | midrash-tanchuma-vayechi-vayechi-6-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 6:6 | midrash-tanchuma-vayechi-vayechi-6-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 6:7 | midrash-tanchuma-vayechi-vayechi-6-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 6:8 | midrash-tanchuma-vayechi-vayechi-6-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 7:1 | midrash-tanchuma-vayechi-vayechi-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 7:2 | midrash-tanchuma-vayechi-vayechi-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 7:3 | midrash-tanchuma-vayechi-vayechi-7-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 8:1 | midrash-tanchuma-vayechi-vayechi-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 8:2 | midrash-tanchuma-vayechi-vayechi-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 8:3 | midrash-tanchuma-vayechi-vayechi-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 8:4 | midrash-tanchuma-vayechi-vayechi-8-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 8:5 | midrash-tanchuma-vayechi-vayechi-8-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 8:6 | midrash-tanchuma-vayechi-vayechi-8-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 8:7 | midrash-tanchuma-vayechi-vayechi-8-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 8:8 | midrash-tanchuma-vayechi-vayechi-8-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 9:1 | midrash-tanchuma-vayechi-vayechi-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 9:2 | midrash-tanchuma-vayechi-vayechi-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 9:3 | midrash-tanchuma-vayechi-vayechi-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 9:4 | midrash-tanchuma-vayechi-vayechi-9-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 9:5 | midrash-tanchuma-vayechi-vayechi-9-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 9:6 | midrash-tanchuma-vayechi-vayechi-9-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 9:7 | midrash-tanchuma-vayechi-vayechi-9-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 9:8 | midrash-tanchuma-vayechi-vayechi-9-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:1 | midrash-tanchuma-vayechi-vayechi-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:2 | midrash-tanchuma-vayechi-vayechi-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:3 | midrash-tanchuma-vayechi-vayechi-10-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:4 | midrash-tanchuma-vayechi-vayechi-10-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:5 | midrash-tanchuma-vayechi-vayechi-10-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:6 | midrash-tanchuma-vayechi-vayechi-10-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:7 | midrash-tanchuma-vayechi-vayechi-10-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:8 | midrash-tanchuma-vayechi-vayechi-10-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:9 | midrash-tanchuma-vayechi-vayechi-10-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:10 | midrash-tanchuma-vayechi-vayechi-10-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:11 | midrash-tanchuma-vayechi-vayechi-10-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:12 | midrash-tanchuma-vayechi-vayechi-10-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:13 | midrash-tanchuma-vayechi-vayechi-10-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:14 | midrash-tanchuma-vayechi-vayechi-10-14 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:15 | midrash-tanchuma-vayechi-vayechi-10-15 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:16 | midrash-tanchuma-vayechi-vayechi-10-16 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:17 | midrash-tanchuma-vayechi-vayechi-10-17 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:18 | midrash-tanchuma-vayechi-vayechi-10-18 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:19 | midrash-tanchuma-vayechi-vayechi-10-19 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:20 | midrash-tanchuma-vayechi-vayechi-10-20 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:21 | midrash-tanchuma-vayechi-vayechi-10-21 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 10:22 | midrash-tanchuma-vayechi-vayechi-10-22 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 11:1 | midrash-tanchuma-vayechi-vayechi-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 11:2 | midrash-tanchuma-vayechi-vayechi-11-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 12:1 | midrash-tanchuma-vayechi-vayechi-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 12:2 | midrash-tanchuma-vayechi-vayechi-12-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 12:3 | midrash-tanchuma-vayechi-vayechi-12-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 13:1 | midrash-tanchuma-vayechi-vayechi-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 13:2 | midrash-tanchuma-vayechi-vayechi-13-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 13:3 | midrash-tanchuma-vayechi-vayechi-13-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 13:4 | midrash-tanchuma-vayechi-vayechi-13-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 13:5 | midrash-tanchuma-vayechi-vayechi-13-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 14:1 | midrash-tanchuma-vayechi-vayechi-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 14:2 | midrash-tanchuma-vayechi-vayechi-14-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 14:3 | midrash-tanchuma-vayechi-vayechi-14-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 14:4 | midrash-tanchuma-vayechi-vayechi-14-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 14:5 | midrash-tanchuma-vayechi-vayechi-14-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 14:6 | midrash-tanchuma-vayechi-vayechi-14-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 14:7 | midrash-tanchuma-vayechi-vayechi-14-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 14:8 | midrash-tanchuma-vayechi-vayechi-14-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 14:9 | midrash-tanchuma-vayechi-vayechi-14-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 14:10 | midrash-tanchuma-vayechi-vayechi-14-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 14:11 | midrash-tanchuma-vayechi-vayechi-14-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 14:12 | midrash-tanchuma-vayechi-vayechi-14-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 15:1 | midrash-tanchuma-vayechi-vayechi-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 15:2 | midrash-tanchuma-vayechi-vayechi-15-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 15:3 | midrash-tanchuma-vayechi-vayechi-15-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 15:4 | midrash-tanchuma-vayechi-vayechi-15-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 16:1 | midrash-tanchuma-vayechi-vayechi-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 16:2 | midrash-tanchuma-vayechi-vayechi-16-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 16:3 | midrash-tanchuma-vayechi-vayechi-16-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 17:1 | midrash-tanchuma-vayechi-vayechi-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 17:2 | midrash-tanchuma-vayechi-vayechi-17-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 17:3 | midrash-tanchuma-vayechi-vayechi-17-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 17:4 | midrash-tanchuma-vayechi-vayechi-17-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayechi 17:5 | midrash-tanchuma-vayechi-vayechi-17-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 1:1 | midrash-tanchuma-shemot-shemot-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 1:2 | midrash-tanchuma-shemot-shemot-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 1:3 | midrash-tanchuma-shemot-shemot-1-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 1:4 | midrash-tanchuma-shemot-shemot-1-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 1:5 | midrash-tanchuma-shemot-shemot-1-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 1:6 | midrash-tanchuma-shemot-shemot-1-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 1:7 | midrash-tanchuma-shemot-shemot-1-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 1:8 | midrash-tanchuma-shemot-shemot-1-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 1:9 | midrash-tanchuma-shemot-shemot-1-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 1:10 | midrash-tanchuma-shemot-shemot-1-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 1:11 | midrash-tanchuma-shemot-shemot-1-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 1:12 | midrash-tanchuma-shemot-shemot-1-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 2:1 | midrash-tanchuma-shemot-shemot-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 2:2 | midrash-tanchuma-shemot-shemot-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 2:3 | midrash-tanchuma-shemot-shemot-2-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 3:1 | midrash-tanchuma-shemot-shemot-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 3:2 | midrash-tanchuma-shemot-shemot-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 3:3 | midrash-tanchuma-shemot-shemot-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 4:1 | midrash-tanchuma-shemot-shemot-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 4:2 | midrash-tanchuma-shemot-shemot-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 4:3 | midrash-tanchuma-shemot-shemot-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 5:1 | midrash-tanchuma-shemot-shemot-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 5:2 | midrash-tanchuma-shemot-shemot-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 5:3 | midrash-tanchuma-shemot-shemot-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 6:1 | midrash-tanchuma-shemot-shemot-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 7:1 | midrash-tanchuma-shemot-shemot-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 7:2 | midrash-tanchuma-shemot-shemot-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 7:3 | midrash-tanchuma-shemot-shemot-7-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 7:4 | midrash-tanchuma-shemot-shemot-7-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 8:1 | midrash-tanchuma-shemot-shemot-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 8:2 | midrash-tanchuma-shemot-shemot-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 8:3 | midrash-tanchuma-shemot-shemot-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 8:4 | midrash-tanchuma-shemot-shemot-8-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 9:1 | midrash-tanchuma-shemot-shemot-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 9:2 | midrash-tanchuma-shemot-shemot-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 9:3 | midrash-tanchuma-shemot-shemot-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 9:4 | midrash-tanchuma-shemot-shemot-9-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 10:1 | midrash-tanchuma-shemot-shemot-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 10:2 | midrash-tanchuma-shemot-shemot-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 10:3 | midrash-tanchuma-shemot-shemot-10-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 10:4 | midrash-tanchuma-shemot-shemot-10-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 11:1 | midrash-tanchuma-shemot-shemot-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 11:2 | midrash-tanchuma-shemot-shemot-11-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 11:3 | midrash-tanchuma-shemot-shemot-11-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 11:4 | midrash-tanchuma-shemot-shemot-11-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 12:1 | midrash-tanchuma-shemot-shemot-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 12:2 | midrash-tanchuma-shemot-shemot-12-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 12:3 | midrash-tanchuma-shemot-shemot-12-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 13:1 | midrash-tanchuma-shemot-shemot-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 14:1 | midrash-tanchuma-shemot-shemot-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 14:2 | midrash-tanchuma-shemot-shemot-14-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 14:3 | midrash-tanchuma-shemot-shemot-14-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 14:4 | midrash-tanchuma-shemot-shemot-14-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 15:1 | midrash-tanchuma-shemot-shemot-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 15:2 | midrash-tanchuma-shemot-shemot-15-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 16:1 | midrash-tanchuma-shemot-shemot-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 16:2 | midrash-tanchuma-shemot-shemot-16-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 16:3 | midrash-tanchuma-shemot-shemot-16-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 16:4 | midrash-tanchuma-shemot-shemot-16-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 16:5 | midrash-tanchuma-shemot-shemot-16-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 17:1 | midrash-tanchuma-shemot-shemot-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 17:2 | midrash-tanchuma-shemot-shemot-17-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 17:3 | midrash-tanchuma-shemot-shemot-17-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 18:1 | midrash-tanchuma-shemot-shemot-18-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 18:2 | midrash-tanchuma-shemot-shemot-18-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 18:3 | midrash-tanchuma-shemot-shemot-18-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 18:4 | midrash-tanchuma-shemot-shemot-18-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 18:5 | midrash-tanchuma-shemot-shemot-18-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 18:6 | midrash-tanchuma-shemot-shemot-18-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 19:1 | midrash-tanchuma-shemot-shemot-19-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 20:1 | midrash-tanchuma-shemot-shemot-20-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 20:2 | midrash-tanchuma-shemot-shemot-20-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 20:3 | midrash-tanchuma-shemot-shemot-20-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 21:1 | midrash-tanchuma-shemot-shemot-21-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 22:1 | midrash-tanchuma-shemot-shemot-22-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 23:1 | midrash-tanchuma-shemot-shemot-23-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 23:2 | midrash-tanchuma-shemot-shemot-23-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 23:3 | midrash-tanchuma-shemot-shemot-23-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 24:1 | midrash-tanchuma-shemot-shemot-24-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 24:2 | midrash-tanchuma-shemot-shemot-24-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 25:1 | midrash-tanchuma-shemot-shemot-25-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 25:2 | midrash-tanchuma-shemot-shemot-25-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 25:3 | midrash-tanchuma-shemot-shemot-25-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 25:4 | midrash-tanchuma-shemot-shemot-25-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 25:5 | midrash-tanchuma-shemot-shemot-25-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 25:6 | midrash-tanchuma-shemot-shemot-25-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 25:7 | midrash-tanchuma-shemot-shemot-25-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 26:1 | midrash-tanchuma-shemot-shemot-26-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 27:1 | midrash-tanchuma-shemot-shemot-27-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 27:2 | midrash-tanchuma-shemot-shemot-27-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 27:3 | midrash-tanchuma-shemot-shemot-27-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 28:1 | midrash-tanchuma-shemot-shemot-28-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 28:2 | midrash-tanchuma-shemot-shemot-28-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 29:1 | midrash-tanchuma-shemot-shemot-29-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 29:2 | midrash-tanchuma-shemot-shemot-29-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 29:3 | midrash-tanchuma-shemot-shemot-29-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 29:4 | midrash-tanchuma-shemot-shemot-29-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 29:5 | midrash-tanchuma-shemot-shemot-29-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shemot 29:6 | midrash-tanchuma-shemot-shemot-29-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 1:1 | midrash-tanchuma-vaera-vaera-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 1:2 | midrash-tanchuma-vaera-vaera-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 1:3 | midrash-tanchuma-vaera-vaera-1-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 1:4 | midrash-tanchuma-vaera-vaera-1-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 2:1 | midrash-tanchuma-vaera-vaera-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 2:2 | midrash-tanchuma-vaera-vaera-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 3:1 | midrash-tanchuma-vaera-vaera-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 3:2 | midrash-tanchuma-vaera-vaera-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 4:1 | midrash-tanchuma-vaera-vaera-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 4:2 | midrash-tanchuma-vaera-vaera-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 5:1 | midrash-tanchuma-vaera-vaera-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 5:2 | midrash-tanchuma-vaera-vaera-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 5:3 | midrash-tanchuma-vaera-vaera-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 5:4 | midrash-tanchuma-vaera-vaera-5-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 5:5 | midrash-tanchuma-vaera-vaera-5-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 5:6 | midrash-tanchuma-vaera-vaera-5-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 6:1 | midrash-tanchuma-vaera-vaera-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 6:2 | midrash-tanchuma-vaera-vaera-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 6:3 | midrash-tanchuma-vaera-vaera-6-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 6:4 | midrash-tanchuma-vaera-vaera-6-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 6:5 | midrash-tanchuma-vaera-vaera-6-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 6:6 | midrash-tanchuma-vaera-vaera-6-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 6:7 | midrash-tanchuma-vaera-vaera-6-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 7:1 | midrash-tanchuma-vaera-vaera-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 7:2 | midrash-tanchuma-vaera-vaera-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 8:1 | midrash-tanchuma-vaera-vaera-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 8:2 | midrash-tanchuma-vaera-vaera-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 8:3 | midrash-tanchuma-vaera-vaera-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 9:1 | midrash-tanchuma-vaera-vaera-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 9:2 | midrash-tanchuma-vaera-vaera-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 9:3 | midrash-tanchuma-vaera-vaera-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 9:4 | midrash-tanchuma-vaera-vaera-9-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 9:5 | midrash-tanchuma-vaera-vaera-9-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 9:6 | midrash-tanchuma-vaera-vaera-9-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 9:7 | midrash-tanchuma-vaera-vaera-9-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 9:8 | midrash-tanchuma-vaera-vaera-9-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 9:9 | midrash-tanchuma-vaera-vaera-9-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 10:1 | midrash-tanchuma-vaera-vaera-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 10:2 | midrash-tanchuma-vaera-vaera-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 11:1 | midrash-tanchuma-vaera-vaera-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 11:2 | midrash-tanchuma-vaera-vaera-11-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 12:1 | midrash-tanchuma-vaera-vaera-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 12:2 | midrash-tanchuma-vaera-vaera-12-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 13:1 | midrash-tanchuma-vaera-vaera-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 13:2 | midrash-tanchuma-vaera-vaera-13-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 13:3 | midrash-tanchuma-vaera-vaera-13-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 13:4 | midrash-tanchuma-vaera-vaera-13-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 13:5 | midrash-tanchuma-vaera-vaera-13-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 14:1 | midrash-tanchuma-vaera-vaera-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 14:2 | midrash-tanchuma-vaera-vaera-14-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 14:3 | midrash-tanchuma-vaera-vaera-14-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 14:4 | midrash-tanchuma-vaera-vaera-14-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 14:5 | midrash-tanchuma-vaera-vaera-14-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 14:6 | midrash-tanchuma-vaera-vaera-14-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 14:7 | midrash-tanchuma-vaera-vaera-14-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 14:8 | midrash-tanchuma-vaera-vaera-14-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 14:9 | midrash-tanchuma-vaera-vaera-14-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 14:10 | midrash-tanchuma-vaera-vaera-14-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 14:11 | midrash-tanchuma-vaera-vaera-14-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 14:12 | midrash-tanchuma-vaera-vaera-14-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 14:13 | midrash-tanchuma-vaera-vaera-14-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 14:14 | midrash-tanchuma-vaera-vaera-14-14 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 15:1 | midrash-tanchuma-vaera-vaera-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 15:2 | midrash-tanchuma-vaera-vaera-15-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 16:1 | midrash-tanchuma-vaera-vaera-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 16:2 | midrash-tanchuma-vaera-vaera-16-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 16:3 | midrash-tanchuma-vaera-vaera-16-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 17:1 | midrash-tanchuma-vaera-vaera-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaera 17:2 | midrash-tanchuma-vaera-vaera-17-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 1:1 | midrash-tanchuma-bo-bo-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 2:1 | midrash-tanchuma-bo-bo-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 2:2 | midrash-tanchuma-bo-bo-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 2:3 | midrash-tanchuma-bo-bo-2-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 3:1 | midrash-tanchuma-bo-bo-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 3:2 | midrash-tanchuma-bo-bo-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 3:3 | midrash-tanchuma-bo-bo-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 4:1 | midrash-tanchuma-bo-bo-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 4:2 | midrash-tanchuma-bo-bo-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 4:3 | midrash-tanchuma-bo-bo-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 4:4 | midrash-tanchuma-bo-bo-4-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 4:5 | midrash-tanchuma-bo-bo-4-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 4:6 | midrash-tanchuma-bo-bo-4-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 4:7 | midrash-tanchuma-bo-bo-4-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 5:1 | midrash-tanchuma-bo-bo-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 5:2 | midrash-tanchuma-bo-bo-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 5:3 | midrash-tanchuma-bo-bo-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 5:4 | midrash-tanchuma-bo-bo-5-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 6:1 | midrash-tanchuma-bo-bo-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 7:1 | midrash-tanchuma-bo-bo-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 7:2 | midrash-tanchuma-bo-bo-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 7:3 | midrash-tanchuma-bo-bo-7-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 7:4 | midrash-tanchuma-bo-bo-7-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 8:1 | midrash-tanchuma-bo-bo-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 8:2 | midrash-tanchuma-bo-bo-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 9:1 | midrash-tanchuma-bo-bo-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 9:2 | midrash-tanchuma-bo-bo-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 9:3 | midrash-tanchuma-bo-bo-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 10:1 | midrash-tanchuma-bo-bo-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 10:2 | midrash-tanchuma-bo-bo-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 10:3 | midrash-tanchuma-bo-bo-10-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 10:4 | midrash-tanchuma-bo-bo-10-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 11:1 | midrash-tanchuma-bo-bo-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 11:2 | midrash-tanchuma-bo-bo-11-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 11:3 | midrash-tanchuma-bo-bo-11-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 11:4 | midrash-tanchuma-bo-bo-11-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 11:5 | midrash-tanchuma-bo-bo-11-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 12:1 | midrash-tanchuma-bo-bo-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 12:2 | midrash-tanchuma-bo-bo-12-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 12:3 | midrash-tanchuma-bo-bo-12-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 12:4 | midrash-tanchuma-bo-bo-12-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 12:5 | midrash-tanchuma-bo-bo-12-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 13:1 | midrash-tanchuma-bo-bo-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 14:1 | midrash-tanchuma-bo-bo-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 14:2 | midrash-tanchuma-bo-bo-14-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 14:3 | midrash-tanchuma-bo-bo-14-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 14:4 | midrash-tanchuma-bo-bo-14-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bo 14:5 | midrash-tanchuma-bo-bo-14-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 1:1 | midrash-tanchuma-beshalach-beshalach-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 1:2 | midrash-tanchuma-beshalach-beshalach-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 1:3 | midrash-tanchuma-beshalach-beshalach-1-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 1:4 | midrash-tanchuma-beshalach-beshalach-1-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 2:1 | midrash-tanchuma-beshalach-beshalach-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 2:2 | midrash-tanchuma-beshalach-beshalach-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 2:3 | midrash-tanchuma-beshalach-beshalach-2-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 2:4 | midrash-tanchuma-beshalach-beshalach-2-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 2:5 | midrash-tanchuma-beshalach-beshalach-2-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 2:6 | midrash-tanchuma-beshalach-beshalach-2-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 3:1 | midrash-tanchuma-beshalach-beshalach-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 4:1 | midrash-tanchuma-beshalach-beshalach-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 5:1 | midrash-tanchuma-beshalach-beshalach-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 6:1 | midrash-tanchuma-beshalach-beshalach-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 6:2 | midrash-tanchuma-beshalach-beshalach-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 7:1 | midrash-tanchuma-beshalach-beshalach-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 8:1 | midrash-tanchuma-beshalach-beshalach-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 8:2 | midrash-tanchuma-beshalach-beshalach-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 8:3 | midrash-tanchuma-beshalach-beshalach-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 9:1 | midrash-tanchuma-beshalach-beshalach-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 9:2 | midrash-tanchuma-beshalach-beshalach-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 10:1 | midrash-tanchuma-beshalach-beshalach-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 10:2 | midrash-tanchuma-beshalach-beshalach-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 10:3 | midrash-tanchuma-beshalach-beshalach-10-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 10:4 | midrash-tanchuma-beshalach-beshalach-10-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 10:5 | midrash-tanchuma-beshalach-beshalach-10-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 10:6 | midrash-tanchuma-beshalach-beshalach-10-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 10:7 | midrash-tanchuma-beshalach-beshalach-10-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 10:8 | midrash-tanchuma-beshalach-beshalach-10-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 10:9 | midrash-tanchuma-beshalach-beshalach-10-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 10:10 | midrash-tanchuma-beshalach-beshalach-10-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 10:11 | midrash-tanchuma-beshalach-beshalach-10-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 11:1 | midrash-tanchuma-beshalach-beshalach-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 11:2 | midrash-tanchuma-beshalach-beshalach-11-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 11:3 | midrash-tanchuma-beshalach-beshalach-11-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 11:4 | midrash-tanchuma-beshalach-beshalach-11-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 11:5 | midrash-tanchuma-beshalach-beshalach-11-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 12:1 | midrash-tanchuma-beshalach-beshalach-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 12:2 | midrash-tanchuma-beshalach-beshalach-12-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 12:3 | midrash-tanchuma-beshalach-beshalach-12-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 12:4 | midrash-tanchuma-beshalach-beshalach-12-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 12:5 | midrash-tanchuma-beshalach-beshalach-12-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 12:6 | midrash-tanchuma-beshalach-beshalach-12-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 12:7 | midrash-tanchuma-beshalach-beshalach-12-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 12:8 | midrash-tanchuma-beshalach-beshalach-12-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 12:9 | midrash-tanchuma-beshalach-beshalach-12-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 12:10 | midrash-tanchuma-beshalach-beshalach-12-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 12:11 | midrash-tanchuma-beshalach-beshalach-12-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 12:12 | midrash-tanchuma-beshalach-beshalach-12-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 12:13 | midrash-tanchuma-beshalach-beshalach-12-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 12:14 | midrash-tanchuma-beshalach-beshalach-12-14 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 13:1 | midrash-tanchuma-beshalach-beshalach-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 13:2 | midrash-tanchuma-beshalach-beshalach-13-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 13:3 | midrash-tanchuma-beshalach-beshalach-13-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 14:1 | midrash-tanchuma-beshalach-beshalach-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 15:1 | midrash-tanchuma-beshalach-beshalach-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 15:2 | midrash-tanchuma-beshalach-beshalach-15-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 15:3 | midrash-tanchuma-beshalach-beshalach-15-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 15:4 | midrash-tanchuma-beshalach-beshalach-15-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 16:1 | midrash-tanchuma-beshalach-beshalach-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 16:2 | midrash-tanchuma-beshalach-beshalach-16-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 16:3 | midrash-tanchuma-beshalach-beshalach-16-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 16:4 | midrash-tanchuma-beshalach-beshalach-16-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 16:5 | midrash-tanchuma-beshalach-beshalach-16-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 16:6 | midrash-tanchuma-beshalach-beshalach-16-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 16:7 | midrash-tanchuma-beshalach-beshalach-16-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 17:1 | midrash-tanchuma-beshalach-beshalach-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 18:1 | midrash-tanchuma-beshalach-beshalach-18-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 18:2 | midrash-tanchuma-beshalach-beshalach-18-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 18:3 | midrash-tanchuma-beshalach-beshalach-18-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 19:1 | midrash-tanchuma-beshalach-beshalach-19-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 19:2 | midrash-tanchuma-beshalach-beshalach-19-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 19:3 | midrash-tanchuma-beshalach-beshalach-19-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 20:1 | midrash-tanchuma-beshalach-beshalach-20-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 20:2 | midrash-tanchuma-beshalach-beshalach-20-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 21:1 | midrash-tanchuma-beshalach-beshalach-21-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 21:2 | midrash-tanchuma-beshalach-beshalach-21-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 21:3 | midrash-tanchuma-beshalach-beshalach-21-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 22:1 | midrash-tanchuma-beshalach-beshalach-22-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 23:1 | midrash-tanchuma-beshalach-beshalach-23-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 23:2 | midrash-tanchuma-beshalach-beshalach-23-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 24:1 | midrash-tanchuma-beshalach-beshalach-24-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 24:2 | midrash-tanchuma-beshalach-beshalach-24-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 24:3 | midrash-tanchuma-beshalach-beshalach-24-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 25:1 | midrash-tanchuma-beshalach-beshalach-25-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 25:2 | midrash-tanchuma-beshalach-beshalach-25-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 25:3 | midrash-tanchuma-beshalach-beshalach-25-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 25:4 | midrash-tanchuma-beshalach-beshalach-25-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 26:1 | midrash-tanchuma-beshalach-beshalach-26-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 26:2 | midrash-tanchuma-beshalach-beshalach-26-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 26:3 | midrash-tanchuma-beshalach-beshalach-26-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 26:4 | midrash-tanchuma-beshalach-beshalach-26-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 27:1 | midrash-tanchuma-beshalach-beshalach-27-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 27:2 | midrash-tanchuma-beshalach-beshalach-27-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 28:1 | midrash-tanchuma-beshalach-beshalach-28-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 28:2 | midrash-tanchuma-beshalach-beshalach-28-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 28:3 | midrash-tanchuma-beshalach-beshalach-28-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 28:4 | midrash-tanchuma-beshalach-beshalach-28-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beshalach 28:5 | midrash-tanchuma-beshalach-beshalach-28-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 1:1 | midrash-tanchuma-yitro-yitro-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 1:2 | midrash-tanchuma-yitro-yitro-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 1:3 | midrash-tanchuma-yitro-yitro-1-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 2:1 | midrash-tanchuma-yitro-yitro-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 2:2 | midrash-tanchuma-yitro-yitro-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 3:1 | midrash-tanchuma-yitro-yitro-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 3:2 | midrash-tanchuma-yitro-yitro-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 3:3 | midrash-tanchuma-yitro-yitro-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 3:4 | midrash-tanchuma-yitro-yitro-3-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 3:5 | midrash-tanchuma-yitro-yitro-3-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 4:1 | midrash-tanchuma-yitro-yitro-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 4:2 | midrash-tanchuma-yitro-yitro-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 4:3 | midrash-tanchuma-yitro-yitro-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 5:1 | midrash-tanchuma-yitro-yitro-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 5:2 | midrash-tanchuma-yitro-yitro-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 5:3 | midrash-tanchuma-yitro-yitro-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 5:4 | midrash-tanchuma-yitro-yitro-5-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 6:1 | midrash-tanchuma-yitro-yitro-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 6:2 | midrash-tanchuma-yitro-yitro-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 7:1 | midrash-tanchuma-yitro-yitro-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 7:2 | midrash-tanchuma-yitro-yitro-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 7:3 | midrash-tanchuma-yitro-yitro-7-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 7:4 | midrash-tanchuma-yitro-yitro-7-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 7:5 | midrash-tanchuma-yitro-yitro-7-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 8:1 | midrash-tanchuma-yitro-yitro-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 8:2 | midrash-tanchuma-yitro-yitro-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 9:1 | midrash-tanchuma-yitro-yitro-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 10:1 | midrash-tanchuma-yitro-yitro-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 10:2 | midrash-tanchuma-yitro-yitro-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 10:3 | midrash-tanchuma-yitro-yitro-10-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 11:1 | midrash-tanchuma-yitro-yitro-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 11:2 | midrash-tanchuma-yitro-yitro-11-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 11:3 | midrash-tanchuma-yitro-yitro-11-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 12:1 | midrash-tanchuma-yitro-yitro-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 12:2 | midrash-tanchuma-yitro-yitro-12-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 12:3 | midrash-tanchuma-yitro-yitro-12-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 13:1 | midrash-tanchuma-yitro-yitro-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 13:2 | midrash-tanchuma-yitro-yitro-13-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 13:3 | midrash-tanchuma-yitro-yitro-13-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 14:1 | midrash-tanchuma-yitro-yitro-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 14:2 | midrash-tanchuma-yitro-yitro-14-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 14:3 | midrash-tanchuma-yitro-yitro-14-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 15:1 | midrash-tanchuma-yitro-yitro-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 15:2 | midrash-tanchuma-yitro-yitro-15-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 16:1 | midrash-tanchuma-yitro-yitro-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 16:2 | midrash-tanchuma-yitro-yitro-16-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 16:3 | midrash-tanchuma-yitro-yitro-16-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 16:4 | midrash-tanchuma-yitro-yitro-16-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 16:5 | midrash-tanchuma-yitro-yitro-16-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 16:6 | midrash-tanchuma-yitro-yitro-16-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 16:7 | midrash-tanchuma-yitro-yitro-16-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 16:8 | midrash-tanchuma-yitro-yitro-16-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 17:1 | midrash-tanchuma-yitro-yitro-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 17:2 | midrash-tanchuma-yitro-yitro-17-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Yitro 17:3 | midrash-tanchuma-yitro-yitro-17-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 1:1 | midrash-tanchuma-mishpatim-mishpatim-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 1:2 | midrash-tanchuma-mishpatim-mishpatim-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 2:1 | midrash-tanchuma-mishpatim-mishpatim-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 2:2 | midrash-tanchuma-mishpatim-mishpatim-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 3:1 | midrash-tanchuma-mishpatim-mishpatim-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 3:2 | midrash-tanchuma-mishpatim-mishpatim-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 3:3 | midrash-tanchuma-mishpatim-mishpatim-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 4:1 | midrash-tanchuma-mishpatim-mishpatim-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 4:2 | midrash-tanchuma-mishpatim-mishpatim-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 4:3 | midrash-tanchuma-mishpatim-mishpatim-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 4:4 | midrash-tanchuma-mishpatim-mishpatim-4-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 5:1 | midrash-tanchuma-mishpatim-mishpatim-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 5:2 | midrash-tanchuma-mishpatim-mishpatim-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 5:3 | midrash-tanchuma-mishpatim-mishpatim-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 5:4 | midrash-tanchuma-mishpatim-mishpatim-5-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 5:5 | midrash-tanchuma-mishpatim-mishpatim-5-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 5:6 | midrash-tanchuma-mishpatim-mishpatim-5-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 5:7 | midrash-tanchuma-mishpatim-mishpatim-5-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 5:8 | midrash-tanchuma-mishpatim-mishpatim-5-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 5:9 | midrash-tanchuma-mishpatim-mishpatim-5-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 5:10 | midrash-tanchuma-mishpatim-mishpatim-5-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 5:11 | midrash-tanchuma-mishpatim-mishpatim-5-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 5:12 | midrash-tanchuma-mishpatim-mishpatim-5-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:1 | midrash-tanchuma-mishpatim-mishpatim-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:2 | midrash-tanchuma-mishpatim-mishpatim-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:3 | midrash-tanchuma-mishpatim-mishpatim-6-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:4 | midrash-tanchuma-mishpatim-mishpatim-6-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:5 | midrash-tanchuma-mishpatim-mishpatim-6-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:6 | midrash-tanchuma-mishpatim-mishpatim-6-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:7 | midrash-tanchuma-mishpatim-mishpatim-6-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:8 | midrash-tanchuma-mishpatim-mishpatim-6-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:9 | midrash-tanchuma-mishpatim-mishpatim-6-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:10 | midrash-tanchuma-mishpatim-mishpatim-6-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:11 | midrash-tanchuma-mishpatim-mishpatim-6-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:12 | midrash-tanchuma-mishpatim-mishpatim-6-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:13 | midrash-tanchuma-mishpatim-mishpatim-6-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:14 | midrash-tanchuma-mishpatim-mishpatim-6-14 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:15 | midrash-tanchuma-mishpatim-mishpatim-6-15 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:16 | midrash-tanchuma-mishpatim-mishpatim-6-16 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:17 | midrash-tanchuma-mishpatim-mishpatim-6-17 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:18 | midrash-tanchuma-mishpatim-mishpatim-6-18 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:19 | midrash-tanchuma-mishpatim-mishpatim-6-19 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:20 | midrash-tanchuma-mishpatim-mishpatim-6-20 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 6:21 | midrash-tanchuma-mishpatim-mishpatim-6-21 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 7:1 | midrash-tanchuma-mishpatim-mishpatim-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 7:2 | midrash-tanchuma-mishpatim-mishpatim-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 7:3 | midrash-tanchuma-mishpatim-mishpatim-7-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 7:4 | midrash-tanchuma-mishpatim-mishpatim-7-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 7:5 | midrash-tanchuma-mishpatim-mishpatim-7-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 7:6 | midrash-tanchuma-mishpatim-mishpatim-7-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 7:7 | midrash-tanchuma-mishpatim-mishpatim-7-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 7:8 | midrash-tanchuma-mishpatim-mishpatim-7-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 8:1 | midrash-tanchuma-mishpatim-mishpatim-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 8:2 | midrash-tanchuma-mishpatim-mishpatim-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 8:3 | midrash-tanchuma-mishpatim-mishpatim-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 8:4 | midrash-tanchuma-mishpatim-mishpatim-8-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 8:5 | midrash-tanchuma-mishpatim-mishpatim-8-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 8:6 | midrash-tanchuma-mishpatim-mishpatim-8-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 9:1 | midrash-tanchuma-mishpatim-mishpatim-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 9:2 | midrash-tanchuma-mishpatim-mishpatim-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 9:3 | midrash-tanchuma-mishpatim-mishpatim-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 9:4 | midrash-tanchuma-mishpatim-mishpatim-9-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 9:5 | midrash-tanchuma-mishpatim-mishpatim-9-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 9:6 | midrash-tanchuma-mishpatim-mishpatim-9-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 9:7 | midrash-tanchuma-mishpatim-mishpatim-9-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 10:1 | midrash-tanchuma-mishpatim-mishpatim-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 10:2 | midrash-tanchuma-mishpatim-mishpatim-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 10:3 | midrash-tanchuma-mishpatim-mishpatim-10-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 10:4 | midrash-tanchuma-mishpatim-mishpatim-10-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 11:1 | midrash-tanchuma-mishpatim-mishpatim-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 11:2 | midrash-tanchuma-mishpatim-mishpatim-11-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 11:3 | midrash-tanchuma-mishpatim-mishpatim-11-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 11:4 | midrash-tanchuma-mishpatim-mishpatim-11-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 12:1 | midrash-tanchuma-mishpatim-mishpatim-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 12:2 | midrash-tanchuma-mishpatim-mishpatim-12-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 12:3 | midrash-tanchuma-mishpatim-mishpatim-12-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 12:4 | midrash-tanchuma-mishpatim-mishpatim-12-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 12:5 | midrash-tanchuma-mishpatim-mishpatim-12-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 12:6 | midrash-tanchuma-mishpatim-mishpatim-12-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 13:1 | midrash-tanchuma-mishpatim-mishpatim-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 13:2 | midrash-tanchuma-mishpatim-mishpatim-13-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 13:3 | midrash-tanchuma-mishpatim-mishpatim-13-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 13:4 | midrash-tanchuma-mishpatim-mishpatim-13-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 14:1 | midrash-tanchuma-mishpatim-mishpatim-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 15:1 | midrash-tanchuma-mishpatim-mishpatim-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 15:2 | midrash-tanchuma-mishpatim-mishpatim-15-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 15:3 | midrash-tanchuma-mishpatim-mishpatim-15-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 15:4 | midrash-tanchuma-mishpatim-mishpatim-15-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 15:5 | midrash-tanchuma-mishpatim-mishpatim-15-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 15:6 | midrash-tanchuma-mishpatim-mishpatim-15-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 15:7 | midrash-tanchuma-mishpatim-mishpatim-15-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 15:8 | midrash-tanchuma-mishpatim-mishpatim-15-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 16:1 | midrash-tanchuma-mishpatim-mishpatim-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 17:1 | midrash-tanchuma-mishpatim-mishpatim-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 17:2 | midrash-tanchuma-mishpatim-mishpatim-17-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 17:3 | midrash-tanchuma-mishpatim-mishpatim-17-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 17:4 | midrash-tanchuma-mishpatim-mishpatim-17-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 17:5 | midrash-tanchuma-mishpatim-mishpatim-17-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 17:6 | midrash-tanchuma-mishpatim-mishpatim-17-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 17:7 | midrash-tanchuma-mishpatim-mishpatim-17-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 18:1 | midrash-tanchuma-mishpatim-mishpatim-18-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 18:2 | midrash-tanchuma-mishpatim-mishpatim-18-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 18:3 | midrash-tanchuma-mishpatim-mishpatim-18-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 18:4 | midrash-tanchuma-mishpatim-mishpatim-18-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 18:5 | midrash-tanchuma-mishpatim-mishpatim-18-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 18:6 | midrash-tanchuma-mishpatim-mishpatim-18-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 18:7 | midrash-tanchuma-mishpatim-mishpatim-18-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 18:8 | midrash-tanchuma-mishpatim-mishpatim-18-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 18:9 | midrash-tanchuma-mishpatim-mishpatim-18-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 18:10 | midrash-tanchuma-mishpatim-mishpatim-18-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 19:1 | midrash-tanchuma-mishpatim-mishpatim-19-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 19:2 | midrash-tanchuma-mishpatim-mishpatim-19-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 19:3 | midrash-tanchuma-mishpatim-mishpatim-19-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 19:4 | midrash-tanchuma-mishpatim-mishpatim-19-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 19:5 | midrash-tanchuma-mishpatim-mishpatim-19-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 19:6 | midrash-tanchuma-mishpatim-mishpatim-19-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 19:7 | midrash-tanchuma-mishpatim-mishpatim-19-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Mishpatim 19:8 | midrash-tanchuma-mishpatim-mishpatim-19-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 1:1 | midrash-tanchuma-terumah-terumah-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 1:2 | midrash-tanchuma-terumah-terumah-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 2:1 | midrash-tanchuma-terumah-terumah-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 2:2 | midrash-tanchuma-terumah-terumah-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 3:1 | midrash-tanchuma-terumah-terumah-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 3:2 | midrash-tanchuma-terumah-terumah-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 3:3 | midrash-tanchuma-terumah-terumah-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 3:4 | midrash-tanchuma-terumah-terumah-3-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 4:1 | midrash-tanchuma-terumah-terumah-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 4:2 | midrash-tanchuma-terumah-terumah-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 4:3 | midrash-tanchuma-terumah-terumah-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 5:1 | midrash-tanchuma-terumah-terumah-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 5:2 | midrash-tanchuma-terumah-terumah-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 5:3 | midrash-tanchuma-terumah-terumah-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 6:1 | midrash-tanchuma-terumah-terumah-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 7:1 | midrash-tanchuma-terumah-terumah-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 7:2 | midrash-tanchuma-terumah-terumah-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 7:3 | midrash-tanchuma-terumah-terumah-7-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 7:4 | midrash-tanchuma-terumah-terumah-7-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 7:5 | midrash-tanchuma-terumah-terumah-7-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 8:1 | midrash-tanchuma-terumah-terumah-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 8:2 | midrash-tanchuma-terumah-terumah-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 8:3 | midrash-tanchuma-terumah-terumah-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 9:1 | midrash-tanchuma-terumah-terumah-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 9:2 | midrash-tanchuma-terumah-terumah-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 9:3 | midrash-tanchuma-terumah-terumah-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 9:4 | midrash-tanchuma-terumah-terumah-9-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 9:5 | midrash-tanchuma-terumah-terumah-9-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 9:6 | midrash-tanchuma-terumah-terumah-9-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 9:7 | midrash-tanchuma-terumah-terumah-9-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 9:8 | midrash-tanchuma-terumah-terumah-9-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 9:9 | midrash-tanchuma-terumah-terumah-9-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 9:10 | midrash-tanchuma-terumah-terumah-9-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 9:11 | midrash-tanchuma-terumah-terumah-9-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 9:12 | midrash-tanchuma-terumah-terumah-9-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 9:13 | midrash-tanchuma-terumah-terumah-9-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 9:14 | midrash-tanchuma-terumah-terumah-9-14 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 9:15 | midrash-tanchuma-terumah-terumah-9-15 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 9:16 | midrash-tanchuma-terumah-terumah-9-16 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 9:17 | midrash-tanchuma-terumah-terumah-9-17 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 10:1 | midrash-tanchuma-terumah-terumah-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 10:2 | midrash-tanchuma-terumah-terumah-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 10:3 | midrash-tanchuma-terumah-terumah-10-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 10:4 | midrash-tanchuma-terumah-terumah-10-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 11:1 | midrash-tanchuma-terumah-terumah-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 11:2 | midrash-tanchuma-terumah-terumah-11-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 11:3 | midrash-tanchuma-terumah-terumah-11-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 11:4 | midrash-tanchuma-terumah-terumah-11-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 11:5 | midrash-tanchuma-terumah-terumah-11-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 11:6 | midrash-tanchuma-terumah-terumah-11-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 11:7 | midrash-tanchuma-terumah-terumah-11-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Terumah 11:8 | midrash-tanchuma-terumah-terumah-11-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 1:1 | midrash-tanchuma-tetzaveh-tetzaveh-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 1:2 | midrash-tanchuma-tetzaveh-tetzaveh-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 1:3 | midrash-tanchuma-tetzaveh-tetzaveh-1-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 1:4 | midrash-tanchuma-tetzaveh-tetzaveh-1-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 2:1 | midrash-tanchuma-tetzaveh-tetzaveh-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 2:2 | midrash-tanchuma-tetzaveh-tetzaveh-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 3:1 | midrash-tanchuma-tetzaveh-tetzaveh-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 4:1 | midrash-tanchuma-tetzaveh-tetzaveh-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 4:2 | midrash-tanchuma-tetzaveh-tetzaveh-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 4:3 | midrash-tanchuma-tetzaveh-tetzaveh-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 4:4 | midrash-tanchuma-tetzaveh-tetzaveh-4-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 5:1 | midrash-tanchuma-tetzaveh-tetzaveh-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 5:2 | midrash-tanchuma-tetzaveh-tetzaveh-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 5:3 | midrash-tanchuma-tetzaveh-tetzaveh-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 5:4 | midrash-tanchuma-tetzaveh-tetzaveh-5-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 5:5 | midrash-tanchuma-tetzaveh-tetzaveh-5-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 6:1 | midrash-tanchuma-tetzaveh-tetzaveh-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 6:2 | midrash-tanchuma-tetzaveh-tetzaveh-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 6:3 | midrash-tanchuma-tetzaveh-tetzaveh-6-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 6:4 | midrash-tanchuma-tetzaveh-tetzaveh-6-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 6:5 | midrash-tanchuma-tetzaveh-tetzaveh-6-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 6:6 | midrash-tanchuma-tetzaveh-tetzaveh-6-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 7:1 | midrash-tanchuma-tetzaveh-tetzaveh-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 8:1 | midrash-tanchuma-tetzaveh-tetzaveh-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 8:2 | midrash-tanchuma-tetzaveh-tetzaveh-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 8:3 | midrash-tanchuma-tetzaveh-tetzaveh-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 8:4 | midrash-tanchuma-tetzaveh-tetzaveh-8-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 9:1 | midrash-tanchuma-tetzaveh-tetzaveh-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 9:2 | midrash-tanchuma-tetzaveh-tetzaveh-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 9:3 | midrash-tanchuma-tetzaveh-tetzaveh-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 10:1 | midrash-tanchuma-tetzaveh-tetzaveh-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 10:2 | midrash-tanchuma-tetzaveh-tetzaveh-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 10:3 | midrash-tanchuma-tetzaveh-tetzaveh-10-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 10:4 | midrash-tanchuma-tetzaveh-tetzaveh-10-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 10:5 | midrash-tanchuma-tetzaveh-tetzaveh-10-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 10:6 | midrash-tanchuma-tetzaveh-tetzaveh-10-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 10:7 | midrash-tanchuma-tetzaveh-tetzaveh-10-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 10:8 | midrash-tanchuma-tetzaveh-tetzaveh-10-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 11:1 | midrash-tanchuma-tetzaveh-tetzaveh-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 11:2 | midrash-tanchuma-tetzaveh-tetzaveh-11-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 11:3 | midrash-tanchuma-tetzaveh-tetzaveh-11-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 11:4 | midrash-tanchuma-tetzaveh-tetzaveh-11-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 12:1 | midrash-tanchuma-tetzaveh-tetzaveh-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 12:2 | midrash-tanchuma-tetzaveh-tetzaveh-12-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 12:3 | midrash-tanchuma-tetzaveh-tetzaveh-12-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 12:4 | midrash-tanchuma-tetzaveh-tetzaveh-12-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 13:1 | midrash-tanchuma-tetzaveh-tetzaveh-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 13:2 | midrash-tanchuma-tetzaveh-tetzaveh-13-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 13:3 | midrash-tanchuma-tetzaveh-tetzaveh-13-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 13:4 | midrash-tanchuma-tetzaveh-tetzaveh-13-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 13:5 | midrash-tanchuma-tetzaveh-tetzaveh-13-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 13:6 | midrash-tanchuma-tetzaveh-tetzaveh-13-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 13:7 | midrash-tanchuma-tetzaveh-tetzaveh-13-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 13:8 | midrash-tanchuma-tetzaveh-tetzaveh-13-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 14:1 | midrash-tanchuma-tetzaveh-tetzaveh-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 14:2 | midrash-tanchuma-tetzaveh-tetzaveh-14-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 15:1 | midrash-tanchuma-tetzaveh-tetzaveh-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 15:2 | midrash-tanchuma-tetzaveh-tetzaveh-15-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 15:3 | midrash-tanchuma-tetzaveh-tetzaveh-15-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 15:4 | midrash-tanchuma-tetzaveh-tetzaveh-15-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 15:5 | midrash-tanchuma-tetzaveh-tetzaveh-15-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 15:6 | midrash-tanchuma-tetzaveh-tetzaveh-15-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tetzaveh 15:7 | midrash-tanchuma-tetzaveh-tetzaveh-15-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 1:1 | midrash-tanchuma-ki-tisa-ki-tisa-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 1:2 | midrash-tanchuma-ki-tisa-ki-tisa-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 1:3 | midrash-tanchuma-ki-tisa-ki-tisa-1-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 2:1 | midrash-tanchuma-ki-tisa-ki-tisa-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 2:2 | midrash-tanchuma-ki-tisa-ki-tisa-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 2:3 | midrash-tanchuma-ki-tisa-ki-tisa-2-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 2:4 | midrash-tanchuma-ki-tisa-ki-tisa-2-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 2:5 | midrash-tanchuma-ki-tisa-ki-tisa-2-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 2:6 | midrash-tanchuma-ki-tisa-ki-tisa-2-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 2:7 | midrash-tanchuma-ki-tisa-ki-tisa-2-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 2:8 | midrash-tanchuma-ki-tisa-ki-tisa-2-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 3:1 | midrash-tanchuma-ki-tisa-ki-tisa-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 3:2 | midrash-tanchuma-ki-tisa-ki-tisa-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 3:3 | midrash-tanchuma-ki-tisa-ki-tisa-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 3:4 | midrash-tanchuma-ki-tisa-ki-tisa-3-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 3:5 | midrash-tanchuma-ki-tisa-ki-tisa-3-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 3:6 | midrash-tanchuma-ki-tisa-ki-tisa-3-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 4:1 | midrash-tanchuma-ki-tisa-ki-tisa-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 4:2 | midrash-tanchuma-ki-tisa-ki-tisa-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 4:3 | midrash-tanchuma-ki-tisa-ki-tisa-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 4:4 | midrash-tanchuma-ki-tisa-ki-tisa-4-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 5:1 | midrash-tanchuma-ki-tisa-ki-tisa-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 5:2 | midrash-tanchuma-ki-tisa-ki-tisa-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 5:3 | midrash-tanchuma-ki-tisa-ki-tisa-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 5:4 | midrash-tanchuma-ki-tisa-ki-tisa-5-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 5:5 | midrash-tanchuma-ki-tisa-ki-tisa-5-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 5:6 | midrash-tanchuma-ki-tisa-ki-tisa-5-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 5:7 | midrash-tanchuma-ki-tisa-ki-tisa-5-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 5:8 | midrash-tanchuma-ki-tisa-ki-tisa-5-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 5:9 | midrash-tanchuma-ki-tisa-ki-tisa-5-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 6:1 | midrash-tanchuma-ki-tisa-ki-tisa-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 6:2 | midrash-tanchuma-ki-tisa-ki-tisa-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 6:3 | midrash-tanchuma-ki-tisa-ki-tisa-6-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 6:4 | midrash-tanchuma-ki-tisa-ki-tisa-6-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 7:1 | midrash-tanchuma-ki-tisa-ki-tisa-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 8:1 | midrash-tanchuma-ki-tisa-ki-tisa-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 8:2 | midrash-tanchuma-ki-tisa-ki-tisa-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 8:3 | midrash-tanchuma-ki-tisa-ki-tisa-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 8:4 | midrash-tanchuma-ki-tisa-ki-tisa-8-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 9:1 | midrash-tanchuma-ki-tisa-ki-tisa-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 9:2 | midrash-tanchuma-ki-tisa-ki-tisa-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 9:3 | midrash-tanchuma-ki-tisa-ki-tisa-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 9:4 | midrash-tanchuma-ki-tisa-ki-tisa-9-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 9:5 | midrash-tanchuma-ki-tisa-ki-tisa-9-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 10:1 | midrash-tanchuma-ki-tisa-ki-tisa-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 10:2 | midrash-tanchuma-ki-tisa-ki-tisa-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 10:3 | midrash-tanchuma-ki-tisa-ki-tisa-10-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 10:4 | midrash-tanchuma-ki-tisa-ki-tisa-10-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 11:1 | midrash-tanchuma-ki-tisa-ki-tisa-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 11:2 | midrash-tanchuma-ki-tisa-ki-tisa-11-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 11:3 | midrash-tanchuma-ki-tisa-ki-tisa-11-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 12:1 | midrash-tanchuma-ki-tisa-ki-tisa-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 12:2 | midrash-tanchuma-ki-tisa-ki-tisa-12-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 13:1 | midrash-tanchuma-ki-tisa-ki-tisa-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 13:2 | midrash-tanchuma-ki-tisa-ki-tisa-13-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 13:3 | midrash-tanchuma-ki-tisa-ki-tisa-13-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 13:4 | midrash-tanchuma-ki-tisa-ki-tisa-13-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 13:5 | midrash-tanchuma-ki-tisa-ki-tisa-13-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 14:1 | midrash-tanchuma-ki-tisa-ki-tisa-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 14:2 | midrash-tanchuma-ki-tisa-ki-tisa-14-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 14:3 | midrash-tanchuma-ki-tisa-ki-tisa-14-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 14:4 | midrash-tanchuma-ki-tisa-ki-tisa-14-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 14:5 | midrash-tanchuma-ki-tisa-ki-tisa-14-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 14:6 | midrash-tanchuma-ki-tisa-ki-tisa-14-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 14:7 | midrash-tanchuma-ki-tisa-ki-tisa-14-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 14:8 | midrash-tanchuma-ki-tisa-ki-tisa-14-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 15:1 | midrash-tanchuma-ki-tisa-ki-tisa-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 15:2 | midrash-tanchuma-ki-tisa-ki-tisa-15-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 15:3 | midrash-tanchuma-ki-tisa-ki-tisa-15-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 15:4 | midrash-tanchuma-ki-tisa-ki-tisa-15-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 16:1 | midrash-tanchuma-ki-tisa-ki-tisa-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 16:2 | midrash-tanchuma-ki-tisa-ki-tisa-16-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 16:3 | midrash-tanchuma-ki-tisa-ki-tisa-16-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 16:4 | midrash-tanchuma-ki-tisa-ki-tisa-16-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 16:5 | midrash-tanchuma-ki-tisa-ki-tisa-16-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 16:6 | midrash-tanchuma-ki-tisa-ki-tisa-16-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 17:1 | midrash-tanchuma-ki-tisa-ki-tisa-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 17:2 | midrash-tanchuma-ki-tisa-ki-tisa-17-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 17:3 | midrash-tanchuma-ki-tisa-ki-tisa-17-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 18:1 | midrash-tanchuma-ki-tisa-ki-tisa-18-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 18:2 | midrash-tanchuma-ki-tisa-ki-tisa-18-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 19:1 | midrash-tanchuma-ki-tisa-ki-tisa-19-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 19:2 | midrash-tanchuma-ki-tisa-ki-tisa-19-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 19:3 | midrash-tanchuma-ki-tisa-ki-tisa-19-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 19:4 | midrash-tanchuma-ki-tisa-ki-tisa-19-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 19:5 | midrash-tanchuma-ki-tisa-ki-tisa-19-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 20:1 | midrash-tanchuma-ki-tisa-ki-tisa-20-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 20:2 | midrash-tanchuma-ki-tisa-ki-tisa-20-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 21:1 | midrash-tanchuma-ki-tisa-ki-tisa-21-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 21:2 | midrash-tanchuma-ki-tisa-ki-tisa-21-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 22:1 | midrash-tanchuma-ki-tisa-ki-tisa-22-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 22:2 | midrash-tanchuma-ki-tisa-ki-tisa-22-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 22:3 | midrash-tanchuma-ki-tisa-ki-tisa-22-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 22:4 | midrash-tanchuma-ki-tisa-ki-tisa-22-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 23:1 | midrash-tanchuma-ki-tisa-ki-tisa-23-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 23:2 | midrash-tanchuma-ki-tisa-ki-tisa-23-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 24:1 | midrash-tanchuma-ki-tisa-ki-tisa-24-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 24:2 | midrash-tanchuma-ki-tisa-ki-tisa-24-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 24:3 | midrash-tanchuma-ki-tisa-ki-tisa-24-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 24:4 | midrash-tanchuma-ki-tisa-ki-tisa-24-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 24:5 | midrash-tanchuma-ki-tisa-ki-tisa-24-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 25:1 | midrash-tanchuma-ki-tisa-ki-tisa-25-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 26:1 | midrash-tanchuma-ki-tisa-ki-tisa-26-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 26:2 | midrash-tanchuma-ki-tisa-ki-tisa-26-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 26:3 | midrash-tanchuma-ki-tisa-ki-tisa-26-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 26:4 | midrash-tanchuma-ki-tisa-ki-tisa-26-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 26:5 | midrash-tanchuma-ki-tisa-ki-tisa-26-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 27:1 | midrash-tanchuma-ki-tisa-ki-tisa-27-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 27:2 | midrash-tanchuma-ki-tisa-ki-tisa-27-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 27:3 | midrash-tanchuma-ki-tisa-ki-tisa-27-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 27:4 | midrash-tanchuma-ki-tisa-ki-tisa-27-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 27:5 | midrash-tanchuma-ki-tisa-ki-tisa-27-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 27:6 | midrash-tanchuma-ki-tisa-ki-tisa-27-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 27:7 | midrash-tanchuma-ki-tisa-ki-tisa-27-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 27:8 | midrash-tanchuma-ki-tisa-ki-tisa-27-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 27:9 | midrash-tanchuma-ki-tisa-ki-tisa-27-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 27:10 | midrash-tanchuma-ki-tisa-ki-tisa-27-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 27:11 | midrash-tanchuma-ki-tisa-ki-tisa-27-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 28:1 | midrash-tanchuma-ki-tisa-ki-tisa-28-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 28:2 | midrash-tanchuma-ki-tisa-ki-tisa-28-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 29:1 | midrash-tanchuma-ki-tisa-ki-tisa-29-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 29:2 | midrash-tanchuma-ki-tisa-ki-tisa-29-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 29:3 | midrash-tanchuma-ki-tisa-ki-tisa-29-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 30:1 | midrash-tanchuma-ki-tisa-ki-tisa-30-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 30:2 | midrash-tanchuma-ki-tisa-ki-tisa-30-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 30:3 | midrash-tanchuma-ki-tisa-ki-tisa-30-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 31:1 | midrash-tanchuma-ki-tisa-ki-tisa-31-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 31:2 | midrash-tanchuma-ki-tisa-ki-tisa-31-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 32:1 | midrash-tanchuma-ki-tisa-ki-tisa-32-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 33:1 | midrash-tanchuma-ki-tisa-ki-tisa-33-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 33:2 | midrash-tanchuma-ki-tisa-ki-tisa-33-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 33:3 | midrash-tanchuma-ki-tisa-ki-tisa-33-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 33:4 | midrash-tanchuma-ki-tisa-ki-tisa-33-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 33:5 | midrash-tanchuma-ki-tisa-ki-tisa-33-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 33:6 | midrash-tanchuma-ki-tisa-ki-tisa-33-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 34:1 | midrash-tanchuma-ki-tisa-ki-tisa-34-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 34:2 | midrash-tanchuma-ki-tisa-ki-tisa-34-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 34:3 | midrash-tanchuma-ki-tisa-ki-tisa-34-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 34:4 | midrash-tanchuma-ki-tisa-ki-tisa-34-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 34:5 | midrash-tanchuma-ki-tisa-ki-tisa-34-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 35:1 | midrash-tanchuma-ki-tisa-ki-tisa-35-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 35:2 | midrash-tanchuma-ki-tisa-ki-tisa-35-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 35:3 | midrash-tanchuma-ki-tisa-ki-tisa-35-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 35:4 | midrash-tanchuma-ki-tisa-ki-tisa-35-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 36:1 | midrash-tanchuma-ki-tisa-ki-tisa-36-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 37:1 | midrash-tanchuma-ki-tisa-ki-tisa-37-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 37:2 | midrash-tanchuma-ki-tisa-ki-tisa-37-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tisa 37:3 | midrash-tanchuma-ki-tisa-ki-tisa-37-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 1:1 | midrash-tanchuma-vayakhel-vayakhel-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 1:2 | midrash-tanchuma-vayakhel-vayakhel-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 1:3 | midrash-tanchuma-vayakhel-vayakhel-1-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 1:4 | midrash-tanchuma-vayakhel-vayakhel-1-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 1:5 | midrash-tanchuma-vayakhel-vayakhel-1-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 1:6 | midrash-tanchuma-vayakhel-vayakhel-1-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 1:7 | midrash-tanchuma-vayakhel-vayakhel-1-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 2:1 | midrash-tanchuma-vayakhel-vayakhel-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 2:2 | midrash-tanchuma-vayakhel-vayakhel-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 3:1 | midrash-tanchuma-vayakhel-vayakhel-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 3:2 | midrash-tanchuma-vayakhel-vayakhel-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 3:3 | midrash-tanchuma-vayakhel-vayakhel-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 4:1 | midrash-tanchuma-vayakhel-vayakhel-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 4:2 | midrash-tanchuma-vayakhel-vayakhel-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 4:3 | midrash-tanchuma-vayakhel-vayakhel-4-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 4:4 | midrash-tanchuma-vayakhel-vayakhel-4-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 4:5 | midrash-tanchuma-vayakhel-vayakhel-4-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 4:6 | midrash-tanchuma-vayakhel-vayakhel-4-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 4:7 | midrash-tanchuma-vayakhel-vayakhel-4-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 4:8 | midrash-tanchuma-vayakhel-vayakhel-4-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 4:9 | midrash-tanchuma-vayakhel-vayakhel-4-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 4:10 | midrash-tanchuma-vayakhel-vayakhel-4-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 5:1 | midrash-tanchuma-vayakhel-vayakhel-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 5:2 | midrash-tanchuma-vayakhel-vayakhel-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 5:3 | midrash-tanchuma-vayakhel-vayakhel-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 5:4 | midrash-tanchuma-vayakhel-vayakhel-5-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 6:1 | midrash-tanchuma-vayakhel-vayakhel-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 6:2 | midrash-tanchuma-vayakhel-vayakhel-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 6:3 | midrash-tanchuma-vayakhel-vayakhel-6-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 6:4 | midrash-tanchuma-vayakhel-vayakhel-6-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 6:5 | midrash-tanchuma-vayakhel-vayakhel-6-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 7:1 | midrash-tanchuma-vayakhel-vayakhel-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 7:2 | midrash-tanchuma-vayakhel-vayakhel-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 7:3 | midrash-tanchuma-vayakhel-vayakhel-7-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 7:4 | midrash-tanchuma-vayakhel-vayakhel-7-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 7:5 | midrash-tanchuma-vayakhel-vayakhel-7-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 7:6 | midrash-tanchuma-vayakhel-vayakhel-7-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 7:7 | midrash-tanchuma-vayakhel-vayakhel-7-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 7:8 | midrash-tanchuma-vayakhel-vayakhel-7-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 7:9 | midrash-tanchuma-vayakhel-vayakhel-7-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 7:10 | midrash-tanchuma-vayakhel-vayakhel-7-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 7:11 | midrash-tanchuma-vayakhel-vayakhel-7-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 7:12 | midrash-tanchuma-vayakhel-vayakhel-7-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 7:13 | midrash-tanchuma-vayakhel-vayakhel-7-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 7:14 | midrash-tanchuma-vayakhel-vayakhel-7-14 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 7:15 | midrash-tanchuma-vayakhel-vayakhel-7-15 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 8:1 | midrash-tanchuma-vayakhel-vayakhel-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 8:2 | midrash-tanchuma-vayakhel-vayakhel-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 8:3 | midrash-tanchuma-vayakhel-vayakhel-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 8:4 | midrash-tanchuma-vayakhel-vayakhel-8-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 9:1 | midrash-tanchuma-vayakhel-vayakhel-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 9:2 | midrash-tanchuma-vayakhel-vayakhel-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 10:1 | midrash-tanchuma-vayakhel-vayakhel-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 10:2 | midrash-tanchuma-vayakhel-vayakhel-10-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 10:3 | midrash-tanchuma-vayakhel-vayakhel-10-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 10:4 | midrash-tanchuma-vayakhel-vayakhel-10-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 10:5 | midrash-tanchuma-vayakhel-vayakhel-10-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 10:6 | midrash-tanchuma-vayakhel-vayakhel-10-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayakhel 10:7 | midrash-tanchuma-vayakhel-vayakhel-10-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 1:1 | midrash-tanchuma-pekudei-pekudei-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 1:2 | midrash-tanchuma-pekudei-pekudei-1-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 2:1 | midrash-tanchuma-pekudei-pekudei-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 2:2 | midrash-tanchuma-pekudei-pekudei-2-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 2:3 | midrash-tanchuma-pekudei-pekudei-2-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 2:4 | midrash-tanchuma-pekudei-pekudei-2-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 2:5 | midrash-tanchuma-pekudei-pekudei-2-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 2:6 | midrash-tanchuma-pekudei-pekudei-2-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 2:7 | midrash-tanchuma-pekudei-pekudei-2-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 2:8 | midrash-tanchuma-pekudei-pekudei-2-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:1 | midrash-tanchuma-pekudei-pekudei-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:2 | midrash-tanchuma-pekudei-pekudei-3-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:3 | midrash-tanchuma-pekudei-pekudei-3-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:4 | midrash-tanchuma-pekudei-pekudei-3-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:5 | midrash-tanchuma-pekudei-pekudei-3-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:6 | midrash-tanchuma-pekudei-pekudei-3-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:7 | midrash-tanchuma-pekudei-pekudei-3-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:8 | midrash-tanchuma-pekudei-pekudei-3-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:9 | midrash-tanchuma-pekudei-pekudei-3-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:10 | midrash-tanchuma-pekudei-pekudei-3-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:11 | midrash-tanchuma-pekudei-pekudei-3-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:12 | midrash-tanchuma-pekudei-pekudei-3-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:13 | midrash-tanchuma-pekudei-pekudei-3-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:14 | midrash-tanchuma-pekudei-pekudei-3-14 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:15 | midrash-tanchuma-pekudei-pekudei-3-15 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:16 | midrash-tanchuma-pekudei-pekudei-3-16 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:17 | midrash-tanchuma-pekudei-pekudei-3-17 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 3:18 | midrash-tanchuma-pekudei-pekudei-3-18 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 4:1 | midrash-tanchuma-pekudei-pekudei-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 4:2 | midrash-tanchuma-pekudei-pekudei-4-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 5:1 | midrash-tanchuma-pekudei-pekudei-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 5:2 | midrash-tanchuma-pekudei-pekudei-5-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 5:3 | midrash-tanchuma-pekudei-pekudei-5-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 5:4 | midrash-tanchuma-pekudei-pekudei-5-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 5:5 | midrash-tanchuma-pekudei-pekudei-5-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 6:1 | midrash-tanchuma-pekudei-pekudei-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 6:2 | midrash-tanchuma-pekudei-pekudei-6-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 7:1 | midrash-tanchuma-pekudei-pekudei-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 7:2 | midrash-tanchuma-pekudei-pekudei-7-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 7:3 | midrash-tanchuma-pekudei-pekudei-7-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 7:4 | midrash-tanchuma-pekudei-pekudei-7-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 8:1 | midrash-tanchuma-pekudei-pekudei-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 8:2 | midrash-tanchuma-pekudei-pekudei-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 8:3 | midrash-tanchuma-pekudei-pekudei-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 9:1 | midrash-tanchuma-pekudei-pekudei-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 9:2 | midrash-tanchuma-pekudei-pekudei-9-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 9:3 | midrash-tanchuma-pekudei-pekudei-9-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 9:4 | midrash-tanchuma-pekudei-pekudei-9-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 9:5 | midrash-tanchuma-pekudei-pekudei-9-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 10:1 | midrash-tanchuma-pekudei-pekudei-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 11:1 | midrash-tanchuma-pekudei-pekudei-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 11:2 | midrash-tanchuma-pekudei-pekudei-11-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 11:3 | midrash-tanchuma-pekudei-pekudei-11-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 11:4 | midrash-tanchuma-pekudei-pekudei-11-4 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 11:5 | midrash-tanchuma-pekudei-pekudei-11-5 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 11:6 | midrash-tanchuma-pekudei-pekudei-11-6 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 11:7 | midrash-tanchuma-pekudei-pekudei-11-7 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 11:8 | midrash-tanchuma-pekudei-pekudei-11-8 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 11:9 | midrash-tanchuma-pekudei-pekudei-11-9 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 11:10 | midrash-tanchuma-pekudei-pekudei-11-10 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 11:11 | midrash-tanchuma-pekudei-pekudei-11-11 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 11:12 | midrash-tanchuma-pekudei-pekudei-11-12 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 11:13 | midrash-tanchuma-pekudei-pekudei-11-13 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pekudei 11:14 | midrash-tanchuma-pekudei-pekudei-11-14 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayikra 1:1 | midrash-tanchuma-vayikra-vayikra-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayikra 2:1 | midrash-tanchuma-vayikra-vayikra-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayikra 3:1 | midrash-tanchuma-vayikra-vayikra-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayikra 4:1 | midrash-tanchuma-vayikra-vayikra-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayikra 5:1 | midrash-tanchuma-vayikra-vayikra-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayikra 6:1 | midrash-tanchuma-vayikra-vayikra-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayikra 7:1 | midrash-tanchuma-vayikra-vayikra-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayikra 8:1 | midrash-tanchuma-vayikra-vayikra-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tzav 1:1 | midrash-tanchuma-tzav-tzav-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tzav 2:1 | midrash-tanchuma-tzav-tzav-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tzav 3:1 | midrash-tanchuma-tzav-tzav-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tzav 4:1 | midrash-tanchuma-tzav-tzav-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tzav 5:1 | midrash-tanchuma-tzav-tzav-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tzav 6:1 | midrash-tanchuma-tzav-tzav-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tzav 7:1 | midrash-tanchuma-tzav-tzav-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tzav 8:1 | midrash-tanchuma-tzav-tzav-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tzav 9:1 | midrash-tanchuma-tzav-tzav-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tzav 10:1 | midrash-tanchuma-tzav-tzav-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tzav 11:1 | midrash-tanchuma-tzav-tzav-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tzav 12:1 | midrash-tanchuma-tzav-tzav-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tzav 13:1 | midrash-tanchuma-tzav-tzav-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tzav 14:1 | midrash-tanchuma-tzav-tzav-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shmini 1:1 | midrash-tanchuma-shmini-shmini-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shmini 2:1 | midrash-tanchuma-shmini-shmini-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shmini 3:1 | midrash-tanchuma-shmini-shmini-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shmini 4:1 | midrash-tanchuma-shmini-shmini-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shmini 5:1 | midrash-tanchuma-shmini-shmini-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shmini 6:1 | midrash-tanchuma-shmini-shmini-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shmini 7:1 | midrash-tanchuma-shmini-shmini-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shmini 8:1 | midrash-tanchuma-shmini-shmini-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shmini 8:2 | midrash-tanchuma-shmini-shmini-8-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shmini 8:3 | midrash-tanchuma-shmini-shmini-8-3 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shmini 9:1 | midrash-tanchuma-shmini-shmini-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shmini 10:1 | midrash-tanchuma-shmini-shmini-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shmini 11:1 | midrash-tanchuma-shmini-shmini-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shmini 12:1 | midrash-tanchuma-shmini-shmini-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tazria 1:1 | midrash-tanchuma-tazria-tazria-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tazria 2:1 | midrash-tanchuma-tazria-tazria-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tazria 3:1 | midrash-tanchuma-tazria-tazria-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tazria 4:1 | midrash-tanchuma-tazria-tazria-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tazria 5:1 | midrash-tanchuma-tazria-tazria-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tazria 6:1 | midrash-tanchuma-tazria-tazria-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tazria 7:1 | midrash-tanchuma-tazria-tazria-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tazria 8:1 | midrash-tanchuma-tazria-tazria-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tazria 9:1 | midrash-tanchuma-tazria-tazria-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tazria 10:1 | midrash-tanchuma-tazria-tazria-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Tazria 11:1 | midrash-tanchuma-tazria-tazria-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Metzora 1:1 | midrash-tanchuma-metzora-metzora-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Metzora 2:1 | midrash-tanchuma-metzora-metzora-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Metzora 3:1 | midrash-tanchuma-metzora-metzora-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Metzora 4:1 | midrash-tanchuma-metzora-metzora-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Metzora 5:1 | midrash-tanchuma-metzora-metzora-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Metzora 6:1 | midrash-tanchuma-metzora-metzora-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Metzora 7:1 | midrash-tanchuma-metzora-metzora-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Metzora 8:1 | midrash-tanchuma-metzora-metzora-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Metzora 9:1 | midrash-tanchuma-metzora-metzora-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Achrei Mot 1:1 | midrash-tanchuma-achrei-mot-achrei-mot-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Achrei Mot 2:1 | midrash-tanchuma-achrei-mot-achrei-mot-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Achrei Mot 3:1 | midrash-tanchuma-achrei-mot-achrei-mot-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Achrei Mot 4:1 | midrash-tanchuma-achrei-mot-achrei-mot-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Achrei Mot 5:1 | midrash-tanchuma-achrei-mot-achrei-mot-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Achrei Mot 6:1 | midrash-tanchuma-achrei-mot-achrei-mot-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Achrei Mot 7:1 | midrash-tanchuma-achrei-mot-achrei-mot-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Achrei Mot 8:1 | midrash-tanchuma-achrei-mot-achrei-mot-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Achrei Mot 9:1 | midrash-tanchuma-achrei-mot-achrei-mot-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Achrei Mot 10:1 | midrash-tanchuma-achrei-mot-achrei-mot-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Achrei Mot 11:1 | midrash-tanchuma-achrei-mot-achrei-mot-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Achrei Mot 12:1 | midrash-tanchuma-achrei-mot-achrei-mot-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Kedoshim 1:1 | midrash-tanchuma-kedoshim-kedoshim-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Kedoshim 2:1 | midrash-tanchuma-kedoshim-kedoshim-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Kedoshim 3:1 | midrash-tanchuma-kedoshim-kedoshim-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Kedoshim 4:1 | midrash-tanchuma-kedoshim-kedoshim-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Kedoshim 5:1 | midrash-tanchuma-kedoshim-kedoshim-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Kedoshim 6:1 | midrash-tanchuma-kedoshim-kedoshim-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Kedoshim 7:1 | midrash-tanchuma-kedoshim-kedoshim-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Kedoshim 8:1 | midrash-tanchuma-kedoshim-kedoshim-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Kedoshim 9:1 | midrash-tanchuma-kedoshim-kedoshim-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Kedoshim 10:1 | midrash-tanchuma-kedoshim-kedoshim-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Kedoshim 11:1 | midrash-tanchuma-kedoshim-kedoshim-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Kedoshim 12:1 | midrash-tanchuma-kedoshim-kedoshim-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Kedoshim 13:1 | midrash-tanchuma-kedoshim-kedoshim-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Kedoshim 14:1 | midrash-tanchuma-kedoshim-kedoshim-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Kedoshim 15:1 | midrash-tanchuma-kedoshim-kedoshim-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 1:1 | midrash-tanchuma-emor-emor-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 2:1 | midrash-tanchuma-emor-emor-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 3:1 | midrash-tanchuma-emor-emor-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 4:1 | midrash-tanchuma-emor-emor-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 5:1 | midrash-tanchuma-emor-emor-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 6:1 | midrash-tanchuma-emor-emor-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 7:1 | midrash-tanchuma-emor-emor-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 8:1 | midrash-tanchuma-emor-emor-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 9:1 | midrash-tanchuma-emor-emor-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 10:1 | midrash-tanchuma-emor-emor-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 11:1 | midrash-tanchuma-emor-emor-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 12:1 | midrash-tanchuma-emor-emor-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 13:1 | midrash-tanchuma-emor-emor-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 14:1 | midrash-tanchuma-emor-emor-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 15:1 | midrash-tanchuma-emor-emor-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 16:1 | midrash-tanchuma-emor-emor-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 17:1 | midrash-tanchuma-emor-emor-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 18:1 | midrash-tanchuma-emor-emor-18-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 19:1 | midrash-tanchuma-emor-emor-19-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 20:1 | midrash-tanchuma-emor-emor-20-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 21:1 | midrash-tanchuma-emor-emor-21-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 22:1 | midrash-tanchuma-emor-emor-22-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 23:1 | midrash-tanchuma-emor-emor-23-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Emor 24:1 | midrash-tanchuma-emor-emor-24-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Behar 1:1 | midrash-tanchuma-behar-behar-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Behar 2:1 | midrash-tanchuma-behar-behar-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Behar 3:1 | midrash-tanchuma-behar-behar-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Behar 4:1 | midrash-tanchuma-behar-behar-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bechukotai 1:1 | midrash-tanchuma-bechukotai-bechukotai-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bechukotai 2:1 | midrash-tanchuma-bechukotai-bechukotai-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bechukotai 3:1 | midrash-tanchuma-bechukotai-bechukotai-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bechukotai 4:1 | midrash-tanchuma-bechukotai-bechukotai-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bechukotai 5:1 | midrash-tanchuma-bechukotai-bechukotai-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bechukotai 6:1 | midrash-tanchuma-bechukotai-bechukotai-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 1:1 | midrash-tanchuma-bamidbar-bamidbar-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 2:1 | midrash-tanchuma-bamidbar-bamidbar-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 3:1 | midrash-tanchuma-bamidbar-bamidbar-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 4:1 | midrash-tanchuma-bamidbar-bamidbar-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 5:1 | midrash-tanchuma-bamidbar-bamidbar-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 6:1 | midrash-tanchuma-bamidbar-bamidbar-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 7:1 | midrash-tanchuma-bamidbar-bamidbar-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 8:1 | midrash-tanchuma-bamidbar-bamidbar-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 9:1 | midrash-tanchuma-bamidbar-bamidbar-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 10:1 | midrash-tanchuma-bamidbar-bamidbar-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 11:1 | midrash-tanchuma-bamidbar-bamidbar-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 12:1 | midrash-tanchuma-bamidbar-bamidbar-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 13:1 | midrash-tanchuma-bamidbar-bamidbar-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 14:1 | midrash-tanchuma-bamidbar-bamidbar-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 15:1 | midrash-tanchuma-bamidbar-bamidbar-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 16:1 | midrash-tanchuma-bamidbar-bamidbar-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 17:1 | midrash-tanchuma-bamidbar-bamidbar-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 18:1 | midrash-tanchuma-bamidbar-bamidbar-18-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 19:1 | midrash-tanchuma-bamidbar-bamidbar-19-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 20:1 | midrash-tanchuma-bamidbar-bamidbar-20-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 21:1 | midrash-tanchuma-bamidbar-bamidbar-21-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 22:1 | midrash-tanchuma-bamidbar-bamidbar-22-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 23:1 | midrash-tanchuma-bamidbar-bamidbar-23-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 24:1 | midrash-tanchuma-bamidbar-bamidbar-24-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 25:1 | midrash-tanchuma-bamidbar-bamidbar-25-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Bamidbar 26:1 | midrash-tanchuma-bamidbar-bamidbar-26-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 1:1 | midrash-tanchuma-nasso-nasso-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 2:1 | midrash-tanchuma-nasso-nasso-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 3:1 | midrash-tanchuma-nasso-nasso-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 4:1 | midrash-tanchuma-nasso-nasso-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 5:1 | midrash-tanchuma-nasso-nasso-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 6:1 | midrash-tanchuma-nasso-nasso-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 7:1 | midrash-tanchuma-nasso-nasso-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 8:1 | midrash-tanchuma-nasso-nasso-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 9:1 | midrash-tanchuma-nasso-nasso-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 10:1 | midrash-tanchuma-nasso-nasso-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 11:1 | midrash-tanchuma-nasso-nasso-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 12:1 | midrash-tanchuma-nasso-nasso-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 13:1 | midrash-tanchuma-nasso-nasso-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 14:1 | midrash-tanchuma-nasso-nasso-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 15:1 | midrash-tanchuma-nasso-nasso-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 16:1 | midrash-tanchuma-nasso-nasso-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 17:1 | midrash-tanchuma-nasso-nasso-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 18:1 | midrash-tanchuma-nasso-nasso-18-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 19:1 | midrash-tanchuma-nasso-nasso-19-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 20:1 | midrash-tanchuma-nasso-nasso-20-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 21:1 | midrash-tanchuma-nasso-nasso-21-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 22:1 | midrash-tanchuma-nasso-nasso-22-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 23:1 | midrash-tanchuma-nasso-nasso-23-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 24:1 | midrash-tanchuma-nasso-nasso-24-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 25:1 | midrash-tanchuma-nasso-nasso-25-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 26:1 | midrash-tanchuma-nasso-nasso-26-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 27:1 | midrash-tanchuma-nasso-nasso-27-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 28:1 | midrash-tanchuma-nasso-nasso-28-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 29:1 | midrash-tanchuma-nasso-nasso-29-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nasso 30:1 | midrash-tanchuma-nasso-nasso-30-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beha'alotcha 1:1 | midrash-tanchuma-behaalotcha-behaalotcha-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beha'alotcha 2:1 | midrash-tanchuma-behaalotcha-behaalotcha-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beha'alotcha 3:1 | midrash-tanchuma-behaalotcha-behaalotcha-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beha'alotcha 4:1 | midrash-tanchuma-behaalotcha-behaalotcha-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beha'alotcha 5:1 | midrash-tanchuma-behaalotcha-behaalotcha-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beha'alotcha 6:1 | midrash-tanchuma-behaalotcha-behaalotcha-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beha'alotcha 7:1 | midrash-tanchuma-behaalotcha-behaalotcha-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beha'alotcha 8:1 | midrash-tanchuma-behaalotcha-behaalotcha-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beha'alotcha 9:1 | midrash-tanchuma-behaalotcha-behaalotcha-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beha'alotcha 10:1 | midrash-tanchuma-behaalotcha-behaalotcha-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beha'alotcha 11:1 | midrash-tanchuma-behaalotcha-behaalotcha-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beha'alotcha 12:1 | midrash-tanchuma-behaalotcha-behaalotcha-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beha'alotcha 13:1 | midrash-tanchuma-behaalotcha-behaalotcha-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beha'alotcha 14:1 | midrash-tanchuma-behaalotcha-behaalotcha-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beha'alotcha 15:1 | midrash-tanchuma-behaalotcha-behaalotcha-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Beha'alotcha 16:1 | midrash-tanchuma-behaalotcha-behaalotcha-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Sh'lach 1:1 | midrash-tanchuma-shlach-shlach-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Sh'lach 2:1 | midrash-tanchuma-shlach-shlach-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Sh'lach 3:1 | midrash-tanchuma-shlach-shlach-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Sh'lach 4:1 | midrash-tanchuma-shlach-shlach-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Sh'lach 5:1 | midrash-tanchuma-shlach-shlach-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Sh'lach 6:1 | midrash-tanchuma-shlach-shlach-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Sh'lach 7:1 | midrash-tanchuma-shlach-shlach-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Sh'lach 8:1 | midrash-tanchuma-shlach-shlach-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Sh'lach 9:1 | midrash-tanchuma-shlach-shlach-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Sh'lach 10:1 | midrash-tanchuma-shlach-shlach-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Sh'lach 11:1 | midrash-tanchuma-shlach-shlach-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Sh'lach 12:1 | midrash-tanchuma-shlach-shlach-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Sh'lach 13:1 | midrash-tanchuma-shlach-shlach-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Sh'lach 14:1 | midrash-tanchuma-shlach-shlach-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Sh'lach 15:1 | midrash-tanchuma-shlach-shlach-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Korach 1:1 | midrash-tanchuma-korach-korach-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Korach 2:1 | midrash-tanchuma-korach-korach-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Korach 3:1 | midrash-tanchuma-korach-korach-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Korach 4:1 | midrash-tanchuma-korach-korach-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Korach 5:1 | midrash-tanchuma-korach-korach-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Korach 6:1 | midrash-tanchuma-korach-korach-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Korach 7:1 | midrash-tanchuma-korach-korach-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Korach 8:1 | midrash-tanchuma-korach-korach-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Korach 9:1 | midrash-tanchuma-korach-korach-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Korach 10:1 | midrash-tanchuma-korach-korach-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Korach 11:1 | midrash-tanchuma-korach-korach-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Korach 12:1 | midrash-tanchuma-korach-korach-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 1:1 | midrash-tanchuma-chukat-chukat-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 2:1 | midrash-tanchuma-chukat-chukat-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 3:1 | midrash-tanchuma-chukat-chukat-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 4:1 | midrash-tanchuma-chukat-chukat-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 5:1 | midrash-tanchuma-chukat-chukat-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 6:1 | midrash-tanchuma-chukat-chukat-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 7:1 | midrash-tanchuma-chukat-chukat-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 8:1 | midrash-tanchuma-chukat-chukat-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 9:1 | midrash-tanchuma-chukat-chukat-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 10:1 | midrash-tanchuma-chukat-chukat-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 11:1 | midrash-tanchuma-chukat-chukat-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 12:1 | midrash-tanchuma-chukat-chukat-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 13:1 | midrash-tanchuma-chukat-chukat-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 14:1 | midrash-tanchuma-chukat-chukat-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 15:1 | midrash-tanchuma-chukat-chukat-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 16:1 | midrash-tanchuma-chukat-chukat-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 17:1 | midrash-tanchuma-chukat-chukat-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 18:1 | midrash-tanchuma-chukat-chukat-18-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 19:1 | midrash-tanchuma-chukat-chukat-19-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 20:1 | midrash-tanchuma-chukat-chukat-20-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 21:1 | midrash-tanchuma-chukat-chukat-21-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 22:1 | midrash-tanchuma-chukat-chukat-22-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 23:1 | midrash-tanchuma-chukat-chukat-23-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 24:1 | midrash-tanchuma-chukat-chukat-24-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Chukat 25:1 | midrash-tanchuma-chukat-chukat-25-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 1:1 | midrash-tanchuma-balak-balak-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 2:1 | midrash-tanchuma-balak-balak-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 3:1 | midrash-tanchuma-balak-balak-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 4:1 | midrash-tanchuma-balak-balak-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 5:1 | midrash-tanchuma-balak-balak-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 6:1 | midrash-tanchuma-balak-balak-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 7:1 | midrash-tanchuma-balak-balak-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 8:1 | midrash-tanchuma-balak-balak-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 9:1 | midrash-tanchuma-balak-balak-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 10:1 | midrash-tanchuma-balak-balak-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 11:1 | midrash-tanchuma-balak-balak-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 12:1 | midrash-tanchuma-balak-balak-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 13:1 | midrash-tanchuma-balak-balak-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 14:1 | midrash-tanchuma-balak-balak-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 15:1 | midrash-tanchuma-balak-balak-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 16:1 | midrash-tanchuma-balak-balak-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 17:1 | midrash-tanchuma-balak-balak-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 18:1 | midrash-tanchuma-balak-balak-18-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 19:1 | midrash-tanchuma-balak-balak-19-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 20:1 | midrash-tanchuma-balak-balak-20-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Balak 21:1 | midrash-tanchuma-balak-balak-21-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pinchas 1:1 | midrash-tanchuma-pinchas-pinchas-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pinchas 2:1 | midrash-tanchuma-pinchas-pinchas-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pinchas 3:1 | midrash-tanchuma-pinchas-pinchas-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pinchas 4:1 | midrash-tanchuma-pinchas-pinchas-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pinchas 5:1 | midrash-tanchuma-pinchas-pinchas-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pinchas 6:1 | midrash-tanchuma-pinchas-pinchas-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pinchas 7:1 | midrash-tanchuma-pinchas-pinchas-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pinchas 8:1 | midrash-tanchuma-pinchas-pinchas-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pinchas 9:1 | midrash-tanchuma-pinchas-pinchas-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pinchas 10:1 | midrash-tanchuma-pinchas-pinchas-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pinchas 11:1 | midrash-tanchuma-pinchas-pinchas-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pinchas 12:1 | midrash-tanchuma-pinchas-pinchas-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pinchas 13:1 | midrash-tanchuma-pinchas-pinchas-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pinchas 14:1 | midrash-tanchuma-pinchas-pinchas-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pinchas 15:1 | midrash-tanchuma-pinchas-pinchas-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pinchas 16:1 | midrash-tanchuma-pinchas-pinchas-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Pinchas 17:1 | midrash-tanchuma-pinchas-pinchas-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Matot 1:1 | midrash-tanchuma-matot-matot-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Matot 2:1 | midrash-tanchuma-matot-matot-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Matot 3:1 | midrash-tanchuma-matot-matot-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Matot 4:1 | midrash-tanchuma-matot-matot-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Matot 5:1 | midrash-tanchuma-matot-matot-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Matot 6:1 | midrash-tanchuma-matot-matot-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Matot 7:1 | midrash-tanchuma-matot-matot-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Masei 1:1 | midrash-tanchuma-masei-masei-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Masei 2:1 | midrash-tanchuma-masei-masei-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Masei 3:1 | midrash-tanchuma-masei-masei-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Masei 4:1 | midrash-tanchuma-masei-masei-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Masei 5:1 | midrash-tanchuma-masei-masei-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Masei 6:1 | midrash-tanchuma-masei-masei-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Masei 7:1 | midrash-tanchuma-masei-masei-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Masei 8:1 | midrash-tanchuma-masei-masei-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Masei 9:1 | midrash-tanchuma-masei-masei-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Masei 10:1 | midrash-tanchuma-masei-masei-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Masei 11:1 | midrash-tanchuma-masei-masei-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Masei 12:1 | midrash-tanchuma-masei-masei-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Masei 13:1 | midrash-tanchuma-masei-masei-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Masei 13:2 | midrash-tanchuma-masei-masei-13-2 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Devarim 1:1 | midrash-tanchuma-devarim-devarim-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Devarim 2:1 | midrash-tanchuma-devarim-devarim-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Devarim 3:1 | midrash-tanchuma-devarim-devarim-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Devarim 4:1 | midrash-tanchuma-devarim-devarim-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaetchanan 1:1 | midrash-tanchuma-vaetchanan-vaetchanan-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaetchanan 2:1 | midrash-tanchuma-vaetchanan-vaetchanan-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaetchanan 3:1 | midrash-tanchuma-vaetchanan-vaetchanan-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaetchanan 4:1 | midrash-tanchuma-vaetchanan-vaetchanan-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaetchanan 5:1 | midrash-tanchuma-vaetchanan-vaetchanan-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vaetchanan 6:1 | midrash-tanchuma-vaetchanan-vaetchanan-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Eikev 1:1 | midrash-tanchuma-eikev-eikev-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Eikev 2:1 | midrash-tanchuma-eikev-eikev-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Eikev 3:1 | midrash-tanchuma-eikev-eikev-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Eikev 4:1 | midrash-tanchuma-eikev-eikev-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Eikev 5:1 | midrash-tanchuma-eikev-eikev-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Eikev 6:1 | midrash-tanchuma-eikev-eikev-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Eikev 7:1 | midrash-tanchuma-eikev-eikev-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Eikev 8:1 | midrash-tanchuma-eikev-eikev-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Eikev 9:1 | midrash-tanchuma-eikev-eikev-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Eikev 10:1 | midrash-tanchuma-eikev-eikev-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Eikev 11:1 | midrash-tanchuma-eikev-eikev-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 1:1 | midrash-tanchuma-reeh-reeh-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 2:1 | midrash-tanchuma-reeh-reeh-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 3:1 | midrash-tanchuma-reeh-reeh-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 4:1 | midrash-tanchuma-reeh-reeh-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 5:1 | midrash-tanchuma-reeh-reeh-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 6:1 | midrash-tanchuma-reeh-reeh-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 7:1 | midrash-tanchuma-reeh-reeh-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 8:1 | midrash-tanchuma-reeh-reeh-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 9:1 | midrash-tanchuma-reeh-reeh-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 10:1 | midrash-tanchuma-reeh-reeh-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 11:1 | midrash-tanchuma-reeh-reeh-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 12:1 | midrash-tanchuma-reeh-reeh-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 13:1 | midrash-tanchuma-reeh-reeh-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 14:1 | midrash-tanchuma-reeh-reeh-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 15:1 | midrash-tanchuma-reeh-reeh-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 16:1 | midrash-tanchuma-reeh-reeh-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 17:1 | midrash-tanchuma-reeh-reeh-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Re'eh 18:1 | midrash-tanchuma-reeh-reeh-18-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 1:1 | midrash-tanchuma-shoftim-shoftim-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 2:1 | midrash-tanchuma-shoftim-shoftim-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 3:1 | midrash-tanchuma-shoftim-shoftim-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 4:1 | midrash-tanchuma-shoftim-shoftim-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 5:1 | midrash-tanchuma-shoftim-shoftim-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 6:1 | midrash-tanchuma-shoftim-shoftim-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 7:1 | midrash-tanchuma-shoftim-shoftim-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 8:1 | midrash-tanchuma-shoftim-shoftim-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 9:1 | midrash-tanchuma-shoftim-shoftim-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 10:1 | midrash-tanchuma-shoftim-shoftim-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 11:1 | midrash-tanchuma-shoftim-shoftim-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 12:1 | midrash-tanchuma-shoftim-shoftim-12-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 13:1 | midrash-tanchuma-shoftim-shoftim-13-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 14:1 | midrash-tanchuma-shoftim-shoftim-14-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 15:1 | midrash-tanchuma-shoftim-shoftim-15-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 16:1 | midrash-tanchuma-shoftim-shoftim-16-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 17:1 | midrash-tanchuma-shoftim-shoftim-17-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 18:1 | midrash-tanchuma-shoftim-shoftim-18-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Shoftim 19:1 | midrash-tanchuma-shoftim-shoftim-19-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Teitzei 1:1 | midrash-tanchuma-ki-teitzei-ki-teitzei-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Teitzei 2:1 | midrash-tanchuma-ki-teitzei-ki-teitzei-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Teitzei 3:1 | midrash-tanchuma-ki-teitzei-ki-teitzei-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Teitzei 4:1 | midrash-tanchuma-ki-teitzei-ki-teitzei-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Teitzei 5:1 | midrash-tanchuma-ki-teitzei-ki-teitzei-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Teitzei 6:1 | midrash-tanchuma-ki-teitzei-ki-teitzei-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Teitzei 7:1 | midrash-tanchuma-ki-teitzei-ki-teitzei-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Teitzei 8:1 | midrash-tanchuma-ki-teitzei-ki-teitzei-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Teitzei 9:1 | midrash-tanchuma-ki-teitzei-ki-teitzei-9-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Teitzei 10:1 | midrash-tanchuma-ki-teitzei-ki-teitzei-10-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Teitzei 11:1 | midrash-tanchuma-ki-teitzei-ki-teitzei-11-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tavo 1:1 | midrash-tanchuma-ki-tavo-ki-tavo-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tavo 2:1 | midrash-tanchuma-ki-tavo-ki-tavo-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tavo 3:1 | midrash-tanchuma-ki-tavo-ki-tavo-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ki Tavo 4:1 | midrash-tanchuma-ki-tavo-ki-tavo-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nitzavim 1:1 | midrash-tanchuma-nitzavim-nitzavim-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nitzavim 2:1 | midrash-tanchuma-nitzavim-nitzavim-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nitzavim 3:1 | midrash-tanchuma-nitzavim-nitzavim-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Nitzavim 4:1 | midrash-tanchuma-nitzavim-nitzavim-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeilech 1:1 | midrash-tanchuma-vayeilech-vayeilech-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeilech 2:1 | midrash-tanchuma-vayeilech-vayeilech-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Vayeilech 3:1 | midrash-tanchuma-vayeilech-vayeilech-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ha'Azinu 1:1 | midrash-tanchuma-haazinu-haazinu-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ha'Azinu 2:1 | midrash-tanchuma-haazinu-haazinu-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ha'Azinu 3:1 | midrash-tanchuma-haazinu-haazinu-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ha'Azinu 4:1 | midrash-tanchuma-haazinu-haazinu-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ha'Azinu 5:1 | midrash-tanchuma-haazinu-haazinu-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ha'Azinu 6:1 | midrash-tanchuma-haazinu-haazinu-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ha'Azinu 7:1 | midrash-tanchuma-haazinu-haazinu-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, Ha'Azinu 8:1 | midrash-tanchuma-haazinu-haazinu-8-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, V'Zot HaBerachah 1:1 | midrash-tanchuma-vzot-haberachah-vzot-haberachah-1-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, V'Zot HaBerachah 2:1 | midrash-tanchuma-vzot-haberachah-vzot-haberachah-2-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, V'Zot HaBerachah 3:1 | midrash-tanchuma-vzot-haberachah-vzot-haberachah-3-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, V'Zot HaBerachah 4:1 | midrash-tanchuma-vzot-haberachah-vzot-haberachah-4-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, V'Zot HaBerachah 5:1 | midrash-tanchuma-vzot-haberachah-vzot-haberachah-5-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, V'Zot HaBerachah 6:1 | midrash-tanchuma-vzot-haberachah-vzot-haberachah-6-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, V'Zot HaBerachah 7:1 | midrash-tanchuma-vzot-haberachah-vzot-haberachah-7-1 |  |  | not_done |  |
+| midrash-tanchuma | Midrash Tanchuma | Midrash Tanchuma, V'Zot HaBerachah 7:2 | midrash-tanchuma-vzot-haberachah-vzot-haberachah-7-2 |  |  | not_done |  |

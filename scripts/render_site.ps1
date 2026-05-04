@@ -93,6 +93,8 @@ function Get-HomeGroup {
   if ($slugParts.Count -gt 1) {
     $first = $slugParts[0]
     if ($first -eq 'tanakh') { return 'Tanakh' }
+    if ($first -eq 'midrash') { return 'Midrash' }
+    if ($first -eq 'talmud') { return 'Talmud' }
     if ($first -eq 'ari') { return 'Ari School' }
     if ($first -eq 'gra') { return 'Gra School' }
     if ($first -eq 'rav-kook') { return 'Rav Kook School' }
@@ -1870,15 +1872,16 @@ $renderSources = if ($targetWorkIds.Count -gt 0) {
 }
 
 $allExportRows = New-Object System.Collections.Generic.List[object]
-foreach ($source in $renderSources) {
+foreach ($source in $sources) {
   $overlay = Get-OverlayForSource -Source $source -OverlayDir $OverlayDir
   $exportRows = Get-OverlayExportRows -Source $source -Overlay $overlay
-  if ($targetWorkIds.Count -eq 0) {
-    Write-OverlayExports -WorkSlug $source.work_slug -Rows $exportRows
-    foreach ($row in @($exportRows)) {
-      $allExportRows.Add($row)
-    }
+  Write-OverlayExports -WorkSlug $source.work_slug -Rows $exportRows
+  foreach ($row in @($exportRows)) {
+    $allExportRows.Add($row)
   }
+}
+
+foreach ($source in $renderSources) {
   $page = New-Object System.Text.StringBuilder
   $visibleUnits = if ($MaxUnits -gt 0) { @($source.units | Select-Object -First $MaxUnits) } else { @($source.units) }
   $rootHref = Get-RootHref -WorkSlug $source.work_slug
@@ -2088,6 +2091,4 @@ foreach ($source in $renderSources) {
   Write-Utf8 -Path "$($source.work_slug)\index.html" -Content $page.ToString()
 }
 
-if ($targetWorkIds.Count -eq 0) {
-  Write-OverlayExports -WorkSlug '.' -Rows $allExportRows.ToArray()
-}
+Write-OverlayExports -WorkSlug '.' -Rows $allExportRows.ToArray()
