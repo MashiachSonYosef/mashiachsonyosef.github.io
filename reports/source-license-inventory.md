@@ -26,6 +26,9 @@ Generated from local `data/sources/*.json`. Hebrew source only; English translat
 | Iggeret HaGra | 16 | Iggeret HaGra -- Wikisource (https://he.wikisource.org/wiki/%D7%90%D7%92%D7%A8%D7%AA_%D7%94%D7%92%D7%A8%22%D7%90) | Public Domain | yes | no | none required by license; source/version retained |
 | Jerusalem Talmud Taanit | 54 | The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015 (https://www.nli.org.il/he/books/NNL_ALEPH001901012/NLI) | CC-BY | yes | no | required |
 | Joshua | 658 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| Zechariah | 211 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| Ezekiel | 1273 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| I Kings | 817 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Kol HaTor | 194 | Kol HaTor (https://he.wikisource.org/wiki/%D7%A7%D7%95%D7%9C_%D7%94%D7%AA%D7%95%D7%A8_%D7%91_%D7%90) | CC-BY-SA | yes | yes | required |
 | Kol HaTor | 34 | Kol HaTor: Chapter 3 (https://he.wikisource.org/wiki/%D7%A7%D7%95%D7%9C_%D7%94%D7%AA%D7%95%D7%A8_%D7%92) | CC-BY-SA | yes | yes | required |
 | Ma'amar Hador | 18 | Maamar Hador -- Wikisource (https://he.wikisource.org/wiki/%D7%9E%D7%90%D7%9E%D7%A8_%D7%94%D7%93%D7%95%D7%A8) | CC-BY-SA | yes | yes | required |

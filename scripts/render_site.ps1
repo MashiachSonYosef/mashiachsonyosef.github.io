@@ -1818,6 +1818,24 @@ $featureCards = @(
     Role = 'rain of fire / mechanism / land-entry'
     Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('joshua', 'book-of-joshua', 'tanakh-joshua') -Titles @('Joshua', 'Book of Joshua'))
     Placeholder = 'Book of Joshua - coming soon'
+  },
+  [pscustomobject]@{
+    Label = 'Book of Zechariah'
+    Role = 'vision / return / future fire'
+    Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('zechariah', 'book-of-zechariah', 'tanakh-zechariah') -Titles @('Zechariah', 'Book of Zechariah'))
+    Placeholder = 'Book of Zechariah - coming soon'
+  },
+  [pscustomobject]@{
+    Label = 'Book of Ezekiel'
+    Role = 'dry bones / chariot / restoration'
+    Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('ezekiel', 'book-of-ezekiel', 'tanakh-ezekiel') -Titles @('Ezekiel', 'Book of Ezekiel'))
+    Placeholder = 'Book of Ezekiel - coming soon'
+  },
+  [pscustomobject]@{
+    Label = 'Book of 1 Kings'
+    Role = 'Carmel / Elijah fire / contest'
+    Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('i-kings', '1-kings', 'book-of-1-kings', 'tanakh-i-kings') -Titles @('I Kings', '1 Kings', 'Book of 1 Kings'))
+    Placeholder = 'Book of 1 Kings - coming soon'
   }
 )
 
