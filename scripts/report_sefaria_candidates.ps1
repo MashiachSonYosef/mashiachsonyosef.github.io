@@ -61,7 +61,27 @@ function Get-Utf8Json {
       $reader.Dispose()
       return $json | ConvertFrom-Json
     } catch {
-      if ($attempt -ge 3) { throw }
+      if ($attempt -ge 3) {
+        $previousUri = $env:SEFARIA_URI
+        $env:SEFARIA_URI = $Uri
+        $nodeScript = @'
+const uri = process.env.SEFARIA_URI;
+fetch(uri)
+  .then((response) => {
+    if (!response.ok) throw new Error(`HTTP ${response.status} ${response.statusText}`);
+    return response.text();
+  })
+  .then((text) => process.stdout.write(text))
+  .catch((error) => {
+    console.error(error.message);
+    process.exit(1);
+  });
+'@
+        $jsonLines = & node -e $nodeScript
+        if ($null -eq $previousUri) { Remove-Item Env:\SEFARIA_URI -ErrorAction SilentlyContinue } else { $env:SEFARIA_URI = $previousUri }
+        if ($LASTEXITCODE -ne 0) { throw }
+        return (($jsonLines -join "`n") | ConvertFrom-Json)
+      }
       Start-Sleep -Milliseconds (350 * $attempt)
     }
   }

@@ -34,12 +34,34 @@ function Write-Utf8Json {
 
 function Get-Utf8Json {
   param([string]$Uri)
-  $response = Invoke-WebRequest -Uri $Uri
-  $stream = $response.RawContentStream
-  $stream.Position = 0
-  $reader = New-Object System.IO.StreamReader($stream, [System.Text.Encoding]::UTF8, $true)
-  $json = $reader.ReadToEnd()
-  $reader.Dispose()
+  try {
+    $response = Invoke-WebRequest -Uri $Uri
+    $stream = $response.RawContentStream
+    $stream.Position = 0
+    $reader = New-Object System.IO.StreamReader($stream, [System.Text.Encoding]::UTF8, $true)
+    $json = $reader.ReadToEnd()
+    $reader.Dispose()
+  } catch {
+    $previousUri = $env:SEFARIA_URI
+    $env:SEFARIA_URI = $Uri
+    $nodeScript = @'
+const uri = process.env.SEFARIA_URI;
+fetch(uri)
+  .then((response) => {
+    if (!response.ok) throw new Error(`HTTP ${response.status} ${response.statusText}`);
+    return response.text();
+  })
+  .then((text) => process.stdout.write(text))
+  .catch((error) => {
+    console.error(error.message);
+    process.exit(1);
+  });
+'@
+    $jsonLines = & node -e $nodeScript
+    if ($null -eq $previousUri) { Remove-Item Env:\SEFARIA_URI -ErrorAction SilentlyContinue } else { $env:SEFARIA_URI = $previousUri }
+    if ($LASTEXITCODE -ne 0) { throw "Unable to fetch $Uri through Invoke-WebRequest or Node fetch." }
+    $json = $jsonLines -join "`n"
+  }
   return $json | ConvertFrom-Json
 }
 

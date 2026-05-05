@@ -34,12 +34,16 @@ Generated from local `data/sources/*.json`. Hebrew source only; English translat
 | Ma'amar Hador | 18 | Maamar Hador -- Wikisource (https://he.wikisource.org/wiki/%D7%9E%D7%90%D7%9E%D7%A8_%D7%94%D7%93%D7%95%D7%A8) | CC-BY-SA | yes | yes | required |
 | Maaseh Rav | 250 | Wikisource (http://he.wikisource.org/wiki/%D7%9E%D7%A2%D7%A9%D7%94_%D7%A8%D7%91_%D7%94%D7%9C%D7%9B%D7%95%D7%AA_%D7%91%D7%A8%D7%9B%D7%95%D7%AA_%D7%94%D7%A9%D7%97%D7%A8) | CC-BY-SA | yes | yes | required |
 | Midbar Shur | 243 | Midbar Shur (https://he.wikisource.org/wiki/%D7%9E%D7%93%D7%91%D7%A8_%D7%A9%D7%95%D7%A8) | Public Domain | yes | no | none required by license; source/version retained |
+| Midrash Tehillim | 808 | OYW (http://mobile.tora.ws/) | Public Domain | yes | no | none required by license; source/version retained |
 | Midrash Tanchuma | 2121 | Midrash Tanchuma -- Torat Emet (http://www.toratemetfreeware.com/online/a_root.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Musar Avikha | 14 | Jerusalem, 1946 (https://he.wikisource.org/wiki/%D7%9E%D7%95%D7%A1%D7%A8_%D7%90%D7%91%D7%99%D7%9A) | Public Domain | yes | no | none required by license; source/version retained |
 | Nefesh HaChayim | 164 | Vilna, 1874 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Orot HaKodesh | 458 | Orot HaKodesh -- Wikitext (http://he.wikisource.org/wiki/%D7%90%D7%95%D7%A8%D7%95%D7%AA_%D7%94%D7%A7%D7%95%D7%93%D7%A9_%D7%90) | CC-BY-SA | yes | yes | required |
 | Orot HaTorah | 10 | Orot HaTorah -- Wikisource (https://he.wikisource.org/wiki/%D7%90%D7%95%D7%A8%D7%95%D7%AA_%D7%94%D7%AA%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Orot | 416 | Wikisource (http://he.wikisource.org) | CC-BY-SA | yes | yes | required |
+| Pesikta DeRav Kahana | 304 | Pesikta de Rav Kahana according to an Oxford manuscript, Dov Mandelbaum ed., N.Y. 1987 (https://beta.nli.org.il/he/books/NNL_ALEPH002042999/NLI) | CC-BY | yes | no | required |
+| Pesikta Rabbati | 34 | OYW (http://mobile.tora.ws/) | Public Domain | yes | no | none required by license; source/version retained |
+| Pirkei DeRabbi Eliezer | 656 | Pirke DeRabbi Eliezer, Sefaria Vocalized Edition (http://sefaria.org.il) | Public Domain | yes | no | none required by license; source/version retained |
 | Pri Etz Chaim | 589 | Pri Etz Chaim (http://www.hebrew.grimoar.cz/vital/pri_ec_chajim.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefer Etz Chaim | 7 | Sefer Etz Chaim (http://www.hebrew.grimoar.cz/vital/ec_chajim.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefer Yetzirah Gra Version | 62 | Sefer Yetzirah, Warsaw 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001310968) | Public Domain | yes | no | none required by license; source/version retained |
@@ -66,16 +70,20 @@ Generated from local `data/sources/*.json`. Hebrew source only; English translat
 | Sifrei Devarim | imported | Mixed Hebrew source rows: CC-BY Finkelstein edition and Public Domain Wikisource rows, each preserved per unit. |
 | Eikhah Rabbah | imported | Public Domain Torat Emet / Midrash Rabbah Hebrew. |
 | Jerusalem Talmud Taanit | imported | CC-BY Hebrew edition. Included as Rabbi Akiva / Bar Kokhba-adjacent source material; no English text imported. |
+| Pirkei DeRabbi Eliezer | imported | Public Domain Hebrew version, Sefaria Vocalized Edition. |
+| Midrash Tehillim | imported | Public Domain Hebrew version, OYW. |
+| Pesikta DeRav Kahana | imported | CC-BY Hebrew version; attribution required. |
+| Pesikta Rabbati | imported | Public Domain Hebrew version, OYW. |
 
 ## Skipped / Deferred Candidates
 
 | Candidate | Reason |
 |---|---|
 | Bereshit Rabbah | Sefaria Hebrew version check returned `unknown` license for the available Midrash Rabbah TE version in this pass. |
-| Mekhilta DeRabbi Yishmael | Deferred because exact import refs/version metadata were not resolved cleanly in this pass. |
-| Sifra | Deferred because exact import refs/version metadata were not resolved cleanly in this pass. |
-| Bereshit Rabbah / Shemot Rabbah / Vayikra Rabbah / Bamidbar Rabbah / Devarim Rabbah | 2026-05-05 local Sefaria API probe failed at the HTTP receive/TLS layer before version/license metadata could be verified; no import performed. |
-| Mekhilta d'Rabbi Yishmael / Sifra / Avot de-Rabbi Natan / Pirkei DeRabbi Eliezer / Midrash Tehillim / Pesikta D'Rav Kahanna / Pesikta Rabbati | 2026-05-05 local Sefaria API probe failed at the HTTP receive/TLS layer before version/license metadata could be verified; no import performed. |
+| Shemot Rabbah / Vayikra Rabbah / Bamidbar Rabbah / Devarim Rabbah | Sefaria Hebrew version probe returned `unknown` license for the available Midrash Rabbah TE version; no import performed. |
+| Mekhilta DeRabbi Yishmael | Sefaria Hebrew version probe returned CC-BY-NC for the Beeri/Koren version; no import performed. |
+| Sifra | Sefaria Hebrew version probe returned `unknown` license for the Venice 1545 version; no import performed. |
+| Avot de-Rabbi Natan | Probe did not resolve a clean version/license row in this pass; no import performed. |
 
 ## Policy Applied
 

@@ -12,6 +12,7 @@ $anchorIds = @{}
 $sourceByWorkId = @{}
 $unitCountByWorkId = @{}
 $slugByWorkId = @{}
+$unitIdsByWorkId = @{}
 
 $sourceFiles = @(Get-ChildItem -Path $SourceDir -Filter '*.json')
 
@@ -91,6 +92,7 @@ $sourceFiles | ForEach-Object {
   $sourceByWorkId[$source.work_id] = $source
   $unitCountByWorkId[$source.work_id] = @($source.units).Count
   $slugByWorkId[$source.work_id] = $source.work_slug
+  $workUnitIds = @{}
 
   foreach ($field in @('work_id', 'work_title', 'work_slug', 'sefaria_ref', 'source_system', 'import_date', 'work_type')) {
     if (-not $source.$field) {
@@ -145,6 +147,7 @@ $sourceFiles | ForEach-Object {
     } else {
       $unitIds[$unit.unit_id] = $true
     }
+    $workUnitIds[[string]$unit.unit_id] = $true
 
     if ($anchorIds.ContainsKey($unit.anchor_id)) {
       $errors.Add("Duplicate anchor_id: $($unit.anchor_id)")
@@ -152,6 +155,7 @@ $sourceFiles | ForEach-Object {
       $anchorIds[$unit.anchor_id] = $true
     }
   }
+  $unitIdsByWorkId[[string]$source.work_id] = $workUnitIds
 
   $workPagePath = Join-Path $source.work_slug 'index.html'
   if (Test-Path $workPagePath) {
@@ -339,6 +343,7 @@ foreach ($lexicalFile in $lexicalFiles) {
   }
   $lexicalWorkIds[[string]$lexical.work_id] = $true
   $source = $sourceByWorkId[$lexical.work_id]
+  $workUnitIds = $unitIdsByWorkId[[string]$lexical.work_id]
   $occurrenceCount = @($lexical.units.PSObject.Properties).Count
   if ($occurrenceCount -ne $unitCountByWorkId[[string]$lexical.work_id]) {
     $errors.Add("Lexical occurrence count mismatch for $($lexical.work_id): expected $($unitCountByWorkId[[string]$lexical.work_id]), found $occurrenceCount")
@@ -371,8 +376,7 @@ foreach ($lexicalFile in $lexicalFiles) {
   }
   foreach ($unitProperty in @($lexical.units.PSObject.Properties)) {
     $unitOccurrence = $unitProperty.Value
-    $sourceUnit = $source.units | Where-Object { $_.unit_id -eq $unitOccurrence.unit_id } | Select-Object -First 1
-    if ($null -eq $sourceUnit) {
+    if ($null -eq $workUnitIds -or -not $workUnitIds.ContainsKey([string]$unitOccurrence.unit_id)) {
       $errors.Add("Lexical occurrence references missing source unit: $($unitOccurrence.unit_id)")
       continue
     }
