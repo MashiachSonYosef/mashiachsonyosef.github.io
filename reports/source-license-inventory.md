@@ -74,6 +74,8 @@ Generated from local `data/sources/*.json`. Hebrew source only; English translat
 | Bereshit Rabbah | Sefaria Hebrew version check returned `unknown` license for the available Midrash Rabbah TE version in this pass. |
 | Mekhilta DeRabbi Yishmael | Deferred because exact import refs/version metadata were not resolved cleanly in this pass. |
 | Sifra | Deferred because exact import refs/version metadata were not resolved cleanly in this pass. |
+| Bereshit Rabbah / Shemot Rabbah / Vayikra Rabbah / Bamidbar Rabbah / Devarim Rabbah | 2026-05-05 local Sefaria API probe failed at the HTTP receive/TLS layer before version/license metadata could be verified; no import performed. |
+| Mekhilta d'Rabbi Yishmael / Sifra / Avot de-Rabbi Natan / Pirkei DeRabbi Eliezer / Midrash Tehillim / Pesikta D'Rav Kahanna / Pesikta Rabbati | 2026-05-05 local Sefaria API probe failed at the HTTP receive/TLS layer before version/license metadata could be verified; no import performed. |
 
 ## Policy Applied
 

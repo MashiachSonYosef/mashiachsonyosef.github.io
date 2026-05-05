@@ -93,14 +93,14 @@ function Get-HomeGroup {
   if ($slugParts.Count -gt 1) {
     $first = $slugParts[0]
     if ($first -eq 'tanakh') { return 'Tanakh' }
-    if ($first -eq 'midrash') { return 'Midrash' }
-    if ($first -eq 'talmud') { return 'Talmud' }
-    if ($first -eq 'ari') { return 'Ari School' }
+    if ($first -eq 'midrash') { return 'Midrash / Aggadah' }
+    if ($first -eq 'talmud') { return 'Talmud / Commentary' }
+    if ($first -eq 'ari') { return 'Ari / Kabbalah' }
     if ($first -eq 'gra') { return 'Gra School' }
     if ($first -eq 'rav-kook') { return 'Rav Kook School' }
     return (Get-Culture).TextInfo.ToTitleCase(($first -replace '-', ' '))
   }
-  return 'Works'
+  return 'Other'
 }
 
 function Get-VersionSourceLabel {
@@ -341,20 +341,20 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .toc-start:hover, .toc-unit:hover { color: var(--accent); }')
   [void]$Builder.AppendLine('    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }')
   [void]$Builder.AppendLine('    .section-block { margin-bottom: 10px; }')
-  [void]$Builder.AppendLine('    .unit { border-top: 1px solid var(--line); padding: 16px 0; }')
+  [void]$Builder.AppendLine('    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }')
   [void]$Builder.AppendLine('    .unit[hidden] { display: none; }')
   [void]$Builder.AppendLine('    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }')
   [void]$Builder.AppendLine('    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }')
   [void]$Builder.AppendLine('    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }')
   [void]$Builder.AppendLine('    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }')
   [void]$Builder.AppendLine('    .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }')
-  [void]$Builder.AppendLine('    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }')
-  [void]$Builder.AppendLine('    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; }')
+  [void]$Builder.AppendLine('    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; }')
+  [void]$Builder.AppendLine('    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: break-word; word-break: normal; }')
   [void]$Builder.AppendLine('    .hebrew strong { color: #fff5df; font-weight: 700; }')
   [void]$Builder.AppendLine('    .source-small { font-size: 0.82em; color: var(--muted); }')
   [void]$Builder.AppendLine('    .placeholder { color: #8c857c; }')
   if ($IncludeLexicalStyles) {
-    [void]$Builder.AppendLine('    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; }')
+    [void]$Builder.AppendLine('    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: break-word; word-break: normal; }')
     [void]$Builder.AppendLine('    .lexical-coverage strong { color: var(--text); font-weight: 400; }')
     [void]$Builder.AppendLine('    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }')
     [void]$Builder.AppendLine('    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }')
@@ -1803,7 +1803,17 @@ function Append-LibrarySections {
     [string]$HrefPrefix = ''
   )
 
-  $homeGroups = $Sources | Group-Object { Get-HomeGroup $_ } | Sort-Object @{ Expression = { if ($_.Name -eq 'Works') { 0 } elseif ($_.Name -eq 'Tanakh') { 1 } else { 2 } } }, Name
+  $groupOrder = @{
+    'Tanakh' = 1
+    'Midrash / Aggadah' = 2
+    'Rav Kook School' = 3
+    'Gra School' = 4
+    'Ari / Kabbalah' = 5
+    'Talmud / Commentary' = 6
+    'Other' = 7
+    'Works' = 8
+  }
+  $homeGroups = $Sources | Group-Object { Get-HomeGroup $_ } | Sort-Object @{ Expression = { if ($groupOrder.ContainsKey($_.Name)) { $groupOrder[$_.Name] } else { 99 } } }, Name
   foreach ($homeGroup in $homeGroups) {
     [void]$Builder.AppendLine('        <section class="home-section">')
     [void]$Builder.AppendLine("          <h2>$(Encode-Html $homeGroup.Name)</h2>")

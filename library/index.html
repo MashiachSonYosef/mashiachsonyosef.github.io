@@ -42,15 +42,15 @@
     .toc-start:hover, .toc-unit:hover { color: var(--accent); }
     .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
     .section-block { margin-bottom: 10px; }
-    .unit { border-top: 1px solid var(--line); padding: 16px 0; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
     .unit[hidden] { display: none; }
     .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; }
     .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
     .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { text-decoration: none; color: var(--accent); font-size: 0.9rem; }
-    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
-    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: break-word; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
     .placeholder { color: #8c857c; }
@@ -103,51 +103,52 @@
           </div>
         </section>
         <section class="home-section">
-          <h2>Ari School</h2>
+          <h2>Midrash / Aggadah</h2>
           <div class="home-grid">
-            <a class="work-card" href="../ari/pri-etz-chaim/">
-              <strong>Pri Etz Chaim</strong>
-              <span class="meta">589 source units | Sefaria API | imported 2026-04-27</span>
+            <a class="work-card" href="../midrash/eikhah-rabbah/">
+              <strong>Eikhah Rabbah</strong>
+              <span class="meta">91 source units | Sefaria API | imported 2026-05-04</span>
             </a>
-            <a class="work-card" href="../ari/sefer-etz-chaim/">
-              <strong>Sefer Etz Chaim</strong>
-              <span class="meta">7 source units | Sefaria API | imported 2026-04-27</span>
+            <a class="work-card" href="../midrash/midrash-tanchuma/">
+              <strong>Midrash Tanchuma</strong>
+              <span class="meta">2121 source units | Sefaria API | imported 2026-05-04</span>
             </a>
-            <a class="work-card" href="../ari/shaar-hagilgulim/">
-              <strong>Sha&#39;ar HaGilgulim</strong>
-              <span class="meta">854 source units | Sefaria API | imported 2026-04-27</span>
+            <a class="work-card" href="../midrash/sifrei-bamidbar/">
+              <strong>Sifrei Bamidbar</strong>
+              <span class="meta">295 source units | Sefaria API | imported 2026-05-04</span>
             </a>
-            <a class="work-card" href="../ari/shaar-hahakdamot/">
-              <strong>Sha&#39;ar HaHakdamot</strong>
-              <span class="meta">93 source units | Sefaria API | imported 2026-04-27</span>
+            <a class="work-card" href="../midrash/sifrei-devarim/">
+              <strong>Sifrei Devarim</strong>
+              <span class="meta">2357 source units | Sefaria API | imported 2026-05-04</span>
             </a>
-            <a class="work-card" href="../ari/shaar-hakavanot/">
-              <strong>Sha&#39;ar HaKavanot</strong>
-              <span class="meta">366 source units | Sefaria API | imported 2026-04-27</span>
+          </div>
+        </section>
+        <section class="home-section">
+          <h2>Rav Kook School</h2>
+          <div class="home-grid">
+            <a class="work-card" href="../rav-kook/maamar-hador/">
+              <strong>Ma&#39;amar Hador</strong>
+              <span class="meta">18 source units | Sefaria API | imported 2026-04-27</span>
             </a>
-            <a class="work-card" href="../ari/shaar-hamitzvot/">
-              <strong>Sha&#39;ar HaMitzvot</strong>
-              <span class="meta">298 source units | Sefaria API | imported 2026-04-27</span>
+            <a class="work-card" href="../rav-kook/midbar-shur/">
+              <strong>Midbar Shur</strong>
+              <span class="meta">243 source units | Sefaria API | imported 2026-04-27</span>
             </a>
-            <a class="work-card" href="../ari/shaar-hapesukim/">
-              <strong>Sha&#39;ar HaPesukim</strong>
-              <span class="meta">2051 source units | Sefaria API | imported 2026-04-27</span>
+            <a class="work-card" href="../rav-kook/musar-avikha/">
+              <strong>Musar Avikha</strong>
+              <span class="meta">14 source units | Sefaria API | imported 2026-04-27</span>
             </a>
-            <a class="work-card" href="../ari/shaar-maamarei-rashbi/">
-              <strong>Sha&#39;ar Ma&#39;amarei Rashbi</strong>
-              <span class="meta">585 source units | Sefaria API | imported 2026-04-27</span>
+            <a class="work-card" href="../orot/">
+              <strong>Orot</strong>
+              <span class="meta">416 source units | Sefaria API | imported 2026-04-27</span>
             </a>
-            <a class="work-card" href="../ari/shaar-maamarei-razal/">
-              <strong>Sha&#39;ar Ma&#39;amarei Razal</strong>
-              <span class="meta">103 source units | Sefaria API | imported 2026-04-27</span>
+            <a class="work-card" href="../rav-kook/orot-ha-kodesh/">
+              <strong>Orot HaKodesh</strong>
+              <span class="meta">458 source units | Sefaria API | imported 2026-04-27</span>
             </a>
-            <a class="work-card" href="../ari/shaar-ruach-hakodesh/">
-              <strong>Sha&#39;ar Ruach HaKodesh</strong>
-              <span class="meta">22 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../ari/shaarei-kedusha/">
-              <strong>Sha&#39;arei Kedusha</strong>
-              <span class="meta">66 source units | Sefaria API | imported 2026-04-27</span>
+            <a class="work-card" href="../rav-kook/orot-ha-torah/">
+              <strong>Orot HaTorah</strong>
+              <span class="meta">10 source units | Sefaria API | imported 2026-04-27</span>
             </a>
           </div>
         </section>
@@ -262,57 +263,56 @@
           </div>
         </section>
         <section class="home-section">
-          <h2>Midrash</h2>
+          <h2>Ari / Kabbalah</h2>
           <div class="home-grid">
-            <a class="work-card" href="../midrash/eikhah-rabbah/">
-              <strong>Eikhah Rabbah</strong>
-              <span class="meta">91 source units | Sefaria API | imported 2026-05-04</span>
+            <a class="work-card" href="../ari/pri-etz-chaim/">
+              <strong>Pri Etz Chaim</strong>
+              <span class="meta">589 source units | Sefaria API | imported 2026-04-27</span>
             </a>
-            <a class="work-card" href="../midrash/midrash-tanchuma/">
-              <strong>Midrash Tanchuma</strong>
-              <span class="meta">2121 source units | Sefaria API | imported 2026-05-04</span>
+            <a class="work-card" href="../ari/sefer-etz-chaim/">
+              <strong>Sefer Etz Chaim</strong>
+              <span class="meta">7 source units | Sefaria API | imported 2026-04-27</span>
             </a>
-            <a class="work-card" href="../midrash/sifrei-bamidbar/">
-              <strong>Sifrei Bamidbar</strong>
-              <span class="meta">295 source units | Sefaria API | imported 2026-05-04</span>
+            <a class="work-card" href="../ari/shaar-hagilgulim/">
+              <strong>Sha&#39;ar HaGilgulim</strong>
+              <span class="meta">854 source units | Sefaria API | imported 2026-04-27</span>
             </a>
-            <a class="work-card" href="../midrash/sifrei-devarim/">
-              <strong>Sifrei Devarim</strong>
-              <span class="meta">2357 source units | Sefaria API | imported 2026-05-04</span>
+            <a class="work-card" href="../ari/shaar-hahakdamot/">
+              <strong>Sha&#39;ar HaHakdamot</strong>
+              <span class="meta">93 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../ari/shaar-hakavanot/">
+              <strong>Sha&#39;ar HaKavanot</strong>
+              <span class="meta">366 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../ari/shaar-hamitzvot/">
+              <strong>Sha&#39;ar HaMitzvot</strong>
+              <span class="meta">298 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../ari/shaar-hapesukim/">
+              <strong>Sha&#39;ar HaPesukim</strong>
+              <span class="meta">2051 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../ari/shaar-maamarei-rashbi/">
+              <strong>Sha&#39;ar Ma&#39;amarei Rashbi</strong>
+              <span class="meta">585 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../ari/shaar-maamarei-razal/">
+              <strong>Sha&#39;ar Ma&#39;amarei Razal</strong>
+              <span class="meta">103 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../ari/shaar-ruach-hakodesh/">
+              <strong>Sha&#39;ar Ruach HaKodesh</strong>
+              <span class="meta">22 source units | Sefaria API | imported 2026-04-27</span>
+            </a>
+            <a class="work-card" href="../ari/shaarei-kedusha/">
+              <strong>Sha&#39;arei Kedusha</strong>
+              <span class="meta">66 source units | Sefaria API | imported 2026-04-27</span>
             </a>
           </div>
         </section>
         <section class="home-section">
-          <h2>Rav Kook School</h2>
-          <div class="home-grid">
-            <a class="work-card" href="../rav-kook/maamar-hador/">
-              <strong>Ma&#39;amar Hador</strong>
-              <span class="meta">18 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../rav-kook/midbar-shur/">
-              <strong>Midbar Shur</strong>
-              <span class="meta">243 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../rav-kook/musar-avikha/">
-              <strong>Musar Avikha</strong>
-              <span class="meta">14 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../orot/">
-              <strong>Orot</strong>
-              <span class="meta">416 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../rav-kook/orot-ha-kodesh/">
-              <strong>Orot HaKodesh</strong>
-              <span class="meta">458 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../rav-kook/orot-ha-torah/">
-              <strong>Orot HaTorah</strong>
-              <span class="meta">10 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-          </div>
-        </section>
-        <section class="home-section">
-          <h2>Talmud</h2>
+          <h2>Talmud / Commentary</h2>
           <div class="home-grid">
             <a class="work-card" href="../talmud/jerusalem-talmud-taanit/">
               <strong>Jerusalem Talmud Taanit</strong>
