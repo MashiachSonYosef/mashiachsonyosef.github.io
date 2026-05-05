@@ -30,6 +30,9 @@
     .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
     .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }
     .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
     .toc ul { list-style: none; padding: 0; margin: 0; }
@@ -57,13 +60,15 @@
     .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
     .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
     .lexical-slot { margin-top: 16px; }
-    .lexical-hud { position: static; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
     .lexical-hud[hidden] { display: none; }
     .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
     .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
     .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
     .hud-close:hover { color: var(--text); border-color: var(--accent); }
     .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
     .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
     .lexical-fields dd { margin: 0; color: var(--text); }
     .lexical-fields ul { margin: 0; padding-left: 18px; }
@@ -71,18 +76,27 @@
     .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
     .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
     .breakdown-row p { margin: 0 0 4px; }
-    .lexical-entry-list { display: grid; gap: 10px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
     .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
     .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
     .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
     .lexical-entry .entry-hebrew { color: var(--hebrew); }
     .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
     .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
     .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
     .source-details { margin-top: 16px; }
     .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
     .source-row:first-child { border-top: 0; }
     .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
     .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
     .source-table { width: 100%; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
@@ -2070,18 +2084,21 @@
   <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
     <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
     <dl class="lexical-fields">
-      <dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd>
-      <dt>Strict renderings</dt><dd data-hud-surface-renderings>N/A</dd>
-      <dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd>
-      <dt data-hud-renderings-label>Possible lexical entries</dt><dd data-hud-renderings>N/A</dd>
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
     </dl>
     <details class="source-details">
       <summary>Sources / licenses</summary>
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"gras-nuschah-on-avot-drabbi-natan","work_title":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan","work_slug":"gra/gras-nuschah-on-avot-drabbi-natan","scope_label":"All imported Hebrew works","generated_at":"2026-05-01T16:48:21.421Z","total_occurrences":499,"units":{"gras-nuschah-on-avot-drabbi-natan-1-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0e68fb0d6f47","tok-24f24a537274","tok-6858ad831272","tok-24f24a537274","tok-62fada71b591","tok-24f24a537274","tok-999e03fe554e","tok-b453c02bb171","tok-4dd320235d66"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c74d8ac4d3b6","tok-3537de585cac","tok-6a9f2199b55a","tok-0175c2965db3","tok-0cb9a6af925a"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-77184c4020f4","tok-85fe0e20352f","tok-fc40a0ac4f67","tok-ba24a4a649de"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3712abc3b5e0","tok-1b5fce7fa663","tok-6a9f2199b55a","tok-95de83c7207e"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9b6322696f85","tok-80e0be80d6ee","tok-2f18616cda02","tok-3fb0b561a939","tok-1b5fce7fa663","tok-f7eb808e62af","tok-3a5fb16f6673","tok-3fcff29003cc"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-59f2f83f5aa0","tok-91972d320b8c"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7df2d0f1fb97","tok-f7eb808e62af","tok-3a5fb16f6673","tok-3fcff29003cc"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-8":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-8","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-8","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-35cf0a40079c","tok-446f0f572727"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-9":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-9","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-9","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-21caa69a30fb","tok-b7e172071db3"]}]},"gras-nuschah-on-avot-drabbi-natan-2-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-2-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-2-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 2:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-40903b324f4b"]}]},"gras-nuschah-on-avot-drabbi-natan-2-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-2-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-2-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 2:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-00cbea36556c","tok-4fd2e380b0ba","tok-bad128c91cb2","tok-122da0c18d7f"]}]},"gras-nuschah-on-avot-drabbi-natan-4-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-4-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-4-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 4:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-43e99fad0ded","tok-cad7b8456ca7"]}]},"gras-nuschah-on-avot-drabbi-natan-4-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-4-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-4-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 4:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e9a64273fa92","tok-e39663b28781","tok-5c4a8d528445","tok-096c87bde4c9","tok-6418964439d7","tok-6b3f585c7cca","tok-46f4bffc2a85","tok-ce079c046a9b","tok-6c3630895d8b","tok-ba8056739f36","tok-c95af91ac824","tok-acd623923b61","tok-9f72b951dd3a","tok-c8a1f4e49c21","tok-380f759183f6","tok-2bd83066dc14","tok-ebd62aef5eb3","tok-21ee5886aabe","tok-4bc31b7d92aa","tok-79c124bf44bc","tok-a09c7dd3ea9e","tok-18ef00222b18","tok-c27d7a6bb06d","tok-b408cd7dfd8e","tok-dce55e064a3c"]}]},"gras-nuschah-on-avot-drabbi-natan-6-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-6-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-6-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 6:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4a3833a780ce","tok-7b1725d9b1bc"]}]},"gras-nuschah-on-avot-drabbi-natan-6-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-6-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-6-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 6:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8533baa94d7d"]}]},"gras-nuschah-on-avot-drabbi-natan-7-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-7-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-7-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 7:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7e764354d5d0","tok-1de10def25bb","tok-e7c93800fac9"]}]},"gras-nuschah-on-avot-drabbi-natan-8-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-8-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-8-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 8:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-689fbd2f210c","tok-3baa107d8e0c","tok-06ca828fed22"]}]},"gras-nuschah-on-avot-drabbi-natan-9-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-9-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-9-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 9:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0254eb9574e8","tok-aa4d44852cdb","tok-1a519bcd1412","tok-f3d65fc7438a","tok-da5d707ac2d3"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-432539db5fd3","tok-90360a5be6cf","tok-913e9b2d3b78","tok-70443adf54cb","tok-b65c603e4d87","tok-910801587cdb","tok-fc7269e924ab","tok-1985041e53ca","tok-84846bd4f7e6","tok-cdd57dfdb888","tok-90360a5be6cf","tok-d2186964ec6d","tok-786152a996ed","tok-13b7e2ad3fa3","tok-ce6d0d1ba1e7","tok-fbeee276b0df","tok-ee81288f9294","tok-b03c53f1a6f3","tok-027b9cf628c6","tok-ee81288f9294","tok-a6cf049937cb","tok-7d2dd28dd5a3","tok-9e89489ecc88","tok-fdaf7cb698d4","tok-aab0407c825c","tok-a1fa22582761","tok-e1db97d02ce3","tok-36886a9d20ca"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7d2dd28dd5a3","tok-9e89489ecc88","tok-60b870e4171d","tok-450e9e667880","tok-913e9b2d3b78","tok-70443adf54cb","tok-bd58c616c2ed","tok-a81c5d546354","tok-bf641b3e7502","tok-9d69e2ae020d","tok-0782afe08829","tok-d6b68ec3fb71"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2410d1223b62","tok-005341287e47","tok-23823b00b048","tok-90360a5be6cf","tok-112c990812f5"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1dc90d6b3762","tok-0782afe08829"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-95c94cd7b78d","tok-1584ab3a2aaa"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-00eeebf7858f","tok-8aa468d687e7","tok-16458cea3bb0","tok-f1a0fa740b0f","tok-f830140d427c","tok-035d2418dbd9","tok-042b47ef9d91","tok-a08b82f17a1b","tok-dcbf0223e9be","tok-18ef00222b18","tok-ab9226f2371f","tok-c2954147618a"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f51cab230916","tok-7aa64a9e195d"]}]},"gras-nuschah-on-avot-drabbi-natan-12-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-12-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-12-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 12:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0390d437102e","tok-10e1e038a88f","tok-f9e9334a2644"]}]},"gras-nuschah-on-avot-drabbi-natan-14-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-14-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-14-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 14:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4f05a0479f9e"]}]},"gras-nuschah-on-avot-drabbi-natan-14-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-14-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-14-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 14:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-45e854a7aff3","tok-52611d4c077c","tok-a20f4edcf7c4","tok-51d9a009e078","tok-11de77f35d1a","tok-67e4e3d7ab70"]}]},"gras-nuschah-on-avot-drabbi-natan-15-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-15-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-15-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 15:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-416e0618538f","tok-a81c5d546354"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b6f31db5467d","tok-5cbdfc239ff2","tok-c66fec5f01d9","tok-2d7650d25b2b","tok-330119222d18","tok-fdaf7cb698d4"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-86baf3bf98af"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3afd1d8c387f"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3a347b83498c","tok-8e4e068ff783","tok-b18eb98537aa"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3afd1d8c387f"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f30e76a093c8","tok-d89ac55b87c8"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3afd1d8c387f"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-8":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-8","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-8","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0361a94e6ea7"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-9":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-9","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-9","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4a5120e095d3","tok-894e1c51fb18","tok-8b7ba3edd124","tok-73f67f38490c"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-10":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-10","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-10","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5085a0f927a1","tok-3b3c956fa7fc","tok-0cb9a6af925a","tok-9b6322696f85"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-11":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-11","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-11","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a9e49f66d60a","tok-59400c3b2cf3","tok-82b0072b162f"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-12":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-12","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-12","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-628d37869c84","tok-9f74dada07f5"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-13":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-13","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-13","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8aa6ad5b5428","tok-9464eb3f490c","tok-7df2d0f1fb97","tok-84df36ad1a27"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-14":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-14","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-14","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c6359dd30e7f","tok-b3f26ebef516","tok-706e67ce6770"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-15":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-15","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-15","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7fabf466e438"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-16":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-16","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-16","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c9b841d11074","tok-c45de6e1823e","tok-5ec81a88cb24","tok-a4c26df5d10a"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-17":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-17","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-17","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ae8415fee78d"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-18":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-18","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-18","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8aa6ad5b5428","tok-9464eb3f490c","tok-7df2d0f1fb97","tok-84df36ad1a27"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-926ee1a16b46"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b5ae7d5394f7","tok-89920178b0d7","tok-2d7650d25b2b","tok-2adebc93bb88","tok-753d476455dc","tok-2d7650d25b2b","tok-c39e0085d835"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1fe8222a17ba","tok-4dd320235d66","tok-782002d10aae"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9b6c51539f8b","tok-11ada29caed7","tok-7c34b0f9e4d9"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6cd99482382f","tok-814c41459aef","tok-7df2d0f1fb97","tok-628d37869c84","tok-b01e4c3d177b","tok-0bf5719cdd8f","tok-7df2d0f1fb97","tok-fc4e55a1c879"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6ebd3b2c4e8d","tok-1ce4af48cbea"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-538ccb4f426e","tok-80b53ab3ed20","tok-5bce8cab6044","tok-0e8c0197bee4","tok-782002d10aae","tok-b60aa5b0a7af","tok-d7ae009eb27f","tok-a6cf049937cb","tok-c918c946b93e","tok-12e3d9bd8cc0","tok-37c6aee8280a","tok-c918c946b93e","tok-3fcff29003cc","tok-264d2b5aa45c","tok-782002d10aae"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-8":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-8","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-8","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7897f6f4f19d","tok-a6cf049937cb","tok-718051a967d9"]}]},"gras-nuschah-on-avot-drabbi-natan-23-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-23-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-23-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 23:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-862615253511","tok-ae78180114e7"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1fad1373195f","tok-185f77515a57"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1c9203c1ae5d"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3fa362d696df","tok-3b5014d1dcf8","tok-db705b78e0c9","tok-87b8b31a014a","tok-f7369f30027d","tok-3fa362d696df","tok-63f9767cb0e8","tok-126908f23e92","tok-87b8b31a014a","tok-f7369f30027d"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b3fb6fa918ce"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c93c69ffd68f","tok-867dd7769df9","tok-782002d10aae","tok-ce079c046a9b"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-94395b1c3cc0","tok-8c148373ef10","tok-c7a9681d6eed","tok-8e6beadbff9e","tok-7df2d0f1fb97","tok-c7f47a23f755","tok-8731e114b408","tok-87b8b31a014a","tok-cdb7ea3d6d75","tok-e18788abfd03"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7897f6f4f19d","tok-b9b2ea85d834","tok-04d13cae1a08","tok-b3fb6fa918ce","tok-f61ebbd5c078","tok-bd822a93c554","tok-a6951e0ea167","tok-a180ec2e03f3"]}]},"gras-nuschah-on-avot-drabbi-natan-27-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-27-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-27-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 27:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-862615253511"]}]},"gras-nuschah-on-avot-drabbi-natan-27-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-27-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-27-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 27:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a04ffe8deaa4"]}]},"gras-nuschah-on-avot-drabbi-natan-29-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-29-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-29-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 29:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f9501d36e757","tok-7750498ce490","tok-ae2bc7964454","tok-ce079c046a9b","tok-b5154e7a972d"]}]},"gras-nuschah-on-avot-drabbi-natan-29-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-29-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-29-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 29:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1fad1373195f","tok-457de2fcb6eb"]}]},"gras-nuschah-on-avot-drabbi-natan-29-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-29-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-29-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 29:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-84846bd4f7e6","tok-4ac1b8df9c82"]}]},"gras-nuschah-on-avot-drabbi-natan-29-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-29-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-29-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 29:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bc47d02bae01","tok-5e3f81de3dcc","tok-18731a14c1e3","tok-e799dd339fc3"]}]},"gras-nuschah-on-avot-drabbi-natan-30-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-30-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-30-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 30:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-802ecb3d61e4"]}]},"gras-nuschah-on-avot-drabbi-natan-32-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-32-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-32-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 32:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-80e0be80d6ee","tok-4ac1b8df9c82"]}]},"gras-nuschah-on-avot-drabbi-natan-34-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-34-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-34-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 34:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7d0c949b9e97","tok-0cb9a6af925a","tok-4cf043c79767","tok-84846bd4f7e6","tok-778fdf0ef83e","tok-8ae62c4a2b9e","tok-7d0c949b9e97","tok-782002d10aae","tok-8948432bb180","tok-a5b7ca919899","tok-aae57cae75b9","tok-e2adaa0b0d2d","tok-fa502beade01","tok-7d0c949b9e97","tok-fdaf7cb698d4","tok-1b72e1aaad1b","tok-778fdf0ef83e","tok-8ae62c4a2b9e","tok-1a2f695707a5","tok-2d7650d25b2b","tok-96095829f17b","tok-782002d10aae","tok-aab0407c825c","tok-e1db97d02ce3","tok-043dd82e9aba","tok-6ec15c4ad290","tok-eee2c23d174d","tok-2d7650d25b2b","tok-9b6322696f85","tok-fdaf7cb698d4","tok-f5a9747edfe2","tok-602a1cdc1a78"]}]},"gras-nuschah-on-avot-drabbi-natan-34-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-34-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-34-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 34:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-98ccc73f0523","tok-dcb6e9cc0980","tok-7139f206e321","tok-7d05cab5fa06","tok-ed6661513586"]}]},"gras-nuschah-on-avot-drabbi-natan-34-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-34-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-34-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 34:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2d7650d25b2b","tok-786152a996ed","tok-e5a47e1dae37","tok-7eeea21792db"]}]},"gras-nuschah-on-avot-drabbi-natan-34-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-34-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-34-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 34:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0cb9a6af925a"]}]},"gras-nuschah-on-avot-drabbi-natan-34-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-34-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-34-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 34:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9d69e2ae020d","tok-ce24dc358ee3","tok-65a780dedf9f","tok-dd82ce85f001","tok-18731a14c1e3","tok-7b1725d9b1bc","tok-12c2fac5f785","tok-a1959b4fe4ce","tok-4621d951f2e9","tok-ef3e52e7c859","tok-9d69e2ae020d","tok-bbd4c142eaae"]}]},"gras-nuschah-on-avot-drabbi-natan-35-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-35-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-35-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 35:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a5f0ba1907b6"]}]},"gras-nuschah-on-avot-drabbi-natan-36-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-36-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-36-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 36:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-17a239de3919"]}]},"gras-nuschah-on-avot-drabbi-natan-36-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-36-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-36-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 36:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fd54747eb7c1","tok-2d7650d25b2b","tok-155629fd17e5","tok-7df2d0f1fb97","tok-2541328f15c5","tok-264d2b5aa45c","tok-208658ffd737","tok-77f5ac61fd6e","tok-0126a8497341","tok-d83511589e06","tok-5d86edca6121","tok-7df2d0f1fb97","tok-2541328f15c5","tok-264d2b5aa45c","tok-208658ffd737","tok-0cb9a6af925a","tok-b26770a6425f","tok-75eaa632fe09","tok-77f5ac61fd6e","tok-0126a8497341","tok-d83511589e06","tok-3648f4e252dc","tok-79cd8d365e50","tok-70beb9175789"]}]},"gras-nuschah-on-avot-drabbi-natan-36-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-36-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-36-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 36:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3e1680c6f591","tok-5acd9e2ee529","tok-0c1989d3f046","tok-e893fce02204","tok-58fa5bceae85","tok-7c92e2a0e287","tok-02d4fe303d31","tok-18731a14c1e3","tok-7b1725d9b1bc"]}]},"gras-nuschah-on-avot-drabbi-natan-36-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-36-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-36-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 36:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-24b49b9b4f5d"]}]},"gras-nuschah-on-avot-drabbi-natan-36-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-36-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-36-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 36:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-264d2b5aa45c"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-63689be3ee39"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-20964783e3bf","tok-83037951a2c8","tok-0782afe08829","tok-ebd4d1be0fc5"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-31f2769c1711","tok-63f5bafa4558","tok-62cb630d9764"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1a6bed7e78e7","tok-f51cab230916","tok-7b1725d9b1bc","tok-6bb75033e4c0","tok-d08f286c48c6"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-707ba660e557","tok-5db061575f42","tok-016d8d3627e5","tok-b311b07a9b10","tok-95de83c7207e","tok-2cd88df0f519","tok-36886a9d20ca","tok-b64c147ce6b8","tok-13fcf3405cf1","tok-6e2c5959b570","tok-f07c71bd8e70","tok-f8210d7df729","tok-3891fc1a74b4","tok-6bb75033e4c0","tok-a4c26df5d10a","tok-a5cb20d700aa","tok-dcf57dfd4903","tok-c22808251d27","tok-e59ae6fcd5db","tok-3dd1960c4835","tok-f3b08e8c33ef"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-82b0072b162f","tok-74afb6b06ccf","tok-043dd82e9aba","tok-dc081b0a23ef","tok-911a3aab1a99","tok-591189229046","tok-60d35e7322d3","tok-58a72e241aa9","tok-59cbe655a463","tok-7c579e7c2493","tok-fdaf7cb698d4"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-96cf3d01d860"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-87f205db0069","tok-8cc9166a8cd2"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1e1ce25df36c","tok-cfe0b29ef9ab","tok-37f6709e3c43","tok-bbf039b8b960","tok-22cae34d211d","tok-8c148373ef10","tok-9d64f5d36da2","tok-4e0a151d7792","tok-634367c1e2be"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0390d437102e","tok-be0c7876ea94","tok-b2de6e56b969"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4338e0073401","tok-0390d437102e","tok-c5deead3001a","tok-778fdf0ef83e","tok-71c942d807d8","tok-d34ada30c9fa"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-18be2f535c84","tok-a0afcbeba73a","tok-28c2f92bcd09","tok-a5a32096b7a3"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-907d5a4ba908","tok-d424897a59ed","tok-c4964a6a8051","tok-5306729ca621","tok-7abca28bbd89","tok-b5f8148999f4","tok-81d0ff99c41a","tok-1dd500ae6604","tok-80ecea9e8763","tok-c3207045c399","tok-58b74124460d","tok-162d2cae1a83","tok-ae78180114e7","tok-7e77413a8d19","tok-20678d3d4c65","tok-37c6aee8280a","tok-1c014d4b95cf","tok-bbf039b8b960"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-8":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-8","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-8","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0ab5d22d91d5","tok-848b27763bef","tok-075f2cc3988f","tok-52611d4c077c"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-9":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-9","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-9","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3e7f67f6d6ce"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-10":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-10","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-10","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e4f35ea7bf1c"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-11":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-11","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-11","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3e7f67f6d6ce"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-12":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-12","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-12","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e4f35ea7bf1c"]}]},"gras-nuschah-on-avot-drabbi-natan-41-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-41-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-41-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 41:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-17c7b10b1bee"]}]},"gras-nuschah-on-avot-drabbi-natan-41-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-41-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-41-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 41:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4338e0073401","tok-99411cb12377","tok-0168d9e0667c"]}]},"gras-nuschah-on-avot-drabbi-natan-41-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-41-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-41-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 41:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1b5fce7fa663","tok-7211934f01cb","tok-3fa0b31aab05"]}]}}}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/gras-nuschah-on-avot-drabbi-natan.manifest.json"}</script>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"gras-nuschah-on-avot-drabbi-natan","work_title":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan","work_slug":"gra/gras-nuschah-on-avot-drabbi-natan","scope_label":"All imported Hebrew works","generated_at":"2026-05-04T15:13:42.288Z","total_occurrences":499,"units":{"gras-nuschah-on-avot-drabbi-natan-1-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0e68fb0d6f47","tok-24f24a537274","tok-6858ad831272","tok-24f24a537274","tok-62fada71b591","tok-24f24a537274","tok-999e03fe554e","tok-b453c02bb171","tok-4dd320235d66"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c74d8ac4d3b6","tok-3537de585cac","tok-6a9f2199b55a","tok-0175c2965db3","tok-0cb9a6af925a"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-77184c4020f4","tok-85fe0e20352f","tok-fc40a0ac4f67","tok-ba24a4a649de"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3712abc3b5e0","tok-1b5fce7fa663","tok-6a9f2199b55a","tok-95de83c7207e"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9b6322696f85","tok-80e0be80d6ee","tok-2f18616cda02","tok-3fb0b561a939","tok-1b5fce7fa663","tok-f7eb808e62af","tok-3a5fb16f6673","tok-3fcff29003cc"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-59f2f83f5aa0","tok-91972d320b8c"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7df2d0f1fb97","tok-f7eb808e62af","tok-3a5fb16f6673","tok-3fcff29003cc"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-8":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-8","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-8","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-35cf0a40079c","tok-446f0f572727"]}]},"gras-nuschah-on-avot-drabbi-natan-1-1-9":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-1-1-9","anchor_id":"gras-nuschah-on-avot-drabbi-natan-1-1-9","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 1:1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-21caa69a30fb","tok-b7e172071db3"]}]},"gras-nuschah-on-avot-drabbi-natan-2-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-2-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-2-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 2:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-40903b324f4b"]}]},"gras-nuschah-on-avot-drabbi-natan-2-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-2-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-2-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 2:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-00cbea36556c","tok-4fd2e380b0ba","tok-bad128c91cb2","tok-122da0c18d7f"]}]},"gras-nuschah-on-avot-drabbi-natan-4-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-4-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-4-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 4:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-43e99fad0ded","tok-cad7b8456ca7"]}]},"gras-nuschah-on-avot-drabbi-natan-4-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-4-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-4-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 4:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e9a64273fa92","tok-e39663b28781","tok-5c4a8d528445","tok-096c87bde4c9","tok-6418964439d7","tok-6b3f585c7cca","tok-46f4bffc2a85","tok-ce079c046a9b","tok-6c3630895d8b","tok-ba8056739f36","tok-c95af91ac824","tok-acd623923b61","tok-9f72b951dd3a","tok-c8a1f4e49c21","tok-380f759183f6","tok-2bd83066dc14","tok-ebd62aef5eb3","tok-21ee5886aabe","tok-4bc31b7d92aa","tok-79c124bf44bc","tok-a09c7dd3ea9e","tok-18ef00222b18","tok-c27d7a6bb06d","tok-b408cd7dfd8e","tok-dce55e064a3c"]}]},"gras-nuschah-on-avot-drabbi-natan-6-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-6-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-6-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 6:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4a3833a780ce","tok-7b1725d9b1bc"]}]},"gras-nuschah-on-avot-drabbi-natan-6-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-6-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-6-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 6:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8533baa94d7d"]}]},"gras-nuschah-on-avot-drabbi-natan-7-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-7-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-7-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 7:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7e764354d5d0","tok-1de10def25bb","tok-e7c93800fac9"]}]},"gras-nuschah-on-avot-drabbi-natan-8-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-8-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-8-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 8:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-689fbd2f210c","tok-3baa107d8e0c","tok-06ca828fed22"]}]},"gras-nuschah-on-avot-drabbi-natan-9-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-9-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-9-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 9:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0254eb9574e8","tok-aa4d44852cdb","tok-1a519bcd1412","tok-f3d65fc7438a","tok-da5d707ac2d3"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-432539db5fd3","tok-90360a5be6cf","tok-913e9b2d3b78","tok-70443adf54cb","tok-b65c603e4d87","tok-910801587cdb","tok-fc7269e924ab","tok-1985041e53ca","tok-84846bd4f7e6","tok-cdd57dfdb888","tok-90360a5be6cf","tok-d2186964ec6d","tok-786152a996ed","tok-13b7e2ad3fa3","tok-ce6d0d1ba1e7","tok-fbeee276b0df","tok-ee81288f9294","tok-b03c53f1a6f3","tok-027b9cf628c6","tok-ee81288f9294","tok-a6cf049937cb","tok-7d2dd28dd5a3","tok-9e89489ecc88","tok-fdaf7cb698d4","tok-aab0407c825c","tok-a1fa22582761","tok-e1db97d02ce3","tok-36886a9d20ca"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7d2dd28dd5a3","tok-9e89489ecc88","tok-60b870e4171d","tok-450e9e667880","tok-913e9b2d3b78","tok-70443adf54cb","tok-bd58c616c2ed","tok-a81c5d546354","tok-bf641b3e7502","tok-9d69e2ae020d","tok-0782afe08829","tok-d6b68ec3fb71"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2410d1223b62","tok-005341287e47","tok-23823b00b048","tok-90360a5be6cf","tok-112c990812f5"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1dc90d6b3762","tok-0782afe08829"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-95c94cd7b78d","tok-1584ab3a2aaa"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-00eeebf7858f","tok-8aa468d687e7","tok-16458cea3bb0","tok-f1a0fa740b0f","tok-f830140d427c","tok-035d2418dbd9","tok-042b47ef9d91","tok-a08b82f17a1b","tok-dcbf0223e9be","tok-18ef00222b18","tok-ab9226f2371f","tok-c2954147618a"]}]},"gras-nuschah-on-avot-drabbi-natan-11-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-11-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-11-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 11:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f51cab230916","tok-7aa64a9e195d"]}]},"gras-nuschah-on-avot-drabbi-natan-12-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-12-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-12-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 12:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0390d437102e","tok-10e1e038a88f","tok-f9e9334a2644"]}]},"gras-nuschah-on-avot-drabbi-natan-14-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-14-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-14-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 14:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4f05a0479f9e"]}]},"gras-nuschah-on-avot-drabbi-natan-14-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-14-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-14-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 14:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-45e854a7aff3","tok-52611d4c077c","tok-a20f4edcf7c4","tok-51d9a009e078","tok-11de77f35d1a","tok-67e4e3d7ab70"]}]},"gras-nuschah-on-avot-drabbi-natan-15-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-15-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-15-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 15:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-416e0618538f","tok-a81c5d546354"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b6f31db5467d","tok-5cbdfc239ff2","tok-c66fec5f01d9","tok-2d7650d25b2b","tok-330119222d18","tok-fdaf7cb698d4"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-86baf3bf98af"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3afd1d8c387f"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3a347b83498c","tok-8e4e068ff783","tok-b18eb98537aa"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3afd1d8c387f"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f30e76a093c8","tok-d89ac55b87c8"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3afd1d8c387f"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-8":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-8","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-8","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0361a94e6ea7"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-9":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-9","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-9","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4a5120e095d3","tok-894e1c51fb18","tok-8b7ba3edd124","tok-73f67f38490c"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-10":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-10","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-10","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5085a0f927a1","tok-3b3c956fa7fc","tok-0cb9a6af925a","tok-9b6322696f85"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-11":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-11","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-11","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a9e49f66d60a","tok-59400c3b2cf3","tok-82b0072b162f"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-12":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-12","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-12","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-628d37869c84","tok-9f74dada07f5"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-13":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-13","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-13","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8aa6ad5b5428","tok-9464eb3f490c","tok-7df2d0f1fb97","tok-84df36ad1a27"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-14":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-14","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-14","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c6359dd30e7f","tok-b3f26ebef516","tok-706e67ce6770"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-15":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-15","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-15","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7fabf466e438"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-16":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-16","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-16","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c9b841d11074","tok-c45de6e1823e","tok-5ec81a88cb24","tok-a4c26df5d10a"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-17":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-17","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-17","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ae8415fee78d"]}]},"gras-nuschah-on-avot-drabbi-natan-20-1-18":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-20-1-18","anchor_id":"gras-nuschah-on-avot-drabbi-natan-20-1-18","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 20:1:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8aa6ad5b5428","tok-9464eb3f490c","tok-7df2d0f1fb97","tok-84df36ad1a27"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-926ee1a16b46"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b5ae7d5394f7","tok-89920178b0d7","tok-2d7650d25b2b","tok-2adebc93bb88","tok-753d476455dc","tok-2d7650d25b2b","tok-c39e0085d835"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1fe8222a17ba","tok-4dd320235d66","tok-782002d10aae"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9b6c51539f8b","tok-11ada29caed7","tok-7c34b0f9e4d9"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6cd99482382f","tok-814c41459aef","tok-7df2d0f1fb97","tok-628d37869c84","tok-b01e4c3d177b","tok-0bf5719cdd8f","tok-7df2d0f1fb97","tok-fc4e55a1c879"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6ebd3b2c4e8d","tok-1ce4af48cbea"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-538ccb4f426e","tok-80b53ab3ed20","tok-5bce8cab6044","tok-0e8c0197bee4","tok-782002d10aae","tok-b60aa5b0a7af","tok-d7ae009eb27f","tok-a6cf049937cb","tok-c918c946b93e","tok-12e3d9bd8cc0","tok-37c6aee8280a","tok-c918c946b93e","tok-3fcff29003cc","tok-264d2b5aa45c","tok-782002d10aae"]}]},"gras-nuschah-on-avot-drabbi-natan-21-1-8":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-21-1-8","anchor_id":"gras-nuschah-on-avot-drabbi-natan-21-1-8","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 21:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7897f6f4f19d","tok-a6cf049937cb","tok-718051a967d9"]}]},"gras-nuschah-on-avot-drabbi-natan-23-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-23-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-23-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 23:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-862615253511","tok-ae78180114e7"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1fad1373195f","tok-185f77515a57"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1c9203c1ae5d"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3fa362d696df","tok-3b5014d1dcf8","tok-db705b78e0c9","tok-87b8b31a014a","tok-f7369f30027d","tok-3fa362d696df","tok-63f9767cb0e8","tok-126908f23e92","tok-87b8b31a014a","tok-f7369f30027d"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b3fb6fa918ce"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c93c69ffd68f","tok-867dd7769df9","tok-782002d10aae","tok-ce079c046a9b"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-94395b1c3cc0","tok-8c148373ef10","tok-c7a9681d6eed","tok-8e6beadbff9e","tok-7df2d0f1fb97","tok-c7f47a23f755","tok-8731e114b408","tok-87b8b31a014a","tok-cdb7ea3d6d75","tok-e18788abfd03"]}]},"gras-nuschah-on-avot-drabbi-natan-25-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-25-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-25-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 25:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7897f6f4f19d","tok-b9b2ea85d834","tok-04d13cae1a08","tok-b3fb6fa918ce","tok-f61ebbd5c078","tok-bd822a93c554","tok-a6951e0ea167","tok-a180ec2e03f3"]}]},"gras-nuschah-on-avot-drabbi-natan-27-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-27-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-27-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 27:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-862615253511"]}]},"gras-nuschah-on-avot-drabbi-natan-27-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-27-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-27-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 27:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a04ffe8deaa4"]}]},"gras-nuschah-on-avot-drabbi-natan-29-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-29-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-29-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 29:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f9501d36e757","tok-7750498ce490","tok-ae2bc7964454","tok-ce079c046a9b","tok-b5154e7a972d"]}]},"gras-nuschah-on-avot-drabbi-natan-29-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-29-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-29-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 29:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1fad1373195f","tok-457de2fcb6eb"]}]},"gras-nuschah-on-avot-drabbi-natan-29-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-29-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-29-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 29:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-84846bd4f7e6","tok-4ac1b8df9c82"]}]},"gras-nuschah-on-avot-drabbi-natan-29-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-29-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-29-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 29:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bc47d02bae01","tok-5e3f81de3dcc","tok-18731a14c1e3","tok-e799dd339fc3"]}]},"gras-nuschah-on-avot-drabbi-natan-30-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-30-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-30-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 30:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-802ecb3d61e4"]}]},"gras-nuschah-on-avot-drabbi-natan-32-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-32-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-32-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 32:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-80e0be80d6ee","tok-4ac1b8df9c82"]}]},"gras-nuschah-on-avot-drabbi-natan-34-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-34-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-34-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 34:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7d0c949b9e97","tok-0cb9a6af925a","tok-4cf043c79767","tok-84846bd4f7e6","tok-778fdf0ef83e","tok-8ae62c4a2b9e","tok-7d0c949b9e97","tok-782002d10aae","tok-8948432bb180","tok-a5b7ca919899","tok-aae57cae75b9","tok-e2adaa0b0d2d","tok-fa502beade01","tok-7d0c949b9e97","tok-fdaf7cb698d4","tok-1b72e1aaad1b","tok-778fdf0ef83e","tok-8ae62c4a2b9e","tok-1a2f695707a5","tok-2d7650d25b2b","tok-96095829f17b","tok-782002d10aae","tok-aab0407c825c","tok-e1db97d02ce3","tok-043dd82e9aba","tok-6ec15c4ad290","tok-eee2c23d174d","tok-2d7650d25b2b","tok-9b6322696f85","tok-fdaf7cb698d4","tok-f5a9747edfe2","tok-602a1cdc1a78"]}]},"gras-nuschah-on-avot-drabbi-natan-34-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-34-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-34-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 34:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-98ccc73f0523","tok-dcb6e9cc0980","tok-7139f206e321","tok-7d05cab5fa06","tok-ed6661513586"]}]},"gras-nuschah-on-avot-drabbi-natan-34-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-34-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-34-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 34:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2d7650d25b2b","tok-786152a996ed","tok-e5a47e1dae37","tok-7eeea21792db"]}]},"gras-nuschah-on-avot-drabbi-natan-34-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-34-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-34-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 34:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0cb9a6af925a"]}]},"gras-nuschah-on-avot-drabbi-natan-34-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-34-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-34-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 34:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9d69e2ae020d","tok-ce24dc358ee3","tok-65a780dedf9f","tok-dd82ce85f001","tok-18731a14c1e3","tok-7b1725d9b1bc","tok-12c2fac5f785","tok-a1959b4fe4ce","tok-4621d951f2e9","tok-ef3e52e7c859","tok-9d69e2ae020d","tok-bbd4c142eaae"]}]},"gras-nuschah-on-avot-drabbi-natan-35-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-35-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-35-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 35:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a5f0ba1907b6"]}]},"gras-nuschah-on-avot-drabbi-natan-36-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-36-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-36-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 36:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-17a239de3919"]}]},"gras-nuschah-on-avot-drabbi-natan-36-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-36-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-36-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 36:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fd54747eb7c1","tok-2d7650d25b2b","tok-155629fd17e5","tok-7df2d0f1fb97","tok-2541328f15c5","tok-264d2b5aa45c","tok-208658ffd737","tok-77f5ac61fd6e","tok-0126a8497341","tok-d83511589e06","tok-5d86edca6121","tok-7df2d0f1fb97","tok-2541328f15c5","tok-264d2b5aa45c","tok-208658ffd737","tok-0cb9a6af925a","tok-b26770a6425f","tok-75eaa632fe09","tok-77f5ac61fd6e","tok-0126a8497341","tok-d83511589e06","tok-3648f4e252dc","tok-79cd8d365e50","tok-70beb9175789"]}]},"gras-nuschah-on-avot-drabbi-natan-36-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-36-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-36-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 36:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3e1680c6f591","tok-5acd9e2ee529","tok-0c1989d3f046","tok-e893fce02204","tok-58fa5bceae85","tok-7c92e2a0e287","tok-02d4fe303d31","tok-18731a14c1e3","tok-7b1725d9b1bc"]}]},"gras-nuschah-on-avot-drabbi-natan-36-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-36-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-36-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 36:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-24b49b9b4f5d"]}]},"gras-nuschah-on-avot-drabbi-natan-36-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-36-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-36-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 36:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-264d2b5aa45c"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-63689be3ee39"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-20964783e3bf","tok-83037951a2c8","tok-0782afe08829","tok-ebd4d1be0fc5"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-31f2769c1711","tok-63f5bafa4558","tok-62cb630d9764"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1a6bed7e78e7","tok-f51cab230916","tok-7b1725d9b1bc","tok-6bb75033e4c0","tok-d08f286c48c6"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-707ba660e557","tok-5db061575f42","tok-016d8d3627e5","tok-b311b07a9b10","tok-95de83c7207e","tok-2cd88df0f519","tok-36886a9d20ca","tok-b64c147ce6b8","tok-13fcf3405cf1","tok-6e2c5959b570","tok-f07c71bd8e70","tok-f8210d7df729","tok-3891fc1a74b4","tok-6bb75033e4c0","tok-a4c26df5d10a","tok-a5cb20d700aa","tok-dcf57dfd4903","tok-c22808251d27","tok-e59ae6fcd5db","tok-3dd1960c4835","tok-f3b08e8c33ef"]}]},"gras-nuschah-on-avot-drabbi-natan-38-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-38-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-38-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 38:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-82b0072b162f","tok-74afb6b06ccf","tok-043dd82e9aba","tok-dc081b0a23ef","tok-911a3aab1a99","tok-591189229046","tok-60d35e7322d3","tok-58a72e241aa9","tok-59cbe655a463","tok-7c579e7c2493","tok-fdaf7cb698d4"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-96cf3d01d860"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-87f205db0069","tok-8cc9166a8cd2"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1e1ce25df36c","tok-cfe0b29ef9ab","tok-37f6709e3c43","tok-bbf039b8b960","tok-22cae34d211d","tok-8c148373ef10","tok-9d64f5d36da2","tok-4e0a151d7792","tok-634367c1e2be"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-4":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-4","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-4","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0390d437102e","tok-be0c7876ea94","tok-b2de6e56b969"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-5":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-5","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-5","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4338e0073401","tok-0390d437102e","tok-c5deead3001a","tok-778fdf0ef83e","tok-71c942d807d8","tok-d34ada30c9fa"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-6":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-6","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-6","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-18be2f535c84","tok-a0afcbeba73a","tok-28c2f92bcd09","tok-a5a32096b7a3"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-7":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-7","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-7","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-907d5a4ba908","tok-d424897a59ed","tok-c4964a6a8051","tok-5306729ca621","tok-7abca28bbd89","tok-b5f8148999f4","tok-81d0ff99c41a","tok-1dd500ae6604","tok-80ecea9e8763","tok-c3207045c399","tok-58b74124460d","tok-162d2cae1a83","tok-ae78180114e7","tok-7e77413a8d19","tok-20678d3d4c65","tok-37c6aee8280a","tok-1c014d4b95cf","tok-bbf039b8b960"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-8":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-8","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-8","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0ab5d22d91d5","tok-848b27763bef","tok-075f2cc3988f","tok-52611d4c077c"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-9":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-9","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-9","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3e7f67f6d6ce"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-10":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-10","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-10","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e4f35ea7bf1c"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-11":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-11","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-11","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3e7f67f6d6ce"]}]},"gras-nuschah-on-avot-drabbi-natan-39-1-12":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-39-1-12","anchor_id":"gras-nuschah-on-avot-drabbi-natan-39-1-12","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 39:1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e4f35ea7bf1c"]}]},"gras-nuschah-on-avot-drabbi-natan-41-1-1":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-41-1-1","anchor_id":"gras-nuschah-on-avot-drabbi-natan-41-1-1","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 41:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-17c7b10b1bee"]}]},"gras-nuschah-on-avot-drabbi-natan-41-1-2":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-41-1-2","anchor_id":"gras-nuschah-on-avot-drabbi-natan-41-1-2","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 41:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4338e0073401","tok-99411cb12377","tok-0168d9e0667c"]}]},"gras-nuschah-on-avot-drabbi-natan-41-1-3":{"unit_id":"gras-nuschah-on-avot-drabbi-natan-41-1-3","anchor_id":"gras-nuschah-on-avot-drabbi-natan-41-1-3","source_ref":"Gra\u0027s Nuschah on Avot D\u0027Rabbi Natan 41:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1b5fce7fa663","tok-7211934f01cb","tok-3fa0b31aab05"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/gras-nuschah-on-avot-drabbi-natan.manifest.json","root_href":"../../"}</script>
   <script>
     (() => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -2099,6 +2116,25 @@
       let manifestPromise = null;
       const hud = document.querySelector("[data-lexical-hud]");
       const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
       const fetchJson = async (url, base = document.baseURI) => {
         const response = await fetch(toAbsoluteUrl(url, base));
         if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
@@ -2196,6 +2232,31 @@
       });
       const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
       if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
       const setText = (root, selector, value) => {
         const node = root.querySelector(selector);
         if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
@@ -2211,6 +2272,52 @@
         values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
         node.appendChild(ul);
       };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
       const appendRenderings = (node, values) => {
         const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
         if (!filtered.length) { node.append("N/A"); return; }
@@ -2224,7 +2331,8 @@
         if (!node) return;
         node.replaceChildren();
         const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
-        if (!rows.length) { node.textContent = "N/A"; return; }
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
         const list = document.createElement("div");
         list.className = "breakdown-list";
         rows.forEach((row) => {
@@ -2244,7 +2352,16 @@
         });
         node.appendChild(list);
       };
-      const renderEntryList = (entries) => {
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
         const list = document.createElement("div");
         list.className = "lexical-entry-list";
         const groupedEntries = new Map();
@@ -2254,14 +2371,14 @@
           if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
           const group = groupedEntries.get(key);
           group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
-          (entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
         });
         const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
         sorted.forEach((entry) => {
           const card = document.createElement("section");
           card.className = "lexical-entry";
           const title = document.createElement("h3");
-          const role = entry.context_role === "likely_contextual" ? "Likely contextual entry" : "Other possible entry";
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
           title.append(role, ": ");
           const spelling = document.createElement("span");
           spelling.className = "entry-hebrew";
@@ -2284,65 +2401,301 @@
         });
         return list;
       };
-      const renderPossibleEntries = (root, view, hasLexicalEntry) => {
-        const label = root.querySelector("[data-hud-renderings-label]");
-        const node = root.querySelector("[data-hud-renderings]");
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const sourceSummary = (rows) => {
+        const row = cleanValues(rows)[0];
+        if (!row) return { source: "Source metadata incomplete", license: "N/A" };
+        const sourceId = row.source_id ? ` ${row.source_id}` : "";
+        return { source: `${row.source_name || "Source"}${sourceId}`, license: row.license || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        const sourceLine = document.createElement("p");
+        sourceLine.className = "claim-source";
+        sourceLine.textContent = `Source: ${source.source}`;
+        const licenseLine = document.createElement("p");
+        licenseLine.className = "claim-license";
+        licenseLine.textContent = `License: ${source.license}`;
+        card.append(sourceLine, licenseLine);
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
         if (!node) return;
         node.replaceChildren();
-        if (label) label.textContent = "Possible lexical entries";
-        if (!hasLexicalEntry) { node.textContent = "No lexical entry yet."; return; }
-        let entries = Array.isArray(view.possible_entries) ? view.possible_entries : [];
-        entries = entries.filter((entry) => entry.relation_label !== "related root-field");
-        if (!entries.length) { setList(root, "[data-hud-renderings]", view.strict_renderings || ["No lexical entry yet."]); return; }
-        const likelyEntries = entries.filter((entry) => entry.context_role === "likely_contextual");
-        const otherEntries = entries.filter((entry) => entry.context_role !== "likely_contextual");
-        if (label) label.textContent = likelyEntries.length ? "Lexical resolution" : "Possible lexical entries";
-        const note = document.createElement("p");
-        note.className = "lexical-context-note";
-        note.textContent = likelyEntries.length ? (view.surface_context_note || view.context_note || "Context resolved.") : "Context not resolved.";
-        node.appendChild(note);
-        if (likelyEntries.length) node.appendChild(renderEntryList(likelyEntries));
-        if (otherEntries.length) {
-          const details = document.createElement("details");
-          details.className = "other-entries";
-          const summary = document.createElement("summary");
-          summary.textContent = "Show other possible entries";
-          details.appendChild(summary);
-          details.appendChild(renderEntryList(otherEntries));
-          if (view.secondary_source_rows && view.secondary_source_rows.length) {
-            const sourceDetails = document.createElement("details");
-            sourceDetails.className = "source-details";
-            const sourceSummary = document.createElement("summary");
-            sourceSummary.textContent = "Sources / licenses for other possible entries";
-            const sourceBox = document.createElement("div");
-            sourceDetails.append(sourceSummary, sourceBox);
-            renderSources(sourceBox, view.secondary_source_rows);
-            details.appendChild(sourceDetails);
-          }
-          node.appendChild(details);
-        }
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
       };
-      const renderSources = (sourceBox, rows) => {
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
         if (!sourceBox) return;
         sourceBox.replaceChildren();
-        const sourceRows = Array.isArray(rows) ? rows : (rows && rows.source_id ? [rows] : []);
-        if (!sourceRows.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
-        sourceRows.forEach((row) => {
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
           const section = document.createElement("div");
           section.className = "source-row";
-          const title = document.createElement("p");
-          const link = document.createElement("a");
-          link.href = row.source_url || "#";
-          link.textContent = row.source_name || "Source";
-          const strong = document.createElement("strong");
-          strong.appendChild(link);
-          title.appendChild(strong);
-          title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
-          const fields = document.createElement("p");
-          fields.textContent = `Fields: ${(row.fields_used || []).join(", ") || "N/A"}`;
-          const notes = document.createElement("p");
-          notes.textContent = row.notes || "";
-          section.append(title, fields, notes);
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
           sourceBox.appendChild(section);
         });
       };
@@ -2356,29 +2709,44 @@
         const unit = button.closest("[data-lexical-unit]");
         const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
         if (!unit || !slot) return;
-        if (hud.parentElement !== slot) slot.appendChild(hud);
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
         document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
         button.setAttribute("aria-pressed", "true");
         hud.hidden = false;
+        positionHudNearButton(button);
         setText(hud, "[data-hud-word]", button.textContent.trim());
-        setList(hud, "[data-hud-surface-renderings]", ["Loading lexical entry..."]);
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
         renderBreakdown(hud, {});
-        renderPossibleEntries(hud, {}, false);
-        renderSources(hud.querySelector("[data-hud-sources]"), []);
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
         try {
           const view = await buildWordView(button);
           if (button.getAttribute("aria-pressed") !== "true") return;
           setText(hud, "[data-hud-word]", view.hebrew_word);
           const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
-          setList(hud, "[data-hud-surface-renderings]", (view.surface_renderings && view.surface_renderings.length) ? view.surface_renderings : (hasLexicalEntry ? view.strict_renderings : ["No lexical entry yet."]));
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
           renderBreakdown(hud, view);
-          renderPossibleEntries(hud, view, hasLexicalEntry);
-          renderSources(hud.querySelector("[data-hud-sources]"), view.source_rows);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
           const details = hud.querySelector("details");
           if (details) details.open = false;
+          positionHudNearButton(button);
         } catch (error) {
           console.error(error);
-          setList(hud, "[data-hud-surface-renderings]", ["No lexical entry yet."]);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
         }
       };
       buttons.forEach((button) => {
@@ -2393,9 +2761,12 @@
         button.addEventListener("click", () => {
           const hud = button.closest("[data-lexical-hud]");
           if (hud) hud.hidden = true;
+          activeHudButton = null;
           document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
         });
       });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
     })();
   </script>
 </body>

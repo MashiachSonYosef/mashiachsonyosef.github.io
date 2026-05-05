@@ -30,6 +30,9 @@
     .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
     .reader-shell { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: start; padding: 22px; }
     .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
     .toc ul { list-style: none; padding: 0; margin: 0; }
@@ -57,13 +60,15 @@
     .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
     .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
     .lexical-slot { margin-top: 16px; }
-    .lexical-hud { position: static; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
     .lexical-hud[hidden] { display: none; }
     .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
     .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
     .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
     .hud-close:hover { color: var(--text); border-color: var(--accent); }
     .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
     .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
     .lexical-fields dd { margin: 0; color: var(--text); }
     .lexical-fields ul { margin: 0; padding-left: 18px; }
@@ -71,18 +76,27 @@
     .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
     .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
     .breakdown-row p { margin: 0 0 4px; }
-    .lexical-entry-list { display: grid; gap: 10px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
     .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
     .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
     .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
     .lexical-entry .entry-hebrew { color: var(--hebrew); }
     .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
     .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
     .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
     .source-details { margin-top: 16px; }
     .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
     .source-row:first-child { border-top: 0; }
     .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
     .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
     .source-table { width: 100%; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
@@ -512,18 +526,21 @@
   <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
     <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
     <dl class="lexical-fields">
-      <dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd>
-      <dt>Strict renderings</dt><dd data-hud-surface-renderings>N/A</dd>
-      <dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd>
-      <dt data-hud-renderings-label>Possible lexical entries</dt><dd data-hud-renderings>N/A</dd>
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
     </dl>
     <details class="source-details">
       <summary>Sources / licenses</summary>
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"gra-on-pirkei-avot","work_title":"Gra on Pirkei Avot","work_slug":"gra/gra-on-pirkei-avot","scope_label":"All imported Hebrew works","generated_at":"2026-05-01T16:48:21.412Z","total_occurrences":676,"units":{"gra-on-pirkei-avot-1-1-1":{"unit_id":"gra-on-pirkei-avot-1-1-1","anchor_id":"gra-on-pirkei-avot-1-1-1","source_ref":"Gra on Pirkei Avot 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-935809b2902b","tok-2c8da18cf07d","tok-558e7bd31204","tok-0b035ea64b6b","tok-b7dbe1882b28","tok-3232ec622e43","tok-8c05ddc76bd0","tok-cc8b4137e9c3","tok-0ea6f9b0d673","tok-e17c83514e25","tok-558e7bd31204","tok-18cd423776d3","tok-fa16deb9c75f","tok-15b6009667b4","tok-935809b2902b","tok-8633c343cb41","tok-2872b4f53e01","tok-888caaa84a56","tok-8c38c91f56d3","tok-79803b302686","tok-1a74f8003978","tok-9f6ad01327c7","tok-ad4ed1bbf6d6","tok-935809b2902b","tok-18cd423776d3","tok-fa16deb9c75f","tok-558e7bd31204","tok-8c05ddc76bd0","tok-426859d3493c","tok-ad4ed1bbf6d6","tok-467d81ad7639","tok-25b26193486e","tok-712270aab3a1","tok-0d890446cdd6","tok-e19054ab6fd2","tok-5854017ea13e","tok-5616c50f1df8","tok-4b285af1cca5","tok-18cd423776d3","tok-1992ea78b0ae","tok-11965b8e2efb","tok-4cad78079457","tok-8c9aec865594","tok-fa16deb9c75f","tok-558e7bd31204","tok-c503871e2819","tok-1992ea78b0ae","tok-4cad78079457","tok-558e7bd31204","tok-5854017ea13e","tok-53ec99c4ca13","tok-528a64c04d3f","tok-558e7bd31204","tok-e19054ab6fd2","tok-5854017ea13e","tok-ed8c0a19ad65","tok-890b34ec23c6","tok-c6d7a932929b","tok-18cd423776d3","tok-fa16deb9c75f","tok-15b6009667b4","tok-935809b2902b","tok-9876a08dd357","tok-f311f4070965","tok-0e46688628a5","tok-7e9b540999d3","tok-91ba40132354","tok-91156c17cfe1","tok-c1523e0b7df5","tok-523a4f36e9e0","tok-935809b2902b","tok-5854017ea13e","tok-7ca6bd68ff5a","tok-c6d7a932929b","tok-8c05ddc76bd0","tok-2f8a52bb8463","tok-4230aae8fa79","tok-63c112ba87d9","tok-558e7bd31204","tok-d22ed5d15a6f","tok-289aa5794fed","tok-8c05ddc76bd0","tok-67cf3aef63a3","tok-558e7bd31204","tok-25b26193486e","tok-84605a538347","tok-514e1763c796","tok-5854017ea13e","tok-8ab1cf4c09a8","tok-0ccc39d75e57","tok-d90b49da9c4b","tok-0413736249ce","tok-a7117bb716c8","tok-28d51b0858a2","tok-159e6ee7b27b","tok-37f40a202d14","tok-9bbeccbc536a","tok-2cf13d8872d6","tok-c9a3c0d9ddfb","tok-0b40e9cd7d26","tok-19fbd5c1100c","tok-1992ea78b0ae","tok-300d50d43958","tok-79103bf735d6","tok-1d878039b74b","tok-668e72eeddec","tok-86d0c1f3746c","tok-325f0c4ce185","tok-49f88ca4f320","tok-875f10f9ff20","tok-514e1763c796","tok-5854017ea13e","tok-558e7bd31204","tok-7f94da68f7cc","tok-50c698bf20f5","tok-96472f8d5e6f","tok-0bb61de30c7e","tok-14f865b2a885","tok-50c236a4316f","tok-ae1e4ae390c6","tok-79c2a1939ea4","tok-51e631255626","tok-2c7a7fd7cab6","tok-49f88ca4f320","tok-76d9075f58b4","tok-865f2a2d4834","tok-d22ed5d15a6f","tok-057678d55fa2","tok-0019303c088c","tok-8e83689848ad","tok-9f6ad01327c7","tok-c4d80ffd4b1a","tok-412f91f7ca9d","tok-86df93b45c65","tok-70d1f7e86ad6","tok-412002472731","tok-ad4ed1bbf6d6","tok-2b49e5599d35","tok-558e7bd31204","tok-9876a08dd357","tok-25b26193486e","tok-558e7bd31204","tok-5854017ea13e","tok-9501f65fb99f","tok-54df9dd30cdf","tok-3c27933cf464","tok-b6a8f60ca4ce","tok-412f91f7ca9d","tok-86df93b45c65","tok-c7f592491fc2","tok-e9524103222a","tok-37f40a202d14","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-1-1-2":{"unit_id":"gra-on-pirkei-avot-1-1-2","anchor_id":"gra-on-pirkei-avot-1-1-2","source_ref":"Gra on Pirkei Avot 1:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9000c153b7c8","tok-6555374a6447","tok-0b035ea64b6b","tok-e71e5e1b36d0","tok-3232ec622e43","tok-25bf80ab67e3","tok-c68b7324bfc3","tok-fa497d27811e","tok-34f6744e1eba","tok-ce289bc12f66","tok-e9524103222a","tok-91f765a6f672","tok-fad9044b97c2","tok-9f018321fd5c","tok-6a5a8220ffa2","tok-66694555cc38","tok-c4d80ffd4b1a","tok-ff1952f57138","tok-be010f2e0cd2","tok-935809b2902b","tok-f8ee90d9a8ba","tok-3330053ce54c","tok-322d40dc2c91","tok-112adb4c028a","tok-b6cc878ad1cf","tok-e13fe86a7275","tok-d9ef50398984","tok-c4d80ffd4b1a","tok-13dacf15915a","tok-558e7bd31204","tok-24211822294c","tok-ae99a0130abb","tok-fece460c5ab8","tok-1a63383038b1","tok-656d9a1e61d5","tok-45e3e975a682","tok-37538604e965","tok-1e13bbc3ba18","tok-558e7bd31204","tok-24211822294c","tok-1a9ce95b104b","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-1-1-3":{"unit_id":"gra-on-pirkei-avot-1-1-3","anchor_id":"gra-on-pirkei-avot-1-1-3","source_ref":"Gra on Pirkei Avot 1:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b3a3094f39a","tok-c0fb3370cad4","tok-aae6d3ffb391","tok-fa1e6d67f079","tok-b6a8f60ca4ce","tok-b3bee831fd90","tok-81c8ce8bdf07","tok-ad4ed1bbf6d6","tok-9f6ad01327c7","tok-e9524103222a","tok-3582706f7d1f","tok-1e13bbc3ba18","tok-6b5655f77088","tok-3582706f7d1f","tok-c67f00b15222","tok-6b3a91e820e3","tok-cf2716eb43af","tok-fb34b1b6ef47","tok-60b39a9e1012","tok-1e13bbc3ba18","tok-6b3a91e820e3","tok-bca9f4a89a68","tok-ad4ed1bbf6d6","tok-e9524103222a","tok-3df56231672e","tok-9f6ad01327c7","tok-50c236a4316f","tok-8633c343cb41"]}]},"gra-on-pirkei-avot-1-1-4":{"unit_id":"gra-on-pirkei-avot-1-1-4","anchor_id":"gra-on-pirkei-avot-1-1-4","source_ref":"Gra on Pirkei Avot 1:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d73d70e84012","tok-25ad58857c24","tok-0b035ea64b6b","tok-c41c1442e13f","tok-6c26ed9a108b","tok-19f905ee6bd0","tok-a051c54adb56","tok-ad4ed1bbf6d6","tok-e9524103222a","tok-709ad1d9fa03","tok-e47f745b7bca","tok-d99a289f3902","tok-cb9e9cfca522","tok-c5b5bad3bc59","tok-c6d7a932929b","tok-c6864363d422","tok-60b39a9e1012","tok-1e13bbc3ba18","tok-3699d8ffc063","tok-06b745e483e4","tok-c4d80ffd4b1a","tok-e4e895386c5c","tok-3d9dec25d4ed","tok-9f6ad01327c7","tok-93418f8e7b20","tok-c860fb2962a3","tok-50c236a4316f"]}]},"gra-on-pirkei-avot-1-1-5":{"unit_id":"gra-on-pirkei-avot-1-1-5","anchor_id":"gra-on-pirkei-avot-1-1-5","source_ref":"Gra on Pirkei Avot 1:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f44db4069240","tok-558e7bd31204","tok-da020e71d75a","tok-80defc61da73","tok-0c50196109c1","tok-87112fabfe09","tok-45bf1400be71","tok-e25eeeca078c","tok-9b9406b9ba84"]}]},"gra-on-pirkei-avot-1-1-6":{"unit_id":"gra-on-pirkei-avot-1-1-6","anchor_id":"gra-on-pirkei-avot-1-1-6","source_ref":"Gra on Pirkei Avot 1:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-87112fabfe09","tok-558e7bd31204","tok-996407ff38d7","tok-d7de03bcb01f","tok-6c26ed9a108b","tok-b6a8f60ca4ce","tok-6f6735c4228c","tok-727fbe06dfc7","tok-009006034fa1","tok-33d4a3aa3a90","tok-b79286f46064","tok-63f95c3a8e27","tok-558e7bd31204","tok-a53ea1c49e3b","tok-76640aa1c8ee","tok-558e7bd31204","tok-86df93b45c65","tok-24211822294c","tok-e5be2674c9c5","tok-f15aad3e1b88","tok-b0f2276d0325","tok-3fecffddc843","tok-8c05ddc76bd0","tok-374b41e9f947","tok-34baf93e5cea","tok-fa2326e73b42","tok-ad4ed1bbf6d6","tok-5acd9717be32","tok-c8598da80094","tok-5b9071b6f910","tok-ba0e3c786a54","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-1-1-7":{"unit_id":"gra-on-pirkei-avot-1-1-7","anchor_id":"gra-on-pirkei-avot-1-1-7","source_ref":"Gra on Pirkei Avot 1:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6f154eba8796","tok-558e7bd31204","tok-996407ff38d7","tok-659d65d151b6","tok-38a3363dc335","tok-b6a8f60ca4ce","tok-87112fabfe09","tok-2c7a7fd7cab6","tok-56a314bb2f98","tok-c23493777e08","tok-144ef2451f84","tok-2c7a7fd7cab6","tok-56a314bb2f98","tok-39f4deddc369","tok-aae6d3ffb391","tok-4dc8fdc844f1","tok-ae15e83c59b6","tok-f4bb0f7e946c","tok-50c236a4316f"]}]},"gra-on-pirkei-avot-1-1-8":{"unit_id":"gra-on-pirkei-avot-1-1-8","anchor_id":"gra-on-pirkei-avot-1-1-8","source_ref":"Gra on Pirkei Avot 1:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-078561caa4db","tok-b4bc0fadbf3b","tok-558e7bd31204","tok-f3d45f2f8981","tok-73d9644d9cac","tok-0e46688628a5","tok-c4a64ae195b4","tok-6d3b3aabbbc3","tok-6e2e9e505d45","tok-c4a64ae195b4","tok-73d9644d9cac","tok-263d391d0207","tok-20853bcf5d84","tok-33fea6bf67d9","tok-18b3b6c21924","tok-b7dbe1882b28","tok-541100879186","tok-5e6a4ef68d1b","tok-ad99fbc85efb","tok-29f4f2cbf26b","tok-82fcec3aac76","tok-24211822294c","tok-a9ae2ce6153e","tok-50c236a4316f","tok-83c5171950ad","tok-c30f73ba1208","tok-18b3b6c21924","tok-c6d7a932929b","tok-737396cf72e6","tok-737396cf72e6","tok-1a5383d6d5b6","tok-e9524103222a","tok-19ba9f2a545b","tok-a06ecc15b7d2","tok-24211822294c","tok-567719945471","tok-558e7bd31204","tok-f7e904f76727","tok-bdbdaaaaf2dc","tok-558e7bd31204","tok-31e1e9da51d1","tok-888caaa84a56","tok-acc1fc4e5028","tok-6af942d3c5cc","tok-b6a8f60ca4ce","tok-f32ba66c972d","tok-a1e72d00d384","tok-e77cabc4a360","tok-c4a64ae195b4","tok-c9b5cdbb9750","tok-f3d45f2f8981","tok-558e7bd31204","tok-d59739a30d54","tok-18b3b6c21924","tok-6b5655f77088","tok-9e3ce055a9e8","tok-927d23ca37e6","tok-24211822294c","tok-da67f3873893","tok-85169d229f46","tok-6b3a91e820e3","tok-558e7bd31204","tok-d22ed5d15a6f"]}]},"gra-on-pirkei-avot-2-1-1":{"unit_id":"gra-on-pirkei-avot-2-1-1","anchor_id":"gra-on-pirkei-avot-2-1-1","source_ref":"Gra on Pirkei Avot 2:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e9524103222a","tok-d1535b6aebe1","tok-558e7bd31204","tok-996407ff38d7","tok-5d81a88c25e6","tok-18378da8d032","tok-09c074016b95","tok-5bd7749647c3","tok-34493e72e2be","tok-68469d2d035b","tok-558e7bd31204","tok-9b5ef4785846","tok-ca91e3cb73dc","tok-cde822f02676","tok-558e7bd31204","tok-0493be1d9da1","tok-5d81a88c25e6","tok-9f6ad01327c7","tok-a15d87804e6f","tok-6eda8198039b","tok-6fcd316f4612","tok-544a605fd29b","tok-e23fdae83b0b","tok-a4f59c0e0148","tok-d41ac5881d38","tok-24211822294c","tok-17fd6581c72d","tok-577f557c766b","tok-45eb621b58e8","tok-c6d7a932929b","tok-b73e7c168ac9","tok-8ec80847af49","tok-e58e9f168fe2"]}]},"gra-on-pirkei-avot-2-1-2":{"unit_id":"gra-on-pirkei-avot-2-1-2","anchor_id":"gra-on-pirkei-avot-2-1-2","source_ref":"Gra on Pirkei Avot 2:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cde822f02676","tok-0582c2a751a5","tok-558e7bd31204","tok-996407ff38d7","tok-c6d7a932929b","tok-09c074016b95","tok-78518777a2a9","tok-de1e15763009","tok-b3357d6f03a8","tok-6b5655f77088","tok-0300107b1a53","tok-16e9df96bf0d","tok-aebbedff6338","tok-e811424cf8d5","tok-35afed7b11c5","tok-6d34439b4fa1","tok-7bf13e861355","tok-36d61ac38d91","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-2-1-3":{"unit_id":"gra-on-pirkei-avot-2-1-3","anchor_id":"gra-on-pirkei-avot-2-1-3","source_ref":"Gra on Pirkei Avot 2:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-144004bb2a59","tok-fb57daaf2874","tok-bd3f3d011cea","tok-558e7bd31204","tok-6759e366f31a","tok-927beaf39a9c","tok-ba9cd83187e5","tok-454d257f534a","tok-f2236ac412a2","tok-4230aae8fa79","tok-39051b09c3ce","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-2-1-4":{"unit_id":"gra-on-pirkei-avot-2-1-4","anchor_id":"gra-on-pirkei-avot-2-1-4","source_ref":"Gra on Pirkei Avot 2:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d31f809180a7","tok-558e7bd31204","tok-996407ff38d7","tok-93c29946d86a","tok-1b370601b7be","tok-18378da8d032","tok-e40f13e1f9e1","tok-1abe15b744c9","tok-8724d707e0d7","tok-b8328d9fa4e1","tok-c1523e0b7df5","tok-79f5f6e47602","tok-d0e220a74016","tok-7f9fe33ec6d8","tok-5953cceddf94","tok-addd8fed5721","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-2-1-5":{"unit_id":"gra-on-pirkei-avot-2-1-5","anchor_id":"gra-on-pirkei-avot-2-1-5","source_ref":"Gra on Pirkei Avot 2:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-421b9b923a48","tok-558e7bd31204","tok-c82a5cc481da","tok-558e7bd31204","tok-996407ff38d7","tok-45dc645ee146","tok-4798bae9b990","tok-09c074016b95","tok-21f45524ede1","tok-79cc01595904","tok-c1523e0b7df5","tok-e9524103222a","tok-6d34439b4fa1","tok-737396cf72e6","tok-6b5655f77088","tok-70b8bbd8560e","tok-2057b3f52e7c","tok-4a6cca772ab6","tok-d4ff1ec64f4a","tok-3c27933cf464","tok-6b3a91e820e3","tok-a2c2b78f5816","tok-6208e15486b3","tok-c1523e0b7df5","tok-e9524103222a","tok-6d34439b4fa1","tok-558e7bd31204","tok-5d81a88c25e6","tok-9f6ad01327c7","tok-9901c3613718","tok-21f45524ede1","tok-2406dc55f394","tok-cdcfb101e07e","tok-9f6ad01327c7","tok-6d34439b4fa1","tok-737396cf72e6","tok-32253a78b0c9","tok-577f557c766b","tok-2ad8c3d437a5","tok-d166c3ebebdc","tok-a1507dae751a"]}]},"gra-on-pirkei-avot-2-1-6":{"unit_id":"gra-on-pirkei-avot-2-1-6","anchor_id":"gra-on-pirkei-avot-2-1-6","source_ref":"Gra on Pirkei Avot 2:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bfc56dd00b16","tok-558e7bd31204","tok-996407ff38d7","tok-110aa9d25cf1","tok-218f6f1ba13d","tok-c4f1449073cb","tok-3647f142078f","tok-bc3151142716","tok-ade8574b402c","tok-080eef67e542","tok-32253a78b0c9"]}]},"gra-on-pirkei-avot-2-1-7":{"unit_id":"gra-on-pirkei-avot-2-1-7","anchor_id":"gra-on-pirkei-avot-2-1-7","source_ref":"Gra on Pirkei Avot 2:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6b5655f77088","tok-ac0e13a6437d","tok-558e7bd31204","tok-996407ff38d7","tok-45dc645ee146","tok-690aa60ccc2b","tok-6c26ed9a108b","tok-15b6009667b4","tok-e9524103222a","tok-e77cabc4a360","tok-0f9e3abccf86","tok-0f83f3a4215b","tok-e9524103222a","tok-d4e7f2f8f7ec","tok-39a16274fcb3"]}]},"gra-on-pirkei-avot-3-1-1":{"unit_id":"gra-on-pirkei-avot-3-1-1","anchor_id":"gra-on-pirkei-avot-3-1-1","source_ref":"Gra on Pirkei Avot 3:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-396cbbedf535","tok-fcd049e28536","tok-558e7bd31204","tok-996407ff38d7","tok-6d4918615c6e","tok-3baff23f0079","tok-c4d80ffd4b1a","tok-9e09760a2387","tok-ad4ed1bbf6d6","tok-7ff7c7d77d77","tok-558e7bd31204","tok-730433c4c56a","tok-7b457f6722da","tok-4516833e248a","tok-0bb61de30c7e","tok-c9601ff09094","tok-99b8c346ec6b","tok-01b4fe08fc2f","tok-0bb61de30c7e","tok-fbbf94f48e97","tok-964aef373754","tok-7ff7c7d77d77","tok-0bb61de30c7e","tok-d5ab338d9738","tok-7cf3b54f1f02","tok-e35e9fa82d3f","tok-fc6082ea79e9","tok-659fd5c73bde","tok-6d4918615c6e","tok-4b285af1cca5","tok-537f91ace982","tok-86a106448fa6","tok-c36b04f6466e","tok-fec8f1622267","tok-097c9cd6c6f3","tok-9126c5ff8fe1","tok-0ff7eaeeca18","tok-4fbd02c98677","tok-1bf34a7a188f","tok-128f3cdc3946","tok-097c9cd6c6f3","tok-b1a2ec8509e4","tok-22c24a3673fd","tok-a298a3863391","tok-decfed709c85","tok-b427d59fcdcd","tok-54e8d97872b4","tok-996407ff38d7","tok-45dc645ee146","tok-690aa60ccc2b","tok-6c26ed9a108b","tok-2253d3b373f0","tok-e9524103222a","tok-e77cabc4a360","tok-0f9e3abccf86","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-3-1-2":{"unit_id":"gra-on-pirkei-avot-3-1-2","anchor_id":"gra-on-pirkei-avot-3-1-2","source_ref":"Gra on Pirkei Avot 3:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1bf34a7a188f","tok-128f3cdc3946","tok-558e7bd31204","tok-996407ff38d7","tok-110aa9d25cf1","tok-16364a1a867f","tok-6c26ed9a108b","tok-bcd1c9cdc998","tok-b2bfcffeecf8","tok-2f6bc826506b","tok-558e7bd31204","tok-45dc645ee146","tok-2ea94fb54547","tok-9f6ad01327c7","tok-54e8d97872b4","tok-de125394a61a","tok-3850f97e25f8","tok-b28235f0d6e0","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-3-1-3":{"unit_id":"gra-on-pirkei-avot-3-1-3","anchor_id":"gra-on-pirkei-avot-3-1-3","source_ref":"Gra on Pirkei Avot 3:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a1f5b048ac8c","tok-558e7bd31204","tok-996407ff38d7","tok-6710a175dfb4","tok-18378da8d032","tok-21f45524ede1","tok-edd9c375555a","tok-22c24a3673fd","tok-558e7bd31204","tok-6d4918615c6e","tok-3baff23f0079","tok-6c26ed9a108b","tok-4cc93302662e","tok-f3052858264d","tok-558e7bd31204","tok-cb2f43a02b85","tok-45dc645ee146","tok-fffcebab0462","tok-a15d87804e6f","tok-7b4295c85518","tok-fbbf94f48e97","tok-8d99a8af3f69","tok-e77cabc4a360","tok-e4cd22878c61","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-3-1-4":{"unit_id":"gra-on-pirkei-avot-3-1-4","anchor_id":"gra-on-pirkei-avot-3-1-4","source_ref":"Gra on Pirkei Avot 3:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b427d59fcdcd","tok-54e8d97872b4","tok-558e7bd31204","tok-996407ff38d7","tok-6d4918615c6e","tok-09e243c2f94c","tok-21f45524ede1","tok-c1523e0b7df5","tok-e9524103222a","tok-558e7bd31204","tok-6d4918615c6e","tok-3baff23f0079","tok-f57f7740d43f","tok-21f45524ede1","tok-ad4ed1bbf6d6","tok-e9524103222a","tok-3df56231672e","tok-e485b6ee9ea5","tok-1265b3a6da6d","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-5-1-1":{"unit_id":"gra-on-pirkei-avot-5-1-1","anchor_id":"gra-on-pirkei-avot-5-1-1","source_ref":"Gra on Pirkei Avot 5:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ea47fee1da37","tok-1c5788357821","tok-558e7bd31204","tok-3e1c4dd822dd","tok-7eb59cf5f1e4","tok-e133d83e41d2","tok-d57fbc75b0cf","tok-1a04dc53f84a","tok-4c1486a1c3f6","tok-dfdbaf17a0bb","tok-d57fbc75b0cf","tok-1a04dc53f84a","tok-4c1486a1c3f6","tok-65e9d1764d89","tok-d57fbc75b0cf","tok-9b5ef4785846","tok-a30a8e017449","tok-d57fbc75b0cf","tok-9b5ef4785846","tok-f7cd0a09a6dd","tok-4c1486a1c3f6","tok-c5669c12c0ea","tok-2aac6d5897e8","tok-15eb7782acd0","tok-dd2142ed0e23","tok-e9b3852ca50f","tok-78e8f8bc5659","tok-e77cabc4a360","tok-81d36c35760e","tok-9804bbde358c","tok-5782534d5047","tok-605e9d0b7494","tok-c30f73ba1208","tok-0f15e8a6b9ba","tok-1f92896967db"]}]}}}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/gra-on-pirkei-avot.manifest.json"}</script>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"gra-on-pirkei-avot","work_title":"Gra on Pirkei Avot","work_slug":"gra/gra-on-pirkei-avot","scope_label":"All imported Hebrew works","generated_at":"2026-05-04T15:13:42.274Z","total_occurrences":676,"units":{"gra-on-pirkei-avot-1-1-1":{"unit_id":"gra-on-pirkei-avot-1-1-1","anchor_id":"gra-on-pirkei-avot-1-1-1","source_ref":"Gra on Pirkei Avot 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-935809b2902b","tok-2c8da18cf07d","tok-558e7bd31204","tok-0b035ea64b6b","tok-b7dbe1882b28","tok-3232ec622e43","tok-8c05ddc76bd0","tok-cc8b4137e9c3","tok-0ea6f9b0d673","tok-e17c83514e25","tok-558e7bd31204","tok-18cd423776d3","tok-fa16deb9c75f","tok-15b6009667b4","tok-935809b2902b","tok-8633c343cb41","tok-2872b4f53e01","tok-888caaa84a56","tok-8c38c91f56d3","tok-79803b302686","tok-1a74f8003978","tok-9f6ad01327c7","tok-ad4ed1bbf6d6","tok-935809b2902b","tok-18cd423776d3","tok-fa16deb9c75f","tok-558e7bd31204","tok-8c05ddc76bd0","tok-426859d3493c","tok-ad4ed1bbf6d6","tok-467d81ad7639","tok-25b26193486e","tok-712270aab3a1","tok-0d890446cdd6","tok-e19054ab6fd2","tok-5854017ea13e","tok-5616c50f1df8","tok-4b285af1cca5","tok-18cd423776d3","tok-1992ea78b0ae","tok-11965b8e2efb","tok-4cad78079457","tok-8c9aec865594","tok-fa16deb9c75f","tok-558e7bd31204","tok-c503871e2819","tok-1992ea78b0ae","tok-4cad78079457","tok-558e7bd31204","tok-5854017ea13e","tok-53ec99c4ca13","tok-528a64c04d3f","tok-558e7bd31204","tok-e19054ab6fd2","tok-5854017ea13e","tok-ed8c0a19ad65","tok-890b34ec23c6","tok-c6d7a932929b","tok-18cd423776d3","tok-fa16deb9c75f","tok-15b6009667b4","tok-935809b2902b","tok-9876a08dd357","tok-f311f4070965","tok-0e46688628a5","tok-7e9b540999d3","tok-91ba40132354","tok-91156c17cfe1","tok-c1523e0b7df5","tok-523a4f36e9e0","tok-935809b2902b","tok-5854017ea13e","tok-7ca6bd68ff5a","tok-c6d7a932929b","tok-8c05ddc76bd0","tok-2f8a52bb8463","tok-4230aae8fa79","tok-63c112ba87d9","tok-558e7bd31204","tok-d22ed5d15a6f","tok-289aa5794fed","tok-8c05ddc76bd0","tok-67cf3aef63a3","tok-558e7bd31204","tok-25b26193486e","tok-84605a538347","tok-514e1763c796","tok-5854017ea13e","tok-8ab1cf4c09a8","tok-0ccc39d75e57","tok-d90b49da9c4b","tok-0413736249ce","tok-a7117bb716c8","tok-28d51b0858a2","tok-159e6ee7b27b","tok-37f40a202d14","tok-9bbeccbc536a","tok-2cf13d8872d6","tok-c9a3c0d9ddfb","tok-0b40e9cd7d26","tok-19fbd5c1100c","tok-1992ea78b0ae","tok-300d50d43958","tok-79103bf735d6","tok-1d878039b74b","tok-668e72eeddec","tok-86d0c1f3746c","tok-325f0c4ce185","tok-49f88ca4f320","tok-875f10f9ff20","tok-514e1763c796","tok-5854017ea13e","tok-558e7bd31204","tok-7f94da68f7cc","tok-50c698bf20f5","tok-96472f8d5e6f","tok-0bb61de30c7e","tok-14f865b2a885","tok-50c236a4316f","tok-ae1e4ae390c6","tok-79c2a1939ea4","tok-51e631255626","tok-2c7a7fd7cab6","tok-49f88ca4f320","tok-76d9075f58b4","tok-865f2a2d4834","tok-d22ed5d15a6f","tok-057678d55fa2","tok-0019303c088c","tok-8e83689848ad","tok-9f6ad01327c7","tok-c4d80ffd4b1a","tok-412f91f7ca9d","tok-86df93b45c65","tok-70d1f7e86ad6","tok-412002472731","tok-ad4ed1bbf6d6","tok-2b49e5599d35","tok-558e7bd31204","tok-9876a08dd357","tok-25b26193486e","tok-558e7bd31204","tok-5854017ea13e","tok-9501f65fb99f","tok-54df9dd30cdf","tok-3c27933cf464","tok-b6a8f60ca4ce","tok-412f91f7ca9d","tok-86df93b45c65","tok-c7f592491fc2","tok-e9524103222a","tok-37f40a202d14","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-1-1-2":{"unit_id":"gra-on-pirkei-avot-1-1-2","anchor_id":"gra-on-pirkei-avot-1-1-2","source_ref":"Gra on Pirkei Avot 1:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9000c153b7c8","tok-6555374a6447","tok-0b035ea64b6b","tok-e71e5e1b36d0","tok-3232ec622e43","tok-25bf80ab67e3","tok-c68b7324bfc3","tok-fa497d27811e","tok-34f6744e1eba","tok-ce289bc12f66","tok-e9524103222a","tok-91f765a6f672","tok-fad9044b97c2","tok-9f018321fd5c","tok-6a5a8220ffa2","tok-66694555cc38","tok-c4d80ffd4b1a","tok-ff1952f57138","tok-be010f2e0cd2","tok-935809b2902b","tok-f8ee90d9a8ba","tok-3330053ce54c","tok-322d40dc2c91","tok-112adb4c028a","tok-b6cc878ad1cf","tok-e13fe86a7275","tok-d9ef50398984","tok-c4d80ffd4b1a","tok-13dacf15915a","tok-558e7bd31204","tok-24211822294c","tok-ae99a0130abb","tok-fece460c5ab8","tok-1a63383038b1","tok-656d9a1e61d5","tok-45e3e975a682","tok-37538604e965","tok-1e13bbc3ba18","tok-558e7bd31204","tok-24211822294c","tok-1a9ce95b104b","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-1-1-3":{"unit_id":"gra-on-pirkei-avot-1-1-3","anchor_id":"gra-on-pirkei-avot-1-1-3","source_ref":"Gra on Pirkei Avot 1:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b3a3094f39a","tok-c0fb3370cad4","tok-aae6d3ffb391","tok-fa1e6d67f079","tok-b6a8f60ca4ce","tok-b3bee831fd90","tok-81c8ce8bdf07","tok-ad4ed1bbf6d6","tok-9f6ad01327c7","tok-e9524103222a","tok-3582706f7d1f","tok-1e13bbc3ba18","tok-6b5655f77088","tok-3582706f7d1f","tok-c67f00b15222","tok-6b3a91e820e3","tok-cf2716eb43af","tok-fb34b1b6ef47","tok-60b39a9e1012","tok-1e13bbc3ba18","tok-6b3a91e820e3","tok-bca9f4a89a68","tok-ad4ed1bbf6d6","tok-e9524103222a","tok-3df56231672e","tok-9f6ad01327c7","tok-50c236a4316f","tok-8633c343cb41"]}]},"gra-on-pirkei-avot-1-1-4":{"unit_id":"gra-on-pirkei-avot-1-1-4","anchor_id":"gra-on-pirkei-avot-1-1-4","source_ref":"Gra on Pirkei Avot 1:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d73d70e84012","tok-25ad58857c24","tok-0b035ea64b6b","tok-c41c1442e13f","tok-6c26ed9a108b","tok-19f905ee6bd0","tok-a051c54adb56","tok-ad4ed1bbf6d6","tok-e9524103222a","tok-709ad1d9fa03","tok-e47f745b7bca","tok-d99a289f3902","tok-cb9e9cfca522","tok-c5b5bad3bc59","tok-c6d7a932929b","tok-c6864363d422","tok-60b39a9e1012","tok-1e13bbc3ba18","tok-3699d8ffc063","tok-06b745e483e4","tok-c4d80ffd4b1a","tok-e4e895386c5c","tok-3d9dec25d4ed","tok-9f6ad01327c7","tok-93418f8e7b20","tok-c860fb2962a3","tok-50c236a4316f"]}]},"gra-on-pirkei-avot-1-1-5":{"unit_id":"gra-on-pirkei-avot-1-1-5","anchor_id":"gra-on-pirkei-avot-1-1-5","source_ref":"Gra on Pirkei Avot 1:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f44db4069240","tok-558e7bd31204","tok-da020e71d75a","tok-80defc61da73","tok-0c50196109c1","tok-87112fabfe09","tok-45bf1400be71","tok-e25eeeca078c","tok-9b9406b9ba84"]}]},"gra-on-pirkei-avot-1-1-6":{"unit_id":"gra-on-pirkei-avot-1-1-6","anchor_id":"gra-on-pirkei-avot-1-1-6","source_ref":"Gra on Pirkei Avot 1:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-87112fabfe09","tok-558e7bd31204","tok-996407ff38d7","tok-d7de03bcb01f","tok-6c26ed9a108b","tok-b6a8f60ca4ce","tok-6f6735c4228c","tok-727fbe06dfc7","tok-009006034fa1","tok-33d4a3aa3a90","tok-b79286f46064","tok-63f95c3a8e27","tok-558e7bd31204","tok-a53ea1c49e3b","tok-76640aa1c8ee","tok-558e7bd31204","tok-86df93b45c65","tok-24211822294c","tok-e5be2674c9c5","tok-f15aad3e1b88","tok-b0f2276d0325","tok-3fecffddc843","tok-8c05ddc76bd0","tok-374b41e9f947","tok-34baf93e5cea","tok-fa2326e73b42","tok-ad4ed1bbf6d6","tok-5acd9717be32","tok-c8598da80094","tok-5b9071b6f910","tok-ba0e3c786a54","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-1-1-7":{"unit_id":"gra-on-pirkei-avot-1-1-7","anchor_id":"gra-on-pirkei-avot-1-1-7","source_ref":"Gra on Pirkei Avot 1:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6f154eba8796","tok-558e7bd31204","tok-996407ff38d7","tok-659d65d151b6","tok-38a3363dc335","tok-b6a8f60ca4ce","tok-87112fabfe09","tok-2c7a7fd7cab6","tok-56a314bb2f98","tok-c23493777e08","tok-144ef2451f84","tok-2c7a7fd7cab6","tok-56a314bb2f98","tok-39f4deddc369","tok-aae6d3ffb391","tok-4dc8fdc844f1","tok-ae15e83c59b6","tok-f4bb0f7e946c","tok-50c236a4316f"]}]},"gra-on-pirkei-avot-1-1-8":{"unit_id":"gra-on-pirkei-avot-1-1-8","anchor_id":"gra-on-pirkei-avot-1-1-8","source_ref":"Gra on Pirkei Avot 1:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-078561caa4db","tok-b4bc0fadbf3b","tok-558e7bd31204","tok-f3d45f2f8981","tok-73d9644d9cac","tok-0e46688628a5","tok-c4a64ae195b4","tok-6d3b3aabbbc3","tok-6e2e9e505d45","tok-c4a64ae195b4","tok-73d9644d9cac","tok-263d391d0207","tok-20853bcf5d84","tok-33fea6bf67d9","tok-18b3b6c21924","tok-b7dbe1882b28","tok-541100879186","tok-5e6a4ef68d1b","tok-ad99fbc85efb","tok-29f4f2cbf26b","tok-82fcec3aac76","tok-24211822294c","tok-a9ae2ce6153e","tok-50c236a4316f","tok-83c5171950ad","tok-c30f73ba1208","tok-18b3b6c21924","tok-c6d7a932929b","tok-737396cf72e6","tok-737396cf72e6","tok-1a5383d6d5b6","tok-e9524103222a","tok-19ba9f2a545b","tok-a06ecc15b7d2","tok-24211822294c","tok-567719945471","tok-558e7bd31204","tok-f7e904f76727","tok-bdbdaaaaf2dc","tok-558e7bd31204","tok-31e1e9da51d1","tok-888caaa84a56","tok-acc1fc4e5028","tok-6af942d3c5cc","tok-b6a8f60ca4ce","tok-f32ba66c972d","tok-a1e72d00d384","tok-e77cabc4a360","tok-c4a64ae195b4","tok-c9b5cdbb9750","tok-f3d45f2f8981","tok-558e7bd31204","tok-d59739a30d54","tok-18b3b6c21924","tok-6b5655f77088","tok-9e3ce055a9e8","tok-927d23ca37e6","tok-24211822294c","tok-da67f3873893","tok-85169d229f46","tok-6b3a91e820e3","tok-558e7bd31204","tok-d22ed5d15a6f"]}]},"gra-on-pirkei-avot-2-1-1":{"unit_id":"gra-on-pirkei-avot-2-1-1","anchor_id":"gra-on-pirkei-avot-2-1-1","source_ref":"Gra on Pirkei Avot 2:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e9524103222a","tok-d1535b6aebe1","tok-558e7bd31204","tok-996407ff38d7","tok-5d81a88c25e6","tok-18378da8d032","tok-09c074016b95","tok-5bd7749647c3","tok-34493e72e2be","tok-68469d2d035b","tok-558e7bd31204","tok-9b5ef4785846","tok-ca91e3cb73dc","tok-cde822f02676","tok-558e7bd31204","tok-0493be1d9da1","tok-5d81a88c25e6","tok-9f6ad01327c7","tok-a15d87804e6f","tok-6eda8198039b","tok-6fcd316f4612","tok-544a605fd29b","tok-e23fdae83b0b","tok-a4f59c0e0148","tok-d41ac5881d38","tok-24211822294c","tok-17fd6581c72d","tok-577f557c766b","tok-45eb621b58e8","tok-c6d7a932929b","tok-b73e7c168ac9","tok-8ec80847af49","tok-e58e9f168fe2"]}]},"gra-on-pirkei-avot-2-1-2":{"unit_id":"gra-on-pirkei-avot-2-1-2","anchor_id":"gra-on-pirkei-avot-2-1-2","source_ref":"Gra on Pirkei Avot 2:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cde822f02676","tok-0582c2a751a5","tok-558e7bd31204","tok-996407ff38d7","tok-c6d7a932929b","tok-09c074016b95","tok-78518777a2a9","tok-de1e15763009","tok-b3357d6f03a8","tok-6b5655f77088","tok-0300107b1a53","tok-16e9df96bf0d","tok-aebbedff6338","tok-e811424cf8d5","tok-35afed7b11c5","tok-6d34439b4fa1","tok-7bf13e861355","tok-36d61ac38d91","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-2-1-3":{"unit_id":"gra-on-pirkei-avot-2-1-3","anchor_id":"gra-on-pirkei-avot-2-1-3","source_ref":"Gra on Pirkei Avot 2:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-144004bb2a59","tok-fb57daaf2874","tok-bd3f3d011cea","tok-558e7bd31204","tok-6759e366f31a","tok-927beaf39a9c","tok-ba9cd83187e5","tok-454d257f534a","tok-f2236ac412a2","tok-4230aae8fa79","tok-39051b09c3ce","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-2-1-4":{"unit_id":"gra-on-pirkei-avot-2-1-4","anchor_id":"gra-on-pirkei-avot-2-1-4","source_ref":"Gra on Pirkei Avot 2:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d31f809180a7","tok-558e7bd31204","tok-996407ff38d7","tok-93c29946d86a","tok-1b370601b7be","tok-18378da8d032","tok-e40f13e1f9e1","tok-1abe15b744c9","tok-8724d707e0d7","tok-b8328d9fa4e1","tok-c1523e0b7df5","tok-79f5f6e47602","tok-d0e220a74016","tok-7f9fe33ec6d8","tok-5953cceddf94","tok-addd8fed5721","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-2-1-5":{"unit_id":"gra-on-pirkei-avot-2-1-5","anchor_id":"gra-on-pirkei-avot-2-1-5","source_ref":"Gra on Pirkei Avot 2:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-421b9b923a48","tok-558e7bd31204","tok-c82a5cc481da","tok-558e7bd31204","tok-996407ff38d7","tok-45dc645ee146","tok-4798bae9b990","tok-09c074016b95","tok-21f45524ede1","tok-79cc01595904","tok-c1523e0b7df5","tok-e9524103222a","tok-6d34439b4fa1","tok-737396cf72e6","tok-6b5655f77088","tok-70b8bbd8560e","tok-2057b3f52e7c","tok-4a6cca772ab6","tok-d4ff1ec64f4a","tok-3c27933cf464","tok-6b3a91e820e3","tok-a2c2b78f5816","tok-6208e15486b3","tok-c1523e0b7df5","tok-e9524103222a","tok-6d34439b4fa1","tok-558e7bd31204","tok-5d81a88c25e6","tok-9f6ad01327c7","tok-9901c3613718","tok-21f45524ede1","tok-2406dc55f394","tok-cdcfb101e07e","tok-9f6ad01327c7","tok-6d34439b4fa1","tok-737396cf72e6","tok-32253a78b0c9","tok-577f557c766b","tok-2ad8c3d437a5","tok-d166c3ebebdc","tok-a1507dae751a"]}]},"gra-on-pirkei-avot-2-1-6":{"unit_id":"gra-on-pirkei-avot-2-1-6","anchor_id":"gra-on-pirkei-avot-2-1-6","source_ref":"Gra on Pirkei Avot 2:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bfc56dd00b16","tok-558e7bd31204","tok-996407ff38d7","tok-110aa9d25cf1","tok-218f6f1ba13d","tok-c4f1449073cb","tok-3647f142078f","tok-bc3151142716","tok-ade8574b402c","tok-080eef67e542","tok-32253a78b0c9"]}]},"gra-on-pirkei-avot-2-1-7":{"unit_id":"gra-on-pirkei-avot-2-1-7","anchor_id":"gra-on-pirkei-avot-2-1-7","source_ref":"Gra on Pirkei Avot 2:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6b5655f77088","tok-ac0e13a6437d","tok-558e7bd31204","tok-996407ff38d7","tok-45dc645ee146","tok-690aa60ccc2b","tok-6c26ed9a108b","tok-15b6009667b4","tok-e9524103222a","tok-e77cabc4a360","tok-0f9e3abccf86","tok-0f83f3a4215b","tok-e9524103222a","tok-d4e7f2f8f7ec","tok-39a16274fcb3"]}]},"gra-on-pirkei-avot-3-1-1":{"unit_id":"gra-on-pirkei-avot-3-1-1","anchor_id":"gra-on-pirkei-avot-3-1-1","source_ref":"Gra on Pirkei Avot 3:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-396cbbedf535","tok-fcd049e28536","tok-558e7bd31204","tok-996407ff38d7","tok-6d4918615c6e","tok-3baff23f0079","tok-c4d80ffd4b1a","tok-9e09760a2387","tok-ad4ed1bbf6d6","tok-7ff7c7d77d77","tok-558e7bd31204","tok-730433c4c56a","tok-7b457f6722da","tok-4516833e248a","tok-0bb61de30c7e","tok-c9601ff09094","tok-99b8c346ec6b","tok-01b4fe08fc2f","tok-0bb61de30c7e","tok-fbbf94f48e97","tok-964aef373754","tok-7ff7c7d77d77","tok-0bb61de30c7e","tok-d5ab338d9738","tok-7cf3b54f1f02","tok-e35e9fa82d3f","tok-fc6082ea79e9","tok-659fd5c73bde","tok-6d4918615c6e","tok-4b285af1cca5","tok-537f91ace982","tok-86a106448fa6","tok-c36b04f6466e","tok-fec8f1622267","tok-097c9cd6c6f3","tok-9126c5ff8fe1","tok-0ff7eaeeca18","tok-4fbd02c98677","tok-1bf34a7a188f","tok-128f3cdc3946","tok-097c9cd6c6f3","tok-b1a2ec8509e4","tok-22c24a3673fd","tok-a298a3863391","tok-decfed709c85","tok-b427d59fcdcd","tok-54e8d97872b4","tok-996407ff38d7","tok-45dc645ee146","tok-690aa60ccc2b","tok-6c26ed9a108b","tok-2253d3b373f0","tok-e9524103222a","tok-e77cabc4a360","tok-0f9e3abccf86","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-3-1-2":{"unit_id":"gra-on-pirkei-avot-3-1-2","anchor_id":"gra-on-pirkei-avot-3-1-2","source_ref":"Gra on Pirkei Avot 3:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1bf34a7a188f","tok-128f3cdc3946","tok-558e7bd31204","tok-996407ff38d7","tok-110aa9d25cf1","tok-16364a1a867f","tok-6c26ed9a108b","tok-bcd1c9cdc998","tok-b2bfcffeecf8","tok-2f6bc826506b","tok-558e7bd31204","tok-45dc645ee146","tok-2ea94fb54547","tok-9f6ad01327c7","tok-54e8d97872b4","tok-de125394a61a","tok-3850f97e25f8","tok-b28235f0d6e0","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-3-1-3":{"unit_id":"gra-on-pirkei-avot-3-1-3","anchor_id":"gra-on-pirkei-avot-3-1-3","source_ref":"Gra on Pirkei Avot 3:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a1f5b048ac8c","tok-558e7bd31204","tok-996407ff38d7","tok-6710a175dfb4","tok-18378da8d032","tok-21f45524ede1","tok-edd9c375555a","tok-22c24a3673fd","tok-558e7bd31204","tok-6d4918615c6e","tok-3baff23f0079","tok-6c26ed9a108b","tok-4cc93302662e","tok-f3052858264d","tok-558e7bd31204","tok-cb2f43a02b85","tok-45dc645ee146","tok-fffcebab0462","tok-a15d87804e6f","tok-7b4295c85518","tok-fbbf94f48e97","tok-8d99a8af3f69","tok-e77cabc4a360","tok-e4cd22878c61","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-3-1-4":{"unit_id":"gra-on-pirkei-avot-3-1-4","anchor_id":"gra-on-pirkei-avot-3-1-4","source_ref":"Gra on Pirkei Avot 3:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b427d59fcdcd","tok-54e8d97872b4","tok-558e7bd31204","tok-996407ff38d7","tok-6d4918615c6e","tok-09e243c2f94c","tok-21f45524ede1","tok-c1523e0b7df5","tok-e9524103222a","tok-558e7bd31204","tok-6d4918615c6e","tok-3baff23f0079","tok-f57f7740d43f","tok-21f45524ede1","tok-ad4ed1bbf6d6","tok-e9524103222a","tok-3df56231672e","tok-e485b6ee9ea5","tok-1265b3a6da6d","tok-558e7bd31204"]}]},"gra-on-pirkei-avot-5-1-1":{"unit_id":"gra-on-pirkei-avot-5-1-1","anchor_id":"gra-on-pirkei-avot-5-1-1","source_ref":"Gra on Pirkei Avot 5:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ea47fee1da37","tok-1c5788357821","tok-558e7bd31204","tok-3e1c4dd822dd","tok-7eb59cf5f1e4","tok-e133d83e41d2","tok-d57fbc75b0cf","tok-1a04dc53f84a","tok-4c1486a1c3f6","tok-dfdbaf17a0bb","tok-d57fbc75b0cf","tok-1a04dc53f84a","tok-4c1486a1c3f6","tok-65e9d1764d89","tok-d57fbc75b0cf","tok-9b5ef4785846","tok-a30a8e017449","tok-d57fbc75b0cf","tok-9b5ef4785846","tok-f7cd0a09a6dd","tok-4c1486a1c3f6","tok-c5669c12c0ea","tok-2aac6d5897e8","tok-15eb7782acd0","tok-dd2142ed0e23","tok-e9b3852ca50f","tok-78e8f8bc5659","tok-e77cabc4a360","tok-81d36c35760e","tok-9804bbde358c","tok-5782534d5047","tok-605e9d0b7494","tok-c30f73ba1208","tok-0f15e8a6b9ba","tok-1f92896967db"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/gra-on-pirkei-avot.manifest.json","root_href":"../../"}</script>
   <script>
     (() => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -541,6 +558,25 @@
       let manifestPromise = null;
       const hud = document.querySelector("[data-lexical-hud]");
       const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
       const fetchJson = async (url, base = document.baseURI) => {
         const response = await fetch(toAbsoluteUrl(url, base));
         if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
@@ -638,6 +674,31 @@
       });
       const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
       if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
       const setText = (root, selector, value) => {
         const node = root.querySelector(selector);
         if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
@@ -653,6 +714,52 @@
         values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
         node.appendChild(ul);
       };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
       const appendRenderings = (node, values) => {
         const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
         if (!filtered.length) { node.append("N/A"); return; }
@@ -666,7 +773,8 @@
         if (!node) return;
         node.replaceChildren();
         const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
-        if (!rows.length) { node.textContent = "N/A"; return; }
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
         const list = document.createElement("div");
         list.className = "breakdown-list";
         rows.forEach((row) => {
@@ -686,7 +794,16 @@
         });
         node.appendChild(list);
       };
-      const renderEntryList = (entries) => {
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
         const list = document.createElement("div");
         list.className = "lexical-entry-list";
         const groupedEntries = new Map();
@@ -696,14 +813,14 @@
           if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
           const group = groupedEntries.get(key);
           group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
-          (entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
         });
         const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
         sorted.forEach((entry) => {
           const card = document.createElement("section");
           card.className = "lexical-entry";
           const title = document.createElement("h3");
-          const role = entry.context_role === "likely_contextual" ? "Likely contextual entry" : "Other possible entry";
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
           title.append(role, ": ");
           const spelling = document.createElement("span");
           spelling.className = "entry-hebrew";
@@ -726,65 +843,301 @@
         });
         return list;
       };
-      const renderPossibleEntries = (root, view, hasLexicalEntry) => {
-        const label = root.querySelector("[data-hud-renderings-label]");
-        const node = root.querySelector("[data-hud-renderings]");
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const sourceSummary = (rows) => {
+        const row = cleanValues(rows)[0];
+        if (!row) return { source: "Source metadata incomplete", license: "N/A" };
+        const sourceId = row.source_id ? ` ${row.source_id}` : "";
+        return { source: `${row.source_name || "Source"}${sourceId}`, license: row.license || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        const sourceLine = document.createElement("p");
+        sourceLine.className = "claim-source";
+        sourceLine.textContent = `Source: ${source.source}`;
+        const licenseLine = document.createElement("p");
+        licenseLine.className = "claim-license";
+        licenseLine.textContent = `License: ${source.license}`;
+        card.append(sourceLine, licenseLine);
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
         if (!node) return;
         node.replaceChildren();
-        if (label) label.textContent = "Possible lexical entries";
-        if (!hasLexicalEntry) { node.textContent = "No lexical entry yet."; return; }
-        let entries = Array.isArray(view.possible_entries) ? view.possible_entries : [];
-        entries = entries.filter((entry) => entry.relation_label !== "related root-field");
-        if (!entries.length) { setList(root, "[data-hud-renderings]", view.strict_renderings || ["No lexical entry yet."]); return; }
-        const likelyEntries = entries.filter((entry) => entry.context_role === "likely_contextual");
-        const otherEntries = entries.filter((entry) => entry.context_role !== "likely_contextual");
-        if (label) label.textContent = likelyEntries.length ? "Lexical resolution" : "Possible lexical entries";
-        const note = document.createElement("p");
-        note.className = "lexical-context-note";
-        note.textContent = likelyEntries.length ? (view.surface_context_note || view.context_note || "Context resolved.") : "Context not resolved.";
-        node.appendChild(note);
-        if (likelyEntries.length) node.appendChild(renderEntryList(likelyEntries));
-        if (otherEntries.length) {
-          const details = document.createElement("details");
-          details.className = "other-entries";
-          const summary = document.createElement("summary");
-          summary.textContent = "Show other possible entries";
-          details.appendChild(summary);
-          details.appendChild(renderEntryList(otherEntries));
-          if (view.secondary_source_rows && view.secondary_source_rows.length) {
-            const sourceDetails = document.createElement("details");
-            sourceDetails.className = "source-details";
-            const sourceSummary = document.createElement("summary");
-            sourceSummary.textContent = "Sources / licenses for other possible entries";
-            const sourceBox = document.createElement("div");
-            sourceDetails.append(sourceSummary, sourceBox);
-            renderSources(sourceBox, view.secondary_source_rows);
-            details.appendChild(sourceDetails);
-          }
-          node.appendChild(details);
-        }
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
       };
-      const renderSources = (sourceBox, rows) => {
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
         if (!sourceBox) return;
         sourceBox.replaceChildren();
-        const sourceRows = Array.isArray(rows) ? rows : (rows && rows.source_id ? [rows] : []);
-        if (!sourceRows.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
-        sourceRows.forEach((row) => {
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
           const section = document.createElement("div");
           section.className = "source-row";
-          const title = document.createElement("p");
-          const link = document.createElement("a");
-          link.href = row.source_url || "#";
-          link.textContent = row.source_name || "Source";
-          const strong = document.createElement("strong");
-          strong.appendChild(link);
-          title.appendChild(strong);
-          title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
-          const fields = document.createElement("p");
-          fields.textContent = `Fields: ${(row.fields_used || []).join(", ") || "N/A"}`;
-          const notes = document.createElement("p");
-          notes.textContent = row.notes || "";
-          section.append(title, fields, notes);
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
           sourceBox.appendChild(section);
         });
       };
@@ -798,29 +1151,44 @@
         const unit = button.closest("[data-lexical-unit]");
         const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
         if (!unit || !slot) return;
-        if (hud.parentElement !== slot) slot.appendChild(hud);
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
         document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
         button.setAttribute("aria-pressed", "true");
         hud.hidden = false;
+        positionHudNearButton(button);
         setText(hud, "[data-hud-word]", button.textContent.trim());
-        setList(hud, "[data-hud-surface-renderings]", ["Loading lexical entry..."]);
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
         renderBreakdown(hud, {});
-        renderPossibleEntries(hud, {}, false);
-        renderSources(hud.querySelector("[data-hud-sources]"), []);
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
         try {
           const view = await buildWordView(button);
           if (button.getAttribute("aria-pressed") !== "true") return;
           setText(hud, "[data-hud-word]", view.hebrew_word);
           const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
-          setList(hud, "[data-hud-surface-renderings]", (view.surface_renderings && view.surface_renderings.length) ? view.surface_renderings : (hasLexicalEntry ? view.strict_renderings : ["No lexical entry yet."]));
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
           renderBreakdown(hud, view);
-          renderPossibleEntries(hud, view, hasLexicalEntry);
-          renderSources(hud.querySelector("[data-hud-sources]"), view.source_rows);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
           const details = hud.querySelector("details");
           if (details) details.open = false;
+          positionHudNearButton(button);
         } catch (error) {
           console.error(error);
-          setList(hud, "[data-hud-surface-renderings]", ["No lexical entry yet."]);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
         }
       };
       buttons.forEach((button) => {
@@ -835,9 +1203,12 @@
         button.addEventListener("click", () => {
           const hud = button.closest("[data-lexical-hud]");
           if (hud) hud.hidden = true;
+          activeHudButton = null;
           document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
         });
       });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
     })();
   </script>
 </body>

@@ -441,7 +441,7 @@ foreach ($canary in $openingCanaryGroup) {
 $orotHtmlPath = Join-Path $PSScriptRoot '..\orot\index.html'
 if (Test-Path -LiteralPath $orotHtmlPath) {
   $orotHtml = Get-Content -LiteralPath $orotHtmlPath -Raw -Encoding UTF8
-  foreach ($requiredExternalMarker in @('data-lexical-config>', 'loadTokenRow', 'chunkPromises', 'fetchJson', 'sourceGroupsForStrict', 'source-claim', 'insertAdjacentElement("afterend", hud)')) {
+  foreach ($requiredExternalMarker in @('data-lexical-config>', 'loadTokenRow', 'chunkPromises', 'fetchJson', 'sourceGroupsForStrict', 'source-claim', 'positionHudNearButton', 'document.body.appendChild(hud)')) {
     if (-not $orotHtml.Contains($requiredExternalMarker)) {
       throw "Orot page missing external lexical payload marker: $requiredExternalMarker"
     }
@@ -632,7 +632,7 @@ function Test-LexicalSample {
   if (-not ($html.Contains('Show more') -or $html.Contains('Show potential options'))) {
     throw "Generated page missing lexical option expansion marker for $($Sample.Label)"
   }
-  if (-not ($html.Contains('Show low-confidence rows') -or $html.Contains('Show related options'))) {
+  if (-not ($html.Contains('allowLowConfidenceFallback') -or $html.Contains('Show related options'))) {
     throw "Generated page missing lexical secondary expansion marker for $($Sample.Label)"
   }
   if (-not ($html.Contains('data-hud-hebrew-strict') -or $html.Contains('data-hud-surface-renderings'))) {

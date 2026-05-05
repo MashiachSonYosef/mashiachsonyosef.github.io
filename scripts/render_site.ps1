@@ -360,7 +360,7 @@ function Append-SiteHead {
     [void]$Builder.AppendLine('    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }')
     [void]$Builder.AppendLine('    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }')
     [void]$Builder.AppendLine('    .lexical-slot { margin-top: 16px; }')
-    [void]$Builder.AppendLine('    .lexical-hud { position: static; border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.28); }')
+    [void]$Builder.AppendLine('    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }')
     [void]$Builder.AppendLine('    .lexical-hud[hidden] { display: none; }')
     [void]$Builder.AppendLine('    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }')
     [void]$Builder.AppendLine('    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }')
@@ -561,6 +561,31 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('      });')
   [void]$Builder.AppendLine('      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));')
   [void]$Builder.AppendLine('      if (!buttons.length || !hud) return;')
+  [void]$Builder.AppendLine('      let activeHudButton = null;')
+  [void]$Builder.AppendLine('      if (hud.parentElement !== document.body) document.body.appendChild(hud);')
+  [void]$Builder.AppendLine('      const positionHudNearButton = (button) => {')
+  [void]$Builder.AppendLine('        if (!button || hud.hidden) return;')
+  [void]$Builder.AppendLine('        const rect = button.getBoundingClientRect();')
+  [void]$Builder.AppendLine('        const margin = 12;')
+  [void]$Builder.AppendLine('        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));')
+  [void]$Builder.AppendLine('        hud.style.width = width + "px";')
+  [void]$Builder.AppendLine('        const preferredLeft = rect.right - width;')
+  [void]$Builder.AppendLine('        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);')
+  [void]$Builder.AppendLine('        const below = window.innerHeight - rect.bottom - margin;')
+  [void]$Builder.AppendLine('        const above = rect.top - margin;')
+  [void]$Builder.AppendLine('        const openAbove = below < 280 && above > below;')
+  [void]$Builder.AppendLine('        const available = Math.max(220, (openAbove ? above : below) - margin);')
+  [void]$Builder.AppendLine('        hud.style.maxHeight = Math.min(560, available) + "px";')
+  [void]$Builder.AppendLine('        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));')
+  [void]$Builder.AppendLine('        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;')
+  [void]$Builder.AppendLine('        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);')
+  [void]$Builder.AppendLine('        hud.style.left = left + "px";')
+  [void]$Builder.AppendLine('        hud.style.top = top + "px";')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const scheduleHudPosition = () => {')
+  [void]$Builder.AppendLine('        if (!activeHudButton || hud.hidden) return;')
+  [void]$Builder.AppendLine('        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));')
+  [void]$Builder.AppendLine('      };')
   [void]$Builder.AppendLine('      const setText = (root, selector, value) => {')
   [void]$Builder.AppendLine('        const node = root.querySelector(selector);')
   [void]$Builder.AppendLine('        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";')
@@ -741,12 +766,7 @@ function Append-LexicalHudScript {
       [void]$Builder.AppendLine('        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };')
       [void]$Builder.AppendLine('        return { delta: 0, reason: "" };')
       [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const isHebrewPrimaryContext = (view) => !isAramaicView(view || {});')
       [void]$Builder.AppendLine('      const applyDisplayBoost = (status, rawScore, view) => {')
-      [void]$Builder.AppendLine('        if (status === "Strict Hebrew" && isHebrewPrimaryContext(view)) {')
-      [void]$Builder.AppendLine('          const boosted = clampScore(rawScore + 5, 0, 99);')
-      [void]$Builder.AppendLine('          return { score: boosted, reasons: boosted > rawScore ? ["Hebrew-primary display/order boost"] : [] };')
-      [void]$Builder.AppendLine('        }')
       [void]$Builder.AppendLine('        return { score: rawScore, reasons: [] };')
       [void]$Builder.AppendLine('      };')
       [void]$Builder.AppendLine('      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {')
@@ -756,7 +776,7 @@ function Append-LexicalHudScript {
       [void]$Builder.AppendLine('        if (status === "Caution") { score = 35; reasons.push("caution tier"); }')
       [void]$Builder.AppendLine('        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }')
       [void]$Builder.AppendLine('        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }')
-      [void]$Builder.AppendLine('        else if (status === "Strict Aramaic") { score = 82; reasons.push("strict Aramaic row"); }')
+      [void]$Builder.AppendLine('        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }')
       [void]$Builder.AppendLine('        else { score = 84; reasons.push("strict Hebrew row"); }')
       [void]$Builder.AppendLine('        const rendered = cleanStrictRenderings(renderings || []);')
       [void]$Builder.AppendLine('        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }')
@@ -778,7 +798,7 @@ function Append-LexicalHudScript {
       [void]$Builder.AppendLine('        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);')
       [void]$Builder.AppendLine('        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }')
       [void]$Builder.AppendLine('        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }')
-      [void]$Builder.AppendLine('        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 97, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };')
+      [void]$Builder.AppendLine('        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };')
       [void]$Builder.AppendLine('        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };')
       [void]$Builder.AppendLine('        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);')
       [void]$Builder.AppendLine('        const display = applyDisplayBoost(status, rawScore, view);')
@@ -824,7 +844,7 @@ function Append-LexicalHudScript {
       [void]$Builder.AppendLine('        const badge = document.createElement("span");')
       [void]$Builder.AppendLine('        badge.className = "claim-status";')
       [void]$Builder.AppendLine('        const confidence = claimConfidence(claim);')
-      [void]$Builder.AppendLine('        badge.textContent = `${claim.status || "Potential"} · ${confidence}%`;')
+      [void]$Builder.AppendLine('        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;')
       [void]$Builder.AppendLine('        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;')
       [void]$Builder.AppendLine('        const hebrew = document.createElement("strong");')
       [void]$Builder.AppendLine('        hebrew.className = "claim-hebrew";')
@@ -869,10 +889,10 @@ function Append-LexicalHudScript {
       [void]$Builder.AppendLine('        list.className = "claim-row-list";')
       [void]$Builder.AppendLine('        const displayRows = rows.filter(isDisplayableClaim);')
       [void]$Builder.AppendLine('        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));')
-      [void]$Builder.AppendLine('        displayRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));')
-      [void]$Builder.AppendLine('        appendClaimsUnderDetails(list, "Show more", displayRows.slice(MAX_VISIBLE_CLAIMS));')
-      [void]$Builder.AppendLine('        appendClaimsUnderDetails(list, "Show low-confidence rows", lowRows);')
-      [void]$Builder.AppendLine('        if (!displayRows.length && !lowRows.length) { node.textContent = "N/A"; return; }')
+      [void]$Builder.AppendLine('        const visibleRows = displayRows.length ? displayRows : lowRows;')
+      [void]$Builder.AppendLine('        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));')
+      [void]$Builder.AppendLine('        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));')
+      [void]$Builder.AppendLine('        if (!visibleRows.length) { node.textContent = "N/A"; return; }')
       [void]$Builder.AppendLine('        node.appendChild(list);')
       [void]$Builder.AppendLine('      };')
       [void]$Builder.AppendLine('      const strictClaimsForView = (view, strictBuckets) => {')
@@ -954,10 +974,12 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");')
   [void]$Builder.AppendLine('        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");')
   [void]$Builder.AppendLine('        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);')
-  [void]$Builder.AppendLine('        if (!highClaims.length && !hasStrict) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));')
-  [void]$Builder.AppendLine('        result.potential.push(...visiblePotentialClaims);')
-  [void]$Builder.AppendLine('        result.related.push(...visibleRelatedClaims);')
-  [void]$Builder.AppendLine('        result.caution.push(...cautionClaims);')
+  [void]$Builder.AppendLine('        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;')
+  [void]$Builder.AppendLine('        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);')
+  [void]$Builder.AppendLine('        result.potential.push(...keepForDisplay(visiblePotentialClaims));')
+  [void]$Builder.AppendLine('        result.related.push(...keepForDisplay(visibleRelatedClaims));')
+  [void]$Builder.AppendLine('        result.caution.push(...keepForDisplay(cautionClaims));')
+  [void]$Builder.AppendLine('        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));')
   [void]$Builder.AppendLine('        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);')
   [void]$Builder.AppendLine('        setRowHidden(root, "[data-hud-related-row]", !result.related.length);')
   [void]$Builder.AppendLine('        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);')
@@ -1016,15 +1038,12 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        const unit = button.closest("[data-lexical-unit]");')
   [void]$Builder.AppendLine('        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;')
   [void]$Builder.AppendLine('        if (!unit || !slot) return;')
-  [void]$Builder.AppendLine('        const paragraph = button.closest("[data-lexical-paragraph]");')
-  [void]$Builder.AppendLine('        if (paragraph) {')
-  [void]$Builder.AppendLine('          if (hud.previousElementSibling !== paragraph) paragraph.insertAdjacentElement("afterend", hud);')
-  [void]$Builder.AppendLine('        } else if (hud.parentElement !== slot) {')
-  [void]$Builder.AppendLine('          slot.appendChild(hud);')
-  [void]$Builder.AppendLine('        }')
+  [void]$Builder.AppendLine('        activeHudButton = button;')
+  [void]$Builder.AppendLine('        if (hud.parentElement !== document.body) document.body.appendChild(hud);')
   [void]$Builder.AppendLine('        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));')
   [void]$Builder.AppendLine('        button.setAttribute("aria-pressed", "true");')
   [void]$Builder.AppendLine('        hud.hidden = false;')
+  [void]$Builder.AppendLine('        positionHudNearButton(button);')
   [void]$Builder.AppendLine('        setText(hud, "[data-hud-word]", button.textContent.trim());')
   [void]$Builder.AppendLine('        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);')
   [void]$Builder.AppendLine('        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);')
@@ -1050,11 +1069,13 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));')
   [void]$Builder.AppendLine('          const details = hud.querySelector("details");')
   [void]$Builder.AppendLine('          if (details) details.open = false;')
+  [void]$Builder.AppendLine('          positionHudNearButton(button);')
   [void]$Builder.AppendLine('        } catch (error) {')
   [void]$Builder.AppendLine('          console.error(error);')
   [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);')
   [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);')
   [void]$Builder.AppendLine('          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);')
+  [void]$Builder.AppendLine('          positionHudNearButton(button);')
   [void]$Builder.AppendLine('        }')
   [void]$Builder.AppendLine('      };')
   [void]$Builder.AppendLine('      buttons.forEach((button) => {')
@@ -1069,9 +1090,12 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        button.addEventListener("click", () => {')
   [void]$Builder.AppendLine('          const hud = button.closest("[data-lexical-hud]");')
   [void]$Builder.AppendLine('          if (hud) hud.hidden = true;')
+  [void]$Builder.AppendLine('          activeHudButton = null;')
   [void]$Builder.AppendLine('          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));')
   [void]$Builder.AppendLine('        });')
   [void]$Builder.AppendLine('      });')
+  [void]$Builder.AppendLine('      window.addEventListener("resize", scheduleHudPosition);')
+  [void]$Builder.AppendLine('      window.addEventListener("scroll", scheduleHudPosition, true);')
   [void]$Builder.AppendLine('    })();')
   [void]$Builder.AppendLine('  </script>')
 }
@@ -1756,13 +1780,17 @@ function Append-FeatureCard {
   if ($null -ne $Source) {
     [void]$Builder.AppendLine("            <a class=""work-card"" href=""$($Source.work_slug)/"">")
     [void]$Builder.AppendLine("              <strong>$(Encode-Html $Label)</strong>")
-    [void]$Builder.AppendLine("              <span class=""work-label"">$(Encode-Html $Role)</span>")
+    if ($Role) {
+      [void]$Builder.AppendLine("              <span class=""work-label"">$(Encode-Html $Role)</span>")
+    }
     [void]$Builder.AppendLine("              <span class=""meta"">$(@($Source.units).Count) source units | $(Encode-Html $Source.source_system) | imported $(Encode-Html $Source.import_date)</span>")
     [void]$Builder.AppendLine('            </a>')
   } else {
     [void]$Builder.AppendLine('            <div class="work-card placeholder-card">')
     [void]$Builder.AppendLine("              <strong>$(Encode-Html $Label)</strong>")
-    [void]$Builder.AppendLine("              <span class=""work-label"">$(Encode-Html $Role)</span>")
+    if ($Role) {
+      [void]$Builder.AppendLine("              <span class=""work-label"">$(Encode-Html $Role)</span>")
+    }
     [void]$Builder.AppendLine("              <span class=""meta"">$(Encode-Html $Placeholder)</span>")
     [void]$Builder.AppendLine('            </div>')
   }
@@ -1796,46 +1824,10 @@ function Append-LibrarySections {
 
 $featureCards = @(
   [pscustomobject]@{
-    Label = 'Kol HaTor'
-    Role = 'origin of fire / ox / MbY charge'
-    Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('kol-hator') -Titles @('Kol HaTor'))
-    Placeholder = 'Coming soon'
-  },
-  [pscustomobject]@{
     Label = "Rav Kook's Orot"
-    Role = 'receiver of fire / stick / national body'
+    Role = ''
     Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('orot') -Titles @('Orot'))
     Placeholder = 'Coming soon'
-  },
-  [pscustomobject]@{
-    Label = 'Gra on Tikkunei Zohar'
-    Role = 'goal of fire / tikkun'
-    Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('gra-on-tikkunei-zohar', 'beur-hagra-on-tikkunei-zohar') -Titles @('Gra on Tikkunei Zohar', 'Beur HaGra on Tikkunei Zohar', 'Vilna Gaon on Tikkunei Zohar'))
-    Placeholder = 'Coming soon'
-  },
-  [pscustomobject]@{
-    Label = 'Book of Joshua'
-    Role = 'rain of fire / mechanism / land-entry'
-    Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('joshua', 'book-of-joshua', 'tanakh-joshua') -Titles @('Joshua', 'Book of Joshua'))
-    Placeholder = 'Book of Joshua - coming soon'
-  },
-  [pscustomobject]@{
-    Label = 'Book of Zechariah'
-    Role = 'vision / return / future fire'
-    Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('zechariah', 'book-of-zechariah', 'tanakh-zechariah') -Titles @('Zechariah', 'Book of Zechariah'))
-    Placeholder = 'Book of Zechariah - coming soon'
-  },
-  [pscustomobject]@{
-    Label = 'Book of Ezekiel'
-    Role = 'dry bones / chariot / restoration'
-    Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('ezekiel', 'book-of-ezekiel', 'tanakh-ezekiel') -Titles @('Ezekiel', 'Book of Ezekiel'))
-    Placeholder = 'Book of Ezekiel - coming soon'
-  },
-  [pscustomobject]@{
-    Label = 'Book of 1 Kings'
-    Role = 'Carmel / Elijah fire / contest'
-    Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('i-kings', '1-kings', 'book-of-1-kings', 'tanakh-i-kings') -Titles @('I Kings', '1 Kings', 'Book of 1 Kings'))
-    Placeholder = 'Book of 1 Kings - coming soon'
   }
 )
 
@@ -1845,12 +1837,12 @@ Append-SiteHead -Builder $homePage -Title 'Hebrew Source Workbench'
 [void]$homePage.AppendLine('    <div class="shell">')
 [void]$homePage.AppendLine('      <div class="hero">')
 [void]$homePage.AppendLine('        <h1>Hebrew Source Workbench</h1>')
-[void]$homePage.AppendLine('        <p>Main path through the Hebrew source workbench with lexical HUD support. All other imported works are preserved in the full library.</p>')
+[void]$homePage.AppendLine('        <p>Hebrew-first source workbench centered on Orot, with clickable lexical HUD support and explicit source/license layers. Other imported works remain available in the full library.</p>')
 [void]$homePage.AppendLine('        <div class="home-actions"><a href="library/">Full Library</a></div>')
 [void]$homePage.AppendLine('      </div>')
 [void]$homePage.AppendLine('      <div style="padding:22px">')
 [void]$homePage.AppendLine('        <section class="home-section">')
-[void]$homePage.AppendLine('          <h2>Main Path</h2>')
+[void]$homePage.AppendLine('          <h2>Featured Work</h2>')
 [void]$homePage.AppendLine('          <div class="home-grid">')
 foreach ($card in $featureCards) {
   Append-FeatureCard -Builder $homePage -Label $card.Label -Role $card.Role -Source $card.Source -Placeholder $card.Placeholder
@@ -1871,7 +1863,7 @@ Append-SiteHead -Builder $libraryPage -Title 'Full Library'
 [void]$libraryPage.AppendLine('      <div class="hero">')
 [void]$libraryPage.AppendLine('        <p class="crumbs"><a href="../">Home</a></p>')
 [void]$libraryPage.AppendLine('        <h1>Full Library</h1>')
-[void]$libraryPage.AppendLine('        <p>All imported source works remain available here. The homepage only presents the main path.</p>')
+[void]$libraryPage.AppendLine('        <p>All imported source works remain available here. The homepage is intentionally limited to the featured Orot workbench.</p>')
 [void]$libraryPage.AppendLine('      </div>')
 [void]$libraryPage.AppendLine('      <div style="padding:22px">')
 Append-LibrarySections -Builder $libraryPage -Sources $sources -HrefPrefix '../'

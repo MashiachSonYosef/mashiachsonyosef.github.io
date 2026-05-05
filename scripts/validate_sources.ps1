@@ -408,7 +408,7 @@ foreach ($lexicalFile in $lexicalFiles) {
     if (-not ($lexicalPage.Contains('Show more') -or $lexicalPage.Contains('Show potential options'))) {
       $errors.Add("Lexical target page missing option expansion text for $($lexical.work_id)")
     }
-    if (-not ($lexicalPage.Contains('Show low-confidence rows') -or $lexicalPage.Contains('Show related options'))) {
+    if (-not ($lexicalPage.Contains('allowLowConfidenceFallback') -or $lexicalPage.Contains('Show related options'))) {
       $errors.Add("Lexical target page missing secondary expansion text for $($lexical.work_id)")
     }
     if (-not ($lexicalPage.Contains('Strict Hebrew') -or $lexicalPage.Contains('Strict renderings'))) {
