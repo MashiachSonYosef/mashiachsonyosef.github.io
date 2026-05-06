@@ -35,6 +35,7 @@ Generated from local `data/sources/*.json`. Hebrew source only; English translat
 | Ma'amar Hador | 18 | Maamar Hador -- Wikisource (https://he.wikisource.org/wiki/%D7%9E%D7%90%D7%9E%D7%A8_%D7%94%D7%93%D7%95%D7%A8) | CC-BY-SA | yes | yes | required |
 | Maaseh Rav | 250 | Wikisource (http://he.wikisource.org/wiki/%D7%9E%D7%A2%D7%A9%D7%94_%D7%A8%D7%91_%D7%94%D7%9C%D7%9B%D7%95%D7%AA_%D7%91%D7%A8%D7%9B%D7%95%D7%AA_%D7%94%D7%A9%D7%97%D7%A8) | CC-BY-SA | yes | yes | required |
 | Midbar Shur | 243 | Midbar Shur (https://he.wikisource.org/wiki/%D7%9E%D7%93%D7%91%D7%A8_%D7%A9%D7%95%D7%A8) | Public Domain | yes | no | none required by license; source/version retained |
+| Midrash Lekach Tov | 7822 | Midrash Lekach Tov on Torah, Vilna 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001922206) | Public Domain | yes | no | none required by license; source/version retained |
 | Midrash Tehillim | 808 | OYW (http://mobile.tora.ws/) | Public Domain | yes | no | none required by license; source/version retained |
 | Midrash Tanchuma | 2121 | Midrash Tanchuma -- Torat Emet (http://www.toratemetfreeware.com/online/a_root.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Musar Avikha | 14 | Jerusalem, 1946 (https://he.wikisource.org/wiki/%D7%9E%D7%95%D7%A1%D7%A8_%D7%90%D7%91%D7%99%D7%9A) | Public Domain | yes | no | none required by license; source/version retained |
@@ -84,6 +85,7 @@ Generated from local `data/sources/*.json`. Hebrew source only; English translat
 | Kohelet Rabbah | imported | Public Domain Midrash Rabbah TE Hebrew. |
 | Tanna DeBei Eliyahu Rabbah | imported | Public Domain OYW Hebrew. |
 | Seder Olam Zutta | imported | Public Domain Grossberg 1910 Hebrew. |
+| Midrash Lekach Tov | imported | Public Domain Vilna 1884 Hebrew; imported with resumable Sefaria payload cache. |
 
 ## Skipped / Deferred Candidates
 
@@ -100,7 +102,6 @@ Generated from local `data/sources/*.json`. Hebrew source only; English translat
 | Yalkut Shimoni on Nach | Sefaria Hebrew version probe returned `unknown` license; no import performed. |
 | Tanna DeBei Eliyahu Zuta | Probe did not resolve a clean version/license row in this pass; no import performed. |
 | Seder Olam Rabbah | Probe did not resolve a clean version/license row in this pass; no import performed. |
-| Midrash Lekach Tov | Public Domain metadata found, but the import timed out because the work is very large; deferred for a chunked/resumable import pass. |
 | Midrash Aggadah | Public Domain metadata found, but deferred after the Midrash Lekach Tov timeout to keep this batch coherent and validated. |
 | Pesikta Zutarta / Midrash Sekhel Tov | Probe did not resolve a clean version/license row in this pass; no import performed. |
 

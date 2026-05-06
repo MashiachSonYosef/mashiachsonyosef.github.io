@@ -4,6 +4,9 @@ param(
   [string]$OverlayDir = 'data/overlays',
   [string[]]$OnlyWorkIds = @(),
   [string]$OnlyWorkIdsPath = '',
+  [string]$ImportCacheDir = 'data/import-cache/sefaria',
+  [switch]$UseImportCache,
+  [switch]$RefreshImportCache,
   [switch]$SkipExisting
 )
 
@@ -57,6 +60,18 @@ function Write-Utf8Json {
   [System.IO.File]::WriteAllText((Resolve-Path -Path $parent).Path + '\' + (Split-Path $Path -Leaf), $json, [System.Text.UTF8Encoding]::new($false))
 }
 
+function Get-ShortSha256 {
+  param([string]$Text)
+  $sha = [System.Security.Cryptography.SHA256]::Create()
+  try {
+    $bytes = [System.Text.Encoding]::UTF8.GetBytes($Text)
+    $hashBytes = $sha.ComputeHash($bytes)
+    return ([System.BitConverter]::ToString($hashBytes) -replace '-', '').Substring(0, 16).ToLowerInvariant()
+  } finally {
+    $sha.Dispose()
+  }
+}
+
 function Get-Utf8Json {
   param([string]$Uri)
   try {
@@ -100,6 +115,43 @@ function Get-SefariaText {
   param([string]$Ref)
   $encodedRef = [System.Uri]::EscapeDataString($Ref)
   Get-Utf8Json -Uri "https://www.sefaria.org/api/texts/$encodedRef`?context=0&commentary=0"
+}
+
+function Get-ImportCachePath {
+  param(
+    [string]$WorkId,
+    [string]$Ref
+  )
+
+  $slug = New-Slug $Ref
+  if ($slug.Length -gt 96) {
+    $slug = $slug.Substring(0, 96).Trim('-')
+  }
+  if (-not $slug) { $slug = 'ref' }
+
+  $hash = Get-ShortSha256 -Text $Ref
+  $workCacheDir = Join-Path $ImportCacheDir $WorkId
+  return (Join-Path $workCacheDir "$slug-$hash.json")
+}
+
+function Get-SefariaTextForImport {
+  param(
+    [string]$WorkId,
+    [string]$Ref
+  )
+
+  if (-not $UseImportCache) {
+    return Get-SefariaText -Ref $Ref
+  }
+
+  $cachePath = Get-ImportCachePath -WorkId $WorkId -Ref $Ref
+  if ((Test-Path $cachePath) -and -not $RefreshImportCache) {
+    return Read-Json -Path $cachePath
+  }
+
+  $payload = Get-SefariaText -Ref $Ref
+  Write-Utf8Json -Path $cachePath -Value $payload
+  return $payload
 }
 
 function Get-PrimaryTitle {
@@ -454,7 +506,7 @@ function Add-UnitsByNextTraversal {
 
     Write-Host "Importing $nextRef"
     try {
-      $payload = Get-SefariaText -Ref $nextRef
+      $payload = Get-SefariaTextForImport -WorkId $Work.work_id -Ref $nextRef
       Add-UnitsFromPayload -Units $Units -SequenceRef $SequenceRef -Work $Work -Meta $Meta -Payload $payload
       $nextRef = $payload.next
     } catch {
@@ -509,7 +561,7 @@ foreach ($work in $config.works) {
     foreach ($fetchRef in Get-FetchRefs -LeafRef $leafRef -Leaf $leaf) {
       Write-Host "Importing $fetchRef"
       try {
-        $payload = Get-SefariaText -Ref $fetchRef
+        $payload = Get-SefariaTextForImport -WorkId $work.work_id -Ref $fetchRef
         Add-UnitsFromPayload -Units $units -SequenceRef ([ref]$sequence) -Work $work -Meta $meta -Payload $payload
       } catch {
         Write-Warning "Skipping $fetchRef`: $($_.Exception.Message)"
