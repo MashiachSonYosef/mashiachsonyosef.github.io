@@ -530,6 +530,11 @@ foreach ($work in $config.works) {
     continue
   }
 
+  if ($work.manual_import) {
+    Write-Host "Skipping manual import work $($work.work_id): $($work.manual_import_note)"
+    continue
+  }
+
   $sourcePath = Join-Path $OutputDir "$($work.work_id).json"
   if ($SkipExisting -and (Test-Path $sourcePath)) {
     Write-Host "Skipping existing source for $($work.sefaria_ref)"

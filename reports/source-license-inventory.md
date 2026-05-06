@@ -7,6 +7,7 @@ Generated from local `data/sources/*.json`. Hebrew source only; English translat
 | Work | Units | Hebrew version/source | License | Commercial reuse | Share-alike | Attribution |
 |---|---:|---|---|---|---|---|
 | Aderet Eliyahu | 59 | Aderet Eliyahu, Halberstadt, 1860 (https://www.nli.org.il/he/books/NNL_ALEPH001191318 ) | Public Domain | yes | no | none required by license; source/version retained |
+| Alphabet of Ben Sira | 104 | Otzar Midrashim, New York, 1915 (https://www.nli.org.il/he/books/NNL_ALEPH001175329) | Public Domain | yes | no | none required by license; source/version retained |
 | Beur HaGra on Jerusalem Talmud Bikkurim | 170 | Piotrków, 1898-1900 (https://www.nli.org.il/he/books/NNL_ALEPH001886777/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Beur HaGra on Jerusalem Talmud Challah | 657 | Piotrków, 1898-1900 (https://www.nli.org.il/he/books/NNL_ALEPH001886777/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Beur HaGra on Shulchan Arukh, Choshen Mishpat | 41 | Shulhan Arukh, Hoshen ha-Mishpat; Lemberg, 1898 (https://www.nli.org.il/he/books/NNL_ALEPH002097773) | Public Domain | yes | no | none required by license; source/version retained |
@@ -86,6 +87,7 @@ Generated from local `data/sources/*.json`. Hebrew source only; English translat
 | Tanna DeBei Eliyahu Rabbah | imported | Public Domain OYW Hebrew. |
 | Seder Olam Zutta | imported | Public Domain Grossberg 1910 Hebrew. |
 | Midrash Lekach Tov | imported | Public Domain Vilna 1884 Hebrew; imported with resumable Sefaria payload cache. |
+| Alphabet of Ben Sira | imported | Public Domain Otzar Midrashim, New York 1915 Hebrew. Imported from exact Ben Sira subrefs because Sefaria index lookup for the subnode returns the full Otzar Midrashim index. |
 
 ## Skipped / Deferred Candidates
 

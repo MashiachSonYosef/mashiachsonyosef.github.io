@@ -59,6 +59,110 @@
 | aderet-eliyahu | Aderet Eliyahu | Aderet Eliyahu, Deuteronomy 1:1:31 | aderet-eliyahu-deuteronomy-deuteronomy-1-1-31 |  |  | not_done |  |
 | aderet-eliyahu | Aderet Eliyahu | Aderet Eliyahu, Deuteronomy 1:1:32 | aderet-eliyahu-deuteronomy-deuteronomy-1-1-32 |  |  | not_done |  |
 | aderet-eliyahu | Aderet Eliyahu | Aderet Eliyahu, Deuteronomy 1:1:33 | aderet-eliyahu-deuteronomy-deuteronomy-1-1-33 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, Introduction:1 | alphabet-of-ben-sira-introduction-introduction-1 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, Introduction:2 | alphabet-of-ben-sira-introduction-introduction-2 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, Introduction:3 | alphabet-of-ben-sira-introduction-introduction-3 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:1 | alphabet-of-ben-sira-main-text-1-1 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:2 | alphabet-of-ben-sira-main-text-1-2 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:3 | alphabet-of-ben-sira-main-text-1-3 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:4 | alphabet-of-ben-sira-main-text-1-4 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:5 | alphabet-of-ben-sira-main-text-1-5 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:6 | alphabet-of-ben-sira-main-text-1-6 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:7 | alphabet-of-ben-sira-main-text-1-7 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:8 | alphabet-of-ben-sira-main-text-1-8 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:9 | alphabet-of-ben-sira-main-text-1-9 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:10 | alphabet-of-ben-sira-main-text-1-10 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:11 | alphabet-of-ben-sira-main-text-1-11 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:12 | alphabet-of-ben-sira-main-text-1-12 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:13 | alphabet-of-ben-sira-main-text-1-13 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:14 | alphabet-of-ben-sira-main-text-1-14 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:15 | alphabet-of-ben-sira-main-text-1-15 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:16 | alphabet-of-ben-sira-main-text-1-16 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:17 | alphabet-of-ben-sira-main-text-1-17 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:18 | alphabet-of-ben-sira-main-text-1-18 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:19 | alphabet-of-ben-sira-main-text-1-19 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:20 | alphabet-of-ben-sira-main-text-1-20 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:21 | alphabet-of-ben-sira-main-text-1-21 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:22 | alphabet-of-ben-sira-main-text-1-22 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:23 | alphabet-of-ben-sira-main-text-1-23 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:24 | alphabet-of-ben-sira-main-text-1-24 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:25 | alphabet-of-ben-sira-main-text-1-25 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:26 | alphabet-of-ben-sira-main-text-1-26 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:27 | alphabet-of-ben-sira-main-text-1-27 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:28 | alphabet-of-ben-sira-main-text-1-28 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:29 | alphabet-of-ben-sira-main-text-1-29 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:30 | alphabet-of-ben-sira-main-text-1-30 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:31 | alphabet-of-ben-sira-main-text-1-31 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:32 | alphabet-of-ben-sira-main-text-1-32 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:33 | alphabet-of-ben-sira-main-text-1-33 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:34 | alphabet-of-ben-sira-main-text-1-34 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:35 | alphabet-of-ben-sira-main-text-1-35 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:36 | alphabet-of-ben-sira-main-text-1-36 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:37 | alphabet-of-ben-sira-main-text-1-37 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:38 | alphabet-of-ben-sira-main-text-1-38 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:39 | alphabet-of-ben-sira-main-text-1-39 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:40 | alphabet-of-ben-sira-main-text-1-40 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:41 | alphabet-of-ben-sira-main-text-1-41 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:42 | alphabet-of-ben-sira-main-text-1-42 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:43 | alphabet-of-ben-sira-main-text-1-43 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:44 | alphabet-of-ben-sira-main-text-1-44 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:45 | alphabet-of-ben-sira-main-text-1-45 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:46 | alphabet-of-ben-sira-main-text-1-46 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:47 | alphabet-of-ben-sira-main-text-1-47 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:48 | alphabet-of-ben-sira-main-text-1-48 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:49 | alphabet-of-ben-sira-main-text-1-49 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:50 | alphabet-of-ben-sira-main-text-1-50 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:51 | alphabet-of-ben-sira-main-text-1-51 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira 1:52 | alphabet-of-ben-sira-main-text-1-52 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):1 | alphabet-of-ben-sira-alternative-version-alternative-version-1 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):2 | alphabet-of-ben-sira-alternative-version-alternative-version-2 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):3 | alphabet-of-ben-sira-alternative-version-alternative-version-3 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):4 | alphabet-of-ben-sira-alternative-version-alternative-version-4 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):5 | alphabet-of-ben-sira-alternative-version-alternative-version-5 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):6 | alphabet-of-ben-sira-alternative-version-alternative-version-6 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):7 | alphabet-of-ben-sira-alternative-version-alternative-version-7 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):8 | alphabet-of-ben-sira-alternative-version-alternative-version-8 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):9 | alphabet-of-ben-sira-alternative-version-alternative-version-9 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):10 | alphabet-of-ben-sira-alternative-version-alternative-version-10 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):11 | alphabet-of-ben-sira-alternative-version-alternative-version-11 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):12 | alphabet-of-ben-sira-alternative-version-alternative-version-12 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):13 | alphabet-of-ben-sira-alternative-version-alternative-version-13 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):14 | alphabet-of-ben-sira-alternative-version-alternative-version-14 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):15 | alphabet-of-ben-sira-alternative-version-alternative-version-15 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):16 | alphabet-of-ben-sira-alternative-version-alternative-version-16 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):17 | alphabet-of-ben-sira-alternative-version-alternative-version-17 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):18 | alphabet-of-ben-sira-alternative-version-alternative-version-18 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):19 | alphabet-of-ben-sira-alternative-version-alternative-version-19 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):20 | alphabet-of-ben-sira-alternative-version-alternative-version-20 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):21 | alphabet-of-ben-sira-alternative-version-alternative-version-21 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):22 | alphabet-of-ben-sira-alternative-version-alternative-version-22 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):23 | alphabet-of-ben-sira-alternative-version-alternative-version-23 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):24 | alphabet-of-ben-sira-alternative-version-alternative-version-24 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):25 | alphabet-of-ben-sira-alternative-version-alternative-version-25 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):26 | alphabet-of-ben-sira-alternative-version-alternative-version-26 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):27 | alphabet-of-ben-sira-alternative-version-alternative-version-27 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):28 | alphabet-of-ben-sira-alternative-version-alternative-version-28 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):29 | alphabet-of-ben-sira-alternative-version-alternative-version-29 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):30 | alphabet-of-ben-sira-alternative-version-alternative-version-30 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):31 | alphabet-of-ben-sira-alternative-version-alternative-version-31 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):32 | alphabet-of-ben-sira-alternative-version-alternative-version-32 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):33 | alphabet-of-ben-sira-alternative-version-alternative-version-33 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):34 | alphabet-of-ben-sira-alternative-version-alternative-version-34 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):35 | alphabet-of-ben-sira-alternative-version-alternative-version-35 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):36 | alphabet-of-ben-sira-alternative-version-alternative-version-36 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):37 | alphabet-of-ben-sira-alternative-version-alternative-version-37 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):38 | alphabet-of-ben-sira-alternative-version-alternative-version-38 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):39 | alphabet-of-ben-sira-alternative-version-alternative-version-39 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):40 | alphabet-of-ben-sira-alternative-version-alternative-version-40 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):41 | alphabet-of-ben-sira-alternative-version-alternative-version-41 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):42 | alphabet-of-ben-sira-alternative-version-alternative-version-42 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):43 | alphabet-of-ben-sira-alternative-version-alternative-version-43 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):44 | alphabet-of-ben-sira-alternative-version-alternative-version-44 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):45 | alphabet-of-ben-sira-alternative-version-alternative-version-45 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):46 | alphabet-of-ben-sira-alternative-version-alternative-version-46 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):47 | alphabet-of-ben-sira-alternative-version-alternative-version-47 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):48 | alphabet-of-ben-sira-alternative-version-alternative-version-48 |  |  | not_done |  |
+| alphabet-of-ben-sira | Alphabet of Ben Sira | Otzar Midrashim, The Aleph Bet of ben Sira, The Alphabet of ben Sira, (alternative version):49 | alphabet-of-ben-sira-alternative-version-alternative-version-49 |  |  | not_done |  |
 | beur-hagra-on-jerusalem-talmud-bikkurim | Beur HaGra on Jerusalem Talmud Bikkurim | Beur HaGra on Jerusalem Talmud Bikkurim 1:1:1:1 | beur-hagra-on-jerusalem-talmud-bikkurim-1-1-1-1 |  |  | not_done |  |
 | beur-hagra-on-jerusalem-talmud-bikkurim | Beur HaGra on Jerusalem Talmud Bikkurim | Beur HaGra on Jerusalem Talmud Bikkurim 1:1:2:1 | beur-hagra-on-jerusalem-talmud-bikkurim-1-1-2-1 |  |  | not_done |  |
 | beur-hagra-on-jerusalem-talmud-bikkurim | Beur HaGra on Jerusalem Talmud Bikkurim | Beur HaGra on Jerusalem Talmud Bikkurim 1:1:3:1 | beur-hagra-on-jerusalem-talmud-bikkurim-1-1-3-1 |  |  | not_done |  |

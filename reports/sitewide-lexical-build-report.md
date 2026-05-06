@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-05T23:46:00.147Z
+Generated: 2026-05-06T14:13:19.349Z
 
 ## Scope
 
@@ -15,23 +15,27 @@ Generated: 2026-05-05T23:46:00.147Z
 
 ## Counts
 
-- Total work-surface rows: 408546
-- Total sitewide unique surface forms: 194103
-- Sitewide unique surface forms matched at least once: 39048
-- Sitewide unique surface forms unmatched everywhere: 155055
-- Total token occurrences: 2163218
-- Matched before prefix/suffix parser: 117035
-- Newly resolved by prefix/suffix parser: 14994
-- Total matched after parser: 135040
-- Percent matched: 33.1%
-- Matched via Wikidata: 101436
-- Enriched via OpenScriptures: 109180
-- Unmatched: 273506
+- Total work-surface rows: 454702
+- Total sitewide unique surface forms: 206980
+- Sitewide unique surface forms matched at least once: 39485
+- Sitewide unique surface forms unmatched everywhere: 167495
+- Total token occurrences: 2542152
+- Matched before prefix/suffix parser: 124444
+- Newly resolved by prefix/suffix parser: 16949
+- Total matched after parser: 144499
+- Percent matched: 31.8%
+- Matched via Wikidata: 108364
+- Enriched via OpenScriptures: 117144
+- Unmatched: 310203
 
 ## Newly Resolved Parsed Forms
 
+- שאם -> that if, which if, who if (workspace) -- midrash-lekach-tov
+- לרבות -> to rabbi, for rabbi, of rabbi (wikidata + openscriptures) -- midrash-lekach-tov
+- כנגד -> as resistor, like resistor (wikidata + openscriptures) -- midrash-lekach-tov
 - ודוקא -> and in fact, actually (kaikki) -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - כנגד -> as resistor, like resistor (wikidata + openscriptures) -- shaar-maamarei-rashbi
+- מאות -> from letter, of letter (wikidata + openscriptures) -- midrash-lekach-tov
 - והא -> and behold, and this (workspace) -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - וְלָמָּה -> and to what, and for what, and of what (workspace) -- midrash-tanchuma
 - לדוד -> to uncle, for uncle, of uncle (wikidata + openscriptures) -- midrash-tehillim
@@ -40,16 +44,12 @@ Generated: 2026-05-05T23:46:00.147Z
 - כְּנֶגֶד -> as resistor, like resistor (wikidata + openscriptures) -- midrash-tanchuma
 - לאו -> to or, for or, of or (workspace) -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - והענין -> and ado, and business, and travail (openscriptures) -- shaar-maamarei-rashbi
+- ולמה -> and to what, and for what, and of what (workspace) -- midrash-lekach-tov
 - רִבּוֹנוֹ -> our rabbi (wikidata + openscriptures) -- midrash-tanchuma
 - כדברי -> as thing, like thing, as entity (wikidata + openscriptures) -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- כנגד -> as resistor, like resistor (wikidata + openscriptures) -- shaar-hakavanot
-- הכח -> the vigor, the means (openscriptures) -- midbar-shur
-- ולמה -> and to what, and for what, and of what (workspace) -- midrash-tehillim
-- לָאו -> to or, for or, of or (workspace) -- midrash-tanchuma
-- ואלו -> and this/that, and demonstrative pronoun (wikidata + openscriptures) -- shaar-maamarei-rashbi
-- ודלא -> and that not, and which does not, and without (workspace) -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- מהא -> from behold, of behold, from this (workspace) -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- והלא -> and the not, and the no (workspace) -- sifrei-devarim
+- כדרך -> as thoroughfare, like thoroughfare (wikidata + openscriptures) -- midrash-lekach-tov
+- בלשון -> in tongue, Muscular organ in the mouth, with tongue, Muscular organ in the mouth, by tongue, Muscular organ in the mouth (wikidata + openscriptures) -- midrash-lekach-tov
+- שמן -> that from, which from, who from (workspace) -- midrash-lekach-tov
 
 ## Sample Matched Words With Refs To Test
 
@@ -78,6 +78,7 @@ Generated: 2026-05-05T23:46:00.147Z
 
 - אאביי -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - אאבל -- beur-hagra-on-shulchan-arukh-orach-chayim
+- אאור -- midrash-lekach-tov
 - אאילן -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - אאין -- beur-hagra-on-shulchan-arukh-orach-chayim
 - אאיסור -- beur-hagra-on-shulchan-arukh-yoreh-deah
@@ -95,16 +96,19 @@ Generated: 2026-05-05T23:46:00.147Z
 - אארעא -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - אארעא -- midrash-tehillim
 - אַאַרְעָא -- eikhah-rabbah
-- אאשה -- beur-hagra-on-shulchan-arukh-even-haezer
 
 ## Top 50 Remaining Unmatched By Frequency
 
+- 2629x ה׳ -- midrash-lekach-tov
 - 2533x א׳ -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 2433x ב׳ -- beur-hagra-on-shulchan-arukh-yoreh-deah
+- 2190x פס׳ -- midrash-lekach-tov
 - 1768x ה׳ -- midrash-tanchuma
 - 1514x רַבִּי -- midrash-tanchuma
 - 1377x ה׳ -- midrash-tehillim
 - 1007x ליקוט -- beur-hagra-on-shulchan-arukh-yoreh-deah
+- 972x ד״א -- midrash-lekach-tov
+- 933x מלמד -- midrash-lekach-tov
 - 828x רבי -- midrash-tehillim
 - 805x כְּתִיב -- midrash-tanchuma
 - 743x אסור -- beur-hagra-on-shulchan-arukh-yoreh-deah
@@ -112,21 +116,27 @@ Generated: 2026-05-05T23:46:00.147Z
 - 706x א׳ -- beur-hagra-on-shulchan-arukh-orach-chayim
 - 689x הרא״ש -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 673x כוכבים -- beur-hagra-on-shulchan-arukh-yoreh-deah
+- 656x ת״ל -- midrash-lekach-tov
 - 655x וכ״כ -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 652x ע״ב -- shaar-maamarei-rashbi
 - 603x ס״א -- beur-hagra-on-shulchan-arukh-orach-chayim
 - 600x ה׳ -- shaar-hapesukim
 - 596x א׳ -- pesikta-derav-kahana
+- 584x דכתיב -- midrash-lekach-tov
 - 577x ה׳ -- tanna-debei-eliyahu-rabbah
 - 577x השי״ת -- midbar-shur
 - 575x דף -- beur-hagra-on-sifra-detzniuta
+- 534x רבי -- midrash-lekach-tov
+- 533x שנא׳ -- midrash-lekach-tov
 - 531x רבי -- sifrei-devarim
 - 530x ה׳ -- sifrei-devarim
 - 529x כ״א -- midbar-shur
 - 517x ישעיה -- midrash-tanchuma
 - 511x בגימטריא -- shaar-hapesukim
 - 504x וז״ש -- beur-hagra-on-shulchan-arukh-yoreh-deah
+- 477x לכך -- midrash-lekach-tov
 - 471x בחינת -- shaar-maamarei-rashbi
+- 467x מיכן -- midrash-lekach-tov
 - 460x ע״א -- shaar-maamarei-rashbi
 - 449x יב -- midrash-tanchuma
 - 447x י״י -- pesikta-derav-kahana
@@ -139,16 +149,6 @@ Generated: 2026-05-05T23:46:00.147Z
 - 406x וזהו -- shaar-maamarei-rashbi
 - 395x וז״ש -- beur-hagra-on-sifra-detzniuta
 - 393x כידוע -- beur-hagra-on-sifra-detzniuta
-- 384x ואמר -- beur-hagra-on-sifra-detzniuta
-- 375x בירושלמי -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- 372x ישעיה -- midrash-tehillim
-- 368x רַבִּי -- eikhah-rabbah
-- 367x הי׳ -- midbar-shur
-- 365x לְכָךְ -- midrash-tanchuma
-- 363x בהג״ה -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- 352x וג׳ -- pesikta-derav-kahana
-- 350x לכך -- midrash-tehillim
-- 350x ע״א -- beur-hagra-on-sifra-detzniuta
 
 ## Exact Orot Refs To Test
 
