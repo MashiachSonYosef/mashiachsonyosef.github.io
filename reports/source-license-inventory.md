@@ -25,6 +25,7 @@ Generated from local `data/sources/*.json`. Hebrew source only; English translat
 | HaGra on Sefer Yetzirah Gra Version | 35 | Sefer Yetzirah, Warsaw 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001310968) | Public Domain | yes | no | none required by license; source/version retained |
 | Iggeret HaGra | 16 | Iggeret HaGra -- Wikisource (https://he.wikisource.org/wiki/%D7%90%D7%92%D7%A8%D7%AA_%D7%94%D7%92%D7%A8%22%D7%90) | Public Domain | yes | no | none required by license; source/version retained |
 | Jerusalem Talmud Taanit | 54 | The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015 (https://www.nli.org.il/he/books/NNL_ALEPH001901012/NLI) | CC-BY | yes | no | required |
+| Kohelet Rabbah | 21 | Midrash Rabbah -- TE (http://www.toratemetfreeware.com/online/f_01641.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Joshua | 658 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Zechariah | 211 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Ezekiel | 1273 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
@@ -45,6 +46,8 @@ Generated from local `data/sources/*.json`. Hebrew source only; English translat
 | Pesikta Rabbati | 34 | OYW (http://mobile.tora.ws/) | Public Domain | yes | no | none required by license; source/version retained |
 | Pirkei DeRabbi Eliezer | 656 | Pirke DeRabbi Eliezer, Sefaria Vocalized Edition (http://sefaria.org.il) | Public Domain | yes | no | none required by license; source/version retained |
 | Pri Etz Chaim | 589 | Pri Etz Chaim (http://www.hebrew.grimoar.cz/vital/pri_ec_chajim.htm) | Public Domain | yes | no | none required by license; source/version retained |
+| Ruth Rabbah | 12 | Midrash Rabbah -- TE (http://www.toratemetfreeware.com/online/f_01639.html) | Public Domain | yes | no | none required by license; source/version retained |
+| Seder Olam Zutta | 10 | Seder Olam Zuta, Rabbi M. Grossberg. London, 1910 (https://beta.nli.org.il/he/books/NNL_ALEPH002021777/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefer Etz Chaim | 7 | Sefer Etz Chaim (http://www.hebrew.grimoar.cz/vital/ec_chajim.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefer Yetzirah Gra Version | 62 | Sefer Yetzirah, Warsaw 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001310968) | Public Domain | yes | no | none required by license; source/version retained |
 | Sha'ar HaGilgulim | 854 | Shaar HaGilgulim (http://www.hebrew.grimoar.cz/vital/saar_ha-gilgulim.htm) | Public Domain | yes | no | none required by license; source/version retained |
@@ -56,9 +59,11 @@ Generated from local `data/sources/*.json`. Hebrew source only; English translat
 | Sha'ar Ma'amarei Razal | 103 | Shaar Maamarei Razal (http://www.hebrew.grimoar.cz/vital/saar_maamarej_razal.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | Sha'ar Ruach HaKodesh | 22 | Jerusalem, 1863 (https://www.nli.org.il/he/books/NNL_ALEPH990018959310205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Sha'arei Kedusha | 66 | Shaarei Kedusha (http://www.hebrew.grimoar.cz/vital/saare_kedusa.htm) | Public Domain | yes | no | none required by license; source/version retained |
+| Shir HaShirim Rabbah | 24 | Midrash Rabbah -- TE (http://www.toratemetfreeware.com/online/f_01638.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Sifrei Bamidbar | 295 | Wikisource (https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%D7%99) | CC-BY-SA | yes | yes | required |
 | Sifrei Devarim | 2340 | Sifre on Deuteronomy, ed. Dr. Louis Finkelstein. JTS, 1969 (https://www.nli.org.il/he/books/NNL_ALEPH990012428250205171/NLI) | CC-BY | yes | no | required |
 | Sifrei Devarim | 17 | Sifrei Devarim, Hebrew (https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%D7%99_%D7%A2%D7%9C_%D7%93%D7%91%D7%A8%D7%99%D7%9D) | Public Domain | yes | no | none required by license; source/version retained |
+| Tanna DeBei Eliyahu Rabbah | 57 | OYW (segmentation according to Warsaw 1880) (http://mobile.tora.ws/) | Public Domain | yes | no | none required by license; source/version retained |
 | Yahel Ohr on Zohar | 238 | Vilna 1882 (https://he.wikisource.org/wiki/%D7%99%D7%94%D7%9C_%D7%90%D7%95%D7%A8) | PD | yes | no | none required by license; source/version retained |
 
 ## Current Safe Expansion Batch
@@ -74,6 +79,11 @@ Generated from local `data/sources/*.json`. Hebrew source only; English translat
 | Midrash Tehillim | imported | Public Domain Hebrew version, OYW. |
 | Pesikta DeRav Kahana | imported | CC-BY Hebrew version; attribution required. |
 | Pesikta Rabbati | imported | Public Domain Hebrew version, OYW. |
+| Shir HaShirim Rabbah | imported | Public Domain Midrash Rabbah TE Hebrew. |
+| Ruth Rabbah | imported | Public Domain Midrash Rabbah TE Hebrew. |
+| Kohelet Rabbah | imported | Public Domain Midrash Rabbah TE Hebrew. |
+| Tanna DeBei Eliyahu Rabbah | imported | Public Domain OYW Hebrew. |
+| Seder Olam Zutta | imported | Public Domain Grossberg 1910 Hebrew. |
 
 ## Skipped / Deferred Candidates
 
@@ -84,6 +94,15 @@ Generated from local `data/sources/*.json`. Hebrew source only; English translat
 | Mekhilta DeRabbi Yishmael | Sefaria Hebrew version probe returned CC-BY-NC for the Beeri/Koren version; no import performed. |
 | Sifra | Sefaria Hebrew version probe returned `unknown` license for the Venice 1545 version; no import performed. |
 | Avot de-Rabbi Natan | Probe did not resolve a clean version/license row in this pass; no import performed. |
+| Esther Rabbah | Sefaria Hebrew version probe returned `unknown` license for the available Midrash Rabbah TE version; no import performed. |
+| Midrash Mishlei | Sefaria Hebrew version probe returned `unknown` license for the Buber/Wikisource version; no import performed. |
+| Yalkut Shimoni on Torah | Sefaria Hebrew version probe returned CC-BY-NC for the Torat Emet version; no import performed. |
+| Yalkut Shimoni on Nach | Sefaria Hebrew version probe returned `unknown` license; no import performed. |
+| Tanna DeBei Eliyahu Zuta | Probe did not resolve a clean version/license row in this pass; no import performed. |
+| Seder Olam Rabbah | Probe did not resolve a clean version/license row in this pass; no import performed. |
+| Midrash Lekach Tov | Public Domain metadata found, but the import timed out because the work is very large; deferred for a chunked/resumable import pass. |
+| Midrash Aggadah | Public Domain metadata found, but deferred after the Midrash Lekach Tov timeout to keep this batch coherent and validated. |
+| Pesikta Zutarta / Midrash Sekhel Tov | Probe did not resolve a clean version/license row in this pass; no import performed. |
 
 ## Policy Applied
 

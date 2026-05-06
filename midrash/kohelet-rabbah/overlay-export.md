@@ -1,0 +1,23 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 1:1:1 | kohelet-rabbah-1-1-1 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 1:1:2 | kohelet-rabbah-1-1-2 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 2:1:1 | kohelet-rabbah-2-1-1 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 3:1:1 | kohelet-rabbah-3-1-1 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 4:1:1 | kohelet-rabbah-4-1-1 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 6:1:1 | kohelet-rabbah-6-1-1 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 7:1:1 | kohelet-rabbah-7-1-1 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 7:1:2 | kohelet-rabbah-7-1-2 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 7:1:3 | kohelet-rabbah-7-1-3 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 7:1:4 | kohelet-rabbah-7-1-4 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 8:1:1 | kohelet-rabbah-8-1-1 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 8:1:2 | kohelet-rabbah-8-1-2 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 8:1:3 | kohelet-rabbah-8-1-3 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 8:1:4 | kohelet-rabbah-8-1-4 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 8:1:5 | kohelet-rabbah-8-1-5 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 9:1:1 | kohelet-rabbah-9-1-1 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 9:1:2 | kohelet-rabbah-9-1-2 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 10:1:1 | kohelet-rabbah-10-1-1 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 10:1:2 | kohelet-rabbah-10-1-2 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 11:1:1 | kohelet-rabbah-11-1-1 |  |  | not_done |  |
+| kohelet-rabbah | Kohelet Rabbah | Kohelet Rabbah 12:1:1 | kohelet-rabbah-12-1-1 |  |  | not_done |  |

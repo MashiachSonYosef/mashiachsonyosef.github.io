@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-05T16:21:03.736Z
+Generated: 2026-05-05T23:46:00.147Z
 
 ## Scope
 
@@ -15,18 +15,18 @@ Generated: 2026-05-05T16:21:03.736Z
 
 ## Counts
 
-- Total work-surface rows: 389429
-- Total sitewide unique surface forms: 190476
-- Sitewide unique surface forms matched at least once: 38779
-- Sitewide unique surface forms unmatched everywhere: 151697
-- Total token occurrences: 2080589
-- Matched before prefix/suffix parser: 110936
-- Newly resolved by prefix/suffix parser: 14250
-- Total matched after parser: 128039
-- Percent matched: 32.9%
-- Matched via Wikidata: 96327
-- Enriched via OpenScriptures: 102992
-- Unmatched: 261390
+- Total work-surface rows: 408546
+- Total sitewide unique surface forms: 194103
+- Sitewide unique surface forms matched at least once: 39048
+- Sitewide unique surface forms unmatched everywhere: 155055
+- Total token occurrences: 2163218
+- Matched before prefix/suffix parser: 117035
+- Newly resolved by prefix/suffix parser: 14994
+- Total matched after parser: 135040
+- Percent matched: 33.1%
+- Matched via Wikidata: 101436
+- Enriched via OpenScriptures: 109180
+- Unmatched: 273506
 
 ## Newly Resolved Parsed Forms
 
@@ -117,6 +117,7 @@ Generated: 2026-05-05T16:21:03.736Z
 - 603x ס״א -- beur-hagra-on-shulchan-arukh-orach-chayim
 - 600x ה׳ -- shaar-hapesukim
 - 596x א׳ -- pesikta-derav-kahana
+- 577x ה׳ -- tanna-debei-eliyahu-rabbah
 - 577x השי״ת -- midbar-shur
 - 575x דף -- beur-hagra-on-sifra-detzniuta
 - 531x רבי -- sifrei-devarim
@@ -148,7 +149,6 @@ Generated: 2026-05-05T16:21:03.736Z
 - 352x וג׳ -- pesikta-derav-kahana
 - 350x לכך -- midrash-tehillim
 - 350x ע״א -- beur-hagra-on-sifra-detzniuta
-- 341x ה׳ -- beur-hagra-on-sifra-detzniuta
 
 ## Exact Orot Refs To Test
 

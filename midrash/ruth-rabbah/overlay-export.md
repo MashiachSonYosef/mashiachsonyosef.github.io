@@ -1,0 +1,14 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| ruth-rabbah | Ruth Rabbah | Ruth Rabbah, Petichta:1 | ruth-rabbah-petichta-petichta-1 |  |  | not_done |  |
+| ruth-rabbah | Ruth Rabbah | Ruth Rabbah, Petichta:2 | ruth-rabbah-petichta-petichta-2 |  |  | not_done |  |
+| ruth-rabbah | Ruth Rabbah | Ruth Rabbah, Petichta:3 | ruth-rabbah-petichta-petichta-3 |  |  | not_done |  |
+| ruth-rabbah | Ruth Rabbah | Ruth Rabbah, Petichta:4 | ruth-rabbah-petichta-petichta-4 |  |  | not_done |  |
+| ruth-rabbah | Ruth Rabbah | Ruth Rabbah, Petichta:5 | ruth-rabbah-petichta-petichta-5 |  |  | not_done |  |
+| ruth-rabbah | Ruth Rabbah | Ruth Rabbah, Petichta:6 | ruth-rabbah-petichta-petichta-6 |  |  | not_done |  |
+| ruth-rabbah | Ruth Rabbah | Ruth Rabbah, Petichta:7 | ruth-rabbah-petichta-petichta-7 |  |  | not_done |  |
+| ruth-rabbah | Ruth Rabbah | Ruth Rabbah 1:1 | ruth-rabbah-default-default-1-1 |  |  | not_done |  |
+| ruth-rabbah | Ruth Rabbah | Ruth Rabbah 1:2 | ruth-rabbah-default-default-1-2 |  |  | not_done |  |
+| ruth-rabbah | Ruth Rabbah | Ruth Rabbah 1:3 | ruth-rabbah-default-default-1-3 |  |  | not_done |  |
+| ruth-rabbah | Ruth Rabbah | Ruth Rabbah 1:4 | ruth-rabbah-default-default-1-4 |  |  | not_done |  |
+| ruth-rabbah | Ruth Rabbah | Ruth Rabbah 1:5 | ruth-rabbah-default-default-1-5 |  |  | not_done |  |
