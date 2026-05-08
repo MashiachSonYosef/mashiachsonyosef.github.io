@@ -9,7 +9,7 @@ const lexiconPath = path.join(lexicalDir, 'lexicon.json');
 const lexiconLayerDir = path.join(lexicalDir, 'source-layers');
 const tokenIndexPath = path.join(lexicalDir, 'token-index.json');
 const tokenIndexesDir = path.join(lexicalDir, 'token-indexes');
-const reportPath = 'reports/sitewide-lexical-build-report.md';
+const reportPath = process.env.LEXICAL_REPORT_PATH || 'reports/sitewide-lexical-build-report.md';
 const lexicalScope = {
   label: 'All imported Hebrew works',
 };

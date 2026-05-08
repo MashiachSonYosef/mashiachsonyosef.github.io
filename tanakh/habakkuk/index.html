@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habakkuk</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Habakkuk</h1>
+        <p class="meta">56 total source units | imported 2026-05-08</p>
+        <p class="meta source-citation">Hebrew version: Miqra according to the Masorah | Version source: <a href="https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94">he.wikisource.org</a> | Digitization: Sefaria API | License: CC-BY-SA</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Habakkuk <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Habakkuk <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-habakkuk-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#habakkuk-1-1" title="Habakkuk 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-1-2" title="Habakkuk 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-1-3" title="Habakkuk 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-1-4" title="Habakkuk 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-1-5" title="Habakkuk 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-1-6" title="Habakkuk 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-1-7" title="Habakkuk 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-1-8" title="Habakkuk 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-1-9" title="Habakkuk 1:9">1:9</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-1-10" title="Habakkuk 1:10">1:10</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-1-11" title="Habakkuk 1:11">1:11</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-1-12" title="Habakkuk 1:12">1:12</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-1-13" title="Habakkuk 1:13">1:13</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-1-14" title="Habakkuk 1:14">1:14</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-1-15" title="Habakkuk 1:15">1:15</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-1-16" title="Habakkuk 1:16">1:16</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-1-17" title="Habakkuk 1:17">1:17</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-habakkuk-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#habakkuk-2-1" title="Habakkuk 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-2" title="Habakkuk 2:2">2:2</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-3" title="Habakkuk 2:3">2:3</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-4" title="Habakkuk 2:4">2:4</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-5" title="Habakkuk 2:5">2:5</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-6" title="Habakkuk 2:6">2:6</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-7" title="Habakkuk 2:7">2:7</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-8" title="Habakkuk 2:8">2:8</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-9" title="Habakkuk 2:9">2:9</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-10" title="Habakkuk 2:10">2:10</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-11" title="Habakkuk 2:11">2:11</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-12" title="Habakkuk 2:12">2:12</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-13" title="Habakkuk 2:13">2:13</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-14" title="Habakkuk 2:14">2:14</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-15" title="Habakkuk 2:15">2:15</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-16" title="Habakkuk 2:16">2:16</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-17" title="Habakkuk 2:17">2:17</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-18" title="Habakkuk 2:18">2:18</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-19" title="Habakkuk 2:19">2:19</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-2-20" title="Habakkuk 2:20">2:20</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-habakkuk-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#habakkuk-3-1" title="Habakkuk 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-2" title="Habakkuk 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-3" title="Habakkuk 3:3">3:3</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-4" title="Habakkuk 3:4">3:4</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-5" title="Habakkuk 3:5">3:5</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-6" title="Habakkuk 3:6">3:6</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-7" title="Habakkuk 3:7">3:7</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-8" title="Habakkuk 3:8">3:8</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-9" title="Habakkuk 3:9">3:9</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-10" title="Habakkuk 3:10">3:10</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-11" title="Habakkuk 3:11">3:11</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-12" title="Habakkuk 3:12">3:12</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-13" title="Habakkuk 3:13">3:13</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-14" title="Habakkuk 3:14">3:14</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-15" title="Habakkuk 3:15">3:15</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-16" title="Habakkuk 3:16">3:16</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-17" title="Habakkuk 3:17">3:17</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-18" title="Habakkuk 3:18">3:18</a></li>
+                    <li><a class="toc-unit" href="#habakkuk-3-19" title="Habakkuk 3:19">3:19</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-habakkuk-text-1">Chapter 1</h4>
+          <section class="unit" id="habakkuk-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 1:1</h4></div>
+              <a class="anchor" href="#habakkuk-1-1" aria-label="Copy link to Habakkuk 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַמַּשָּׂא֙ אֲשֶׁ֣ר חָזָ֔ה חֲבַקּ֖וּק הַנָּבִֽיא׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 1:2</h4></div>
+              <a class="anchor" href="#habakkuk-1-2" aria-label="Copy link to Habakkuk 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַד־אָ֧נָה יְהֹוָ֛ה שִׁוַּ֖עְתִּי וְלֹ֣א תִשְׁמָ֑ע אֶזְעַ֥ק אֵלֶ֛יךָ חָמָ֖ס וְלֹ֥א תוֹשִֽׁיעַ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 1:3</h4></div>
+              <a class="anchor" href="#habakkuk-1-3" aria-label="Copy link to Habakkuk 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לָ֣מָּה תַרְאֵ֤נִי אָ֙וֶן֙ וְעָמָ֣ל תַּבִּ֔יט וְשֹׁ֥ד וְחָמָ֖ס לְנֶגְדִּ֑י וַיְהִ֧י רִ֦יב וּמָד֖וֹן יִשָּֽׂא׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 1:4</h4></div>
+              <a class="anchor" href="#habakkuk-1-4" aria-label="Copy link to Habakkuk 1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַל־כֵּן֙ תָּפ֣וּג תּוֹרָ֔ה וְלֹא־יֵצֵ֥א לָנֶ֖צַח מִשְׁפָּ֑ט כִּ֤י רָשָׁע֙ מַכְתִּ֣יר אֶת־הַצַּדִּ֔יק עַל־כֵּ֛ן יֵצֵ֥א מִשְׁפָּ֖ט מְעֻקָּֽל׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 1:5</h4></div>
+              <a class="anchor" href="#habakkuk-1-5" aria-label="Copy link to Habakkuk 1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רְא֤וּ בַגּוֹיִם֙ וְֽהַבִּ֔יטוּ וְהִֽתַּמְּה֖וּ תְּמָ֑הוּ כִּי־פֹ֙עַל֙ פֹּעֵ֣ל בִּימֵיכֶ֔ם לֹ֥א תַאֲמִ֖ינוּ כִּ֥י יְסֻפָּֽר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 1:6</h4></div>
+              <a class="anchor" href="#habakkuk-1-6" aria-label="Copy link to Habakkuk 1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּֽי־הִנְנִ֤י מֵקִים֙ אֶת־הַכַּשְׂדִּ֔ים הַגּ֖וֹי הַמַּ֣ר וְהַנִּמְהָ֑ר הַהוֹלֵךְ֙ לְמֶרְחֲבֵי־אֶ֔רֶץ לָרֶ֖שֶׁת מִשְׁכָּנ֥וֹת לֹּא־לֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-1-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 1:7</h4></div>
+              <a class="anchor" href="#habakkuk-1-7" aria-label="Copy link to Habakkuk 1:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אָיֹ֥ם וְנוֹרָ֖א ה֑וּא מִמֶּ֕נּוּ מִשְׁפָּט֥וֹ וּשְׂאֵת֖וֹ יֵצֵֽא׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-1-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 1:8</h4></div>
+              <a class="anchor" href="#habakkuk-1-8" aria-label="Copy link to Habakkuk 1:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְקַלּ֨וּ מִנְּמֵרִ֜ים סוּסָ֗יו וְחַדּוּ֙ מִזְּאֵ֣בֵי עֶ֔רֶב וּפָ֖שׁוּ פָּרָשָׁ֑יו וּפָֽרָשָׁיו֙ מֵרָח֣וֹק יָבֹ֔אוּ יָעֻ֕פוּ כְּנֶ֖שֶׁר חָ֥שׁ לֶאֱכֽוֹל׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-1-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 1:9</h4></div>
+              <a class="anchor" href="#habakkuk-1-9" aria-label="Copy link to Habakkuk 1:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כֻּלֹּה֙ לְחָמָ֣ס יָב֔וֹא מְגַמַּ֥ת פְּנֵיהֶ֖ם קָדִ֑ימָה וַיֶּאֱסֹ֥ף כַּח֖וֹל שֶֽׁבִי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-1-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 1:10</h4></div>
+              <a class="anchor" href="#habakkuk-1-10" aria-label="Copy link to Habakkuk 1:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהוּא֙ בַּמְּלָכִ֣ים יִתְקַלָּ֔ס וְרֹזְנִ֖ים מִשְׂחָ֣ק ל֑וֹ ה֚וּא לְכׇל־מִבְצָ֣ר יִשְׂחָ֔ק וַיִּצְבֹּ֥ר עָפָ֖ר וַֽיִּלְכְּדָֽהּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-1-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 1:11</h4></div>
+              <a class="anchor" href="#habakkuk-1-11" aria-label="Copy link to Habakkuk 1:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אָ֣ז חָלַ֥ף ר֛וּחַ וַֽיַּעֲבֹ֖ר וְאָשֵׁ֑ם ז֥וּ כֹח֖וֹ לֵאלֹהֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-1-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 1:12</h4></div>
+              <a class="anchor" href="#habakkuk-1-12" aria-label="Copy link to Habakkuk 1:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֲל֧וֹא אַתָּ֣ה מִקֶּ֗דֶם יְהֹוָ֧ה אֱלֹהַ֛י קְדֹשִׁ֖י לֹ֣א נָמ֑וּת יְהֹוָה֙ לְמִשְׁפָּ֣ט שַׂמְתּ֔וֹ וְצ֖וּר לְהוֹכִ֥יחַ יְסַדְתּֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-1-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 1:13</h4></div>
+              <a class="anchor" href="#habakkuk-1-13" aria-label="Copy link to Habakkuk 1:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">טְה֤וֹר עֵינַ֙יִם֙ מֵרְא֣וֹת רָ֔ע וְהַבִּ֥יט אֶל־עָמָ֖ל לֹ֣א תוּכָ֑ל לָ֤מָּה תַבִּיט֙ בּֽוֹגְדִ֔ים תַּחֲרִ֕ישׁ בְּבַלַּ֥ע רָשָׁ֖ע צַדִּ֥יק מִמֶּֽנּוּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-1-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 1:14</h4></div>
+              <a class="anchor" href="#habakkuk-1-14" aria-label="Copy link to Habakkuk 1:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתַּעֲשֶׂ֥ה אָדָ֖ם כִּדְגֵ֣י הַיָּ֑ם כְּרֶ֖מֶשׂ לֹא־מֹשֵׁ֥ל בּֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-1-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 1:15</h4></div>
+              <a class="anchor" href="#habakkuk-1-15" aria-label="Copy link to Habakkuk 1:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כֻּלֹּה֙ בְּחַכָּ֣ה הֵֽעֲלָ֔ה יְגֹרֵ֣הוּ בְחֶרְמ֔וֹ וְיַאַסְפֵ֖הוּ בְּמִכְמַרְתּ֑וֹ עַל־כֵּ֖ן יִשְׂמַ֥ח וְיָגִֽיל׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-1-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 1:16</h4></div>
+              <a class="anchor" href="#habakkuk-1-16" aria-label="Copy link to Habakkuk 1:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַל־כֵּן֙ יְזַבֵּ֣חַ לְחֶרְמ֔וֹ וִֽיקַטֵּ֖ר לְמִכְמַרְתּ֑וֹ כִּ֤י בָהֵ֙מָּה֙ שָׁמֵ֣ן חֶלְק֔וֹ וּמַאֲכָל֖וֹ בְּרִאָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-1-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 1:17</h4></div>
+              <a class="anchor" href="#habakkuk-1-17" aria-label="Copy link to Habakkuk 1:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַ֥עַל כֵּ֖ן יָרִ֣יק חֶרְמ֑וֹ וְתָמִ֛יד לַהֲרֹ֥ג גּוֹיִ֖ם לֹ֥א יַחְמֽוֹל׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-habakkuk-text-2">Chapter 2</h4>
+          <section class="unit" id="habakkuk-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:1</h4></div>
+              <a class="anchor" href="#habakkuk-2-1" aria-label="Copy link to Habakkuk 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַל־מִשְׁמַרְתִּ֣י אֶֽעֱמֹ֔דָה וְאֶֽתְיַצְּבָ֖ה עַל־מָצ֑וֹר וַאֲצַפֶּ֗ה לִרְאוֹת֙ מַה־יְדַבֶּר־בִּ֔י וּמָ֥ה אָשִׁ֖יב עַל־תּוֹכַחְתִּֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:2</h4></div>
+              <a class="anchor" href="#habakkuk-2-2" aria-label="Copy link to Habakkuk 2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיַּעֲנֵ֤נִי יְהֹוָה֙ וַיֹּ֔אמֶר כְּתֹ֣ב חָז֔וֹן וּבָאֵ֖ר עַל־הַלֻּח֑וֹת לְמַ֥עַן יָר֖וּץ ק֥וֹרֵא בֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:3</h4></div>
+              <a class="anchor" href="#habakkuk-2-3" aria-label="Copy link to Habakkuk 2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּ֣י ע֤וֹד חָזוֹן֙ לַמּוֹעֵ֔ד וְיָפֵ֥חַ לַקֵּ֖ץ וְלֹ֣א יְכַזֵּ֑ב אִם־יִתְמַהְמָהּ֙ חַכֵּה־ל֔וֹ כִּי־בֹ֥א יָבֹ֖א לֹ֥א יְאַחֵֽר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:4</h4></div>
+              <a class="anchor" href="#habakkuk-2-4" aria-label="Copy link to Habakkuk 2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הִנֵּ֣ה עֻפְּלָ֔ה לֹא־יָשְׁרָ֥ה נַפְשׁ֖וֹ בּ֑וֹ וְצַדִּ֖יק בֶּאֱמוּנָת֥וֹ יִֽחְיֶֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:5</h4></div>
+              <a class="anchor" href="#habakkuk-2-5" aria-label="Copy link to Habakkuk 2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאַף֙ כִּֽי־הַיַּ֣יִן בֹּגֵ֔ד גֶּ֥בֶר יָהִ֖יר וְלֹ֣א יִנְוֶ֑ה אֲשֶׁר֩ הִרְחִ֨יב כִּשְׁא֜וֹל נַפְשׁ֗וֹ וְה֤וּא כַמָּ֙וֶת֙ וְלֹ֣א יִשְׂבָּ֔ע וַיֶּאֱסֹ֤ף אֵלָיו֙ כׇּל־הַגּוֹיִ֔ם וַיִּקְבֹּ֥ץ אֵלָ֖יו כׇּל־הָעַמִּֽים׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:6</h4></div>
+              <a class="anchor" href="#habakkuk-2-6" aria-label="Copy link to Habakkuk 2:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֲלוֹא־אֵ֣לֶּה כֻלָּ֗ם עָלָיו֙ מָשָׁ֣ל יִשָּׂ֔אוּ וּמְלִיצָ֖ה חִיד֣וֹת ל֑וֹ וְיֹאמַ֗ר ה֚וֹי הַמַּרְבֶּ֣ה לֹּא־ל֔וֹ עַד־מָתַ֕י וּמַכְבִּ֥יד עָלָ֖יו עַבְטִֽיט׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:7</h4></div>
+              <a class="anchor" href="#habakkuk-2-7" aria-label="Copy link to Habakkuk 2:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֲל֣וֹא פֶ֗תַע יָק֙וּמוּ֙ נֹֽשְׁכֶ֔יךָ וְיִקְצ֖וּ מְזַעְזְעֶ֑יךָ וְהָיִ֥יתָ לִמְשִׁסּ֖וֹת לָֽמוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:8</h4></div>
+              <a class="anchor" href="#habakkuk-2-8" aria-label="Copy link to Habakkuk 2:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּֽי־אַתָּ֤ה שַׁלּ֙וֹתָ֙ גּוֹיִ֣ם רַבִּ֔ים יְשׇׁלּ֖וּךָ כׇּל־יֶ֣תֶר עַמִּ֑ים מִדְּמֵ֤י אָדָם֙ וַֽחֲמַס־אֶ֔רֶץ קִרְיָ֖ה וְכׇל־יֹ֥שְׁבֵי בָֽהּ׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:9</h4></div>
+              <a class="anchor" href="#habakkuk-2-9" aria-label="Copy link to Habakkuk 2:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה֗וֹי בֹּצֵ֛עַ בֶּ֥צַע רָ֖ע לְבֵית֑וֹ לָשׂ֤וּם בַּמָּרוֹם֙ קִנּ֔וֹ לְהִנָּצֵ֖ל מִכַּף־רָֽע׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:10</h4></div>
+              <a class="anchor" href="#habakkuk-2-10" aria-label="Copy link to Habakkuk 2:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יָעַ֥צְתָּ בֹּ֖שֶׁת לְבֵיתֶ֑ךָ קְצוֹת־עַמִּ֥ים רַבִּ֖ים וְחוֹטֵ֥א נַפְשֶֽׁךָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:11</h4></div>
+              <a class="anchor" href="#habakkuk-2-11" aria-label="Copy link to Habakkuk 2:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּי־אֶ֖בֶן מִקִּ֣יר תִּזְעָ֑ק וְכָפִ֖יס מֵעֵ֥ץ יַעֲנֶֽנָּה׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:12</h4></div>
+              <a class="anchor" href="#habakkuk-2-12" aria-label="Copy link to Habakkuk 2:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה֛וֹי בֹּנֶ֥ה עִ֖יר בְּדָמִ֑ים וְכוֹנֵ֥ן קִרְיָ֖ה בְּעַוְלָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:13</h4></div>
+              <a class="anchor" href="#habakkuk-2-13" aria-label="Copy link to Habakkuk 2:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֲל֣וֹא הִנֵּ֔ה מֵאֵ֖ת יְהֹוָ֣ה צְבָא֑וֹת וְיִֽיגְע֤וּ עַמִּים֙ בְּדֵי־אֵ֔שׁ וּלְאֻמִּ֖ים בְּדֵי־רִ֥יק יִעָֽפוּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:14</h4></div>
+              <a class="anchor" href="#habakkuk-2-14" aria-label="Copy link to Habakkuk 2:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּ֚י תִּמָּלֵ֣א הָאָ֔רֶץ לָדַ֖עַת אֶת־כְּב֣וֹד יְהֹוָ֑ה כַּמַּ֖יִם יְכַסּ֥וּ עַל־יָֽם׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:15</h4></div>
+              <a class="anchor" href="#habakkuk-2-15" aria-label="Copy link to Habakkuk 2:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה֚וֹי מַשְׁקֵ֣ה רֵעֵ֔הוּ מְסַפֵּ֥חַ חֲמָתְךָ֖ וְאַ֣ף שַׁכֵּ֑ר לְמַ֥עַן הַבִּ֖יט עַל־מְעוֹרֵיהֶֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:16</h4></div>
+              <a class="anchor" href="#habakkuk-2-16" aria-label="Copy link to Habakkuk 2:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שָׂבַ֤עְתָּ קָלוֹן֙ מִכָּב֔וֹד שְׁתֵ֥ה גַם־אַ֖תָּה וְהֵעָרֵ֑ל תִּסּ֣וֹב עָלֶ֗יךָ כּ֚וֹס יְמִ֣ין יְהֹוָ֔ה וְקִיקָל֖וֹן עַל־כְּבוֹדֶֽךָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:17</h4></div>
+              <a class="anchor" href="#habakkuk-2-17" aria-label="Copy link to Habakkuk 2:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּ֣י חֲמַ֤ס לְבָנוֹן֙ יְכַסֶּ֔ךָּ וְשֹׁ֥ד בְּהֵמ֖וֹת יְחִיתַ֑ן מִדְּמֵ֤י אָדָם֙ וַחֲמַס־אֶ֔רֶץ קִרְיָ֖ה וְכׇל־יֹ֥שְׁבֵי בָֽהּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:18</h4></div>
+              <a class="anchor" href="#habakkuk-2-18" aria-label="Copy link to Habakkuk 2:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מָה־הוֹעִ֣יל פֶּ֗סֶל כִּ֤י פְסָלוֹ֙ יֹֽצְר֔וֹ מַסֵּכָ֖ה וּמ֣וֹרֶה שָּׁ֑קֶר כִּ֣י בָטַ֞ח יֹצֵ֤ר יִצְרוֹ֙ עָלָ֔יו לַעֲשׂ֖וֹת אֱלִילִ֥ים אִלְּמִֽים׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-19" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:19</h4></div>
+              <a class="anchor" href="#habakkuk-2-19" aria-label="Copy link to Habakkuk 2:19">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה֣וֹי אֹמֵ֤ר לָעֵץ֙ הָקִ֔יצָה ע֖וּרִי לְאֶ֣בֶן דּוּמָ֑ם ה֣וּא יוֹרֶ֔ה הִנֵּה־ה֗וּא תָּפוּשׂ֙ זָהָ֣ב וָכֶ֔סֶף וְכׇל־ר֖וּחַ אֵ֥ין בְּקִרְבּֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-2-20" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 2:20</h4></div>
+              <a class="anchor" href="#habakkuk-2-20" aria-label="Copy link to Habakkuk 2:20">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיהֹוָ֖ה בְּהֵיכַ֣ל קׇדְשׁ֑וֹ הַ֥ס מִפָּנָ֖יו כׇּל־הָאָֽרֶץ׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-habakkuk-text-3">Chapter 3</h4>
+          <section class="unit" id="habakkuk-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:1</h4></div>
+              <a class="anchor" href="#habakkuk-3-1" aria-label="Copy link to Habakkuk 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תְּפִלָּ֖ה לַחֲבַקּ֣וּק הַנָּבִ֑יא עַ֖ל שִׁגְיֹנֽוֹת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:2</h4></div>
+              <a class="anchor" href="#habakkuk-3-2" aria-label="Copy link to Habakkuk 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יְהֹוָ֗ה שָׁמַ֣עְתִּי שִׁמְעֲךָ֮ יָרֵ֒אתִי֒ יְהֹוָ֗ה פׇּֽעׇלְךָ֙ בְּקֶ֤רֶב שָׁנִים֙ חַיֵּ֔יהוּ בְּקֶ֥רֶב שָׁנִ֖ים תּוֹדִ֑יעַ בְּרֹ֖גֶז רַחֵ֥ם תִּזְכּֽוֹר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:3</h4></div>
+              <a class="anchor" href="#habakkuk-3-3" aria-label="Copy link to Habakkuk 3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֱל֙וֹהַּ֙ מִתֵּימָ֣ן יָב֔וֹא וְקָד֥וֹשׁ מֵהַר־פָּארָ֖ן סֶ֑לָה כִּסָּ֤ה שָׁמַ֙יִם֙ הוֹד֔וֹ וּתְהִלָּת֖וֹ מָלְאָ֥ה הָאָֽרֶץ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:4</h4></div>
+              <a class="anchor" href="#habakkuk-3-4" aria-label="Copy link to Habakkuk 3:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְנֹ֙גַהּ֙ כָּא֣וֹר תִּֽהְיֶ֔ה קַרְנַ֥יִם מִיָּד֖וֹ ל֑וֹ וְשָׁ֖ם חֶבְי֥וֹן עֻזֹּֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:5</h4></div>
+              <a class="anchor" href="#habakkuk-3-5" aria-label="Copy link to Habakkuk 3:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לְפָנָ֖יו יֵ֣לֶךְ דָּ֑בֶר וְיֵצֵ֥א רֶ֖שֶׁף לְרַגְלָֽיו׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:6</h4></div>
+              <a class="anchor" href="#habakkuk-3-6" aria-label="Copy link to Habakkuk 3:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עָמַ֣ד&amp;thinsp;<strong>׀</strong> וַיְמֹ֣דֶד אֶ֗רֶץ רָאָה֙ וַיַּתֵּ֣ר גּוֹיִ֔ם וַיִּתְפֹּֽצְצוּ֙ הַרְרֵי־עַ֔ד שַׁח֖וּ גִּבְע֣וֹת עוֹלָ֑ם הֲלִיכ֥וֹת עוֹלָ֖ם לֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:7</h4></div>
+              <a class="anchor" href="#habakkuk-3-7" aria-label="Copy link to Habakkuk 3:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תַּ֣חַת אָ֔וֶן רָאִ֖יתִי אׇהֳלֵ֣י כוּשָׁ֑ן יִרְגְּז֕וּן יְרִיע֖וֹת אֶ֥רֶץ מִדְיָֽן׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:8</h4></div>
+              <a class="anchor" href="#habakkuk-3-8" aria-label="Copy link to Habakkuk 3:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֲבִנְהָרִים֙ חָרָ֣ה יְהֹוָ֔ה אִ֤ם בַּנְּהָרִים֙ אַפֶּ֔ךָ אִם־בַּיָּ֖ם עֶבְרָתֶ֑ךָ כִּ֤י תִרְכַּב֙ עַל־סוּסֶ֔יךָ מַרְכְּבֹתֶ֖יךָ יְשׁוּעָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:9</h4></div>
+              <a class="anchor" href="#habakkuk-3-9" aria-label="Copy link to Habakkuk 3:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עֶרְיָ֤ה תֵעוֹר֙ קַשְׁתֶּ֔ךָ שְׁבֻע֥וֹת מַטּ֖וֹת אֹ֣מֶר סֶ֑לָה נְהָר֖וֹת תְּבַקַּע־אָֽרֶץ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:10</h4></div>
+              <a class="anchor" href="#habakkuk-3-10" aria-label="Copy link to Habakkuk 3:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רָא֤וּךָ יָחִ֙ילוּ֙ הָרִ֔ים זֶ֥רֶם מַ֖יִם עָבָ֑ר נָתַ֤ן תְּהוֹם֙ קוֹל֔וֹ ר֖וֹם יָדֵ֥יהוּ נָשָֽׂא׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:11</h4></div>
+              <a class="anchor" href="#habakkuk-3-11" aria-label="Copy link to Habakkuk 3:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שֶׁ֥מֶשׁ יָרֵ֖חַ עָ֣מַד זְבֻ֑לָה לְא֤וֹר חִצֶּ֙יךָ֙ יְהַלֵּ֔כוּ לְנֹ֖גַהּ בְּרַ֥ק חֲנִיתֶֽךָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:12</h4></div>
+              <a class="anchor" href="#habakkuk-3-12" aria-label="Copy link to Habakkuk 3:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בְּזַ֖עַם תִּצְעַד־אָ֑רֶץ בְּאַ֖ף תָּד֥וּשׁ גּוֹיִֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:13</h4></div>
+              <a class="anchor" href="#habakkuk-3-13" aria-label="Copy link to Habakkuk 3:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יָצָ֙אתָ֙ לְיֵ֣שַׁע עַמֶּ֔ךָ לְיֵ֖שַׁע אֶת־מְשִׁיחֶ֑ךָ מָחַ֤צְתָּ רֹּאשׁ֙ מִבֵּ֣ית רָשָׁ֔ע עָר֛וֹת יְס֥וֹד עַד־צַוָּ֖אר סֶֽלָה׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:14</h4></div>
+              <a class="anchor" href="#habakkuk-3-14" aria-label="Copy link to Habakkuk 3:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">נָקַ֤בְתָּ בְמַטָּיו֙ רֹ֣אשׁ &lt;span class=&quot;mam-kq-trivial&quot;&gt;פְּרָזָ֔ו&lt;/span&gt; יִסְעֲר֖וּ לַהֲפִיצֵ֑נִי עֲלִ֣יצֻתָ֔ם כְּמוֹ־לֶאֱכֹ֥ל עָנִ֖י בַּמִּסְתָּֽר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:15</h4></div>
+              <a class="anchor" href="#habakkuk-3-15" aria-label="Copy link to Habakkuk 3:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דָּרַ֥כְתָּ בַיָּ֖ם סוּסֶ֑יךָ חֹ֖מֶר מַ֥יִם רַבִּֽים׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:16</h4></div>
+              <a class="anchor" href="#habakkuk-3-16" aria-label="Copy link to Habakkuk 3:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שָׁמַ֣עְתִּי&amp;thinsp;<strong>׀</strong> וַתִּרְגַּ֣ז בִּטְנִ֗י לְקוֹל֙ צָלְל֣וּ שְׂפָתַ֔י יָב֥וֹא רָקָ֛ב בַּעֲצָמַ֖י וְתַחְתַּ֣י אֶרְגָּ֑ז אֲשֶׁ֤ר אָנ֙וּחַ֙ לְי֣וֹם צָרָ֔ה לַעֲל֖וֹת לְעַ֥ם יְגוּדֶֽנּוּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:17</h4></div>
+              <a class="anchor" href="#habakkuk-3-17" aria-label="Copy link to Habakkuk 3:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּֽי־תְאֵנָ֣ה לֹֽא־תִפְרָ֗ח וְאֵ֤ין יְבוּל֙ בַּגְּפָנִ֔ים כִּחֵשׁ֙ מַֽעֲשֵׂה־זַ֔יִת וּשְׁדֵמ֖וֹת לֹא־עָ֣שָׂה אֹ֑כֶל גָּזַ֤ר מִמִּכְלָה֙ צֹ֔אן וְאֵ֥ין בָּקָ֖ר בָּרְפָתִֽים׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:18</h4></div>
+              <a class="anchor" href="#habakkuk-3-18" aria-label="Copy link to Habakkuk 3:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַאֲנִ֖י בַּיהֹוָ֣ה אֶעְל֑וֹזָה אָגִ֖ילָה בֵּאלֹהֵ֥י יִשְׁעִֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="habakkuk-3-19" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Habakkuk 3:19</h4></div>
+              <a class="anchor" href="#habakkuk-3-19" aria-label="Copy link to Habakkuk 3:19">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יֱהֹוִ֤ה אֲדֹנָי֙ חֵילִ֔י וַיָּ֤שֶׂם רַגְלַי֙ כָּאַיָּל֔וֹת וְעַ֥ל בָּמוֹתַ֖י יַדְרִכֵ֑נִי לַמְנַצֵּ֖חַ בִּנְגִינוֹתָֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-habakkuk-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"habakkuk","work_title":"Habakkuk","work_slug":"tanakh/habakkuk","scope_label":"All imported Hebrew works","generated_at":"2026-05-08T15:38:26.821Z","total_occurrences":615,"units":{"habakkuk-1-1":{"unit_id":"habakkuk-1-1","anchor_id":"habakkuk-1-1","source_ref":"Habakkuk 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f1af0a7c6d30","tok-7d6420d0213c","tok-4e1d16a6593a","tok-f68e4e2d5ece","tok-262b9367bb1d"]}]},"habakkuk-1-2":{"unit_id":"habakkuk-1-2","anchor_id":"habakkuk-1-2","source_ref":"Habakkuk 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e46bfbd1f28c","tok-d6689192f99f","tok-c2f43b5f4e5c","tok-02ccb0c047f4","tok-db89687783d4","tok-61af89a64767","tok-6af9f8d938b9","tok-b24ecd891d1d","tok-2917a9393ea3","tok-44f1933b1812"]}]},"habakkuk-1-3":{"unit_id":"habakkuk-1-3","anchor_id":"habakkuk-1-3","source_ref":"Habakkuk 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e1912aca5167","tok-508121619d71","tok-4e07618b2758","tok-b889385a91c7","tok-df69a8c9cdfe","tok-fa8c7b928a5c","tok-5a53c6a9c9e0","tok-a4588a6693ba","tok-3a4236f2d1d6","tok-975587d16b5c","tok-d518d3c67204","tok-355a0895892a"]}]},"habakkuk-1-4":{"unit_id":"habakkuk-1-4","anchor_id":"habakkuk-1-4","source_ref":"Habakkuk 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-73d367c63aab","tok-3f6925e0a9f3","tok-200f587a8aa5","tok-f26e583fe854","tok-31e444e2e9ee","tok-5e6d6a9d96fd","tok-7128b9bf72f6","tok-8cf2a7db4e4b","tok-c89543e6324c","tok-287741423b8b","tok-f52eadbbb077","tok-bcc448487409","tok-4df3aa19e0b6","tok-e6c71f46af70"]}]},"habakkuk-1-5":{"unit_id":"habakkuk-1-5","anchor_id":"habakkuk-1-5","source_ref":"Habakkuk 1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-24482adbb75c","tok-e8285ba792f3","tok-d0db104cb30a","tok-1e2b29485501","tok-4bbb77aaf9bb","tok-d2464d9833b8","tok-eeeb1730aff2","tok-be3dd3582222","tok-11283fe428aa","tok-5c580690aa94","tok-7b50c6540313","tok-5da2556a5c76"]}]},"habakkuk-1-6":{"unit_id":"habakkuk-1-6","anchor_id":"habakkuk-1-6","source_ref":"Habakkuk 1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cf12b1716105","tok-42b8b00b7f78","tok-c8c432d3d8d7","tok-aeda11de0721","tok-8790ef09c404","tok-5c7c3214389a","tok-45fa124c9495","tok-deeab123f517","tok-2cfc89427622","tok-d167904e0fcc","tok-9705f36ef3ca"]}]},"habakkuk-1-7":{"unit_id":"habakkuk-1-7","anchor_id":"habakkuk-1-7","source_ref":"Habakkuk 1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-34a291dc8372","tok-90cc8d536c92","tok-ad3632629c9f","tok-c05e222b77cc","tok-5b1465721f7d","tok-c7b9390fdec3","tok-4a70d9e4ffd0"]}]},"habakkuk-1-8":{"unit_id":"habakkuk-1-8","anchor_id":"habakkuk-1-8","source_ref":"Habakkuk 1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4ad8cd0b31eb","tok-5fc11fef2bf4","tok-774b96c51911","tok-560ed9759393","tok-2f0c0a2bfa9f","tok-f2f364c2f956","tok-88b33b96e221","tok-33a1664cfdc8","tok-09702d6589c3","tok-104feb60c5f4","tok-89dca3c6f64e","tok-c4f694892546","tok-40104463bf60","tok-20eb76b6240f","tok-180053c5a875"]}]},"habakkuk-1-9":{"unit_id":"habakkuk-1-9","anchor_id":"habakkuk-1-9","source_ref":"Habakkuk 1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c03b9e5b2f59","tok-59bf288f1ee0","tok-ba547afb6c9d","tok-e0eae9efda42","tok-d495d94808e8","tok-2a306c43c402","tok-da337d0c7dd1","tok-cc3d02ec93e7","tok-4c68c531fea9"]}]},"habakkuk-1-10":{"unit_id":"habakkuk-1-10","anchor_id":"habakkuk-1-10","source_ref":"Habakkuk 1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-893c0b17ecb6","tok-d691bd98fe4e","tok-099d94212b47","tok-2075933a2949","tok-bbb9f06d2c50","tok-9b9b6756ec33","tok-7dfc32514bc6","tok-5b757cae188f","tok-4b923b46d374","tok-945245b3f4e5","tok-b1367e0756ca","tok-163daba5a7e5"]}]},"habakkuk-1-11":{"unit_id":"habakkuk-1-11","anchor_id":"habakkuk-1-11","source_ref":"Habakkuk 1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-251784f5cab1","tok-313a5692ff77","tok-dccddba834c5","tok-a4deabd9bc7e","tok-fdd7cb977eda","tok-f803b558feeb","tok-57d902f44709","tok-519123acdd66"]}]},"habakkuk-1-12":{"unit_id":"habakkuk-1-12","anchor_id":"habakkuk-1-12","source_ref":"Habakkuk 1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c109e62b2f54","tok-02242be6b340","tok-27fadb0cb916","tok-382fb6d7cdce","tok-7438acd74954","tok-b79f6313044e","tok-f77942c55b47","tok-5ee1de5745fc","tok-87f8e4e978b7","tok-be6bea09cb18","tok-55e5a0edad86","tok-f5affb625cf4","tok-bb92381a980a","tok-5cf8a9715a98"]}]},"habakkuk-1-13":{"unit_id":"habakkuk-1-13","anchor_id":"habakkuk-1-13","source_ref":"Habakkuk 1:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-521ee95859ba","tok-c1ada42a1d89","tok-c702d2d26cf3","tok-6c39fc570ff2","tok-8aaddac861c8","tok-42d066279d1c","tok-f77942c55b47","tok-fa0838878b28","tok-6b00131eeb35","tok-d4b76cf5063c","tok-2d76ee47cca5","tok-739d231c53a4","tok-a2fd02ffb3d3","tok-467783d65033","tok-e749a5191e2f","tok-dc4d11621cc0"]}]},"habakkuk-1-14":{"unit_id":"habakkuk-1-14","anchor_id":"habakkuk-1-14","source_ref":"Habakkuk 1:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a9c68f2169e3","tok-868e7ea073af","tok-8addc0525ff6","tok-7b7e782004fd","tok-041cc4f0b6cf","tok-25f26e319c0c","tok-02893af28087"]}]},"habakkuk-1-15":{"unit_id":"habakkuk-1-15","anchor_id":"habakkuk-1-15","source_ref":"Habakkuk 1:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c03b9e5b2f59","tok-ab4b8c2c069a","tok-41b6629bf1c3","tok-7f2066fba793","tok-2a626e21f5cd","tok-1802395f4de3","tok-a52b2068c6cf","tok-396006c46edb","tok-8e2ea401e894","tok-e52cfc641d7e"]}]},"habakkuk-1-16":{"unit_id":"habakkuk-1-16","anchor_id":"habakkuk-1-16","source_ref":"Habakkuk 1:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-73d367c63aab","tok-3838d24960d6","tok-f81d794d1596","tok-17709d14a155","tok-2fcb61a29462","tok-7128b9bf72f6","tok-6109bac7dd66","tok-afdc362abf8e","tok-a4dfacc958ae","tok-28aa377dcdc0","tok-b68aa65e2d67"]}]},"habakkuk-1-17":{"unit_id":"habakkuk-1-17","anchor_id":"habakkuk-1-17","source_ref":"Habakkuk 1:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-772c032b018a","tok-d9daaf05ea30","tok-1b8690c9f29e","tok-b72f3133a732","tok-e93b3d7f7165","tok-90814283a810","tok-6e1d5e431c54","tok-11283fe428aa","tok-40ca11713177","tok-74f516e8d7b7"]}]},"habakkuk-2-1":{"unit_id":"habakkuk-2-1","anchor_id":"habakkuk-2-1","source_ref":"Habakkuk 2:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9c936c6fbd48","tok-38ee445f3a22","tok-e38ebd645ed9","tok-adaf8c6cd621","tok-4a457d553e9e","tok-43d27b9a7f7e","tok-2b33b978e01c","tok-809bd43a6dbb","tok-541c8ea28af3","tok-343ccfe82ecb"]}]},"habakkuk-2-2":{"unit_id":"habakkuk-2-2","anchor_id":"habakkuk-2-2","source_ref":"Habakkuk 2:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-910b0dc608e1","tok-87f8e4e978b7","tok-8a76f0d15f92","tok-cfbb74638de4","tok-ab730b96cb58","tok-5b945072cc44","tok-cdbaaf04c99a","tok-41c93f5df032","tok-15219410149a","tok-4a7127270fb2","tok-0ebd0872b0e2"]}]},"habakkuk-2-3":{"unit_id":"habakkuk-2-3","anchor_id":"habakkuk-2-3","source_ref":"Habakkuk 2:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8db133f838b5","tok-97da47a04004","tok-f04989e02b82","tok-21f2d0fcde7d","tok-d5a4ce1bef5f","tok-f3b46022c788","tok-02ccb0c047f4","tok-5d9fc928c87f","tok-b2b616090ecf","tok-bba4f80f1425","tok-a108a1db5f02","tok-e43b72be7cdd","tok-11283fe428aa","tok-c278194fb742"]}]},"habakkuk-2-4":{"unit_id":"habakkuk-2-4","anchor_id":"habakkuk-2-4","source_ref":"Habakkuk 2:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-92468af8da25","tok-552968709ce0","tok-29b5ec10479b","tok-22529374bbd1","tok-c2f3738844ab","tok-656ac37f6718","tok-cee404763168","tok-dff6a485033e","tok-74f516e8d7b7"]}]},"habakkuk-2-5":{"unit_id":"habakkuk-2-5","anchor_id":"habakkuk-2-5","source_ref":"Habakkuk 2:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-017deac92fc3","tok-299c31e8e928","tok-0ac3a3d52967","tok-96f4eff53ea8","tok-767a802102cb","tok-02ccb0c047f4","tok-8546c72c6de3","tok-5702e4638574","tok-9746a08399c1","tok-91bc30c24cd5","tok-24ff4b26cd8b","tok-7289460863cc","tok-ec6772ce790d","tok-02ccb0c047f4","tok-a640390f2d32","tok-40f5bdde3fe9","tok-7cc7c66a3a45","tok-758bd5561130","tok-f3445d3dca53","tok-3c535750d670","tok-a2a7cfcff94b"]}]},"habakkuk-2-6":{"unit_id":"habakkuk-2-6","anchor_id":"habakkuk-2-6","source_ref":"Habakkuk 2:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-023b6c3a2219","tok-594e1e21ba5c","tok-64ce476a3d93","tok-ecc6031ec9fe","tok-d884c56d8269","tok-8ea651e65628","tok-32ca453be4ce","tok-9b9b6756ec33","tok-5a91dfb975dd","tok-2a52b161eea1","tok-10b31e5151c2","tok-f354b0f7d690","tok-f7280d6bcb31","tok-6623362c62be","tok-d81c2168d92b","tok-a5a192d814b6"]}]},"habakkuk-2-7":{"unit_id":"habakkuk-2-7","anchor_id":"habakkuk-2-7","source_ref":"Habakkuk 2:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c233993d785a","tok-eaa031620cde","tok-3e30afc3f46b","tok-41a343f4f543","tok-890bd29b1bd9","tok-bf7dc3d5895a","tok-83784b1dc5e4","tok-43030d800fa8","tok-a3ad0c6c0ae6"]}]},"habakkuk-2-8":{"unit_id":"habakkuk-2-8","anchor_id":"habakkuk-2-8","source_ref":"Habakkuk 2:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c87ac2bf012b","tok-9c8af63ff976","tok-68f4983bc549","tok-5545b7b3f56b","tok-6ff659114b17","tok-ca7f55e26ce3","tok-61ef44bbc440","tok-2b1a87a9cd8e","tok-11a366fce45b","tok-f5456363e1c6","tok-422683606c22","tok-262201c344a2","tok-7a13c442e1a3","tok-267e28951c3f"]}]},"habakkuk-2-9":{"unit_id":"habakkuk-2-9","anchor_id":"habakkuk-2-9","source_ref":"Habakkuk 2:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1dd4c1da69e5","tok-ecd79cbe8ee7","tok-aa9cf2eb9a2c","tok-52b165d50496","tok-866a0864dc26","tok-c6f4e1a88fb0","tok-722ebba6a618","tok-9d93ac29443e","tok-ec88d77913c4","tok-e22e30cac93d"]}]},"habakkuk-2-10":{"unit_id":"habakkuk-2-10","anchor_id":"habakkuk-2-10","source_ref":"Habakkuk 2:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0a7e26c40356","tok-5daff4d283eb","tok-fe5e58f667a6","tok-c378294de1b2","tok-822e65def4a4","tok-f15a84bcf58a","tok-1ac6403e49d4"]}]},"habakkuk-2-11":{"unit_id":"habakkuk-2-11","anchor_id":"habakkuk-2-11","source_ref":"Habakkuk 2:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c00cec3325d2","tok-3c355dd5fb6b","tok-6fe0c62567de","tok-5c19c4baf1c2","tok-e6cd6f308e06","tok-c25387d4ab9f","tok-267e28951c3f"]}]},"habakkuk-2-12":{"unit_id":"habakkuk-2-12","anchor_id":"habakkuk-2-12","source_ref":"Habakkuk 2:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d4a491b6fbe9","tok-90b6228329ee","tok-7650340591be","tok-46364a9a907a","tok-f032e4efd7bf","tok-422683606c22","tok-fdb3869cddfb"]}]},"habakkuk-2-13":{"unit_id":"habakkuk-2-13","anchor_id":"habakkuk-2-13","source_ref":"Habakkuk 2:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c233993d785a","tok-36e73aa9cb85","tok-470485ef9d4e","tok-c4984cc4c821","tok-262b7feea6f6","tok-2e955f40d98a","tok-d5cc192d1c67","tok-bdaea520a71b","tok-486305952a3d","tok-29e7140699c2","tok-dce84c6ae7a6"]}]},"habakkuk-2-14":{"unit_id":"habakkuk-2-14","anchor_id":"habakkuk-2-14","source_ref":"Habakkuk 2:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-405ab595caf1","tok-44ef2479f4e7","tok-17c65bd84a71","tok-8a685e38b7d3","tok-2c1581f3b519","tok-61b4cc3e6ee9","tok-cbc92e63ad01","tok-d72343d14a62","tok-6c923d6e2bce","tok-267e28951c3f"]}]},"habakkuk-2-15":{"unit_id":"habakkuk-2-15","anchor_id":"habakkuk-2-15","source_ref":"Habakkuk 2:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2a52b161eea1","tok-9e90c9ba426d","tok-87755ceee4bc","tok-744d4d787484","tok-d0beb02c368c","tok-ececb9c86da6","tok-4264012eb879","tok-41c93f5df032","tok-107df3d0fd6c","tok-5914633eb1b2"]}]},"habakkuk-2-16":{"unit_id":"habakkuk-2-16","anchor_id":"habakkuk-2-16","source_ref":"Habakkuk 2:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-768806e2dc01","tok-b538e7a842cd","tok-959c8c7b786f","tok-5f61778aa247","tok-f6e3ca933504","tok-9914123576d8","tok-a48bfd1b6556","tok-6eecce56cdcd","tok-bee7a63eb66c","tok-7f35d67c53b1","tok-6be6ee0040da","tok-a7a3ada707eb","tok-3d2f2e82ce36"]}]},"habakkuk-2-17":{"unit_id":"habakkuk-2-17","anchor_id":"habakkuk-2-17","source_ref":"Habakkuk 2:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8db133f838b5","tok-65626de7efa5","tok-aa81fbc1a8e0","tok-46585dde5f00","tok-fa8c7b928a5c","tok-e63321d7c0e3","tok-1c022721786b","tok-2b1a87a9cd8e","tok-11a366fce45b","tok-f904376f2d51","tok-422683606c22","tok-262201c344a2","tok-7a13c442e1a3"]}]},"habakkuk-2-18":{"unit_id":"habakkuk-2-18","anchor_id":"habakkuk-2-18","source_ref":"Habakkuk 2:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-aaad6d79abab","tok-995ed4f58cf4","tok-7128b9bf72f6","tok-d6347cc9da4b","tok-2bba315199e2","tok-0bcb7833d57b","tok-fef356e23b0f","tok-97ef6e49f41f","tok-8db133f838b5","tok-a6231bca6bb5","tok-7de0daf48632","tok-d28a20a09edf","tok-d70e8c48b1e3","tok-91de19c09281","tok-ec9162674d6f","tok-b7c46626981f","tok-74f516e8d7b7"]}]},"habakkuk-2-19":{"unit_id":"habakkuk-2-19","anchor_id":"habakkuk-2-19","source_ref":"Habakkuk 2:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-10bc36c9aa7a","tok-55e9fd60e9b1","tok-a33a787b8ac3","tok-df1924a69178","tok-75b59d69d9da","tok-59d7b4cd3de0","tok-e88e3b207594","tok-bbe61cceceaa","tok-820e513ff488","tok-7fb050c6e2c3","tok-e1bd7521db66","tok-8de71e47d34e","tok-c5e0df22abcc","tok-f5064db270ee","tok-eadd5cec97c3","tok-8a6d2e20c4af"]}]},"habakkuk-2-20":{"unit_id":"habakkuk-2-20","anchor_id":"habakkuk-2-20","source_ref":"Habakkuk 2:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bad67952d025","tok-974985b0b22b","tok-262d6861ed91","tok-83d64d2994ec","tok-406c3344f4ef","tok-121a776fba67","tok-74f516e8d7b7"]}]},"habakkuk-3-1":{"unit_id":"habakkuk-3-1","anchor_id":"habakkuk-3-1","source_ref":"Habakkuk 3:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1f4f01b367f6","tok-8457b80da331","tok-72ad34639f67","tok-cfa05472c142","tok-4e197ec8fd4a"]}]},"habakkuk-3-2":{"unit_id":"habakkuk-3-2","anchor_id":"habakkuk-3-2","source_ref":"Habakkuk 3:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1a25f1766edd","tok-2815b13f23db","tok-14ed4d18f713","tok-67036a3965c8","tok-1a25f1766edd","tok-6b3052df76c7","tok-837787a1ce68","tok-1d71a0c5d2a2","tok-a3216faa11ad","tok-d20871c33498","tok-be6cae8164b4","tok-9afbe7d9c8b5","tok-a4db382c7b2f","tok-af90596015dc","tok-09157664783e"]}]},"habakkuk-3-3":{"unit_id":"habakkuk-3-3","anchor_id":"habakkuk-3-3","source_ref":"Habakkuk 3:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7cbc830ef1a4","tok-12972597c8dc","tok-ba547afb6c9d","tok-cff6f10e59ec","tok-c1ebb8277829","tok-d5df4813fff2","tok-5a5834de27ea","tok-e25dce91bae9","tok-11f2ad641f1f","tok-ee5042a6f346","tok-f1f5e276b9ed","tok-28502edc3f00"]}]},"habakkuk-3-4":{"unit_id":"habakkuk-3-4","anchor_id":"habakkuk-3-4","source_ref":"Habakkuk 3:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ca7b4ed01599","tok-8c7ca4952c20","tok-df7318db5544","tok-f33f3bc63e2d","tok-2299ac333e83","tok-9b9b6756ec33","tok-6c16f05f09ed","tok-06c170d146ff","tok-54b67c03fe4d"]}]},"habakkuk-3-5":{"unit_id":"habakkuk-3-5","anchor_id":"habakkuk-3-5","source_ref":"Habakkuk 3:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fb34c1728a49","tok-cbdd73c7d819","tok-71048f505fd5","tok-2be84d823fa1","tok-fd9b59392349","tok-d5f46ad85755"]}]},"habakkuk-3-6":{"unit_id":"habakkuk-3-6","anchor_id":"habakkuk-3-6","source_ref":"Habakkuk 3:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0b8691028bc8","tok-3183d1d91c51","tok-c06d0b715824","tok-48f698b1e6a1","tok-0b62e7453135","tok-401a9614660c","tok-6cf144486332","tok-18cef222d096","tok-51e7cf11ea08","tok-5f7ed8efd034","tok-88f3a0c8ad3c","tok-3d528ccbc8a5","tok-278a6b8b8288","tok-23426eeaf695"]}]},"habakkuk-3-7":{"unit_id":"habakkuk-3-7","anchor_id":"habakkuk-3-7","source_ref":"Habakkuk 3:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-355351ea4b79","tok-ea55bec16483","tok-062160fc050e","tok-b40f7f4df5c2","tok-e7f3ba1955d0","tok-c596f0b5c5c5","tok-1444724a24a5","tok-d02513264783","tok-90c926ac55a3"]}]},"habakkuk-3-8":{"unit_id":"habakkuk-3-8","anchor_id":"habakkuk-3-8","source_ref":"Habakkuk 3:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-55f9f8733434","tok-5ae0dd8b2e17","tok-6be6ee0040da","tok-afae62956cea","tok-04f716fc7208","tok-4c96e824796b","tok-2975b70b6785","tok-5599f5434be0","tok-7128b9bf72f6","tok-fc52f8353ad1","tok-87e6ecca9a8c","tok-51d43f85dcdd","tok-857dbf2d961d"]}]},"habakkuk-3-9":{"unit_id":"habakkuk-3-9","anchor_id":"habakkuk-3-9","source_ref":"Habakkuk 3:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e3b2bfd5ada7","tok-a9248abf1f7a","tok-468250d5e850","tok-07e6e74710ca","tok-3e1b96e4bd15","tok-2009ea3f7ff0","tok-d5df4813fff2","tok-ce17a3339e1e","tok-c25d1480f005"]}]},"habakkuk-3-10":{"unit_id":"habakkuk-3-10","anchor_id":"habakkuk-3-10","source_ref":"Habakkuk 3:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4525935377d7","tok-a19896e80532","tok-503f6a3e5333","tok-ae1c308fdee6","tok-dca200d0b4f6","tok-696572a90cdc","tok-da4c4e06f0a2","tok-05118383c28f","tok-baa5648f9596","tok-897ce41c4a68","tok-2606974b9625","tok-8dd9bd577d65"]}]},"habakkuk-3-11":{"unit_id":"habakkuk-3-11","anchor_id":"habakkuk-3-11","source_ref":"Habakkuk 3:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a40f9b79b21b","tok-426eaa3ac2a5","tok-f6d1c9f72b5c","tok-41ee44b3023a","tok-63d939af1ff5","tok-f78459505826","tok-101d96add4fe","tok-a8e216ee0c4c","tok-fc21aa04b56a","tok-ae6e1f476cd0"]}]},"habakkuk-3-12":{"unit_id":"habakkuk-3-12","anchor_id":"habakkuk-3-12","source_ref":"Habakkuk 3:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e61e62c77944","tok-8bf8bc88aec3","tok-65045d8a9864","tok-533f05f3c6f3","tok-2397c6ef8d5d"]}]},"habakkuk-3-13":{"unit_id":"habakkuk-3-13","anchor_id":"habakkuk-3-13","source_ref":"Habakkuk 3:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4b3a14cc82d3","tok-1c9952f22b51","tok-a3dec2a1213a","tok-15c109bae5c9","tok-09128194104e","tok-4d2e683bfa79","tok-99c827bd6f1b","tok-cc36d775fb3a","tok-46ab51e8a8f1","tok-9bc31fc044a1","tok-ea28eb1f490d","tok-8078b311e4d9","tok-4c6df30b8570","tok-267e28951c3f"]}]},"habakkuk-3-14":{"unit_id":"habakkuk-3-14","anchor_id":"habakkuk-3-14","source_ref":"Habakkuk 3:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-835197afd982","tok-47de83f91a7b","tok-9ee0679f99c1","tok-e106ecdffcaf","tok-817e1d26676e","tok-19f24bcd2154","tok-eae062a37130","tok-5a55a683a532","tok-b50d75ee80fc","tok-04e91abc2763"]}]},"habakkuk-3-15":{"unit_id":"habakkuk-3-15","anchor_id":"habakkuk-3-15","source_ref":"Habakkuk 3:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f7f070a70412","tok-6cbba07025a5","tok-8e45aed6184f","tok-9134d55f8bc7","tok-74d85c1f9687","tok-b3abbe4d8e80"]}]},"habakkuk-3-16":{"unit_id":"habakkuk-3-16","anchor_id":"habakkuk-3-16","source_ref":"Habakkuk 3:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2815b13f23db","tok-5e57e94dfe0d","tok-b1dae8d55d23","tok-33ecd8cb3c9e","tok-289fc35850ab","tok-493ab91a590b","tok-f49cc1459fd8","tok-86954fba96ca","tok-ac6d3cdae704","tok-5e9acbd8c1ef","tok-54bfd875c99e","tok-ec825e783146","tok-98b1d1bac176","tok-951d8cb51e29","tok-e7387d3f3a9e","tok-6d9619863d7c","tok-eea5b725195e","tok-e89f4b5aa869"]}]},"habakkuk-3-17":{"unit_id":"habakkuk-3-17","anchor_id":"habakkuk-3-17","source_ref":"Habakkuk 3:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4fefea638a50","tok-2dedb558f622","tok-fc1b2d03a1be","tok-a309acbc59e5","tok-56b9cbc3f35e","tok-065bfa1316ef","tok-6b6625399ed6","tok-b323dbc3536d","tok-8870ea47fdc7","tok-d6c5cfb14f5c","tok-b556f1808725","tok-8bb1b17c5a45","tok-3e839af3f9cf","tok-cc1001a861db","tok-07e377c92694","tok-56f6e12e8793"]}]},"habakkuk-3-18":{"unit_id":"habakkuk-3-18","anchor_id":"habakkuk-3-18","source_ref":"Habakkuk 3:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a91235051e53","tok-c5da582be44e","tok-b5b2730c7cef","tok-edc0be680c5f","tok-4c805fed324e","tok-2b33ef5e9ce6"]}]},"habakkuk-3-19":{"unit_id":"habakkuk-3-19","anchor_id":"habakkuk-3-19","source_ref":"Habakkuk 3:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e9f126ec15be","tok-b111eae76180","tok-5b056cb735af","tok-d6622731b3f5","tok-7f2e34d1aeaf","tok-239633ff14b0","tok-0cf5bf7bb9db","tok-f6dc33d5b12d","tok-1fc8d24dd566","tok-c528260746b1","tok-1c707afa187c"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/habakkuk.manifest.json","root_href":"../../"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const sourceSummary = (rows) => {
+        const row = cleanValues(rows)[0];
+        if (!row) return { source: "Source metadata incomplete", license: "N/A" };
+        const sourceId = row.source_id ? ` ${row.source_id}` : "";
+        return { source: `${row.source_name || "Source"}${sourceId}`, license: row.license || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        const sourceLine = document.createElement("p");
+        sourceLine.className = "claim-source";
+        sourceLine.textContent = `Source: ${source.source}`;
+        const licenseLine = document.createElement("p");
+        licenseLine.className = "claim-license";
+        licenseLine.textContent = `License: ${source.license}`;
+        card.append(sourceLine, licenseLine);
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

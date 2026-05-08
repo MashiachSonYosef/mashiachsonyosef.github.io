@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jonah</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Jonah</h1>
+        <p class="meta">48 total source units | imported 2026-05-08</p>
+        <p class="meta source-citation">Hebrew version: Miqra according to the Masorah | Version source: <a href="https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94">he.wikisource.org</a> | Digitization: Sefaria API | License: CC-BY-SA</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Jonah <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Jonah <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-jonah-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#jonah-1-1" title="Jonah 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#jonah-1-2" title="Jonah 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#jonah-1-3" title="Jonah 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#jonah-1-4" title="Jonah 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#jonah-1-5" title="Jonah 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#jonah-1-6" title="Jonah 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#jonah-1-7" title="Jonah 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#jonah-1-8" title="Jonah 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#jonah-1-9" title="Jonah 1:9">1:9</a></li>
+                    <li><a class="toc-unit" href="#jonah-1-10" title="Jonah 1:10">1:10</a></li>
+                    <li><a class="toc-unit" href="#jonah-1-11" title="Jonah 1:11">1:11</a></li>
+                    <li><a class="toc-unit" href="#jonah-1-12" title="Jonah 1:12">1:12</a></li>
+                    <li><a class="toc-unit" href="#jonah-1-13" title="Jonah 1:13">1:13</a></li>
+                    <li><a class="toc-unit" href="#jonah-1-14" title="Jonah 1:14">1:14</a></li>
+                    <li><a class="toc-unit" href="#jonah-1-15" title="Jonah 1:15">1:15</a></li>
+                    <li><a class="toc-unit" href="#jonah-1-16" title="Jonah 1:16">1:16</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-jonah-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#jonah-2-1" title="Jonah 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#jonah-2-2" title="Jonah 2:2">2:2</a></li>
+                    <li><a class="toc-unit" href="#jonah-2-3" title="Jonah 2:3">2:3</a></li>
+                    <li><a class="toc-unit" href="#jonah-2-4" title="Jonah 2:4">2:4</a></li>
+                    <li><a class="toc-unit" href="#jonah-2-5" title="Jonah 2:5">2:5</a></li>
+                    <li><a class="toc-unit" href="#jonah-2-6" title="Jonah 2:6">2:6</a></li>
+                    <li><a class="toc-unit" href="#jonah-2-7" title="Jonah 2:7">2:7</a></li>
+                    <li><a class="toc-unit" href="#jonah-2-8" title="Jonah 2:8">2:8</a></li>
+                    <li><a class="toc-unit" href="#jonah-2-9" title="Jonah 2:9">2:9</a></li>
+                    <li><a class="toc-unit" href="#jonah-2-10" title="Jonah 2:10">2:10</a></li>
+                    <li><a class="toc-unit" href="#jonah-2-11" title="Jonah 2:11">2:11</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-jonah-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#jonah-3-1" title="Jonah 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#jonah-3-2" title="Jonah 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#jonah-3-3" title="Jonah 3:3">3:3</a></li>
+                    <li><a class="toc-unit" href="#jonah-3-4" title="Jonah 3:4">3:4</a></li>
+                    <li><a class="toc-unit" href="#jonah-3-5" title="Jonah 3:5">3:5</a></li>
+                    <li><a class="toc-unit" href="#jonah-3-6" title="Jonah 3:6">3:6</a></li>
+                    <li><a class="toc-unit" href="#jonah-3-7" title="Jonah 3:7">3:7</a></li>
+                    <li><a class="toc-unit" href="#jonah-3-8" title="Jonah 3:8">3:8</a></li>
+                    <li><a class="toc-unit" href="#jonah-3-9" title="Jonah 3:9">3:9</a></li>
+                    <li><a class="toc-unit" href="#jonah-3-10" title="Jonah 3:10">3:10</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-jonah-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#jonah-4-1" title="Jonah 4:1">4:1</a></li>
+                    <li><a class="toc-unit" href="#jonah-4-2" title="Jonah 4:2">4:2</a></li>
+                    <li><a class="toc-unit" href="#jonah-4-3" title="Jonah 4:3">4:3</a></li>
+                    <li><a class="toc-unit" href="#jonah-4-4" title="Jonah 4:4">4:4</a></li>
+                    <li><a class="toc-unit" href="#jonah-4-5" title="Jonah 4:5">4:5</a></li>
+                    <li><a class="toc-unit" href="#jonah-4-6" title="Jonah 4:6">4:6</a></li>
+                    <li><a class="toc-unit" href="#jonah-4-7" title="Jonah 4:7">4:7</a></li>
+                    <li><a class="toc-unit" href="#jonah-4-8" title="Jonah 4:8">4:8</a></li>
+                    <li><a class="toc-unit" href="#jonah-4-9" title="Jonah 4:9">4:9</a></li>
+                    <li><a class="toc-unit" href="#jonah-4-10" title="Jonah 4:10">4:10</a></li>
+                    <li><a class="toc-unit" href="#jonah-4-11" title="Jonah 4:11">4:11</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-jonah-text-1">Chapter 1</h4>
+          <section class="unit" id="jonah-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 1:1</h4></div>
+              <a class="anchor" href="#jonah-1-1" aria-label="Copy link to Jonah 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַֽיְהִי֙ דְּבַר־יְהֹוָ֔ה אֶל־יוֹנָ֥ה בֶן־אֲמִתַּ֖י לֵאמֹֽר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 1:2</h4></div>
+              <a class="anchor" href="#jonah-1-2" aria-label="Copy link to Jonah 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ק֠וּם לֵ֧ךְ אֶל־נִֽינְוֵ֛ה הָעִ֥יר הַגְּדוֹלָ֖ה וּקְרָ֣א עָלֶ֑יהָ כִּֽי־עָלְתָ֥ה רָעָתָ֖ם לְפָנָֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 1:3</h4></div>
+              <a class="anchor" href="#jonah-1-3" aria-label="Copy link to Jonah 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיָּ֤קׇם יוֹנָה֙ לִבְרֹ֣חַ תַּרְשִׁ֔ישָׁה מִלִּפְנֵ֖י יְהֹוָ֑ה וַיֵּ֨רֶד יָפ֜וֹ וַיִּמְצָ֥א אֳנִיָּ֣ה&amp;thinsp;<strong>׀</strong> בָּאָ֣ה תַרְשִׁ֗ישׁ וַיִּתֵּ֨ן שְׂכָרָ֜הּ וַיֵּ֤רֶד בָּהּ֙ לָב֤וֹא עִמָּהֶם֙ תַּרְשִׁ֔ישָׁה מִלִּפְנֵ֖י יְהֹוָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 1:4</h4></div>
+              <a class="anchor" href="#jonah-1-4" aria-label="Copy link to Jonah 1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַֽיהֹוָ֗ה הֵטִ֤יל רֽוּחַ־גְּדוֹלָה֙ אֶל־הַיָּ֔ם וַיְהִ֥י סַֽעַר־גָּד֖וֹל בַּיָּ֑ם וְהָ֣אֳנִיָּ֔ה חִשְּׁבָ֖ה לְהִשָּׁבֵֽר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 1:5</h4></div>
+              <a class="anchor" href="#jonah-1-5" aria-label="Copy link to Jonah 1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיִּֽירְא֣וּ הַמַּלָּחִ֗ים וַֽיִּזְעֲקוּ֮ אִ֣ישׁ אֶל־אֱלֹהָיו֒ וַיָּטִ֨לוּ אֶת־הַכֵּלִ֜ים אֲשֶׁ֤ר בָּֽאֳנִיָּה֙ אֶל־הַיָּ֔ם לְהָקֵ֖ל מֵֽעֲלֵיהֶ֑ם וְיוֹנָ֗ה יָרַד֙ אֶל־יַרְכְּתֵ֣י הַסְּפִינָ֔ה וַיִּשְׁכַּ֖ב וַיֵּרָדַֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 1:6</h4></div>
+              <a class="anchor" href="#jonah-1-6" aria-label="Copy link to Jonah 1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיִּקְרַ֤ב אֵלָיו֙ רַ֣ב הַחֹבֵ֔ל וַיֹּ֥אמֶר ל֖וֹ מַה־לְּךָ֣ נִרְדָּ֑ם ק֚וּם קְרָ֣א אֶל־אֱלֹהֶ֔יךָ אוּלַ֞י יִתְעַשֵּׁ֧ת הָאֱלֹהִ֛ים לָ֖נוּ וְלֹ֥א נֹאבֵֽד׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-1-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 1:7</h4></div>
+              <a class="anchor" href="#jonah-1-7" aria-label="Copy link to Jonah 1:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּאמְר֞וּ אִ֣ישׁ אֶל־רֵעֵ֗הוּ לְכוּ֙ וְנַפִּ֣ילָה גֽוֹרָל֔וֹת וְנֵ֣דְעָ֔ה בְּשֶׁלְּמִ֛י הָרָעָ֥ה הַזֹּ֖את לָ֑נוּ וַיַּפִּ֙לוּ֙ גּֽוֹרָל֔וֹת וַיִּפֹּ֥ל הַגּוֹרָ֖ל עַל־יוֹנָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-1-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 1:8</h4></div>
+              <a class="anchor" href="#jonah-1-8" aria-label="Copy link to Jonah 1:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּאמְר֣וּ אֵלָ֔יו הַגִּידָה־נָּ֣א לָ֔נוּ בַּאֲשֶׁ֛ר לְמִי־הָרָעָ֥ה הַזֹּ֖את לָ֑נוּ מַה־מְּלַאכְתְּךָ֙ וּמֵאַ֣יִן תָּב֔וֹא מָ֣ה אַרְצֶ֔ךָ וְאֵֽי־מִזֶּ֥ה עַ֖ם אָֽתָּה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-1-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 1:9</h4></div>
+              <a class="anchor" href="#jonah-1-9" aria-label="Copy link to Jonah 1:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֥אמֶר אֲלֵיהֶ֖ם עִבְרִ֣י אָנֹ֑כִי וְאֶת־יְהֹוָ֞ה אֱלֹהֵ֤י הַשָּׁמַ֙יִם֙ אֲנִ֣י יָרֵ֔א אֲשֶׁר־עָשָׂ֥ה אֶת־הַיָּ֖ם וְאֶת־הַיַּבָּשָֽׁה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-1-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 1:10</h4></div>
+              <a class="anchor" href="#jonah-1-10" aria-label="Copy link to Jonah 1:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיִּֽירְא֤וּ הָֽאֲנָשִׁים֙ יִרְאָ֣ה גְדוֹלָ֔ה וַיֹּאמְר֥וּ אֵלָ֖יו מַה־זֹּ֣את עָשִׂ֑יתָ כִּֽי־יָדְע֣וּ הָאֲנָשִׁ֗ים כִּֽי־מִלִּפְנֵ֤י יְהֹוָה֙ ה֣וּא בֹרֵ֔חַ כִּ֥י הִגִּ֖יד לָהֶֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-1-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 1:11</h4></div>
+              <a class="anchor" href="#jonah-1-11" aria-label="Copy link to Jonah 1:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּאמְר֤וּ אֵלָיו֙ מַה־נַּ֣עֲשֶׂה לָּ֔ךְ וְיִשְׁתֹּ֥ק הַיָּ֖ם מֵֽעָלֵ֑ינוּ כִּ֥י הַיָּ֖ם הוֹלֵ֥ךְ וְסֹעֵֽר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-1-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 1:12</h4></div>
+              <a class="anchor" href="#jonah-1-12" aria-label="Copy link to Jonah 1:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֣אמֶר אֲלֵיהֶ֗ם שָׂא֙וּנִי֙ וַהֲטִילֻ֣נִי אֶל־הַיָּ֔ם וְיִשְׁתֹּ֥ק הַיָּ֖ם מֵֽעֲלֵיכֶ֑ם כִּ֚י יוֹדֵ֣עַ אָ֔נִי כִּ֣י בְשֶׁלִּ֔י הַסַּ֧עַר הַגָּד֛וֹל הַזֶּ֖ה עֲלֵיכֶֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-1-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 1:13</h4></div>
+              <a class="anchor" href="#jonah-1-13" aria-label="Copy link to Jonah 1:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיַּחְתְּר֣וּ הָאֲנָשִׁ֗ים לְהָשִׁ֛יב אֶל־הַיַּבָּשָׁ֖ה וְלֹ֣א יָכֹ֑לוּ כִּ֣י הַיָּ֔ם הוֹלֵ֥ךְ וְסֹעֵ֖ר עֲלֵיהֶֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-1-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 1:14</h4></div>
+              <a class="anchor" href="#jonah-1-14" aria-label="Copy link to Jonah 1:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיִּקְרְא֨וּ אֶל־יְהֹוָ֜ה וַיֹּאמְר֗וּ אָנָּ֤ה יְהֹוָה֙ אַל־נָ֣א נֹאבְדָ֗ה בְּנֶ֙פֶשׁ֙ הָאִ֣ישׁ הַזֶּ֔ה וְאַל־תִּתֵּ֥ן עָלֵ֖ינוּ דָּ֣ם נָקִ֑יא כִּֽי־אַתָּ֣ה יְהֹוָ֔ה כַּאֲשֶׁ֥ר חָפַ֖צְתָּ עָשִֽׂיתָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-1-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 1:15</h4></div>
+              <a class="anchor" href="#jonah-1-15" aria-label="Copy link to Jonah 1:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיִּשְׂאוּ֙ אֶת־יוֹנָ֔ה וַיְטִלֻ֖הוּ אֶל־הַיָּ֑ם וַיַּעֲמֹ֥ד הַיָּ֖ם מִזַּעְפּֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-1-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 1:16</h4></div>
+              <a class="anchor" href="#jonah-1-16" aria-label="Copy link to Jonah 1:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיִּֽירְא֧וּ הָאֲנָשִׁ֛ים יִרְאָ֥ה גְדוֹלָ֖ה אֶת־יְהֹוָ֑ה וַיִּֽזְבְּחוּ־זֶ֙בַח֙ לַֽיהֹוָ֔ה וַֽיִּדְּר֖וּ נְדָרִֽים׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-jonah-text-2">Chapter 2</h4>
+          <section class="unit" id="jonah-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 2:1</h4></div>
+              <a class="anchor" href="#jonah-2-1" aria-label="Copy link to Jonah 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיְמַ֤ן יְהֹוָה֙ דָּ֣ג גָּד֔וֹל לִבְלֹ֖עַ אֶת־יוֹנָ֑ה וַיְהִ֤י יוֹנָה֙ בִּמְעֵ֣י הַדָּ֔ג שְׁלֹשָׁ֥ה יָמִ֖ים וּשְׁלֹשָׁ֥ה לֵילֽוֹת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-2-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 2:2</h4></div>
+              <a class="anchor" href="#jonah-2-2" aria-label="Copy link to Jonah 2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיִּתְפַּלֵּ֣ל יוֹנָ֔ה אֶל־יְהֹוָ֖ה אֱלֹהָ֑יו מִמְּעֵ֖י הַדָּגָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-2-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 2:3</h4></div>
+              <a class="anchor" href="#jonah-2-3" aria-label="Copy link to Jonah 2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֗אמֶר קָ֠רָ֠אתִי מִצָּ֥רָה לִ֛י אֶל־יְהֹוָ֖ה וַֽיַּעֲנֵ֑נִי מִבֶּ֧טֶן שְׁא֛וֹל שִׁוַּ֖עְתִּי שָׁמַ֥עְתָּ קוֹלִֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-2-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 2:4</h4></div>
+              <a class="anchor" href="#jonah-2-4" aria-label="Copy link to Jonah 2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתַּשְׁלִיכֵ֤נִי מְצוּלָה֙ בִּלְבַ֣ב יַמִּ֔ים וְנָהָ֖ר יְסֹבְבֵ֑נִי כׇּל־מִשְׁבָּרֶ֥יךָ וְגַלֶּ֖יךָ עָלַ֥י עָבָֽרוּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-2-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 2:5</h4></div>
+              <a class="anchor" href="#jonah-2-5" aria-label="Copy link to Jonah 2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַאֲנִ֣י אָמַ֔רְתִּי נִגְרַ֖שְׁתִּי מִנֶּ֣גֶד עֵינֶ֑יךָ אַ֚ךְ אוֹסִ֣יף לְהַבִּ֔יט אֶל־הֵיכַ֖ל קׇדְשֶֽׁךָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-2-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 2:6</h4></div>
+              <a class="anchor" href="#jonah-2-6" aria-label="Copy link to Jonah 2:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֲפָפ֤וּנִי מַ֙יִם֙ עַד־נֶ֔פֶשׁ תְּה֖וֹם יְסֹבְבֵ֑נִי ס֖וּף חָב֥וּשׁ לְרֹאשִֽׁי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-2-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 2:7</h4></div>
+              <a class="anchor" href="#jonah-2-7" aria-label="Copy link to Jonah 2:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לְקִצְבֵ֤י הָרִים֙ יָרַ֔דְתִּי הָאָ֛רֶץ בְּרִחֶ֥יהָ בַעֲדִ֖י לְעוֹלָ֑ם וַתַּ֧עַל מִשַּׁ֛חַת חַיַּ֖י יְהֹוָ֥ה אֱלֹהָֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-2-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 2:8</h4></div>
+              <a class="anchor" href="#jonah-2-8" aria-label="Copy link to Jonah 2:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בְּהִתְעַטֵּ֤ף עָלַי֙ נַפְשִׁ֔י אֶת־יְהֹוָ֖ה זָכָ֑רְתִּי וַתָּב֤וֹא אֵלֶ֙יךָ֙ תְּפִלָּתִ֔י אֶל־הֵיכַ֖ל קׇדְשֶֽׁךָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-2-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 2:9</h4></div>
+              <a class="anchor" href="#jonah-2-9" aria-label="Copy link to Jonah 2:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מְשַׁמְּרִ֖ים הַבְלֵי־שָׁ֑וְא חַסְדָּ֖ם יַעֲזֹֽבוּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-2-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 2:10</h4></div>
+              <a class="anchor" href="#jonah-2-10" aria-label="Copy link to Jonah 2:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַאֲנִ֗י בְּק֤וֹל תּוֹדָה֙ אֶזְבְּחָה־לָּ֔ךְ אֲשֶׁ֥ר נָדַ֖רְתִּי אֲשַׁלֵּ֑מָה יְשׁוּעָ֖תָה לַיהֹוָֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-2-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 2:11</h4></div>
+              <a class="anchor" href="#jonah-2-11" aria-label="Copy link to Jonah 2:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֥אמֶר יְהֹוָ֖ה לַדָּ֑ג וַיָּקֵ֥א אֶת־יוֹנָ֖ה אֶל־הַיַּבָּשָֽׁה׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-jonah-text-3">Chapter 3</h4>
+          <section class="unit" id="jonah-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 3:1</h4></div>
+              <a class="anchor" href="#jonah-3-1" aria-label="Copy link to Jonah 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיְהִ֧י דְבַר־יְהֹוָ֛ה אֶל־יוֹנָ֖ה שֵׁנִ֥ית לֵאמֹֽר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-3-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 3:2</h4></div>
+              <a class="anchor" href="#jonah-3-2" aria-label="Copy link to Jonah 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ק֛וּם לֵ֥ךְ אֶל־נִֽינְוֵ֖ה הָעִ֣יר הַגְּדוֹלָ֑ה וּקְרָ֤א אֵלֶ֙יהָ֙ אֶת־הַקְּרִיאָ֔ה אֲשֶׁ֥ר אָנֹכִ֖י דֹּבֵ֥ר אֵלֶֽיךָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-3-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 3:3</h4></div>
+              <a class="anchor" href="#jonah-3-3" aria-label="Copy link to Jonah 3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיָּ֣קׇם יוֹנָ֗ה וַיֵּ֛לֶךְ אֶל־נִֽינְוֵ֖ה כִּדְבַ֣ר יְהֹוָ֑ה וְנִֽינְוֵ֗ה הָיְתָ֤ה עִיר־גְּדוֹלָה֙ לֵֽאלֹהִ֔ים מַהֲלַ֖ךְ שְׁלֹ֥שֶׁת יָמִֽים׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-3-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 3:4</h4></div>
+              <a class="anchor" href="#jonah-3-4" aria-label="Copy link to Jonah 3:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיָּ֤חֶל יוֹנָה֙ לָב֣וֹא בָעִ֔יר מַהֲלַ֖ךְ י֣וֹם אֶחָ֑ד וַיִּקְרָא֙ וַיֹּאמַ֔ר ע֚וֹד אַרְבָּעִ֣ים י֔וֹם וְנִֽינְוֵ֖ה נֶהְפָּֽכֶת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-3-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 3:5</h4></div>
+              <a class="anchor" href="#jonah-3-5" aria-label="Copy link to Jonah 3:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַֽיַּאֲמִ֛ינוּ אַנְשֵׁ֥י נִֽינְוֵ֖ה בֵּֽאלֹהִ֑ים וַיִּקְרְאוּ־צוֹם֙ וַיִּלְבְּשׁ֣וּ שַׂקִּ֔ים מִגְּדוֹלָ֖ם וְעַד־קְטַנָּֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-3-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 3:6</h4></div>
+              <a class="anchor" href="#jonah-3-6" aria-label="Copy link to Jonah 3:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיִּגַּ֤ע הַדָּבָר֙ אֶל־מֶ֣לֶךְ נִֽינְוֵ֔ה וַיָּ֙קׇם֙ מִכִּסְא֔וֹ וַיַּעֲבֵ֥ר אַדַּרְתּ֖וֹ מֵֽעָלָ֑יו וַיְכַ֣ס שַׂ֔ק וַיֵּ֖שֶׁב עַל־הָאֵֽפֶר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-3-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 3:7</h4></div>
+              <a class="anchor" href="#jonah-3-7" aria-label="Copy link to Jonah 3:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיַּזְעֵ֗ק וַיֹּ֙אמֶר֙ בְּנִֽינְוֵ֔ה מִטַּ֧עַם הַמֶּ֛לֶךְ וּגְדֹלָ֖יו לֵאמֹ֑ר הָאָדָ֨ם וְהַבְּהֵמָ֜ה הַבָּקָ֣ר וְהַצֹּ֗אן אַֽל־יִטְעֲמוּ֙ מְא֔וּמָה אַ֨ל־יִרְע֔וּ וּמַ֖יִם אַל־יִשְׁתּֽוּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-3-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 3:8</h4></div>
+              <a class="anchor" href="#jonah-3-8" aria-label="Copy link to Jonah 3:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְיִתְכַּסּ֣וּ שַׂקִּ֗ים הָֽאָדָם֙ וְהַבְּהֵמָ֔ה וְיִקְרְא֥וּ אֶל־אֱלֹהִ֖ים בְּחׇזְקָ֑ה וְיָשֻׁ֗בוּ אִ֚ישׁ מִדַּרְכּ֣וֹ הָֽרָעָ֔ה וּמִן־הֶחָמָ֖ס אֲשֶׁ֥ר בְּכַפֵּיהֶֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-3-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 3:9</h4></div>
+              <a class="anchor" href="#jonah-3-9" aria-label="Copy link to Jonah 3:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מִֽי־יוֹדֵ֣עַ יָשׁ֔וּב וְנִחַ֖ם הָאֱלֹהִ֑ים וְשָׁ֛ב מֵחֲר֥וֹן אַפּ֖וֹ וְלֹ֥א נֹאבֵֽד׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-3-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 3:10</h4></div>
+              <a class="anchor" href="#jonah-3-10" aria-label="Copy link to Jonah 3:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיַּ֤רְא הָֽאֱלֹהִים֙ אֶת־מַ֣עֲשֵׂיהֶ֔ם כִּי־שָׁ֖בוּ מִדַּרְכָּ֣ם הָרָעָ֑ה וַיִּנָּ֣חֶם הָאֱלֹהִ֗ים עַל־הָרָעָ֛ה אֲשֶׁר־דִּבֶּ֥ר לַעֲשׂוֹת־לָהֶ֖ם וְלֹ֥א עָשָֽׂה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-jonah-text-4">Chapter 4</h4>
+          <section class="unit" id="jonah-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 4:1</h4></div>
+              <a class="anchor" href="#jonah-4-1" aria-label="Copy link to Jonah 4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֵּ֥רַע אֶל־יוֹנָ֖ה רָעָ֣ה גְדוֹלָ֑ה וַיִּ֖חַר לֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-4-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 4:2</h4></div>
+              <a class="anchor" href="#jonah-4-2" aria-label="Copy link to Jonah 4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיִּתְפַּלֵּ֨ל אֶל־יְהֹוָ֜ה וַיֹּאמַ֗ר אָנָּ֤ה יְהֹוָה֙ הֲלוֹא־זֶ֣ה דְבָרִ֗י עַד־הֱיוֹתִי֙ עַל־אַדְמָתִ֔י עַל־כֵּ֥ן קִדַּ֖מְתִּי לִבְרֹ֣חַ תַּרְשִׁ֑ישָׁה כִּ֣י יָדַ֗עְתִּי כִּ֤י אַתָּה֙ אֵֽל־חַנּ֣וּן וְרַח֔וּם אֶ֤רֶךְ אַפַּ֙יִם֙ וְרַב־חֶ֔סֶד וְנִחָ֖ם עַל־הָרָעָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-4-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 4:3</h4></div>
+              <a class="anchor" href="#jonah-4-3" aria-label="Copy link to Jonah 4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעַתָּ֣ה יְהֹוָ֔ה קַח־נָ֥א אֶת־נַפְשִׁ֖י מִמֶּ֑נִּי כִּ֛י ט֥וֹב מוֹתִ֖י מֵחַיָּֽי׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-4-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 4:4</h4></div>
+              <a class="anchor" href="#jonah-4-4" aria-label="Copy link to Jonah 4:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֣אמֶר יְהֹוָ֔ה הַהֵיטֵ֖ב חָ֥רָה לָֽךְ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-4-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 4:5</h4></div>
+              <a class="anchor" href="#jonah-4-5" aria-label="Copy link to Jonah 4:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֵּצֵ֤א יוֹנָה֙ מִן־הָעִ֔יר וַיֵּ֖שֶׁב מִקֶּ֣דֶם לָעִ֑יר וַיַּ֩עַשׂ֩ ל֨וֹ שָׁ֜ם סֻכָּ֗ה וַיֵּ֤שֶׁב תַּחְתֶּ֙יהָ֙ בַּצֵּ֔ל עַ֚ד אֲשֶׁ֣ר יִרְאֶ֔ה מַה־יִּהְיֶ֖ה בָּעִֽיר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-4-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 4:6</h4></div>
+              <a class="anchor" href="#jonah-4-6" aria-label="Copy link to Jonah 4:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיְמַ֣ן יְהֹוָֽה־אֱ֠לֹהִ֠ים קִיקָי֞וֹן וַיַּ֣עַל&amp;thinsp;<strong>׀</strong> מֵעַ֣ל לְיוֹנָ֗ה לִֽהְי֥וֹת צֵל֙ עַל־רֹאשׁ֔וֹ לְהַצִּ֥יל ל֖וֹ מֵרָֽעָת֑וֹ וַיִּשְׂמַ֥ח יוֹנָ֛ה עַל־הַקִּֽיקָי֖וֹן שִׂמְחָ֥ה גְדוֹלָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-4-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 4:7</h4></div>
+              <a class="anchor" href="#jonah-4-7" aria-label="Copy link to Jonah 4:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיְמַ֤ן הָֽאֱלֹהִים֙ תּוֹלַ֔עַת בַּעֲל֥וֹת הַשַּׁ֖חַר לַֽמׇּחֳרָ֑ת וַתַּ֥ךְ אֶת־הַקִּֽיקָי֖וֹן וַיִּיבָֽשׁ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-4-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 4:8</h4></div>
+              <a class="anchor" href="#jonah-4-8" aria-label="Copy link to Jonah 4:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיְהִ֣י&amp;thinsp;<strong>׀</strong> כִּזְרֹ֣חַ הַשֶּׁ֗מֶשׁ וַיְמַ֨ן אֱלֹהִ֜ים ר֤וּחַ קָדִים֙ חֲרִישִׁ֔ית וַתַּ֥ךְ הַשֶּׁ֛מֶשׁ עַל־רֹ֥אשׁ יוֹנָ֖ה וַיִּתְעַלָּ֑ף וַיִּשְׁאַ֤ל אֶת־נַפְשׁוֹ֙ לָמ֔וּת וַיֹּ֕אמֶר ט֥וֹב מוֹתִ֖י מֵחַיָּֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-4-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 4:9</h4></div>
+              <a class="anchor" href="#jonah-4-9" aria-label="Copy link to Jonah 4:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֤אמֶר אֱלֹהִים֙ אֶל־יוֹנָ֔ה הַהֵיטֵ֥ב חָרָֽה־לְךָ֖ עַל־הַקִּֽיקָי֑וֹן וַיֹּ֕אמֶר הֵיטֵ֥ב חָֽרָה־לִ֖י עַד־מָֽוֶת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-4-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 4:10</h4></div>
+              <a class="anchor" href="#jonah-4-10" aria-label="Copy link to Jonah 4:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֣אמֶר יְהֹוָ֔ה אַתָּ֥ה חַ֙סְתָּ֙ עַל־הַקִּ֣יקָי֔וֹן אֲשֶׁ֛ר לֹא־עָמַ֥לְתָּ בּ֖וֹ וְלֹ֣א גִדַּלְתּ֑וֹ שֶׁבִּן־לַ֥יְלָה הָיָ֖ה וּבִן־לַ֥יְלָה אָבָֽד׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="jonah-4-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Jonah 4:11</h4></div>
+              <a class="anchor" href="#jonah-4-11" aria-label="Copy link to Jonah 4:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַֽאֲנִי֙ לֹ֣א אָח֔וּס עַל־נִינְוֵ֖ה הָעִ֣יר הַגְּדוֹלָ֑ה אֲשֶׁ֣ר יֶשׁ־בָּ֡הּ הַרְבֵּה֩ מִֽשְׁתֵּים־עֶשְׂרֵ֨ה רִבּ֜וֹ אָדָ֗ם אֲשֶׁ֤ר לֹֽא־יָדַע֙ בֵּין־יְמִינ֣וֹ לִשְׂמֹאל֔וֹ וּבְהֵמָ֖ה רַבָּֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-jonah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"jonah","work_title":"Jonah","work_slug":"tanakh/jonah","scope_label":"All imported Hebrew works","generated_at":"2026-05-08T15:38:28.752Z","total_occurrences":587,"units":{"jonah-1-1":{"unit_id":"jonah-1-1","anchor_id":"jonah-1-1","source_ref":"Jonah 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-418aef103fcc","tok-fc8eb08ad390","tok-13b057831fc7","tok-d6f1081539e4","tok-a258287ba79f"]}]},"jonah-1-2":{"unit_id":"jonah-1-2","anchor_id":"jonah-1-2","source_ref":"Jonah 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-44a75d8b3134","tok-86e417dba255","tok-11cf24dd0a0b","tok-bee57fa53884","tok-5fb66305a4df","tok-d2b32eaa45f4","tok-45b3eafd68f4","tok-328693a4c815","tok-45cb8c94f46e","tok-2d9eb9e970d2"]}]},"jonah-1-3":{"unit_id":"jonah-1-3","anchor_id":"jonah-1-3","source_ref":"Jonah 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-70c0af89fbba","tok-603188a9919e","tok-6eeed372e13f","tok-5b6d9c31b324","tok-401f0031dbae","tok-5df797b250c2","tok-3691310ed7c7","tok-5b27793b80b0","tok-89c46c41a9ca","tok-7e0e0c9b12fd","tok-e45d6070be2b","tok-f15f7af3b52a","tok-19637c7b053d","tok-673e96d55e7e","tok-a0622c24b852","tok-c3d705272168","tok-1bb6f4db6dd1","tok-bf34eedb362d","tok-5b6d9c31b324","tok-401f0031dbae","tok-12f1cc82e553"]}]},"jonah-1-4":{"unit_id":"jonah-1-4","anchor_id":"jonah-1-4","source_ref":"Jonah 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8f832f283d61","tok-2ae0fe10fbf8","tok-2c9971201b65","tok-3eff47e1ade9","tok-be723636e736","tok-0b5843f32ffc","tok-d6e3af214a66","tok-8dab62995fcc","tok-f4541d50228b","tok-a72babc20e74"]}]},"jonah-1-5":{"unit_id":"jonah-1-5","anchor_id":"jonah-1-5","source_ref":"Jonah 1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ede59e94e582","tok-c15a230e8fb6","tok-9cb6f1553ae0","tok-f3d65be636de","tok-b06164c159b6","tok-41e0155b1880","tok-5f6941c970f8","tok-486fc9484d3e","tok-acb7b5731848","tok-3eff47e1ade9","tok-6f3a91c4c38d","tok-1a7180a0a6cd","tok-91ba2f848baa","tok-e9be16c59a8c","tok-1f97d818cbaf","tok-b2390e626724","tok-ac9e976cc8ab","tok-e63358e4e5b9"]}]},"jonah-1-6":{"unit_id":"jonah-1-6","anchor_id":"jonah-1-6","source_ref":"Jonah 1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cc96cc25c114","tok-f1098ad2a118","tok-3f385a93e751","tok-24a384721ef9","tok-8be98edb8ca4","tok-de06c6ee97bc","tok-7d60e0f1c809","tok-195bd984f56a","tok-d4c96ae6cf2b","tok-26bd11abfd79","tok-6d28289284ac","tok-cf90bea6cc3a","tok-da4d9810dce4","tok-17a504bafaa2","tok-4f2a1a3d7105","tok-fa0e225a42aa","tok-e709a2c30266"]}]},"jonah-1-7":{"unit_id":"jonah-1-7","anchor_id":"jonah-1-7","source_ref":"Jonah 1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7a5f923a86c2","tok-f3d65be636de","tok-71a23c272e27","tok-21d3820aa426","tok-3fce1cea4f96","tok-9711ebebf20a","tok-34dd4c71ae71","tok-5807f3e84c41","tok-3203312f1e58","tok-caf5e58dbac9","tok-b5a9e2d26b2b","tok-06912eda8645","tok-80e4fcf9eddf","tok-20eb11f72317","tok-c0cc8569248f","tok-6365a876580d"]}]},"jonah-1-8":{"unit_id":"jonah-1-8","anchor_id":"jonah-1-8","source_ref":"Jonah 1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-05d6ea8917f7","tok-845952386ecc","tok-9425ea7329fc","tok-9d5832ac6350","tok-1cc74fd1b4ab","tok-b946e64735a9","tok-caf5e58dbac9","tok-b5a9e2d26b2b","tok-9465a1d2da20","tok-bea0ef370a08","tok-11c98513bbc5","tok-57e0270d705a","tok-732ddd20f5bc","tok-bc1e5a818e21","tok-4bf95cf93f01","tok-0eabdfa19b6b"]}]},"jonah-1-9":{"unit_id":"jonah-1-9","anchor_id":"jonah-1-9","source_ref":"Jonah 1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8be98edb8ca4","tok-05d394a3948c","tok-6aa130f0f696","tok-27b2942a5ef8","tok-de41e07152ad","tok-6aab8df0abad","tok-116317de03cb","tok-2b84c6f62244","tok-8751531440aa","tok-69d16417f7e5","tok-a46e8c8aed06","tok-0918fc5389ab"]}]},"jonah-1-10":{"unit_id":"jonah-1-10","anchor_id":"jonah-1-10","source_ref":"Jonah 1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-93e45fc2a12b","tok-5931c40e8121","tok-fe34573eafdb","tok-d26df4350158","tok-c9740fb32010","tok-95e95454b249","tok-75f971988c87","tok-42581e3375eb","tok-2b7946e0d075","tok-f57313406198","tok-4358dc39f13d","tok-bd62b09c6512","tok-935f0b89d19e","tok-9c9b8a40d1da","tok-9777e4ee4488","tok-790e1c6970b1","tok-4aee05b02144"]}]},"jonah-1-11":{"unit_id":"jonah-1-11","anchor_id":"jonah-1-11","source_ref":"Jonah 1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-317069eb6605","tok-f1098ad2a118","tok-7dda1d5f3e0c","tok-3eef16a110cf","tok-5da7cac42cd9","tok-b7c13a191d02","tok-37ff5b2113e1","tok-9777e4ee4488","tok-b7c13a191d02","tok-caf8447f5266","tok-2fe9eb6b885e"]}]},"jonah-1-12":{"unit_id":"jonah-1-12","anchor_id":"jonah-1-12","source_ref":"Jonah 1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-aa9f3bbded23","tok-661fe2422d69","tok-3d4716f0c9f7","tok-4366a0cb2408","tok-3eff47e1ade9","tok-5da7cac42cd9","tok-b7c13a191d02","tok-7d1e7fa70e92","tok-3bfba2a37022","tok-f0cc50f55662","tok-fbc0a652a48b","tok-94812cedecab","tok-72f4e810d7e4","tok-9060103df0e1","tok-ebe26738fe0a","tok-935a4f69450b","tok-af4f75844101"]}]},"jonah-1-13":{"unit_id":"jonah-1-13","anchor_id":"jonah-1-13","source_ref":"Jonah 1:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c4e6a34b07b9","tok-f57313406198","tok-d1e19aa5a79d","tok-325a3ece310b","tok-e389c2cba555","tok-974efb8a9917","tok-94812cedecab","tok-86eb048e3fe5","tok-caf8447f5266","tok-5e915cdcea48","tok-5afeb056df22"]}]},"jonah-1-14":{"unit_id":"jonah-1-14","anchor_id":"jonah-1-14","source_ref":"Jonah 1:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4f354a496d70","tok-af391460e74b","tok-f3af834f5001","tok-a40fec6f8526","tok-bd62b09c6512","tok-63d7c5b8e534","tok-676868d48282","tok-f92a38b5d5e2","tok-3e7854f6f8a9","tok-1b5cde758cba","tok-51a8c0fce2d9","tok-7538f969f776","tok-435e173ab1a6","tok-b0dd4ccb8c5f","tok-65db019574f5","tok-8e71af9a20d5","tok-84b12d04cf4a","tok-97965e9ff6f9","tok-64d6d9bb0816"]}]},"jonah-1-15":{"unit_id":"jonah-1-15","anchor_id":"jonah-1-15","source_ref":"Jonah 1:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8a130a2b41f8","tok-d7f9d48d2299","tok-968b14d0093d","tok-2242bc33a85a","tok-05a6bf7063f3","tok-b7c13a191d02","tok-94071f364064"]}]},"jonah-1-16":{"unit_id":"jonah-1-16","anchor_id":"jonah-1-16","source_ref":"Jonah 1:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9505d0d1e557","tok-7f6beb1e1efd","tok-076b0947948c","tok-a1a16280d793","tok-6a496245064f","tok-b38d706fc8fa","tok-ce7ba7eea644","tok-6896a474d6c1","tok-3519f4be86c1"]}]},"jonah-2-1":{"unit_id":"jonah-2-1","anchor_id":"jonah-2-1","source_ref":"Jonah 2:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f1a3fff3fc43","tok-bd62b09c6512","tok-8b6ef13c8539","tok-5484ebc1895d","tok-11b5a6deeecd","tok-cfeab2d7321f","tok-b58dcb75ac06","tok-603188a9919e","tok-a05daa8694a7","tok-6ab5cd115582","tok-f763d3f4b7ee","tok-05df1719bcb1","tok-dfabfa96c568","tok-d6248472d153"]}]},"jonah-2-2":{"unit_id":"jonah-2-2","anchor_id":"jonah-2-2","source_ref":"Jonah 2:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d78aa45cf453","tok-6db04e0c0428","tok-aaa9b3e4efa6","tok-767626df6877","tok-6b3229328710","tok-63f814e0d8d9"]}]},"jonah-2-3":{"unit_id":"jonah-2-3","anchor_id":"jonah-2-3","source_ref":"Jonah 2:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b7d9be25018c","tok-2bbdb7d7184d","tok-35e59587e43e","tok-bfbd154b8feb","tok-aaa9b3e4efa6","tok-8bfcc5e1e7d3","tok-57282245860f","tok-975c3ee90676","tok-f13d92d0bf9d","tok-735e92603585","tok-e3204c82be70"]}]},"jonah-2-4":{"unit_id":"jonah-2-4","anchor_id":"jonah-2-4","source_ref":"Jonah 2:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b8836721e244","tok-386900187748","tok-a19052a8f883","tok-8cc20cd13005","tok-53146cf750b6","tok-26c1b4880957","tok-7c0881753b76","tok-26280ea24951","tok-9364302fbbf2","tok-e9aedef4a5eb"]}]},"jonah-2-5":{"unit_id":"jonah-2-5","anchor_id":"jonah-2-5","source_ref":"Jonah 2:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b854fcd17abc","tok-37e0fb8a65a7","tok-d82082d2f70d","tok-dab9b1b13ae0","tok-bc7b8d8f910e","tok-6d87f1d81596","tok-a0e01bc81a74","tok-1ed367836e3f","tok-a25af7aa224a","tok-076d22b079d3"]}]},"jonah-2-6":{"unit_id":"jonah-2-6","anchor_id":"jonah-2-6","source_ref":"Jonah 2:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-401f33ef1f72","tok-4dd5008cdb3b","tok-58adc102146a","tok-6c62e6e57ff2","tok-26c1b4880957","tok-c57d7a9f237b","tok-0594f329b6b6","tok-f7258a04750b"]}]},"jonah-2-7":{"unit_id":"jonah-2-7","anchor_id":"jonah-2-7","source_ref":"Jonah 2:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-682bf23b0821","tok-6fbfc289edfd","tok-c7eccd03e46c","tok-290af05eb9cf","tok-b5281cf02907","tok-4f990fa0bb8d","tok-06fc494f926c","tok-8aeca30a6d0d","tok-d45762b50d45","tok-13d6194a7652","tok-7915c07c4f89","tok-9d3ea0c7a565"]}]},"jonah-2-8":{"unit_id":"jonah-2-8","anchor_id":"jonah-2-8","source_ref":"Jonah 2:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c0a483a86ef8","tok-29c528afa927","tok-a76d81405935","tok-9c846f440b02","tok-bd19e57612b8","tok-6a294f48191c","tok-7c1adf185d52","tok-1930ae75ddd9","tok-a25af7aa224a","tok-076d22b079d3"]}]},"jonah-2-9":{"unit_id":"jonah-2-9","anchor_id":"jonah-2-9","source_ref":"Jonah 2:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-773955d04df1","tok-9aa3c5fde9e6","tok-de45fc6ad0dd","tok-560bc8ee7cdc"]}]},"jonah-2-10":{"unit_id":"jonah-2-10","anchor_id":"jonah-2-10","source_ref":"Jonah 2:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-82cd01a26601","tok-2b223f30a216","tok-977f239773e5","tok-de098ece2eae","tok-2a65bfa530a8","tok-9deaf52a8c81","tok-275f11e7f663","tok-2e13e2e6d2aa","tok-6b8c267e6624","tok-7860463d1cb4"]}]},"jonah-2-11":{"unit_id":"jonah-2-11","anchor_id":"jonah-2-11","source_ref":"Jonah 2:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8be98edb8ca4","tok-0e8d80a171c2","tok-c75c5ddc2223","tok-5b5e651db5e8","tok-5b2dcda9d6ef","tok-b2fd7ac8fb67","tok-a4c2539f9951"]}]},"jonah-3-1":{"unit_id":"jonah-3-1","anchor_id":"jonah-3-1","source_ref":"Jonah 3:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f46380f8fcb9","tok-7070733a55bc","tok-9560b2745ba2","tok-3e3b767c7b8f","tok-a258287ba79f"]}]},"jonah-3-2":{"unit_id":"jonah-3-2","anchor_id":"jonah-3-2","source_ref":"Jonah 3:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c242d2f92e5d","tok-ca040ea3d76d","tok-96d5b6e6eace","tok-adab6392ee64","tok-fdefe5ab6afc","tok-e7601d35c7e5","tok-e0c475207d90","tok-70ab972c1093","tok-2a65bfa530a8","tok-1d91d09d4c6b","tok-4fabb31d0379","tok-6d2dc60dfdde"]}]},"jonah-3-3":{"unit_id":"jonah-3-3","anchor_id":"jonah-3-3","source_ref":"Jonah 3:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6d1c58914505","tok-e002de5c3744","tok-849e5615270d","tok-96d5b6e6eace","tok-78d267585cc0","tok-5df797b250c2","tok-169cce608dd2","tok-133a6e584172","tok-288125d36c2a","tok-34a1d8bf1498","tok-ddf822042ec7","tok-80e0bb72fb20","tok-1dc043eecaf4"]}]},"jonah-3-4":{"unit_id":"jonah-3-4","anchor_id":"jonah-3-4","source_ref":"Jonah 3:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-178bd7c682c4","tok-603188a9919e","tok-fc162b6c144f","tok-e0aa20b7d38b","tok-ddf822042ec7","tok-5a93126b3171","tok-6c337a196d33","tok-f37dc9fe46a9","tok-37db6f272abf","tok-31e52dfd001e","tok-ea07d7ed6950","tok-da5673de1cbf","tok-2e544f2ec4c5","tok-ef541044761d"]}]},"jonah-3-5":{"unit_id":"jonah-3-5","anchor_id":"jonah-3-5","source_ref":"Jonah 3:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4f50fce9f524","tok-aa3c08927c00","tok-84653e10f088","tok-6d00c0ed29e6","tok-e7b91fbd078d","tok-609102f0929c","tok-3bf919ced8b5","tok-cbdb0ee9e758","tok-cf1a73a0bfdd"]}]},"jonah-3-6":{"unit_id":"jonah-3-6","anchor_id":"jonah-3-6","source_ref":"Jonah 3:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f87b34d23a1c","tok-72f1ac92279f","tok-a418b5de2fdc","tok-5e6e0b6a10bb","tok-f3340a705bb3","tok-3ced5e132f71","tok-9da782bcb040","tok-38075cd65abb","tok-2446a777ccc2","tok-4b2943a7a195","tok-73c1e020901f","tok-d773d657408a","tok-6bdc5e626d50"]}]},"jonah-3-7":{"unit_id":"jonah-3-7","anchor_id":"jonah-3-7","source_ref":"Jonah 3:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-237b28155fe1","tok-992c1567eda5","tok-b3a0ae5319aa","tok-3b98a9aef6d2","tok-751a71eb1c65","tok-e11780a6c47b","tok-cd55c68db5df","tok-a87441382112","tok-72176f60f112","tok-872b979d5b3e","tok-a317798430e8","tok-cfe34e92c231","tok-66d972c9f46d","tok-8d9163657344","tok-c13401c32953","tok-aa21a85933dc"]}]},"jonah-3-8":{"unit_id":"jonah-3-8","anchor_id":"jonah-3-8","source_ref":"Jonah 3:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-023d0602c19e","tok-57af4372c679","tok-d6e506f6ae70","tok-ef8233523971","tok-1a52903f6bd1","tok-886ba6eb0321","tok-61ff691b590a","tok-3753b2949c5d","tok-fac9e0be24e8","tok-6509d4cada5a","tok-adc5b7b16a88","tok-1fa9f205431b","tok-2a65bfa530a8","tok-3c48c14f932b"]}]},"jonah-3-9":{"unit_id":"jonah-3-9","anchor_id":"jonah-3-9","source_ref":"Jonah 3:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cbe9e5b22bb2","tok-776ce0a361f8","tok-df8d6dc58833","tok-7ffcdb60a528","tok-58545e986779","tok-7ee3ff711c87","tok-71031db191eb","tok-fa0e225a42aa","tok-e709a2c30266"]}]},"jonah-3-10":{"unit_id":"jonah-3-10","anchor_id":"jonah-3-10","source_ref":"Jonah 3:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bef257543ca6","tok-fc411721b2bb","tok-04ad87f34d36","tok-96d708fba015","tok-65f57b6fd272","tok-d1a8b3e40436","tok-9097d0dd1b65","tok-960e5d3b8bc7","tok-869bdee19fd4","tok-e39715f3312f","tok-493b8a83ef55","tok-fa0e225a42aa","tok-da491416a183"]}]},"jonah-4-1":{"unit_id":"jonah-4-1","anchor_id":"jonah-4-1","source_ref":"Jonah 4:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c07f50e77738","tok-9560b2745ba2","tok-69c00bc38029","tok-c8b506f7ae78","tok-fe157fe34079","tok-d95ee90e1cb0"]}]},"jonah-4-2":{"unit_id":"jonah-4-2","anchor_id":"jonah-4-2","source_ref":"Jonah 4:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-96b649067aaa","tok-af391460e74b","tok-906fd99cf27d","tok-a40fec6f8526","tok-bd62b09c6512","tok-fe2d3440eb0c","tok-dd827df5bf79","tok-a14c472f01be","tok-64ae3e3a3614","tok-51bb2517d9d6","tok-5b5ab2a1557c","tok-6eeed372e13f","tok-123526af2f58","tok-94812cedecab","tok-3bf70f90c621","tok-07dffc205cf0","tok-c6321f50baf7","tok-61d78cc8b87b","tok-f7acd6c1a995","tok-1cd15e8b12ef","tok-b3fddb034a1e","tok-a3140b6d48bf","tok-4a2dc8d206c6","tok-200efee52c31"]}]},"jonah-4-3":{"unit_id":"jonah-4-3","anchor_id":"jonah-4-3","source_ref":"Jonah 4:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-464f84036026","tok-8e71af9a20d5","tok-3865ab4ad847","tok-6e0e9cd59bec","tok-f8f65dbd547a","tok-a54c9a806715","tok-33ec41ce2cae","tok-4b2f963e403e","tok-e77d93995066","tok-7860463d1cb4"]}]},"jonah-4-4":{"unit_id":"jonah-4-4","anchor_id":"jonah-4-4","source_ref":"Jonah 4:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-aa9f3bbded23","tok-8e71af9a20d5","tok-a36553aa1cc0","tok-b06afa319cba","tok-f1146ed27271"]}]},"jonah-4-5":{"unit_id":"jonah-4-5","anchor_id":"jonah-4-5","source_ref":"Jonah 4:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8e787c53c708","tok-603188a9919e","tok-32365e2029fc","tok-d773d657408a","tok-8eeb1f9062a6","tok-57e6de92dd27","tok-6f9da558fe53","tok-0944f2486246","tok-a561a545e0b1","tok-ae2b14c1bc1c","tok-af6872be92d1","tok-a96ad901c489","tok-4208b1ca2fcd","tok-4a02aa18b896","tok-771cdd8efbaa","tok-937f9987007b","tok-2f63a783e63c","tok-a4ff6e6d8dd2"]}]},"jonah-4-6":{"unit_id":"jonah-4-6","anchor_id":"jonah-4-6","source_ref":"Jonah 4:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-937374a418fe","tok-e1108cf34b85","tok-6a1f453c1486","tok-da7d26b3757d","tok-7064e1f5a67d","tok-a3897f284f10","tok-f5190911635d","tok-613bf7b0455c","tok-7e840127bc0e","tok-2391d88f1e31","tok-de06c6ee97bc","tok-4f51c340d4f4","tok-43f322c48997","tok-f7c787d449d4","tok-11b6a344fb97","tok-c2b5988ed256","tok-f39290887449"]}]},"jonah-4-7":{"unit_id":"jonah-4-7","anchor_id":"jonah-4-7","source_ref":"Jonah 4:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f1a3fff3fc43","tok-fc411721b2bb","tok-c1c9f7d38af0","tok-74deba12e4e1","tok-56ccba94860e","tok-fc65ed029bec","tok-ec35c2da21eb","tok-d386e8245a72","tok-37065a974247"]}]},"jonah-4-8":{"unit_id":"jonah-4-8","anchor_id":"jonah-4-8","source_ref":"Jonah 4:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-000f8d4c8c9d","tok-2f3ea05d5d38","tok-248fc51e30d6","tok-a3dccf6ee184","tok-347933c41bbf","tok-9d82c1c6b52d","tok-e75a2ff3bb94","tok-8c8104e3dde9","tok-ec35c2da21eb","tok-659b3e9a34aa","tok-78cb09d11fda","tok-5907f3d297a8","tok-2976c3348c19","tok-8078cef2085a","tok-942f7a6e55db","tok-6ef69d415036","tok-72af2164b22b","tok-33ec41ce2cae","tok-4b2f963e403e","tok-e77d93995066"]}]},"jonah-4-9":{"unit_id":"jonah-4-9","anchor_id":"jonah-4-9","source_ref":"Jonah 4:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4bb1acb84db0","tok-63e5c02a5704","tok-90dccdae7b58","tok-8f5bdd167838","tok-113cdc533194","tok-02878de37f2a","tok-72af2164b22b","tok-632213263a46","tok-f2926b8d64ad","tok-f929019f1e66"]}]},"jonah-4-10":{"unit_id":"jonah-4-10","anchor_id":"jonah-4-10","source_ref":"Jonah 4:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-aa9f3bbded23","tok-8e71af9a20d5","tok-8134b4943d02","tok-5f544fe6b7dc","tok-bd2fe139639b","tok-2f5a14a4f6c7","tok-6b6e145c3cd6","tok-dc59a1962525","tok-e389c2cba555","tok-da633bdf0839","tok-1e4ed8eaffc3","tok-4990943d4e17","tok-a8b6c67293a7","tok-64b5479d00b6"]}]},"jonah-4-11":{"unit_id":"jonah-4-11","anchor_id":"jonah-4-11","source_ref":"Jonah 4:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-948fb0836003","tok-55a2ea64de38","tok-a43eeff34fd9","tok-7341abb88be8","tok-adab6392ee64","tok-fdefe5ab6afc","tok-771cdd8efbaa","tok-9541a5a70539","tok-47b77abd1717","tok-56548ee003cf","tok-c6250b896d3c","tok-c29b39b886aa","tok-486fc9484d3e","tok-7392206b9e17","tok-ecfa432bad0f","tok-7dda3148dee2","tok-e34c9e57d247","tok-22fed75c22a1"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/jonah.manifest.json","root_href":"../../"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const sourceSummary = (rows) => {
+        const row = cleanValues(rows)[0];
+        if (!row) return { source: "Source metadata incomplete", license: "N/A" };
+        const sourceId = row.source_id ? ` ${row.source_id}` : "";
+        return { source: `${row.source_name || "Source"}${sourceId}`, license: row.license || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        const sourceLine = document.createElement("p");
+        sourceLine.className = "claim-source";
+        sourceLine.textContent = `Source: ${source.source}`;
+        const licenseLine = document.createElement("p");
+        licenseLine.className = "claim-license";
+        licenseLine.textContent = `License: ${source.license}`;
+        card.append(sourceLine, licenseLine);
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

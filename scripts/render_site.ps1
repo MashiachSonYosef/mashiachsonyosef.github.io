@@ -2,7 +2,8 @@ param(
   [string]$SourceDir = 'data/sources',
   [string]$OverlayDir = 'data/overlays',
   [int]$MaxUnits = 0,
-  [string[]]$WorkIds = @()
+  [string[]]$WorkIds = @(),
+  [switch]$SkipOverlayExports
 )
 
 $ErrorActionPreference = 'Stop'
@@ -1927,10 +1928,12 @@ $renderSources = if ($targetWorkIds.Count -gt 0) {
 $allExportRows = New-Object System.Collections.Generic.List[object]
 foreach ($source in $sources) {
   $overlay = Get-OverlayForSource -Source $source -OverlayDir $OverlayDir
-  $exportRows = Get-OverlayExportRows -Source $source -Overlay $overlay
-  Write-OverlayExports -WorkSlug $source.work_slug -Rows $exportRows
-  foreach ($row in @($exportRows)) {
-    $allExportRows.Add($row)
+  if (-not $SkipOverlayExports) {
+    $exportRows = Get-OverlayExportRows -Source $source -Overlay $overlay
+    Write-OverlayExports -WorkSlug $source.work_slug -Rows $exportRows
+    foreach ($row in @($exportRows)) {
+      $allExportRows.Add($row)
+    }
   }
 }
 
@@ -2144,4 +2147,6 @@ foreach ($source in $renderSources) {
   Write-Utf8 -Path "$($source.work_slug)\index.html" -Content $page.ToString()
 }
 
-Write-OverlayExports -WorkSlug '.' -Rows $allExportRows.ToArray()
+if (-not $SkipOverlayExports) {
+  Write-OverlayExports -WorkSlug '.' -Rows $allExportRows.ToArray()
+}

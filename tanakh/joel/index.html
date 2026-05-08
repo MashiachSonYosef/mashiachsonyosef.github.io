@@ -1,0 +1,2106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joel</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Joel</h1>
+        <p class="meta">73 total source units | imported 2026-05-08</p>
+        <p class="meta source-citation">Hebrew version: Miqra according to the Masorah | Version source: <a href="https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94">he.wikisource.org</a> | Digitization: Sefaria API | License: CC-BY-SA</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Joel <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Joel <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-joel-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#joel-1-1" title="Joel 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#joel-1-2" title="Joel 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#joel-1-3" title="Joel 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#joel-1-4" title="Joel 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#joel-1-5" title="Joel 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#joel-1-6" title="Joel 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#joel-1-7" title="Joel 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#joel-1-8" title="Joel 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#joel-1-9" title="Joel 1:9">1:9</a></li>
+                    <li><a class="toc-unit" href="#joel-1-10" title="Joel 1:10">1:10</a></li>
+                    <li><a class="toc-unit" href="#joel-1-11" title="Joel 1:11">1:11</a></li>
+                    <li><a class="toc-unit" href="#joel-1-12" title="Joel 1:12">1:12</a></li>
+                    <li><a class="toc-unit" href="#joel-1-13" title="Joel 1:13">1:13</a></li>
+                    <li><a class="toc-unit" href="#joel-1-14" title="Joel 1:14">1:14</a></li>
+                    <li><a class="toc-unit" href="#joel-1-15" title="Joel 1:15">1:15</a></li>
+                    <li><a class="toc-unit" href="#joel-1-16" title="Joel 1:16">1:16</a></li>
+                    <li><a class="toc-unit" href="#joel-1-17" title="Joel 1:17">1:17</a></li>
+                    <li><a class="toc-unit" href="#joel-1-18" title="Joel 1:18">1:18</a></li>
+                    <li><a class="toc-unit" href="#joel-1-19" title="Joel 1:19">1:19</a></li>
+                    <li><a class="toc-unit" href="#joel-1-20" title="Joel 1:20">1:20</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-joel-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#joel-2-1" title="Joel 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#joel-2-2" title="Joel 2:2">2:2</a></li>
+                    <li><a class="toc-unit" href="#joel-2-3" title="Joel 2:3">2:3</a></li>
+                    <li><a class="toc-unit" href="#joel-2-4" title="Joel 2:4">2:4</a></li>
+                    <li><a class="toc-unit" href="#joel-2-5" title="Joel 2:5">2:5</a></li>
+                    <li><a class="toc-unit" href="#joel-2-6" title="Joel 2:6">2:6</a></li>
+                    <li><a class="toc-unit" href="#joel-2-7" title="Joel 2:7">2:7</a></li>
+                    <li><a class="toc-unit" href="#joel-2-8" title="Joel 2:8">2:8</a></li>
+                    <li><a class="toc-unit" href="#joel-2-9" title="Joel 2:9">2:9</a></li>
+                    <li><a class="toc-unit" href="#joel-2-10" title="Joel 2:10">2:10</a></li>
+                    <li><a class="toc-unit" href="#joel-2-11" title="Joel 2:11">2:11</a></li>
+                    <li><a class="toc-unit" href="#joel-2-12" title="Joel 2:12">2:12</a></li>
+                    <li><a class="toc-unit" href="#joel-2-13" title="Joel 2:13">2:13</a></li>
+                    <li><a class="toc-unit" href="#joel-2-14" title="Joel 2:14">2:14</a></li>
+                    <li><a class="toc-unit" href="#joel-2-15" title="Joel 2:15">2:15</a></li>
+                    <li><a class="toc-unit" href="#joel-2-16" title="Joel 2:16">2:16</a></li>
+                    <li><a class="toc-unit" href="#joel-2-17" title="Joel 2:17">2:17</a></li>
+                    <li><a class="toc-unit" href="#joel-2-18" title="Joel 2:18">2:18</a></li>
+                    <li><a class="toc-unit" href="#joel-2-19" title="Joel 2:19">2:19</a></li>
+                    <li><a class="toc-unit" href="#joel-2-20" title="Joel 2:20">2:20</a></li>
+                    <li><a class="toc-unit" href="#joel-2-21" title="Joel 2:21">2:21</a></li>
+                    <li><a class="toc-unit" href="#joel-2-22" title="Joel 2:22">2:22</a></li>
+                    <li><a class="toc-unit" href="#joel-2-23" title="Joel 2:23">2:23</a></li>
+                    <li><a class="toc-unit" href="#joel-2-24" title="Joel 2:24">2:24</a></li>
+                    <li><a class="toc-unit" href="#joel-2-25" title="Joel 2:25">2:25</a></li>
+                    <li><a class="toc-unit" href="#joel-2-26" title="Joel 2:26">2:26</a></li>
+                    <li><a class="toc-unit" href="#joel-2-27" title="Joel 2:27">2:27</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-joel-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#joel-3-1" title="Joel 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#joel-3-2" title="Joel 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#joel-3-3" title="Joel 3:3">3:3</a></li>
+                    <li><a class="toc-unit" href="#joel-3-4" title="Joel 3:4">3:4</a></li>
+                    <li><a class="toc-unit" href="#joel-3-5" title="Joel 3:5">3:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-joel-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#joel-4-1" title="Joel 4:1">4:1</a></li>
+                    <li><a class="toc-unit" href="#joel-4-2" title="Joel 4:2">4:2</a></li>
+                    <li><a class="toc-unit" href="#joel-4-3" title="Joel 4:3">4:3</a></li>
+                    <li><a class="toc-unit" href="#joel-4-4" title="Joel 4:4">4:4</a></li>
+                    <li><a class="toc-unit" href="#joel-4-5" title="Joel 4:5">4:5</a></li>
+                    <li><a class="toc-unit" href="#joel-4-6" title="Joel 4:6">4:6</a></li>
+                    <li><a class="toc-unit" href="#joel-4-7" title="Joel 4:7">4:7</a></li>
+                    <li><a class="toc-unit" href="#joel-4-8" title="Joel 4:8">4:8</a></li>
+                    <li><a class="toc-unit" href="#joel-4-9" title="Joel 4:9">4:9</a></li>
+                    <li><a class="toc-unit" href="#joel-4-10" title="Joel 4:10">4:10</a></li>
+                    <li><a class="toc-unit" href="#joel-4-11" title="Joel 4:11">4:11</a></li>
+                    <li><a class="toc-unit" href="#joel-4-12" title="Joel 4:12">4:12</a></li>
+                    <li><a class="toc-unit" href="#joel-4-13" title="Joel 4:13">4:13</a></li>
+                    <li><a class="toc-unit" href="#joel-4-14" title="Joel 4:14">4:14</a></li>
+                    <li><a class="toc-unit" href="#joel-4-15" title="Joel 4:15">4:15</a></li>
+                    <li><a class="toc-unit" href="#joel-4-16" title="Joel 4:16">4:16</a></li>
+                    <li><a class="toc-unit" href="#joel-4-17" title="Joel 4:17">4:17</a></li>
+                    <li><a class="toc-unit" href="#joel-4-18" title="Joel 4:18">4:18</a></li>
+                    <li><a class="toc-unit" href="#joel-4-19" title="Joel 4:19">4:19</a></li>
+                    <li><a class="toc-unit" href="#joel-4-20" title="Joel 4:20">4:20</a></li>
+                    <li><a class="toc-unit" href="#joel-4-21" title="Joel 4:21">4:21</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-joel-text-1">Chapter 1</h4>
+          <section class="unit" id="joel-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:1</h4></div>
+              <a class="anchor" href="#joel-1-1" aria-label="Copy link to Joel 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דְּבַר־יְהֹוָה֙ אֲשֶׁ֣ר הָיָ֔ה אֶל־יוֹאֵ֖ל בֶּן־פְּתוּאֵֽל׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:2</h4></div>
+              <a class="anchor" href="#joel-1-2" aria-label="Copy link to Joel 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שִׁמְעוּ־זֹאת֙ הַזְּקֵנִ֔ים וְהַֽאֲזִ֔ינוּ כֹּ֖ל יוֹשְׁבֵ֣י הָאָ֑רֶץ הֶהָ֤יְתָה זֹּאת֙ בִּֽימֵיכֶ֔ם וְאִ֖ם בִּימֵ֥י אֲבֹתֵיכֶֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:3</h4></div>
+              <a class="anchor" href="#joel-1-3" aria-label="Copy link to Joel 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עָלֶ֖יהָ לִבְנֵיכֶ֣ם סַפֵּ֑רוּ וּבְנֵיכֶם֙ לִבְנֵיהֶ֔ם וּבְנֵיהֶ֖ם לְד֥וֹר אַחֵֽר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:4</h4></div>
+              <a class="anchor" href="#joel-1-4" aria-label="Copy link to Joel 1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יֶ֤תֶר הַגָּזָם֙ אָכַ֣ל הָאַרְבֶּ֔ה וְיֶ֥תֶר הָאַרְבֶּ֖ה אָכַ֣ל הַיָּ֑לֶק וְיֶ֣תֶר הַיֶּ֔לֶק אָכַ֖ל הֶחָסִֽיל׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:5</h4></div>
+              <a class="anchor" href="#joel-1-5" aria-label="Copy link to Joel 1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הָקִ֤יצוּ שִׁכּוֹרִים֙ וּבְכ֔וּ וְהֵילִ֖לוּ כׇּל־שֹׁ֣תֵי יָ֑יִן עַל־עָסִ֕יס כִּ֥י נִכְרַ֖ת מִפִּיכֶֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:6</h4></div>
+              <a class="anchor" href="#joel-1-6" aria-label="Copy link to Joel 1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּי־גוֹי֙ עָלָ֣ה עַל־אַרְצִ֔י עָצ֖וּם וְאֵ֣ין מִסְפָּ֑ר שִׁנָּיו֙ שִׁנֵּ֣י אַרְיֵ֔ה וּֽמְתַלְּע֥וֹת לָבִ֖יא לֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:7</h4></div>
+              <a class="anchor" href="#joel-1-7" aria-label="Copy link to Joel 1:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שָׂ֤ם גַּפְנִי֙ לְשַׁמָּ֔ה וּתְאֵנָתִ֖י לִקְצָפָ֑ה חָשֹׂ֤ף חֲשָׂפָהּ֙ וְהִשְׁלִ֔יךְ הִלְבִּ֖ינוּ שָׂרִיגֶֽיהָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:8</h4></div>
+              <a class="anchor" href="#joel-1-8" aria-label="Copy link to Joel 1:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֱלִ֕י כִּבְתוּלָ֥ה חֲגֻרַת־שַׂ֖ק עַל־בַּ֥עַל נְעוּרֶֽיהָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:9</h4></div>
+              <a class="anchor" href="#joel-1-9" aria-label="Copy link to Joel 1:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הׇכְרַ֥ת מִנְחָ֛ה וָנֶ֖סֶךְ מִבֵּ֣ית יְהֹוָ֑ה אָֽבְלוּ֙ הַכֹּ֣הֲנִ֔ים מְשָׁרְתֵ֖י יְהֹוָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:10</h4></div>
+              <a class="anchor" href="#joel-1-10" aria-label="Copy link to Joel 1:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שֻׁדַּ֣ד שָׂדֶ֔ה אָבְלָ֖ה אֲדָמָ֑ה כִּ֚י שֻׁדַּ֣ד דָּגָ֔ן הוֹבִ֥ישׁ תִּיר֖וֹשׁ אֻמְלַ֥ל יִצְהָֽר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:11</h4></div>
+              <a class="anchor" href="#joel-1-11" aria-label="Copy link to Joel 1:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֹבִ֣ישׁוּ אִכָּרִ֗ים הֵילִ֙ילוּ֙ כֹּֽרְמִ֔ים עַל־חִטָּ֖ה וְעַל־שְׂעֹרָ֑ה כִּ֥י אָבַ֖ד קְצִ֥יר שָׂדֶֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:12</h4></div>
+              <a class="anchor" href="#joel-1-12" aria-label="Copy link to Joel 1:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַגֶּ֣פֶן הוֹבִ֔ישָׁה וְהַתְּאֵנָ֖ה אֻמְלָ֑לָה רִמּ֞וֹן גַּם־תָּמָ֣ר וְתַפּ֗וּחַ כׇּל־עֲצֵ֤י הַשָּׂדֶה֙ יָבֵ֔שׁוּ כִּי־הֹבִ֥ישׁ שָׂשׂ֖וֹן מִן־בְּנֵ֥י אָדָֽם׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:13</h4></div>
+              <a class="anchor" href="#joel-1-13" aria-label="Copy link to Joel 1:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">חִגְר֨וּ וְסִפְד֜וּ הַכֹּהֲנִ֗ים הֵילִ֙ילוּ֙ מְשָׁרְתֵ֣י מִזְבֵּ֔חַ בֹּ֚אוּ לִ֣ינוּ בַשַּׂקִּ֔ים מְשָׁרְתֵ֖י אֱלֹהָ֑י כִּ֥י נִמְנַ֛ע מִבֵּ֥ית אֱלֹהֵיכֶ֖ם מִנְחָ֥ה וָנָֽסֶךְ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:14</h4></div>
+              <a class="anchor" href="#joel-1-14" aria-label="Copy link to Joel 1:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">קַדְּשׁוּ־צוֹם֙ קִרְא֣וּ עֲצָרָ֔ה אִסְפ֣וּ זְקֵנִ֗ים כֹּ֚ל יֹשְׁבֵ֣י הָאָ֔רֶץ בֵּ֖ית יְהֹוָ֣ה אֱלֹהֵיכֶ֑ם וְזַעֲק֖וּ אֶל־יְהֹוָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:15</h4></div>
+              <a class="anchor" href="#joel-1-15" aria-label="Copy link to Joel 1:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֲהָ֖הּ לַיּ֑וֹם כִּ֤י קָרוֹב֙ י֣וֹם יְהֹוָ֔ה וּכְשֹׁ֖ד מִשַּׁדַּ֥י יָבֽוֹא׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:16</h4></div>
+              <a class="anchor" href="#joel-1-16" aria-label="Copy link to Joel 1:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֲל֛וֹא נֶ֥גֶד עֵינֵ֖ינוּ אֹ֣כֶל נִכְרָ֑ת מִבֵּ֥ית אֱלֹהֵ֖ינוּ שִׂמְחָ֥ה וָגִֽיל׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:17</h4></div>
+              <a class="anchor" href="#joel-1-17" aria-label="Copy link to Joel 1:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עָבְשׁ֣וּ פְרֻד֗וֹת תַּ֚חַת מֶגְרְפֹ֣תֵיהֶ֔ם נָשַׁ֙מּוּ֙ אֹֽצָר֔וֹת נֶהֶרְס֖וּ מַמְּגֻר֑וֹת כִּ֥י הֹבִ֖ישׁ דָּגָֽן׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:18</h4></div>
+              <a class="anchor" href="#joel-1-18" aria-label="Copy link to Joel 1:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מַה־נֶּאֶנְחָ֣ה בְהֵמָ֗ה נָבֹ֙כוּ֙ עֶדְרֵ֣י בָקָ֔ר כִּ֛י אֵ֥ין מִרְעֶ֖ה לָהֶ֑ם גַּם־עֶדְרֵ֥י הַצֹּ֖אן נֶאְשָֽׁמוּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-19" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:19</h4></div>
+              <a class="anchor" href="#joel-1-19" aria-label="Copy link to Joel 1:19">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֵלֶ֥יךָ יְהֹוָ֖ה אֶקְרָ֑א כִּ֣י אֵ֗שׁ אָֽכְלָה֙ נְא֣וֹת מִדְבָּ֔ר וְלֶ֣הָבָ֔ה לִהֲטָ֖ה כׇּל־עֲצֵ֥י הַשָּׂדֶֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-1-20" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 1:20</h4></div>
+              <a class="anchor" href="#joel-1-20" aria-label="Copy link to Joel 1:20">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">גַּם־בַּהֲמ֥וֹת שָׂדֶ֖ה תַּעֲר֣וֹג אֵלֶ֑יךָ כִּ֤י יָֽבְשׁוּ֙ אֲפִ֣יקֵי מָ֔יִם וְאֵ֕שׁ אָכְלָ֖ה נְא֥וֹת הַמִּדְבָּֽר׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-joel-text-2">Chapter 2</h4>
+          <section class="unit" id="joel-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:1</h4></div>
+              <a class="anchor" href="#joel-2-1" aria-label="Copy link to Joel 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תִּקְע֨וּ שׁוֹפָ֜ר בְּצִיּ֗וֹן וְהָרִ֙יעוּ֙ בְּהַ֣ר קׇדְשִׁ֔י יִרְגְּז֕וּ כֹּ֖ל יֹשְׁבֵ֣י הָאָ֑רֶץ כִּי־בָ֥א יוֹם־יְהֹוָ֖ה כִּ֥י קָרֽוֹב׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:2</h4></div>
+              <a class="anchor" href="#joel-2-2" aria-label="Copy link to Joel 2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">י֧וֹם חֹ֣שֶׁךְ וַאֲפֵלָ֗ה י֤וֹם עָנָן֙ וַעֲרָפֶ֔ל כְּשַׁ֖חַר פָּרֻ֣שׂ עַל־הֶהָרִ֑ים עַ֚ם רַ֣ב וְעָצ֔וּם כָּמֹ֗הוּ לֹ֤א נִֽהְיָה֙ מִן־הָ֣עוֹלָ֔ם וְאַֽחֲרָיו֙ לֹ֣א יוֹסֵ֔ף עַד־שְׁנֵ֖י דּ֥וֹר וָדֽוֹר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:3</h4></div>
+              <a class="anchor" href="#joel-2-3" aria-label="Copy link to Joel 2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לְפָנָיו֙ אָ֣כְלָה אֵ֔שׁ וְאַחֲרָ֖יו תְּלַהֵ֣ט לֶהָבָ֑ה כְּגַן־עֵ֨דֶן הָאָ֜רֶץ לְפָנָ֗יו וְאַֽחֲרָיו֙ מִדְבַּ֣ר שְׁמָמָ֔ה וְגַם־פְּלֵיטָ֖ה לֹא־הָ֥יְתָה לּֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:4</h4></div>
+              <a class="anchor" href="#joel-2-4" aria-label="Copy link to Joel 2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כְּמַרְאֵ֥ה סוּסִ֖ים מַרְאֵ֑הוּ וּכְפָרָשִׁ֖ים כֵּ֥ן יְרוּצֽוּן׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:5</h4></div>
+              <a class="anchor" href="#joel-2-5" aria-label="Copy link to Joel 2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כְּק֣וֹל מַרְכָּב֗וֹת עַל־רָאשֵׁ֤י הֶהָרִים֙ יְרַקֵּד֔וּן כְּקוֹל֙ לַ֣הַב אֵ֔שׁ אֹכְלָ֖ה קָ֑שׁ כְּעַ֣ם עָצ֔וּם עֱר֖וּךְ מִלְחָמָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:6</h4></div>
+              <a class="anchor" href="#joel-2-6" aria-label="Copy link to Joel 2:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מִפָּנָ֖יו יָחִ֣ילוּ עַמִּ֑ים כׇּל־פָּנִ֖ים קִבְּצ֥וּ פָארֽוּר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:7</h4></div>
+              <a class="anchor" href="#joel-2-7" aria-label="Copy link to Joel 2:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כְּגִבּוֹרִ֣ים יְרֻצ֔וּן כְּאַנְשֵׁ֥י מִלְחָמָ֖ה יַעֲל֣וּ חוֹמָ֑ה וְאִ֤ישׁ בִּדְרָכָיו֙ יֵֽלֵכ֔וּן וְלֹ֥א יְעַבְּט֖וּן אֹרְחוֹתָֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:8</h4></div>
+              <a class="anchor" href="#joel-2-8" aria-label="Copy link to Joel 2:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאִ֤ישׁ אָחִיו֙ לֹ֣א יִדְחָק֔וּן גֶּ֥בֶר בִּמְסִלָּת֖וֹ יֵלֵכ֑וּן וּבְעַ֥ד הַשֶּׁ֛לַח יִפֹּ֖לוּ לֹ֥א יִבְצָֽעוּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:9</h4></div>
+              <a class="anchor" href="#joel-2-9" aria-label="Copy link to Joel 2:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בָּעִ֣יר יָשֹׁ֗קּוּ בַּֽחוֹמָה֙ יְרֻצ֔וּן בַּבָּתִּ֖ים יַעֲל֑וּ בְּעַ֧ד הַחַלּוֹנִ֛ים יָבֹ֖אוּ כַּגַּנָּֽב׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:10</h4></div>
+              <a class="anchor" href="#joel-2-10" aria-label="Copy link to Joel 2:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לְפָנָיו֙ רָ֣גְזָה אֶ֔רֶץ רָעֲשׁ֖וּ שָׁמָ֑יִם שֶׁ֤מֶשׁ וְיָרֵ֙חַ֙ קָדָ֔רוּ וְכוֹכָבִ֖ים אָסְפ֥וּ נׇגְהָֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:11</h4></div>
+              <a class="anchor" href="#joel-2-11" aria-label="Copy link to Joel 2:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיהֹוָ֗ה נָתַ֤ן קוֹלוֹ֙ לִפְנֵ֣י חֵיל֔וֹ כִּ֣י רַ֤ב מְאֹד֙ מַחֲנֵ֔הוּ כִּ֥י עָצ֖וּם עֹשֵׂ֣ה דְבָר֑וֹ כִּֽי־גָד֧וֹל יוֹם־יְהֹוָ֛ה וְנוֹרָ֥א מְאֹ֖ד וּמִ֥י יְכִילֶֽנּוּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:12</h4></div>
+              <a class="anchor" href="#joel-2-12" aria-label="Copy link to Joel 2:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְגַם־עַתָּה֙ נְאֻם־יְהֹוָ֔ה שֻׁ֥בוּ עָדַ֖י בְּכׇל־לְבַבְכֶ֑ם וּבְצ֥וֹם וּבִבְכִ֖י וּבְמִסְפֵּֽד׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:13</h4></div>
+              <a class="anchor" href="#joel-2-13" aria-label="Copy link to Joel 2:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְקִרְע֤וּ לְבַבְכֶם֙ וְאַל־בִּגְדֵיכֶ֔ם וְשׁ֖וּבוּ אֶל־יְהֹוָ֣ה אֱלֹהֵיכֶ֑ם כִּֽי־חַנּ֤וּן וְרַחוּם֙ ה֔וּא אֶ֤רֶךְ אַפַּ֙יִם֙ וְרַב־חֶ֔סֶד וְנִחָ֖ם עַל־הָרָעָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:14</h4></div>
+              <a class="anchor" href="#joel-2-14" aria-label="Copy link to Joel 2:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מִ֥י יוֹדֵ֖עַ יָשׁ֣וּב וְנִחָ֑ם וְהִשְׁאִ֤יר אַחֲרָיו֙ בְּרָכָ֔ה מִנְחָ֣ה וָנֶ֔סֶךְ לַיהֹוָ֖ה אֱלֹהֵיכֶֽם׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:15</h4></div>
+              <a class="anchor" href="#joel-2-15" aria-label="Copy link to Joel 2:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תִּקְע֥וּ שׁוֹפָ֖ר בְּצִיּ֑וֹן קַדְּשׁוּ־צ֖וֹם קִרְא֥וּ עֲצָרָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:16</h4></div>
+              <a class="anchor" href="#joel-2-16" aria-label="Copy link to Joel 2:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אִסְפוּ־עָ֞ם קַדְּשׁ֤וּ קָהָל֙ קִבְצ֣וּ זְקֵנִ֔ים אִסְפוּ֙ עֽוֹלָלִ֔ים וְיֹנְקֵ֖י שָׁדָ֑יִם יֵצֵ֤א חָתָן֙ מֵֽחֶדְר֔וֹ וְכַלָּ֖ה מֵחֻפָּתָֽהּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:17</h4></div>
+              <a class="anchor" href="#joel-2-17" aria-label="Copy link to Joel 2:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בֵּ֤ין הָאוּלָם֙ וְלַמִּזְבֵּ֔חַ יִבְכּוּ֙ הַכֹּ֣הֲנִ֔ים מְשָׁרְתֵ֖י יְהֹוָ֑ה וְֽיֹאמְר֞וּ ח֧וּסָה יְהֹוָ֣ה עַל־עַמֶּ֗ךָ וְאַל־תִּתֵּ֨ן נַחֲלָתְךָ֤ לְחֶרְפָּה֙ לִמְשׇׁל־בָּ֣ם גּוֹיִ֔ם לָ֚מָּה יֹאמְר֣וּ בָעַמִּ֔ים אַיֵּ֖ה אֱלֹהֵיהֶֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:18</h4></div>
+              <a class="anchor" href="#joel-2-18" aria-label="Copy link to Joel 2:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיְקַנֵּ֥א יְהֹוָ֖ה לְאַרְצ֑וֹ וַיַּחְמֹ֖ל עַל־עַמּֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-19" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:19</h4></div>
+              <a class="anchor" href="#joel-2-19" aria-label="Copy link to Joel 2:19">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיַּ֨עַן יְהֹוָ֜ה וַיֹּ֣אמֶר לְעַמּ֗וֹ הִנְנִ֨י שֹׁלֵ֤חַ לָכֶם֙ אֶת־הַדָּגָן֙ וְהַתִּיר֣וֹשׁ וְהַיִּצְהָ֔ר וּשְׂבַעְתֶּ֖ם אֹת֑וֹ וְלֹא־אֶתֵּ֨ן אֶתְכֶ֥ם ע֛וֹד חֶרְפָּ֖ה בַּגּוֹיִֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-20" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:20</h4></div>
+              <a class="anchor" href="#joel-2-20" aria-label="Copy link to Joel 2:20">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְֽאֶת־הַצְּפוֹנִ֞י אַרְחִ֣יק מֵעֲלֵיכֶ֗ם וְהִדַּחְתִּיו֮ אֶל־אֶ֣רֶץ צִיָּ֣ה וּשְׁמָמָה֒ אֶת־פָּנָ֗יו אֶל־הַיָּם֙ הַקַּדְמֹנִ֔י וְסֹפ֖וֹ אֶל־הַיָּ֣ם הָאַחֲר֑וֹן וְעָלָ֣ה בׇאְשׁ֗וֹ וְתַ֙עַל֙ צַחֲנָת֔וֹ כִּ֥י הִגְדִּ֖יל לַעֲשֽׂוֹת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-21" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:21</h4></div>
+              <a class="anchor" href="#joel-2-21" aria-label="Copy link to Joel 2:21">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אַל־תִּֽירְאִ֖י אֲדָמָ֑ה גִּ֣ילִי וּשְׂמָ֔חִי כִּֽי־הִגְדִּ֥יל יְהֹוָ֖ה לַעֲשֽׂוֹת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-22" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:22</h4></div>
+              <a class="anchor" href="#joel-2-22" aria-label="Copy link to Joel 2:22">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אַל־תִּֽירְאוּ֙ בַּהֲמ֣וֹת שָׂדַ֔י כִּ֥י דָשְׁא֖וּ נְא֣וֹת מִדְבָּ֑ר כִּי־עֵץ֙ נָשָׂ֣א פִרְי֔וֹ תְּאֵנָ֥ה וָגֶ֖פֶן נָתְנ֥וּ חֵילָֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-23" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:23</h4></div>
+              <a class="anchor" href="#joel-2-23" aria-label="Copy link to Joel 2:23">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וּבְנֵ֣י צִיּ֗וֹן גִּ֤ילוּ וְשִׂמְחוּ֙ בַּיהֹוָ֣ה אֱלֹהֵיכֶ֔ם כִּֽי־נָתַ֥ן לָכֶ֛ם אֶת־הַמּוֹרֶ֖ה לִצְדָקָ֑ה וַיּ֣וֹרֶד לָכֶ֗ם גֶּ֛שֶׁם מוֹרֶ֥ה וּמַלְק֖וֹשׁ בָּרִאשֽׁוֹן׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-24" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:24</h4></div>
+              <a class="anchor" href="#joel-2-24" aria-label="Copy link to Joel 2:24">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וּמָלְא֥וּ הַגֳּרָנ֖וֹת בָּ֑ר וְהֵשִׁ֥יקוּ הַיְקָבִ֖ים תִּיר֥וֹשׁ וְיִצְהָֽר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-25" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:25</h4></div>
+              <a class="anchor" href="#joel-2-25" aria-label="Copy link to Joel 2:25">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְשִׁלַּמְתִּ֤י לָכֶם֙ אֶת־הַשָּׁנִ֔ים אֲשֶׁר֙ אָכַ֣ל הָאַרְבֶּ֔ה הַיֶּ֖לֶק וְהֶחָסִ֣יל וְהַגָּזָ֑ם חֵילִי֙ הַגָּד֔וֹל אֲשֶׁ֥ר שִׁלַּ֖חְתִּי בָּכֶֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-26" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:26</h4></div>
+              <a class="anchor" href="#joel-2-26" aria-label="Copy link to Joel 2:26">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַאֲכַלְתֶּ֤ם אָכוֹל֙ וְשָׂב֔וֹעַ וְהִלַּלְתֶּ֗ם אֶת־שֵׁ֤ם יְהֹוָה֙ אֱלֹ֣הֵיכֶ֔ם אֲשֶׁר־עָשָׂ֥ה עִמָּכֶ֖ם לְהַפְלִ֑יא וְלֹא־יֵבֹ֥שׁוּ עַמִּ֖י לְעוֹלָֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-2-27" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 2:27</h4></div>
+              <a class="anchor" href="#joel-2-27" aria-label="Copy link to Joel 2:27">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וִידַעְתֶּ֗ם כִּ֣י בְקֶ֤רֶב יִשְׂרָאֵל֙ אָ֔נִי וַאֲנִ֛י יְהֹוָ֥ה אֱלֹהֵיכֶ֖ם וְאֵ֣ין ע֑וֹד וְלֹא־יֵבֹ֥שׁוּ עַמִּ֖י לְעוֹלָֽם׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-joel-text-3">Chapter 3</h4>
+          <section class="unit" id="joel-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 3:1</h4></div>
+              <a class="anchor" href="#joel-3-1" aria-label="Copy link to Joel 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהָיָ֣ה אַחֲרֵי־כֵ֗ן אֶשְׁפּ֤וֹךְ אֶת־רוּחִי֙ עַל־כׇּל־בָּשָׂ֔ר וְנִבְּא֖וּ בְּנֵיכֶ֣ם וּבְנוֹתֵיכֶ֑ם זִקְנֵיכֶם֙ חֲלֹמ֣וֹת יַחֲלֹמ֔וּן בַּח֣וּרֵיכֶ֔ם חֶזְיֹנ֖וֹת יִרְאֽוּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-3-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 3:2</h4></div>
+              <a class="anchor" href="#joel-3-2" aria-label="Copy link to Joel 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְגַ֥ם עַל־הָעֲבָדִ֖ים וְעַל־הַשְּׁפָח֑וֹת בַּיָּמִ֣ים הָהֵ֔מָּה אֶשְׁפּ֖וֹךְ אֶת־רוּחִֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-3-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 3:3</h4></div>
+              <a class="anchor" href="#joel-3-3" aria-label="Copy link to Joel 3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְנָֽתַתִּי֙ מֽוֹפְתִ֔ים בַּשָּׁמַ֖יִם וּבָאָ֑רֶץ דָּ֣ם וָאֵ֔שׁ וְתִֽימְר֖וֹת עָשָֽׁן׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-3-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 3:4</h4></div>
+              <a class="anchor" href="#joel-3-4" aria-label="Copy link to Joel 3:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַשֶּׁ֙מֶשׁ֙ יֵהָפֵ֣ךְ לְחֹ֔שֶׁךְ וְהַיָּרֵ֖חַ לְדָ֑ם לִפְנֵ֗י בּ֚וֹא י֣וֹם יְהֹוָ֔ה הַגָּד֖וֹל וְהַנּוֹרָֽא׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-3-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 3:5</h4></div>
+              <a class="anchor" href="#joel-3-5" aria-label="Copy link to Joel 3:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהָיָ֗ה כֹּ֧ל אֲשֶׁר־יִקְרָ֛א בְּשֵׁ֥ם יְהֹוָ֖ה יִמָּלֵ֑ט כִּ֠י בְּהַר־צִיּ֨וֹן וּבִירוּשָׁלַ֜͏ִם תִּהְיֶ֣ה פְלֵיטָ֗ה כַּֽאֲשֶׁר֙ אָמַ֣ר יְהֹוָ֔ה וּבַ֨שְּׂרִידִ֔ים אֲשֶׁ֥ר יְהֹוָ֖ה קֹרֵֽא׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-joel-text-4">Chapter 4</h4>
+          <section class="unit" id="joel-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:1</h4></div>
+              <a class="anchor" href="#joel-4-1" aria-label="Copy link to Joel 4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּ֗י הִנֵּ֛ה בַּיָּמִ֥ים הָהֵ֖מָּה וּבָעֵ֣ת הַהִ֑יא אֲשֶׁ֥ר &lt;span class=&quot;mam-kq&quot;&gt;&lt;span class=&quot;mam-kq-k&quot;&gt;(אשוב)&lt;/span&gt; &lt;span class=&quot;mam-kq-q&quot;&gt;[אָשִׁ֛יב]&lt;/span&gt;&lt;/span&gt; אֶת־שְׁב֥וּת יְהוּדָ֖ה וִירוּשָׁלָֽ͏ִם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:2</h4></div>
+              <a class="anchor" href="#joel-4-2" aria-label="Copy link to Joel 4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְקִבַּצְתִּי֙ אֶת־כׇּל־הַגּוֹיִ֔ם וְה֣וֹרַדְתִּ֔ים אֶל־עֵ֖מֶק יְהוֹשָׁפָ֑ט וְנִשְׁפַּטְתִּ֨י עִמָּ֜ם שָׁ֗ם עַל־עַמִּ֨י וְנַחֲלָתִ֤י יִשְׂרָאֵל֙ אֲשֶׁ֣ר פִּזְּר֣וּ בַגּוֹיִ֔ם וְאֶת־אַרְצִ֖י חִלֵּֽקוּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:3</h4></div>
+              <a class="anchor" href="#joel-4-3" aria-label="Copy link to Joel 4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאֶל־עַמִּ֖י יַדּ֣וּ גוֹרָ֑ל וַֽיִּתְּנ֤וּ הַיֶּ֙לֶד֙ בַּזּוֹנָ֔ה וְהַיַּלְדָּ֛ה מָכְר֥וּ בַיַּ֖יִן וַיִּשְׁתּֽוּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:4</h4></div>
+              <a class="anchor" href="#joel-4-4" aria-label="Copy link to Joel 4:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְ֠גַ֠ם מָה־אַתֶּ֥ם לִי֙ צֹ֣ר וְצִיד֔וֹן וְכֹ֖ל גְּלִיל֣וֹת פְּלָ֑שֶׁת הַגְּמ֗וּל אַתֶּם֙ מְשַׁלְּמִ֣ים עָלָ֔י וְאִם־גֹּמְלִ֤ים אַתֶּם֙ עָלַ֔י קַ֣ל מְהֵרָ֔ה אָשִׁ֥יב גְּמֻֽלְכֶ֖ם בְּרֹאשְׁכֶֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:5</h4></div>
+              <a class="anchor" href="#joel-4-5" aria-label="Copy link to Joel 4:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֲשֶׁר־כַּסְפִּ֥י וּזְהָבִ֖י לְקַחְתֶּ֑ם וּמַֽחֲמַדַּי֙ הַטֹּבִ֔ים הֲבֵאתֶ֖ם לְהֵיכְלֵיכֶֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:6</h4></div>
+              <a class="anchor" href="#joel-4-6" aria-label="Copy link to Joel 4:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וּבְנֵ֤י יְהוּדָה֙ וּבְנֵ֣י יְרוּשָׁלַ֔͏ִם מְכַרְתֶּ֖ם לִבְנֵ֣י הַיְּוָנִ֑ים לְמַ֥עַן הַרְחִיקָ֖ם מֵעַ֥ל גְּבוּלָֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:7</h4></div>
+              <a class="anchor" href="#joel-4-7" aria-label="Copy link to Joel 4:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הִנְנִ֣י מְעִירָ֔ם מִ֨ן־הַמָּק֔וֹם אֲשֶׁר־מְכַרְתֶּ֥ם אֹתָ֖ם שָׁ֑מָּה וַהֲשִׁבֹתִ֥י גְמֻֽלְכֶ֖ם בְּרֹאשְׁכֶֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:8</h4></div>
+              <a class="anchor" href="#joel-4-8" aria-label="Copy link to Joel 4:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וּמָכַרְתִּ֞י אֶת־בְּנֵיכֶ֣ם וְאֶת־בְּנֽוֹתֵיכֶ֗ם בְּיַד֙ בְּנֵ֣י יְהוּדָ֔ה וּמְכָר֥וּם לִשְׁבָאיִ֖ם אֶל־גּ֣וֹי רָח֑וֹק כִּ֥י יְהֹוָ֖ה דִּבֵּֽר׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:9</h4></div>
+              <a class="anchor" href="#joel-4-9" aria-label="Copy link to Joel 4:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">קִרְאוּ־זֹאת֙ בַּגּוֹיִ֔ם קַדְּשׁ֖וּ מִלְחָמָ֑ה הָעִ֙ירוּ֙ הַגִּבּוֹרִ֔ים יִגְּשׁ֣וּ יַֽעֲל֔וּ כֹּ֖ל אַנְשֵׁ֥י הַמִּלְחָמָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:10</h4></div>
+              <a class="anchor" href="#joel-4-10" aria-label="Copy link to Joel 4:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כֹּ֤תּוּ אִתֵּיכֶם֙ לַחֲרָב֔וֹת וּמַזְמְרֹֽתֵיכֶ֖ם לִרְמָחִ֑ים הַֽחַלָּ֔שׁ יֹאמַ֖ר גִּבּ֥וֹר אָֽנִי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:11</h4></div>
+              <a class="anchor" href="#joel-4-11" aria-label="Copy link to Joel 4:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ע֣וּשׁוּ וָבֹ֧אוּ כׇֽל־הַגּוֹיִ֛ם מִסָּבִ֖יב וְנִקְבָּ֑צוּ שָׁ֕מָּה הַֽנְחַ֥ת יְהֹוָ֖ה גִּבּוֹרֶֽיךָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:12</h4></div>
+              <a class="anchor" href="#joel-4-12" aria-label="Copy link to Joel 4:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יֵע֙וֹרוּ֙ וְיַעֲל֣וּ הַגּוֹיִ֔ם אֶל־עֵ֖מֶק יְהוֹשָׁפָ֑ט כִּ֣י שָׁ֗ם אֵשֵׁ֛ב לִשְׁפֹּ֥ט אֶת־כׇּל־הַגּוֹיִ֖ם מִסָּבִֽיב׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:13</h4></div>
+              <a class="anchor" href="#joel-4-13" aria-label="Copy link to Joel 4:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שִׁלְח֣וּ מַגָּ֔ל כִּ֥י בָשַׁ֖ל קָצִ֑יר בֹּ֤אֽוּ רְדוּ֙ כִּֽי־מָ֣לְאָה גַּ֔ת הֵשִׁ֙יקוּ֙ הַיְקָבִ֔ים כִּ֥י רַבָּ֖ה רָעָתָֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:14</h4></div>
+              <a class="anchor" href="#joel-4-14" aria-label="Copy link to Joel 4:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֲמוֹנִ֣ים הֲמוֹנִ֔ים בְּעֵ֖מֶק הֶחָר֑וּץ כִּ֤י קָרוֹב֙ י֣וֹם יְהֹוָ֔ה בְּעֵ֖מֶק הֶחָרֽוּץ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:15</h4></div>
+              <a class="anchor" href="#joel-4-15" aria-label="Copy link to Joel 4:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שֶׁ֥מֶשׁ וְיָרֵ֖חַ קָדָ֑רוּ וְכוֹכָבִ֖ים אָסְפ֥וּ נׇגְהָֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:16</h4></div>
+              <a class="anchor" href="#joel-4-16" aria-label="Copy link to Joel 4:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיהֹוָ֞ה מִצִּיּ֣וֹן יִשְׁאָ֗ג וּמִירוּשָׁלַ֙͏ִם֙ יִתֵּ֣ן קוֹל֔וֹ וְרָעֲשׁ֖וּ שָׁמַ֣יִם וָאָ֑רֶץ וַֽיהֹוָה֙ מַחֲסֶ֣ה לְעַמּ֔וֹ וּמָע֖וֹז לִבְנֵ֥י יִשְׂרָאֵֽל׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:17</h4></div>
+              <a class="anchor" href="#joel-4-17" aria-label="Copy link to Joel 4:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וִידַעְתֶּ֗ם כִּ֣י אֲנִ֤י יְהֹוָה֙ אֱלֹ֣הֵיכֶ֔ם שֹׁכֵ֖ן בְּצִיּ֣וֹן הַר־קׇדְשִׁ֑י וְהָיְתָ֤ה יְרוּשָׁלַ֙͏ִם֙ קֹ֔דֶשׁ וְזָרִ֥ים לֹא־יַֽעַבְרוּ־בָ֖הּ עֽוֹד׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:18</h4></div>
+              <a class="anchor" href="#joel-4-18" aria-label="Copy link to Joel 4:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהָיָה֩ בַיּ֨וֹם הַה֜וּא יִטְּפ֧וּ הֶהָרִ֣ים עָסִ֗יס וְהַגְּבָעוֹת֙ תֵּלַ֣כְנָה חָלָ֔ב וְכׇל־אֲפִיקֵ֥י יְהוּדָ֖ה יֵ֣לְכוּ מָ֑יִם וּמַעְיָ֗ן מִבֵּ֤ית יְהֹוָה֙ יֵצֵ֔א וְהִשְׁקָ֖ה אֶת־נַ֥חַל הַשִּׁטִּֽים׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-19" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:19</h4></div>
+              <a class="anchor" href="#joel-4-19" aria-label="Copy link to Joel 4:19">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מִצְרַ֙יִם֙ לִשְׁמָמָ֣ה תִֽהְיֶ֔ה וֶאֱד֕וֹם לְמִדְבַּ֥ר שְׁמָמָ֖ה תִּֽהְיֶ֑ה מֵֽחֲמַס֙ בְּנֵ֣י יְהוּדָ֔ה אֲשֶׁר־שָׁפְכ֥וּ דָם־נָקִ֖יא בְּאַרְצָֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-20" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:20</h4></div>
+              <a class="anchor" href="#joel-4-20" aria-label="Copy link to Joel 4:20">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וִיהוּדָ֖ה לְעוֹלָ֣ם תֵּשֵׁ֑ב וִירוּשָׁלַ֖͏ִם לְד֥וֹר וָדֽוֹר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="joel-4-21" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Joel 4:21</h4></div>
+              <a class="anchor" href="#joel-4-21" aria-label="Copy link to Joel 4:21">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְנִקֵּ֖יתִי דָּמָ֣ם לֹֽא־נִקֵּ֑יתִי וַיהֹוָ֖ה שֹׁכֵ֥ן בְּצִיּֽוֹן׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-joel-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"joel","work_title":"Joel","work_slug":"tanakh/joel","scope_label":"All imported Hebrew works","generated_at":"2026-05-08T15:38:28.738Z","total_occurrences":866,"units":{"joel-1-1":{"unit_id":"joel-1-1","anchor_id":"joel-1-1","source_ref":"Joel 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2076061a28b4","tok-7f7529d239e9","tok-c43c1c3197ef","tok-a283c4a08794","tok-9bd31de08af1"]}]},"joel-1-2":{"unit_id":"joel-1-2","anchor_id":"joel-1-2","source_ref":"Joel 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e60747f3f4ba","tok-5a89d885c3d9","tok-4c814ab53180","tok-2bdb40e12497","tok-c87071ec9e2e","tok-93dcf8e6ac57","tok-ac3d62a15f06","tok-4ba6a21b1fbd","tok-d19cabe552fd","tok-f773ca868176","tok-5947c04d1000","tok-8245fbff776f"]}]},"joel-1-3":{"unit_id":"joel-1-3","anchor_id":"joel-1-3","source_ref":"Joel 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-eb24dd8c396a","tok-e820c1c9e335","tok-aaa157b64f42","tok-4cb35ca4015c","tok-cb9845c4d730","tok-6b61d253ffa1","tok-6d5633daf840","tok-dafb8a74c5d6"]}]},"joel-1-4":{"unit_id":"joel-1-4","anchor_id":"joel-1-4","source_ref":"Joel 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d5724180ce07","tok-2ad8cab51dcb","tok-a0190ecbd6bf","tok-730ac847608a","tok-3cd07d89d7a8","tok-a861b6400bd5","tok-a0190ecbd6bf","tok-3ccd78477f47","tok-4daa1283adc2","tok-cb158ff85d03","tok-d30eb9f74139","tok-c971f6d3cb89"]}]},"joel-1-5":{"unit_id":"joel-1-5","anchor_id":"joel-1-5","source_ref":"Joel 1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-931de0e2aa6f","tok-2fd6d6aa2b6c","tok-29a680038ba6","tok-6b0cf9f93eff","tok-e0b2f19a7d70","tok-88729704d1eb","tok-67d352c25920","tok-6bc3227acda3","tok-02e6b3de7d65","tok-54077b14bf6e"]}]},"joel-1-6":{"unit_id":"joel-1-6","anchor_id":"joel-1-6","source_ref":"Joel 1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bcb44fa5c689","tok-a9ae7f3bc6f2","tok-f6e4d7682971","tok-1f55ffe89f54","tok-ba067f5d2f36","tok-0fbec21cfd65","tok-23307d8fe4e3","tok-a1318b3e797d","tok-16e6ddc18833","tok-32ab276ed510","tok-c104b85cab2d","tok-a6b8ce224b0b"]}]},"joel-1-7":{"unit_id":"joel-1-7","anchor_id":"joel-1-7","source_ref":"Joel 1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b104159def85","tok-3c2c14082bec","tok-df0fd72e441a","tok-4ae796234389","tok-6af3232d1fb0","tok-2f12bb9c35de","tok-d5d56403f508","tok-944d2aae5baf","tok-f2657499d78f","tok-dbe0bcfef191"]}]},"joel-1-8":{"unit_id":"joel-1-8","anchor_id":"joel-1-8","source_ref":"Joel 1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-348c1e03bb17","tok-2fa783ee8c9d","tok-a12389d33b50","tok-7031093de8ca","tok-f530b3c0bd17"]}]},"joel-1-9":{"unit_id":"joel-1-9","anchor_id":"joel-1-9","source_ref":"Joel 1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-61a7cab9bf31","tok-2371ce97cca1","tok-a061394249dc","tok-2b9239590300","tok-aee2e5221a37","tok-d9e109f33eeb","tok-c99d38447616","tok-67f2295d888c","tok-d5f46662513c"]}]},"joel-1-10":{"unit_id":"joel-1-10","anchor_id":"joel-1-10","source_ref":"Joel 1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8842047de809","tok-08a452c706d4","tok-0f8a71759706","tok-a45f311ec960","tok-4c7ef9f44b91","tok-8842047de809","tok-b4bf5e7bc38a","tok-230d85e006fa","tok-a3e911f23442","tok-85187be0e24c","tok-5b5b5f61bbdb"]}]},"joel-1-11":{"unit_id":"joel-1-11","anchor_id":"joel-1-11","source_ref":"Joel 1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-85000dce2bb2","tok-65b414003b68","tok-eba7b5e4ae53","tok-dfa38e058c1e","tok-53f765f52bfb","tok-22ec6685d875","tok-6bc3227acda3","tok-b18a0b588f3b","tok-f438cfe912f7","tok-c0a70d5d89b2"]}]},"joel-1-12":{"unit_id":"joel-1-12","anchor_id":"joel-1-12","source_ref":"Joel 1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cafa6693043a","tok-5130722cf6d5","tok-795e1ae75b0d","tok-797a43ee0821","tok-c91a9dba965b","tok-0f628c84ff90","tok-828d46569668","tok-5a4b3b7d9e58","tok-cd78257a5da4","tok-2b428b3b2120","tok-356542b8a546","tok-c63e85f2fea5","tok-cae9df83861f","tok-df8a48da1d66","tok-39be6518991d"]}]},"joel-1-13":{"unit_id":"joel-1-13","anchor_id":"joel-1-13","source_ref":"Joel 1:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cfc1069a768c","tok-c5e13c7c46ab","tok-b37b959dd505","tok-eba7b5e4ae53","tok-3108dd1f6421","tok-7f585f6cc62d","tok-02f4ecdb260c","tok-7f496e2ec9b3","tok-373bbc734d38","tok-67f2295d888c","tok-342dfa9cafb9","tok-6bc3227acda3","tok-33346057e013","tok-354a77886a2b","tok-48687084c839","tok-5fca50330149","tok-ad7dcc346a81"]}]},"joel-1-14":{"unit_id":"joel-1-14","anchor_id":"joel-1-14","source_ref":"Joel 1:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1c66afe962e1","tok-dde0c1339b59","tok-d811f2b3b1c5","tok-9783b0523991","tok-af474377d020","tok-b58b3f43e4e7","tok-c11d457fe1b1","tok-21260b86d557","tok-fcb4a5f46bfe","tok-bf6f1cb6777f","tok-867e9940826c","tok-be6a9e57e29a","tok-30ed3c90a464"]}]},"joel-1-15":{"unit_id":"joel-1-15","anchor_id":"joel-1-15","source_ref":"Joel 1:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d9ab4aeb6b7f","tok-51f278047454","tok-83d55cceef42","tok-9dcb2ef7a672","tok-37b2b3b28fb6","tok-5dc1620052b1","tok-48dac48d3fa5","tok-51026716f911","tok-f11e28268114"]}]},"joel-1-16":{"unit_id":"joel-1-16","anchor_id":"joel-1-16","source_ref":"Joel 1:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-88e895e3db93","tok-87c416a7694c","tok-8a06d9c1f8c5","tok-9f4f8662a9d7","tok-dd4f37f0e766","tok-354a77886a2b","tok-9fa6dde29782","tok-8503abc3b19a","tok-d4d09a6703f4"]}]},"joel-1-17":{"unit_id":"joel-1-17","anchor_id":"joel-1-17","source_ref":"Joel 1:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-39894ecf05ac","tok-5c31638469df","tok-939b3ba7fbb7","tok-0b57ee60e2bb","tok-838c12e57f60","tok-431bf608306c","tok-6d3df8c94dc8","tok-35d83af84ab8","tok-6bc3227acda3","tok-297064fffef4","tok-92364250a604"]}]},"joel-1-18":{"unit_id":"joel-1-18","anchor_id":"joel-1-18","source_ref":"Joel 1:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-adc8248e3c91","tok-52d3a1944820","tok-a51fe8fe146a","tok-f0b402892f49","tok-a3984a0c93e7","tok-5a36518d19cf","tok-d542f86f6153","tok-8824cd2226c5","tok-2fdf2d8f544d","tok-d30be3f688d7","tok-5764ad9d7804","tok-8190aa26ed7c"]}]},"joel-1-19":{"unit_id":"joel-1-19","anchor_id":"joel-1-19","source_ref":"Joel 1:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-af5520fe8c9a","tok-77bb5e5e7522","tok-0820141b25c6","tok-d3cbcb02b9af","tok-99abeb79fa1b","tok-431026a88934","tok-111c08925926","tok-fa7a8ada57fa","tok-36d47eaa4ed7","tok-4ef0ae68a26c","tok-3405a881383d","tok-961ee1998152"]}]},"joel-1-20":{"unit_id":"joel-1-20","anchor_id":"joel-1-20","source_ref":"Joel 1:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-930199bf3473","tok-b584c9e799e0","tok-d2ebb50ee5ab","tok-98a8d7218ce3","tok-83d55cceef42","tok-f0f2f95dcd4d","tok-370f9e99f780","tok-095bd1aa284c","tok-7d2bff09aee0","tok-a24090ca1a9e","tok-d2c4d3a7f30c","tok-662944afa298","tok-39be6518991d"]}]},"joel-2-1":{"unit_id":"joel-2-1","anchor_id":"joel-2-1","source_ref":"Joel 2:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a1c2346b8131","tok-80f5370e6a8d","tok-b10f163921bf","tok-056d0da8728b","tok-073518dfb1c7","tok-0601343e8aaa","tok-098c0a396864","tok-2bdb40e12497","tok-c11d457fe1b1","tok-93dcf8e6ac57","tok-d182993a8a16","tok-fc76d41c3ccf","tok-6bc3227acda3","tok-e76c3665ee34"]}]},"joel-2-2":{"unit_id":"joel-2-2","anchor_id":"joel-2-2","source_ref":"Joel 2:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-06590e344d24","tok-3c502a924bae","tok-eeca65e50e34","tok-faff5323e7bd","tok-1422adbd3e5e","tok-9399b878bd71","tok-0e53b20bb55a","tok-2489b90c0256","tok-2670a8bd4341","tok-295e2108d2de","tok-bfb945cc344d","tok-dcfbb6b80190","tok-51e4704aaca1","tok-07c91a969d80","tok-d9500699b2f0","tok-0efd03c960f0","tok-b9643f42bc4f","tok-474153ed9327","tok-391727ee6482","tok-43969d1a58ae","tok-454ff999ef0d","tok-4d35354131c3"]}]},"joel-2-3":{"unit_id":"joel-2-3","anchor_id":"joel-2-3","source_ref":"Joel 2:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-589348af8f3d","tok-85ed6a336ffc","tok-8910e3a7ef7e","tok-1b07f10c2c2e","tok-673b239fe969","tok-e8490f1cab05","tok-2d6e24368137","tok-60d371f1ae65","tok-3f51fdb2f031","tok-b9643f42bc4f","tok-a9cdeec0e506","tok-fbd4490625bc","tok-7cf84d1a4b1b","tok-d20be324edba","tok-718165b7cf59"]}]},"joel-2-4":{"unit_id":"joel-2-4","anchor_id":"joel-2-4","source_ref":"Joel 2:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fd8293d6f420","tok-7d439dd4bffb","tok-5352f6f0cf06","tok-4d44eb0ce49d","tok-def96fc5e5d7","tok-4bd20ae978b3"]}]},"joel-2-5":{"unit_id":"joel-2-5","anchor_id":"joel-2-5","source_ref":"Joel 2:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3c2ad70d9074","tok-5f3f39ba37ab","tok-51a01000d4db","tok-786dc01031f6","tok-21f212cae49c","tok-5107d1c747f4","tok-e67bd5a2bad6","tok-8910e3a7ef7e","tok-f815d5936be0","tok-031a8f74131a","tok-cafb25977792","tok-a4eaa0c4d0b7","tok-381e3c4a9a0e","tok-7378b4230367"]}]},"joel-2-6":{"unit_id":"joel-2-6","anchor_id":"joel-2-6","source_ref":"Joel 2:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1f6d741893bc","tok-5894b78d11a7","tok-c97ba3fec0b3","tok-0f021c4d921c","tok-f737ee2deb42","tok-5e66a3ac2d16"]}]},"joel-2-7":{"unit_id":"joel-2-7","anchor_id":"joel-2-7","source_ref":"Joel 2:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-535c5a624c9c","tok-fb28ea886488","tok-95faa017ec57","tok-ed10b438c1b6","tok-7f44f886011c","tok-e0d04323fd2e","tok-ce6379233e89","tok-5454865d2603","tok-08eefe83af55","tok-01a1d31569b0","tok-dcb1ff54ebd1","tok-b6ca086659cc"]}]},"joel-2-8":{"unit_id":"joel-2-8","anchor_id":"joel-2-8","source_ref":"Joel 2:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ce6379233e89","tok-bb128d1aa1a1","tok-474153ed9327","tok-397ca82333f6","tok-faf10aed65f7","tok-16db1554daa9","tok-02300ef6b219","tok-e95a4834d21d","tok-a283f2b12a78","tok-71771804163a","tok-339568001550","tok-ecef2929ad8d"]}]},"joel-2-9":{"unit_id":"joel-2-9","anchor_id":"joel-2-9","source_ref":"Joel 2:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bc38d7944307","tok-4b7caaf7be0f","tok-4a432a0a90f9","tok-fb28ea886488","tok-42220f7a9317","tok-4b9d66f53b5e","tok-2d02a573e5d9","tok-6b8f6867bac3","tok-c668bed17a94","tok-4cfa63acc096"]}]},"joel-2-10":{"unit_id":"joel-2-10","anchor_id":"joel-2-10","source_ref":"Joel 2:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-589348af8f3d","tok-b20fd0a6fcd6","tok-45c2fb4374a6","tok-1b2e8bf59302","tok-fde9478d3c1b","tok-208030031935","tok-bdee2787a467","tok-8b1935a04509","tok-a63653ebae0d","tok-70c5d157436c","tok-369cad0aaf02"]}]},"joel-2-11":{"unit_id":"joel-2-11","anchor_id":"joel-2-11","source_ref":"Joel 2:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-41eb6577c31f","tok-a4b3e0440e1a","tok-9a2bdb785ff4","tok-5641ad4044cf","tok-83878c511056","tok-d3cbcb02b9af","tok-8860866fb854","tok-73e85f3bd2f2","tok-9f173f4638b3","tok-6bc3227acda3","tok-1f55ffe89f54","tok-f02c89a3fbde","tok-893b88f3b50b","tok-7964932b3e98","tok-c37cfdba2bbf","tok-db57ed3b5c3c","tok-887106074daf","tok-04b2418d9249","tok-1de2f307dabe"]}]},"joel-2-12":{"unit_id":"joel-2-12","anchor_id":"joel-2-12","source_ref":"Joel 2:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1af2f3754bb6","tok-b09cc64f87af","tok-e640971c9532","tok-67a1f86386c0","tok-dfba35c19ced","tok-cbd9fc3f5b74","tok-c697d394c807","tok-119ea2cbc3e7"]}]},"joel-2-13":{"unit_id":"joel-2-13","anchor_id":"joel-2-13","source_ref":"Joel 2:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c1082a010e18","tok-cfa5ca4ec92f","tok-355da0ab85f1","tok-5fcdf773bfd9","tok-11ec2f4b829d","tok-867e9940826c","tok-06c9185f398f","tok-7ee3185563e8","tok-ec170f545248","tok-d54571afae7e","tok-7506a0f44fe1","tok-fd7ca1396094","tok-d9e98201e38d","tok-00d9bbce69c8"]}]},"joel-2-14":{"unit_id":"joel-2-14","anchor_id":"joel-2-14","source_ref":"Joel 2:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5ea9300d30e0","tok-4857e80824a7","tok-80da860cefed","tok-3ee27e1dd809","tok-6a3ed25195c8","tok-c0d53a384c7b","tok-cb6c06ae90e1","tok-c5ba5781690a","tok-d78dd2e9d253","tok-2d5a8e1859ab","tok-92a9526cf53c","tok-562b73080a0b"]}]},"joel-2-15":{"unit_id":"joel-2-15","anchor_id":"joel-2-15","source_ref":"Joel 2:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e04d9c4b498b","tok-2e0dae6c4f06","tok-e252c9a3cb41","tok-d7975d3a5d63","tok-6be9024184a4","tok-4e1dbc9c9aca"]}]},"joel-2-16":{"unit_id":"joel-2-16","anchor_id":"joel-2-16","source_ref":"Joel 2:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e401fe29cc70","tok-045152031a72","tok-9ca88385ac57","tok-e79cd808ad95","tok-97c3c3a6ec1b","tok-0e1e85b39cd4","tok-dab619458e7f","tok-3c622f6e65e7","tok-d6354fa9917e","tok-cb5bb206bb00","tok-7e87d4fc4091","tok-3666c3b073d5","tok-00bca9a72246","tok-ef94943e840e"]}]},"joel-2-17":{"unit_id":"joel-2-17","anchor_id":"joel-2-17","source_ref":"Joel 2:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a3f6dbb341d1","tok-4d0670d4b438","tok-49ffda203584","tok-774535fea1d7","tok-c99d38447616","tok-67f2295d888c","tok-aee2e5221a37","tok-3d157341e489","tok-6dff85035542","tok-bf6f1cb6777f","tok-4922b6284423","tok-cea1025f9d81","tok-58044700ed61","tok-f1638583e792","tok-ccda8d6a3309","tok-40ec4758a3f0","tok-a0ca1a0f79c3","tok-d24bb9e3cabf","tok-ffe09d9e7251","tok-1e6b511a539a","tok-00cc98f670ff"]}]},"joel-2-18":{"unit_id":"joel-2-18","anchor_id":"joel-2-18","source_ref":"Joel 2:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f32497321c4e","tok-77bb5e5e7522","tok-37e509daa9f6","tok-18e035dce30a","tok-b562ec64ff4d"]}]},"joel-2-19":{"unit_id":"joel-2-19","anchor_id":"joel-2-19","source_ref":"Joel 2:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ced853c57955","tok-7b9697833232","tok-6cf9d8c9c156","tok-ac817ef67d72","tok-6f176ff7d79b","tok-9720e4dece06","tok-8b2bf8a5b5f5","tok-15688fbe685e","tok-cf416afb3729","tok-2587e8a9f040","tok-edbe37e0065d","tok-aa0ea5f4d0dd","tok-dbccc195814f","tok-39659d9d70cd","tok-16219c72a278","tok-33f73a029fa7","tok-bd7bc5e69d7a"]}]},"joel-2-20":{"unit_id":"joel-2-20","anchor_id":"joel-2-20","source_ref":"Joel 2:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ce4e4af0f188","tok-47eaf3c7af82","tok-0d7b75b6fec9","tok-18bf349bafc2","tok-a9edddc5c80e","tok-df7a93d18959","tok-755061baa4aa","tok-5b5a3c824d13","tok-8105e81307bd","tok-1f5390c7b2dd","tok-3fc13759448d","tok-9bdcbe09a891","tok-9d766ed84e45","tok-efd6ad43d6b0","tok-7af73c9d0fb1","tok-c979b5b6ca59","tok-1bd701c7cc94","tok-6bc3227acda3","tok-75518511fec5","tok-f5c1e745b3bf"]}]},"joel-2-21":{"unit_id":"joel-2-21","anchor_id":"joel-2-21","source_ref":"Joel 2:21","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-23e22292d55c","tok-a45f311ec960","tok-eb99e9294ce5","tok-83d3ad71a5bd","tok-392e858798db","tok-77bb5e5e7522","tok-f5c1e745b3bf"]}]},"joel-2-22":{"unit_id":"joel-2-22","anchor_id":"joel-2-22","source_ref":"Joel 2:22","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4f31fc0d0257","tok-71423e831bee","tok-dd930dda9ac7","tok-6bc3227acda3","tok-184d8dd76560","tok-111c08925926","tok-d4a05fd7431c","tok-271bc17560da","tok-a4af03b5bb1b","tok-596ce199788b","tok-71f340f36612","tok-c9cdd6940eea","tok-04cfa7490e38","tok-e84165084b0a"]}]},"joel-2-23":{"unit_id":"joel-2-23","anchor_id":"joel-2-23","source_ref":"Joel 2:23","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-67e4138f3d6c","tok-f7b6d0f601e9","tok-d55399034d08","tok-1feed87116ec","tok-2332707780a0","tok-62667ab8474a","tok-d858e55f2d59","tok-7212478255cb","tok-e1857eb6417a","tok-d3fbd7bfdb82","tok-3c39455b94ec","tok-e34d118284b9","tok-6201055ad99b","tok-3dea263b6ffa","tok-69281bab2bb7","tok-b67c940bf256"]}]},"joel-2-24":{"unit_id":"joel-2-24","anchor_id":"joel-2-24","source_ref":"Joel 2:24","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-01a4d83a5d7e","tok-84db58386193","tok-af02d1931a40","tok-491ec83bd99b","tok-cc930df75353","tok-f07b3d3821a9","tok-b5f0bd408371"]}]},"joel-2-25":{"unit_id":"joel-2-25","anchor_id":"joel-2-25","source_ref":"Joel 2:25","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3d36bbdf8c73","tok-8b2bf8a5b5f5","tok-6774ae455a30","tok-6d12168cb2f6","tok-a0190ecbd6bf","tok-730ac847608a","tok-0d74030a2cd2","tok-f9e973674002","tok-c2fe4025ff17","tok-15b4b25b15bd","tok-74852bbec20d","tok-4642a4c49e85","tok-ffa8fd97f537","tok-fa9db426e364"]}]},"joel-2-26":{"unit_id":"joel-2-26","anchor_id":"joel-2-26","source_ref":"Joel 2:26","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b211092c4bbd","tok-9353cb737992","tok-9067b9a74ec8","tok-58bd402961b3","tok-28ac9926e1b0","tok-8ed8c91170ef","tok-f7c46caa6370","tok-c6acc3ae5d09","tok-f8a9f2ef9359","tok-905ab1a10df9","tok-000c6fb696e1","tok-c1cee6b310fe","tok-233e3411919a"]}]},"joel-2-27":{"unit_id":"joel-2-27","anchor_id":"joel-2-27","source_ref":"Joel 2:27","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3036b7e20f70","tok-d3cbcb02b9af","tok-5ec7ffc8d16d","tok-79767e0a6f6a","tok-858b5f8e8ab2","tok-4deb3bc3f1a7","tok-7fdceeb21853","tok-48687084c839","tok-ba067f5d2f36","tok-d9096577a8ae","tok-000c6fb696e1","tok-c1cee6b310fe","tok-233e3411919a","tok-562b73080a0b"]}]},"joel-3-1":{"unit_id":"joel-3-1","anchor_id":"joel-3-1","source_ref":"Joel 3:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f8a257ec64b1","tok-7a6154f871a9","tok-6181451610ec","tok-48aeb452f4a2","tok-a9295af82bd0","tok-83ae5befc901","tok-3731c0a1285c","tok-180593f916bb","tok-41c1b2b60120","tok-2235701f3e49","tok-5b91e91ce51f","tok-c2f60a21893e","tok-8bd4530c9692","tok-56aa3bdee1ba"]}]},"joel-3-2":{"unit_id":"joel-3-2","anchor_id":"joel-3-2","source_ref":"Joel 3:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-20ae7c3cb434","tok-08eed6b2fbae","tok-11be37e2c8f7","tok-456e3fb6df87","tok-3585276a7b9d","tok-877d74c24250","tok-75930b4da85d"]}]},"joel-3-3":{"unit_id":"joel-3-3","anchor_id":"joel-3-3","source_ref":"Joel 3:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-85b1cd6d8646","tok-782adb3e02c2","tok-42d6e0617954","tok-66a6e71436ac","tok-860175b3c405","tok-1a7680c3e03b","tok-38fabf036bc3","tok-b70fc1bed83f"]}]},"joel-3-4":{"unit_id":"joel-3-4","anchor_id":"joel-3-4","source_ref":"Joel 3:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e95c1742f6c4","tok-7ae3a5692bc0","tok-15bcce0256d7","tok-b64d5ab253cd","tok-b01c0ffe0648","tok-c22305f88201","tok-4d35280dd5c2","tok-37b2b3b28fb6","tok-5dc1620052b1","tok-c6105c10a53f","tok-ca886278b776"]}]},"joel-3-5":{"unit_id":"joel-3-5","anchor_id":"joel-3-5","source_ref":"Joel 3:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4a9fd4243fd1","tok-6b09f6543204","tok-9f230e50e083","tok-9567740638db","tok-77bb5e5e7522","tok-1bcbc2a19a78","tok-a3c22cc99e27","tok-6562687ad5e0","tok-8d6c1b984883","tok-bc11141e3e0e","tok-080b6b65ba05","tok-bf41f49aeb81","tok-bb29fe032511","tok-a924c25a6daa","tok-5dc1620052b1","tok-f7bca1a24b64","tok-4642a4c49e85","tok-77bb5e5e7522","tok-2f7edb5d382d"]}]},"joel-4-1":{"unit_id":"joel-4-1","anchor_id":"joel-4-1","source_ref":"Joel 4:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8a9227d5a08c","tok-b9312aec311e","tok-4c8264248fd8","tok-0e4e3fec59f9","tok-c66a8cb27dbf","tok-106f47598ad4","tok-4642a4c49e85","tok-578c4dcb7979","tok-6249c0cbbe74","tok-425d8370cb86","tok-1c625cd370a3","tok-84538ef9e105","tok-f8d9232c5f41"]}]},"joel-4-2":{"unit_id":"joel-4-2","anchor_id":"joel-4-2","source_ref":"Joel 4:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-85bef471edf9","tok-a3a385013f3a","tok-71a1c6c043b2","tok-1e6167e5dfac","tok-52e1b521f77c","tok-690130fb3af5","tok-a5fbc609311b","tok-f69a6b25e9dd","tok-57c818215b0c","tok-9a61269ddab5","tok-79767e0a6f6a","tok-7f7529d239e9","tok-258b1f17be6e","tok-f925c959cb9d","tok-1883cca3be0c","tok-bcf880bf35df"]}]},"joel-4-3":{"unit_id":"joel-4-3","anchor_id":"joel-4-3","source_ref":"Joel 4:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-57cd50725716","tok-41367ce20d2f","tok-f95902bd098e","tok-4725cabee72c","tok-9564d5a9a449","tok-8dc6115483af","tok-c17aa28b0c87","tok-511d8a562786","tok-bde2d266d2ea","tok-bf0267282ec3"]}]},"joel-4-4":{"unit_id":"joel-4-4","anchor_id":"joel-4-4","source_ref":"Joel 4:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-84d5a4202a11","tok-e07eb5723bc7","tok-fdabd222f42f","tok-036520188aba","tok-15b023cd04dc","tok-0c391f2d7522","tok-c1cc8a3b65db","tok-e1f7b731aa40","tok-624c07596042","tok-4005fe9ed1b2","tok-e1e4b75211e9","tok-fc4db76c2101","tok-70910a23ab15","tok-4005fe9ed1b2","tok-81eeff13e679","tok-d251b7373118","tok-1adc1f0ab09e","tok-701f29c1ea3d","tok-27005047e2b6","tok-08d3d67f3095"]}]},"joel-4-5":{"unit_id":"joel-4-5","anchor_id":"joel-4-5","source_ref":"Joel 4:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ef5889b1baad","tok-de67a10412c3","tok-dd6dd6fdab34","tok-42e83e3ca575","tok-bc77d1ed0d17","tok-8e491ab809a4","tok-ea666d843954"]}]},"joel-4-6":{"unit_id":"joel-4-6","anchor_id":"joel-4-6","source_ref":"Joel 4:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c3dd4abae1a6","tok-c29666c2088d","tok-67e4138f3d6c","tok-fe3b4b3f5de5","tok-bc11141e3e0e","tok-f0c4d9817683","tok-0f80a16f8e3f","tok-3cb352e0d996","tok-7ba4c44c66e1","tok-23b1a487f5f2","tok-c475328a5c63","tok-e5392f90ceb9"]}]},"joel-4-7":{"unit_id":"joel-4-7","anchor_id":"joel-4-7","source_ref":"Joel 4:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3964cb0ff25b","tok-580f460937b5","tok-0f3f9efb899f","tok-f8bf10a08717","tok-19e0c80ab215","tok-c09ad0bb3c7b","tok-4ec06c8f12e1","tok-6c85ebc14c5d","tok-08d3d67f3095"]}]},"joel-4-8":{"unit_id":"joel-4-8","anchor_id":"joel-4-8","source_ref":"Joel 4:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-665629294bd0","tok-d76ec960991e","tok-5e7a86cb3b5e","tok-6a0c68763db6","tok-e2207085b0e8","tok-6c2608b9f7da","tok-9ec4de5ec257","tok-56df6acc997d","tok-47c7cac0d83d","tok-8acc9fc07d39","tok-6bc3227acda3","tok-77bb5e5e7522","tok-8c36d29d7ca0","tok-562b73080a0b"]}]},"joel-4-9":{"unit_id":"joel-4-9","anchor_id":"joel-4-9","source_ref":"Joel 4:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4a94dcdfeb40","tok-7f31964b0a99","tok-bb61e8fdaa27","tok-713b250b8b8d","tok-658900cc6e0d","tok-f7735c0d1c0a","tok-e79aabb7e9a0","tok-2688795aba61","tok-2bdb40e12497","tok-47d7dded4e2a","tok-5808a632cf8b"]}]},"joel-4-10":{"unit_id":"joel-4-10","anchor_id":"joel-4-10","source_ref":"Joel 4:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a7309604af49","tok-d79589858662","tok-ae171a791afb","tok-1da648cf8fd6","tok-f9658e7ec701","tok-08f3f0f84e38","tok-514e9063889a","tok-e623362c339b","tok-52af35800167"]}]},"joel-4-11":{"unit_id":"joel-4-11","anchor_id":"joel-4-11","source_ref":"Joel 4:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-26d589e23235","tok-5d1a50e73215","tok-8748ad1ec57c","tok-fe5073e506e2","tok-0a476d5009a3","tok-ccbe5faf12cc","tok-1ea836aca90c","tok-77bb5e5e7522","tok-142d73568ccc"]}]},"joel-4-12":{"unit_id":"joel-4-12","anchor_id":"joel-4-12","source_ref":"Joel 4:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e778f9bd212d","tok-aeb40e4e11ea","tok-643d16efb78e","tok-1e6167e5dfac","tok-52e1b521f77c","tok-d3cbcb02b9af","tok-f69a6b25e9dd","tok-159dd6acabb1","tok-f49825f7532a","tok-9ef10ee30772","tok-7f6f2320a1f7"]}]},"joel-4-13":{"unit_id":"joel-4-13","anchor_id":"joel-4-13","source_ref":"Joel 4:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3ba172e2875c","tok-50c4d267d2e0","tok-6bc3227acda3","tok-baa8fe628420","tok-5e01497b8e22","tok-e20d421880f4","tok-27342d735982","tok-8ceee4ecf642","tok-fa6a0022c5bb","tok-9eaecd40c587","tok-d4d1717a7b5a","tok-6bc3227acda3","tok-d8b78f7bbda8","tok-9e12fe93aabe"]}]},"joel-4-14":{"unit_id":"joel-4-14","anchor_id":"joel-4-14","source_ref":"Joel 4:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d26a4e0ca223","tok-1e51d11eb2ac","tok-dfc6af3e12c9","tok-227da666d957","tok-83d55cceef42","tok-9dcb2ef7a672","tok-37b2b3b28fb6","tok-5dc1620052b1","tok-dfc6af3e12c9","tok-8d12ce6c70de"]}]},"joel-4-15":{"unit_id":"joel-4-15","anchor_id":"joel-4-15","source_ref":"Joel 4:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-63351660451f","tok-56c3e3667ac3","tok-0afd86f22f79","tok-a63653ebae0d","tok-70c5d157436c","tok-369cad0aaf02"]}]},"joel-4-16":{"unit_id":"joel-4-16","anchor_id":"joel-4-16","source_ref":"Joel 4:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8415c8036a06","tok-6b4cef1a8436","tok-1c8369ee36fa","tok-2519ce8460e6","tok-d243dd06bbd5","tok-f87f4df3a161","tok-07d5c4021566","tok-5426a7afd46f","tok-9490a0d2a775","tok-54e09df9687f","tok-1e9a074fb44d","tok-4e99ad7cdea5","tok-b5883204dc07","tok-3af7aa62a055","tok-9d4a64e382a5","tok-766ec56afdc9"]}]},"joel-4-17":{"unit_id":"joel-4-17","anchor_id":"joel-4-17","source_ref":"Joel 4:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3036b7e20f70","tok-d3cbcb02b9af","tok-907cffff19bc","tok-8ed8c91170ef","tok-f7c46caa6370","tok-342acd2197fd","tok-1d84b4a89738","tok-a827ee356c7c","tok-0cd795eba185","tok-ba93a555f59b","tok-d243dd06bbd5","tok-5266b96378bb","tok-e5dc8dcb1c71","tok-fccbe20f4db6","tok-a813cfc36634","tok-39be6518991d"]}]},"joel-4-18":{"unit_id":"joel-4-18","anchor_id":"joel-4-18","source_ref":"Joel 4:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5e08176ed522","tok-83ff6c82dfbe","tok-c4608195d67e","tok-5ddd077fcad1","tok-ae998672ecd7","tok-4888a23b9d39","tok-40907de1d74e","tok-9210affd65be","tok-4057b57732a7","tok-1cbffd1e573c","tok-1c625cd370a3","tok-3253a248ba51","tok-00c8b0bfde0b","tok-be561fd40d29","tok-7c595e7c1ae1","tok-8ed8c91170ef","tok-a4feaacac9ca","tok-c13a88bc2ef6","tok-3b1daebd884a","tok-53194e23bf05"]}]},"joel-4-19":{"unit_id":"joel-4-19","anchor_id":"joel-4-19","source_ref":"Joel 4:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b57e7167f08f","tok-c62e5a6b6781","tok-6aedb75f509d","tok-fdda812a735f","tok-59db2ead4379","tok-4cd24dd4e420","tok-04945262dc65","tok-205b81db3beb","tok-e2207085b0e8","tok-6c2608b9f7da","tok-99c2da27821e","tok-7e5a96a20aeb","tok-292dca0f6c2c"]}]},"joel-4-20":{"unit_id":"joel-4-20","anchor_id":"joel-4-20","source_ref":"Joel 4:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-910aceaebac3","tok-4bd870304780","tok-843e85b11cbd","tok-c67f40ef531c","tok-bc11141e3e0e","tok-6d5633daf840","tok-4d35354131c3"]}]},"joel-4-21":{"unit_id":"joel-4-21","anchor_id":"joel-4-21","source_ref":"Joel 4:21","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e26f26ae10d3","tok-6f080719c2f5","tok-48e11c111a88","tok-f628ab9d2589","tok-0066d4d5be54","tok-56611765e10b"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/joel.manifest.json","root_href":"../../"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const sourceSummary = (rows) => {
+        const row = cleanValues(rows)[0];
+        if (!row) return { source: "Source metadata incomplete", license: "N/A" };
+        const sourceId = row.source_id ? ` ${row.source_id}` : "";
+        return { source: `${row.source_name || "Source"}${sourceId}`, license: row.license || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        const sourceLine = document.createElement("p");
+        sourceLine.className = "claim-source";
+        sourceLine.textContent = `Source: ${source.source}`;
+        const licenseLine = document.createElement("p");
+        licenseLine.className = "claim-license";
+        licenseLine.textContent = `License: ${source.license}`;
+        card.append(sourceLine, licenseLine);
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

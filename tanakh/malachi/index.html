@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malachi</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Malachi</h1>
+        <p class="meta">55 total source units | imported 2026-05-08</p>
+        <p class="meta source-citation">Hebrew version: Miqra according to the Masorah | Version source: <a href="https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94">he.wikisource.org</a> | Digitization: Sefaria API | License: CC-BY-SA</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Malachi <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Malachi <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-malachi-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#malachi-1-1" title="Malachi 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#malachi-1-2" title="Malachi 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#malachi-1-3" title="Malachi 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#malachi-1-4" title="Malachi 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#malachi-1-5" title="Malachi 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#malachi-1-6" title="Malachi 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#malachi-1-7" title="Malachi 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#malachi-1-8" title="Malachi 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#malachi-1-9" title="Malachi 1:9">1:9</a></li>
+                    <li><a class="toc-unit" href="#malachi-1-10" title="Malachi 1:10">1:10</a></li>
+                    <li><a class="toc-unit" href="#malachi-1-11" title="Malachi 1:11">1:11</a></li>
+                    <li><a class="toc-unit" href="#malachi-1-12" title="Malachi 1:12">1:12</a></li>
+                    <li><a class="toc-unit" href="#malachi-1-13" title="Malachi 1:13">1:13</a></li>
+                    <li><a class="toc-unit" href="#malachi-1-14" title="Malachi 1:14">1:14</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-malachi-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#malachi-2-1" title="Malachi 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#malachi-2-2" title="Malachi 2:2">2:2</a></li>
+                    <li><a class="toc-unit" href="#malachi-2-3" title="Malachi 2:3">2:3</a></li>
+                    <li><a class="toc-unit" href="#malachi-2-4" title="Malachi 2:4">2:4</a></li>
+                    <li><a class="toc-unit" href="#malachi-2-5" title="Malachi 2:5">2:5</a></li>
+                    <li><a class="toc-unit" href="#malachi-2-6" title="Malachi 2:6">2:6</a></li>
+                    <li><a class="toc-unit" href="#malachi-2-7" title="Malachi 2:7">2:7</a></li>
+                    <li><a class="toc-unit" href="#malachi-2-8" title="Malachi 2:8">2:8</a></li>
+                    <li><a class="toc-unit" href="#malachi-2-9" title="Malachi 2:9">2:9</a></li>
+                    <li><a class="toc-unit" href="#malachi-2-10" title="Malachi 2:10">2:10</a></li>
+                    <li><a class="toc-unit" href="#malachi-2-11" title="Malachi 2:11">2:11</a></li>
+                    <li><a class="toc-unit" href="#malachi-2-12" title="Malachi 2:12">2:12</a></li>
+                    <li><a class="toc-unit" href="#malachi-2-13" title="Malachi 2:13">2:13</a></li>
+                    <li><a class="toc-unit" href="#malachi-2-14" title="Malachi 2:14">2:14</a></li>
+                    <li><a class="toc-unit" href="#malachi-2-15" title="Malachi 2:15">2:15</a></li>
+                    <li><a class="toc-unit" href="#malachi-2-16" title="Malachi 2:16">2:16</a></li>
+                    <li><a class="toc-unit" href="#malachi-2-17" title="Malachi 2:17">2:17</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-malachi-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#malachi-3-1" title="Malachi 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-2" title="Malachi 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-3" title="Malachi 3:3">3:3</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-4" title="Malachi 3:4">3:4</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-5" title="Malachi 3:5">3:5</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-6" title="Malachi 3:6">3:6</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-7" title="Malachi 3:7">3:7</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-8" title="Malachi 3:8">3:8</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-9" title="Malachi 3:9">3:9</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-10" title="Malachi 3:10">3:10</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-11" title="Malachi 3:11">3:11</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-12" title="Malachi 3:12">3:12</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-13" title="Malachi 3:13">3:13</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-14" title="Malachi 3:14">3:14</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-15" title="Malachi 3:15">3:15</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-16" title="Malachi 3:16">3:16</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-17" title="Malachi 3:17">3:17</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-18" title="Malachi 3:18">3:18</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-19" title="Malachi 3:19">3:19</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-20" title="Malachi 3:20">3:20</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-21" title="Malachi 3:21">3:21</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-22" title="Malachi 3:22">3:22</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-23" title="Malachi 3:23">3:23</a></li>
+                    <li><a class="toc-unit" href="#malachi-3-24" title="Malachi 3:24">3:24</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-malachi-text-1">Chapter 1</h4>
+          <section class="unit" id="malachi-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 1:1</h4></div>
+              <a class="anchor" href="#malachi-1-1" aria-label="Copy link to Malachi 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מַשָּׂ֥א דְבַר־יְהֹוָ֖ה אֶל־יִשְׂרָאֵ֑ל בְּיַ֖ד מַלְאָכִֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 1:2</h4></div>
+              <a class="anchor" href="#malachi-1-2" aria-label="Copy link to Malachi 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אָהַ֤בְתִּי אֶתְכֶם֙ אָמַ֣ר יְהֹוָ֔ה וַאֲמַרְתֶּ֖ם בַּמָּ֣ה אֲהַבְתָּ֑נוּ הֲלוֹא־אָ֨ח עֵשָׂ֤ו לְיַֽעֲקֹב֙ נְאֻם־יְהֹוָ֔ה וָאֹהַ֖ב אֶֽת־יַעֲקֹֽב׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 1:3</h4></div>
+              <a class="anchor" href="#malachi-1-3" aria-label="Copy link to Malachi 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאֶת־עֵשָׂ֖ו שָׂנֵ֑אתִי וָאָשִׂ֤ים אֶת־הָרָיו֙ שְׁמָמָ֔ה וְאֶת־נַחֲלָת֖וֹ לְתַנּ֥וֹת מִדְבָּֽר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 1:4</h4></div>
+              <a class="anchor" href="#malachi-1-4" aria-label="Copy link to Malachi 1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּי־תֹאמַ֨ר אֱד֜וֹם רֻשַּׁ֗שְׁנוּ וְנָשׁוּב֙ וְנִבְנֶ֣ה חֳרָב֔וֹת כֹּ֤ה אָמַר֙ יְהֹוָ֣ה צְבָא֔וֹת הֵ֥מָּה יִבְנ֖וּ וַאֲנִ֣י אֶהֱר֑וֹס וְקָרְא֤וּ לָהֶם֙ גְּב֣וּל רִשְׁעָ֔ה וְהָעָ֛ם אֲשֶׁר־זָעַ֥ם יְהֹוָ֖ה עַד־עוֹלָֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 1:5</h4></div>
+              <a class="anchor" href="#malachi-1-5" aria-label="Copy link to Malachi 1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעֵינֵיכֶ֖ם תִּרְאֶ֑ינָה וְאַתֶּ֤ם תֹּֽאמְרוּ֙ יִגְדַּ֣ל יְהֹוָ֔ה מֵעַ֖ל לִגְב֥וּל יִשְׂרָאֵֽל׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 1:6</h4></div>
+              <a class="anchor" href="#malachi-1-6" aria-label="Copy link to Malachi 1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בֵּ֛ן יְכַבֵּ֥ד אָ֖ב וְעֶ֣בֶד אֲדֹנָ֑יו וְאִם־אָ֣ב אָ֣נִי אַיֵּ֣ה כְבוֹדִ֡י וְאִם־אֲדוֹנִ֣ים אָ֩נִי֩ אַיֵּ֨ה מוֹרָאִ֜י אָמַ֣ר&amp;thinsp;<strong>׀</strong> יְהֹוָ֣ה צְבָא֗וֹת לָכֶם֙ הַכֹּֽהֲנִים֙ בּוֹזֵ֣י שְׁמִ֔י וַאֲמַרְתֶּ֕ם בַּמֶּ֥ה בָזִ֖ינוּ אֶת־שְׁמֶֽךָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-1-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 1:7</h4></div>
+              <a class="anchor" href="#malachi-1-7" aria-label="Copy link to Malachi 1:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מַגִּישִׁ֤ים עַֽל־מִזְבְּחִי֙ לֶ֣חֶם מְגֹאָ֔ל וַאֲמַרְתֶּ֖ם בַּמֶּ֣ה גֵאַלְנ֑וּךָ בֶּאֱמׇרְכֶ֕ם שֻׁלְחַ֥ן יְהֹוָ֖ה נִבְזֶ֥ה הֽוּא׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-1-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 1:8</h4></div>
+              <a class="anchor" href="#malachi-1-8" aria-label="Copy link to Malachi 1:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְכִי־תַגִּישׁ֨וּן עִוֵּ֤ר לִזְבֹּ֙חַ֙ אֵ֣ין רָ֔ע וְכִ֥י תַגִּ֛ישׁוּ פִּסֵּ֥חַ וְחֹלֶ֖ה אֵ֣ין רָ֑ע הַקְרִיבֵ֨הוּ נָ֜א לְפֶחָתֶ֗ךָ הֲיִרְצְךָ֙ א֚וֹ הֲיִשָּׂ֣א פָנֶ֔יךָ אָמַ֖ר יְהֹוָ֥ה צְבָאֽוֹת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-1-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 1:9</h4></div>
+              <a class="anchor" href="#malachi-1-9" aria-label="Copy link to Malachi 1:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעַתָּ֛ה חַלּוּ־נָ֥א פְנֵי־אֵ֖ל וִֽיחׇנֵּ֑נוּ מִיֶּדְכֶם֙ הָ֣יְתָה זֹּ֔את הֲיִשָּׂ֤א מִכֶּם֙ פָּנִ֔ים אָמַ֖ר יְהֹוָ֥ה צְבָאֽוֹת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-1-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 1:10</h4></div>
+              <a class="anchor" href="#malachi-1-10" aria-label="Copy link to Malachi 1:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מִ֤י גַם־בָּכֶם֙ וְיִסְגֹּ֣ר דְּלָתַ֔יִם וְלֹא־תָאִ֥ירוּ מִזְבְּחִ֖י חִנָּ֑ם אֵֽין־לִ֨י חֵ֜פֶץ בָּכֶ֗ם אָמַר֙ יְהֹוָ֣ה צְבָא֔וֹת וּמִנְחָ֖ה לֹא־אֶרְצֶ֥ה מִיֶּדְכֶֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-1-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 1:11</h4></div>
+              <a class="anchor" href="#malachi-1-11" aria-label="Copy link to Malachi 1:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּ֣י מִמִּזְרַח־שֶׁ֜מֶשׁ וְעַד־מְבוֹא֗וֹ גָּד֤וֹל שְׁמִי֙ בַּגּוֹיִ֔ם וּבְכׇל־מָק֗וֹם מֻקְטָ֥ר מֻגָּ֛שׁ לִשְׁמִ֖י וּמִנְחָ֣ה טְהוֹרָ֑ה כִּֽי־גָד֤וֹל שְׁמִי֙ בַּגּוֹיִ֔ם אָמַ֖ר יְהֹוָ֥ה צְבָאֽוֹת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-1-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 1:12</h4></div>
+              <a class="anchor" href="#malachi-1-12" aria-label="Copy link to Malachi 1:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאַתֶּ֖ם מְחַלְּלִ֣ים אוֹת֑וֹ בֶּאֱמׇרְכֶ֗ם שֻׁלְחַ֤ן אֲדֹנָי֙ מְגֹאָ֣ל ה֔וּא וְנִיב֖וֹ נִבְזֶ֥ה אׇכְלֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-1-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 1:13</h4></div>
+              <a class="anchor" href="#malachi-1-13" aria-label="Copy link to Malachi 1:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַאֲמַרְתֶּם֩ הִנֵּ֨ה מַתְּלָאָ֜ה וְהִפַּחְתֶּ֣ם אוֹת֗וֹ אָמַר֙ יְהֹוָ֣ה צְבָא֔וֹת וַהֲבֵאתֶ֣ם גָּז֗וּל וְאֶת־הַפִּסֵּ֙חַ֙ וְאֶת־הַ֣חוֹלֶ֔ה וַהֲבֵאתֶ֖ם אֶת־הַמִּנְחָ֑ה הַאֶרְצֶ֥ה אוֹתָ֛הּ מִיֶּדְכֶ֖ם אָמַ֥ר יְהֹוָֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-1-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 1:14</h4></div>
+              <a class="anchor" href="#malachi-1-14" aria-label="Copy link to Malachi 1:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאָר֣וּר נוֹכֵ֗ל וְיֵ֤שׁ בְּעֶדְרוֹ֙ זָכָ֔ר וְנֹדֵ֛ר וְזֹבֵ֥חַ מׇשְׁחָ֖ת לַאדֹנָ֑י כִּי֩ מֶ֨לֶךְ גָּד֜וֹל אָ֗נִי אָמַר֙ יְהֹוָ֣ה צְבָא֔וֹת וּשְׁמִ֖י נוֹרָ֥א בַגּוֹיִֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-malachi-text-2">Chapter 2</h4>
+          <section class="unit" id="malachi-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 2:1</h4></div>
+              <a class="anchor" href="#malachi-2-1" aria-label="Copy link to Malachi 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעַתָּ֗ה אֲלֵיכֶ֛ם הַמִּצְוָ֥ה הַזֹּ֖את הַכֹּהֲנִֽים׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-2-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 2:2</h4></div>
+              <a class="anchor" href="#malachi-2-2" aria-label="Copy link to Malachi 2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אִם־לֹ֣א תִשְׁמְע֡וּ וְאִם־לֹא֩ תָשִׂ֨ימוּ עַל־לֵ֜ב לָתֵ֧ת כָּב֣וֹד לִשְׁמִ֗י אָמַר֙ יְהֹוָ֣ה צְבָא֔וֹת וְשִׁלַּחְתִּ֤י בָכֶם֙ אֶת־הַמְּאֵרָ֔ה וְאָרוֹתִ֖י אֶת־בִּרְכוֹתֵיכֶ֑ם וְגַם֙ אָרוֹתִ֔יהָ כִּ֥י אֵינְכֶ֖ם שָׂמִ֥ים עַל־לֵֽב׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-2-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 2:3</h4></div>
+              <a class="anchor" href="#malachi-2-3" aria-label="Copy link to Malachi 2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הִנְנִ֨י גֹעֵ֤ר לָכֶם֙ אֶת־הַזֶּ֔רַע וְזֵרִ֤יתִֽי פֶ֙רֶשׁ֙ עַל־פְּנֵיכֶ֔ם פֶּ֖רֶשׁ חַגֵּיכֶ֑ם וְנָשָׂ֥א אֶתְכֶ֖ם אֵלָֽיו׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-2-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 2:4</h4></div>
+              <a class="anchor" href="#malachi-2-4" aria-label="Copy link to Malachi 2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וִידַעְתֶּ֕ם כִּ֚י שִׁלַּ֣חְתִּי אֲלֵיכֶ֔ם אֵ֖ת הַמִּצְוָ֣ה הַזֹּ֑את לִהְי֤וֹת בְּרִיתִי֙ אֶת־לֵוִ֔י אָמַ֖ר יְהֹוָ֥ה צְבָאֽוֹת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-2-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 2:5</h4></div>
+              <a class="anchor" href="#malachi-2-5" aria-label="Copy link to Malachi 2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בְּרִיתִ֣י&amp;thinsp;<strong>׀</strong> הָיְתָ֣ה אִתּ֗וֹ הַֽחַיִּים֙ וְהַשָּׁל֔וֹם וָאֶתְּנֵֽם־ל֥וֹ מוֹרָ֖א וַיִּֽירָאֵ֑נִי וּמִפְּנֵ֥י שְׁמִ֖י נִחַ֥ת הֽוּא׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-2-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 2:6</h4></div>
+              <a class="anchor" href="#malachi-2-6" aria-label="Copy link to Malachi 2:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תּוֹרַ֤ת אֱמֶת֙ הָיְתָ֣ה בְּפִ֔יהוּ וְעַוְלָ֖ה לֹא־נִמְצָ֣א בִשְׂפָתָ֑יו בְּשָׁל֤וֹם וּבְמִישׁוֹר֙ הָלַ֣ךְ אִתִּ֔י וְרַבִּ֖ים הֵשִׁ֥יב מֵעָוֺֽן׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-2-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 2:7</h4></div>
+              <a class="anchor" href="#malachi-2-7" aria-label="Copy link to Malachi 2:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּֽי־שִׂפְתֵ֤י כֹהֵן֙ יִשְׁמְרוּ־דַ֔עַת וְתוֹרָ֖ה יְבַקְשׁ֣וּ מִפִּ֑יהוּ כִּ֛י מַלְאַ֥ךְ יְהֹוָֽה־צְבָא֖וֹת הֽוּא׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-2-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 2:8</h4></div>
+              <a class="anchor" href="#malachi-2-8" aria-label="Copy link to Malachi 2:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאַתֶּם֙ סַרְתֶּ֣ם מִן־הַדֶּ֔רֶךְ הִכְשַׁלְתֶּ֥ם רַבִּ֖ים בַּתּוֹרָ֑ה שִֽׁחַתֶּם֙ בְּרִ֣ית הַלֵּוִ֔י אָמַ֖ר יְהֹוָ֥ה צְבָאֽוֹת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-2-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 2:9</h4></div>
+              <a class="anchor" href="#malachi-2-9" aria-label="Copy link to Malachi 2:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְגַם־אֲנִ֞י נָתַ֧תִּי אֶתְכֶ֛ם נִבְזִ֥ים וּשְׁפָלִ֖ים לְכׇל־הָעָ֑ם כְּפִ֗י אֲשֶׁ֤ר אֵֽינְכֶם֙ שֹׁמְרִ֣ים אֶת־דְּרָכַ֔י וְנֹשְׂאִ֥ים פָּנִ֖ים בַּתּוֹרָֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-2-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 2:10</h4></div>
+              <a class="anchor" href="#malachi-2-10" aria-label="Copy link to Malachi 2:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֲל֨וֹא אָ֤ב אֶחָד֙ לְכֻלָּ֔נוּ הֲל֛וֹא אֵ֥ל אֶחָ֖ד בְּרָאָ֑נוּ מַדּ֗וּעַ נִבְגַּד֙ אִ֣ישׁ בְּאָחִ֔יו לְחַלֵּ֖ל בְּרִ֥ית אֲבֹתֵֽינוּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-2-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 2:11</h4></div>
+              <a class="anchor" href="#malachi-2-11" aria-label="Copy link to Malachi 2:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בָּגְדָ֣ה יְהוּדָ֔ה וְתוֹעֵבָ֛ה נֶעֶשְׂתָ֥ה בְיִשְׂרָאֵ֖ל וּבִירוּשָׁלָ֑͏ִם כִּ֣י&amp;thinsp;<strong>׀</strong> חִלֵּ֣ל יְהוּדָ֗ה קֹ֤דֶשׁ יְהֹוָה֙ אֲשֶׁ֣ר אָהֵ֔ב וּבָעַ֖ל בַּת־אֵ֥ל נֵכָֽר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-2-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 2:12</h4></div>
+              <a class="anchor" href="#malachi-2-12" aria-label="Copy link to Malachi 2:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יַכְרֵ֨ת יְהֹוָ֜ה לָאִ֨ישׁ אֲשֶׁ֤ר יַעֲשֶׂ֙נָּה֙ עֵ֣ר וְעֹנֶ֔ה מֵאׇהֳלֵ֖י יַעֲקֹ֑ב וּמַגִּ֣ישׁ מִנְחָ֔ה לַיהֹוָ֖ה צְבָאֽוֹת׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-2-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 2:13</h4></div>
+              <a class="anchor" href="#malachi-2-13" aria-label="Copy link to Malachi 2:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְזֹאת֙ שֵׁנִ֣ית תַּעֲשׂ֔וּ כַּסּ֤וֹת דִּמְעָה֙ אֶת־מִזְבַּ֣ח יְהֹוָ֔ה בְּכִ֖י וַאֲנָקָ֑ה מֵאֵ֣ין ע֗וֹד פְּנוֹת֙ אֶל־הַמִּנְחָ֔ה וְלָקַ֥חַת רָצ֖וֹן מִיֶּדְכֶֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-2-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 2:14</h4></div>
+              <a class="anchor" href="#malachi-2-14" aria-label="Copy link to Malachi 2:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַאֲמַרְתֶּ֖ם עַל־מָ֑ה עַ֡ל כִּֽי־יְהֹוָה֩ הֵעִ֨יד בֵּינְךָ֜ וּבֵ֣ין&amp;thinsp;<strong>׀</strong> אֵ֣שֶׁת נְעוּרֶ֗יךָ אֲשֶׁ֤ר אַתָּה֙ בָּגַ֣דְתָּה בָּ֔הּ וְהִ֥יא חֲבֶרְתְּךָ֖ וְאֵ֥שֶׁת בְּרִיתֶֽךָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-2-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 2:15</h4></div>
+              <a class="anchor" href="#malachi-2-15" aria-label="Copy link to Malachi 2:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְלֹא־אֶחָ֣ד עָשָׂ֗ה וּשְׁאָ֥ר ר֙וּחַ֙ ל֔וֹ וּמָה֙ הָאֶחָ֔ד מְבַקֵּ֖שׁ זֶ֣רַע אֱלֹהִ֑ים וְנִשְׁמַרְתֶּם֙ בְּר֣וּחֲכֶ֔ם וּבְאֵ֥שֶׁת נְעוּרֶ֖יךָ אַל־יִבְגֹּֽד׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-2-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 2:16</h4></div>
+              <a class="anchor" href="#malachi-2-16" aria-label="Copy link to Malachi 2:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּֽי־שָׂנֵ֣א שַׁלַּ֗ח אָמַ֤ר יְהֹוָה֙ אֱלֹהֵ֣י יִשְׂרָאֵ֔ל וְכִסָּ֤ה חָמָס֙ עַל־לְבוּשׁ֔וֹ אָמַ֖ר יְהֹוָ֣ה צְבָא֑וֹת וְנִשְׁמַרְתֶּ֥ם בְּרוּחֲכֶ֖ם וְלֹ֥א תִבְגֹּֽדוּ׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-2-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 2:17</h4></div>
+              <a class="anchor" href="#malachi-2-17" aria-label="Copy link to Malachi 2:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הוֹגַעְתֶּ֤ם יְהֹוָה֙ בְּדִבְרֵיכֶ֔ם וַאֲמַרְתֶּ֖ם בַּמָּ֣ה הוֹגָ֑עְנוּ בֶּאֱמׇרְכֶ֗ם כׇּל־עֹ֨שֵׂה רָ֜ע ט֣וֹב&amp;thinsp;<strong>׀</strong> בְּעֵינֵ֣י יְהֹוָ֗ה וּבָהֶם֙ ה֣וּא חָפֵ֔ץ א֥וֹ אַיֵּ֖ה אֱלֹהֵ֥י הַמִּשְׁפָּֽט׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-malachi-text-3">Chapter 3</h4>
+          <section class="unit" id="malachi-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:1</h4></div>
+              <a class="anchor" href="#malachi-3-1" aria-label="Copy link to Malachi 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הִנְנִ֤י שֹׁלֵ֙חַ֙ מַלְאָכִ֔י וּפִנָּה־דֶ֖רֶךְ לְפָנָ֑י וּפִתְאֹם֩ יָב֨וֹא אֶל־הֵיכָל֜וֹ הָאָד֣וֹן&amp;thinsp;<strong>׀</strong> אֲשֶׁר־אַתֶּ֣ם מְבַקְשִׁ֗ים וּמַלְאַ֨ךְ הַבְּרִ֜ית אֲשֶׁר־אַתֶּ֤ם חֲפֵצִים֙ הִנֵּה־בָ֔א אָמַ֖ר יְהֹוָ֥ה צְבָאֽוֹת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:2</h4></div>
+              <a class="anchor" href="#malachi-3-2" aria-label="Copy link to Malachi 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וּמִ֤י מְכַלְכֵּל֙ אֶת־י֣וֹם בּוֹא֔וֹ וּמִ֥י הָעֹמֵ֖ד בְּהֵרָאוֹת֑וֹ כִּי־הוּא֙ כְּאֵ֣שׁ מְצָרֵ֔ף וּכְבֹרִ֖ית מְכַבְּסִֽים׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:3</h4></div>
+              <a class="anchor" href="#malachi-3-3" aria-label="Copy link to Malachi 3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְיָשַׁ֨ב מְצָרֵ֤ף וּמְטַהֵר֙ כֶּ֔סֶף וְטִהַ֤ר אֶת־בְּנֵֽי־לֵוִי֙ וְזִקַּ֣ק אֹתָ֔ם כַּזָּהָ֖ב וְכַכָּ֑סֶף וְהָיוּ֙ לַֽיהֹוָ֔ה מַגִּישֵׁ֥י מִנְחָ֖ה בִּצְדָקָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:4</h4></div>
+              <a class="anchor" href="#malachi-3-4" aria-label="Copy link to Malachi 3:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעָֽרְבָה֙ לַֽיהֹוָ֔ה מִנְחַ֥ת יְהוּדָ֖ה וִירוּשָׁלָ֑͏ִם כִּימֵ֣י עוֹלָ֔ם וּכְשָׁנִ֖ים קַדְמֹנִיֹּֽת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:5</h4></div>
+              <a class="anchor" href="#malachi-3-5" aria-label="Copy link to Malachi 3:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְקָרַבְתִּ֣י אֲלֵיכֶם֮ לַמִּשְׁפָּט֒ וְהָיִ֣יתִי&amp;thinsp;<strong>׀</strong> עֵ֣ד מְמַהֵ֗ר בַּֽמְכַשְּׁפִים֙ וּבַמְנָ֣אֲפִ֔ים וּבַנִּשְׁבָּעִ֖ים לַשָּׁ֑קֶר וּבְעֹשְׁקֵ֣י שְׂכַר־שָׂ֠כִ֠יר אַלְמָנָ֨ה וְיָת֤וֹם וּמַטֵּי־גֵר֙ וְלֹ֣א יְרֵא֔וּנִי אָמַ֖ר יְהֹוָ֥ה צְבָאֽוֹת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:6</h4></div>
+              <a class="anchor" href="#malachi-3-6" aria-label="Copy link to Malachi 3:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּ֛י אֲנִ֥י יְהֹוָ֖ה לֹ֣א שָׁנִ֑יתִי וְאַתֶּ֥ם בְּנֵֽי־יַעֲקֹ֖ב לֹ֥א כְלִיתֶֽם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:7</h4></div>
+              <a class="anchor" href="#malachi-3-7" aria-label="Copy link to Malachi 3:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לְמִימֵ֨י אֲבֹתֵיכֶ֜ם סַרְתֶּ֤ם מֵֽחֻקַּי֙ וְלֹ֣א שְׁמַרְתֶּ֔ם שׁ֤וּבוּ אֵלַי֙ וְאָשׁ֣וּבָה אֲלֵיכֶ֔ם אָמַ֖ר יְהֹוָ֣ה צְבָא֑וֹת וַאֲמַרְתֶּ֖ם בַּמֶּ֥ה נָשֽׁוּב׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:8</h4></div>
+              <a class="anchor" href="#malachi-3-8" aria-label="Copy link to Malachi 3:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֲיִקְבַּ֨ע אָדָ֜ם אֱלֹהִ֗ים כִּ֤י אַתֶּם֙ קֹבְעִ֣ים אֹתִ֔י וַאֲמַרְתֶּ֖ם בַּמֶּ֣ה קְבַֽעֲנ֑וּךָ הַֽמַּעֲשֵׂ֖ר וְהַתְּרוּמָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:9</h4></div>
+              <a class="anchor" href="#malachi-3-9" aria-label="Copy link to Malachi 3:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בַּמְּאֵרָה֙ אַתֶּ֣ם נֵֽאָרִ֔ים וְאֹתִ֖י אַתֶּ֣ם קֹבְעִ֑ים הַגּ֖וֹי כֻּלּֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:10</h4></div>
+              <a class="anchor" href="#malachi-3-10" aria-label="Copy link to Malachi 3:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הָבִ֨יאוּ אֶת־כׇּל־הַֽמַּעֲשֵׂ֜ר אֶל־בֵּ֣ית הָאוֹצָ֗ר וִיהִ֥י טֶ֙רֶף֙ בְּבֵיתִ֔י וּבְחָנ֤וּנִי נָא֙ בָּזֹ֔את אָמַ֖ר יְהֹוָ֣ה צְבָא֑וֹת אִם־לֹ֧א אֶפְתַּ֣ח לָכֶ֗ם אֵ֚ת אֲרֻבּ֣וֹת הַשָּׁמַ֔יִם וַהֲרִיקֹתִ֥י לָכֶ֛ם בְּרָכָ֖ה עַד־בְּלִי־דָֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:11</h4></div>
+              <a class="anchor" href="#malachi-3-11" aria-label="Copy link to Malachi 3:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְגָעַרְתִּ֤י לָכֶם֙ בָּֽאֹכֵ֔ל וְלֹא־יַשְׁחִ֥ת לָכֶ֖ם אֶת־פְּרִ֣י הָאֲדָמָ֑ה וְלֹא־תְשַׁכֵּ֨ל לָכֶ֤ם הַגֶּ֙פֶן֙ בַּשָּׂדֶ֔ה אָמַ֖ר יְהֹוָ֥ה צְבָאֽוֹת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:12</h4></div>
+              <a class="anchor" href="#malachi-3-12" aria-label="Copy link to Malachi 3:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאִשְּׁר֥וּ אֶתְכֶ֖ם כׇּל־הַגּוֹיִ֑ם כִּֽי־תִהְי֤וּ אַתֶּם֙ אֶ֣רֶץ חֵ֔פֶץ אָמַ֖ר יְהֹוָ֥ה צְבָאֽוֹת׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:13</h4></div>
+              <a class="anchor" href="#malachi-3-13" aria-label="Copy link to Malachi 3:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">חָזְק֥וּ עָלַ֛י דִּבְרֵיכֶ֖ם אָמַ֣ר יְהֹוָ֑ה וַאֲמַרְתֶּ֕ם מַה־נִּדְבַּ֖רְנוּ עָלֶֽיךָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:14</h4></div>
+              <a class="anchor" href="#malachi-3-14" aria-label="Copy link to Malachi 3:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֲמַרְתֶּ֕ם שָׁ֖וְא עֲבֹ֣ד אֱלֹהִ֑ים וּמַה־בֶּ֗צַע כִּ֤י שָׁמַ֙רְנוּ֙ מִשְׁמַרְתּ֔וֹ וְכִ֤י הָלַ֙כְנוּ֙ קְדֹ֣רַנִּ֔ית מִפְּנֵ֖י יְהֹוָ֥ה צְבָאֽוֹת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:15</h4></div>
+              <a class="anchor" href="#malachi-3-15" aria-label="Copy link to Malachi 3:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעַתָּ֕ה אֲנַ֖חְנוּ מְאַשְּׁרִ֣ים זֵדִ֑ים גַּם־נִבְנוּ֙ עֹשֵׂ֣י רִשְׁעָ֔ה גַּ֧ם בָּחֲנ֛וּ אֱלֹהִ֖ים וַיִּמָּלֵֽטוּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:16</h4></div>
+              <a class="anchor" href="#malachi-3-16" aria-label="Copy link to Malachi 3:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אָ֧ז נִדְבְּר֛וּ יִרְאֵ֥י יְהֹוָ֖ה אִ֣ישׁ אֶל־רֵעֵ֑הוּ וַיַּקְשֵׁ֤ב יְהֹוָה֙ וַיִּשְׁמָ֔ע וַ֠יִּכָּתֵ֠ב סֵ֣פֶר זִכָּר֤וֹן לְפָנָיו֙ לְיִרְאֵ֣י יְהֹוָ֔ה וּלְחֹשְׁבֵ֖י שְׁמֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:17</h4></div>
+              <a class="anchor" href="#malachi-3-17" aria-label="Copy link to Malachi 3:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהָ֣יוּ לִ֗י אָמַר֙ יְהֹוָ֣ה צְבָא֔וֹת לַיּ֕וֹם אֲשֶׁ֥ר אֲנִ֖י עֹשֶׂ֣ה סְגֻלָּ֑ה וְחָמַלְתִּ֣י עֲלֵיהֶ֔ם כַּֽאֲשֶׁר֙ יַחְמֹ֣ל אִ֔ישׁ עַל־בְּנ֖וֹ הָעֹבֵ֥ד אֹתֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:18</h4></div>
+              <a class="anchor" href="#malachi-3-18" aria-label="Copy link to Malachi 3:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְשַׁבְתֶּם֙ וּרְאִיתֶ֔ם בֵּ֥ין צַדִּ֖יק לְרָשָׁ֑ע בֵּ֚ין עֹבֵ֣ד אֱלֹהִ֔ים לַאֲשֶׁ֖ר לֹ֥א עֲבָדֽוֹ׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-19" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:19</h4></div>
+              <a class="anchor" href="#malachi-3-19" aria-label="Copy link to Malachi 3:19">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּֽי־הִנֵּ֤ה הַיּוֹם֙ בָּ֔א בֹּעֵ֖ר כַּתַּנּ֑וּר וְהָי֨וּ כׇל־זֵדִ֜ים וְכׇל־עֹשֵׂ֤ה רִשְׁעָה֙ קַ֔שׁ וְלִהַ֨ט אֹתָ֜ם הַיּ֣וֹם הַבָּ֗א אָמַר֙ יְהֹוָ֣ה צְבָא֔וֹת אֲשֶׁ֛ר לֹא־יַעֲזֹ֥ב לָהֶ֖ם שֹׁ֥רֶשׁ וְעָנָֽף׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-20" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:20</h4></div>
+              <a class="anchor" href="#malachi-3-20" aria-label="Copy link to Malachi 3:20">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְזָרְחָ֨ה לָכֶ֜ם יִרְאֵ֤י שְׁמִי֙ שֶׁ֣מֶשׁ צְדָקָ֔ה וּמַרְפֵּ֖א בִּכְנָפֶ֑יהָ וִיצָאתֶ֥ם וּפִשְׁתֶּ֖ם כְּעֶגְלֵ֥י מַרְבֵּֽק׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-21" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:21</h4></div>
+              <a class="anchor" href="#malachi-3-21" aria-label="Copy link to Malachi 3:21">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעַסּוֹתֶ֣ם רְשָׁעִ֔ים כִּֽי־יִהְי֣וּ אֵ֔פֶר תַּ֖חַת כַּפּ֣וֹת רַגְלֵיכֶ֑ם בַּיּוֹם֙ אֲשֶׁ֣ר אֲנִ֣י עֹשֶׂ֔ה אָמַ֖ר יְהֹוָ֥ה צְבָאֽוֹת׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-22" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:22</h4></div>
+              <a class="anchor" href="#malachi-3-22" aria-label="Copy link to Malachi 3:22">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;big&gt;זִ&lt;/big&gt;כְר֕וּ תּוֹרַ֖ת מֹשֶׁ֣ה עַבְדִּ֑י אֲשֶׁר֩ צִוִּ֨יתִי אוֹת֤וֹ בְחֹרֵב֙ עַל־כׇּל־יִשְׂרָאֵ֔ל חֻקִּ֖ים וּמִשְׁפָּטִֽים׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-23" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:23</h4></div>
+              <a class="anchor" href="#malachi-3-23" aria-label="Copy link to Malachi 3:23">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הִנֵּ֤ה אָנֹכִי֙ שֹׁלֵ֣חַ לָכֶ֔ם אֵ֖ת אֵלִיָּ֣ה הַנָּבִ֑יא לִפְנֵ֗י בּ֚וֹא י֣וֹם יְהֹוָ֔ה הַגָּד֖וֹל וְהַנּוֹרָֽא׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="malachi-3-24" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Malachi 3:24</h4></div>
+              <a class="anchor" href="#malachi-3-24" aria-label="Copy link to Malachi 3:24">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהֵשִׁ֤יב לֵב־אָבוֹת֙ עַל־בָּנִ֔ים וְלֵ֥ב בָּנִ֖ים עַל־אֲבוֹתָ֑ם פֶּן־אָב֕וֹא וְהִכֵּיתִ֥י אֶת־הָאָ֖רֶץ חֵֽרֶם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-malachi-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"malachi","work_title":"Malachi","work_slug":"tanakh/malachi","scope_label":"All imported Hebrew works","generated_at":"2026-05-08T15:38:29.107Z","total_occurrences":789,"units":{"malachi-1-1":{"unit_id":"malachi-1-1","anchor_id":"malachi-1-1","source_ref":"Malachi 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5f91d47feb59","tok-664f2667f10e","tok-aabcefb5e6fd","tok-b513d4e0d3d5","tok-d72d8aa17fcb"]}]},"malachi-1-2":{"unit_id":"malachi-1-2","anchor_id":"malachi-1-2","source_ref":"Malachi 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7832e818071d","tok-94295325561f","tok-20876c4e9134","tok-0737f47857e2","tok-40c7d29f35cb","tok-5b9cc3be966d","tok-1ab8c25f3a57","tok-c7e9f4f5a703","tok-732722358ad5","tok-fe0c577df736","tok-3b49178875f9","tok-4f53a089688a","tok-10ab8388feec"]}]},"malachi-1-3":{"unit_id":"malachi-1-3","anchor_id":"malachi-1-3","source_ref":"Malachi 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1ed329c154b0","tok-3c57eb060e3f","tok-50fc405730c1","tok-d9674e63ad59","tok-d912f3e0c11a","tok-ff94b9184713","tok-3894fdde1946","tok-cfe405a398c1"]}]},"malachi-1-4":{"unit_id":"malachi-1-4","anchor_id":"malachi-1-4","source_ref":"Malachi 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0d268c6225a3","tok-6088c39a45a9","tok-4f5f14d7c250","tok-3937c17b0446","tok-00c33a30c20d","tok-bf18a366a47e","tok-4eb77a3db9f3","tok-911653c5f248","tok-abc771669a55","tok-85242c9d3587","tok-6f55faf0f251","tok-5c5f526b3851","tok-d2d7e12ad603","tok-30a373bcf31e","tok-f8fb2ee03b1d","tok-da0be851bde0","tok-57d4f9c42fbc","tok-131855c0a486","tok-2052eaaeab37","tok-c05184cec7e9","tok-95b11c84ffca","tok-a0c6a220e072"]}]},"malachi-1-5":{"unit_id":"malachi-1-5","anchor_id":"malachi-1-5","source_ref":"Malachi 1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-97f70d7e4512","tok-712712368fec","tok-6e903d761889","tok-59cfb2ab3104","tok-77c6fccc95bd","tok-0737f47857e2","tok-7c03a9d2f557","tok-1ee13ea40278","tok-ff1b7719f73d"]}]},"malachi-1-6":{"unit_id":"malachi-1-6","anchor_id":"malachi-1-6","source_ref":"Malachi 1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f9c5540958b9","tok-3a1bf7b6a5ce","tok-520739daf9dd","tok-e717843b76b7","tok-6bf8c2a94e53","tok-f40c186a1ce4","tok-91a39e52c233","tok-edbbe3b83a06","tok-0c5998bb392f","tok-70c6191bac95","tok-06c44a1772bb","tok-32d8ad9f1d89","tok-4cbc7f927b19","tok-20876c4e9134","tok-abc771669a55","tok-bee1cc88b718","tok-867b436a952d","tok-1554c221933b","tok-e41b7b1f47a8","tok-707534791e01","tok-3408c4f8a9ac","tok-ad456859f8c5","tok-000bc3b64e6e","tok-edfe17ffbf3b"]}]},"malachi-1-7":{"unit_id":"malachi-1-7","anchor_id":"malachi-1-7","source_ref":"Malachi 1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-db8b6bc24e6f","tok-98693d4c8fbd","tok-1d7159df7fc6","tok-79f2b2062b0b","tok-40c7d29f35cb","tok-5be623ac3845","tok-eef7b631362e","tok-1e5bf62b648f","tok-17943565b822","tok-95b11c84ffca","tok-084c2f940a18","tok-260460f92ebd"]}]},"malachi-1-8":{"unit_id":"malachi-1-8","anchor_id":"malachi-1-8","source_ref":"Malachi 1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bb109b3bf01c","tok-ca7b2aecb95a","tok-d6c81337f63e","tok-bf68dc62815f","tok-f030eba07085","tok-e6cd537b29c3","tok-472db4ca7bbf","tok-eb030114c40a","tok-c9b8838e7b02","tok-bf68dc62815f","tok-601f7bb69fee","tok-d65590560cca","tok-2be3ba2dce3a","tok-5835fd473895","tok-9a552e49cff7","tok-5ff1bd545a1e","tok-6fef7bb831c1","tok-ea06c73e74c5","tok-0daa72773163","tok-54c7bee35274","tok-654f3b387afe"]}]},"malachi-1-9":{"unit_id":"malachi-1-9","anchor_id":"malachi-1-9","source_ref":"Malachi 1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-687706813f3f","tok-fc682ba5bd76","tok-f7a449a5bc02","tok-42b6f6259d43","tok-b589353ee62d","tok-5e37d2cb26ed","tok-2482f2541f3d","tok-369595442464","tok-bd7a2d6800f9","tok-da8402642442","tok-0daa72773163","tok-54c7bee35274","tok-654f3b387afe"]}]},"malachi-1-10":{"unit_id":"malachi-1-10","anchor_id":"malachi-1-10","source_ref":"Malachi 1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-acbdc4489624","tok-8948e2cb5811","tok-547fa189d041","tok-687e791846ad","tok-2877e7115d8e","tok-a6534c2ae3f3","tok-925a329125e4","tok-af3bf1494dd1","tok-44cb6a6ae67d","tok-89f19167714a","tok-911653c5f248","tok-abc771669a55","tok-85242c9d3587","tok-355989bfada9","tok-2bc356e3061b","tok-4cf8b0237ae6"]}]},"malachi-1-11":{"unit_id":"malachi-1-11","anchor_id":"malachi-1-11","source_ref":"Malachi 1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d6e1efd7dd83","tok-efefd5022d43","tok-18553b6714f0","tok-ebf681c69281","tok-97fe3fb20978","tok-dff0c65c5bf0","tok-6a2b94347d2f","tok-b36eb42addcf","tok-9d040258b0c3","tok-47894d8d0395","tok-23f683919fbf","tok-c7017e5ebf26","tok-84885729c8d6","tok-97fe3fb20978","tok-dff0c65c5bf0","tok-0daa72773163","tok-54c7bee35274","tok-654f3b387afe"]}]},"malachi-1-12":{"unit_id":"malachi-1-12","anchor_id":"malachi-1-12","source_ref":"Malachi 1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6bad71cf1e20","tok-6db9697923bf","tok-a4fec47a24e9","tok-c7528a37b1e9","tok-dac7ac05b8da","tok-6e94040c3f68","tok-3431a75cfca1","tok-2a48fc334767","tok-353e63f657eb","tok-084c2f940a18","tok-929e22108078"]}]},"malachi-1-13":{"unit_id":"malachi-1-13","anchor_id":"malachi-1-13","source_ref":"Malachi 1:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2e631d311e79","tok-caf9c3dc199e","tok-324808ab1cbd","tok-bc2e95d1ee70","tok-5d568ee284c3","tok-911653c5f248","tok-abc771669a55","tok-85242c9d3587","tok-40216a6cdf99","tok-1e5d403f03e0","tok-0526cd28859e","tok-cfe66779da78","tok-e3c15bd04bd5","tok-cf8792d8ac95","tok-41684bfc67a2","tok-c8f690c15edb","tok-8e57526f2ef8","tok-20fc8e212053","tok-0f1dabc600d8","tok-702f42f5f708"]}]},"malachi-1-14":{"unit_id":"malachi-1-14","anchor_id":"malachi-1-14","source_ref":"Malachi 1:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-603e1ab835d8","tok-b714f05910f7","tok-b5d18ecba93d","tok-6e2b636f4673","tok-68865a8983bc","tok-837d9f8e5516","tok-c79a25c97939","tok-e647bf47ef93","tok-f57612c6df12","tok-19b5f67ada2d","tok-fbeec846aa2a","tok-b9825de34f26","tok-95bfaad053a0","tok-911653c5f248","tok-abc771669a55","tok-85242c9d3587","tok-9cfe592a3697","tok-0b7e4a1d504c","tok-6faecc79b26b"]}]},"malachi-2-1":{"unit_id":"malachi-2-1","anchor_id":"malachi-2-1","source_ref":"Malachi 2:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f6c8659dca2f","tok-e56fae576a3c","tok-c05cd0da4a07","tok-6001ae77e853","tok-248fefaa8124"]}]},"malachi-2-2":{"unit_id":"malachi-2-2","anchor_id":"malachi-2-2","source_ref":"Malachi 2:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5a728700d3b3","tok-7977b38a67fa","tok-f163062e20c0","tok-fa7df1fbda70","tok-3453267c1cd3","tok-f8af0c3277f9","tok-8959ecc32575","tok-dc61532c81e9","tok-911653c5f248","tok-abc771669a55","tok-85242c9d3587","tok-69df6454ff8e","tok-197af406f9f8","tok-6d859d992574","tok-305a2dd29ed4","tok-6cd71f4113e6","tok-f05bd202af68","tok-6faaecf0558d","tok-72e4200fda0d","tok-0426f46f9a5f","tok-4dbfbf9e5868","tok-ecfbed577f20"]}]},"malachi-2-3":{"unit_id":"malachi-2-3","anchor_id":"malachi-2-3","source_ref":"Malachi 2:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-da212fe7cd12","tok-9fed957fc12c","tok-867b436a952d","tok-bae5f492cef6","tok-6419a4956f70","tok-3f48d0688665","tok-0c09c5cdcc8d","tok-f9fc8273697d","tok-4d0100e314aa","tok-95f118343f0a","tok-a9c81894290f","tok-a6c0fe99d8f8"]}]},"malachi-2-4":{"unit_id":"malachi-2-4","anchor_id":"malachi-2-4","source_ref":"Malachi 2:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f94d4999a481","tok-d6bed115bcc0","tok-a78dcc6ed931","tok-5e267d6878ed","tok-7d8a151e8bb0","tok-09b12b38985b","tok-fb5932a26bbe","tok-2a23ec203b67","tok-bdbba958ec77","tok-b48f83167a11","tok-0daa72773163","tok-54c7bee35274","tok-654f3b387afe"]}]},"malachi-2-5":{"unit_id":"malachi-2-5","anchor_id":"malachi-2-5","source_ref":"Malachi 2:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-13185855f566","tok-0622d8f11cd4","tok-58b45846a6c7","tok-8917b455327f","tok-297b081f7b8f","tok-af9cf6d0a7bd","tok-56fec3353e80","tok-ce27a20da2bf","tok-0aacaf697090","tok-fedcb71d2bd8","tok-3c5798c3cf21","tok-260460f92ebd"]}]},"malachi-2-6":{"unit_id":"malachi-2-6","anchor_id":"malachi-2-6","source_ref":"Malachi 2:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b324244bfee7","tok-69e2da740a26","tok-0622d8f11cd4","tok-cf42733c55b2","tok-726b0efde4c0","tok-ea2935f540d0","tok-fa8e54965844","tok-7ef728b72bd0","tok-4467b4c9df2f","tok-836175d8422f","tok-84891f7a2e53","tok-4a374261b583","tok-d424de2b1aaf","tok-9fe17b90dca0"]}]},"malachi-2-7":{"unit_id":"malachi-2-7","anchor_id":"malachi-2-7","source_ref":"Malachi 2:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-54d40bf02a00","tok-b981b89ba8d9","tok-d10755977bea","tok-20026ddee8a5","tok-834d3a7b7a8d","tok-38ffe2736117","tok-0a93fa5c128d","tok-f7e0747d2f73","tok-0e5147496be2","tok-260460f92ebd"]}]},"malachi-2-8":{"unit_id":"malachi-2-8","anchor_id":"malachi-2-8","source_ref":"Malachi 2:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5c6e17489c1c","tok-c84f1c9a677c","tok-d7da14f513d3","tok-a850b1efe0a9","tok-8c641827f692","tok-6f14f5413375","tok-465372295db9","tok-5f3735617412","tok-ae32d45bbe47","tok-0daa72773163","tok-54c7bee35274","tok-654f3b387afe"]}]},"malachi-2-9":{"unit_id":"malachi-2-9","anchor_id":"malachi-2-9","source_ref":"Malachi 2:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-32220865e450","tok-58bf4c343427","tok-e8ae1512de79","tok-61b0262d5772","tok-7ee4f4370745","tok-62fb306bed38","tok-8fb00f8f7032","tok-d7aef90d0c06","tok-d0dbb6772b09","tok-7c9b4e58fa53","tok-a31b8cc5a992","tok-380b7f0667fc","tok-7de8b5bf44bb","tok-fd9d4e7bcd4f","tok-c06f8a18f7b9"]}]},"malachi-2-10":{"unit_id":"malachi-2-10","anchor_id":"malachi-2-10","source_ref":"Malachi 2:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-68054471d1c8","tok-4beef330d97b","tok-e65f550f0568","tok-c35144ff0248","tok-a28518f63acd","tok-621b744be84b","tok-1c3c216c290d","tok-9f4a863dfe0f","tok-860fd96ac57c","tok-df72fbaeb4b9","tok-50d52d85ef68","tok-fcedbb89f1f3","tok-1e6024767383","tok-f255a371334c","tok-990d935b5486"]}]},"malachi-2-11":{"unit_id":"malachi-2-11","anchor_id":"malachi-2-11","source_ref":"Malachi 2:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-07fe37dc5e4a","tok-9119d05ef176","tok-1becd38f63b0","tok-70151cfdf95e","tok-76dea41b98b5","tok-300796a511f9","tok-25c5b1590db8","tok-d6e1efd7dd83","tok-cca709ecf6fa","tok-39d4ef30df8d","tok-b4245cab9151","tok-09d59b3266b2","tok-6a062733834e","tok-986a83339862","tok-5b653df9b6f5","tok-f159b9f76469","tok-16be159911dc"]}]},"malachi-2-12":{"unit_id":"malachi-2-12","anchor_id":"malachi-2-12","source_ref":"Malachi 2:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a1e1740adca4","tok-6d8c7a8c4e5a","tok-b0779281a457","tok-d7aef90d0c06","tok-5f87261d069d","tok-54ecb9e6a4fd","tok-de200eb19417","tok-3cc27819b635","tok-16312e61e473","tok-6bf246b89b70","tok-22ae9d76a9f9","tok-88e626e183c1","tok-654f3b387afe","tok-c06f8a18f7b9"]}]},"malachi-2-13":{"unit_id":"malachi-2-13","anchor_id":"malachi-2-13","source_ref":"Malachi 2:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-40ee90a19a76","tok-90eb9aafb13d","tok-c04ba06f7e83","tok-96c61923614d","tok-89007049c090","tok-31e17c36f0b7","tok-0737f47857e2","tok-892157606860","tok-58e0310bcac4","tok-2a8211ea670b","tok-ca7dc771304f","tok-b2cc282bb0d3","tok-d3fac5d620c2","tok-778c932cd344","tok-52ac939bd70c","tok-4cf8b0237ae6"]}]},"malachi-2-14":{"unit_id":"malachi-2-14","anchor_id":"malachi-2-14","source_ref":"Malachi 2:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-40c7d29f35cb","tok-696637d887e2","tok-7091f3eaecc4","tok-a4312af50af9","tok-4424d12823e1","tok-3648bba9c8bc","tok-3090f7cee266","tok-efacb9998092","tok-5891b05e4d0e","tok-d7aef90d0c06","tok-6b2020882997","tok-12bae1ba83f4","tok-cd56710a2bec","tok-5480a1e05f88","tok-8eb34baba6ad","tok-1d2f01d6a84d","tok-76dff8b4c1a3"]}]},"malachi-2-15":{"unit_id":"malachi-2-15","anchor_id":"malachi-2-15","source_ref":"Malachi 2:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7953cf79c6f9","tok-9ab765c0e5ad","tok-d29e026c99f7","tok-941c1c9d61bf","tok-b52cfe170fdd","tok-cfd66598734b","tok-848564c78767","tok-d939eb273353","tok-916e61c9e497","tok-532072e939e0","tok-1f85f9d56901","tok-9436441aaf3f","tok-aa5e0a6f0647","tok-c32ae35e9029","tok-6542f5225fd2"]}]},"malachi-2-16":{"unit_id":"malachi-2-16","anchor_id":"malachi-2-16","source_ref":"Malachi 2:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b4aab6c62c4b","tok-e59587a4ce0e","tok-45425f32b96e","tok-09d59b3266b2","tok-62027453fec2","tok-eb9a43f1a677","tok-848d70ae9123","tok-813c37b0e215","tok-9c4d9edf9786","tok-0daa72773163","tok-abc771669a55","tok-c232def68f94","tok-1af5ffcf1daa","tok-f561e09c3677","tok-8d298de3259d","tok-b230a90cacad","tok-c06f8a18f7b9"]}]},"malachi-2-17":{"unit_id":"malachi-2-17","anchor_id":"malachi-2-17","source_ref":"Malachi 2:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-45f6f2a8cf21","tok-09d59b3266b2","tok-d06ec07f3db2","tok-40c7d29f35cb","tok-5b9cc3be966d","tok-c70dded8ebbe","tok-c7528a37b1e9","tok-0ea2176e10e9","tok-24db86fd5bf0","tok-1557dc3fca72","tok-b3be6dbe70a4","tok-fa077f9eff18","tok-bd911e1131d5","tok-657cab5ae28c","tok-adf4bae16a54","tok-9203a3043764","tok-c64b15c45063","tok-0e28a7536c8b","tok-20954c72967d"]}]},"malachi-3-1":{"unit_id":"malachi-3-1","anchor_id":"malachi-3-1","source_ref":"Malachi 3:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-70dacf62b582","tok-637125ffabd8","tok-e44f0337e039","tok-a240990adc49","tok-390858b32a11","tok-01750ef4f871","tok-d8dd21e9baa5","tok-0f5ce502592f","tok-49fa505e720d","tok-4b01c08e674a","tok-a9c359b06d2c","tok-3528cc9e6797","tok-0aa5c3ff75f6","tok-36936eafdddb","tok-27bddf789623","tok-3250335ebef9","tok-0daa72773163","tok-54c7bee35274","tok-654f3b387afe"]}]},"malachi-3-2":{"unit_id":"malachi-3-2","anchor_id":"malachi-3-2","source_ref":"Malachi 3:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-dc68b725fc64","tok-586d70df7363","tok-0f20d88f1f2c","tok-e19a2fc7a74e","tok-329ac152cadd","tok-d9600bde2d44","tok-49ec2e8682b4","tok-f6ca673eda62","tok-9910c31675ad","tok-bce53e0a2b11","tok-09ddae002e81","tok-feddd41b8f2d"]}]},"malachi-3-3":{"unit_id":"malachi-3-3","anchor_id":"malachi-3-3","source_ref":"Malachi 3:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-49726d38ecd0","tok-717438a9b1a8","tok-9a7e2dd0275c","tok-906247489b46","tok-6da1c38b5aab","tok-3002dd8472ad","tok-511c25adba4c","tok-bf5ad24ad2a4","tok-d5f48e7b6da4","tok-3868c1a0e9a4","tok-f8f6681d2923","tok-b70e738cd1c6","tok-1ac0ff757667","tok-6d212a972c54","tok-bfc19f5ef998"]}]},"malachi-3-4":{"unit_id":"malachi-3-4","anchor_id":"malachi-3-4","source_ref":"Malachi 3:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-86fad96e7097","tok-b70e738cd1c6","tok-a8ed7dd44197","tok-38cbb74058a7","tok-6b1887180f6e","tok-25c5b1590db8","tok-723c54437c21","tok-eaf758bdc8db","tok-51a78a40bf16","tok-ff6913d2caba"]}]},"malachi-3-5":{"unit_id":"malachi-3-5","anchor_id":"malachi-3-5","source_ref":"Malachi 3:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3806c265f055","tok-54e3b356b805","tok-4049f2917054","tok-16a3bf468faa","tok-ecdae110b572","tok-6d442768e64f","tok-edac450bb654","tok-3c5d045651c3","tok-3579a1d7eaf7","tok-8de4df7947b6","tok-09cbeb60e14f","tok-33197bc03b17","tok-e4a77c0697d3","tok-b2b4c773c2f1","tok-20ac47326d63","tok-037924593959","tok-34177f18ee58","tok-0daa72773163","tok-54c7bee35274","tok-654f3b387afe"]}]},"malachi-3-6":{"unit_id":"malachi-3-6","anchor_id":"malachi-3-6","source_ref":"Malachi 3:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0a93fa5c128d","tok-3ca7315952da","tok-95b11c84ffca","tok-689adc6636c8","tok-7fa33ec1484b","tok-f1c3d19ef77e","tok-0f2d854b7bba","tok-0de019536734","tok-9bd5832955b7"]}]},"malachi-3-7":{"unit_id":"malachi-3-7","anchor_id":"malachi-3-7","source_ref":"Malachi 3:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e9ab99b5d5dd","tok-a39bd214751a","tok-1e451d997f37","tok-89b925624e52","tok-037924593959","tok-0b5cf05f4cb6","tok-ee71d624ce30","tok-d605d95ade06","tok-79bd04bb621f","tok-5e267d6878ed","tok-0daa72773163","tok-abc771669a55","tok-c232def68f94","tok-40c7d29f35cb","tok-ad456859f8c5","tok-b917476eb6ae"]}]},"malachi-3-8":{"unit_id":"malachi-3-8","anchor_id":"malachi-3-8","source_ref":"Malachi 3:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-49107390d88b","tok-9eb134060f72","tok-9f5dffc34ebb","tok-af0828148d31","tok-d408c88550ac","tok-a46b6e898007","tok-6d879f981ffa","tok-40c7d29f35cb","tok-5be623ac3845","tok-ddc5de1a0ae2","tok-77996bc686f2","tok-a06025cfd441"]}]},"malachi-3-9":{"unit_id":"malachi-3-9","anchor_id":"malachi-3-9","source_ref":"Malachi 3:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4553cfd3e101","tok-9a0c96175a02","tok-90e77c9103d6","tok-c4fa78771a02","tok-9a0c96175a02","tok-cc51d993956c","tok-f8611cb96fb0","tok-2a1380cac04a"]}]},"malachi-3-10":{"unit_id":"malachi-3-10","anchor_id":"malachi-3-10","source_ref":"Malachi 3:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-dafb20c5abc6","tok-24d32c8f55f3","tok-38193489b52c","tok-d2624523358b","tok-98fbb272caed","tok-53f8ce9ed7cf","tok-6754095f2329","tok-b6db3fc5c584","tok-50ab19cf4282","tok-4c3b6b722b4c","tok-0daa72773163","tok-abc771669a55","tok-c232def68f94","tok-316a3420a94a","tok-4587eb14bebe","tok-d1df45521d0a","tok-9a53f614d830","tok-94f32a0a88f4","tok-c893e49e882e","tok-e9faf7e34160","tok-702c8b650d7c","tok-c53689f8e805","tok-4fbf36cc748b"]}]},"malachi-3-11":{"unit_id":"malachi-3-11","anchor_id":"malachi-3-11","source_ref":"Malachi 3:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-54d59a9e86ef","tok-867b436a952d","tok-26fa78489814","tok-373605975970","tok-99930ae36638","tok-c5fca1fdd931","tok-edf81324c8d1","tok-f119c8a4eafa","tok-d26adabfb449","tok-80d310b47172","tok-21737ab57bfd","tok-0daa72773163","tok-54c7bee35274","tok-654f3b387afe"]}]},"malachi-3-12":{"unit_id":"malachi-3-12","anchor_id":"malachi-3-12","source_ref":"Malachi 3:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2e6efc5f20e2","tok-a9c81894290f","tok-991dc083b766","tok-aa0bc23711f5","tok-d408c88550ac","tok-baff494b5963","tok-2378d336337d","tok-0daa72773163","tok-54c7bee35274","tok-654f3b387afe","tok-c06f8a18f7b9"]}]},"malachi-3-13":{"unit_id":"malachi-3-13","anchor_id":"malachi-3-13","source_ref":"Malachi 3:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3a5aed705d64","tok-6778de2e78c7","tok-0af0dc72ca26","tok-20876c4e9134","tok-e42f6cd83f55","tok-3408c4f8a9ac","tok-6955cc2b4fc5","tok-b5a11cf0aee8"]}]},"malachi-3-14":{"unit_id":"malachi-3-14","anchor_id":"malachi-3-14","source_ref":"Malachi 3:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b7e39bad5c03","tok-8be4c6156c96","tok-811b2d296073","tok-532072e939e0","tok-c2159c097100","tok-af0828148d31","tok-9bef7e64ae08","tok-58e14448c966","tok-b420647a8faa","tok-3edf18cff5c1","tok-e92b37a0fe9d","tok-27654f94087c","tok-54c7bee35274","tok-654f3b387afe"]}]},"malachi-3-15":{"unit_id":"malachi-3-15","anchor_id":"malachi-3-15","source_ref":"Malachi 3:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e60dbe660434","tok-105b47b0996d","tok-f947c932141c","tok-be292d94b1f6","tok-4106d9f932fe","tok-d095a13178e7","tok-131855c0a486","tok-996dc9a210da","tok-71ab5e65766c","tok-78aeee4b4cd8","tok-6b532d2c77f3"]}]},"malachi-3-16":{"unit_id":"malachi-3-16","anchor_id":"malachi-3-16","source_ref":"Malachi 3:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-30930d403a7e","tok-4afb14a8805e","tok-490c2d2cec11","tok-95b11c84ffca","tok-50d52d85ef68","tok-d3b3754c7b14","tok-7f283e1a1ab5","tok-09d59b3266b2","tok-6b3907d84c0a","tok-45d83dbc0428","tok-39777ec397b2","tok-7c82c9324bbc","tok-530890a10af3","tok-8a4b1cbed205","tok-0737f47857e2","tok-51f26f5cf55d","tok-ec431d0b0054"]}]},"malachi-3-17":{"unit_id":"malachi-3-17","anchor_id":"malachi-3-17","source_ref":"Malachi 3:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a2ccf13beed0","tok-25421611e15a","tok-911653c5f248","tok-abc771669a55","tok-85242c9d3587","tok-340df02438b5","tok-2f2c6f634e11","tok-ff4a277c0bec","tok-d55ef2382364","tok-fdb7cf37a1bd","tok-3573ec5afeda","tok-cefed3f5a3ef","tok-01221565f711","tok-745afc5be54d","tok-88a5555f130c","tok-bad62546a553","tok-5a6869cc94ba","tok-4e441426c3f9"]}]},"malachi-3-18":{"unit_id":"malachi-3-18","anchor_id":"malachi-3-18","source_ref":"Malachi 3:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d0357792bebe","tok-6df92e8a1f31","tok-f5b7f57d94ad","tok-4bf74aca8c2c","tok-75d4f17d4ea9","tok-052055c7e504","tok-f4a6d2bcf84a","tok-ed953dc18f0e","tok-3f15147f4584","tok-0de019536734","tok-6a4c0a9dad30","tok-c06f8a18f7b9"]}]},"malachi-3-19":{"unit_id":"malachi-3-19","anchor_id":"malachi-3-19","source_ref":"Malachi 3:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-104ef45d8822","tok-956e63366a58","tok-90dcf509839e","tok-0db1bb5b67b6","tok-edc3d9b69134","tok-200c365b7550","tok-6a67d1250cec","tok-5fb199055b41","tok-ca5fafa6368c","tok-90618f987bb7","tok-dbcb16525fba","tok-baa18c76f17d","tok-5f5d3c277d18","tok-b493f6cfa35d","tok-911653c5f248","tok-abc771669a55","tok-85242c9d3587","tok-df01ba882a9f","tok-99a583b1f84d","tok-b7e6c2f18817","tok-f57cf8abd8f8","tok-79b7a657964e"]}]},"malachi-3-20":{"unit_id":"malachi-3-20","anchor_id":"malachi-3-20","source_ref":"Malachi 3:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-65c3c5b4a7d8","tok-1f0dde33e246","tok-27012553d7ed","tok-97fe3fb20978","tok-c7628d402b1a","tok-f24bb4ab2dad","tok-90203ed0acc5","tok-3d4029655f75","tok-e37ac04d50fe","tok-7cb7f27f36bc","tok-a5d01d374b04","tok-cfecf4691190"]}]},"malachi-3-21":{"unit_id":"malachi-3-21","anchor_id":"malachi-3-21","source_ref":"Malachi 3:21","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-40d56db980fc","tok-3245d745c677","tok-c600ae19003e","tok-f7801d8bb8ac","tok-09912599f8e8","tok-1427a7344d60","tok-5db2891e73cf","tok-140861104055","tok-6a062733834e","tok-7398cdc43aa6","tok-e0949b2b4d6b","tok-0daa72773163","tok-54c7bee35274","tok-654f3b387afe","tok-c06f8a18f7b9"]}]},"malachi-3-22":{"unit_id":"malachi-3-22","anchor_id":"malachi-3-22","source_ref":"Malachi 3:22","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5b06ebbb993b","tok-494d1ca7275b","tok-9063b44d3ac9","tok-7ae5365c71e2","tok-176c6166af3f","tok-f33c3914bb9b","tok-a071c53c917f","tok-078b93b60051","tok-e64fceb7413c","tok-19428d3e4712","tok-64a9e66aba12","tok-939d1c3d9d58"]}]},"malachi-3-23":{"unit_id":"malachi-3-23","anchor_id":"malachi-3-23","source_ref":"Malachi 3:23","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7dd36819565c","tok-581f463f2a1f","tok-ae4855f28ccc","tok-301b2fbf985a","tok-7d8a151e8bb0","tok-876882dc9d3a","tok-0f999a1713da","tok-2fc666228bd2","tok-53ecdbd1c974","tok-c3f58297c97b","tok-0737f47857e2","tok-7b27293b4490","tok-8c4fd559e78b"]}]},"malachi-3-24":{"unit_id":"malachi-3-24","anchor_id":"malachi-3-24","source_ref":"Malachi 3:24","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a724e0d149e9","tok-0a7a1e72d597","tok-7720ed9efb38","tok-791fe6ef7b20","tok-74f80a62ea1a","tok-7a7df468a341","tok-7d5ee337622b","tok-5e274dcbd6e2","tok-72249c415610","tok-ce697a814607"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/malachi.manifest.json","root_href":"../../"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const sourceSummary = (rows) => {
+        const row = cleanValues(rows)[0];
+        if (!row) return { source: "Source metadata incomplete", license: "N/A" };
+        const sourceId = row.source_id ? ` ${row.source_id}` : "";
+        return { source: `${row.source_name || "Source"}${sourceId}`, license: row.license || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        const sourceLine = document.createElement("p");
+        sourceLine.className = "claim-source";
+        sourceLine.textContent = `Source: ${source.source}`;
+        const licenseLine = document.createElement("p");
+        licenseLine.className = "claim-license";
+        licenseLine.textContent = `License: ${source.license}`;
+        card.append(sourceLine, licenseLine);
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

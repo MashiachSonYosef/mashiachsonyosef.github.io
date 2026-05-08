@@ -1,0 +1,2310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruth</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Ruth</h1>
+        <p class="meta">85 total source units | imported 2026-05-08</p>
+        <p class="meta source-citation">Hebrew version: Miqra according to the Masorah | Version source: <a href="https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94">he.wikisource.org</a> | Digitization: Sefaria API | License: CC-BY-SA</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Ruth <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Ruth <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-ruth-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#ruth-1-1" title="Ruth 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-2" title="Ruth 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-3" title="Ruth 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-4" title="Ruth 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-5" title="Ruth 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-6" title="Ruth 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-7" title="Ruth 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-8" title="Ruth 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-9" title="Ruth 1:9">1:9</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-10" title="Ruth 1:10">1:10</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-11" title="Ruth 1:11">1:11</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-12" title="Ruth 1:12">1:12</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-13" title="Ruth 1:13">1:13</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-14" title="Ruth 1:14">1:14</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-15" title="Ruth 1:15">1:15</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-16" title="Ruth 1:16">1:16</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-17" title="Ruth 1:17">1:17</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-18" title="Ruth 1:18">1:18</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-19" title="Ruth 1:19">1:19</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-20" title="Ruth 1:20">1:20</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-21" title="Ruth 1:21">1:21</a></li>
+                    <li><a class="toc-unit" href="#ruth-1-22" title="Ruth 1:22">1:22</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-ruth-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#ruth-2-1" title="Ruth 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-2" title="Ruth 2:2">2:2</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-3" title="Ruth 2:3">2:3</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-4" title="Ruth 2:4">2:4</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-5" title="Ruth 2:5">2:5</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-6" title="Ruth 2:6">2:6</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-7" title="Ruth 2:7">2:7</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-8" title="Ruth 2:8">2:8</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-9" title="Ruth 2:9">2:9</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-10" title="Ruth 2:10">2:10</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-11" title="Ruth 2:11">2:11</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-12" title="Ruth 2:12">2:12</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-13" title="Ruth 2:13">2:13</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-14" title="Ruth 2:14">2:14</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-15" title="Ruth 2:15">2:15</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-16" title="Ruth 2:16">2:16</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-17" title="Ruth 2:17">2:17</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-18" title="Ruth 2:18">2:18</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-19" title="Ruth 2:19">2:19</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-20" title="Ruth 2:20">2:20</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-21" title="Ruth 2:21">2:21</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-22" title="Ruth 2:22">2:22</a></li>
+                    <li><a class="toc-unit" href="#ruth-2-23" title="Ruth 2:23">2:23</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-ruth-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#ruth-3-1" title="Ruth 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#ruth-3-2" title="Ruth 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#ruth-3-3" title="Ruth 3:3">3:3</a></li>
+                    <li><a class="toc-unit" href="#ruth-3-4" title="Ruth 3:4">3:4</a></li>
+                    <li><a class="toc-unit" href="#ruth-3-5" title="Ruth 3:5">3:5</a></li>
+                    <li><a class="toc-unit" href="#ruth-3-6" title="Ruth 3:6">3:6</a></li>
+                    <li><a class="toc-unit" href="#ruth-3-7" title="Ruth 3:7">3:7</a></li>
+                    <li><a class="toc-unit" href="#ruth-3-8" title="Ruth 3:8">3:8</a></li>
+                    <li><a class="toc-unit" href="#ruth-3-9" title="Ruth 3:9">3:9</a></li>
+                    <li><a class="toc-unit" href="#ruth-3-10" title="Ruth 3:10">3:10</a></li>
+                    <li><a class="toc-unit" href="#ruth-3-11" title="Ruth 3:11">3:11</a></li>
+                    <li><a class="toc-unit" href="#ruth-3-12" title="Ruth 3:12">3:12</a></li>
+                    <li><a class="toc-unit" href="#ruth-3-13" title="Ruth 3:13">3:13</a></li>
+                    <li><a class="toc-unit" href="#ruth-3-14" title="Ruth 3:14">3:14</a></li>
+                    <li><a class="toc-unit" href="#ruth-3-15" title="Ruth 3:15">3:15</a></li>
+                    <li><a class="toc-unit" href="#ruth-3-16" title="Ruth 3:16">3:16</a></li>
+                    <li><a class="toc-unit" href="#ruth-3-17" title="Ruth 3:17">3:17</a></li>
+                    <li><a class="toc-unit" href="#ruth-3-18" title="Ruth 3:18">3:18</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-ruth-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#ruth-4-1" title="Ruth 4:1">4:1</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-2" title="Ruth 4:2">4:2</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-3" title="Ruth 4:3">4:3</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-4" title="Ruth 4:4">4:4</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-5" title="Ruth 4:5">4:5</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-6" title="Ruth 4:6">4:6</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-7" title="Ruth 4:7">4:7</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-8" title="Ruth 4:8">4:8</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-9" title="Ruth 4:9">4:9</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-10" title="Ruth 4:10">4:10</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-11" title="Ruth 4:11">4:11</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-12" title="Ruth 4:12">4:12</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-13" title="Ruth 4:13">4:13</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-14" title="Ruth 4:14">4:14</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-15" title="Ruth 4:15">4:15</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-16" title="Ruth 4:16">4:16</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-17" title="Ruth 4:17">4:17</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-18" title="Ruth 4:18">4:18</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-19" title="Ruth 4:19">4:19</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-20" title="Ruth 4:20">4:20</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-21" title="Ruth 4:21">4:21</a></li>
+                    <li><a class="toc-unit" href="#ruth-4-22" title="Ruth 4:22">4:22</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-ruth-text-1">Chapter 1</h4>
+          <section class="unit" id="ruth-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:1</h4></div>
+              <a class="anchor" href="#ruth-1-1" aria-label="Copy link to Ruth 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיְהִ֗י בִּימֵי֙ שְׁפֹ֣ט הַשֹּׁפְטִ֔ים וַיְהִ֥י רָעָ֖ב בָּאָ֑רֶץ וַיֵּ֨לֶךְ אִ֜ישׁ מִבֵּ֧ית לֶ֣חֶם יְהוּדָ֗ה לָגוּר֙ בִּשְׂדֵ֣י מוֹאָ֔ב ה֥וּא וְאִשְׁתּ֖וֹ וּשְׁנֵ֥י בָנָֽיו׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:2</h4></div>
+              <a class="anchor" href="#ruth-1-2" aria-label="Copy link to Ruth 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְשֵׁ֣ם הָאִ֣ישׁ אֱֽלִימֶ֡לֶךְ וְשֵׁם֩ אִשְׁתּ֨וֹ נׇעֳמִ֜י וְשֵׁ֥ם שְׁנֵֽי־בָנָ֣יו&amp;thinsp;<strong>׀</strong> מַחְל֤וֹן וְכִלְיוֹן֙ אֶפְרָתִ֔ים מִבֵּ֥ית לֶ֖חֶם יְהוּדָ֑ה וַיָּבֹ֥אוּ שְׂדֵֽי־מוֹאָ֖ב וַיִּֽהְיוּ־שָֽׁם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:3</h4></div>
+              <a class="anchor" href="#ruth-1-3" aria-label="Copy link to Ruth 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיָּ֥מׇת אֱלִימֶ֖לֶךְ אִ֣ישׁ נׇעֳמִ֑י וַתִּשָּׁאֵ֥ר הִ֖יא וּשְׁנֵ֥י בָנֶֽיהָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:4</h4></div>
+              <a class="anchor" href="#ruth-1-4" aria-label="Copy link to Ruth 1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיִּשְׂא֣וּ לָהֶ֗ם נָשִׁים֙ מֹֽאֲבִיּ֔וֹת שֵׁ֤ם הָאַחַת֙ עׇרְפָּ֔ה וְשֵׁ֥ם הַשֵּׁנִ֖ית ר֑וּת וַיֵּ֥שְׁבוּ שָׁ֖ם כְּעֶ֥שֶׂר שָׁנִֽים׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:5</h4></div>
+              <a class="anchor" href="#ruth-1-5" aria-label="Copy link to Ruth 1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיָּמֻ֥תוּ גַם־שְׁנֵיהֶ֖ם מַחְל֣וֹן וְכִלְי֑וֹן וַתִּשָּׁאֵר֙ הָֽאִשָּׁ֔ה מִשְּׁנֵ֥י יְלָדֶ֖יהָ וּמֵאִישָֽׁהּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:6</h4></div>
+              <a class="anchor" href="#ruth-1-6" aria-label="Copy link to Ruth 1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתָּ֤קׇם הִיא֙ וְכַלֹּתֶ֔יהָ וַתָּ֖שׇׁב מִשְּׂדֵ֣י מוֹאָ֑ב כִּ֤י שָֽׁמְעָה֙ בִּשְׂדֵ֣ה מוֹאָ֔ב כִּֽי־פָקַ֤ד יְהֹוָה֙ אֶת־עַמּ֔וֹ לָתֵ֥ת לָהֶ֖ם לָֽחֶם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:7</h4></div>
+              <a class="anchor" href="#ruth-1-7" aria-label="Copy link to Ruth 1:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֵּצֵ֗א מִן־הַמָּקוֹם֙ אֲשֶׁ֣ר הָֽיְתָה־שָּׁ֔מָּה וּשְׁתֵּ֥י כַלּוֹתֶ֖יהָ עִמָּ֑הּ וַתֵּלַ֣כְנָה בַדֶּ֔רֶךְ לָשׁ֖וּב אֶל־אֶ֥רֶץ יְהוּדָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:8</h4></div>
+              <a class="anchor" href="#ruth-1-8" aria-label="Copy link to Ruth 1:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֹּ֤אמֶר נׇעֳמִי֙ לִשְׁתֵּ֣י כַלֹּתֶ֔יהָ לֵ֣כְנָה שֹּׁ֔בְנָה אִשָּׁ֖ה לְבֵ֣ית אִמָּ֑הּ &lt;span class=&quot;mam-kq&quot;&gt;&lt;span class=&quot;mam-kq-k&quot;&gt;(יעשה)&lt;/span&gt; &lt;span class=&quot;mam-kq-q&quot;&gt;[יַ֣עַשׂ]&lt;/span&gt;&lt;/span&gt; יְהֹוָ֤ה עִמָּכֶם֙ חֶ֔סֶד כַּאֲשֶׁ֧ר עֲשִׂיתֶ֛ם עִם־הַמֵּתִ֖ים וְעִמָּדִֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:9</h4></div>
+              <a class="anchor" href="#ruth-1-9" aria-label="Copy link to Ruth 1:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יִתֵּ֤ן יְהֹוָה֙ לָכֶ֔ם וּמְצֶ֣אןָ מְנוּחָ֔ה אִשָּׁ֖ה בֵּ֣ית אִישָׁ֑הּ וַתִּשַּׁ֣ק לָהֶ֔ן וַתִּשֶּׂ֥אנָה קוֹלָ֖ן וַתִּבְכֶּֽינָה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:10</h4></div>
+              <a class="anchor" href="#ruth-1-10" aria-label="Copy link to Ruth 1:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֹּאמַ֖רְנָה־לָּ֑הּ כִּֽי־אִתָּ֥ךְ נָשׁ֖וּב לְעַמֵּֽךְ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:11</h4></div>
+              <a class="anchor" href="#ruth-1-11" aria-label="Copy link to Ruth 1:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֹּ֤אמֶר נׇעֳמִי֙ שֹׁ֣בְנָה בְנֹתַ֔י לָ֥מָּה תֵלַ֖כְנָה עִמִּ֑י הַעֽוֹד־לִ֤י בָנִים֙ בְּֽמֵעַ֔י וְהָי֥וּ לָכֶ֖ם לַאֲנָשִֽׁים׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:12</h4></div>
+              <a class="anchor" href="#ruth-1-12" aria-label="Copy link to Ruth 1:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שֹׁ֤בְנָה בְנֹתַי֙ לֵ֔כְןָ כִּ֥י זָקַ֖נְתִּי מִהְי֣וֹת לְאִ֑ישׁ כִּ֤י אָמַ֙רְתִּי֙ יֶשׁ־לִ֣י תִקְוָ֔ה גַּ֣ם הָיִ֤יתִי הַלַּ֙יְלָה֙ לְאִ֔ישׁ וְגַ֖ם יָלַ֥דְתִּי בָנִֽים׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:13</h4></div>
+              <a class="anchor" href="#ruth-1-13" aria-label="Copy link to Ruth 1:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֲלָהֵ֣ן&amp;thinsp;<strong>׀</strong> תְּשַׂבֵּ֗רְנָה עַ֚ד אֲשֶׁ֣ר יִגְדָּ֔לוּ הֲלָהֵן֙ תֵּעָגֵ֔נָה לְבִלְתִּ֖י הֱי֣וֹת לְאִ֑ישׁ אַ֣ל בְּנֹתַ֗י כִּֽי־מַר־לִ֤י מְאֹד֙ מִכֶּ֔ם כִּֽי־יָצְאָ֥ה בִ֖י יַד־יְהֹוָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:14</h4></div>
+              <a class="anchor" href="#ruth-1-14" aria-label="Copy link to Ruth 1:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתִּשֶּׂ֣נָה קוֹלָ֔ן וַתִּבְכֶּ֖ינָה ע֑וֹד וַתִּשַּׁ֤ק עׇרְפָּה֙ לַחֲמוֹתָ֔הּ וְר֖וּת דָּ֥בְקָה בָּֽהּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:15</h4></div>
+              <a class="anchor" href="#ruth-1-15" aria-label="Copy link to Ruth 1:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֹּ֗אמֶר הִנֵּה֙ שָׁ֣בָה יְבִמְתֵּ֔ךְ אֶל־עַמָּ֖הּ וְאֶל־אֱלֹהֶ֑יהָ שׁ֖וּבִי אַחֲרֵ֥י יְבִמְתֵּֽךְ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:16</h4></div>
+              <a class="anchor" href="#ruth-1-16" aria-label="Copy link to Ruth 1:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֹּ֤אמֶר רוּת֙ אַל־תִּפְגְּעִי־בִ֔י לְעׇזְבֵ֖ךְ לָשׁ֣וּב מֵאַחֲרָ֑יִךְ כִּ֠י אֶל־אֲשֶׁ֨ר תֵּלְכִ֜י אֵלֵ֗ךְ וּבַאֲשֶׁ֤ר תָּלִ֙ינִי֙ אָלִ֔ין עַמֵּ֣ךְ עַמִּ֔י וֵאלֹהַ֖יִךְ אֱלֹהָֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:17</h4></div>
+              <a class="anchor" href="#ruth-1-17" aria-label="Copy link to Ruth 1:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בַּאֲשֶׁ֤ר תָּמ֙וּתִי֙ אָמ֔וּת וְשָׁ֖ם אֶקָּבֵ֑ר כֹּה֩ יַעֲשֶׂ֨ה יְהֹוָ֥ה לִי֙ וְכֹ֣ה יוֹסִ֔יף כִּ֣י הַמָּ֔וֶת יַפְרִ֖יד בֵּינִ֥י וּבֵינֵֽךְ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:18</h4></div>
+              <a class="anchor" href="#ruth-1-18" aria-label="Copy link to Ruth 1:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֵּ֕רֶא כִּֽי־מִתְאַמֶּ֥צֶת הִ֖יא לָלֶ֣כֶת אִתָּ֑הּ וַתֶּחְדַּ֖ל לְדַבֵּ֥ר אֵלֶֽיהָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-19" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:19</h4></div>
+              <a class="anchor" href="#ruth-1-19" aria-label="Copy link to Ruth 1:19">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֵּלַ֣כְנָה שְׁתֵּיהֶ֔ם עַד־בּוֹאָ֖נָה בֵּ֣ית לָ֑חֶם וַיְהִ֗י כְּבוֹאָ֙נָה֙ בֵּ֣ית לֶ֔חֶם וַתֵּהֹ֤ם כׇּל־הָעִיר֙ עֲלֵיהֶ֔ן וַתֹּאמַ֖רְנָה הֲזֹ֥את נׇעֳמִֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-20" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:20</h4></div>
+              <a class="anchor" href="#ruth-1-20" aria-label="Copy link to Ruth 1:20">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֹּ֣אמֶר אֲלֵיהֶ֔ן אַל־תִּקְרֶ֥אנָה לִ֖י נׇעֳמִ֑י קְרֶ֤אןָ לִי֙ מָרָ֔א כִּֽי־הֵמַ֥ר שַׁדַּ֛י לִ֖י מְאֹֽד׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-21" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:21</h4></div>
+              <a class="anchor" href="#ruth-1-21" aria-label="Copy link to Ruth 1:21">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֲנִי֙ מְלֵאָ֣ה הָלַ֔כְתִּי וְרֵיקָ֖ם הֱשִׁיבַ֣נִי יְהֹוָ֑ה לָ֣מָּה תִקְרֶ֤אנָה לִי֙ נׇעֳמִ֔י וַֽיהֹוָה֙ עָ֣נָה בִ֔י וְשַׁדַּ֖י הֵ֥רַֽע לִֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-1-22" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 1:22</h4></div>
+              <a class="anchor" href="#ruth-1-22" aria-label="Copy link to Ruth 1:22">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתָּ֣שׇׁב נׇעֳמִ֗י וְר֨וּת הַמּוֹאֲבִיָּ֤ה כַלָּתָהּ֙ עִמָּ֔הּ הַשָּׁ֖בָה מִשְּׂדֵ֣י מוֹאָ֑ב וְהֵ֗מָּה בָּ֚אוּ בֵּ֣ית לֶ֔חֶם בִּתְחִלַּ֖ת קְצִ֥יר שְׂעֹרִֽים׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-ruth-text-2">Chapter 2</h4>
+          <section class="unit" id="ruth-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:1</h4></div>
+              <a class="anchor" href="#ruth-2-1" aria-label="Copy link to Ruth 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וּֽלְנׇעֳמִ֞י &lt;span class=&quot;mam-kq&quot;&gt;&lt;span class=&quot;mam-kq-k&quot;&gt;(מידע)&lt;/span&gt; &lt;span class=&quot;mam-kq-q&quot;&gt;[מוֹדָ֣ע]&lt;/span&gt;&lt;/span&gt; לְאִישָׁ֗הּ אִ֚ישׁ גִּבּ֣וֹר חַ֔יִל מִמִּשְׁפַּ֖חַת אֱלִימֶ֑לֶךְ וּשְׁמ֖וֹ בֹּֽעַז׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:2</h4></div>
+              <a class="anchor" href="#ruth-2-2" aria-label="Copy link to Ruth 2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֹּ֩אמֶר֩ ר֨וּת הַמּוֹאֲבִיָּ֜ה אֶֽל־נׇעֳמִ֗י אֵלְכָה־נָּ֤א הַשָּׂדֶה֙ וַאֲלַקֳּטָ֣ה בַֽשִּׁבֳּלִ֔ים אַחַ֕ר אֲשֶׁ֥ר אֶמְצָא־חֵ֖ן בְּעֵינָ֑יו וַתֹּ֥אמֶר לָ֖הּ לְכִ֥י בִתִּֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:3</h4></div>
+              <a class="anchor" href="#ruth-2-3" aria-label="Copy link to Ruth 2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֵּ֤לֶךְ וַתָּבוֹא֙ וַתְּלַקֵּ֣ט בַּשָּׂדֶ֔ה אַחֲרֵ֖י הַקֹּצְרִ֑ים וַיִּ֣קֶר מִקְרֶ֔הָ חֶלְקַ֤ת הַשָּׂדֶה֙ לְבֹ֔עַז אֲשֶׁ֖ר מִמִּשְׁפַּ֥חַת אֱלִימֶֽלֶךְ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:4</h4></div>
+              <a class="anchor" href="#ruth-2-4" aria-label="Copy link to Ruth 2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהִנֵּה־בֹ֗עַז בָּ֚א מִבֵּ֣ית לֶ֔חֶם וַיֹּ֥אמֶר לַקּוֹצְרִ֖ים יְהֹוָ֣ה עִמָּכֶ֑ם וַיֹּ֥אמְרוּ ל֖וֹ יְבָרֶכְךָ֥ יְהֹוָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:5</h4></div>
+              <a class="anchor" href="#ruth-2-5" aria-label="Copy link to Ruth 2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֤אמֶר בֹּ֙עַז֙ לְנַֽעֲר֔וֹ הַנִּצָּ֖ב עַל־הַקּוֹצְרִ֑ים לְמִ֖י הַנַּעֲרָ֥ה הַזֹּֽאת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:6</h4></div>
+              <a class="anchor" href="#ruth-2-6" aria-label="Copy link to Ruth 2:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיַּ֗עַן הַנַּ֛עַר הַנִּצָּ֥ב עַל־הַקּוֹצְרִ֖ים וַיֹּאמַ֑ר נַעֲרָ֤ה מֽוֹאֲבִיָּה֙ הִ֔יא הַשָּׁ֥בָה עִֽם־נׇעֳמִ֖י מִשְּׂדֵ֥י מוֹאָֽב׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:7</h4></div>
+              <a class="anchor" href="#ruth-2-7" aria-label="Copy link to Ruth 2:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֹּ֗אמֶר אֲלַקֳּטָה־נָּא֙ וְאָסַפְתִּ֣י בָעֳמָרִ֔ים אַחֲרֵ֖י הַקּוֹצְרִ֑ים וַתָּב֣וֹא וַֽתַּעֲמ֗וֹד מֵאָ֤ז הַבֹּ֙קֶר֙ וְעַד־עַ֔תָּה זֶ֛ה שִׁבְתָּ֥הּ הַבַּ֖יִת מְעָֽט׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:8</h4></div>
+              <a class="anchor" href="#ruth-2-8" aria-label="Copy link to Ruth 2:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֩אמֶר֩ בֹּ֨עַז אֶל־ר֜וּת הֲל֧וֹא שָׁמַ֣עַתְּ בִּתִּ֗י אַל־תֵּֽלְכִי֙ לִלְקֹט֙ בְּשָׂדֶ֣ה אַחֵ֔ר וְגַ֛ם לֹ֥א תַעֲבוּרִ֖י מִזֶּ֑ה וְכֹ֥ה תִדְבָּקִ֖ין עִם־נַעֲרֹתָֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:9</h4></div>
+              <a class="anchor" href="#ruth-2-9" aria-label="Copy link to Ruth 2:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עֵינַ֜יִךְ בַּשָּׂדֶ֤ה אֲשֶׁר־יִקְצֹרוּן֙ וְהָלַ֣כְתְּ אַחֲרֵיהֶ֔ן הֲל֥וֹא צִוִּ֛יתִי אֶת־הַנְּעָרִ֖ים לְבִלְתִּ֣י נׇגְעֵ֑ךְ וְצָמִ֗ת וְהָלַכְתְּ֙ אֶל־הַכֵּלִ֔ים וְשָׁתִ֕ית מֵאֲשֶׁ֥ר יִשְׁאֲב֖וּן הַנְּעָרִֽים׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:10</h4></div>
+              <a class="anchor" href="#ruth-2-10" aria-label="Copy link to Ruth 2:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתִּפֹּל֙ עַל־פָּנֶ֔יהָ וַתִּשְׁתַּ֖חוּ אָ֑רְצָה וַתֹּ֣אמֶר אֵלָ֗יו מַדּ֩וּעַ֩ מָצָ֨אתִי חֵ֤ן בְּעֵינֶ֙יךָ֙ לְהַכִּירֵ֔נִי וְאָנֹכִ֖י נׇכְרִיָּֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:11</h4></div>
+              <a class="anchor" href="#ruth-2-11" aria-label="Copy link to Ruth 2:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיַּ֤עַן בֹּ֙עַז֙ וַיֹּ֣אמֶר לָ֔הּ הֻגֵּ֨ד הֻגַּ֜ד לִ֗י כֹּ֤ל אֲשֶׁר־עָשִׂית֙ אֶת־חֲמוֹתֵ֔ךְ אַחֲרֵ֖י מ֣וֹת אִישֵׁ֑ךְ וַתַּעַזְבִ֞י אָבִ֣יךְ וְאִמֵּ֗ךְ וְאֶ֙רֶץ֙ מֽוֹלַדְתֵּ֔ךְ וַתֵּ֣לְכִ֔י אֶל־עַ֕ם אֲשֶׁ֥ר לֹא־יָדַ֖עַתְּ תְּמ֥וֹל שִׁלְשֽׁוֹם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:12</h4></div>
+              <a class="anchor" href="#ruth-2-12" aria-label="Copy link to Ruth 2:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יְשַׁלֵּ֥ם יְהֹוָ֖ה פׇּעֳלֵ֑ךְ וּתְהִ֨י מַשְׂכֻּרְתֵּ֜ךְ שְׁלֵמָ֗ה מֵעִ֤ם יְהֹוָה֙ אֱלֹהֵ֣י יִשְׂרָאֵ֔ל אֲשֶׁר־בָּ֖את לַחֲס֥וֹת תַּחַת־כְּנָפָֽיו׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:13</h4></div>
+              <a class="anchor" href="#ruth-2-13" aria-label="Copy link to Ruth 2:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַ֠תֹּ֠אמֶר אֶמְצָא־חֵ֨ן בְּעֵינֶ֤יךָ אֲדֹנִי֙ כִּ֣י נִֽחַמְתָּ֔נִי וְכִ֥י דִבַּ֖רְתָּ עַל־לֵ֣ב שִׁפְחָתֶ֑ךָ וְאָֽנֹכִי֙ לֹ֣א אֶהְיֶ֔ה כְּאַחַ֖ת שִׁפְחֹתֶֽיךָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:14</h4></div>
+              <a class="anchor" href="#ruth-2-14" aria-label="Copy link to Ruth 2:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֩אמֶר֩ לָ֨הֿ בֹ֜עַז לְעֵ֣ת הָאֹ֗כֶל גֹּ֤שִֽׁי הֲלֹם֙ וְאָכַ֣לְתְּ מִן־הַלֶּ֔חֶם וְטָבַ֥לְתְּ פִּתֵּ֖ךְ בַּחֹ֑מֶץ וַתֵּ֙שֶׁב֙ מִצַּ֣ד הַקֹּצְרִ֔ים וַיִּצְבׇּט־לָ֣הּ קָלִ֔י וַתֹּ֥אכַל וַתִּשְׂבַּ֖ע וַתֹּתַֽר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:15</h4></div>
+              <a class="anchor" href="#ruth-2-15" aria-label="Copy link to Ruth 2:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתָּ֖קׇם לְלַקֵּ֑ט וַיְצַו֩ בֹּ֨עַז אֶת־נְעָרָ֜יו לֵאמֹ֗ר גַּ֣ם בֵּ֧ין הָעֳמָרִ֛ים תְּלַקֵּ֖ט וְלֹ֥א תַכְלִימֽוּהָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:16</h4></div>
+              <a class="anchor" href="#ruth-2-16" aria-label="Copy link to Ruth 2:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְגַ֛ם שֹׁל־תָּשֹׁ֥לּוּ לָ֖הּ מִן־הַצְּבָתִ֑ים וַעֲזַבְתֶּ֥ם וְלִקְּטָ֖ה וְלֹ֥א תִגְעֲרוּ־בָֽהּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:17</h4></div>
+              <a class="anchor" href="#ruth-2-17" aria-label="Copy link to Ruth 2:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתְּלַקֵּ֥ט בַּשָּׂדֶ֖ה עַד־הָעָ֑רֶב וַתַּחְבֹּט֙ אֵ֣ת אֲשֶׁר־לִקֵּ֔טָה וַיְהִ֖י כְּאֵיפָ֥ה שְׂעֹרִֽים׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:18</h4></div>
+              <a class="anchor" href="#ruth-2-18" aria-label="Copy link to Ruth 2:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתִּשָּׂא֙ וַתָּב֣וֹא הָעִ֔יר וַתֵּ֥רֶא חֲמוֹתָ֖הּ אֵ֣ת אֲשֶׁר־לִקֵּ֑טָה וַתּוֹצֵא֙ וַתִּתֶּן־לָ֔הּ אֵ֥ת אֲשֶׁר־הוֹתִ֖רָה מִשׇּׂבְעָֽהּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-19" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:19</h4></div>
+              <a class="anchor" href="#ruth-2-19" aria-label="Copy link to Ruth 2:19">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֹּ֩אמֶר֩ לָ֨הּ חֲמוֹתָ֜הּ אֵיפֹ֨ה לִקַּ֤טְתְּ הַיּוֹם֙ וְאָ֣נָה עָשִׂ֔ית יְהִ֥י מַכִּירֵ֖ךְ בָּר֑וּךְ וַתַּגֵּ֣ד לַחֲמוֹתָ֗הּ אֵ֤ת אֲשֶׁר־עָֽשְׂתָה֙ עִמּ֔וֹ וַתֹּ֗אמֶר שֵׁ֤ם הָאִישׁ֙ אֲשֶׁ֨ר עָשִׂ֧יתִי עִמּ֛וֹ הַיּ֖וֹם בֹּֽעַז׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-20" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:20</h4></div>
+              <a class="anchor" href="#ruth-2-20" aria-label="Copy link to Ruth 2:20">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֹּ֨אמֶר נׇעֳמִ֜י לְכַלָּתָ֗הּ בָּר֥וּךְ הוּא֙ לַיהֹוָ֔ה אֲשֶׁר֙ לֹא־עָזַ֣ב חַסְדּ֔וֹ אֶת־הַחַיִּ֖ים וְאֶת־הַמֵּתִ֑ים וַתֹּ֧אמֶר לָ֣הּ נׇעֳמִ֗י קָר֥וֹב לָ֙נוּ֙ הָאִ֔ישׁ מִֽגֹּאֲלֵ֖נוּ הֽוּא׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-21" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:21</h4></div>
+              <a class="anchor" href="#ruth-2-21" aria-label="Copy link to Ruth 2:21">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֹּ֖אמֶר ר֣וּת הַמּוֹאֲבִיָּ֑ה גַּ֣ם&amp;thinsp;<strong>׀</strong> כִּי־אָמַ֣ר אֵלַ֗י עִם־הַנְּעָרִ֤ים אֲשֶׁר־לִי֙ תִּדְבָּקִ֔ין עַ֣ד אִם־כִּלּ֔וּ אֵ֥ת כׇּל־הַקָּצִ֖יר אֲשֶׁר־לִֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-22" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:22</h4></div>
+              <a class="anchor" href="#ruth-2-22" aria-label="Copy link to Ruth 2:22">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֹּ֥אמֶר נׇעֳמִ֖י אֶל־ר֣וּת כַּלָּתָ֑הּ ט֣וֹב בִּתִּ֗י כִּ֤י תֵצְאִי֙ עִם־נַ֣עֲרוֹתָ֔יו וְלֹ֥א יִפְגְּעוּ־בָ֖ךְ בְּשָׂדֶ֥ה אַחֵֽר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-2-23" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 2:23</h4></div>
+              <a class="anchor" href="#ruth-2-23" aria-label="Copy link to Ruth 2:23">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתִּדְבַּ֞ק בְּנַעֲר֥וֹת בֹּ֙עַז֙ לְלַקֵּ֔ט עַד־כְּל֥וֹת קְצִֽיר־הַשְּׂעֹרִ֖ים וּקְצִ֣יר הַחִטִּ֑ים וַתֵּ֖שֶׁב אֶת־חֲמוֹתָֽהּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-ruth-text-3">Chapter 3</h4>
+          <section class="unit" id="ruth-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:1</h4></div>
+              <a class="anchor" href="#ruth-3-1" aria-label="Copy link to Ruth 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֹּ֥אמֶר לָ֖הּ נׇעֳמִ֣י חֲמוֹתָ֑הּ בִּתִּ֕י הֲלֹ֧א אֲבַקֶּשׁ־לָ֛ךְ מָנ֖וֹחַ אֲשֶׁ֥ר יִֽיטַב־לָֽךְ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-3-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:2</h4></div>
+              <a class="anchor" href="#ruth-3-2" aria-label="Copy link to Ruth 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעַתָּ֗ה הֲלֹ֥א בֹ֙עַז֙ מֹֽדַעְתָּ֔נוּ אֲשֶׁ֥ר הָיִ֖ית אֶת־נַעֲרוֹתָ֑יו הִנֵּה־ה֗וּא זֹרֶ֛ה אֶת־גֹּ֥רֶן הַשְּׂעֹרִ֖ים הַלָּֽיְלָה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-3-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:3</h4></div>
+              <a class="anchor" href="#ruth-3-3" aria-label="Copy link to Ruth 3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְרָחַ֣צְתְּ&amp;thinsp;<strong>׀</strong> וָסַ֗כְתְּ וְשַׂ֧מְתְּ &lt;span class=&quot;mam-kq&quot;&gt;&lt;span class=&quot;mam-kq-k&quot;&gt;(שמלתך)&lt;/span&gt; &lt;span class=&quot;mam-kq-q&quot;&gt;[שִׂמְלֹתַ֛יִךְ]&lt;/span&gt;&lt;/span&gt; עָלַ֖יִךְ &lt;span class=&quot;mam-kq&quot;&gt;&lt;span class=&quot;mam-kq-k&quot;&gt;(וירדתי)&lt;/span&gt; &lt;span class=&quot;mam-kq-q&quot;&gt;[וְיָרַ֣דְתְּ]&lt;/span&gt;&lt;/span&gt; הַגֹּ֑רֶן אַל־תִּוָּדְעִ֣י לָאִ֔ישׁ עַ֥ד כַּלֹּת֖וֹ לֶאֱכֹ֥ל וְלִשְׁתּֽוֹת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-3-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:4</h4></div>
+              <a class="anchor" href="#ruth-3-4" aria-label="Copy link to Ruth 3:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וִיהִ֣י בְשׇׁכְב֗וֹ וְיָדַ֙עַתְּ֙ אֶת־הַמָּקוֹם֙ אֲשֶׁ֣ר יִשְׁכַּב־שָׁ֔ם וּבָ֛את וְגִלִּ֥ית מַרְגְּלֹתָ֖יו &lt;span class=&quot;mam-kq&quot;&gt;&lt;span class=&quot;mam-kq-k&quot;&gt;(ושכבתי)&lt;/span&gt; &lt;span class=&quot;mam-kq-q&quot;&gt;[וְשָׁכָ֑בְתְּ]&lt;/span&gt;&lt;/span&gt; וְהוּא֙ יַגִּ֣יד לָ֔ךְ אֵ֖ת אֲשֶׁ֥ר תַּעֲשִֽׂין׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-3-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:5</h4></div>
+              <a class="anchor" href="#ruth-3-5" aria-label="Copy link to Ruth 3:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֹּ֖אמֶר אֵלֶ֑יהָ כֹּ֛ל אֲשֶׁר־תֹּאמְרִ֥י &lt;span class=&quot;mam-kq-q&quot;&gt;[אֵלַ֖י]&lt;/span&gt; אֶעֱשֶֽׂה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-3-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:6</h4></div>
+              <a class="anchor" href="#ruth-3-6" aria-label="Copy link to Ruth 3:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֵּ֖רֶד הַגֹּ֑רֶן וַתַּ֕עַשׂ כְּכֹ֥ל אֲשֶׁר־צִוַּ֖תָּה חֲמוֹתָֽהּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-3-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:7</h4></div>
+              <a class="anchor" href="#ruth-3-7" aria-label="Copy link to Ruth 3:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֨אכַל בֹּ֤עַז וַיֵּשְׁתְּ֙ וַיִּיטַ֣ב לִבּ֔וֹ וַיָּבֹ֕א לִשְׁכַּ֖ב בִּקְצֵ֣ה הָעֲרֵמָ֑ה וַתָּבֹ֣א בַלָּ֔ט וַתְּגַ֥ל מַרְגְּלֹתָ֖יו וַתִּשְׁכָּֽב׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-3-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:8</h4></div>
+              <a class="anchor" href="#ruth-3-8" aria-label="Copy link to Ruth 3:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַֽיְהִי֙ בַּחֲצִ֣י הַלַּ֔יְלָה וַיֶּחֱרַ֥ד הָאִ֖ישׁ וַיִּלָּפֵ֑ת וְהִנֵּ֣ה אִשָּׁ֔ה שֹׁכֶ֖בֶת מַרְגְּלֹתָֽיו׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-3-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:9</h4></div>
+              <a class="anchor" href="#ruth-3-9" aria-label="Copy link to Ruth 3:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֖אמֶר מִי־אָ֑תְּ וַתֹּ֗אמֶר אָֽנֹכִי֙ ר֣וּת אֲמָתֶ֔ךָ וּפָרַשְׂתָּ֤ כְנָפֶ֙ךָ֙ עַל־אֲמָ֣תְךָ֔ כִּ֥י גֹאֵ֖ל אָֽתָּה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-3-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:10</h4></div>
+              <a class="anchor" href="#ruth-3-10" aria-label="Copy link to Ruth 3:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֗אמֶר בְּרוּכָ֨ה אַ֤תְּ לַֽיהֹוָה֙ בִּתִּ֔י הֵיטַ֛בְתְּ חַסְדֵּ֥ךְ הָאַחֲר֖וֹן מִן־הָרִאשׁ֑וֹן לְבִלְתִּי־לֶ֗כֶת אַֽחֲרֵי֙ הַבַּ֣חוּרִ֔ים אִם־דַּ֖ל וְאִם־עָשִֽׁיר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-3-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:11</h4></div>
+              <a class="anchor" href="#ruth-3-11" aria-label="Copy link to Ruth 3:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעַתָּ֗ה בִּתִּי֙ אַל־תִּ֣ירְאִ֔י כֹּ֥ל אֲשֶׁר־תֹּאמְרִ֖י אֶעֱשֶׂה־לָּ֑ךְ כִּ֤י יוֹדֵ֙עַ֙ כׇּל־שַׁ֣עַר עַמִּ֔י כִּ֛י אֵ֥שֶׁת חַ֖יִל אָֽתְּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-3-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:12</h4></div>
+              <a class="anchor" href="#ruth-3-12" aria-label="Copy link to Ruth 3:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעַתָּה֙ כִּ֣י אׇמְנָ֔ם כִּ֥י &lt;span class=&quot;mam-kq-k&quot;&gt;(אם)&lt;/span&gt; גֹאֵ֖ל אָנֹ֑כִי וְגַ֛ם יֵ֥שׁ גֹּאֵ֖ל קָר֥וֹב מִמֶּֽנִּי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-3-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:13</h4></div>
+              <a class="anchor" href="#ruth-3-13" aria-label="Copy link to Ruth 3:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לִ֣י&lt;big&gt;נִ&lt;/big&gt;י&amp;thinsp;<strong>׀</strong> הַלַּ֗יְלָה וְהָיָ֤ה בַבֹּ֙קֶר֙ אִם־יִגְאָלֵ֥ךְ טוֹב֙ יִגְאָ֔ל וְאִם־לֹ֨א יַחְפֹּ֧ץ לְגׇאֳלֵ֛ךְ וּגְאַלְתִּ֥יךְ אָנֹ֖כִי חַי־יְהֹוָ֑ה שִׁכְבִ֖י עַד־הַבֹּֽקֶר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-3-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:14</h4></div>
+              <a class="anchor" href="#ruth-3-14" aria-label="Copy link to Ruth 3:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתִּשְׁכַּ֤ב &lt;span class=&quot;mam-kq-trivial&quot;&gt;מַרְגְּלוֹתָו֙&lt;/span&gt; עַד־הַבֹּ֔קֶר וַתָּ֕קׇם &lt;span class=&quot;mam-kq&quot;&gt;&lt;span class=&quot;mam-kq-k&quot;&gt;(בטרום)&lt;/span&gt; &lt;span class=&quot;mam-kq-q&quot;&gt;[בְּטֶ֛רֶם]&lt;/span&gt;&lt;/span&gt; יַכִּ֥יר אִ֖ישׁ אֶת־רֵעֵ֑הוּ וַיֹּ֙אמֶר֙ אַל־יִוָּדַ֔ע כִּי־בָ֥אָה הָאִשָּׁ֖ה הַגֹּֽרֶן׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-3-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:15</h4></div>
+              <a class="anchor" href="#ruth-3-15" aria-label="Copy link to Ruth 3:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֗אמֶר הָ֠בִ֠י הַמִּטְפַּ֧חַת אֲשֶׁר־עָלַ֛יִךְ וְאֶחֳזִי־בָ֖הּ וַתֹּ֣אחֶז בָּ֑הּ וַיָּ֤מׇד שֵׁשׁ־שְׂעֹרִים֙ וַיָּ֣שֶׁת עָלֶ֔יהָ וַיָּבֹ֖א הָעִֽיר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-3-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:16</h4></div>
+              <a class="anchor" href="#ruth-3-16" aria-label="Copy link to Ruth 3:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתָּבוֹא֙ אֶל־חֲמוֹתָ֔הּ וַתֹּ֖אמֶר מִי־אַ֣תְּ בִּתִּ֑י וַתַּ֨גֶּד־לָ֔הּ אֵ֛ת כׇּל־אֲשֶׁ֥ר עָשָׂה־לָ֖הּ הָאִֽישׁ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-3-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:17</h4></div>
+              <a class="anchor" href="#ruth-3-17" aria-label="Copy link to Ruth 3:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֹּ֕אמֶר שֵׁשׁ־הַשְּׂעֹרִ֥ים הָאֵ֖לֶּה נָ֣תַן לִ֑י כִּ֚י אָמַ֣ר &lt;span class=&quot;mam-kq-q&quot;&gt;[אֵלַ֔י]&lt;/span&gt; אַל־תָּב֥וֹאִי רֵיקָ֖ם אֶל־חֲמוֹתֵֽךְ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-3-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 3:18</h4></div>
+              <a class="anchor" href="#ruth-3-18" aria-label="Copy link to Ruth 3:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֹּ֙אמֶר֙ שְׁבִ֣י בִתִּ֔י עַ֚ד אֲשֶׁ֣ר תֵּֽדְעִ֔ין אֵ֖יךְ יִפֹּ֣ל דָּבָ֑ר כִּ֣י לֹ֤א יִשְׁקֹט֙ הָאִ֔ישׁ כִּֽי־אִם־כִּלָּ֥ה הַדָּבָ֖ר הַיּֽוֹם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-ruth-text-4">Chapter 4</h4>
+          <section class="unit" id="ruth-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:1</h4></div>
+              <a class="anchor" href="#ruth-4-1" aria-label="Copy link to Ruth 4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וּבֹ֨עַז עָלָ֣ה הַשַּׁ֘עַר֮ וַיֵּ֣שֶׁב שָׁם֒ וְהִנֵּ֨ה הַגֹּאֵ֤ל עֹבֵר֙ אֲשֶׁ֣ר דִּבֶּר־בֹּ֔עַז וַיֹּ֛אמֶר ס֥וּרָה שְׁבָה־פֹּ֖ה פְּלֹנִ֣י אַלְמֹנִ֑י וַיָּ֖סַר וַיֵּשֵֽׁב׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:2</h4></div>
+              <a class="anchor" href="#ruth-4-2" aria-label="Copy link to Ruth 4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיִּקַּ֞ח עֲשָׂרָ֧ה אֲנָשִׁ֛ים מִזִּקְנֵ֥י הָעִ֖יר וַיֹּ֣אמֶר שְׁבוּ־פֹ֑ה וַיֵּשֵֽׁבוּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:3</h4></div>
+              <a class="anchor" href="#ruth-4-3" aria-label="Copy link to Ruth 4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֙אמֶר֙ לַגֹּאֵ֔ל חֶלְקַת֙ הַשָּׂדֶ֔ה אֲשֶׁ֥ר לְאָחִ֖ינוּ לֶאֱלִימֶ֑לֶךְ מָכְרָ֣ה נׇעֳמִ֔י הַשָּׁ֖בָה מִשְּׂדֵ֥ה מוֹאָֽב׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:4</h4></div>
+              <a class="anchor" href="#ruth-4-4" aria-label="Copy link to Ruth 4:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַאֲנִ֨י אָמַ֜רְתִּי אֶגְלֶ֧ה אׇזְנְךָ֣ לֵאמֹ֗ר קְ֠נֵ֠ה נֶ֥גֶד הַיֹּשְׁבִים֮ וְנֶ֣גֶד זִקְנֵ֣י עַמִּי֒ אִם־תִּגְאַל֙ גְּאָ֔ל וְאִם־לֹ֨א יִגְאַ֜ל הַגִּ֣ידָה לִּ֗י &lt;span class=&quot;mam-kq&quot;&gt;&lt;span class=&quot;mam-kq-k&quot;&gt;(ואדע)&lt;/span&gt; &lt;span class=&quot;mam-kq-q&quot;&gt;[וְאֵֽדְעָה֙]&lt;/span&gt;&lt;/span&gt; כִּ֣י אֵ֤ין זוּלָֽתְךָ֙ לִגְא֔וֹל וְאָנֹכִ֖י אַחֲרֶ֑יךָ וַיֹּ֖אמֶר אָנֹכִ֥י אֶגְאָֽל׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:5</h4></div>
+              <a class="anchor" href="#ruth-4-5" aria-label="Copy link to Ruth 4:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֣אמֶר בֹּ֔עַז בְּיוֹם־קְנוֹתְךָ֥ הַשָּׂדֶ֖ה מִיַּ֣ד נׇעֳמִ֑י וּ֠מֵאֵ֠ת ר֣וּת הַמּוֹאֲבִיָּ֤ה אֵֽשֶׁת־הַמֵּת֙ &lt;span class=&quot;mam-kq&quot;&gt;&lt;span class=&quot;mam-kq-k&quot;&gt;(קניתי)&lt;/span&gt; &lt;span class=&quot;mam-kq-q&quot;&gt;[קָנִ֔יתָ]&lt;/span&gt;&lt;/span&gt; לְהָקִ֥ים שֵׁם־הַמֵּ֖ת עַל־נַחֲלָתֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:6</h4></div>
+              <a class="anchor" href="#ruth-4-6" aria-label="Copy link to Ruth 4:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֣אמֶר הַגֹּאֵ֗ל לֹ֤א אוּכַל֙ &lt;span class=&quot;mam-kq&quot;&gt;&lt;span class=&quot;mam-kq-k&quot;&gt;(לגאול)&lt;/span&gt; &lt;span class=&quot;mam-kq-q&quot;&gt;[לִגְאׇל־]&lt;/span&gt;&lt;/span&gt;לִ֔י פֶּן־אַשְׁחִ֖ית אֶת־נַחֲלָתִ֑י גְּאַל־לְךָ֤ אַתָּה֙ אֶת־גְּאֻלָּתִ֔י כִּ֥י לֹא־אוּכַ֖ל לִגְאֹֽל׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:7</h4></div>
+              <a class="anchor" href="#ruth-4-7" aria-label="Copy link to Ruth 4:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְזֹאת֩ לְפָנִ֨ים בְּיִשְׂרָאֵ֜ל עַל־הַגְּאֻלָּ֤ה וְעַל־הַתְּמוּרָה֙ לְקַיֵּ֣ם כׇּל־דָּבָ֔ר שָׁלַ֥ף אִ֛ישׁ נַעֲל֖וֹ וְנָתַ֣ן לְרֵעֵ֑הוּ וְזֹ֥את הַתְּעוּדָ֖ה בְּיִשְׂרָאֵֽל׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:8</h4></div>
+              <a class="anchor" href="#ruth-4-8" aria-label="Copy link to Ruth 4:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֧אמֶר הַגֹּאֵ֛ל לְבֹ֖עַז קְנֵה־לָ֑ךְ וַיִּשְׁלֹ֖ף נַעֲלֽוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:9</h4></div>
+              <a class="anchor" href="#ruth-4-9" aria-label="Copy link to Ruth 4:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֩אמֶר֩ בֹּ֨עַז לַזְּקֵנִ֜ים וְכׇל־הָעָ֗ם עֵדִ֤ים אַתֶּם֙ הַיּ֔וֹם כִּ֤י קָנִ֙יתִי֙ אֶת־כׇּל־אֲשֶׁ֣ר לֶאֱלִימֶ֔לֶךְ וְאֵ֛ת כׇּל־אֲשֶׁ֥ר לְכִלְי֖וֹן וּמַחְל֑וֹן מִיַּ֖ד נׇעֳמִֽי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:10</h4></div>
+              <a class="anchor" href="#ruth-4-10" aria-label="Copy link to Ruth 4:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְגַ֣ם אֶת־ר֣וּת הַמֹּאֲבִיָּה֩ אֵ֨שֶׁת מַחְל֜וֹן קָנִ֧יתִי לִ֣י לְאִשָּׁ֗ה לְהָקִ֤ים שֵׁם־הַמֵּת֙ עַל־נַ֣חֲלָת֔וֹ וְלֹֽא־יִכָּרֵ֧ת שֵׁם־הַמֵּ֛ת מֵעִ֥ם אֶחָ֖יו וּמִשַּׁ֣עַר מְקוֹמ֑וֹ עֵדִ֥ים אַתֶּ֖ם הַיּֽוֹם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:11</h4></div>
+              <a class="anchor" href="#ruth-4-11" aria-label="Copy link to Ruth 4:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֨אמְר֜וּ כׇּל־הָעָ֧ם אֲשֶׁר־בַּשַּׁ֛עַר וְהַזְּקֵנִ֖ים עֵדִ֑ים יִתֵּן֩ יְהֹוָ֨ה אֶֽת־הָאִשָּׁ֜ה הַבָּאָ֣ה אֶל־בֵּיתֶ֗ךָ כְּרָחֵ֤ל&amp;thinsp;<span class="source-small">׀</span>&amp;thinsp;וּכְלֵאָה֙ אֲשֶׁ֨ר בָּנ֤וּ שְׁתֵּיהֶם֙ אֶת־בֵּ֣ית יִשְׂרָאֵ֔ל וַעֲשֵׂה־חַ֣יִל בְּאֶפְרָ֔תָה וּקְרָא־שֵׁ֖ם בְּבֵ֥ית לָֽחֶם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:12</h4></div>
+              <a class="anchor" href="#ruth-4-12" aria-label="Copy link to Ruth 4:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וִיהִ֤י בֵֽיתְךָ֙ כְּבֵ֣ית פֶּ֔רֶץ אֲשֶׁר־יָלְדָ֥ה תָמָ֖ר לִיהוּדָ֑ה מִן־הַזֶּ֗רַע אֲשֶׁ֨ר יִתֵּ֤ן יְהֹוָה֙ לְךָ֔ מִן־הַֽנַּעֲרָ֖ה הַזֹּֽאת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:13</h4></div>
+              <a class="anchor" href="#ruth-4-13" aria-label="Copy link to Ruth 4:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיִּקַּ֨ח בֹּ֤עַז אֶת־רוּת֙ וַתְּהִי־ל֣וֹ לְאִשָּׁ֔ה וַיָּבֹ֖א אֵלֶ֑יהָ וַיִּתֵּ֨ן יְהֹוָ֥ה לָ֛הּ הֵרָי֖וֹן וַתֵּ֥לֶד בֵּֽן׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:14</h4></div>
+              <a class="anchor" href="#ruth-4-14" aria-label="Copy link to Ruth 4:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתֹּאמַ֤רְנָה הַנָּשִׁים֙ אֶֽל־נׇעֳמִ֔י בָּר֣וּךְ יְהֹוָ֔ה אֲ֠שֶׁ֠ר לֹ֣א הִשְׁבִּ֥ית לָ֛ךְ גֹּאֵ֖ל הַיּ֑וֹם וְיִקָּרֵ֥א שְׁמ֖וֹ בְּיִשְׂרָאֵֽל׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:15</h4></div>
+              <a class="anchor" href="#ruth-4-15" aria-label="Copy link to Ruth 4:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהָ֤יָה לָךְ֙ לְמֵשִׁ֣יב נֶ֔פֶשׁ וּלְכַלְכֵּ֖ל אֶת־שֵׂיבָתֵ֑ךְ כִּ֣י כַלָּתֵ֤ךְ אֲֽשֶׁר־אֲהֵבַ֙תֶךְ֙ יְלָדַ֔תּוּ אֲשֶׁר־הִיא֙ ט֣וֹבָה לָ֔ךְ מִשִּׁבְעָ֖ה בָּנִֽים׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:16</h4></div>
+              <a class="anchor" href="#ruth-4-16" aria-label="Copy link to Ruth 4:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתִּקַּ֨ח נׇעֳמִ֤י אֶת־הַיֶּ֙לֶד֙ וַתְּשִׁתֵ֣הוּ בְחֵיקָ֔הּ וַתְּהִי־ל֖וֹ לְאֹמֶֽנֶת׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:17</h4></div>
+              <a class="anchor" href="#ruth-4-17" aria-label="Copy link to Ruth 4:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתִּקְרֶ֩אנָה֩ ל֨וֹ הַשְּׁכֵנ֥וֹת שֵׁם֙ לֵאמֹ֔ר יֻלַּד־בֵּ֖ן לְנׇעֳמִ֑י וַתִּקְרֶ֤אנָֽה שְׁמוֹ֙ עוֹבֵ֔ד ה֥וּא אֲבִֽי־יִשַׁ֖י אֲבִ֥י דָוִֽד׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:18</h4></div>
+              <a class="anchor" href="#ruth-4-18" aria-label="Copy link to Ruth 4:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאֵ֙לֶּה֙ תּוֹלְד֣וֹת פָּ֔רֶץ פֶּ֖רֶץ הוֹלִ֥יד אֶת־חֶצְרֽוֹן׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-19" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:19</h4></div>
+              <a class="anchor" href="#ruth-4-19" aria-label="Copy link to Ruth 4:19">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְחֶצְרוֹן֙ הוֹלִ֣יד אֶת־רָ֔ם וְרָ֖ם הוֹלִ֥יד אֶת־עַמִּינָדָֽב׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-20" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:20</h4></div>
+              <a class="anchor" href="#ruth-4-20" aria-label="Copy link to Ruth 4:20">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעַמִּֽינָדָב֙ הוֹלִ֣יד אֶת־נַחְשׁ֔וֹן וְנַחְשׁ֖וֹן הוֹלִ֥יד אֶת־שַׂלְמָֽה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-21" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:21</h4></div>
+              <a class="anchor" href="#ruth-4-21" aria-label="Copy link to Ruth 4:21">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְשַׂלְמוֹן֙ הוֹלִ֣יד אֶת־בֹּ֔עַז וּבֹ֖עַז הוֹלִ֥יד אֶת־עוֹבֵֽד׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ruth-4-22" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ruth 4:22</h4></div>
+              <a class="anchor" href="#ruth-4-22" aria-label="Copy link to Ruth 4:22">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעֹבֵד֙ הוֹלִ֣יד אֶת־יִשָׁ֔י וְיִשַׁ֖י הוֹלִ֥יד אֶת־דָּוִֽד׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ruth-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"ruth","work_title":"Ruth","work_slug":"tanakh/ruth","scope_label":"All imported Hebrew works","generated_at":"2026-05-08T15:38:29.907Z","total_occurrences":1132,"units":{"ruth-1-1":{"unit_id":"ruth-1-1","anchor_id":"ruth-1-1","source_ref":"Ruth 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e1e6213a83a3","tok-3ae8f88340b4","tok-df30d075d68d","tok-7d7a880143e6","tok-0ffbf4bf1679","tok-46ef8533f9e8","tok-f1b69f105777","tok-c0ee6b93d57e","tok-a4fdbb459cf1","tok-d5ab3f318709","tok-3463dd8feaff","tok-abbd8c47a2d3","tok-d07eb2988ace","tok-2aff1327a435","tok-bcebceceabff","tok-afcfbe96be1e","tok-81d0e12bd7f5","tok-156bc2ea9937","tok-67db6eb0758d"]}]},"ruth-1-2":{"unit_id":"ruth-1-2","anchor_id":"ruth-1-2","source_ref":"Ruth 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a4f5219ec75e","tok-f7c7bcdbcbb2","tok-f4ead5f38d73","tok-c7c115666cc6","tok-c0b76d6a622e","tok-eba494961532","tok-84c8e2f80950","tok-da381155b998","tok-2486ad0654be","tok-76b370539d74","tok-ba9918a7ebea","tok-3a7ee275d1f8","tok-0e4c4bb4c0ce","tok-f631ba75ef05","tok-e88c408631bc","tok-672656b74d36","tok-2876db0affb0"]}]},"ruth-1-3":{"unit_id":"ruth-1-3","anchor_id":"ruth-1-3","source_ref":"Ruth 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-21cebba7ac56","tok-67bb26eb8aac","tok-c331980f2aad","tok-9524731fa281","tok-ef0c7c0f575f","tok-eb6153fdf2f2","tok-156bc2ea9937","tok-5e6d0266515a"]}]},"ruth-1-4":{"unit_id":"ruth-1-4","anchor_id":"ruth-1-4","source_ref":"Ruth 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-224965600748","tok-c45b9eb1ffef","tok-a9e4e1f12050","tok-4f49caac6810","tok-bbcc736ddc26","tok-ed7c3116b5a4","tok-a2c962ef6e7d","tok-84c8e2f80950","tok-868a26ff58d2","tok-0db81ddb69c0","tok-5f946a7fa86d","tok-2dee44264dfa","tok-0d2a547c8d76","tok-e1b2ac69e5f4"]}]},"ruth-1-5":{"unit_id":"ruth-1-5","anchor_id":"ruth-1-5","source_ref":"Ruth 1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d05d89e275a5","tok-5053d3b4fca0","tok-28bcb83783ef","tok-62532263b391","tok-f43557b40665","tok-5e06c409cfae","tok-aaa07a622956","tok-69160b1250d1","tok-8ffedd36e3aa"]}]},"ruth-1-6":{"unit_id":"ruth-1-6","anchor_id":"ruth-1-6","source_ref":"Ruth 1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b405c2237d99","tok-d35f213eddf9","tok-9f28708b08f6","tok-937f0d341fb8","tok-87cf998e0952","tok-8912b809a65d","tok-03ef374316ba","tok-dde820b20047","tok-f4f0d88d481b","tok-bcebceceabff","tok-c24267944c2a","tok-7cc1287ea63b","tok-1f8bba34f585","tok-5d13a5d26269","tok-7e58c7fdb7ee","tok-c027f9f3eb4e"]}]},"ruth-1-7":{"unit_id":"ruth-1-7","anchor_id":"ruth-1-7","source_ref":"Ruth 1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bfad62b19ef6","tok-1c6b9d32934a","tok-0a1d2fdc9101","tok-5ef66239dc4c","tok-c31cb9df3f9e","tok-5934821a2c9a","tok-ca74bf6ef7e5","tok-23c7731d44ca","tok-8483c9261b56","tok-74db295d9fe6","tok-ec8d9bf5c2c0","tok-63d125e529cb"]}]},"ruth-1-8":{"unit_id":"ruth-1-8","anchor_id":"ruth-1-8","source_ref":"Ruth 1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-922584c22431","tok-fd0c048f6673","tok-870b45997271","tok-824c53ec542f","tok-63f99505efc1","tok-1e23d5573f59","tok-d4756e8865ea","tok-297d82f2958b","tok-76ddf1ebfd83","tok-82440ae0e47e","tok-a6ba9a4df2e1","tok-8054a2bd1e3a","tok-c3e287194cfa","tok-515ca937e1b7","tok-655f07ea1e97","tok-e520e1dc2afe","tok-10b7c3de6c84","tok-0a0a0c468bc5"]}]},"ruth-1-9":{"unit_id":"ruth-1-9","anchor_id":"ruth-1-9","source_ref":"Ruth 1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4b28aa5001c0","tok-7cc1287ea63b","tok-71a0875cefdf","tok-5ea879aa9df5","tok-62d81b6ea42d","tok-d4756e8865ea","tok-84591d13aad4","tok-949e35558e28","tok-10f255bcfbeb","tok-d7f3071732b8","tok-f037a42843db","tok-02b131b5bb7e","tok-ef946325842b"]}]},"ruth-1-10":{"unit_id":"ruth-1-10","anchor_id":"ruth-1-10","source_ref":"Ruth 1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f4ae7e002fce","tok-f3d6d6f3b17e","tok-cc02fa06eacf","tok-48572d8d1b98"]}]},"ruth-1-11":{"unit_id":"ruth-1-11","anchor_id":"ruth-1-11","source_ref":"Ruth 1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-922584c22431","tok-fd0c048f6673","tok-cee999e62443","tok-46766732143b","tok-27270ea38765","tok-5c1835389aaf","tok-d6cbe2c62921","tok-38752a0dcd0f","tok-99de4658653a","tok-f7d326b70e1e","tok-4890251256a1","tok-eba82405457d","tok-d6d9d8147a3d"]}]},"ruth-1-12":{"unit_id":"ruth-1-12","anchor_id":"ruth-1-12","source_ref":"Ruth 1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a5c6bd0e461c","tok-4d28cd312885","tok-94f5d1098dc4","tok-59815a074581","tok-0a6af075f48e","tok-a5f129c1a572","tok-a2c6b31f052c","tok-03ef374316ba","tok-271e2e864407","tok-d9554fdc0f32","tok-47590ceef40a","tok-20d8d3653b66","tok-d5272491a292","tok-8dfb6d9a6d43","tok-67a8cd701915","tok-8e5f36d1aec4","tok-54393269bd94","tok-f337d3810f02"]}]},"ruth-1-13":{"unit_id":"ruth-1-13","anchor_id":"ruth-1-13","source_ref":"Ruth 1:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-47d48e8ee534","tok-243d61e1141b","tok-990ba7145719","tok-0a1d2fdc9101","tok-2edc894b3db3","tok-7000aadcb6a4","tok-09a4537e313b","tok-ee9d2636756b","tok-eaefab7ea2a2","tok-a2c6b31f052c","tok-0a9a7ee976c7","tok-c1a9db1e323e","tok-169f2fda6043","tok-562b6b85abaf","tok-289512674ea3","tok-35409838e12c","tok-0add6603b5ce","tok-b84c354a8a47"]}]},"ruth-1-14":{"unit_id":"ruth-1-14","anchor_id":"ruth-1-14","source_ref":"Ruth 1:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f7c6473a522e","tok-06daab4e72ad","tok-1f876fcbfe94","tok-e3a2a6c1639f","tok-dd8f5eadba94","tok-6dc597e712c9","tok-c2e372d221ca","tok-52a4782ba220","tok-a8ebe7e741b8","tok-6e724625a45a"]}]},"ruth-1-15":{"unit_id":"ruth-1-15","anchor_id":"ruth-1-15","source_ref":"Ruth 1:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d376dbf94aed","tok-065bbf8b7e18","tok-5c34e722448b","tok-6f8383f7a4a2","tok-8583e4b64e9d","tok-aa189b42cd2d","tok-c08179082a56","tok-d6c6bca5b872","tok-4e97c2ba2338"]}]},"ruth-1-16":{"unit_id":"ruth-1-16","anchor_id":"ruth-1-16","source_ref":"Ruth 1:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-922584c22431","tok-27077e59115b","tok-fcc5f5573e3b","tok-eea1af3ad3b8","tok-1d2e990a493e","tok-3d46289a961f","tok-02cd4e980922","tok-a91cc234d6a9","tok-83ce968077e1","tok-4c80cd0c68c2","tok-a8aeaf32d259","tok-0a058878d5f6","tok-e7c10fddaa18","tok-a7a9d0b39290","tok-f82ce31d92cd","tok-72be11e74b65","tok-1f6e41c67369"]}]},"ruth-1-17":{"unit_id":"ruth-1-17","anchor_id":"ruth-1-17","source_ref":"Ruth 1:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d1ba790211c0","tok-ba44230d0ce2","tok-42da7910363a","tok-8ab314f34159","tok-b986edc76110","tok-1822fde5bb35","tok-29d535394f41","tok-08cce0f38e7c","tok-91df3e98716e","tok-e7ba2dc9c90a","tok-7f40019eea38","tok-00e2d89a9715","tok-53844414618d","tok-628c7bab1389","tok-1f8048b26f9d","tok-d976b6fba8b5"]}]},"ruth-1-18":{"unit_id":"ruth-1-18","anchor_id":"ruth-1-18","source_ref":"Ruth 1:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2c8287fd0ce8","tok-f1b8ca010f82","tok-eb6153fdf2f2","tok-f0ff4d68868b","tok-a526c746d8cc","tok-01993983c524","tok-62dad31a38f2","tok-746f07af9c41"]}]},"ruth-1-19":{"unit_id":"ruth-1-19","anchor_id":"ruth-1-19","source_ref":"Ruth 1:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-23c7731d44ca","tok-ea926c71e5d5","tok-c89e48f66aed","tok-84591d13aad4","tok-252b8c9cdfc5","tok-e1e6213a83a3","tok-d837e44614a4","tok-84591d13aad4","tok-b401f7ed9221","tok-0228ecebc844","tok-c9700e0f09d1","tok-0025cef77cd6","tok-164410d91b79","tok-752e287bff29","tok-ae909c02af81"]}]},"ruth-1-20":{"unit_id":"ruth-1-20","anchor_id":"ruth-1-20","source_ref":"Ruth 1:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d625d1e3e08b","tok-c12992f41a34","tok-4a255e7cd5bc","tok-15d7422d868e","tok-9524731fa281","tok-d0b0e28aaa4f","tok-91df3e98716e","tok-7af754df8708","tok-7d176f86c858","tok-5e5e11134ca0","tok-15d7422d868e","tok-f10877d3a851"]}]},"ruth-1-21":{"unit_id":"ruth-1-21","anchor_id":"ruth-1-21","source_ref":"Ruth 1:21","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8f5c15890269","tok-181090c5e3d9","tok-901be24e3bfa","tok-eb05ea8c63fa","tok-96157b554577","tok-53decc562d6b","tok-a3c2babc82c8","tok-51698616bbe8","tok-91df3e98716e","tok-9b490d4c4b8b","tok-ba8ed2d330d7","tok-9f3a022248fc","tok-6c911a601a44","tok-fe6d6fa65da5","tok-fca5e55008a4","tok-ec5927350b8c"]}]},"ruth-1-22":{"unit_id":"ruth-1-22","anchor_id":"ruth-1-22","source_ref":"Ruth 1:22","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-151fdbb2ccb0","tok-f9c71dc7f8fa","tok-c1787cc78eac","tok-32bd7e371ea8","tok-3d8a5c6a649e","tok-f3811408ae99","tok-f32199821534","tok-87cf998e0952","tok-8912b809a65d","tok-55ceeed85a67","tok-7b1b4bd3769a","tok-84591d13aad4","tok-b401f7ed9221","tok-c21831eeab45","tok-a971ba39c580","tok-345e900d1249"]}]},"ruth-2-1":{"unit_id":"ruth-2-1","anchor_id":"ruth-2-1","source_ref":"Ruth 2:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b1a8188696df","tok-e473198113e8","tok-bfc340981664","tok-3eb4cfda8d1b","tok-6299c2dbfc7f","tok-a7300f19b442","tok-bf1fbb5afbee","tok-218040b1a17f","tok-4c10fa0aa30e","tok-f7f2187be9c0","tok-37d50d29b786"]}]},"ruth-2-2":{"unit_id":"ruth-2-2","anchor_id":"ruth-2-2","source_ref":"Ruth 2:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3c3391462be5","tok-4fbbf9997419","tok-77491d7a083d","tok-da9aa819ae36","tok-96d2d842c87b","tok-33017623aaa6","tok-f201c1d77592","tok-023fd0e8d463","tok-499e74a2477e","tok-7233e6b4f96c","tok-c3dee608fe9e","tok-93c918a312d8","tok-4af6d1c45fe1","tok-273f0ea9d183","tok-7c4eb42c2ffb","tok-91798ca93f46"]}]},"ruth-2-3":{"unit_id":"ruth-2-3","anchor_id":"ruth-2-3","source_ref":"Ruth 2:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6ca990a31073","tok-5a714fd47479","tok-d15c9ad2648a","tok-63fbdcc20928","tok-774412a67d0b","tok-27750e41d232","tok-673526a71c74","tok-ba3e3a0dd972","tok-ce357ac3519d","tok-33017623aaa6","tok-4cdfb8187cc5","tok-95f89b50b43b","tok-c0de6ea9e5a4","tok-0886ad09eb34"]}]},"ruth-2-4":{"unit_id":"ruth-2-4","anchor_id":"ruth-2-4","source_ref":"Ruth 2:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d8e7508eca52","tok-4a3c35deb926","tok-02fd93b619b8","tok-b401f7ed9221","tok-b0e3a416d431","tok-1c5944beb7e1","tok-30a0c0b5ed24","tok-329f7298da4a","tok-a49ccb3defa0","tok-d80d97720c64","tok-27f19a6e1475","tok-b550c674cee6"]}]},"ruth-2-5":{"unit_id":"ruth-2-5","anchor_id":"ruth-2-5","source_ref":"Ruth 2:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c1ddc5ac2b9c","tok-657b74fb381c","tok-490900f7f22f","tok-cb55f44df59a","tok-14740e903130","tok-6f8a3a9ec93c","tok-d0a90454022d","tok-1376bba1261b"]}]},"ruth-2-6":{"unit_id":"ruth-2-6","anchor_id":"ruth-2-6","source_ref":"Ruth 2:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-83ede85523b1","tok-c4bc4e201541","tok-2090e180631e","tok-3358ef00283d","tok-57397350bb46","tok-3ee4e654a5a8","tok-5215b1023870","tok-1272e581a74e","tok-2b8f07f274c1","tok-ab3250ae729e","tok-5d8a3cd81326","tok-30bc1bcd87d2"]}]},"ruth-2-7":{"unit_id":"ruth-2-7","anchor_id":"ruth-2-7","source_ref":"Ruth 2:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d376dbf94aed","tok-d669e36483f2","tok-2dfe987a29b7","tok-c13628b566e2","tok-774412a67d0b","tok-8174aadc26fd","tok-6692cf7524b0","tok-e2ef372c1194","tok-e1b082f56923","tok-d6c91ebb23aa","tok-cef8359a6d20","tok-23dcb5b6e44d","tok-252a124634c4","tok-1565a70b1d16","tok-aac1cdd913e2"]}]},"ruth-2-8":{"unit_id":"ruth-2-8","anchor_id":"ruth-2-8","source_ref":"Ruth 2:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b6be534a226","tok-ffd6745ab871","tok-1e1c1e5b6147","tok-04aab634937c","tok-c146f9ee748e","tok-bf5e39ebc9a7","tok-6c47bbb765f1","tok-e1a6aced6ca6","tok-b9a7522036eb","tok-8dd9c5cd3d07","tok-ce2a27fe07ef","tok-c8937029aafc","tok-adc9dfd07afe","tok-ecfbf90e3767","tok-e0c355b28a36","tok-5832cf49afdc","tok-17d6e606f51e"]}]},"ruth-2-9":{"unit_id":"ruth-2-9","anchor_id":"ruth-2-9","source_ref":"Ruth 2:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d314fbe9c5e0","tok-8b72f227da03","tok-ae3f19d8bc6c","tok-9ad553a002b1","tok-0d22fb54f45c","tok-6c6984d5a4ca","tok-3b34dd2573ef","tok-c9c468d81651","tok-2dc1a3742333","tok-a093c45fc388","tok-6ed9a9f6cce1","tok-8fae9feea438","tok-09606bb20e3e","tok-4c8fc56a08d5","tok-3cb67abc1206","tok-751640eb9166","tok-a7ca9d1cbd6c"]}]},"ruth-2-10":{"unit_id":"ruth-2-10","anchor_id":"ruth-2-10","source_ref":"Ruth 2:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3d58fa2afcc7","tok-e43ab06d7015","tok-b78540261aa0","tok-870e6bcc100b","tok-d625d1e3e08b","tok-6a6de5f157bd","tok-06020efee965","tok-9a7fd3523e49","tok-0ed651dd462b","tok-f26ba64f6281","tok-5e1d0722bf6b","tok-0281947ea69f","tok-ff45379fd76d"]}]},"ruth-2-11":{"unit_id":"ruth-2-11","anchor_id":"ruth-2-11","source_ref":"Ruth 2:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-eb1a2f08b242","tok-657b74fb381c","tok-9573598f13bd","tok-cf796d55cf17","tok-a131d60045c6","tok-13d793116775","tok-2e4128890d64","tok-2a5f306aff3c","tok-0fbf1c3a8ca4","tok-e10b99faee73","tok-774412a67d0b","tok-853f52cf08f4","tok-d48e04e40092","tok-f01155735e36","tok-59a4973dacb9","tok-9b2491065b30","tok-0b81de7112a4","tok-4c05407568f0","tok-b2a61a9879dd","tok-888d8bb4f37f","tok-7233e6b4f96c","tok-598bc504d431","tok-8e04a5d95a61","tok-5f057ffb4d33"]}]},"ruth-2-12":{"unit_id":"ruth-2-12","anchor_id":"ruth-2-12","source_ref":"Ruth 2:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ee1cef845def","tok-0ab8167b3152","tok-cccc3e53200f","tok-92b665f57922","tok-f1fe97cbdb34","tok-ee989dbd8323","tok-8cc2203ccd09","tok-7cc1287ea63b","tok-28f76f6b070b","tok-72a64a8b8067","tok-761f2ea29998","tok-36a386a93b5b","tok-56e6465d5d6a"]}]},"ruth-2-13":{"unit_id":"ruth-2-13","anchor_id":"ruth-2-13","source_ref":"Ruth 2:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-65d76f521458","tok-e005fe87c03a","tok-b83d2327f64a","tok-b83146a908ef","tok-00e2d89a9715","tok-aac937b9dd95","tok-66b1600663a2","tok-2c1af5384f4c","tok-6b93ad900c32","tok-15bdc8032cab","tok-380af4307eb3","tok-8caeb52d5c3a","tok-1a0cbfd256b3","tok-8fd2a8a8b8be","tok-98b730fdde3c"]}]},"ruth-2-14":{"unit_id":"ruth-2-14","anchor_id":"ruth-2-14","source_ref":"Ruth 2:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b6be534a226","tok-8ba09a03c89a","tok-3e27ff2ca3b8","tok-6c44862a9428","tok-d46586d3f2d5","tok-854ec6b46180","tok-59afeb30f261","tok-6d3ec4742df3","tok-03a60d50c61f","tok-347a8b813497","tok-29ebfd768a8d","tok-1e448ce1d041","tok-9fd2e14c5984","tok-a5f036082380","tok-7190a10901b7","tok-afac0394f482","tok-6d2cbbaf67d0","tok-bc9dff563c72","tok-bd44f9027986","tok-63af1f420175"]}]},"ruth-2-15":{"unit_id":"ruth-2-15","anchor_id":"ruth-2-15","source_ref":"Ruth 2:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d4396168e844","tok-9a8287daeb59","tok-f4ccc25e7fbb","tok-ffd6745ab871","tok-e1614404b9aa","tok-14a8607db5bc","tok-20d8d3653b66","tok-add191ec59df","tok-2874ba6aa6b9","tok-5885d62eb739","tok-655d5bb822a5","tok-fa6775b7b867"]}]},"ruth-2-16":{"unit_id":"ruth-2-16","anchor_id":"ruth-2-16","source_ref":"Ruth 2:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ce2a27fe07ef","tok-0fbb93b10ca9","tok-273f0ea9d183","tok-a01a501797ce","tok-ee4713c62b30","tok-c75972f0586c","tok-655d5bb822a5","tok-77a8d08ae723"]}]},"ruth-2-17":{"unit_id":"ruth-2-17","anchor_id":"ruth-2-17","source_ref":"Ruth 2:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-53021c0ff2b4","tok-168f00d78a6d","tok-0166667541e3","tok-aab0e9bfe0d9","tok-cfd6e5822c4c","tok-38272e3562a8","tok-55254e0a016b","tok-85e263fed9da","tok-345e900d1249"]}]},"ruth-2-18":{"unit_id":"ruth-2-18","anchor_id":"ruth-2-18","source_ref":"Ruth 2:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-54eb988067b3","tok-6692cf7524b0","tok-6964157a5fb6","tok-760d47188a3f","tok-19f58911703b","tok-cfd6e5822c4c","tok-884c0d2faa2c","tok-d5665b0add22","tok-0a6cdba3fef0","tok-b35629be2c6a","tok-ea66ac5b5fbe","tok-d7e68ecf44a7"]}]},"ruth-2-19":{"unit_id":"ruth-2-19","anchor_id":"ruth-2-19","source_ref":"Ruth 2:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3c3391462be5","tok-69d145631e17","tok-413e87b7395b","tok-24c0a9779216","tok-5ee1a0715b9a","tok-083558df17ca","tok-056b73d66c99","tok-0fd8eaea1722","tok-90fd0ad07e98","tok-bb0a65f1a05d","tok-4a7540c33477","tok-d43ddcd84c2a","tok-4212f951d0aa","tok-ef4614d29c14","tok-a53102bf2195","tok-178606afae54","tok-d376dbf94aed","tok-bbcc736ddc26","tok-5c975a1a6391","tok-4785d282f231","tok-c4cbaa3f7951","tok-cc938552e5af","tok-93977465ae5c","tok-37d50d29b786"]}]},"ruth-2-20":{"unit_id":"ruth-2-20","anchor_id":"ruth-2-20","source_ref":"Ruth 2:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8631b22ba3ac","tok-eba494961532","tok-aeccf67dbcce","tok-bfb586ee21dc","tok-a6219126675b","tok-3d2234dec171","tok-513e7c245d36","tok-ebf88a2151d2","tok-c385164b203c","tok-851576aaf040","tok-8b12171b6950","tok-1d6b9446fa86","tok-9b7582dbe2d3","tok-f9c71dc7f8fa","tok-091280c82d2c","tok-88988a3f9fc3","tok-60fd08d1b157","tok-d3ceb51c7413","tok-6ef6214b3b06"]}]},"ruth-2-21":{"unit_id":"ruth-2-21","anchor_id":"ruth-2-21","source_ref":"Ruth 2:21","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-61a4428cb539","tok-dc205110cc4a","tok-43bd7f71f4ed","tok-20d8d3653b66","tok-6e94b5de589b","tok-d0d89b3daa94","tok-322e81da46a2","tok-a0128bf26b87","tok-f793b8efe194","tok-735fc33614eb","tok-488d1c1dbeb3","tok-b35629be2c6a","tok-20b180e8e6c8","tok-c7a49d28b37d"]}]},"ruth-2-22":{"unit_id":"ruth-2-22","anchor_id":"ruth-2-22","source_ref":"Ruth 2:22","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4af6d1c45fe1","tok-d4695a90cb5f","tok-5d91f1f3cde1","tok-ad38e99f2c52","tok-701bfef6ce1b","tok-bf5e39ebc9a7","tok-03ef374316ba","tok-ec3ac0cbce1a","tok-143034017135","tok-655d5bb822a5","tok-64f0a3ffe4b1","tok-87a7a81acd07","tok-c063080a1cce"]}]},"ruth-2-23":{"unit_id":"ruth-2-23","anchor_id":"ruth-2-23","source_ref":"Ruth 2:23","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e37875e8d95d","tok-1fdd93dc1302","tok-657b74fb381c","tok-1c6ccff2f4c9","tok-8f514e8c5551","tok-f1008ae48dd5","tok-75136ca8e997","tok-19eae8893079","tok-5c9d557a7e47","tok-7c012fcf6c67"]}]},"ruth-3-1":{"unit_id":"ruth-3-1","anchor_id":"ruth-3-1","source_ref":"Ruth 3:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4af6d1c45fe1","tok-273f0ea9d183","tok-2c364f87faf6","tok-d4248436e99b","tok-30045c4b72b1","tok-9375a5be1815","tok-cbed34a65cd2","tok-e3b494b1585f","tok-7233e6b4f96c","tok-661e11ad8279"]}]},"ruth-3-2":{"unit_id":"ruth-3-2","anchor_id":"ruth-3-2","source_ref":"Ruth 3:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0e1ac8a9d0a0","tok-ec3dd9ca818f","tok-73acc605e601","tok-146f8e17fb3d","tok-7233e6b4f96c","tok-e000c59c0345","tok-30316e5ddafe","tok-fc95755a0c1a","tok-0602c4e11552","tok-7391112fd790","tok-1d7889c1a327","tok-0cfbcfa8f7e4"]}]},"ruth-3-3":{"unit_id":"ruth-3-3","anchor_id":"ruth-3-3","source_ref":"Ruth 3:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ac1f5ae317b5","tok-4bba502e24dc","tok-f7d884617d53","tok-0bcb2852cbaa","tok-b50405d40a59","tok-11cb6d74517d","tok-43230d5d4a0b","tok-48e218aaf0f7","tok-e62f6f530f6c","tok-6995f481791d","tok-feaaf4c24adb","tok-de3e1b6b1fc4","tok-6ba62ab04f31","tok-30f1163a7c39","tok-6e07cf3ce433"]}]},"ruth-3-4":{"unit_id":"ruth-3-4","anchor_id":"ruth-3-4","source_ref":"Ruth 3:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-11d851bf94c3","tok-59c0d0f022c7","tok-0491704e38ed","tok-76dd629d7306","tok-0a1d2fdc9101","tok-a8ede4fcdc4e","tok-bdc88a06a3f0","tok-13b4a0fd5537","tok-713e468b45e3","tok-72ace69ac1d9","tok-e41ba68cbe17","tok-0b5c3485fe54","tok-6dc798dc4086","tok-6433299f4294","tok-1e7b1d18eda8","tok-7233e6b4f96c","tok-08ba1c5243e6"]}]},"ruth-3-5":{"unit_id":"ruth-3-5","anchor_id":"ruth-3-5","source_ref":"Ruth 3:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-61a4428cb539","tok-89e1f8025ebb","tok-4de656db9c91","tok-76302276c4d1","tok-eab6a487650c","tok-0ae70b381637"]}]},"ruth-3-6":{"unit_id":"ruth-3-6","anchor_id":"ruth-3-6","source_ref":"Ruth 3:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a7d73eac2d7d","tok-e62f6f530f6c","tok-7c900f108cdf","tok-4eadf7a83dcc","tok-e2df33f6895b","tok-e19804e7a48e"]}]},"ruth-3-7":{"unit_id":"ruth-3-7","anchor_id":"ruth-3-7","source_ref":"Ruth 3:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ef9a4209765c","tok-666fd1883cda","tok-2f4131314eca","tok-e692321e05d9","tok-e7511a179456","tok-fd4824ec9a77","tok-6e0d08a52423","tok-40fec9e1c764","tok-f30e71d41995","tok-2622fbcc939a","tok-fc7f320b0559","tok-251323afaf6a","tok-713e468b45e3","tok-2e9971bdc0d6"]}]},"ruth-3-8":{"unit_id":"ruth-3-8","anchor_id":"ruth-3-8","source_ref":"Ruth 3:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-692e5b568f87","tok-14e7f2fab17b","tok-4c28160965ea","tok-8e8781c9f12c","tok-09ef6dfc3e3f","tok-c91be8484bc1","tok-e2e4da56bc9e","tok-3bf5ef2d3472","tok-53994fd27521","tok-bcfb1d29a7a3"]}]},"ruth-3-9":{"unit_id":"ruth-3-9","anchor_id":"ruth-3-9","source_ref":"Ruth 3:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-dd94c18b2616","tok-e0265b1ab9b1","tok-d376dbf94aed","tok-b6f7ef8b5b72","tok-dc205110cc4a","tok-e1350884994c","tok-504a7d04608c","tok-9028e82f08a0","tok-15214cf94bbd","tok-59815a074581","tok-5ec73edac6d1","tok-ae892844b7cd"]}]},"ruth-3-10":{"unit_id":"ruth-3-10","anchor_id":"ruth-3-10","source_ref":"Ruth 3:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8b07f5f4503a","tok-c5ddf7433729","tok-aa7146d6f21d","tok-c711b7a6fcb0","tok-a08bd614eac8","tok-982bea4639e6","tok-9f84c7efaf74","tok-382a35edbd95","tok-45f3e33420b3","tok-d68a61acfa7b","tok-5a6ea8483656","tok-6285357a1c97","tok-6eae59931433","tok-07ca9b416ebc"]}]},"ruth-3-11":{"unit_id":"ruth-3-11","anchor_id":"ruth-3-11","source_ref":"Ruth 3:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0e1ac8a9d0a0","tok-08d825f39c56","tok-5b005ecdc7d3","tok-3db0c929e6f9","tok-15bd36a4b4c9","tok-0a7ff8227605","tok-03ef374316ba","tok-cf8a48491377","tok-f7bbaab34e3e","tok-f82ce31d92cd","tok-dca281ab15d9","tok-284a4448438e","tok-e700c4a51548","tok-59befeb2621b"]}]},"ruth-3-12":{"unit_id":"ruth-3-12","anchor_id":"ruth-3-12","source_ref":"Ruth 3:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9a2b6b14346b","tok-00e2d89a9715","tok-d0062ff5f477","tok-59815a074581","tok-871e3b4e04cf","tok-5ec73edac6d1","tok-0f530bc9136d","tok-ce2a27fe07ef","tok-f050b3dcab7d","tok-ce73b592d167","tok-091280c82d2c","tok-4b9ccd6e55f2"]}]},"ruth-3-13":{"unit_id":"ruth-3-13","anchor_id":"ruth-3-13","source_ref":"Ruth 3:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1fc4181f189c","tok-794df95ead1a","tok-8b19e0c070d9","tok-6b789d020546","tok-34632823e6ea","tok-31c150d1d4ae","tok-b9c38615f440","tok-c3ab869f709d","tok-50c0cb9e6c9e","tok-1caf3cfff94c","tok-781b1f93b926","tok-0446063f6be5","tok-07667432a259","tok-0d5807f96681","tok-093979f275ab","tok-be19fbe4fb4b","tok-8a4561074846"]}]},"ruth-3-14":{"unit_id":"ruth-3-14","anchor_id":"ruth-3-14","source_ref":"Ruth 3:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4fb3eb243dc8","tok-c29bfe6881f9","tok-53c705537ecb","tok-ae66eac3e4a2","tok-37ad3fa623ba","tok-b07f92470ff3","tok-0daf18ff5993","tok-48913b24500c","tok-c6a05ce846ba","tok-138447ddcd91","tok-529f9bc8a1d7","tok-c9619d8748be","tok-4b88acafb279","tok-f5b89fb2d3b1"]}]},"ruth-3-15":{"unit_id":"ruth-3-15","anchor_id":"ruth-3-15","source_ref":"Ruth 3:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8b07f5f4503a","tok-0acc4d0f9664","tok-a7568b3547ac","tok-372f6a409531","tok-e1f05fc3fddb","tok-4db8eae3ca94","tok-a669827d53bd","tok-06c50e49f895","tok-fc58e2afc9b9","tok-289cf8fd674e","tok-ac2041a2a121","tok-dd059703d46f","tok-511466372674"]}]},"ruth-3-16":{"unit_id":"ruth-3-16","anchor_id":"ruth-3-16","source_ref":"Ruth 3:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5a714fd47479","tok-c71be90d6df3","tok-61a4428cb539","tok-6e0dc4e7d911","tok-c0f384a86971","tok-afddd2e0aabe","tok-9a3516ab8332","tok-c23a97e93bcf","tok-2eeea54f8c18","tok-f2d08aa2f3c6"]}]},"ruth-3-17":{"unit_id":"ruth-3-17","anchor_id":"ruth-3-17","source_ref":"Ruth 3:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f18589279df9","tok-5e2e1ad5b23d","tok-ab57a7c7f77f","tok-86cee665a7e7","tok-115bcbba2aae","tok-ff889ae332e8","tok-caee0100557e","tok-139e960ad7df","tok-2f437f97fdde","tok-25d237c1b10b","tok-822e05159261"]}]},"ruth-3-18":{"unit_id":"ruth-3-18","anchor_id":"ruth-3-18","source_ref":"Ruth 3:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-728cae14f730","tok-7edee6616e5f","tok-9feb3e43fc68","tok-990ba7145719","tok-0a1d2fdc9101","tok-d8c34c7b041e","tok-e68f0c2e775b","tok-e0648e1ea806","tok-199547ef9ef6","tok-00e2d89a9715","tok-83a77603f9ed","tok-c7977d7d737b","tok-60fd08d1b157","tok-54071ebbb844","tok-17ebd380f1b0","tok-8715741a45be"]}]},"ruth-4-1":{"unit_id":"ruth-4-1","anchor_id":"ruth-4-1","source_ref":"Ruth 4:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-01ffd2094720","tok-78dc1ff8caee","tok-bccff9062e75","tok-39c86f07744f","tok-e7a61e679733","tok-5fe370d87b37","tok-0427d70c7808","tok-4001e8633b7b","tok-0a1d2fdc9101","tok-915c6cb48809","tok-68e8473522dd","tok-a3f167f1f2e2","tok-4ef595b412b3","tok-49f3b4d73e15","tok-75a38ff9efe1","tok-5634421d5c4e","tok-6b24259d16cd"]}]},"ruth-4-2":{"unit_id":"ruth-4-2","anchor_id":"ruth-4-2","source_ref":"Ruth 4:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c87eee5320da","tok-a5868d2c0c78","tok-9f50c8c69b8d","tok-1b421b4ced13","tok-4acbba9c2922","tok-9573598f13bd","tok-cae4409f5318","tok-05b8fcc21e3e"]}]},"ruth-4-3":{"unit_id":"ruth-4-3","anchor_id":"ruth-4-3","source_ref":"Ruth 4:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-138447ddcd91","tok-c2d3bb8649c4","tok-8555f35d59fc","tok-153362d92262","tok-7233e6b4f96c","tok-eabafa7736c6","tok-581831e53b09","tok-56d67972120e","tok-9b490d4c4b8b","tok-f32199821534","tok-dacd898b0050","tok-30bc1bcd87d2"]}]},"ruth-4-4":{"unit_id":"ruth-4-4","anchor_id":"ruth-4-4","source_ref":"Ruth 4:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3626db82f882","tok-d7429ac9d3cc","tok-1edae44fed3c","tok-aec03f8467a2","tok-14a8607db5bc","tok-4c6c13b21353","tok-3d48492299db","tok-52369b49a1f3","tok-143e662139c8","tok-aaa3e7515adc","tok-04f49bfd43ff","tok-776fbc7fc970","tok-ba24e8c9d5a8","tok-1caf3cfff94c","tok-650d9f71906f","tok-9526b6f080d4","tok-b5bc36eaa226","tok-45fc03601389","tok-369e73fa8a5d","tok-00e2d89a9715","tok-91114598dc1b","tok-b8b846149fe9","tok-0e3b477941e0","tok-0281947ea69f","tok-35bb81976bae","tok-dd94c18b2616","tok-d549039be467","tok-4e47ea64d36e"]}]},"ruth-4-5":{"unit_id":"ruth-4-5","anchor_id":"ruth-4-5","source_ref":"Ruth 4:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9573598f13bd","tok-e3375d211ded","tok-a6dc717f4f10","tok-70177af7d65a","tok-34b85a772e70","tok-9524731fa281","tok-a989a4eeda09","tok-dc205110cc4a","tok-32bd7e371ea8","tok-9aac57ddac05","tok-b6320473879f","tok-4d823a5835c5","tok-1f6c1a0376fe","tok-0bbbd217443d","tok-8ec822cbab96"]}]},"ruth-4-6":{"unit_id":"ruth-4-6","anchor_id":"ruth-4-6","source_ref":"Ruth 4:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9573598f13bd","tok-4e6073664708","tok-83a77603f9ed","tok-3ab766046290","tok-9e7ff9022aca","tok-7f2f909aad2b","tok-5347817aa4b9","tok-308ecf0b1169","tok-f87e031a126d","tok-a5ab4f091a53","tok-064fca6e5c8a","tok-4d976650f773","tok-59815a074581","tok-0378d4769cfa","tok-a422f8f2f6ba"]}]},"ruth-4-7":{"unit_id":"ruth-4-7","anchor_id":"ruth-4-7","source_ref":"Ruth 4:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4a58f708977b","tok-ac80527241f3","tok-687d0d5dce09","tok-ffa8b1f40e2c","tok-b63cdaaa8e04","tok-6ef6e625b9ea","tok-2619058bf5ca","tok-ea21b21a7dc7","tok-cefd7a108bb6","tok-7d4c23418ec3","tok-dc4026a730d2","tok-b3b9b94023a7","tok-a2d83a3f958e","tok-f51313f9624f","tok-afb12adb4c91"]}]},"ruth-4-8":{"unit_id":"ruth-4-8","anchor_id":"ruth-4-8","source_ref":"Ruth 4:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c3e912188561","tok-ea4cb6eeb5a5","tok-c204abfff0b0","tok-a8aad099ffda","tok-31dfaa2ba1e3","tok-856f5e5cf818"]}]},"ruth-4-9":{"unit_id":"ruth-4-9","anchor_id":"ruth-4-9","source_ref":"Ruth 4:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b6be534a226","tok-ffd6745ab871","tok-e33e2452a726","tok-3ba61616f306","tok-8f78960056de","tok-5b1ddd4327e9","tok-832471ed8cbc","tok-03ef374316ba","tok-d422c6dda866","tok-451b79e82002","tok-36d1539e22a9","tok-d34de04a28aa","tok-c23a97e93bcf","tok-819a66546d79","tok-4f85f5b8ac58","tok-e9b209d525d5","tok-ae909c02af81"]}]},"ruth-4-10":{"unit_id":"ruth-4-10","anchor_id":"ruth-4-10","source_ref":"Ruth 4:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-077b4948a722","tok-757159606089","tok-2f387a51311d","tok-1488b47c3971","tok-1eb14d5804bb","tok-eec797e734e3","tok-1fc4181f189c","tok-51f99bc91427","tok-e1e3f7454955","tok-b2ed32d49abb","tok-5046630070e9","tok-54b591b5e3d2","tok-a17be133feb8","tok-3caeef59ac1c","tok-54fc3ecfb6d8","tok-3ba9fe5746cd","tok-207320efd502","tok-5a8ffb95928f","tok-9ced58ebddee","tok-8715741a45be"]}]},"ruth-4-11":{"unit_id":"ruth-4-11","anchor_id":"ruth-4-11","source_ref":"Ruth 4:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-966a36217ba9","tok-c803428bd69e","tok-de405fb169f1","tok-16752b24d620","tok-005ed029541b","tok-ea7255bbf006","tok-579f997bffeb","tok-1fef637c53b5","tok-d06d6a4cef7f","tok-fd92aea83849","tok-04c8c9866922","tok-863fe4adce06","tok-4785d282f231","tok-aef992d6fc9e","tok-dd3da8faa421","tok-188fdb81e90e","tok-72a64a8b8067","tok-83ef11c68070","tok-3b30c19f2099","tok-5dc511f2419e","tok-23fadf78addd","tok-c027f9f3eb4e"]}]},"ruth-4-12":{"unit_id":"ruth-4-12","anchor_id":"ruth-4-12","source_ref":"Ruth 4:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3c0c330a2e05","tok-59f7549a8ffa","tok-a2d4273b0c20","tok-e043ec620f5e","tok-e108aa91069a","tok-9ae74b3e58ad","tok-39f54b0c0743","tok-43db914586a8","tok-4785d282f231","tok-4b28aa5001c0","tok-7cc1287ea63b","tok-e2703ec1242d","tok-48b891b6ce5e","tok-1376bba1261b"]}]},"ruth-4-13":{"unit_id":"ruth-4-13","anchor_id":"ruth-4-13","source_ref":"Ruth 4:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c2a4b39bf7b0","tok-666fd1883cda","tok-7c30d7877a5d","tok-3bc757891e72","tok-9a0340527a98","tok-dd059703d46f","tok-89e1f8025ebb","tok-bed122269ea6","tok-08cce0f38e7c","tok-60cc8bd24c2b","tok-9d3540aa2b46","tok-dff9ad0dcba0","tok-086bbf51793b"]}]},"ruth-4-14":{"unit_id":"ruth-4-14","anchor_id":"ruth-4-14","source_ref":"Ruth 4:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-517ade557d58","tok-52a71f1b27e6","tok-6e9cf66e920f","tok-73ebb1c54c32","tok-e8ff40f1ddc5","tok-d80a67fadf1f","tok-8caeb52d5c3a","tok-7ad2f29a282f","tok-938fe5c5dc3e","tok-ce73b592d167","tok-8b0196912a43","tok-cc68255cf51e","tok-df74290b0051","tok-afb12adb4c91"]}]},"ruth-4-15":{"unit_id":"ruth-4-15","anchor_id":"ruth-4-15","source_ref":"Ruth 4:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7da3197549e4","tok-7b03ec8337ef","tok-42cc32205178","tok-2e268125d6ee","tok-57dbf09e4cc1","tok-62b27597ead1","tok-00e2d89a9715","tok-024820378682","tok-9de084b7545d","tok-0706976b1d5d","tok-532c33c96779","tok-f08ea3236a9d","tok-6433299f4294","tok-bc52bcf96940","tok-d8c63fee0384"]}]},"ruth-4-16":{"unit_id":"ruth-4-16","anchor_id":"ruth-4-16","source_ref":"Ruth 4:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fffe7fc721c5","tok-584ad25a29b6","tok-acc914fb207c","tok-7639a5ea103d","tok-9aaa6f602aed","tok-2c5fc0ece2e0","tok-d353d7c4616c"]}]},"ruth-4-17":{"unit_id":"ruth-4-17","anchor_id":"ruth-4-17","source_ref":"Ruth 4:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-20e87a1a091f","tok-efc88b14e7a3","tok-2e4e0afe790a","tok-bf31462dba1d","tok-a38f77f13e04","tok-da4db6acb8c8","tok-93a36c44f077","tok-91b9ce7be6cf","tok-775376ef96ce","tok-c71dcbe7bde2","tok-afcfbe96be1e","tok-f12e0532a1e5","tok-79b1cb91a2fa","tok-16dd17fb84d1","tok-7b2f85fb13b1"]}]},"ruth-4-18":{"unit_id":"ruth-4-18","anchor_id":"ruth-4-18","source_ref":"Ruth 4:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0d8b723fa0bd","tok-91e62c1b1462","tok-ebdf94dcf195","tok-907ab7829be2","tok-d3a95487cfeb","tok-3d550044bcd8"]}]},"ruth-4-19":{"unit_id":"ruth-4-19","anchor_id":"ruth-4-19","source_ref":"Ruth 4:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d43a840c0e39","tok-f8dac84062e1","tok-34400b3060a0","tok-ed33a65f89e1","tok-d3a95487cfeb","tok-92ddb52d81dd"]}]},"ruth-4-20":{"unit_id":"ruth-4-20","anchor_id":"ruth-4-20","source_ref":"Ruth 4:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6e7c78e066c7","tok-f8dac84062e1","tok-004e49f6032d","tok-ecc8253370d3","tok-d3a95487cfeb","tok-302fc95f292c"]}]},"ruth-4-21":{"unit_id":"ruth-4-21","anchor_id":"ruth-4-21","source_ref":"Ruth 4:21","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-84ce6c5d33d9","tok-f8dac84062e1","tok-30aa2baa332f","tok-1b662ce2ad83","tok-d3a95487cfeb","tok-938f5ee44db3"]}]},"ruth-4-22":{"unit_id":"ruth-4-22","anchor_id":"ruth-4-22","source_ref":"Ruth 4:22","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c0d382d54261","tok-f8dac84062e1","tok-6057c0297c77","tok-82db2041cdfb","tok-d3a95487cfeb","tok-9a8055896be6"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/ruth.manifest.json","root_href":"../../"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const sourceSummary = (rows) => {
+        const row = cleanValues(rows)[0];
+        if (!row) return { source: "Source metadata incomplete", license: "N/A" };
+        const sourceId = row.source_id ? ` ${row.source_id}` : "";
+        return { source: `${row.source_name || "Source"}${sourceId}`, license: row.license || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        const sourceLine = document.createElement("p");
+        sourceLine.className = "claim-source";
+        sourceLine.textContent = `Source: ${source.source}`;
+        const licenseLine = document.createElement("p");
+        licenseLine.className = "claim-license";
+        licenseLine.textContent = `License: ${source.license}`;
+        card.append(sourceLine, licenseLine);
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>
