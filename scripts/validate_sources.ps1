@@ -222,6 +222,23 @@ if (Test-Path $homePagePath) {
   $errors.Add('Missing homepage index.html')
 }
 
+$aboutPagePath = Join-Path 'about' 'index.html'
+if (Test-Path $aboutPagePath) {
+  $aboutPage = Get-Content -Path $aboutPagePath -Raw -Encoding UTF8
+  foreach ($requiredText in @(
+    'Hebrew source texts retain their original source/version licenses',
+    'Lexical rows retain per-source licensing',
+    'No copyrighted English translations are imported',
+    'not an official edition'
+  )) {
+    if (-not $aboutPage.Contains($requiredText)) {
+      $errors.Add("About / License page missing required text '$requiredText'")
+    }
+  }
+} else {
+  $errors.Add('Missing About / License page: about/index.html')
+}
+
 $lexiconEntryIds = @{}
 $lexiconPath = Join-Path $LexicalDir 'lexicon.json'
 if (Test-Path $lexiconPath) {
