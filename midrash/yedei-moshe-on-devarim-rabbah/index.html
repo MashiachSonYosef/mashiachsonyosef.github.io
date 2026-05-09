@@ -58,7 +58,7 @@
     .placeholder { color: #8c857c; }
     .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .lexical-coverage strong { color: var(--text); font-weight: 400; }
-    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
     .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
     .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
     .lexical-slot { margin-top: 16px; }
@@ -779,11 +779,18 @@
       };
       const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
       const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
       const sourceSummary = (rows) => {
-        const row = cleanValues(rows)[0];
-        if (!row) return { source: "Source metadata incomplete", license: "N/A" };
-        const sourceId = row.source_id ? ` ${row.source_id}` : "";
-        return { source: `${row.source_name || "Source"}${sourceId}`, license: row.license || "N/A" };
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
       };
       const DISPLAY_THRESHOLD = 50;
       const MAX_VISIBLE_CLAIMS = 5;
@@ -815,13 +822,20 @@
         renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
         card.appendChild(renderings);
         const source = sourceSummary(claim.rows);
-        const sourceLine = document.createElement("p");
-        sourceLine.className = "claim-source";
-        sourceLine.textContent = `Source: ${source.source}`;
-        const licenseLine = document.createElement("p");
-        licenseLine.className = "claim-license";
-        licenseLine.textContent = `License: ${source.license}`;
-        card.append(sourceLine, licenseLine);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
         list.appendChild(card);
       };
       const appendClaimsUnderDetails = (parent, label, claims) => {
@@ -957,7 +971,7 @@
           strong.textContent = row.source_name || "Source";
         }
         title.appendChild(strong);
-        title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
         return title;
       };
       const renderSourceGroups = (sourceBox, groups) => {

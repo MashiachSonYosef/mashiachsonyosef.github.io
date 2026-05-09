@@ -441,7 +441,7 @@ foreach ($canary in $openingCanaryGroup) {
 $orotHtmlPath = Join-Path $PSScriptRoot '..\orot\index.html'
 if (Test-Path -LiteralPath $orotHtmlPath) {
   $orotHtml = Get-Content -LiteralPath $orotHtmlPath -Raw -Encoding UTF8
-  foreach ($requiredExternalMarker in @('data-lexical-config>', 'loadTokenRow', 'chunkPromises', 'fetchJson', 'sourceGroupsForStrict', 'source-claim', 'positionHudNearButton', 'document.body.appendChild(hud)')) {
+  foreach ($requiredExternalMarker in @('data-lexical-config>', 'loadTokenRow', 'chunkPromises', 'fetchJson', 'sourceGroupsForStrict', 'source-claim', 'positionHudNearButton', 'document.body.appendChild(hud)', 'displayLicense', 'overflow-wrap: anywhere; word-break: break-word')) {
     if (-not $orotHtml.Contains($requiredExternalMarker)) {
       throw "Orot page missing external lexical payload marker: $requiredExternalMarker"
     }
