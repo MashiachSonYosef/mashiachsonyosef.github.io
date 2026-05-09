@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Midrash Lekach Tov on Lamentations</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Midrash Lekach Tov on Lamentations</h1>
+        <p class="meta">7 total source units | imported 2026-05-08</p>
+        <p class="meta source-citation">Hebrew version: The Commentary of R. Tobia ben Elieser on Echah. London, 1908 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001922225">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Introduction <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#group-introduction">Start</a>
+              <details class="toc-section">
+                <summary>Introduction <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#section-introduction-introduction">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-introduction-introduction-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midrash-lekach-tov-on-lamentations-introduction-introduction-1" title="Midrash Lekach Tov on Lamentations, Introduction:1">1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>default <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#group-default">Start</a>
+              <details class="toc-section">
+                <summary>default <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#section-default-default">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-default-default-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#midrash-lekach-tov-on-lamentations-default-default-1-1-1" title="Midrash Lekach Tov on Lamentations 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#midrash-lekach-tov-on-lamentations-default-default-1-1-2" title="Midrash Lekach Tov on Lamentations 1:1:2">1:1:2</a></li>
+                    <li><a class="toc-unit" href="#midrash-lekach-tov-on-lamentations-default-default-1-1-3" title="Midrash Lekach Tov on Lamentations 1:1:3">1:1:3</a></li>
+                    <li><a class="toc-unit" href="#midrash-lekach-tov-on-lamentations-default-default-1-1-4" title="Midrash Lekach Tov on Lamentations 1:1:4">1:1:4</a></li>
+                    <li><a class="toc-unit" href="#midrash-lekach-tov-on-lamentations-default-default-1-1-5" title="Midrash Lekach Tov on Lamentations 1:1:5">1:1:5</a></li>
+                    <li><a class="toc-unit" href="#midrash-lekach-tov-on-lamentations-default-default-1-1-6" title="Midrash Lekach Tov on Lamentations 1:1:6">1:1:6</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h2 id="group-introduction">Introduction <span class="hud-badge">Lexical layer active</span></h2>
+          <h3 id="section-introduction-introduction">Introduction <span class="hud-badge">Lexical layer active</span></h3>
+          <h4 id="chapter-introduction-introduction-1">Chapter 1</h4>
+          <section class="unit" id="midrash-lekach-tov-on-lamentations-introduction-introduction-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midrash Lekach Tov on Lamentations, Introduction:1</h4></div>
+              <a class="anchor" href="#midrash-lekach-tov-on-lamentations-introduction-introduction-1" aria-label="Copy link to Midrash Lekach Tov on Lamentations, Introduction:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כי טוב קויתי ויבא רע וייחלה לאור ויבא אופל (הגה&quot;ה גלוי ומפרסם בין החכמי׳ שכל דברי איוב הם משל לישראל ולכן זה הפסוק הם דברי ישראל שמתרעמין בגלותם ואומר כי טוב קויתי ויבוא רע. אין טוב אלא הקב&quot;ה שנ׳ טוב יי׳ לבל בלומ׳ הייתי מקוה שיי׳ יתברך יהיה לצינה ולמגן לישראל. ויבוא רע זה נבוכדנצר בבית ראשון ואספסיינוס בבית שני. ואייחלה לאור השכינה ויבוא אופל הצרות. ס&quot;א כי טוב קויתי זה הקב&quot;ה ויבוא רע זה סמאל הקנאה והמקנא כלומ׳ בהיותנו צריכים לסייוע אלהי ואנחנו חטאנו לו ושמנו הפסל בבית המקדש ובסיבת זה ואייחלה לאור ויבוא אופל הצרות וה׳ למען רחמיו יראנו נחמת ציון בשוב יי׳ שבות עמו יגל יעקב ישמח ישראל אמן) אמר איוב כסבור הייתי לראות טוב כל ימי חיי כענין שנ׳ (איוב כט יח) ואמר עם קני אגוע ובחול ארבה ימים ויבוא רע זה השטן שבא לקטרג ומנין שמקטרג של אדם נקרא רע שנ׳ (בראשית ח כא) כי יצר לב האדם רע מנעוריו ואייחלה לאור כענין שנ׳ (איוב כט כד) ואור פני לא יפילון שהיו בושים בני אדם ממנו. ויבוא אופל (איוב יט יח) גם עוילים מאסו קי אקומה וידברו בי תעבוני מתי סודי וזה אהבתי נהפכו בי. אמר טוביהו ב&quot;ר אליעזר ז&quot;ל יותר מח׳ מאות שנה עברו מן איוב עד שעמד ירמיהו בן חלקיהו וכדרך שהגיע לאיוב הגיע לירמיהו. (איוב ג א) אני הגבר ראה עני אמר אני דומה לאיוב שנ׳ עליו (איוב לד ז) מי גבר כאיוב ישתה לעג כמים איוב קלל את יומו שנ׳ (איוב ג ב) יאבד יום אולד בו וירמיהו קלל את יוו שנ׳ (ירמיה כ יד) ארור היום אשר יולדתי בו יום אשר ילדתני אמי איוב אמר (איוב ג יא) למה לא מרחם אמות מבטן יצאתי ואגוע וירמיהו אמר (ירמיה כ יז) אשר לא מותתני מרחם ותני לי אמי קברי ורחמה הרת עולם למה זה מרחם יצאתי לראות עמל ויגון איוב אמר (איוב ל כו) כי טוב קויתי וירמיהו אמר (ירמיה ח טו) קוה לשלום ואין טוב אמר ירמיהו מקוה הייתי שהקב&quot;ה נותן שלום לישראל ואין טוב על שאינן עוסקין בתורה (ישעיה מח כב) אין שלום אמר יי׳ לרשעים לעת מרפא שיחזרו בתשובה והנה בעתה כענין שנ׳ (ירמיה ט יא) מי האיש החכם ויבן את זאת וגו׳ (ירמיה ט יא) על מה אבדה הארץ נצתה כמדבר מבלי עובר ויאמר יי׳ על עזבם את תורתי ואומ׳ (ישעיה כב ג) כל קציניך נדדו יחד מקשת אוסרו כל נמצאיך (מנאציך) אסרו יחדו מרחוק עמדו על שעמדו רחוק מן התורה וכן מן המצוות לפיכך אסרו כיון שראה ירמיהו שלא היה בהם תקנה התחיל לקונן עליהם איכה ובאי זה זמן נכתבה מגילת איכה בשנה הרביעית ליהויקים דכתיב ויהי בשנה הרביעית ליהויקים בן יאשיהו מלך יהודה היה הדבר הזה אל ירמיהו מאת יי׳ לאמר קח לך מגלת ספר וכתבת אליה את כל הגוים מיום דברתי אליך ממי יאשיהו ועד היום הזה וכתי׳ ויקרא ירמיהו את ברוך ויכתב ברוך בן נריה מפי ירמיהו את כל דברי יי׳ אשר דבר אליו על מגלת ספר וישלח המלך את יהודי לקחת את המגלה ויקחה מלשכת אלישמע הספר ויקראה יהודי באני המלך ובאזני כל השרים העומדים מעל המלך והמ׳ יושב בית החורף ובחדש התשיעי ואת האח לפניו מבוערת (לו) עצים הנדלקים באחוה ויהי כקרוא יהודי שלש דלתות וארבעה יקרענה בתער הסופר והשלך על האש אשר על האח ויהי דבר יי׳ אל ירמיהו אחרי שרף המלך את המגלה ואת הדברים אשר כתב ברוך מפי ירמיהו לאמר שוב קח לך מגלה אחרת וכתוב עליה את כל הדברים הראשונים וגו׳ וירמיהו לקח מגלה אחרת ויתנה אל ברוך בן נריה הסופר ויכתב עליה מפי ירמיהו את כל דברי הספר אשר שרף יהויקים מלך יהודה באש ועוד נוסף עליהם דברים רבים כהמה ויכתב זו פרשת איכה ישבה בדד ועוד נוסף זו פרשת איכה יעיב דברים זו פרשת איכה יועם זהב רבים זו אני הגבר דאתי מתלת אלפא ביתין כהמה זו פרשת זכור יי׳ מה היה לנו כנגד אלפא בית׳ כב׳ פסוקים איכה שאלו את בן זומא דרוש לנו דבר אחד ממגלת קינות אמר להם לא גלו ישראל עד שכפרו בייחודי של מקום ובעשרת הדברים ובמילה שניתנה לעשרים דור ובחמישה חומשי תורה כמנין איכ&quot;ה. ר׳ לוי אומ׳ עד שכפרו ב&quot;לו כריתות כמנין איכ&quot;ה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h2 id="group-default">default <span class="hud-badge">Lexical layer active</span></h2>
+          <h3 id="section-default-default">default <span class="hud-badge">Lexical layer active</span></h3>
+          <h4 id="chapter-default-default-1">Chapter 1</h4>
+          <section class="unit" id="midrash-lekach-tov-on-lamentations-default-default-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midrash Lekach Tov on Lamentations 1:1:1</h4></div>
+              <a class="anchor" href="#midrash-lekach-tov-on-lamentations-default-default-1-1-1" aria-label="Copy link to Midrash Lekach Tov on Lamentations 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>איכה.</strong> אמ׳ ירמיהו משה ראה את ישראל רבים ככוכבים השמים ואמר עליהם (דברים א יג) איכה אשא לבדי טרחכם (דברים י׳:ד׳) י&quot;י אלהיכם הרבה אתכם והנכם היום ככוכבי השמים לרוב ועכשיו הם יושבים כאבל וקונן עליהם איכה אמר ירמיהו הנביא אֵי כה איה הבטחה שאמ׳ הש׳ לאברהם אבינו (בראשית טו ה) הבט נא השמימה וספור הכוכבים אם תוכל לספר אותם ויאמר לו כה יהיה זרעך איה כה שנאמר לאבינו יעקב (שמות יט ג) כה תאמר לבית יעקב וגו׳ ולמה נאמרו קינות באל&quot;ף בי&quot;ת כדי שיהיו נגרסים בפי המקוננים ד&quot;א למה לקו ישראל באל&quot;ף בי&quot;ת הם עברו מאל&quot;ף ועד תי&quot;ו לפיכך לקו מא׳ ועד תי&quot;ו תדע לך שהרי אלות שבמשנה תורה מן וי&quot;ו עד ה&quot;א שנ׳ (דברים כח טו) והיה אם לא תשמע עד ואין קונה שהרי כ&quot;ד פסוקים וכ&quot;ב אותיות מנין אל&quot;ף בי&quot;ת ס&quot;א למה לקו באל&quot;ף בי&quot;ת אמ׳ הש׳ (ויקרא כו מג) יען וביען במשפטי מאסו אני אמרתי לברכם מא׳ ועד תי&quot;ו שנ׳ (ויקרא כו ג, לג) אם בחוקותי עד קוממיות והם סרחו ולקו מא׳ ועד תי&quot;ו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="midrash-lekach-tov-on-lamentations-default-default-1-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midrash Lekach Tov on Lamentations 1:1:2</h4></div>
+              <a class="anchor" href="#midrash-lekach-tov-on-lamentations-default-default-1-1-2" aria-label="Copy link to Midrash Lekach Tov on Lamentations 1:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ישבה.</strong> דמה את ישראל לאשה וקרא עליה לשון נקבה ישבה אמ׳ השם אני אמרתי (הושע ב כב) וארשתיך לי באמונה אתי מלבנון כלה ועכשיו תשבי בדודה אני אמרתי (ויקרא כה יח) וישבתם על הארץ לבטח ועכשיו (ישעיה ה ח) והושבתם לבדכם בקרב הארץ בדד אני אמרתי (דברים לג כח) וישכון ישראל בטח בדד עין יעקב ועכשיו בדד יהיה מושבה כענין שנ׳ (ויקרא יג מו) בדד ישב מחוץ למחנה מושבו. בדד. על עסק עשרת הדברות שעזבתם. מנין בדד תחת שהיו ככוכבי השמים לרוב עכשיו ישבה בדד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="midrash-lekach-tov-on-lamentations-default-default-1-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midrash Lekach Tov on Lamentations 1:1:3</h4></div>
+              <a class="anchor" href="#midrash-lekach-tov-on-lamentations-default-default-1-1-3" aria-label="Copy link to Midrash Lekach Tov on Lamentations 1:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העיר רבתי עם.</strong> העיר זו ירושלים וכן הוא אומ׳ (תהלים מח ט) בעיר י&quot;י צבאות בעיר אלהינו אמר ירמיהו עיני ראו ולא זר העיר שראיתי בעיני שהיתה רבתי עם. רבתי יו&quot;ד יתירה כמו המשפילי המגביהי לפי שאות יו&quot;ד הוא ייפוי הלשון בין בתחלת התיבה בין בסוף התיבה בתחלת התיבה כמו (שמות טו א) אז ישיר (יהושע ח ל) אז יבנה יהושע (תהלים קו יט) יעשו עגל בחורב וכל אלו וכל כיוצא בהם פירושם בלא יו&quot;ד ובסוף התיבה (איוב לח כד) עלי ארץ וכמו אלו שאמרנו (תהלים קיג ו) המשפילי והמגביהי בא וראה מה כתו׳ בבית הראשון (מ&quot;א ח ס&quot;ג) ויזבח שלמה את זבח הלשמים אשר זבח ליי&quot; בקר כ&quot;ב אלף וצאן ק&quot;כ אלף ותנן הפר קרב בכ&quot;ד אלף כהנים והאיל קרב בי&quot;א אלף כהנים. ואם הכהנים כך י&quot;ב שבטים על אחת כמה וכמה שלא היה להם מנין וכן הוא או׳ (מ&quot;א ד ב) יהודה וישראל רבים כחול וגו׳ ובבית שני אז&quot;ל אגריפס המלך בקש לעמוד על מנין של ישראל ואמ׳ לכהנים הפרישו כוליא מכל פסח ופסח והפרישו לו ת&quot;ר אלף זוגות כליות כפלים מיוצאי מצרים חוץ מטמא ושהיה בדרך רחוקה ואין לך כל פסח ופסח שלא היה בו יותר מעשרה במשכת (במכסת) נפשות. ואם תאמר והלא הכליות היו עולין לגבוה והיכי עביר הכי אלא לא הפרישו כליות ממש וכנגד הכליות היו לוקחין אבנים כנגדן והביאון למלך.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="midrash-lekach-tov-on-lamentations-default-default-1-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midrash Lekach Tov on Lamentations 1:1:4</h4></div>
+              <a class="anchor" href="#midrash-lekach-tov-on-lamentations-default-default-1-1-4" aria-label="Copy link to Midrash Lekach Tov on Lamentations 1:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היתה כאלמנה.</strong> שהיא יושבת עגומה ועגונה ממתנת בעלה שהניחה והלך לו בדרך רחוקה ולא אלמנה ממש וכן הוא או׳ (ירמיה נא ה) כי לא אלמן ישראל ויהודה מאלהיו כשם שנ׳ (הושע ה י) בישראל היו שרי יהודה כמשיגי גבול כנגד מעשיהם היתה פורענותם דאמר ר׳ אבהו הם לא פילשו אחר מדת הדין שנא׳ (במדבר יא א) ויהי העם כמתאוננים (הושע ד טו) כי כפרה סוררה ומדת הדין לא פלשה אחריהם שנ׳ היתה כאלמנה ולא אלמנה ממש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="midrash-lekach-tov-on-lamentations-default-default-1-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midrash Lekach Tov on Lamentations 1:1:5</h4></div>
+              <a class="anchor" href="#midrash-lekach-tov-on-lamentations-default-default-1-1-5" aria-label="Copy link to Midrash Lekach Tov on Lamentations 1:1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>רבתי בגוים.</strong> מלשון (ירהיה מא א) ורבי המלך וכן (אסתר א כ) כי רבה היא מלמד שהיו ישראל גדולים בעיני האומות ושרי המדינות. ס&quot;א רבתי בגוים בחכמות כענין שנ׳ (מ&quot;א ה י) ותרב חכמת שלמה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="midrash-lekach-tov-on-lamentations-default-default-1-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Midrash Lekach Tov on Lamentations 1:1:6</h4></div>
+              <a class="anchor" href="#midrash-lekach-tov-on-lamentations-default-default-1-1-6" aria-label="Copy link to Midrash Lekach Tov on Lamentations 1:1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שרתי.</strong> בתורה כענין שנא׳ (משלי ח ט&quot;ז) בי שרים ישורו תני ר׳ חגי בשם ר׳ יוסף כל מקום שהולך ירושלמי היו מושבין אותו בקשיתרא לשמוע חכמתו והיא היתה למס תחת שהיו האומות ומלכיהם נותנין מס לישראל עכשיו היתה למס הם נותנין להם מס וכן אנו מוצאין משלמה דכתי׳ וכל הארץ מבקשים את פני שלמה לשמוע את חכמתו אשר נתן אלהים בלבו והמה מביאים איש מנחתו כלי כסף וכלי זהב ועתה למס נותנין מס למלך אשור מדרש היתה למס תחת סמל הקנאה שהיו משתחוים לו ועל שעברו על תנאי סיני חושבניה דדין כחושבינה דדין על כן היו למס.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"midrash-lekach-tov-on-lamentations","work_title":"Midrash Lekach Tov on Lamentations","work_slug":"midrash/midrash-lekach-tov-on-lamentations","scope_label":"All imported Hebrew works","generated_at":"2026-05-09T01:57:24.530Z","total_occurrences":1342,"units":{"midrash-lekach-tov-on-lamentations-introduction-introduction-1":{"unit_id":"midrash-lekach-tov-on-lamentations-introduction-introduction-1","anchor_id":"midrash-lekach-tov-on-lamentations-introduction-introduction-1","source_ref":"Midrash Lekach Tov on Lamentations, Introduction:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4a68bf5279ce","tok-73700b6e3cd3","tok-238426d497f3","tok-661e4024f815","tok-4c830930c4d9","tok-9d44a937e88b","tok-80a9dec52d95","tok-661e4024f815","tok-84d5b4e539ac","tok-560c38f3855f","tok-8312b971a891","tok-6afe24b82fdc","tok-823e204140f2","tok-ffdbfc4185e2","tok-6028d782319b","tok-d5b4c99bc0fc","tok-7d579d1e56ca","tok-da583173a8d4","tok-51a45ac0c683","tok-8b0b470f4c9a","tok-fe3901e89c53","tok-ff1e31ee7270","tok-ce40dfd3ed5c","tok-da583173a8d4","tok-d5b4c99bc0fc","tok-75db2f41a9be","tok-f94744cc617e","tok-40b5ba284d30","tok-ec8e10a16a0b","tok-4a68bf5279ce","tok-73700b6e3cd3","tok-238426d497f3","tok-fac1ff42a74c","tok-4c830930c4d9","tok-a92e9c682686","tok-73700b6e3cd3","tok-81b5cbf02eb7","tok-559f239d346a","tok-66b083a12025","tok-73700b6e3cd3","tok-8a1030e4d618","tok-a02ef4d31f15","tok-17e82bea81ba","tok-52739039c88f","tok-0250c0f38356","tok-d809badfd5c8","tok-84829834390a","tok-e2c323ebdec7","tok-aebad19f57db","tok-383b1c928b54","tok-8b0b470f4c9a","tok-fac1ff42a74c","tok-4c830930c4d9","tok-ff1e31ee7270","tok-62959d51055f","tok-4eb909aca60d","tok-db42b8207e27","tok-e8774876a7bc","tok-4eb909aca60d","tok-ce640fb2c6da","tok-3e6e2e5754bc","tok-80a9dec52d95","tok-eadfced4b3f6","tok-fac1ff42a74c","tok-84d5b4e539ac","tok-eb5d21253297","tok-38d8dc44cd71","tok-4a68bf5279ce","tok-73700b6e3cd3","tok-238426d497f3","tok-ff1e31ee7270","tok-559f239d346a","tok-fac1ff42a74c","tok-4c830930c4d9","tok-ff1e31ee7270","tok-e44b4e3a22da","tok-136e39513dde","tok-e6c1c953c12a","tok-5870158e4a1c","tok-e06a6853e5dc","tok-2afc2b77bbc0","tok-bb9a982e8f86","tok-dac351deecb5","tok-9a58594ae145","tok-f4a270c9c975","tok-a882fc9d28fd","tok-32ada897c80c","tok-6b46781ed5ec","tok-4eb909aca60d","tok-a820fff2563c","tok-ae794d3bbf01","tok-ff1e31ee7270","tok-3e6e2e5754bc","tok-80a9dec52d95","tok-fac1ff42a74c","tok-84d5b4e539ac","tok-eb5d21253297","tok-f8c4b9f02959","tok-c4c3222376dd","tok-950b6813d638","tok-8a76cba47ba5","tok-5a5c373d5b1c","tok-05a12a881748","tok-d4302ae642df","tok-8a1030e4d618","tok-9bee82ac75e7","tok-90507be0bf1d","tok-4f9e70016ccc","tok-a4f33c02a8ba","tok-ad039efbc36c","tok-75db2f41a9be","tok-5f05a135780e","tok-90accbad2724","tok-7d579d1e56ca","tok-e42876565033","tok-52739039c88f","tok-5eda43a57150","tok-73700b6e3cd3","tok-60fa345eff74","tok-5439341d8322","tok-e01aebc5cf89","tok-23dc33f03036","tok-66b083a12025","tok-7d579d1e56ca","tok-585092f5d3c0","tok-4f0f8c164bea","tok-1459d059a09f","tok-3683e6d1f832","tok-7839b54b4884","tok-04438998ab23","tok-d4b2337f61d5","tok-976fba803cd1","tok-52ae6499eeef","tok-fac1ff42a74c","tok-4c830930c4d9","tok-ff1e31ee7270","tok-9d9e562c45ae","tok-0cb036300e2f","tok-0c5381d31760","tok-92b5c305683a","tok-95a30e8011b6","tok-83f0a5c0c856","tok-6727181f952c","tok-109b01adafe3","tok-4c830930c4d9","tok-66b083a12025","tok-5ce8f52c5486","tok-57a728cacdd2","tok-e3185a998457","tok-4a68bf5279ce","tok-9e8484160cff","tok-8775327d60d7","tok-e94eae286136","tok-4c830930c4d9","tok-bc561ebdcbce","tok-3e6e2e5754bc","tok-80a9dec52d95","tok-23dc33f03036","tok-66b083a12025","tok-7d579d1e56ca","tok-585092f5d3c0","tok-3fd8d761a570","tok-d7f4c054b45e","tok-556ee9e58488","tok-8df669ffa2dd","tok-2fe97a123257","tok-067722c7b4b7","tok-ec09b95ce409","tok-36eb30de0b13","tok-6727181f952c","tok-acf75722a54e","tok-fac1ff42a74c","tok-84d5b4e539ac","tok-7d579d1e56ca","tok-304628e7787d","tok-4f0f8c164bea","tok-b65a225c3a53","tok-872bbaab0667","tok-3662a896ec78","tok-62b161a8d4de","tok-a5d062bf887e","tok-19839f2f1def","tok-0fd09401a131","tok-5acd51503fc8","tok-030f9b891122","tok-a35ffd714f7c","tok-7bb734254aac","tok-e0036f16eaaa","tok-af25c9724918","tok-0fd09401a131","tok-90accbad2724","tok-5fbe00b953cf","tok-8d6abc1bb8f3","tok-7a1b8bcbf59d","tok-a747b7c2d02a","tok-71eda9fc6ea2","tok-699ab54bac1d","tok-43008ee05844","tok-81bf0322e72c","tok-7fb5b9a93cc7","tok-3687500d9720","tok-7d579d1e56ca","tok-777df30dc34e","tok-be86a426d5f9","tok-9b47824dff31","tok-64a2103c1a1a","tok-7716d8390d16","tok-53d25192c813","tok-0f8e62687d5d","tok-0f230688b09f","tok-70f92fcfce09","tok-53f706972cec","tok-7d579d1e56ca","tok-a113fa3447c6","tok-c382eadde75a","tok-ff6f38a8e394","tok-90dac4274765","tok-11c1d99a49b6","tok-ce5022f535a2","tok-90accbad2724","tok-ff6f38a8e394","tok-3be184dc0377","tok-0f230688b09f","tok-66b083a12025","tok-725c4bb674ab","tok-7d579d1e56ca","tok-8355206bc478","tok-cc3c63571fd8","tok-d5b99be8f612","tok-be11b5c9ad10","tok-771626fcbbfe","tok-430988a1698f","tok-af036d8dc1fc","tok-8c28c10c9db1","tok-7d579d1e56ca","tok-8fafaa896350","tok-ff9a52fd3666","tok-3c9d3789749f","tok-66b083a12025","tok-7d579d1e56ca","tok-a113fa3447c6","tok-34f6aa9a4066","tok-18e92cecad8b","tok-e13184809924","tok-c8a4ee6739c5","tok-c1605d70cc2b","tok-bcb0a4f2797a","tok-8fafaa896350","tok-ff9a52fd3666","tok-b4fc6adaa261","tok-66b083a12025","tok-6053bc5596fa","tok-600ce6b4537e","tok-a97f2d21f10f","tok-f7788a51a3c4","tok-07ca32278afc","tok-227c41fc7eea","tok-697914671d57","tok-c1605d70cc2b","tok-e13184809924","tok-227c41fc7eea","tok-81ae63b87272","tok-99406a314673","tok-7d579d1e56ca","tok-90accbad2724","tok-7d579d1e56ca","tok-a113fa3447c6","tok-4d2c26f41a50","tok-84256af4bd12","tok-8df669ffa2dd","tok-0966150a2e6f","tok-cb00f7bddf99","tok-aac6579f636d","tok-83cb394e8ccc","tok-6ca7db9558bc","tok-bcb0a4f2797a","tok-90accbad2724","tok-6053bc5596fa","tok-600ce6b4537e","tok-be7f8074b017","tok-227c41fc7eea","tok-8df669ffa2dd","tok-c33b055b8169","tok-0966150a2e6f","tok-942fe076e323","tok-105d5e492f72","tok-99406a314673","tok-c46a283bb74b","tok-239c9b455c8a","tok-73ffe5a89d14","tok-26fb90beb88f","tok-84256af4bd12","tok-ff1e31ee7270","tok-0966150a2e6f","tok-83cb394e8ccc","tok-5eda43a57150","tok-e3f10dbf4b4c","tok-47fb065e62b5","tok-7d579d1e56ca","tok-90accbad2724","tok-7d579d1e56ca","tok-bbe5b0275a60","tok-32170827d762","tok-4a68bf5279ce","tok-73700b6e3cd3","tok-238426d497f3","tok-bcb0a4f2797a","tok-90accbad2724","tok-6053bc5596fa","tok-57a728cacdd2","tok-828e36c78455","tok-f14c448c3d97","tok-80a71e9589be","tok-e5deb0b9f0d0","tok-73700b6e3cd3","tok-90accbad2724","tok-9b47824dff31","tok-0250c0f38356","tok-52739039c88f","tok-2d79b0853420","tok-11d5d3a51025","tok-9b2e25405291","tok-8b0b470f4c9a","tok-e5deb0b9f0d0","tok-73700b6e3cd3","tok-a346e5834abf","tok-ff9cebb05ba2","tok-f4668c01c957","tok-3b75bc91e9fb","tok-17ebf526e26f","tok-53f8f9b7a591","tok-a343fb399768","tok-a92e9c682686","tok-9b2e25405291","tok-90accbad2724","tok-8a1030e4d618","tok-40d16e297456","tok-516974a477d8","tok-94bac8380513","tok-ee4de7ce38d9","tok-b98b2b78799a","tok-0b7edf2b1783","tok-df27269ff235","tok-23dc33f03036","tok-66b083a12025","tok-6053bc5596fa","tok-e7a1526de3a6","tok-4d2c26f41a50","tok-d5b99be8f612","tok-abac4028e704","tok-8b49138b3959","tok-571e7918e376","tok-ff9a52fd3666","tok-a0cd58011924","tok-92c63655bee8","tok-6053bc5596fa","tok-e7a1526de3a6","tok-4d2c26f41a50","tok-a346e5834abf","tok-b2c0fca744e2","tok-2d9dea013118","tok-05be6bcb4fab","tok-913abb074419","tok-f938c13e6d53","tok-bb1f17a254da","tok-846484e8b27a","tok-02826ecd8dfd","tok-8a1030e4d618","tok-a346e5834abf","tok-2a9ceae4335a","tok-ff9a52fd3666","tok-d91cf408d4de","tok-b0f5591d6dd3","tok-17ebf526e26f","tok-a343fb399768","tok-a113fa3447c6","tok-60fa345eff74","tok-a2ac681a2ff2","tok-0e38f13c7246","tok-cdf2c4485471","tok-49c2e67070be","tok-01fce27c4146","tok-60fa345eff74","tok-5d43b8123069","tok-3fd75977f85b","tok-a16658edb903","tok-33e651a5c3da","tok-47f7550a3dc6","tok-5505295c0ac6","tok-a346e5834abf","tok-2611962e3ce6","tok-4c2353d27ded","tok-3687500d9720","tok-d1b6e7b728be","tok-268798e59e54","tok-3687500d9720","tok-541ff0b8b6de","tok-b9c6c8dc84a6","tok-a16658edb903","tok-209cc47921a1","tok-bde8e6ec09d9","tok-9b47824dff31","tok-7858bd46018b","tok-7dfa9a2f34f2","tok-7f857712a9d6","tok-22e6342755f6","tok-0e8bc07f8bae","tok-c12a82c7903d","tok-afd3a2ef8fa1","tok-e1d422b9b467","tok-27aaee79bf9a","tok-ff1e31ee7270","tok-4a3a10a4df46","tok-dfc50c6ca1d9","tok-d1229bb0c6ae","tok-e1d422b9b467","tok-e6a1f43075d5","tok-f8167adcf05a","tok-2ea0386df2a8","tok-c7fe92305f29","tok-8f90954e8fc6","tok-e6a1f43075d5","tok-f8167adcf05a","tok-2ea0386df2a8","tok-64a2103c1a1a","tok-be2ca211703a","tok-813e31a4b55c","tok-f1ae11926f98","tok-7dfa9a2f34f2","tok-384742812cca","tok-a165aeb0cc53","tok-8f39929bd458","tok-9b47824dff31","tok-c850039493ba","tok-8a1030e4d618","tok-a2fa6405167c","tok-e3f40a0b195c","tok-69da6b09df06","tok-5ca7a73dd3d2","tok-9528180850f5","tok-e07abff30d85","tok-52ad1245f58d","tok-ff9a52fd3666","tok-60fa345eff74","tok-683e5bfd8f7c","tok-5a744525af4b","tok-4fb570e7598f","tok-941a022ccda6","tok-a13f8b38e477","tok-be2ca211703a","tok-b306ff9bced3","tok-07ca32278afc","tok-a165aeb0cc53","tok-7ec402c184a4","tok-e215f61caaf8","tok-9b47824dff31","tok-ff9a52fd3666","tok-d2378d63cc26","tok-9140c79d3959","tok-d2378d63cc26","tok-64a2103c1a1a","tok-1c790bec920b","tok-4216c14f494f","tok-9b47824dff31","tok-ff9a52fd3666","tok-60fa345eff74","tok-d5b4c99bc0fc","tok-8a1030e4d618","tok-227c41fc7eea","tok-a3acd6ae0d49","tok-96266b717f5f","tok-a346e5834abf","tok-5ca7a73dd3d2","tok-9528180850f5","tok-bb8f30a1e09a","tok-a89ba78d90b1","tok-ff9a52fd3666","tok-198985c29040","tok-9f34953430f5","tok-ff9a52fd3666","tok-6da3c75e895b","tok-5a39dfe25b7c","tok-4fccda301018","tok-7f54322639b4","tok-8037aa26a5f0","tok-dbce6d5da684","tok-198985c29040","tok-d634b587d608","tok-a89ba78d90b1","tok-d1cbc6e37a80","tok-60fa345eff74","tok-7e469f0b408c","tok-2b00667d0e67","tok-b3864adae0ae","tok-a89ba78d90b1","tok-d1dc5e9d3827","tok-dc048fd45173","tok-8d5629009de8","tok-23ac21d802e3","tok-498503c801a0","tok-869e555c21c1","tok-a1b24ed1c3ee","tok-77034f80a88a","tok-a8568e3ec672","tok-948965833c02","tok-a882fc9d28fd","tok-34339521a1f2","tok-c022fbba4d44","tok-7fa0cbb7ab01","tok-8f90954e8fc6","tok-79b8d7689c51","tok-198985c29040","tok-4d40a307ebf8","tok-288d47027968","tok-eddff7de8e1e","tok-5fc88907dfea","tok-9600f84da6d0","tok-f04abd63a02b","tok-8944624c9f24","tok-a346e5834abf","tok-9562e440a0e4","tok-227c41fc7eea","tok-a346e5834abf","tok-77034f80a88a","tok-8f90954e8fc6","tok-a3acd6ae0d49","tok-8a1030e4d618","tok-8f39929bd458","tok-9b47824dff31","tok-9347576037e2","tok-ad277a6e629f","tok-a89ba78d90b1","tok-ff9a52fd3666","tok-6da3c75e895b","tok-a1b24ed1c3ee","tok-4725f829f5f9","tok-227c41fc7eea","tok-13755f4d5803","tok-d2378d63cc26","tok-4216c14f494f","tok-9b47824dff31","tok-a2fa6405167c","tok-fee0a84e0c76","tok-e3f40a0b195c","tok-69da6b09df06","tok-a6a4bae3a24e","tok-2cb1db015ef7","tok-766b2ae435a4","tok-c1b7e745cd06","tok-ff9a52fd3666","tok-60fa345eff74","tok-4725f829f5f9","tok-f742ca504e79","tok-92c63655bee8","tok-bcb0a4f2797a","tok-3978f8282e2f","tok-a6a4bae3a24e","tok-2cb1db015ef7","tok-2d79b9e59c9d","tok-8f39929bd458","tok-d2378d63cc26","tok-64a2103c1a1a","tok-1c790bec920b","tok-f04abd63a02b","tok-9140c79d3959","tok-c1b7e745cd06","tok-4216c14f494f","tok-9b47824dff31","tok-ff9a52fd3666","tok-60fa345eff74","tok-d5b4c99bc0fc","tok-8037aa26a5f0","tok-227c41fc7eea","tok-ad277a6e629f","tok-925fc1b1450c","tok-813e31a4b55c","tok-f1ae11926f98","tok-6ae4f8b194ad","tok-d712334ff312","tok-e73db929be17","tok-afd3a2ef8fa1","tok-e6a1fd8ab6f7","tok-7bad904485e7","tok-107376c6b516","tok-9140c79d3959","tok-336342da995b","tok-15bbb63b1597","tok-e1d422b9b467","tok-ea96f95ec6b5","tok-04aa45bf0384","tok-d712334ff312","tok-e73db929be17","tok-336342da995b","tok-15bbb63b1597","tok-e1d422b9b467","tok-15825613c621","tok-e6a1fd8ab6f7","tok-336342da995b","tok-15bbb63b1597","tok-e1d422b9b467","tok-6881658c6a78","tok-4384eb6546ab","tok-7bad904485e7","tok-336342da995b","tok-ff6f38a8e394","tok-90dac4274765","tok-95b387872b43","tok-1755b27d9582","tok-39a297ca2d59","tok-4b154d66f0d0","tok-107376c6b516","tok-336342da995b","tok-15bbb63b1597","tok-8308a0f70520","tok-8a1030e4d618","tok-b2c0fca744e2","tok-7dfa9a2f34f2","tok-7a77087ad648","tok-8f58d2cff38d","tok-39a297ca2d59","tok-6eb961b12f5c","tok-6ad4b9232edb","tok-c007a8c445a5","tok-e1d422b9b467","tok-ef18a74aae2c","tok-ff9a52fd3666","tok-64a2103c1a1a","tok-32986b1ab5df","tok-28bf61037492","tok-7a77087ad648","tok-a3acd6ae0d49","tok-30ebce089e46","tok-8d9157893310","tok-48e98d2d752b","tok-90accbad2724","tok-09ad4e2daa3e","tok-8df669ffa2dd","tok-d09a875d4936","tok-75db2f41a9be","tok-777df30dc34e","tok-b8b6b6b0a9a1","tok-ea8ae0652230","tok-83f0a5c0c856","tok-e9372cf5e3ae","tok-bc1d6cb0d5f9","tok-4725f829f5f9","tok-6cb71559d75e","tok-cd8b152dcadd","tok-235cf2483158","tok-77e48e82d5b5","tok-87b18593f555","tok-9d62aad75150","tok-d34e964604d4","tok-e7003a344fac","tok-ca3b56998176","tok-2b611b3ee0fd","tok-01ae1050d3f9","tok-372950eebd58","tok-777df30dc34e","tok-b8b6b6b0a9a1","tok-e789b4e88880","tok-455100a046a1","tok-e7003a344fac","tok-ca3b56998176"]}]},"midrash-lekach-tov-on-lamentations-default-default-1-1-1":{"unit_id":"midrash-lekach-tov-on-lamentations-default-default-1-1-1","anchor_id":"midrash-lekach-tov-on-lamentations-default-default-1-1-1","source_ref":"Midrash Lekach Tov on Lamentations 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e1d422b9b467","tok-515a30ce6151","tok-9b47824dff31","tok-47ba2eea548b","tok-11c1d99a49b6","tok-ff9a52fd3666","tok-75db2f41a9be","tok-7bad904485e7","tok-6adde8b6b78e","tok-300d5ac6140b","tok-1459d059a09f","tok-afd3a2ef8fa1","tok-e6a1fd8ab6f7","tok-c382eadde75a","tok-1f07c189a2f6","tok-e1d422b9b467","tok-471128aeae2e","tok-a0609c4fd403","tok-a9ee0ad5247c","tok-e6a1fd8ab6f7","tok-220223502759","tok-94a2698e1b52","tok-369317ced338","tok-0d8153530d1b","tok-b6282128a16e","tok-b5592d74cf47","tok-400a50b3fc79","tok-07ca32278afc","tok-604b6c68b245","tok-300d5ac6140b","tok-397cdb0c5469","tok-655785547eec","tok-da583173a8d4","tok-bca2a4ed6840","tok-54153145c00a","tok-bad0faa29083","tok-afd3a2ef8fa1","tok-e1d422b9b467","tok-90accbad2724","tok-9b47824dff31","tok-783b7c6b881f","tok-785e790a2e98","tok-c0ea234a2549","tok-5c66edd86b11","tok-b69740882342","tok-4efede0387a3","tok-5be53ba51ee8","tok-eb8130e85018","tok-3f9c8d8e9b76","tok-5ce8f52c5486","tok-828e36c78455","tok-b87024cd7403","tok-f548bbd9ae0d","tok-0b4a57606aba","tok-a4f4d3986856","tok-8b3dc6b5d775","tok-36bd668626e7","tok-21dd7013a551","tok-18631f0082a3","tok-2142d8a29181","tok-02eb57549892","tok-02826ecd8dfd","tok-a882fc9d28fd","tok-c0ea234a2549","tok-e2c323ebdec7","tok-58d02f4ec52f","tok-5c66edd86b11","tok-c0ea234a2549","tok-14bc599f3ae9","tok-5f0e163cfe82","tok-a4f33c02a8ba","tok-4002bca4be94","tok-304628e7787d","tok-a113fa3447c6","tok-c0ea234a2549","tok-cff7ae874800","tok-355fb5abe07f","tok-a4f33c02a8ba","tok-92c63655bee8","tok-31ccbd8266f3","tok-af192236fbac","tok-48e98d2d752b","tok-145438817d17","tok-8384be61ce39","tok-d932acdc3c8d","tok-d7e531a13c89","tok-a48fa13d7145","tok-7425ebbda54a","tok-1043081f0914","tok-725441dc8db7","tok-84256af4bd12","tok-d694a0ec588d","tok-75db2f41a9be","tok-145438817d17","tok-8384be61ce39","tok-da583173a8d4","tok-7fb5b9a93cc7","tok-98d3dde08759","tok-b306ff9bced3","tok-46f29d1907c5","tok-b9c6c8dc84a6","tok-d694a0ec588d","tok-ef11e4c5ab81","tok-b306ff9bced3","tok-46f29d1907c5","tok-26d779d7f094","tok-69da6b09df06","tok-f41bdbf328b6","tok-c167a434481b","tok-22fe8caaeb1f","tok-d34e964604d4","tok-3687500d9720","tok-9efd08375336","tok-777df30dc34e","tok-3a5c13910b3a","tok-66b083a12025","tok-e6a1fd8ab6f7","tok-df298f1f1d1b","tok-828e36c78455","tok-945a03a7ccb2","tok-21dd7013a551","tok-8df669ffa2dd","tok-bcfee66962c3","tok-777df30dc34e","tok-e5deb0b9f0d0","tok-8a5f983aa258","tok-f41bdbf328b6","tok-846483e2bb79","tok-c007a8c445a5","tok-89a6064ebb76","tok-b428658145f0","tok-cef1b28c61d3","tok-74fbe9985149","tok-8384be61ce39","tok-38d8dc44cd71","tok-84256af4bd12","tok-d694a0ec588d","tok-145438817d17","tok-8384be61ce39","tok-515a30ce6151","tok-5be53ba51ee8","tok-e215f61caaf8","tok-32170827d762","tok-92137fe770a6","tok-8dc0b11df5fe","tok-e89e0f3296c6","tok-646f0f61214f","tok-3662a896ec78","tok-ff6f38a8e394","tok-2f6f90a0d32d","tok-8be23662bbef","tok-ef11e4c5ab81","tok-b306ff9bced3","tok-46f29d1907c5","tok-66b083a12025","tok-e215f61caaf8","tok-32170827d762","tok-a113fa3447c6","tok-b819b7d0a4e1","tok-21dd7013a551","tok-8a1d8b2b49c3","tok-777df30dc34e","tok-1cc6cbb21b74","tok-f4a75bf29f66","tok-078438c1ce08","tok-199e93b1dcd9","tok-ef11e4c5ab81","tok-b306ff9bced3","tok-46f29d1907c5"]}]},"midrash-lekach-tov-on-lamentations-default-default-1-1-2":{"unit_id":"midrash-lekach-tov-on-lamentations-default-default-1-1-2","anchor_id":"midrash-lekach-tov-on-lamentations-default-default-1-1-2","source_ref":"Midrash Lekach Tov on Lamentations 1:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ea96f95ec6b5","tok-652344dbf88a","tok-ff9a52fd3666","tok-75db2f41a9be","tok-d6b7184b23f4","tok-128599265c54","tok-c1b7e745cd06","tok-a9fc3e0304f9","tok-bcc033bfb43d","tok-ea96f95ec6b5","tok-515a30ce6151","tok-d4439b73e2c4","tok-ff6f38a8e394","tok-2f6f90a0d32d","tok-a2d33ba6de34","tok-34f6aa9a4066","tok-a343fb399768","tok-a52d24bc0aa3","tok-105d5e492f72","tok-387eaffc912e","tok-65e4f31fe18e","tok-d01fcd4d7d62","tok-165fdb95d02d","tok-655785547eec","tok-969969130af8","tok-5310ad134f9d","tok-ff6f38a8e394","tok-2f6f90a0d32d","tok-e215f61caaf8","tok-c0ea234a2549","tok-4f0f8c164bea","tok-77dd6a599ee6","tok-a346e5834abf","tok-05be6bcb4fab","tok-38c1f1e32b40","tok-655785547eec","tok-17ebf526e26f","tok-b87024cd7403","tok-57a728cacdd2","tok-c6fc206405e7","tok-685f2f23072a","tok-1575c49312e9","tok-05be6bcb4fab","tok-04aa45bf0384","tok-ff6f38a8e394","tok-2f6f90a0d32d","tok-e6a1fd8ab6f7","tok-b819b7d0a4e1","tok-df298f1f1d1b","tok-a669008f1967","tok-75db2f41a9be","tok-a8245d8152ae","tok-04aa45bf0384","tok-8948625d9ffc","tok-a4f33c02a8ba","tok-655785547eec","tok-04aa45bf0384","tok-e2c323ebdec7","tok-dac69814856a","tok-23dc33f03036","tok-66b083a12025","tok-e215f61caaf8","tok-1f07c189a2f6","tok-36cdfcb9d3e1","tok-04aa45bf0384","tok-09fb84b09fea","tok-54f1f860758f","tok-ec3440359d11","tok-b1904a3fa5f6","tok-04aa45bf0384","tok-a346e5834abf","tok-74d106a763e4","tok-92c8ad22593b","tok-406e6cc59498","tok-13a843d3754f","tok-cef1b28c61d3","tok-04aa45bf0384","tok-1f24207f05ca","tok-067722c7b4b7","tok-604b6c68b245","tok-300d5ac6140b","tok-397cdb0c5469","tok-81687e8c4562","tok-ea96f95ec6b5","tok-04aa45bf0384"]}]},"midrash-lekach-tov-on-lamentations-default-default-1-1-3":{"unit_id":"midrash-lekach-tov-on-lamentations-default-default-1-1-3","anchor_id":"midrash-lekach-tov-on-lamentations-default-default-1-1-3","source_ref":"Midrash Lekach Tov on Lamentations 1:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0417819fb019","tok-ee2d0bec1585","tok-3683e6d1f832","tok-0417819fb019","tok-336342da995b","tok-70729288dbf3","tok-268798e59e54","tok-6db863993d13","tok-372950eebd58","tok-db90a4327d6d","tok-53f8f9b7a591","tok-e7a1526de3a6","tok-daf07d8c8e1d","tok-369317ced338","tok-eea261c33015","tok-daf07d8c8e1d","tok-030d227717d1","tok-90accbad2724","tok-9b47824dff31","tok-5064d6dff0e1","tok-474696621781","tok-4f56f2bc2fb5","tok-298eead5b924","tok-0417819fb019","tok-fdcd2b22ee80","tok-2484883bcfe3","tok-6a19dda0dd61","tok-ee2d0bec1585","tok-3683e6d1f832","tok-ee2d0bec1585","tok-a741aa163c6b","tok-cab2765a7fb1","tok-7b27b8baf4e3","tok-b8dbbaa4cfc7","tok-921b3b1c0c9c","tok-57c5622fecb2","tok-92cd456e4bde","tok-a741aa163c6b","tok-6db863993d13","tok-478162807a7e","tok-2461bab7379f","tok-823e204140f2","tok-c388c3ced2a2","tok-3cee7dfb9ca4","tok-823e204140f2","tok-ee807fd83873","tok-3cee7dfb9ca4","tok-c388c3ced2a2","tok-3cee7dfb9ca4","tok-7b27b8baf4e3","tok-4002bca4be94","tok-828e36c78455","tok-c382eadde75a","tok-17fecac663ee","tok-82809f69e143","tok-6259e8876c55","tok-57a728cacdd2","tok-bbe5b0275a60","tok-17fecac663ee","tok-875e5a719fbd","tok-6259e8876c55","tok-db90a4327d6d","tok-2cc82cf1ce25","tok-304628e7787d","tok-afbc2e7f1261","tok-02fd1adf47f8","tok-cff615558e7d","tok-5b857fa40e83","tok-caba976f8b65","tok-5b857fa40e83","tok-546e95b29369","tok-7f857712a9d6","tok-403141849786","tok-6582cd2003ef","tok-a741aa163c6b","tok-de1e052a8f21","tok-3cee7dfb9ca4","tok-7d579d1e56ca","tok-88daf04d97b9","tok-3fd8d761a570","tok-f8887a69ad16","tok-0c8713616b45","tok-673bad3b16f0","tok-caba976f8b65","tok-d6c9d1f2bedd","tok-db90a4327d6d","tok-cde29c97bf7a","tok-fc5dbeb160f6","tok-b8dbbaa4cfc7","tok-8bdc0d953c99","tok-42c13676a079","tok-02cf9e0dd978","tok-b2c0fca744e2","tok-fe547b851e4b","tok-4eb909aca60d","tok-041dbe273fa5","tok-265a96641620","tok-57a728cacdd2","tok-458aca62b846","tok-9ebbdd11abf5","tok-e54c2c3226f0","tok-ff9a52fd3666","tok-cd662384ff6d","tok-0720ee69d3a1","tok-227c41fc7eea","tok-cd662384ff6d","tok-9162b079a722","tok-2edc3c52e7a5","tok-b1f3bf338141","tok-bebe2853a8fa","tok-2bb261124d0b","tok-9a0ea546e6eb","tok-bebe2853a8fa","tok-999fd5432307","tok-78ed3a6d23c5","tok-0ace2cd5c5e8","tok-83c4d1fb930d","tok-bebe2853a8fa","tok-beec64cc2bdc","tok-6f94fc6eb9b5","tok-0ace2cd5c5e8","tok-5185e1c00b39","tok-bebe2853a8fa","tok-beec64cc2bdc","tok-e5cf67bc8723","tok-7c7fe4a388a6","tok-033d551d496a","tok-b34ea992228d","tok-11df66ab1456","tok-a346e5834abf","tok-293ead8304c1","tok-d5dec579eb4a","tok-d8b48c4d128f","tok-7858bd46018b","tok-7dfa9a2f34f2","tok-09ad4e2daa3e","tok-cef1b28c61d3","tok-268798e59e54","tok-6db863993d13","tok-15789a1397f7","tok-265a96641620","tok-d204d09c2728","tok-34f6aa9a4066","tok-f1ae11926f98","tok-de1b2b37a563","tok-7bad904485e7","tok-6ac6992215c0","tok-92c63655bee8","tok-f4088b156a7e","tok-ce640fb2c6da","tok-70d0f658d6d2","tok-57bf4fa375e2","tok-a89ba78d90b1","tok-ba9f2489932a","tok-21a55ef13a79","tok-a346e5834abf","tok-cef1b28c61d3","tok-83f0a5c0c856","tok-75db2f41a9be","tok-c910c269f9a2","tok-2284bb97fea4","tok-4bdebef9e563","tok-3538a9ce0874","tok-9b0050e57a7c","tok-902561bdb37f","tok-4343ead6cf57","tok-d1aafb6ed783","tok-a882fc9d28fd","tok-f7d072281f15","tok-bebe2853a8fa","tok-dd21814648f2","tok-b95a8852799c","tok-c4096478e44f","tok-76c0dfe43731","tok-a2221198ac38","tok-15c26b389d01","tok-07cc162ebcae","tok-edf381520181","tok-1f2132167202","tok-80b490742896","tok-e5deb0b9f0d0","tok-69da6b09df06","tok-60fa345eff74","tok-902561bdb37f","tok-4343ead6cf57","tok-7858bd46018b","tok-7dfa9a2f34f2","tok-c1605d70cc2b","tok-71eda9fc6ea2","tok-364ca7ed6fb0","tok-e84e2b4e1364","tok-715d23df1f1a","tok-f0dc032e7e14","tok-e5cf67bc8723","tok-cff7ae874800","tok-96511d4b85fb","tok-ff16f1cea155","tok-170e2af350d8","tok-01d1564570ac","tok-aacafc99f066","tok-f41af221fc6f","tok-3ea4acf1d013","tok-c9bddd4e635a","tok-81b5cbf02eb7","tok-8df669ffa2dd","tok-4bdebef9e563","tok-b95a8852799c","tok-3b8d4eb36b26","tok-75cdb1bfdb02","tok-ff16f1cea155","tok-170e2af350d8","tok-f55b06a69bb5","tok-6f824628a6e7","tok-8c422764952b","tok-3d7e7e0427d6","tok-66e1f95bedd1"]}]},"midrash-lekach-tov-on-lamentations-default-default-1-1-4":{"unit_id":"midrash-lekach-tov-on-lamentations-default-default-1-1-4","anchor_id":"midrash-lekach-tov-on-lamentations-default-default-1-1-4","source_ref":"Midrash Lekach Tov on Lamentations 1:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5be73115a1b1","tok-049716ffaa96","tok-7f8c1506a761","tok-f8413c28c5e2","tok-a80dea37d1c6","tok-00ce35b55694","tok-501049d31199","tok-c436b647589a","tok-34a6700bce73","tok-1b7bc8ec006c","tok-a882fc9d28fd","tok-1f2132167202","tok-80b490742896","tok-4f56f2bc2fb5","tok-6fefb9fe31bb","tok-3b8d4eb36b26","tok-268798e59e54","tok-6db863993d13","tok-15789a1397f7","tok-6053bc5596fa","tok-0b4a57606aba","tok-b87024cd7403","tok-4a68bf5279ce","tok-8df669ffa2dd","tok-5474878f8d7b","tok-75db2f41a9be","tok-99c0beaee6b6","tok-7742197d8b2a","tok-efd73a71b2e9","tok-66b083a12025","tok-a2d33ba6de34","tok-b87024cd7403","tok-380c49f9888f","tok-1f71117885ae","tok-170e2af350d8","tok-4f52726bd2bb","tok-f1ae11926f98","tok-c1d974303de9","tok-082d85617d8f","tok-8f58d2cff38d","tok-172af355fa0f","tok-5be73115a1b1","tok-d125ee1a68ff","tok-224f7608220f","tok-2b611b3ee0fd","tok-53eae8921a84","tok-da583173a8d4","tok-8df669ffa2dd","tok-41ffe3601f88","tok-9a2ea2f970b7","tok-a35113ebeb72","tok-af9101624440","tok-6b9ef85bdbe2","tok-fe67d9708681","tok-4d2c26f41a50","tok-c382eadde75a","tok-8f90954e8fc6","tok-63bce615d8bc","tok-4cf6b221baef","tok-a2d33ba6de34","tok-d204d09c2728","tok-828e36c78455","tok-4a68bf5279ce","tok-411c5d3f765c","tok-700be72cdf23","tok-ffc9db573caa","tok-af9101624440","tok-8df669ffa2dd","tok-f1185d90c372","tok-1e1126bc1c45","tok-66b083a12025","tok-5be73115a1b1","tok-049716ffaa96","tok-4f56f2bc2fb5","tok-6fefb9fe31bb","tok-3b8d4eb36b26"]}]},"midrash-lekach-tov-on-lamentations-default-default-1-1-5":{"unit_id":"midrash-lekach-tov-on-lamentations-default-default-1-1-5","anchor_id":"midrash-lekach-tov-on-lamentations-default-default-1-1-5","source_ref":"Midrash Lekach Tov on Lamentations 1:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ee2d0bec1585","tok-e8d3567c7248","tok-384f09218536","tok-a3f750f7305b","tok-608ae6d8ce43","tok-c382eadde75a","tok-9c9b3c2a0323","tok-a89ba78d90b1","tok-268798e59e54","tok-13d8bbffd2cf","tok-c382eadde75a","tok-600ce6b4537e","tok-4a68bf5279ce","tok-4b238e268905","tok-20ad4541b0fd","tok-8c69e22acfaa","tok-067722c7b4b7","tok-75db2f41a9be","tok-be994eea579e","tok-2484883bcfe3","tok-5764e8776b24","tok-fb5341a4fa6d","tok-46a0472a512a","tok-38d8dc44cd71","tok-ee2d0bec1585","tok-e8d3567c7248","tok-a057af717626","tok-23dc33f03036","tok-66b083a12025","tok-265a96641620","tok-b87024cd7403","tok-380c49f9888f","tok-05f079a1035f","tok-76e0885f9c6a","tok-e54c2c3226f0"]}]},"midrash-lekach-tov-on-lamentations-default-default-1-1-6":{"unit_id":"midrash-lekach-tov-on-lamentations-default-default-1-1-6","anchor_id":"midrash-lekach-tov-on-lamentations-default-default-1-1-6","source_ref":"Midrash Lekach Tov on Lamentations 1:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-aef1b38fd3b6","tok-3b75bc91e9fb","tok-23dc33f03036","tok-6b9ef85bdbe2","tok-afeb6f3d79a8","tok-57a728cacdd2","tok-50cf6789ae4a","tok-0fd09401a131","tok-6fccdd6be8e3","tok-eceb19c7a24b","tok-a0cdb8c834f4","tok-2b611b3ee0fd","tok-25fc037dccfb","tok-fee3a2fcf02d","tok-2b611b3ee0fd","tok-e47e3737e6b7","tok-60fa345eff74","tok-e9372cf5e3ae","tok-42af8d024934","tok-3da9b7f0f4cc","tok-170e2af350d8","tok-2f3162a1eb82","tok-fafb3c83798d","tok-b1e8f961e068","tok-cced0df4f229","tok-0c014e3a4deb","tok-88bdb86391cc","tok-5be73115a1b1","tok-cb00f89e7350","tok-1f24207f05ca","tok-067722c7b4b7","tok-5764e8776b24","tok-4f5b6b5377e6","tok-6b45d7305582","tok-6c4582c77350","tok-8b0b470f4c9a","tok-81687e8c4562","tok-5be73115a1b1","tok-cb00f89e7350","tok-da583173a8d4","tok-6b45d7305582","tok-09ad4e2daa3e","tok-6c4582c77350","tok-268798e59e54","tok-b834e43da56c","tok-d62ee4e528da","tok-2fda6ca075ad","tok-06d0c6898c89","tok-5b857fa40e83","tok-05be6bcb4fab","tok-9ca3c8df5871","tok-ff9a52fd3666","tok-556ee9e58488","tok-e54c2c3226f0","tok-cced0df4f229","tok-ff9a52fd3666","tok-0c014e3a4deb","tok-227c41fc7eea","tok-09c549da25aa","tok-381deba6cab4","tok-4b7f58be187b","tok-ae1d8c98ac3c","tok-ea876f70cddc","tok-be5c1f72c5e5","tok-5658306ffdc7","tok-d6656a16c1fd","tok-554c1c7f87cd","tok-1e74cb43e910","tok-4384eb6546ab","tok-16360993b8cc","tok-cb00f89e7350","tok-6b45d7305582","tok-6c4582c77350","tok-66e1f95bedd1","tok-213994885757","tok-0cb8385ad66e","tok-5be73115a1b1","tok-cb00f89e7350","tok-1f24207f05ca","tok-43d064dfed3c","tok-136e39513dde","tok-067722c7b4b7","tok-bf4f42bfbb87","tok-a882fc9d28fd","tok-c210b3abd814","tok-38e5cc7e8a6c","tok-a346e5834abf","tok-97ee0fd7ebdf","tok-8a136b19623c","tok-7166c7524c34","tok-f472a0f94ad7","tok-5dac98e493fb","tok-f472a0f94ad7","tok-a346e5834abf","tok-a30e30e98fe7","tok-170e2af350d8","tok-cb00f89e7350"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/midrash-lekach-tov-on-lamentations.manifest.json","root_href":"../../"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const sourceSummary = (rows) => {
+        const row = cleanValues(rows)[0];
+        if (!row) return { source: "Source metadata incomplete", license: "N/A" };
+        const sourceId = row.source_id ? ` ${row.source_id}` : "";
+        return { source: `${row.source_name || "Source"}${sourceId}`, license: row.license || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        const sourceLine = document.createElement("p");
+        sourceLine.className = "claim-source";
+        sourceLine.textContent = `Source: ${source.source}`;
+        const licenseLine = document.createElement("p");
+        licenseLine.className = "claim-license";
+        licenseLine.textContent = `License: ${source.license}`;
+        card.append(sourceLine, licenseLine);
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

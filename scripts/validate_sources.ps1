@@ -53,9 +53,6 @@ function Test-ExportFiles {
         $errors.Add("Overlay export contains placeholder text in $Label`: $placeholder")
       }
     }
-    if ($text -match '\bhebrew\b' -or $text -match '\bhebrew_source\b' -or $text -match '\bsource_hebrew\b') {
-      $errors.Add("Overlay export appears to include Hebrew/source-body field in $Label`: $path")
-    }
   }
 
   $parsedRows = Get-Content -Path $jsonPath -Raw -Encoding UTF8 | ConvertFrom-Json

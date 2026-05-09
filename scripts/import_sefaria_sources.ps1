@@ -444,6 +444,10 @@ function Add-UnitsFromPayload {
     $unitSuffix = ($addressParts -join '-')
     $pathSlug = if ($Meta.section_slug -eq 'text') { '' } else { "$($Meta.group_slug)-$($Meta.section_slug)-" }
     $unitId = "$($Work.work_id)-$pathSlug$unitSuffix"
+    $baseUnitId = $unitId
+    if (($Units | Where-Object { $_.unit_id -eq $baseUnitId }).Count -gt 0) {
+      $unitId = "$baseUnitId-seq-$($SequenceRef.Value)"
+    }
 
     $chapterNumber = if ($addressParts.Count -ge 1) { $addressParts[0] } else { $null }
     $paragraphNumber = if ($addressParts.Count -ge 2) { $addressParts[-1] } else { $addressParts[0] }
