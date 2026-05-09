@@ -6,6 +6,8 @@ Date: 2026-05-08
 
 The Tanakh completion lane was imported because every probed book resolved to a Hebrew Sefaria source row using `Miqra according to the Masorah` with `CC-BY-SA` license metadata. Existing Tanakh books already in the site were left in place; the batch added the remaining 35 books.
 
+The Torah Midrash / Aggadah lane was extended with four additional Sefaria Hebrew works whose imported units all carry `Public Domain` license metadata. These were treated as source-text workbench imports only: no English translations were imported or generated, and lexical HUD rows were generated from existing lexical layers only.
+
 | Work | Units | License | Version | Lexical coverage | Token occurrences | Largest chunk |
 |---|---:|---|---|---:|---:|---:|
 | Genesis | 1533 | CC-BY-SA | Miqra according to the Masorah | 3710/11363 | 17808 | 1.13 MB |
@@ -44,6 +46,15 @@ The Tanakh completion lane was imported because every probed book resolved to a 
 | I Chronicles | 943 | CC-BY-SA | Miqra according to the Masorah | 2003/6945 | 9685 | 1.06 MB |
 | II Chronicles | 822 | CC-BY-SA | Miqra according to the Masorah | 2745/8092 | 11717 | 1.19 MB |
 
+### Torah Midrash / Aggadah Batch
+
+| Work | Units | License | Version | Lexical coverage | Token occurrences | Largest chunk |
+|---|---:|---|---|---:|---:|---:|
+| Midrash Tanchuma Buber | 2086 | Public Domain | Midrash Tanhuma haKadum veHaYashan, S. Buber, 1885 | 32/26484 | 218812 | 0.23 MB |
+| Midrash Aggadah | 3269 | Public Domain | Midrash Aggadah, ed. Buber, Vienna, 1894. | 33/20618 | 121164 | 0.23 MB |
+| Seder Olam Rabbah | 2 | Public Domain | Seder Olam, Warsaw 1904 | 4/268 | 469 | 0.06 MB |
+| Midrash Sekhel Tov | 6889 | Public Domain | Sechel Tob, Berlin 1900-1901 | 65/38876 | 253823 | 0.23 MB |
+
 ## Batch Totals
 
 - New works imported: 35
@@ -52,6 +63,12 @@ The Tanakh completion lane was imported because every probed book resolved to a 
 - New unique surface forms: 158695
 - New matched surface forms: 54025
 - Largest new lexical chunk: isaiah/isaiah-001.json at 1.33 MB
+- Additional Torah Midrash / Aggadah works imported: 4
+- Additional Midrash source units: 12246
+- Additional Midrash token occurrences: 594268
+- Additional Midrash unique work-surface rows: 86246
+- Additional Midrash matched surface rows: 134
+- Largest additional Midrash lexical chunk: midrash-tanchuma-buber-023.json / midrash-aggadah-005.json / midrash-sekhel-tov-006.json at about 0.23 MB
 - Empty overlay stubs were added only because validation requires one overlay file per work; no translation content was added.
 - Blank overlay export rows were generated for the new works and appended to the full-site overlay export; no Hebrew source body or English translation content was added.
 
@@ -69,6 +86,7 @@ The Tanakh completion lane was imported because every probed book resolved to a 
 - Mekhilta DeRabbi Yishmael remains blocked from the prior pass because the probed Hebrew version returned CC-BY-NC.
 - Sifra remains blocked from the prior pass because the probed Hebrew version returned `unknown` license metadata.
 - Yalkut Shimoni on Torah remains blocked from the prior pass because the probed Hebrew version returned CC-BY-NC.
+- Esther Rabbah, Midrash Mishlei, and Yalkut Shimoni on Nach remain blocked because the probed Hebrew rows returned `unknown` license metadata.
 - Any English-only grimoire material remains blocked for this Hebrew-first workbench.
 
 ## Policy Applied
@@ -81,7 +99,7 @@ The Tanakh completion lane was imported because every probed book resolved to a 
 
 ## Validation / Hygiene
 
-- `scripts\validate_sources.ps1`: passed; 56,845 source units checked.
+- `scripts\validate_sources.ps1`: passed; 69,091 source units checked.
 - `scripts\validate_lexical_dom.ps1`: passed after lexical generation; Orot and school HUD canaries passed.
 - Generated JS syntax check: passed; 94 HTML scripts checked.
 - `git diff --check`: passed.

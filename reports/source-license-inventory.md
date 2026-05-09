@@ -1,10 +1,8 @@
 # Source License Inventory
 
-Generated from local `data/sources/*.json`. Hebrew source only; English translations are not imported. Commercial reuse and share-alike fields are inferred from the version license labels preserved from source metadata.
+Generated: 2026-05-09
 
-## Imported Works
-
-| Work | Units | Hebrew version/source | License | Commercial reuse | Share-alike | Attribution |
+| Work | Units | Hebrew version title (source URL) | License | Commercial reuse allowed | Share-alike | Attribution requirements |
 |---|---:|---|---|---|---|---|
 | Aderet Eliyahu | 59 | Aderet Eliyahu, Halberstadt, 1860 (https://www.nli.org.il/he/books/NNL_ALEPH001191318 ) | Public Domain | yes | no | none required by license; source/version retained |
 | Alphabet of Ben Sira | 104 | Otzar Midrashim, New York, 1915 (https://www.nli.org.il/he/books/NNL_ALEPH001175329) | Public Domain | yes | no | none required by license; source/version retained |
@@ -61,8 +59,11 @@ Generated from local `data/sources/*.json`. Hebrew source only; English translat
 | Malachi | 55 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Micah | 105 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Midbar Shur | 243 | Midbar Shur (https://he.wikisource.org/wiki/%D7%9E%D7%93%D7%91%D7%A8_%D7%A9%D7%95%D7%A8) | Public Domain | yes | no | none required by license; source/version retained |
+| Midrash Aggadah | 3269 | Midrash Aggadah, ed. Buber, Vienna, 1894. (https://www.nli.org.il/he/books/NNL_ALEPH001323847) | Public Domain | yes | no | none required by license; source/version retained |
 | Midrash Lekach Tov | 7822 | Midrash Lekach Tov on Torah, Vilna 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001922206) | Public Domain | yes | no | none required by license; source/version retained |
+| Midrash Sekhel Tov | 6889 | Sechel Tob, Berlin 1900-1901 (https://beta.nli.org.il/he/books/NNL_ALEPH001725650/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Midrash Tanchuma | 2121 | Midrash Tanchuma -- Torat Emet (http://www.toratemetfreeware.com/online/a_root.html) | Public Domain | yes | no | none required by license; source/version retained |
+| Midrash Tanchuma Buber | 2086 | Midrash Tanhuma haKadum veHaYashan, S. Buber, 1885 (https://www.nli.org.il/he/books/NNL_ALEPH001987633) | Public Domain | yes | no | none required by license; source/version retained |
 | Midrash Tehillim | 808 | OYW (http://mobile.tora.ws/) | Public Domain | yes | no | none required by license; source/version retained |
 | Musar Avikha | 14 | Jerusalem, 1946 (https://he.wikisource.org/wiki/%D7%9E%D7%95%D7%A1%D7%A8_%D7%90%D7%91%D7%99%D7%9A) | Public Domain | yes | no | none required by license; source/version retained |
 | Nahum | 47 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
@@ -81,6 +82,7 @@ Generated from local `data/sources/*.json`. Hebrew source only; English translat
 | Psalms | 2527 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Ruth | 85 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Ruth Rabbah | 12 | Midrash Rabbah -- TE (http://www.toratemetfreeware.com/online/f_01639.html) | Public Domain | yes | no | none required by license; source/version retained |
+| Seder Olam Rabbah | 2 | Seder Olam, Warsaw 1904 (https://www.nli.org.il/he/books/NNL_ALEPH001364770) | Public Domain | yes | no | none required by license; source/version retained |
 | Seder Olam Zutta | 10 | Seder Olam Zuta, Rabbi M. Grossberg. London, 1910 (https://beta.nli.org.il/he/books/NNL_ALEPH002021777/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefer Etz Chaim | 7 | Sefer Etz Chaim (http://www.hebrew.grimoar.cz/vital/ec_chajim.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefer Yetzirah Gra Version | 62 | Sefer Yetzirah, Warsaw 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001310968) | Public Domain | yes | no | none required by license; source/version retained |
@@ -102,14 +104,3 @@ Generated from local `data/sources/*.json`. Hebrew source only; English translat
 | Yahel Ohr on Zohar | 238 | Vilna 1882 (https://he.wikisource.org/wiki/%D7%99%D7%94%D7%9C_%D7%90%D7%95%D7%A8) | PD | yes | no | none required by license; source/version retained |
 | Zechariah | 211 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Zephaniah | 53 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
-
-## Current Safe Expansion Batch
-
-The 2026-05-08 Tanakh completion batch imported 35 additional Hebrew Bible books from Sefaria using the same Miqra according to the Masorah CC-BY-SA source pattern already used for Joshua, Zechariah, Ezekiel, and I Kings.
-
-## Policy Applied
-
-- Imported only Hebrew source rows with Public Domain, PD, CC0, CC-BY, or CC-BY-SA style licenses.
-- Skipped rows with `unknown`, CC-BY-NC, or unresolved license metadata.
-- No English translations were imported or generated.
-- Lexical HUD rows remain separated by source/license layer.
