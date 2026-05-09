@@ -1,0 +1,1895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matnot Kehunah on Devarim Rabbah</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Matnot Kehunah on Devarim Rabbah</h1>
+        <p class="work-label">Commentary on Devarim Rabbah</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Devarim Rabbah</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
+        </div>
+        <p class="meta">57 total source units | imported 2026-05-09</p>
+        <p class="meta source-citation">Hebrew version: Midrash Rabbah, Vilna, 1878 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Matnot Kehunah on Devarim Rabbah <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Matnot Kehunah on Devarim Rabbah <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-matnot-kehunah-on-devarim-rabbah-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-1-1-1" title="Matnot Kehunah on Devarim Rabbah 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-1-1-2" title="Matnot Kehunah on Devarim Rabbah 1:1:2">1:1:2</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-1-1-3" title="Matnot Kehunah on Devarim Rabbah 1:1:3">1:1:3</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-1-1-4" title="Matnot Kehunah on Devarim Rabbah 1:1:4">1:1:4</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-1-1-5" title="Matnot Kehunah on Devarim Rabbah 1:1:5">1:1:5</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-1-1-6" title="Matnot Kehunah on Devarim Rabbah 1:1:6">1:1:6</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-1-1-7" title="Matnot Kehunah on Devarim Rabbah 1:1:7">1:1:7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-matnot-kehunah-on-devarim-rabbah-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-2-1-1" title="Matnot Kehunah on Devarim Rabbah 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-2-1-2" title="Matnot Kehunah on Devarim Rabbah 2:1:2">2:1:2</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-2-1-3" title="Matnot Kehunah on Devarim Rabbah 2:1:3">2:1:3</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-2-1-4" title="Matnot Kehunah on Devarim Rabbah 2:1:4">2:1:4</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-2-1-5" title="Matnot Kehunah on Devarim Rabbah 2:1:5">2:1:5</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-2-1-6" title="Matnot Kehunah on Devarim Rabbah 2:1:6">2:1:6</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-2-1-7" title="Matnot Kehunah on Devarim Rabbah 2:1:7">2:1:7</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-2-1-8" title="Matnot Kehunah on Devarim Rabbah 2:1:8">2:1:8</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-2-1-9" title="Matnot Kehunah on Devarim Rabbah 2:1:9">2:1:9</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-2-1-10" title="Matnot Kehunah on Devarim Rabbah 2:1:10">2:1:10</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-2-1-11" title="Matnot Kehunah on Devarim Rabbah 2:1:11">2:1:11</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-2-1-12" title="Matnot Kehunah on Devarim Rabbah 2:1:12">2:1:12</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-matnot-kehunah-on-devarim-rabbah-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-3-1-1" title="Matnot Kehunah on Devarim Rabbah 3:1:1">3:1:1</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-3-1-2" title="Matnot Kehunah on Devarim Rabbah 3:1:2">3:1:2</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-3-1-3" title="Matnot Kehunah on Devarim Rabbah 3:1:3">3:1:3</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-3-1-4" title="Matnot Kehunah on Devarim Rabbah 3:1:4">3:1:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-matnot-kehunah-on-devarim-rabbah-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-4-1-1" title="Matnot Kehunah on Devarim Rabbah 4:1:1">4:1:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-matnot-kehunah-on-devarim-rabbah-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-5-1-1" title="Matnot Kehunah on Devarim Rabbah 5:1:1">5:1:1</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-5-1-2" title="Matnot Kehunah on Devarim Rabbah 5:1:2">5:1:2</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-5-1-3" title="Matnot Kehunah on Devarim Rabbah 5:1:3">5:1:3</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-5-1-4" title="Matnot Kehunah on Devarim Rabbah 5:1:4">5:1:4</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-5-1-5" title="Matnot Kehunah on Devarim Rabbah 5:1:5">5:1:5</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-5-1-6" title="Matnot Kehunah on Devarim Rabbah 5:1:6">5:1:6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-matnot-kehunah-on-devarim-rabbah-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-6-1-1" title="Matnot Kehunah on Devarim Rabbah 6:1:1">6:1:1</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-6-1-2" title="Matnot Kehunah on Devarim Rabbah 6:1:2">6:1:2</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-6-1-3" title="Matnot Kehunah on Devarim Rabbah 6:1:3">6:1:3</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-6-1-4" title="Matnot Kehunah on Devarim Rabbah 6:1:4">6:1:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-matnot-kehunah-on-devarim-rabbah-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-7-1-1" title="Matnot Kehunah on Devarim Rabbah 7:1:1">7:1:1</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-7-1-2" title="Matnot Kehunah on Devarim Rabbah 7:1:2">7:1:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-matnot-kehunah-on-devarim-rabbah-text-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-8-1-1" title="Matnot Kehunah on Devarim Rabbah 8:1:1">8:1:1</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-8-1-2" title="Matnot Kehunah on Devarim Rabbah 8:1:2">8:1:2</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-8-1-3" title="Matnot Kehunah on Devarim Rabbah 8:1:3">8:1:3</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-8-1-4" title="Matnot Kehunah on Devarim Rabbah 8:1:4">8:1:4</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-8-1-5" title="Matnot Kehunah on Devarim Rabbah 8:1:5">8:1:5</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-8-1-6" title="Matnot Kehunah on Devarim Rabbah 8:1:6">8:1:6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-matnot-kehunah-on-devarim-rabbah-text-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-9-1-1" title="Matnot Kehunah on Devarim Rabbah 9:1:1">9:1:1</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-9-1-2" title="Matnot Kehunah on Devarim Rabbah 9:1:2">9:1:2</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-9-1-3" title="Matnot Kehunah on Devarim Rabbah 9:1:3">9:1:3</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-9-1-4" title="Matnot Kehunah on Devarim Rabbah 9:1:4">9:1:4</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-9-1-5" title="Matnot Kehunah on Devarim Rabbah 9:1:5">9:1:5</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-9-1-6" title="Matnot Kehunah on Devarim Rabbah 9:1:6">9:1:6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-matnot-kehunah-on-devarim-rabbah-text-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-10-1-1" title="Matnot Kehunah on Devarim Rabbah 10:1:1">10:1:1</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-10-1-2" title="Matnot Kehunah on Devarim Rabbah 10:1:2">10:1:2</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-10-1-3" title="Matnot Kehunah on Devarim Rabbah 10:1:3">10:1:3</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-10-1-4" title="Matnot Kehunah on Devarim Rabbah 10:1:4">10:1:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 11</summary>
+                  <a class="toc-start" href="#chapter-matnot-kehunah-on-devarim-rabbah-text-11">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-11-1-1" title="Matnot Kehunah on Devarim Rabbah 11:1:1">11:1:1</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-11-1-2" title="Matnot Kehunah on Devarim Rabbah 11:1:2">11:1:2</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-11-1-3" title="Matnot Kehunah on Devarim Rabbah 11:1:3">11:1:3</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-11-1-4" title="Matnot Kehunah on Devarim Rabbah 11:1:4">11:1:4</a></li>
+                    <li><a class="toc-unit" href="#matnot-kehunah-on-devarim-rabbah-11-1-5" title="Matnot Kehunah on Devarim Rabbah 11:1:5">11:1:5</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-matnot-kehunah-on-devarim-rabbah-text-1">Chapter 1</h4>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 1:1:1</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-1-1-1" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכל לשון</strong> וכו׳ גרסינן. ור&quot;ל מה שכתוב שוב במשנה פ&quot;ק דמגילה ותפילין ומזוזות אינם נכתבים אלא אשורית:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-1-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 1:1:2</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-1-1-2" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 1:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה&quot;ג <strong>לא התירו שיכתבו אלא יונית.</strong> ומשנה שלמה היא בפ&quot;ק דמגילה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-1-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 1:1:3</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-1-1-3" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 1:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[לשונה של תורה גרסינן]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-1-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 1:1:4</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-1-1-4" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 1:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מתיר את הלשון</strong> . פותח פיו ולשונו ומתירו מאלמותו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-1-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 1:1:5</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-1-1-5" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 1:1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לתרפיון</strong> . לשון טרף ומזון ועי׳ במדרש חזית בפסוק גן נעול וכן פירש הערוך ערך פה וכן הוא בירושלמי דשקלים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-1-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 1:1:6</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-1-1-6" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 1:1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולועט</strong> . ואוכל לשון הלעיטני נא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-1-1-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 1:1:7</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-1-1-7" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 1:1:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מתרפא.</strong> פירוש לתרופה לשון נוטריקון להתיר פה ועי׳ לקמן במדרש חזית פירושים נוספי׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-matnot-kehunah-on-devarim-rabbah-text-2">Chapter 2</h4>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-2-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 2:1:1</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-2-1-1" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 2:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">נתחיל פרשת ואתחנן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-2-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 2:1:2</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-2-1-2" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 2:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה&quot;ג בילקוט <strong>אל תתירא אלה הדברים רבנן כו׳</strong> וגירסת הספר יש ליישבה שיתור אלה הדברים דרש להכי שאמר ליה לברכן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-2-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 2:1:3</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-2-1-3" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 2:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלשתן כאחת.</strong> שיתפללן תכף זו אחר זו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-2-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 2:1:4</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-2-1-4" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 2:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תובע צרכיו ויוצא לו.</strong> ולא יאמר קודם זמירות ותשבחות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-2-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 2:1:5</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-2-1-5" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 2:1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויזעקו.</strong> זעקה היינו צעקה וסיפיה דקרא ותעל שועתם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-2-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 2:1:6</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-2-1-6" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 2:1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[ה&quot;ג ויזעקו וגו׳]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-2-1-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 2:1:7</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-2-1-7" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 2:1:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בצר לי.</strong> דרש ביצור של תפלה יש לי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-2-1-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 2:1:8</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-2-1-8" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 2:1:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[ה&quot;ג ויעמוד פנחס ויפלל ותחנונים כו׳]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-2-1-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 2:1:9</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-2-1-9" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 2:1:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאין לבריה כו׳.</strong> בדרך חוב אין לו עליו כלום אלא דרך חסד ורחמים הוא עושה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-2-1-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 2:1:10</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-2-1-10" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 2:1:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בלשון תחנונים.</strong> ולא בדרך דין ומשפט. [א&quot;ר לוי גרסי׳]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-2-1-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 2:1:11</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-2-1-11" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 2:1:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שלא תתפס מקום דבריך גרסי׳ כלו׳ ראה שלא יתפסוך בדבור ביתך כלומר בדברי עצמך או צריך להגיה דבורך וכן מצאתי שוב וכן כביכול הקב&quot;ה נתפס בדבריו וכדמפרש ואזיל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-2-1-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 2:1:12</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-2-1-12" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 2:1:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואתחנן.</strong> הוא לשון וחנותי לשון חנם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-matnot-kehunah-on-devarim-rabbah-text-3">Chapter 3</h4>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-3-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 3:1:1</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-3-1-1" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 3:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>באלוש.</strong> שבת באלוש אפקוד אליבא דחד מאן דאמר כדאיתא בירושלמי ריש פ׳ יום טוב ובסדר עולם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-3-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 3:1:2</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-3-1-2" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 3:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שמא לרעתך.</strong> שיושב בטל ואינו יכול להשתכר במלאכתו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-3-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 3:1:3</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-3-1-3" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 3:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[ה&quot;ג שאנו עושים אמר להם הקב&quot;ה מצות שאתם עושים מפירותיהם]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-3-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 3:1:4</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-3-1-4" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 3:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בעקב.</strong> בסוף לעתיד לבא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-matnot-kehunah-on-devarim-rabbah-text-4">Chapter 4</h4>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-4-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 4:1:1</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-4-1-1" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 4:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קוצין קוצין.</strong> חתיכות מקוצצין וכל זה בירושלמי פרק בני העיר ובמדרש קהלת בפסוק אל תבהל מפניו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-matnot-kehunah-on-devarim-rabbah-text-5">Chapter 5</h4>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-5-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 5:1:1</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-5-1-1" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 5:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה&quot;ג <strong>אלו הם הקרובים אביו ואחיו ואחי אביו כו׳.</strong> ועיין זה בפרק זה בורר בבבלי ובירוש׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-5-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 5:1:2</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-5-1-2" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 5:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מה נגעים ביום.</strong> דכתיב ביום הראות בו כו׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-5-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 5:1:3</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-5-1-3" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 5:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה&quot;ג בפ׳ בא סימן <strong>אף דינים ביום ומה ריבים פרט לקרוב אף נגעים פרט לקרוב.</strong> ומה שקרוב פסול לדין יליף ליה בבבלי ובירושלמי פ׳ זה בורר מלא יומתו אבות על בנים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-5-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 5:1:4</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-5-1-4" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 5:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אל תהי מלגלג גרסינן.</strong> פירוש מיקל ומזלזל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-5-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 5:1:5</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-5-1-5" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 5:1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שאת מזעזע גרסינן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-5-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 5:1:6</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-5-1-6" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 5:1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שהוא.</strong> מפני שהוא כו׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-matnot-kehunah-on-devarim-rabbah-text-6">Chapter 6</h4>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-6-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 6:1:1</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-6-1-1" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 6:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המול ימול.</strong> דריש ביה המול כבר שנולד כך יהא נימול:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-6-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 6:1:2</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-6-1-2" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 6:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה&quot;ג <strong>כספך ד&quot;א המול ימול אל תהי.</strong> ועיין לעיל סדר לך לך פ׳ מ&quot;ו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-6-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 6:1:3</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-6-1-3" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 6:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דכתיב המול וכו׳.</strong> דריש ביה המל יהא נימול:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-6-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 6:1:4</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-6-1-4" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 6:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נתמלא רחמים.</strong> עי׳ בפי׳ הרמב&quot;ן ז&quot;ל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-matnot-kehunah-on-devarim-rabbah-text-7">Chapter 7</h4>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-7-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 7:1:1</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-7-1-1" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 7:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>איספליאות.</strong> לפי הענין פירושו משמעות וביאור וכן בלשון לטי&quot;ן קורין כן בירור דברים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-7-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 7:1:2</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-7-1-2" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 7:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זוכה ליכנס כו׳ סלה.</strong> פי׳ לעדי עד כדאמרינן תנא דבי ר&quot;א ב&quot;י כל מקום שנאמר נצח סלה ועד אין לו הפסק לעולם ולעולמי עולמים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-matnot-kehunah-on-devarim-rabbah-text-8">Chapter 8</h4>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-8-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 8:1:1</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-8-1-1" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 8:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הרבה פעמים.</strong> פעמים הרבה בא לו לאדם שאינו פנוי להתפלל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-8-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 8:1:2</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-8-1-2" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 8:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[ה&quot;ג מקוצר או שהיה]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-8-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 8:1:3</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-8-1-3" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 8:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>צרכיו.</strong> פירוש צרכי נקביו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-8-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 8:1:4</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-8-1-4" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 8:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כך שנו כו׳.</strong> ריש פרק תפלת השחר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-8-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 8:1:5</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-8-1-5" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 8:1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הכל בעתה.</strong> פירוש כך כיון שהגיע זמן המנחה יתפלל מנחה קודם ואח&quot;כ מוסף. בפרק אין עומדין מוכח בתלמוד בבלי וירושלמי ה&quot;ג שתפלתו נתקבלת שנאמ׳ תאות כו׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-8-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 8:1:6</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-8-1-6" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 8:1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סימן טוב כו׳.</strong> כלומר יש בידו סימן טוב שתפלתו נתקבלת וסיפיה דקרא קדייק תכין לבם תקשיב אזניך:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-matnot-kehunah-on-devarim-rabbah-text-9">Chapter 9</h4>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-9-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 9:1:1</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-9-1-1" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 9:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[ה&quot;ג למדונו רבותינו כן כיון שרואה צרתו]</strong> :</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-9-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 9:1:2</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-9-1-2" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 9:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מובלגת.</strong> מרוחקת ומופלגת וטרודה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-9-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 9:1:3</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-9-1-3" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 9:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומניין אתה למד כו׳.</strong> עי׳ בירושלמי בפ׳ מי שמתו. [כל שבעת גרסינן]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-9-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 9:1:4</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-9-1-4" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 9:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>על כחו.</strong> כח זכותו ולא היה מתיירא מן המזיקים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-9-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 9:1:5</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-9-1-5" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 9:1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משונה.</strong> נשתנה כמי שדואג ומצטער ועין במדרש קהלת פסוק עת ללדת אמנם בילקוט משלי גרס משחק במקום משונה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-9-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 9:1:6</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-9-1-6" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 9:1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משיחתן גרסינן.</strong> ופירושו מדבוריהם הקשים וע&quot;ש בקהלת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-matnot-kehunah-on-devarim-rabbah-text-10">Chapter 10</h4>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-10-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 10:1:1</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-10-1-1" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 10:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לרפאותו.</strong> גרסינן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-10-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 10:1:2</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-10-1-2" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 10:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לחוש.</strong> שלא יהא לך חשש וחולי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-10-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 10:1:3</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-10-1-3" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 10:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קינקל.</strong> פי׳ הערוך כלי מלא נקבים נותנין אותו על פיו ונותנים מוגמר תחתיו ובגדים עליו והן מתגמרין דרך הנקבים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-10-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 10:1:4</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-10-1-4" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 10:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמר הקב&quot;ה.</strong> עיין במדרש קהלת ובבראשית רבה פרשה ה׳ ופרשה כ&quot;ג ופרשה ל&quot;ח ויתבאר לך:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-matnot-kehunah-on-devarim-rabbah-text-11">Chapter 11</h4>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-11-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 11:1:1</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-11-1-1" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 11:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בתחלת מגן.</strong> וזהו ראש התפלה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-11">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-11-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 11:1:2</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-11-1-2" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 11:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[אם טעה בשנים עשר ברכות גרסי׳]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-11">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-11-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 11:1:3</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-11-1-3" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 11:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>להאל הקדוש.</strong> נראה דר&quot;ל לסיום של האל הקדוש וזהו אתה חונן ראש הברכות האמצעיות שברכת האל הקדוש היא מג׳ הראשונות ועי׳ כל זה בב&quot;ר פר׳ ס&quot;א:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-11">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-11-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 11:1:4</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-11-1-4" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 11:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לתחלת מודים.</strong> ר&quot;ל ברכה שלפני מודים והיא רצה ואולי שצריך להיות לתחלת עבודה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-11">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="matnot-kehunah-on-devarim-rabbah-11-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Matnot Kehunah on Devarim Rabbah 11:1:5</h4></div>
+              <a class="anchor" href="#matnot-kehunah-on-devarim-rabbah-11-1-5" aria-label="Copy link to Matnot Kehunah on Devarim Rabbah 11:1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וימכור כו׳.</strong> ומכירה ונתינה דבר אחד הוא כד&quot;א וימכרם ביד סיסרא או דייק מדסמך ליה ויעקב נתן וגו׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-matnot-kehunah-on-devarim-rabbah-text-11">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"matnot-kehunah-on-devarim-rabbah","work_title":"Matnot Kehunah on Devarim Rabbah","work_slug":"midrash/matnot-kehunah-on-devarim-rabbah","scope_label":"All imported Hebrew works","generated_at":"2026-05-09T08:03:54.586Z","total_occurrences":632,"units":{"matnot-kehunah-on-devarim-rabbah-1-1-1":{"unit_id":"matnot-kehunah-on-devarim-rabbah-1-1-1","anchor_id":"matnot-kehunah-on-devarim-rabbah-1-1-1","source_ref":"Matnot Kehunah on Devarim Rabbah 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2ab35febeaa8","tok-cd34abbc3e44","tok-c818431c26ac","tok-0622f3300ca9","tok-8e0836570ba0","tok-31625897c0cd","tok-2c9eb7aaa928","tok-3131a98a8975","tok-80b32e633bea","tok-17b8781f6abb","tok-e44eef6f477a","tok-c2e63e22b617","tok-2fbecb2e9fc6","tok-8a66eb81f7b4","tok-d76f20398d84","tok-936ff8988adb","tok-0825f67d3932"]}]},"matnot-kehunah-on-devarim-rabbah-1-1-2":{"unit_id":"matnot-kehunah-on-devarim-rabbah-1-1-2","anchor_id":"matnot-kehunah-on-devarim-rabbah-1-1-2","source_ref":"Matnot Kehunah on Devarim Rabbah 1:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-feaf3963a9b8","tok-2584ad0d9029","tok-ff7947fc691b","tok-7b3adcf3dd9b","tok-936ff8988adb","tok-1c036c8c918a","tok-21284f21233f","tok-41cd61df00ab","tok-bfe66fcb1f3c","tok-5c81acbebf77","tok-e44eef6f477a"]}]},"matnot-kehunah-on-devarim-rabbah-1-1-3":{"unit_id":"matnot-kehunah-on-devarim-rabbah-1-1-3","anchor_id":"matnot-kehunah-on-devarim-rabbah-1-1-3","source_ref":"Matnot Kehunah on Devarim Rabbah 1:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-42399b70b4f5","tok-4cf86bb287b1","tok-bd5434b0c7d2","tok-0622f3300ca9"]}]},"matnot-kehunah-on-devarim-rabbah-1-1-4":{"unit_id":"matnot-kehunah-on-devarim-rabbah-1-1-4","anchor_id":"matnot-kehunah-on-devarim-rabbah-1-1-4","source_ref":"Matnot Kehunah on Devarim Rabbah 1:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-41ae9a806a43","tok-b520c2e35840","tok-bfd0d8229a4e","tok-c1e968be9f9e","tok-6b739d2c49a9","tok-bb3fb6f472f1","tok-83d1ec98df9e","tok-bb90b8972a2b"]}]},"matnot-kehunah-on-devarim-rabbah-1-1-5":{"unit_id":"matnot-kehunah-on-devarim-rabbah-1-1-5","anchor_id":"matnot-kehunah-on-devarim-rabbah-1-1-5","source_ref":"Matnot Kehunah on Devarim Rabbah 1:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4cf959fa79f4","tok-cd34abbc3e44","tok-4de4c1682376","tok-a8a44d250c29","tok-e97f70dabe6b","tok-b8987df5041f","tok-eb6e07253080","tok-9093999ba885","tok-e8a3f44dc7f9","tok-645bbe27d4d7","tok-588733a91a85","tok-919e117aab43","tok-4e4cb3141283","tok-90598f860dc7","tok-771618c211d8","tok-588733a91a85","tok-b1344bb5396f","tok-ebb8fbc0eb53","tok-e9700d2f6f6c"]}]},"matnot-kehunah-on-devarim-rabbah-1-1-6":{"unit_id":"matnot-kehunah-on-devarim-rabbah-1-1-6","anchor_id":"matnot-kehunah-on-devarim-rabbah-1-1-6","source_ref":"Matnot Kehunah on Devarim Rabbah 1:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d0e75d3e7496","tok-3b04634292ec","tok-cd34abbc3e44","tok-c554a5e5ac93","tok-1caa15e52da2"]}]},"matnot-kehunah-on-devarim-rabbah-1-1-7":{"unit_id":"matnot-kehunah-on-devarim-rabbah-1-1-7","anchor_id":"matnot-kehunah-on-devarim-rabbah-1-1-7","source_ref":"Matnot Kehunah on Devarim Rabbah 1:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-db9c9387fd41","tok-6bb91c41070e","tok-bebf24a33b4e","tok-cd34abbc3e44","tok-db67508afe8c","tok-66f82f027741","tok-771618c211d8","tok-e97f70dabe6b","tok-8e09eec53330","tok-b8987df5041f","tok-eb6e07253080","tok-58b3d479adb0","tok-f799cefc9c7e"]}]},"matnot-kehunah-on-devarim-rabbah-2-1-1":{"unit_id":"matnot-kehunah-on-devarim-rabbah-2-1-1","anchor_id":"matnot-kehunah-on-devarim-rabbah-2-1-1","source_ref":"Matnot Kehunah on Devarim Rabbah 2:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6fad92843b55","tok-85ac143ba84f","tok-ba403aa4e136"]}]},"matnot-kehunah-on-devarim-rabbah-2-1-2":{"unit_id":"matnot-kehunah-on-devarim-rabbah-2-1-2","anchor_id":"matnot-kehunah-on-devarim-rabbah-2-1-2","source_ref":"Matnot Kehunah on Devarim Rabbah 2:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-feaf3963a9b8","tok-9ca03be94f27","tok-5996ead68321","tok-fe9fc43807dd","tok-039675f3bcb5","tok-3e31f9092215","tok-b8e13d73e935","tok-e4809f373551","tok-990ec7cd68c0","tok-4d5094e56004","tok-190a58fd0ee1","tok-0c4de085b66b","tok-49eb89561ee9","tok-039675f3bcb5","tok-3e31f9092215","tok-988c95e69e4f","tok-20a51138918a","tok-65236aa9ae71","tok-3260eaec788f","tok-6ff088bcccc7"]}]},"matnot-kehunah-on-devarim-rabbah-2-1-3":{"unit_id":"matnot-kehunah-on-devarim-rabbah-2-1-3","anchor_id":"matnot-kehunah-on-devarim-rabbah-2-1-3","source_ref":"Matnot Kehunah on Devarim Rabbah 2:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-28c6e8e8d200","tok-47521d7606bb","tok-e0da4f360850","tok-7cbd7e4b7e15","tok-128a7839b358","tok-50b3c7109550","tok-128a7839b358"]}]},"matnot-kehunah-on-devarim-rabbah-2-1-4":{"unit_id":"matnot-kehunah-on-devarim-rabbah-2-1-4","anchor_id":"matnot-kehunah-on-devarim-rabbah-2-1-4","source_ref":"Matnot Kehunah on Devarim Rabbah 2:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-556d71bd0b6d","tok-365328368e19","tok-e9096a7ebb83","tok-063df1e6bf53","tok-a4ae082dfcf0","tok-dacb0bceebad","tok-7cd730eab13c","tok-9002a8e675f2","tok-90b193b16c55"]}]},"matnot-kehunah-on-devarim-rabbah-2-1-5":{"unit_id":"matnot-kehunah-on-devarim-rabbah-2-1-5","anchor_id":"matnot-kehunah-on-devarim-rabbah-2-1-5","source_ref":"Matnot Kehunah on Devarim Rabbah 2:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fb342efda08b","tok-e4eb6a741f46","tok-4bd91f18b3a3","tok-dc5700798dfe","tok-0089840ab2de","tok-403d4691acaf","tok-ca93e631d0fc","tok-f7a0e03137ba"]}]},"matnot-kehunah-on-devarim-rabbah-2-1-6":{"unit_id":"matnot-kehunah-on-devarim-rabbah-2-1-6","anchor_id":"matnot-kehunah-on-devarim-rabbah-2-1-6","source_ref":"Matnot Kehunah on Devarim Rabbah 2:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-feaf3963a9b8","tok-fb342efda08b","tok-5b9164f136ec"]}]},"matnot-kehunah-on-devarim-rabbah-2-1-7":{"unit_id":"matnot-kehunah-on-devarim-rabbah-2-1-7","anchor_id":"matnot-kehunah-on-devarim-rabbah-2-1-7","source_ref":"Matnot Kehunah on Devarim Rabbah 2:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4b9f8bc8daed","tok-c4705b0f0c45","tok-988c95e69e4f","tok-4ea8602e168d","tok-4cf86bb287b1","tok-9b84f58424bc","tok-190a58fd0ee1","tok-c4705b0f0c45"]}]},"matnot-kehunah-on-devarim-rabbah-2-1-8":{"unit_id":"matnot-kehunah-on-devarim-rabbah-2-1-8","anchor_id":"matnot-kehunah-on-devarim-rabbah-2-1-8","source_ref":"Matnot Kehunah on Devarim Rabbah 2:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-feaf3963a9b8","tok-c336680a3b23","tok-51379767317c","tok-f806d7433c50","tok-d07f80cbd0e6","tok-e4809f373551"]}]},"matnot-kehunah-on-devarim-rabbah-2-1-9":{"unit_id":"matnot-kehunah-on-devarim-rabbah-2-1-9","anchor_id":"matnot-kehunah-on-devarim-rabbah-2-1-9","source_ref":"Matnot Kehunah on Devarim Rabbah 2:1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-916dede87faf","tok-e63cf820d6ae","tok-e4809f373551","tok-ba4ffad5f252","tok-3eafa3a02f83","tok-a3dcfc84b9aa","tok-063df1e6bf53","tok-c1639b4b0505","tok-8aa4f1f77ded","tok-936ff8988adb","tok-3faff1ed047c","tok-d143cfae021f","tok-d6260a2d263c","tok-b1344bb5396f","tok-466334783ab9"]}]},"matnot-kehunah-on-devarim-rabbah-2-1-10":{"unit_id":"matnot-kehunah-on-devarim-rabbah-2-1-10","anchor_id":"matnot-kehunah-on-devarim-rabbah-2-1-10","source_ref":"Matnot Kehunah on Devarim Rabbah 2:1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cd7b3876f65a","tok-5ab3ae0e96e2","tok-a4ae082dfcf0","tok-ba4ffad5f252","tok-93b6d04d5b80","tok-d40706463793","tok-f48fb551f553","tok-a93284223a86","tok-6b7772f21d0b"]}]},"matnot-kehunah-on-devarim-rabbah-2-1-11":{"unit_id":"matnot-kehunah-on-devarim-rabbah-2-1-11","anchor_id":"matnot-kehunah-on-devarim-rabbah-2-1-11","source_ref":"Matnot Kehunah on Devarim Rabbah 2:1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ca2198706292","tok-47d96edd7391","tok-83075bda3712","tok-cecdc2ac92f7","tok-6b7772f21d0b","tok-80183874ff54","tok-83a85158bfe5","tok-ca2198706292","tok-8a4c3ddab528","tok-228133e116f8","tok-10e477b1d7bb","tok-3ee2d5d50fbb","tok-201b1d6adcc8","tok-04d7bf7e5924","tok-fcffbf1a5fef","tok-54f3a9d7d86e","tok-f856a4e56dd7","tok-5dfed213ba4a","tok-588733a91a85","tok-950d0a4f99bd","tok-3131a98a8975","tok-588733a91a85","tok-f8b4d7cadefc","tok-07eb55326980","tok-b621ebe0178d","tok-456547af1bf1","tok-e6e78f0ed090","tok-6626afd98496"]}]},"matnot-kehunah-on-devarim-rabbah-2-1-12":{"unit_id":"matnot-kehunah-on-devarim-rabbah-2-1-12","anchor_id":"matnot-kehunah-on-devarim-rabbah-2-1-12","source_ref":"Matnot Kehunah on Devarim Rabbah 2:1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ba403aa4e136","tok-b1344bb5396f","tok-cd34abbc3e44","tok-713d520fadd0","tok-cd34abbc3e44","tok-9d5357b42bef"]}]},"matnot-kehunah-on-devarim-rabbah-3-1-1":{"unit_id":"matnot-kehunah-on-devarim-rabbah-3-1-1","anchor_id":"matnot-kehunah-on-devarim-rabbah-3-1-1","source_ref":"Matnot Kehunah on Devarim Rabbah 3:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0e49448ef0b2","tok-a179bb6e9631","tok-0e49448ef0b2","tok-610b579fb059","tok-7ad225ce05da","tok-6802d756811d","tok-99537547d36c","tok-fee9f7d70970","tok-c35c0741f9f4","tok-ebb8fbc0eb53","tok-ec72ebe19805","tok-349375170a9a","tok-c3c43b65dc8a","tok-a00b1facf72d","tok-bc29ad10d137","tok-d2469d2d5a57"]}]},"matnot-kehunah-on-devarim-rabbah-3-1-2":{"unit_id":"matnot-kehunah-on-devarim-rabbah-3-1-2","anchor_id":"matnot-kehunah-on-devarim-rabbah-3-1-2","source_ref":"Matnot Kehunah on Devarim Rabbah 3:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a97265cf7dd1","tok-a7d4ef285257","tok-680670aec850","tok-eed85d4bdaae","tok-74a10296f8c6","tok-00f51d0cfb6c","tok-847d82cc102a","tok-20dfe5f13251"]}]},"matnot-kehunah-on-devarim-rabbah-3-1-3":{"unit_id":"matnot-kehunah-on-devarim-rabbah-3-1-3","anchor_id":"matnot-kehunah-on-devarim-rabbah-3-1-3","source_ref":"Matnot Kehunah on Devarim Rabbah 3:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-feaf3963a9b8","tok-5be055dacfcc","tok-ad585a1da3b8","tok-dde784b0d4a1","tok-2cac58253a26","tok-07eb55326980","tok-cff79ba15968","tok-c03692588557","tok-ad585a1da3b8","tok-dafc102c9e2d"]}]},"matnot-kehunah-on-devarim-rabbah-3-1-4":{"unit_id":"matnot-kehunah-on-devarim-rabbah-3-1-4","anchor_id":"matnot-kehunah-on-devarim-rabbah-3-1-4","source_ref":"Matnot Kehunah on Devarim Rabbah 3:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fcf790c77ae1","tok-1ae26aaeb0f9","tok-5b8b7f17cd87","tok-6cc56664d44f"]}]},"matnot-kehunah-on-devarim-rabbah-4-1-1":{"unit_id":"matnot-kehunah-on-devarim-rabbah-4-1-1","anchor_id":"matnot-kehunah-on-devarim-rabbah-4-1-1","source_ref":"Matnot Kehunah on Devarim Rabbah 4:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-eaace2a0e77b","tok-eaace2a0e77b","tok-76eb913947de","tok-4a4c9d24a26a","tok-48b0a9356e5f","tok-e21581d21054","tok-ebb8fbc0eb53","tok-24d8c8c1d167","tok-a36d8299844d","tok-6eac7d9f5b45","tok-14a3a594e8f2","tok-749a0bc7866d","tok-9093999ba885","tok-5996ead68321","tok-d653b5d3998f","tok-9000ce1c7345"]}]},"matnot-kehunah-on-devarim-rabbah-5-1-1":{"unit_id":"matnot-kehunah-on-devarim-rabbah-5-1-1","anchor_id":"matnot-kehunah-on-devarim-rabbah-5-1-1","source_ref":"Matnot Kehunah on Devarim Rabbah 5:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-feaf3963a9b8","tok-7a1ddf454969","tok-890bf5e40438","tok-eb079f6c3e24","tok-7c2b5b9772e9","tok-44b7949df788","tok-818713166313","tok-7c2b5b9772e9","tok-e4809f373551","tok-c12a45efcfdd","tok-e21581d21054","tok-adef18dd231f","tok-e21581d21054","tok-b31205218b0e","tok-2d11f9d752ce","tok-303204c5a943"]}]},"matnot-kehunah-on-devarim-rabbah-5-1-2":{"unit_id":"matnot-kehunah-on-devarim-rabbah-5-1-2","anchor_id":"matnot-kehunah-on-devarim-rabbah-5-1-2","source_ref":"Matnot Kehunah on Devarim Rabbah 5:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-31625897c0cd","tok-17f793ddf083","tok-ee7a3fc15ae0","tok-b7e3251f541a","tok-ee7a3fc15ae0","tok-1924fde1f87a","tok-79f1025a1847","tok-e4809f373551"]}]},"matnot-kehunah-on-devarim-rabbah-5-1-3":{"unit_id":"matnot-kehunah-on-devarim-rabbah-5-1-3","anchor_id":"matnot-kehunah-on-devarim-rabbah-5-1-3","source_ref":"Matnot Kehunah on Devarim Rabbah 5:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-feaf3963a9b8","tok-14eca0caff3a","tok-42e08385be9b","tok-867f0067e786","tok-6d843482982a","tok-47b92b851406","tok-ee7a3fc15ae0","tok-7801de37d926","tok-3209702049d6","tok-256c5067ea82","tok-bca5efd4f52b","tok-6d843482982a","tok-17f793ddf083","tok-256c5067ea82","tok-bca5efd4f52b","tok-7801de37d926","tok-3f6477dfba57","tok-0278d47c6f91","tok-f613aed141ec","tok-a63904ac6e24","tok-3260eaec788f","tok-2d11f9d752ce","tok-39c45decbf1f","tok-349375170a9a","tok-e21581d21054","tok-b31205218b0e","tok-6d77cfa68779","tok-972d43d3b14d","tok-f5bee9d79981","tok-cddade05d8f8","tok-db28901dba0f"]}]},"matnot-kehunah-on-devarim-rabbah-5-1-4":{"unit_id":"matnot-kehunah-on-devarim-rabbah-5-1-4","anchor_id":"matnot-kehunah-on-devarim-rabbah-5-1-4","source_ref":"Matnot Kehunah on Devarim Rabbah 5:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5996ead68321","tok-314435f76cda","tok-4c7cecd0532e","tok-0622f3300ca9","tok-6bb91c41070e","tok-c683ed45da1b","tok-a464d43dc5a8"]}]},"matnot-kehunah-on-devarim-rabbah-5-1-5":{"unit_id":"matnot-kehunah-on-devarim-rabbah-5-1-5","anchor_id":"matnot-kehunah-on-devarim-rabbah-5-1-5","source_ref":"Matnot Kehunah on Devarim Rabbah 5:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-08aafaacdf2f","tok-e38e65e9babf","tok-0622f3300ca9"]}]},"matnot-kehunah-on-devarim-rabbah-5-1-6":{"unit_id":"matnot-kehunah-on-devarim-rabbah-5-1-6","anchor_id":"matnot-kehunah-on-devarim-rabbah-5-1-6","source_ref":"Matnot Kehunah on Devarim Rabbah 5:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-dbdd3b6321a7","tok-3d1bd4e86bb7","tok-dbdd3b6321a7","tok-e4809f373551"]}]},"matnot-kehunah-on-devarim-rabbah-6-1-1":{"unit_id":"matnot-kehunah-on-devarim-rabbah-6-1-1","anchor_id":"matnot-kehunah-on-devarim-rabbah-6-1-1","source_ref":"Matnot Kehunah on Devarim Rabbah 6:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-73aee2001ebb","tok-edd062b41e4d","tok-b24cb3092e18","tok-704afe032889","tok-73aee2001ebb","tok-28460d907dc7","tok-7666fcc3d97b","tok-d111e9d11e45","tok-9876d937737d","tok-93c7aed9d42f"]}]},"matnot-kehunah-on-devarim-rabbah-6-1-2":{"unit_id":"matnot-kehunah-on-devarim-rabbah-6-1-2","anchor_id":"matnot-kehunah-on-devarim-rabbah-6-1-2","source_ref":"Matnot Kehunah on Devarim Rabbah 6:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-feaf3963a9b8","tok-72c09adcf80b","tok-ec66c46d2600","tok-73aee2001ebb","tok-edd062b41e4d","tok-5996ead68321","tok-314435f76cda","tok-c12a45efcfdd","tok-565064600cb4","tok-2045608948f2","tok-5b0ef09d9ba7","tok-5b0ef09d9ba7","tok-349375170a9a","tok-0173685133f9"]}]},"matnot-kehunah-on-devarim-rabbah-6-1-3":{"unit_id":"matnot-kehunah-on-devarim-rabbah-6-1-3","anchor_id":"matnot-kehunah-on-devarim-rabbah-6-1-3","source_ref":"Matnot Kehunah on Devarim Rabbah 6:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b7e3251f541a","tok-73aee2001ebb","tok-c818431c26ac","tok-b24cb3092e18","tok-704afe032889","tok-dbfb799cd9c4","tok-9876d937737d","tok-93c7aed9d42f"]}]},"matnot-kehunah-on-devarim-rabbah-6-1-4":{"unit_id":"matnot-kehunah-on-devarim-rabbah-6-1-4","anchor_id":"matnot-kehunah-on-devarim-rabbah-6-1-4","source_ref":"Matnot Kehunah on Devarim Rabbah 6:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ef3b70587889","tok-7b0f8e1dc5b2","tok-90645ed7ad1f","tok-acabfe4c40e8","tok-4fd813e4c978","tok-428bf695d9e8"]}]},"matnot-kehunah-on-devarim-rabbah-7-1-1":{"unit_id":"matnot-kehunah-on-devarim-rabbah-7-1-1","anchor_id":"matnot-kehunah-on-devarim-rabbah-7-1-1","source_ref":"Matnot Kehunah on Devarim Rabbah 7:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-38ebc88ab4a5","tok-5235b7672fe1","tok-74696f258456","tok-149169301835","tok-a0c4d787291f","tok-aec2db6f1db3","tok-588733a91a85","tok-cd7b3876f65a","tok-2c8b1270b078","tok-09b44d5046c6","tok-9f63b989d5bf","tok-a9a3ea709635","tok-5a39b268a295"]}]},"matnot-kehunah-on-devarim-rabbah-7-1-2":{"unit_id":"matnot-kehunah-on-devarim-rabbah-7-1-2","anchor_id":"matnot-kehunah-on-devarim-rabbah-7-1-2","source_ref":"Matnot Kehunah on Devarim Rabbah 7:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e2c49a8321c7","tok-bd6c7b423c46","tok-e4809f373551","tok-3ac254b66563","tok-cd89bfa4be57","tok-c08619d24299","tok-99df3410e03e","tok-d1db5922678f","tok-c4ba14a448e2","tok-420a889188c3","tok-1c7f644afe65","tok-4fe38921cdc4","tok-c1f6ab48b1a8","tok-83075bda3712","tok-94ab2fd58c29","tok-b8e1ca98ca11","tok-3ac254b66563","tok-4fc9c4860ed8","tok-a3dcfc84b9aa","tok-063df1e6bf53","tok-bd151d29c9f7","tok-4f69b7eae2d8","tok-75ded8853e51","tok-06846c06ad63"]}]},"matnot-kehunah-on-devarim-rabbah-8-1-1":{"unit_id":"matnot-kehunah-on-devarim-rabbah-8-1-1","anchor_id":"matnot-kehunah-on-devarim-rabbah-8-1-1","source_ref":"Matnot Kehunah on Devarim Rabbah 8:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8f943fead78d","tok-ead42b6a0fd9","tok-ead42b6a0fd9","tok-8f943fead78d","tok-42e08385be9b","tok-063df1e6bf53","tok-d6145e7fa74d","tok-8d7c5eeda457","tok-f65e05f15a1f","tok-f1804a0a7fc0"]}]},"matnot-kehunah-on-devarim-rabbah-8-1-2":{"unit_id":"matnot-kehunah-on-devarim-rabbah-8-1-2","anchor_id":"matnot-kehunah-on-devarim-rabbah-8-1-2","source_ref":"Matnot Kehunah on Devarim Rabbah 8:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-feaf3963a9b8","tok-af5bbacf3d8a","tok-fcffbf1a5fef","tok-6e3103a53038"]}]},"matnot-kehunah-on-devarim-rabbah-8-1-3":{"unit_id":"matnot-kehunah-on-devarim-rabbah-8-1-3","anchor_id":"matnot-kehunah-on-devarim-rabbah-8-1-3","source_ref":"Matnot Kehunah on Devarim Rabbah 8:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-365328368e19","tok-6bb91c41070e","tok-e6deb46d202b","tok-341e818e4e40"]}]},"matnot-kehunah-on-devarim-rabbah-8-1-4":{"unit_id":"matnot-kehunah-on-devarim-rabbah-8-1-4","anchor_id":"matnot-kehunah-on-devarim-rabbah-8-1-4","source_ref":"Matnot Kehunah on Devarim Rabbah 8:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d111e9d11e45","tok-64db436ffa55","tok-e4809f373551","tok-ec72ebe19805","tok-24d8c8c1d167","tok-12bbcbf1f0a9","tok-f4d5c04c116d"]}]},"matnot-kehunah-on-devarim-rabbah-8-1-5":{"unit_id":"matnot-kehunah-on-devarim-rabbah-8-1-5","anchor_id":"matnot-kehunah-on-devarim-rabbah-8-1-5","source_ref":"Matnot Kehunah on Devarim Rabbah 8:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-dc6493745ed2","tok-f5187205f2b9","tok-6bb91c41070e","tok-d111e9d11e45","tok-0e174b5afce3","tok-745f8a225f40","tok-120126a9ca60","tok-7baf8f5603da","tok-9c6f99e692c9","tok-3f68ed5f8846","tok-7cd730eab13c","tok-a534c98977e2","tok-2fa50e059f4e","tok-adef18dd231f","tok-a3dcfc84b9aa","tok-5afc3f974f16","tok-d36e3b806c81","tok-3f05eff31058","tok-7a13c3046239","tok-a84db3c51908","tok-feaf3963a9b8","tok-71c9a9ee4303","tok-c809b0f5772f","tok-daf76a99d7cf","tok-f56b46f0b825","tok-e4809f373551"]}]},"matnot-kehunah-on-devarim-rabbah-8-1-6":{"unit_id":"matnot-kehunah-on-devarim-rabbah-8-1-6","anchor_id":"matnot-kehunah-on-devarim-rabbah-8-1-6","source_ref":"Matnot Kehunah on Devarim Rabbah 8:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-867f0067e786","tok-a00b1facf72d","tok-e4809f373551","tok-3ee2d5d50fbb","tok-190a58fd0ee1","tok-0e771e81527e","tok-867f0067e786","tok-a00b1facf72d","tok-71c9a9ee4303","tok-c809b0f5772f","tok-0089840ab2de","tok-403d4691acaf","tok-9f87324c0cc6","tok-abc3111bfa56","tok-01330ae58961","tok-451680bc11f0","tok-ab35eba6335e"]}]},"matnot-kehunah-on-devarim-rabbah-9-1-1":{"unit_id":"matnot-kehunah-on-devarim-rabbah-9-1-1","anchor_id":"matnot-kehunah-on-devarim-rabbah-9-1-1","source_ref":"Matnot Kehunah on Devarim Rabbah 9:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-feaf3963a9b8","tok-6621b9453d53","tok-330e6aa3b5ff","tok-9f63b989d5bf","tok-0e174b5afce3","tok-72bd7702fcd9","tok-b3daf8bfdcbf"]}]},"matnot-kehunah-on-devarim-rabbah-9-1-2":{"unit_id":"matnot-kehunah-on-devarim-rabbah-9-1-2","anchor_id":"matnot-kehunah-on-devarim-rabbah-9-1-2","source_ref":"Matnot Kehunah on Devarim Rabbah 9:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bbdbad7a37a0","tok-8b098f14019c","tok-55c5e13e0325","tok-77bbaa60f9a0"]}]},"matnot-kehunah-on-devarim-rabbah-9-1-3":{"unit_id":"matnot-kehunah-on-devarim-rabbah-9-1-3","anchor_id":"matnot-kehunah-on-devarim-rabbah-9-1-3","source_ref":"Matnot Kehunah on Devarim Rabbah 9:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4d6500d528a0","tok-4e3684403c21","tok-8cc07ab0e56f","tok-e4809f373551","tok-90645ed7ad1f","tok-ebb8fbc0eb53","tok-14eca0caff3a","tok-b4ecd4587ed4","tok-c59b40655915","tok-c1f6ab48b1a8","tok-5a6383d147ee","tok-0622f3300ca9"]}]},"matnot-kehunah-on-devarim-rabbah-9-1-4":{"unit_id":"matnot-kehunah-on-devarim-rabbah-9-1-4","anchor_id":"matnot-kehunah-on-devarim-rabbah-9-1-4","source_ref":"Matnot Kehunah on Devarim Rabbah 9:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cddade05d8f8","tok-939280fd0162","tok-532819858ea6","tok-350216b8f665","tok-a4ae082dfcf0","tok-c776c83294ce","tok-2d3f6112a30c","tok-1976b29801d1","tok-3cf1c6bd281b"]}]},"matnot-kehunah-on-devarim-rabbah-9-1-5":{"unit_id":"matnot-kehunah-on-devarim-rabbah-9-1-5","anchor_id":"matnot-kehunah-on-devarim-rabbah-9-1-5","source_ref":"Matnot Kehunah on Devarim Rabbah 9:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b5d63f131be4","tok-4d7c271a2292","tok-d05a7730d609","tok-aa4b24b49ff6","tok-233f117bccff","tok-01220753d3ae","tok-b8987df5041f","tok-749a0bc7866d","tok-7d27b58fc20f","tok-a6a544f3a8c1","tok-539fed2ee6e5","tok-aba818de9634","tok-9ca03be94f27","tok-2a44c848d927","tok-84300dcdb52d","tok-f0ef8492ed11","tok-96996dfca2e8","tok-b5d63f131be4"]}]},"matnot-kehunah-on-devarim-rabbah-9-1-6":{"unit_id":"matnot-kehunah-on-devarim-rabbah-9-1-6","anchor_id":"matnot-kehunah-on-devarim-rabbah-9-1-6","source_ref":"Matnot Kehunah on Devarim Rabbah 9:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a092bfcf15df","tok-0622f3300ca9","tok-4f75f8feeccd","tok-1ff1074cd528","tok-0e18edc40fc3","tok-2bd7699c8c53","tok-90a77f8a97e4"]}]},"matnot-kehunah-on-devarim-rabbah-10-1-1":{"unit_id":"matnot-kehunah-on-devarim-rabbah-10-1-1","anchor_id":"matnot-kehunah-on-devarim-rabbah-10-1-1","source_ref":"Matnot Kehunah on Devarim Rabbah 10:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d9b233e0ada3","tok-0622f3300ca9"]}]},"matnot-kehunah-on-devarim-rabbah-10-1-2":{"unit_id":"matnot-kehunah-on-devarim-rabbah-10-1-2","anchor_id":"matnot-kehunah-on-devarim-rabbah-10-1-2","source_ref":"Matnot Kehunah on Devarim Rabbah 10:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e10c95ce0c39","tok-ca2198706292","tok-9876d937737d","tok-5b0ef09d9ba7","tok-fe6f67ec7167","tok-e5f6ba91438b"]}]},"matnot-kehunah-on-devarim-rabbah-10-1-3":{"unit_id":"matnot-kehunah-on-devarim-rabbah-10-1-3","anchor_id":"matnot-kehunah-on-devarim-rabbah-10-1-3","source_ref":"Matnot Kehunah on Devarim Rabbah 10:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-13921fb00cf1","tok-cd89bfa4be57","tok-4e4cb3141283","tok-60a43269efd5","tok-6d77cfa68779","tok-8168a03e26e5","tok-fd4af44a1542","tok-7693be937e9f","tok-cddade05d8f8","tok-6b739d2c49a9","tok-7cdb0ef698d6","tok-8fded8656f71","tok-fb643daa79cd","tok-c32524dc3719","tok-c1639b4b0505","tok-764e36bc36b9","tok-a8f2d372f2ac","tok-3faff1ed047c","tok-12c99247758b"]}]},"matnot-kehunah-on-devarim-rabbah-10-1-4":{"unit_id":"matnot-kehunah-on-devarim-rabbah-10-1-4","anchor_id":"matnot-kehunah-on-devarim-rabbah-10-1-4","source_ref":"Matnot Kehunah on Devarim Rabbah 10:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-dde784b0d4a1","tok-07eb55326980","tok-896f0a3bec2f","tok-b8987df5041f","tok-749a0bc7866d","tok-66be24346e15","tok-6edb15fdec3f","tok-f27e8da975b8","tok-e58b7fd6348c","tok-ceebebeb4fba","tok-1e119451ea09","tok-ceebebeb4fba","tok-b6ef63c7c44b","tok-4b8b38102c79","tok-5b0ef09d9ba7"]}]},"matnot-kehunah-on-devarim-rabbah-11-1-1":{"unit_id":"matnot-kehunah-on-devarim-rabbah-11-1-1","anchor_id":"matnot-kehunah-on-devarim-rabbah-11-1-1","source_ref":"Matnot Kehunah on Devarim Rabbah 11:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c2ebecb010e2","tok-a014ffd8bf61","tok-0db461ace71f","tok-70ab1e423195","tok-4378ef766ef9"]}]},"matnot-kehunah-on-devarim-rabbah-11-1-2":{"unit_id":"matnot-kehunah-on-devarim-rabbah-11-1-2","anchor_id":"matnot-kehunah-on-devarim-rabbah-11-1-2","source_ref":"Matnot Kehunah on Devarim Rabbah 11:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-541719b49aa4","tok-06d9ea7db074","tok-2d5bc7c9af40","tok-b7684fc8fc54","tok-0af8eb56f9c4","tok-6b7772f21d0b"]}]},"matnot-kehunah-on-devarim-rabbah-11-1-3":{"unit_id":"matnot-kehunah-on-devarim-rabbah-11-1-3","anchor_id":"matnot-kehunah-on-devarim-rabbah-11-1-3","source_ref":"Matnot Kehunah on Devarim Rabbah 11:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-15d67670d09e","tok-76b45d7c8f47","tok-120152e6c684","tok-62cbe4a892f8","tok-b0ccd9063b40","tok-4cf86bb287b1","tok-9554db03901c","tok-76b45d7c8f47","tok-0db461ace71f","tok-4e3684403c21","tok-a5b8864a4cba","tok-70ab1e423195","tok-71c795e9e5ec","tok-89473f9bc942","tok-a5e19a23bcb8","tok-9554db03901c","tok-76b45d7c8f47","tok-bfe66fcb1f3c","tok-03a2b53528ec","tok-8b53f947c87e","tok-e97f70dabe6b","tok-c1f6ab48b1a8","tok-e21581d21054","tok-9bf581554323","tok-9a6d2cba5703","tok-b5817c997714"]}]},"matnot-kehunah-on-devarim-rabbah-11-1-4":{"unit_id":"matnot-kehunah-on-devarim-rabbah-11-1-4","anchor_id":"matnot-kehunah-on-devarim-rabbah-11-1-4","source_ref":"Matnot Kehunah on Devarim Rabbah 11:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f9d8521550c7","tok-15536557f395","tok-2760723745c2","tok-17cf7cf7354d","tok-0c72ac7ec3cb","tok-15536557f395","tok-74d9e7a47ca4","tok-73b2037ac6a4","tok-22d61bdec650","tok-106e3db76165","tok-717975bdd412","tok-f9d8521550c7","tok-1b39af75864b"]}]},"matnot-kehunah-on-devarim-rabbah-11-1-5":{"unit_id":"matnot-kehunah-on-devarim-rabbah-11-1-5","anchor_id":"matnot-kehunah-on-devarim-rabbah-11-1-5","source_ref":"Matnot Kehunah on Devarim Rabbah 11:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-215523f732e0","tok-e4809f373551","tok-0eef0c9599cc","tok-065599d87a00","tok-ae8e58f6d9eb","tok-30f40063f3a5","tok-b1344bb5396f","tok-8bab96952076","tok-9f16aee51d2e","tok-b92be8c5436e","tok-2fec3b849540","tok-fcffbf1a5fef","tok-a7058895f81c","tok-e903cfe510e2","tok-3260eaec788f","tok-5eccd4d5c0ee","tok-1148719bfaa0","tok-5b9164f136ec"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/matnot-kehunah-on-devarim-rabbah.manifest.json","root_href":"../../"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const sourceSummary = (rows) => {
+        const row = cleanValues(rows)[0];
+        if (!row) return { source: "Source metadata incomplete", license: "N/A" };
+        const sourceId = row.source_id ? ` ${row.source_id}` : "";
+        return { source: `${row.source_name || "Source"}${sourceId}`, license: row.license || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        const sourceLine = document.createElement("p");
+        sourceLine.className = "claim-source";
+        sourceLine.textContent = `Source: ${source.source}`;
+        const licenseLine = document.createElement("p");
+        licenseLine.className = "claim-license";
+        licenseLine.textContent = `License: ${source.license}`;
+        card.append(sourceLine, licenseLine);
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${row.license || "N/A"}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

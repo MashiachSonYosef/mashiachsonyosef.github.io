@@ -2,7 +2,34 @@
 
 Date: 2026-05-09
 
-## Latest Importable Lane: Etz Yosef on Midrash Rabbah Commentaries
+## Latest Importable Lane: Matnot Kehunah on Midrash Rabbah Commentaries
+
+Imported because each work resolved to Hebrew Sefaria source units with `Public Domain` metadata. These are commentary works and retain base-work labels. No English translations were imported or generated. Lexical HUD data uses existing separated source layers only.
+
+| Work | Type | Base work | Units | License | Version | Source URL | Lexical coverage | Token occurrences | Largest chunk | Page |
+|---|---|---|---:|---|---|---|---:|---:|---:|---|
+| Matnot Kehunah on Bamidbar Rabbah | commentary | Bamidbar Rabbah | 177 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 21/1378 | 2209 | 0.24 MB | midrash/matnot-kehunah-on-bamidbar-rabbah/index.html |
+| Matnot Kehunah on Bereshit Rabbah | commentary | Bereshit Rabbah | 516 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 37/3705 | 8130 | 0.24 MB | midrash/matnot-kehunah-on-bereshit-rabbah/index.html |
+| Matnot Kehunah on Devarim Rabbah | commentary | Devarim Rabbah | 57 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 8/454 | 632 | 0.11 MB | midrash/matnot-kehunah-on-devarim-rabbah/index.html |
+| Matnot Kehunah on Eichah Rabbah | commentary | Eichah Rabbah | 484 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 25/2981 | 6483 | 0.24 MB | midrash/matnot-kehunah-on-eichah-rabbah/index.html |
+| Matnot Kehunah on Esther Rabbah | commentary | Esther Rabbah | 74 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 10/558 | 806 | 0.14 MB | midrash/matnot-kehunah-on-esther-rabbah/index.html |
+| Matnot Kehunah on Kohelet Rabbah | commentary | Kohelet Rabbah | 1683 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 38/7005 | 21897 | 0.23 MB | midrash/matnot-kehunah-on-kohelet-rabbah/index.html |
+| Matnot Kehunah on Ruth Rabbah | commentary | Ruth Rabbah | 71 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 10/594 | 911 | 0.14 MB | midrash/matnot-kehunah-on-ruth-rabbah/index.html |
+| Matnot Kehunah on Shemot Rabbah | commentary | Shemot Rabbah | 229 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 22/1632 | 2914 | 0.24 MB | midrash/matnot-kehunah-on-shemot-rabbah/index.html |
+| Matnot Kehunah on Shir HaShirim Rabbah | commentary | Shir HaShirim Rabbah | 1816 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 42/7681 | 23488 | 0.23 MB | midrash/matnot-kehunah-on-shir-hashirim-rabbah/index.html |
+| Matnot Kehunah on Vayikra Rabbah | commentary | Vayikra Rabbah | 374 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 23/2518 | 4690 | 0.23 MB | midrash/matnot-kehunah-on-vayikra-rabbah/index.html |
+
+### Matnot Kehunah Commentary Batch Totals
+
+- New works imported: 10
+- New source units: 5481
+- New token occurrences: 72160
+- New work-surface rows: 28506
+- New matched surface rows: 236
+- Largest new lexical chunk: matnot-kehunah-on-bamidbar-rabbah-chunks/matnot-kehunah-on-bamidbar-rabbah-000.json at 0.24 MB
+- Blank overlay exports were generated; no translation content was added.
+
+## Previous Importable Lane: Etz Yosef on Midrash Rabbah Commentaries
 
 Imported because each work resolved to Hebrew Sefaria source units with `Public Domain` metadata. These are commentary works and retain base-work labels. No English translations were imported or generated. Lexical HUD data uses existing separated source layers only.
 
