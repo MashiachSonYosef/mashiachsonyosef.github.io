@@ -56,7 +56,7 @@ function Test-ExportFiles {
   }
 
   $parsedRows = Get-Content -Path $jsonPath -Raw -Encoding UTF8 | ConvertFrom-Json
-  $rows = if ($parsedRows -is [array]) { $parsedRows } else { @($parsedRows) }
+  $rows = @(if ($parsedRows -is [array]) { $parsedRows } else { $parsedRows })
   if ($rows.Count -ne $ExpectedRows) {
     $errors.Add("Overlay JSON row count mismatch for $Label`: expected $ExpectedRows, found $($rows.Count)")
   }

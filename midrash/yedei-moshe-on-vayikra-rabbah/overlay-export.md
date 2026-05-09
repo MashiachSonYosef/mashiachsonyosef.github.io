@@ -1,0 +1,27 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 1:1:1 | yedei-moshe-on-vayikra-rabbah-1-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 1:1:2 | yedei-moshe-on-vayikra-rabbah-1-1-2 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 2:1:1 | yedei-moshe-on-vayikra-rabbah-2-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 3:1:1 | yedei-moshe-on-vayikra-rabbah-3-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 6:1:1 | yedei-moshe-on-vayikra-rabbah-6-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 9:1:1 | yedei-moshe-on-vayikra-rabbah-9-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 12:1:1 | yedei-moshe-on-vayikra-rabbah-12-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 12:1:2 | yedei-moshe-on-vayikra-rabbah-12-1-2 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 12:1:3 | yedei-moshe-on-vayikra-rabbah-12-1-3 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 14:1:1 | yedei-moshe-on-vayikra-rabbah-14-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 15:1:1 | yedei-moshe-on-vayikra-rabbah-15-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 16:1:1 | yedei-moshe-on-vayikra-rabbah-16-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 17:1:1 | yedei-moshe-on-vayikra-rabbah-17-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 17:1:2 | yedei-moshe-on-vayikra-rabbah-17-1-2 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 18:1:1 | yedei-moshe-on-vayikra-rabbah-18-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 19:1:1 | yedei-moshe-on-vayikra-rabbah-19-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 19:1:2 | yedei-moshe-on-vayikra-rabbah-19-1-2 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 20:1:1 | yedei-moshe-on-vayikra-rabbah-20-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 20:1:2 | yedei-moshe-on-vayikra-rabbah-20-1-2 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 22:1:1 | yedei-moshe-on-vayikra-rabbah-22-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 23:1:1 | yedei-moshe-on-vayikra-rabbah-23-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 25:1:1 | yedei-moshe-on-vayikra-rabbah-25-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 30:1:1 | yedei-moshe-on-vayikra-rabbah-30-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 34:1:1 | yedei-moshe-on-vayikra-rabbah-34-1-1 |  |  | not_done |  |
+| yedei-moshe-on-vayikra-rabbah | Yedei Moshe on Vayikra Rabbah | Yedei Moshe on Vayikra Rabbah 35:1:1 | yedei-moshe-on-vayikra-rabbah-35-1-1 |  |  | not_done |  |

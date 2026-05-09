@@ -1,0 +1,66 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 1:1 | yefeh-anaf-on-esther-rabbah-petichta-petichta-1-1 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 1:2 | yefeh-anaf-on-esther-rabbah-petichta-petichta-1-2 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 1:3 | yefeh-anaf-on-esther-rabbah-petichta-petichta-1-3 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 1:4 | yefeh-anaf-on-esther-rabbah-petichta-petichta-1-4 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 2:1 | yefeh-anaf-on-esther-rabbah-petichta-petichta-2-1 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 3:1 | yefeh-anaf-on-esther-rabbah-petichta-petichta-3-1 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 3:2 | yefeh-anaf-on-esther-rabbah-petichta-petichta-3-2 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 3:3 | yefeh-anaf-on-esther-rabbah-petichta-petichta-3-3 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 3:4 | yefeh-anaf-on-esther-rabbah-petichta-petichta-3-4 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 3:5 | yefeh-anaf-on-esther-rabbah-petichta-petichta-3-5 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 3:6 | yefeh-anaf-on-esther-rabbah-petichta-petichta-3-6 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 3:7 | yefeh-anaf-on-esther-rabbah-petichta-petichta-3-7 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 3:8 | yefeh-anaf-on-esther-rabbah-petichta-petichta-3-8 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 3:9 | yefeh-anaf-on-esther-rabbah-petichta-petichta-3-9 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 4:1 | yefeh-anaf-on-esther-rabbah-petichta-petichta-4-1 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 4:2 | yefeh-anaf-on-esther-rabbah-petichta-petichta-4-2 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 4:3 | yefeh-anaf-on-esther-rabbah-petichta-petichta-4-3 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 5:1 | yefeh-anaf-on-esther-rabbah-petichta-petichta-5-1 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 5:2 | yefeh-anaf-on-esther-rabbah-petichta-petichta-5-2 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 5:3 | yefeh-anaf-on-esther-rabbah-petichta-petichta-5-3 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 5:4 | yefeh-anaf-on-esther-rabbah-petichta-petichta-5-4 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 5:5 | yefeh-anaf-on-esther-rabbah-petichta-petichta-5-5 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 5:6 | yefeh-anaf-on-esther-rabbah-petichta-petichta-5-6 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 5:7 | yefeh-anaf-on-esther-rabbah-petichta-petichta-5-7 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 5:8 | yefeh-anaf-on-esther-rabbah-petichta-petichta-5-8 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 5:9 | yefeh-anaf-on-esther-rabbah-petichta-petichta-5-9 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 5:10 | yefeh-anaf-on-esther-rabbah-petichta-petichta-5-10 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 5:11 | yefeh-anaf-on-esther-rabbah-petichta-petichta-5-11 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 5:12 | yefeh-anaf-on-esther-rabbah-petichta-petichta-5-12 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 5:13 | yefeh-anaf-on-esther-rabbah-petichta-petichta-5-13 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 5:14 | yefeh-anaf-on-esther-rabbah-petichta-petichta-5-14 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 5:15 | yefeh-anaf-on-esther-rabbah-petichta-petichta-5-15 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 6:1 | yefeh-anaf-on-esther-rabbah-petichta-petichta-6-1 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 6:2 | yefeh-anaf-on-esther-rabbah-petichta-petichta-6-2 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 6:3 | yefeh-anaf-on-esther-rabbah-petichta-petichta-6-3 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 6:4 | yefeh-anaf-on-esther-rabbah-petichta-petichta-6-4 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 7:1 | yefeh-anaf-on-esther-rabbah-petichta-petichta-7-1 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 7:2 | yefeh-anaf-on-esther-rabbah-petichta-petichta-7-2 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 8:1 | yefeh-anaf-on-esther-rabbah-petichta-petichta-8-1 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 8:2 | yefeh-anaf-on-esther-rabbah-petichta-petichta-8-2 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 8:3 | yefeh-anaf-on-esther-rabbah-petichta-petichta-8-3 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 9:1 | yefeh-anaf-on-esther-rabbah-petichta-petichta-9-1 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 9:2 | yefeh-anaf-on-esther-rabbah-petichta-petichta-9-2 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 9:3 | yefeh-anaf-on-esther-rabbah-petichta-petichta-9-3 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 9:4 | yefeh-anaf-on-esther-rabbah-petichta-petichta-9-4 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 9:5 | yefeh-anaf-on-esther-rabbah-petichta-petichta-9-5 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 9:6 | yefeh-anaf-on-esther-rabbah-petichta-petichta-9-6 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 9:7 | yefeh-anaf-on-esther-rabbah-petichta-petichta-9-7 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 10:1 | yefeh-anaf-on-esther-rabbah-petichta-petichta-10-1 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 10:2 | yefeh-anaf-on-esther-rabbah-petichta-petichta-10-2 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 10:3 | yefeh-anaf-on-esther-rabbah-petichta-petichta-10-3 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 11:1 | yefeh-anaf-on-esther-rabbah-petichta-petichta-11-1 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 12:1 | yefeh-anaf-on-esther-rabbah-petichta-petichta-12-1 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 12:2 | yefeh-anaf-on-esther-rabbah-petichta-petichta-12-2 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 12:3 | yefeh-anaf-on-esther-rabbah-petichta-petichta-12-3 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 12:4 | yefeh-anaf-on-esther-rabbah-petichta-petichta-12-4 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 12:5 | yefeh-anaf-on-esther-rabbah-petichta-petichta-12-5 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 12:6 | yefeh-anaf-on-esther-rabbah-petichta-petichta-12-6 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah, Petichta 12:7 | yefeh-anaf-on-esther-rabbah-petichta-petichta-12-7 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah 1:1:1 | yefeh-anaf-on-esther-rabbah-default-default-1-1-1 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah 1:1:2 | yefeh-anaf-on-esther-rabbah-default-default-1-1-2 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah 1:1:3 | yefeh-anaf-on-esther-rabbah-default-default-1-1-3 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah 1:1:4 | yefeh-anaf-on-esther-rabbah-default-default-1-1-4 |  |  | not_done |  |
+| yefeh-anaf-on-esther-rabbah | Yefeh Anaf on Esther Rabbah | Yefeh Anaf on Esther Rabbah 1:1:5 | yefeh-anaf-on-esther-rabbah-default-default-1-1-5 |  |  | not_done |  |

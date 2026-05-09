@@ -2,7 +2,43 @@
 
 Date: 2026-05-09
 
-## Latest Importable Lane: Perush Maharzu on Midrash Rabbah Commentaries
+## Latest Importable Lane: Remaining Midrash Rabbah Commentaries
+
+Imported because each work resolved to Hebrew Sefaria source units with `Public Domain` metadata. These are the remaining safe Midrash Rabbah commentary candidates from the current Sefaria probe, excluding translation/modern-edition review cases. No English translations were imported or generated. Lexical HUD data uses existing separated source layers only.
+
+| Work | Type | Base work | Units | License | Version | Source URL | Lexical coverage | Token occurrences | Largest chunk | Page |
+|---|---|---|---:|---|---|---|---:|---:|---:|---|
+| Maharzu Hakatzar on Bereshit Rabbah | commentary | Bereshit Rabbah | 8 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 10/198 | 299 | 0.06 MB | midrash/maharzu-hakatzar-on-bereshit-rabbah/index.html |
+| Mishnat DeRabbi Eliezer on Eichah Rabbah | commentary | Eichah Rabbah | 11 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 11/407 | 514 | 0.10 MB | midrash/mishnat-derabbi-eliezer-on-eichah-rabbah/index.html |
+| Mishnat DeRabbi Eliezer on Ruth Rabbah | commentary | Ruth Rabbah | 1 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 4/46 | 49 | 0.02 MB | midrash/mishnat-derabbi-eliezer-on-ruth-rabbah/index.html |
+| Rashi on Bereshit Rabbah | commentary | Bereshit Rabbah | 270 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 19/2795 | 6080 | 0.23 MB | midrash/rashi-on-bereshit-rabbah/index.html |
+| Yedei Moshe on Bereshit Rabbah | commentary | Bereshit Rabbah | 83 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 31/2172 | 4921 | 0.24 MB | midrash/yedei-moshe-on-bereshit-rabbah/index.html |
+| Yedei Moshe on Devarim Rabbah | commentary | Devarim Rabbah | 9 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 15/357 | 503 | 0.10 MB | midrash/yedei-moshe-on-devarim-rabbah/index.html |
+| Yedei Moshe on Kohelet Rabbah | commentary | Kohelet Rabbah | 68 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 29/1854 | 3700 | 0.24 MB | midrash/yedei-moshe-on-kohelet-rabbah/index.html |
+| Yedei Moshe on Shemot Rabbah | commentary | Shemot Rabbah | 69 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 37/1947 | 4571 | 0.24 MB | midrash/yedei-moshe-on-shemot-rabbah/index.html |
+| Yedei Moshe on Shir HaShirim Rabbah | commentary | Shir HaShirim Rabbah | 108 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 38/3038 | 7472 | 0.24 MB | midrash/yedei-moshe-on-shir-hashirim-rabbah/index.html |
+| Yedei Moshe on Vayikra Rabbah | commentary | Vayikra Rabbah | 25 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 8/346 | 456 | 0.09 MB | midrash/yedei-moshe-on-vayikra-rabbah/index.html |
+| Yefeh Anaf on Eichah Rabbah | commentary | Eichah Rabbah | 182 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 37/3783 | 9205 | 0.24 MB | midrash/yefeh-anaf-on-eichah-rabbah/index.html |
+| Yefeh Anaf on Esther Rabbah | commentary | Esther Rabbah | 64 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 21/1231 | 2212 | 0.25 MB | midrash/yefeh-anaf-on-esther-rabbah/index.html |
+| Yefeh Anaf on Ruth Rabbah | commentary | Ruth Rabbah | 44 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 24/1292 | 2223 | 0.25 MB | midrash/yefeh-anaf-on-ruth-rabbah/index.html |
+| Yefeh Kol on Shir HaShirim Rabbah | commentary | Shir HaShirim Rabbah | 1099 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 54/13612 | 47662 | 0.23 MB | midrash/yefeh-kol-on-shir-hashirim-rabbah/index.html |
+| Yefeh To'ar on Bamidbar Rabbah | commentary | Bamidbar Rabbah | 19 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 20/646 | 920 | 0.17 MB | midrash/yefeh-toar-on-bamidbar-rabbah/index.html |
+| Yefeh To'ar on Bereshit Rabbah | commentary | Bereshit Rabbah | 269 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 46/6072 | 17674 | 0.24 MB | midrash/yefeh-toar-on-bereshit-rabbah/index.html |
+| Yefeh To'ar on Devarim Rabbah | commentary | Devarim Rabbah | 5 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 7/263 | 354 | 0.07 MB | midrash/yefeh-toar-on-devarim-rabbah/index.html |
+| Yefeh To'ar on Shemot Rabbah | commentary | Shemot Rabbah | 227 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 44/4774 | 13270 | 0.23 MB | midrash/yefeh-toar-on-shemot-rabbah/index.html |
+| Yefeh To'ar on Vayikra Rabbah | commentary | Vayikra Rabbah | 124 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 26/2548 | 5605 | 0.23 MB | midrash/yefeh-toar-on-vayikra-rabbah/index.html |
+
+### Remaining Commentary Batch Totals
+
+- New works imported: 19
+- New source units: 2685
+- New token occurrences: 127690
+- New work-surface rows: 47381
+- New matched surface rows: 481
+- Largest new lexical chunk: yefeh-anaf-on-ruth-rabbah-chunks/yefeh-anaf-on-ruth-rabbah-000.json at 0.25 MB
+- Blank overlay exports were generated; no translation content was added.
+
+## Previous Importable Lane: Perush Maharzu on Midrash Rabbah Commentaries
 
 Imported because each work resolved to Hebrew Sefaria source units with `Public Domain` metadata. These are commentary works and retain base-work labels. No English translations were imported or generated. Lexical HUD data uses existing separated source layers only.
 

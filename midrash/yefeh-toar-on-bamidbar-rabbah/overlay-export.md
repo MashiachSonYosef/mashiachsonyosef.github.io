@@ -1,0 +1,21 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 1:1:1 | yefeh-toar-on-bamidbar-rabbah-1-1-1 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 2:1:1 | yefeh-toar-on-bamidbar-rabbah-2-1-1 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 2:1:2 | yefeh-toar-on-bamidbar-rabbah-2-1-2 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 3:1:1 | yefeh-toar-on-bamidbar-rabbah-3-1-1 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 3:1:2 | yefeh-toar-on-bamidbar-rabbah-3-1-2 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 3:1:3 | yefeh-toar-on-bamidbar-rabbah-3-1-3 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 6:1:1 | yefeh-toar-on-bamidbar-rabbah-6-1-1 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 6:1:2 | yefeh-toar-on-bamidbar-rabbah-6-1-2 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 6:1:3 | yefeh-toar-on-bamidbar-rabbah-6-1-3 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 6:1:4 | yefeh-toar-on-bamidbar-rabbah-6-1-4 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 7:1:1 | yefeh-toar-on-bamidbar-rabbah-7-1-1 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 7:1:2 | yefeh-toar-on-bamidbar-rabbah-7-1-2 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 10:1:1 | yefeh-toar-on-bamidbar-rabbah-10-1-1 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 10:1:2 | yefeh-toar-on-bamidbar-rabbah-10-1-2 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 10:1:3 | yefeh-toar-on-bamidbar-rabbah-10-1-3 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 11:1:1 | yefeh-toar-on-bamidbar-rabbah-11-1-1 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 11:1:2 | yefeh-toar-on-bamidbar-rabbah-11-1-2 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 14:1:1 | yefeh-toar-on-bamidbar-rabbah-14-1-1 |  |  | not_done |  |
+| yefeh-toar-on-bamidbar-rabbah | Yefeh To'ar on Bamidbar Rabbah | Yefeh To'ar on Bamidbar Rabbah 14:1:2 | yefeh-toar-on-bamidbar-rabbah-14-1-2 |  |  | not_done |  |
