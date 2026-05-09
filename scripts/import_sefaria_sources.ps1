@@ -584,6 +584,10 @@ foreach ($work in $config.works) {
     work_slug = $work.work_slug
     sefaria_ref = $work.sefaria_ref
     work_type = if ($work.work_type) { $work.work_type } else { 'primary_text' }
+    base_work_id = if ($work.base_work_id) { $work.base_work_id } else { $null }
+    base_work_title = if ($work.base_work_title) { $work.base_work_title } else { $null }
+    base_ref_pattern = if ($work.base_ref_pattern) { $work.base_ref_pattern } else { $null }
+    display_label = if ($work.display_label) { $work.display_label } else { $null }
     source_system = $work.source_system
     source_base_url = $work.source_base_url
     import_date = $importDate

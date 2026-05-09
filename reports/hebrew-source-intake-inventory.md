@@ -2,9 +2,35 @@
 
 Date: 2026-05-09
 
-## Latest Importable Lane: Base Midrash / Aggadah / Halakhah
+## Latest Importable Lane: Core Midrash Commentary / Notes
 
-Imported because each work resolved to Hebrew Sefaria source units with `Public Domain` metadata. No English translations were imported or generated. Lexical HUD data uses existing separated source layers only; unresolved tokens remain unresolved.
+Imported because each work resolved to Hebrew Sefaria source units with `Public Domain` metadata. Commentary works retain `work_type: commentary` and base-work labels where known. No English translations were imported or generated. Lexical HUD data uses existing separated source layers only.
+
+| Work | Type | Base work | Units | License | Version | Source URL | Lexical coverage | Token occurrences | Largest chunk | Page |
+|---|---|---|---:|---|---|---|---:|---:|---:|---|
+| Ein Yaakov | primary_text |  | 3192 | Public Domain | Daat | https://www.nli.org.il/he/books/NNL_ALEPH001911837 | 99/70278 | 415863 | 0.24 MB | midrash/ein-yaakov/index.html |
+| Beur HaRadal on Pirkei DeRabbi Eliezer | commentary | Pirkei DeRabbi Eliezer | 3398 | Public Domain | Warsaw, 1852 | https://www.nli.org.il/he/books/NNL_ALEPH990020480520205171/NLI | 85/41996 | 296648 | 0.23 MB | midrash/beur-haradal-on-pirkei-derabbi-eliezer/index.html |
+| Beur HaRe'em on Midrash Lekach Tov | commentary | Midrash Lekach Tov | 2885 | Public Domain | Midrash Lekach Tov on Torah, Vilna 1884 | https://www.nli.org.il/he/books/NNL_ALEPH001922206 | 51/13211 | 58072 | 0.23 MB | midrash/beur-hareem-on-midrash-lekach-tov/index.html |
+| Chafetz Chaim on Sifra | commentary | Sifra | 9017 | Public Domain | Wikisource | https://he.wikisource.org/wiki/%D7%97%D7%A4%D7%A5_%D7%97%D7%99%D7%99%D7%9D_%D7%A2%D7%9C_%D7%A1%D7%A4%D7%A8%D7%90 | 66/29588 | 219210 | 0.23 MB | midrash/chafetz-chaim-on-sifra/index.html |
+| Notes and Corrections on Midrash Aggadah | commentary | Midrash Aggadah | 3395 | Public Domain | Midrash Aggadah, ed. Buber, Vienna, 1894. | https://www.nli.org.il/he/books/NNL_ALEPH001323847 | 42/12167 | 70785 | 0.23 MB | midrash/notes-and-corrections-on-midrash-aggadah/index.html |
+| Notes and Corrections on Midrash Lekach Tov | commentary | Midrash Lekach Tov | 5955 | Public Domain | Midrash Lekach Tov on Torah, Vilna 1884 | https://www.nli.org.il/he/books/NNL_ALEPH001922206 | 60/19908 | 145037 | 0.23 MB | midrash/notes-and-corrections-on-midrash-lekach-tov/index.html |
+| Notes and Corrections on Midrash Lekach Tov on Esther | commentary | Midrash Lekach Tov on Esther | 254 | Public Domain | Sifre DeAgadeta, Vilna 1886 | https://www.nli.org.il/he/books/NNL_ALEPH001838260 | 19/1178 | 3114 | 0.24 MB | midrash/notes-and-corrections-on-midrash-lekach-tov-on-esther/index.html |
+| Par Echad on Pirkei DeRabbi Eliezer | commentary | Pirkei DeRabbi Eliezer | 186 | Public Domain | İzmir, 1880 | https://he.wikisource.org/wiki/%D7%A4%D7%A8_%D7%90%D7%97%D7%93 | 43/5738 | 14714 | 0.23 MB | midrash/par-echad-on-pirkei-derabbi-eliezer/index.html |
+| Ra'avad on Sifra | commentary | Sifra | 1684 | Public Domain | Wien, 1862 | https://www.nli.org.il/he/books/NNL_ALEPH990020310840205171/NLI | 58/23139 | 174291 | 0.23 MB | midrash/raavad-on-sifra/index.html |
+
+### Latest Commentary Batch Totals
+
+- New works imported: 9
+- New source units: 29966
+- New token occurrences: 1397734
+- New work-surface rows: 217203
+- New matched surface rows: 523
+- Largest new lexical chunk: notes-and-corrections-on-midrash-lekach-tov-on-esther-chunks/notes-and-corrections-on-midrash-lekach-tov-on-esther-000.json at 0.24 MB
+- Blank overlay exports were generated; no translation content was added.
+
+## Previous Importable Lane: Base Midrash / Aggadah / Halakhah
+
+Imported because each work resolved to Hebrew Sefaria source units with `Public Domain` metadata. No English translations were imported or generated.
 
 | Work | Units | License | Version | Source URL | Lexical coverage | Token occurrences | Largest chunk | Page |
 |---|---:|---|---|---|---:|---:|---:|---|
@@ -23,7 +49,7 @@ Imported because each work resolved to Hebrew Sefaria source units with `Public 
 | Sifrei Aggadah on Esther | 197 | Public Domain | Vilna, 1886 | https://www.nli.org.il/he/books/NNL_ALEPH001838260/NLI | 25/6654 | 23585 | 0.23 MB | midrash/sifrei-aggadah-on-esther/index.html |
 | Tanna DeBei Eliyahu Zuta | 98 | Public Domain | Tanna deBei Eliyahu Zuta | http://www.daat.ac.il | 41/8411 | 28440 | 0.23 MB | midrash/tanna-debei-eliyahu-zuta/index.html |
 
-## Latest Batch Totals
+### Base Batch Totals
 
 - New works imported: 14
 - New source units: 6960
@@ -31,18 +57,17 @@ Imported because each work resolved to Hebrew Sefaria source units with `Public 
 - New work-surface rows: 118736
 - New matched surface rows: 260
 - Largest new lexical chunk: tanna-debei-eliyahu-zuta-chunks/tanna-debei-eliyahu-zuta-003.json at 0.23 MB
-- Empty overlay stubs were added only because validation requires one overlay file per work; no translation content was added.
-- Blank overlay export rows were generated for the new works and full-site overlay export; no Hebrew source body or English translation content was added.
-- Otzar Midrashim had a mechanical duplicate generated anchor for one repeated Sefaria node; importer now suffixes later duplicate IDs with the sequence number to keep anchors unique without changing Hebrew text.
+- Otzar Midrashim had a mechanical duplicate generated anchor for one repeated Sefaria node; importer now suffixes later duplicate IDs with sequence number to keep anchors unique without changing Hebrew text.
 
 ## Skipped / Deferred From Probe
 
-- Commentary-heavy Sefaria candidates from the Midrash probe were deferred to a separate commentary lane so base-text imports could validate cleanly first.
-- `Ein Yaakov (Glick Edition)` was not imported in this lane because the version title indicates a translated edition and requires separate review despite probe metadata.
-- `Ruth Rabbah (Lerner)` was not imported in this lane because the modern 1971 edition metadata needs separate review.
+- Midrash Rabbah base texts whose probe license was `unknown` remain blocked.
+- `Ein Yaakov (Glick Edition)` was not imported because the version title indicates a translated edition and requires separate review despite probe metadata.
+- `Ruth Rabbah (Lerner)` was not imported because the modern 1971 edition metadata needs separate review.
+- Remaining Public Domain Midrash Rabbah commentaries are still candidates for a later commentary-family lane.
 - Otzar subrefs that the Sefaria API failed to fetch were skipped by the importer; only fetched Public Domain Hebrew units were retained.
 
-## Previous Lanes
+## Older Lanes
 
 - Tanakh completion lane: 35 remaining books imported from `Miqra according to the Masorah` with `CC-BY-SA` metadata.
 - Torah Midrash / Aggadah lane: Midrash Tanchuma Buber, Midrash Aggadah, Seder Olam Rabbah, and Midrash Sekhel Tov imported with `Public Domain` metadata.
