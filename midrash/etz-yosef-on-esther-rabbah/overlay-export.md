@@ -1,0 +1,183 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 1:1 | etz-yosef-on-esther-rabbah-petichta-petichta-1-1 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 1:2 | etz-yosef-on-esther-rabbah-petichta-petichta-1-2 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 1:3 | etz-yosef-on-esther-rabbah-petichta-petichta-1-3 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 1:4 | etz-yosef-on-esther-rabbah-petichta-petichta-1-4 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 1:5 | etz-yosef-on-esther-rabbah-petichta-petichta-1-5 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 1:6 | etz-yosef-on-esther-rabbah-petichta-petichta-1-6 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 1:7 | etz-yosef-on-esther-rabbah-petichta-petichta-1-7 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 1:8 | etz-yosef-on-esther-rabbah-petichta-petichta-1-8 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 1:9 | etz-yosef-on-esther-rabbah-petichta-petichta-1-9 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 1:10 | etz-yosef-on-esther-rabbah-petichta-petichta-1-10 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 1:11 | etz-yosef-on-esther-rabbah-petichta-petichta-1-11 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 1:12 | etz-yosef-on-esther-rabbah-petichta-petichta-1-12 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 2:1 | etz-yosef-on-esther-rabbah-petichta-petichta-2-1 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 2:2 | etz-yosef-on-esther-rabbah-petichta-petichta-2-2 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 2:3 | etz-yosef-on-esther-rabbah-petichta-petichta-2-3 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:1 | etz-yosef-on-esther-rabbah-petichta-petichta-3-1 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:2 | etz-yosef-on-esther-rabbah-petichta-petichta-3-2 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:3 | etz-yosef-on-esther-rabbah-petichta-petichta-3-3 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:4 | etz-yosef-on-esther-rabbah-petichta-petichta-3-4 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:5 | etz-yosef-on-esther-rabbah-petichta-petichta-3-5 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:6 | etz-yosef-on-esther-rabbah-petichta-petichta-3-6 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:7 | etz-yosef-on-esther-rabbah-petichta-petichta-3-7 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:8 | etz-yosef-on-esther-rabbah-petichta-petichta-3-8 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:9 | etz-yosef-on-esther-rabbah-petichta-petichta-3-9 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:10 | etz-yosef-on-esther-rabbah-petichta-petichta-3-10 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:11 | etz-yosef-on-esther-rabbah-petichta-petichta-3-11 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:12 | etz-yosef-on-esther-rabbah-petichta-petichta-3-12 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:13 | etz-yosef-on-esther-rabbah-petichta-petichta-3-13 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:14 | etz-yosef-on-esther-rabbah-petichta-petichta-3-14 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:15 | etz-yosef-on-esther-rabbah-petichta-petichta-3-15 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:16 | etz-yosef-on-esther-rabbah-petichta-petichta-3-16 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:17 | etz-yosef-on-esther-rabbah-petichta-petichta-3-17 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:18 | etz-yosef-on-esther-rabbah-petichta-petichta-3-18 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:19 | etz-yosef-on-esther-rabbah-petichta-petichta-3-19 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:20 | etz-yosef-on-esther-rabbah-petichta-petichta-3-20 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:21 | etz-yosef-on-esther-rabbah-petichta-petichta-3-21 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:22 | etz-yosef-on-esther-rabbah-petichta-petichta-3-22 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:23 | etz-yosef-on-esther-rabbah-petichta-petichta-3-23 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:24 | etz-yosef-on-esther-rabbah-petichta-petichta-3-24 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:25 | etz-yosef-on-esther-rabbah-petichta-petichta-3-25 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:26 | etz-yosef-on-esther-rabbah-petichta-petichta-3-26 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:27 | etz-yosef-on-esther-rabbah-petichta-petichta-3-27 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:28 | etz-yosef-on-esther-rabbah-petichta-petichta-3-28 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:29 | etz-yosef-on-esther-rabbah-petichta-petichta-3-29 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 3:30 | etz-yosef-on-esther-rabbah-petichta-petichta-3-30 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 4:1 | etz-yosef-on-esther-rabbah-petichta-petichta-4-1 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 4:2 | etz-yosef-on-esther-rabbah-petichta-petichta-4-2 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 4:3 | etz-yosef-on-esther-rabbah-petichta-petichta-4-3 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 4:4 | etz-yosef-on-esther-rabbah-petichta-petichta-4-4 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 4:5 | etz-yosef-on-esther-rabbah-petichta-petichta-4-5 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 4:6 | etz-yosef-on-esther-rabbah-petichta-petichta-4-6 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 4:7 | etz-yosef-on-esther-rabbah-petichta-petichta-4-7 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 4:8 | etz-yosef-on-esther-rabbah-petichta-petichta-4-8 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 4:9 | etz-yosef-on-esther-rabbah-petichta-petichta-4-9 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 4:10 | etz-yosef-on-esther-rabbah-petichta-petichta-4-10 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 4:11 | etz-yosef-on-esther-rabbah-petichta-petichta-4-11 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:1 | etz-yosef-on-esther-rabbah-petichta-petichta-5-1 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:2 | etz-yosef-on-esther-rabbah-petichta-petichta-5-2 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:3 | etz-yosef-on-esther-rabbah-petichta-petichta-5-3 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:4 | etz-yosef-on-esther-rabbah-petichta-petichta-5-4 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:5 | etz-yosef-on-esther-rabbah-petichta-petichta-5-5 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:6 | etz-yosef-on-esther-rabbah-petichta-petichta-5-6 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:7 | etz-yosef-on-esther-rabbah-petichta-petichta-5-7 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:8 | etz-yosef-on-esther-rabbah-petichta-petichta-5-8 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:9 | etz-yosef-on-esther-rabbah-petichta-petichta-5-9 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:10 | etz-yosef-on-esther-rabbah-petichta-petichta-5-10 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:11 | etz-yosef-on-esther-rabbah-petichta-petichta-5-11 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:12 | etz-yosef-on-esther-rabbah-petichta-petichta-5-12 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:13 | etz-yosef-on-esther-rabbah-petichta-petichta-5-13 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:14 | etz-yosef-on-esther-rabbah-petichta-petichta-5-14 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:15 | etz-yosef-on-esther-rabbah-petichta-petichta-5-15 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:16 | etz-yosef-on-esther-rabbah-petichta-petichta-5-16 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:17 | etz-yosef-on-esther-rabbah-petichta-petichta-5-17 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:18 | etz-yosef-on-esther-rabbah-petichta-petichta-5-18 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:19 | etz-yosef-on-esther-rabbah-petichta-petichta-5-19 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:20 | etz-yosef-on-esther-rabbah-petichta-petichta-5-20 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:21 | etz-yosef-on-esther-rabbah-petichta-petichta-5-21 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:22 | etz-yosef-on-esther-rabbah-petichta-petichta-5-22 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:23 | etz-yosef-on-esther-rabbah-petichta-petichta-5-23 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:24 | etz-yosef-on-esther-rabbah-petichta-petichta-5-24 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:25 | etz-yosef-on-esther-rabbah-petichta-petichta-5-25 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:26 | etz-yosef-on-esther-rabbah-petichta-petichta-5-26 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 5:27 | etz-yosef-on-esther-rabbah-petichta-petichta-5-27 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 6:1 | etz-yosef-on-esther-rabbah-petichta-petichta-6-1 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 6:2 | etz-yosef-on-esther-rabbah-petichta-petichta-6-2 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 6:3 | etz-yosef-on-esther-rabbah-petichta-petichta-6-3 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 6:4 | etz-yosef-on-esther-rabbah-petichta-petichta-6-4 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 6:5 | etz-yosef-on-esther-rabbah-petichta-petichta-6-5 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 6:6 | etz-yosef-on-esther-rabbah-petichta-petichta-6-6 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 6:7 | etz-yosef-on-esther-rabbah-petichta-petichta-6-7 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 6:8 | etz-yosef-on-esther-rabbah-petichta-petichta-6-8 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 7:1 | etz-yosef-on-esther-rabbah-petichta-petichta-7-1 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 7:2 | etz-yosef-on-esther-rabbah-petichta-petichta-7-2 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 7:3 | etz-yosef-on-esther-rabbah-petichta-petichta-7-3 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 8:1 | etz-yosef-on-esther-rabbah-petichta-petichta-8-1 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 8:2 | etz-yosef-on-esther-rabbah-petichta-petichta-8-2 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 8:3 | etz-yosef-on-esther-rabbah-petichta-petichta-8-3 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 8:4 | etz-yosef-on-esther-rabbah-petichta-petichta-8-4 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 8:5 | etz-yosef-on-esther-rabbah-petichta-petichta-8-5 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 9:1 | etz-yosef-on-esther-rabbah-petichta-petichta-9-1 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 9:2 | etz-yosef-on-esther-rabbah-petichta-petichta-9-2 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 9:3 | etz-yosef-on-esther-rabbah-petichta-petichta-9-3 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 9:4 | etz-yosef-on-esther-rabbah-petichta-petichta-9-4 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 9:5 | etz-yosef-on-esther-rabbah-petichta-petichta-9-5 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 9:6 | etz-yosef-on-esther-rabbah-petichta-petichta-9-6 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 9:7 | etz-yosef-on-esther-rabbah-petichta-petichta-9-7 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 9:8 | etz-yosef-on-esther-rabbah-petichta-petichta-9-8 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 9:9 | etz-yosef-on-esther-rabbah-petichta-petichta-9-9 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 9:10 | etz-yosef-on-esther-rabbah-petichta-petichta-9-10 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 10:1 | etz-yosef-on-esther-rabbah-petichta-petichta-10-1 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 10:2 | etz-yosef-on-esther-rabbah-petichta-petichta-10-2 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 10:3 | etz-yosef-on-esther-rabbah-petichta-petichta-10-3 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 10:4 | etz-yosef-on-esther-rabbah-petichta-petichta-10-4 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 10:5 | etz-yosef-on-esther-rabbah-petichta-petichta-10-5 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 10:6 | etz-yosef-on-esther-rabbah-petichta-petichta-10-6 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 10:7 | etz-yosef-on-esther-rabbah-petichta-petichta-10-7 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 10:8 | etz-yosef-on-esther-rabbah-petichta-petichta-10-8 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:1 | etz-yosef-on-esther-rabbah-petichta-petichta-11-1 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:2 | etz-yosef-on-esther-rabbah-petichta-petichta-11-2 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:3 | etz-yosef-on-esther-rabbah-petichta-petichta-11-3 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:4 | etz-yosef-on-esther-rabbah-petichta-petichta-11-4 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:5 | etz-yosef-on-esther-rabbah-petichta-petichta-11-5 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:6 | etz-yosef-on-esther-rabbah-petichta-petichta-11-6 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:7 | etz-yosef-on-esther-rabbah-petichta-petichta-11-7 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:8 | etz-yosef-on-esther-rabbah-petichta-petichta-11-8 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:9 | etz-yosef-on-esther-rabbah-petichta-petichta-11-9 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:10 | etz-yosef-on-esther-rabbah-petichta-petichta-11-10 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:11 | etz-yosef-on-esther-rabbah-petichta-petichta-11-11 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:12 | etz-yosef-on-esther-rabbah-petichta-petichta-11-12 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:13 | etz-yosef-on-esther-rabbah-petichta-petichta-11-13 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:14 | etz-yosef-on-esther-rabbah-petichta-petichta-11-14 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:15 | etz-yosef-on-esther-rabbah-petichta-petichta-11-15 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:16 | etz-yosef-on-esther-rabbah-petichta-petichta-11-16 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:17 | etz-yosef-on-esther-rabbah-petichta-petichta-11-17 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:18 | etz-yosef-on-esther-rabbah-petichta-petichta-11-18 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:19 | etz-yosef-on-esther-rabbah-petichta-petichta-11-19 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:20 | etz-yosef-on-esther-rabbah-petichta-petichta-11-20 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:21 | etz-yosef-on-esther-rabbah-petichta-petichta-11-21 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:22 | etz-yosef-on-esther-rabbah-petichta-petichta-11-22 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:23 | etz-yosef-on-esther-rabbah-petichta-petichta-11-23 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:24 | etz-yosef-on-esther-rabbah-petichta-petichta-11-24 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:25 | etz-yosef-on-esther-rabbah-petichta-petichta-11-25 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:26 | etz-yosef-on-esther-rabbah-petichta-petichta-11-26 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:27 | etz-yosef-on-esther-rabbah-petichta-petichta-11-27 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:28 | etz-yosef-on-esther-rabbah-petichta-petichta-11-28 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:29 | etz-yosef-on-esther-rabbah-petichta-petichta-11-29 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:30 | etz-yosef-on-esther-rabbah-petichta-petichta-11-30 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:31 | etz-yosef-on-esther-rabbah-petichta-petichta-11-31 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:32 | etz-yosef-on-esther-rabbah-petichta-petichta-11-32 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:33 | etz-yosef-on-esther-rabbah-petichta-petichta-11-33 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:34 | etz-yosef-on-esther-rabbah-petichta-petichta-11-34 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 11:35 | etz-yosef-on-esther-rabbah-petichta-petichta-11-35 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 12:1 | etz-yosef-on-esther-rabbah-petichta-petichta-12-1 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 12:2 | etz-yosef-on-esther-rabbah-petichta-petichta-12-2 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 12:3 | etz-yosef-on-esther-rabbah-petichta-petichta-12-3 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 12:4 | etz-yosef-on-esther-rabbah-petichta-petichta-12-4 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 12:5 | etz-yosef-on-esther-rabbah-petichta-petichta-12-5 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 12:6 | etz-yosef-on-esther-rabbah-petichta-petichta-12-6 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 12:7 | etz-yosef-on-esther-rabbah-petichta-petichta-12-7 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 12:8 | etz-yosef-on-esther-rabbah-petichta-petichta-12-8 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 12:9 | etz-yosef-on-esther-rabbah-petichta-petichta-12-9 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 12:10 | etz-yosef-on-esther-rabbah-petichta-petichta-12-10 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 12:11 | etz-yosef-on-esther-rabbah-petichta-petichta-12-11 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah, Petichta 12:12 | etz-yosef-on-esther-rabbah-petichta-petichta-12-12 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah 1:1:1 | etz-yosef-on-esther-rabbah-default-default-1-1-1 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah 1:1:2 | etz-yosef-on-esther-rabbah-default-default-1-1-2 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah 1:1:3 | etz-yosef-on-esther-rabbah-default-default-1-1-3 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah 1:1:4 | etz-yosef-on-esther-rabbah-default-default-1-1-4 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah 1:1:5 | etz-yosef-on-esther-rabbah-default-default-1-1-5 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah 1:1:6 | etz-yosef-on-esther-rabbah-default-default-1-1-6 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah 1:1:7 | etz-yosef-on-esther-rabbah-default-default-1-1-7 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah 1:1:8 | etz-yosef-on-esther-rabbah-default-default-1-1-8 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah 1:1:9 | etz-yosef-on-esther-rabbah-default-default-1-1-9 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah 1:1:10 | etz-yosef-on-esther-rabbah-default-default-1-1-10 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah 1:1:11 | etz-yosef-on-esther-rabbah-default-default-1-1-11 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah 1:1:12 | etz-yosef-on-esther-rabbah-default-default-1-1-12 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah 1:1:13 | etz-yosef-on-esther-rabbah-default-default-1-1-13 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah 1:1:14 | etz-yosef-on-esther-rabbah-default-default-1-1-14 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah 1:1:15 | etz-yosef-on-esther-rabbah-default-default-1-1-15 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah 1:1:16 | etz-yosef-on-esther-rabbah-default-default-1-1-16 |  |  | not_done |  |
+| etz-yosef-on-esther-rabbah | Etz Yosef on Esther Rabbah | Etz Yosef on Esther Rabbah 1:1:17 | etz-yosef-on-esther-rabbah-default-default-1-1-17 |  |  | not_done |  |

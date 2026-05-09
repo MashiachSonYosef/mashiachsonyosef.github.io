@@ -2,7 +2,34 @@
 
 Date: 2026-05-09
 
-## Latest Importable Lane: Core Midrash Commentary / Notes
+## Latest Importable Lane: Etz Yosef on Midrash Rabbah Commentaries
+
+Imported because each work resolved to Hebrew Sefaria source units with `Public Domain` metadata. These are commentary works and retain base-work labels. No English translations were imported or generated. Lexical HUD data uses existing separated source layers only.
+
+| Work | Type | Base work | Units | License | Version | Source URL | Lexical coverage | Token occurrences | Largest chunk | Page |
+|---|---|---|---:|---|---|---|---:|---:|---:|---|
+| Etz Yosef on Bamidbar Rabbah | commentary | Bamidbar Rabbah | 311 | Public Domain | Midrash Rabbah with Etz Yosef, Warsaw, 1867 | https://www.nli.org.il/he/books/NNL_ALEPH001987082&context=L&vid=NLI&search_scope=Local&tab=default_tab&lang=iw_IL | 43/3554 | 7356 | 0.24 MB | midrash/etz-yosef-on-bamidbar-rabbah/index.html |
+| Etz Yosef on Bereishit Rabbah | commentary | Bereishit Rabbah | 779 | Public Domain | Midrash Rabbah with Etz Yosef, Warsaw, 1867 | https://www.nli.org.il/he/books/NNL_ALEPH001987082&context=L&vid=NLI&search_scope=Local&tab=default_tab&lang=iw_IL | 50/7900 | 21849 | 0.23 MB | midrash/etz-yosef-on-bereishit-rabbah/index.html |
+| Etz Yosef on Devarim Rabbah | commentary | Devarim Rabbah | 100 | Public Domain | Midrash Rabbah with Etz Yosef, Warsaw, 1867 | https://www.nli.org.il/he/books/NNL_ALEPH001987082&context=L&vid=NLI&search_scope=Local&tab=default_tab&lang=iw_IL | 28/1541 | 2808 | 0.25 MB | midrash/etz-yosef-on-devarim-rabbah/index.html |
+| Etz Yosef on Eichah Rabbah | commentary | Eichah Rabbah | 595 | Public Domain | Midrash Rabbah, with Etz Yosef, Warsaw, 1867 | https://www.nli.org.il/he/books/NNL_ALEPH001987082&context=L&vid=NLI&search_scope=Local&tab=default_tab&lang=iw_IL | 50/6435 | 16761 | 0.24 MB | midrash/etz-yosef-on-eichah-rabbah/index.html |
+| Etz Yosef on Esther Rabbah | commentary | Esther Rabbah | 181 | Public Domain | Midrash Rabbah, with Etz Yosef, Warsaw, 1867 | https://www.nli.org.il/he/books/NNL_ALEPH001987082&context=L&vid=NLI&search_scope=Local&tab=default_tab&lang=iw_IL | 26/2889 | 6956 | 0.23 MB | midrash/etz-yosef-on-esther-rabbah/index.html |
+| Etz Yosef on Kohelet Rabbah | commentary | Kohelet Rabbah | 2154 | Public Domain | Midrash Rabbah, with Etz Yosef, Warsaw, 1867 | https://www.nli.org.il/he/books/NNL_ALEPH001987082&context=L&vid=NLI&search_scope=Local&tab=default_tab&lang=iw_IL | 38/13312 | 51441 | 0.23 MB | midrash/etz-yosef-on-kohelet-rabbah/index.html |
+| Etz Yosef on Ruth Rabbah | commentary | Ruth Rabbah | 90 | Public Domain | Midrash Rabbah, with Etz Yosef, Warsaw, 1867 | https://www.nli.org.il/he/books/NNL_ALEPH001987082&context=L&vid=NLI&search_scope=Local&tab=default_tab&lang=iw_IL | 9/1387 | 2687 | 0.23 MB | midrash/etz-yosef-on-ruth-rabbah/index.html |
+| Etz Yosef on Shemot Rabbah | commentary | Shemot Rabbah | 720 | Public Domain | Midrash Rabbah with Etz Yosef, Warsaw, 1867 | https://www.nli.org.il/he/books/NNL_ALEPH001987082&context=L&vid=NLI&search_scope=Local&tab=default_tab&lang=iw_IL | 49/6882 | 20341 | 0.24 MB | midrash/etz-yosef-on-shemot-rabbah/index.html |
+| Etz Yosef on Shir HaShirim Rabbah | commentary | Shir HaShirim Rabbah | 2617 | Public Domain | Midrash Rabbah, with Etz Yosef, Warsaw, 1867 | https://www.nli.org.il/he/books/NNL_ALEPH001987082&context=L&vid=NLI&search_scope=Local&tab=default_tab&lang=iw_IL | 46/20691 | 98966 | 0.23 MB | midrash/etz-yosef-on-shir-hashirim-rabbah/index.html |
+| Etz Yosef on Vayikra Rabbah | commentary | Vayikra Rabbah | 681 | Public Domain | Midrash Rabbah with Etz Yosef, Warsaw, 1867 | https://www.nli.org.il/he/books/NNL_ALEPH001987082&context=L&vid=NLI&search_scope=Local&tab=default_tab&lang=iw_IL | 51/7738 | 21368 | 0.24 MB | midrash/etz-yosef-on-vayikra-rabbah/index.html |
+
+### Etz Yosef Commentary Batch Totals
+
+- New works imported: 10
+- New source units: 8228
+- New token occurrences: 250533
+- New work-surface rows: 72329
+- New matched surface rows: 390
+- Largest new lexical chunk: etz-yosef-on-devarim-rabbah-chunks/etz-yosef-on-devarim-rabbah-000.json at 0.25 MB
+- Blank overlay exports were generated; no translation content was added.
+
+## Previous Importable Lane: Core Midrash Commentary / Notes
 
 Imported because each work resolved to Hebrew Sefaria source units with `Public Domain` metadata. Commentary works retain `work_type: commentary` and base-work labels where known. No English translations were imported or generated. Lexical HUD data uses existing separated source layers only.
 
