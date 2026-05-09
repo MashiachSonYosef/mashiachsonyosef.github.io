@@ -1,0 +1,70 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:1 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-1 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:2 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-2 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:3 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-3 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:4 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-4 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:5 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-5 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:6 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-6 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:7 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-7 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:8 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-8 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:9 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-9 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:10 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-10 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:11 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-11 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:12 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-12 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:13 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-13 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:14 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-14 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:15 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-15 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:16 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-16 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:17 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-17 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:18 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-18 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:19 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-19 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:20 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-20 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:21 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-21 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:22 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-22 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:23 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-23 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:24 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-24 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:25 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-25 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:26 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-26 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:27 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-27 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:28 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-28 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:29 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-29 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:30 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-30 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:31 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-31 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:32 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-32 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:33 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-33 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:34 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-34 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:35 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-35 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:36 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-36 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:37 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-37 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:38 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-38 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:39 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-39 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:40 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-40 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:41 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-41 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:42 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-42 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:43 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-43 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:44 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-44 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:45 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-45 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:46 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-46 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:47 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-47 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:48 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-48 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:49 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-49 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:50 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-50 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:51 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-51 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:52 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-52 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:53 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-53 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:54 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-54 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:55 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-55 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 1:56 | perush-maharzu-on-ruth-rabbah-petichta-petichta-1-56 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 6:1 | perush-maharzu-on-ruth-rabbah-petichta-petichta-6-1 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 6:2 | perush-maharzu-on-ruth-rabbah-petichta-petichta-6-2 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 6:3 | perush-maharzu-on-ruth-rabbah-petichta-petichta-6-3 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 6:4 | perush-maharzu-on-ruth-rabbah-petichta-petichta-6-4 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 6:5 | perush-maharzu-on-ruth-rabbah-petichta-petichta-6-5 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 6:6 | perush-maharzu-on-ruth-rabbah-petichta-petichta-6-6 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah, Petichta 7:1 | perush-maharzu-on-ruth-rabbah-petichta-petichta-7-1 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah 1:1:1 | perush-maharzu-on-ruth-rabbah-default-default-1-1-1 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah 1:1:2 | perush-maharzu-on-ruth-rabbah-default-default-1-1-2 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah 1:1:3 | perush-maharzu-on-ruth-rabbah-default-default-1-1-3 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah 1:1:4 | perush-maharzu-on-ruth-rabbah-default-default-1-1-4 |  |  | not_done |  |
+| perush-maharzu-on-ruth-rabbah | Perush Maharzu on Ruth Rabbah | Perush Maharzu on Ruth Rabbah 1:1:5 | perush-maharzu-on-ruth-rabbah-default-default-1-1-5 |  |  | not_done |  |

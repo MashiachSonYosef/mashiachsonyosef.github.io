@@ -113,6 +113,16 @@ Generated: 2026-05-09
 | Orot HaTorah | 10 | Orot HaTorah -- Wikisource (https://he.wikisource.org/wiki/%D7%90%D7%95%D7%A8%D7%95%D7%AA_%D7%94%D7%AA%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Otzar Midrashim | 5064 | Otzar Midrashim, New York, 1915 (https://www.nli.org.il/he/books/NNL_ALEPH001175329) | Public Domain | yes | no | none required by license; source/version retained |
 | Par Echad on Pirkei DeRabbi Eliezer | 186 | İzmir, 1880 (https://he.wikisource.org/wiki/%D7%A4%D7%A8_%D7%90%D7%97%D7%93) | Public Domain | yes | no | none required by license; source/version retained |
+| Perush Maharzu on Bamidbar Rabbah | 277 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Perush Maharzu on Bereshit Rabbah | 462 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Perush Maharzu on Devarim Rabbah | 74 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Perush Maharzu on Eichah Rabbah | 323 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Perush Maharzu on Esther Rabbah | 37 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Perush Maharzu on Kohelet Rabbah | 870 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Perush Maharzu on Ruth Rabbah | 68 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Perush Maharzu on Shemot Rabbah | 495 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Perush Maharzu on Shir HaShirim Rabbah | 1272 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Perush Maharzu on Vayikra Rabbah | 303 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Pesikta DeRav Kahana | 304 | Pesikta de Rav Kahana according to an Oxford manuscript, Dov Mandelbaum ed., N.Y. 1987 (https://beta.nli.org.il/he/books/NNL_ALEPH002042999/NLI) | CC-BY | yes | no | required |
 | Pesikta Rabbati | 34 | OYW (http://mobile.tora.ws/) | Public Domain | yes | no | none required by license; source/version retained |
 | Pirkei DeRabbi Eliezer | 656 | Pirke DeRabbi Eliezer, Sefaria Vocalized Edition (http://sefaria.org.il) | Public Domain | yes | no | none required by license; source/version retained |

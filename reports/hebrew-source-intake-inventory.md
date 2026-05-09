@@ -2,7 +2,34 @@
 
 Date: 2026-05-09
 
-## Latest Importable Lane: Matnot Kehunah on Midrash Rabbah Commentaries
+## Latest Importable Lane: Perush Maharzu on Midrash Rabbah Commentaries
+
+Imported because each work resolved to Hebrew Sefaria source units with `Public Domain` metadata. These are commentary works and retain base-work labels. No English translations were imported or generated. Lexical HUD data uses existing separated source layers only.
+
+| Work | Type | Base work | Units | License | Version | Source URL | Lexical coverage | Token occurrences | Largest chunk | Page |
+|---|---|---|---:|---|---|---|---:|---:|---:|---|
+| Perush Maharzu on Bamidbar Rabbah | commentary | Bamidbar Rabbah | 277 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 32/3476 | 8523 | 0.24 MB | midrash/perush-maharzu-on-bamidbar-rabbah/index.html |
+| Perush Maharzu on Bereshit Rabbah | commentary | Bereshit Rabbah | 462 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 42/6701 | 22690 | 0.24 MB | midrash/perush-maharzu-on-bereshit-rabbah/index.html |
+| Perush Maharzu on Devarim Rabbah | commentary | Devarim Rabbah | 74 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 18/1369 | 2681 | 0.24 MB | midrash/perush-maharzu-on-devarim-rabbah/index.html |
+| Perush Maharzu on Eichah Rabbah | commentary | Eichah Rabbah | 323 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 30/3692 | 9322 | 0.24 MB | midrash/perush-maharzu-on-eichah-rabbah/index.html |
+| Perush Maharzu on Esther Rabbah | commentary | Esther Rabbah | 37 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 16/755 | 1281 | 0.19 MB | midrash/perush-maharzu-on-esther-rabbah/index.html |
+| Perush Maharzu on Kohelet Rabbah | commentary | Kohelet Rabbah | 870 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 36/6700 | 22310 | 0.23 MB | midrash/perush-maharzu-on-kohelet-rabbah/index.html |
+| Perush Maharzu on Ruth Rabbah | commentary | Ruth Rabbah | 68 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 19/883 | 1588 | 0.22 MB | midrash/perush-maharzu-on-ruth-rabbah/index.html |
+| Perush Maharzu on Shemot Rabbah | commentary | Shemot Rabbah | 495 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 33/5256 | 16841 | 0.23 MB | midrash/perush-maharzu-on-shemot-rabbah/index.html |
+| Perush Maharzu on Shir HaShirim Rabbah | commentary | Shir HaShirim Rabbah | 1272 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 40/9196 | 32667 | 0.23 MB | midrash/perush-maharzu-on-shir-hashirim-rabbah/index.html |
+| Perush Maharzu on Vayikra Rabbah | commentary | Vayikra Rabbah | 303 | Public Domain | Midrash Rabbah, Vilna, 1878 | https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI | 34/4678 | 12539 | 0.23 MB | midrash/perush-maharzu-on-vayikra-rabbah/index.html |
+
+### Perush Maharzu Commentary Batch Totals
+
+- New works imported: 10
+- New source units: 4181
+- New token occurrences: 130442
+- New work-surface rows: 42706
+- New matched surface rows: 300
+- Largest new lexical chunk: perush-maharzu-on-bamidbar-rabbah-chunks/perush-maharzu-on-bamidbar-rabbah-002.json at 0.24 MB
+- Blank overlay exports were generated; no translation content was added.
+
+## Previous Importable Lane: Matnot Kehunah on Midrash Rabbah Commentaries
 
 Imported because each work resolved to Hebrew Sefaria source units with `Public Domain` metadata. These are commentary works and retain base-work labels. No English translations were imported or generated. Lexical HUD data uses existing separated source layers only.
 
