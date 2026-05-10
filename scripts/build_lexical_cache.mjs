@@ -50,6 +50,13 @@ const lexicalLayerFiles = [
     description: 'Project-authored conservative Hebrew function-word grammar rules.',
   },
   {
+    layer_id: 'project-midrash-formulas',
+    source_family: 'workspace',
+    license: 'project-authored / CC0',
+    path: 'source-layers/project-midrash-formulas.json',
+    description: 'Project-authored scoped Midrash citation formulas, source labels, and proper-name labels. Short factual mappings only.',
+  },
+  {
     layer_id: 'project-orot-technical-terms',
     source_family: 'workspace',
     license: 'project-authored / CC0',
@@ -217,6 +224,396 @@ const projectAbbreviationDefinitions = [
   { source_id: 'project-abbreviation:de-zeir', surface: 'דזעיר', expansion: 'דזעיר אנפין', renderings: ['of Zeir Anpin'], work_scope: 'kabbalah', breakdown: [{ hebrew: 'ד־', strict_renderings: ['of'] }, { hebrew: 'זעיר', strict_renderings: ['Zeir'] }] },
   { source_id: 'project-abbreviation:arikh-anpin', surface: 'א״א', expansion: 'אריך אנפין', renderings: ['Arikh Anpin'], work_scope: 'kabbalah' },
   { source_id: 'project-abbreviation:de-arikh-anpin', surface: 'דא״א', expansion: 'דאריך אנפין', renderings: ['of Arikh Anpin'], work_scope: 'kabbalah', breakdown: [{ hebrew: 'ד־', strict_renderings: ['of'] }, { hebrew: 'א״א', strict_renderings: ['Arikh Anpin'] }] },
+];
+
+const aggadatBereshitScope = 'aggadat-bereshit';
+const projectMidrashFormulaDefinitions = [
+  {
+    source_id: 'project-midrash-formula:davar-acher',
+    surface: '\u05D3\u05F4\u05D0',
+    expansion: '\u05D3\u05D1\u05E8 \u05D0\u05D7\u05E8',
+    renderings: ['another interpretation', 'another matter'],
+    kind: 'Midrash formula',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-formula:zeh-sheamar-hakatuv',
+    surface: '\u05D6\u05E9\u05F4\u05D4',
+    expansion: '\u05D6\u05D4 \u05E9\u05D0\u05DE\u05E8 \u05D4\u05DB\u05EA\u05D5\u05D1',
+    renderings: ['this is what Scripture says'],
+    kind: 'Midrash citation formula',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-formula:sheneemar',
+    surface: '\u05E9\u05E0\u05D0\u05DE\u05E8',
+    surface_forms: ['\u05E9\u05E0\u05D0\u05F3'],
+    expansion: '\u05E9\u05E0\u05D0\u05DE\u05E8',
+    renderings: ['as it is said', 'as stated'],
+    kind: 'Midrash citation formula',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-formula:neemar',
+    surface: '\u05E0\u05D0\u05DE\u05E8',
+    expansion: '\u05E0\u05D0\u05DE\u05E8',
+    renderings: ['it is said', 'it is stated'],
+    kind: 'Midrash citation formula',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-formula:ketiv',
+    surface: '\u05DB\u05EA\u05D9\u05D1',
+    expansion: '\u05DB\u05EA\u05D9\u05D1',
+    renderings: ['it is written'],
+    kind: 'Midrash citation formula',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-formula:deketiv',
+    surface: '\u05D3\u05DB\u05EA\u05D9\u05D1',
+    expansion: '\u05D3\u05DB\u05EA\u05D9\u05D1',
+    renderings: ['as it is written', 'that it is written'],
+    kind: 'Midrash citation formula',
+    breakdown: [
+      { hebrew: '\u05D3\u05BE', strict_renderings: ['that', 'which', 'of'] },
+      { hebrew: '\u05DB\u05EA\u05D9\u05D1', strict_renderings: ['it is written'] },
+    ],
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-formula:vegomer',
+    surface: '\u05D5\u05D2\u05D5\u05DE\u05E8',
+    expansion: '\u05D5\u05D2\u05D5\u05DE\u05E8',
+    renderings: ['etc.', 'and the rest'],
+    kind: 'Citation continuation formula',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-label:hashem',
+    surface: '\u05D4\u05F3',
+    expansion: '\u05D4\u05E9\u05DD',
+    renderings: ['the Lord', 'the divine Name'],
+    kind: 'Divine-name abbreviation',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-label:vav-hashem',
+    surface: '\u05D5\u05D4\u05F3',
+    expansion: '\u05D5\u05D4\u05E9\u05DD',
+    renderings: ['and the Lord', 'and the divine Name'],
+    kind: 'Divine-name abbreviation',
+    breakdown: [
+      { hebrew: '\u05D5\u05BE', strict_renderings: ['and'] },
+      { hebrew: '\u05D4\u05F3', strict_renderings: ['the Lord', 'the divine Name'] },
+    ],
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-formula:amar-rabbi',
+    surface: '\u05D0\u05F4\u05E8',
+    expansion: '\u05D0\u05DE\u05E8 \u05E8\u05D1\u05D9',
+    renderings: ['Rabbi said', 'said Rabbi'],
+    kind: 'Rabbinic attribution formula',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-formula:amar-lo',
+    surface: '\u05D0\u05F4\u05DC',
+    expansion: '\u05D0\u05DE\u05E8 \u05DC\u05D5',
+    renderings: ['he said to him'],
+    kind: 'Rabbinic speech formula',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-label:hakadosh-baruch-hu-short',
+    surface: '\u05D4\u05D1\u05F4\u05D4',
+    expansion: '\u05D4\u05E7\u05D3\u05D5\u05E9 \u05D1\u05E8\u05D5\u05DA \u05D4\u05D5\u05D0',
+    renderings: ['the Holy One, blessed be He'],
+    kind: 'Divine-name abbreviation',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:yeshayahu',
+    surface: '\u05D9\u05E9\u05E2\u05D9\u05F3',
+    expansion: '\u05D9\u05E9\u05E2\u05D9\u05D4\u05D5',
+    renderings: ['Isaiah'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:yirmiyahu',
+    surface: '\u05D9\u05E8\u05DE\u05D9\u05F3',
+    expansion: '\u05D9\u05E8\u05DE\u05D9\u05D4\u05D5',
+    renderings: ['Jeremiah'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:kohelet',
+    surface: '\u05E7\u05D4\u05DC\u05EA',
+    renderings: ['Ecclesiastes', 'Kohelet'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:iyov',
+    surface: '\u05D0\u05D9\u05D5\u05D1',
+    renderings: ['Job'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:hoshea',
+    surface: '\u05D4\u05D5\u05E9\u05E2',
+    renderings: ['Hosea'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:mikhah',
+    surface: '\u05DE\u05D9\u05DB\u05D4',
+    renderings: ['Micah'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:daniel',
+    surface: '\u05D3\u05E0\u05D9\u05D0\u05DC',
+    renderings: ['Daniel'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:yeshayah',
+    surface: '\u05D9\u05E9\u05E2\u05D9\u05D4',
+    renderings: ['Isaiah'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:shmuel-a',
+    surface: '\u05E9\u05F4\u05D0',
+    expansion: '\u05E9\u05DE\u05D5\u05D0\u05DC \u05D0',
+    renderings: ['I Samuel', 'First Samuel'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:shmuel-b',
+    surface: '\u05E9\u05F4\u05D1',
+    expansion: '\u05E9\u05DE\u05D5\u05D0\u05DC \u05D1',
+    renderings: ['II Samuel', 'Second Samuel'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:melakhim-a',
+    surface: '\u05DE\u05F4\u05D0',
+    expansion: '\u05DE\u05DC\u05DB\u05D9\u05DD \u05D0',
+    renderings: ['I Kings', 'First Kings'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:melakhim-b',
+    surface: '\u05DE\u05F4\u05D1',
+    expansion: '\u05DE\u05DC\u05DB\u05D9\u05DD \u05D1',
+    renderings: ['II Kings', 'Second Kings'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:divrei-hayamim-a',
+    surface: '\u05D3\u05D4\u05F4\u05D0',
+    expansion: '\u05D3\u05D1\u05E8\u05D9 \u05D4\u05D9\u05DE\u05D9\u05DD \u05D0',
+    renderings: ['I Chronicles', 'First Chronicles'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:shir-hashirim',
+    surface: '\u05E9\u05D4\u05F4\u05E9',
+    expansion: '\u05E9\u05D9\u05E8 \u05D4\u05E9\u05D9\u05E8\u05D9\u05DD',
+    renderings: ['Song of Songs'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:ovadyah',
+    surface: '\u05E2\u05D5\u05D1\u05D3\u05D9\u05D4',
+    surface_forms: ['\u05E2\u05D5\u05D1\u05D3\u05D9\u05F3'],
+    renderings: ['Obadiah'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:zekharyah',
+    surface: '\u05D6\u05DB\u05E8\u05D9\u05D4',
+    surface_forms: ['\u05D6\u05DB\u05E8\u05D9\u05F3'],
+    renderings: ['Zechariah'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:eikhah',
+    surface: '\u05D0\u05D9\u05DB\u05D4',
+    renderings: ['Lamentations', 'Eikhah'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-source:amos',
+    surface: '\u05E2\u05DE\u05D5\u05E1',
+    renderings: ['Amos'],
+    kind: 'Biblical source label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-name:yitzchak',
+    surface: '\u05D9\u05E6\u05D7\u05E7',
+    renderings: ['Isaac'],
+    kind: 'Proper-name label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-name:avraham',
+    surface: '\u05D0\u05D1\u05E8\u05D4\u05DD',
+    renderings: ['Abraham'],
+    kind: 'Proper-name label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-name:avram',
+    surface: '\u05D0\u05D1\u05E8\u05DD',
+    renderings: ['Abram'],
+    kind: 'Proper-name label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-name:sarah',
+    surface: '\u05E9\u05E8\u05D4',
+    renderings: ['Sarah'],
+    kind: 'Proper-name label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-name:avimelech',
+    surface: '\u05D0\u05D1\u05D9\u05DE\u05DC\u05DA',
+    renderings: ['Abimelech'],
+    kind: 'Proper-name label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-name:yishmael',
+    surface: '\u05D9\u05E9\u05DE\u05E2\u05D0\u05DC',
+    renderings: ['Ishmael'],
+    kind: 'Proper-name label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-name:paroh',
+    surface: '\u05E4\u05E8\u05E2\u05D4',
+    renderings: ['Pharaoh'],
+    kind: 'Proper-name label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-name:edom',
+    surface: '\u05D0\u05D3\u05D5\u05DD',
+    renderings: ['Edom'],
+    kind: 'Proper-name label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-name:chanah',
+    surface: '\u05D7\u05E0\u05D4',
+    renderings: ['Hannah'],
+    kind: 'Proper-name label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-name:nevukhadnetzar',
+    surface: '\u05E0\u05D1\u05D5\u05DB\u05D3\u05E0\u05E6\u05E8',
+    renderings: ['Nebuchadnezzar'],
+    kind: 'Proper-name label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-name:yoav',
+    surface: '\u05D9\u05D5\u05D0\u05D1',
+    renderings: ['Joab'],
+    kind: 'Proper-name label',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-formula:kivyachol',
+    surface: '\u05DB\u05D1\u05D9\u05DB\u05D5\u05DC',
+    renderings: ['as it were', 'so to speak'],
+    kind: 'Rabbinic formula',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-formula:ribono-shel-olam',
+    surface: '\u05E8\u05D1\u05E9\u05F4\u05E2',
+    expansion: '\u05E8\u05D1\u05D5\u05E0\u05D5 \u05E9\u05DC \u05E2\u05D5\u05DC\u05DD',
+    renderings: ['Master of the world'],
+    kind: 'Rabbinic address abbreviation',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-formula:af-al-pi-yod',
+    surface: '\u05D0\u05E2\u05E4\u05F4\u05D9',
+    expansion: '\u05D0\u05E3 \u05E2\u05DC \u05E4\u05D9',
+    renderings: ['although', 'even though'],
+    kind: 'Common abbreviation',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-formula:vav-achar-kach',
+    surface: '\u05D5\u05D0\u05D7\u05F4\u05DB',
+    expansion: '\u05D5\u05D0\u05D7\u05E8 \u05DB\u05DA',
+    renderings: ['and afterward', 'and after that'],
+    kind: 'Common abbreviation',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-label:vav-hakadosh-baruch-hu',
+    surface: '\u05D5\u05D4\u05E7\u05D1\u05F4\u05D4',
+    expansion: '\u05D5\u05D4\u05E7\u05D3\u05D5\u05E9 \u05D1\u05E8\u05D5\u05DA \u05D4\u05D5\u05D0',
+    renderings: ['and the Holy One, blessed be He'],
+    kind: 'Divine-name abbreviation',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-label:lamed-hakadosh-baruch-hu',
+    surface: '\u05DC\u05D4\u05E7\u05D1\u05F4\u05D4',
+    expansion: '\u05DC\u05D4\u05E7\u05D3\u05D5\u05E9 \u05D1\u05E8\u05D5\u05DA \u05D4\u05D5\u05D0',
+    renderings: ['to the Holy One, blessed be He'],
+    kind: 'Divine-name abbreviation',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-grammar:lakakh',
+    surface: '\u05DC\u05DB\u05DA',
+    renderings: ['therefore', 'for this reason'],
+    kind: 'Closed-class connective formula',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-grammar:eimatay',
+    surface: '\u05D0\u05D9\u05DE\u05EA\u05D9',
+    renderings: ['when'],
+    kind: 'Closed-class interrogative/adverbial form',
+    work_scope: aggadatBereshitScope,
+  },
+  {
+    source_id: 'project-midrash-grammar:vekhakh',
+    surface: '\u05D5\u05DB\u05DA',
+    renderings: ['and so', 'and thus'],
+    kind: 'Closed-class connective form',
+    work_scope: aggadatBereshitScope,
+  },
 ];
 
 const projectAramaicGrammarDefinitions = [
@@ -783,6 +1180,8 @@ const unsafeAffixBaseNormalizations = new Set([
   '\u05D4\u05E0', // הן: too ambiguous for loose prefix parsing; requires explicit grammar handling.
 ]);
 
+const possessiveParticleNormalized = '\u05E9\u05DC';
+
 const safeQuoteArtifactBaseNormalizations = new Set([
   '\u05D9\u05E9\u05E8\u05D0\u05DC', // ישראל
   '\u05D3\u05F3', // ד׳
@@ -863,6 +1262,10 @@ function entryLayerId(entry) {
   if (String(entry.entry_id || '').startsWith('lex-function-word-')
     || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-function-word:'))) {
     return 'project-function-words';
+  }
+  if (String(entry.entry_id || '').startsWith('lex-midrash-formula-')
+    || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-midrash-'))) {
+    return 'project-midrash-formulas';
   }
   if (String(entry.entry_id || '').startsWith('lex-orot-term-')
     || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-orot-technical:'))) {
@@ -1020,6 +1423,76 @@ function ensureProjectAbbreviationEntries(lexicon) {
   const nextEntries = [
     ...withoutProjectAbbreviations,
     ...projectAbbreviationDefinitions.map(makeProjectAbbreviationEntry),
+  ];
+  const changed = JSON.stringify(entries) !== JSON.stringify(nextEntries);
+  lexicon.entries = nextEntries;
+  return changed;
+}
+
+function makeProjectMidrashFormulaEntry(definition) {
+  const surface = normalizeHebrewPunctuation(definition.surface);
+  const surfaceForms = unique([surface, ...(definition.surface_forms || [])].map(normalizeHebrewPunctuation));
+  const sourceId = definition.source_id;
+  const entryId = stableId('lex-midrash-formula', sourceId);
+  const sourceRowKey = `workspace|${sourceId}`;
+  const expansion = normalizeHebrewPunctuation(definition.expansion || '');
+  const possibleEntry = {
+    entry_key: sourceId,
+    lemma: surface,
+    match_key: normalizeHebrewToken(surface),
+    source_name: 'Project-authored Aggadat Bereshit formula table',
+    source_family: 'workspace',
+    source_id: sourceId,
+    transliteration: '',
+    strict_renderings: definition.renderings,
+    root: '',
+    root_transliteration: '',
+    root_meaning: [],
+    context_role: 'likely_contextual',
+    relation_label: definition.kind || 'Aggadat Bereshit formula/label',
+    source_row_keys: [sourceRowKey],
+  };
+  const sourceRow = {
+    source_name: 'Project-authored Aggadat Bereshit formula table',
+    source_family: 'workspace',
+    source_id: sourceId,
+    source_url: 'local:project-aggadat-bereshit-formula-table',
+    license: 'project-authored / CC0',
+    license_url: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    fields_used: ['surface form', 'short factual mapping', 'mechanical expansion or label'],
+    notes: 'Project-authored Aggadat Bereshit formula/source/proper-name row. Short factual mappings only; no external dictionary prose imported.',
+  };
+  return {
+    entry_id: entryId,
+    hebrew_word: surface,
+    surface_forms: surfaceForms,
+    transliteration: '',
+    strict_renderings: definition.renderings,
+    root: '',
+    root_transliteration: '',
+    root_meaning: [],
+    disambiguation_status: 'likely',
+    context_note: definition.kind
+      ? `Resolved as a scoped ${definition.kind}.`
+      : 'Resolved by scoped Aggadat Bereshit formula table.',
+    expansion,
+    breakdown: definition.breakdown || (expansion ? [{
+      hebrew: expansion,
+      strict_renderings: definition.renderings,
+    }] : []),
+    work_scope: definition.work_scope || aggadatBereshitScope,
+    possible_entries_truncated: 0,
+    possible_entries: [possibleEntry],
+    source_rows: [sourceRow],
+  };
+}
+
+function ensureProjectMidrashFormulaEntries(lexicon) {
+  const entries = Array.isArray(lexicon.entries) ? lexicon.entries : [];
+  const withoutProjectMidrashFormulas = entries.filter((entry) => entryLayerId(entry) !== 'project-midrash-formulas');
+  const nextEntries = [
+    ...withoutProjectMidrashFormulas,
+    ...projectMidrashFormulaDefinitions.map(makeProjectMidrashFormulaEntry),
   ];
   const changed = JSON.stringify(entries) !== JSON.stringify(nextEntries);
   lexicon.entries = nextEntries;
@@ -1277,6 +1750,13 @@ function exactCandidateRenderings(entry, normalized) {
 }
 
 function conservativeBaseRenderings(entry, normalized, workId) {
+  if (matchMethodForEntry(entry, 'direct') === 'project_midrash_formula') {
+    const likely = (entry?.possible_entries || []).find((possibleEntry) => possibleEntry.context_role === 'likely_contextual');
+    return unique([
+      ...(likely?.strict_renderings || []),
+      ...(entry?.strict_renderings || []),
+    ]).slice(0, 4);
+  }
   const direct = entryRenderings(entry);
   if (direct.length) return direct;
   if (workId !== 'orot') return [];
@@ -1352,6 +1832,7 @@ function isEntryAllowedForWork(entry, workId) {
   if (entry?.work_scope === 'orot' && workId !== 'orot') return false;
   if (entry?.work_scope === 'kabbalah' && !isKabbalahWork(workId)) return false;
   if (entry?.work_scope === 'zohar_ari' && !isZoharAriWork(workId)) return false;
+  if (entry?.work_scope && !['orot', 'kabbalah', 'zohar_ari'].includes(entry.work_scope) && entry.work_scope !== workId) return false;
   const sourceIds = [
     ...(entry?.source_rows || []).map((row) => row.source_id),
     ...(entry?.possible_entries || []).map((row) => row.source_id || row.entry_key),
@@ -1396,11 +1877,23 @@ function isProjectOrotTechnicalEntry(entry) {
   return sourceIds.some((sourceId) => sourceId.startsWith('project-orot-technical:'));
 }
 
+function isProjectMidrashFormulaEntry(entry) {
+  const sourceIds = [
+    ...(entry?.source_rows || []).map((row) => row.source_id),
+    ...(entry?.possible_entries || []).map((row) => row.source_id || row.entry_key),
+  ].filter(Boolean).map(String);
+  return sourceIds.some((sourceId) => sourceId.startsWith('project-midrash-'));
+}
+
 function lookupLexiconEntryId(normalized, workId) {
   const candidates = (lexiconByNormalized.get(normalized) || [])
     .map((entryId) => lexiconById.get(entryId))
     .filter((entry) => isEntryAllowedForWork(entry, workId));
   if (!candidates.length) return '';
+  if (workId === aggadatBereshitScope) {
+    const projectAggadatEntry = candidates.find(isProjectMidrashFormulaEntry);
+    if (projectAggadatEntry) return projectAggadatEntry.entry_id;
+  }
   if (workId === 'orot') {
     const projectOrotEntry = candidates.find(isProjectOrotTechnicalEntry);
     if (projectOrotEntry) return projectOrotEntry.entry_id;
@@ -1484,6 +1977,7 @@ function matchMethodForEntry(entry, fallback = 'direct') {
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-abbreviation:'))) return 'project_abbreviation';
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-aramaic:'))) return 'project_aramaic_grammar';
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-zohar-ari-technical:'))) return 'project_zohar_ari_technical';
+  if (sourceIds.some((sourceId) => sourceId.startsWith('project-midrash-'))) return 'project_midrash_formula';
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-orot-technical:'))) return 'project_orot_technical';
   return fallback;
 }
@@ -1506,11 +2000,12 @@ function analyzeAffixSurfaceForm(surfaceWord, normalizedWord, workId) {
 
   for (const attempt of attempts) {
     if (unsafeAffixBaseNormalizations.has(attempt.baseNormalized)) continue;
+    if (attempt.baseNormalized === possessiveParticleNormalized && attempt.prefixSequence !== '\u05D5') continue;
     const entryId = lookupLexiconEntryId(attempt.baseNormalized, workId);
     if (!entryId) continue;
     const entry = lexiconById.get(entryId);
     const matchMethod = matchMethodForEntry(entry, 'direct');
-    const trustedProjectBase = ['project_orot_technical', 'project_function_word', 'project_abbreviation'].includes(matchMethod);
+    const trustedProjectBase = ['project_orot_technical', 'project_function_word', 'project_abbreviation', 'project_midrash_formula'].includes(matchMethod);
     if (!trustedProjectBase && (observedNormalizedCounts.get(attempt.baseNormalized) || 0) < 5) continue;
     const baseRenderings = conservativeBaseRenderings(entry, attempt.baseNormalized, workId);
     if (!baseRenderings.length) continue;
@@ -1604,6 +2099,15 @@ function analyzeSurfaceForm(surfaceWord, entry) {
       surface_renderings: entry?.strict_renderings || [],
       surface_context_status: 'resolved_zohar_ari_technical',
       surface_context_note: entry?.context_note || 'Resolved as a scoped Zohar/Ari technical term.',
+      breakdown: entry?.breakdown || [],
+    };
+  }
+  if (sourceIds.some((sourceId) => sourceId.startsWith('project-midrash-'))) {
+    return {
+      surface_transliteration: '',
+      surface_renderings: entry?.strict_renderings || [],
+      surface_context_status: 'resolved_midrash_formula',
+      surface_context_note: entry?.context_note || 'Resolved by scoped Aggadat Bereshit formula table.',
       breakdown: entry?.breakdown || [],
     };
   }
@@ -1752,10 +2256,11 @@ function formatUnmatchedSample(row) {
 const lexicon = loadLexicon();
 const fixedExpressionEntriesChanged = ensureFixedExpressionEntries(lexicon);
 const abbreviationEntriesChanged = ensureProjectAbbreviationEntries(lexicon);
+const midrashFormulaEntriesChanged = ensureProjectMidrashFormulaEntries(lexicon);
 const aramaicGrammarEntriesChanged = ensureProjectAramaicGrammarEntries(lexicon);
 const zoharAriTermEntriesChanged = ensureProjectZoharAriTechnicalTermEntries(lexicon);
 const orotFinalTechnicalEntriesChanged = ensureProjectOrotFinalTechnicalEntries(lexicon);
-const lexiconChanged = fixedExpressionEntriesChanged || abbreviationEntriesChanged || aramaicGrammarEntriesChanged || zoharAriTermEntriesChanged || orotFinalTechnicalEntriesChanged;
+const lexiconChanged = fixedExpressionEntriesChanged || abbreviationEntriesChanged || midrashFormulaEntriesChanged || aramaicGrammarEntriesChanged || zoharAriTermEntriesChanged || orotFinalTechnicalEntriesChanged;
 writeLexicon(lexicon);
 const lexiconByNormalized = new Map();
 const lexiconById = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));

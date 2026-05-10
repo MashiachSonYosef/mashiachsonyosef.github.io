@@ -581,6 +581,7 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",')
   [void]$Builder.AppendLine('        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",')
   [void]$Builder.AppendLine('        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",')
+  [void]$Builder.AppendLine('        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",')
   [void]$Builder.AppendLine('        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",')
   [void]$Builder.AppendLine('        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"')
   [void]$Builder.AppendLine('      };')
@@ -2028,6 +2029,12 @@ $featureCards = @(
     Role = ''
     Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('orot') -Titles @('Orot'))
     Placeholder = 'Coming soon'
+  },
+  [pscustomobject]@{
+    Label = 'Aggadat Bereshit'
+    Role = ''
+    Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('aggadat-bereshit') -Titles @('Aggadat Bereshit'))
+    Placeholder = 'Coming soon'
   }
 )
 
@@ -2037,12 +2044,12 @@ Append-SiteHead -Builder $homePage -Title 'Hebrew Source Workbench'
 [void]$homePage.AppendLine('    <div class="shell">')
 [void]$homePage.AppendLine('      <div class="hero">')
 [void]$homePage.AppendLine('        <h1>Hebrew Source Workbench</h1>')
-[void]$homePage.AppendLine('        <p>Hebrew-first source workbench centered on Orot, with clickable lexical HUD support and explicit source/license layers. Other imported works remain available in the full library.</p>')
+[void]$homePage.AppendLine('        <p>Hebrew-first source workbench centered on hardened work pages, with clickable lexical HUD support and explicit source/license layers. Other imported works remain available in the full library.</p>')
 [void]$homePage.AppendLine('        <div class="home-actions"><a href="library/">Full Library</a><a href="about/">About / License</a></div>')
 [void]$homePage.AppendLine('      </div>')
 [void]$homePage.AppendLine('      <div style="padding:22px">')
 [void]$homePage.AppendLine('        <section class="home-section">')
-[void]$homePage.AppendLine('          <h2>Featured Work</h2>')
+[void]$homePage.AppendLine('          <h2>Featured Works</h2>')
 [void]$homePage.AppendLine('          <div class="home-grid">')
 foreach ($card in $featureCards) {
   Append-FeatureCard -Builder $homePage -Label $card.Label -Role $card.Role -Source $card.Source -Placeholder $card.Placeholder
@@ -2094,7 +2101,7 @@ Append-SiteHead -Builder $libraryPage -Title 'Full Library'
 [void]$libraryPage.AppendLine('      <div class="hero">')
 [void]$libraryPage.AppendLine('        <p class="crumbs"><a href="../">Home</a> &middot; <a href="../about/">About / License</a></p>')
 [void]$libraryPage.AppendLine('        <h1>Full Library</h1>')
-[void]$libraryPage.AppendLine('        <p>All imported source works remain available here. The homepage is intentionally limited to the featured Orot workbench.</p>')
+[void]$libraryPage.AppendLine('        <p>All imported source works remain available here. The homepage is intentionally limited to featured workbench-ready pages.</p>')
 [void]$libraryPage.AppendLine('      </div>')
 [void]$libraryPage.AppendLine('      <div style="padding:22px">')
 Append-LibrarySections -Builder $libraryPage -Sources $sources -HrefPrefix '../'
