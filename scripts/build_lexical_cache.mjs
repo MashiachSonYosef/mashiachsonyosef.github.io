@@ -227,6 +227,7 @@ const projectAbbreviationDefinitions = [
 ];
 
 const aggadatBereshitScope = 'aggadat-bereshit';
+const midrashAggadahScope = 'midrash_aggadah';
 const projectMidrashFormulaDefinitions = [
   {
     source_id: 'project-midrash-formula:davar-acher',
@@ -1436,11 +1437,14 @@ function makeProjectMidrashFormulaEntry(definition) {
   const entryId = stableId('lex-midrash-formula', sourceId);
   const sourceRowKey = `workspace|${sourceId}`;
   const expansion = normalizeHebrewPunctuation(definition.expansion || '');
+  const workScope = definition.work_scope === aggadatBereshitScope
+    ? midrashAggadahScope
+    : (definition.work_scope || midrashAggadahScope);
   const possibleEntry = {
     entry_key: sourceId,
     lemma: surface,
     match_key: normalizeHebrewToken(surface),
-    source_name: 'Project-authored Aggadat Bereshit formula table',
+    source_name: 'Project-authored Midrash/Aggadah formula table',
     source_family: 'workspace',
     source_id: sourceId,
     transliteration: '',
@@ -1449,18 +1453,18 @@ function makeProjectMidrashFormulaEntry(definition) {
     root_transliteration: '',
     root_meaning: [],
     context_role: 'likely_contextual',
-    relation_label: definition.kind || 'Aggadat Bereshit formula/label',
+    relation_label: definition.kind || 'Midrash/Aggadah formula/label',
     source_row_keys: [sourceRowKey],
   };
   const sourceRow = {
-    source_name: 'Project-authored Aggadat Bereshit formula table',
+    source_name: 'Project-authored Midrash/Aggadah formula table',
     source_family: 'workspace',
     source_id: sourceId,
-    source_url: 'local:project-aggadat-bereshit-formula-table',
+    source_url: 'local:project-midrash-formula-table',
     license: 'project-authored / CC0',
     license_url: 'https://creativecommons.org/publicdomain/zero/1.0/',
     fields_used: ['surface form', 'short factual mapping', 'mechanical expansion or label'],
-    notes: 'Project-authored Aggadat Bereshit formula/source/proper-name row. Short factual mappings only; no external dictionary prose imported.',
+    notes: 'Project-authored Midrash/Aggadah formula/source/proper-name row. Short factual mappings only; no external dictionary prose imported.',
   };
   return {
     entry_id: entryId,
@@ -1474,13 +1478,13 @@ function makeProjectMidrashFormulaEntry(definition) {
     disambiguation_status: 'likely',
     context_note: definition.kind
       ? `Resolved as a scoped ${definition.kind}.`
-      : 'Resolved by scoped Aggadat Bereshit formula table.',
+      : 'Resolved by scoped Midrash/Aggadah formula table.',
     expansion,
     breakdown: definition.breakdown || (expansion ? [{
       hebrew: expansion,
       strict_renderings: definition.renderings,
     }] : []),
-    work_scope: definition.work_scope || aggadatBereshitScope,
+    work_scope: workScope,
     possible_entries_truncated: 0,
     possible_entries: [possibleEntry],
     source_rows: [sourceRow],
@@ -1832,7 +1836,8 @@ function isEntryAllowedForWork(entry, workId) {
   if (entry?.work_scope === 'orot' && workId !== 'orot') return false;
   if (entry?.work_scope === 'kabbalah' && !isKabbalahWork(workId)) return false;
   if (entry?.work_scope === 'zohar_ari' && !isZoharAriWork(workId)) return false;
-  if (entry?.work_scope && !['orot', 'kabbalah', 'zohar_ari'].includes(entry.work_scope) && entry.work_scope !== workId) return false;
+  if (entry?.work_scope === midrashAggadahScope && !isMidrashAggadahWork(workId)) return false;
+  if (entry?.work_scope && !['orot', 'kabbalah', 'zohar_ari', midrashAggadahScope].includes(entry.work_scope) && entry.work_scope !== workId) return false;
   const sourceIds = [
     ...(entry?.source_rows || []).map((row) => row.source_id),
     ...(entry?.possible_entries || []).map((row) => row.source_id || row.entry_key),
@@ -1869,6 +1874,11 @@ function isKabbalahWork(workId) {
     ].includes(workId);
 }
 
+function isMidrashAggadahWork(workId) {
+  const meta = sourceMetaByWorkId.get(workId) || {};
+  return String(meta.work_slug || '').startsWith('midrash/');
+}
+
 function isProjectOrotTechnicalEntry(entry) {
   const sourceIds = [
     ...(entry?.source_rows || []).map((row) => row.source_id),
@@ -1890,9 +1900,9 @@ function lookupLexiconEntryId(normalized, workId) {
     .map((entryId) => lexiconById.get(entryId))
     .filter((entry) => isEntryAllowedForWork(entry, workId));
   if (!candidates.length) return '';
-  if (workId === aggadatBereshitScope) {
-    const projectAggadatEntry = candidates.find(isProjectMidrashFormulaEntry);
-    if (projectAggadatEntry) return projectAggadatEntry.entry_id;
+  if (isMidrashAggadahWork(workId)) {
+    const projectMidrashEntry = candidates.find(isProjectMidrashFormulaEntry);
+    if (projectMidrashEntry) return projectMidrashEntry.entry_id;
   }
   if (workId === 'orot') {
     const projectOrotEntry = candidates.find(isProjectOrotTechnicalEntry);
@@ -2107,7 +2117,7 @@ function analyzeSurfaceForm(surfaceWord, entry) {
       surface_transliteration: '',
       surface_renderings: entry?.strict_renderings || [],
       surface_context_status: 'resolved_midrash_formula',
-      surface_context_note: entry?.context_note || 'Resolved by scoped Aggadat Bereshit formula table.',
+      surface_context_note: entry?.context_note || 'Resolved by scoped Midrash/Aggadah formula table.',
       breakdown: entry?.breakdown || [],
     };
   }

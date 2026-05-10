@@ -581,6 +581,7 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",')
   [void]$Builder.AppendLine('        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",')
   [void]$Builder.AppendLine('        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",')
+  [void]$Builder.AppendLine('        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",')
   [void]$Builder.AppendLine('        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",')
   [void]$Builder.AppendLine('        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",')
   [void]$Builder.AppendLine('        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"')
