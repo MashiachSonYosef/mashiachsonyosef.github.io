@@ -19,6 +19,15 @@ const badParserNeedles = [
   'dotted with a segol',
 ];
 
+const hebrewMarksRe = /[\u0591-\u05C7]/gu;
+const finalLetterMap = new Map([
+  ['ך', 'כ'],
+  ['ם', 'מ'],
+  ['ן', 'נ'],
+  ['ף', 'פ'],
+  ['ץ', 'צ'],
+]);
+
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
@@ -122,11 +131,26 @@ function hasUsableSourceRows(entry) {
   return rows.some((row) => row.source_name && row.source_id && row.license);
 }
 
-function canaryStatus(formsBySurface, canaries) {
+function normalizeCanary(value) {
+  return Array.from(String(value || '').replace(hebrewMarksRe, ''))
+    .map((char) => finalLetterMap.get(char) || char)
+    .join('');
+}
+
+function pushMapList(map, key, row) {
+  if (!key) return;
+  if (!map.has(key)) map.set(key, []);
+  map.get(key).push(row);
+}
+
+function canaryStatus(formsBySurface, formsByNormalized, canaries) {
   return canaries.map((word) => {
-    const row = formsBySurface.get(word);
-    if (!row) return `${word}:absent`;
-    if (row.status === 'matched' && row.lexicon_entry_id) return `${word}:ok`;
+    const rows = [
+      ...(formsBySurface.get(word) || []),
+      ...(formsByNormalized.get(normalizeCanary(word)) || []),
+    ];
+    if (!rows.length) return `${word}:absent`;
+    if (rows.some((row) => row.status === 'matched' && row.lexicon_entry_id)) return `${word}:ok`;
     return `${word}:miss`;
   });
 }
@@ -207,9 +231,14 @@ function main() {
 
     const index = readJson(indexPath);
     const forms = index.forms || [];
-    const formsBySurface = new Map(forms.map((row) => [row.surface_word, row]));
-    const fnStatuses = canaryStatus(formsBySurface, functionCanaries);
-    const formulaStatuses = isMidrash(source) ? canaryStatus(formsBySurface, formulaCanaries) : [];
+    const formsBySurface = new Map();
+    const formsByNormalized = new Map();
+    for (const row of forms) {
+      pushMapList(formsBySurface, row.surface_word, row);
+      pushMapList(formsByNormalized, row.normalized_word || normalizeCanary(row.surface_word), row);
+    }
+    const fnStatuses = canaryStatus(formsBySurface, formsByNormalized, functionCanaries);
+    const formulaStatuses = isMidrash(source) ? canaryStatus(formsBySurface, formsByNormalized, formulaCanaries) : [];
     const staleFunctionMisses = fnStatuses.filter((item) => item.endsWith(':miss'));
     const badRows = badParserRows(forms);
     let missingSourceRows = 0;
@@ -338,7 +367,7 @@ function main() {
   lines.push('');
   const staleRows = rows.filter((row) => row.functionCanaries.includes(':miss'));
   if (!staleRows.length) {
-    lines.push('- No works had missing existing function-word canaries by exact surface form.');
+    lines.push('- No works had present-but-unmatched function-word canaries by normalized form.');
   } else {
     for (const row of staleRows.slice(0, 80)) {
       lines.push(`- ${row.title}: ${row.functionCanaries}`);

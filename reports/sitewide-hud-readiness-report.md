@@ -1,6 +1,6 @@
 # Sitewide HUD Readiness Report
 
-Generated: 2026-05-10T12:33:01.818Z
+Generated: 2026-05-10T13:47:17.247Z
 
 This report is diagnostic only. It does not import sources, add definitions, or change lexical ranking.
 
@@ -33,7 +33,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 | Ein Yaakov | Midrash / Aggadah | 13328/70278 (19.0%) | all ok | זש״ה:absent | 0 | 289 | 920.85 KB | 17.42 MB | fix HUD integrity |
 | Midrash Lekach Tov | Midrash / Aggadah | 7918/41646 (19.0%) | all ok | all ok | 0 | 208 | 836.02 KB | 21.24 MB | fix HUD integrity |
 | Beur HaRadal on Pirkei DeRabbi Eliezer | Midrash / Aggadah | 7841/41996 (18.7%) | all ok | all ok | 0 | 237 | 831.23 KB | 13.06 MB | fix HUD integrity |
-| Midrash Tanchuma | Midrash / Aggadah | 9763/37138 (26.3%) | את:absent, על:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 189 | 1.15 MB | 12.00 MB | fix HUD integrity |
+| Midrash Tanchuma | Midrash / Aggadah | 9763/37138 (26.3%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 189 | 1.15 MB | 12.00 MB | fix HUD integrity |
 | Midrash Sekhel Tov | Midrash / Aggadah | 7043/38876 (18.1%) | all ok | all ok | 0 | 179 | 810.69 KB | 16.11 MB | fix HUD integrity |
 | Beur HaGra on Shulchan Arukh, Yoreh De'ah | Gra School | 3977/25673 (15.5%) | all ok | n/a | 0 | 103 | 756.50 KB | 17.65 MB | fix HUD integrity |
 | Chafetz Chaim on Sifra | Midrash / Aggadah | 5485/29588 (18.5%) | all ok | זש״ה:absent | 0 | 150 | 869.93 KB | 20.25 MB | fix HUD integrity |
@@ -66,11 +66,11 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 | Yefeh Kol on Shir HaShirim Rabbah | Midrash / Aggadah | 4378/13612 (32.2%) | all ok | וגומר:absent | 0 | 100 | 1.12 MB | 2.88 MB | fix HUD integrity |
 | Sha'ar HaHakdamot | Ari / Kabbalah | 2913/9189 (31.7%) | all ok | n/a | 0 | 28 | 1.12 MB | 1.46 MB | fix HUD integrity |
 | Aggadat Bereshit | Midrash / Aggadah | 3032/8840 (34.3%) | all ok | all ok | 0 | 41 | 1.21 MB | 1.56 MB | fix HUD integrity |
-| Pirkei DeRabbi Eliezer | Midrash / Aggadah | 3899/11509 (33.9%) | את:absent, כי:absent, על:absent, הוא:absent, אשר:absent, מן:absent, כל:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 52 | 1.24 MB | 2.34 MB | fix HUD integrity |
+| Pirkei DeRabbi Eliezer | Midrash / Aggadah | 3899/11509 (33.9%) | all ok | ד״א:absent, זש״ה:absent, א״ר:absent, א״ל:absent | 0 | 52 | 1.24 MB | 2.34 MB | fix HUD integrity |
 | Perush Maharzu on Shir HaShirim Rabbah | Midrash / Aggadah | 3089/9196 (33.6%) | all ok | זש״ה:absent, וגומר:absent | 0 | 50 | 1.24 MB | 2.79 MB | fix HUD integrity |
 | Midrash Shmuel | Midrash / Aggadah | 2395/7023 (34.1%) | all ok | וגומר:absent | 0 | 42 | 1.25 MB | 1.08 MB | fix HUD integrity |
 | Tanna DeBei Eliyahu Zuta | Midrash / Aggadah | 2922/8411 (34.7%) | all ok | זש״ה:absent, וגומר:absent | 0 | 47 | 1.18 MB | 1.03 MB | fix HUD integrity |
-| Eikhah Rabbah | Midrash / Aggadah | 2656/8321 (31.9%) | את:absent, אשר:absent, מן:absent, כל:absent, אין:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 35 | 1.19 MB | 1.09 MB | fix HUD integrity |
+| Eikhah Rabbah | Midrash / Aggadah | 2656/8321 (31.9%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 35 | 1.19 MB | 1.09 MB | fix HUD integrity |
 | Sifrei Aggadah on Esther | Midrash / Aggadah | 2224/6654 (33.4%) | all ok | וגומר:absent | 0 | 41 | 1.20 MB | 1.02 MB | fix HUD integrity |
 | Matnot Kehunah on Shir HaShirim Rabbah | Midrash / Aggadah | 2490/7681 (32.4%) | all ok | זש״ה:absent, וגומר:absent | 0 | 35 | 1.17 MB | 3.32 MB | fix HUD integrity |
 | Perush Maharzu on Bereshit Rabbah | Midrash / Aggadah | 2528/6701 (37.7%) | all ok | זש״ה:absent, וגומר:absent | 0 | 38 | 1.27 MB | 1.35 MB | fix HUD integrity |
@@ -79,120 +79,120 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 | Etz Yosef on Bereishit Rabbah | Midrash / Aggadah | 2790/7900 (35.3%) | all ok | all ok | 0 | 50 | 1.20 MB | 1.73 MB | fix HUD integrity |
 | Etz Yosef on Vayikra Rabbah | Midrash / Aggadah | 2662/7738 (34.4%) | all ok | וגומר:absent | 0 | 35 | 1.22 MB | 1.55 MB | fix HUD integrity |
 | Etz Yosef on Shemot Rabbah | Midrash / Aggadah | 2559/6882 (37.2%) | all ok | וגומר:absent | 0 | 45 | 1.28 MB | 1.57 MB | fix HUD integrity |
-| Jeremiah | Tanakh | 4091/12098 (33.8%) | כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אין:absent | n/a | 0 | 26 | 1.16 MB | 2.31 MB | fix HUD integrity |
+| Jeremiah | Tanakh | 4091/12098 (33.8%) | מן:absent | n/a | 0 | 26 | 1.16 MB | 2.31 MB | fix HUD integrity |
 | Sha'ar Ma'amarei Razal | Ari / Kabbalah | 2054/5388 (38.1%) | all ok | n/a | 0 | 22 | 1.26 MB | 777.30 KB | fix HUD integrity |
-| Genesis | Tanakh | 3710/11363 (32.6%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 17 | 1.13 MB | 2.39 MB | fix HUD integrity |
+| Genesis | Tanakh | 3710/11363 (32.6%) | מן:absent | n/a | 0 | 17 | 1.13 MB | 2.39 MB | fix HUD integrity |
 | Yefeh To'ar on Bereshit Rabbah | Midrash / Aggadah | 2442/6072 (40.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 41 | 1.36 MB | 956.06 KB | fix HUD integrity |
-| Psalms | Tanakh | 4013/12462 (32.2%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 28 | 1.16 MB | 3.50 MB | fix HUD integrity |
+| Psalms | Tanakh | 4013/12462 (32.2%) | all ok | n/a | 0 | 28 | 1.16 MB | 3.50 MB | fix HUD integrity |
 | Beur HaGra on Jerusalem Talmud Challah | Gra School | 1026/3544 (29.0%) | all ok | n/a | 0 | 25 | 1.02 MB | 1.47 MB | fix HUD integrity |
 | Perush Maharzu on Shemot Rabbah | Midrash / Aggadah | 2053/5256 (39.1%) | all ok | זש״ה:absent, וגומר:absent | 0 | 25 | 1.30 MB | 1.21 MB | fix HUD integrity |
 | Etz Yosef on Eichah Rabbah | Midrash / Aggadah | 2206/6435 (34.3%) | all ok | שנאמר:absent, וגומר:absent | 0 | 40 | 1.24 MB | 1.37 MB | fix HUD integrity |
-| Ezekiel | Tanakh | 3802/10759 (35.3%) | את:absent, כי:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 48 | 1.18 MB | 2.10 MB | fix HUD integrity |
-| Isaiah | Tanakh | 4182/11650 (35.9%) | את:absent, כי:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 24 | 1.33 MB | 2.05 MB | fix HUD integrity |
+| Ezekiel | Tanakh | 3802/10759 (35.3%) | מן:absent, אם:absent | n/a | 0 | 48 | 1.18 MB | 2.10 MB | fix HUD integrity |
+| Isaiah | Tanakh | 4182/11650 (35.9%) | מן:absent | n/a | 0 | 24 | 1.33 MB | 2.05 MB | fix HUD integrity |
 | Kol HaTor | Gra School | 1917/4308 (44.5%) | all ok | n/a | 0 | 8 | 1.41 MB | 748.51 KB | fix HUD integrity |
 | Par Echad on Pirkei DeRabbi Eliezer | Midrash / Aggadah | 2084/5738 (36.3%) | all ok | זש״ה:absent, וגומר:absent | 0 | 36 | 1.24 MB | 753.98 KB | fix HUD integrity |
-| Exodus | Tanakh | 2937/8879 (33.1%) | את:absent, כי:absent, על:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 24 | 1.12 MB | 1.92 MB | fix HUD integrity |
-| Numbers | Tanakh | 2751/8225 (33.4%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 20 | 1.11 MB | 2.01 MB | fix HUD integrity |
+| Exodus | Tanakh | 2937/8879 (33.1%) | all ok | n/a | 0 | 24 | 1.12 MB | 1.92 MB | fix HUD integrity |
+| Numbers | Tanakh | 2751/8225 (33.4%) | מן:absent | n/a | 0 | 20 | 1.11 MB | 2.01 MB | fix HUD integrity |
 | Yahel Ohr on Zohar | Gra School | 1740/4871 (35.7%) | all ok | n/a | 0 | 20 | 1.25 MB | 830.65 KB | fix HUD integrity |
 | Yefeh To'ar on Shemot Rabbah | Midrash / Aggadah | 2006/4774 (42.0%) | all ok | וגומר:absent, א״ר:absent | 0 | 30 | 1.37 MB | 754.76 KB | fix HUD integrity |
 | Alphabet of Ben Sira | Midrash / Aggadah | 1693/4510 (37.5%) | all ok | זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 20 | 1.30 MB | 579.58 KB | fix HUD integrity |
-| Deuteronomy | Tanakh | 2922/8113 (36.0%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 30 | 1.18 MB | 1.63 MB | fix HUD integrity |
+| Deuteronomy | Tanakh | 2922/8113 (36.0%) | אם:absent | n/a | 0 | 30 | 1.18 MB | 1.63 MB | fix HUD integrity |
 | Perush Maharzu on Vayikra Rabbah | Midrash / Aggadah | 1855/4678 (39.7%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 25 | 1.32 MB | 847.69 KB | fix HUD integrity |
-| II Chronicles | Tanakh | 2745/8092 (33.9%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 19 | 1.19 MB | 1.48 MB | fix HUD integrity |
-| I Samuel | Tanakh | 2739/7707 (35.5%) | את:absent, כי:absent, לא:absent, הוא:absent, אשר:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 20 | 1.14 MB | 1.41 MB | fix HUD integrity |
-| I Kings | Tanakh | 2681/7590 (35.3%) | את:absent, כי:absent, על:absent, לא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 30 | 1.16 MB | 1.39 MB | fix HUD integrity |
-| II Kings | Tanakh | 2346/6901 (34.0%) | את:absent, כי:absent, על:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 19 | 1.11 MB | 1.26 MB | fix HUD integrity |
-| Leviticus | Tanakh | 2037/6089 (33.5%) | את:absent, כי:absent, על:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent | n/a | 0 | 18 | 1.10 MB | 1.40 MB | fix HUD integrity |
+| II Chronicles | Tanakh | 2745/8092 (33.9%) | מן:absent | n/a | 0 | 19 | 1.19 MB | 1.48 MB | fix HUD integrity |
+| I Samuel | Tanakh | 2739/7707 (35.5%) | אם:absent | n/a | 0 | 20 | 1.14 MB | 1.41 MB | fix HUD integrity |
+| I Kings | Tanakh | 2681/7590 (35.3%) | מן:absent | n/a | 0 | 30 | 1.16 MB | 1.39 MB | fix HUD integrity |
+| II Kings | Tanakh | 2346/6901 (34.0%) | מן:absent | n/a | 0 | 19 | 1.11 MB | 1.26 MB | fix HUD integrity |
+| Leviticus | Tanakh | 2037/6089 (33.5%) | מן:absent | n/a | 0 | 18 | 1.10 MB | 1.40 MB | fix HUD integrity |
 | Pesikta Rabbati | Midrash / Aggadah | 1347/3103 (43.4%) | all ok | וגומר:absent | 0 | 16 | 1.45 MB | 379.91 KB | fix HUD integrity |
-| I Chronicles | Tanakh | 2003/6945 (28.8%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 10 | 1.06 MB | 1.55 MB | fix HUD integrity |
-| II Samuel | Tanakh | 2342/6700 (35.0%) | את:absent, על:absent, הוא:absent, מן:absent, כל:absent, אין:absent | n/a | 0 | 17 | 1.11 MB | 1.22 MB | fix HUD integrity |
+| I Chronicles | Tanakh | 2003/6945 (28.8%) | מן:absent | n/a | 0 | 10 | 1.06 MB | 1.55 MB | fix HUD integrity |
+| II Samuel | Tanakh | 2342/6700 (35.0%) | מן:absent | n/a | 0 | 17 | 1.11 MB | 1.22 MB | fix HUD integrity |
 | Nefesh HaChayim | Gra School | 1867/4430 (42.1%) | all ok | n/a | 0 | 30 | 1.31 MB | 649.30 KB | fix HUD integrity |
 | Perush Maharzu on Eichah Rabbah | Midrash / Aggadah | 1515/3692 (41.0%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 15 | 1.38 MB | 815.96 KB | fix HUD integrity |
 | Yefeh Anaf on Eichah Rabbah | Midrash / Aggadah | 1549/3783 (40.9%) | all ok | וגומר:absent, א״ר:absent | 0 | 20 | 1.37 MB | 593.65 KB | fix HUD integrity |
 | Aderet Eliyahu | Gra School | 1654/3711 (44.6%) | all ok | n/a | 0 | 18 | 1.45 MB | 392.25 KB | fix HUD integrity |
-| Joshua | Tanakh | 2139/5856 (36.5%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 12 | 1.12 MB | 1.11 MB | fix HUD integrity |
-| Judges | Tanakh | 2111/6131 (34.4%) | את:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 17 | 1.15 MB | 1.06 MB | fix HUD integrity |
+| Joshua | Tanakh | 2139/5856 (36.5%) | all ok | n/a | 0 | 12 | 1.12 MB | 1.11 MB | fix HUD integrity |
+| Judges | Tanakh | 2111/6131 (34.4%) | מן:absent | n/a | 0 | 17 | 1.15 MB | 1.06 MB | fix HUD integrity |
 | Perush Maharzu on Bamidbar Rabbah | Midrash / Aggadah | 1463/3476 (42.1%) | all ok | וגומר:absent, א״ל:absent | 0 | 19 | 1.39 MB | 697.48 KB | fix HUD integrity |
 | Midrash Tannaim on Deuteronomy | Midrash / Aggadah | 1188/2712 (43.8%) | all ok | זש״ה:absent, וגומר:absent | 0 | 10 | 1.48 MB | 620.17 KB | fix HUD integrity |
 | Matnot Kehunah on Bereshit Rabbah | Midrash / Aggadah | 1470/3705 (39.7%) | all ok | זש״ה:absent, וגומר:absent | 0 | 23 | 1.35 MB | 1.03 MB | fix HUD integrity |
 | Yedei Moshe on Shir HaShirim Rabbah | Midrash / Aggadah | 1239/3038 (40.8%) | all ok | ד״א:absent, וגומר:absent, א״ל:absent | 0 | 13 | 1.30 MB | 428.92 KB | fix HUD integrity |
 | Etz Yosef on Bamidbar Rabbah | Midrash / Aggadah | 1522/3554 (42.8%) | all ok | ד״א:absent, וגומר:absent | 0 | 21 | 1.39 MB | 697.07 KB | fix HUD integrity |
-| Job | Tanakh | 1772/5899 (30.0%) | כי:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 14 | 1.08 MB | 1.46 MB | fix HUD integrity |
+| Job | Tanakh | 1772/5899 (30.0%) | all ok | n/a | 0 | 14 | 1.08 MB | 1.46 MB | fix HUD integrity |
 | Etz Yosef on Esther Rabbah | Midrash / Aggadah | 1199/2889 (41.5%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 16 | 1.32 MB | 519.28 KB | fix HUD integrity |
-| Shir HaShirim Rabbah | Midrash / Aggadah | 1193/2477 (48.2%) | את:absent, כי:absent, על:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 11 | 1.53 MB | 328.60 KB | fix HUD integrity |
+| Shir HaShirim Rabbah | Midrash / Aggadah | 1193/2477 (48.2%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 11 | 1.53 MB | 328.60 KB | fix HUD integrity |
 | Beur HaGra on Jerusalem Talmud Bikkurim | Gra School | 828/2487 (33.3%) | all ok | n/a | 0 | 10 | 1.06 MB | 501.34 KB | fix HUD integrity |
 | Matnot Kehunah on Eichah Rabbah | Midrash / Aggadah | 1165/2981 (39.1%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 11 | 1.33 MB | 975.89 KB | fix HUD integrity |
 | HaGra on Sefer Yetzirah Gra Version | Gra School | 894/2250 (39.7%) | אשר:absent, אם:absent | n/a | 0 | 13 | 1.26 MB | 293.98 KB | fix HUD integrity |
 | Maaseh Rav | Gra School | 1033/2700 (38.3%) | all ok | n/a | 0 | 8 | 1.26 MB | 603.35 KB | fix HUD integrity |
-| Proverbs | Tanakh | 1566/4705 (33.3%) | את:absent, כי:absent, על:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 9 | 1.22 MB | 1.30 MB | fix HUD integrity |
+| Proverbs | Tanakh | 1566/4705 (33.3%) | מן:absent | n/a | 0 | 9 | 1.22 MB | 1.30 MB | fix HUD integrity |
 | Rashi on Bereshit Rabbah | Midrash / Aggadah | 1197/2795 (42.8%) | all ok | זש״ה:absent, וגומר:absent | 0 | 18 | 1.38 MB | 607.94 KB | fix HUD integrity |
 | Yefeh To'ar on Vayikra Rabbah | Midrash / Aggadah | 1215/2548 (47.7%) | all ok | וגומר:absent, א״ר:absent, א״ל:absent | 0 | 12 | 1.49 MB | 398.09 KB | fix HUD integrity |
-| Daniel | Tanakh | 1207/4269 (28.3%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 7 | 1.05 MB | 682.85 KB | fix HUD integrity |
+| Daniel | Tanakh | 1207/4269 (28.3%) | מן:absent, אם:absent, אין:absent | n/a | 0 | 7 | 1.05 MB | 682.85 KB | fix HUD integrity |
 | Beur HaGra on Shulchan Arukh, Even HaEzer | Gra School | 584/2159 (27.0%) | אשר:absent | n/a | 0 | 7 | 942.14 KB | 761.27 KB | fix HUD integrity |
-| Kohelet Rabbah | Midrash / Aggadah | 997/2205 (45.2%) | את:absent, כי:absent, על:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 12 | 1.43 MB | 268.38 KB | fix HUD integrity |
-| Jerusalem Talmud Taanit | Talmud / Commentary | 867/2188 (39.6%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 11 | 1.25 MB | 299.04 KB | fix HUD integrity |
+| Kohelet Rabbah | Midrash / Aggadah | 997/2205 (45.2%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 12 | 1.43 MB | 268.38 KB | fix HUD integrity |
+| Jerusalem Talmud Taanit | Talmud / Commentary | 867/2188 (39.6%) | all ok | n/a | 0 | 11 | 1.25 MB | 299.04 KB | fix HUD integrity |
 | Yedei Moshe on Bereshit Rabbah | Midrash / Aggadah | 987/2172 (45.4%) | all ok | א״ל:absent | 0 | 11 | 1.43 MB | 330.79 KB | fix HUD integrity |
-| Nehemiah | Tanakh | 1293/3818 (33.9%) | כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 9 | 1.12 MB | 720.44 KB | fix HUD integrity |
+| Nehemiah | Tanakh | 1293/3818 (33.9%) | מן:absent | n/a | 0 | 9 | 1.12 MB | 720.44 KB | fix HUD integrity |
 | Matnot Kehunah on Vayikra Rabbah | Midrash / Aggadah | 1032/2518 (41.0%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 7 | 1.37 MB | 729.08 KB | fix HUD integrity |
 | Sha'ar Ruach HaKodesh | Ari / Kabbalah | 903/2004 (45.1%) | all ok | n/a | 0 | 8 | 1.40 MB | 235.87 KB | fix HUD integrity |
 | Yedei Moshe on Shemot Rabbah | Midrash / Aggadah | 888/1947 (45.6%) | all ok | זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent | 0 | 8 | 1.36 MB | 294.53 KB | fix HUD integrity |
-| Ruth Rabbah | Midrash / Aggadah | 798/1529 (52.2%) | את:absent, על:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 9 | 1.48 MB | 206.44 KB | fix HUD integrity |
+| Ruth Rabbah | Midrash / Aggadah | 798/1529 (52.2%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 9 | 1.48 MB | 206.44 KB | fix HUD integrity |
 | Yedei Moshe on Kohelet Rabbah | Midrash / Aggadah | 843/1854 (45.5%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent | 0 | 13 | 1.34 MB | 261.84 KB | fix HUD integrity |
-| Ezra | Tanakh | 774/2665 (29.0%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 6 | 1001.85 KB | 521.85 KB | fix HUD integrity |
+| Ezra | Tanakh | 774/2665 (29.0%) | את:absent, מן:absent | n/a | 0 | 6 | 1001.85 KB | 521.85 KB | fix HUD integrity |
 | Sha'arei Kedusha | Ari / Kabbalah | 932/1732 (53.8%) | all ok | n/a | 0 | 7 | 1.56 MB | 251.61 KB | fix HUD integrity |
 | Ma'amar Hador | Rav Kook School | 1277/1965 (65.0%) | all ok | n/a | 0 | 3 | 1.82 MB | 182.40 KB | fix HUD integrity |
 | Notes and Corrections on Midrash Lekach Tov on Esther | Midrash / Aggadah | 491/1178 (41.7%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 6 | 1.38 MB | 554.57 KB | fix HUD integrity |
 | Matnot Kehunah on Shemot Rabbah | Midrash / Aggadah | 757/1632 (46.4%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 12 | 1.39 MB | 477.79 KB | fix HUD integrity |
-| Zechariah | Tanakh | 921/2181 (42.2%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 2 | 1.18 MB | 410.53 KB | fix HUD integrity |
+| Zechariah | Tanakh | 921/2181 (42.2%) | מן:absent, אם:absent | n/a | 0 | 2 | 1.18 MB | 410.53 KB | fix HUD integrity |
 | Etz Yosef on Devarim Rabbah | Midrash / Aggadah | 719/1541 (46.7%) | all ok | זש״ה:absent, וגומר:absent | 0 | 7 | 1.43 MB | 278.12 KB | fix HUD integrity |
 | Seder Olam Zutta | Midrash / Aggadah | 323/976 (33.1%) | אין:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 2 | 1.15 MB | 152.70 KB | fix HUD integrity |
 | Etz Yosef on Ruth Rabbah | Midrash / Aggadah | 693/1387 (50.0%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 5 | 1.41 MB | 267.19 KB | fix HUD integrity |
 | Perush Maharzu on Devarim Rabbah | Midrash / Aggadah | 671/1369 (49.0%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 6 | 1.39 MB | 242.86 KB | fix HUD integrity |
-| Esther | Tanakh | 725/1962 (37.0%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 11 | 999.74 KB | 354.68 KB | fix HUD integrity |
+| Esther | Tanakh | 725/1962 (37.0%) | מן:absent, כל:absent | n/a | 0 | 11 | 999.74 KB | 354.68 KB | fix HUD integrity |
 | Beur HaGra on Shulchan Arukh, Choshen Mishpat | Gra School | 311/1106 (28.1%) | אשר:absent | n/a | 0 | 5 | 859.17 KB | 209.19 KB | fix HUD integrity |
-| Ecclesiastes | Tanakh | 994/2047 (48.6%) | כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 8 | 1.29 MB | 419.78 KB | fix HUD integrity |
+| Ecclesiastes | Tanakh | 994/2047 (48.6%) | מן:absent, אם:absent | n/a | 0 | 8 | 1.29 MB | 419.78 KB | fix HUD integrity |
 | Midrash Lekach Tov on Esther | Midrash / Aggadah | 528/1030 (51.3%) | אין:absent | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 3 | 1.58 MB | 148.84 KB | fix HUD integrity |
 | Yefeh Anaf on Ruth Rabbah | Midrash / Aggadah | 639/1292 (49.5%) | מן:absent | זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 9 | 1.48 MB | 189.72 KB | fix HUD integrity |
 | Yefeh Anaf on Esther Rabbah | Midrash / Aggadah | 586/1231 (47.6%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 6 | 1.45 MB | 219.92 KB | fix HUD integrity |
 | Matnot Kehunah on Bamidbar Rabbah | Midrash / Aggadah | 649/1378 (47.1%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 12 | 1.47 MB | 380.35 KB | fix HUD integrity |
-| Hosea | Tanakh | 704/1828 (38.5%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 4 | 1.09 MB | 359.26 KB | fix HUD integrity |
+| Hosea | Tanakh | 704/1828 (38.5%) | את:absent, מן:absent, כל:absent | n/a | 0 | 4 | 1.09 MB | 359.26 KB | fix HUD integrity |
 | Sefer Yetzirah Gra Version | Gra School | 359/743 (48.3%) | לא:absent, אם:absent | n/a | 0 | 7 | 1.11 MB | 197.48 KB | fix HUD integrity |
 | Sefer Etz Chaim | Ari / Kabbalah | 552/974 (56.7%) | all ok | n/a | 0 | 9 | 1.43 MB | 125.66 KB | fix HUD integrity |
 | Iggeret HaGra | Gra School | 559/1069 (52.3%) | מן:absent | n/a | 0 | 3 | 1.52 MB | 136.78 KB | fix HUD integrity |
-| Amos | Tanakh | 566/1437 (39.4%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 4 | 1.12 MB | 288.83 KB | fix HUD integrity |
+| Amos | Tanakh | 566/1437 (39.4%) | מן:absent, אם:absent | n/a | 0 | 4 | 1.12 MB | 288.83 KB | fix HUD integrity |
 | Perush Maharzu on Ruth Rabbah | Midrash / Aggadah | 452/883 (51.2%) | מן:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 4 | 1.29 MB | 208.00 KB | fix HUD integrity |
-| Lamentations | Tanakh | 468/1264 (37.0%) | את:absent, על:absent, הוא:absent, אשר:absent, כל:absent, אם:absent | n/a | 0 | 2 | 1.04 MB | 316.84 KB | fix HUD integrity |
+| Lamentations | Tanakh | 468/1264 (37.0%) | אם:absent | n/a | 0 | 2 | 1.04 MB | 316.84 KB | fix HUD integrity |
 | Midrash Lekach Tov on Ruth | Midrash / Aggadah | 419/759 (55.2%) | all ok | זש״ה:absent, שנאמר:absent, כתיב:absent, א״ר:absent, א״ל:absent | 0 | 4 | 1.22 MB | 117.92 KB | fix HUD integrity |
 | Midrash Lekach Tov on Lamentations | Midrash / Aggadah | 409/757 (54.0%) | all ok | זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 3 | 1.24 MB | 109.79 KB | fix HUD integrity |
 | Midrash Lekach Tov on Song of Songs | Midrash / Aggadah | 464/787 (59.0%) | all ok | זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 1 | 1.44 MB | 103.45 KB | fix HUD integrity |
 | Perush Maharzu on Esther Rabbah | Midrash / Aggadah | 355/755 (47.0%) | all ok | ד״א:absent, זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 3 | 1.08 MB | 156.35 KB | fix HUD integrity |
-| Micah | Tanakh | 468/1144 (40.9%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 1 | 1.17 MB | 225.02 KB | fix HUD integrity |
-| Song of Songs | Tanakh | 327/984 (33.2%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 1 | 983.15 KB | 246.20 KB | fix HUD integrity |
-| Orot HaTorah | Rav Kook School | 542/807 (67.2%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 3 | 1.59 MB | 117.84 KB | fix HUD integrity |
-| Ruth | Tanakh | 406/999 (40.6%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אין:absent | n/a | 0 | 5 | 905.99 KB | 196.87 KB | fix HUD integrity |
+| Micah | Tanakh | 468/1144 (40.9%) | מן:absent, כל:absent, אם:absent | n/a | 0 | 1 | 1.17 MB | 225.02 KB | fix HUD integrity |
+| Song of Songs | Tanakh | 327/984 (33.2%) | כי:absent, הוא:absent, מן:absent, אם:absent | n/a | 0 | 1 | 983.15 KB | 246.20 KB | fix HUD integrity |
+| Orot HaTorah | Rav Kook School | 542/807 (67.2%) | אם:absent | n/a | 0 | 3 | 1.59 MB | 117.84 KB | fix HUD integrity |
+| Ruth | Tanakh | 406/999 (40.6%) | על:absent, מן:absent | n/a | 0 | 5 | 905.99 KB | 196.87 KB | fix HUD integrity |
 | Yefeh To'ar on Bamidbar Rabbah | Midrash / Aggadah | 345/646 (53.4%) | אשר:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 3 | 1008.49 KB | 116.34 KB | fix HUD integrity |
 | Matnot Kehunah on Ruth Rabbah | Midrash / Aggadah | 300/594 (50.5%) | כי:absent, אשר:absent | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 2 | 909.63 KB | 194.03 KB | fix HUD integrity |
-| Joel | Tanakh | 320/776 (41.2%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 2 | 919.62 KB | 172.77 KB | fix HUD integrity |
+| Joel | Tanakh | 320/776 (41.2%) | את:absent, על:absent, מן:absent, אם:absent | n/a | 0 | 2 | 919.62 KB | 172.77 KB | fix HUD integrity |
 | Musar Avikha | Rav Kook School | 371/567 (65.4%) | all ok | n/a | 0 | 3 | 1.02 MB | 104.42 KB | fix HUD integrity |
 | Matnot Kehunah on Esther Rabbah | Midrash / Aggadah | 269/558 (48.2%) | אם:absent | זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 1 | 892.43 KB | 198.25 KB | fix HUD integrity |
-| Malachi | Tanakh | 314/676 (46.4%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 1 | 866.43 KB | 152.03 KB | fix HUD integrity |
+| Malachi | Tanakh | 314/676 (46.4%) | מן:absent, כל:absent, אם:absent | n/a | 0 | 1 | 866.43 KB | 152.03 KB | fix HUD integrity |
 | Midrash Yelamdenu, Selections from Yalkut Talmud Torah | Midrash / Aggadah | 280/523 (53.5%) | מן:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 2 | 869.80 KB | 95.96 KB | fix HUD integrity |
 | Midrash Lekach Tov on Ecclesiastes | Midrash / Aggadah | 256/421 (60.8%) | אין:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 3 | 822.99 KB | 84.25 KB | fix HUD integrity |
 | Matnot Kehunah on Devarim Rabbah | Midrash / Aggadah | 223/454 (49.1%) | כי:absent, אשר:absent | זש״ה:absent, כתיב:absent, וגומר:absent, א״ל:absent | 0 | 3 | 693.28 KB | 162.62 KB | fix HUD integrity |
-| Habakkuk | Tanakh | 246/578 (42.6%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 2 | 778.24 KB | 147.11 KB | fix HUD integrity |
-| Jonah | Tanakh | 221/525 (42.1%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 3 | 601.45 KB | 136.28 KB | fix HUD integrity |
-| Nahum | Tanakh | 199/503 (39.6%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 1 | 692.30 KB | 132.61 KB | fix HUD integrity |
+| Habakkuk | Tanakh | 246/578 (42.6%) | את:absent, מן:absent, כל:absent | n/a | 0 | 2 | 778.24 KB | 147.11 KB | fix HUD integrity |
+| Jonah | Tanakh | 221/525 (42.1%) | את:absent, על:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 3 | 601.45 KB | 136.28 KB | fix HUD integrity |
+| Nahum | Tanakh | 199/503 (39.6%) | את:absent, על:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 1 | 692.30 KB | 132.61 KB | fix HUD integrity |
 | Mishnat DeRabbi Eliezer on Eichah Rabbah | Midrash / Aggadah | 192/407 (47.2%) | אשר:absent, מן:absent, אם:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 2 | 629.73 KB | 96.93 KB | fix HUD integrity |
 | Gra's Nuschah on Avot D'Rabbi Natan | Gra School | 203/387 (52.5%) | אשר:absent, מן:absent, אם:absent | n/a | 0 | 1 | 700.69 KB | 231.96 KB | fix HUD integrity |
 | Seder Olam Rabbah | Midrash / Aggadah | 151/268 (56.3%) | כל:absent, אין:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 3 | 507.56 KB | 76.74 KB | fix HUD integrity |
 | Yedei Moshe on Vayikra Rabbah | Midrash / Aggadah | 185/346 (53.5%) | אשר:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 1 | 590.55 KB | 115.45 KB | fix HUD integrity |
 | Yefeh To'ar on Devarim Rabbah | Midrash / Aggadah | 139/263 (52.9%) | מן:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 3 | 431.21 KB | 79.70 KB | fix HUD integrity |
-| Obadiah | Tanakh | 89/237 (37.6%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 1 | 284.91 KB | 93.72 KB | fix HUD integrity |
+| Obadiah | Tanakh | 89/237 (37.6%) | על:absent, לא:absent, הוא:absent, מן:absent, אם:absent | n/a | 0 | 1 | 284.91 KB | 93.72 KB | fix HUD integrity |
 | Gra's Nuschah on Tractate Derekh Eretz Rabbah | Gra School | 52/121 (43.0%) | כי:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent | ד״א:miss, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 1 | 193.67 KB | 93.09 KB | fix HUD integrity |
 | Gra on Pirkei Avot | Gra School | 197/419 (47.0%) | אם:absent, אין:absent | n/a | 0 | 0 | 651.61 KB | 106.07 KB | usable; content coverage remains |
-| Zephaniah | Tanakh | 253/618 (40.9%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 0 | 723.20 KB | 147.23 KB | usable; content coverage remains |
+| Zephaniah | Tanakh | 253/618 (40.9%) | הוא:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 0 | 723.20 KB | 147.23 KB | usable; content coverage remains |
 | Yedei Moshe on Devarim Rabbah | Midrash / Aggadah | 223/357 (62.5%) | כי:absent, אם:absent | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 633.02 KB | 90.70 KB | usable; content coverage remains |
-| Haggai | Tanakh | 184/406 (45.3%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 0 | 501.16 KB | 122.77 KB | usable; content coverage remains |
+| Haggai | Tanakh | 184/406 (45.3%) | על:absent, הוא:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 0 | 501.16 KB | 122.77 KB | usable; content coverage remains |
 | Gra's Nuschah on Tractate Soferim | Gra School | 124/236 (52.5%) | הוא:absent, מן:absent | n/a | 0 | 0 | 399.77 KB | 118.61 KB | usable; content coverage remains |
 | Maharzu Hakatzar on Bereshit Rabbah | Midrash / Aggadah | 104/198 (52.5%) | כי:absent, לא:absent, מן:absent, כל:absent, אם:absent, אין:absent | זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 300.98 KB | 81.95 KB | usable; content coverage remains |
 | Gra's Nuschah on Tractate Semachot | Gra School | 53/110 (48.2%) | את:absent, כי:absent, הוא:absent, אשר:absent, מן:absent, אין:absent | n/a | 0 | 0 | 193.82 KB | 97.94 KB | usable; content coverage remains |
@@ -255,12 +255,12 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 
 ## Stale Cache / Wiring Suspects
 
-- No works had missing existing function-word canaries by exact surface form.
+- No works had present-but-unmatched function-word canaries by normalized form.
 
 ## Midrash Formula Layer Candidates
 
 - Ein Yaakov: זש״ה:absent
-- Midrash Tanchuma: ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent
+- Midrash Tanchuma: ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent
 - Chafetz Chaim on Sifra: זש״ה:absent
 - Midrash Tanchuma Buber: וגומר:absent
 - Ra'avad on Sifra: זש״ה:absent, וגומר:absent
@@ -278,11 +278,11 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 - Mishnat Rabbi Eliezer: זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent
 - Etz Yosef on Kohelet Rabbah: ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent
 - Yefeh Kol on Shir HaShirim Rabbah: וגומר:absent
-- Pirkei DeRabbi Eliezer: ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent
+- Pirkei DeRabbi Eliezer: ד״א:absent, זש״ה:absent, א״ר:absent, א״ל:absent
 - Perush Maharzu on Shir HaShirim Rabbah: זש״ה:absent, וגומר:absent
 - Midrash Shmuel: וגומר:absent
 - Tanna DeBei Eliyahu Zuta: זש״ה:absent, וגומר:absent
-- Eikhah Rabbah: ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent
+- Eikhah Rabbah: ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent
 - Sifrei Aggadah on Esther: וגומר:absent
 - Matnot Kehunah on Shir HaShirim Rabbah: זש״ה:absent, וגומר:absent
 - Perush Maharzu on Bereshit Rabbah: זש״ה:absent, וגומר:absent
@@ -306,15 +306,15 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 - Yedei Moshe on Shir HaShirim Rabbah: ד״א:absent, וגומר:absent, א״ל:absent
 - Etz Yosef on Bamidbar Rabbah: ד״א:absent, וגומר:absent
 - Etz Yosef on Esther Rabbah: ד״א:absent, זש״ה:absent, וגומר:absent, א״ל:absent
-- Shir HaShirim Rabbah: ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent
+- Shir HaShirim Rabbah: ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent
 - Matnot Kehunah on Eichah Rabbah: זש״ה:absent, וגומר:absent, א״ל:absent
 - Rashi on Bereshit Rabbah: זש״ה:absent, וגומר:absent
 - Yefeh To'ar on Vayikra Rabbah: וגומר:absent, א״ר:absent, א״ל:absent
-- Kohelet Rabbah: ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent
+- Kohelet Rabbah: ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent
 - Yedei Moshe on Bereshit Rabbah: א״ל:absent
 - Matnot Kehunah on Vayikra Rabbah: ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent
 - Yedei Moshe on Shemot Rabbah: זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent
-- Ruth Rabbah: ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent
+- Ruth Rabbah: ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent
 - Yedei Moshe on Kohelet Rabbah: ד״א:absent, זש״ה:absent, וגומר:absent
 - Notes and Corrections on Midrash Lekach Tov on Esther: זש״ה:absent, וגומר:absent, א״ל:absent
 - Matnot Kehunah on Shemot Rabbah: ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent
