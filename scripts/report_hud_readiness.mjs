@@ -193,7 +193,7 @@ function badParserRows(forms) {
     if (row.match_method !== 'affix_parser') return false;
     const haystack = [
       ...(row.surface_renderings || []),
-      ...(row.breakdown || []).flatMap((part) => part.strict_renderings || []),
+      ...(row.breakdown || []).map((part) => (part.strict_renderings || []).join('/')),
     ].join(' ').toLowerCase();
     return badParserNeedlePatterns.some((pattern) => pattern.test(haystack));
   });
