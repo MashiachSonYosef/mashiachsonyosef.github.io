@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-06T14:13:19.349Z
+Generated: 2026-05-10T15:22:33.369Z
 
 ## Scope
 
@@ -15,41 +15,41 @@ Generated: 2026-05-06T14:13:19.349Z
 
 ## Counts
 
-- Total work-surface rows: 454702
-- Total sitewide unique surface forms: 206980
-- Sitewide unique surface forms matched at least once: 39485
-- Sitewide unique surface forms unmatched everywhere: 167495
-- Total token occurrences: 2542152
-- Matched before prefix/suffix parser: 124444
-- Newly resolved by prefix/suffix parser: 16949
-- Total matched after parser: 144499
-- Percent matched: 31.8%
-- Matched via Wikidata: 108364
-- Enriched via OpenScriptures: 117144
-- Unmatched: 310203
+- Total work-surface rows: 1226504
+- Total sitewide unique surface forms: 428299
+- Sitewide unique surface forms matched at least once: 67817
+- Sitewide unique surface forms unmatched everywhere: 360482
+- Total token occurrences: 6066624
+- Matched before prefix/suffix parser: 308874
+- Newly resolved by prefix/suffix parser: 43549
+- Total matched after parser: 363526
+- Percent matched: 29.6%
+- Matched via Wikidata: 266141
+- Enriched via OpenScriptures: 306520
+- Unmatched: 862978
 
 ## Newly Resolved Parsed Forms
 
+- כנגד -> as resistor, like resistor (wikidata + openscriptures) -- otzar-midrashim
+- וּכְתִיב -> and it is written (workspace) -- ein-yaakov
+- לרבות -> to rabbi, for rabbi, of rabbi (wikidata + openscriptures) -- chafetz-chaim-on-sifra
+- מובא -> from abide, of abide, from apply (openscriptures) -- notes-and-corrections-on-midrash-lekach-tov
+- וְהָא -> and behold, and this (workspace) -- ein-yaakov
+- מובא -> from abide, of abide, from apply (openscriptures) -- notes-and-corrections-on-midrash-aggadah
 - שאם -> that if, which if, who if (workspace) -- midrash-lekach-tov
 - לרבות -> to rabbi, for rabbi, of rabbi (wikidata + openscriptures) -- midrash-lekach-tov
+- בלשון -> in tongue, Muscular organ in the mouth, with tongue, Muscular organ in the mouth, by tongue, Muscular organ in the mouth (wikidata + openscriptures) -- beur-haradal-on-pirkei-derabbi-eliezer
+- וכתיב -> and it is written (workspace) -- midrash-lekach-tov
+- וכתיב -> and it is written (workspace) -- midrash-sekhel-tov
 - כנגד -> as resistor, like resistor (wikidata + openscriptures) -- midrash-lekach-tov
+- שאם -> that if, which if, who if (workspace) -- chafetz-chaim-on-sifra
+- ואלו -> and this/that, and demonstrative pronoun (wikidata + openscriptures) -- otzar-midrashim
+- שאם -> that if, which if, who if (workspace) -- raavad-on-sifra
+- וּכְתִיב -> and it is written (workspace) -- midrash-tanchuma
+- לרבות -> to rabbi, for rabbi, of rabbi (wikidata + openscriptures) -- raavad-on-sifra
 - ודוקא -> and in fact, actually (kaikki) -- beur-hagra-on-shulchan-arukh-yoreh-deah
+- כדכתיב -> as as it is written, like as it is written, as that it is written (workspace) -- midrash-sekhel-tov
 - כנגד -> as resistor, like resistor (wikidata + openscriptures) -- shaar-maamarei-rashbi
-- מאות -> from letter, of letter (wikidata + openscriptures) -- midrash-lekach-tov
-- והא -> and behold, and this (workspace) -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- וְלָמָּה -> and to what, and for what, and of what (workspace) -- midrash-tanchuma
-- לדוד -> to uncle, for uncle, of uncle (wikidata + openscriptures) -- midrash-tehillim
-- והענין -> and ado, and business, and travail (openscriptures) -- shaar-hapesukim
-- כנגד -> as resistor, like resistor (wikidata + openscriptures) -- shaar-hapesukim
-- כְּנֶגֶד -> as resistor, like resistor (wikidata + openscriptures) -- midrash-tanchuma
-- לאו -> to or, for or, of or (workspace) -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- והענין -> and ado, and business, and travail (openscriptures) -- shaar-maamarei-rashbi
-- ולמה -> and to what, and for what, and of what (workspace) -- midrash-lekach-tov
-- רִבּוֹנוֹ -> our rabbi (wikidata + openscriptures) -- midrash-tanchuma
-- כדברי -> as thing, like thing, as entity (wikidata + openscriptures) -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- כדרך -> as thoroughfare, like thoroughfare (wikidata + openscriptures) -- midrash-lekach-tov
-- בלשון -> in tongue, Muscular organ in the mouth, with tongue, Muscular organ in the mouth, by tongue, Muscular organ in the mouth (wikidata + openscriptures) -- midrash-lekach-tov
-- שמן -> that from, which from, who from (workspace) -- midrash-lekach-tov
 
 ## Sample Matched Words With Refs To Test
 
@@ -66,89 +66,89 @@ Generated: 2026-05-06T14:13:19.349Z
 - א״א -> Arikh Anpin (workspace) -- shaar-maamarei-razal
 - א״א -> Arikh Anpin (workspace) -- yahel-ohr-on-zohar
 - א״כ -> if so, therefore (workspace) -- aderet-eliyahu
+- א״כ -> if so, therefore (workspace) -- aggadat-bereshit
 - א״כ -> if so, therefore (workspace) -- beur-hagra-on-jerusalem-talmud-bikkurim
 - א״כ -> if so, therefore (workspace) -- beur-hagra-on-jerusalem-talmud-challah
 - א״כ -> if so, therefore (workspace) -- beur-hagra-on-shulchan-arukh-choshen-mishpat
 - א״כ -> if so, therefore (workspace) -- beur-hagra-on-shulchan-arukh-even-haezer
 - א״כ -> if so, therefore (workspace) -- beur-hagra-on-shulchan-arukh-orach-chayim
 - א״כ -> if so, therefore (workspace) -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- א״כ -> if so, therefore (workspace) -- hagra-on-sefer-yetzirah-gra-version
 
 ## Sample Unmatched Words
 
+- אֵ־ל -- ein-yaakov
+- אאא -- otzar-midrashim
+- אאבד -- ein-yaakov
+- אאבד -- raavad-on-sifra
+- אַאֲבוּהָ -- ein-yaakov
+- אאביד -- midrash-tanchuma-buber
+- אאביו -- chafetz-chaim-on-sifra
+- אאביו -- etz-yosef-on-kohelet-rabbah
 - אאביי -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - אאבל -- beur-hagra-on-shulchan-arukh-orach-chayim
+- אאבנט -- midrash-sekhel-tov
+- אאגרייהו -- midrash-sekhel-tov
+- אאגרייכון -- midrash-sekhel-tov
+- אאהבנו -- etz-yosef-on-bamidbar-rabbah
+- אַאוּגְרַיְהוּ -- ein-yaakov
+- אאוכל -- chafetz-chaim-on-sifra
+- אאוכלין -- raavad-on-sifra
+- אַאוּסְיָא -- ein-yaakov
+- אַאוֹפְתָּא -- ein-yaakov
 - אאור -- midrash-lekach-tov
-- אאילן -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- אאין -- beur-hagra-on-shulchan-arukh-orach-chayim
-- אאיסור -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- אאל -- shaar-hakavanot
-- אֵאֶלֵלֵהֵהֵיֵּיֵםַםַ -- shaar-ruach-hakodesh
-- אאם -- sifrei-bamidbar
-- אאסור -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- אֶאֱסֹף -- midrash-tanchuma
-- אָאֹר -- midrash-tanchuma
-- אאריך -- pesikta-derav-kahana
-- אאריך -- shaar-hakavanot
-- אאריך -- shaar-maamarei-rashbi
-- אַאֲרִיךְ -- midrash-tanchuma
-- אארס -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- אארעא -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- אארעא -- midrash-tehillim
-- אַאַרְעָא -- eikhah-rabbah
 
 ## Top 50 Remaining Unmatched By Frequency
 
-- 2629x ה׳ -- midrash-lekach-tov
+- 5287x רַבִּי -- ein-yaakov
+- 2547x ר -- notes-and-corrections-on-midrash-lekach-tov
 - 2533x א׳ -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 2433x ב׳ -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 2190x פס׳ -- midrash-lekach-tov
-- 1768x ה׳ -- midrash-tanchuma
+- 1610x מַאי -- ein-yaakov
 - 1514x רַבִּי -- midrash-tanchuma
-- 1377x ה׳ -- midrash-tehillim
+- 1511x ב״ -- notes-and-corrections-on-midrash-lekach-tov
+- 1318x ע״ -- notes-and-corrections-on-midrash-lekach-tov
+- 1148x וילקוט -- notes-and-corrections-on-midrash-lekach-tov
+- 1063x שנ׳ -- mishnat-rabbi-eliezer
 - 1007x ליקוט -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- 972x ד״א -- midrash-lekach-tov
 - 933x מלמד -- midrash-lekach-tov
+- 889x יוֹחָנָן -- ein-yaakov
+- 845x המלך -- otzar-midrashim
+- 842x פלארענץ -- notes-and-corrections-on-midrash-lekach-tov
+- 836x דְּאָמַר -- ein-yaakov
 - 828x רבי -- midrash-tehillim
-- 805x כְּתִיב -- midrash-tanchuma
+- 826x ג׳ -- otzar-midrashim
+- 805x לְהוּ -- ein-yaakov
+- 791x רבי -- ein-yaakov
+- 764x וְאָמַר -- ein-yaakov
+- 753x מכילתא -- notes-and-corrections-on-midrash-lekach-tov
 - 743x אסור -- beur-hagra-on-shulchan-arukh-yoreh-deah
+- 739x ואמר -- otzar-midrashim
 - 710x ב׳ -- beur-hagra-on-shulchan-arukh-orach-chayim
+- 707x ת״ל -- raavad-on-sifra
 - 706x א׳ -- beur-hagra-on-shulchan-arukh-orach-chayim
+- 706x רַבָּנָן -- ein-yaakov
 - 689x הרא״ש -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 673x כוכבים -- beur-hagra-on-shulchan-arukh-yoreh-deah
+- 663x ועיין -- notes-and-corrections-on-midrash-lekach-tov
+- 656x אֶלְעָזָר -- ein-yaakov
 - 656x ת״ל -- midrash-lekach-tov
 - 655x וכ״כ -- beur-hagra-on-shulchan-arukh-yoreh-deah
+- 653x נמי -- raavad-on-sifra
 - 652x ע״ב -- shaar-maamarei-rashbi
+- 648x י״ל -- beur-haradal-on-pirkei-derabbi-eliezer
+- 633x מ״ש -- beur-haradal-on-pirkei-derabbi-eliezer
+- 630x ב״ר -- notes-and-corrections-on-midrash-aggadah
+- 624x הגי׳ -- notes-and-corrections-on-midrash-lekach-tov
+- 623x הי׳ -- beur-haradal-on-pirkei-derabbi-eliezer
+- 607x המלך -- sefer-hayashar-midrash
 - 603x ס״א -- beur-hagra-on-shulchan-arukh-orach-chayim
 - 600x ה׳ -- shaar-hapesukim
 - 596x א׳ -- pesikta-derav-kahana
-- 584x דכתיב -- midrash-lekach-tov
-- 577x ה׳ -- tanna-debei-eliyahu-rabbah
+- 592x ב׳ -- otzar-midrashim
+- 578x עיין -- notes-and-corrections-on-midrash-lekach-tov
 - 577x השי״ת -- midbar-shur
 - 575x דף -- beur-hagra-on-sifra-detzniuta
-- 534x רבי -- midrash-lekach-tov
-- 533x שנא׳ -- midrash-lekach-tov
-- 531x רבי -- sifrei-devarim
-- 530x ה׳ -- sifrei-devarim
-- 529x כ״א -- midbar-shur
-- 517x ישעיה -- midrash-tanchuma
-- 511x בגימטריא -- shaar-hapesukim
-- 504x וז״ש -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- 477x לכך -- midrash-lekach-tov
-- 471x בחינת -- shaar-maamarei-rashbi
-- 467x מיכן -- midrash-lekach-tov
-- 460x ע״א -- shaar-maamarei-rashbi
-- 449x יב -- midrash-tanchuma
-- 447x י״י -- pesikta-derav-kahana
-- 437x כתב -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- 433x משמע -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- 429x אמ׳ -- pesikta-derav-kahana
-- 412x א״ר -- pesikta-derav-kahana
-- 412x כנודע -- shaar-hapesukim
-- 407x ת״ל -- sifrei-bamidbar
-- 406x וזהו -- shaar-maamarei-rashbi
-- 395x וז״ש -- beur-hagra-on-sifra-detzniuta
-- 393x כידוע -- beur-hagra-on-sifra-detzniuta
 
 ## Exact Orot Refs To Test
 

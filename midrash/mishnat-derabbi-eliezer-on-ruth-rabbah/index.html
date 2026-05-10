@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -31,6 +31,23 @@
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
     .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
@@ -171,7 +188,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומי היו כו׳. </strong>דבל&quot;ז י&quot;ל כפרש&quot;י לפני מלוך כו׳ ששפטו השופטים או כתרגום נגיד נגידים ובימי בועז היו כנזכר במגלה משא&quot;כ עתה דדרש לגנאי אוי לדור כו׳ ע&quot;כ ל&quot;ל דקאי אבועז דהרי צדיק גמור היה ולא עליו נאמר לשון וי לכ&quot;א ברק ודבורה דוי לדרא דאשה מדבריית כדאית׳ בש&quot;ס:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×•×ž×™ ×”×™×• ×›×•×³. </strong>×“×‘×œ&quot;×– ×™&quot;×œ ×›×¤×¨×©&quot;×™ ×œ×¤× ×™ ×ž×œ×•×š ×›×•×³ ×©×©×¤×˜×• ×”×©×•×¤×˜×™× ××• ×›×ª×¨×’×•× × ×’×™×“ × ×’×™×“×™× ×•×‘×™×ž×™ ×‘×•×¢×– ×”×™×• ×›× ×–×›×¨ ×‘×ž×’×œ×” ×ž×©×&quot;×› ×¢×ª×” ×“×“×¨×© ×œ×’× ××™ ××•×™ ×œ×“×•×¨ ×›×•×³ ×¢&quot;×› ×œ&quot;×œ ×“×§××™ ××‘×•×¢×– ×“×”×¨×™ ×¦×“×™×§ ×’×ž×•×¨ ×”×™×” ×•×œ× ×¢×œ×™×• × ××ž×¨ ×œ×©×•×Ÿ ×•×™ ×œ×›&quot;× ×‘×¨×§ ×•×“×‘×•×¨×” ×“×•×™ ×œ×“×¨× ×“××©×” ×ž×“×‘×¨×™×™×ª ×›×“××™×ª×³ ×‘×©&quot;×¡:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -200,7 +217,7 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"mishnat-derabbi-eliezer-on-ruth-rabbah","work_title":"Mishnat DeRabbi Eliezer on Ruth Rabbah","work_slug":"midrash/mishnat-derabbi-eliezer-on-ruth-rabbah","scope_label":"All imported Hebrew works","generated_at":"2026-05-09T10:54:08.818Z","total_occurrences":49,"units":{"mishnat-derabbi-eliezer-on-ruth-rabbah-default-default-1-1-1":{"unit_id":"mishnat-derabbi-eliezer-on-ruth-rabbah-default-default-1-1-1","anchor_id":"mishnat-derabbi-eliezer-on-ruth-rabbah-default-default-1-1-1","source_ref":"Mishnat DeRabbi Eliezer on Ruth Rabbah 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-82cdd8fddbfc","tok-6fb3f70d17a0","tok-707d31096d3e","tok-83a4672d3e01","tok-72271437b0ba","tok-981675e6f066","tok-fca7de604bc8","tok-380446f2474b","tok-707d31096d3e","tok-9ba26e98217b","tok-4e5ca71efb60","tok-f875cd72cb92","tok-a5f236647886","tok-4f34c601e47b","tok-8500ee3e1466","tok-7b8d1605054a","tok-ee517701da05","tok-6fb3f70d17a0","tok-e531932f42c0","tok-4891f4c02b3c","tok-dd74c50df106","tok-86c3e3b89ed9","tok-046b69152abe","tok-c3e556313fb6","tok-0fab0ac21e4f","tok-1043ea6ff13d","tok-707d31096d3e","tok-65d7d84ae33c","tok-8c80261bbe79","tok-723e0e2ed23f","tok-ec92d53f5cb9","tok-f05fb6ea4f72","tok-3eac5bf642fa","tok-90c4a13d4048","tok-2b5a5c1165c7","tok-f79409459e68","tok-864c45f01de2","tok-9920ed0b183c","tok-ac6893ea284b","tok-f33e85694d89","tok-a9b8997c9702","tok-ffe7e8acba69","tok-1f7ddf556731","tok-9544957b1b58","tok-d8df0dcf41cf","tok-df6f09bbaf1b","tok-12d75ff93ccf","tok-7ef6e6209b64","tok-54df1b4f20e5"]}]}}}</script>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"mishnat-derabbi-eliezer-on-ruth-rabbah","work_title":"Mishnat DeRabbi Eliezer on Ruth Rabbah","work_slug":"midrash/mishnat-derabbi-eliezer-on-ruth-rabbah","scope_label":"All imported Hebrew works","generated_at":"2026-05-10T15:21:33.324Z","total_occurrences":49,"units":{"mishnat-derabbi-eliezer-on-ruth-rabbah-default-default-1-1-1":{"unit_id":"mishnat-derabbi-eliezer-on-ruth-rabbah-default-default-1-1-1","anchor_id":"mishnat-derabbi-eliezer-on-ruth-rabbah-default-default-1-1-1","source_ref":"Mishnat DeRabbi Eliezer on Ruth Rabbah 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-82cdd8fddbfc","tok-6fb3f70d17a0","tok-707d31096d3e","tok-83a4672d3e01","tok-72271437b0ba","tok-981675e6f066","tok-fca7de604bc8","tok-380446f2474b","tok-707d31096d3e","tok-9ba26e98217b","tok-4e5ca71efb60","tok-f875cd72cb92","tok-a5f236647886","tok-4f34c601e47b","tok-8500ee3e1466","tok-7b8d1605054a","tok-ee517701da05","tok-6fb3f70d17a0","tok-e531932f42c0","tok-4891f4c02b3c","tok-dd74c50df106","tok-86c3e3b89ed9","tok-046b69152abe","tok-c3e556313fb6","tok-0fab0ac21e4f","tok-1043ea6ff13d","tok-707d31096d3e","tok-65d7d84ae33c","tok-8c80261bbe79","tok-723e0e2ed23f","tok-ec92d53f5cb9","tok-f05fb6ea4f72","tok-3eac5bf642fa","tok-90c4a13d4048","tok-2b5a5c1165c7","tok-f79409459e68","tok-864c45f01de2","tok-9920ed0b183c","tok-ac6893ea284b","tok-f33e85694d89","tok-a9b8997c9702","tok-ffe7e8acba69","tok-1f7ddf556731","tok-9544957b1b58","tok-d8df0dcf41cf","tok-df6f09bbaf1b","tok-12d75ff93ccf","tok-7ef6e6209b64","tok-54df1b4f20e5"]}]}}}</script>
   <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/mishnat-derabbi-eliezer-on-ruth-rabbah.manifest.json","root_href":"../../"}</script>
   <script>
     (() => {
@@ -226,6 +243,8 @@
         "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };
@@ -286,7 +305,7 @@
         if (chunkId) await loadChunk(chunkId);
         return tokenRows.get(tokenIndexId) || {};
       };
-      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1×³").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1×´") : value;
       const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
       const makeWordSpan = (text, tokenIndexId, ordinal) => {
         const span = document.createElement("span");
@@ -517,7 +536,7 @@
       };
       const cleanTransliteration = (value) => {
         const text = String(value || "").trim();
-        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+        return /^[A-Za-z0-9 .,\-ÃŠÂ»ÃŠÂ¿ÃŠÂ¾ÃŠÂ¼()]+$/.test(text) && text.length <= 80 ? text : "";
       };
       const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
       const sourceQualityScore = (rows) => {

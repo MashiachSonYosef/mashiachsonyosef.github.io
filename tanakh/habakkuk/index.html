@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -31,6 +31,23 @@
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
     .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
@@ -223,7 +240,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַמַּשָּׂא֙ אֲשֶׁ֣ר חָזָ֔ה חֲבַקּ֖וּק הַנָּבִֽיא׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”Ö·×žÖ¼Ö·×©×‚Ö¼Ö¸×Ö™ ×Ö²×©×Ö¶Ö£×¨ ×—Ö¸×–Ö¸Ö”×” ×—Ö²×‘Ö·×§Ö¼Ö–×•Ö¼×§ ×”Ö·× Ö¼Ö¸×‘Ö´Ö½×™××ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -239,7 +256,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַד־אָ֧נָה יְהֹוָ֛ה שִׁוַּ֖עְתִּי וְלֹ֣א תִשְׁמָ֑ע אֶזְעַ֥ק אֵלֶ֛יךָ חָמָ֖ס וְלֹ֥א תוֹשִֽׁיעַ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×¢Ö·×“Ö¾×Ö¸Ö§× Ö¸×” ×™Ö°×”Ö¹×•Ö¸Ö›×” ×©×Ö´×•Ö¼Ö·Ö–×¢Ö°×ªÖ¼Ö´×™ ×•Ö°×œÖ¹Ö£× ×ªÖ´×©×Ö°×žÖ¸Ö‘×¢ ×Ö¶×–Ö°×¢Ö·Ö¥×§ ×Öµ×œÖ¶Ö›×™×šÖ¸ ×—Ö¸×žÖ¸Ö–×¡ ×•Ö°×œÖ¹Ö¥× ×ª×•Ö¹×©×Ö´Ö½×™×¢Ö·×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -255,7 +272,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לָ֣מָּה תַרְאֵ֤נִי אָ֙וֶן֙ וְעָמָ֣ל תַּבִּ֔יט וְשֹׁ֥ד וְחָמָ֖ס לְנֶגְדִּ֑י וַיְהִ֧י רִ֦יב וּמָד֖וֹן יִשָּֽׂא׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×œÖ¸Ö£×žÖ¼Ö¸×” ×ªÖ·×¨Ö°×ÖµÖ¤× Ö´×™ ×Ö¸Ö™×•Ö¶×ŸÖ™ ×•Ö°×¢Ö¸×žÖ¸Ö£×œ ×ªÖ¼Ö·×‘Ö¼Ö´Ö”×™×˜ ×•Ö°×©×Ö¹Ö¥×“ ×•Ö°×—Ö¸×žÖ¸Ö–×¡ ×œÖ°× Ö¶×’Ö°×“Ö¼Ö´Ö‘×™ ×•Ö·×™Ö°×”Ö´Ö§×™ ×¨Ö´Ö¦×™×‘ ×•Ö¼×žÖ¸×“Ö–×•Ö¹×Ÿ ×™Ö´×©×‚Ö¼Ö¸Ö½××ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -271,7 +288,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַל־כֵּן֙ תָּפ֣וּג תּוֹרָ֔ה וְלֹא־יֵצֵ֥א לָנֶ֖צַח מִשְׁפָּ֑ט כִּ֤י רָשָׁע֙ מַכְתִּ֣יר אֶת־הַצַּדִּ֔יק עַל־כֵּ֛ן יֵצֵ֥א מִשְׁפָּ֖ט מְעֻקָּֽל׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×¢Ö·×œÖ¾×›Ö¼Öµ×ŸÖ™ ×ªÖ¼Ö¸×¤Ö£×•Ö¼×’ ×ªÖ¼×•Ö¹×¨Ö¸Ö”×” ×•Ö°×œÖ¹×Ö¾×™Öµ×¦ÖµÖ¥× ×œÖ¸× Ö¶Ö–×¦Ö·×— ×žÖ´×©×Ö°×¤Ö¼Ö¸Ö‘×˜ ×›Ö¼Ö´Ö¤×™ ×¨Ö¸×©×Ö¸×¢Ö™ ×žÖ·×›Ö°×ªÖ¼Ö´Ö£×™×¨ ×Ö¶×ªÖ¾×”Ö·×¦Ö¼Ö·×“Ö¼Ö´Ö”×™×§ ×¢Ö·×œÖ¾×›Ö¼ÖµÖ›×Ÿ ×™Öµ×¦ÖµÖ¥× ×žÖ´×©×Ö°×¤Ö¼Ö¸Ö–×˜ ×žÖ°×¢Ö»×§Ö¼Ö¸Ö½×œ×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -287,7 +304,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רְא֤וּ בַגּוֹיִם֙ וְֽהַבִּ֔יטוּ וְהִֽתַּמְּה֖וּ תְּמָ֑הוּ כִּי־פֹ֙עַל֙ פֹּעֵ֣ל בִּימֵיכֶ֔ם לֹ֥א תַאֲמִ֖ינוּ כִּ֥י יְסֻפָּֽר׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×¨Ö°×Ö¤×•Ö¼ ×‘Ö·×’Ö¼×•Ö¹×™Ö´×Ö™ ×•Ö°Ö½×”Ö·×‘Ö¼Ö´Ö”×™×˜×•Ö¼ ×•Ö°×”Ö´Ö½×ªÖ¼Ö·×žÖ¼Ö°×”Ö–×•Ö¼ ×ªÖ¼Ö°×žÖ¸Ö‘×”×•Ö¼ ×›Ö¼Ö´×™Ö¾×¤Ö¹Ö™×¢Ö·×œÖ™ ×¤Ö¼Ö¹×¢ÖµÖ£×œ ×‘Ö¼Ö´×™×žÖµ×™×›Ö¶Ö”× ×œÖ¹Ö¥× ×ªÖ·×Ö²×žÖ´Ö–×™× ×•Ö¼ ×›Ö¼Ö´Ö¥×™ ×™Ö°×¡Ö»×¤Ö¼Ö¸Ö½×¨×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -303,7 +320,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּֽי־הִנְנִ֤י מֵקִים֙ אֶת־הַכַּשְׂדִּ֔ים הַגּ֖וֹי הַמַּ֣ר וְהַנִּמְהָ֑ר הַהוֹלֵךְ֙ לְמֶרְחֲבֵי־אֶ֔רֶץ לָרֶ֖שֶׁת מִשְׁכָּנ֥וֹת לֹּא־לֽוֹ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×›Ö¼Ö´Ö½×™Ö¾×”Ö´× Ö°× Ö´Ö¤×™ ×žÖµ×§Ö´×™×Ö™ ×Ö¶×ªÖ¾×”Ö·×›Ö¼Ö·×©×‚Ö°×“Ö¼Ö´Ö”×™× ×”Ö·×’Ö¼Ö–×•Ö¹×™ ×”Ö·×žÖ¼Ö·Ö£×¨ ×•Ö°×”Ö·× Ö¼Ö´×žÖ°×”Ö¸Ö‘×¨ ×”Ö·×”×•Ö¹×œÖµ×šÖ°Ö™ ×œÖ°×žÖ¶×¨Ö°×—Ö²×‘Öµ×™Ö¾×Ö¶Ö”×¨Ö¶×¥ ×œÖ¸×¨Ö¶Ö–×©×Ö¶×ª ×žÖ´×©×Ö°×›Ö¼Ö¸× Ö¥×•Ö¹×ª ×œÖ¼Ö¹×Ö¾×œÖ½×•Ö¹×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -319,7 +336,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אָיֹ֥ם וְנוֹרָ֖א ה֑וּא מִמֶּ֕נּוּ מִשְׁפָּט֥וֹ וּשְׂאֵת֖וֹ יֵצֵֽא׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×Ö¸×™Ö¹Ö¥× ×•Ö°× ×•Ö¹×¨Ö¸Ö–× ×”Ö‘×•Ö¼× ×žÖ´×žÖ¼Ö¶Ö•× Ö¼×•Ö¼ ×žÖ´×©×Ö°×¤Ö¼Ö¸×˜Ö¥×•Ö¹ ×•Ö¼×©×‚Ö°×Öµ×ªÖ–×•Ö¹ ×™Öµ×¦ÖµÖ½××ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -335,7 +352,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְקַלּ֨וּ מִנְּמֵרִ֜ים סוּסָ֗יו וְחַדּוּ֙ מִזְּאֵ֣בֵי עֶ֔רֶב וּפָ֖שׁוּ פָּרָשָׁ֑יו וּפָֽרָשָׁיו֙ מֵרָח֣וֹק יָבֹ֔אוּ יָעֻ֕פוּ כְּנֶ֖שֶׁר חָ֥שׁ לֶאֱכֽוֹל׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö°×§Ö·×œÖ¼Ö¨×•Ö¼ ×žÖ´× Ö¼Ö°×žÖµ×¨Ö´Öœ×™× ×¡×•Ö¼×¡Ö¸Ö—×™×• ×•Ö°×—Ö·×“Ö¼×•Ö¼Ö™ ×žÖ´×–Ö¼Ö°×ÖµÖ£×‘Öµ×™ ×¢Ö¶Ö”×¨Ö¶×‘ ×•Ö¼×¤Ö¸Ö–×©××•Ö¼ ×¤Ö¼Ö¸×¨Ö¸×©×Ö¸Ö‘×™×• ×•Ö¼×¤Ö¸Ö½×¨Ö¸×©×Ö¸×™×•Ö™ ×žÖµ×¨Ö¸×—Ö£×•Ö¹×§ ×™Ö¸×‘Ö¹Ö”××•Ö¼ ×™Ö¸×¢Ö»Ö•×¤×•Ö¼ ×›Ö¼Ö°× Ö¶Ö–×©×Ö¶×¨ ×—Ö¸Ö¥×©× ×œÖ¶×Ö±×›Ö½×•Ö¹×œ×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -351,7 +368,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כֻּלֹּה֙ לְחָמָ֣ס יָב֔וֹא מְגַמַּ֥ת פְּנֵיהֶ֖ם קָדִ֑ימָה וַיֶּאֱסֹ֥ף כַּח֖וֹל שֶֽׁבִי׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×›Ö¼Ö»×œÖ¼Ö¹×”Ö™ ×œÖ°×—Ö¸×žÖ¸Ö£×¡ ×™Ö¸×‘Ö”×•Ö¹× ×žÖ°×’Ö·×žÖ¼Ö·Ö¥×ª ×¤Ö¼Ö°× Öµ×™×”Ö¶Ö–× ×§Ö¸×“Ö´Ö‘×™×žÖ¸×” ×•Ö·×™Ö¼Ö¶×Ö±×¡Ö¹Ö¥×£ ×›Ö¼Ö·×—Ö–×•Ö¹×œ ×©×Ö¶Ö½×‘Ö´×™×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -367,7 +384,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהוּא֙ בַּמְּלָכִ֣ים יִתְקַלָּ֔ס וְרֹזְנִ֖ים מִשְׂחָ֣ק ל֑וֹ ה֚וּא לְכׇל־מִבְצָ֣ר יִשְׂחָ֔ק וַיִּצְבֹּ֥ר עָפָ֖ר וַֽיִּלְכְּדָֽהּ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö°×”×•Ö¼×Ö™ ×‘Ö¼Ö·×žÖ¼Ö°×œÖ¸×›Ö´Ö£×™× ×™Ö´×ªÖ°×§Ö·×œÖ¼Ö¸Ö”×¡ ×•Ö°×¨Ö¹×–Ö°× Ö´Ö–×™× ×žÖ´×©×‚Ö°×—Ö¸Ö£×§ ×œÖ‘×•Ö¹ ×”Öš×•Ö¼× ×œÖ°×›×‡×œÖ¾×žÖ´×‘Ö°×¦Ö¸Ö£×¨ ×™Ö´×©×‚Ö°×—Ö¸Ö”×§ ×•Ö·×™Ö¼Ö´×¦Ö°×‘Ö¼Ö¹Ö¥×¨ ×¢Ö¸×¤Ö¸Ö–×¨ ×•Ö·Ö½×™Ö¼Ö´×œÖ°×›Ö¼Ö°×“Ö¸Ö½×”Ö¼×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -383,7 +400,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אָ֣ז חָלַ֥ף ר֛וּחַ וַֽיַּעֲבֹ֖ר וְאָשֵׁ֑ם ז֥וּ כֹח֖וֹ לֵאלֹהֽוֹ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×Ö¸Ö£×– ×—Ö¸×œÖ·Ö¥×£ ×¨Ö›×•Ö¼×—Ö· ×•Ö·Ö½×™Ö¼Ö·×¢Ö²×‘Ö¹Ö–×¨ ×•Ö°×Ö¸×©×ÖµÖ‘× ×–Ö¥×•Ö¼ ×›Ö¹×—Ö–×•Ö¹ ×œÖµ××œÖ¹×”Ö½×•Ö¹×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -399,7 +416,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֲל֧וֹא אַתָּ֣ה מִקֶּ֗דֶם יְהֹוָ֧ה אֱלֹהַ֛י קְדֹשִׁ֖י לֹ֣א נָמ֑וּת יְהֹוָה֙ לְמִשְׁפָּ֣ט שַׂמְתּ֔וֹ וְצ֖וּר לְהוֹכִ֥יחַ יְסַדְתּֽוֹ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”Ö²×œÖ§×•Ö¹× ×Ö·×ªÖ¼Ö¸Ö£×” ×žÖ´×§Ö¼Ö¶Ö—×“Ö¶× ×™Ö°×”Ö¹×•Ö¸Ö§×” ×Ö±×œÖ¹×”Ö·Ö›×™ ×§Ö°×“Ö¹×©×Ö´Ö–×™ ×œÖ¹Ö£× × Ö¸×žÖ‘×•Ö¼×ª ×™Ö°×”Ö¹×•Ö¸×”Ö™ ×œÖ°×žÖ´×©×Ö°×¤Ö¼Ö¸Ö£×˜ ×©×‚Ö·×žÖ°×ªÖ¼Ö”×•Ö¹ ×•Ö°×¦Ö–×•Ö¼×¨ ×œÖ°×”×•Ö¹×›Ö´Ö¥×™×—Ö· ×™Ö°×¡Ö·×“Ö°×ªÖ¼Ö½×•Ö¹×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -415,7 +432,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">טְה֤וֹר עֵינַ֙יִם֙ מֵרְא֣וֹת רָ֔ע וְהַבִּ֥יט אֶל־עָמָ֖ל לֹ֣א תוּכָ֑ל לָ֤מָּה תַבִּיט֙ בּֽוֹגְדִ֔ים תַּחֲרִ֕ישׁ בְּבַלַּ֥ע רָשָׁ֖ע צַדִּ֥יק מִמֶּֽנּוּ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×˜Ö°×”Ö¤×•Ö¹×¨ ×¢Öµ×™× Ö·Ö™×™Ö´×Ö™ ×žÖµ×¨Ö°×Ö£×•Ö¹×ª ×¨Ö¸Ö”×¢ ×•Ö°×”Ö·×‘Ö¼Ö´Ö¥×™×˜ ×Ö¶×œÖ¾×¢Ö¸×žÖ¸Ö–×œ ×œÖ¹Ö£× ×ª×•Ö¼×›Ö¸Ö‘×œ ×œÖ¸Ö¤×žÖ¼Ö¸×” ×ªÖ·×‘Ö¼Ö´×™×˜Ö™ ×‘Ö¼Ö½×•Ö¹×’Ö°×“Ö´Ö”×™× ×ªÖ¼Ö·×—Ö²×¨Ö´Ö•×™×©× ×‘Ö¼Ö°×‘Ö·×œÖ¼Ö·Ö¥×¢ ×¨Ö¸×©×Ö¸Ö–×¢ ×¦Ö·×“Ö¼Ö´Ö¥×™×§ ×žÖ´×žÖ¼Ö¶Ö½× Ö¼×•Ö¼×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -431,7 +448,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַתַּעֲשֶׂ֥ה אָדָ֖ם כִּדְגֵ֣י הַיָּ֑ם כְּרֶ֖מֶשׂ לֹא־מֹשֵׁ֥ל בּֽוֹ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö·×ªÖ¼Ö·×¢Ö²×©×‚Ö¶Ö¥×” ×Ö¸×“Ö¸Ö–× ×›Ö¼Ö´×“Ö°×’ÖµÖ£×™ ×”Ö·×™Ö¼Ö¸Ö‘× ×›Ö¼Ö°×¨Ö¶Ö–×žÖ¶×©×‚ ×œÖ¹×Ö¾×žÖ¹×©×ÖµÖ¥×œ ×‘Ö¼Ö½×•Ö¹×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -447,7 +464,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כֻּלֹּה֙ בְּחַכָּ֣ה הֵֽעֲלָ֔ה יְגֹרֵ֣הוּ בְחֶרְמ֔וֹ וְיַאַסְפֵ֖הוּ בְּמִכְמַרְתּ֑וֹ עַל־כֵּ֖ן יִשְׂמַ֥ח וְיָגִֽיל׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×›Ö¼Ö»×œÖ¼Ö¹×”Ö™ ×‘Ö¼Ö°×—Ö·×›Ö¼Ö¸Ö£×” ×”ÖµÖ½×¢Ö²×œÖ¸Ö”×” ×™Ö°×’Ö¹×¨ÖµÖ£×”×•Ö¼ ×‘Ö°×—Ö¶×¨Ö°×žÖ”×•Ö¹ ×•Ö°×™Ö·×Ö·×¡Ö°×¤ÖµÖ–×”×•Ö¼ ×‘Ö¼Ö°×žÖ´×›Ö°×žÖ·×¨Ö°×ªÖ¼Ö‘×•Ö¹ ×¢Ö·×œÖ¾×›Ö¼ÖµÖ–×Ÿ ×™Ö´×©×‚Ö°×žÖ·Ö¥×— ×•Ö°×™Ö¸×’Ö´Ö½×™×œ×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -463,7 +480,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַל־כֵּן֙ יְזַבֵּ֣חַ לְחֶרְמ֔וֹ וִֽיקַטֵּ֖ר לְמִכְמַרְתּ֑וֹ כִּ֤י בָהֵ֙מָּה֙ שָׁמֵ֣ן חֶלְק֔וֹ וּמַאֲכָל֖וֹ בְּרִאָֽה׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×¢Ö·×œÖ¾×›Ö¼Öµ×ŸÖ™ ×™Ö°×–Ö·×‘Ö¼ÖµÖ£×—Ö· ×œÖ°×—Ö¶×¨Ö°×žÖ”×•Ö¹ ×•Ö´Ö½×™×§Ö·×˜Ö¼ÖµÖ–×¨ ×œÖ°×žÖ´×›Ö°×žÖ·×¨Ö°×ªÖ¼Ö‘×•Ö¹ ×›Ö¼Ö´Ö¤×™ ×‘Ö¸×”ÖµÖ™×žÖ¼Ö¸×”Ö™ ×©×Ö¸×žÖµÖ£×Ÿ ×—Ö¶×œÖ°×§Ö”×•Ö¹ ×•Ö¼×žÖ·×Ö²×›Ö¸×œÖ–×•Ö¹ ×‘Ö¼Ö°×¨Ö´×Ö¸Ö½×”×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -479,7 +496,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַ֥עַל כֵּ֖ן יָרִ֣יק חֶרְמ֑וֹ וְתָמִ֛יד לַהֲרֹ֥ג גּוֹיִ֖ם לֹ֥א יַחְמֽוֹל׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”Ö·Ö¥×¢Ö·×œ ×›Ö¼ÖµÖ–×Ÿ ×™Ö¸×¨Ö´Ö£×™×§ ×—Ö¶×¨Ö°×žÖ‘×•Ö¹ ×•Ö°×ªÖ¸×žÖ´Ö›×™×“ ×œÖ·×”Ö²×¨Ö¹Ö¥×’ ×’Ö¼×•Ö¹×™Ö´Ö–× ×œÖ¹Ö¥× ×™Ö·×—Ö°×žÖ½×•Ö¹×œ×ƒ&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{×¡}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -496,7 +513,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַל־מִשְׁמַרְתִּ֣י אֶֽעֱמֹ֔דָה וְאֶֽתְיַצְּבָ֖ה עַל־מָצ֑וֹר וַאֲצַפֶּ֗ה לִרְאוֹת֙ מַה־יְדַבֶּר־בִּ֔י וּמָ֥ה אָשִׁ֖יב עַל־תּוֹכַחְתִּֽי׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×¢Ö·×œÖ¾×žÖ´×©×Ö°×žÖ·×¨Ö°×ªÖ¼Ö´Ö£×™ ×Ö¶Ö½×¢Ö±×žÖ¹Ö”×“Ö¸×” ×•Ö°×Ö¶Ö½×ªÖ°×™Ö·×¦Ö¼Ö°×‘Ö¸Ö–×” ×¢Ö·×œÖ¾×žÖ¸×¦Ö‘×•Ö¹×¨ ×•Ö·×Ö²×¦Ö·×¤Ö¼Ö¶Ö—×” ×œÖ´×¨Ö°××•Ö¹×ªÖ™ ×žÖ·×”Ö¾×™Ö°×“Ö·×‘Ö¼Ö¶×¨Ö¾×‘Ö¼Ö´Ö”×™ ×•Ö¼×žÖ¸Ö¥×” ×Ö¸×©×Ö´Ö–×™×‘ ×¢Ö·×œÖ¾×ªÖ¼×•Ö¹×›Ö·×—Ö°×ªÖ¼Ö´Ö½×™×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -512,7 +529,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיַּעֲנֵ֤נִי יְהֹוָה֙ וַיֹּ֔אמֶר כְּתֹ֣ב חָז֔וֹן וּבָאֵ֖ר עַל־הַלֻּח֑וֹת לְמַ֥עַן יָר֖וּץ ק֥וֹרֵא בֽוֹ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö·×™Ö¼Ö·×¢Ö²× ÖµÖ¤× Ö´×™ ×™Ö°×”Ö¹×•Ö¸×”Ö™ ×•Ö·×™Ö¼Ö¹Ö”××žÖ¶×¨ ×›Ö¼Ö°×ªÖ¹Ö£×‘ ×—Ö¸×–Ö”×•Ö¹×Ÿ ×•Ö¼×‘Ö¸×ÖµÖ–×¨ ×¢Ö·×œÖ¾×”Ö·×œÖ¼Ö»×—Ö‘×•Ö¹×ª ×œÖ°×žÖ·Ö¥×¢Ö·×Ÿ ×™Ö¸×¨Ö–×•Ö¼×¥ ×§Ö¥×•Ö¹×¨Öµ× ×‘Ö½×•Ö¹×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -528,7 +545,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּ֣י ע֤וֹד חָזוֹן֙ לַמּוֹעֵ֔ד וְיָפֵ֥חַ לַקֵּ֖ץ וְלֹ֣א יְכַזֵּ֑ב אִם־יִתְמַהְמָהּ֙ חַכֵּה־ל֔וֹ כִּי־בֹ֥א יָבֹ֖א לֹ֥א יְאַחֵֽר׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×›Ö¼Ö´Ö£×™ ×¢Ö¤×•Ö¹×“ ×—Ö¸×–×•Ö¹×ŸÖ™ ×œÖ·×žÖ¼×•Ö¹×¢ÖµÖ”×“ ×•Ö°×™Ö¸×¤ÖµÖ¥×—Ö· ×œÖ·×§Ö¼ÖµÖ–×¥ ×•Ö°×œÖ¹Ö£× ×™Ö°×›Ö·×–Ö¼ÖµÖ‘×‘ ×Ö´×Ö¾×™Ö´×ªÖ°×žÖ·×”Ö°×žÖ¸×”Ö¼Ö™ ×—Ö·×›Ö¼Öµ×”Ö¾×œÖ”×•Ö¹ ×›Ö¼Ö´×™Ö¾×‘Ö¹Ö¥× ×™Ö¸×‘Ö¹Ö–× ×œÖ¹Ö¥× ×™Ö°×Ö·×—ÖµÖ½×¨×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -544,7 +561,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הִנֵּ֣ה עֻפְּלָ֔ה לֹא־יָשְׁרָ֥ה נַפְשׁ֖וֹ בּ֑וֹ וְצַדִּ֖יק בֶּאֱמוּנָת֥וֹ יִֽחְיֶֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”Ö´× Ö¼ÖµÖ£×” ×¢Ö»×¤Ö¼Ö°×œÖ¸Ö”×” ×œÖ¹×Ö¾×™Ö¸×©×Ö°×¨Ö¸Ö¥×” × Ö·×¤Ö°×©×Ö–×•Ö¹ ×‘Ö¼Ö‘×•Ö¹ ×•Ö°×¦Ö·×“Ö¼Ö´Ö–×™×§ ×‘Ö¼Ö¶×Ö±×ž×•Ö¼× Ö¸×ªÖ¥×•Ö¹ ×™Ö´Ö½×—Ö°×™Ö¶Ö½×”×ƒ&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{×¡}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -560,7 +577,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאַף֙ כִּֽי־הַיַּ֣יִן בֹּגֵ֔ד גֶּ֥בֶר יָהִ֖יר וְלֹ֣א יִנְוֶ֑ה אֲשֶׁר֩ הִרְחִ֨יב כִּשְׁא֜וֹל נַפְשׁ֗וֹ וְה֤וּא כַמָּ֙וֶת֙ וְלֹ֣א יִשְׂבָּ֔ע וַיֶּאֱסֹ֤ף אֵלָיו֙ כׇּל־הַגּוֹיִ֔ם וַיִּקְבֹּ֥ץ אֵלָ֖יו כׇּל־הָעַמִּֽים׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö°×Ö·×£Ö™ ×›Ö¼Ö´Ö½×™Ö¾×”Ö·×™Ö¼Ö·Ö£×™Ö´×Ÿ ×‘Ö¼Ö¹×’ÖµÖ”×“ ×’Ö¼Ö¶Ö¥×‘Ö¶×¨ ×™Ö¸×”Ö´Ö–×™×¨ ×•Ö°×œÖ¹Ö£× ×™Ö´× Ö°×•Ö¶Ö‘×” ×Ö²×©×Ö¶×¨Ö© ×”Ö´×¨Ö°×—Ö´Ö¨×™×‘ ×›Ö¼Ö´×©×Ö°×Öœ×•Ö¹×œ × Ö·×¤Ö°×©×Ö—×•Ö¹ ×•Ö°×”Ö¤×•Ö¼× ×›Ö·×žÖ¼Ö¸Ö™×•Ö¶×ªÖ™ ×•Ö°×œÖ¹Ö£× ×™Ö´×©×‚Ö°×‘Ö¼Ö¸Ö”×¢ ×•Ö·×™Ö¼Ö¶×Ö±×¡Ö¹Ö¤×£ ×Öµ×œÖ¸×™×•Ö™ ×›Ö¼×‡×œÖ¾×”Ö·×’Ö¼×•Ö¹×™Ö´Ö”× ×•Ö·×™Ö¼Ö´×§Ö°×‘Ö¼Ö¹Ö¥×¥ ×Öµ×œÖ¸Ö–×™×• ×›Ö¼×‡×œÖ¾×”Ö¸×¢Ö·×žÖ¼Ö´Ö½×™××ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -576,7 +593,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֲלוֹא־אֵ֣לֶּה כֻלָּ֗ם עָלָיו֙ מָשָׁ֣ל יִשָּׂ֔אוּ וּמְלִיצָ֖ה חִיד֣וֹת ל֑וֹ וְיֹאמַ֗ר ה֚וֹי הַמַּרְבֶּ֣ה לֹּא־ל֔וֹ עַד־מָתַ֕י וּמַכְבִּ֥יד עָלָ֖יו עַבְטִֽיט׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”Ö²×œ×•Ö¹×Ö¾×ÖµÖ£×œÖ¼Ö¶×” ×›Ö»×œÖ¼Ö¸Ö—× ×¢Ö¸×œÖ¸×™×•Ö™ ×žÖ¸×©×Ö¸Ö£×œ ×™Ö´×©×‚Ö¼Ö¸Ö”××•Ö¼ ×•Ö¼×žÖ°×œÖ´×™×¦Ö¸Ö–×” ×—Ö´×™×“Ö£×•Ö¹×ª ×œÖ‘×•Ö¹ ×•Ö°×™Ö¹××žÖ·Ö—×¨ ×”Öš×•Ö¹×™ ×”Ö·×žÖ¼Ö·×¨Ö°×‘Ö¼Ö¶Ö£×” ×œÖ¼Ö¹×Ö¾×œÖ”×•Ö¹ ×¢Ö·×“Ö¾×žÖ¸×ªÖ·Ö•×™ ×•Ö¼×žÖ·×›Ö°×‘Ö¼Ö´Ö¥×™×“ ×¢Ö¸×œÖ¸Ö–×™×• ×¢Ö·×‘Ö°×˜Ö´Ö½×™×˜×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -592,7 +609,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֲל֣וֹא פֶ֗תַע יָק֙וּמוּ֙ נֹֽשְׁכֶ֔יךָ וְיִקְצ֖וּ מְזַעְזְעֶ֑יךָ וְהָיִ֥יתָ לִמְשִׁסּ֖וֹת לָֽמוֹ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”Ö²×œÖ£×•Ö¹× ×¤Ö¶Ö—×ªÖ·×¢ ×™Ö¸×§Ö™×•Ö¼×ž×•Ö¼Ö™ × Ö¹Ö½×©×Ö°×›Ö¶Ö”×™×šÖ¸ ×•Ö°×™Ö´×§Ö°×¦Ö–×•Ö¼ ×žÖ°×–Ö·×¢Ö°×–Ö°×¢Ö¶Ö‘×™×šÖ¸ ×•Ö°×”Ö¸×™Ö´Ö¥×™×ªÖ¸ ×œÖ´×žÖ°×©×Ö´×¡Ö¼Ö–×•Ö¹×ª ×œÖ¸Ö½×ž×•Ö¹×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -608,7 +625,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּֽי־אַתָּ֤ה שַׁלּ֙וֹתָ֙ גּוֹיִ֣ם רַבִּ֔ים יְשׇׁלּ֖וּךָ כׇּל־יֶ֣תֶר עַמִּ֑ים מִדְּמֵ֤י אָדָם֙ וַֽחֲמַס־אֶ֔רֶץ קִרְיָ֖ה וְכׇל־יֹ֥שְׁבֵי בָֽהּ׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×›Ö¼Ö´Ö½×™Ö¾×Ö·×ªÖ¼Ö¸Ö¤×” ×©×Ö·×œÖ¼Ö™×•Ö¹×ªÖ¸Ö™ ×’Ö¼×•Ö¹×™Ö´Ö£× ×¨Ö·×‘Ö¼Ö´Ö”×™× ×™Ö°×©××‡×œÖ¼Ö–×•Ö¼×šÖ¸ ×›Ö¼×‡×œÖ¾×™Ö¶Ö£×ªÖ¶×¨ ×¢Ö·×žÖ¼Ö´Ö‘×™× ×žÖ´×“Ö¼Ö°×žÖµÖ¤×™ ×Ö¸×“Ö¸×Ö™ ×•Ö·Ö½×—Ö²×žÖ·×¡Ö¾×Ö¶Ö”×¨Ö¶×¥ ×§Ö´×¨Ö°×™Ö¸Ö–×” ×•Ö°×›×‡×œÖ¾×™Ö¹Ö¥×©×Ö°×‘Öµ×™ ×‘Ö¸Ö½×”Ö¼×ƒ&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{×¤}&lt;/span&gt;<br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -624,7 +641,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה֗וֹי בֹּצֵ֛עַ בֶּ֥צַע רָ֖ע לְבֵית֑וֹ לָשׂ֤וּם בַּמָּרוֹם֙ קִנּ֔וֹ לְהִנָּצֵ֖ל מִכַּף־רָֽע׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”Ö—×•Ö¹×™ ×‘Ö¼Ö¹×¦ÖµÖ›×¢Ö· ×‘Ö¼Ö¶Ö¥×¦Ö·×¢ ×¨Ö¸Ö–×¢ ×œÖ°×‘Öµ×™×ªÖ‘×•Ö¹ ×œÖ¸×©×‚Ö¤×•Ö¼× ×‘Ö¼Ö·×žÖ¼Ö¸×¨×•Ö¹×Ö™ ×§Ö´× Ö¼Ö”×•Ö¹ ×œÖ°×”Ö´× Ö¼Ö¸×¦ÖµÖ–×œ ×žÖ´×›Ö¼Ö·×£Ö¾×¨Ö¸Ö½×¢×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -640,7 +657,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יָעַ֥צְתָּ בֹּ֖שֶׁת לְבֵיתֶ֑ךָ קְצוֹת־עַמִּ֥ים רַבִּ֖ים וְחוֹטֵ֥א נַפְשֶֽׁךָ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×™Ö¸×¢Ö·Ö¥×¦Ö°×ªÖ¼Ö¸ ×‘Ö¼Ö¹Ö–×©×Ö¶×ª ×œÖ°×‘Öµ×™×ªÖ¶Ö‘×šÖ¸ ×§Ö°×¦×•Ö¹×ªÖ¾×¢Ö·×žÖ¼Ö´Ö¥×™× ×¨Ö·×‘Ö¼Ö´Ö–×™× ×•Ö°×—×•Ö¹×˜ÖµÖ¥× × Ö·×¤Ö°×©×Ö¶Ö½×šÖ¸×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -656,7 +673,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּי־אֶ֖בֶן מִקִּ֣יר תִּזְעָ֑ק וְכָפִ֖יס מֵעֵ֥ץ יַעֲנֶֽנָּה׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×›Ö¼Ö´×™Ö¾×Ö¶Ö–×‘Ö¶×Ÿ ×žÖ´×§Ö¼Ö´Ö£×™×¨ ×ªÖ¼Ö´×–Ö°×¢Ö¸Ö‘×§ ×•Ö°×›Ö¸×¤Ö´Ö–×™×¡ ×žÖµ×¢ÖµÖ¥×¥ ×™Ö·×¢Ö²× Ö¶Ö½× Ö¼Ö¸×”×ƒ&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{×¤}&lt;/span&gt;<br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -672,7 +689,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה֛וֹי בֹּנֶ֥ה עִ֖יר בְּדָמִ֑ים וְכוֹנֵ֥ן קִרְיָ֖ה בְּעַוְלָֽה׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”Ö›×•Ö¹×™ ×‘Ö¼Ö¹× Ö¶Ö¥×” ×¢Ö´Ö–×™×¨ ×‘Ö¼Ö°×“Ö¸×žÖ´Ö‘×™× ×•Ö°×›×•Ö¹× ÖµÖ¥×Ÿ ×§Ö´×¨Ö°×™Ö¸Ö–×” ×‘Ö¼Ö°×¢Ö·×•Ö°×œÖ¸Ö½×”×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -688,7 +705,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֲל֣וֹא הִנֵּ֔ה מֵאֵ֖ת יְהֹוָ֣ה צְבָא֑וֹת וְיִֽיגְע֤וּ עַמִּים֙ בְּדֵי־אֵ֔שׁ וּלְאֻמִּ֖ים בְּדֵי־רִ֥יק יִעָֽפוּ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”Ö²×œÖ£×•Ö¹× ×”Ö´× Ö¼ÖµÖ”×” ×žÖµ×ÖµÖ–×ª ×™Ö°×”Ö¹×•Ö¸Ö£×” ×¦Ö°×‘Ö¸×Ö‘×•Ö¹×ª ×•Ö°×™Ö´Ö½×™×’Ö°×¢Ö¤×•Ö¼ ×¢Ö·×žÖ¼Ö´×™×Ö™ ×‘Ö¼Ö°×“Öµ×™Ö¾×ÖµÖ”×©× ×•Ö¼×œÖ°×Ö»×žÖ¼Ö´Ö–×™× ×‘Ö¼Ö°×“Öµ×™Ö¾×¨Ö´Ö¥×™×§ ×™Ö´×¢Ö¸Ö½×¤×•Ö¼×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -704,7 +721,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּ֚י תִּמָּלֵ֣א הָאָ֔רֶץ לָדַ֖עַת אֶת־כְּב֣וֹד יְהֹוָ֑ה כַּמַּ֖יִם יְכַסּ֥וּ עַל־יָֽם׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×›Ö¼Ö´Öš×™ ×ªÖ¼Ö´×žÖ¼Ö¸×œÖµÖ£× ×”Ö¸×Ö¸Ö”×¨Ö¶×¥ ×œÖ¸×“Ö·Ö–×¢Ö·×ª ×Ö¶×ªÖ¾×›Ö¼Ö°×‘Ö£×•Ö¹×“ ×™Ö°×”Ö¹×•Ö¸Ö‘×” ×›Ö¼Ö·×žÖ¼Ö·Ö–×™Ö´× ×™Ö°×›Ö·×¡Ö¼Ö¥×•Ö¼ ×¢Ö·×œÖ¾×™Ö¸Ö½××ƒ&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{×¤}&lt;/span&gt;<br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -720,7 +737,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה֚וֹי מַשְׁקֵ֣ה רֵעֵ֔הוּ מְסַפֵּ֥חַ חֲמָתְךָ֖ וְאַ֣ף שַׁכֵּ֑ר לְמַ֥עַן הַבִּ֖יט עַל־מְעוֹרֵיהֶֽם׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”Öš×•Ö¹×™ ×žÖ·×©×Ö°×§ÖµÖ£×” ×¨Öµ×¢ÖµÖ”×”×•Ö¼ ×žÖ°×¡Ö·×¤Ö¼ÖµÖ¥×—Ö· ×—Ö²×žÖ¸×ªÖ°×šÖ¸Ö– ×•Ö°×Ö·Ö£×£ ×©×Ö·×›Ö¼ÖµÖ‘×¨ ×œÖ°×žÖ·Ö¥×¢Ö·×Ÿ ×”Ö·×‘Ö¼Ö´Ö–×™×˜ ×¢Ö·×œÖ¾×žÖ°×¢×•Ö¹×¨Öµ×™×”Ö¶Ö½××ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -736,7 +753,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שָׂבַ֤עְתָּ קָלוֹן֙ מִכָּב֔וֹד שְׁתֵ֥ה גַם־אַ֖תָּה וְהֵעָרֵ֑ל תִּסּ֣וֹב עָלֶ֗יךָ כּ֚וֹס יְמִ֣ין יְהֹוָ֔ה וְקִיקָל֖וֹן עַל־כְּבוֹדֶֽךָ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×©×‚Ö¸×‘Ö·Ö¤×¢Ö°×ªÖ¼Ö¸ ×§Ö¸×œ×•Ö¹×ŸÖ™ ×žÖ´×›Ö¼Ö¸×‘Ö”×•Ö¹×“ ×©×Ö°×ªÖµÖ¥×” ×’Ö·×Ö¾×Ö·Ö–×ªÖ¼Ö¸×” ×•Ö°×”Öµ×¢Ö¸×¨ÖµÖ‘×œ ×ªÖ¼Ö´×¡Ö¼Ö£×•Ö¹×‘ ×¢Ö¸×œÖ¶Ö—×™×šÖ¸ ×›Ö¼Öš×•Ö¹×¡ ×™Ö°×žÖ´Ö£×™×Ÿ ×™Ö°×”Ö¹×•Ö¸Ö”×” ×•Ö°×§Ö´×™×§Ö¸×œÖ–×•Ö¹×Ÿ ×¢Ö·×œÖ¾×›Ö¼Ö°×‘×•Ö¹×“Ö¶Ö½×šÖ¸×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -752,7 +769,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּ֣י חֲמַ֤ס לְבָנוֹן֙ יְכַסֶּ֔ךָּ וְשֹׁ֥ד בְּהֵמ֖וֹת יְחִיתַ֑ן מִדְּמֵ֤י אָדָם֙ וַחֲמַס־אֶ֔רֶץ קִרְיָ֖ה וְכׇל־יֹ֥שְׁבֵי בָֽהּ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×›Ö¼Ö´Ö£×™ ×—Ö²×žÖ·Ö¤×¡ ×œÖ°×‘Ö¸× ×•Ö¹×ŸÖ™ ×™Ö°×›Ö·×¡Ö¼Ö¶Ö”×šÖ¼Ö¸ ×•Ö°×©×Ö¹Ö¥×“ ×‘Ö¼Ö°×”Öµ×žÖ–×•Ö¹×ª ×™Ö°×—Ö´×™×ªÖ·Ö‘×Ÿ ×žÖ´×“Ö¼Ö°×žÖµÖ¤×™ ×Ö¸×“Ö¸×Ö™ ×•Ö·×—Ö²×žÖ·×¡Ö¾×Ö¶Ö”×¨Ö¶×¥ ×§Ö´×¨Ö°×™Ö¸Ö–×” ×•Ö°×›×‡×œÖ¾×™Ö¹Ö¥×©×Ö°×‘Öµ×™ ×‘Ö¸Ö½×”Ö¼×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -768,7 +785,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מָה־הוֹעִ֣יל פֶּ֗סֶל כִּ֤י פְסָלוֹ֙ יֹֽצְר֔וֹ מַסֵּכָ֖ה וּמ֣וֹרֶה שָּׁ֑קֶר כִּ֣י בָטַ֞ח יֹצֵ֤ר יִצְרוֹ֙ עָלָ֔יו לַעֲשׂ֖וֹת אֱלִילִ֥ים אִלְּמִֽים׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×žÖ¸×”Ö¾×”×•Ö¹×¢Ö´Ö£×™×œ ×¤Ö¼Ö¶Ö—×¡Ö¶×œ ×›Ö¼Ö´Ö¤×™ ×¤Ö°×¡Ö¸×œ×•Ö¹Ö™ ×™Ö¹Ö½×¦Ö°×¨Ö”×•Ö¹ ×žÖ·×¡Ö¼Öµ×›Ö¸Ö–×” ×•Ö¼×žÖ£×•Ö¹×¨Ö¶×” ×©×Ö¼Ö¸Ö‘×§Ö¶×¨ ×›Ö¼Ö´Ö£×™ ×‘Ö¸×˜Ö·Öž×— ×™Ö¹×¦ÖµÖ¤×¨ ×™Ö´×¦Ö°×¨×•Ö¹Ö™ ×¢Ö¸×œÖ¸Ö”×™×• ×œÖ·×¢Ö²×©×‚Ö–×•Ö¹×ª ×Ö±×œÖ´×™×œÖ´Ö¥×™× ×Ö´×œÖ¼Ö°×žÖ´Ö½×™××ƒ&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{×¡}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -784,7 +801,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה֣וֹי אֹמֵ֤ר לָעֵץ֙ הָקִ֔יצָה ע֖וּרִי לְאֶ֣בֶן דּוּמָ֑ם ה֣וּא יוֹרֶ֔ה הִנֵּה־ה֗וּא תָּפוּשׂ֙ זָהָ֣ב וָכֶ֔סֶף וְכׇל־ר֖וּחַ אֵ֥ין בְּקִרְבּֽוֹ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”Ö£×•Ö¹×™ ×Ö¹×žÖµÖ¤×¨ ×œÖ¸×¢Öµ×¥Ö™ ×”Ö¸×§Ö´Ö”×™×¦Ö¸×” ×¢Ö–×•Ö¼×¨Ö´×™ ×œÖ°×Ö¶Ö£×‘Ö¶×Ÿ ×“Ö¼×•Ö¼×žÖ¸Ö‘× ×”Ö£×•Ö¼× ×™×•Ö¹×¨Ö¶Ö”×” ×”Ö´× Ö¼Öµ×”Ö¾×”Ö—×•Ö¼× ×ªÖ¼Ö¸×¤×•Ö¼×©×‚Ö™ ×–Ö¸×”Ö¸Ö£×‘ ×•Ö¸×›Ö¶Ö”×¡Ö¶×£ ×•Ö°×›×‡×œÖ¾×¨Ö–×•Ö¼×—Ö· ×ÖµÖ¥×™×Ÿ ×‘Ö¼Ö°×§Ö´×¨Ö°×‘Ö¼Ö½×•Ö¹×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -800,7 +817,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיהֹוָ֖ה בְּהֵיכַ֣ל קׇדְשׁ֑וֹ הַ֥ס מִפָּנָ֖יו כׇּל־הָאָֽרֶץ׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö·×™×”Ö¹×•Ö¸Ö–×” ×‘Ö¼Ö°×”Öµ×™×›Ö·Ö£×œ ×§×‡×“Ö°×©×Ö‘×•Ö¹ ×”Ö·Ö¥×¡ ×žÖ´×¤Ö¼Ö¸× Ö¸Ö–×™×• ×›Ö¼×‡×œÖ¾×”Ö¸×Ö¸Ö½×¨Ö¶×¥×ƒ&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{×¡}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -817,7 +834,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תְּפִלָּ֖ה לַחֲבַקּ֣וּק הַנָּבִ֑יא עַ֖ל שִׁגְיֹנֽוֹת׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×ªÖ¼Ö°×¤Ö´×œÖ¼Ö¸Ö–×” ×œÖ·×—Ö²×‘Ö·×§Ö¼Ö£×•Ö¼×§ ×”Ö·× Ö¼Ö¸×‘Ö´Ö‘×™× ×¢Ö·Ö–×œ ×©×Ö´×’Ö°×™Ö¹× Ö½×•Ö¹×ª×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -833,7 +850,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יְהֹוָ֗ה שָׁמַ֣עְתִּי שִׁמְעֲךָ֮ יָרֵ֒אתִי֒ יְהֹוָ֗ה פׇּֽעׇלְךָ֙ בְּקֶ֤רֶב שָׁנִים֙ חַיֵּ֔יהוּ בְּקֶ֥רֶב שָׁנִ֖ים תּוֹדִ֑יעַ בְּרֹ֖גֶז רַחֵ֥ם תִּזְכּֽוֹר׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×™Ö°×”Ö¹×•Ö¸Ö—×” ×©×Ö¸×žÖ·Ö£×¢Ö°×ªÖ¼Ö´×™ ×©×Ö´×žÖ°×¢Ö²×šÖ¸Ö® ×™Ö¸×¨ÖµÖ’××ªÖ´×™Ö’ ×™Ö°×”Ö¹×•Ö¸Ö—×” ×¤Ö¼×‡Ö½×¢×‡×œÖ°×šÖ¸Ö™ ×‘Ö¼Ö°×§Ö¶Ö¤×¨Ö¶×‘ ×©×Ö¸× Ö´×™×Ö™ ×—Ö·×™Ö¼ÖµÖ”×™×”×•Ö¼ ×‘Ö¼Ö°×§Ö¶Ö¥×¨Ö¶×‘ ×©×Ö¸× Ö´Ö–×™× ×ªÖ¼×•Ö¹×“Ö´Ö‘×™×¢Ö· ×‘Ö¼Ö°×¨Ö¹Ö–×’Ö¶×– ×¨Ö·×—ÖµÖ¥× ×ªÖ¼Ö´×–Ö°×›Ö¼Ö½×•Ö¹×¨×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -849,7 +866,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֱל֙וֹהַּ֙ מִתֵּימָ֣ן יָב֔וֹא וְקָד֥וֹשׁ מֵהַר־פָּארָ֖ן סֶ֑לָה כִּסָּ֤ה שָׁמַ֙יִם֙ הוֹד֔וֹ וּתְהִלָּת֖וֹ מָלְאָ֥ה הָאָֽרֶץ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×Ö±×œÖ™×•Ö¹×”Ö¼Ö·Ö™ ×žÖ´×ªÖ¼Öµ×™×žÖ¸Ö£×Ÿ ×™Ö¸×‘Ö”×•Ö¹× ×•Ö°×§Ö¸×“Ö¥×•Ö¹×©× ×žÖµ×”Ö·×¨Ö¾×¤Ö¼Ö¸××¨Ö¸Ö–×Ÿ ×¡Ö¶Ö‘×œÖ¸×” ×›Ö¼Ö´×¡Ö¼Ö¸Ö¤×” ×©×Ö¸×žÖ·Ö™×™Ö´×Ö™ ×”×•Ö¹×“Ö”×•Ö¹ ×•Ö¼×ªÖ°×”Ö´×œÖ¼Ö¸×ªÖ–×•Ö¹ ×žÖ¸×œÖ°×Ö¸Ö¥×” ×”Ö¸×Ö¸Ö½×¨Ö¶×¥×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -865,7 +882,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְנֹ֙גַהּ֙ כָּא֣וֹר תִּֽהְיֶ֔ה קַרְנַ֥יִם מִיָּד֖וֹ ל֑וֹ וְשָׁ֖ם חֶבְי֥וֹן עֻזֹּֽה׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö°× Ö¹Ö™×’Ö·×”Ö¼Ö™ ×›Ö¼Ö¸×Ö£×•Ö¹×¨ ×ªÖ¼Ö´Ö½×”Ö°×™Ö¶Ö”×” ×§Ö·×¨Ö°× Ö·Ö¥×™Ö´× ×žÖ´×™Ö¼Ö¸×“Ö–×•Ö¹ ×œÖ‘×•Ö¹ ×•Ö°×©×Ö¸Ö–× ×—Ö¶×‘Ö°×™Ö¥×•Ö¹×Ÿ ×¢Ö»×–Ö¼Ö¹Ö½×”×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -881,7 +898,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לְפָנָ֖יו יֵ֣לֶךְ דָּ֑בֶר וְיֵצֵ֥א רֶ֖שֶׁף לְרַגְלָֽיו׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×œÖ°×¤Ö¸× Ö¸Ö–×™×• ×™ÖµÖ£×œÖ¶×šÖ° ×“Ö¼Ö¸Ö‘×‘Ö¶×¨ ×•Ö°×™Öµ×¦ÖµÖ¥× ×¨Ö¶Ö–×©×Ö¶×£ ×œÖ°×¨Ö·×’Ö°×œÖ¸Ö½×™×•×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -897,7 +914,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עָמַ֣ד&amp;thinsp;<strong>׀</strong> וַיְמֹ֣דֶד אֶ֗רֶץ רָאָה֙ וַיַּתֵּ֣ר גּוֹיִ֔ם וַיִּתְפֹּֽצְצוּ֙ הַרְרֵי־עַ֔ד שַׁח֖וּ גִּבְע֣וֹת עוֹלָ֑ם הֲלִיכ֥וֹת עוֹלָ֖ם לֽוֹ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×¢Ö¸×žÖ·Ö£×“&amp;thinsp;<strong>×€</strong> ×•Ö·×™Ö°×žÖ¹Ö£×“Ö¶×“ ×Ö¶Ö—×¨Ö¶×¥ ×¨Ö¸×Ö¸×”Ö™ ×•Ö·×™Ö¼Ö·×ªÖ¼ÖµÖ£×¨ ×’Ö¼×•Ö¹×™Ö´Ö”× ×•Ö·×™Ö¼Ö´×ªÖ°×¤Ö¼Ö¹Ö½×¦Ö°×¦×•Ö¼Ö™ ×”Ö·×¨Ö°×¨Öµ×™Ö¾×¢Ö·Ö”×“ ×©×Ö·×—Ö–×•Ö¼ ×’Ö¼Ö´×‘Ö°×¢Ö£×•Ö¹×ª ×¢×•Ö¹×œÖ¸Ö‘× ×”Ö²×œÖ´×™×›Ö¥×•Ö¹×ª ×¢×•Ö¹×œÖ¸Ö–× ×œÖ½×•Ö¹×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -913,7 +930,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תַּ֣חַת אָ֔וֶן רָאִ֖יתִי אׇהֳלֵ֣י כוּשָׁ֑ן יִרְגְּז֕וּן יְרִיע֖וֹת אֶ֥רֶץ מִדְיָֽן׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×ªÖ¼Ö·Ö£×—Ö·×ª ×Ö¸Ö”×•Ö¶×Ÿ ×¨Ö¸×Ö´Ö–×™×ªÖ´×™ ××‡×”Ö³×œÖµÖ£×™ ×›×•Ö¼×©×Ö¸Ö‘×Ÿ ×™Ö´×¨Ö°×’Ö¼Ö°×–Ö•×•Ö¼×Ÿ ×™Ö°×¨Ö´×™×¢Ö–×•Ö¹×ª ×Ö¶Ö¥×¨Ö¶×¥ ×žÖ´×“Ö°×™Ö¸Ö½×Ÿ×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -929,7 +946,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֲבִנְהָרִים֙ חָרָ֣ה יְהֹוָ֔ה אִ֤ם בַּנְּהָרִים֙ אַפֶּ֔ךָ אִם־בַּיָּ֖ם עֶבְרָתֶ֑ךָ כִּ֤י תִרְכַּב֙ עַל־סוּסֶ֔יךָ מַרְכְּבֹתֶ֖יךָ יְשׁוּעָֽה׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”Ö²×‘Ö´× Ö°×”Ö¸×¨Ö´×™×Ö™ ×—Ö¸×¨Ö¸Ö£×” ×™Ö°×”Ö¹×•Ö¸Ö”×” ×Ö´Ö¤× ×‘Ö¼Ö·× Ö¼Ö°×”Ö¸×¨Ö´×™×Ö™ ×Ö·×¤Ö¼Ö¶Ö”×šÖ¸ ×Ö´×Ö¾×‘Ö¼Ö·×™Ö¼Ö¸Ö–× ×¢Ö¶×‘Ö°×¨Ö¸×ªÖ¶Ö‘×šÖ¸ ×›Ö¼Ö´Ö¤×™ ×ªÖ´×¨Ö°×›Ö¼Ö·×‘Ö™ ×¢Ö·×œÖ¾×¡×•Ö¼×¡Ö¶Ö”×™×šÖ¸ ×žÖ·×¨Ö°×›Ö¼Ö°×‘Ö¹×ªÖ¶Ö–×™×šÖ¸ ×™Ö°×©××•Ö¼×¢Ö¸Ö½×”×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -945,7 +962,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עֶרְיָ֤ה תֵעוֹר֙ קַשְׁתֶּ֔ךָ שְׁבֻע֥וֹת מַטּ֖וֹת אֹ֣מֶר סֶ֑לָה נְהָר֖וֹת תְּבַקַּע־אָֽרֶץ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×¢Ö¶×¨Ö°×™Ö¸Ö¤×” ×ªÖµ×¢×•Ö¹×¨Ö™ ×§Ö·×©×Ö°×ªÖ¼Ö¶Ö”×šÖ¸ ×©×Ö°×‘Ö»×¢Ö¥×•Ö¹×ª ×žÖ·×˜Ö¼Ö–×•Ö¹×ª ×Ö¹Ö£×žÖ¶×¨ ×¡Ö¶Ö‘×œÖ¸×” × Ö°×”Ö¸×¨Ö–×•Ö¹×ª ×ªÖ¼Ö°×‘Ö·×§Ö¼Ö·×¢Ö¾×Ö¸Ö½×¨Ö¶×¥×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -961,7 +978,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רָא֤וּךָ יָחִ֙ילוּ֙ הָרִ֔ים זֶ֥רֶם מַ֖יִם עָבָ֑ר נָתַ֤ן תְּהוֹם֙ קוֹל֔וֹ ר֖וֹם יָדֵ֥יהוּ נָשָֽׂא׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×¨Ö¸×Ö¤×•Ö¼×šÖ¸ ×™Ö¸×—Ö´Ö™×™×œ×•Ö¼Ö™ ×”Ö¸×¨Ö´Ö”×™× ×–Ö¶Ö¥×¨Ö¶× ×žÖ·Ö–×™Ö´× ×¢Ö¸×‘Ö¸Ö‘×¨ × Ö¸×ªÖ·Ö¤×Ÿ ×ªÖ¼Ö°×”×•Ö¹×Ö™ ×§×•Ö¹×œÖ”×•Ö¹ ×¨Ö–×•Ö¹× ×™Ö¸×“ÖµÖ¥×™×”×•Ö¼ × Ö¸×©×‚Ö¸Ö½××ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -977,7 +994,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שֶׁ֥מֶשׁ יָרֵ֖חַ עָ֣מַד זְבֻ֑לָה לְא֤וֹר חִצֶּ֙יךָ֙ יְהַלֵּ֔כוּ לְנֹ֖גַהּ בְּרַ֥ק חֲנִיתֶֽךָ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×©×Ö¶Ö¥×žÖ¶×©× ×™Ö¸×¨ÖµÖ–×—Ö· ×¢Ö¸Ö£×žÖ·×“ ×–Ö°×‘Ö»Ö‘×œÖ¸×” ×œÖ°×Ö¤×•Ö¹×¨ ×—Ö´×¦Ö¼Ö¶Ö™×™×šÖ¸Ö™ ×™Ö°×”Ö·×œÖ¼ÖµÖ”×›×•Ö¼ ×œÖ°× Ö¹Ö–×’Ö·×”Ö¼ ×‘Ö¼Ö°×¨Ö·Ö¥×§ ×—Ö²× Ö´×™×ªÖ¶Ö½×šÖ¸×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -993,7 +1010,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בְּזַ֖עַם תִּצְעַד־אָ֑רֶץ בְּאַ֖ף תָּד֥וּשׁ גּוֹיִֽם׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×‘Ö¼Ö°×–Ö·Ö–×¢Ö·× ×ªÖ¼Ö´×¦Ö°×¢Ö·×“Ö¾×Ö¸Ö‘×¨Ö¶×¥ ×‘Ö¼Ö°×Ö·Ö–×£ ×ªÖ¼Ö¸×“Ö¥×•Ö¼×©× ×’Ö¼×•Ö¹×™Ö´Ö½××ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1009,7 +1026,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יָצָ֙אתָ֙ לְיֵ֣שַׁע עַמֶּ֔ךָ לְיֵ֖שַׁע אֶת־מְשִׁיחֶ֑ךָ מָחַ֤צְתָּ רֹּאשׁ֙ מִבֵּ֣ית רָשָׁ֔ע עָר֛וֹת יְס֥וֹד עַד־צַוָּ֖אר סֶֽלָה׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×™Ö¸×¦Ö¸Ö™××ªÖ¸Ö™ ×œÖ°×™ÖµÖ£×©×Ö·×¢ ×¢Ö·×žÖ¼Ö¶Ö”×šÖ¸ ×œÖ°×™ÖµÖ–×©×Ö·×¢ ×Ö¶×ªÖ¾×žÖ°×©×Ö´×™×—Ö¶Ö‘×šÖ¸ ×žÖ¸×—Ö·Ö¤×¦Ö°×ªÖ¼Ö¸ ×¨Ö¼Ö¹××©×Ö™ ×žÖ´×‘Ö¼ÖµÖ£×™×ª ×¨Ö¸×©×Ö¸Ö”×¢ ×¢Ö¸×¨Ö›×•Ö¹×ª ×™Ö°×¡Ö¥×•Ö¹×“ ×¢Ö·×“Ö¾×¦Ö·×•Ö¼Ö¸Ö–××¨ ×¡Ö¶Ö½×œÖ¸×”×ƒ&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{×¤}&lt;/span&gt;<br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1025,7 +1042,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">נָקַ֤בְתָּ בְמַטָּיו֙ רֹ֣אשׁ &lt;span class=&quot;mam-kq-trivial&quot;&gt;פְּרָזָ֔ו&lt;/span&gt; יִסְעֲר֖וּ לַהֲפִיצֵ֑נִי עֲלִ֣יצֻתָ֔ם כְּמוֹ־לֶאֱכֹ֥ל עָנִ֖י בַּמִּסְתָּֽר׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">× Ö¸×§Ö·Ö¤×‘Ö°×ªÖ¼Ö¸ ×‘Ö°×žÖ·×˜Ö¼Ö¸×™×•Ö™ ×¨Ö¹Ö£××©× &lt;span class=&quot;mam-kq-trivial&quot;&gt;×¤Ö¼Ö°×¨Ö¸×–Ö¸Ö”×•&lt;/span&gt; ×™Ö´×¡Ö°×¢Ö²×¨Ö–×•Ö¼ ×œÖ·×”Ö²×¤Ö´×™×¦ÖµÖ‘× Ö´×™ ×¢Ö²×œÖ´Ö£×™×¦Ö»×ªÖ¸Ö”× ×›Ö¼Ö°×ž×•Ö¹Ö¾×œÖ¶×Ö±×›Ö¹Ö¥×œ ×¢Ö¸× Ö´Ö–×™ ×‘Ö¼Ö·×žÖ¼Ö´×¡Ö°×ªÖ¼Ö¸Ö½×¨×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1041,7 +1058,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דָּרַ֥כְתָּ בַיָּ֖ם סוּסֶ֑יךָ חֹ֖מֶר מַ֥יִם רַבִּֽים׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×“Ö¼Ö¸×¨Ö·Ö¥×›Ö°×ªÖ¼Ö¸ ×‘Ö·×™Ö¼Ö¸Ö–× ×¡×•Ö¼×¡Ö¶Ö‘×™×šÖ¸ ×—Ö¹Ö–×žÖ¶×¨ ×žÖ·Ö¥×™Ö´× ×¨Ö·×‘Ö¼Ö´Ö½×™××ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1057,7 +1074,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שָׁמַ֣עְתִּי&amp;thinsp;<strong>׀</strong> וַתִּרְגַּ֣ז בִּטְנִ֗י לְקוֹל֙ צָלְל֣וּ שְׂפָתַ֔י יָב֥וֹא רָקָ֛ב בַּעֲצָמַ֖י וְתַחְתַּ֣י אֶרְגָּ֑ז אֲשֶׁ֤ר אָנ֙וּחַ֙ לְי֣וֹם צָרָ֔ה לַעֲל֖וֹת לְעַ֥ם יְגוּדֶֽנּוּ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×©×Ö¸×žÖ·Ö£×¢Ö°×ªÖ¼Ö´×™&amp;thinsp;<strong>×€</strong> ×•Ö·×ªÖ¼Ö´×¨Ö°×’Ö¼Ö·Ö£×– ×‘Ö¼Ö´×˜Ö°× Ö´Ö—×™ ×œÖ°×§×•Ö¹×œÖ™ ×¦Ö¸×œÖ°×œÖ£×•Ö¼ ×©×‚Ö°×¤Ö¸×ªÖ·Ö”×™ ×™Ö¸×‘Ö¥×•Ö¹× ×¨Ö¸×§Ö¸Ö›×‘ ×‘Ö¼Ö·×¢Ö²×¦Ö¸×žÖ·Ö–×™ ×•Ö°×ªÖ·×—Ö°×ªÖ¼Ö·Ö£×™ ×Ö¶×¨Ö°×’Ö¼Ö¸Ö‘×– ×Ö²×©×Ö¶Ö¤×¨ ×Ö¸× Ö™×•Ö¼×—Ö·Ö™ ×œÖ°×™Ö£×•Ö¹× ×¦Ö¸×¨Ö¸Ö”×” ×œÖ·×¢Ö²×œÖ–×•Ö¹×ª ×œÖ°×¢Ö·Ö¥× ×™Ö°×’×•Ö¼×“Ö¶Ö½× Ö¼×•Ö¼×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1073,7 +1090,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּֽי־תְאֵנָ֣ה לֹֽא־תִפְרָ֗ח וְאֵ֤ין יְבוּל֙ בַּגְּפָנִ֔ים כִּחֵשׁ֙ מַֽעֲשֵׂה־זַ֔יִת וּשְׁדֵמ֖וֹת לֹא־עָ֣שָׂה אֹ֑כֶל גָּזַ֤ר מִמִּכְלָה֙ צֹ֔אן וְאֵ֥ין בָּקָ֖ר בָּרְפָתִֽים׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×›Ö¼Ö´Ö½×™Ö¾×ªÖ°×Öµ× Ö¸Ö£×” ×œÖ¹Ö½×Ö¾×ªÖ´×¤Ö°×¨Ö¸Ö—×— ×•Ö°×ÖµÖ¤×™×Ÿ ×™Ö°×‘×•Ö¼×œÖ™ ×‘Ö¼Ö·×’Ö¼Ö°×¤Ö¸× Ö´Ö”×™× ×›Ö¼Ö´×—Öµ×©×Ö™ ×žÖ·Ö½×¢Ö²×©×‚Öµ×”Ö¾×–Ö·Ö”×™Ö´×ª ×•Ö¼×©×Ö°×“Öµ×žÖ–×•Ö¹×ª ×œÖ¹×Ö¾×¢Ö¸Ö£×©×‚Ö¸×” ×Ö¹Ö‘×›Ö¶×œ ×’Ö¼Ö¸×–Ö·Ö¤×¨ ×žÖ´×žÖ¼Ö´×›Ö°×œÖ¸×”Ö™ ×¦Ö¹Ö”××Ÿ ×•Ö°×ÖµÖ¥×™×Ÿ ×‘Ö¼Ö¸×§Ö¸Ö–×¨ ×‘Ö¼Ö¸×¨Ö°×¤Ö¸×ªÖ´Ö½×™××ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1089,7 +1106,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַאֲנִ֖י בַּיהֹוָ֣ה אֶעְל֑וֹזָה אָגִ֖ילָה בֵּאלֹהֵ֥י יִשְׁעִֽי׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö·×Ö²× Ö´Ö–×™ ×‘Ö¼Ö·×™×”Ö¹×•Ö¸Ö£×” ×Ö¶×¢Ö°×œÖ‘×•Ö¹×–Ö¸×” ×Ö¸×’Ö´Ö–×™×œÖ¸×” ×‘Ö¼Öµ××œÖ¹×”ÖµÖ¥×™ ×™Ö´×©×Ö°×¢Ö´Ö½×™×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1105,7 +1122,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יֱהֹוִ֤ה אֲדֹנָי֙ חֵילִ֔י וַיָּ֤שֶׂם רַגְלַי֙ כָּאַיָּל֔וֹת וְעַ֥ל בָּמוֹתַ֖י יַדְרִכֵ֑נִי לַמְנַצֵּ֖חַ בִּנְגִינוֹתָֽי׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×™Ö±×”Ö¹×•Ö´Ö¤×” ×Ö²×“Ö¹× Ö¸×™Ö™ ×—Öµ×™×œÖ´Ö”×™ ×•Ö·×™Ö¼Ö¸Ö¤×©×‚Ö¶× ×¨Ö·×’Ö°×œÖ·×™Ö™ ×›Ö¼Ö¸×Ö·×™Ö¼Ö¸×œÖ”×•Ö¹×ª ×•Ö°×¢Ö·Ö¥×œ ×‘Ö¼Ö¸×ž×•Ö¹×ªÖ·Ö–×™ ×™Ö·×“Ö°×¨Ö´×›ÖµÖ‘× Ö´×™ ×œÖ·×žÖ°× Ö·×¦Ö¼ÖµÖ–×—Ö· ×‘Ö¼Ö´× Ö°×’Ö´×™× ×•Ö¹×ªÖ¸Ö½×™×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1134,7 +1151,7 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"habakkuk","work_title":"Habakkuk","work_slug":"tanakh/habakkuk","scope_label":"All imported Hebrew works","generated_at":"2026-05-08T15:38:26.821Z","total_occurrences":615,"units":{"habakkuk-1-1":{"unit_id":"habakkuk-1-1","anchor_id":"habakkuk-1-1","source_ref":"Habakkuk 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f1af0a7c6d30","tok-7d6420d0213c","tok-4e1d16a6593a","tok-f68e4e2d5ece","tok-262b9367bb1d"]}]},"habakkuk-1-2":{"unit_id":"habakkuk-1-2","anchor_id":"habakkuk-1-2","source_ref":"Habakkuk 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e46bfbd1f28c","tok-d6689192f99f","tok-c2f43b5f4e5c","tok-02ccb0c047f4","tok-db89687783d4","tok-61af89a64767","tok-6af9f8d938b9","tok-b24ecd891d1d","tok-2917a9393ea3","tok-44f1933b1812"]}]},"habakkuk-1-3":{"unit_id":"habakkuk-1-3","anchor_id":"habakkuk-1-3","source_ref":"Habakkuk 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e1912aca5167","tok-508121619d71","tok-4e07618b2758","tok-b889385a91c7","tok-df69a8c9cdfe","tok-fa8c7b928a5c","tok-5a53c6a9c9e0","tok-a4588a6693ba","tok-3a4236f2d1d6","tok-975587d16b5c","tok-d518d3c67204","tok-355a0895892a"]}]},"habakkuk-1-4":{"unit_id":"habakkuk-1-4","anchor_id":"habakkuk-1-4","source_ref":"Habakkuk 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-73d367c63aab","tok-3f6925e0a9f3","tok-200f587a8aa5","tok-f26e583fe854","tok-31e444e2e9ee","tok-5e6d6a9d96fd","tok-7128b9bf72f6","tok-8cf2a7db4e4b","tok-c89543e6324c","tok-287741423b8b","tok-f52eadbbb077","tok-bcc448487409","tok-4df3aa19e0b6","tok-e6c71f46af70"]}]},"habakkuk-1-5":{"unit_id":"habakkuk-1-5","anchor_id":"habakkuk-1-5","source_ref":"Habakkuk 1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-24482adbb75c","tok-e8285ba792f3","tok-d0db104cb30a","tok-1e2b29485501","tok-4bbb77aaf9bb","tok-d2464d9833b8","tok-eeeb1730aff2","tok-be3dd3582222","tok-11283fe428aa","tok-5c580690aa94","tok-7b50c6540313","tok-5da2556a5c76"]}]},"habakkuk-1-6":{"unit_id":"habakkuk-1-6","anchor_id":"habakkuk-1-6","source_ref":"Habakkuk 1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cf12b1716105","tok-42b8b00b7f78","tok-c8c432d3d8d7","tok-aeda11de0721","tok-8790ef09c404","tok-5c7c3214389a","tok-45fa124c9495","tok-deeab123f517","tok-2cfc89427622","tok-d167904e0fcc","tok-9705f36ef3ca"]}]},"habakkuk-1-7":{"unit_id":"habakkuk-1-7","anchor_id":"habakkuk-1-7","source_ref":"Habakkuk 1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-34a291dc8372","tok-90cc8d536c92","tok-ad3632629c9f","tok-c05e222b77cc","tok-5b1465721f7d","tok-c7b9390fdec3","tok-4a70d9e4ffd0"]}]},"habakkuk-1-8":{"unit_id":"habakkuk-1-8","anchor_id":"habakkuk-1-8","source_ref":"Habakkuk 1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4ad8cd0b31eb","tok-5fc11fef2bf4","tok-774b96c51911","tok-560ed9759393","tok-2f0c0a2bfa9f","tok-f2f364c2f956","tok-88b33b96e221","tok-33a1664cfdc8","tok-09702d6589c3","tok-104feb60c5f4","tok-89dca3c6f64e","tok-c4f694892546","tok-40104463bf60","tok-20eb76b6240f","tok-180053c5a875"]}]},"habakkuk-1-9":{"unit_id":"habakkuk-1-9","anchor_id":"habakkuk-1-9","source_ref":"Habakkuk 1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c03b9e5b2f59","tok-59bf288f1ee0","tok-ba547afb6c9d","tok-e0eae9efda42","tok-d495d94808e8","tok-2a306c43c402","tok-da337d0c7dd1","tok-cc3d02ec93e7","tok-4c68c531fea9"]}]},"habakkuk-1-10":{"unit_id":"habakkuk-1-10","anchor_id":"habakkuk-1-10","source_ref":"Habakkuk 1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-893c0b17ecb6","tok-d691bd98fe4e","tok-099d94212b47","tok-2075933a2949","tok-bbb9f06d2c50","tok-9b9b6756ec33","tok-7dfc32514bc6","tok-5b757cae188f","tok-4b923b46d374","tok-945245b3f4e5","tok-b1367e0756ca","tok-163daba5a7e5"]}]},"habakkuk-1-11":{"unit_id":"habakkuk-1-11","anchor_id":"habakkuk-1-11","source_ref":"Habakkuk 1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-251784f5cab1","tok-313a5692ff77","tok-dccddba834c5","tok-a4deabd9bc7e","tok-fdd7cb977eda","tok-f803b558feeb","tok-57d902f44709","tok-519123acdd66"]}]},"habakkuk-1-12":{"unit_id":"habakkuk-1-12","anchor_id":"habakkuk-1-12","source_ref":"Habakkuk 1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c109e62b2f54","tok-02242be6b340","tok-27fadb0cb916","tok-382fb6d7cdce","tok-7438acd74954","tok-b79f6313044e","tok-f77942c55b47","tok-5ee1de5745fc","tok-87f8e4e978b7","tok-be6bea09cb18","tok-55e5a0edad86","tok-f5affb625cf4","tok-bb92381a980a","tok-5cf8a9715a98"]}]},"habakkuk-1-13":{"unit_id":"habakkuk-1-13","anchor_id":"habakkuk-1-13","source_ref":"Habakkuk 1:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-521ee95859ba","tok-c1ada42a1d89","tok-c702d2d26cf3","tok-6c39fc570ff2","tok-8aaddac861c8","tok-42d066279d1c","tok-f77942c55b47","tok-fa0838878b28","tok-6b00131eeb35","tok-d4b76cf5063c","tok-2d76ee47cca5","tok-739d231c53a4","tok-a2fd02ffb3d3","tok-467783d65033","tok-e749a5191e2f","tok-dc4d11621cc0"]}]},"habakkuk-1-14":{"unit_id":"habakkuk-1-14","anchor_id":"habakkuk-1-14","source_ref":"Habakkuk 1:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a9c68f2169e3","tok-868e7ea073af","tok-8addc0525ff6","tok-7b7e782004fd","tok-041cc4f0b6cf","tok-25f26e319c0c","tok-02893af28087"]}]},"habakkuk-1-15":{"unit_id":"habakkuk-1-15","anchor_id":"habakkuk-1-15","source_ref":"Habakkuk 1:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c03b9e5b2f59","tok-ab4b8c2c069a","tok-41b6629bf1c3","tok-7f2066fba793","tok-2a626e21f5cd","tok-1802395f4de3","tok-a52b2068c6cf","tok-396006c46edb","tok-8e2ea401e894","tok-e52cfc641d7e"]}]},"habakkuk-1-16":{"unit_id":"habakkuk-1-16","anchor_id":"habakkuk-1-16","source_ref":"Habakkuk 1:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-73d367c63aab","tok-3838d24960d6","tok-f81d794d1596","tok-17709d14a155","tok-2fcb61a29462","tok-7128b9bf72f6","tok-6109bac7dd66","tok-afdc362abf8e","tok-a4dfacc958ae","tok-28aa377dcdc0","tok-b68aa65e2d67"]}]},"habakkuk-1-17":{"unit_id":"habakkuk-1-17","anchor_id":"habakkuk-1-17","source_ref":"Habakkuk 1:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-772c032b018a","tok-d9daaf05ea30","tok-1b8690c9f29e","tok-b72f3133a732","tok-e93b3d7f7165","tok-90814283a810","tok-6e1d5e431c54","tok-11283fe428aa","tok-40ca11713177","tok-74f516e8d7b7"]}]},"habakkuk-2-1":{"unit_id":"habakkuk-2-1","anchor_id":"habakkuk-2-1","source_ref":"Habakkuk 2:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9c936c6fbd48","tok-38ee445f3a22","tok-e38ebd645ed9","tok-adaf8c6cd621","tok-4a457d553e9e","tok-43d27b9a7f7e","tok-2b33b978e01c","tok-809bd43a6dbb","tok-541c8ea28af3","tok-343ccfe82ecb"]}]},"habakkuk-2-2":{"unit_id":"habakkuk-2-2","anchor_id":"habakkuk-2-2","source_ref":"Habakkuk 2:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-910b0dc608e1","tok-87f8e4e978b7","tok-8a76f0d15f92","tok-cfbb74638de4","tok-ab730b96cb58","tok-5b945072cc44","tok-cdbaaf04c99a","tok-41c93f5df032","tok-15219410149a","tok-4a7127270fb2","tok-0ebd0872b0e2"]}]},"habakkuk-2-3":{"unit_id":"habakkuk-2-3","anchor_id":"habakkuk-2-3","source_ref":"Habakkuk 2:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8db133f838b5","tok-97da47a04004","tok-f04989e02b82","tok-21f2d0fcde7d","tok-d5a4ce1bef5f","tok-f3b46022c788","tok-02ccb0c047f4","tok-5d9fc928c87f","tok-b2b616090ecf","tok-bba4f80f1425","tok-a108a1db5f02","tok-e43b72be7cdd","tok-11283fe428aa","tok-c278194fb742"]}]},"habakkuk-2-4":{"unit_id":"habakkuk-2-4","anchor_id":"habakkuk-2-4","source_ref":"Habakkuk 2:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-92468af8da25","tok-552968709ce0","tok-29b5ec10479b","tok-22529374bbd1","tok-c2f3738844ab","tok-656ac37f6718","tok-cee404763168","tok-dff6a485033e","tok-74f516e8d7b7"]}]},"habakkuk-2-5":{"unit_id":"habakkuk-2-5","anchor_id":"habakkuk-2-5","source_ref":"Habakkuk 2:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-017deac92fc3","tok-299c31e8e928","tok-0ac3a3d52967","tok-96f4eff53ea8","tok-767a802102cb","tok-02ccb0c047f4","tok-8546c72c6de3","tok-5702e4638574","tok-9746a08399c1","tok-91bc30c24cd5","tok-24ff4b26cd8b","tok-7289460863cc","tok-ec6772ce790d","tok-02ccb0c047f4","tok-a640390f2d32","tok-40f5bdde3fe9","tok-7cc7c66a3a45","tok-758bd5561130","tok-f3445d3dca53","tok-3c535750d670","tok-a2a7cfcff94b"]}]},"habakkuk-2-6":{"unit_id":"habakkuk-2-6","anchor_id":"habakkuk-2-6","source_ref":"Habakkuk 2:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-023b6c3a2219","tok-594e1e21ba5c","tok-64ce476a3d93","tok-ecc6031ec9fe","tok-d884c56d8269","tok-8ea651e65628","tok-32ca453be4ce","tok-9b9b6756ec33","tok-5a91dfb975dd","tok-2a52b161eea1","tok-10b31e5151c2","tok-f354b0f7d690","tok-f7280d6bcb31","tok-6623362c62be","tok-d81c2168d92b","tok-a5a192d814b6"]}]},"habakkuk-2-7":{"unit_id":"habakkuk-2-7","anchor_id":"habakkuk-2-7","source_ref":"Habakkuk 2:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c233993d785a","tok-eaa031620cde","tok-3e30afc3f46b","tok-41a343f4f543","tok-890bd29b1bd9","tok-bf7dc3d5895a","tok-83784b1dc5e4","tok-43030d800fa8","tok-a3ad0c6c0ae6"]}]},"habakkuk-2-8":{"unit_id":"habakkuk-2-8","anchor_id":"habakkuk-2-8","source_ref":"Habakkuk 2:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c87ac2bf012b","tok-9c8af63ff976","tok-68f4983bc549","tok-5545b7b3f56b","tok-6ff659114b17","tok-ca7f55e26ce3","tok-61ef44bbc440","tok-2b1a87a9cd8e","tok-11a366fce45b","tok-f5456363e1c6","tok-422683606c22","tok-262201c344a2","tok-7a13c442e1a3","tok-267e28951c3f"]}]},"habakkuk-2-9":{"unit_id":"habakkuk-2-9","anchor_id":"habakkuk-2-9","source_ref":"Habakkuk 2:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1dd4c1da69e5","tok-ecd79cbe8ee7","tok-aa9cf2eb9a2c","tok-52b165d50496","tok-866a0864dc26","tok-c6f4e1a88fb0","tok-722ebba6a618","tok-9d93ac29443e","tok-ec88d77913c4","tok-e22e30cac93d"]}]},"habakkuk-2-10":{"unit_id":"habakkuk-2-10","anchor_id":"habakkuk-2-10","source_ref":"Habakkuk 2:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0a7e26c40356","tok-5daff4d283eb","tok-fe5e58f667a6","tok-c378294de1b2","tok-822e65def4a4","tok-f15a84bcf58a","tok-1ac6403e49d4"]}]},"habakkuk-2-11":{"unit_id":"habakkuk-2-11","anchor_id":"habakkuk-2-11","source_ref":"Habakkuk 2:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c00cec3325d2","tok-3c355dd5fb6b","tok-6fe0c62567de","tok-5c19c4baf1c2","tok-e6cd6f308e06","tok-c25387d4ab9f","tok-267e28951c3f"]}]},"habakkuk-2-12":{"unit_id":"habakkuk-2-12","anchor_id":"habakkuk-2-12","source_ref":"Habakkuk 2:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d4a491b6fbe9","tok-90b6228329ee","tok-7650340591be","tok-46364a9a907a","tok-f032e4efd7bf","tok-422683606c22","tok-fdb3869cddfb"]}]},"habakkuk-2-13":{"unit_id":"habakkuk-2-13","anchor_id":"habakkuk-2-13","source_ref":"Habakkuk 2:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c233993d785a","tok-36e73aa9cb85","tok-470485ef9d4e","tok-c4984cc4c821","tok-262b7feea6f6","tok-2e955f40d98a","tok-d5cc192d1c67","tok-bdaea520a71b","tok-486305952a3d","tok-29e7140699c2","tok-dce84c6ae7a6"]}]},"habakkuk-2-14":{"unit_id":"habakkuk-2-14","anchor_id":"habakkuk-2-14","source_ref":"Habakkuk 2:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-405ab595caf1","tok-44ef2479f4e7","tok-17c65bd84a71","tok-8a685e38b7d3","tok-2c1581f3b519","tok-61b4cc3e6ee9","tok-cbc92e63ad01","tok-d72343d14a62","tok-6c923d6e2bce","tok-267e28951c3f"]}]},"habakkuk-2-15":{"unit_id":"habakkuk-2-15","anchor_id":"habakkuk-2-15","source_ref":"Habakkuk 2:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2a52b161eea1","tok-9e90c9ba426d","tok-87755ceee4bc","tok-744d4d787484","tok-d0beb02c368c","tok-ececb9c86da6","tok-4264012eb879","tok-41c93f5df032","tok-107df3d0fd6c","tok-5914633eb1b2"]}]},"habakkuk-2-16":{"unit_id":"habakkuk-2-16","anchor_id":"habakkuk-2-16","source_ref":"Habakkuk 2:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-768806e2dc01","tok-b538e7a842cd","tok-959c8c7b786f","tok-5f61778aa247","tok-f6e3ca933504","tok-9914123576d8","tok-a48bfd1b6556","tok-6eecce56cdcd","tok-bee7a63eb66c","tok-7f35d67c53b1","tok-6be6ee0040da","tok-a7a3ada707eb","tok-3d2f2e82ce36"]}]},"habakkuk-2-17":{"unit_id":"habakkuk-2-17","anchor_id":"habakkuk-2-17","source_ref":"Habakkuk 2:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8db133f838b5","tok-65626de7efa5","tok-aa81fbc1a8e0","tok-46585dde5f00","tok-fa8c7b928a5c","tok-e63321d7c0e3","tok-1c022721786b","tok-2b1a87a9cd8e","tok-11a366fce45b","tok-f904376f2d51","tok-422683606c22","tok-262201c344a2","tok-7a13c442e1a3"]}]},"habakkuk-2-18":{"unit_id":"habakkuk-2-18","anchor_id":"habakkuk-2-18","source_ref":"Habakkuk 2:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-aaad6d79abab","tok-995ed4f58cf4","tok-7128b9bf72f6","tok-d6347cc9da4b","tok-2bba315199e2","tok-0bcb7833d57b","tok-fef356e23b0f","tok-97ef6e49f41f","tok-8db133f838b5","tok-a6231bca6bb5","tok-7de0daf48632","tok-d28a20a09edf","tok-d70e8c48b1e3","tok-91de19c09281","tok-ec9162674d6f","tok-b7c46626981f","tok-74f516e8d7b7"]}]},"habakkuk-2-19":{"unit_id":"habakkuk-2-19","anchor_id":"habakkuk-2-19","source_ref":"Habakkuk 2:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-10bc36c9aa7a","tok-55e9fd60e9b1","tok-a33a787b8ac3","tok-df1924a69178","tok-75b59d69d9da","tok-59d7b4cd3de0","tok-e88e3b207594","tok-bbe61cceceaa","tok-820e513ff488","tok-7fb050c6e2c3","tok-e1bd7521db66","tok-8de71e47d34e","tok-c5e0df22abcc","tok-f5064db270ee","tok-eadd5cec97c3","tok-8a6d2e20c4af"]}]},"habakkuk-2-20":{"unit_id":"habakkuk-2-20","anchor_id":"habakkuk-2-20","source_ref":"Habakkuk 2:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bad67952d025","tok-974985b0b22b","tok-262d6861ed91","tok-83d64d2994ec","tok-406c3344f4ef","tok-121a776fba67","tok-74f516e8d7b7"]}]},"habakkuk-3-1":{"unit_id":"habakkuk-3-1","anchor_id":"habakkuk-3-1","source_ref":"Habakkuk 3:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1f4f01b367f6","tok-8457b80da331","tok-72ad34639f67","tok-cfa05472c142","tok-4e197ec8fd4a"]}]},"habakkuk-3-2":{"unit_id":"habakkuk-3-2","anchor_id":"habakkuk-3-2","source_ref":"Habakkuk 3:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1a25f1766edd","tok-2815b13f23db","tok-14ed4d18f713","tok-67036a3965c8","tok-1a25f1766edd","tok-6b3052df76c7","tok-837787a1ce68","tok-1d71a0c5d2a2","tok-a3216faa11ad","tok-d20871c33498","tok-be6cae8164b4","tok-9afbe7d9c8b5","tok-a4db382c7b2f","tok-af90596015dc","tok-09157664783e"]}]},"habakkuk-3-3":{"unit_id":"habakkuk-3-3","anchor_id":"habakkuk-3-3","source_ref":"Habakkuk 3:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7cbc830ef1a4","tok-12972597c8dc","tok-ba547afb6c9d","tok-cff6f10e59ec","tok-c1ebb8277829","tok-d5df4813fff2","tok-5a5834de27ea","tok-e25dce91bae9","tok-11f2ad641f1f","tok-ee5042a6f346","tok-f1f5e276b9ed","tok-28502edc3f00"]}]},"habakkuk-3-4":{"unit_id":"habakkuk-3-4","anchor_id":"habakkuk-3-4","source_ref":"Habakkuk 3:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ca7b4ed01599","tok-8c7ca4952c20","tok-df7318db5544","tok-f33f3bc63e2d","tok-2299ac333e83","tok-9b9b6756ec33","tok-6c16f05f09ed","tok-06c170d146ff","tok-54b67c03fe4d"]}]},"habakkuk-3-5":{"unit_id":"habakkuk-3-5","anchor_id":"habakkuk-3-5","source_ref":"Habakkuk 3:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fb34c1728a49","tok-cbdd73c7d819","tok-71048f505fd5","tok-2be84d823fa1","tok-fd9b59392349","tok-d5f46ad85755"]}]},"habakkuk-3-6":{"unit_id":"habakkuk-3-6","anchor_id":"habakkuk-3-6","source_ref":"Habakkuk 3:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0b8691028bc8","tok-3183d1d91c51","tok-c06d0b715824","tok-48f698b1e6a1","tok-0b62e7453135","tok-401a9614660c","tok-6cf144486332","tok-18cef222d096","tok-51e7cf11ea08","tok-5f7ed8efd034","tok-88f3a0c8ad3c","tok-3d528ccbc8a5","tok-278a6b8b8288","tok-23426eeaf695"]}]},"habakkuk-3-7":{"unit_id":"habakkuk-3-7","anchor_id":"habakkuk-3-7","source_ref":"Habakkuk 3:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-355351ea4b79","tok-ea55bec16483","tok-062160fc050e","tok-b40f7f4df5c2","tok-e7f3ba1955d0","tok-c596f0b5c5c5","tok-1444724a24a5","tok-d02513264783","tok-90c926ac55a3"]}]},"habakkuk-3-8":{"unit_id":"habakkuk-3-8","anchor_id":"habakkuk-3-8","source_ref":"Habakkuk 3:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-55f9f8733434","tok-5ae0dd8b2e17","tok-6be6ee0040da","tok-afae62956cea","tok-04f716fc7208","tok-4c96e824796b","tok-2975b70b6785","tok-5599f5434be0","tok-7128b9bf72f6","tok-fc52f8353ad1","tok-87e6ecca9a8c","tok-51d43f85dcdd","tok-857dbf2d961d"]}]},"habakkuk-3-9":{"unit_id":"habakkuk-3-9","anchor_id":"habakkuk-3-9","source_ref":"Habakkuk 3:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e3b2bfd5ada7","tok-a9248abf1f7a","tok-468250d5e850","tok-07e6e74710ca","tok-3e1b96e4bd15","tok-2009ea3f7ff0","tok-d5df4813fff2","tok-ce17a3339e1e","tok-c25d1480f005"]}]},"habakkuk-3-10":{"unit_id":"habakkuk-3-10","anchor_id":"habakkuk-3-10","source_ref":"Habakkuk 3:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4525935377d7","tok-a19896e80532","tok-503f6a3e5333","tok-ae1c308fdee6","tok-dca200d0b4f6","tok-696572a90cdc","tok-da4c4e06f0a2","tok-05118383c28f","tok-baa5648f9596","tok-897ce41c4a68","tok-2606974b9625","tok-8dd9bd577d65"]}]},"habakkuk-3-11":{"unit_id":"habakkuk-3-11","anchor_id":"habakkuk-3-11","source_ref":"Habakkuk 3:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a40f9b79b21b","tok-426eaa3ac2a5","tok-f6d1c9f72b5c","tok-41ee44b3023a","tok-63d939af1ff5","tok-f78459505826","tok-101d96add4fe","tok-a8e216ee0c4c","tok-fc21aa04b56a","tok-ae6e1f476cd0"]}]},"habakkuk-3-12":{"unit_id":"habakkuk-3-12","anchor_id":"habakkuk-3-12","source_ref":"Habakkuk 3:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e61e62c77944","tok-8bf8bc88aec3","tok-65045d8a9864","tok-533f05f3c6f3","tok-2397c6ef8d5d"]}]},"habakkuk-3-13":{"unit_id":"habakkuk-3-13","anchor_id":"habakkuk-3-13","source_ref":"Habakkuk 3:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4b3a14cc82d3","tok-1c9952f22b51","tok-a3dec2a1213a","tok-15c109bae5c9","tok-09128194104e","tok-4d2e683bfa79","tok-99c827bd6f1b","tok-cc36d775fb3a","tok-46ab51e8a8f1","tok-9bc31fc044a1","tok-ea28eb1f490d","tok-8078b311e4d9","tok-4c6df30b8570","tok-267e28951c3f"]}]},"habakkuk-3-14":{"unit_id":"habakkuk-3-14","anchor_id":"habakkuk-3-14","source_ref":"Habakkuk 3:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-835197afd982","tok-47de83f91a7b","tok-9ee0679f99c1","tok-e106ecdffcaf","tok-817e1d26676e","tok-19f24bcd2154","tok-eae062a37130","tok-5a55a683a532","tok-b50d75ee80fc","tok-04e91abc2763"]}]},"habakkuk-3-15":{"unit_id":"habakkuk-3-15","anchor_id":"habakkuk-3-15","source_ref":"Habakkuk 3:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f7f070a70412","tok-6cbba07025a5","tok-8e45aed6184f","tok-9134d55f8bc7","tok-74d85c1f9687","tok-b3abbe4d8e80"]}]},"habakkuk-3-16":{"unit_id":"habakkuk-3-16","anchor_id":"habakkuk-3-16","source_ref":"Habakkuk 3:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2815b13f23db","tok-5e57e94dfe0d","tok-b1dae8d55d23","tok-33ecd8cb3c9e","tok-289fc35850ab","tok-493ab91a590b","tok-f49cc1459fd8","tok-86954fba96ca","tok-ac6d3cdae704","tok-5e9acbd8c1ef","tok-54bfd875c99e","tok-ec825e783146","tok-98b1d1bac176","tok-951d8cb51e29","tok-e7387d3f3a9e","tok-6d9619863d7c","tok-eea5b725195e","tok-e89f4b5aa869"]}]},"habakkuk-3-17":{"unit_id":"habakkuk-3-17","anchor_id":"habakkuk-3-17","source_ref":"Habakkuk 3:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4fefea638a50","tok-2dedb558f622","tok-fc1b2d03a1be","tok-a309acbc59e5","tok-56b9cbc3f35e","tok-065bfa1316ef","tok-6b6625399ed6","tok-b323dbc3536d","tok-8870ea47fdc7","tok-d6c5cfb14f5c","tok-b556f1808725","tok-8bb1b17c5a45","tok-3e839af3f9cf","tok-cc1001a861db","tok-07e377c92694","tok-56f6e12e8793"]}]},"habakkuk-3-18":{"unit_id":"habakkuk-3-18","anchor_id":"habakkuk-3-18","source_ref":"Habakkuk 3:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a91235051e53","tok-c5da582be44e","tok-b5b2730c7cef","tok-edc0be680c5f","tok-4c805fed324e","tok-2b33ef5e9ce6"]}]},"habakkuk-3-19":{"unit_id":"habakkuk-3-19","anchor_id":"habakkuk-3-19","source_ref":"Habakkuk 3:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e9f126ec15be","tok-b111eae76180","tok-5b056cb735af","tok-d6622731b3f5","tok-7f2e34d1aeaf","tok-239633ff14b0","tok-0cf5bf7bb9db","tok-f6dc33d5b12d","tok-1fc8d24dd566","tok-c528260746b1","tok-1c707afa187c"]}]}}}</script>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"habakkuk","work_title":"Habakkuk","work_slug":"tanakh/habakkuk","scope_label":"All imported Hebrew works","generated_at":"2026-05-10T15:21:04.235Z","total_occurrences":615,"units":{"habakkuk-1-1":{"unit_id":"habakkuk-1-1","anchor_id":"habakkuk-1-1","source_ref":"Habakkuk 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f1af0a7c6d30","tok-7d6420d0213c","tok-4e1d16a6593a","tok-f68e4e2d5ece","tok-262b9367bb1d"]}]},"habakkuk-1-2":{"unit_id":"habakkuk-1-2","anchor_id":"habakkuk-1-2","source_ref":"Habakkuk 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e46bfbd1f28c","tok-d6689192f99f","tok-c2f43b5f4e5c","tok-02ccb0c047f4","tok-db89687783d4","tok-61af89a64767","tok-6af9f8d938b9","tok-b24ecd891d1d","tok-2917a9393ea3","tok-44f1933b1812"]}]},"habakkuk-1-3":{"unit_id":"habakkuk-1-3","anchor_id":"habakkuk-1-3","source_ref":"Habakkuk 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e1912aca5167","tok-508121619d71","tok-4e07618b2758","tok-b889385a91c7","tok-df69a8c9cdfe","tok-fa8c7b928a5c","tok-5a53c6a9c9e0","tok-a4588a6693ba","tok-3a4236f2d1d6","tok-975587d16b5c","tok-d518d3c67204","tok-355a0895892a"]}]},"habakkuk-1-4":{"unit_id":"habakkuk-1-4","anchor_id":"habakkuk-1-4","source_ref":"Habakkuk 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-73d367c63aab","tok-3f6925e0a9f3","tok-200f587a8aa5","tok-f26e583fe854","tok-31e444e2e9ee","tok-5e6d6a9d96fd","tok-7128b9bf72f6","tok-8cf2a7db4e4b","tok-c89543e6324c","tok-287741423b8b","tok-f52eadbbb077","tok-bcc448487409","tok-4df3aa19e0b6","tok-e6c71f46af70"]}]},"habakkuk-1-5":{"unit_id":"habakkuk-1-5","anchor_id":"habakkuk-1-5","source_ref":"Habakkuk 1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-24482adbb75c","tok-e8285ba792f3","tok-d0db104cb30a","tok-1e2b29485501","tok-4bbb77aaf9bb","tok-d2464d9833b8","tok-eeeb1730aff2","tok-be3dd3582222","tok-11283fe428aa","tok-5c580690aa94","tok-7b50c6540313","tok-5da2556a5c76"]}]},"habakkuk-1-6":{"unit_id":"habakkuk-1-6","anchor_id":"habakkuk-1-6","source_ref":"Habakkuk 1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cf12b1716105","tok-42b8b00b7f78","tok-c8c432d3d8d7","tok-aeda11de0721","tok-8790ef09c404","tok-5c7c3214389a","tok-45fa124c9495","tok-deeab123f517","tok-2cfc89427622","tok-d167904e0fcc","tok-9705f36ef3ca"]}]},"habakkuk-1-7":{"unit_id":"habakkuk-1-7","anchor_id":"habakkuk-1-7","source_ref":"Habakkuk 1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-34a291dc8372","tok-90cc8d536c92","tok-ad3632629c9f","tok-c05e222b77cc","tok-5b1465721f7d","tok-c7b9390fdec3","tok-4a70d9e4ffd0"]}]},"habakkuk-1-8":{"unit_id":"habakkuk-1-8","anchor_id":"habakkuk-1-8","source_ref":"Habakkuk 1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4ad8cd0b31eb","tok-5fc11fef2bf4","tok-774b96c51911","tok-560ed9759393","tok-2f0c0a2bfa9f","tok-f2f364c2f956","tok-88b33b96e221","tok-33a1664cfdc8","tok-09702d6589c3","tok-104feb60c5f4","tok-89dca3c6f64e","tok-c4f694892546","tok-40104463bf60","tok-20eb76b6240f","tok-180053c5a875"]}]},"habakkuk-1-9":{"unit_id":"habakkuk-1-9","anchor_id":"habakkuk-1-9","source_ref":"Habakkuk 1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c03b9e5b2f59","tok-59bf288f1ee0","tok-ba547afb6c9d","tok-e0eae9efda42","tok-d495d94808e8","tok-2a306c43c402","tok-da337d0c7dd1","tok-cc3d02ec93e7","tok-4c68c531fea9"]}]},"habakkuk-1-10":{"unit_id":"habakkuk-1-10","anchor_id":"habakkuk-1-10","source_ref":"Habakkuk 1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-893c0b17ecb6","tok-d691bd98fe4e","tok-099d94212b47","tok-2075933a2949","tok-bbb9f06d2c50","tok-9b9b6756ec33","tok-7dfc32514bc6","tok-5b757cae188f","tok-4b923b46d374","tok-945245b3f4e5","tok-b1367e0756ca","tok-163daba5a7e5"]}]},"habakkuk-1-11":{"unit_id":"habakkuk-1-11","anchor_id":"habakkuk-1-11","source_ref":"Habakkuk 1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-251784f5cab1","tok-313a5692ff77","tok-dccddba834c5","tok-a4deabd9bc7e","tok-fdd7cb977eda","tok-f803b558feeb","tok-57d902f44709","tok-519123acdd66"]}]},"habakkuk-1-12":{"unit_id":"habakkuk-1-12","anchor_id":"habakkuk-1-12","source_ref":"Habakkuk 1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c109e62b2f54","tok-02242be6b340","tok-27fadb0cb916","tok-382fb6d7cdce","tok-7438acd74954","tok-b79f6313044e","tok-f77942c55b47","tok-5ee1de5745fc","tok-87f8e4e978b7","tok-be6bea09cb18","tok-55e5a0edad86","tok-f5affb625cf4","tok-bb92381a980a","tok-5cf8a9715a98"]}]},"habakkuk-1-13":{"unit_id":"habakkuk-1-13","anchor_id":"habakkuk-1-13","source_ref":"Habakkuk 1:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-521ee95859ba","tok-c1ada42a1d89","tok-c702d2d26cf3","tok-6c39fc570ff2","tok-8aaddac861c8","tok-42d066279d1c","tok-f77942c55b47","tok-fa0838878b28","tok-6b00131eeb35","tok-d4b76cf5063c","tok-2d76ee47cca5","tok-739d231c53a4","tok-a2fd02ffb3d3","tok-467783d65033","tok-e749a5191e2f","tok-dc4d11621cc0"]}]},"habakkuk-1-14":{"unit_id":"habakkuk-1-14","anchor_id":"habakkuk-1-14","source_ref":"Habakkuk 1:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a9c68f2169e3","tok-868e7ea073af","tok-8addc0525ff6","tok-7b7e782004fd","tok-041cc4f0b6cf","tok-25f26e319c0c","tok-02893af28087"]}]},"habakkuk-1-15":{"unit_id":"habakkuk-1-15","anchor_id":"habakkuk-1-15","source_ref":"Habakkuk 1:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c03b9e5b2f59","tok-ab4b8c2c069a","tok-41b6629bf1c3","tok-7f2066fba793","tok-2a626e21f5cd","tok-1802395f4de3","tok-a52b2068c6cf","tok-396006c46edb","tok-8e2ea401e894","tok-e52cfc641d7e"]}]},"habakkuk-1-16":{"unit_id":"habakkuk-1-16","anchor_id":"habakkuk-1-16","source_ref":"Habakkuk 1:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-73d367c63aab","tok-3838d24960d6","tok-f81d794d1596","tok-17709d14a155","tok-2fcb61a29462","tok-7128b9bf72f6","tok-6109bac7dd66","tok-afdc362abf8e","tok-a4dfacc958ae","tok-28aa377dcdc0","tok-b68aa65e2d67"]}]},"habakkuk-1-17":{"unit_id":"habakkuk-1-17","anchor_id":"habakkuk-1-17","source_ref":"Habakkuk 1:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-772c032b018a","tok-d9daaf05ea30","tok-1b8690c9f29e","tok-b72f3133a732","tok-e93b3d7f7165","tok-90814283a810","tok-6e1d5e431c54","tok-11283fe428aa","tok-40ca11713177","tok-74f516e8d7b7"]}]},"habakkuk-2-1":{"unit_id":"habakkuk-2-1","anchor_id":"habakkuk-2-1","source_ref":"Habakkuk 2:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9c936c6fbd48","tok-38ee445f3a22","tok-e38ebd645ed9","tok-adaf8c6cd621","tok-4a457d553e9e","tok-43d27b9a7f7e","tok-2b33b978e01c","tok-809bd43a6dbb","tok-541c8ea28af3","tok-343ccfe82ecb"]}]},"habakkuk-2-2":{"unit_id":"habakkuk-2-2","anchor_id":"habakkuk-2-2","source_ref":"Habakkuk 2:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-910b0dc608e1","tok-87f8e4e978b7","tok-8a76f0d15f92","tok-cfbb74638de4","tok-ab730b96cb58","tok-5b945072cc44","tok-cdbaaf04c99a","tok-41c93f5df032","tok-15219410149a","tok-4a7127270fb2","tok-0ebd0872b0e2"]}]},"habakkuk-2-3":{"unit_id":"habakkuk-2-3","anchor_id":"habakkuk-2-3","source_ref":"Habakkuk 2:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8db133f838b5","tok-97da47a04004","tok-f04989e02b82","tok-21f2d0fcde7d","tok-d5a4ce1bef5f","tok-f3b46022c788","tok-02ccb0c047f4","tok-5d9fc928c87f","tok-b2b616090ecf","tok-bba4f80f1425","tok-a108a1db5f02","tok-e43b72be7cdd","tok-11283fe428aa","tok-c278194fb742"]}]},"habakkuk-2-4":{"unit_id":"habakkuk-2-4","anchor_id":"habakkuk-2-4","source_ref":"Habakkuk 2:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-92468af8da25","tok-552968709ce0","tok-29b5ec10479b","tok-22529374bbd1","tok-c2f3738844ab","tok-656ac37f6718","tok-cee404763168","tok-dff6a485033e","tok-74f516e8d7b7"]}]},"habakkuk-2-5":{"unit_id":"habakkuk-2-5","anchor_id":"habakkuk-2-5","source_ref":"Habakkuk 2:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-017deac92fc3","tok-299c31e8e928","tok-0ac3a3d52967","tok-96f4eff53ea8","tok-767a802102cb","tok-02ccb0c047f4","tok-8546c72c6de3","tok-5702e4638574","tok-9746a08399c1","tok-91bc30c24cd5","tok-24ff4b26cd8b","tok-7289460863cc","tok-ec6772ce790d","tok-02ccb0c047f4","tok-a640390f2d32","tok-40f5bdde3fe9","tok-7cc7c66a3a45","tok-758bd5561130","tok-f3445d3dca53","tok-3c535750d670","tok-a2a7cfcff94b"]}]},"habakkuk-2-6":{"unit_id":"habakkuk-2-6","anchor_id":"habakkuk-2-6","source_ref":"Habakkuk 2:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-023b6c3a2219","tok-594e1e21ba5c","tok-64ce476a3d93","tok-ecc6031ec9fe","tok-d884c56d8269","tok-8ea651e65628","tok-32ca453be4ce","tok-9b9b6756ec33","tok-5a91dfb975dd","tok-2a52b161eea1","tok-10b31e5151c2","tok-f354b0f7d690","tok-f7280d6bcb31","tok-6623362c62be","tok-d81c2168d92b","tok-a5a192d814b6"]}]},"habakkuk-2-7":{"unit_id":"habakkuk-2-7","anchor_id":"habakkuk-2-7","source_ref":"Habakkuk 2:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c233993d785a","tok-eaa031620cde","tok-3e30afc3f46b","tok-41a343f4f543","tok-890bd29b1bd9","tok-bf7dc3d5895a","tok-83784b1dc5e4","tok-43030d800fa8","tok-a3ad0c6c0ae6"]}]},"habakkuk-2-8":{"unit_id":"habakkuk-2-8","anchor_id":"habakkuk-2-8","source_ref":"Habakkuk 2:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c87ac2bf012b","tok-9c8af63ff976","tok-68f4983bc549","tok-5545b7b3f56b","tok-6ff659114b17","tok-ca7f55e26ce3","tok-61ef44bbc440","tok-2b1a87a9cd8e","tok-11a366fce45b","tok-f5456363e1c6","tok-422683606c22","tok-262201c344a2","tok-7a13c442e1a3","tok-267e28951c3f"]}]},"habakkuk-2-9":{"unit_id":"habakkuk-2-9","anchor_id":"habakkuk-2-9","source_ref":"Habakkuk 2:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1dd4c1da69e5","tok-ecd79cbe8ee7","tok-aa9cf2eb9a2c","tok-52b165d50496","tok-866a0864dc26","tok-c6f4e1a88fb0","tok-722ebba6a618","tok-9d93ac29443e","tok-ec88d77913c4","tok-e22e30cac93d"]}]},"habakkuk-2-10":{"unit_id":"habakkuk-2-10","anchor_id":"habakkuk-2-10","source_ref":"Habakkuk 2:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0a7e26c40356","tok-5daff4d283eb","tok-fe5e58f667a6","tok-c378294de1b2","tok-822e65def4a4","tok-f15a84bcf58a","tok-1ac6403e49d4"]}]},"habakkuk-2-11":{"unit_id":"habakkuk-2-11","anchor_id":"habakkuk-2-11","source_ref":"Habakkuk 2:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c00cec3325d2","tok-3c355dd5fb6b","tok-6fe0c62567de","tok-5c19c4baf1c2","tok-e6cd6f308e06","tok-c25387d4ab9f","tok-267e28951c3f"]}]},"habakkuk-2-12":{"unit_id":"habakkuk-2-12","anchor_id":"habakkuk-2-12","source_ref":"Habakkuk 2:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d4a491b6fbe9","tok-90b6228329ee","tok-7650340591be","tok-46364a9a907a","tok-f032e4efd7bf","tok-422683606c22","tok-fdb3869cddfb"]}]},"habakkuk-2-13":{"unit_id":"habakkuk-2-13","anchor_id":"habakkuk-2-13","source_ref":"Habakkuk 2:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c233993d785a","tok-36e73aa9cb85","tok-470485ef9d4e","tok-c4984cc4c821","tok-262b7feea6f6","tok-2e955f40d98a","tok-d5cc192d1c67","tok-bdaea520a71b","tok-486305952a3d","tok-29e7140699c2","tok-dce84c6ae7a6"]}]},"habakkuk-2-14":{"unit_id":"habakkuk-2-14","anchor_id":"habakkuk-2-14","source_ref":"Habakkuk 2:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-405ab595caf1","tok-44ef2479f4e7","tok-17c65bd84a71","tok-8a685e38b7d3","tok-2c1581f3b519","tok-61b4cc3e6ee9","tok-cbc92e63ad01","tok-d72343d14a62","tok-6c923d6e2bce","tok-267e28951c3f"]}]},"habakkuk-2-15":{"unit_id":"habakkuk-2-15","anchor_id":"habakkuk-2-15","source_ref":"Habakkuk 2:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2a52b161eea1","tok-9e90c9ba426d","tok-87755ceee4bc","tok-744d4d787484","tok-d0beb02c368c","tok-ececb9c86da6","tok-4264012eb879","tok-41c93f5df032","tok-107df3d0fd6c","tok-5914633eb1b2"]}]},"habakkuk-2-16":{"unit_id":"habakkuk-2-16","anchor_id":"habakkuk-2-16","source_ref":"Habakkuk 2:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-768806e2dc01","tok-b538e7a842cd","tok-959c8c7b786f","tok-5f61778aa247","tok-f6e3ca933504","tok-9914123576d8","tok-a48bfd1b6556","tok-6eecce56cdcd","tok-bee7a63eb66c","tok-7f35d67c53b1","tok-6be6ee0040da","tok-a7a3ada707eb","tok-3d2f2e82ce36"]}]},"habakkuk-2-17":{"unit_id":"habakkuk-2-17","anchor_id":"habakkuk-2-17","source_ref":"Habakkuk 2:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8db133f838b5","tok-65626de7efa5","tok-aa81fbc1a8e0","tok-46585dde5f00","tok-fa8c7b928a5c","tok-e63321d7c0e3","tok-1c022721786b","tok-2b1a87a9cd8e","tok-11a366fce45b","tok-f904376f2d51","tok-422683606c22","tok-262201c344a2","tok-7a13c442e1a3"]}]},"habakkuk-2-18":{"unit_id":"habakkuk-2-18","anchor_id":"habakkuk-2-18","source_ref":"Habakkuk 2:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-aaad6d79abab","tok-995ed4f58cf4","tok-7128b9bf72f6","tok-d6347cc9da4b","tok-2bba315199e2","tok-0bcb7833d57b","tok-fef356e23b0f","tok-97ef6e49f41f","tok-8db133f838b5","tok-a6231bca6bb5","tok-7de0daf48632","tok-d28a20a09edf","tok-d70e8c48b1e3","tok-91de19c09281","tok-ec9162674d6f","tok-b7c46626981f","tok-74f516e8d7b7"]}]},"habakkuk-2-19":{"unit_id":"habakkuk-2-19","anchor_id":"habakkuk-2-19","source_ref":"Habakkuk 2:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-10bc36c9aa7a","tok-55e9fd60e9b1","tok-a33a787b8ac3","tok-df1924a69178","tok-75b59d69d9da","tok-59d7b4cd3de0","tok-e88e3b207594","tok-bbe61cceceaa","tok-820e513ff488","tok-7fb050c6e2c3","tok-e1bd7521db66","tok-8de71e47d34e","tok-c5e0df22abcc","tok-f5064db270ee","tok-eadd5cec97c3","tok-8a6d2e20c4af"]}]},"habakkuk-2-20":{"unit_id":"habakkuk-2-20","anchor_id":"habakkuk-2-20","source_ref":"Habakkuk 2:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bad67952d025","tok-974985b0b22b","tok-262d6861ed91","tok-83d64d2994ec","tok-406c3344f4ef","tok-121a776fba67","tok-74f516e8d7b7"]}]},"habakkuk-3-1":{"unit_id":"habakkuk-3-1","anchor_id":"habakkuk-3-1","source_ref":"Habakkuk 3:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1f4f01b367f6","tok-8457b80da331","tok-72ad34639f67","tok-cfa05472c142","tok-4e197ec8fd4a"]}]},"habakkuk-3-2":{"unit_id":"habakkuk-3-2","anchor_id":"habakkuk-3-2","source_ref":"Habakkuk 3:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1a25f1766edd","tok-2815b13f23db","tok-14ed4d18f713","tok-67036a3965c8","tok-1a25f1766edd","tok-6b3052df76c7","tok-837787a1ce68","tok-1d71a0c5d2a2","tok-a3216faa11ad","tok-d20871c33498","tok-be6cae8164b4","tok-9afbe7d9c8b5","tok-a4db382c7b2f","tok-af90596015dc","tok-09157664783e"]}]},"habakkuk-3-3":{"unit_id":"habakkuk-3-3","anchor_id":"habakkuk-3-3","source_ref":"Habakkuk 3:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7cbc830ef1a4","tok-12972597c8dc","tok-ba547afb6c9d","tok-cff6f10e59ec","tok-c1ebb8277829","tok-d5df4813fff2","tok-5a5834de27ea","tok-e25dce91bae9","tok-11f2ad641f1f","tok-ee5042a6f346","tok-f1f5e276b9ed","tok-28502edc3f00"]}]},"habakkuk-3-4":{"unit_id":"habakkuk-3-4","anchor_id":"habakkuk-3-4","source_ref":"Habakkuk 3:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ca7b4ed01599","tok-8c7ca4952c20","tok-df7318db5544","tok-f33f3bc63e2d","tok-2299ac333e83","tok-9b9b6756ec33","tok-6c16f05f09ed","tok-06c170d146ff","tok-54b67c03fe4d"]}]},"habakkuk-3-5":{"unit_id":"habakkuk-3-5","anchor_id":"habakkuk-3-5","source_ref":"Habakkuk 3:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fb34c1728a49","tok-cbdd73c7d819","tok-71048f505fd5","tok-2be84d823fa1","tok-fd9b59392349","tok-d5f46ad85755"]}]},"habakkuk-3-6":{"unit_id":"habakkuk-3-6","anchor_id":"habakkuk-3-6","source_ref":"Habakkuk 3:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0b8691028bc8","tok-3183d1d91c51","tok-c06d0b715824","tok-48f698b1e6a1","tok-0b62e7453135","tok-401a9614660c","tok-6cf144486332","tok-18cef222d096","tok-51e7cf11ea08","tok-5f7ed8efd034","tok-88f3a0c8ad3c","tok-3d528ccbc8a5","tok-278a6b8b8288","tok-23426eeaf695"]}]},"habakkuk-3-7":{"unit_id":"habakkuk-3-7","anchor_id":"habakkuk-3-7","source_ref":"Habakkuk 3:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-355351ea4b79","tok-ea55bec16483","tok-062160fc050e","tok-b40f7f4df5c2","tok-e7f3ba1955d0","tok-c596f0b5c5c5","tok-1444724a24a5","tok-d02513264783","tok-90c926ac55a3"]}]},"habakkuk-3-8":{"unit_id":"habakkuk-3-8","anchor_id":"habakkuk-3-8","source_ref":"Habakkuk 3:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-55f9f8733434","tok-5ae0dd8b2e17","tok-6be6ee0040da","tok-afae62956cea","tok-04f716fc7208","tok-4c96e824796b","tok-2975b70b6785","tok-5599f5434be0","tok-7128b9bf72f6","tok-fc52f8353ad1","tok-87e6ecca9a8c","tok-51d43f85dcdd","tok-857dbf2d961d"]}]},"habakkuk-3-9":{"unit_id":"habakkuk-3-9","anchor_id":"habakkuk-3-9","source_ref":"Habakkuk 3:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e3b2bfd5ada7","tok-a9248abf1f7a","tok-468250d5e850","tok-07e6e74710ca","tok-3e1b96e4bd15","tok-2009ea3f7ff0","tok-d5df4813fff2","tok-ce17a3339e1e","tok-c25d1480f005"]}]},"habakkuk-3-10":{"unit_id":"habakkuk-3-10","anchor_id":"habakkuk-3-10","source_ref":"Habakkuk 3:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4525935377d7","tok-a19896e80532","tok-503f6a3e5333","tok-ae1c308fdee6","tok-dca200d0b4f6","tok-696572a90cdc","tok-da4c4e06f0a2","tok-05118383c28f","tok-baa5648f9596","tok-897ce41c4a68","tok-2606974b9625","tok-8dd9bd577d65"]}]},"habakkuk-3-11":{"unit_id":"habakkuk-3-11","anchor_id":"habakkuk-3-11","source_ref":"Habakkuk 3:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a40f9b79b21b","tok-426eaa3ac2a5","tok-f6d1c9f72b5c","tok-41ee44b3023a","tok-63d939af1ff5","tok-f78459505826","tok-101d96add4fe","tok-a8e216ee0c4c","tok-fc21aa04b56a","tok-ae6e1f476cd0"]}]},"habakkuk-3-12":{"unit_id":"habakkuk-3-12","anchor_id":"habakkuk-3-12","source_ref":"Habakkuk 3:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e61e62c77944","tok-8bf8bc88aec3","tok-65045d8a9864","tok-533f05f3c6f3","tok-2397c6ef8d5d"]}]},"habakkuk-3-13":{"unit_id":"habakkuk-3-13","anchor_id":"habakkuk-3-13","source_ref":"Habakkuk 3:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4b3a14cc82d3","tok-1c9952f22b51","tok-a3dec2a1213a","tok-15c109bae5c9","tok-09128194104e","tok-4d2e683bfa79","tok-99c827bd6f1b","tok-cc36d775fb3a","tok-46ab51e8a8f1","tok-9bc31fc044a1","tok-ea28eb1f490d","tok-8078b311e4d9","tok-4c6df30b8570","tok-267e28951c3f"]}]},"habakkuk-3-14":{"unit_id":"habakkuk-3-14","anchor_id":"habakkuk-3-14","source_ref":"Habakkuk 3:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-835197afd982","tok-47de83f91a7b","tok-9ee0679f99c1","tok-e106ecdffcaf","tok-817e1d26676e","tok-19f24bcd2154","tok-eae062a37130","tok-5a55a683a532","tok-b50d75ee80fc","tok-04e91abc2763"]}]},"habakkuk-3-15":{"unit_id":"habakkuk-3-15","anchor_id":"habakkuk-3-15","source_ref":"Habakkuk 3:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f7f070a70412","tok-6cbba07025a5","tok-8e45aed6184f","tok-9134d55f8bc7","tok-74d85c1f9687","tok-b3abbe4d8e80"]}]},"habakkuk-3-16":{"unit_id":"habakkuk-3-16","anchor_id":"habakkuk-3-16","source_ref":"Habakkuk 3:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2815b13f23db","tok-5e57e94dfe0d","tok-b1dae8d55d23","tok-33ecd8cb3c9e","tok-289fc35850ab","tok-493ab91a590b","tok-f49cc1459fd8","tok-86954fba96ca","tok-ac6d3cdae704","tok-5e9acbd8c1ef","tok-54bfd875c99e","tok-ec825e783146","tok-98b1d1bac176","tok-951d8cb51e29","tok-e7387d3f3a9e","tok-6d9619863d7c","tok-eea5b725195e","tok-e89f4b5aa869"]}]},"habakkuk-3-17":{"unit_id":"habakkuk-3-17","anchor_id":"habakkuk-3-17","source_ref":"Habakkuk 3:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4fefea638a50","tok-2dedb558f622","tok-fc1b2d03a1be","tok-a309acbc59e5","tok-56b9cbc3f35e","tok-065bfa1316ef","tok-6b6625399ed6","tok-b323dbc3536d","tok-8870ea47fdc7","tok-d6c5cfb14f5c","tok-b556f1808725","tok-8bb1b17c5a45","tok-3e839af3f9cf","tok-cc1001a861db","tok-07e377c92694","tok-56f6e12e8793"]}]},"habakkuk-3-18":{"unit_id":"habakkuk-3-18","anchor_id":"habakkuk-3-18","source_ref":"Habakkuk 3:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a91235051e53","tok-c5da582be44e","tok-b5b2730c7cef","tok-edc0be680c5f","tok-4c805fed324e","tok-2b33ef5e9ce6"]}]},"habakkuk-3-19":{"unit_id":"habakkuk-3-19","anchor_id":"habakkuk-3-19","source_ref":"Habakkuk 3:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e9f126ec15be","tok-b111eae76180","tok-5b056cb735af","tok-d6622731b3f5","tok-7f2e34d1aeaf","tok-239633ff14b0","tok-0cf5bf7bb9db","tok-f6dc33d5b12d","tok-1fc8d24dd566","tok-c528260746b1","tok-1c707afa187c"]}]}}}</script>
   <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/habakkuk.manifest.json","root_href":"../../"}</script>
   <script>
     (() => {
@@ -1160,6 +1177,8 @@
         "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };
@@ -1220,7 +1239,7 @@
         if (chunkId) await loadChunk(chunkId);
         return tokenRows.get(tokenIndexId) || {};
       };
-      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1×³").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1×´") : value;
       const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
       const makeWordSpan = (text, tokenIndexId, ordinal) => {
         const span = document.createElement("span");
@@ -1451,7 +1470,7 @@
       };
       const cleanTransliteration = (value) => {
         const text = String(value || "").trim();
-        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+        return /^[A-Za-z0-9 .,\-ÃŠÂ»ÃŠÂ¿ÃŠÂ¾ÃŠÂ¼()]+$/.test(text) && text.length <= 80 ? text : "";
       };
       const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
       const sourceQualityScore = (rows) => {

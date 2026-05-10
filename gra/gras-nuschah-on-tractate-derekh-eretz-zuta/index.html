@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -31,6 +31,23 @@
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
     .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
@@ -187,7 +204,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ומטיל:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•×ž×˜×™×œ:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -206,7 +223,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מנין שנאמר ונתתי שלום בארץ וגו׳ והשבתי חיה רעה מן הארץ וחרב לא תעבור בארצכם ואין:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×ž× ×™×Ÿ ×©× ××ž×¨ ×•× ×ª×ª×™ ×©×œ×•× ×‘××¨×¥ ×•×’×•×³ ×•×”×©×‘×ª×™ ×—×™×” ×¨×¢×” ×ž×Ÿ ×”××¨×¥ ×•×—×¨×‘ ×œ× ×ª×¢×‘×•×¨ ×‘××¨×¦×›× ×•××™×Ÿ:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -222,7 +239,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמר שלמה אע&quot;פ:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">××ž×¨ ×©×œ×ž×” ××¢&quot;×¤:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -238,7 +255,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מעזבן לא כלין ולא מכלן:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×ž×¢×–×‘×Ÿ ×œ× ×›×œ×™×Ÿ ×•×œ× ×ž×›×œ×Ÿ:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -267,7 +284,7 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"gras-nuschah-on-tractate-derekh-eretz-zuta","work_title":"Gra\u0027s Nuschah on Tractate Derekh Eretz Zuta","work_slug":"gra/gras-nuschah-on-tractate-derekh-eretz-zuta","scope_label":"All imported Hebrew works","generated_at":"2026-05-05T23:45:25.648Z","total_occurrences":25,"units":{"gras-nuschah-on-tractate-derekh-eretz-zuta-default-default-1-1-1":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-default-default-1-1-1","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-default-default-1-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Zuta 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c36f5e5e4b03"]}]},"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-1":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-1","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0b8fd98e582d","tok-0e86f8acee18","tok-9775381d738a","tok-35d6dcd3f1e9","tok-7f730c78e928","tok-72e2e752909a","tok-32b4c9aad314","tok-2ead351803fa","tok-dc6da222e816","tok-9d4b9ab7f0d1","tok-944bd8d12db5","tok-0e50ac55be19","tok-0d4ce34eab17","tok-aa2ed513fb64","tok-8a0f18de0066","tok-65452ca513a0"]}]},"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-2":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-2","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a4a26cfd7a05","tok-39ef219d9fc2","tok-36a88e5197db"]}]},"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-3":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-3","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-3","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-338ffef267ac","tok-0d4ce34eab17","tok-9a5a8cb53da1","tok-2d18c5cc210d","tok-2b3f994aeeb6"]}]}}}</script>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"gras-nuschah-on-tractate-derekh-eretz-zuta","work_title":"Gra\u0027s Nuschah on Tractate Derekh Eretz Zuta","work_slug":"gra/gras-nuschah-on-tractate-derekh-eretz-zuta","scope_label":"All imported Hebrew works","generated_at":"2026-05-10T15:21:04.206Z","total_occurrences":25,"units":{"gras-nuschah-on-tractate-derekh-eretz-zuta-default-default-1-1-1":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-default-default-1-1-1","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-default-default-1-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Zuta 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c36f5e5e4b03"]}]},"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-1":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-1","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0b8fd98e582d","tok-0e86f8acee18","tok-9775381d738a","tok-35d6dcd3f1e9","tok-7f730c78e928","tok-72e2e752909a","tok-32b4c9aad314","tok-2ead351803fa","tok-dc6da222e816","tok-9d4b9ab7f0d1","tok-944bd8d12db5","tok-0e50ac55be19","tok-0d4ce34eab17","tok-aa2ed513fb64","tok-8a0f18de0066","tok-65452ca513a0"]}]},"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-2":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-2","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a4a26cfd7a05","tok-39ef219d9fc2","tok-36a88e5197db"]}]},"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-3":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-3","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-3","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-338ffef267ac","tok-0d4ce34eab17","tok-9a5a8cb53da1","tok-2d18c5cc210d","tok-2b3f994aeeb6"]}]}}}</script>
   <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/gras-nuschah-on-tractate-derekh-eretz-zuta.manifest.json","root_href":"../../"}</script>
   <script>
     (() => {
@@ -293,6 +310,8 @@
         "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };
@@ -353,7 +372,7 @@
         if (chunkId) await loadChunk(chunkId);
         return tokenRows.get(tokenIndexId) || {};
       };
-      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1×³").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1×´") : value;
       const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
       const makeWordSpan = (text, tokenIndexId, ordinal) => {
         const span = document.createElement("span");
@@ -584,7 +603,7 @@
       };
       const cleanTransliteration = (value) => {
         const text = String(value || "").trim();
-        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+        return /^[A-Za-z0-9 .,\-ÃŠÂ»ÃŠÂ¿ÃŠÂ¾ÃŠÂ¼()]+$/.test(text) && text.length <= 80 ? text : "";
       };
       const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
       const sourceQualityScore = (rows) => {

@@ -449,7 +449,7 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }')
   [void]$Builder.AppendLine('    .library-shelf-title strong { font-size: 1.12rem; }')
   [void]$Builder.AppendLine('    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }')
-  [void]$Builder.AppendLine('    .library-summary-meta { white-space: nowrap; }')
+  [void]$Builder.AppendLine('    .library-summary-meta { overflow-wrap: anywhere; }')
   [void]$Builder.AppendLine('    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }')
   [void]$Builder.AppendLine('    .library-subgroup { background: rgba(255,255,255,0.02); }')
   [void]$Builder.AppendLine('    .library-subgroup > summary { padding: 12px 14px; }')

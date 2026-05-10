@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -31,6 +31,23 @@
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
     .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
@@ -317,7 +334,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>רבנן</strong> אמרי והיו כו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×¨×‘× ×Ÿ</strong> ××ž×¨×™ ×•×”×™×• ×›×•×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -333,7 +350,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הסדקי.</strong> נתבאר במדרש רות פ&quot;א:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×”×¡×“×§×™.</strong> × ×ª×‘××¨ ×‘×ž×“×¨×© ×¨×•×ª ×¤&quot;×:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -349,7 +366,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>במתים.</strong> כלומר הרי זה חשוב כמת:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×‘×ž×ª×™×.</strong> ×›×œ×•×ž×¨ ×”×¨×™ ×–×” ×—×©×•×‘ ×›×ž×ª:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -365,7 +382,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בדיוטא.</strong> עלייה מקום מושב המשפט או הוא בית הסוהר:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×‘×“×™×•×˜×.</strong> ×¢×œ×™×™×” ×ž×§×•× ×ž×•×©×‘ ×”×ž×©×¤×˜ ××• ×”×•× ×‘×™×ª ×”×¡×•×”×¨:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -381,7 +398,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קסרין.</strong> כרך גדול ועיקר באדום:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×§×¡×¨×™×Ÿ.</strong> ×›×¨×š ×’×“×•×œ ×•×¢×™×§×¨ ×‘××“×•×:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -397,7 +414,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רב פתר גרסי׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×¨×‘ ×¤×ª×¨ ×’×¨×¡×™×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -413,7 +430,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה&quot;ג והיו חייך וגו׳ מהסרת הטבעת ופחדת כו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”&quot;×’ ×•×”×™×• ×—×™×™×š ×•×’×•×³ ×ž×”×¡×¨×ª ×”×˜×‘×¢×ª ×•×¤×—×“×ª ×›×•×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -430,7 +447,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שהכתבים גרסי׳. ור&quot;ל הכתבים ששלח המן:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×©×”×›×ª×‘×™× ×’×¨×¡×™×³. ×•×¨&quot;×œ ×”×›×ª×‘×™× ×©×©×œ×— ×”×ž×Ÿ:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -446,7 +463,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה&quot;ג שלא יחזרו למצרים הראשון:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”&quot;×’ ×©×œ× ×™×—×–×¨×• ×œ×ž×¦×¨×™× ×”×¨××©×•×Ÿ:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -462,7 +479,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">היום וגו׳ גרסי׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”×™×•× ×•×’×•×³ ×’×¨×¡×™×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -478,7 +495,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והדין שלישי גרסי׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•×”×“×™×Ÿ ×©×œ×™×©×™ ×’×¨×¡×™×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -494,7 +511,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דכתיב והשיבך וכו׳.</strong> הרי שקללם בכך שישובו שם על כרחם מכלל שבלאו הכי אסורים הם לשוב שם:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×“×›×ª×™×‘ ×•×”×©×™×‘×š ×•×›×•×³.</strong> ×”×¨×™ ×©×§×œ×œ× ×‘×›×š ×©×™×©×•×‘×• ×©× ×¢×œ ×›×¨×—× ×ž×›×œ×œ ×©×‘×œ××• ×”×›×™ ××¡×•×¨×™× ×”× ×œ×©×•×‘ ×©×:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -510,7 +527,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והיתה החרב וגו׳.</strong> וכתיב בסוף הפרשה ויבואו ארץ מצרים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×•×”×™×ª×” ×”×—×¨×‘ ×•×’×•×³.</strong> ×•×›×ª×™×‘ ×‘×¡×•×£ ×”×¤×¨×©×” ×•×™×‘×•××• ××¨×¥ ×ž×¦×¨×™×:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -526,7 +543,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">או לא נדליק גרסי׳. ועי׳ כל זה במגילת איכה בפסוק על אלה ובפסוק קלים ובירושלמי דפרק החליל:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">××• ×œ× × ×“×œ×™×§ ×’×¨×¡×™×³. ×•×¢×™×³ ×›×œ ×–×” ×‘×ž×’×™×œ×ª ××™×›×” ×‘×¤×¡×•×§ ×¢×œ ××œ×” ×•×‘×¤×¡×•×§ ×§×œ×™× ×•×‘×™×¨×•×©×œ×ž×™ ×“×¤×¨×§ ×”×—×œ×™×œ:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -542,7 +559,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לגיונותיו גרסי׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×œ×’×™×•× ×•×ª×™×• ×’×¨×¡×™×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -558,7 +575,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלא הקניתם כו׳.</strong> דייק מדכתיב ואין קונה וסמיך ליה אלה דברי הברית:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×©×œ× ×”×§× ×™×ª× ×›×•×³.</strong> ×“×™×™×§ ×ž×“×›×ª×™×‘ ×•××™×Ÿ ×§×•× ×” ×•×¡×ž×™×š ×œ×™×” ××œ×” ×“×‘×¨×™ ×”×‘×¨×™×ª:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -574,7 +591,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מנין של קונה.</strong> כלומר קונה נוטריקון קונה ה׳ וה׳ היא מנין של ה׳ חומשי תורה או ר&quot;ל קונה במספר קטן תורה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×ž× ×™×Ÿ ×©×œ ×§×•× ×”.</strong> ×›×œ×•×ž×¨ ×§×•× ×” × ×•×˜×¨×™×§×•×Ÿ ×§×•× ×” ×”×³ ×•×”×³ ×”×™× ×ž× ×™×Ÿ ×©×œ ×”×³ ×—×•×ž×©×™ ×ª×•×¨×” ××• ×¨&quot;×œ ×§×•× ×” ×‘×ž×¡×¤×¨ ×§×˜×Ÿ ×ª×•×¨×”:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -590,7 +607,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין מי כו׳.</strong> לפיכך אע&quot;פ שתירצו להמכר להם ואין קונה והיא טובה להם כמו שפירש&quot;י בחומש או פירושו כדמפרש רבי שמואל בר יצחק שלא יהא להם קנין בכם:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×•××™×Ÿ ×ž×™ ×›×•×³.</strong> ×œ×¤×™×›×š ××¢&quot;×¤ ×©×ª×™×¨×¦×• ×œ×”×ž×›×¨ ×œ×”× ×•××™×Ÿ ×§×•× ×” ×•×”×™× ×˜×•×‘×” ×œ×”× ×›×ž×• ×©×¤×™×¨×©&quot;×™ ×‘×—×•×ž×© ××• ×¤×™×¨×•×©×• ×›×“×ž×¤×¨×© ×¨×‘×™ ×©×ž×•××œ ×‘×¨ ×™×¦×—×§ ×©×œ× ×™×”× ×œ×”× ×§× ×™×Ÿ ×‘×›×:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -606,7 +623,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פטרונות.</strong> אדונים ולפיכך אין לאומות קנין בכם:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×¤×˜×¨×•× ×•×ª.</strong> ××“×•× ×™× ×•×œ×¤×™×›×š ××™×Ÿ ×œ××•×ž×•×ª ×§× ×™×Ÿ ×‘×›×:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -622,7 +639,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טמיקא.</strong> בערוך ערך טמיקן משמע מכובדים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×˜×ž×™×§×.</strong> ×‘×¢×¨×•×š ×¢×¨×š ×˜×ž×™×§×Ÿ ×ž×©×ž×¢ ×ž×›×•×‘×“×™×:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -638,7 +655,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שוב אינו מתחייב כו׳.</strong> בתמיה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×©×•×‘ ××™× ×• ×ž×ª×—×™×™×‘ ×›×•×³.</strong> ×‘×ª×ž×™×”:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -654,7 +671,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הנה בית המן וכו׳.</strong> על שפשט ידו ולקח עבד טמיקא:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×”× ×” ×‘×™×ª ×”×ž×Ÿ ×•×›×•×³.</strong> ×¢×œ ×©×¤×©×˜ ×™×“×• ×•×œ×§×— ×¢×‘×“ ×˜×ž×™×§×:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -670,7 +687,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה&quot;ג על דפשט כו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”&quot;×’ ×¢×œ ×“×¤×©×˜ ×›×•×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -686,7 +703,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">פודה את השבויים גרסי׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×¤×•×“×” ××ª ×”×©×‘×•×™×™× ×’×¨×¡×™×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -702,7 +719,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שמטה ידה גרסי׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×©×ž×˜×” ×™×“×” ×’×¨×¡×™×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -718,7 +735,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקיפוה כו׳.</strong> אנשי פרוצפיה הקיפוה כו׳ כדי שיראוה השבאים שהרגוה ולא יוסיפו לשבות עוד שבויים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×”×§×™×¤×•×” ×›×•×³.</strong> ×× ×©×™ ×¤×¨×•×¦×¤×™×” ×”×§×™×¤×•×” ×›×•×³ ×›×“×™ ×©×™×¨××•×” ×”×©×‘××™× ×©×”×¨×’×•×” ×•×œ× ×™×•×¡×™×¤×• ×œ×©×‘×•×ª ×¢×•×“ ×©×‘×•×™×™×:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -734,7 +751,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה&quot;ג לזרז השבאים הבאים. והם הלסטים השובים את השבויים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”&quot;×’ ×œ×–×¨×– ×”×©×‘××™× ×”×‘××™×. ×•×”× ×”×œ×¡×˜×™× ×”×©×•×‘×™× ××ª ×”×©×‘×•×™×™×:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -750,7 +767,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לקח לו חבר.</strong> הקב&quot;ה לקח לו לישראל לחבר ולאשה ולפיכך ואין קונה אתכם להריגה כהמן וחביריו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×œ×§×— ×œ×• ×—×‘×¨.</strong> ×”×§×‘&quot;×” ×œ×§×— ×œ×• ×œ×™×©×¨××œ ×œ×—×‘×¨ ×•×œ××©×” ×•×œ×¤×™×›×š ×•××™×Ÿ ×§×•× ×” ××ª×›× ×œ×”×¨×™×’×” ×›×”×ž×Ÿ ×•×—×‘×™×¨×™×•:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -766,7 +783,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה&quot;ג לקח לו אשה ולמחר היא כו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”&quot;×’ ×œ×§×— ×œ×• ××©×” ×•×œ×ž×—×¨ ×”×™× ×›×•×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -782,7 +799,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה&quot;ג או אתם נקנים אבל אתם נקנין להשמיד כו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”&quot;×’ ××• ××ª× × ×§× ×™× ××‘×œ ××ª× × ×§× ×™×Ÿ ×œ×”×©×ž×™×“ ×›×•×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -798,7 +815,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">נמכרנו וגו׳ גרסי׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">× ×ž×›×¨× ×• ×•×’×•×³ ×’×¨×¡×™×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -815,7 +832,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בפ&quot;ק דמגילה משמע דהכי גרסי׳ טרקווינוס לכלותם בימי המן להפר בריתי אתם בימי רומיים כי אני ה׳ כו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×‘×¤&quot;×§ ×“×ž×’×™×œ×” ×ž×©×ž×¢ ×“×”×›×™ ×’×¨×¡×™×³ ×˜×¨×§×•×•×™× ×•×¡ ×œ×›×œ×•×ª× ×‘×™×ž×™ ×”×ž×Ÿ ×œ×”×¤×¨ ×‘×¨×™×ª×™ ××ª× ×‘×™×ž×™ ×¨×•×ž×™×™× ×›×™ ×× ×™ ×”×³ ×›×•×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -832,7 +849,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הארי וגו׳ גרסי׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”××¨×™ ×•×’×•×³ ×’×¨×¡×™×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -848,7 +865,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לדב כתיב.</strong> חסר וי&quot;ו היינו דב כמו זאב ועי׳ עוד בב&quot;ר פ׳ צ&quot;ט:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×œ×“×‘ ×›×ª×™×‘.</strong> ×—×¡×¨ ×•×™&quot;×• ×”×™×™× ×• ×“×‘ ×›×ž×• ×–××‘ ×•×¢×™×³ ×¢×•×“ ×‘×‘&quot;×¨ ×¤×³ ×¦&quot;×˜:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -864,7 +881,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה&quot;ג יטרף זו אדום. ובא הבית זה יון שהיה הבית קיים ונשכו הנחש זה אדום שנאמר קולה כנחש ילך וכה&quot;א פתחי לו אחותי זו בבל רעיתי זו מדי יונתי ביון תמתי באדום שכל ימי יון כו׳ וסיומא דקרא דכאשר ינוס הוא ובשוחר טוב מסיים תמתי באדום שהיו משלימין ומתאימין נפשותיהם על קדושת השם:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”&quot;×’ ×™×˜×¨×£ ×–×• ××“×•×. ×•×‘× ×”×‘×™×ª ×–×” ×™×•×Ÿ ×©×”×™×” ×”×‘×™×ª ×§×™×™× ×•× ×©×›×• ×”× ×—×© ×–×” ××“×•× ×©× ××ž×¨ ×§×•×œ×” ×›× ×—×© ×™×œ×š ×•×›×”&quot;× ×¤×ª×—×™ ×œ×• ××—×•×ª×™ ×–×• ×‘×‘×œ ×¨×¢×™×ª×™ ×–×• ×ž×“×™ ×™×•× ×ª×™ ×‘×™×•×Ÿ ×ª×ž×ª×™ ×‘××“×•× ×©×›×œ ×™×ž×™ ×™×•×Ÿ ×›×•×³ ×•×¡×™×•×ž× ×“×§×¨× ×“×›××©×¨ ×™× ×•×¡ ×”×•× ×•×‘×©×•×—×¨ ×˜×•×‘ ×ž×¡×™×™× ×ª×ž×ª×™ ×‘××“×•× ×©×”×™×• ×ž×©×œ×™×ž×™×Ÿ ×•×ž×ª××™×ž×™×Ÿ × ×¤×©×•×ª×™×”× ×¢×œ ×§×“×•×©×ª ×”×©×:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -880,7 +897,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הוי ישמע וגו׳.</strong> כלומר שהיכל הקודש היה קיים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×”×•×™ ×™×©×ž×¢ ×•×’×•×³.</strong> ×›×œ×•×ž×¨ ×©×”×™×›×œ ×”×§×•×“×© ×”×™×” ×§×™×™×:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -896,7 +913,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נושף.</strong> לשון הכאה כמה דאת אמר ואכות אותו טחון תרגום אונקלוס ושפית יתיה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>× ×•×©×£.</strong> ×œ×©×•×Ÿ ×”×›××” ×›×ž×” ×“××ª ××ž×¨ ×•××›×•×ª ××•×ª×• ×˜×—×•×Ÿ ×ª×¨×’×•× ××•× ×§×œ×•×¡ ×•×©×¤×™×ª ×™×ª×™×”:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -912,7 +929,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זו מדת הארץ.</strong> מס מן הקרקעות ועיין בפרק השותפין ובערוך ערך ארנון ובערוך פרבגרון:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×–×• ×ž×“×ª ×”××¨×¥.</strong> ×ž×¡ ×ž×Ÿ ×”×§×¨×§×¢×•×ª ×•×¢×™×™×Ÿ ×‘×¤×¨×§ ×”×©×•×ª×¤×™×Ÿ ×•×‘×¢×¨×•×š ×¢×¨×š ××¨× ×•×Ÿ ×•×‘×¢×¨×•×š ×¤×¨×‘×’×¨×•×Ÿ:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -928,7 +945,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה&quot;ג בערוך בערך זו פרבגרון:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”&quot;×’ ×‘×¢×¨×•×š ×‘×¢×¨×š ×–×• ×¤×¨×‘×’×¨×•×Ÿ:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -944,7 +961,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אנגריא.</strong> שעבוד שמשעבדין בבני אדם לעבוד עבודת המלך.</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×× ×’×¨×™×.</strong> ×©×¢×‘×•×“ ×©×ž×©×¢×‘×“×™×Ÿ ×‘×‘× ×™ ××“× ×œ×¢×‘×•×“ ×¢×‘×•×“×ª ×”×ž×œ×š.</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -960,7 +977,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מתפתה כו׳</strong> . כלומר נתפייס ונתקרר רוחו מדאבון לבו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×ž×ª×¤×ª×” ×›×•×³</strong> . ×›×œ×•×ž×¨ × ×ª×¤×™×™×¡ ×•× ×ª×§×¨×¨ ×¨×•×—×• ×ž×“××‘×•×Ÿ ×œ×‘×•:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -976,7 +993,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בי טיאטריאות כו׳.</strong> פי׳ הערוך בתים שמשחקין בו במיני שחוק בחיות ועופות ובני אדם כיוצא בהם:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×‘×™ ×˜×™××˜×¨×™××•×ª ×›×•×³.</strong> ×¤×™×³ ×”×¢×¨×•×š ×‘×ª×™× ×©×ž×©×—×§×™×Ÿ ×‘×• ×‘×ž×™× ×™ ×©×—×•×§ ×‘×—×™×•×ª ×•×¢×•×¤×•×ª ×•×‘× ×™ ××“× ×›×™×•×¦× ×‘×”×:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -993,7 +1010,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה&quot;ג ושמחה בעולם וה וה בעולם והוא לשון שמחה כדאיתא באיכה רבה בפסוק היו צריה בין ווי לוה נמלט ר׳ יוחנן:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”&quot;×’ ×•×©×ž×—×” ×‘×¢×•×œ× ×•×” ×•×” ×‘×¢×•×œ× ×•×”×•× ×œ×©×•×Ÿ ×©×ž×—×” ×›×“××™×ª× ×‘××™×›×” ×¨×‘×” ×‘×¤×¡×•×§ ×”×™×• ×¦×¨×™×” ×‘×™×Ÿ ×•×•×™ ×œ×•×” × ×ž×œ×˜ ×¨×³ ×™×•×—× ×Ÿ:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1010,7 +1027,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזלת זכאה כו׳.</strong> הלכת צדיק וחזרת רשע או ר&quot;ל והבאת רשע:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>××–×œ×ª ×–×›××” ×›×•×³.</strong> ×”×œ×›×ª ×¦×“×™×§ ×•×—×–×¨×ª ×¨×©×¢ ××• ×¨&quot;×œ ×•×”×‘××ª ×¨×©×¢:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1026,7 +1043,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והא צמחה וכו׳.</strong> והרי מגידול שצמח ממנו עומד לפניכם ראו הגידול שגידלתם:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×•×”× ×¦×ž×—×” ×•×›×•×³.</strong> ×•×”×¨×™ ×ž×’×™×“×•×œ ×©×¦×ž×— ×ž×ž× ×• ×¢×•×ž×“ ×œ×¤× ×™×›× ×¨××• ×”×’×™×“×•×œ ×©×’×™×“×œ×ª×:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1043,7 +1060,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הוא האלהים אשר בירושלם.</strong> וזהו סכלות כי מלא כל הארץ כבודו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×”×•× ×”××œ×”×™× ××©×¨ ×‘×™×¨×•×©×œ×.</strong> ×•×–×”×• ×¡×›×œ×•×ª ×›×™ ×ž×œ× ×›×œ ×”××¨×¥ ×›×‘×•×“×•:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1059,7 +1076,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יהי אלהיו וגו׳.</strong> אלהינו היה לו לומר ובמדרש קהלת הגירסא נשתנת קצת:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×™×”×™ ××œ×”×™×• ×•×’×•×³.</strong> ××œ×”×™× ×• ×”×™×” ×œ×• ×œ×•×ž×¨ ×•×‘×ž×“×¨×© ×§×”×œ×ª ×”×’×™×¨×¡× × ×©×ª× ×ª ×§×¦×ª:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1075,7 +1092,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה&quot;ג לא יעבור. ד&quot;א תחלת דברי וגו׳ זה אחשורוש שנאמר ובמלכות אחשורוש בתחלת מלכותו כתבו שטנה וגו׳ שעלה וביטל מלאכת בהמ&quot;ק כיון שראו הכל כן כו׳ ועיין במדרש חזית בפסוק קמתי הטעם למה אמר די עבר כו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”&quot;×’ ×œ× ×™×¢×‘×•×¨. ×“&quot;× ×ª×—×œ×ª ×“×‘×¨×™ ×•×’×•×³ ×–×” ××—×©×•×¨×•×© ×©× ××ž×¨ ×•×‘×ž×œ×›×•×ª ××—×©×•×¨×•×© ×‘×ª×—×œ×ª ×ž×œ×›×•×ª×• ×›×ª×‘×• ×©×˜× ×” ×•×’×•×³ ×©×¢×œ×” ×•×‘×™×˜×œ ×ž×œ××›×ª ×‘×”×ž&quot;×§ ×›×™×•×Ÿ ×©×¨××• ×”×›×œ ×›×Ÿ ×›×•×³ ×•×¢×™×™×Ÿ ×‘×ž×“×¨×© ×—×–×™×ª ×‘×¤×¡×•×§ ×§×ž×ª×™ ×”×˜×¢× ×œ×ž×” ××ž×¨ ×“×™ ×¢×‘×¨ ×›×•×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1092,7 +1109,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מן קשיותיהן כו׳.</strong> מפני קושי ערפם ורשעת הבריות שאינם עושים רצון בורא העולם ב&quot;ה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×ž×Ÿ ×§×©×™×•×ª×™×”×Ÿ ×›×•×³.</strong> ×ž×¤× ×™ ×§×•×©×™ ×¢×¨×¤× ×•×¨×©×¢×ª ×”×‘×¨×™×•×ª ×©××™× × ×¢×•×©×™× ×¨×¦×•×Ÿ ×‘×•×¨× ×”×¢×•×œ× ×‘&quot;×”:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1108,7 +1125,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מדסגו דייני כו׳.</strong> משרבו דייני שקר נתרבו עדי שקר משרבו המלשינים נתרבו שממונם של הבריות מתבוזז ונמסר ביד המלכות משרבו עזי פנים וחצופים לוקח הוד והדר והיקר מן הבריות. ושוב מן דאמר זעירא לרבא אנא רב מינך איתקטאו שינהון דבני אנשא:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×ž×“×¡×’×• ×“×™×™× ×™ ×›×•×³.</strong> ×ž×©×¨×‘×• ×“×™×™× ×™ ×©×§×¨ × ×ª×¨×‘×• ×¢×“×™ ×©×§×¨ ×ž×©×¨×‘×• ×”×ž×œ×©×™× ×™× × ×ª×¨×‘×• ×©×ž×ž×•× × ×©×œ ×”×‘×¨×™×•×ª ×ž×ª×‘×•×–×– ×•× ×ž×¡×¨ ×‘×™×“ ×”×ž×œ×›×•×ª ×ž×©×¨×‘×• ×¢×–×™ ×¤× ×™× ×•×—×¦×•×¤×™× ×œ×•×§×— ×”×•×“ ×•×”×“×¨ ×•×”×™×§×¨ ×ž×Ÿ ×”×‘×¨×™×•×ª. ×•×©×•×‘ ×ž×Ÿ ×“××ž×¨ ×–×¢×™×¨× ×œ×¨×‘× ×× × ×¨×‘ ×ž×™× ×š ××™×ª×§×˜××• ×©×™× ×”×•×Ÿ ×“×‘× ×™ ×× ×©×:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1124,7 +1141,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מן דאכעסון כו׳.</strong> פי׳ משאמר הקטן לגדול אנכי גדול ממך נתקצרו שנות חיי בני האדם משהכעיסו הבנים החביבים את מעשיהם לפני אביהם שבשמים הקים עליהם מלך חנף ונפרע מהם מעונותיהם:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×ž×Ÿ ×“××›×¢×¡×•×Ÿ ×›×•×³.</strong> ×¤×™×³ ×ž×©××ž×¨ ×”×§×˜×Ÿ ×œ×’×“×•×œ ×× ×›×™ ×’×“×•×œ ×ž×ž×š × ×ª×§×¦×¨×• ×©× ×•×ª ×—×™×™ ×‘× ×™ ×”××“× ×ž×©×”×›×¢×™×¡×• ×”×‘× ×™× ×”×—×‘×™×‘×™× ××ª ×ž×¢×©×™×”× ×œ×¤× ×™ ××‘×™×”× ×©×‘×©×ž×™× ×”×§×™× ×¢×œ×™×”× ×ž×œ×š ×—× ×£ ×•× ×¤×¨×¢ ×ž×”× ×ž×¢×•× ×•×ª×™×”×:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1140,7 +1157,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זה אחשורוש.</strong> שהרג אשתו בשביל אוהבו ואוהבו בשביל אשתו אין לך חנף גדול מזה וכן מסיים בילקוט:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×–×” ××—×©×•×¨×•×©.</strong> ×©×”×¨×’ ××©×ª×• ×‘×©×‘×™×œ ××•×”×‘×• ×•××•×”×‘×• ×‘×©×‘×™×œ ××©×ª×• ××™×Ÿ ×œ×š ×—× ×£ ×’×“×•×œ ×ž×–×” ×•×›×Ÿ ×ž×¡×™×™× ×‘×™×œ×§×•×˜:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1157,7 +1174,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לנעקדים.</strong> ואחריו רבו כמו רבו שמסרו נפשם על קדושת הש&quot;י וכמו שאמרה מרים בת נחתום לבנה הקטן כדאיתא במגלת איכה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×œ× ×¢×§×“×™×.</strong> ×•××—×¨×™×• ×¨×‘×• ×›×ž×• ×¨×‘×• ×©×ž×¡×¨×• × ×¤×©× ×¢×œ ×§×“×•×©×ª ×”×©&quot;×™ ×•×›×ž×• ×©××ž×¨×” ×ž×¨×™× ×‘×ª × ×—×ª×•× ×œ×‘× ×” ×”×§×˜×Ÿ ×›×“××™×ª× ×‘×ž×’×œ×ª ××™×›×”:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1174,7 +1191,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המדרש הזה וכו׳.</strong> עי׳ כל זה בב&quot;ר פרשה מ&quot;א וריש פרשת שמיני וריש מגילת רות:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×”×ž×“×¨×© ×”×–×” ×•×›×•×³.</strong> ×¢×™×³ ×›×œ ×–×” ×‘×‘&quot;×¨ ×¤×¨×©×” ×ž&quot;× ×•×¨×™×© ×¤×¨×©×ª ×©×ž×™× ×™ ×•×¨×™×© ×ž×’×™×œ×ª ×¨×•×ª:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1190,7 +1207,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה&quot;ג ואנכי הסתיר אסתיר את פני ביום ההוא על כל הרעה אשר עשה וגו׳ ופסוק הוא בפרשת נצבים:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”&quot;×’ ×•×× ×›×™ ×”×¡×ª×™×¨ ××¡×ª×™×¨ ××ª ×¤× ×™ ×‘×™×•× ×”×”×•× ×¢×œ ×›×œ ×”×¨×¢×” ××©×¨ ×¢×©×” ×•×’×•×³ ×•×¤×¡×•×§ ×”×•× ×‘×¤×¨×©×ª × ×¦×‘×™×:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1206,7 +1223,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">קויתי לו דכתיב גרסי׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×§×•×™×ª×™ ×œ×• ×“×›×ª×™×‘ ×’×¨×¡×™×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1222,7 +1239,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לאותה אורה דאמר גרסי׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×œ××•×ª×” ××•×¨×” ×“××ž×¨ ×’×¨×¡×™×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1238,7 +1255,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנגנז בו.</strong> בו ביום ועי׳ בפ׳ שמיני וריש רות:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×©× ×’× ×– ×‘×•.</strong> ×‘×• ×‘×™×•× ×•×¢×™×³ ×‘×¤×³ ×©×ž×™× ×™ ×•×¨×™×© ×¨×•×ª:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1254,7 +1271,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לכל דרכיו גרסי׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×œ×›×œ ×“×¨×›×™×• ×’×¨×¡×™×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1270,7 +1287,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נולד מנחם.</strong> הוא משיח ועי׳ באיכה רבה קודם פסוק פ׳ ציון:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>× ×•×œ×“ ×ž× ×—×.</strong> ×”×•× ×ž×©×™×— ×•×¢×™×³ ×‘××™×›×” ×¨×‘×” ×§×•×“× ×¤×¡×•×§ ×¤×³ ×¦×™×•×Ÿ:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1287,7 +1304,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בו אמר.</strong> במלך בבל:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×‘×• ××ž×¨.</strong> ×‘×ž×œ×š ×‘×‘×œ:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1303,7 +1320,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זה הכתב.</strong> עי׳ בפ&quot;ק דמגילה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×–×” ×”×›×ª×‘.</strong> ×¢×™×³ ×‘×¤&quot;×§ ×“×ž×’×™×œ×”:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1319,7 +1336,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בו אמר.</strong> במלך מדי:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×‘×• ××ž×¨.</strong> ×‘×ž×œ×š ×ž×“×™:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1335,7 +1352,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה&quot;ג הוי ויהי בימי וגו׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”&quot;×’ ×”×•×™ ×•×™×”×™ ×‘×™×ž×™ ×•×’×•×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1354,7 +1371,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שהשחיר.</strong> אחשורוש דרש מלשון שחרות:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×©×”×©×—×™×¨.</strong> ××—×©×•×¨×•×© ×“×¨×© ×ž×œ×©×•×Ÿ ×©×—×¨×•×ª:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1370,7 +1387,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שהכחיש.</strong> לשון כחיש ידוע ודריש אחשורוש נוטריקון כחש ראש:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×©×”×›×—×™×©.</strong> ×œ×©×•×Ÿ ×›×—×™×© ×™×“×•×¢ ×•×“×¨×™×© ××—×©×•×¨×•×© × ×•×˜×¨×™×§×•×Ÿ ×›×—×© ×¨××©:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1386,7 +1403,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שהשקה וכו׳.</strong> ג&quot;ז בלשון נוטריקון אחשורוש השקה רוש וכן כולם וק&quot;ל:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×©×”×©×§×” ×•×›×•×³.</strong> ×’&quot;×– ×‘×œ×©×•×Ÿ × ×•×˜×¨×™×§×•×Ÿ ××—×©×•×¨×•×© ×”×©×§×” ×¨×•×© ×•×›×Ÿ ×›×•×œ× ×•×§&quot;×œ:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1402,7 +1419,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ביצתן.</strong> שרשן:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×‘×™×¦×ª×Ÿ.</strong> ×©×¨×©×Ÿ:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1418,7 +1435,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זה ביטל וכו׳.</strong> אחשורוש:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×–×” ×‘×™×˜×œ ×•×›×•×³.</strong> ××—×©×•×¨×•×©:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1434,7 +1451,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וזה.</strong> נבוכדנצר:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×•×–×”.</strong> × ×‘×•×›×“× ×¦×¨:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1450,7 +1467,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הכי גרסינן נכנסו כל סנקליטין שלו כו׳. ופירושו שרים בעלי עצתו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”×›×™ ×’×¨×¡×™× ×Ÿ × ×›× ×¡×• ×›×œ ×¡× ×§×œ×™×˜×™×Ÿ ×©×œ×• ×›×•×³. ×•×¤×™×¨×•×©×• ×©×¨×™× ×‘×¢×œ×™ ×¢×¦×ª×•:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1466,7 +1483,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קנסין.</strong> לא מצאתי פירושו ולפי הענין הוא ספר זכרונות שנעתקו בתוכו כל הכתבים שנכתב למלך:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×§× ×¡×™×Ÿ.</strong> ×œ× ×ž×¦××ª×™ ×¤×™×¨×•×©×• ×•×œ×¤×™ ×”×¢× ×™×Ÿ ×”×•× ×¡×¤×¨ ×–×›×¨×•× ×•×ª ×©× ×¢×ª×§×• ×‘×ª×•×›×• ×›×œ ×”×›×ª×‘×™× ×©× ×›×ª×‘ ×œ×ž×œ×š:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1482,7 +1499,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושבי יהודאי וגו׳.</strong> מסיפיה דקרא קדייק ומטעם כורש ודריוש וארתחששתא ואמרו לקמן ארתחששתא זה אחשורוש:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>×•×©×‘×™ ×™×”×•×“××™ ×•×’×•×³.</strong> ×ž×¡×™×¤×™×” ×“×§×¨× ×§×“×™×™×§ ×•×ž×˜×¢× ×›×•×¨×© ×•×“×¨×™×•×© ×•××¨×ª×—×©×©×ª× ×•××ž×¨×• ×œ×§×ž×Ÿ ××¨×ª×—×©×©×ª× ×–×” ××—×©×•×¨×•×©:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1498,7 +1515,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כוללו עם הנביאים גרסי׳:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×›×•×œ×œ×• ×¢× ×”× ×‘×™××™× ×’×¨×¡×™×³:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1527,7 +1544,7 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"matnot-kehunah-on-esther-rabbah","work_title":"Matnot Kehunah on Esther Rabbah","work_slug":"midrash/matnot-kehunah-on-esther-rabbah","scope_label":"All imported Hebrew works","generated_at":"2026-05-09T08:03:54.707Z","total_occurrences":806,"units":{"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-53fc26db04c7","tok-559db7b8f56a","tok-0c93da04c9c9","tok-09ffea6e3ea7"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-2","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-2","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e16257b77482","tok-601bedd3efe9","tok-bea929f8547a","tok-8c1156859a65","tok-0e277f3e1689"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-3":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-3","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-3","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8aa4bc752b4b","tok-f60af806e62e","tok-f659b6400f78","tok-d9b1ad6d9ff6","tok-dfad2013ce6f","tok-dc36a4203e1e"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-4":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-4","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-4","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e9524b1fe1a9","tok-57301e85977a","tok-d5661a6e6a66","tok-65bf3c66c4e9","tok-fd7e6ec70114","tok-189d3918fdc2","tok-e32c11532cb1","tok-acfd451b6638","tok-e0394886950a"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-5":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-5","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-5","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a0b22d2c1a12","tok-9e26388ca570","tok-31b9eb85dffa","tok-f38f51476b1e","tok-1ed16538266e"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-6":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-6","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-6","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6def34d94385","tok-2d662ea5de45","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-7":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-7","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-7","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-0c93da04c9c9","tok-bd14d14de917","tok-2563d4eb298f","tok-53af6a0740db","tok-d74aad04d55d","tok-5708643d9a32","tok-09ffea6e3ea7"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cd7183302244","tok-40b65e4f23f6","tok-2ed575aa93b0","tok-0aa39e58f805","tok-30ab8b146bbb","tok-bf8316ff728e"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-2","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-2","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-29ad76e5e80b","tok-4381b35ca9d4","tok-7a5c548c1c5e","tok-db24414dcc0c"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-3":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-3","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-3","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7571e97cf51a","tok-2563d4eb298f","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-4":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-4","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-4","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d8455ee1ce6a","tok-2ad46f1b400e","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-5":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-5","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-5","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e1c7ca787a9a","tok-6493439ccd19","tok-02586f1a2635","tok-f659b6400f78","tok-4faec28a7697","tok-3cc71e2b19d0","tok-a8fa302728c1","tok-68fe2ed25572","tok-e710ded2e14c","tok-a444fb82997f","tok-b6f59b8eefea","tok-81216f9584ce","tok-9e76567a6dd8","tok-204c6012803d","tok-aaac5c06ff8e","tok-7d4eb7476fd7","tok-68fe2ed25572"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-6":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-6","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-6","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-917bd944cc82","tok-b48c24b515b0","tok-2563d4eb298f","tok-ac5f32f4840f","tok-6a68a972a60a","tok-5251a1d9868c","tok-a431b42502fc","tok-153d08851506","tok-b685cbe8cc29"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-7":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-7","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-7","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-189d3918fdc2","tok-d529ef1ef7fd","tok-28a5922dce64","tok-40b65e4f23f6","tok-5d8a05ac4b08","tok-929efbc9db54","tok-d9b1ad6d9ff6","tok-831036b9fc14","tok-ff7081775b9f","tok-b88812f3b9fd","tok-e710ded2e14c","tok-1394ed0c0e0c","tok-604ffe1c1096","tok-eba8d1ec0f37","tok-27b70f180ee1","tok-0263643fc262","tok-f076a194f5c4"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-8":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-8","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-8","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ad84f38caabe","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-9":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-9","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-9","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-29ad76e5e80b","tok-50ebcc3678cb","tok-09ffea6e3ea7","tok-59f5b43abfce","tok-fc405b2702bc","tok-2a38e2dc04f6","tok-98f9e637ad2d","tok-bd5fe9f72873","tok-2f0da18b5765","tok-1394ed0c0e0c","tok-3ba0d58b3284","tok-687388a63f5b"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-10":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-10","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-10","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fcd552118351","tok-0deb74cfcfeb","tok-98f9e637ad2d","tok-f60af806e62e","tok-98f9e637ad2d","tok-94a29302224d","tok-98f9e637ad2d","tok-33637072ea8a","tok-7c2a74d8f636","tok-1087262095c9","tok-fcd552118351","tok-0deb74cfcfeb","tok-33637072ea8a","tok-4c35dd62e3b0","tok-c41f6cb70eeb","tok-189d3918fdc2","tok-6392214e8844","tok-98f9e637ad2d","tok-f2b33bd03ef7","tok-d63a35ad85d4","tok-c41f6cb70eeb"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-11":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-11","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-11","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2a38e2dc04f6","tok-75ca9501d265","tok-09ffea6e3ea7","tok-a0da60478c05","tok-9b040182f257","tok-99c9c22d91bb","tok-dadf2099d99a","tok-009ed541b3d4","tok-2a38e2dc04f6","tok-98f9e637ad2d","tok-ff104cd71aa0","tok-de5205da839a","tok-009ed541b3d4","tok-d65a72d816ac","tok-02e20084fd6e","tok-605edc0abe14","tok-189d3918fdc2","tok-ed48bbe27107","tok-4f8fd5927ff7","tok-4f1cdbb2274a","tok-4807cf6010bd","tok-4ee43f27dcee","tok-4264a8a16b25","tok-29ad76e5e80b","tok-5e6905947b8d","tok-009ed541b3d4","tok-c978fe4b0077","tok-b35d75d076e4"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-12":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-12","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-12","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6b4da38cba51","tok-50aa67c0d2c4","tok-534ad575a8c1","tok-e637aaa3c669","tok-047a6707ee6b","tok-c978fe4b0077","tok-b35d75d076e4"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-13":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-13","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-13","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-77a70962fbbd","tok-7a58de6d8b2b","tok-abcaf634fe6e","tok-3bb0cfedda2f","tok-0a28880793c9","tok-a34117a3b7a0"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-14":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-14","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-14","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-50ee432bd8c4","tok-52001c9e436e","tok-606cd60d632a","tok-09ffea6e3ea7","tok-dec9215fc2de"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-15":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-15","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-15","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fece9f6d8d9a","tok-acfd451b6638","tok-bf8316ff728e","tok-02586f1a2635","tok-e710ded2e14c","tok-71dfd8c8febd","tok-ce7313947e65","tok-075499853346","tok-32f99d9b9105","tok-77a70962fbbd"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-16":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-16","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-16","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-e710ded2e14c","tok-ed7dfe4dd0e0","tok-09ffea6e3ea7"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-17":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-17","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-17","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ca742b02204e","tok-11b4ee8c9383","tok-7b30b89dd063","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-18":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-18","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-18","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8fa847623d6a","tok-7fea5b5bd8b8","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-19":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-19","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-19","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-59a4abb6ee0a","tok-09ffea6e3ea7","tok-1d3b09da0431","tok-3a51b097ef05","tok-59a4abb6ee0a","tok-09ffea6e3ea7","tok-2d5cbf7b6ab3","tok-88497e865f37","tok-51294038d77a","tok-7912feadcdd9","tok-594d03a83b29","tok-204d46efa8b0","tok-77236104bceb","tok-41b00fafbe9c","tok-43e05102495d"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-20":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-20","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-20","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-76e1c7d97666","tok-51294038d77a","tok-445a64409947","tok-e8edac84dff8","tok-f069b8b54c3d","tok-7e69c0c526d5","tok-11b4ee8c9383","tok-7b30b89dd063"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-21":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-21","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-21","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:21","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-de851a50f6a9","tok-c062e668b2b4","tok-92e465a49603","tok-b4c9758fa6b2","tok-de851a50f6a9","tok-c062e668b2b4","tok-4249b65257da","tok-cd5afd9c05a9","tok-405cbab16592","tok-534ad575a8c1","tok-2a38e2dc04f6","tok-98f9e637ad2d","tok-b3c71ae07745","tok-7eb48d3e46e7","tok-b16df7041de0","tok-07ebdd02a96c"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-22":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-22","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-22","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:22","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-de851a50f6a9","tok-c062e668b2b4","tok-8d1ddb0a95ef","tok-72fbae33f8e2","tok-1087262095c9","tok-09ffea6e3ea7"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-23":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-23","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-23","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:23","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-189d3918fdc2","tok-8916110939d0","tok-a7bbd51aa227","tok-56fa73b992b6","tok-8916110939d0","tok-a38e0de8e95e","tok-d67abf4b4d72","tok-09ffea6e3ea7"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-24":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-24","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-24","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:24","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d7cc83eb2625","tok-2563d4eb298f","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-4-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-4-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-4-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 4:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3fcd51f2a969","tok-5d9793ec9279","tok-0a28880793c9","tok-167362df4d72","tok-40b65e4f23f6","tok-064c584728f9","tok-76505531ed86","tok-ef2b5414db78","tok-bf8316ff728e","tok-bf57d9b83853","tok-fe1720b27efe","tok-8916110939d0","tok-ef2b5414db78","tok-fcaef0dcc87f","tok-d5d50a021fd6","tok-3a3931512a35","tok-33637072ea8a","tok-09ffea6e3ea7"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-39193d89cc9e","tok-2563d4eb298f","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-2","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-2","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9235e70c339b","tok-b2e1da1b03ea","tok-8c30ae2fcdf6","tok-73e74881e379","tok-53e48ef9699b","tok-bcdee166b1fc","tok-d65a72d816ac","tok-a5dfb295416d","tok-5d8a05ac4b08","tok-41b00fafbe9c","tok-5422cd46a307","tok-ff4925ff79ba","tok-5f7262e7b750"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-3":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-3","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-3","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-2fa565ea6eb1","tok-b21cde1f599b","tok-367b7ea01918","tok-6e345f888cba","tok-5e2d9fd6bcff","tok-d9b1ad6d9ff6","tok-997b09872e82","tok-17521d6d071a","tok-5e2d9fd6bcff","tok-db54fa85d33f","tok-4995e59b7711","tok-a6ae00a1b34f","tok-d9b1ad6d9ff6","tok-367b7ea01918","tok-80a95e4f28da","tok-ab1c972b57ff","tok-f4493827c155","tok-2636fe9a5a8a","tok-5e83b92b933f","tok-d2a7aefd41fc","tok-c062e668b2b4","tok-f7795ef6f522","tok-b21cde1f599b","tok-7177ba4a0b3e","tok-f15b2ff6bd65","tok-b21cde1f599b","tok-1883c850d52e","tok-4b635f3f1dbc","tok-16b24396713b","tok-3128a54dad0e","tok-1ed16538266e","tok-e3258fa7cc2a","tok-9b65a51528ff","tok-997b09872e82","tok-09ffea6e3ea7","tok-6c1fdad27d7e","tok-b2bf9d9d4c3b","tok-da3d7014c7a8","tok-3de874691efe","tok-e32c11532cb1","tok-a5c2b27bb384","tok-f20d3da06998","tok-46fb7052dd3b","tok-3128a54dad0e","tok-1ed16538266e","tok-b67e80e9c0e5","tok-ce2af67bffa5","tok-cf9f10e7cf2c","tok-86fdc769003b","tok-e710ded2e14c","tok-5d97642cf61a","tok-6d6a75d00ccb"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-4":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-4","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-4","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-816f1d2782bb","tok-f906918345a1","tok-2563d4eb298f","tok-f60af806e62e","tok-dd1ed6fae16a","tok-cbbe203ec738","tok-ab05c24b10ac","tok-db54fa85d33f"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-5":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-5","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-5","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0b8190710b56","tok-ff9fb8ec1077","tok-b1e9fc89c691","tok-3cac559d217b","tok-73aab58316ab","tok-e41058b71280","tok-b949854272e3","tok-f2555edcca17","tok-4e7bc4af0865","tok-a6945e02e9c7","tok-7aacd711415a","tok-b217f213fed3","tok-dc600e0e329d"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-6":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-6","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-6","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b21cde1f599b","tok-3a6b60444962","tok-3d0578876947","tok-c34c1ca32e1f","tok-06e7913b0585","tok-ef6875a91751","tok-e97afe3453d3","tok-b33291249861","tok-c6fc7d4a0567","tok-ccb94011fc11","tok-abcaf634fe6e","tok-a93c9c2b01dd","tok-ccb94011fc11","tok-55b4fc2067b6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-7":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-7","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-7","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-7a58de6d8b2b","tok-39a3b3705161","tok-b21cde1f599b","tok-55b4fc2067b6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-8":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-8","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-8","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-87ccebf4f591","tok-41b8ec97ca9a","tok-69b766552af7","tok-245dd46bca14","tok-e8b01bfde107","tok-a78a8b9f271b","tok-ecd97ec6a19c","tok-a30717b6159c"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-9":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-9","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-9","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-09bc82454cbb","tok-09ffea6e3ea7","tok-f60af806e62e","tok-4ee9379ccc9c","tok-c2af0c314e05","tok-64b3b8166af5","tok-590687ed6dc1","tok-47a55a21fc3a"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-10":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-10","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-10","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2a8b5ca4df99","tok-812267abc05d","tok-09ffea6e3ea7","tok-9f764de2dd2f","tok-4007c5ca7b77","tok-15653028aa57","tok-3a31683fe91b","tok-11351c46cb92","tok-5ce392ec16c9","tok-1ed4a38667b5","tok-d5c9a8ce5289","tok-04e6883447d8","tok-d23e1942acf4","tok-e8b01bfde107","tok-0b9be3cdd8c8","tok-94b88d366b6e"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-6-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-6-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-6-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 6:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-fc256eb17fd5","tok-71d87ed75efd","tok-b55a59aebd8e","tok-b55a59aebd8e","tok-71d87ed75efd","tok-5c6ce663989e","tok-ff9fb8ec1077","tok-ad36c61fe9f1","tok-767711b97ff8","tok-44ea636d867d","tok-13b78fc6c1ac","tok-b88812f3b9fd","tok-882f3566ccfc","tok-77c79dbec91b","tok-6b5d244bdd91","tok-20562068936b","tok-d5a8e1ea7f51","tok-275b6f2934d1","tok-fc6fde6dd21a","tok-5deb31e38b54"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-7-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-7-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-7-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 7:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-155dc9703158","tok-90f04647f76a","tok-09ffea6e3ea7","tok-ee6eca038ffe","tok-5f41f9623157","tok-ab879b775c3c","tok-12814959b5e4","tok-189d3918fdc2","tok-6392214e8844","tok-452eed088625","tok-12814959b5e4"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-7-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-7-2","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-7-2","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 7:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b99ca2354089","tok-0196c26e0cee","tok-02586f1a2635","tok-c39e230ec6ac","tok-114253ef3b98","tok-ca4e4200498d","tok-88439c108966","tok-bfba47c759fc","tok-03a8c37747b9","tok-8681bca1e74c","tok-7d04260255e1","tok-03c59ed6c415"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 8:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e32c11532cb1","tok-c41073c47c0e","tok-2c3c519ffa07","tok-96ba4adf1606","tok-382afd8f7a2a","tok-80ff42098c0e","tok-d5d50a021fd6","tok-f05395ee450a","tok-929efbc9db54","tok-3d0578876947","tok-831097262990"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-2","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-2","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 8:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-590b1ae40556","tok-efbecf9b5f08","tok-2563d4eb298f","tok-d390fb7706f2","tok-ab05c24b10ac","tok-c062e668b2b4","tok-aa94b9b9f919","tok-a6f22771ed9d","tok-9c10ad7f5e66","tok-4bdfee455b23","tok-346f9ee1d88b","tok-119821c9a918"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-3":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-3","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-3","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 8:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-d529ef1ef7fd","tok-68210a7c6156","tok-37af8142e171","tok-c316db5f2ead","tok-3ba0d58b3284","tok-2563d4eb298f","tok-d9b1ad6d9ff6","tok-784c2463c8dc","tok-80a95e4f28da","tok-f5a1830ab3c6","tok-784c2463c8dc","tok-c041392b511c","tok-e07302fad8c6","tok-b062668a7903","tok-c7109fd9689e","tok-2563d4eb298f","tok-6aa8c0d0e9be","tok-037414541221","tok-479aea5826a4","tok-999b5faa7c92","tok-fce95437df5f","tok-9eb9e5f4ba31","tok-af2afd1c902c","tok-0f356094e221","tok-09ffea6e3ea7","tok-e97afe3453d3","tok-bea929f8547a","tok-db0d2b1e0f79","tok-b88812f3b9fd","tok-afd72f548324","tok-0104343a1475","tok-c09f67f4bf6a","tok-e41058b71280","tok-622672d50a61","tok-3ff1deaebf40","tok-09ffea6e3ea7"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 9:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-06e7913b0585","tok-c4cd899ac727","tok-09ffea6e3ea7","tok-ad220c2c5c3c","tok-5e7f730e4769","tok-bdc91c1a144f","tok-bed4af4853e0","tok-53458c9348b4","tok-3a933fa923ea","tok-765b1747b86b","tok-bf28989e9932","tok-ef55e80fa257","tok-fc21ffe786f3","tok-03516ea0087a"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-2","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-2","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 9:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5accbc42908b","tok-131360007399","tok-09ffea6e3ea7","tok-b744482ecfcc","tok-131360007399","tok-052fe1f2a117","tok-1accfa9211e2","tok-b03049ee2493","tok-052fe1f2a117","tok-b744482ecfcc","tok-5a05ade4e293","tok-1accfa9211e2","tok-3418e1e5b33d","tok-0deb74cfcfeb","tok-53458c9348b4","tok-6c64ca471894","tok-ef48f0fc95f1","tok-6cb64f0376ad","tok-cc5d6a8372c7","tok-b744482ecfcc","tok-70ae57848316","tok-67c5766dde7b","tok-dfa941d2e9cd","tok-b2490ee619a3","tok-9e7bdde2b904","tok-d33a6fa8769e","tok-2bc1cc5ea7e0","tok-06e7913b0585","tok-53458c9348b4","tok-5c4010438a87","tok-06e7913b0585","tok-5c1f8ac17ffe","tok-f41266ce834c","tok-94dc27988128","tok-fef8f5a07fd1","tok-6def34d94385","tok-3e260d4c9939","tok-8ea850405b4a","tok-974fd96805b8","tok-bd1caca6c2f9","tok-362a07045711"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-3":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-3","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-3","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 9:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-06e7913b0585","tok-85c43b371718","tok-09ffea6e3ea7","tok-9f764de2dd2f","tok-ee358f683b70","tok-9551e0e9ba45","tok-882f001a13c3","tok-5dab9d2f3703","tok-31b9eb85dffa","tok-d4cea29e2eab","tok-edd2f0a42721","tok-c6941de1e683","tok-e7cdd3d709ea","tok-ecde981c8b45","tok-aa6c9a74a982","tok-805a520bd855","tok-607165391384","tok-113b887aec2e","tok-11b4ee8c9383","tok-fb1a98e0fb9d","tok-dfee8f7f3346","tok-aee40d77c9e4","tok-e5f4ba79ef05","tok-72ba5cb2467d","tok-60c4154a1a21","tok-baba8c6d96c7","tok-cf1f5489ab18","tok-e228949c63ef","tok-b3517443d6e4","tok-6f641efc3715"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-4":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-4","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-4","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 9:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d9b1ad6d9ff6","tok-784c2463c8dc","tok-82e077919123","tok-39bd9f838764","tok-2051a4fe4ec6","tok-068d419f139d","tok-fa149192fd08","tok-2051a4fe4ec6","tok-39bd9f838764","tok-e637aaa3c669","tok-a8e29c12724a","tok-cf1f5489ab18","tok-31b9eb85dffa","tok-6c311a662ca8","tok-ab3e2c8d02f3","tok-46fb7052dd3b","tok-f3a56bd27493"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-10-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-10-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-10-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 10:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-803456112a94","tok-80b3f15b6cb3","tok-520e4ccc9622","tok-d65a72d816ac","tok-520e4ccc9622","tok-2c5bb52fcd27","tok-60788fa5f0e7","tok-e710ded2e14c","tok-5d97642cf61a","tok-5f9fd41727dd","tok-ba7301a1f1ab","tok-033a10bcd7f2","tok-2949a864b3f6","tok-c85e92e0d6b2","tok-16e3499e7d09","tok-e294048ec22a","tok-9551e0e9ba45","tok-767711b97ff8","tok-7c8ed8224f4b","tok-ff7081775b9f"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 11:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bf65e0f259db","tok-db541e28c105","tok-02586f1a2635","tok-e1486cca0d8d","tok-929efbc9db54","tok-d9b1ad6d9ff6","tok-5422cd46a307","tok-df9f1c85c634","tok-d77404d92156","tok-f63ac17fec0c","tok-c0eb9f7c055a","tok-1469db893a35","tok-f63ac17fec0c","tok-a4c8d9c0bf8d","tok-8c1156859a65"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-2","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-2","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 11:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-4d373e15dee9","tok-bef6b7e1b30c","tok-17340bc5a3ad","tok-11b4ee8c9383","tok-0dec992c8ecb","tok-35c6e2620d86","tok-8b207dad5f08","tok-e710ded2e14c","tok-929efbc9db54","tok-2d0ded65de57","tok-2c3c519ffa07","tok-43d745f5d6c0","tok-2563d4eb298f","tok-131f22fa9b51","tok-e32c11532cb1","tok-1b3eb2c0f2d8","tok-f41b2c2ed6f4"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-3":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-3","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-3","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 11:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d651a87b4e37","tok-c062e668b2b4","tok-e1c7ca787a9a","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-4":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-4","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-4","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 11:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7109347d56fe","tok-fd51cc6cd7ee","tok-5c1f8ac17ffe","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-5":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-5","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-5","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 11:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-22b58c9acaa5","tok-11351c46cb92","tok-11351c46cb92","tok-35c6e2620d86","tok-5d8a05ac4b08","tok-e09e2fcbe6fd","tok-1469db893a35","tok-f63ac17fec0c","tok-8c1156859a65"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-6":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-6","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-6","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 11:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-03927fc57859","tok-6e649ad4a44f","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-7":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-7","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-7","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 11:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d381a3aff185","tok-051280b9c373","tok-e32c11532cb1","tok-e4181ab730a0","tok-5d8a05ac4b08","tok-44ea636d867d","tok-13b78fc6c1ac","tok-b40f9627365e","tok-331bf72a9e48","tok-ff4925ff79ba","tok-5d52885b1722"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 12:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-11351c46cb92","tok-e41058b71280","tok-89d47511d758","tok-7177ba4a0b3e"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-2","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-2","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 12:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d9b1ad6d9ff6","tok-11f973be2231","tok-e1486cca0d8d","tok-3fcd51f2a969","tok-5d9793ec9279"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-3":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-3","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-3","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 12:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-11351c46cb92","tok-e41058b71280","tok-89d47511d758","tok-1883c850d52e"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-4":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-4","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-4","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 12:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-816f1d2782bb","tok-ea5bfe083923","tok-ef2b5414db78","tok-2563d4eb298f"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-1","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-1","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2321b16d031e","tok-784c2463c8dc","tok-00cd2432838d","tok-10842fb3aed8","tok-b95069b69e9f"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-2","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-2","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a92279c7cf10","tok-ff9fb8ec1077","tok-6eb5d475b136","tok-e8cc4ef2cc3f","tok-5e1e0b8709d5","tok-784c2463c8dc","tok-94a29302224d","tok-e5aecee75fe5","tok-1b1cd58bd7cb"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-3":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-3","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-3","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-129947df8388","tok-02586f1a2635","tok-22024bb6db21","tok-bff9d051681d","tok-94a29302224d","tok-784c2463c8dc","tok-af3dda8abc3d","tok-32aed851627c","tok-ab3e2c8d02f3","tok-5760b7092a29","tok-c1d143d33e28"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-4":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-4","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-4","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-90ff773bd18a","tok-a8bd6fcef340"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-5":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-5","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-5","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d9b1ad6d9ff6","tok-41930f7c7a45","tok-02586f1a2635","tok-784c2463c8dc"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-6":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-6","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-6","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-87b339c52ef1","tok-f22cbc0ecce1"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-7":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-7","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-7","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9e76567a6dd8","tok-b2161bbeb8ff","tok-f87c9439b207","tok-929efbc9db54","tok-71626ca12c3d","tok-93467e273ad0","tok-09ffea6e3ea7","tok-ff05b8e7f286","tok-6ad8e19444da","tok-3bde288d2ce4","tok-3f7eab61be07"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-8":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-8","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-8","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e7d60a0822fd","tok-d529ef1ef7fd","tok-ab1751dafa13","tok-ed48bbe27107","tok-f2122e1a7cc9","tok-434e627e0cfa","tok-e32c11532cb1","tok-053f913a11f0","tok-8b18440c910d","tok-ff1d96f52c53","tok-40caaaf48c50","tok-929efbc9db54","tok-0aa39e58f805","tok-480e17dc2d1e","tok-6f4091cacdae"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-9":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-9","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-9","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-dd1c47576df3","tok-ea5eae92938a","tok-2563d4eb298f","tok-f6b7fbb0b6e6","tok-b2bf9d9d4c3b","tok-54ee02044ce9","tok-a3f97148023e","tok-b4376ebf12e5","tok-a87eee254962","tok-eefb41bb8456","tok-e3983ba858c8","tok-4ab556ee63fc","tok-f5caa3d38447","tok-d9b1ad6d9ff6","tok-784c2463c8dc"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-10":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-10","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-10","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3e0daa1295b4","tok-1da691a99ad9","tok-1d61a73adbb1","tok-40b65e4f23f6"]}]}}}</script>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"matnot-kehunah-on-esther-rabbah","work_title":"Matnot Kehunah on Esther Rabbah","work_slug":"midrash/matnot-kehunah-on-esther-rabbah","scope_label":"All imported Hebrew works","generated_at":"2026-05-10T15:21:07.786Z","total_occurrences":806,"units":{"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-53fc26db04c7","tok-559db7b8f56a","tok-0c93da04c9c9","tok-09ffea6e3ea7"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-2","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-2","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e16257b77482","tok-601bedd3efe9","tok-bea929f8547a","tok-8c1156859a65","tok-0e277f3e1689"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-3":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-3","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-3","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8aa4bc752b4b","tok-f60af806e62e","tok-f659b6400f78","tok-d9b1ad6d9ff6","tok-dfad2013ce6f","tok-dc36a4203e1e"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-4":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-4","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-4","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e9524b1fe1a9","tok-57301e85977a","tok-d5661a6e6a66","tok-65bf3c66c4e9","tok-fd7e6ec70114","tok-189d3918fdc2","tok-e32c11532cb1","tok-acfd451b6638","tok-e0394886950a"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-5":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-5","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-5","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a0b22d2c1a12","tok-9e26388ca570","tok-31b9eb85dffa","tok-f38f51476b1e","tok-1ed16538266e"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-6":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-6","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-6","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6def34d94385","tok-2d662ea5de45","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-7":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-7","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-1-7","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-0c93da04c9c9","tok-bd14d14de917","tok-2563d4eb298f","tok-53af6a0740db","tok-d74aad04d55d","tok-5708643d9a32","tok-09ffea6e3ea7"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cd7183302244","tok-40b65e4f23f6","tok-2ed575aa93b0","tok-0aa39e58f805","tok-30ab8b146bbb","tok-bf8316ff728e"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-2","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-2","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-29ad76e5e80b","tok-4381b35ca9d4","tok-7a5c548c1c5e","tok-db24414dcc0c"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-3":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-3","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-3","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7571e97cf51a","tok-2563d4eb298f","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-4":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-4","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-4","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d8455ee1ce6a","tok-2ad46f1b400e","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-5":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-5","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-5","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e1c7ca787a9a","tok-6493439ccd19","tok-02586f1a2635","tok-f659b6400f78","tok-4faec28a7697","tok-3cc71e2b19d0","tok-a8fa302728c1","tok-68fe2ed25572","tok-e710ded2e14c","tok-a444fb82997f","tok-b6f59b8eefea","tok-81216f9584ce","tok-9e76567a6dd8","tok-204c6012803d","tok-aaac5c06ff8e","tok-7d4eb7476fd7","tok-68fe2ed25572"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-6":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-6","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-6","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-917bd944cc82","tok-b48c24b515b0","tok-2563d4eb298f","tok-ac5f32f4840f","tok-6a68a972a60a","tok-5251a1d9868c","tok-a431b42502fc","tok-153d08851506","tok-b685cbe8cc29"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-7":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-7","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-7","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-189d3918fdc2","tok-d529ef1ef7fd","tok-28a5922dce64","tok-40b65e4f23f6","tok-5d8a05ac4b08","tok-929efbc9db54","tok-d9b1ad6d9ff6","tok-831036b9fc14","tok-ff7081775b9f","tok-b88812f3b9fd","tok-e710ded2e14c","tok-1394ed0c0e0c","tok-604ffe1c1096","tok-eba8d1ec0f37","tok-27b70f180ee1","tok-0263643fc262","tok-f076a194f5c4"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-8":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-8","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-8","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ad84f38caabe","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-9":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-9","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-9","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-29ad76e5e80b","tok-50ebcc3678cb","tok-09ffea6e3ea7","tok-59f5b43abfce","tok-fc405b2702bc","tok-2a38e2dc04f6","tok-98f9e637ad2d","tok-bd5fe9f72873","tok-2f0da18b5765","tok-1394ed0c0e0c","tok-3ba0d58b3284","tok-687388a63f5b"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-10":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-10","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-10","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fcd552118351","tok-0deb74cfcfeb","tok-98f9e637ad2d","tok-f60af806e62e","tok-98f9e637ad2d","tok-94a29302224d","tok-98f9e637ad2d","tok-33637072ea8a","tok-7c2a74d8f636","tok-1087262095c9","tok-fcd552118351","tok-0deb74cfcfeb","tok-33637072ea8a","tok-4c35dd62e3b0","tok-c41f6cb70eeb","tok-189d3918fdc2","tok-6392214e8844","tok-98f9e637ad2d","tok-f2b33bd03ef7","tok-d63a35ad85d4","tok-c41f6cb70eeb"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-11":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-11","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-11","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2a38e2dc04f6","tok-75ca9501d265","tok-09ffea6e3ea7","tok-a0da60478c05","tok-9b040182f257","tok-99c9c22d91bb","tok-dadf2099d99a","tok-009ed541b3d4","tok-2a38e2dc04f6","tok-98f9e637ad2d","tok-ff104cd71aa0","tok-de5205da839a","tok-009ed541b3d4","tok-d65a72d816ac","tok-02e20084fd6e","tok-605edc0abe14","tok-189d3918fdc2","tok-ed48bbe27107","tok-4f8fd5927ff7","tok-4f1cdbb2274a","tok-4807cf6010bd","tok-4ee43f27dcee","tok-4264a8a16b25","tok-29ad76e5e80b","tok-5e6905947b8d","tok-009ed541b3d4","tok-c978fe4b0077","tok-b35d75d076e4"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-12":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-12","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-12","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6b4da38cba51","tok-50aa67c0d2c4","tok-534ad575a8c1","tok-e637aaa3c669","tok-047a6707ee6b","tok-c978fe4b0077","tok-b35d75d076e4"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-13":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-13","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-13","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-77a70962fbbd","tok-7a58de6d8b2b","tok-abcaf634fe6e","tok-3bb0cfedda2f","tok-0a28880793c9","tok-a34117a3b7a0"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-14":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-14","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-14","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-50ee432bd8c4","tok-52001c9e436e","tok-606cd60d632a","tok-09ffea6e3ea7","tok-dec9215fc2de"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-15":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-15","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-15","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fece9f6d8d9a","tok-acfd451b6638","tok-bf8316ff728e","tok-02586f1a2635","tok-e710ded2e14c","tok-71dfd8c8febd","tok-ce7313947e65","tok-075499853346","tok-32f99d9b9105","tok-77a70962fbbd"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-16":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-16","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-16","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-e710ded2e14c","tok-ed7dfe4dd0e0","tok-09ffea6e3ea7"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-17":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-17","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-17","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ca742b02204e","tok-11b4ee8c9383","tok-7b30b89dd063","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-18":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-18","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-18","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8fa847623d6a","tok-7fea5b5bd8b8","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-19":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-19","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-19","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-59a4abb6ee0a","tok-09ffea6e3ea7","tok-1d3b09da0431","tok-3a51b097ef05","tok-59a4abb6ee0a","tok-09ffea6e3ea7","tok-2d5cbf7b6ab3","tok-88497e865f37","tok-51294038d77a","tok-7912feadcdd9","tok-594d03a83b29","tok-204d46efa8b0","tok-77236104bceb","tok-41b00fafbe9c","tok-43e05102495d"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-20":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-20","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-20","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-76e1c7d97666","tok-51294038d77a","tok-445a64409947","tok-e8edac84dff8","tok-f069b8b54c3d","tok-7e69c0c526d5","tok-11b4ee8c9383","tok-7b30b89dd063"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-21":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-21","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-21","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:21","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-de851a50f6a9","tok-c062e668b2b4","tok-92e465a49603","tok-b4c9758fa6b2","tok-de851a50f6a9","tok-c062e668b2b4","tok-4249b65257da","tok-cd5afd9c05a9","tok-405cbab16592","tok-534ad575a8c1","tok-2a38e2dc04f6","tok-98f9e637ad2d","tok-b3c71ae07745","tok-7eb48d3e46e7","tok-b16df7041de0","tok-07ebdd02a96c"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-22":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-22","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-22","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:22","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-de851a50f6a9","tok-c062e668b2b4","tok-8d1ddb0a95ef","tok-72fbae33f8e2","tok-1087262095c9","tok-09ffea6e3ea7"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-23":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-23","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-23","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:23","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-189d3918fdc2","tok-8916110939d0","tok-a7bbd51aa227","tok-56fa73b992b6","tok-8916110939d0","tok-a38e0de8e95e","tok-d67abf4b4d72","tok-09ffea6e3ea7"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-24":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-24","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-3-24","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 3:24","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d7cc83eb2625","tok-2563d4eb298f","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-4-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-4-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-4-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 4:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3fcd51f2a969","tok-5d9793ec9279","tok-0a28880793c9","tok-167362df4d72","tok-40b65e4f23f6","tok-064c584728f9","tok-76505531ed86","tok-ef2b5414db78","tok-bf8316ff728e","tok-bf57d9b83853","tok-fe1720b27efe","tok-8916110939d0","tok-ef2b5414db78","tok-fcaef0dcc87f","tok-d5d50a021fd6","tok-3a3931512a35","tok-33637072ea8a","tok-09ffea6e3ea7"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-39193d89cc9e","tok-2563d4eb298f","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-2","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-2","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9235e70c339b","tok-b2e1da1b03ea","tok-8c30ae2fcdf6","tok-73e74881e379","tok-53e48ef9699b","tok-bcdee166b1fc","tok-d65a72d816ac","tok-a5dfb295416d","tok-5d8a05ac4b08","tok-41b00fafbe9c","tok-5422cd46a307","tok-ff4925ff79ba","tok-5f7262e7b750"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-3":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-3","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-3","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-2fa565ea6eb1","tok-b21cde1f599b","tok-367b7ea01918","tok-6e345f888cba","tok-5e2d9fd6bcff","tok-d9b1ad6d9ff6","tok-997b09872e82","tok-17521d6d071a","tok-5e2d9fd6bcff","tok-db54fa85d33f","tok-4995e59b7711","tok-a6ae00a1b34f","tok-d9b1ad6d9ff6","tok-367b7ea01918","tok-80a95e4f28da","tok-ab1c972b57ff","tok-f4493827c155","tok-2636fe9a5a8a","tok-5e83b92b933f","tok-d2a7aefd41fc","tok-c062e668b2b4","tok-f7795ef6f522","tok-b21cde1f599b","tok-7177ba4a0b3e","tok-f15b2ff6bd65","tok-b21cde1f599b","tok-1883c850d52e","tok-4b635f3f1dbc","tok-16b24396713b","tok-3128a54dad0e","tok-1ed16538266e","tok-e3258fa7cc2a","tok-9b65a51528ff","tok-997b09872e82","tok-09ffea6e3ea7","tok-6c1fdad27d7e","tok-b2bf9d9d4c3b","tok-da3d7014c7a8","tok-3de874691efe","tok-e32c11532cb1","tok-a5c2b27bb384","tok-f20d3da06998","tok-46fb7052dd3b","tok-3128a54dad0e","tok-1ed16538266e","tok-b67e80e9c0e5","tok-ce2af67bffa5","tok-cf9f10e7cf2c","tok-86fdc769003b","tok-e710ded2e14c","tok-5d97642cf61a","tok-6d6a75d00ccb"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-4":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-4","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-4","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-816f1d2782bb","tok-f906918345a1","tok-2563d4eb298f","tok-f60af806e62e","tok-dd1ed6fae16a","tok-cbbe203ec738","tok-ab05c24b10ac","tok-db54fa85d33f"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-5":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-5","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-5","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0b8190710b56","tok-ff9fb8ec1077","tok-b1e9fc89c691","tok-3cac559d217b","tok-73aab58316ab","tok-e41058b71280","tok-b949854272e3","tok-f2555edcca17","tok-4e7bc4af0865","tok-a6945e02e9c7","tok-7aacd711415a","tok-b217f213fed3","tok-dc600e0e329d"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-6":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-6","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-6","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b21cde1f599b","tok-3a6b60444962","tok-3d0578876947","tok-c34c1ca32e1f","tok-06e7913b0585","tok-ef6875a91751","tok-e97afe3453d3","tok-b33291249861","tok-c6fc7d4a0567","tok-ccb94011fc11","tok-abcaf634fe6e","tok-a93c9c2b01dd","tok-ccb94011fc11","tok-55b4fc2067b6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-7":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-7","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-7","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-7a58de6d8b2b","tok-39a3b3705161","tok-b21cde1f599b","tok-55b4fc2067b6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-8":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-8","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-8","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-87ccebf4f591","tok-41b8ec97ca9a","tok-69b766552af7","tok-245dd46bca14","tok-e8b01bfde107","tok-a78a8b9f271b","tok-ecd97ec6a19c","tok-a30717b6159c"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-9":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-9","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-9","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-09bc82454cbb","tok-09ffea6e3ea7","tok-f60af806e62e","tok-4ee9379ccc9c","tok-c2af0c314e05","tok-64b3b8166af5","tok-590687ed6dc1","tok-47a55a21fc3a"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-10":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-10","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-5-10","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 5:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2a8b5ca4df99","tok-812267abc05d","tok-09ffea6e3ea7","tok-9f764de2dd2f","tok-4007c5ca7b77","tok-15653028aa57","tok-3a31683fe91b","tok-11351c46cb92","tok-5ce392ec16c9","tok-1ed4a38667b5","tok-d5c9a8ce5289","tok-04e6883447d8","tok-d23e1942acf4","tok-e8b01bfde107","tok-0b9be3cdd8c8","tok-94b88d366b6e"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-6-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-6-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-6-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 6:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-fc256eb17fd5","tok-71d87ed75efd","tok-b55a59aebd8e","tok-b55a59aebd8e","tok-71d87ed75efd","tok-5c6ce663989e","tok-ff9fb8ec1077","tok-ad36c61fe9f1","tok-767711b97ff8","tok-44ea636d867d","tok-13b78fc6c1ac","tok-b88812f3b9fd","tok-882f3566ccfc","tok-77c79dbec91b","tok-6b5d244bdd91","tok-20562068936b","tok-d5a8e1ea7f51","tok-275b6f2934d1","tok-fc6fde6dd21a","tok-5deb31e38b54"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-7-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-7-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-7-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 7:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-155dc9703158","tok-90f04647f76a","tok-09ffea6e3ea7","tok-ee6eca038ffe","tok-5f41f9623157","tok-ab879b775c3c","tok-12814959b5e4","tok-189d3918fdc2","tok-6392214e8844","tok-452eed088625","tok-12814959b5e4"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-7-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-7-2","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-7-2","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 7:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b99ca2354089","tok-0196c26e0cee","tok-02586f1a2635","tok-c39e230ec6ac","tok-114253ef3b98","tok-ca4e4200498d","tok-88439c108966","tok-bfba47c759fc","tok-03a8c37747b9","tok-8681bca1e74c","tok-7d04260255e1","tok-03c59ed6c415"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 8:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e32c11532cb1","tok-c41073c47c0e","tok-2c3c519ffa07","tok-96ba4adf1606","tok-382afd8f7a2a","tok-80ff42098c0e","tok-d5d50a021fd6","tok-f05395ee450a","tok-929efbc9db54","tok-3d0578876947","tok-831097262990"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-2","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-2","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 8:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-590b1ae40556","tok-efbecf9b5f08","tok-2563d4eb298f","tok-d390fb7706f2","tok-ab05c24b10ac","tok-c062e668b2b4","tok-aa94b9b9f919","tok-a6f22771ed9d","tok-9c10ad7f5e66","tok-4bdfee455b23","tok-346f9ee1d88b","tok-119821c9a918"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-3":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-3","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-8-3","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 8:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-d529ef1ef7fd","tok-68210a7c6156","tok-37af8142e171","tok-c316db5f2ead","tok-3ba0d58b3284","tok-2563d4eb298f","tok-d9b1ad6d9ff6","tok-784c2463c8dc","tok-80a95e4f28da","tok-f5a1830ab3c6","tok-784c2463c8dc","tok-c041392b511c","tok-e07302fad8c6","tok-b062668a7903","tok-c7109fd9689e","tok-2563d4eb298f","tok-6aa8c0d0e9be","tok-037414541221","tok-479aea5826a4","tok-999b5faa7c92","tok-fce95437df5f","tok-9eb9e5f4ba31","tok-af2afd1c902c","tok-0f356094e221","tok-09ffea6e3ea7","tok-e97afe3453d3","tok-bea929f8547a","tok-db0d2b1e0f79","tok-b88812f3b9fd","tok-afd72f548324","tok-0104343a1475","tok-c09f67f4bf6a","tok-e41058b71280","tok-622672d50a61","tok-3ff1deaebf40","tok-09ffea6e3ea7"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 9:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-06e7913b0585","tok-c4cd899ac727","tok-09ffea6e3ea7","tok-ad220c2c5c3c","tok-5e7f730e4769","tok-bdc91c1a144f","tok-bed4af4853e0","tok-53458c9348b4","tok-3a933fa923ea","tok-765b1747b86b","tok-bf28989e9932","tok-ef55e80fa257","tok-fc21ffe786f3","tok-03516ea0087a"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-2","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-2","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 9:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5accbc42908b","tok-131360007399","tok-09ffea6e3ea7","tok-b744482ecfcc","tok-131360007399","tok-052fe1f2a117","tok-1accfa9211e2","tok-b03049ee2493","tok-052fe1f2a117","tok-b744482ecfcc","tok-5a05ade4e293","tok-1accfa9211e2","tok-3418e1e5b33d","tok-0deb74cfcfeb","tok-53458c9348b4","tok-6c64ca471894","tok-ef48f0fc95f1","tok-6cb64f0376ad","tok-cc5d6a8372c7","tok-b744482ecfcc","tok-70ae57848316","tok-67c5766dde7b","tok-dfa941d2e9cd","tok-b2490ee619a3","tok-9e7bdde2b904","tok-d33a6fa8769e","tok-2bc1cc5ea7e0","tok-06e7913b0585","tok-53458c9348b4","tok-5c4010438a87","tok-06e7913b0585","tok-5c1f8ac17ffe","tok-f41266ce834c","tok-94dc27988128","tok-fef8f5a07fd1","tok-6def34d94385","tok-3e260d4c9939","tok-8ea850405b4a","tok-974fd96805b8","tok-bd1caca6c2f9","tok-362a07045711"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-3":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-3","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-3","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 9:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-06e7913b0585","tok-85c43b371718","tok-09ffea6e3ea7","tok-9f764de2dd2f","tok-ee358f683b70","tok-9551e0e9ba45","tok-882f001a13c3","tok-5dab9d2f3703","tok-31b9eb85dffa","tok-d4cea29e2eab","tok-edd2f0a42721","tok-c6941de1e683","tok-e7cdd3d709ea","tok-ecde981c8b45","tok-aa6c9a74a982","tok-805a520bd855","tok-607165391384","tok-113b887aec2e","tok-11b4ee8c9383","tok-fb1a98e0fb9d","tok-dfee8f7f3346","tok-aee40d77c9e4","tok-e5f4ba79ef05","tok-72ba5cb2467d","tok-60c4154a1a21","tok-baba8c6d96c7","tok-cf1f5489ab18","tok-e228949c63ef","tok-b3517443d6e4","tok-6f641efc3715"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-4":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-4","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-9-4","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 9:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d9b1ad6d9ff6","tok-784c2463c8dc","tok-82e077919123","tok-39bd9f838764","tok-2051a4fe4ec6","tok-068d419f139d","tok-fa149192fd08","tok-2051a4fe4ec6","tok-39bd9f838764","tok-e637aaa3c669","tok-a8e29c12724a","tok-cf1f5489ab18","tok-31b9eb85dffa","tok-6c311a662ca8","tok-ab3e2c8d02f3","tok-46fb7052dd3b","tok-f3a56bd27493"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-10-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-10-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-10-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 10:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-803456112a94","tok-80b3f15b6cb3","tok-520e4ccc9622","tok-d65a72d816ac","tok-520e4ccc9622","tok-2c5bb52fcd27","tok-60788fa5f0e7","tok-e710ded2e14c","tok-5d97642cf61a","tok-5f9fd41727dd","tok-ba7301a1f1ab","tok-033a10bcd7f2","tok-2949a864b3f6","tok-c85e92e0d6b2","tok-16e3499e7d09","tok-e294048ec22a","tok-9551e0e9ba45","tok-767711b97ff8","tok-7c8ed8224f4b","tok-ff7081775b9f"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 11:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bf65e0f259db","tok-db541e28c105","tok-02586f1a2635","tok-e1486cca0d8d","tok-929efbc9db54","tok-d9b1ad6d9ff6","tok-5422cd46a307","tok-df9f1c85c634","tok-d77404d92156","tok-f63ac17fec0c","tok-c0eb9f7c055a","tok-1469db893a35","tok-f63ac17fec0c","tok-a4c8d9c0bf8d","tok-8c1156859a65"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-2","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-2","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 11:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-4d373e15dee9","tok-bef6b7e1b30c","tok-17340bc5a3ad","tok-11b4ee8c9383","tok-0dec992c8ecb","tok-35c6e2620d86","tok-8b207dad5f08","tok-e710ded2e14c","tok-929efbc9db54","tok-2d0ded65de57","tok-2c3c519ffa07","tok-43d745f5d6c0","tok-2563d4eb298f","tok-131f22fa9b51","tok-e32c11532cb1","tok-1b3eb2c0f2d8","tok-f41b2c2ed6f4"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-3":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-3","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-3","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 11:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d651a87b4e37","tok-c062e668b2b4","tok-e1c7ca787a9a","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-4":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-4","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-4","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 11:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7109347d56fe","tok-fd51cc6cd7ee","tok-5c1f8ac17ffe","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-5":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-5","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-5","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 11:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-22b58c9acaa5","tok-11351c46cb92","tok-11351c46cb92","tok-35c6e2620d86","tok-5d8a05ac4b08","tok-e09e2fcbe6fd","tok-1469db893a35","tok-f63ac17fec0c","tok-8c1156859a65"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-6":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-6","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-6","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 11:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-03927fc57859","tok-6e649ad4a44f","tok-40b65e4f23f6"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-7":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-7","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-11-7","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 11:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d381a3aff185","tok-051280b9c373","tok-e32c11532cb1","tok-e4181ab730a0","tok-5d8a05ac4b08","tok-44ea636d867d","tok-13b78fc6c1ac","tok-b40f9627365e","tok-331bf72a9e48","tok-ff4925ff79ba","tok-5d52885b1722"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-1","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-1","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 12:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-11351c46cb92","tok-e41058b71280","tok-89d47511d758","tok-7177ba4a0b3e"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-2","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-2","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 12:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d9b1ad6d9ff6","tok-11f973be2231","tok-e1486cca0d8d","tok-3fcd51f2a969","tok-5d9793ec9279"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-3":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-3","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-3","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 12:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-11351c46cb92","tok-e41058b71280","tok-89d47511d758","tok-1883c850d52e"]}]},"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-4":{"unit_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-4","anchor_id":"matnot-kehunah-on-esther-rabbah-petichta-petichta-12-4","source_ref":"Matnot Kehunah on Esther Rabbah, Petichta 12:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b0ce6400cc9","tok-816f1d2782bb","tok-ea5bfe083923","tok-ef2b5414db78","tok-2563d4eb298f"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-1":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-1","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-1","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2321b16d031e","tok-784c2463c8dc","tok-00cd2432838d","tok-10842fb3aed8","tok-b95069b69e9f"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-2":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-2","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-2","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a92279c7cf10","tok-ff9fb8ec1077","tok-6eb5d475b136","tok-e8cc4ef2cc3f","tok-5e1e0b8709d5","tok-784c2463c8dc","tok-94a29302224d","tok-e5aecee75fe5","tok-1b1cd58bd7cb"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-3":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-3","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-3","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-129947df8388","tok-02586f1a2635","tok-22024bb6db21","tok-bff9d051681d","tok-94a29302224d","tok-784c2463c8dc","tok-af3dda8abc3d","tok-32aed851627c","tok-ab3e2c8d02f3","tok-5760b7092a29","tok-c1d143d33e28"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-4":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-4","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-4","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-90ff773bd18a","tok-a8bd6fcef340"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-5":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-5","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-5","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d9b1ad6d9ff6","tok-41930f7c7a45","tok-02586f1a2635","tok-784c2463c8dc"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-6":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-6","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-6","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-87b339c52ef1","tok-f22cbc0ecce1"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-7":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-7","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-7","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9e76567a6dd8","tok-b2161bbeb8ff","tok-f87c9439b207","tok-929efbc9db54","tok-71626ca12c3d","tok-93467e273ad0","tok-09ffea6e3ea7","tok-ff05b8e7f286","tok-6ad8e19444da","tok-3bde288d2ce4","tok-3f7eab61be07"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-8":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-8","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-8","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e7d60a0822fd","tok-d529ef1ef7fd","tok-ab1751dafa13","tok-ed48bbe27107","tok-f2122e1a7cc9","tok-434e627e0cfa","tok-e32c11532cb1","tok-053f913a11f0","tok-8b18440c910d","tok-ff1d96f52c53","tok-40caaaf48c50","tok-929efbc9db54","tok-0aa39e58f805","tok-480e17dc2d1e","tok-6f4091cacdae"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-9":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-9","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-9","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-dd1c47576df3","tok-ea5eae92938a","tok-2563d4eb298f","tok-f6b7fbb0b6e6","tok-b2bf9d9d4c3b","tok-54ee02044ce9","tok-a3f97148023e","tok-b4376ebf12e5","tok-a87eee254962","tok-eefb41bb8456","tok-e3983ba858c8","tok-4ab556ee63fc","tok-f5caa3d38447","tok-d9b1ad6d9ff6","tok-784c2463c8dc"]}]},"matnot-kehunah-on-esther-rabbah-default-default-1-1-10":{"unit_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-10","anchor_id":"matnot-kehunah-on-esther-rabbah-default-default-1-1-10","source_ref":"Matnot Kehunah on Esther Rabbah 1:1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3e0daa1295b4","tok-1da691a99ad9","tok-1d61a73adbb1","tok-40b65e4f23f6"]}]}}}</script>
   <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/matnot-kehunah-on-esther-rabbah.manifest.json","root_href":"../../"}</script>
   <script>
     (() => {
@@ -1553,6 +1570,8 @@
         "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };
@@ -1613,7 +1632,7 @@
         if (chunkId) await loadChunk(chunkId);
         return tokenRows.get(tokenIndexId) || {};
       };
-      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1×³").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1×´") : value;
       const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
       const makeWordSpan = (text, tokenIndexId, ordinal) => {
         const span = document.createElement("span");
@@ -1844,7 +1863,7 @@
       };
       const cleanTransliteration = (value) => {
         const text = String(value || "").trim();
-        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+        return /^[A-Za-z0-9 .,\-ÃŠÂ»ÃŠÂ¿ÃŠÂ¾ÃŠÂ¼()]+$/.test(text) && text.length <= 80 ? text : "";
       };
       const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
       const sourceQualityScore = (rows) => {

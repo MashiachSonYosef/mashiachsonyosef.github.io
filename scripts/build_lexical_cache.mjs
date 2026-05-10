@@ -1179,6 +1179,8 @@ const suffixRules = [
 
 const unsafeAffixBaseNormalizations = new Set([
   '\u05D4\u05E0', // הן: too ambiguous for loose prefix parsing; requires explicit grammar handling.
+  '\u05D0\u05D4', // אה: creates false מ־ parses such as מאה.
+  '\u05D0\u05D5\u05EA', // אות: creates false מ־ parses such as מאות.
 ]);
 
 const possessiveParticleNormalized = '\u05E9\u05DC';
@@ -1731,8 +1733,10 @@ function cleanLexicalRenderings(values) {
       if (/×/.test(rendering)) return false;
       if (/[()[\];]/.test(rendering)) return false;
       if (/\b(i\.e|literally|figuratively|concretely|implication|name of|by resemblance)\b/i.test(rendering)) return false;
-      if (/\b(good|bad|properly|direct|implied|transitive|advise|appear|compare|enemy|coffee|sea|water|Mediterranean|whether|specifically|infix|hello|salutation|greeting|lust|probably|gleesome|spite|unexpectedly|thereby|copula|beacon|dwell|continue)\b/i.test(rendering)) return false;
+      if (/\b(good|bad|properly|direct|implied|transitive|advise|appear|compare|enemy|coffee|sea|Mediterranean|whether|specifically|infix|hello|salutation|greeting|lust|probably|gleesome|spite|unexpectedly|thereby|copula|beacon|dwell|continue)\b/i.test(rendering)) return false;
+      if (/\b(clear liquid h(?:₂|2)o|liquid water|often adverb|often adverbial|remote time|past indefinitely|generally used|generally to|often used with other particles|intransitively|nonentity|of place|of\/pertaining to|mister|deity|noble man|notebook|of the sole|off)\b/i.test(rendering)) return false;
       if (/\b(go one way or other|turn rosy|such like|that's that|cheer up|ordinary sense|literal and immediate|figurative and remote|superlative)\b/i.test(rendering)) return false;
+      if (/^(?:the )?number \d+$/i.test(rendering) || /^\d+$/.test(rendering)) return false;
       if (/^(to|be|being|become|became)\s+/i.test(rendering)) return false;
       if (/^(a|an|the)\s+(good|bad|sea)\b/i.test(rendering)) return false;
       if (/^[A-Z]/.test(rendering) && !/^(Torah|God|Israel|Jerusalem)\b/.test(rendering)) return false;
@@ -1992,6 +1996,13 @@ function matchMethodForEntry(entry, fallback = 'direct') {
   return fallback;
 }
 
+function isAllowedProjectFunctionAffix(attempt) {
+  if (!attempt.prefixSequence) return true;
+  if (attempt.prefixSequence === '\u05D5') return true;
+  if (attempt.prefixSequence === '\u05E9' && ['\u05DC\u05D0', '\u05D0\u05D9\u05E0', '\u05D0\u05DE'].includes(attempt.baseNormalized)) return true;
+  return false;
+}
+
 function analyzeAffixSurfaceForm(surfaceWord, normalizedWord, workId) {
   if (!normalizedWord || normalizedWord.length < 3 || hasAbbreviationMark(normalizedWord)) return null;
   const attempts = [];
@@ -2015,6 +2026,7 @@ function analyzeAffixSurfaceForm(surfaceWord, normalizedWord, workId) {
     if (!entryId) continue;
     const entry = lexiconById.get(entryId);
     const matchMethod = matchMethodForEntry(entry, 'direct');
+    if (matchMethod === 'project_function_word' && !isAllowedProjectFunctionAffix(attempt)) continue;
     const trustedProjectBase = ['project_orot_technical', 'project_function_word', 'project_abbreviation', 'project_midrash_formula'].includes(matchMethod);
     if (!trustedProjectBase && (observedNormalizedCounts.get(attempt.baseNormalized) || 0) < 5) continue;
     const baseRenderings = conservativeBaseRenderings(entry, attempt.baseNormalized, workId);

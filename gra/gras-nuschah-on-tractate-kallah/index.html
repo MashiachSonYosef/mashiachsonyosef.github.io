@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -31,6 +31,23 @@
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
     .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
@@ -191,7 +208,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אף אלמנה שנאמר (ועי׳ במס׳ כלה רבתי):</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">××£ ××œ×ž× ×” ×©× ××ž×¨ (×•×¢×™×³ ×‘×ž×¡×³ ×›×œ×” ×¨×‘×ª×™):</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -208,7 +225,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מכאן אמרו חכמים כל המסתכל באצבע קטנה של אשה כאילו מסתכל באותו מקום וכל הנוגע:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×ž×›××Ÿ ××ž×¨×• ×—×›×ž×™× ×›×œ ×”×ž×¡×ª×›×œ ×‘××¦×‘×¢ ×§×˜× ×” ×©×œ ××©×” ×›××™×œ×• ×ž×¡×ª×›×œ ×‘××•×ª×• ×ž×§×•× ×•×›×œ ×”× ×•×’×¢:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -225,7 +242,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רגליו על הארץ וזו עושה אותה:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×¨×’×œ×™×• ×¢×œ ×”××¨×¥ ×•×–×• ×¢×•×©×” ××•×ª×”:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -241,7 +258,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שלש פעמים בשלשה ימים וזו:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×©×œ×© ×¤×¢×ž×™× ×‘×©×œ×©×” ×™×ž×™× ×•×–×•:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -258,7 +275,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כראוי:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×›×¨××•×™:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -274,7 +291,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">נטלן ר״ע חלקן:</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">× ×˜×œ×Ÿ ×¨×´×¢ ×—×œ×§×Ÿ:</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -303,7 +320,7 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"gras-nuschah-on-tractate-kallah","work_title":"Gra\u0027s Nuschah on Tractate Kallah","work_slug":"gra/gras-nuschah-on-tractate-kallah","scope_label":"All imported Hebrew works","generated_at":"2026-05-05T23:45:25.652Z","total_occurrences":37,"units":{"gras-nuschah-on-tractate-kallah-1-1-1":{"unit_id":"gras-nuschah-on-tractate-kallah-1-1-1","anchor_id":"gras-nuschah-on-tractate-kallah-1-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4055c9320e46","tok-5985fc477533","tok-fcd7405db8d2","tok-ff9f0d7f31ca","tok-586fa48808a0","tok-489acd22e0bd","tok-d7e1e67577e1"]}]},"gras-nuschah-on-tractate-kallah-2-1-1":{"unit_id":"gras-nuschah-on-tractate-kallah-2-1-1","anchor_id":"gras-nuschah-on-tractate-kallah-2-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 2:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1457b5c75535","tok-c2227fef2622","tok-9486339a4253","tok-d51dc3d10fa3","tok-20ef9f3100a2","tok-34d2478cb104","tok-74da744348ce","tok-3ccbcc9b3a46","tok-d391e2b6a32d","tok-71b9ef53e5b9","tok-99abee995b20","tok-e83b2342702d","tok-e74c6c2aa704","tok-1dd1f0e360a1","tok-8e163270179f"]}]},"gras-nuschah-on-tractate-kallah-3-1-1":{"unit_id":"gras-nuschah-on-tractate-kallah-3-1-1","anchor_id":"gras-nuschah-on-tractate-kallah-3-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 3:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1eadf183cdc5","tok-6139828f2d0e","tok-5461801c32d9","tok-22b9dc5a4014","tok-21c4f4542edd","tok-4c605d9568f1"]}]},"gras-nuschah-on-tractate-kallah-3-1-2":{"unit_id":"gras-nuschah-on-tractate-kallah-3-1-2","anchor_id":"gras-nuschah-on-tractate-kallah-3-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 3:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ba36f31a0da3","tok-80701ee9e7cb","tok-93a2e52c1f0c","tok-1d11435d4902","tok-22b9dc5a4014"]}]},"gras-nuschah-on-tractate-kallah-5-1-1":{"unit_id":"gras-nuschah-on-tractate-kallah-5-1-1","anchor_id":"gras-nuschah-on-tractate-kallah-5-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 5:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-355dee055876"]}]},"gras-nuschah-on-tractate-kallah-5-1-2":{"unit_id":"gras-nuschah-on-tractate-kallah-5-1-2","anchor_id":"gras-nuschah-on-tractate-kallah-5-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 5:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1610746e6065","tok-432e1951b372","tok-9ddb0b8fbbd6"]}]}}}</script>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"gras-nuschah-on-tractate-kallah","work_title":"Gra\u0027s Nuschah on Tractate Kallah","work_slug":"gra/gras-nuschah-on-tractate-kallah","scope_label":"All imported Hebrew works","generated_at":"2026-05-10T15:21:04.208Z","total_occurrences":37,"units":{"gras-nuschah-on-tractate-kallah-1-1-1":{"unit_id":"gras-nuschah-on-tractate-kallah-1-1-1","anchor_id":"gras-nuschah-on-tractate-kallah-1-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4055c9320e46","tok-5985fc477533","tok-fcd7405db8d2","tok-ff9f0d7f31ca","tok-586fa48808a0","tok-489acd22e0bd","tok-d7e1e67577e1"]}]},"gras-nuschah-on-tractate-kallah-2-1-1":{"unit_id":"gras-nuschah-on-tractate-kallah-2-1-1","anchor_id":"gras-nuschah-on-tractate-kallah-2-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 2:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1457b5c75535","tok-c2227fef2622","tok-9486339a4253","tok-d51dc3d10fa3","tok-20ef9f3100a2","tok-34d2478cb104","tok-74da744348ce","tok-3ccbcc9b3a46","tok-d391e2b6a32d","tok-71b9ef53e5b9","tok-99abee995b20","tok-e83b2342702d","tok-e74c6c2aa704","tok-1dd1f0e360a1","tok-8e163270179f"]}]},"gras-nuschah-on-tractate-kallah-3-1-1":{"unit_id":"gras-nuschah-on-tractate-kallah-3-1-1","anchor_id":"gras-nuschah-on-tractate-kallah-3-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 3:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1eadf183cdc5","tok-6139828f2d0e","tok-5461801c32d9","tok-22b9dc5a4014","tok-21c4f4542edd","tok-4c605d9568f1"]}]},"gras-nuschah-on-tractate-kallah-3-1-2":{"unit_id":"gras-nuschah-on-tractate-kallah-3-1-2","anchor_id":"gras-nuschah-on-tractate-kallah-3-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 3:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ba36f31a0da3","tok-80701ee9e7cb","tok-93a2e52c1f0c","tok-1d11435d4902","tok-22b9dc5a4014"]}]},"gras-nuschah-on-tractate-kallah-5-1-1":{"unit_id":"gras-nuschah-on-tractate-kallah-5-1-1","anchor_id":"gras-nuschah-on-tractate-kallah-5-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 5:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-355dee055876"]}]},"gras-nuschah-on-tractate-kallah-5-1-2":{"unit_id":"gras-nuschah-on-tractate-kallah-5-1-2","anchor_id":"gras-nuschah-on-tractate-kallah-5-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 5:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1610746e6065","tok-432e1951b372","tok-9ddb0b8fbbd6"]}]}}}</script>
   <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/gras-nuschah-on-tractate-kallah.manifest.json","root_href":"../../"}</script>
   <script>
     (() => {
@@ -329,6 +346,8 @@
         "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };
@@ -389,7 +408,7 @@
         if (chunkId) await loadChunk(chunkId);
         return tokenRows.get(tokenIndexId) || {};
       };
-      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1×³").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1×´") : value;
       const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
       const makeWordSpan = (text, tokenIndexId, ordinal) => {
         const span = document.createElement("span");
@@ -620,7 +639,7 @@
       };
       const cleanTransliteration = (value) => {
         const text = String(value || "").trim();
-        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+        return /^[A-Za-z0-9 .,\-ÃŠÂ»ÃŠÂ¿ÃŠÂ¾ÃŠÂ¼()]+$/.test(text) && text.length <= 80 ? text : "";
       };
       const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
       const sourceQualityScore = (rows) => {

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -31,6 +31,23 @@
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
     .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
@@ -199,7 +216,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בִּשְׁנַ֤ת שְׁתַּ֙יִם֙ לְדָרְיָ֣וֶשׁ הַמֶּ֔לֶךְ בַּחֹ֙דֶשׁ֙ הַשִּׁשִּׁ֔י בְּי֥וֹם אֶחָ֖ד לַחֹ֑דֶשׁ הָיָ֨ה דְבַר־יְהֹוָ֜ה בְּיַד־חַגַּ֣י הַנָּבִ֗יא אֶל־זְרֻבָּבֶ֤ל בֶּן־שְׁאַלְתִּיאֵל֙ פַּחַ֣ת יְהוּדָ֔ה וְאֶל־יְהוֹשֻׁ֧עַ בֶּן־יְהוֹצָדָ֛ק הַכֹּהֵ֥ן הַגָּד֖וֹל לֵאמֹֽר׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×‘Ö¼Ö´×©×Ö°× Ö·Ö¤×ª ×©×Ö°×ªÖ¼Ö·Ö™×™Ö´×Ö™ ×œÖ°×“Ö¸×¨Ö°×™Ö¸Ö£×•Ö¶×©× ×”Ö·×žÖ¼Ö¶Ö”×œÖ¶×šÖ° ×‘Ö¼Ö·×—Ö¹Ö™×“Ö¶×©×Ö™ ×”Ö·×©×Ö¼Ö´×©×Ö¼Ö´Ö”×™ ×‘Ö¼Ö°×™Ö¥×•Ö¹× ×Ö¶×—Ö¸Ö–×“ ×œÖ·×—Ö¹Ö‘×“Ö¶×©× ×”Ö¸×™Ö¸Ö¨×” ×“Ö°×‘Ö·×¨Ö¾×™Ö°×”Ö¹×•Ö¸Öœ×” ×‘Ö¼Ö°×™Ö·×“Ö¾×—Ö·×’Ö¼Ö·Ö£×™ ×”Ö·× Ö¼Ö¸×‘Ö´Ö—×™× ×Ö¶×œÖ¾×–Ö°×¨Ö»×‘Ö¼Ö¸×‘Ö¶Ö¤×œ ×‘Ö¼Ö¶×ŸÖ¾×©×Ö°×Ö·×œÖ°×ªÖ¼Ö´×™×Öµ×œÖ™ ×¤Ö¼Ö·×—Ö·Ö£×ª ×™Ö°×”×•Ö¼×“Ö¸Ö”×” ×•Ö°×Ö¶×œÖ¾×™Ö°×”×•Ö¹×©×Ö»Ö§×¢Ö· ×‘Ö¼Ö¶×ŸÖ¾×™Ö°×”×•Ö¹×¦Ö¸×“Ö¸Ö›×§ ×”Ö·×›Ö¼Ö¹×”ÖµÖ¥×Ÿ ×”Ö·×’Ö¼Ö¸×“Ö–×•Ö¹×œ ×œÖµ××žÖ¹Ö½×¨×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -215,7 +232,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כֹּ֥ה אָמַ֛ר יְהֹוָ֥ה צְבָא֖וֹת לֵאמֹ֑ר הָעָ֤ם הַזֶּה֙ אָֽמְר֔וּ לֹ֥א עֶת־בֹּ֛א עֶת־בֵּ֥ית יְהֹוָ֖ה לְהִבָּנֽוֹת׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×›Ö¼Ö¹Ö¥×” ×Ö¸×žÖ·Ö›×¨ ×™Ö°×”Ö¹×•Ö¸Ö¥×” ×¦Ö°×‘Ö¸×Ö–×•Ö¹×ª ×œÖµ××žÖ¹Ö‘×¨ ×”Ö¸×¢Ö¸Ö¤× ×”Ö·×–Ö¼Ö¶×”Ö™ ×Ö¸Ö½×žÖ°×¨Ö”×•Ö¼ ×œÖ¹Ö¥× ×¢Ö¶×ªÖ¾×‘Ö¼Ö¹Ö›× ×¢Ö¶×ªÖ¾×‘Ö¼ÖµÖ¥×™×ª ×™Ö°×”Ö¹×•Ö¸Ö–×” ×œÖ°×”Ö´×‘Ö¼Ö¸× Ö½×•Ö¹×ª×ƒ&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{×¤}&lt;/span&gt;<br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -231,7 +248,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַֽיְהִי֙ דְּבַר־יְהֹוָ֔ה בְּיַד־חַגַּ֥י הַנָּבִ֖יא לֵאמֹֽר׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö·Ö½×™Ö°×”Ö´×™Ö™ ×“Ö¼Ö°×‘Ö·×¨Ö¾×™Ö°×”Ö¹×•Ö¸Ö”×” ×‘Ö¼Ö°×™Ö·×“Ö¾×—Ö·×’Ö¼Ö·Ö¥×™ ×”Ö·× Ö¼Ö¸×‘Ö´Ö–×™× ×œÖµ××žÖ¹Ö½×¨×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -247,7 +264,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַעֵ֤ת לָכֶם֙ אַתֶּ֔ם לָשֶׁ֖בֶת בְּבָתֵּיכֶ֣ם סְפוּנִ֑ים וְהַבַּ֥יִת הַזֶּ֖ה חָרֵֽב׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”Ö·×¢ÖµÖ¤×ª ×œÖ¸×›Ö¶×Ö™ ×Ö·×ªÖ¼Ö¶Ö”× ×œÖ¸×©×Ö¶Ö–×‘Ö¶×ª ×‘Ö¼Ö°×‘Ö¸×ªÖ¼Öµ×™×›Ö¶Ö£× ×¡Ö°×¤×•Ö¼× Ö´Ö‘×™× ×•Ö°×”Ö·×‘Ö¼Ö·Ö¥×™Ö´×ª ×”Ö·×–Ö¼Ö¶Ö–×” ×—Ö¸×¨ÖµÖ½×‘×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -263,7 +280,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעַתָּ֕ה כֹּ֥ה אָמַ֖ר יְהֹוָ֣ה צְבָא֑וֹת שִׂ֥ימוּ לְבַבְכֶ֖ם עַל־דַּרְכֵיכֶֽם׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö°×¢Ö·×ªÖ¼Ö¸Ö•×” ×›Ö¼Ö¹Ö¥×” ×Ö¸×žÖ·Ö–×¨ ×™Ö°×”Ö¹×•Ö¸Ö£×” ×¦Ö°×‘Ö¸×Ö‘×•Ö¹×ª ×©×‚Ö´Ö¥×™×ž×•Ö¼ ×œÖ°×‘Ö·×‘Ö°×›Ö¶Ö–× ×¢Ö·×œÖ¾×“Ö¼Ö·×¨Ö°×›Öµ×™×›Ö¶Ö½××ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -279,7 +296,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">זְרַעְתֶּ֨ם הַרְבֵּ֜ה וְהָבֵ֣א מְעָ֗ט אָכ֤וֹל וְאֵין־לְשׇׂבְעָה֙ שָׁת֣וֹ וְאֵין־לְשׇׁכְרָ֔ה לָב֖וֹשׁ וְאֵין־לְחֹ֣ם ל֑וֹ וְהַ֨מִּשְׂתַּכֵּ֔ר מִשְׂתַּכֵּ֖ר אֶל־צְר֥וֹר נָקֽוּב׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×–Ö°×¨Ö·×¢Ö°×ªÖ¼Ö¶Ö¨× ×”Ö·×¨Ö°×‘Ö¼ÖµÖœ×” ×•Ö°×”Ö¸×‘ÖµÖ£× ×žÖ°×¢Ö¸Ö—×˜ ×Ö¸×›Ö¤×•Ö¹×œ ×•Ö°×Öµ×™×ŸÖ¾×œÖ°×©×‚×‡×‘Ö°×¢Ö¸×”Ö™ ×©×Ö¸×ªÖ£×•Ö¹ ×•Ö°×Öµ×™×ŸÖ¾×œÖ°×©××‡×›Ö°×¨Ö¸Ö”×” ×œÖ¸×‘Ö–×•Ö¹×©× ×•Ö°×Öµ×™×ŸÖ¾×œÖ°×—Ö¹Ö£× ×œÖ‘×•Ö¹ ×•Ö°×”Ö·Ö¨×žÖ¼Ö´×©×‚Ö°×ªÖ¼Ö·×›Ö¼ÖµÖ”×¨ ×žÖ´×©×‚Ö°×ªÖ¼Ö·×›Ö¼ÖµÖ–×¨ ×Ö¶×œÖ¾×¦Ö°×¨Ö¥×•Ö¹×¨ × Ö¸×§Ö½×•Ö¼×‘×ƒ&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{×¤}&lt;/span&gt;<br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -295,7 +312,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כֹּ֥ה אָמַ֖ר יְהֹוָ֣ה צְבָא֑וֹת שִׂ֥ימוּ לְבַבְכֶ֖ם עַל־דַּרְכֵיכֶֽם׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×›Ö¼Ö¹Ö¥×” ×Ö¸×žÖ·Ö–×¨ ×™Ö°×”Ö¹×•Ö¸Ö£×” ×¦Ö°×‘Ö¸×Ö‘×•Ö¹×ª ×©×‚Ö´Ö¥×™×ž×•Ö¼ ×œÖ°×‘Ö·×‘Ö°×›Ö¶Ö–× ×¢Ö·×œÖ¾×“Ö¼Ö·×¨Ö°×›Öµ×™×›Ö¶Ö½××ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -311,7 +328,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עֲל֥וּ הָהָ֛ר וַהֲבֵאתֶ֥ם עֵ֖ץ וּבְנ֣וּ הַבָּ֑יִת וְאֶרְצֶה־בּ֥וֹ &lt;span class=&quot;mam-kq&quot;&gt;&lt;span class=&quot;mam-kq-k&quot;&gt;(ואכבד)&lt;/span&gt; &lt;span class=&quot;mam-kq-q&quot;&gt;[וְאֶכָּבְדָ֖ה]&lt;/span&gt;&lt;/span&gt; אָמַ֥ר יְהֹוָֽה׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×¢Ö²×œÖ¥×•Ö¼ ×”Ö¸×”Ö¸Ö›×¨ ×•Ö·×”Ö²×‘Öµ××ªÖ¶Ö¥× ×¢ÖµÖ–×¥ ×•Ö¼×‘Ö°× Ö£×•Ö¼ ×”Ö·×‘Ö¼Ö¸Ö‘×™Ö´×ª ×•Ö°×Ö¶×¨Ö°×¦Ö¶×”Ö¾×‘Ö¼Ö¥×•Ö¹ &lt;span class=&quot;mam-kq&quot;&gt;&lt;span class=&quot;mam-kq-k&quot;&gt;(×•××›×‘×“)&lt;/span&gt; &lt;span class=&quot;mam-kq-q&quot;&gt;[×•Ö°×Ö¶×›Ö¼Ö¸×‘Ö°×“Ö¸Ö–×”]&lt;/span&gt;&lt;/span&gt; ×Ö¸×žÖ·Ö¥×¨ ×™Ö°×”Ö¹×•Ö¸Ö½×”×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -327,7 +344,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">פָּנֹ֤ה אֶל־הַרְבֵּה֙ וְהִנֵּ֣ה לִמְעָ֔ט וַהֲבֵאתֶ֥ם הַבַּ֖יִת וְנָפַ֣חְתִּי ב֑וֹ יַ֣עַן מֶ֗ה נְאֻם֙ יְהֹוָ֣ה צְבָא֔וֹת יַ֗עַן בֵּיתִי֙ אֲשֶׁר־ה֣וּא חָרֵ֔ב וְאַתֶּ֥ם רָצִ֖ים אִ֥ישׁ לְבֵיתֽוֹ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×¤Ö¼Ö¸× Ö¹Ö¤×” ×Ö¶×œÖ¾×”Ö·×¨Ö°×‘Ö¼Öµ×”Ö™ ×•Ö°×”Ö´× Ö¼ÖµÖ£×” ×œÖ´×žÖ°×¢Ö¸Ö”×˜ ×•Ö·×”Ö²×‘Öµ××ªÖ¶Ö¥× ×”Ö·×‘Ö¼Ö·Ö–×™Ö´×ª ×•Ö°× Ö¸×¤Ö·Ö£×—Ö°×ªÖ¼Ö´×™ ×‘Ö‘×•Ö¹ ×™Ö·Ö£×¢Ö·×Ÿ ×žÖ¶Ö—×” × Ö°×Ö»×Ö™ ×™Ö°×”Ö¹×•Ö¸Ö£×” ×¦Ö°×‘Ö¸×Ö”×•Ö¹×ª ×™Ö·Ö—×¢Ö·×Ÿ ×‘Ö¼Öµ×™×ªÖ´×™Ö™ ×Ö²×©×Ö¶×¨Ö¾×”Ö£×•Ö¼× ×—Ö¸×¨ÖµÖ”×‘ ×•Ö°×Ö·×ªÖ¼Ö¶Ö¥× ×¨Ö¸×¦Ö´Ö–×™× ×Ö´Ö¥×™×©× ×œÖ°×‘Öµ×™×ªÖ½×•Ö¹×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -343,7 +360,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַל־כֵּ֣ן עֲלֵיכֶ֔ם כָּלְא֥וּ שָׁמַ֖יִם מִטָּ֑ל וְהָאָ֖רֶץ כָּלְאָ֥ה יְבוּלָֽהּ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×¢Ö·×œÖ¾×›Ö¼ÖµÖ£×Ÿ ×¢Ö²×œÖµ×™×›Ö¶Ö”× ×›Ö¼Ö¸×œÖ°×Ö¥×•Ö¼ ×©×Ö¸×žÖ·Ö–×™Ö´× ×žÖ´×˜Ö¼Ö¸Ö‘×œ ×•Ö°×”Ö¸×Ö¸Ö–×¨Ö¶×¥ ×›Ö¼Ö¸×œÖ°×Ö¸Ö¥×” ×™Ö°×‘×•Ö¼×œÖ¸Ö½×”Ö¼×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -359,7 +376,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וָאֶקְרָ֨א חֹ֜רֶב עַל־הָאָ֣רֶץ וְעַל־הֶהָרִ֗ים וְעַל־הַדָּגָן֙ וְעַל־הַתִּיר֣וֹשׁ וְעַל־הַיִּצְהָ֔ר וְעַ֛ל אֲשֶׁ֥ר תּוֹצִ֖יא הָאֲדָמָ֑ה וְעַל־הָֽאָדָם֙ וְעַל־הַבְּהֵמָ֔ה וְעַ֖ל כׇּל־יְגִ֥יעַ כַּפָּֽיִם׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö¸×Ö¶×§Ö°×¨Ö¸Ö¨× ×—Ö¹Öœ×¨Ö¶×‘ ×¢Ö·×œÖ¾×”Ö¸×Ö¸Ö£×¨Ö¶×¥ ×•Ö°×¢Ö·×œÖ¾×”Ö¶×”Ö¸×¨Ö´Ö—×™× ×•Ö°×¢Ö·×œÖ¾×”Ö·×“Ö¼Ö¸×’Ö¸×ŸÖ™ ×•Ö°×¢Ö·×œÖ¾×”Ö·×ªÖ¼Ö´×™×¨Ö£×•Ö¹×©× ×•Ö°×¢Ö·×œÖ¾×”Ö·×™Ö¼Ö´×¦Ö°×”Ö¸Ö”×¨ ×•Ö°×¢Ö·Ö›×œ ×Ö²×©×Ö¶Ö¥×¨ ×ªÖ¼×•Ö¹×¦Ö´Ö–×™× ×”Ö¸×Ö²×“Ö¸×žÖ¸Ö‘×” ×•Ö°×¢Ö·×œÖ¾×”Ö¸Ö½×Ö¸×“Ö¸×Ö™ ×•Ö°×¢Ö·×œÖ¾×”Ö·×‘Ö¼Ö°×”Öµ×žÖ¸Ö”×” ×•Ö°×¢Ö·Ö–×œ ×›Ö¼×‡×œÖ¾×™Ö°×’Ö´Ö¥×™×¢Ö· ×›Ö¼Ö·×¤Ö¼Ö¸Ö½×™Ö´××ƒ&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{×¤}&lt;/span&gt;<br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -375,7 +392,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיִּשְׁמַ֣ע זְרֻבָּבֶ֣ל&amp;thinsp;<span class="source-small">׀</span>&amp;thinsp;בֶּֽן־שַׁלְתִּיאֵ֡ל וִיהוֹשֻׁ֣עַ בֶּן־יְהוֹצָדָק֩ הַכֹּהֵ֨ן הַגָּד֜וֹל וְכֹ֣ל&amp;thinsp;<strong>׀</strong> שְׁאֵרִ֣ית הָעָ֗ם בְּקוֹל֙ יְהֹוָ֣ה אֱלֹֽהֵיהֶ֔ם וְעַל־דִּבְרֵי֙ חַגַּ֣י הַנָּבִ֔יא כַּאֲשֶׁ֥ר שְׁלָח֖וֹ יְהֹוָ֣ה אֱלֹהֵיהֶ֑ם וַיִּֽירְא֥וּ הָעָ֖ם מִפְּנֵ֥י יְהֹוָֽה׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö·×™Ö¼Ö´×©×Ö°×žÖ·Ö£×¢ ×–Ö°×¨Ö»×‘Ö¼Ö¸×‘Ö¶Ö£×œ&amp;thinsp;<span class="source-small">×€</span>&amp;thinsp;×‘Ö¼Ö¶Ö½×ŸÖ¾×©×Ö·×œÖ°×ªÖ¼Ö´×™×ÖµÖ¡×œ ×•Ö´×™×”×•Ö¹×©×Ö»Ö£×¢Ö· ×‘Ö¼Ö¶×ŸÖ¾×™Ö°×”×•Ö¹×¦Ö¸×“Ö¸×§Ö© ×”Ö·×›Ö¼Ö¹×”ÖµÖ¨×Ÿ ×”Ö·×’Ö¼Ö¸×“Öœ×•Ö¹×œ ×•Ö°×›Ö¹Ö£×œ&amp;thinsp;<strong>×€</strong> ×©×Ö°×Öµ×¨Ö´Ö£×™×ª ×”Ö¸×¢Ö¸Ö—× ×‘Ö¼Ö°×§×•Ö¹×œÖ™ ×™Ö°×”Ö¹×•Ö¸Ö£×” ×Ö±×œÖ¹Ö½×”Öµ×™×”Ö¶Ö”× ×•Ö°×¢Ö·×œÖ¾×“Ö¼Ö´×‘Ö°×¨Öµ×™Ö™ ×—Ö·×’Ö¼Ö·Ö£×™ ×”Ö·× Ö¼Ö¸×‘Ö´Ö”×™× ×›Ö¼Ö·×Ö²×©×Ö¶Ö¥×¨ ×©×Ö°×œÖ¸×—Ö–×•Ö¹ ×™Ö°×”Ö¹×•Ö¸Ö£×” ×Ö±×œÖ¹×”Öµ×™×”Ö¶Ö‘× ×•Ö·×™Ö¼Ö´Ö½×™×¨Ö°×Ö¥×•Ö¼ ×”Ö¸×¢Ö¸Ö–× ×žÖ´×¤Ö¼Ö°× ÖµÖ¥×™ ×™Ö°×”Ö¹×•Ö¸Ö½×”×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -391,7 +408,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַ֠יֹּ֠אמֶר חַגַּ֞י מַלְאַ֧ךְ יְהֹוָ֛ה בְּמַלְאֲכ֥וּת יְהֹוָ֖ה לָעָ֣ם לֵאמֹ֑ר אֲנִ֥י אִתְּכֶ֖ם נְאֻם־יְהֹוָֽה׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö·Ö ×™Ö¼Ö¹Ö ××žÖ¶×¨ ×—Ö·×’Ö¼Ö·Öž×™ ×žÖ·×œÖ°×Ö·Ö§×šÖ° ×™Ö°×”Ö¹×•Ö¸Ö›×” ×‘Ö¼Ö°×žÖ·×œÖ°×Ö²×›Ö¥×•Ö¼×ª ×™Ö°×”Ö¹×•Ö¸Ö–×” ×œÖ¸×¢Ö¸Ö£× ×œÖµ××žÖ¹Ö‘×¨ ×Ö²× Ö´Ö¥×™ ×Ö´×ªÖ¼Ö°×›Ö¶Ö–× × Ö°×Ö»×Ö¾×™Ö°×”Ö¹×•Ö¸Ö½×”×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -407,7 +424,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיָּ֣עַר יְהֹוָ֡ה אֶת־ר֩וּחַ֩ זְרֻבָּבֶ֨ל בֶּן־שַׁלְתִּיאֵ֜ל פַּחַ֣ת יְהוּדָ֗ה וְאֶת־ר֙וּחַ֙ יְהוֹשֻׁ֤עַ בֶּן־יְהוֹצָדָק֙ הַכֹּהֵ֣ן הַגָּד֔וֹל וְֽאֶת־ר֔וּחַ כֹּ֖ל שְׁאֵרִ֣ית הָעָ֑ם וַיָּבֹ֙אוּ֙ וַיַּעֲשׂ֣וּ מְלָאכָ֔ה בְּבֵית־יְהֹוָ֥ה צְבָא֖וֹת אֱלֹהֵיהֶֽם׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö·×™Ö¼Ö¸Ö£×¢Ö·×¨ ×™Ö°×”Ö¹×•Ö¸Ö¡×” ×Ö¶×ªÖ¾×¨Ö©×•Ö¼×—Ö·Ö© ×–Ö°×¨Ö»×‘Ö¼Ö¸×‘Ö¶Ö¨×œ ×‘Ö¼Ö¶×ŸÖ¾×©×Ö·×œÖ°×ªÖ¼Ö´×™×ÖµÖœ×œ ×¤Ö¼Ö·×—Ö·Ö£×ª ×™Ö°×”×•Ö¼×“Ö¸Ö—×” ×•Ö°×Ö¶×ªÖ¾×¨Ö™×•Ö¼×—Ö·Ö™ ×™Ö°×”×•Ö¹×©×Ö»Ö¤×¢Ö· ×‘Ö¼Ö¶×ŸÖ¾×™Ö°×”×•Ö¹×¦Ö¸×“Ö¸×§Ö™ ×”Ö·×›Ö¼Ö¹×”ÖµÖ£×Ÿ ×”Ö·×’Ö¼Ö¸×“Ö”×•Ö¹×œ ×•Ö°Ö½×Ö¶×ªÖ¾×¨Ö”×•Ö¼×—Ö· ×›Ö¼Ö¹Ö–×œ ×©×Ö°×Öµ×¨Ö´Ö£×™×ª ×”Ö¸×¢Ö¸Ö‘× ×•Ö·×™Ö¼Ö¸×‘Ö¹Ö™××•Ö¼Ö™ ×•Ö·×™Ö¼Ö·×¢Ö²×©×‚Ö£×•Ö¼ ×žÖ°×œÖ¸××›Ö¸Ö”×” ×‘Ö¼Ö°×‘Öµ×™×ªÖ¾×™Ö°×”Ö¹×•Ö¸Ö¥×” ×¦Ö°×‘Ö¸×Ö–×•Ö¹×ª ×Ö±×œÖ¹×”Öµ×™×”Ö¶Ö½××ƒ&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{×¤}&lt;/span&gt;<br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -423,7 +440,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בְּי֨וֹם עֶשְׂרִ֧ים וְאַרְבָּעָ֛ה לַחֹ֖דֶשׁ בַּשִּׁשִּׁ֑י בִּשְׁנַ֥ת שְׁתַּ֖יִם לְדָרְיָ֥וֶשׁ הַמֶּֽלֶךְ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×‘Ö¼Ö°×™Ö¨×•Ö¹× ×¢Ö¶×©×‚Ö°×¨Ö´Ö§×™× ×•Ö°×Ö·×¨Ö°×‘Ö¼Ö¸×¢Ö¸Ö›×” ×œÖ·×—Ö¹Ö–×“Ö¶×©× ×‘Ö¼Ö·×©×Ö¼Ö´×©×Ö¼Ö´Ö‘×™ ×‘Ö¼Ö´×©×Ö°× Ö·Ö¥×ª ×©×Ö°×ªÖ¼Ö·Ö–×™Ö´× ×œÖ°×“Ö¸×¨Ö°×™Ö¸Ö¥×•Ö¶×©× ×”Ö·×žÖ¼Ö¶Ö½×œÖ¶×šÖ°×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -440,7 +457,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בַּשְּׁבִיעִ֕י בְּעֶשְׂרִ֥ים וְאֶחָ֖ד לַחֹ֑דֶשׁ הָיָה֙ דְּבַר־יְהֹוָ֔ה בְּיַד־חַגַּ֥י הַנָּבִ֖יא לֵאמֹֽר׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×‘Ö¼Ö·×©×Ö¼Ö°×‘Ö´×™×¢Ö´Ö•×™ ×‘Ö¼Ö°×¢Ö¶×©×‚Ö°×¨Ö´Ö¥×™× ×•Ö°×Ö¶×—Ö¸Ö–×“ ×œÖ·×—Ö¹Ö‘×“Ö¶×©× ×”Ö¸×™Ö¸×”Ö™ ×“Ö¼Ö°×‘Ö·×¨Ö¾×™Ö°×”Ö¹×•Ö¸Ö”×” ×‘Ö¼Ö°×™Ö·×“Ö¾×—Ö·×’Ö¼Ö·Ö¥×™ ×”Ö·× Ö¼Ö¸×‘Ö´Ö–×™× ×œÖµ××žÖ¹Ö½×¨×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -456,7 +473,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֱמׇר־נָ֗א אֶל־זְרֻבָּבֶ֤ל בֶּן־שַׁלְתִּיאֵל֙ פַּחַ֣ת יְהוּדָ֔ה וְאֶל־יְהוֹשֻׁ֥עַ בֶּן־יְהוֹצָדָ֖ק הַכֹּהֵ֣ן הַגָּד֑וֹל וְאֶל־שְׁאֵרִ֥ית הָעָ֖ם לֵאמֹֽר׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×Ö±×ž×‡×¨Ö¾× Ö¸Ö—× ×Ö¶×œÖ¾×–Ö°×¨Ö»×‘Ö¼Ö¸×‘Ö¶Ö¤×œ ×‘Ö¼Ö¶×ŸÖ¾×©×Ö·×œÖ°×ªÖ¼Ö´×™×Öµ×œÖ™ ×¤Ö¼Ö·×—Ö·Ö£×ª ×™Ö°×”×•Ö¼×“Ö¸Ö”×” ×•Ö°×Ö¶×œÖ¾×™Ö°×”×•Ö¹×©×Ö»Ö¥×¢Ö· ×‘Ö¼Ö¶×ŸÖ¾×™Ö°×”×•Ö¹×¦Ö¸×“Ö¸Ö–×§ ×”Ö·×›Ö¼Ö¹×”ÖµÖ£×Ÿ ×”Ö·×’Ö¼Ö¸×“Ö‘×•Ö¹×œ ×•Ö°×Ö¶×œÖ¾×©×Ö°×Öµ×¨Ö´Ö¥×™×ª ×”Ö¸×¢Ö¸Ö–× ×œÖµ××žÖ¹Ö½×¨×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -472,7 +489,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מִ֤י בָכֶם֙ הַנִּשְׁאָ֔ר אֲשֶׁ֤ר רָאָה֙ אֶת־הַבַּ֣יִת הַזֶּ֔ה בִּכְבוֹד֖וֹ הָרִאשׁ֑וֹן וּמָ֨ה אַתֶּ֜ם רֹאִ֤ים אֹתוֹ֙ עַ֔תָּה הֲל֥וֹא כָמֹ֛הוּ כְּאַ֖יִן בְּעֵינֵיכֶֽם׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×žÖ´Ö¤×™ ×‘Ö¸×›Ö¶×Ö™ ×”Ö·× Ö¼Ö´×©×Ö°×Ö¸Ö”×¨ ×Ö²×©×Ö¶Ö¤×¨ ×¨Ö¸×Ö¸×”Ö™ ×Ö¶×ªÖ¾×”Ö·×‘Ö¼Ö·Ö£×™Ö´×ª ×”Ö·×–Ö¼Ö¶Ö”×” ×‘Ö¼Ö´×›Ö°×‘×•Ö¹×“Ö–×•Ö¹ ×”Ö¸×¨Ö´××©×Ö‘×•Ö¹×Ÿ ×•Ö¼×žÖ¸Ö¨×” ×Ö·×ªÖ¼Ö¶Öœ× ×¨Ö¹×Ö´Ö¤×™× ×Ö¹×ª×•Ö¹Ö™ ×¢Ö·Ö”×ªÖ¼Ö¸×” ×”Ö²×œÖ¥×•Ö¹× ×›Ö¸×žÖ¹Ö›×”×•Ö¼ ×›Ö¼Ö°×Ö·Ö–×™Ö´×Ÿ ×‘Ö¼Ö°×¢Öµ×™× Öµ×™×›Ö¶Ö½××ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -488,7 +505,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעַתָּ֣ה חֲזַ֣ק זְרֻבָּבֶ֣ל&amp;thinsp;<span class="source-small">׀</span>&amp;thinsp;נְאֻם־יְהֹוָ֡ה וַחֲזַ֣ק יְהוֹשֻׁ֣עַ בֶּן־יְהוֹצָדָק֩ הַכֹּהֵ֨ן הַגָּד֜וֹל וַחֲזַ֨ק כׇּל־עַ֥ם הָאָ֛רֶץ נְאֻם־יְהֹוָ֖ה וַֽעֲשׂ֑וּ כִּֽי־אֲנִ֣י אִתְּכֶ֔ם נְאֻ֖ם יְהֹוָ֥ה צְבָאֽוֹת׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö°×¢Ö·×ªÖ¼Ö¸Ö£×” ×—Ö²×–Ö·Ö£×§ ×–Ö°×¨Ö»×‘Ö¼Ö¸×‘Ö¶Ö£×œ&amp;thinsp;<span class="source-small">×€</span>&amp;thinsp;× Ö°×Ö»×Ö¾×™Ö°×”Ö¹×•Ö¸Ö¡×” ×•Ö·×—Ö²×–Ö·Ö£×§ ×™Ö°×”×•Ö¹×©×Ö»Ö£×¢Ö· ×‘Ö¼Ö¶×ŸÖ¾×™Ö°×”×•Ö¹×¦Ö¸×“Ö¸×§Ö© ×”Ö·×›Ö¼Ö¹×”ÖµÖ¨×Ÿ ×”Ö·×’Ö¼Ö¸×“Öœ×•Ö¹×œ ×•Ö·×—Ö²×–Ö·Ö¨×§ ×›Ö¼×‡×œÖ¾×¢Ö·Ö¥× ×”Ö¸×Ö¸Ö›×¨Ö¶×¥ × Ö°×Ö»×Ö¾×™Ö°×”Ö¹×•Ö¸Ö–×” ×•Ö·Ö½×¢Ö²×©×‚Ö‘×•Ö¼ ×›Ö¼Ö´Ö½×™Ö¾×Ö²× Ö´Ö£×™ ×Ö´×ªÖ¼Ö°×›Ö¶Ö”× × Ö°×Ö»Ö–× ×™Ö°×”Ö¹×•Ö¸Ö¥×” ×¦Ö°×‘Ö¸×Ö½×•Ö¹×ª×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -504,7 +521,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֶֽת־הַדָּבָ֞ר אֲשֶׁר־כָּרַ֤תִּי אִתְּכֶם֙ בְּצֵאתְכֶ֣ם מִמִּצְרַ֔יִם וְרוּחִ֖י עֹמֶ֣דֶת בְּתוֹכְכֶ֑ם אַל־תִּירָֽאוּ׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×Ö¶Ö½×ªÖ¾×”Ö·×“Ö¼Ö¸×‘Ö¸Öž×¨ ×Ö²×©×Ö¶×¨Ö¾×›Ö¼Ö¸×¨Ö·Ö¤×ªÖ¼Ö´×™ ×Ö´×ªÖ¼Ö°×›Ö¶×Ö™ ×‘Ö¼Ö°×¦Öµ××ªÖ°×›Ö¶Ö£× ×žÖ´×žÖ¼Ö´×¦Ö°×¨Ö·Ö”×™Ö´× ×•Ö°×¨×•Ö¼×—Ö´Ö–×™ ×¢Ö¹×žÖ¶Ö£×“Ö¶×ª ×‘Ö¼Ö°×ª×•Ö¹×›Ö°×›Ö¶Ö‘× ×Ö·×œÖ¾×ªÖ¼Ö´×™×¨Ö¸Ö½××•Ö¼×ƒ&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{×¤}&lt;/span&gt;<br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -520,7 +537,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּ֣י כֹ֤ה אָמַר֙ יְהֹוָ֣ה צְבָא֔וֹת ע֥וֹד אַחַ֖ת מְעַ֣ט הִ֑יא וַאֲנִ֗י מַרְעִישׁ֙ אֶת־הַשָּׁמַ֣יִם וְאֶת־הָאָ֔רֶץ וְאֶת־הַיָּ֖ם וְאֶת־הֶחָרָבָֽה׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×›Ö¼Ö´Ö£×™ ×›Ö¹Ö¤×” ×Ö¸×žÖ·×¨Ö™ ×™Ö°×”Ö¹×•Ö¸Ö£×” ×¦Ö°×‘Ö¸×Ö”×•Ö¹×ª ×¢Ö¥×•Ö¹×“ ×Ö·×—Ö·Ö–×ª ×žÖ°×¢Ö·Ö£×˜ ×”Ö´Ö‘×™× ×•Ö·×Ö²× Ö´Ö—×™ ×žÖ·×¨Ö°×¢Ö´×™×©×Ö™ ×Ö¶×ªÖ¾×”Ö·×©×Ö¼Ö¸×žÖ·Ö£×™Ö´× ×•Ö°×Ö¶×ªÖ¾×”Ö¸×Ö¸Ö”×¨Ö¶×¥ ×•Ö°×Ö¶×ªÖ¾×”Ö·×™Ö¼Ö¸Ö–× ×•Ö°×Ö¶×ªÖ¾×”Ö¶×—Ö¸×¨Ö¸×‘Ö¸Ö½×”×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -536,7 +553,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהִרְעַשְׁתִּי֙ אֶת־כׇּל־הַגּוֹיִ֔ם וּבָ֖אוּ חֶמְדַּ֣ת כׇּל־הַגּוֹיִ֑ם וּמִלֵּאתִ֞י אֶת־הַבַּ֤יִת הַזֶּה֙ כָּב֔וֹד אָמַ֖ר יְהֹוָ֥ה צְבָאֽוֹת׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö°×”Ö´×¨Ö°×¢Ö·×©×Ö°×ªÖ¼Ö´×™Ö™ ×Ö¶×ªÖ¾×›Ö¼×‡×œÖ¾×”Ö·×’Ö¼×•Ö¹×™Ö´Ö”× ×•Ö¼×‘Ö¸Ö–××•Ö¼ ×—Ö¶×žÖ°×“Ö¼Ö·Ö£×ª ×›Ö¼×‡×œÖ¾×”Ö·×’Ö¼×•Ö¹×™Ö´Ö‘× ×•Ö¼×žÖ´×œÖ¼Öµ××ªÖ´Öž×™ ×Ö¶×ªÖ¾×”Ö·×‘Ö¼Ö·Ö¤×™Ö´×ª ×”Ö·×–Ö¼Ö¶×”Ö™ ×›Ö¼Ö¸×‘Ö”×•Ö¹×“ ×Ö¸×žÖ·Ö–×¨ ×™Ö°×”Ö¹×•Ö¸Ö¥×” ×¦Ö°×‘Ö¸×Ö½×•Ö¹×ª×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -552,7 +569,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לִ֥י הַכֶּ֖סֶף וְלִ֣י הַזָּהָ֑ב נְאֻ֖ם יְהֹוָ֥ה צְבָאֽוֹת׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×œÖ´Ö¥×™ ×”Ö·×›Ö¼Ö¶Ö–×¡Ö¶×£ ×•Ö°×œÖ´Ö£×™ ×”Ö·×–Ö¼Ö¸×”Ö¸Ö‘×‘ × Ö°×Ö»Ö–× ×™Ö°×”Ö¹×•Ö¸Ö¥×” ×¦Ö°×‘Ö¸×Ö½×•Ö¹×ª×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -568,7 +585,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">גָּד֣וֹל יִֽהְיֶ֡ה כְּבוֹד֩ הַבַּ֨יִת הַזֶּ֤ה הָאַֽחֲרוֹן֙ מִן־הָ֣רִאשׁ֔וֹן אָמַ֖ר יְהֹוָ֣ה צְבָא֑וֹת וּבַמָּק֤וֹם הַזֶּה֙ אֶתֵּ֣ן שָׁל֔וֹם נְאֻ֖ם יְהֹוָ֥ה צְבָאֽוֹת׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×’Ö¼Ö¸×“Ö£×•Ö¹×œ ×™Ö´Ö½×”Ö°×™Ö¶Ö¡×” ×›Ö¼Ö°×‘×•Ö¹×“Ö© ×”Ö·×‘Ö¼Ö·Ö¨×™Ö´×ª ×”Ö·×–Ö¼Ö¶Ö¤×” ×”Ö¸×Ö·Ö½×—Ö²×¨×•Ö¹×ŸÖ™ ×žÖ´×ŸÖ¾×”Ö¸Ö£×¨Ö´××©×Ö”×•Ö¹×Ÿ ×Ö¸×žÖ·Ö–×¨ ×™Ö°×”Ö¹×•Ö¸Ö£×” ×¦Ö°×‘Ö¸×Ö‘×•Ö¹×ª ×•Ö¼×‘Ö·×žÖ¼Ö¸×§Ö¤×•Ö¹× ×”Ö·×–Ö¼Ö¶×”Ö™ ×Ö¶×ªÖ¼ÖµÖ£×Ÿ ×©×Ö¸×œÖ”×•Ö¹× × Ö°×Ö»Ö–× ×™Ö°×”Ö¹×•Ö¸Ö¥×” ×¦Ö°×‘Ö¸×Ö½×•Ö¹×ª×ƒ&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{×¤}&lt;/span&gt;<br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -584,7 +601,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בְּעֶשְׂרִ֤ים וְאַרְבָּעָה֙ לַתְּשִׁיעִ֔י בִּשְׁנַ֥ת שְׁתַּ֖יִם לְדָרְיָ֑וֶשׁ הָיָה֙ דְּבַר־יְהֹוָ֔ה אֶל־חַגַּ֥י הַנָּבִ֖יא לֵאמֹֽר׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×‘Ö¼Ö°×¢Ö¶×©×‚Ö°×¨Ö´Ö¤×™× ×•Ö°×Ö·×¨Ö°×‘Ö¼Ö¸×¢Ö¸×”Ö™ ×œÖ·×ªÖ¼Ö°×©×Ö´×™×¢Ö´Ö”×™ ×‘Ö¼Ö´×©×Ö°× Ö·Ö¥×ª ×©×Ö°×ªÖ¼Ö·Ö–×™Ö´× ×œÖ°×“Ö¸×¨Ö°×™Ö¸Ö‘×•Ö¶×©× ×”Ö¸×™Ö¸×”Ö™ ×“Ö¼Ö°×‘Ö·×¨Ö¾×™Ö°×”Ö¹×•Ö¸Ö”×” ×Ö¶×œÖ¾×—Ö·×’Ö¼Ö·Ö¥×™ ×”Ö·× Ö¼Ö¸×‘Ö´Ö–×™× ×œÖµ××žÖ¹Ö½×¨×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -600,7 +617,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כֹּ֥ה אָמַ֖ר יְהֹוָ֣ה צְבָא֑וֹת שְׁאַל־נָ֧א אֶת־הַכֹּהֲנִ֛ים תּוֹרָ֖ה לֵאמֹֽר׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×›Ö¼Ö¹Ö¥×” ×Ö¸×žÖ·Ö–×¨ ×™Ö°×”Ö¹×•Ö¸Ö£×” ×¦Ö°×‘Ö¸×Ö‘×•Ö¹×ª ×©×Ö°×Ö·×œÖ¾× Ö¸Ö§× ×Ö¶×ªÖ¾×”Ö·×›Ö¼Ö¹×”Ö²× Ö´Ö›×™× ×ªÖ¼×•Ö¹×¨Ö¸Ö–×” ×œÖµ××žÖ¹Ö½×¨×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -616,7 +633,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֵ֣ן&amp;thinsp;<strong>׀</strong> יִשָּׂא־אִ֨ישׁ בְּשַׂר־קֹ֜דֶשׁ בִּכְנַ֣ף בִּגְד֗וֹ וְנָגַ֣ע בִּ֠כְנָפ֠וֹ אֶל־הַלֶּ֨חֶם וְאֶל־הַנָּזִ֜יד וְאֶל־הַיַּ֧יִן וְאֶל־שֶׁ֛מֶן וְאֶל־כׇּל־מַאֲכָ֖ל הֲיִקְדָּ֑שׁ וַיַּעֲנ֧וּ הַכֹּהֲנִ֛ים וַיֹּאמְר֖וּ לֹֽא׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”ÖµÖ£×Ÿ&amp;thinsp;<strong>×€</strong> ×™Ö´×©×‚Ö¼Ö¸×Ö¾×Ö´Ö¨×™×©× ×‘Ö¼Ö°×©×‚Ö·×¨Ö¾×§Ö¹Öœ×“Ö¶×©× ×‘Ö¼Ö´×›Ö°× Ö·Ö£×£ ×‘Ö¼Ö´×’Ö°×“Ö—×•Ö¹ ×•Ö°× Ö¸×’Ö·Ö£×¢ ×‘Ö¼Ö´Ö ×›Ö°× Ö¸×¤Ö ×•Ö¹ ×Ö¶×œÖ¾×”Ö·×œÖ¼Ö¶Ö¨×—Ö¶× ×•Ö°×Ö¶×œÖ¾×”Ö·× Ö¼Ö¸×–Ö´Öœ×™×“ ×•Ö°×Ö¶×œÖ¾×”Ö·×™Ö¼Ö·Ö§×™Ö´×Ÿ ×•Ö°×Ö¶×œÖ¾×©×Ö¶Ö›×žÖ¶×Ÿ ×•Ö°×Ö¶×œÖ¾×›Ö¼×‡×œÖ¾×žÖ·×Ö²×›Ö¸Ö–×œ ×”Ö²×™Ö´×§Ö°×“Ö¼Ö¸Ö‘×©× ×•Ö·×™Ö¼Ö·×¢Ö²× Ö§×•Ö¼ ×”Ö·×›Ö¼Ö¹×”Ö²× Ö´Ö›×™× ×•Ö·×™Ö¼Ö¹××žÖ°×¨Ö–×•Ö¼ ×œÖ¹Ö½××ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -632,7 +649,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֣אמֶר חַגַּ֔י אִם־יִגַּ֧ע טְמֵא־נֶ֛פֶשׁ בְּכׇל־אֵ֖לֶּה הֲיִטְמָ֑א וַיַּעֲנ֧וּ הַכֹּהֲנִ֛ים וַיֹּאמְר֖וּ יִטְמָֽא׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö·×™Ö¼Ö¹Ö£××žÖ¶×¨ ×—Ö·×’Ö¼Ö·Ö”×™ ×Ö´×Ö¾×™Ö´×’Ö¼Ö·Ö§×¢ ×˜Ö°×žÖµ×Ö¾× Ö¶Ö›×¤Ö¶×©× ×‘Ö¼Ö°×›×‡×œÖ¾×ÖµÖ–×œÖ¼Ö¶×” ×”Ö²×™Ö´×˜Ö°×žÖ¸Ö‘× ×•Ö·×™Ö¼Ö·×¢Ö²× Ö§×•Ö¼ ×”Ö·×›Ö¼Ö¹×”Ö²× Ö´Ö›×™× ×•Ö·×™Ö¼Ö¹××žÖ°×¨Ö–×•Ö¼ ×™Ö´×˜Ö°×žÖ¸Ö½××ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -648,7 +665,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיַּ֨עַן חַגַּ֜י וַיֹּ֗אמֶר כֵּ֣ן הָֽעָם־הַ֠זֶּ֠ה וְכֵן־הַגּ֨וֹי הַזֶּ֤ה לְפָנַי֙ נְאֻם־יְהֹוָ֔ה וְכֵ֖ן כׇּל־מַעֲשֵׂ֣ה יְדֵיהֶ֑ם וַאֲשֶׁ֥ר יַקְרִ֛יבוּ שָׁ֖ם טָמֵ֥א הֽוּא׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö·×™Ö¼Ö·Ö¨×¢Ö·×Ÿ ×—Ö·×’Ö¼Ö·Öœ×™ ×•Ö·×™Ö¼Ö¹Ö—××žÖ¶×¨ ×›Ö¼ÖµÖ£×Ÿ ×”Ö¸Ö½×¢Ö¸×Ö¾×”Ö·Ö ×–Ö¼Ö¶Ö ×” ×•Ö°×›Öµ×ŸÖ¾×”Ö·×’Ö¼Ö¨×•Ö¹×™ ×”Ö·×–Ö¼Ö¶Ö¤×” ×œÖ°×¤Ö¸× Ö·×™Ö™ × Ö°×Ö»×Ö¾×™Ö°×”Ö¹×•Ö¸Ö”×” ×•Ö°×›ÖµÖ–×Ÿ ×›Ö¼×‡×œÖ¾×žÖ·×¢Ö²×©×‚ÖµÖ£×” ×™Ö°×“Öµ×™×”Ö¶Ö‘× ×•Ö·×Ö²×©×Ö¶Ö¥×¨ ×™Ö·×§Ö°×¨Ö´Ö›×™×‘×•Ö¼ ×©×Ö¸Ö–× ×˜Ö¸×žÖµÖ¥× ×”Ö½×•Ö¼××ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -664,7 +681,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעַתָּה֙ שִֽׂימוּ־נָ֣א לְבַבְכֶ֔ם מִן־הַיּ֥וֹם הַזֶּ֖ה וָמָ֑עְלָה מִטֶּ֧רֶם שֽׂוּם־אֶ֛בֶן אֶל־אֶ֖בֶן בְּהֵיכַ֥ל יְהֹוָֽה׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö°×¢Ö·×ªÖ¼Ö¸×”Ö™ ×©×‚Ö´Ö½×™×ž×•Ö¼Ö¾× Ö¸Ö£× ×œÖ°×‘Ö·×‘Ö°×›Ö¶Ö”× ×žÖ´×ŸÖ¾×”Ö·×™Ö¼Ö¥×•Ö¹× ×”Ö·×–Ö¼Ö¶Ö–×” ×•Ö¸×žÖ¸Ö‘×¢Ö°×œÖ¸×” ×žÖ´×˜Ö¼Ö¶Ö§×¨Ö¶× ×©×‚Ö½×•Ö¼×Ö¾×Ö¶Ö›×‘Ö¶×Ÿ ×Ö¶×œÖ¾×Ö¶Ö–×‘Ö¶×Ÿ ×‘Ö¼Ö°×”Öµ×™×›Ö·Ö¥×œ ×™Ö°×”Ö¹×•Ö¸Ö½×”×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -680,7 +697,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מִֽהְיוֹתָ֥ם בָּא֙ אֶל־עֲרֵמַ֣ת עֶשְׂרִ֔ים וְהָיְתָ֖ה עֲשָׂרָ֑ה בָּ֣א אֶל־הַיֶּ֗קֶב לַחְשֹׂף֙ חֲמִשִּׁ֣ים פּוּרָ֔ה וְהָיְתָ֖ה עֶשְׂרִֽים׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×žÖ´Ö½×”Ö°×™×•Ö¹×ªÖ¸Ö¥× ×‘Ö¼Ö¸×Ö™ ×Ö¶×œÖ¾×¢Ö²×¨Öµ×žÖ·Ö£×ª ×¢Ö¶×©×‚Ö°×¨Ö´Ö”×™× ×•Ö°×”Ö¸×™Ö°×ªÖ¸Ö–×” ×¢Ö²×©×‚Ö¸×¨Ö¸Ö‘×” ×‘Ö¼Ö¸Ö£× ×Ö¶×œÖ¾×”Ö·×™Ö¼Ö¶Ö—×§Ö¶×‘ ×œÖ·×—Ö°×©×‚Ö¹×£Ö™ ×—Ö²×žÖ´×©×Ö¼Ö´Ö£×™× ×¤Ö¼×•Ö¼×¨Ö¸Ö”×” ×•Ö°×”Ö¸×™Ö°×ªÖ¸Ö–×” ×¢Ö¶×©×‚Ö°×¨Ö´Ö½×™××ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -696,7 +713,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הִכֵּ֨יתִי אֶתְכֶ֜ם בַּשִּׁדָּפ֤וֹן וּבַיֵּֽרָקוֹן֙ וּבַבָּרָ֔ד אֵ֖ת כׇּל־מַעֲשֵׂ֣ה יְדֵיכֶ֑ם וְאֵין־אֶתְכֶ֥ם אֵלַ֖י נְאֻם־יְהֹוָֽה׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”Ö´×›Ö¼ÖµÖ¨×™×ªÖ´×™ ×Ö¶×ªÖ°×›Ö¶Öœ× ×‘Ö¼Ö·×©×Ö¼Ö´×“Ö¼Ö¸×¤Ö¤×•Ö¹×Ÿ ×•Ö¼×‘Ö·×™Ö¼ÖµÖ½×¨Ö¸×§×•Ö¹×ŸÖ™ ×•Ö¼×‘Ö·×‘Ö¼Ö¸×¨Ö¸Ö”×“ ×ÖµÖ–×ª ×›Ö¼×‡×œÖ¾×žÖ·×¢Ö²×©×‚ÖµÖ£×” ×™Ö°×“Öµ×™×›Ö¶Ö‘× ×•Ö°×Öµ×™×ŸÖ¾×Ö¶×ªÖ°×›Ö¶Ö¥× ×Öµ×œÖ·Ö–×™ × Ö°×Ö»×Ö¾×™Ö°×”Ö¹×•Ö¸Ö½×”×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -712,7 +729,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שִׂימוּ־נָ֣א לְבַבְכֶ֔ם מִן־הַיּ֥וֹם הַזֶּ֖ה וָמָ֑עְלָה מִיּוֹם֩ עֶשְׂרִ֨ים וְאַרְבָּעָ֜ה לַתְּשִׁיעִ֗י לְמִן־הַיּ֛וֹם אֲשֶׁר־יֻסַּ֥ד הֵֽיכַל־יְהֹוָ֖ה שִׂ֥ימוּ לְבַבְכֶֽם׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×©×‚Ö´×™×ž×•Ö¼Ö¾× Ö¸Ö£× ×œÖ°×‘Ö·×‘Ö°×›Ö¶Ö”× ×žÖ´×ŸÖ¾×”Ö·×™Ö¼Ö¥×•Ö¹× ×”Ö·×–Ö¼Ö¶Ö–×” ×•Ö¸×žÖ¸Ö‘×¢Ö°×œÖ¸×” ×žÖ´×™Ö¼×•Ö¹×Ö© ×¢Ö¶×©×‚Ö°×¨Ö´Ö¨×™× ×•Ö°×Ö·×¨Ö°×‘Ö¼Ö¸×¢Ö¸Öœ×” ×œÖ·×ªÖ¼Ö°×©×Ö´×™×¢Ö´Ö—×™ ×œÖ°×žÖ´×ŸÖ¾×”Ö·×™Ö¼Ö›×•Ö¹× ×Ö²×©×Ö¶×¨Ö¾×™Ö»×¡Ö¼Ö·Ö¥×“ ×”ÖµÖ½×™×›Ö·×œÖ¾×™Ö°×”Ö¹×•Ö¸Ö–×” ×©×‚Ö´Ö¥×™×ž×•Ö¼ ×œÖ°×‘Ö·×‘Ö°×›Ö¶Ö½××ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -728,7 +745,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַע֤וֹד הַזֶּ֙רַע֙ בַּמְּגוּרָ֔ה וְעַד־הַגֶּ֨פֶן וְהַתְּאֵנָ֧ה וְהָרִמּ֛וֹן וְעֵ֥ץ הַזַּ֖יִת לֹ֣א נָשָׂ֑א מִן־הַיּ֥וֹם הַזֶּ֖ה אֲבָרֵֽךְ׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×”Ö·×¢Ö¤×•Ö¹×“ ×”Ö·×–Ö¼Ö¶Ö™×¨Ö·×¢Ö™ ×‘Ö¼Ö·×žÖ¼Ö°×’×•Ö¼×¨Ö¸Ö”×” ×•Ö°×¢Ö·×“Ö¾×”Ö·×’Ö¼Ö¶Ö¨×¤Ö¶×Ÿ ×•Ö°×”Ö·×ªÖ¼Ö°×Öµ× Ö¸Ö§×” ×•Ö°×”Ö¸×¨Ö´×žÖ¼Ö›×•Ö¹×Ÿ ×•Ö°×¢ÖµÖ¥×¥ ×”Ö·×–Ö¼Ö·Ö–×™Ö´×ª ×œÖ¹Ö£× × Ö¸×©×‚Ö¸Ö‘× ×žÖ´×ŸÖ¾×”Ö·×™Ö¼Ö¥×•Ö¹× ×”Ö·×–Ö¼Ö¶Ö–×” ×Ö²×‘Ö¸×¨ÖµÖ½×šÖ°×ƒ&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{×¤}&lt;/span&gt;<br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -744,7 +761,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיְהִ֨י דְבַר־יְהֹוָ֤ה&amp;thinsp;<span class="source-small">׀</span>&amp;thinsp;שֵׁנִית֙ אֶל־חַגַּ֔י בְּעֶשְׂרִ֧ים וְאַרְבָּעָ֛ה לַחֹ֖דֶשׁ לֵאמֹֽר׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö·×™Ö°×”Ö´Ö¨×™ ×“Ö°×‘Ö·×¨Ö¾×™Ö°×”Ö¹×•Ö¸Ö¤×”&amp;thinsp;<span class="source-small">×€</span>&amp;thinsp;×©×Öµ× Ö´×™×ªÖ™ ×Ö¶×œÖ¾×—Ö·×’Ö¼Ö·Ö”×™ ×‘Ö¼Ö°×¢Ö¶×©×‚Ö°×¨Ö´Ö§×™× ×•Ö°×Ö·×¨Ö°×‘Ö¼Ö¸×¢Ö¸Ö›×” ×œÖ·×—Ö¹Ö–×“Ö¶×©× ×œÖµ××žÖ¹Ö½×¨×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -760,7 +777,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֱמֹ֕ר אֶל־זְרֻבָּבֶ֥ל פַּֽחַת־יְהוּדָ֖ה לֵאמֹ֑ר אֲנִ֣י מַרְעִ֔ישׁ אֶת־הַשָּׁמַ֖יִם וְאֶת־הָאָֽרֶץ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×Ö±×žÖ¹Ö•×¨ ×Ö¶×œÖ¾×–Ö°×¨Ö»×‘Ö¼Ö¸×‘Ö¶Ö¥×œ ×¤Ö¼Ö·Ö½×—Ö·×ªÖ¾×™Ö°×”×•Ö¼×“Ö¸Ö–×” ×œÖµ××žÖ¹Ö‘×¨ ×Ö²× Ö´Ö£×™ ×žÖ·×¨Ö°×¢Ö´Ö”×™×©× ×Ö¶×ªÖ¾×”Ö·×©×Ö¼Ö¸×žÖ·Ö–×™Ö´× ×•Ö°×Ö¶×ªÖ¾×”Ö¸×Ö¸Ö½×¨Ö¶×¥×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -776,7 +793,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהָֽפַכְתִּי֙ כִּסֵּ֣א מַמְלָכ֔וֹת וְהִ֨שְׁמַדְתִּ֔י חֹ֖זֶק מַמְלְכ֣וֹת הַגּוֹיִ֑ם וְהָפַכְתִּ֤י מֶרְכָּבָה֙ וְרֹ֣כְבֶ֔יהָ וְיָרְד֤וּ סוּסִים֙ וְרֹ֣כְבֵיהֶ֔ם אִ֖ישׁ בְּחֶ֥רֶב אָחִֽיו׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×•Ö°×”Ö¸Ö½×¤Ö·×›Ö°×ªÖ¼Ö´×™Ö™ ×›Ö¼Ö´×¡Ö¼ÖµÖ£× ×žÖ·×žÖ°×œÖ¸×›Ö”×•Ö¹×ª ×•Ö°×”Ö´Ö¨×©×Ö°×žÖ·×“Ö°×ªÖ¼Ö´Ö”×™ ×—Ö¹Ö–×–Ö¶×§ ×žÖ·×žÖ°×œÖ°×›Ö£×•Ö¹×ª ×”Ö·×’Ö¼×•Ö¹×™Ö´Ö‘× ×•Ö°×”Ö¸×¤Ö·×›Ö°×ªÖ¼Ö´Ö¤×™ ×žÖ¶×¨Ö°×›Ö¼Ö¸×‘Ö¸×”Ö™ ×•Ö°×¨Ö¹Ö£×›Ö°×‘Ö¶Ö”×™×”Ö¸ ×•Ö°×™Ö¸×¨Ö°×“Ö¤×•Ö¼ ×¡×•Ö¼×¡Ö´×™×Ö™ ×•Ö°×¨Ö¹Ö£×›Ö°×‘Öµ×™×”Ö¶Ö”× ×Ö´Ö–×™×©× ×‘Ö¼Ö°×—Ö¶Ö¥×¨Ö¶×‘ ×Ö¸×—Ö´Ö½×™×•×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -792,7 +809,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בַּיּ֣וֹם הַה֣וּא נְאֻם־יְהֹוָ֣ה צְבָא֡וֹת אֶ֠קָּחֲךָ֠ זְרֻבָּבֶ֨ל בֶּן־שְׁאַלְתִּיאֵ֤ל עַבְדִּי֙ נְאֻם־יְהֹוָ֔ה וְשַׂמְתִּ֖יךָ כַּֽחוֹתָ֑ם כִּֽי־בְךָ֣ בָחַ֔רְתִּי נְאֻ֖ם יְהֹוָ֥ה צְבָאֽוֹת׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">×‘Ö¼Ö·×™Ö¼Ö£×•Ö¹× ×”Ö·×”Ö£×•Ö¼× × Ö°×Ö»×Ö¾×™Ö°×”Ö¹×•Ö¸Ö£×” ×¦Ö°×‘Ö¸×Ö¡×•Ö¹×ª ×Ö¶Ö ×§Ö¼Ö¸×—Ö²×šÖ¸Ö  ×–Ö°×¨Ö»×‘Ö¼Ö¸×‘Ö¶Ö¨×œ ×‘Ö¼Ö¶×ŸÖ¾×©×Ö°×Ö·×œÖ°×ªÖ¼Ö´×™×ÖµÖ¤×œ ×¢Ö·×‘Ö°×“Ö¼Ö´×™Ö™ × Ö°×Ö»×Ö¾×™Ö°×”Ö¹×•Ö¸Ö”×” ×•Ö°×©×‚Ö·×žÖ°×ªÖ¼Ö´Ö–×™×šÖ¸ ×›Ö¼Ö·Ö½×—×•Ö¹×ªÖ¸Ö‘× ×›Ö¼Ö´Ö½×™Ö¾×‘Ö°×šÖ¸Ö£ ×‘Ö¸×—Ö·Ö”×¨Ö°×ªÖ¼Ö´×™ × Ö°×Ö»Ö–× ×™Ö°×”Ö¹×•Ö¸Ö¥×” ×¦Ö°×‘Ö¸×Ö½×•Ö¹×ª×ƒ</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -821,7 +838,7 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"haggai","work_title":"Haggai","work_slug":"tanakh/haggai","scope_label":"All imported Hebrew works","generated_at":"2026-05-08T15:38:26.830Z","total_occurrences":499,"units":{"haggai-1-1":{"unit_id":"haggai-1-1","anchor_id":"haggai-1-1","source_ref":"Haggai 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d580f1135cad","tok-ef8a615e2139","tok-a694386a6142","tok-f1d49dbc85e9","tok-013ce2388006","tok-099ef7afa071","tok-3e8408d45a77","tok-87a27d6a6957","tok-5356516aa0e0","tok-d8a37938cbd2","tok-4b2c549cd961","tok-47c17d2cf3a0","tok-4d9a50b621e4","tok-59956f2d8718","tok-8e6d3aec2e83","tok-1bb59b8a5ec1","tok-ecdf28681099","tok-6be48ae81d65","tok-da61687a939e","tok-2776ddda0b3d","tok-26e7f7472762","tok-e2d24b1e705a"]}]},"haggai-1-2":{"unit_id":"haggai-1-2","anchor_id":"haggai-1-2","source_ref":"Haggai 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fa32ee384362","tok-fb6a945e4a82","tok-d2eb357705df","tok-f5329be78138","tok-8354cdc4022f","tok-9ed84421c7e7","tok-5a9066268ddf","tok-ac025d94baf0","tok-fdab444485c3","tok-e6302380fe2b","tok-db81132656bc","tok-0f0f42c84fd3","tok-d3c597503502","tok-a912f00b041a"]}]},"haggai-1-3":{"unit_id":"haggai-1-3","anchor_id":"haggai-1-3","source_ref":"Haggai 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-49fbe9c8ed0f","tok-79bab5a2ffc2","tok-62adf3c39fb2","tok-e8c5a5c847a8","tok-e2d24b1e705a"]}]},"haggai-1-4":{"unit_id":"haggai-1-4","anchor_id":"haggai-1-4","source_ref":"Haggai 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-03d8c43c6d5a","tok-ea12625fe7e9","tok-cfbe9451cd6d","tok-9cf419ec7453","tok-b154c1ab95b6","tok-565726421b44","tok-bb0ed6152ce9","tok-b1eb7f204eba","tok-a104b5c551d4"]}]},"haggai-1-5":{"unit_id":"haggai-1-5","anchor_id":"haggai-1-5","source_ref":"Haggai 1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-87f17e6bb28d","tok-fa32ee384362","tok-6895d6a7e7fd","tok-fc5dbb5fc9b1","tok-b1a3b19304fd","tok-5bba832ddfad","tok-3e1bbcdaab2b","tok-ed4b2ee60df7"]}]},"haggai-1-6":{"unit_id":"haggai-1-6","anchor_id":"haggai-1-6","source_ref":"Haggai 1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bdeb0ebcac9c","tok-0ce41b209cde","tok-844bb2227294","tok-71358937dc50","tok-24a5a7f0a921","tok-96527b3b7647","tok-6931e985ba78","tok-98d9c329380a","tok-f469bc895cc1","tok-2cf2ab01a723","tok-e3a0b24ec997","tok-ba4d2e807b69","tok-c9cb1de21dcd","tok-5c815fa47ec9","tok-63bd88d4b3ad","tok-a912f00b041a"]}]},"haggai-1-7":{"unit_id":"haggai-1-7","anchor_id":"haggai-1-7","source_ref":"Haggai 1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fa32ee384362","tok-6895d6a7e7fd","tok-fc5dbb5fc9b1","tok-b1a3b19304fd","tok-5bba832ddfad","tok-3e1bbcdaab2b","tok-ed4b2ee60df7"]}]},"haggai-1-8":{"unit_id":"haggai-1-8","anchor_id":"haggai-1-8","source_ref":"Haggai 1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8f07b1f8d7c8","tok-1eeee3a7c386","tok-0e805fa8ae58","tok-de35d79446fd","tok-9babb48a4f98","tok-23425841d929","tok-fa99a3e0ec3a","tok-8c3f3269390d","tok-c96182cb6830","tok-7c3ce2024763","tok-609845c2f347"]}]},"haggai-1-9":{"unit_id":"haggai-1-9","anchor_id":"haggai-1-9","source_ref":"Haggai 1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-efab793131ee","tok-eb7e010aaeac","tok-745a2cfb40ef","tok-3919881e8159","tok-0e805fa8ae58","tok-3ab99474cc9a","tok-1bbb0d05c281","tok-fd05808570a5","tok-7a56d28863d3","tok-10e965011dab","tok-99d992748fd4","tok-fc5dbb5fc9b1","tok-1cb13e5ed92f","tok-fb9ccdde60ac","tok-53ab1fcf0ed9","tok-a78aadc94b0e","tok-f0b3dedc1b6b","tok-6776187fdf72","tok-a375c7dd1ece","tok-99690254bd0e","tok-22bcffc53e00"]}]},"haggai-1-10":{"unit_id":"haggai-1-10","anchor_id":"haggai-1-10","source_ref":"Haggai 1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cd704de8d3e2","tok-833ec7a9290f","tok-242cc007d303","tok-ccf806562809","tok-dc9d4f5d02f8","tok-351a45bd789d","tok-be2f473be763","tok-2d41b4676ab9"]}]},"haggai-1-11":{"unit_id":"haggai-1-11","anchor_id":"haggai-1-11","source_ref":"Haggai 1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5e6219f9693d","tok-815fe0dd2829","tok-2665de89981b","tok-1648c1dd5db9","tok-765730486af5","tok-891fb7b9fe29","tok-df3d5b8833f2","tok-25fa4c94a725","tok-5c964381f421","tok-635cff24968e","tok-ddf64784fb2a","tok-96ad09daee6c","tok-ffec1f98c38f","tok-e5eecc3b188e","tok-d75e27cc6350","tok-83f977d919bc","tok-a912f00b041a"]}]},"haggai-1-12":{"unit_id":"haggai-1-12","anchor_id":"haggai-1-12","source_ref":"Haggai 1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-17afc0f8c4d9","tok-449ee1b1cdf8","tok-be5d06a87d05","tok-a2ce3d59a0a0","tok-e4fa6760b2dc","tok-63ed6c81bcee","tok-719f8eb7b80c","tok-861b06183d21","tok-33a6a62985c1","tok-51579104c3b2","tok-9891ffd5052f","tok-fc5dbb5fc9b1","tok-6d017e0128a7","tok-8b3917cb4710","tok-b512870c8f1d","tok-485a67d2d848","tok-c04b0a1b8076","tok-6fc14256da20","tok-fc5dbb5fc9b1","tok-4201ab04f490","tok-1a0351eab6e4","tok-b6eb6f8f5827","tok-9c0afa98320f","tok-609845c2f347"]}]},"haggai-1-13":{"unit_id":"haggai-1-13","anchor_id":"haggai-1-13","source_ref":"Haggai 1:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ec934a9461fd","tok-c8304943e6cd","tok-2d2da060cc4f","tok-bf9cc93e6828","tok-4837d2a045db","tok-0f0f42c84fd3","tok-25fda7384b37","tok-8354cdc4022f","tok-fb3e4886728f","tok-57a4b2085f53","tok-04aa963598a4"]}]},"haggai-1-14":{"unit_id":"haggai-1-14","anchor_id":"haggai-1-14","source_ref":"Haggai 1:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d96efed094b6","tok-4d2c3ba6e75c","tok-87b3a70f6e0f","tok-ea2a072190bd","tok-69e6d2543a80","tok-1bb59b8a5ec1","tok-d15a0e44b25a","tok-f95d9751b12b","tok-2376ea3fa9b6","tok-ecc89b63504d","tok-7fe65d799da3","tok-97720a0283bd","tok-7b1c6c1da218","tok-5e0e44ab98e4","tok-33a6a62985c1","tok-78860232e2c3","tok-643ad86d6d91","tok-a58ba3f63a89","tok-c9ffad461f24","tok-c98074a57180","tok-f5329be78138","tok-f5b3926e264e","tok-a912f00b041a"]}]},"haggai-1-15":{"unit_id":"haggai-1-15","anchor_id":"haggai-1-15","source_ref":"Haggai 1:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2bc1c1fdcaaf","tok-d0ecd6b0cebb","tok-fd45366a56e3","tok-412f47574033","tok-3bab9430339a","tok-0d22cd1020e0","tok-81f4f19e3deb","tok-52fed5ffa1b2","tok-06c4136cf10c"]}]},"haggai-2-1":{"unit_id":"haggai-2-1","anchor_id":"haggai-2-1","source_ref":"Haggai 2:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7629eb47fd10","tok-96928a123853","tok-81c372afe406","tok-5356516aa0e0","tok-1205cc7047a8","tok-79bab5a2ffc2","tok-62adf3c39fb2","tok-e8c5a5c847a8","tok-e2d24b1e705a"]}]},"haggai-2-2":{"unit_id":"haggai-2-2","anchor_id":"haggai-2-2","source_ref":"Haggai 2:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7b8e019747bf","tok-59956f2d8718","tok-7e4dde3a36ab","tok-1bb59b8a5ec1","tok-ecdf28681099","tok-ac96fab8cbbe","tok-d5d5a4ad5dd5","tok-7fe65d799da3","tok-0ce8705ed00f","tok-8aae9e3a221f","tok-b6eb6f8f5827","tok-e2d24b1e705a"]}]},"haggai-2-3":{"unit_id":"haggai-2-3","anchor_id":"haggai-2-3","source_ref":"Haggai 2:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-022fcf7d6c61","tok-e66b30787248","tok-4d81c208bed0","tok-5890f7e98695","tok-3184728d8ae8","tok-2fb8faf7c74c","tok-654416819a5d","tok-49ea4dd50ef0","tok-a704689b1734","tok-f41f8875761d","tok-f4d43497bdfe","tok-cbf82bd0b3cf","tok-a78a5d9e5ce2","tok-bc52dab82a8e","tok-ea44b403a214","tok-d14fe622f475","tok-4aa48f917279","tok-bd304204c479"]}]},"haggai-2-4":{"unit_id":"haggai-2-4","anchor_id":"haggai-2-4","source_ref":"Haggai 2:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ad604a372ffb","tok-c4a66cf046d5","tok-449ee1b1cdf8","tok-5e60c74b9e48","tok-3c3519bd5058","tok-c0412cae9b96","tok-e4fa6760b2dc","tok-63ed6c81bcee","tok-719f8eb7b80c","tok-f3b02decc50b","tok-dde58f2e4c4b","tok-3fcdc0ef10a2","tok-f05caf41f586","tok-2076681b3497","tok-5818de81862a","tok-4eb9a667ad94","tok-625d998371c0","tok-d2eb357705df","tok-c967cdfdf30b"]}]},"haggai-2-5":{"unit_id":"haggai-2-5","anchor_id":"haggai-2-5","source_ref":"Haggai 2:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ad7ee25ceac8","tok-b8180d011f33","tok-dd30f99320cf","tok-9d66ac819e0b","tok-64df60a29585","tok-729e3c7b41be","tok-3803b87a076b","tok-1a8fd518862d","tok-b247f1d06a55","tok-a912f00b041a"]}]},"haggai-2-6":{"unit_id":"haggai-2-6","anchor_id":"haggai-2-6","source_ref":"Haggai 2:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-114b3d78bc89","tok-19fafb1c67cd","tok-c51627b238e1","tok-fc5dbb5fc9b1","tok-1cb13e5ed92f","tok-dde72cb91d27","tok-b100fc353fce","tok-8c61b2a37f3b","tok-dff077fbbd76","tok-318afbdc1e9d","tok-fd413fa77bc5","tok-53f0cbd27929","tok-7381ef36c158","tok-5b28fac526e7","tok-9c24b682653e"]}]},"haggai-2-7":{"unit_id":"haggai-2-7","anchor_id":"haggai-2-7","source_ref":"Haggai 2:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a6d8af1bf6ec","tok-91f3f072b434","tok-7ebdd72e87a0","tok-7de7d75a065b","tok-18862da902ed","tok-f41f75b04254","tok-c8074b01531b","tok-5a9066268ddf","tok-e65e7c3378e3","tok-6895d6a7e7fd","tok-d2eb357705df","tok-c967cdfdf30b"]}]},"haggai-2-8":{"unit_id":"haggai-2-8","anchor_id":"haggai-2-8","source_ref":"Haggai 2:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9507d76639df","tok-5b9fd95fcdc6","tok-ff525df42889","tok-cc84e6c3eb5d","tok-625d998371c0","tok-d2eb357705df","tok-c967cdfdf30b"]}]},"haggai-2-9":{"unit_id":"haggai-2-9","anchor_id":"haggai-2-9","source_ref":"Haggai 2:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2721d0443055","tok-d0d4b0887d5e","tok-6498c4272bb6","tok-c11e4af038ff","tok-24dad3196c14","tok-8f6f041f0ca3","tok-a89160270ff1","tok-6895d6a7e7fd","tok-fc5dbb5fc9b1","tok-b1a3b19304fd","tok-31b6c5a27ac1","tok-5a9066268ddf","tok-bb325d595766","tok-5dc658b463c1","tok-625d998371c0","tok-d2eb357705df","tok-c967cdfdf30b","tok-a912f00b041a"]}]},"haggai-2-10":{"unit_id":"haggai-2-10","anchor_id":"haggai-2-10","source_ref":"Haggai 2:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0fd65a236169","tok-cb65e9e08e01","tok-80e73f58e7d1","tok-0d22cd1020e0","tok-81f4f19e3deb","tok-ac3d41d7a77d","tok-1205cc7047a8","tok-79bab5a2ffc2","tok-817333a4e948","tok-e8c5a5c847a8","tok-e2d24b1e705a"]}]},"haggai-2-11":{"unit_id":"haggai-2-11","anchor_id":"haggai-2-11","source_ref":"Haggai 2:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fa32ee384362","tok-6895d6a7e7fd","tok-fc5dbb5fc9b1","tok-b1a3b19304fd","tok-41f211e27ecc","tok-5f9967057963","tok-a76438132230","tok-e2d24b1e705a"]}]},"haggai-2-12":{"unit_id":"haggai-2-12","anchor_id":"haggai-2-12","source_ref":"Haggai 2:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e4b27023fe4f","tok-7a592aa207f8","tok-88cdc385ff15","tok-de0fa16b07bd","tok-ff03e1065a69","tok-d69332b6c7b4","tok-a44a0c03e701","tok-9644be1141d3","tok-fb5a19b3c87c","tok-870b90652a9d","tok-d77b1d36d458","tok-47fbf4c6add4","tok-fc2c722f2a8c","tok-3b9e9de0c4ac","tok-89a704d121d0","tok-a4f2da2a415f","tok-8ac0e62ad549"]}]},"haggai-2-13":{"unit_id":"haggai-2-13","anchor_id":"haggai-2-13","source_ref":"Haggai 2:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-24c575a9a448","tok-8ef17d147205","tok-8bfd81e20808","tok-53f0ef096f99","tok-790fb9069479","tok-bb6699f0bc5a","tok-3b9e9de0c4ac","tok-89a704d121d0","tok-a4f2da2a415f","tok-d34d423a3462"]}]},"haggai-2-14":{"unit_id":"haggai-2-14","anchor_id":"haggai-2-14","source_ref":"Haggai 2:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-38fc1e626f5e","tok-74e9d660b2c5","tok-7cf79b1413df","tok-c05d42a62cd1","tok-fc7e21828bef","tok-95885a0be884","tok-24dad3196c14","tok-3e04b2f9a20f","tok-76bf8a4c72b7","tok-f19dcee7d3d2","tok-0415fcef5941","tok-9e8adc6eec11","tok-6144511fc4e4","tok-63f624cf29e7","tok-a50c2afa14bf","tok-620179f46478","tok-e405d408e240"]}]},"haggai-2-15":{"unit_id":"haggai-2-15","anchor_id":"haggai-2-15","source_ref":"Haggai 2:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8b37e8e9531a","tok-455d2d2d5864","tok-33b2469fa501","tok-a5d72b8df8ff","tok-b1eb7f204eba","tok-6145f8567e04","tok-2ae0d8c5cf56","tok-7ccfb8696dbb","tok-7efb4be0bc6c","tok-a92823a7894b","tok-609845c2f347"]}]},"haggai-2-16":{"unit_id":"haggai-2-16","anchor_id":"haggai-2-16","source_ref":"Haggai 2:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-24b2abaaf441","tok-f165a9125527","tok-9a759eb95502","tok-5dca5e0558a8","tok-b1bee35d5e6f","tok-f65c1cb0c533","tok-8abe4dc7a360","tok-64b9dbe6f943","tok-fafca40aaa82","tok-30626dab66db","tok-313f9d54ecb7","tok-b1bee35d5e6f","tok-c01ac14039d8"]}]},"haggai-2-17":{"unit_id":"haggai-2-17","anchor_id":"haggai-2-17","source_ref":"Haggai 2:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4b139a562ca0","tok-27945673f7de","tok-92c7744d053e","tok-e5e5f5804bba","tok-580fcdc2c995","tok-d70a9de38eaf","tok-0415fcef5941","tok-cab5d984529e","tok-84dbc2e1375d","tok-edad7ccc76ea","tok-04aa963598a4"]}]},"haggai-2-18":{"unit_id":"haggai-2-18","anchor_id":"haggai-2-18","source_ref":"Haggai 2:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7b6f127fa9f4","tok-33b2469fa501","tok-a5d72b8df8ff","tok-b1eb7f204eba","tok-6145f8567e04","tok-3035f7ca92f1","tok-fb63e96aabe1","tok-90039628744a","tok-19a86f61770e","tok-515c93b872f8","tok-74ff4f453fea","tok-4e4712f9193e","tok-5bba832ddfad","tok-180bccee38d3"]}]},"haggai-2-19":{"unit_id":"haggai-2-19","anchor_id":"haggai-2-19","source_ref":"Haggai 2:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6aab18eb426e","tok-4f283bda4862","tok-64a6f4156089","tok-254eae30e10f","tok-c03a7989dc6f","tok-6a468070e91d","tok-3583998dbd66","tok-1586ef2e9f47","tok-8f8098325f8e","tok-f40b525910dd","tok-a5d72b8df8ff","tok-b1eb7f204eba","tok-040b38afef25","tok-a912f00b041a"]}]},"haggai-2-20":{"unit_id":"haggai-2-20","anchor_id":"haggai-2-20","source_ref":"Haggai 2:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-56df72a151d8","tok-2e5007f34a69","tok-defd88e6f22a","tok-d10d7bed2c8c","tok-a8b69fdaf4bd","tok-fd45366a56e3","tok-412f47574033","tok-e2d24b1e705a"]}]},"haggai-2-21":{"unit_id":"haggai-2-21","anchor_id":"haggai-2-21","source_ref":"Haggai 2:21","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-82fbfe4fe710","tok-e5cf4fc11441","tok-4eded8d16a90","tok-8354cdc4022f","tok-fba8e0533585","tok-3874aa02ca9d","tok-4c6a83400f5d","tok-ea95548d7fd0"]}]},"haggai-2-22":{"unit_id":"haggai-2-22","anchor_id":"haggai-2-22","source_ref":"Haggai 2:22","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-be13502952a8","tok-c1d41d649a49","tok-010e68b1f468","tok-8b12546bd503","tok-c90cb89f530c","tok-5ee7cf71089b","tok-8133efdc0b11","tok-a0172614935f","tok-70e78619f190","tok-13144a059186","tok-3bfddb304784","tok-e404235a06e3","tok-f5fe01f17794","tok-438bbf49efb4","tok-dc5dd621e3a1","tok-6aba9f5ddbd5"]}]},"haggai-2-23":{"unit_id":"haggai-2-23","anchor_id":"haggai-2-23","source_ref":"Haggai 2:23","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1cf22e0d096f","tok-91831814589b","tok-68061d300cf8","tok-55535afca390","tok-0d8bfc3caf5b","tok-ea2a072190bd","tok-dca8b911f26f","tok-5d0023d63fd4","tok-76bf8a4c72b7","tok-410c6d1808c3","tok-a03a091cdefe","tok-9b6ecf50fa28","tok-ae9c60a430ed","tok-625d998371c0","tok-d2eb357705df","tok-c967cdfdf30b"]}]}}}</script>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"haggai","work_title":"Haggai","work_slug":"tanakh/haggai","scope_label":"All imported Hebrew works","generated_at":"2026-05-10T15:21:04.245Z","total_occurrences":499,"units":{"haggai-1-1":{"unit_id":"haggai-1-1","anchor_id":"haggai-1-1","source_ref":"Haggai 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d580f1135cad","tok-ef8a615e2139","tok-a694386a6142","tok-f1d49dbc85e9","tok-013ce2388006","tok-099ef7afa071","tok-3e8408d45a77","tok-87a27d6a6957","tok-5356516aa0e0","tok-d8a37938cbd2","tok-4b2c549cd961","tok-47c17d2cf3a0","tok-4d9a50b621e4","tok-59956f2d8718","tok-8e6d3aec2e83","tok-1bb59b8a5ec1","tok-ecdf28681099","tok-6be48ae81d65","tok-da61687a939e","tok-2776ddda0b3d","tok-26e7f7472762","tok-e2d24b1e705a"]}]},"haggai-1-2":{"unit_id":"haggai-1-2","anchor_id":"haggai-1-2","source_ref":"Haggai 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fa32ee384362","tok-fb6a945e4a82","tok-d2eb357705df","tok-f5329be78138","tok-8354cdc4022f","tok-9ed84421c7e7","tok-5a9066268ddf","tok-ac025d94baf0","tok-fdab444485c3","tok-e6302380fe2b","tok-db81132656bc","tok-0f0f42c84fd3","tok-d3c597503502","tok-a912f00b041a"]}]},"haggai-1-3":{"unit_id":"haggai-1-3","anchor_id":"haggai-1-3","source_ref":"Haggai 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-49fbe9c8ed0f","tok-79bab5a2ffc2","tok-62adf3c39fb2","tok-e8c5a5c847a8","tok-e2d24b1e705a"]}]},"haggai-1-4":{"unit_id":"haggai-1-4","anchor_id":"haggai-1-4","source_ref":"Haggai 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-03d8c43c6d5a","tok-ea12625fe7e9","tok-cfbe9451cd6d","tok-9cf419ec7453","tok-b154c1ab95b6","tok-565726421b44","tok-bb0ed6152ce9","tok-b1eb7f204eba","tok-a104b5c551d4"]}]},"haggai-1-5":{"unit_id":"haggai-1-5","anchor_id":"haggai-1-5","source_ref":"Haggai 1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-87f17e6bb28d","tok-fa32ee384362","tok-6895d6a7e7fd","tok-fc5dbb5fc9b1","tok-b1a3b19304fd","tok-5bba832ddfad","tok-3e1bbcdaab2b","tok-ed4b2ee60df7"]}]},"haggai-1-6":{"unit_id":"haggai-1-6","anchor_id":"haggai-1-6","source_ref":"Haggai 1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bdeb0ebcac9c","tok-0ce41b209cde","tok-844bb2227294","tok-71358937dc50","tok-24a5a7f0a921","tok-96527b3b7647","tok-6931e985ba78","tok-98d9c329380a","tok-f469bc895cc1","tok-2cf2ab01a723","tok-e3a0b24ec997","tok-ba4d2e807b69","tok-c9cb1de21dcd","tok-5c815fa47ec9","tok-63bd88d4b3ad","tok-a912f00b041a"]}]},"haggai-1-7":{"unit_id":"haggai-1-7","anchor_id":"haggai-1-7","source_ref":"Haggai 1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fa32ee384362","tok-6895d6a7e7fd","tok-fc5dbb5fc9b1","tok-b1a3b19304fd","tok-5bba832ddfad","tok-3e1bbcdaab2b","tok-ed4b2ee60df7"]}]},"haggai-1-8":{"unit_id":"haggai-1-8","anchor_id":"haggai-1-8","source_ref":"Haggai 1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8f07b1f8d7c8","tok-1eeee3a7c386","tok-0e805fa8ae58","tok-de35d79446fd","tok-9babb48a4f98","tok-23425841d929","tok-fa99a3e0ec3a","tok-8c3f3269390d","tok-c96182cb6830","tok-7c3ce2024763","tok-609845c2f347"]}]},"haggai-1-9":{"unit_id":"haggai-1-9","anchor_id":"haggai-1-9","source_ref":"Haggai 1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-efab793131ee","tok-eb7e010aaeac","tok-745a2cfb40ef","tok-3919881e8159","tok-0e805fa8ae58","tok-3ab99474cc9a","tok-1bbb0d05c281","tok-fd05808570a5","tok-7a56d28863d3","tok-10e965011dab","tok-99d992748fd4","tok-fc5dbb5fc9b1","tok-1cb13e5ed92f","tok-fb9ccdde60ac","tok-53ab1fcf0ed9","tok-a78aadc94b0e","tok-f0b3dedc1b6b","tok-6776187fdf72","tok-a375c7dd1ece","tok-99690254bd0e","tok-22bcffc53e00"]}]},"haggai-1-10":{"unit_id":"haggai-1-10","anchor_id":"haggai-1-10","source_ref":"Haggai 1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cd704de8d3e2","tok-833ec7a9290f","tok-242cc007d303","tok-ccf806562809","tok-dc9d4f5d02f8","tok-351a45bd789d","tok-be2f473be763","tok-2d41b4676ab9"]}]},"haggai-1-11":{"unit_id":"haggai-1-11","anchor_id":"haggai-1-11","source_ref":"Haggai 1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5e6219f9693d","tok-815fe0dd2829","tok-2665de89981b","tok-1648c1dd5db9","tok-765730486af5","tok-891fb7b9fe29","tok-df3d5b8833f2","tok-25fa4c94a725","tok-5c964381f421","tok-635cff24968e","tok-ddf64784fb2a","tok-96ad09daee6c","tok-ffec1f98c38f","tok-e5eecc3b188e","tok-d75e27cc6350","tok-83f977d919bc","tok-a912f00b041a"]}]},"haggai-1-12":{"unit_id":"haggai-1-12","anchor_id":"haggai-1-12","source_ref":"Haggai 1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-17afc0f8c4d9","tok-449ee1b1cdf8","tok-be5d06a87d05","tok-a2ce3d59a0a0","tok-e4fa6760b2dc","tok-63ed6c81bcee","tok-719f8eb7b80c","tok-861b06183d21","tok-33a6a62985c1","tok-51579104c3b2","tok-9891ffd5052f","tok-fc5dbb5fc9b1","tok-6d017e0128a7","tok-8b3917cb4710","tok-b512870c8f1d","tok-485a67d2d848","tok-c04b0a1b8076","tok-6fc14256da20","tok-fc5dbb5fc9b1","tok-4201ab04f490","tok-1a0351eab6e4","tok-b6eb6f8f5827","tok-9c0afa98320f","tok-609845c2f347"]}]},"haggai-1-13":{"unit_id":"haggai-1-13","anchor_id":"haggai-1-13","source_ref":"Haggai 1:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ec934a9461fd","tok-c8304943e6cd","tok-2d2da060cc4f","tok-bf9cc93e6828","tok-4837d2a045db","tok-0f0f42c84fd3","tok-25fda7384b37","tok-8354cdc4022f","tok-fb3e4886728f","tok-57a4b2085f53","tok-04aa963598a4"]}]},"haggai-1-14":{"unit_id":"haggai-1-14","anchor_id":"haggai-1-14","source_ref":"Haggai 1:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d96efed094b6","tok-4d2c3ba6e75c","tok-87b3a70f6e0f","tok-ea2a072190bd","tok-69e6d2543a80","tok-1bb59b8a5ec1","tok-d15a0e44b25a","tok-f95d9751b12b","tok-2376ea3fa9b6","tok-ecc89b63504d","tok-7fe65d799da3","tok-97720a0283bd","tok-7b1c6c1da218","tok-5e0e44ab98e4","tok-33a6a62985c1","tok-78860232e2c3","tok-643ad86d6d91","tok-a58ba3f63a89","tok-c9ffad461f24","tok-c98074a57180","tok-f5329be78138","tok-f5b3926e264e","tok-a912f00b041a"]}]},"haggai-1-15":{"unit_id":"haggai-1-15","anchor_id":"haggai-1-15","source_ref":"Haggai 1:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2bc1c1fdcaaf","tok-d0ecd6b0cebb","tok-fd45366a56e3","tok-412f47574033","tok-3bab9430339a","tok-0d22cd1020e0","tok-81f4f19e3deb","tok-52fed5ffa1b2","tok-06c4136cf10c"]}]},"haggai-2-1":{"unit_id":"haggai-2-1","anchor_id":"haggai-2-1","source_ref":"Haggai 2:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7629eb47fd10","tok-96928a123853","tok-81c372afe406","tok-5356516aa0e0","tok-1205cc7047a8","tok-79bab5a2ffc2","tok-62adf3c39fb2","tok-e8c5a5c847a8","tok-e2d24b1e705a"]}]},"haggai-2-2":{"unit_id":"haggai-2-2","anchor_id":"haggai-2-2","source_ref":"Haggai 2:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7b8e019747bf","tok-59956f2d8718","tok-7e4dde3a36ab","tok-1bb59b8a5ec1","tok-ecdf28681099","tok-ac96fab8cbbe","tok-d5d5a4ad5dd5","tok-7fe65d799da3","tok-0ce8705ed00f","tok-8aae9e3a221f","tok-b6eb6f8f5827","tok-e2d24b1e705a"]}]},"haggai-2-3":{"unit_id":"haggai-2-3","anchor_id":"haggai-2-3","source_ref":"Haggai 2:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-022fcf7d6c61","tok-e66b30787248","tok-4d81c208bed0","tok-5890f7e98695","tok-3184728d8ae8","tok-2fb8faf7c74c","tok-654416819a5d","tok-49ea4dd50ef0","tok-a704689b1734","tok-f41f8875761d","tok-f4d43497bdfe","tok-cbf82bd0b3cf","tok-a78a5d9e5ce2","tok-bc52dab82a8e","tok-ea44b403a214","tok-d14fe622f475","tok-4aa48f917279","tok-bd304204c479"]}]},"haggai-2-4":{"unit_id":"haggai-2-4","anchor_id":"haggai-2-4","source_ref":"Haggai 2:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ad604a372ffb","tok-c4a66cf046d5","tok-449ee1b1cdf8","tok-5e60c74b9e48","tok-3c3519bd5058","tok-c0412cae9b96","tok-e4fa6760b2dc","tok-63ed6c81bcee","tok-719f8eb7b80c","tok-f3b02decc50b","tok-dde58f2e4c4b","tok-3fcdc0ef10a2","tok-f05caf41f586","tok-2076681b3497","tok-5818de81862a","tok-4eb9a667ad94","tok-625d998371c0","tok-d2eb357705df","tok-c967cdfdf30b"]}]},"haggai-2-5":{"unit_id":"haggai-2-5","anchor_id":"haggai-2-5","source_ref":"Haggai 2:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ad7ee25ceac8","tok-b8180d011f33","tok-dd30f99320cf","tok-9d66ac819e0b","tok-64df60a29585","tok-729e3c7b41be","tok-3803b87a076b","tok-1a8fd518862d","tok-b247f1d06a55","tok-a912f00b041a"]}]},"haggai-2-6":{"unit_id":"haggai-2-6","anchor_id":"haggai-2-6","source_ref":"Haggai 2:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-114b3d78bc89","tok-19fafb1c67cd","tok-c51627b238e1","tok-fc5dbb5fc9b1","tok-1cb13e5ed92f","tok-dde72cb91d27","tok-b100fc353fce","tok-8c61b2a37f3b","tok-dff077fbbd76","tok-318afbdc1e9d","tok-fd413fa77bc5","tok-53f0cbd27929","tok-7381ef36c158","tok-5b28fac526e7","tok-9c24b682653e"]}]},"haggai-2-7":{"unit_id":"haggai-2-7","anchor_id":"haggai-2-7","source_ref":"Haggai 2:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a6d8af1bf6ec","tok-91f3f072b434","tok-7ebdd72e87a0","tok-7de7d75a065b","tok-18862da902ed","tok-f41f75b04254","tok-c8074b01531b","tok-5a9066268ddf","tok-e65e7c3378e3","tok-6895d6a7e7fd","tok-d2eb357705df","tok-c967cdfdf30b"]}]},"haggai-2-8":{"unit_id":"haggai-2-8","anchor_id":"haggai-2-8","source_ref":"Haggai 2:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9507d76639df","tok-5b9fd95fcdc6","tok-ff525df42889","tok-cc84e6c3eb5d","tok-625d998371c0","tok-d2eb357705df","tok-c967cdfdf30b"]}]},"haggai-2-9":{"unit_id":"haggai-2-9","anchor_id":"haggai-2-9","source_ref":"Haggai 2:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2721d0443055","tok-d0d4b0887d5e","tok-6498c4272bb6","tok-c11e4af038ff","tok-24dad3196c14","tok-8f6f041f0ca3","tok-a89160270ff1","tok-6895d6a7e7fd","tok-fc5dbb5fc9b1","tok-b1a3b19304fd","tok-31b6c5a27ac1","tok-5a9066268ddf","tok-bb325d595766","tok-5dc658b463c1","tok-625d998371c0","tok-d2eb357705df","tok-c967cdfdf30b","tok-a912f00b041a"]}]},"haggai-2-10":{"unit_id":"haggai-2-10","anchor_id":"haggai-2-10","source_ref":"Haggai 2:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0fd65a236169","tok-cb65e9e08e01","tok-80e73f58e7d1","tok-0d22cd1020e0","tok-81f4f19e3deb","tok-ac3d41d7a77d","tok-1205cc7047a8","tok-79bab5a2ffc2","tok-817333a4e948","tok-e8c5a5c847a8","tok-e2d24b1e705a"]}]},"haggai-2-11":{"unit_id":"haggai-2-11","anchor_id":"haggai-2-11","source_ref":"Haggai 2:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fa32ee384362","tok-6895d6a7e7fd","tok-fc5dbb5fc9b1","tok-b1a3b19304fd","tok-41f211e27ecc","tok-5f9967057963","tok-a76438132230","tok-e2d24b1e705a"]}]},"haggai-2-12":{"unit_id":"haggai-2-12","anchor_id":"haggai-2-12","source_ref":"Haggai 2:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e4b27023fe4f","tok-7a592aa207f8","tok-88cdc385ff15","tok-de0fa16b07bd","tok-ff03e1065a69","tok-d69332b6c7b4","tok-a44a0c03e701","tok-9644be1141d3","tok-fb5a19b3c87c","tok-870b90652a9d","tok-d77b1d36d458","tok-47fbf4c6add4","tok-fc2c722f2a8c","tok-3b9e9de0c4ac","tok-89a704d121d0","tok-a4f2da2a415f","tok-8ac0e62ad549"]}]},"haggai-2-13":{"unit_id":"haggai-2-13","anchor_id":"haggai-2-13","source_ref":"Haggai 2:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-24c575a9a448","tok-8ef17d147205","tok-8bfd81e20808","tok-53f0ef096f99","tok-790fb9069479","tok-bb6699f0bc5a","tok-3b9e9de0c4ac","tok-89a704d121d0","tok-a4f2da2a415f","tok-d34d423a3462"]}]},"haggai-2-14":{"unit_id":"haggai-2-14","anchor_id":"haggai-2-14","source_ref":"Haggai 2:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-38fc1e626f5e","tok-74e9d660b2c5","tok-7cf79b1413df","tok-c05d42a62cd1","tok-fc7e21828bef","tok-95885a0be884","tok-24dad3196c14","tok-3e04b2f9a20f","tok-76bf8a4c72b7","tok-f19dcee7d3d2","tok-0415fcef5941","tok-9e8adc6eec11","tok-6144511fc4e4","tok-63f624cf29e7","tok-a50c2afa14bf","tok-620179f46478","tok-e405d408e240"]}]},"haggai-2-15":{"unit_id":"haggai-2-15","anchor_id":"haggai-2-15","source_ref":"Haggai 2:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8b37e8e9531a","tok-455d2d2d5864","tok-33b2469fa501","tok-a5d72b8df8ff","tok-b1eb7f204eba","tok-6145f8567e04","tok-2ae0d8c5cf56","tok-7ccfb8696dbb","tok-7efb4be0bc6c","tok-a92823a7894b","tok-609845c2f347"]}]},"haggai-2-16":{"unit_id":"haggai-2-16","anchor_id":"haggai-2-16","source_ref":"Haggai 2:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-24b2abaaf441","tok-f165a9125527","tok-9a759eb95502","tok-5dca5e0558a8","tok-b1bee35d5e6f","tok-f65c1cb0c533","tok-8abe4dc7a360","tok-64b9dbe6f943","tok-fafca40aaa82","tok-30626dab66db","tok-313f9d54ecb7","tok-b1bee35d5e6f","tok-c01ac14039d8"]}]},"haggai-2-17":{"unit_id":"haggai-2-17","anchor_id":"haggai-2-17","source_ref":"Haggai 2:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4b139a562ca0","tok-27945673f7de","tok-92c7744d053e","tok-e5e5f5804bba","tok-580fcdc2c995","tok-d70a9de38eaf","tok-0415fcef5941","tok-cab5d984529e","tok-84dbc2e1375d","tok-edad7ccc76ea","tok-04aa963598a4"]}]},"haggai-2-18":{"unit_id":"haggai-2-18","anchor_id":"haggai-2-18","source_ref":"Haggai 2:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7b6f127fa9f4","tok-33b2469fa501","tok-a5d72b8df8ff","tok-b1eb7f204eba","tok-6145f8567e04","tok-3035f7ca92f1","tok-fb63e96aabe1","tok-90039628744a","tok-19a86f61770e","tok-515c93b872f8","tok-74ff4f453fea","tok-4e4712f9193e","tok-5bba832ddfad","tok-180bccee38d3"]}]},"haggai-2-19":{"unit_id":"haggai-2-19","anchor_id":"haggai-2-19","source_ref":"Haggai 2:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6aab18eb426e","tok-4f283bda4862","tok-64a6f4156089","tok-254eae30e10f","tok-c03a7989dc6f","tok-6a468070e91d","tok-3583998dbd66","tok-1586ef2e9f47","tok-8f8098325f8e","tok-f40b525910dd","tok-a5d72b8df8ff","tok-b1eb7f204eba","tok-040b38afef25","tok-a912f00b041a"]}]},"haggai-2-20":{"unit_id":"haggai-2-20","anchor_id":"haggai-2-20","source_ref":"Haggai 2:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-56df72a151d8","tok-2e5007f34a69","tok-defd88e6f22a","tok-d10d7bed2c8c","tok-a8b69fdaf4bd","tok-fd45366a56e3","tok-412f47574033","tok-e2d24b1e705a"]}]},"haggai-2-21":{"unit_id":"haggai-2-21","anchor_id":"haggai-2-21","source_ref":"Haggai 2:21","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-82fbfe4fe710","tok-e5cf4fc11441","tok-4eded8d16a90","tok-8354cdc4022f","tok-fba8e0533585","tok-3874aa02ca9d","tok-4c6a83400f5d","tok-ea95548d7fd0"]}]},"haggai-2-22":{"unit_id":"haggai-2-22","anchor_id":"haggai-2-22","source_ref":"Haggai 2:22","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-be13502952a8","tok-c1d41d649a49","tok-010e68b1f468","tok-8b12546bd503","tok-c90cb89f530c","tok-5ee7cf71089b","tok-8133efdc0b11","tok-a0172614935f","tok-70e78619f190","tok-13144a059186","tok-3bfddb304784","tok-e404235a06e3","tok-f5fe01f17794","tok-438bbf49efb4","tok-dc5dd621e3a1","tok-6aba9f5ddbd5"]}]},"haggai-2-23":{"unit_id":"haggai-2-23","anchor_id":"haggai-2-23","source_ref":"Haggai 2:23","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1cf22e0d096f","tok-91831814589b","tok-68061d300cf8","tok-55535afca390","tok-0d8bfc3caf5b","tok-ea2a072190bd","tok-dca8b911f26f","tok-5d0023d63fd4","tok-76bf8a4c72b7","tok-410c6d1808c3","tok-a03a091cdefe","tok-9b6ecf50fa28","tok-ae9c60a430ed","tok-625d998371c0","tok-d2eb357705df","tok-c967cdfdf30b"]}]}}}</script>
   <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/haggai.manifest.json","root_href":"../../"}</script>
   <script>
     (() => {
@@ -847,6 +864,8 @@
         "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };
@@ -907,7 +926,7 @@
         if (chunkId) await loadChunk(chunkId);
         return tokenRows.get(tokenIndexId) || {};
       };
-      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1×³").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1×´") : value;
       const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
       const makeWordSpan = (text, tokenIndexId, ordinal) => {
         const span = document.createElement("span");
@@ -1138,7 +1157,7 @@
       };
       const cleanTransliteration = (value) => {
         const text = String(value || "").trim();
-        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+        return /^[A-Za-z0-9 .,\-ÃŠÂ»ÃŠÂ¿ÃŠÂ¾ÃŠÂ¼()]+$/.test(text) && text.length <= 80 ? text : "";
       };
       const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
       const sourceQualityScore = (rows) => {

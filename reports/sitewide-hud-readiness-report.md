@@ -1,6 +1,6 @@
 # Sitewide HUD Readiness Report
 
-Generated: 2026-05-10T13:47:17.247Z
+Generated: 2026-05-10T20:34:20.337Z
 
 This report is diagnostic only. It does not import sources, add definitions, or change lexical ranking.
 
@@ -8,250 +8,250 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 
 - Works scanned: 170
 - Unique work-surface rows: 1226504
-- Matched: 366201 (29.9%)
-- Unmatched: 860303
+- Matched: 363526 (29.6%)
+- Unmatched: 862978
 - Token occurrences: 6066624
 - Rows with missing source/license metadata: 0
-- Suspect parser rows: 5615
+- Suspect parser rows: 4438
 
 ## Family Summary
 
 | Family | Works | Matched | Unmatched | Coverage | Occurrences | Missing source rows | Suspect parser rows |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Ari / Kabbalah | 11 | 30745 | 69839 | 30.6% | 622095 | 0 | 427 |
-| Gra School | 22 | 22799 | 61101 | 27.2% | 467563 | 0 | 360 |
-| Midrash / Aggadah | 91 | 216809 | 578763 | 27.3% | 4455143 | 0 | 4083 |
-| Rav Kook School | 6 | 31413 | 27766 | 53.1% | 248230 | 0 | 262 |
-| Talmud / Commentary | 1 | 867 | 1321 | 39.6% | 4927 | 0 | 11 |
-| Tanakh | 39 | 63568 | 121513 | 34.3% | 268666 | 0 | 472 |
+| Ari / Kabbalah | 11 | 30527 | 70057 | 30.3% | 622095 | 0 | 351 |
+| Gra School | 22 | 22593 | 61307 | 26.9% | 467563 | 0 | 266 |
+| Midrash / Aggadah | 91 | 214240 | 581332 | 26.9% | 4455143 | 0 | 3185 |
+| Rav Kook School | 6 | 31440 | 27739 | 53.1% | 248230 | 0 | 246 |
+| Talmud / Commentary | 1 | 861 | 1327 | 39.4% | 4927 | 0 | 7 |
+| Tanakh | 39 | 63865 | 121216 | 34.5% | 268666 | 0 | 383 |
 
 ## Priority Queue
 
 | Work | Family | Coverage | Function canaries | Formula canaries | Missing sources | Suspect parser | Largest chunk | Page | Readiness |
 |---|---|---:|---|---|---:|---:|---:|---:|---|
-| Otzar Midrashim | Midrash / Aggadah | 11005/56400 (19.5%) | all ok | all ok | 0 | 315 | 837.09 KB | 21.85 MB | fix HUD integrity |
-| Ein Yaakov | Midrash / Aggadah | 13328/70278 (19.0%) | all ok | זש״ה:absent | 0 | 289 | 920.85 KB | 17.42 MB | fix HUD integrity |
-| Midrash Lekach Tov | Midrash / Aggadah | 7918/41646 (19.0%) | all ok | all ok | 0 | 208 | 836.02 KB | 21.24 MB | fix HUD integrity |
-| Beur HaRadal on Pirkei DeRabbi Eliezer | Midrash / Aggadah | 7841/41996 (18.7%) | all ok | all ok | 0 | 237 | 831.23 KB | 13.06 MB | fix HUD integrity |
-| Midrash Tanchuma | Midrash / Aggadah | 9763/37138 (26.3%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 189 | 1.15 MB | 12.00 MB | fix HUD integrity |
-| Midrash Sekhel Tov | Midrash / Aggadah | 7043/38876 (18.1%) | all ok | all ok | 0 | 179 | 810.69 KB | 16.11 MB | fix HUD integrity |
-| Beur HaGra on Shulchan Arukh, Yoreh De'ah | Gra School | 3977/25673 (15.5%) | all ok | n/a | 0 | 103 | 756.50 KB | 17.65 MB | fix HUD integrity |
-| Chafetz Chaim on Sifra | Midrash / Aggadah | 5485/29588 (18.5%) | all ok | זש״ה:absent | 0 | 150 | 869.93 KB | 20.25 MB | fix HUD integrity |
-| Midrash Tanchuma Buber | Midrash / Aggadah | 6060/26484 (22.9%) | all ok | וגומר:absent | 0 | 137 | 1.01 MB | 9.30 MB | fix HUD integrity |
-| Ra'avad on Sifra | Midrash / Aggadah | 4674/23139 (20.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 122 | 949.99 KB | 7.78 MB | fix HUD integrity |
-| Sha'ar Ma'amarei Rashbi | Ari / Kabbalah | 4697/19780 (23.7%) | all ok | n/a | 0 | 89 | 950.88 KB | 5.68 MB | fix HUD integrity |
-| Notes and Corrections on Midrash Lekach Tov | Midrash / Aggadah | 4609/19908 (23.2%) | all ok | וגומר:absent | 0 | 92 | 974.99 KB | 13.10 MB | fix HUD integrity |
-| Midrash Tehillim | Midrash / Aggadah | 5227/20099 (26.0%) | all ok | ד״א:absent, זש״ה:absent | 0 | 104 | 1.00 MB | 4.63 MB | fix HUD integrity |
-| Midrash Aggadah | Midrash / Aggadah | 5309/20618 (25.7%) | all ok | וגומר:absent, א״ר:absent | 0 | 95 | 1015.04 KB | 7.93 MB | fix HUD integrity |
-| Sha'ar HaPesukim | Ari / Kabbalah | 4592/16032 (28.6%) | all ok | n/a | 0 | 69 | 1.05 MB | 7.05 MB | fix HUD integrity |
-| Midbar Shur | Rav Kook School | 6412/19798 (32.4%) | all ok | n/a | 0 | 127 | 1.14 MB | 3.31 MB | fix HUD integrity |
-| Etz Yosef on Shir HaShirim Rabbah | Midrash / Aggadah | 5563/20691 (26.9%) | all ok | ד״א:absent, זש״ה:absent | 0 | 127 | 1.02 MB | 6.39 MB | fix HUD integrity |
-| Sha'ar HaGilgulim | Ari / Kabbalah | 4087/13104 (31.2%) | all ok | n/a | 0 | 70 | 1.10 MB | 3.56 MB | fix HUD integrity |
-| Sefer HaYashar (midrash) | Midrash / Aggadah | 3154/11610 (27.2%) | all ok | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 83 | 1.13 MB | 2.98 MB | fix HUD integrity |
-| Sifrei Devarim | Midrash / Aggadah | 3899/13236 (29.5%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 71 | 1.17 MB | 5.15 MB | fix HUD integrity |
-| Orot HaKodesh | Rav Kook School | 7949/18735 (42.4%) | all ok | n/a | 0 | 104 | 1.30 MB | 2.71 MB | fix HUD integrity |
-| Pesikta DeRav Kahana | Midrash / Aggadah | 3564/13970 (25.5%) | all ok | זש״ה:absent, וגומר:absent | 0 | 63 | 1.04 MB | 2.36 MB | fix HUD integrity |
-| Notes and Corrections on Midrash Aggadah | Midrash / Aggadah | 3444/12167 (28.3%) | all ok | וגומר:absent | 0 | 55 | 1.09 MB | 7.22 MB | fix HUD integrity |
-| Beur HaGra on Shulchan Arukh, Orach Chayim | Gra School | 2534/12656 (20.0%) | all ok | n/a | 0 | 49 | 863.07 KB | 5.85 MB | fix HUD integrity |
-| Beur HaGra on Sifra DeTzniuta | Gra School | 2844/10860 (26.2%) | all ok | כתיב:miss, א״ר:miss, א״ל:miss, ד״א:absent, זש״ה:absent, וגומר:absent | 0 | 52 | 1.01 MB | 2.29 MB | fix HUD integrity |
-| Tanna DeBei Eliyahu Rabbah | Midrash / Aggadah | 3852/11930 (32.3%) | all ok | זש״ה:absent, וגומר:absent | 0 | 58 | 1.17 MB | 1.86 MB | fix HUD integrity |
-| Sha'ar HaKavanot | Ari / Kabbalah | 3373/10910 (30.9%) | all ok | n/a | 0 | 38 | 1.10 MB | 2.45 MB | fix HUD integrity |
-| Orot | Rav Kook School | 14862/17307 (85.9%) | all ok | n/a | 0 | 22 | 2.18 MB | 2.46 MB | fix HUD integrity |
-| Sha'ar HaMitzvot | Ari / Kabbalah | 3451/11959 (28.9%) | all ok | n/a | 0 | 44 | 1.03 MB | 2.17 MB | fix HUD integrity |
-| Sifrei Bamidbar | Midrash / Aggadah | 3101/9816 (31.6%) | all ok | זש״ה:absent | 0 | 46 | 1.23 MB | 2.03 MB | fix HUD integrity |
-| Beur HaRe'em on Midrash Lekach Tov | Midrash / Aggadah | 3640/13211 (27.6%) | all ok | זש״ה:absent, וגומר:absent | 0 | 59 | 1.04 MB | 6.92 MB | fix HUD integrity |
-| Mishnat Rabbi Eliezer | Midrash / Aggadah | 3898/12809 (30.4%) | all ok | זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 70 | 1.15 MB | 2.25 MB | fix HUD integrity |
-| Pri Etz Chaim | Ari / Kabbalah | 3191/9512 (33.5%) | all ok | n/a | 0 | 43 | 1.21 MB | 2.43 MB | fix HUD integrity |
-| Etz Yosef on Kohelet Rabbah | Midrash / Aggadah | 3896/13312 (29.3%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 74 | 1.08 MB | 4.32 MB | fix HUD integrity |
-| Yefeh Kol on Shir HaShirim Rabbah | Midrash / Aggadah | 4378/13612 (32.2%) | all ok | וגומר:absent | 0 | 100 | 1.12 MB | 2.88 MB | fix HUD integrity |
-| Sha'ar HaHakdamot | Ari / Kabbalah | 2913/9189 (31.7%) | all ok | n/a | 0 | 28 | 1.12 MB | 1.46 MB | fix HUD integrity |
-| Aggadat Bereshit | Midrash / Aggadah | 3032/8840 (34.3%) | all ok | all ok | 0 | 41 | 1.21 MB | 1.56 MB | fix HUD integrity |
-| Pirkei DeRabbi Eliezer | Midrash / Aggadah | 3899/11509 (33.9%) | all ok | ד״א:absent, זש״ה:absent, א״ר:absent, א״ל:absent | 0 | 52 | 1.24 MB | 2.34 MB | fix HUD integrity |
-| Perush Maharzu on Shir HaShirim Rabbah | Midrash / Aggadah | 3089/9196 (33.6%) | all ok | זש״ה:absent, וגומר:absent | 0 | 50 | 1.24 MB | 2.79 MB | fix HUD integrity |
-| Midrash Shmuel | Midrash / Aggadah | 2395/7023 (34.1%) | all ok | וגומר:absent | 0 | 42 | 1.25 MB | 1.08 MB | fix HUD integrity |
-| Tanna DeBei Eliyahu Zuta | Midrash / Aggadah | 2922/8411 (34.7%) | all ok | זש״ה:absent, וגומר:absent | 0 | 47 | 1.18 MB | 1.03 MB | fix HUD integrity |
-| Eikhah Rabbah | Midrash / Aggadah | 2656/8321 (31.9%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 35 | 1.19 MB | 1.09 MB | fix HUD integrity |
-| Sifrei Aggadah on Esther | Midrash / Aggadah | 2224/6654 (33.4%) | all ok | וגומר:absent | 0 | 41 | 1.20 MB | 1.02 MB | fix HUD integrity |
-| Matnot Kehunah on Shir HaShirim Rabbah | Midrash / Aggadah | 2490/7681 (32.4%) | all ok | זש״ה:absent, וגומר:absent | 0 | 35 | 1.17 MB | 3.32 MB | fix HUD integrity |
-| Perush Maharzu on Bereshit Rabbah | Midrash / Aggadah | 2528/6701 (37.7%) | all ok | זש״ה:absent, וגומר:absent | 0 | 38 | 1.27 MB | 1.35 MB | fix HUD integrity |
-| Perush Maharzu on Kohelet Rabbah | Midrash / Aggadah | 2554/6700 (38.1%) | all ok | זש״ה:absent | 0 | 27 | 1.31 MB | 1.87 MB | fix HUD integrity |
-| Matnot Kehunah on Kohelet Rabbah | Midrash / Aggadah | 2369/7005 (33.8%) | all ok | זש״ה:absent, וגומר:absent | 0 | 34 | 1.18 MB | 2.98 MB | fix HUD integrity |
-| Etz Yosef on Bereishit Rabbah | Midrash / Aggadah | 2790/7900 (35.3%) | all ok | all ok | 0 | 50 | 1.20 MB | 1.73 MB | fix HUD integrity |
-| Etz Yosef on Vayikra Rabbah | Midrash / Aggadah | 2662/7738 (34.4%) | all ok | וגומר:absent | 0 | 35 | 1.22 MB | 1.55 MB | fix HUD integrity |
-| Etz Yosef on Shemot Rabbah | Midrash / Aggadah | 2559/6882 (37.2%) | all ok | וגומר:absent | 0 | 45 | 1.28 MB | 1.57 MB | fix HUD integrity |
-| Jeremiah | Tanakh | 4091/12098 (33.8%) | מן:absent | n/a | 0 | 26 | 1.16 MB | 2.31 MB | fix HUD integrity |
-| Sha'ar Ma'amarei Razal | Ari / Kabbalah | 2054/5388 (38.1%) | all ok | n/a | 0 | 22 | 1.26 MB | 777.30 KB | fix HUD integrity |
-| Genesis | Tanakh | 3710/11363 (32.6%) | מן:absent | n/a | 0 | 17 | 1.13 MB | 2.39 MB | fix HUD integrity |
-| Yefeh To'ar on Bereshit Rabbah | Midrash / Aggadah | 2442/6072 (40.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 41 | 1.36 MB | 956.06 KB | fix HUD integrity |
-| Psalms | Tanakh | 4013/12462 (32.2%) | all ok | n/a | 0 | 28 | 1.16 MB | 3.50 MB | fix HUD integrity |
-| Beur HaGra on Jerusalem Talmud Challah | Gra School | 1026/3544 (29.0%) | all ok | n/a | 0 | 25 | 1.02 MB | 1.47 MB | fix HUD integrity |
-| Perush Maharzu on Shemot Rabbah | Midrash / Aggadah | 2053/5256 (39.1%) | all ok | זש״ה:absent, וגומר:absent | 0 | 25 | 1.30 MB | 1.21 MB | fix HUD integrity |
-| Etz Yosef on Eichah Rabbah | Midrash / Aggadah | 2206/6435 (34.3%) | all ok | שנאמר:absent, וגומר:absent | 0 | 40 | 1.24 MB | 1.37 MB | fix HUD integrity |
-| Ezekiel | Tanakh | 3802/10759 (35.3%) | מן:absent, אם:absent | n/a | 0 | 48 | 1.18 MB | 2.10 MB | fix HUD integrity |
-| Isaiah | Tanakh | 4182/11650 (35.9%) | מן:absent | n/a | 0 | 24 | 1.33 MB | 2.05 MB | fix HUD integrity |
-| Kol HaTor | Gra School | 1917/4308 (44.5%) | all ok | n/a | 0 | 8 | 1.41 MB | 748.51 KB | fix HUD integrity |
-| Par Echad on Pirkei DeRabbi Eliezer | Midrash / Aggadah | 2084/5738 (36.3%) | all ok | זש״ה:absent, וגומר:absent | 0 | 36 | 1.24 MB | 753.98 KB | fix HUD integrity |
-| Exodus | Tanakh | 2937/8879 (33.1%) | all ok | n/a | 0 | 24 | 1.12 MB | 1.92 MB | fix HUD integrity |
-| Numbers | Tanakh | 2751/8225 (33.4%) | מן:absent | n/a | 0 | 20 | 1.11 MB | 2.01 MB | fix HUD integrity |
-| Yahel Ohr on Zohar | Gra School | 1740/4871 (35.7%) | all ok | n/a | 0 | 20 | 1.25 MB | 830.65 KB | fix HUD integrity |
-| Yefeh To'ar on Shemot Rabbah | Midrash / Aggadah | 2006/4774 (42.0%) | all ok | וגומר:absent, א״ר:absent | 0 | 30 | 1.37 MB | 754.76 KB | fix HUD integrity |
-| Alphabet of Ben Sira | Midrash / Aggadah | 1693/4510 (37.5%) | all ok | זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 20 | 1.30 MB | 579.58 KB | fix HUD integrity |
-| Deuteronomy | Tanakh | 2922/8113 (36.0%) | אם:absent | n/a | 0 | 30 | 1.18 MB | 1.63 MB | fix HUD integrity |
-| Perush Maharzu on Vayikra Rabbah | Midrash / Aggadah | 1855/4678 (39.7%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 25 | 1.32 MB | 847.69 KB | fix HUD integrity |
-| II Chronicles | Tanakh | 2745/8092 (33.9%) | מן:absent | n/a | 0 | 19 | 1.19 MB | 1.48 MB | fix HUD integrity |
-| I Samuel | Tanakh | 2739/7707 (35.5%) | אם:absent | n/a | 0 | 20 | 1.14 MB | 1.41 MB | fix HUD integrity |
-| I Kings | Tanakh | 2681/7590 (35.3%) | מן:absent | n/a | 0 | 30 | 1.16 MB | 1.39 MB | fix HUD integrity |
-| II Kings | Tanakh | 2346/6901 (34.0%) | מן:absent | n/a | 0 | 19 | 1.11 MB | 1.26 MB | fix HUD integrity |
-| Leviticus | Tanakh | 2037/6089 (33.5%) | מן:absent | n/a | 0 | 18 | 1.10 MB | 1.40 MB | fix HUD integrity |
-| Pesikta Rabbati | Midrash / Aggadah | 1347/3103 (43.4%) | all ok | וגומר:absent | 0 | 16 | 1.45 MB | 379.91 KB | fix HUD integrity |
-| I Chronicles | Tanakh | 2003/6945 (28.8%) | מן:absent | n/a | 0 | 10 | 1.06 MB | 1.55 MB | fix HUD integrity |
-| II Samuel | Tanakh | 2342/6700 (35.0%) | מן:absent | n/a | 0 | 17 | 1.11 MB | 1.22 MB | fix HUD integrity |
-| Nefesh HaChayim | Gra School | 1867/4430 (42.1%) | all ok | n/a | 0 | 30 | 1.31 MB | 649.30 KB | fix HUD integrity |
-| Perush Maharzu on Eichah Rabbah | Midrash / Aggadah | 1515/3692 (41.0%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 15 | 1.38 MB | 815.96 KB | fix HUD integrity |
-| Yefeh Anaf on Eichah Rabbah | Midrash / Aggadah | 1549/3783 (40.9%) | all ok | וגומר:absent, א״ר:absent | 0 | 20 | 1.37 MB | 593.65 KB | fix HUD integrity |
-| Aderet Eliyahu | Gra School | 1654/3711 (44.6%) | all ok | n/a | 0 | 18 | 1.45 MB | 392.25 KB | fix HUD integrity |
-| Joshua | Tanakh | 2139/5856 (36.5%) | all ok | n/a | 0 | 12 | 1.12 MB | 1.11 MB | fix HUD integrity |
-| Judges | Tanakh | 2111/6131 (34.4%) | מן:absent | n/a | 0 | 17 | 1.15 MB | 1.06 MB | fix HUD integrity |
-| Perush Maharzu on Bamidbar Rabbah | Midrash / Aggadah | 1463/3476 (42.1%) | all ok | וגומר:absent, א״ל:absent | 0 | 19 | 1.39 MB | 697.48 KB | fix HUD integrity |
-| Midrash Tannaim on Deuteronomy | Midrash / Aggadah | 1188/2712 (43.8%) | all ok | זש״ה:absent, וגומר:absent | 0 | 10 | 1.48 MB | 620.17 KB | fix HUD integrity |
-| Matnot Kehunah on Bereshit Rabbah | Midrash / Aggadah | 1470/3705 (39.7%) | all ok | זש״ה:absent, וגומר:absent | 0 | 23 | 1.35 MB | 1.03 MB | fix HUD integrity |
-| Yedei Moshe on Shir HaShirim Rabbah | Midrash / Aggadah | 1239/3038 (40.8%) | all ok | ד״א:absent, וגומר:absent, א״ל:absent | 0 | 13 | 1.30 MB | 428.92 KB | fix HUD integrity |
-| Etz Yosef on Bamidbar Rabbah | Midrash / Aggadah | 1522/3554 (42.8%) | all ok | ד״א:absent, וגומר:absent | 0 | 21 | 1.39 MB | 697.07 KB | fix HUD integrity |
-| Job | Tanakh | 1772/5899 (30.0%) | all ok | n/a | 0 | 14 | 1.08 MB | 1.46 MB | fix HUD integrity |
-| Etz Yosef on Esther Rabbah | Midrash / Aggadah | 1199/2889 (41.5%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 16 | 1.32 MB | 519.28 KB | fix HUD integrity |
-| Shir HaShirim Rabbah | Midrash / Aggadah | 1193/2477 (48.2%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 11 | 1.53 MB | 328.60 KB | fix HUD integrity |
-| Beur HaGra on Jerusalem Talmud Bikkurim | Gra School | 828/2487 (33.3%) | all ok | n/a | 0 | 10 | 1.06 MB | 501.34 KB | fix HUD integrity |
-| Matnot Kehunah on Eichah Rabbah | Midrash / Aggadah | 1165/2981 (39.1%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 11 | 1.33 MB | 975.89 KB | fix HUD integrity |
-| HaGra on Sefer Yetzirah Gra Version | Gra School | 894/2250 (39.7%) | אשר:absent, אם:absent | n/a | 0 | 13 | 1.26 MB | 293.98 KB | fix HUD integrity |
-| Maaseh Rav | Gra School | 1033/2700 (38.3%) | all ok | n/a | 0 | 8 | 1.26 MB | 603.35 KB | fix HUD integrity |
-| Proverbs | Tanakh | 1566/4705 (33.3%) | מן:absent | n/a | 0 | 9 | 1.22 MB | 1.30 MB | fix HUD integrity |
-| Rashi on Bereshit Rabbah | Midrash / Aggadah | 1197/2795 (42.8%) | all ok | זש״ה:absent, וגומר:absent | 0 | 18 | 1.38 MB | 607.94 KB | fix HUD integrity |
-| Yefeh To'ar on Vayikra Rabbah | Midrash / Aggadah | 1215/2548 (47.7%) | all ok | וגומר:absent, א״ר:absent, א״ל:absent | 0 | 12 | 1.49 MB | 398.09 KB | fix HUD integrity |
-| Daniel | Tanakh | 1207/4269 (28.3%) | מן:absent, אם:absent, אין:absent | n/a | 0 | 7 | 1.05 MB | 682.85 KB | fix HUD integrity |
-| Beur HaGra on Shulchan Arukh, Even HaEzer | Gra School | 584/2159 (27.0%) | אשר:absent | n/a | 0 | 7 | 942.14 KB | 761.27 KB | fix HUD integrity |
-| Kohelet Rabbah | Midrash / Aggadah | 997/2205 (45.2%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 12 | 1.43 MB | 268.38 KB | fix HUD integrity |
-| Jerusalem Talmud Taanit | Talmud / Commentary | 867/2188 (39.6%) | all ok | n/a | 0 | 11 | 1.25 MB | 299.04 KB | fix HUD integrity |
-| Yedei Moshe on Bereshit Rabbah | Midrash / Aggadah | 987/2172 (45.4%) | all ok | א״ל:absent | 0 | 11 | 1.43 MB | 330.79 KB | fix HUD integrity |
-| Nehemiah | Tanakh | 1293/3818 (33.9%) | מן:absent | n/a | 0 | 9 | 1.12 MB | 720.44 KB | fix HUD integrity |
-| Matnot Kehunah on Vayikra Rabbah | Midrash / Aggadah | 1032/2518 (41.0%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 7 | 1.37 MB | 729.08 KB | fix HUD integrity |
-| Sha'ar Ruach HaKodesh | Ari / Kabbalah | 903/2004 (45.1%) | all ok | n/a | 0 | 8 | 1.40 MB | 235.87 KB | fix HUD integrity |
-| Yedei Moshe on Shemot Rabbah | Midrash / Aggadah | 888/1947 (45.6%) | all ok | זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent | 0 | 8 | 1.36 MB | 294.53 KB | fix HUD integrity |
-| Ruth Rabbah | Midrash / Aggadah | 798/1529 (52.2%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 9 | 1.48 MB | 206.44 KB | fix HUD integrity |
-| Yedei Moshe on Kohelet Rabbah | Midrash / Aggadah | 843/1854 (45.5%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent | 0 | 13 | 1.34 MB | 261.84 KB | fix HUD integrity |
-| Ezra | Tanakh | 774/2665 (29.0%) | את:absent, מן:absent | n/a | 0 | 6 | 1001.85 KB | 521.85 KB | fix HUD integrity |
-| Sha'arei Kedusha | Ari / Kabbalah | 932/1732 (53.8%) | all ok | n/a | 0 | 7 | 1.56 MB | 251.61 KB | fix HUD integrity |
-| Ma'amar Hador | Rav Kook School | 1277/1965 (65.0%) | all ok | n/a | 0 | 3 | 1.82 MB | 182.40 KB | fix HUD integrity |
-| Notes and Corrections on Midrash Lekach Tov on Esther | Midrash / Aggadah | 491/1178 (41.7%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 6 | 1.38 MB | 554.57 KB | fix HUD integrity |
-| Matnot Kehunah on Shemot Rabbah | Midrash / Aggadah | 757/1632 (46.4%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 12 | 1.39 MB | 477.79 KB | fix HUD integrity |
-| Zechariah | Tanakh | 921/2181 (42.2%) | מן:absent, אם:absent | n/a | 0 | 2 | 1.18 MB | 410.53 KB | fix HUD integrity |
-| Etz Yosef on Devarim Rabbah | Midrash / Aggadah | 719/1541 (46.7%) | all ok | זש״ה:absent, וגומר:absent | 0 | 7 | 1.43 MB | 278.12 KB | fix HUD integrity |
-| Seder Olam Zutta | Midrash / Aggadah | 323/976 (33.1%) | אין:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 2 | 1.15 MB | 152.70 KB | fix HUD integrity |
-| Etz Yosef on Ruth Rabbah | Midrash / Aggadah | 693/1387 (50.0%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 5 | 1.41 MB | 267.19 KB | fix HUD integrity |
-| Perush Maharzu on Devarim Rabbah | Midrash / Aggadah | 671/1369 (49.0%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 6 | 1.39 MB | 242.86 KB | fix HUD integrity |
-| Esther | Tanakh | 725/1962 (37.0%) | מן:absent, כל:absent | n/a | 0 | 11 | 999.74 KB | 354.68 KB | fix HUD integrity |
-| Beur HaGra on Shulchan Arukh, Choshen Mishpat | Gra School | 311/1106 (28.1%) | אשר:absent | n/a | 0 | 5 | 859.17 KB | 209.19 KB | fix HUD integrity |
-| Ecclesiastes | Tanakh | 994/2047 (48.6%) | מן:absent, אם:absent | n/a | 0 | 8 | 1.29 MB | 419.78 KB | fix HUD integrity |
-| Midrash Lekach Tov on Esther | Midrash / Aggadah | 528/1030 (51.3%) | אין:absent | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 3 | 1.58 MB | 148.84 KB | fix HUD integrity |
-| Yefeh Anaf on Ruth Rabbah | Midrash / Aggadah | 639/1292 (49.5%) | מן:absent | זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 9 | 1.48 MB | 189.72 KB | fix HUD integrity |
-| Yefeh Anaf on Esther Rabbah | Midrash / Aggadah | 586/1231 (47.6%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 6 | 1.45 MB | 219.92 KB | fix HUD integrity |
-| Matnot Kehunah on Bamidbar Rabbah | Midrash / Aggadah | 649/1378 (47.1%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 12 | 1.47 MB | 380.35 KB | fix HUD integrity |
-| Hosea | Tanakh | 704/1828 (38.5%) | את:absent, מן:absent, כל:absent | n/a | 0 | 4 | 1.09 MB | 359.26 KB | fix HUD integrity |
-| Sefer Yetzirah Gra Version | Gra School | 359/743 (48.3%) | לא:absent, אם:absent | n/a | 0 | 7 | 1.11 MB | 197.48 KB | fix HUD integrity |
-| Sefer Etz Chaim | Ari / Kabbalah | 552/974 (56.7%) | all ok | n/a | 0 | 9 | 1.43 MB | 125.66 KB | fix HUD integrity |
-| Iggeret HaGra | Gra School | 559/1069 (52.3%) | מן:absent | n/a | 0 | 3 | 1.52 MB | 136.78 KB | fix HUD integrity |
-| Amos | Tanakh | 566/1437 (39.4%) | מן:absent, אם:absent | n/a | 0 | 4 | 1.12 MB | 288.83 KB | fix HUD integrity |
-| Perush Maharzu on Ruth Rabbah | Midrash / Aggadah | 452/883 (51.2%) | מן:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 4 | 1.29 MB | 208.00 KB | fix HUD integrity |
-| Lamentations | Tanakh | 468/1264 (37.0%) | אם:absent | n/a | 0 | 2 | 1.04 MB | 316.84 KB | fix HUD integrity |
-| Midrash Lekach Tov on Ruth | Midrash / Aggadah | 419/759 (55.2%) | all ok | זש״ה:absent, שנאמר:absent, כתיב:absent, א״ר:absent, א״ל:absent | 0 | 4 | 1.22 MB | 117.92 KB | fix HUD integrity |
-| Midrash Lekach Tov on Lamentations | Midrash / Aggadah | 409/757 (54.0%) | all ok | זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 3 | 1.24 MB | 109.79 KB | fix HUD integrity |
-| Midrash Lekach Tov on Song of Songs | Midrash / Aggadah | 464/787 (59.0%) | all ok | זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 1 | 1.44 MB | 103.45 KB | fix HUD integrity |
-| Perush Maharzu on Esther Rabbah | Midrash / Aggadah | 355/755 (47.0%) | all ok | ד״א:absent, זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 3 | 1.08 MB | 156.35 KB | fix HUD integrity |
-| Micah | Tanakh | 468/1144 (40.9%) | מן:absent, כל:absent, אם:absent | n/a | 0 | 1 | 1.17 MB | 225.02 KB | fix HUD integrity |
-| Song of Songs | Tanakh | 327/984 (33.2%) | כי:absent, הוא:absent, מן:absent, אם:absent | n/a | 0 | 1 | 983.15 KB | 246.20 KB | fix HUD integrity |
-| Orot HaTorah | Rav Kook School | 542/807 (67.2%) | אם:absent | n/a | 0 | 3 | 1.59 MB | 117.84 KB | fix HUD integrity |
-| Ruth | Tanakh | 406/999 (40.6%) | על:absent, מן:absent | n/a | 0 | 5 | 905.99 KB | 196.87 KB | fix HUD integrity |
-| Yefeh To'ar on Bamidbar Rabbah | Midrash / Aggadah | 345/646 (53.4%) | אשר:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 3 | 1008.49 KB | 116.34 KB | fix HUD integrity |
-| Matnot Kehunah on Ruth Rabbah | Midrash / Aggadah | 300/594 (50.5%) | כי:absent, אשר:absent | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 2 | 909.63 KB | 194.03 KB | fix HUD integrity |
-| Joel | Tanakh | 320/776 (41.2%) | את:absent, על:absent, מן:absent, אם:absent | n/a | 0 | 2 | 919.62 KB | 172.77 KB | fix HUD integrity |
-| Musar Avikha | Rav Kook School | 371/567 (65.4%) | all ok | n/a | 0 | 3 | 1.02 MB | 104.42 KB | fix HUD integrity |
-| Matnot Kehunah on Esther Rabbah | Midrash / Aggadah | 269/558 (48.2%) | אם:absent | זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 1 | 892.43 KB | 198.25 KB | fix HUD integrity |
-| Malachi | Tanakh | 314/676 (46.4%) | מן:absent, כל:absent, אם:absent | n/a | 0 | 1 | 866.43 KB | 152.03 KB | fix HUD integrity |
-| Midrash Yelamdenu, Selections from Yalkut Talmud Torah | Midrash / Aggadah | 280/523 (53.5%) | מן:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 2 | 869.80 KB | 95.96 KB | fix HUD integrity |
-| Midrash Lekach Tov on Ecclesiastes | Midrash / Aggadah | 256/421 (60.8%) | אין:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 3 | 822.99 KB | 84.25 KB | fix HUD integrity |
-| Matnot Kehunah on Devarim Rabbah | Midrash / Aggadah | 223/454 (49.1%) | כי:absent, אשר:absent | זש״ה:absent, כתיב:absent, וגומר:absent, א״ל:absent | 0 | 3 | 693.28 KB | 162.62 KB | fix HUD integrity |
-| Habakkuk | Tanakh | 246/578 (42.6%) | את:absent, מן:absent, כל:absent | n/a | 0 | 2 | 778.24 KB | 147.11 KB | fix HUD integrity |
-| Jonah | Tanakh | 221/525 (42.1%) | את:absent, על:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 3 | 601.45 KB | 136.28 KB | fix HUD integrity |
-| Nahum | Tanakh | 199/503 (39.6%) | את:absent, על:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 1 | 692.30 KB | 132.61 KB | fix HUD integrity |
-| Mishnat DeRabbi Eliezer on Eichah Rabbah | Midrash / Aggadah | 192/407 (47.2%) | אשר:absent, מן:absent, אם:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 2 | 629.73 KB | 96.93 KB | fix HUD integrity |
-| Gra's Nuschah on Avot D'Rabbi Natan | Gra School | 203/387 (52.5%) | אשר:absent, מן:absent, אם:absent | n/a | 0 | 1 | 700.69 KB | 231.96 KB | fix HUD integrity |
-| Seder Olam Rabbah | Midrash / Aggadah | 151/268 (56.3%) | כל:absent, אין:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 3 | 507.56 KB | 76.74 KB | fix HUD integrity |
-| Yedei Moshe on Vayikra Rabbah | Midrash / Aggadah | 185/346 (53.5%) | אשר:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 1 | 590.55 KB | 115.45 KB | fix HUD integrity |
-| Yefeh To'ar on Devarim Rabbah | Midrash / Aggadah | 139/263 (52.9%) | מן:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 3 | 431.21 KB | 79.70 KB | fix HUD integrity |
-| Obadiah | Tanakh | 89/237 (37.6%) | על:absent, לא:absent, הוא:absent, מן:absent, אם:absent | n/a | 0 | 1 | 284.91 KB | 93.72 KB | fix HUD integrity |
-| Gra's Nuschah on Tractate Derekh Eretz Rabbah | Gra School | 52/121 (43.0%) | כי:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent | ד״א:miss, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 1 | 193.67 KB | 93.09 KB | fix HUD integrity |
-| Gra on Pirkei Avot | Gra School | 197/419 (47.0%) | אם:absent, אין:absent | n/a | 0 | 0 | 651.61 KB | 106.07 KB | usable; content coverage remains |
-| Zephaniah | Tanakh | 253/618 (40.9%) | הוא:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 0 | 723.20 KB | 147.23 KB | usable; content coverage remains |
-| Yedei Moshe on Devarim Rabbah | Midrash / Aggadah | 223/357 (62.5%) | כי:absent, אם:absent | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 633.02 KB | 90.70 KB | usable; content coverage remains |
-| Haggai | Tanakh | 184/406 (45.3%) | על:absent, הוא:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 0 | 501.16 KB | 122.77 KB | usable; content coverage remains |
-| Gra's Nuschah on Tractate Soferim | Gra School | 124/236 (52.5%) | הוא:absent, מן:absent | n/a | 0 | 0 | 399.77 KB | 118.61 KB | usable; content coverage remains |
-| Maharzu Hakatzar on Bereshit Rabbah | Midrash / Aggadah | 104/198 (52.5%) | כי:absent, לא:absent, מן:absent, כל:absent, אם:absent, אין:absent | זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 300.98 KB | 81.95 KB | usable; content coverage remains |
-| Gra's Nuschah on Tractate Semachot | Gra School | 53/110 (48.2%) | את:absent, כי:absent, הוא:absent, אשר:absent, מן:absent, אין:absent | n/a | 0 | 0 | 193.82 KB | 97.94 KB | usable; content coverage remains |
-| Mishnat DeRabbi Eliezer on Ruth Rabbah | Midrash / Aggadah | 21/46 (45.7%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 57.85 KB | 65.18 KB | usable; content coverage remains |
-| Gra's Nuschah on Tractate Kallah | Gra School | 25/36 (69.4%) | את:absent, כי:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 0 | 68.14 KB | 72.43 KB | usable; content coverage remains |
-| Gra's Nuschah on Tractate Derekh Eretz Zuta | Gra School | 18/24 (75.0%) | את:absent, כי:absent, על:absent, הוא:absent, אשר:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 0 | 77.77 KB | 70.80 KB | ready/hardened |
+| Otzar Midrashim | Midrash / Aggadah | 10881/56400 (19.3%) | all ok | all ok | 0 | 272 | 828.19 KB | 26.03 MB | fix HUD integrity |
+| Ein Yaakov | Midrash / Aggadah | 13153/70278 (18.7%) | all ok | זש״ה:absent | 0 | 228 | 915.18 KB | 23.19 MB | fix HUD integrity |
+| Midrash Lekach Tov | Midrash / Aggadah | 7815/41646 (18.8%) | all ok | all ok | 0 | 169 | 834.63 KB | 24.56 MB | fix HUD integrity |
+| Beur HaRadal on Pirkei DeRabbi Eliezer | Midrash / Aggadah | 7736/41996 (18.4%) | all ok | all ok | 0 | 201 | 828.81 KB | 15.79 MB | fix HUD integrity |
+| Midrash Tanchuma | Midrash / Aggadah | 9626/37138 (25.9%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 138 | 1.14 MB | 15.93 MB | fix HUD integrity |
+| Midrash Sekhel Tov | Midrash / Aggadah | 6945/38876 (17.9%) | all ok | all ok | 0 | 143 | 804.41 KB | 18.46 MB | fix HUD integrity |
+| Beur HaGra on Shulchan Arukh, Yoreh De'ah | Gra School | 3926/25673 (15.3%) | all ok | n/a | 0 | 80 | 752.03 KB | 19.72 MB | fix HUD integrity |
+| Chafetz Chaim on Sifra | Midrash / Aggadah | 5414/29588 (18.3%) | all ok | זש״ה:absent | 0 | 119 | 865.76 KB | 22.32 MB | fix HUD integrity |
+| Midrash Tanchuma Buber | Midrash / Aggadah | 5977/26484 (22.6%) | all ok | וגומר:absent | 0 | 104 | 1.00 MB | 11.21 MB | fix HUD integrity |
+| Ra'avad on Sifra | Midrash / Aggadah | 4604/23139 (19.9%) | all ok | זש״ה:absent, וגומר:absent | 0 | 92 | 943.85 KB | 9.42 MB | fix HUD integrity |
+| Sha'ar Ma'amarei Rashbi | Ari / Kabbalah | 4651/19780 (23.5%) | all ok | n/a | 0 | 71 | 948.50 KB | 7.25 MB | fix HUD integrity |
+| Notes and Corrections on Midrash Lekach Tov | Midrash / Aggadah | 4553/19908 (22.9%) | all ok | וגומר:absent | 0 | 74 | 968.89 KB | 14.40 MB | fix HUD integrity |
+| Midrash Tehillim | Midrash / Aggadah | 5168/20099 (25.7%) | all ok | ד״א:absent, זש״ה:absent | 0 | 84 | 1015.62 KB | 5.82 MB | fix HUD integrity |
+| Midrash Aggadah | Midrash / Aggadah | 5246/20618 (25.4%) | all ok | וגומר:absent, א״ר:absent | 0 | 75 | 1005.98 KB | 9.02 MB | fix HUD integrity |
+| Sha'ar HaPesukim | Ari / Kabbalah | 4562/16032 (28.5%) | all ok | n/a | 0 | 58 | 1.04 MB | 8.18 MB | fix HUD integrity |
+| Midbar Shur | Rav Kook School | 6385/19798 (32.3%) | all ok | n/a | 0 | 114 | 1.14 MB | 4.34 MB | fix HUD integrity |
+| Etz Yosef on Shir HaShirim Rabbah | Midrash / Aggadah | 5491/20691 (26.5%) | all ok | ד״א:absent, זש״ה:absent | 0 | 106 | 1.01 MB | 7.32 MB | fix HUD integrity |
+| Sha'ar HaGilgulim | Ari / Kabbalah | 4064/13104 (31.0%) | all ok | n/a | 0 | 60 | 1.09 MB | 4.42 MB | fix HUD integrity |
+| Sefer HaYashar (midrash) | Midrash / Aggadah | 3111/11610 (26.8%) | all ok | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 66 | 1.13 MB | 3.80 MB | fix HUD integrity |
+| Sifrei Devarim | Midrash / Aggadah | 3862/13236 (29.2%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 56 | 1.17 MB | 5.88 MB | fix HUD integrity |
+| Orot HaKodesh | Rav Kook School | 7990/18735 (42.6%) | all ok | n/a | 0 | 101 | 1.31 MB | 3.50 MB | fix HUD integrity |
+| Pesikta DeRav Kahana | Midrash / Aggadah | 3518/13970 (25.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 47 | 1.03 MB | 2.99 MB | fix HUD integrity |
+| Notes and Corrections on Midrash Aggadah | Midrash / Aggadah | 3404/12167 (28.0%) | all ok | וגומר:absent | 0 | 41 | 1.08 MB | 7.85 MB | fix HUD integrity |
+| Beur HaGra on Shulchan Arukh, Orach Chayim | Gra School | 2503/12656 (19.8%) | all ok | n/a | 0 | 35 | 862.34 KB | 6.46 MB | fix HUD integrity |
+| Beur HaGra on Sifra DeTzniuta | Gra School | 2814/10860 (25.9%) | all ok | כתיב:miss, א״ר:miss, א״ל:miss, ד״א:absent, זש״ה:absent, וגומר:absent | 0 | 39 | 1.00 MB | 2.92 MB | fix HUD integrity |
+| Tanna DeBei Eliyahu Rabbah | Midrash / Aggadah | 3808/11930 (31.9%) | all ok | זש״ה:absent, וגומר:absent | 0 | 48 | 1.17 MB | 2.45 MB | fix HUD integrity |
+| Sha'ar HaKavanot | Ari / Kabbalah | 3343/10910 (30.6%) | all ok | n/a | 0 | 28 | 1.09 MB | 3.03 MB | fix HUD integrity |
+| Orot | Rav Kook School | 14870/17307 (85.9%) | all ok | n/a | 0 | 22 | 2.18 MB | 3.09 MB | fix HUD integrity |
+| Sha'ar HaMitzvot | Ari / Kabbalah | 3418/11959 (28.6%) | all ok | n/a | 0 | 36 | 1.03 MB | 2.74 MB | fix HUD integrity |
+| Sifrei Bamidbar | Midrash / Aggadah | 3062/9816 (31.2%) | all ok | זש״ה:absent | 0 | 35 | 1.23 MB | 2.57 MB | fix HUD integrity |
+| Beur HaRe'em on Midrash Lekach Tov | Midrash / Aggadah | 3596/13211 (27.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 48 | 1.03 MB | 7.46 MB | fix HUD integrity |
+| Mishnat Rabbi Eliezer | Midrash / Aggadah | 3852/12809 (30.1%) | all ok | זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 53 | 1.14 MB | 2.76 MB | fix HUD integrity |
+| Pri Etz Chaim | Ari / Kabbalah | 3175/9512 (33.4%) | all ok | n/a | 0 | 37 | 1.20 MB | 2.92 MB | fix HUD integrity |
+| Etz Yosef on Kohelet Rabbah | Midrash / Aggadah | 3850/13312 (28.9%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 57 | 1.07 MB | 4.80 MB | fix HUD integrity |
+| Yefeh Kol on Shir HaShirim Rabbah | Midrash / Aggadah | 4332/13612 (31.8%) | all ok | וגומר:absent | 0 | 84 | 1.11 MB | 3.33 MB | fix HUD integrity |
+| Sha'ar HaHakdamot | Ari / Kabbalah | 2892/9189 (31.5%) | all ok | n/a | 0 | 22 | 1.11 MB | 1.90 MB | fix HUD integrity |
+| Aggadat Bereshit | Midrash / Aggadah | 2999/8840 (33.9%) | all ok | all ok | 0 | 27 | 1.20 MB | 1.95 MB | fix HUD integrity |
+| Pirkei DeRabbi Eliezer | Midrash / Aggadah | 3864/11509 (33.6%) | all ok | ד״א:absent, זש״ה:absent, א״ר:absent, א״ל:absent | 0 | 38 | 1.23 MB | 3.02 MB | fix HUD integrity |
+| Perush Maharzu on Shir HaShirim Rabbah | Midrash / Aggadah | 3052/9196 (33.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 37 | 1.23 MB | 3.09 MB | fix HUD integrity |
+| Midrash Shmuel | Midrash / Aggadah | 2377/7023 (33.8%) | all ok | וגומר:absent | 0 | 31 | 1.25 MB | 1.34 MB | fix HUD integrity |
+| Tanna DeBei Eliyahu Zuta | Midrash / Aggadah | 2896/8411 (34.4%) | all ok | זש״ה:absent, וגומר:absent | 0 | 37 | 1.18 MB | 1.30 MB | fix HUD integrity |
+| Eikhah Rabbah | Midrash / Aggadah | 2627/8321 (31.6%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 23 | 1.18 MB | 1.49 MB | fix HUD integrity |
+| Sifrei Aggadah on Esther | Midrash / Aggadah | 2190/6654 (32.9%) | all ok | וגומר:absent | 0 | 31 | 1.20 MB | 1.23 MB | fix HUD integrity |
+| Matnot Kehunah on Shir HaShirim Rabbah | Midrash / Aggadah | 2460/7681 (32.0%) | all ok | זש״ה:absent, וגומר:absent | 0 | 26 | 1.16 MB | 3.54 MB | fix HUD integrity |
+| Perush Maharzu on Bereshit Rabbah | Midrash / Aggadah | 2503/6701 (37.4%) | all ok | זש״ה:absent, וגומר:absent | 0 | 28 | 1.26 MB | 1.56 MB | fix HUD integrity |
+| Perush Maharzu on Kohelet Rabbah | Midrash / Aggadah | 2534/6700 (37.8%) | all ok | זש״ה:absent | 0 | 16 | 1.31 MB | 2.08 MB | fix HUD integrity |
+| Matnot Kehunah on Kohelet Rabbah | Midrash / Aggadah | 2340/7005 (33.4%) | all ok | זש״ה:absent, וגומר:absent | 0 | 24 | 1.17 MB | 3.18 MB | fix HUD integrity |
+| Etz Yosef on Bereishit Rabbah | Midrash / Aggadah | 2755/7900 (34.9%) | all ok | all ok | 0 | 40 | 1.20 MB | 1.94 MB | fix HUD integrity |
+| Etz Yosef on Vayikra Rabbah | Midrash / Aggadah | 2637/7738 (34.1%) | all ok | וגומר:absent | 0 | 28 | 1.22 MB | 1.76 MB | fix HUD integrity |
+| Etz Yosef on Shemot Rabbah | Midrash / Aggadah | 2530/6882 (36.8%) | all ok | וגומר:absent | 0 | 33 | 1.27 MB | 1.76 MB | fix HUD integrity |
+| Jeremiah | Tanakh | 4132/12098 (34.2%) | מן:absent | n/a | 0 | 24 | 1.18 MB | 2.71 MB | fix HUD integrity |
+| Sha'ar Ma'amarei Razal | Ari / Kabbalah | 2046/5388 (38.0%) | all ok | n/a | 0 | 17 | 1.26 MB | 951.67 KB | fix HUD integrity |
+| Genesis | Tanakh | 3743/11363 (32.9%) | מן:absent | n/a | 0 | 16 | 1.14 MB | 2.76 MB | fix HUD integrity |
+| Yefeh To'ar on Bereshit Rabbah | Midrash / Aggadah | 2417/6072 (39.8%) | all ok | זש״ה:absent, וגומר:absent | 0 | 34 | 1.36 MB | 1.10 MB | fix HUD integrity |
+| Psalms | Tanakh | 4047/12462 (32.5%) | all ok | n/a | 0 | 31 | 1.17 MB | 3.87 MB | fix HUD integrity |
+| Beur HaGra on Jerusalem Talmud Challah | Gra School | 1002/3544 (28.3%) | all ok | n/a | 0 | 14 | 1.01 MB | 1.63 MB | fix HUD integrity |
+| Perush Maharzu on Shemot Rabbah | Midrash / Aggadah | 2033/5256 (38.7%) | all ok | זש״ה:absent, וגומר:absent | 0 | 18 | 1.30 MB | 1.36 MB | fix HUD integrity |
+| Etz Yosef on Eichah Rabbah | Midrash / Aggadah | 2175/6435 (33.8%) | all ok | שנאמר:absent, וגומר:absent | 0 | 31 | 1.24 MB | 1.53 MB | fix HUD integrity |
+| Ezekiel | Tanakh | 3784/10759 (35.2%) | מן:absent, אם:absent | n/a | 0 | 31 | 1.18 MB | 2.44 MB | fix HUD integrity |
+| Isaiah | Tanakh | 4231/11650 (36.3%) | מן:absent | n/a | 0 | 26 | 1.33 MB | 2.36 MB | fix HUD integrity |
+| Kol HaTor | Gra School | 1914/4308 (44.4%) | all ok | n/a | 0 | 8 | 1.40 MB | 902.94 KB | fix HUD integrity |
+| Par Echad on Pirkei DeRabbi Eliezer | Midrash / Aggadah | 2061/5738 (35.9%) | all ok | זש״ה:absent, וגומר:absent | 0 | 32 | 1.24 MB | 895.75 KB | fix HUD integrity |
+| Exodus | Tanakh | 2934/8879 (33.0%) | all ok | n/a | 0 | 15 | 1.13 MB | 2.22 MB | fix HUD integrity |
+| Numbers | Tanakh | 2758/8225 (33.5%) | מן:absent | n/a | 0 | 13 | 1.11 MB | 2.30 MB | fix HUD integrity |
+| Yahel Ohr on Zohar | Gra School | 1728/4871 (35.5%) | all ok | n/a | 0 | 15 | 1.25 MB | 962.50 KB | fix HUD integrity |
+| Yefeh To'ar on Shemot Rabbah | Midrash / Aggadah | 1982/4774 (41.5%) | all ok | וגומר:absent, א״ר:absent | 0 | 20 | 1.37 MB | 880.84 KB | fix HUD integrity |
+| Alphabet of Ben Sira | Midrash / Aggadah | 1673/4510 (37.1%) | all ok | זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 14 | 1.29 MB | 701.60 KB | fix HUD integrity |
+| Deuteronomy | Tanakh | 2939/8113 (36.2%) | אם:absent | n/a | 0 | 23 | 1.18 MB | 1.89 MB | fix HUD integrity |
+| Perush Maharzu on Vayikra Rabbah | Midrash / Aggadah | 1839/4678 (39.3%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 22 | 1.32 MB | 967.20 KB | fix HUD integrity |
+| II Chronicles | Tanakh | 2786/8092 (34.4%) | מן:absent | n/a | 0 | 15 | 1.21 MB | 1.73 MB | fix HUD integrity |
+| I Samuel | Tanakh | 2736/7707 (35.5%) | אם:absent | n/a | 0 | 15 | 1.14 MB | 1.66 MB | fix HUD integrity |
+| I Kings | Tanakh | 2645/7590 (34.8%) | מן:absent | n/a | 0 | 16 | 1.16 MB | 1.63 MB | fix HUD integrity |
+| II Kings | Tanakh | 2352/6901 (34.1%) | מן:absent | n/a | 0 | 14 | 1.12 MB | 1.49 MB | fix HUD integrity |
+| Leviticus | Tanakh | 2036/6089 (33.4%) | מן:absent | n/a | 0 | 7 | 1.11 MB | 1.61 MB | fix HUD integrity |
+| Pesikta Rabbati | Midrash / Aggadah | 1332/3103 (42.9%) | all ok | וגומר:absent | 0 | 10 | 1.44 MB | 471.41 KB | fix HUD integrity |
+| I Chronicles | Tanakh | 2019/6945 (29.1%) | מן:absent | n/a | 0 | 10 | 1.07 MB | 1.75 MB | fix HUD integrity |
+| II Samuel | Tanakh | 2337/6700 (34.9%) | מן:absent | n/a | 0 | 10 | 1.11 MB | 1.42 MB | fix HUD integrity |
+| Nefesh HaChayim | Gra School | 1850/4430 (41.8%) | all ok | n/a | 0 | 24 | 1.31 MB | 747.20 KB | fix HUD integrity |
+| Perush Maharzu on Eichah Rabbah | Midrash / Aggadah | 1499/3692 (40.6%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 11 | 1.38 MB | 906.75 KB | fix HUD integrity |
+| Yefeh Anaf on Eichah Rabbah | Midrash / Aggadah | 1531/3783 (40.5%) | all ok | וגומר:absent, א״ר:absent | 0 | 16 | 1.36 MB | 684.57 KB | fix HUD integrity |
+| Aderet Eliyahu | Gra School | 1647/3711 (44.4%) | all ok | n/a | 0 | 12 | 1.46 MB | 478.78 KB | fix HUD integrity |
+| Joshua | Tanakh | 2136/5856 (36.5%) | all ok | n/a | 0 | 12 | 1.12 MB | 1.30 MB | fix HUD integrity |
+| Judges | Tanakh | 2124/6131 (34.6%) | מן:absent | n/a | 0 | 17 | 1.15 MB | 1.24 MB | fix HUD integrity |
+| Perush Maharzu on Bamidbar Rabbah | Midrash / Aggadah | 1447/3476 (41.6%) | all ok | וגומר:absent, א״ל:absent | 0 | 14 | 1.38 MB | 779.55 KB | fix HUD integrity |
+| Midrash Tannaim on Deuteronomy | Midrash / Aggadah | 1176/2712 (43.4%) | all ok | זש״ה:absent, וגומר:absent | 0 | 4 | 1.47 MB | 696.94 KB | fix HUD integrity |
+| Matnot Kehunah on Bereshit Rabbah | Midrash / Aggadah | 1454/3705 (39.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 15 | 1.35 MB | 1.10 MB | fix HUD integrity |
+| Yedei Moshe on Shir HaShirim Rabbah | Midrash / Aggadah | 1225/3038 (40.3%) | all ok | ד״א:absent, וגומר:absent, א״ל:absent | 0 | 9 | 1.30 MB | 501.46 KB | fix HUD integrity |
+| Etz Yosef on Bamidbar Rabbah | Midrash / Aggadah | 1510/3554 (42.5%) | all ok | ד״א:absent, וגומר:absent | 0 | 16 | 1.38 MB | 770.38 KB | fix HUD integrity |
+| Job | Tanakh | 1790/5899 (30.3%) | all ok | n/a | 0 | 13 | 1.08 MB | 1.61 MB | fix HUD integrity |
+| Etz Yosef on Esther Rabbah | Midrash / Aggadah | 1180/2889 (40.8%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 13 | 1.32 MB | 588.38 KB | fix HUD integrity |
+| Shir HaShirim Rabbah | Midrash / Aggadah | 1185/2477 (47.8%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 7 | 1.53 MB | 434.44 KB | fix HUD integrity |
+| Beur HaGra on Jerusalem Talmud Bikkurim | Gra School | 821/2487 (33.0%) | all ok | n/a | 0 | 8 | 1.06 MB | 568.18 KB | fix HUD integrity |
+| Matnot Kehunah on Eichah Rabbah | Midrash / Aggadah | 1152/2981 (38.6%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 8 | 1.32 MB | 1.02 MB | fix HUD integrity |
+| HaGra on Sefer Yetzirah Gra Version | Gra School | 896/2250 (39.8%) | אשר:absent, אם:absent | n/a | 0 | 8 | 1.27 MB | 357.29 KB | fix HUD integrity |
+| Maaseh Rav | Gra School | 1022/2700 (37.9%) | all ok | n/a | 0 | 6 | 1.25 MB | 664.17 KB | fix HUD integrity |
+| Proverbs | Tanakh | 1578/4705 (33.5%) | מן:absent | n/a | 0 | 12 | 1.23 MB | 1.43 MB | fix HUD integrity |
+| Rashi on Bereshit Rabbah | Midrash / Aggadah | 1181/2795 (42.3%) | all ok | זש״ה:absent, וגומר:absent | 0 | 10 | 1.37 MB | 668.14 KB | fix HUD integrity |
+| Yefeh To'ar on Vayikra Rabbah | Midrash / Aggadah | 1207/2548 (47.4%) | all ok | וגומר:absent, א״ר:absent, א״ל:absent | 0 | 11 | 1.48 MB | 452.34 KB | fix HUD integrity |
+| Daniel | Tanakh | 1229/4269 (28.8%) | מן:absent, אם:absent, אין:absent | n/a | 0 | 7 | 1.07 MB | 800.73 KB | fix HUD integrity |
+| Beur HaGra on Shulchan Arukh, Even HaEzer | Gra School | 577/2159 (26.7%) | אשר:absent | n/a | 0 | 4 | 938.06 KB | 811.47 KB | fix HUD integrity |
+| Kohelet Rabbah | Midrash / Aggadah | 984/2205 (44.6%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 7 | 1.43 MB | 350.23 KB | fix HUD integrity |
+| Jerusalem Talmud Taanit | Talmud / Commentary | 861/2188 (39.4%) | all ok | n/a | 0 | 7 | 1.25 MB | 377.87 KB | fix HUD integrity |
+| Yedei Moshe on Bereshit Rabbah | Midrash / Aggadah | 975/2172 (44.9%) | all ok | א״ל:absent | 0 | 6 | 1.42 MB | 377.73 KB | fix HUD integrity |
+| Nehemiah | Tanakh | 1311/3818 (34.3%) | מן:absent | n/a | 0 | 6 | 1.11 MB | 828.70 KB | fix HUD integrity |
+| Matnot Kehunah on Vayikra Rabbah | Midrash / Aggadah | 1019/2518 (40.5%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 6 | 1.37 MB | 776.53 KB | fix HUD integrity |
+| Sha'ar Ruach HaKodesh | Ari / Kabbalah | 895/2004 (44.7%) | all ok | n/a | 0 | 6 | 1.38 MB | 283.92 KB | fix HUD integrity |
+| Yedei Moshe on Shemot Rabbah | Midrash / Aggadah | 879/1947 (45.1%) | all ok | זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent | 0 | 4 | 1.35 MB | 338.26 KB | fix HUD integrity |
+| Ruth Rabbah | Midrash / Aggadah | 792/1529 (51.8%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 5 | 1.48 MB | 264.39 KB | fix HUD integrity |
+| Yedei Moshe on Kohelet Rabbah | Midrash / Aggadah | 829/1854 (44.7%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent | 0 | 8 | 1.34 MB | 298.60 KB | fix HUD integrity |
+| Ezra | Tanakh | 785/2665 (29.5%) | את:absent, מן:absent | n/a | 0 | 4 | 1007.25 KB | 599.07 KB | fix HUD integrity |
+| Sha'arei Kedusha | Ari / Kabbalah | 930/1732 (53.7%) | all ok | n/a | 0 | 7 | 1.56 MB | 287.96 KB | fix HUD integrity |
+| Ma'amar Hador | Rav Kook School | 1280/1965 (65.1%) | all ok | n/a | 0 | 3 | 1.83 MB | 218.75 KB | fix HUD integrity |
+| Notes and Corrections on Midrash Lekach Tov on Esther | Midrash / Aggadah | 483/1178 (41.0%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 3 | 1.37 MB | 583.99 KB | fix HUD integrity |
+| Matnot Kehunah on Shemot Rabbah | Midrash / Aggadah | 747/1632 (45.8%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 7 | 1.39 MB | 507.80 KB | fix HUD integrity |
+| Zechariah | Tanakh | 920/2181 (42.2%) | מן:absent, אם:absent | n/a | 0 | 2 | 1.18 MB | 471.26 KB | fix HUD integrity |
+| Etz Yosef on Devarim Rabbah | Midrash / Aggadah | 709/1541 (46.0%) | all ok | זש״ה:absent, וגומר:absent | 0 | 4 | 1.42 MB | 307.14 KB | fix HUD integrity |
+| Etz Yosef on Ruth Rabbah | Midrash / Aggadah | 688/1387 (49.6%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 4 | 1.41 MB | 294.96 KB | fix HUD integrity |
+| Perush Maharzu on Devarim Rabbah | Midrash / Aggadah | 665/1369 (48.6%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 6 | 1.39 MB | 269.51 KB | fix HUD integrity |
+| Esther | Tanakh | 713/1962 (36.3%) | מן:absent, כל:absent | n/a | 0 | 8 | 1023.87 KB | 415.07 KB | fix HUD integrity |
+| Beur HaGra on Shulchan Arukh, Choshen Mishpat | Gra School | 309/1106 (27.9%) | אשר:absent | n/a | 0 | 4 | 860.12 KB | 234.19 KB | fix HUD integrity |
+| Ecclesiastes | Tanakh | 1000/2047 (48.9%) | מן:absent, אם:absent | n/a | 0 | 7 | 1.29 MB | 473.97 KB | fix HUD integrity |
+| Midrash Lekach Tov on Esther | Midrash / Aggadah | 522/1030 (50.7%) | אין:absent | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 2 | 1.58 MB | 174.47 KB | fix HUD integrity |
+| Yefeh Anaf on Ruth Rabbah | Midrash / Aggadah | 636/1292 (49.2%) | מן:absent | זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 9 | 1.47 MB | 213.17 KB | fix HUD integrity |
+| Yefeh Anaf on Esther Rabbah | Midrash / Aggadah | 578/1231 (47.0%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 5 | 1.45 MB | 242.78 KB | fix HUD integrity |
+| Matnot Kehunah on Bamidbar Rabbah | Midrash / Aggadah | 643/1378 (46.7%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 10 | 1.46 MB | 404.07 KB | fix HUD integrity |
+| Hosea | Tanakh | 709/1828 (38.8%) | את:absent, מן:absent, כל:absent | n/a | 0 | 3 | 1.10 MB | 405.85 KB | fix HUD integrity |
+| Sefer Yetzirah Gra Version | Gra School | 356/743 (47.9%) | לא:absent, אם:absent | n/a | 0 | 4 | 1.10 MB | 217.64 KB | fix HUD integrity |
+| Sefer Etz Chaim | Ari / Kabbalah | 551/974 (56.6%) | all ok | n/a | 0 | 9 | 1.43 MB | 146.16 KB | fix HUD integrity |
+| Iggeret HaGra | Gra School | 557/1069 (52.1%) | מן:absent | n/a | 0 | 3 | 1.52 MB | 156.32 KB | fix HUD integrity |
+| Amos | Tanakh | 570/1437 (39.7%) | מן:absent, אם:absent | n/a | 0 | 4 | 1.13 MB | 328.51 KB | fix HUD integrity |
+| Perush Maharzu on Ruth Rabbah | Midrash / Aggadah | 452/883 (51.2%) | מן:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 3 | 1.29 MB | 225.11 KB | fix HUD integrity |
+| Lamentations | Tanakh | 476/1264 (37.7%) | אם:absent | n/a | 0 | 3 | 1.05 MB | 347.83 KB | fix HUD integrity |
+| Midrash Lekach Tov on Ruth | Midrash / Aggadah | 417/759 (54.9%) | all ok | זש״ה:absent, שנאמר:absent, כתיב:absent, א״ר:absent, א״ל:absent | 0 | 2 | 1.22 MB | 132.22 KB | fix HUD integrity |
+| Midrash Lekach Tov on Lamentations | Midrash / Aggadah | 402/757 (53.1%) | all ok | זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 1 | 1.23 MB | 124.16 KB | fix HUD integrity |
+| Midrash Lekach Tov on Song of Songs | Midrash / Aggadah | 462/787 (58.7%) | all ok | זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 1 | 1.44 MB | 117.87 KB | fix HUD integrity |
+| Perush Maharzu on Esther Rabbah | Midrash / Aggadah | 352/755 (46.6%) | all ok | ד״א:absent, זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 2 | 1.08 MB | 170.38 KB | fix HUD integrity |
+| Micah | Tanakh | 469/1144 (41.0%) | מן:absent, כל:absent, אם:absent | n/a | 0 | 2 | 1.17 MB | 253.30 KB | fix HUD integrity |
+| Song of Songs | Tanakh | 328/984 (33.3%) | כי:absent, הוא:absent, מן:absent, אם:absent | n/a | 0 | 1 | 984.13 KB | 272.72 KB | fix HUD integrity |
+| Orot HaTorah | Rav Kook School | 543/807 (67.3%) | אם:absent | n/a | 0 | 3 | 1.59 MB | 139.26 KB | fix HUD integrity |
+| Ruth | Tanakh | 402/999 (40.2%) | על:absent, מן:absent | n/a | 0 | 3 | 902.69 KB | 222.60 KB | fix HUD integrity |
+| Yefeh To'ar on Bamidbar Rabbah | Midrash / Aggadah | 340/646 (52.6%) | אשר:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 2 | 1006.97 KB | 126.99 KB | fix HUD integrity |
+| Matnot Kehunah on Ruth Rabbah | Midrash / Aggadah | 297/594 (50.0%) | כי:absent, אשר:absent | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 2 | 907.47 KB | 204.52 KB | fix HUD integrity |
+| Joel | Tanakh | 321/776 (41.4%) | את:absent, על:absent, מן:absent, אם:absent | n/a | 0 | 1 | 922.36 KB | 192.93 KB | fix HUD integrity |
+| Musar Avikha | Rav Kook School | 372/567 (65.6%) | all ok | n/a | 0 | 3 | 1.02 MB | 115.00 KB | fix HUD integrity |
+| Matnot Kehunah on Esther Rabbah | Midrash / Aggadah | 266/558 (47.7%) | אם:absent | זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 1 | 891.50 KB | 208.24 KB | fix HUD integrity |
+| Malachi | Tanakh | 317/676 (46.9%) | מן:absent, כל:absent, אם:absent | n/a | 0 | 1 | 876.66 KB | 170.12 KB | fix HUD integrity |
+| Midrash Yelamdenu, Selections from Yalkut Talmud Torah | Midrash / Aggadah | 279/523 (53.3%) | מן:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 2 | 868.28 KB | 105.33 KB | fix HUD integrity |
+| Midrash Lekach Tov on Ecclesiastes | Midrash / Aggadah | 256/421 (60.8%) | אין:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 3 | 823.03 KB | 92.44 KB | fix HUD integrity |
+| Zephaniah | Tanakh | 258/618 (41.7%) | הוא:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 1 | 732.23 KB | 163.37 KB | fix HUD integrity |
+| Matnot Kehunah on Devarim Rabbah | Midrash / Aggadah | 220/454 (48.5%) | כי:absent, אשר:absent | זש״ה:absent, כתיב:absent, וגומר:absent, א״ל:absent | 0 | 3 | 687.62 KB | 170.77 KB | fix HUD integrity |
+| Habakkuk | Tanakh | 248/578 (42.9%) | את:absent, מן:absent, כל:absent | n/a | 0 | 3 | 783.46 KB | 161.28 KB | fix HUD integrity |
+| Jonah | Tanakh | 224/525 (42.7%) | את:absent, על:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 4 | 606.11 KB | 151.03 KB | fix HUD integrity |
+| Nahum | Tanakh | 203/503 (40.4%) | את:absent, על:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 2 | 707.89 KB | 145.28 KB | fix HUD integrity |
+| Gra's Nuschah on Avot D'Rabbi Natan | Gra School | 203/387 (52.5%) | אשר:absent, מן:absent, אם:absent | n/a | 0 | 1 | 703.03 KB | 238.77 KB | fix HUD integrity |
+| Seder Olam Rabbah | Midrash / Aggadah | 147/268 (54.9%) | כל:absent, אין:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 1 | 498.73 KB | 82.54 KB | fix HUD integrity |
+| Yedei Moshe on Vayikra Rabbah | Midrash / Aggadah | 183/346 (52.9%) | אשר:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 1 | 588.59 KB | 121.69 KB | fix HUD integrity |
+| Yefeh To'ar on Devarim Rabbah | Midrash / Aggadah | 137/263 (52.1%) | מן:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 1 | 430.50 KB | 84.79 KB | fix HUD integrity |
+| Obadiah | Tanakh | 92/237 (38.8%) | על:absent, לא:absent, הוא:absent, מן:absent, אם:absent | n/a | 0 | 1 | 285.61 KB | 100.94 KB | fix HUD integrity |
+| Gra's Nuschah on Tractate Derekh Eretz Rabbah | Gra School | 52/121 (43.0%) | כי:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent | ד״א:miss, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 1 | 193.67 KB | 96.34 KB | fix HUD integrity |
+| Seder Olam Zutta | Midrash / Aggadah | 316/976 (32.4%) | אין:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.14 MB | 181.99 KB | low coverage; leave until family pass |
+| Gra on Pirkei Avot | Gra School | 196/419 (46.8%) | אם:absent, אין:absent | n/a | 0 | 0 | 651.35 KB | 114.18 KB | usable; content coverage remains |
+| Mishnat DeRabbi Eliezer on Eichah Rabbah | Midrash / Aggadah | 191/407 (46.9%) | אשר:absent, מן:absent, אם:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 629.37 KB | 103.71 KB | usable; content coverage remains |
+| Yedei Moshe on Devarim Rabbah | Midrash / Aggadah | 222/357 (62.2%) | כי:absent, אם:absent | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 632.71 KB | 97.24 KB | usable; content coverage remains |
+| Haggai | Tanakh | 183/406 (45.1%) | על:absent, הוא:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 0 | 499.66 KB | 135.76 KB | usable; content coverage remains |
+| Gra's Nuschah on Tractate Soferim | Gra School | 124/236 (52.5%) | הוא:absent, מן:absent | n/a | 0 | 0 | 398.09 KB | 123.78 KB | usable; content coverage remains |
+| Maharzu Hakatzar on Bereshit Rabbah | Midrash / Aggadah | 104/198 (52.5%) | כי:absent, לא:absent, מן:absent, כל:absent, אם:absent, אין:absent | זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 300.98 KB | 86.94 KB | usable; content coverage remains |
+| Gra's Nuschah on Tractate Semachot | Gra School | 53/110 (48.2%) | את:absent, כי:absent, הוא:absent, אשר:absent, מן:absent, אין:absent | n/a | 0 | 0 | 193.82 KB | 101.13 KB | usable; content coverage remains |
+| Mishnat DeRabbi Eliezer on Ruth Rabbah | Midrash / Aggadah | 21/46 (45.7%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 57.85 KB | 67.53 KB | usable; content coverage remains |
+| Gra's Nuschah on Tractate Kallah | Gra School | 25/36 (69.4%) | את:absent, כי:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 0 | 68.13 KB | 74.64 KB | usable; content coverage remains |
+| Gra's Nuschah on Tractate Derekh Eretz Zuta | Gra School | 18/24 (75.0%) | את:absent, כי:absent, על:absent, הוא:absent, אשר:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 0 | 77.76 KB | 72.90 KB | ready/hardened |
 
 ## Top Integrity Issues
 
-- Otzar Midrashim: missing source rows 0; suspect parser rows 315; examples: בדרכיהם: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בִּדְרָכָיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בִּדְרָכָיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O
-- Ein Yaakov: missing source rows 0; suspect parser rows 289; examples: בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בִדְרָכָיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בִּדְרָכָיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בִּדְרָכֶיךָ: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O
-- Midrash Lekach Tov: missing source rows 0; suspect parser rows 208; examples: בדרכיהם: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; במעמדם: in attendance/with attendance/by attendance/in office/with office/by office/in place/with place; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb
-- Beur HaRadal on Pirkei DeRabbi Eliezer: missing source rows 0; suspect parser rows 237; examples: בדרכיהם: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בכפיה: in the hollow hand/with the hollow hand/by the hollow hand/in of the sole/with of the sole/by of the sole/in and even of the bowl of a dish/with and even of the bowl of a dish; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; במימיו: in his clear liquid H₂O/in its clear liquid H₂O/with his clear liquid H₂O/with its clear liquid H₂O/by his clear liquid H₂O/by its clear liquid H₂O
-- Midrash Tanchuma: missing source rows 0; suspect parser rows 189; examples: בִּדְרָכָיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בִּדְרָכֶיךָ: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בְּכַפָּיו: in the hollow hand/with the hollow hand/by the hollow hand/in of the sole/with of the sole/by of the sole/in and even of the bowl of a dish/with and even of the bowl of a dish; בְּמַיִם: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בַמַּיִם: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O
-- Midrash Sekhel Tov: missing source rows 0; suspect parser rows 179; examples: בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; בשלא: in no/with no/by no/in often used with other particles/with often used with other particles/by often used with other particles/in or else/with or else
-- Beur HaGra on Shulchan Arukh, Yoreh De'ah: missing source rows 0; suspect parser rows 103; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; בשל: in of/with of/by of/in belonging to/with belonging to/by belonging to; בשלא: in no/with no/by no/in often used with other particles/with often used with other particles/by often used with other particles/in or else/with or else; בשלנו: in of/pertaining to/with of/pertaining to/by of/pertaining to
-- Chafetz Chaim on Sifra: missing source rows 0; suspect parser rows 150; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; בשלא: in no/with no/by no/in often used with other particles/with often used with other particles/by often used with other particles/in or else/with or else; הבאין: the nonentity/the generally used as a negative particle/the else/the except
-- Midrash Tanchuma Buber: missing source rows 0; suspect parser rows 137; examples: בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בכפיו: in the hollow hand/with the hollow hand/by the hollow hand/in of the sole/with of the sole/by of the sole/in and even of the bowl of a dish/with and even of the bowl of a dish; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; הבאין: the nonentity/the generally used as a negative particle/the else/the except
-- Ra'avad on Sifra: missing source rows 0; suspect parser rows 122; examples: בדרכיהם: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; בשלא: in no/with no/by no/in often used with other particles/with often used with other particles/by often used with other particles/in or else/with or else
-- Sha'ar Ma'amarei Rashbi: missing source rows 0; suspect parser rows 89; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; ובעלמא: and in remote time/and with remote time/and by remote time/and in past indefinitely/and with past indefinitely/and by past indefinitely/and in often adverb/and with often adverb; והלא: and the not/and the no; והמים: and the clear liquid H₂O
-- Notes and Corrections on Midrash Lekach Tov: missing source rows 0; suspect parser rows 92; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; ובמים: and in clear liquid H₂O/and with clear liquid H₂O/and by clear liquid H₂O; והלא: and the not/and the no; והמים: and the clear liquid H₂O
-- Midrash Tehillim: missing source rows 0; suspect parser rows 104; examples: בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; ובמים: and in clear liquid H₂O/and with clear liquid H₂O/and by clear liquid H₂O
-- Midrash Aggadah: missing source rows 0; suspect parser rows 95; examples: בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בכפיו: in the hollow hand/with the hollow hand/by the hollow hand/in of the sole/with of the sole/by of the sole/in and even of the bowl of a dish/with and even of the bowl of a dish; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; ובמים: and in clear liquid H₂O/and with clear liquid H₂O/and by clear liquid H₂O
-- Sha'ar HaPesukim: missing source rows 0; suspect parser rows 69; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; ובמים: and in clear liquid H₂O/and with clear liquid H₂O/and by clear liquid H₂O; והלא: and the not/and the no
-- Midbar Shur: missing source rows 0; suspect parser rows 127; examples: בדרכיה: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בדרכיך: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb
-- Etz Yosef on Shir HaShirim Rabbah: missing source rows 0; suspect parser rows 127; examples: בדרכיהם: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בדרכיך: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank
-- Sha'ar HaGilgulim: missing source rows 0; suspect parser rows 70; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; בשל: in of/with of/by of/in belonging to/with belonging to/by belonging to; והמים: and the clear liquid H₂O
-- Sefer HaYashar (midrash): missing source rows 0; suspect parser rows 83; examples: בדרכיהם: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בדרכיך: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בכפיו: in the hollow hand/with the hollow hand/by the hollow hand/in of the sole/with of the sole/by of the sole/in and even of the bowl of a dish/with and even of the bowl of a dish; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O
-- Sifrei Devarim: missing source rows 0; suspect parser rows 71; examples: בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; ובמים: and in clear liquid H₂O/and with clear liquid H₂O/and by clear liquid H₂O; והלא: and the not/and the no
-- Orot HaKodesh: missing source rows 0; suspect parser rows 104; examples: בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; והמים: and the clear liquid H₂O; להים: to sometimes a large river/for sometimes a large river/of sometimes a large river/to an artifical basin/for an artifical basin/of an artifical basin/to locally/for locally; מאדון: from mister/of mister
-- Pesikta DeRav Kahana: missing source rows 0; suspect parser rows 63; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; ובמים: and in clear liquid H₂O/and with clear liquid H₂O/and by clear liquid H₂O; והלא: and the not/and the no
-- Notes and Corrections on Midrash Aggadah: missing source rows 0; suspect parser rows 55; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; ובמים: and in clear liquid H₂O/and with clear liquid H₂O/and by clear liquid H₂O; והלא: and the not/and the no; והמים: and the clear liquid H₂O
-- Beur HaGra on Shulchan Arukh, Orach Chayim: missing source rows 0; suspect parser rows 49; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; בשל: in of/with of/by of/in belonging to/with belonging to/by belonging to; בשלא: in no/with no/by no/in often used with other particles/with often used with other particles/by often used with other particles/in or else/with or else; ובשל: and in of/and with of/and by of/and in belonging to/and with belonging to/and by belonging to
-- Beur HaGra on Sifra DeTzniuta: missing source rows 0; suspect parser rows 52; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; בשל: in of/with of/by of/in belonging to/with belonging to/by belonging to; הבאין: the nonentity/the generally used as a negative particle/the else/the except
-- Tanna DeBei Eliyahu Rabbah: missing source rows 0; suspect parser rows 58; examples: בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; הבאין: the nonentity/the generally used as a negative particle/the else/the except; ובמים: and in clear liquid H₂O/and with clear liquid H₂O/and by clear liquid H₂O
-- Sha'ar HaKavanot: missing source rows 0; suspect parser rows 38; examples: בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; ובשל: and in of/and with of/and by of/and in belonging to/and with belonging to/and by belonging to; והלא: and the not/and the no; והמים: and the clear liquid H₂O; למים: to clear liquid H₂O/for clear liquid H₂O/of clear liquid H₂O
+- Otzar Midrashim: missing source rows 0; suspect parser rows 272; examples: לאותיות: to letter/for letter/of letter; מאבותם: from father/of father/from chief/of chief; מאבינו: from father, male parent/of father, male parent/from father/of father; מאברהם: from Abraham/of Abraham; מאבריו: from his organ/from its organ/of his organ/of its organ
+- Ein Yaakov: missing source rows 0; suspect parser rows 228; examples: לָאוֹתִיּוֹת: to letter/for letter/of letter; מאבותם: from father/of father/from chief/of chief; מאברהם: from Abraham/of Abraham; מֵאַבְרָהָם: from Abraham/of Abraham; מֵאֵבָרָיו: from his organ/from its organ/of his organ/of its organ
+- Midrash Lekach Tov: missing source rows 0; suspect parser rows 169; examples: לאותיות: to letter/for letter/of letter; מאבותיו: from father/of father/from chief/of chief; מאבותם: from father/of father/from chief/of chief; מאבינו: from father, male parent/of father, male parent/from father/of father; מאברהם: from Abraham/of Abraham
+- Beur HaRadal on Pirkei DeRabbi Eliezer: missing source rows 0; suspect parser rows 201; examples: לאותיות: to letter/for letter/of letter; להרחוקים: to remote/for remote/of remote/to time/for time/of time/to precious/for precious; מאבותיו: from father/of father/from chief/of chief; מאבימלך: from Abimelech/of Abimelech; מאברהם: from Abraham/of Abraham
+- Midrash Tanchuma: missing source rows 0; suspect parser rows 138; examples: מֵאֲבוֹתָיו: from father/of father/from chief/of chief; מֵאֲבִימֶלֶךְ: from Abimelech/of Abimelech; מֵאַבְרָהָם: from Abraham/of Abraham; מֵאֵבָרָיו: from his organ/from its organ/of his organ/of its organ; מֵאֱדוֹם: from Edom/of Edom
+- Midrash Sekhel Tov: missing source rows 0; suspect parser rows 143; examples: מאבותיה: from her father, male parent/from its father, male parent/of her father, male parent/of its father, male parent/from her father/from its father/of her father/of its father; מאבימלך: from Abimelech/of Abimelech; מאבינו: from father, male parent/of father, male parent/from father/of father; מאברהם: from Abraham/of Abraham; מאדום: from Edom/of Edom
+- Beur HaGra on Shulchan Arukh, Yoreh De'ah: missing source rows 0; suspect parser rows 80; examples: מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun; מאליה: from tail fat/of tail fat; מאמה: from middle finger, finger/of middle finger, finger/from middle finger/of middle finger/from forearm/of forearm; מאמו: from dam/of dam/from mother/of mother; מאשת: from woman, female adult human/of woman, female adult human/from woman/of woman
+- Chafetz Chaim on Sifra: missing source rows 0; suspect parser rows 119; examples: מאבר: from organ/of organ; מאדום: from Edom/of Edom; מאימתי: from when/of when; מאלהיך: from angels/of angels; מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun
+- Midrash Tanchuma Buber: missing source rows 0; suspect parser rows 104; examples: מאבימלך: from Abimelech/of Abimelech; מאברהם: from Abraham/of Abraham; מאדום: from Edom/of Edom; מאהרן: from the brother of Moses/of the brother of Moses; מאומות: from nation/of nation
+- Ra'avad on Sifra: missing source rows 0; suspect parser rows 92; examples: מאבותם: from father/of father/from chief/of chief; מאברהם: from Abraham/of Abraham; מאחריו: from after/of after; מאימתי: from when/of when; מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun
+- Sha'ar Ma'amarei Rashbi: missing source rows 0; suspect parser rows 71; examples: לאותיות: to letter/for letter/of letter; מאורח: from guest/of guest; מאותיות: from letter/of letter; מאחריה: from after/of after; מאחריו: from after/of after
+- Notes and Corrections on Midrash Lekach Tov: missing source rows 0; suspect parser rows 74; examples: מאברהם: from Abraham/of Abraham; מאומות: from nation/of nation; מאוצרו: from treasure, concentration of riches/of treasure, concentration of riches/from treasure/of treasure; מאותיות: from letter/of letter; מאחריו: from after/of after
+- Midrash Tehillim: missing source rows 0; suspect parser rows 84; examples: מאברהם: from Abraham/of Abraham; מאדום: from Edom/of Edom; מאהבתו: from love, affection/of love, affection; מאומות: from nation/of nation; מאחריו: from after/of after
+- Midrash Aggadah: missing source rows 0; suspect parser rows 75; examples: לאותיות: to letter/for letter/of letter; מאבותם: from father/of father/from chief/of chief; מאברהם: from Abraham/of Abraham; מאדום: from Edom/of Edom; מאומות: from nation/of nation
+- Sha'ar HaPesukim: missing source rows 0; suspect parser rows 58; examples: לאותיות: to letter/for letter/of letter; מאהרן: from the brother of Moses/of the brother of Moses; מאוצרותיו: from his treasure, concentration of riches/from its treasure, concentration of riches/of his treasure, concentration of riches/of its treasure, concentration of riches/from his treasure/from its treasure/of his treasure/of its treasure; מאחריו: from after/of after; מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun
+- Midbar Shur: missing source rows 0; suspect parser rows 114; examples: מאבינו: from father, male parent/of father, male parent/from father/of father; מאחדות: from unity/of unity; מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun; מאליה: from tail fat/of tail fat; מבדורות: from generation/of generation/from whorl/of whorl
+- Etz Yosef on Shir HaShirim Rabbah: missing source rows 0; suspect parser rows 106; examples: לאותיות: to letter/for letter/of letter; מאברהם: from Abraham/of Abraham; מאהרן: from the brother of Moses/of the brother of Moses; מאליה: from tail fat/of tail fat; מאמו: from dam/of dam/from mother/of mother
+- Sha'ar HaGilgulim: missing source rows 0; suspect parser rows 60; examples: לאותיות: to letter/for letter/of letter; מאבר: from organ/of organ; מאומות: from nation/of nation; מאוצרותיו: from his treasure, concentration of riches/from its treasure, concentration of riches/of his treasure, concentration of riches/of its treasure, concentration of riches/from his treasure/from its treasure/of his treasure/of its treasure; מאותיות: from letter/of letter
+- Sefer HaYashar (midrash): missing source rows 0; suspect parser rows 66; examples: מאבותם: from father/of father/from chief/of chief; מאהבתו: from love, affection/of love, affection; מאוצרותיו: from his treasure, concentration of riches/from its treasure, concentration of riches/of his treasure, concentration of riches/of its treasure, concentration of riches/from his treasure/from its treasure/of his treasure/of its treasure; מאחריה: from after/of after; מאצלם: from a side/of a side/from at/of at/from toward/of toward/from with. See also 1018/of with. See also 1018
+- Sifrei Devarim: missing source rows 0; suspect parser rows 56; examples: מאבותם: from father/of father/from chief/of chief; מאברהם: from Abraham/of Abraham; מאחריה: from after/of after; מאחריו: from after/of after; מאימתי: from when/of when
+- Orot HaKodesh: missing source rows 0; suspect parser rows 101; examples: מאדירה: from huge/of huge; מאהבתה: from love, affection/of love, affection; מאורח: from guest/of guest; מאותות: from a sign, an omen/of a sign, an omen/from a signal, a cue/of a signal, a cue; מאישים: from person, human, man/of person, human, man/from man/of man
+- Pesikta DeRav Kahana: missing source rows 0; suspect parser rows 47; examples: מאבינו: from father, male parent/of father, male parent/from father/of father; מאדום: from Edom/of Edom; מאומות: from nation/of nation; מאחריה: from after/of after; מאחריו: from after/of after
+- Notes and Corrections on Midrash Aggadah: missing source rows 0; suspect parser rows 41; examples: לאותיות: to letter/for letter/of letter; מאברהם: from Abraham/of Abraham; מבהמה: from livestock/of livestock; מברכותיו: from his blessing/from its blessing/of his blessing/of its blessing/from his bracha/from its bracha/of his bracha/of its bracha; מגוף: from grammatical person, grammatical category/of grammatical person, grammatical category/from person/of person
+- Beur HaGra on Shulchan Arukh, Orach Chayim: missing source rows 0; suspect parser rows 35; examples: לאותיות: to letter/for letter/of letter; מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun; מברכותיו: from his blessing/from its blessing/of his blessing/of its blessing/from his bracha/from its bracha/of his bracha/of its bracha; מגוף: from grammatical person, grammatical category/of grammatical person, grammatical category/from person/of person; מדבריו: from a word/of a word/from thing/of thing/from adverbially/of adverbially/from a cause/of a cause
+- Beur HaGra on Sifra DeTzniuta: missing source rows 0; suspect parser rows 39; examples: מאוירא: from air/of air/from atmosphere/of atmosphere; מאותות: from a sign, an omen/of a sign, an omen/from a signal, a cue/of a signal, a cue; מאחריו: from after/of after; מאמו: from dam/of dam/from mother/of mother; מאשת: from woman, female adult human/of woman, female adult human/from woman/of woman
+- Tanna DeBei Eliyahu Rabbah: missing source rows 0; suspect parser rows 48; examples: מאבינו: from father, male parent/of father, male parent/from father/of father; מאברהם: from Abraham/of Abraham; מאומות: from nation/of nation; מאחריו: from after/of after; מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun
+- Sha'ar HaKavanot: missing source rows 0; suspect parser rows 28; examples: מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun; מאמו: from dam/of dam/from mother/of mother; מבחול: from sand/of sand; מבימי: from age/of age/from always/of always/from chronicals/of chronicals; מגולים: from exile/of exile
 - Orot: missing source rows 0; suspect parser rows 22; examples: מאוייה: from her lamentation/from its lamentation/of her lamentation/of its lamentation/from her also interjectionally Oh!/from its also interjectionally Oh!/of her also interjectionally Oh!/of its also interjectionally Oh!; מאוייו: from his lamentation/from its lamentation/of his lamentation/of its lamentation/from his also interjectionally Oh!/from its also interjectionally Oh!/of his also interjectionally Oh!/of its also interjectionally Oh!; מהאידיאה: from the idea/of the idea; מהאלהות: from the divinity/of the divinity/from the godhood/of the godhood; מהד: from a shout/of a shout/from sounding again/of sounding again
-- Sha'ar HaMitzvot: missing source rows 0; suspect parser rows 44; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; והלא: and the not/and the no; מאה: from fourth/of fourth; מאות: from letter/of letter; מאלהיך: from angels/of angels
-- Sifrei Bamidbar: missing source rows 0; suspect parser rows 46; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; והלא: and the not/and the no; למים: to clear liquid H₂O/for clear liquid H₂O/of clear liquid H₂O; למן: to from/for from/of from/to out of/for out of/of out of/to than/for than; מאבותם: from father/of father/from chief/of chief
-- Beur HaRe'em on Midrash Lekach Tov: missing source rows 0; suspect parser rows 59; examples: בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; והלא: and the not/and the no; לתולעת: to and cloths dyed therewith/for and cloths dyed therewith/of and cloths dyed therewith/to crimson/for crimson/of crimson/to scarlet/for scarlet
-- Mishnat Rabbi Eliezer: missing source rows 0; suspect parser rows 70; examples: בדרכיה: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; הבאין: the nonentity/the generally used as a negative particle/the else/the except; ובמים: and in clear liquid H₂O/and with clear liquid H₂O/and by clear liquid H₂O
-- Pri Etz Chaim: missing source rows 0; suspect parser rows 43; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; ובמים: and in clear liquid H₂O/and with clear liquid H₂O/and by clear liquid H₂O; והלא: and the not/and the no; מאה: from fourth/of fourth
-- Etz Yosef on Kohelet Rabbah: missing source rows 0; suspect parser rows 74; examples: בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; בשלהם: in of/pertaining to/with of/pertaining to/by of/pertaining to
-- Yefeh Kol on Shir HaShirim Rabbah: missing source rows 0; suspect parser rows 100; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; ובמים: and in clear liquid H₂O/and with clear liquid H₂O/and by clear liquid H₂O; והלא: and the not/and the no; והמים: and the clear liquid H₂O
-- Sha'ar HaHakdamot: missing source rows 0; suspect parser rows 28; examples: בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; ובעלמא: and in remote time/and with remote time/and by remote time/and in past indefinitely/and with past indefinitely/and by past indefinitely/and in often adverb/and with often adverb; מאה: from fourth/of fourth; מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun
-- Aggadat Bereshit: missing source rows 0; suspect parser rows 41; examples: בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; ובמים: and in clear liquid H₂O/and with clear liquid H₂O/and by clear liquid H₂O; והלא: and the not/and the no
-- Pirkei DeRabbi Eliezer: missing source rows 0; suspect parser rows 52; examples: בְּדַרְכֵיהֶם: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בְּדַרְכָּיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בִּדְרָכָיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; בְּמַיִם: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בַמַּיִם: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O
-- Perush Maharzu on Shir HaShirim Rabbah: missing source rows 0; suspect parser rows 50; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; במימיה: in her clear liquid H₂O/in its clear liquid H₂O/with her clear liquid H₂O/with its clear liquid H₂O/by her clear liquid H₂O/by its clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; ובמים: and in clear liquid H₂O/and with clear liquid H₂O/and by clear liquid H₂O; והלא: and the not/and the no
-- Midrash Shmuel: missing source rows 0; suspect parser rows 42; examples: בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; הבאין: the nonentity/the generally used as a negative particle/the else/the except; ובמים: and in clear liquid H₂O/and with clear liquid H₂O/and by clear liquid H₂O
-- Tanna DeBei Eliyahu Zuta: missing source rows 0; suspect parser rows 47; examples: בדרכיהם: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; ובמים: and in clear liquid H₂O/and with clear liquid H₂O/and by clear liquid H₂O; והלא: and the not/and the no
-- Eikhah Rabbah: missing source rows 0; suspect parser rows 35; examples: בְּעָלְמָא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; בְּרֹאשָׁם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; וּבַמַּיִם: and in clear liquid H₂O/and with clear liquid H₂O/and by clear liquid H₂O; וּבַמָּיִם: and in clear liquid H₂O/and with clear liquid H₂O/and by clear liquid H₂O; וַהֲלֹא: and the not/and the no
-- Sifrei Aggadah on Esther: missing source rows 0; suspect parser rows 41; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; והלא: and the not/and the no; להמן: to the from/for the from/of the from/to the out of/for the out of/of the out of/to the than/for the than; למים: to clear liquid H₂O/for clear liquid H₂O/of clear liquid H₂O; מאדום: from Edom/of Edom
-- Matnot Kehunah on Shir HaShirim Rabbah: missing source rows 0; suspect parser rows 35; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; בשלפי: in up/with up/by up/in off/with off/by off/in grow up/with grow up; והלא: and the not/and the no; והמים: and the clear liquid H₂O
-- Perush Maharzu on Bereshit Rabbah: missing source rows 0; suspect parser rows 38; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; ובראשם: and in of place/and with of place/and by of place/and in time/and with time/and by time/and in rank/and with rank; והלא: and the not/and the no; והמים: and the clear liquid H₂O
-- Perush Maharzu on Kohelet Rabbah: missing source rows 0; suspect parser rows 27; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; והלא: and the not/and the no; והמים: and the clear liquid H₂O; להמים: to the clear liquid H₂O/for the clear liquid H₂O/of the clear liquid H₂O
-- Matnot Kehunah on Kohelet Rabbah: missing source rows 0; suspect parser rows 34; examples: בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; והלא: and the not/and the no; למים: to clear liquid H₂O/for clear liquid H₂O/of clear liquid H₂O
-- Etz Yosef on Bereishit Rabbah: missing source rows 0; suspect parser rows 50; examples: במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; ובדרכיו: and in a course of life/and with a course of life/and by a course of life/and in mode of action/and with mode of action/and by mode of action/and in often adverb/and with often adverb; והלא: and the not/and the no; להמן: to the from/for the from/of the from/to the out of/for the out of/of the out of/to the than/for the than
-- Etz Yosef on Vayikra Rabbah: missing source rows 0; suspect parser rows 35; examples: בדרכיו: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; והלא: and the not/and the no; מאברם: from Abram/of Abram
-- Etz Yosef on Shemot Rabbah: missing source rows 0; suspect parser rows 45; examples: בדרכיהם: in a course of life/with a course of life/by a course of life/in mode of action/with mode of action/by mode of action/in often adverb/with often adverb; במים: in clear liquid H₂O/with clear liquid H₂O/by clear liquid H₂O; בעלמא: in remote time/with remote time/by remote time/in past indefinitely/with past indefinitely/by past indefinitely/in often adverb/with often adverb; בראשם: in of place/with of place/by of place/in time/with time/by time/in rank/with rank; והלא: and the not/and the no
+- Sha'ar HaMitzvot: missing source rows 0; suspect parser rows 36; examples: מאלהיך: from angels/of angels; מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun; מאליה: from tail fat/of tail fat; מברכות: from blessing/of blessing/from bracha/of bracha; מגאולה: from salvation/of salvation
+- Sifrei Bamidbar: missing source rows 0; suspect parser rows 35; examples: מאבותם: from father/of father/from chief/of chief; מאדום: from Edom/of Edom; מאליה: from tail fat/of tail fat; מאמו: from dam/of dam/from mother/of mother; מארצו: from country/of country/from earth/of earth/from field/of field/from ground/of ground
+- Beur HaRe'em on Midrash Lekach Tov: missing source rows 0; suspect parser rows 48; examples: מאבריו: from his organ/from its organ/of his organ/of its organ; מאותיות: from letter/of letter; מאימתי: from when/of when; מאלהיך: from angels/of angels; מאליה: from tail fat/of tail fat
+- Mishnat Rabbi Eliezer: missing source rows 0; suspect parser rows 53; examples: מאבותם: from father/of father/from chief/of chief; מאברהם: from Abraham/of Abraham; מאדום: from Edom/of Edom; מאומות: from nation/of nation; מאחריו: from after/of after
+- Pri Etz Chaim: missing source rows 0; suspect parser rows 37; examples: לאותיות: to letter/for letter/of letter; מאהיה: from become/of become; מאותיות: from letter/of letter; מאותיותיו: from his letter/from its letter/of his letter/of its letter; מאלהיך: from angels/of angels
+- Etz Yosef on Kohelet Rabbah: missing source rows 0; suspect parser rows 57; examples: מאברהם: from Abraham/of Abraham; מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun; מאמו: from dam/of dam/from mother/of mother; מארצנו: from country/of country/from earth/of earth/from field/of field/from ground/of ground; מאשת: from woman, female adult human/of woman, female adult human/from woman/of woman
+- Yefeh Kol on Shir HaShirim Rabbah: missing source rows 0; suspect parser rows 84; examples: מאברהם: from Abraham/of Abraham; מאהרן: from the brother of Moses/of the brother of Moses; מאותות: from a sign, an omen/of a sign, an omen/from a signal, a cue/of a signal, a cue; מאחריו: from after/of after; מאליה: from tail fat/of tail fat
+- Sha'ar HaHakdamot: missing source rows 0; suspect parser rows 22; examples: מאזניו: from advertise/of advertise/from audience/of audience/from displease/of displease/from ear/of ear; מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun; מגולים: from exile/of exile; מהאור: from illumination/of illumination/from including lightning/of including lightning/from happiness/of happiness/from bright/of bright; מהאי: from dry land/of dry land/from a coast/of a coast/from an island/of an island/from country/of country
+- Aggadat Bereshit: missing source rows 0; suspect parser rows 27; examples: מאבימלך: from Abimelech/of Abimelech; מאברהם: from Abraham/of Abraham; מאחריו: from after/of after; מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun; מגן: from garden/of garden
+- Pirkei DeRabbi Eliezer: missing source rows 0; suspect parser rows 38; examples: מֵאַבְרָהָם: from Abraham/of Abraham; מֵאֱדוֹם: from Edom/of Edom; מֵאַהֲבָתוֹ: from love, affection/of love, affection; מֵאַחֲרָיו: from after/of after; מִגָּלוּת: from exile/of exile
+- Perush Maharzu on Shir HaShirim Rabbah: missing source rows 0; suspect parser rows 37; examples: מאברהם: from Abraham/of Abraham; מאוצרות: from treasure, concentration of riches/of treasure, concentration of riches/from treasure/of treasure; מבריתי: from confederacy/of confederacy/from covenant/of covenant/from league/of league; מבריתך: from confederacy/of confederacy/from covenant/of covenant/from league/of league; מגבורי: from powerful/of powerful/from warrior/of warrior/from tyrant/of tyrant/from champion/of champion
+- Midrash Shmuel: missing source rows 0; suspect parser rows 31; examples: מאבינו: from father, male parent/of father, male parent/from father/of father; מאבנר: from given name/of given name; מאברהם: from Abraham/of Abraham; מאהרן: from the brother of Moses/of the brother of Moses; מאומות: from nation/of nation
+- Tanna DeBei Eliyahu Zuta: missing source rows 0; suspect parser rows 37; examples: מאברהם: from Abraham/of Abraham; מאדום: from Edom/of Edom; מאורח: from guest/of guest; מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun; מבהמה: from livestock/of livestock
+- Eikhah Rabbah: missing source rows 0; suspect parser rows 23; examples: מֵאֱלֹהָיו: from angels/of angels; מֵאֱלֹהֵינוּ: from angels/of angels; מֵאֵלּוּ: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun; מֵאַרְצוֹ: from country/of country/from earth/of earth/from field/of field/from ground/of ground; מִגֶּזַע: from trunk, main wooden axis of a tree/of trunk, main wooden axis of a tree/from trunk/of trunk
+- Sifrei Aggadah on Esther: missing source rows 0; suspect parser rows 31; examples: מאדום: from Edom/of Edom; מאומות: from nation/of nation; מאוצרותיו: from his treasure, concentration of riches/from its treasure, concentration of riches/of his treasure, concentration of riches/of its treasure, concentration of riches/from his treasure/from its treasure/of his treasure/of its treasure; מאחריו: from after/of after; מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun
+- Matnot Kehunah on Shir HaShirim Rabbah: missing source rows 0; suspect parser rows 26; examples: מאהרן: from the brother of Moses/of the brother of Moses; מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun; מגן: from garden/of garden; מדכתיב: from as it is written/of as it is written/from that it is written/of that it is written; מדלא: from that not/of that not/from which does not/of which does not/from without/of without
+- Perush Maharzu on Bereshit Rabbah: missing source rows 0; suspect parser rows 28; examples: מאבותיה: from her father, male parent/from its father, male parent/of her father, male parent/of its father, male parent/from her father/from its father/of her father/of its father; מאבימלך: from Abimelech/of Abimelech; מאברהם: from Abraham/of Abraham; מגלות: from exile/of exile; מגן: from garden/of garden
+- Perush Maharzu on Kohelet Rabbah: missing source rows 0; suspect parser rows 16; examples: מאשת: from woman, female adult human/of woman, female adult human/from woman/of woman; מדבריו: from a word/of a word/from thing/of thing/from adverbially/of adverbially/from a cause/of a cause; מדלא: from that not/of that not/from which does not/of which does not/from without/of without; מדרכיו: from a course of life/of a course of life/from mode of action/of mode of action/from along/of along/from away/of away; מהחכמים: from the hakham/of the hakham/from the wise man/of the wise man
+- Matnot Kehunah on Kohelet Rabbah: missing source rows 0; suspect parser rows 24; examples: מאברהם: from Abraham/of Abraham; מאון: from power, ability, strength/of power, ability, strength; מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun; מבאיש: from a man as an individual/of a man as an individual/from a male person/of a male person/from also/of also/from another/of another; מגן: from garden/of garden
+- Etz Yosef on Bereishit Rabbah: missing source rows 0; suspect parser rows 40; examples: מאברהם: from Abraham/of Abraham; מאוירא: from air/of air/from atmosphere/of atmosphere; מאיוב: from Job/of Job; מאלו: from this/that/of this/that/from demonstrative pronoun/of demonstrative pronoun; מאליה: from tail fat/of tail fat
+- Etz Yosef on Vayikra Rabbah: missing source rows 0; suspect parser rows 28; examples: מאברם: from Abram/of Abram; מאוצרותיו: from his treasure, concentration of riches/from its treasure, concentration of riches/of his treasure, concentration of riches/of its treasure, concentration of riches/from his treasure/from its treasure/of his treasure/of its treasure; מאיוב: from Job/of Job; מגוף: from grammatical person, grammatical category/of grammatical person, grammatical category/from person/of person; מדכתיב: from as it is written/of as it is written/from that it is written/of that it is written
+- Etz Yosef on Shemot Rabbah: missing source rows 0; suspect parser rows 33; examples: מאהבתו: from love, affection/of love, affection; מאון: from power, ability, strength/of power, ability, strength; מאמה: from middle finger, finger/of middle finger, finger/from middle finger/of middle finger/from forearm/of forearm; מבחייהם: from alive/of alive/from hence/of hence/from water/of water/from strong/of strong; מגדולם: from hence/of hence/from older/of older/from also insolent/of also insolent/from aloud/of aloud
 
 ## Stale Cache / Wiring Suspects
 
@@ -319,7 +319,6 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 - Notes and Corrections on Midrash Lekach Tov on Esther: זש״ה:absent, וגומר:absent, א״ל:absent
 - Matnot Kehunah on Shemot Rabbah: ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent
 - Etz Yosef on Devarim Rabbah: זש״ה:absent, וגומר:absent
-- Seder Olam Zutta: ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent
 - Etz Yosef on Ruth Rabbah: ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent
 - Perush Maharzu on Devarim Rabbah: ד״א:absent, זש״ה:absent, וגומר:absent, א״ל:absent
 - Midrash Lekach Tov on Esther: ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent
@@ -337,12 +336,13 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 - Midrash Yelamdenu, Selections from Yalkut Talmud Torah: ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent
 - Midrash Lekach Tov on Ecclesiastes: ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent
 - Matnot Kehunah on Devarim Rabbah: זש״ה:absent, כתיב:absent, וגומר:absent, א״ל:absent
-- Mishnat DeRabbi Eliezer on Eichah Rabbah: ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent
 - Seder Olam Rabbah: ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent
+- Yedei Moshe on Vayikra Rabbah: ד״א:absent, זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent, א״ל:absent
+- Yefeh To'ar on Devarim Rabbah: ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent
 
 ## Ready / Hardened Candidates
 
-- Gra's Nuschah on Tractate Derekh Eretz Zuta: 18/24 (75.0%), largest chunk 77.77 KB
+- Gra's Nuschah on Tractate Derekh Eretz Zuta: 18/24 (75.0%), largest chunk 77.76 KB
 
 ## Top Remaining Unmatched By Work
 
@@ -354,7 +354,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Ein Yaakov
 
 - Readiness: fix HUD integrity
-- Top unmatched: רַבִּי (5287), מַאי (1610), יוֹחָנָן (889), דְּאָמַר (836), לְהוּ (805), רבי (791), וְאָמַר (764), רַבָּנָן (706), אֶלְעָזָר (656), רָבָא (523), שִׁמְעוֹן (518), קָא (479)
+- Top unmatched: רַבִּי (5287), מַאי (1610), יוֹחָנָן (889), דְּאָמַר (836), לְהוּ (805), רבי (791), וְאָמַר (764), רַבָּנָן (706), אֶלְעָזָר (656), הָכִי (560), רָבָא (523), שִׁמְעוֹן (518)
 
 ### Midrash Lekach Tov
 
@@ -384,7 +384,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Chafetz Chaim on Sifra
 
 - Readiness: fix HUD integrity
-- Top unmatched: משמע (470), ת״ל (448), כגון (392), דף (390), הגר״א (330), מנין (328), גרסינן (306), בגמרא (259), דהוא (257), נמי (256), לעיל (247), חייב (218)
+- Top unmatched: הכי (499), משמע (470), ת״ל (448), כגון (392), דף (390), הגר״א (330), מנין (328), גרסינן (306), בגמרא (259), דהוא (257), נמי (256), לעיל (247)
 
 ### Midrash Tanchuma Buber
 
@@ -394,7 +394,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Ra'avad on Sifra
 
 - Readiness: fix HUD integrity
-- Top unmatched: ת״ל (707), נמי (653), קאמר (268), קא (257), מנין (251), מפרש (240), איתא (224), כגון (216), מאי (205), יהא (202), להו (194), לעיל (191)
+- Top unmatched: ת״ל (707), נמי (653), הכי (340), והכי (276), קאמר (268), קא (257), מנין (251), מפרש (240), איתא (224), כגון (216), מאי (205), יהא (202)
 
 ### Sha'ar Ma'amarei Rashbi
 
@@ -414,7 +414,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Midrash Aggadah
 
 - Readiness: fix HUD integrity
-- Top unmatched: מלמד (184), ואמר (141), פסוק (116), יב (105), ב׳ (95), אביו (93), א׳ (85), יז (83), המלך (79), בניו (78), יג (78), טז (76)
+- Top unmatched: ולמה (268), מלמד (184), ואמר (141), פסוק (116), יב (105), ב׳ (95), אביו (93), א׳ (85), יז (83), המלך (79), בניו (78), יג (78)
 
 ### Sha'ar HaPesukim
 
@@ -444,12 +444,12 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Sifrei Devarim
 
 - Readiness: fix HUD integrity
-- Top unmatched: רבי (531), סליק (321), פיסקא (316), מנין (282), מלמד (208), להלן (129), האמור (116), מיכן (114), יב (108), תעשה (107), שמעון (99), יג (97)
+- Top unmatched: רבי (531), סליק (321), פיסקא (316), מנין (282), מלמד (208), להלן (129), האמור (116), מיכן (114), יב (108), תעשה (107), והלא (104), שמעון (99)
 
 ### Orot HaKodesh
 
 - Readiness: fix HUD integrity
-- Top unmatched: האלהית (143), התוכן (64), ורוח (28), ש (26), הידיעה (25), ברוח (19), הנשמתית (19), אלהית (17), האידיאלית (17), וזהו (16), התאוה (15), פעולתו (15)
+- Top unmatched: האלהית (143), התוכן (64), ורוח (28), ש (26), הידיעה (25), ברוח (19), הנשמתית (19), אלהית (17), האידיאלית (17), וזהו (16), ממה (16), התאוה (15)
 
 ### Pesikta DeRav Kahana
 
@@ -484,7 +484,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Orot
 
 - Readiness: fix HUD integrity
-- Top unmatched: כ״א (67), לתן (15), ערכם (9), הסבתית (8), הראוי (8), הגס (7), ה׳ (6), המושך (6), הנובעת (6), מדאי (6), פעולותיה (6), תורתה (6)
+- Top unmatched: כ״א (67), ממה (18), לתן (15), ערכם (9), הסבתית (8), הראוי (8), הגס (7), ה׳ (6), המושך (6), הנובעת (6), מדאי (6), פעולותיה (6)
 
 ### Sha'ar HaMitzvot
 
@@ -534,7 +534,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Pirkei DeRabbi Eliezer
 
 - Readiness: fix HUD integrity
-- Top unmatched: רַבִּי (241), הַמֶּלֶךְ (99), וְאָמַר (77), רִבּוֹן (59), אֱלִיעֶזֶר (45), וְרָאָה (43), מִנַּיִן (40), שִׁבְעָה (37), אָבִיו (34), וְלָקַח (31), צב (30), יוֹנָה (29)
+- Top unmatched: רַבִּי (241), הַמֶּלֶךְ (99), וְאָמַר (77), רִבּוֹן (59), אֱלִיעֶזֶר (45), וְרָאָה (43), וַהֲלֹא (41), מִנַּיִן (40), שִׁבְעָה (37), אָבִיו (34), הָמָן (31), וְלָקַח (31)
 
 ### Perush Maharzu on Shir HaShirim Rabbah
 
@@ -559,7 +559,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Sifrei Aggadah on Esther
 
 - Readiness: fix HUD integrity
-- Top unmatched: אסתר (262), המלך (191), מרדכי (127), אחשורוש (79), ואמר (51), יהודי (36), יב (33), ושתי (31), כב (28), המלכה (23), יג (22), יז (22)
+- Top unmatched: אסתר (262), המלך (191), המן (141), מרדכי (127), אחשורוש (79), ואמר (51), יהודי (36), יב (33), ושתי (31), כב (28), המלכה (23), יג (22)
 
 ### Matnot Kehunah on Shir HaShirim Rabbah
 
@@ -609,7 +609,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Genesis
 
 - Readiness: fix HUD integrity
-- Top unmatched: יְהֹוָ֖ה (22), יְהֹוָ֔ה (21), אַלּ֥וּף (20), וַיּ֥וֹלֶד (19), וּבָנֽוֹת׃ (17), יְהֹוָה֙ (17), הוֹלִיד֣וֹ (16), וַיּ֖וֹלֶד (16), וַיְחִ֣י (15), יְהֹוָֽה׃ (15), שֶׁ֣בַע (15), הָאָֽרֶץ׃ (14)
+- Top unmatched: מֵא֖וֹת (23), יְהֹוָ֖ה (22), יְהֹוָ֔ה (21), אַלּ֥וּף (20), וַיּ֥וֹלֶד (19), וּבָנֽוֹת׃ (17), יְהֹוָה֙ (17), הוֹלִיד֣וֹ (16), וַיּ֖וֹלֶד (16), וַיְחִ֣י (15), יְהֹוָֽה׃ (15), שֶׁ֣בַע (15)
 
 ### Yefeh To'ar on Bereshit Rabbah
 
@@ -769,7 +769,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Midrash Tannaim on Deuteronomy
 
 - Readiness: fix HUD integrity
-- Top unmatched: שנ׳ (104), ת״ל (62), אמ׳ (48), אומ׳ (34), מלמד (30), עושין (22), הכת׳ (18), תוכחות (18), כג (16), כיוצא (15), יב (14), יז (14)
+- Top unmatched: שנ׳ (104), ת״ל (62), אמ׳ (48), אומ׳ (34), מלמד (30), עושין (22), הכת׳ (18), והלא (18), תוכחות (18), כג (16), כיוצא (15), יב (14)
 
 ### Matnot Kehunah on Bereshit Rabbah
 
@@ -794,7 +794,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Etz Yosef on Esther Rabbah
 
 - Readiness: fix HUD integrity
-- Top unmatched: אחשורוש (41), וי (23), קמא (17), כדאיתא (14), חנף (13), מדי (13), דמגילה (11), קאמר (11), רצה (11), המלך (10), ושתי (10), יוחנן (10)
+- Top unmatched: אחשורוש (41), וי (23), המן (19), קמא (17), כדאיתא (14), חנף (13), מדי (13), דמגילה (11), קאמר (11), רצה (11), המלך (10), ושתי (10)
 
 ### Shir HaShirim Rabbah
 
@@ -849,7 +849,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Kohelet Rabbah
 
 - Readiness: fix HUD integrity
-- Top unmatched: רַבִּי (79), טז (10), הַמִּשְׁחָה (9), אָמְרִין (8), אֲנָא (8), מִשֶּׁמֶן (8), נוֹלַד (8), נִכְנְסוּ (8), שְׁכִיבָה (8), אִית (7), אֶלְעָזָר (7), הִרְגִּישׁוּ (7)
+- Top unmatched: רַבִּי (79), שֶׁמֶן (17), טז (10), הַמִּשְׁחָה (9), אָמְרִין (8), אֲנָא (8), מִשֶּׁמֶן (8), נוֹלַד (8), נִכְנְסוּ (8), שְׁכִיבָה (8), אִית (7), אֶלְעָזָר (7)
 
 ### Jerusalem Talmud Taanit
 
@@ -864,7 +864,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Nehemiah
 
 - Readiness: fix HUD integrity
-- Top unmatched: ם (26), וּשְׁנָֽיִם׃ (11), מֵאָ֖ה (10), הֶחֱזִ֗יק (9), וּשְׁמֹנָֽה׃ (9), הַזֶּֽה׃ (8), עֶשְׂרִ֥ים (8), שְׁלֹ֥שׁ (8), אַרְבָּעִ֥ים (7), שֵׁ֥שׁ (7), חֲמִשִּׁ֥ים (6), ם֙ (6)
+- Top unmatched: ם (26), מֵא֖וֹת (26), וּשְׁנָֽיִם׃ (11), מֵאָ֖ה (10), הֶחֱזִ֗יק (9), וּשְׁמֹנָֽה׃ (9), הַזֶּֽה׃ (8), עֶשְׂרִ֥ים (8), שְׁלֹ֥שׁ (8), אַרְבָּעִ֥ים (7), שֵׁ֥שׁ (7), חֲמִשִּׁ֥ים (6)
 
 ### Matnot Kehunah on Vayikra Rabbah
 
@@ -894,7 +894,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Ezra
 
 - Readiness: fix HUD integrity
-- Top unmatched: ם (16), עֶשְׂרִ֥ים (12), הַזְּכָרִֽים׃ (11), וּשְׁנָֽיִם׃ (10), חֲמִשִּׁ֥ים (10), יְהֹוָ֖ה (9), ם׃ (9), מֵאָ֖ה (9), וּמִבְּנֵ֣י (7), וּשְׁלֹשָֽׁה׃ (7), מָאתַ֖יִם (7), שְׁלֹ֥שׁ (7)
+- Top unmatched: מֵא֖וֹת (25), ם (16), עֶשְׂרִ֥ים (12), הַזְּכָרִֽים׃ (11), וּשְׁנָֽיִם׃ (10), חֲמִשִּׁ֥ים (10), יְהֹוָ֖ה (9), ם׃ (9), מֵאָ֖ה (9), וּמִבְּנֵ֣י (7), וּשְׁלֹשָֽׁה׃ (7), מָאתַ֖יִם (7)
 
 ### Sha'arei Kedusha
 
@@ -925,11 +925,6 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 
 - Readiness: fix HUD integrity
 - Top unmatched: כלו׳ (10), מתפלל (10), תפלה (8), יהא (7), דף (6), ז׳ (6), בב״ר (5), וזהו (5), ועי׳ (5), ור״ל (5), מנין (5), פ״ק (5)
-
-### Seder Olam Zutta
-
-- Readiness: fix HUD integrity
-- Top unmatched: ועמד (28), שנולד (25), ג׳ (21), ושכיב (20), דברוהו (19), ב׳ (18), מר (17), ומלך (16), בשנת (15), ריש (14), ומת (13), זוטרא (11)
 
 ### Etz Yosef on Ruth Rabbah
 
@@ -969,7 +964,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Yefeh Anaf on Esther Rabbah
 
 - Readiness: fix HUD integrity
-- Top unmatched: אחשורוש (15), מדי (7), חנף (6), ויומם (5), יון (5), כסף (5), לכלותם (5), פן (5), שראו (5), בחייך (4), ווי (4), וימלוך (4)
+- Top unmatched: אחשורוש (15), מדי (7), חנף (6), ויומם (5), יון (5), כסף (5), לכלותם (5), פן (5), שראו (5), בחייך (4), המן (4), ווי (4)
 
 ### Matnot Kehunah on Bamidbar Rabbah
 
@@ -1059,7 +1054,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Matnot Kehunah on Ruth Rabbah
 
 - Readiness: fix HUD integrity
-- Top unmatched: ה״ג (26), פ׳ (7), גרסי׳ (6), גרסינן (5), בב״ר (4), גרס (4), אלימלך (3), אסתר (3), וה״ג (3), וזר (3), וילך (3), קאמיא (3)
+- Top unmatched: ה״ג (26), פ׳ (7), גרסי׳ (6), גרסינן (5), בב״ר (4), גרס (4), אלימלך (3), אסתר (3), הכי (3), וה״ג (3), וזר (3), וילך (3)
 
 ### Joel
 
@@ -1074,7 +1069,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Matnot Kehunah on Esther Rabbah
 
 - Readiness: fix HUD integrity
-- Top unmatched: גרסי׳ (15), ה״ג (12), אחשורוש (8), ועי׳ (4), וריש (3), משרבו (3), נוטריקון (3), רות (3), אשתו (2), בב״ר (2), בכם (2), במדרש (2)
+- Top unmatched: גרסי׳ (15), ה״ג (12), אחשורוש (8), ועי׳ (4), המן (3), וריש (3), משרבו (3), נוטריקון (3), רות (3), אשתו (2), בב״ר (2), בכם (2)
 
 ### Malachi
 
@@ -1090,6 +1085,11 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 
 - Readiness: fix HUD integrity
 - Top unmatched: ואומ׳ (6), י״י (6), שנ׳ (6), אומ׳ (5), כענין (5), למדני (4), קינטורין (4), אמ׳ (3), דכתי׳ (3), ואלף (3), וכתי׳ (3), חמשה (3)
+
+### Zephaniah
+
+- Readiness: fix HUD integrity
+- Top unmatched: יְהֹוָ֔ה (5), יְהֹוָה֙ (3), ם (3), אַף־יְהֹוָֽה׃ (2), דְּבַר־יְהֹוָ֣ה (2), יְהֹוָ֥ה (2), יְהֹוָֽה׃ (2), יוֹשֵֽׁב׃ (2), לֹא־יָב֣וֹא (2), לִשְׁמָמָ֑ה (2), נְאֻם־יְהֹוָֽה׃ (2), תֵּאָכֵ֖ל (2)
 
 ### Matnot Kehunah on Devarim Rabbah
 
@@ -1109,12 +1109,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Nahum
 
 - Readiness: fix HUD integrity
-- Top unmatched: יְהֹוָ֔ה (3), יְהֹוָ֗ה (3), יְהֹוָה֙ (2), יְהֹוָ֣ה (2), אֲבַ֥ק (1), אֲבַקֵּ֥שׁ (1), אַדִּירָ֔יו (1), אַדִּירֶ֑יךָ (1), אוֹכֵֽל׃ (1), אַיֵּה֙ (1), אַיָּֽם׃ (1), אֵין־כֵּהָ֣ה (1)
-
-### Mishnat DeRabbi Eliezer on Eichah Rabbah
-
-- Readiness: fix HUD integrity
-- Top unmatched: ב׳ (3), המ״כ (3), זכיתם (3), מ״כ (3), בדדין (2), בנדרים (2), גו׳ (2), דכ״ז (2), ה״ק (2), החזיקו (2), הייתם (2), ולפי׳ (2)
+- Top unmatched: יְהֹוָ֔ה (3), יְהֹוָ֗ה (3), יְהֹוָה֙ (2), יְהֹוָ֣ה (2), אֲבַ֥ק (1), אֲבַקֵּ֥שׁ (1), אַדִּירֶ֑יךָ (1), אוֹכֵֽל׃ (1), אַיֵּה֙ (1), אַיָּֽם׃ (1), אֵין־כֵּהָ֣ה (1), אָכְלָ֥ה (1)
 
 ### Gra's Nuschah on Avot D'Rabbi Natan
 
@@ -1124,7 +1119,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Seder Olam Rabbah
 
 - Readiness: fix HUD integrity
-- Top unmatched: המבול (5), הפלגה (4), הגר (3), ועשה (3), טז (3), ל׳ (3), מחרן (3), מתושלח (3), ע׳ (3), ארפכשד (2), ומתושלח (2), ושש (2)
+- Top unmatched: המבול (5), הפלגה (4), הגר (3), ועשה (3), טז (3), ל׳ (3), מחרן (3), מתושלח (3), ע׳ (3), ארפכשד (2), והלא (2), ומתושלח (2)
 
 ### Yedei Moshe on Vayikra Rabbah
 
@@ -1146,15 +1141,20 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 - Readiness: fix HUD integrity
 - Top unmatched: אחותה (2), ב׳ (2), בתה (2), א׳ (1), איתא (1), אשתו (1), בפרוסה (1), ג׳ (1), ד״א (1), דיבמות (1), דרומית (1), ה׳ (1)
 
+### Seder Olam Zutta
+
+- Readiness: low coverage; leave until family pass
+- Top unmatched: ועמד (28), שנולד (25), מאות (24), ג׳ (21), ושכיב (20), דברוהו (19), מאה (19), ב׳ (18), מר (17), ומלך (16), בשנת (15), ריש (14)
+
 ### Gra on Pirkei Avot
 
 - Readiness: usable; content coverage remains
 - Top unmatched: ה׳ (9), מסיני (7), ז׳ (6), א׳ (5), איוב (5), ב׳ (5), קהלת (5), אלקים (3), ג׳ (3), דכתיב (3), י״ב (3), סייג (3)
 
-### Zephaniah
+### Mishnat DeRabbi Eliezer on Eichah Rabbah
 
 - Readiness: usable; content coverage remains
-- Top unmatched: יְהֹוָ֔ה (5), יְהֹוָה֙ (3), ם (3), אַף־יְהֹוָֽה׃ (2), דְּבַר־יְהֹוָ֣ה (2), יְהֹוָ֥ה (2), יְהֹוָֽה׃ (2), יוֹשֵֽׁב׃ (2), לֹא־יָב֣וֹא (2), לִשְׁמָמָ֑ה (2), נְאֻם־יְהֹוָֽה׃ (2), תֵּאָכֵ֖ל (2)
+- Top unmatched: ב׳ (3), המ״כ (3), זכיתם (3), מ״כ (3), בדדין (2), בנדרים (2), גו׳ (2), דכ״ז (2), ה״ק (2), החזיקו (2), הייתם (2), ולפי׳ (2)
 
 ### Yedei Moshe on Devarim Rabbah
 
@@ -1169,7 +1169,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Gra's Nuschah on Tractate Soferim
 
 - Readiness: usable; content coverage remains
-- Top unmatched: ובתהלים (14), בפ״ע (5), ה׳ (5), וכתובים (4), בס״א (3), וישתחו (3), וכ״ה (3), ונביאים (3), באזניו (2), וישלח (2), ושועתי (2), ישעך (2)
+- Top unmatched: ובתהלים (14), בפ״ע (5), ה׳ (5), וכתובים (4), בס״א (3), וישתחו (3), וכ״ה (3), ונביאים (3), וישלח (2), ושועתי (2), ישעך (2), כאחת (2)
 
 ### Maharzu Hakatzar on Bereshit Rabbah
 

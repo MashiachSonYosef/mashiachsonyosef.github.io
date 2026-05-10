@@ -8,15 +8,25 @@ const reportPath = 'reports/sitewide-hud-readiness-report.md';
 
 const functionCanaries = ['את', 'כי', 'על', 'לא', 'הוא', 'אשר', 'מן', 'כל', 'אם', 'אין'];
 const formulaCanaries = ['ד״א', 'זש״ה', 'שנאמר', 'כתיב', 'וגומר', 'א״ר', 'א״ל'];
-const badParserNeedles = [
-  'from of',
-  'in of',
-  'with of',
-  'by of',
-  'the not',
-  'the no',
-  'clear liquid H',
-  'dotted with a segol',
+const badParserNeedlePatterns = [
+  /\bfrom of\b/i,
+  /\bin of\b/i,
+  /\bwith of\b/i,
+  /\bby of\b/i,
+  /\bthe not\b/i,
+  /\bthe no\b/i,
+  /clear liquid h(?:₂|2)?o/i,
+  /dotted with a segol/i,
+  /\boften adverb(?:ial)?\b/i,
+  /\bremote time\b/i,
+  /\bthe number\b/i,
+  /\bfrom letter\b/i,
+  /\bof letter\b/i,
+  /\bfrom fourth\b/i,
+  /\bof fourth\b/i,
+  /\bmister\b/i,
+  /\bdeity\b/i,
+  /\bnoble man\b/i,
 ];
 
 const hebrewMarksRe = /[\u0591-\u05C7]/gu;
@@ -185,7 +195,7 @@ function badParserRows(forms) {
       ...(row.surface_renderings || []),
       ...(row.breakdown || []).flatMap((part) => part.strict_renderings || []),
     ].join(' ').toLowerCase();
-    return badParserNeedles.some((needle) => haystack.includes(needle.toLowerCase()));
+    return badParserNeedlePatterns.some((pattern) => pattern.test(haystack));
   });
 }
 
