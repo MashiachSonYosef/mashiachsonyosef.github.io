@@ -104,6 +104,115 @@ function Get-HomeGroup {
   return 'Other'
 }
 
+function Format-CountPhrase {
+  param(
+    [int]$Count,
+    [string]$Singular,
+    [string]$Plural = ''
+  )
+  if (-not $Plural) { $Plural = "${Singular}s" }
+  if ($Count -eq 1) { return "$Count $Singular" }
+  return "$Count $Plural"
+}
+
+function Get-LibrarySubgroup {
+  param([object]$Source)
+
+  $group = Get-HomeGroup $Source
+  $title = [string]$Source.work_title
+  $baseTitle = [string]$Source.base_work_title
+  $workType = [string]$Source.work_type
+  $isCommentary = $workType -eq 'commentary'
+
+  switch ($group) {
+    'Tanakh' {
+      $torah = @('Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy')
+      $prophets = @('Joshua', 'Judges', 'I Samuel', 'II Samuel', 'I Kings', 'II Kings', 'Isaiah', 'Jeremiah', 'Ezekiel', 'Hosea', 'Joel', 'Amos', 'Obadiah', 'Jonah', 'Micah', 'Nahum', 'Habakkuk', 'Zephaniah', 'Haggai', 'Zechariah', 'Malachi')
+      $writings = @('Psalms', 'Proverbs', 'Job', 'Song of Songs', 'Ruth', 'Lamentations', 'Ecclesiastes', 'Esther', 'Daniel', 'Ezra', 'Nehemiah', 'I Chronicles', 'II Chronicles')
+      if ($torah -contains $title) { return 'Torah' }
+      if ($prophets -contains $title) { return 'Prophets' }
+      if ($writings -contains $title) { return 'Writings' }
+      return 'Other Tanakh'
+    }
+    'Midrash / Aggadah' {
+      if ($isCommentary -and ($baseTitle -match 'Rabbah|Rabba|Bereishit|Bereshit|Bamidbar|Devarim|Eichah|Esther|Kohelet|Ruth|Shemot|Shir HaShirim|Vayikra')) { return 'Rabbah Commentaries' }
+      if ($title -match 'Lekach Tov') { return 'Lekach Tov and Commentaries' }
+      if ($title -match 'Sifra|Sifrei|Tannaim' -or $baseTitle -match 'Sifra|Sifrei|Tannaim') { return 'Halakhic Midrash' }
+      if ($isCommentary) { return 'Other Midrash Commentaries' }
+      if ($title -match 'Rabbah|Rabba') { return 'Midrash Rabbah' }
+      if ($title -match 'Otzar|Alphabet|Seder Olam|Sefer HaYashar') { return 'Collections and Late Midrash' }
+      return 'Classic Midrash / Aggadah'
+    }
+    'Rav Kook School' {
+      if ($Source.work_id -eq 'orot' -or $title -eq 'Orot') { return 'Orot' }
+      return 'Other Rav Kook Works'
+    }
+    'Gra School' {
+      if ($isCommentary) { return 'Gra Commentaries' }
+      if ($title -match 'Kol HaTor|Nefesh HaChayim|Maaseh Rav|Iggeret') { return 'Gra Transmission Line' }
+      return 'Gra Texts'
+    }
+    'Ari / Kabbalah' {
+      return 'Ari / Chaim Vital Corpus'
+    }
+    'Talmud / Commentary' {
+      if ($isCommentary) { return 'Commentary' }
+      return 'Talmud'
+    }
+    default {
+      if ($isCommentary) { return 'Commentary' }
+      return 'Works'
+    }
+  }
+}
+
+function Get-LibrarySubgroupOrder {
+  param(
+    [string]$Group,
+    [string]$Subgroup
+  )
+
+  $orders = @{
+    'Tanakh' = @{
+      'Torah' = 1
+      'Prophets' = 2
+      'Writings' = 3
+      'Other Tanakh' = 9
+    }
+    'Midrash / Aggadah' = @{
+      'Classic Midrash / Aggadah' = 1
+      'Midrash Rabbah' = 2
+      'Rabbah Commentaries' = 3
+      'Halakhic Midrash' = 4
+      'Lekach Tov and Commentaries' = 5
+      'Collections and Late Midrash' = 6
+      'Other Midrash Commentaries' = 7
+    }
+    'Rav Kook School' = @{
+      'Orot' = 1
+      'Other Rav Kook Works' = 2
+    }
+    'Gra School' = @{
+      'Gra Transmission Line' = 1
+      'Gra Texts' = 2
+      'Gra Commentaries' = 3
+    }
+    'Ari / Kabbalah' = @{
+      'Ari / Chaim Vital Corpus' = 1
+      'Other Kabbalah' = 2
+    }
+    'Talmud / Commentary' = @{
+      'Talmud' = 1
+      'Commentary' = 2
+    }
+  }
+
+  if ($orders.ContainsKey($Group) -and $orders[$Group].ContainsKey($Subgroup)) {
+    return $orders[$Group][$Subgroup]
+  }
+  return 99
+}
+
 function Get-VersionSourceLabel {
   param([AllowNull()][string]$Source)
   if (-not $Source) { return '' }
@@ -331,6 +440,23 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .work-card .meta { display: block; margin-top: 6px; }')
   [void]$Builder.AppendLine('    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }')
   [void]$Builder.AppendLine('    .work-card.placeholder-card { opacity: 0.72; }')
+  [void]$Builder.AppendLine('    .library-stack { display: grid; gap: 14px; }')
+  [void]$Builder.AppendLine('    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }')
+  [void]$Builder.AppendLine('    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }')
+  [void]$Builder.AppendLine('    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }')
+  [void]$Builder.AppendLine('    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }')
+  [void]$Builder.AppendLine('    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }')
+  [void]$Builder.AppendLine('    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }')
+  [void]$Builder.AppendLine('    .library-shelf-title strong { font-size: 1.12rem; }')
+  [void]$Builder.AppendLine('    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }')
+  [void]$Builder.AppendLine('    .library-summary-meta { white-space: nowrap; }')
+  [void]$Builder.AppendLine('    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }')
+  [void]$Builder.AppendLine('    .library-subgroup { background: rgba(255,255,255,0.02); }')
+  [void]$Builder.AppendLine('    .library-subgroup > summary { padding: 12px 14px; }')
+  [void]$Builder.AppendLine('    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }')
+  [void]$Builder.AppendLine('    .library-grid.direct { padding: 0; }')
+  [void]$Builder.AppendLine('    .library-grid .work-card { min-height: 116px; padding: 14px; }')
+  [void]$Builder.AppendLine('    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }')
   [void]$Builder.AppendLine('    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }')
   [void]$Builder.AppendLine('    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }')
   [void]$Builder.AppendLine('    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }')
@@ -1813,6 +1939,22 @@ function Append-FeatureCard {
   }
 }
 
+function Append-LibraryWorkCard {
+  param(
+    [System.Text.StringBuilder]$Builder,
+    [object]$Source,
+    [string]$HrefPrefix = ''
+  )
+
+  [void]$Builder.AppendLine("              <a class=""work-card"" href=""$HrefPrefix$($Source.work_slug)/"">")
+  [void]$Builder.AppendLine("                <strong>$(Encode-Html $Source.work_title)</strong>")
+  if ($Source.display_label) {
+    [void]$Builder.AppendLine("                <span class=""work-label"">$(Encode-Html $Source.display_label)</span>")
+  }
+  [void]$Builder.AppendLine("                <span class=""meta"">$(@($Source.units).Count) source units | $(Encode-Html $Source.source_system) | imported $(Encode-Html $Source.import_date)</span>")
+  [void]$Builder.AppendLine('              </a>')
+}
+
 function Append-LibrarySections {
   param(
     [System.Text.StringBuilder]$Builder,
@@ -1831,22 +1973,53 @@ function Append-LibrarySections {
     'Works' = 8
   }
   $homeGroups = $Sources | Group-Object { Get-HomeGroup $_ } | Sort-Object @{ Expression = { if ($groupOrder.ContainsKey($_.Name)) { $groupOrder[$_.Name] } else { 99 } } }, Name
+  [void]$Builder.AppendLine('        <div class="library-stack">')
   foreach ($homeGroup in $homeGroups) {
-    [void]$Builder.AppendLine('        <section class="home-section">')
-    [void]$Builder.AppendLine("          <h2>$(Encode-Html $homeGroup.Name)</h2>")
-    [void]$Builder.AppendLine('          <div class="home-grid">')
-    foreach ($source in @($homeGroup.Group | Sort-Object work_title)) {
-      [void]$Builder.AppendLine("            <a class=""work-card"" href=""$HrefPrefix$($source.work_slug)/"">")
-      [void]$Builder.AppendLine("              <strong>$(Encode-Html $source.work_title)</strong>")
-      if ($source.display_label) {
-        [void]$Builder.AppendLine("              <span class=""work-label"">$(Encode-Html $source.display_label)</span>")
+    $groupSources = @($homeGroup.Group)
+    $groupUnits = [int](($groupSources | ForEach-Object { @($_.units).Count } | Measure-Object -Sum).Sum)
+    $groupCountText = "$(Format-CountPhrase -Count $groupSources.Count -Singular 'work' -Plural 'works') | $(Format-CountPhrase -Count $groupUnits -Singular 'source unit' -Plural 'source units')"
+    [void]$Builder.AppendLine('          <details class="library-shelf">')
+    [void]$Builder.AppendLine('            <summary>')
+    [void]$Builder.AppendLine('              <span class="library-shelf-title">')
+    [void]$Builder.AppendLine("                <strong>$(Encode-Html $homeGroup.Name)</strong>")
+    [void]$Builder.AppendLine("                <span>$(Encode-Html $groupCountText)</span>")
+    [void]$Builder.AppendLine('              </span>')
+    [void]$Builder.AppendLine('              <span class="library-summary-meta">Browse</span>')
+    [void]$Builder.AppendLine('            </summary>')
+    [void]$Builder.AppendLine('            <div class="library-shelf-body">')
+
+    $subgroups = $groupSources | Group-Object { Get-LibrarySubgroup $_ } | Sort-Object @{ Expression = { Get-LibrarySubgroupOrder -Group $homeGroup.Name -Subgroup $_.Name } }, Name
+    if ($subgroups.Count -le 1) {
+      [void]$Builder.AppendLine('              <div class="library-grid direct">')
+      foreach ($source in @($groupSources | Sort-Object work_title)) {
+        Append-LibraryWorkCard -Builder $Builder -Source $source -HrefPrefix $HrefPrefix
       }
-      [void]$Builder.AppendLine("              <span class=""meta"">$(@($source.units).Count) source units | $(Encode-Html $source.source_system) | imported $(Encode-Html $source.import_date)</span>")
-      [void]$Builder.AppendLine('            </a>')
+      [void]$Builder.AppendLine('              </div>')
+    } else {
+      foreach ($subgroup in $subgroups) {
+        $subgroupSources = @($subgroup.Group)
+        $subgroupUnits = [int](($subgroupSources | ForEach-Object { @($_.units).Count } | Measure-Object -Sum).Sum)
+        $subgroupCountText = "$(Format-CountPhrase -Count $subgroupSources.Count -Singular 'work' -Plural 'works') | $(Format-CountPhrase -Count $subgroupUnits -Singular 'source unit' -Plural 'source units')"
+        [void]$Builder.AppendLine('              <details class="library-subgroup">')
+        [void]$Builder.AppendLine('                <summary>')
+        [void]$Builder.AppendLine('                  <span class="library-shelf-title">')
+        [void]$Builder.AppendLine("                    <strong>$(Encode-Html $subgroup.Name)</strong>")
+        [void]$Builder.AppendLine("                    <span>$(Encode-Html $subgroupCountText)</span>")
+        [void]$Builder.AppendLine('                  </span>')
+        [void]$Builder.AppendLine('                  <span class="library-summary-meta">Browse</span>')
+        [void]$Builder.AppendLine('                </summary>')
+        [void]$Builder.AppendLine('                <div class="library-grid">')
+        foreach ($source in @($subgroupSources | Sort-Object work_title)) {
+          Append-LibraryWorkCard -Builder $Builder -Source $source -HrefPrefix $HrefPrefix
+        }
+        [void]$Builder.AppendLine('                </div>')
+        [void]$Builder.AppendLine('              </details>')
+      }
     }
-    [void]$Builder.AppendLine('          </div>')
-    [void]$Builder.AppendLine('        </section>')
+    [void]$Builder.AppendLine('            </div>')
+    [void]$Builder.AppendLine('          </details>')
   }
+  [void]$Builder.AppendLine('        </div>')
 }
 
 $featureCards = @(

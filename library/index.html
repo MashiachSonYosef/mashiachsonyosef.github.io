@@ -31,6 +31,23 @@
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { white-space: nowrap; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
     .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
@@ -83,790 +100,1006 @@
         <p>All imported source works remain available here. The homepage is intentionally limited to the featured Orot workbench.</p>
       </div>
       <div style="padding:22px">
-        <section class="home-section">
-          <h2>Tanakh</h2>
-          <div class="home-grid">
-            <a class="work-card" href="../tanakh/amos/">
-              <strong>Amos</strong>
-              <span class="meta">146 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/daniel/">
-              <strong>Daniel</strong>
-              <span class="meta">357 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/deuteronomy/">
-              <strong>Deuteronomy</strong>
-              <span class="meta">956 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/ecclesiastes/">
-              <strong>Ecclesiastes</strong>
-              <span class="meta">222 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/esther/">
-              <strong>Esther</strong>
-              <span class="meta">167 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/exodus/">
-              <strong>Exodus</strong>
-              <span class="meta">1210 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/ezekiel/">
-              <strong>Ezekiel</strong>
-              <span class="meta">1273 source units | Sefaria API | imported 2026-05-04</span>
-            </a>
-            <a class="work-card" href="../tanakh/ezra/">
-              <strong>Ezra</strong>
-              <span class="meta">280 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/genesis/">
-              <strong>Genesis</strong>
-              <span class="meta">1533 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/habakkuk/">
-              <strong>Habakkuk</strong>
-              <span class="meta">56 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/haggai/">
-              <strong>Haggai</strong>
-              <span class="meta">38 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/hosea/">
-              <strong>Hosea</strong>
-              <span class="meta">197 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/i-chronicles/">
-              <strong>I Chronicles</strong>
-              <span class="meta">943 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/i-kings/">
-              <strong>I Kings</strong>
-              <span class="meta">817 source units | Sefaria API | imported 2026-05-04</span>
-            </a>
-            <a class="work-card" href="../tanakh/i-samuel/">
-              <strong>I Samuel</strong>
-              <span class="meta">811 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/ii-chronicles/">
-              <strong>II Chronicles</strong>
-              <span class="meta">822 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/ii-kings/">
-              <strong>II Kings</strong>
-              <span class="meta">719 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/ii-samuel/">
-              <strong>II Samuel</strong>
-              <span class="meta">695 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/isaiah/">
-              <strong>Isaiah</strong>
-              <span class="meta">1291 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/jeremiah/">
-              <strong>Jeremiah</strong>
-              <span class="meta">1364 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/job/">
-              <strong>Job</strong>
-              <span class="meta">1070 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/joel/">
-              <strong>Joel</strong>
-              <span class="meta">73 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/jonah/">
-              <strong>Jonah</strong>
-              <span class="meta">48 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/joshua/">
-              <strong>Joshua</strong>
-              <span class="meta">658 source units | Sefaria API | imported 2026-05-03</span>
-            </a>
-            <a class="work-card" href="../tanakh/judges/">
-              <strong>Judges</strong>
-              <span class="meta">618 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/lamentations/">
-              <strong>Lamentations</strong>
-              <span class="meta">154 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/leviticus/">
-              <strong>Leviticus</strong>
-              <span class="meta">859 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/malachi/">
-              <strong>Malachi</strong>
-              <span class="meta">55 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/micah/">
-              <strong>Micah</strong>
-              <span class="meta">105 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/nahum/">
-              <strong>Nahum</strong>
-              <span class="meta">47 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/nehemiah/">
-              <strong>Nehemiah</strong>
-              <span class="meta">405 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/numbers/">
-              <strong>Numbers</strong>
-              <span class="meta">1288 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/obadiah/">
-              <strong>Obadiah</strong>
-              <span class="meta">21 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/proverbs/">
-              <strong>Proverbs</strong>
-              <span class="meta">915 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/psalms/">
-              <strong>Psalms</strong>
-              <span class="meta">2527 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/ruth/">
-              <strong>Ruth</strong>
-              <span class="meta">85 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/song-of-songs/">
-              <strong>Song of Songs</strong>
-              <span class="meta">117 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../tanakh/zechariah/">
-              <strong>Zechariah</strong>
-              <span class="meta">211 source units | Sefaria API | imported 2026-05-04</span>
-            </a>
-            <a class="work-card" href="../tanakh/zephaniah/">
-              <strong>Zephaniah</strong>
-              <span class="meta">53 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-          </div>
-        </section>
-        <section class="home-section">
-          <h2>Midrash / Aggadah</h2>
-          <div class="home-grid">
-            <a class="work-card" href="../midrash/aggadat-bereshit/">
-              <strong>Aggadat Bereshit</strong>
-              <span class="meta">222 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/alphabet-of-ben-sira/">
-              <strong>Alphabet of Ben Sira</strong>
-              <span class="meta">104 source units | Sefaria API | imported 2026-05-06</span>
-            </a>
-            <a class="work-card" href="../midrash/beur-haradal-on-pirkei-derabbi-eliezer/">
-              <strong>Beur HaRadal on Pirkei DeRabbi Eliezer</strong>
-              <span class="work-label">Commentary on Pirkei DeRabbi Eliezer</span>
-              <span class="meta">3398 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/beur-hareem-on-midrash-lekach-tov/">
-              <strong>Beur HaRe&#39;em on Midrash Lekach Tov</strong>
-              <span class="work-label">Commentary on Midrash Lekach Tov</span>
-              <span class="meta">2885 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/chafetz-chaim-on-sifra/">
-              <strong>Chafetz Chaim on Sifra</strong>
-              <span class="work-label">Commentary on Sifra</span>
-              <span class="meta">9017 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/eikhah-rabbah/">
-              <strong>Eikhah Rabbah</strong>
-              <span class="meta">91 source units | Sefaria API | imported 2026-05-04</span>
-            </a>
-            <a class="work-card" href="../midrash/ein-yaakov/">
-              <strong>Ein Yaakov</strong>
-              <span class="meta">3192 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/etz-yosef-on-bamidbar-rabbah/">
-              <strong>Etz Yosef on Bamidbar Rabbah</strong>
-              <span class="work-label">Commentary on Bamidbar Rabbah</span>
-              <span class="meta">311 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/etz-yosef-on-bereishit-rabbah/">
-              <strong>Etz Yosef on Bereishit Rabbah</strong>
-              <span class="work-label">Commentary on Bereishit Rabbah</span>
-              <span class="meta">779 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/etz-yosef-on-devarim-rabbah/">
-              <strong>Etz Yosef on Devarim Rabbah</strong>
-              <span class="work-label">Commentary on Devarim Rabbah</span>
-              <span class="meta">100 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/etz-yosef-on-eichah-rabbah/">
-              <strong>Etz Yosef on Eichah Rabbah</strong>
-              <span class="work-label">Commentary on Eichah Rabbah</span>
-              <span class="meta">595 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/etz-yosef-on-esther-rabbah/">
-              <strong>Etz Yosef on Esther Rabbah</strong>
-              <span class="work-label">Commentary on Esther Rabbah</span>
-              <span class="meta">181 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/etz-yosef-on-kohelet-rabbah/">
-              <strong>Etz Yosef on Kohelet Rabbah</strong>
-              <span class="work-label">Commentary on Kohelet Rabbah</span>
-              <span class="meta">2154 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/etz-yosef-on-ruth-rabbah/">
-              <strong>Etz Yosef on Ruth Rabbah</strong>
-              <span class="work-label">Commentary on Ruth Rabbah</span>
-              <span class="meta">90 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/etz-yosef-on-shemot-rabbah/">
-              <strong>Etz Yosef on Shemot Rabbah</strong>
-              <span class="work-label">Commentary on Shemot Rabbah</span>
-              <span class="meta">720 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/etz-yosef-on-shir-hashirim-rabbah/">
-              <strong>Etz Yosef on Shir HaShirim Rabbah</strong>
-              <span class="work-label">Commentary on Shir HaShirim Rabbah</span>
-              <span class="meta">2617 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/etz-yosef-on-vayikra-rabbah/">
-              <strong>Etz Yosef on Vayikra Rabbah</strong>
-              <span class="work-label">Commentary on Vayikra Rabbah</span>
-              <span class="meta">681 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/kohelet-rabbah/">
-              <strong>Kohelet Rabbah</strong>
-              <span class="meta">21 source units | Sefaria API | imported 2026-05-05</span>
-            </a>
-            <a class="work-card" href="../midrash/maharzu-hakatzar-on-bereshit-rabbah/">
-              <strong>Maharzu Hakatzar on Bereshit Rabbah</strong>
-              <span class="work-label">Commentary on Bereshit Rabbah</span>
-              <span class="meta">8 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/matnot-kehunah-on-bamidbar-rabbah/">
-              <strong>Matnot Kehunah on Bamidbar Rabbah</strong>
-              <span class="work-label">Commentary on Bamidbar Rabbah</span>
-              <span class="meta">177 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/matnot-kehunah-on-bereshit-rabbah/">
-              <strong>Matnot Kehunah on Bereshit Rabbah</strong>
-              <span class="work-label">Commentary on Bereshit Rabbah</span>
-              <span class="meta">516 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/matnot-kehunah-on-devarim-rabbah/">
-              <strong>Matnot Kehunah on Devarim Rabbah</strong>
-              <span class="work-label">Commentary on Devarim Rabbah</span>
-              <span class="meta">57 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/matnot-kehunah-on-eichah-rabbah/">
-              <strong>Matnot Kehunah on Eichah Rabbah</strong>
-              <span class="work-label">Commentary on Eichah Rabbah</span>
-              <span class="meta">484 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/matnot-kehunah-on-esther-rabbah/">
-              <strong>Matnot Kehunah on Esther Rabbah</strong>
-              <span class="work-label">Commentary on Esther Rabbah</span>
-              <span class="meta">74 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/matnot-kehunah-on-kohelet-rabbah/">
-              <strong>Matnot Kehunah on Kohelet Rabbah</strong>
-              <span class="work-label">Commentary on Kohelet Rabbah</span>
-              <span class="meta">1683 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/matnot-kehunah-on-ruth-rabbah/">
-              <strong>Matnot Kehunah on Ruth Rabbah</strong>
-              <span class="work-label">Commentary on Ruth Rabbah</span>
-              <span class="meta">71 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/matnot-kehunah-on-shemot-rabbah/">
-              <strong>Matnot Kehunah on Shemot Rabbah</strong>
-              <span class="work-label">Commentary on Shemot Rabbah</span>
-              <span class="meta">229 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/matnot-kehunah-on-shir-hashirim-rabbah/">
-              <strong>Matnot Kehunah on Shir HaShirim Rabbah</strong>
-              <span class="work-label">Commentary on Shir HaShirim Rabbah</span>
-              <span class="meta">1816 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/matnot-kehunah-on-vayikra-rabbah/">
-              <strong>Matnot Kehunah on Vayikra Rabbah</strong>
-              <span class="work-label">Commentary on Vayikra Rabbah</span>
-              <span class="meta">374 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/midrash-aggadah/">
-              <strong>Midrash Aggadah</strong>
-              <span class="meta">3269 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/midrash-lekach-tov/">
-              <strong>Midrash Lekach Tov</strong>
-              <span class="meta">7822 source units | Sefaria API | imported 2026-05-06</span>
-            </a>
-            <a class="work-card" href="../midrash/midrash-lekach-tov-on-ecclesiastes/">
-              <strong>Midrash Lekach Tov on Ecclesiastes</strong>
-              <span class="meta">2 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/midrash-lekach-tov-on-esther/">
-              <strong>Midrash Lekach Tov on Esther</strong>
-              <span class="meta">10 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/midrash-lekach-tov-on-lamentations/">
-              <strong>Midrash Lekach Tov on Lamentations</strong>
-              <span class="meta">7 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/midrash-lekach-tov-on-ruth/">
-              <strong>Midrash Lekach Tov on Ruth</strong>
-              <span class="meta">12 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/midrash-lekach-tov-on-song-of-songs/">
-              <strong>Midrash Lekach Tov on Song of Songs</strong>
-              <span class="meta">3 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/midrash-sekhel-tov/">
-              <strong>Midrash Sekhel Tov</strong>
-              <span class="meta">6889 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/midrash-shmuel/">
-              <strong>Midrash Shmuel</strong>
-              <span class="meta">207 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/midrash-tanchuma/">
-              <strong>Midrash Tanchuma</strong>
-              <span class="meta">2121 source units | Sefaria API | imported 2026-05-04</span>
-            </a>
-            <a class="work-card" href="../midrash/midrash-tanchuma-buber/">
-              <strong>Midrash Tanchuma Buber</strong>
-              <span class="meta">2086 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/midrash-tannaim-on-deuteronomy/">
-              <strong>Midrash Tannaim on Deuteronomy</strong>
-              <span class="meta">235 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/midrash-tehillim/">
-              <strong>Midrash Tehillim</strong>
-              <span class="meta">808 source units | Sefaria API | imported 2026-05-05</span>
-            </a>
-            <a class="work-card" href="../midrash/midrash-yelamdenu-selections-from-yalkut-talmud-torah/">
-              <strong>Midrash Yelamdenu, Selections from Yalkut Talmud Torah</strong>
-              <span class="meta">6 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/mishnat-derabbi-eliezer-on-eichah-rabbah/">
-              <strong>Mishnat DeRabbi Eliezer on Eichah Rabbah</strong>
-              <span class="work-label">Commentary on Eichah Rabbah</span>
-              <span class="meta">11 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/mishnat-derabbi-eliezer-on-ruth-rabbah/">
-              <strong>Mishnat DeRabbi Eliezer on Ruth Rabbah</strong>
-              <span class="work-label">Commentary on Ruth Rabbah</span>
-              <span class="meta">1 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/mishnat-rabbi-eliezer/">
-              <strong>Mishnat Rabbi Eliezer</strong>
-              <span class="meta">589 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/notes-and-corrections-on-midrash-aggadah/">
-              <strong>Notes and Corrections on Midrash Aggadah</strong>
-              <span class="work-label">Commentary on Midrash Aggadah</span>
-              <span class="meta">3395 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/notes-and-corrections-on-midrash-lekach-tov/">
-              <strong>Notes and Corrections on Midrash Lekach Tov</strong>
-              <span class="work-label">Commentary on Midrash Lekach Tov</span>
-              <span class="meta">5955 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/notes-and-corrections-on-midrash-lekach-tov-on-esther/">
-              <strong>Notes and Corrections on Midrash Lekach Tov on Esther</strong>
-              <span class="work-label">Commentary on Midrash Lekach Tov on Esther</span>
-              <span class="meta">254 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/otzar-midrashim/">
-              <strong>Otzar Midrashim</strong>
-              <span class="meta">5064 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/par-echad-on-pirkei-derabbi-eliezer/">
-              <strong>Par Echad on Pirkei DeRabbi Eliezer</strong>
-              <span class="work-label">Commentary on Pirkei DeRabbi Eliezer</span>
-              <span class="meta">186 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/perush-maharzu-on-bamidbar-rabbah/">
-              <strong>Perush Maharzu on Bamidbar Rabbah</strong>
-              <span class="work-label">Commentary on Bamidbar Rabbah</span>
-              <span class="meta">277 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/perush-maharzu-on-bereshit-rabbah/">
-              <strong>Perush Maharzu on Bereshit Rabbah</strong>
-              <span class="work-label">Commentary on Bereshit Rabbah</span>
-              <span class="meta">462 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/perush-maharzu-on-devarim-rabbah/">
-              <strong>Perush Maharzu on Devarim Rabbah</strong>
-              <span class="work-label">Commentary on Devarim Rabbah</span>
-              <span class="meta">74 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/perush-maharzu-on-eichah-rabbah/">
-              <strong>Perush Maharzu on Eichah Rabbah</strong>
-              <span class="work-label">Commentary on Eichah Rabbah</span>
-              <span class="meta">323 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/perush-maharzu-on-esther-rabbah/">
-              <strong>Perush Maharzu on Esther Rabbah</strong>
-              <span class="work-label">Commentary on Esther Rabbah</span>
-              <span class="meta">37 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/perush-maharzu-on-kohelet-rabbah/">
-              <strong>Perush Maharzu on Kohelet Rabbah</strong>
-              <span class="work-label">Commentary on Kohelet Rabbah</span>
-              <span class="meta">870 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/perush-maharzu-on-ruth-rabbah/">
-              <strong>Perush Maharzu on Ruth Rabbah</strong>
-              <span class="work-label">Commentary on Ruth Rabbah</span>
-              <span class="meta">68 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/perush-maharzu-on-shemot-rabbah/">
-              <strong>Perush Maharzu on Shemot Rabbah</strong>
-              <span class="work-label">Commentary on Shemot Rabbah</span>
-              <span class="meta">495 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/perush-maharzu-on-shir-hashirim-rabbah/">
-              <strong>Perush Maharzu on Shir HaShirim Rabbah</strong>
-              <span class="work-label">Commentary on Shir HaShirim Rabbah</span>
-              <span class="meta">1272 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/perush-maharzu-on-vayikra-rabbah/">
-              <strong>Perush Maharzu on Vayikra Rabbah</strong>
-              <span class="work-label">Commentary on Vayikra Rabbah</span>
-              <span class="meta">303 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/pesikta-derav-kahana/">
-              <strong>Pesikta DeRav Kahana</strong>
-              <span class="meta">304 source units | Sefaria API | imported 2026-05-05</span>
-            </a>
-            <a class="work-card" href="../midrash/pesikta-rabbati/">
-              <strong>Pesikta Rabbati</strong>
-              <span class="meta">34 source units | Sefaria API | imported 2026-05-05</span>
-            </a>
-            <a class="work-card" href="../midrash/pirkei-derabbi-eliezer/">
-              <strong>Pirkei DeRabbi Eliezer</strong>
-              <span class="meta">656 source units | Sefaria API | imported 2026-05-05</span>
-            </a>
-            <a class="work-card" href="../midrash/raavad-on-sifra/">
-              <strong>Ra&#39;avad on Sifra</strong>
-              <span class="work-label">Commentary on Sifra</span>
-              <span class="meta">1684 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/rashi-on-bereshit-rabbah/">
-              <strong>Rashi on Bereshit Rabbah</strong>
-              <span class="work-label">Commentary on Bereshit Rabbah</span>
-              <span class="meta">270 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/ruth-rabbah/">
-              <strong>Ruth Rabbah</strong>
-              <span class="meta">12 source units | Sefaria API | imported 2026-05-05</span>
-            </a>
-            <a class="work-card" href="../midrash/seder-olam-rabbah/">
-              <strong>Seder Olam Rabbah</strong>
-              <span class="meta">2 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/seder-olam-zutta/">
-              <strong>Seder Olam Zutta</strong>
-              <span class="meta">10 source units | Sefaria API | imported 2026-05-05</span>
-            </a>
-            <a class="work-card" href="../midrash/sefer-hayashar-midrash/">
-              <strong>Sefer HaYashar (midrash)</strong>
-              <span class="meta">308 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/shir-hashirim-rabbah/">
-              <strong>Shir HaShirim Rabbah</strong>
-              <span class="meta">24 source units | Sefaria API | imported 2026-05-05</span>
-            </a>
-            <a class="work-card" href="../midrash/sifrei-aggadah-on-esther/">
-              <strong>Sifrei Aggadah on Esther</strong>
-              <span class="meta">197 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/sifrei-bamidbar/">
-              <strong>Sifrei Bamidbar</strong>
-              <span class="meta">295 source units | Sefaria API | imported 2026-05-04</span>
-            </a>
-            <a class="work-card" href="../midrash/sifrei-devarim/">
-              <strong>Sifrei Devarim</strong>
-              <span class="meta">2357 source units | Sefaria API | imported 2026-05-04</span>
-            </a>
-            <a class="work-card" href="../midrash/tanna-debei-eliyahu-rabbah/">
-              <strong>Tanna DeBei Eliyahu Rabbah</strong>
-              <span class="meta">57 source units | Sefaria API | imported 2026-05-05</span>
-            </a>
-            <a class="work-card" href="../midrash/tanna-debei-eliyahu-zuta/">
-              <strong>Tanna DeBei Eliyahu Zuta</strong>
-              <span class="meta">98 source units | Sefaria API | imported 2026-05-08</span>
-            </a>
-            <a class="work-card" href="../midrash/yedei-moshe-on-bereshit-rabbah/">
-              <strong>Yedei Moshe on Bereshit Rabbah</strong>
-              <span class="work-label">Commentary on Bereshit Rabbah</span>
-              <span class="meta">83 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/yedei-moshe-on-devarim-rabbah/">
-              <strong>Yedei Moshe on Devarim Rabbah</strong>
-              <span class="work-label">Commentary on Devarim Rabbah</span>
-              <span class="meta">9 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/yedei-moshe-on-kohelet-rabbah/">
-              <strong>Yedei Moshe on Kohelet Rabbah</strong>
-              <span class="work-label">Commentary on Kohelet Rabbah</span>
-              <span class="meta">68 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/yedei-moshe-on-shemot-rabbah/">
-              <strong>Yedei Moshe on Shemot Rabbah</strong>
-              <span class="work-label">Commentary on Shemot Rabbah</span>
-              <span class="meta">69 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/yedei-moshe-on-shir-hashirim-rabbah/">
-              <strong>Yedei Moshe on Shir HaShirim Rabbah</strong>
-              <span class="work-label">Commentary on Shir HaShirim Rabbah</span>
-              <span class="meta">108 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/yedei-moshe-on-vayikra-rabbah/">
-              <strong>Yedei Moshe on Vayikra Rabbah</strong>
-              <span class="work-label">Commentary on Vayikra Rabbah</span>
-              <span class="meta">25 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/yefeh-anaf-on-eichah-rabbah/">
-              <strong>Yefeh Anaf on Eichah Rabbah</strong>
-              <span class="work-label">Commentary on Eichah Rabbah</span>
-              <span class="meta">182 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/yefeh-anaf-on-esther-rabbah/">
-              <strong>Yefeh Anaf on Esther Rabbah</strong>
-              <span class="work-label">Commentary on Esther Rabbah</span>
-              <span class="meta">64 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/yefeh-anaf-on-ruth-rabbah/">
-              <strong>Yefeh Anaf on Ruth Rabbah</strong>
-              <span class="work-label">Commentary on Ruth Rabbah</span>
-              <span class="meta">44 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/yefeh-kol-on-shir-hashirim-rabbah/">
-              <strong>Yefeh Kol on Shir HaShirim Rabbah</strong>
-              <span class="work-label">Commentary on Shir HaShirim Rabbah</span>
-              <span class="meta">1099 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/yefeh-toar-on-bamidbar-rabbah/">
-              <strong>Yefeh To&#39;ar on Bamidbar Rabbah</strong>
-              <span class="work-label">Commentary on Bamidbar Rabbah</span>
-              <span class="meta">19 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/yefeh-toar-on-bereshit-rabbah/">
-              <strong>Yefeh To&#39;ar on Bereshit Rabbah</strong>
-              <span class="work-label">Commentary on Bereshit Rabbah</span>
-              <span class="meta">269 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/yefeh-toar-on-devarim-rabbah/">
-              <strong>Yefeh To&#39;ar on Devarim Rabbah</strong>
-              <span class="work-label">Commentary on Devarim Rabbah</span>
-              <span class="meta">5 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/yefeh-toar-on-shemot-rabbah/">
-              <strong>Yefeh To&#39;ar on Shemot Rabbah</strong>
-              <span class="work-label">Commentary on Shemot Rabbah</span>
-              <span class="meta">227 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-            <a class="work-card" href="../midrash/yefeh-toar-on-vayikra-rabbah/">
-              <strong>Yefeh To&#39;ar on Vayikra Rabbah</strong>
-              <span class="work-label">Commentary on Vayikra Rabbah</span>
-              <span class="meta">124 source units | Sefaria API | imported 2026-05-09</span>
-            </a>
-          </div>
-        </section>
-        <section class="home-section">
-          <h2>Rav Kook School</h2>
-          <div class="home-grid">
-            <a class="work-card" href="../rav-kook/maamar-hador/">
-              <strong>Ma&#39;amar Hador</strong>
-              <span class="meta">18 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../rav-kook/midbar-shur/">
-              <strong>Midbar Shur</strong>
-              <span class="meta">243 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../rav-kook/musar-avikha/">
-              <strong>Musar Avikha</strong>
-              <span class="meta">14 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../orot/">
-              <strong>Orot</strong>
-              <span class="meta">416 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../rav-kook/orot-ha-kodesh/">
-              <strong>Orot HaKodesh</strong>
-              <span class="meta">458 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../rav-kook/orot-ha-torah/">
-              <strong>Orot HaTorah</strong>
-              <span class="meta">10 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-          </div>
-        </section>
-        <section class="home-section">
-          <h2>Gra School</h2>
-          <div class="home-grid">
-            <a class="work-card" href="../gra/aderet-eliyahu/">
-              <strong>Aderet Eliyahu</strong>
-              <span class="work-label">Commentary on Torah</span>
-              <span class="meta">59 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/beur-hagra-on-jerusalem-talmud-bikkurim/">
-              <strong>Beur HaGra on Jerusalem Talmud Bikkurim</strong>
-              <span class="work-label">Commentary on Jerusalem Talmud Bikkurim</span>
-              <span class="meta">170 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/beur-hagra-on-jerusalem-talmud-challah/">
-              <strong>Beur HaGra on Jerusalem Talmud Challah</strong>
-              <span class="work-label">Commentary on Jerusalem Talmud Challah</span>
-              <span class="meta">657 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/beur-hagra-on-shulchan-arukh-choshen-mishpat/">
-              <strong>Beur HaGra on Shulchan Arukh, Choshen Mishpat</strong>
-              <span class="work-label">Commentary on Shulchan Arukh, Choshen Mishpat</span>
-              <span class="meta">41 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/beur-hagra-on-shulchan-arukh-even-haezer/">
-              <strong>Beur HaGra on Shulchan Arukh, Even HaEzer</strong>
-              <span class="work-label">Commentary on Shulchan Arukh, Even HaEzer</span>
-              <span class="meta">281 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/beur-hagra-on-shulchan-arukh-orach-chayim/">
-              <strong>Beur HaGra on Shulchan Arukh, Orach Chayim</strong>
-              <span class="work-label">Commentary on Shulchan Arukh, Orach Chayim</span>
-              <span class="meta">2479 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/beur-hagra-on-shulchan-arukh-yoreh-deah/">
-              <strong>Beur HaGra on Shulchan Arukh, Yoreh De&#39;ah</strong>
-              <span class="work-label">Commentary on Shulchan Arukh, Yoreh De&#39;ah</span>
-              <span class="meta">7500 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/beur-hagra-on-sifra-detzniuta/">
-              <strong>Beur HaGra on Sifra DeTzniuta</strong>
-              <span class="work-label">Commentary on Sifra DeTzniuta</span>
-              <span class="meta">297 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/gra-on-pirkei-avot/">
-              <strong>Gra on Pirkei Avot</strong>
-              <span class="work-label">Commentary on Pirkei Avot</span>
-              <span class="meta">20 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/gras-nuschah-on-avot-drabbi-natan/">
-              <strong>Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan</strong>
-              <span class="work-label">Commentary on Avot D&#39;Rabbi Natan</span>
-              <span class="meta">103 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/gras-nuschah-on-tractate-derekh-eretz-rabbah/">
-              <strong>Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah</strong>
-              <span class="work-label">Commentary on Tractate Derekh Eretz Rabbah</span>
-              <span class="meta">16 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/gras-nuschah-on-tractate-derekh-eretz-zuta/">
-              <strong>Gra&#39;s Nuschah on Tractate Derekh Eretz Zuta</strong>
-              <span class="work-label">Commentary on Tractate Derekh Eretz Zuta</span>
-              <span class="meta">4 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/gras-nuschah-on-tractate-kallah/">
-              <strong>Gra&#39;s Nuschah on Tractate Kallah</strong>
-              <span class="work-label">Commentary on Tractate Kallah</span>
-              <span class="meta">6 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/gras-nuschah-on-tractate-semachot/">
-              <strong>Gra&#39;s Nuschah on Tractate Semachot</strong>
-              <span class="work-label">Commentary on Tractate Semachot</span>
-              <span class="meta">20 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/gras-nuschah-on-tractate-soferim/">
-              <strong>Gra&#39;s Nuschah on Tractate Soferim</strong>
-              <span class="work-label">Commentary on Tractate Soferim</span>
-              <span class="meta">30 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/hagra-on-sefer-yetzirah-gra-version/">
-              <strong>HaGra on Sefer Yetzirah Gra Version</strong>
-              <span class="work-label">Commentary on Sefer Yetzirah Gra Version</span>
-              <span class="meta">35 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/iggeret-hagra/">
-              <strong>Iggeret HaGra</strong>
-              <span class="meta">16 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/kol-hator/">
-              <strong>Kol HaTor</strong>
-              <span class="meta">228 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/maaseh-rav/">
-              <strong>Maaseh Rav</strong>
-              <span class="meta">250 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/nefesh-hachayim/">
-              <strong>Nefesh HaChayim</strong>
-              <span class="meta">164 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/sefer-yetzirah-gra-version/">
-              <strong>Sefer Yetzirah Gra Version</strong>
-              <span class="meta">62 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../gra/yahel-ohr-on-zohar/">
-              <strong>Yahel Ohr on Zohar</strong>
-              <span class="work-label">Commentary on Zohar</span>
-              <span class="meta">238 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-          </div>
-        </section>
-        <section class="home-section">
-          <h2>Ari / Kabbalah</h2>
-          <div class="home-grid">
-            <a class="work-card" href="../ari/pri-etz-chaim/">
-              <strong>Pri Etz Chaim</strong>
-              <span class="meta">589 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../ari/sefer-etz-chaim/">
-              <strong>Sefer Etz Chaim</strong>
-              <span class="meta">7 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../ari/shaar-hagilgulim/">
-              <strong>Sha&#39;ar HaGilgulim</strong>
-              <span class="meta">854 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../ari/shaar-hahakdamot/">
-              <strong>Sha&#39;ar HaHakdamot</strong>
-              <span class="meta">93 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../ari/shaar-hakavanot/">
-              <strong>Sha&#39;ar HaKavanot</strong>
-              <span class="meta">366 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../ari/shaar-hamitzvot/">
-              <strong>Sha&#39;ar HaMitzvot</strong>
-              <span class="meta">298 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../ari/shaar-hapesukim/">
-              <strong>Sha&#39;ar HaPesukim</strong>
-              <span class="meta">2051 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../ari/shaar-maamarei-rashbi/">
-              <strong>Sha&#39;ar Ma&#39;amarei Rashbi</strong>
-              <span class="meta">585 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../ari/shaar-maamarei-razal/">
-              <strong>Sha&#39;ar Ma&#39;amarei Razal</strong>
-              <span class="meta">103 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../ari/shaar-ruach-hakodesh/">
-              <strong>Sha&#39;ar Ruach HaKodesh</strong>
-              <span class="meta">22 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-            <a class="work-card" href="../ari/shaarei-kedusha/">
-              <strong>Sha&#39;arei Kedusha</strong>
-              <span class="meta">66 source units | Sefaria API | imported 2026-04-27</span>
-            </a>
-          </div>
-        </section>
-        <section class="home-section">
-          <h2>Talmud / Commentary</h2>
-          <div class="home-grid">
-            <a class="work-card" href="../talmud/jerusalem-talmud-taanit/">
-              <strong>Jerusalem Talmud Taanit</strong>
-              <span class="meta">54 source units | Sefaria API | imported 2026-05-04</span>
-            </a>
-          </div>
-        </section>
+        <div class="library-stack">
+          <details class="library-shelf">
+            <summary>
+              <span class="library-shelf-title">
+                <strong>Tanakh</strong>
+                <span>39 works | 23206 source units</span>
+              </span>
+              <span class="library-summary-meta">Browse</span>
+            </summary>
+            <div class="library-shelf-body">
+              <details class="library-subgroup">
+                <summary>
+                  <span class="library-shelf-title">
+                    <strong>Torah</strong>
+                    <span>5 works | 5846 source units</span>
+                  </span>
+                  <span class="library-summary-meta">Browse</span>
+                </summary>
+                <div class="library-grid">
+              <a class="work-card" href="../tanakh/deuteronomy/">
+                <strong>Deuteronomy</strong>
+                <span class="meta">956 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/exodus/">
+                <strong>Exodus</strong>
+                <span class="meta">1210 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/genesis/">
+                <strong>Genesis</strong>
+                <span class="meta">1533 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/leviticus/">
+                <strong>Leviticus</strong>
+                <span class="meta">859 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/numbers/">
+                <strong>Numbers</strong>
+                <span class="meta">1288 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+                </div>
+              </details>
+              <details class="library-subgroup">
+                <summary>
+                  <span class="library-shelf-title">
+                    <strong>Prophets</strong>
+                    <span>21 works | 9296 source units</span>
+                  </span>
+                  <span class="library-summary-meta">Browse</span>
+                </summary>
+                <div class="library-grid">
+              <a class="work-card" href="../tanakh/amos/">
+                <strong>Amos</strong>
+                <span class="meta">146 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/ezekiel/">
+                <strong>Ezekiel</strong>
+                <span class="meta">1273 source units | Sefaria API | imported 2026-05-04</span>
+              </a>
+              <a class="work-card" href="../tanakh/habakkuk/">
+                <strong>Habakkuk</strong>
+                <span class="meta">56 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/haggai/">
+                <strong>Haggai</strong>
+                <span class="meta">38 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/hosea/">
+                <strong>Hosea</strong>
+                <span class="meta">197 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/i-kings/">
+                <strong>I Kings</strong>
+                <span class="meta">817 source units | Sefaria API | imported 2026-05-04</span>
+              </a>
+              <a class="work-card" href="../tanakh/i-samuel/">
+                <strong>I Samuel</strong>
+                <span class="meta">811 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/ii-kings/">
+                <strong>II Kings</strong>
+                <span class="meta">719 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/ii-samuel/">
+                <strong>II Samuel</strong>
+                <span class="meta">695 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/isaiah/">
+                <strong>Isaiah</strong>
+                <span class="meta">1291 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/jeremiah/">
+                <strong>Jeremiah</strong>
+                <span class="meta">1364 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/joel/">
+                <strong>Joel</strong>
+                <span class="meta">73 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/jonah/">
+                <strong>Jonah</strong>
+                <span class="meta">48 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/joshua/">
+                <strong>Joshua</strong>
+                <span class="meta">658 source units | Sefaria API | imported 2026-05-03</span>
+              </a>
+              <a class="work-card" href="../tanakh/judges/">
+                <strong>Judges</strong>
+                <span class="meta">618 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/malachi/">
+                <strong>Malachi</strong>
+                <span class="meta">55 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/micah/">
+                <strong>Micah</strong>
+                <span class="meta">105 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/nahum/">
+                <strong>Nahum</strong>
+                <span class="meta">47 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/obadiah/">
+                <strong>Obadiah</strong>
+                <span class="meta">21 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/zechariah/">
+                <strong>Zechariah</strong>
+                <span class="meta">211 source units | Sefaria API | imported 2026-05-04</span>
+              </a>
+              <a class="work-card" href="../tanakh/zephaniah/">
+                <strong>Zephaniah</strong>
+                <span class="meta">53 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+                </div>
+              </details>
+              <details class="library-subgroup">
+                <summary>
+                  <span class="library-shelf-title">
+                    <strong>Writings</strong>
+                    <span>13 works | 8064 source units</span>
+                  </span>
+                  <span class="library-summary-meta">Browse</span>
+                </summary>
+                <div class="library-grid">
+              <a class="work-card" href="../tanakh/daniel/">
+                <strong>Daniel</strong>
+                <span class="meta">357 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/ecclesiastes/">
+                <strong>Ecclesiastes</strong>
+                <span class="meta">222 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/esther/">
+                <strong>Esther</strong>
+                <span class="meta">167 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/ezra/">
+                <strong>Ezra</strong>
+                <span class="meta">280 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/i-chronicles/">
+                <strong>I Chronicles</strong>
+                <span class="meta">943 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/ii-chronicles/">
+                <strong>II Chronicles</strong>
+                <span class="meta">822 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/job/">
+                <strong>Job</strong>
+                <span class="meta">1070 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/lamentations/">
+                <strong>Lamentations</strong>
+                <span class="meta">154 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/nehemiah/">
+                <strong>Nehemiah</strong>
+                <span class="meta">405 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/proverbs/">
+                <strong>Proverbs</strong>
+                <span class="meta">915 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/psalms/">
+                <strong>Psalms</strong>
+                <span class="meta">2527 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/ruth/">
+                <strong>Ruth</strong>
+                <span class="meta">85 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../tanakh/song-of-songs/">
+                <strong>Song of Songs</strong>
+                <span class="meta">117 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+                </div>
+              </details>
+            </div>
+          </details>
+          <details class="library-shelf">
+            <summary>
+              <span class="library-shelf-title">
+                <strong>Midrash / Aggadah</strong>
+                <span>91 works | 84463 source units</span>
+              </span>
+              <span class="library-summary-meta">Browse</span>
+            </summary>
+            <div class="library-shelf-body">
+              <details class="library-subgroup">
+                <summary>
+                  <span class="library-shelf-title">
+                    <strong>Classic Midrash / Aggadah</strong>
+                    <span>13 works | 20447 source units</span>
+                  </span>
+                  <span class="library-summary-meta">Browse</span>
+                </summary>
+                <div class="library-grid">
+              <a class="work-card" href="../midrash/aggadat-bereshit/">
+                <strong>Aggadat Bereshit</strong>
+                <span class="meta">222 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/ein-yaakov/">
+                <strong>Ein Yaakov</strong>
+                <span class="meta">3192 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/midrash-aggadah/">
+                <strong>Midrash Aggadah</strong>
+                <span class="meta">3269 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/midrash-sekhel-tov/">
+                <strong>Midrash Sekhel Tov</strong>
+                <span class="meta">6889 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/midrash-shmuel/">
+                <strong>Midrash Shmuel</strong>
+                <span class="meta">207 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/midrash-tanchuma/">
+                <strong>Midrash Tanchuma</strong>
+                <span class="meta">2121 source units | Sefaria API | imported 2026-05-04</span>
+              </a>
+              <a class="work-card" href="../midrash/midrash-tanchuma-buber/">
+                <strong>Midrash Tanchuma Buber</strong>
+                <span class="meta">2086 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/midrash-tehillim/">
+                <strong>Midrash Tehillim</strong>
+                <span class="meta">808 source units | Sefaria API | imported 2026-05-05</span>
+              </a>
+              <a class="work-card" href="../midrash/midrash-yelamdenu-selections-from-yalkut-talmud-torah/">
+                <strong>Midrash Yelamdenu, Selections from Yalkut Talmud Torah</strong>
+                <span class="meta">6 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/mishnat-rabbi-eliezer/">
+                <strong>Mishnat Rabbi Eliezer</strong>
+                <span class="meta">589 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/pesikta-derav-kahana/">
+                <strong>Pesikta DeRav Kahana</strong>
+                <span class="meta">304 source units | Sefaria API | imported 2026-05-05</span>
+              </a>
+              <a class="work-card" href="../midrash/pirkei-derabbi-eliezer/">
+                <strong>Pirkei DeRabbi Eliezer</strong>
+                <span class="meta">656 source units | Sefaria API | imported 2026-05-05</span>
+              </a>
+              <a class="work-card" href="../midrash/tanna-debei-eliyahu-zuta/">
+                <strong>Tanna DeBei Eliyahu Zuta</strong>
+                <span class="meta">98 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+                </div>
+              </details>
+              <details class="library-subgroup">
+                <summary>
+                  <span class="library-shelf-title">
+                    <strong>Midrash Rabbah</strong>
+                    <span>7 works | 241 source units</span>
+                  </span>
+                  <span class="library-summary-meta">Browse</span>
+                </summary>
+                <div class="library-grid">
+              <a class="work-card" href="../midrash/eikhah-rabbah/">
+                <strong>Eikhah Rabbah</strong>
+                <span class="meta">91 source units | Sefaria API | imported 2026-05-04</span>
+              </a>
+              <a class="work-card" href="../midrash/kohelet-rabbah/">
+                <strong>Kohelet Rabbah</strong>
+                <span class="meta">21 source units | Sefaria API | imported 2026-05-05</span>
+              </a>
+              <a class="work-card" href="../midrash/pesikta-rabbati/">
+                <strong>Pesikta Rabbati</strong>
+                <span class="meta">34 source units | Sefaria API | imported 2026-05-05</span>
+              </a>
+              <a class="work-card" href="../midrash/ruth-rabbah/">
+                <strong>Ruth Rabbah</strong>
+                <span class="meta">12 source units | Sefaria API | imported 2026-05-05</span>
+              </a>
+              <a class="work-card" href="../midrash/seder-olam-rabbah/">
+                <strong>Seder Olam Rabbah</strong>
+                <span class="meta">2 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/shir-hashirim-rabbah/">
+                <strong>Shir HaShirim Rabbah</strong>
+                <span class="meta">24 source units | Sefaria API | imported 2026-05-05</span>
+              </a>
+              <a class="work-card" href="../midrash/tanna-debei-eliyahu-rabbah/">
+                <strong>Tanna DeBei Eliyahu Rabbah</strong>
+                <span class="meta">57 source units | Sefaria API | imported 2026-05-05</span>
+              </a>
+                </div>
+              </details>
+              <details class="library-subgroup">
+                <summary>
+                  <span class="library-shelf-title">
+                    <strong>Rabbah Commentaries</strong>
+                    <span>50 works | 20829 source units</span>
+                  </span>
+                  <span class="library-summary-meta">Browse</span>
+                </summary>
+                <div class="library-grid">
+              <a class="work-card" href="../midrash/etz-yosef-on-bamidbar-rabbah/">
+                <strong>Etz Yosef on Bamidbar Rabbah</strong>
+                <span class="work-label">Commentary on Bamidbar Rabbah</span>
+                <span class="meta">311 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/etz-yosef-on-bereishit-rabbah/">
+                <strong>Etz Yosef on Bereishit Rabbah</strong>
+                <span class="work-label">Commentary on Bereishit Rabbah</span>
+                <span class="meta">779 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/etz-yosef-on-devarim-rabbah/">
+                <strong>Etz Yosef on Devarim Rabbah</strong>
+                <span class="work-label">Commentary on Devarim Rabbah</span>
+                <span class="meta">100 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/etz-yosef-on-eichah-rabbah/">
+                <strong>Etz Yosef on Eichah Rabbah</strong>
+                <span class="work-label">Commentary on Eichah Rabbah</span>
+                <span class="meta">595 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/etz-yosef-on-esther-rabbah/">
+                <strong>Etz Yosef on Esther Rabbah</strong>
+                <span class="work-label">Commentary on Esther Rabbah</span>
+                <span class="meta">181 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/etz-yosef-on-kohelet-rabbah/">
+                <strong>Etz Yosef on Kohelet Rabbah</strong>
+                <span class="work-label">Commentary on Kohelet Rabbah</span>
+                <span class="meta">2154 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/etz-yosef-on-ruth-rabbah/">
+                <strong>Etz Yosef on Ruth Rabbah</strong>
+                <span class="work-label">Commentary on Ruth Rabbah</span>
+                <span class="meta">90 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/etz-yosef-on-shemot-rabbah/">
+                <strong>Etz Yosef on Shemot Rabbah</strong>
+                <span class="work-label">Commentary on Shemot Rabbah</span>
+                <span class="meta">720 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/etz-yosef-on-shir-hashirim-rabbah/">
+                <strong>Etz Yosef on Shir HaShirim Rabbah</strong>
+                <span class="work-label">Commentary on Shir HaShirim Rabbah</span>
+                <span class="meta">2617 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/etz-yosef-on-vayikra-rabbah/">
+                <strong>Etz Yosef on Vayikra Rabbah</strong>
+                <span class="work-label">Commentary on Vayikra Rabbah</span>
+                <span class="meta">681 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/maharzu-hakatzar-on-bereshit-rabbah/">
+                <strong>Maharzu Hakatzar on Bereshit Rabbah</strong>
+                <span class="work-label">Commentary on Bereshit Rabbah</span>
+                <span class="meta">8 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/matnot-kehunah-on-bamidbar-rabbah/">
+                <strong>Matnot Kehunah on Bamidbar Rabbah</strong>
+                <span class="work-label">Commentary on Bamidbar Rabbah</span>
+                <span class="meta">177 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/matnot-kehunah-on-bereshit-rabbah/">
+                <strong>Matnot Kehunah on Bereshit Rabbah</strong>
+                <span class="work-label">Commentary on Bereshit Rabbah</span>
+                <span class="meta">516 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/matnot-kehunah-on-devarim-rabbah/">
+                <strong>Matnot Kehunah on Devarim Rabbah</strong>
+                <span class="work-label">Commentary on Devarim Rabbah</span>
+                <span class="meta">57 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/matnot-kehunah-on-eichah-rabbah/">
+                <strong>Matnot Kehunah on Eichah Rabbah</strong>
+                <span class="work-label">Commentary on Eichah Rabbah</span>
+                <span class="meta">484 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/matnot-kehunah-on-esther-rabbah/">
+                <strong>Matnot Kehunah on Esther Rabbah</strong>
+                <span class="work-label">Commentary on Esther Rabbah</span>
+                <span class="meta">74 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/matnot-kehunah-on-kohelet-rabbah/">
+                <strong>Matnot Kehunah on Kohelet Rabbah</strong>
+                <span class="work-label">Commentary on Kohelet Rabbah</span>
+                <span class="meta">1683 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/matnot-kehunah-on-ruth-rabbah/">
+                <strong>Matnot Kehunah on Ruth Rabbah</strong>
+                <span class="work-label">Commentary on Ruth Rabbah</span>
+                <span class="meta">71 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/matnot-kehunah-on-shemot-rabbah/">
+                <strong>Matnot Kehunah on Shemot Rabbah</strong>
+                <span class="work-label">Commentary on Shemot Rabbah</span>
+                <span class="meta">229 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/matnot-kehunah-on-shir-hashirim-rabbah/">
+                <strong>Matnot Kehunah on Shir HaShirim Rabbah</strong>
+                <span class="work-label">Commentary on Shir HaShirim Rabbah</span>
+                <span class="meta">1816 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/matnot-kehunah-on-vayikra-rabbah/">
+                <strong>Matnot Kehunah on Vayikra Rabbah</strong>
+                <span class="work-label">Commentary on Vayikra Rabbah</span>
+                <span class="meta">374 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/mishnat-derabbi-eliezer-on-eichah-rabbah/">
+                <strong>Mishnat DeRabbi Eliezer on Eichah Rabbah</strong>
+                <span class="work-label">Commentary on Eichah Rabbah</span>
+                <span class="meta">11 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/mishnat-derabbi-eliezer-on-ruth-rabbah/">
+                <strong>Mishnat DeRabbi Eliezer on Ruth Rabbah</strong>
+                <span class="work-label">Commentary on Ruth Rabbah</span>
+                <span class="meta">1 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/notes-and-corrections-on-midrash-lekach-tov-on-esther/">
+                <strong>Notes and Corrections on Midrash Lekach Tov on Esther</strong>
+                <span class="work-label">Commentary on Midrash Lekach Tov on Esther</span>
+                <span class="meta">254 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/perush-maharzu-on-bamidbar-rabbah/">
+                <strong>Perush Maharzu on Bamidbar Rabbah</strong>
+                <span class="work-label">Commentary on Bamidbar Rabbah</span>
+                <span class="meta">277 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/perush-maharzu-on-bereshit-rabbah/">
+                <strong>Perush Maharzu on Bereshit Rabbah</strong>
+                <span class="work-label">Commentary on Bereshit Rabbah</span>
+                <span class="meta">462 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/perush-maharzu-on-devarim-rabbah/">
+                <strong>Perush Maharzu on Devarim Rabbah</strong>
+                <span class="work-label">Commentary on Devarim Rabbah</span>
+                <span class="meta">74 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/perush-maharzu-on-eichah-rabbah/">
+                <strong>Perush Maharzu on Eichah Rabbah</strong>
+                <span class="work-label">Commentary on Eichah Rabbah</span>
+                <span class="meta">323 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/perush-maharzu-on-esther-rabbah/">
+                <strong>Perush Maharzu on Esther Rabbah</strong>
+                <span class="work-label">Commentary on Esther Rabbah</span>
+                <span class="meta">37 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/perush-maharzu-on-kohelet-rabbah/">
+                <strong>Perush Maharzu on Kohelet Rabbah</strong>
+                <span class="work-label">Commentary on Kohelet Rabbah</span>
+                <span class="meta">870 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/perush-maharzu-on-ruth-rabbah/">
+                <strong>Perush Maharzu on Ruth Rabbah</strong>
+                <span class="work-label">Commentary on Ruth Rabbah</span>
+                <span class="meta">68 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/perush-maharzu-on-shemot-rabbah/">
+                <strong>Perush Maharzu on Shemot Rabbah</strong>
+                <span class="work-label">Commentary on Shemot Rabbah</span>
+                <span class="meta">495 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/perush-maharzu-on-shir-hashirim-rabbah/">
+                <strong>Perush Maharzu on Shir HaShirim Rabbah</strong>
+                <span class="work-label">Commentary on Shir HaShirim Rabbah</span>
+                <span class="meta">1272 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/perush-maharzu-on-vayikra-rabbah/">
+                <strong>Perush Maharzu on Vayikra Rabbah</strong>
+                <span class="work-label">Commentary on Vayikra Rabbah</span>
+                <span class="meta">303 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/rashi-on-bereshit-rabbah/">
+                <strong>Rashi on Bereshit Rabbah</strong>
+                <span class="work-label">Commentary on Bereshit Rabbah</span>
+                <span class="meta">270 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/yedei-moshe-on-bereshit-rabbah/">
+                <strong>Yedei Moshe on Bereshit Rabbah</strong>
+                <span class="work-label">Commentary on Bereshit Rabbah</span>
+                <span class="meta">83 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/yedei-moshe-on-devarim-rabbah/">
+                <strong>Yedei Moshe on Devarim Rabbah</strong>
+                <span class="work-label">Commentary on Devarim Rabbah</span>
+                <span class="meta">9 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/yedei-moshe-on-kohelet-rabbah/">
+                <strong>Yedei Moshe on Kohelet Rabbah</strong>
+                <span class="work-label">Commentary on Kohelet Rabbah</span>
+                <span class="meta">68 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/yedei-moshe-on-shemot-rabbah/">
+                <strong>Yedei Moshe on Shemot Rabbah</strong>
+                <span class="work-label">Commentary on Shemot Rabbah</span>
+                <span class="meta">69 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/yedei-moshe-on-shir-hashirim-rabbah/">
+                <strong>Yedei Moshe on Shir HaShirim Rabbah</strong>
+                <span class="work-label">Commentary on Shir HaShirim Rabbah</span>
+                <span class="meta">108 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/yedei-moshe-on-vayikra-rabbah/">
+                <strong>Yedei Moshe on Vayikra Rabbah</strong>
+                <span class="work-label">Commentary on Vayikra Rabbah</span>
+                <span class="meta">25 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/yefeh-anaf-on-eichah-rabbah/">
+                <strong>Yefeh Anaf on Eichah Rabbah</strong>
+                <span class="work-label">Commentary on Eichah Rabbah</span>
+                <span class="meta">182 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/yefeh-anaf-on-esther-rabbah/">
+                <strong>Yefeh Anaf on Esther Rabbah</strong>
+                <span class="work-label">Commentary on Esther Rabbah</span>
+                <span class="meta">64 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/yefeh-anaf-on-ruth-rabbah/">
+                <strong>Yefeh Anaf on Ruth Rabbah</strong>
+                <span class="work-label">Commentary on Ruth Rabbah</span>
+                <span class="meta">44 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/yefeh-kol-on-shir-hashirim-rabbah/">
+                <strong>Yefeh Kol on Shir HaShirim Rabbah</strong>
+                <span class="work-label">Commentary on Shir HaShirim Rabbah</span>
+                <span class="meta">1099 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/yefeh-toar-on-bamidbar-rabbah/">
+                <strong>Yefeh To&#39;ar on Bamidbar Rabbah</strong>
+                <span class="work-label">Commentary on Bamidbar Rabbah</span>
+                <span class="meta">19 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/yefeh-toar-on-bereshit-rabbah/">
+                <strong>Yefeh To&#39;ar on Bereshit Rabbah</strong>
+                <span class="work-label">Commentary on Bereshit Rabbah</span>
+                <span class="meta">269 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/yefeh-toar-on-devarim-rabbah/">
+                <strong>Yefeh To&#39;ar on Devarim Rabbah</strong>
+                <span class="work-label">Commentary on Devarim Rabbah</span>
+                <span class="meta">5 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/yefeh-toar-on-shemot-rabbah/">
+                <strong>Yefeh To&#39;ar on Shemot Rabbah</strong>
+                <span class="work-label">Commentary on Shemot Rabbah</span>
+                <span class="meta">227 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+              <a class="work-card" href="../midrash/yefeh-toar-on-vayikra-rabbah/">
+                <strong>Yefeh To&#39;ar on Vayikra Rabbah</strong>
+                <span class="work-label">Commentary on Vayikra Rabbah</span>
+                <span class="meta">124 source units | Sefaria API | imported 2026-05-09</span>
+              </a>
+                </div>
+              </details>
+              <details class="library-subgroup">
+                <summary>
+                  <span class="library-shelf-title">
+                    <strong>Halakhic Midrash</strong>
+                    <span>6 works | 13785 source units</span>
+                  </span>
+                  <span class="library-summary-meta">Browse</span>
+                </summary>
+                <div class="library-grid">
+              <a class="work-card" href="../midrash/chafetz-chaim-on-sifra/">
+                <strong>Chafetz Chaim on Sifra</strong>
+                <span class="work-label">Commentary on Sifra</span>
+                <span class="meta">9017 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/midrash-tannaim-on-deuteronomy/">
+                <strong>Midrash Tannaim on Deuteronomy</strong>
+                <span class="meta">235 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/raavad-on-sifra/">
+                <strong>Ra&#39;avad on Sifra</strong>
+                <span class="work-label">Commentary on Sifra</span>
+                <span class="meta">1684 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/sifrei-aggadah-on-esther/">
+                <strong>Sifrei Aggadah on Esther</strong>
+                <span class="meta">197 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/sifrei-bamidbar/">
+                <strong>Sifrei Bamidbar</strong>
+                <span class="meta">295 source units | Sefaria API | imported 2026-05-04</span>
+              </a>
+              <a class="work-card" href="../midrash/sifrei-devarim/">
+                <strong>Sifrei Devarim</strong>
+                <span class="meta">2357 source units | Sefaria API | imported 2026-05-04</span>
+              </a>
+                </div>
+              </details>
+              <details class="library-subgroup">
+                <summary>
+                  <span class="library-shelf-title">
+                    <strong>Lekach Tov and Commentaries</strong>
+                    <span>8 works | 16696 source units</span>
+                  </span>
+                  <span class="library-summary-meta">Browse</span>
+                </summary>
+                <div class="library-grid">
+              <a class="work-card" href="../midrash/beur-hareem-on-midrash-lekach-tov/">
+                <strong>Beur HaRe&#39;em on Midrash Lekach Tov</strong>
+                <span class="work-label">Commentary on Midrash Lekach Tov</span>
+                <span class="meta">2885 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/midrash-lekach-tov/">
+                <strong>Midrash Lekach Tov</strong>
+                <span class="meta">7822 source units | Sefaria API | imported 2026-05-06</span>
+              </a>
+              <a class="work-card" href="../midrash/midrash-lekach-tov-on-ecclesiastes/">
+                <strong>Midrash Lekach Tov on Ecclesiastes</strong>
+                <span class="meta">2 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/midrash-lekach-tov-on-esther/">
+                <strong>Midrash Lekach Tov on Esther</strong>
+                <span class="meta">10 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/midrash-lekach-tov-on-lamentations/">
+                <strong>Midrash Lekach Tov on Lamentations</strong>
+                <span class="meta">7 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/midrash-lekach-tov-on-ruth/">
+                <strong>Midrash Lekach Tov on Ruth</strong>
+                <span class="meta">12 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/midrash-lekach-tov-on-song-of-songs/">
+                <strong>Midrash Lekach Tov on Song of Songs</strong>
+                <span class="meta">3 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/notes-and-corrections-on-midrash-lekach-tov/">
+                <strong>Notes and Corrections on Midrash Lekach Tov</strong>
+                <span class="work-label">Commentary on Midrash Lekach Tov</span>
+                <span class="meta">5955 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+                </div>
+              </details>
+              <details class="library-subgroup">
+                <summary>
+                  <span class="library-shelf-title">
+                    <strong>Collections and Late Midrash</strong>
+                    <span>4 works | 5486 source units</span>
+                  </span>
+                  <span class="library-summary-meta">Browse</span>
+                </summary>
+                <div class="library-grid">
+              <a class="work-card" href="../midrash/alphabet-of-ben-sira/">
+                <strong>Alphabet of Ben Sira</strong>
+                <span class="meta">104 source units | Sefaria API | imported 2026-05-06</span>
+              </a>
+              <a class="work-card" href="../midrash/otzar-midrashim/">
+                <strong>Otzar Midrashim</strong>
+                <span class="meta">5064 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/seder-olam-zutta/">
+                <strong>Seder Olam Zutta</strong>
+                <span class="meta">10 source units | Sefaria API | imported 2026-05-05</span>
+              </a>
+              <a class="work-card" href="../midrash/sefer-hayashar-midrash/">
+                <strong>Sefer HaYashar (midrash)</strong>
+                <span class="meta">308 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+                </div>
+              </details>
+              <details class="library-subgroup">
+                <summary>
+                  <span class="library-shelf-title">
+                    <strong>Other Midrash Commentaries</strong>
+                    <span>3 works | 6979 source units</span>
+                  </span>
+                  <span class="library-summary-meta">Browse</span>
+                </summary>
+                <div class="library-grid">
+              <a class="work-card" href="../midrash/beur-haradal-on-pirkei-derabbi-eliezer/">
+                <strong>Beur HaRadal on Pirkei DeRabbi Eliezer</strong>
+                <span class="work-label">Commentary on Pirkei DeRabbi Eliezer</span>
+                <span class="meta">3398 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/notes-and-corrections-on-midrash-aggadah/">
+                <strong>Notes and Corrections on Midrash Aggadah</strong>
+                <span class="work-label">Commentary on Midrash Aggadah</span>
+                <span class="meta">3395 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+              <a class="work-card" href="../midrash/par-echad-on-pirkei-derabbi-eliezer/">
+                <strong>Par Echad on Pirkei DeRabbi Eliezer</strong>
+                <span class="work-label">Commentary on Pirkei DeRabbi Eliezer</span>
+                <span class="meta">186 source units | Sefaria API | imported 2026-05-08</span>
+              </a>
+                </div>
+              </details>
+            </div>
+          </details>
+          <details class="library-shelf">
+            <summary>
+              <span class="library-shelf-title">
+                <strong>Rav Kook School</strong>
+                <span>6 works | 1159 source units</span>
+              </span>
+              <span class="library-summary-meta">Browse</span>
+            </summary>
+            <div class="library-shelf-body">
+              <details class="library-subgroup">
+                <summary>
+                  <span class="library-shelf-title">
+                    <strong>Orot</strong>
+                    <span>1 work | 416 source units</span>
+                  </span>
+                  <span class="library-summary-meta">Browse</span>
+                </summary>
+                <div class="library-grid">
+              <a class="work-card" href="../orot/">
+                <strong>Orot</strong>
+                <span class="meta">416 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+                </div>
+              </details>
+              <details class="library-subgroup">
+                <summary>
+                  <span class="library-shelf-title">
+                    <strong>Other Rav Kook Works</strong>
+                    <span>5 works | 743 source units</span>
+                  </span>
+                  <span class="library-summary-meta">Browse</span>
+                </summary>
+                <div class="library-grid">
+              <a class="work-card" href="../rav-kook/maamar-hador/">
+                <strong>Ma&#39;amar Hador</strong>
+                <span class="meta">18 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../rav-kook/midbar-shur/">
+                <strong>Midbar Shur</strong>
+                <span class="meta">243 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../rav-kook/musar-avikha/">
+                <strong>Musar Avikha</strong>
+                <span class="meta">14 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../rav-kook/orot-ha-kodesh/">
+                <strong>Orot HaKodesh</strong>
+                <span class="meta">458 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../rav-kook/orot-ha-torah/">
+                <strong>Orot HaTorah</strong>
+                <span class="meta">10 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+                </div>
+              </details>
+            </div>
+          </details>
+          <details class="library-shelf">
+            <summary>
+              <span class="library-shelf-title">
+                <strong>Gra School</strong>
+                <span>22 works | 12676 source units</span>
+              </span>
+              <span class="library-summary-meta">Browse</span>
+            </summary>
+            <div class="library-shelf-body">
+              <details class="library-subgroup">
+                <summary>
+                  <span class="library-shelf-title">
+                    <strong>Gra Transmission Line</strong>
+                    <span>4 works | 658 source units</span>
+                  </span>
+                  <span class="library-summary-meta">Browse</span>
+                </summary>
+                <div class="library-grid">
+              <a class="work-card" href="../gra/iggeret-hagra/">
+                <strong>Iggeret HaGra</strong>
+                <span class="meta">16 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/kol-hator/">
+                <strong>Kol HaTor</strong>
+                <span class="meta">228 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/maaseh-rav/">
+                <strong>Maaseh Rav</strong>
+                <span class="meta">250 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/nefesh-hachayim/">
+                <strong>Nefesh HaChayim</strong>
+                <span class="meta">164 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+                </div>
+              </details>
+              <details class="library-subgroup">
+                <summary>
+                  <span class="library-shelf-title">
+                    <strong>Gra Texts</strong>
+                    <span>1 work | 62 source units</span>
+                  </span>
+                  <span class="library-summary-meta">Browse</span>
+                </summary>
+                <div class="library-grid">
+              <a class="work-card" href="../gra/sefer-yetzirah-gra-version/">
+                <strong>Sefer Yetzirah Gra Version</strong>
+                <span class="meta">62 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+                </div>
+              </details>
+              <details class="library-subgroup">
+                <summary>
+                  <span class="library-shelf-title">
+                    <strong>Gra Commentaries</strong>
+                    <span>17 works | 11956 source units</span>
+                  </span>
+                  <span class="library-summary-meta">Browse</span>
+                </summary>
+                <div class="library-grid">
+              <a class="work-card" href="../gra/aderet-eliyahu/">
+                <strong>Aderet Eliyahu</strong>
+                <span class="work-label">Commentary on Torah</span>
+                <span class="meta">59 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/beur-hagra-on-jerusalem-talmud-bikkurim/">
+                <strong>Beur HaGra on Jerusalem Talmud Bikkurim</strong>
+                <span class="work-label">Commentary on Jerusalem Talmud Bikkurim</span>
+                <span class="meta">170 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/beur-hagra-on-jerusalem-talmud-challah/">
+                <strong>Beur HaGra on Jerusalem Talmud Challah</strong>
+                <span class="work-label">Commentary on Jerusalem Talmud Challah</span>
+                <span class="meta">657 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/beur-hagra-on-shulchan-arukh-choshen-mishpat/">
+                <strong>Beur HaGra on Shulchan Arukh, Choshen Mishpat</strong>
+                <span class="work-label">Commentary on Shulchan Arukh, Choshen Mishpat</span>
+                <span class="meta">41 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/beur-hagra-on-shulchan-arukh-even-haezer/">
+                <strong>Beur HaGra on Shulchan Arukh, Even HaEzer</strong>
+                <span class="work-label">Commentary on Shulchan Arukh, Even HaEzer</span>
+                <span class="meta">281 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/beur-hagra-on-shulchan-arukh-orach-chayim/">
+                <strong>Beur HaGra on Shulchan Arukh, Orach Chayim</strong>
+                <span class="work-label">Commentary on Shulchan Arukh, Orach Chayim</span>
+                <span class="meta">2479 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/beur-hagra-on-shulchan-arukh-yoreh-deah/">
+                <strong>Beur HaGra on Shulchan Arukh, Yoreh De&#39;ah</strong>
+                <span class="work-label">Commentary on Shulchan Arukh, Yoreh De&#39;ah</span>
+                <span class="meta">7500 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/beur-hagra-on-sifra-detzniuta/">
+                <strong>Beur HaGra on Sifra DeTzniuta</strong>
+                <span class="work-label">Commentary on Sifra DeTzniuta</span>
+                <span class="meta">297 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/gra-on-pirkei-avot/">
+                <strong>Gra on Pirkei Avot</strong>
+                <span class="work-label">Commentary on Pirkei Avot</span>
+                <span class="meta">20 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/gras-nuschah-on-avot-drabbi-natan/">
+                <strong>Gra&#39;s Nuschah on Avot D&#39;Rabbi Natan</strong>
+                <span class="work-label">Commentary on Avot D&#39;Rabbi Natan</span>
+                <span class="meta">103 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/gras-nuschah-on-tractate-derekh-eretz-rabbah/">
+                <strong>Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah</strong>
+                <span class="work-label">Commentary on Tractate Derekh Eretz Rabbah</span>
+                <span class="meta">16 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/gras-nuschah-on-tractate-derekh-eretz-zuta/">
+                <strong>Gra&#39;s Nuschah on Tractate Derekh Eretz Zuta</strong>
+                <span class="work-label">Commentary on Tractate Derekh Eretz Zuta</span>
+                <span class="meta">4 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/gras-nuschah-on-tractate-kallah/">
+                <strong>Gra&#39;s Nuschah on Tractate Kallah</strong>
+                <span class="work-label">Commentary on Tractate Kallah</span>
+                <span class="meta">6 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/gras-nuschah-on-tractate-semachot/">
+                <strong>Gra&#39;s Nuschah on Tractate Semachot</strong>
+                <span class="work-label">Commentary on Tractate Semachot</span>
+                <span class="meta">20 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/gras-nuschah-on-tractate-soferim/">
+                <strong>Gra&#39;s Nuschah on Tractate Soferim</strong>
+                <span class="work-label">Commentary on Tractate Soferim</span>
+                <span class="meta">30 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/hagra-on-sefer-yetzirah-gra-version/">
+                <strong>HaGra on Sefer Yetzirah Gra Version</strong>
+                <span class="work-label">Commentary on Sefer Yetzirah Gra Version</span>
+                <span class="meta">35 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../gra/yahel-ohr-on-zohar/">
+                <strong>Yahel Ohr on Zohar</strong>
+                <span class="work-label">Commentary on Zohar</span>
+                <span class="meta">238 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+                </div>
+              </details>
+            </div>
+          </details>
+          <details class="library-shelf">
+            <summary>
+              <span class="library-shelf-title">
+                <strong>Ari / Kabbalah</strong>
+                <span>11 works | 5034 source units</span>
+              </span>
+              <span class="library-summary-meta">Browse</span>
+            </summary>
+            <div class="library-shelf-body">
+              <details class="library-subgroup">
+                <summary>
+                  <span class="library-shelf-title">
+                    <strong>Ari / Chaim Vital Corpus</strong>
+                    <span>11 works | 5034 source units</span>
+                  </span>
+                  <span class="library-summary-meta">Browse</span>
+                </summary>
+                <div class="library-grid">
+              <a class="work-card" href="../ari/pri-etz-chaim/">
+                <strong>Pri Etz Chaim</strong>
+                <span class="meta">589 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../ari/sefer-etz-chaim/">
+                <strong>Sefer Etz Chaim</strong>
+                <span class="meta">7 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../ari/shaar-hagilgulim/">
+                <strong>Sha&#39;ar HaGilgulim</strong>
+                <span class="meta">854 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../ari/shaar-hahakdamot/">
+                <strong>Sha&#39;ar HaHakdamot</strong>
+                <span class="meta">93 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../ari/shaar-hakavanot/">
+                <strong>Sha&#39;ar HaKavanot</strong>
+                <span class="meta">366 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../ari/shaar-hamitzvot/">
+                <strong>Sha&#39;ar HaMitzvot</strong>
+                <span class="meta">298 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../ari/shaar-hapesukim/">
+                <strong>Sha&#39;ar HaPesukim</strong>
+                <span class="meta">2051 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../ari/shaar-maamarei-rashbi/">
+                <strong>Sha&#39;ar Ma&#39;amarei Rashbi</strong>
+                <span class="meta">585 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../ari/shaar-maamarei-razal/">
+                <strong>Sha&#39;ar Ma&#39;amarei Razal</strong>
+                <span class="meta">103 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../ari/shaar-ruach-hakodesh/">
+                <strong>Sha&#39;ar Ruach HaKodesh</strong>
+                <span class="meta">22 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+              <a class="work-card" href="../ari/shaarei-kedusha/">
+                <strong>Sha&#39;arei Kedusha</strong>
+                <span class="meta">66 source units | Sefaria API | imported 2026-04-27</span>
+              </a>
+                </div>
+              </details>
+            </div>
+          </details>
+          <details class="library-shelf">
+            <summary>
+              <span class="library-shelf-title">
+                <strong>Talmud / Commentary</strong>
+                <span>1 work | 54 source units</span>
+              </span>
+              <span class="library-summary-meta">Browse</span>
+            </summary>
+            <div class="library-shelf-body">
+              <div class="library-grid direct">
+              <a class="work-card" href="../talmud/jerusalem-talmud-taanit/">
+                <strong>Jerusalem Talmud Taanit</strong>
+                <span class="meta">54 source units | Sefaria API | imported 2026-05-04</span>
+              </a>
+              </div>
+            </div>
+          </details>
+        </div>
       </div>
     </div>
   </main>
