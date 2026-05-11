@@ -1,6 +1,6 @@
 # Sitewide HUD Readiness Report
 
-Generated: 2026-05-10T22:07:27.652Z
+Generated: 2026-05-11T10:39:16.934Z
 
 This report is diagnostic only. It does not import sources, add definitions, or change lexical ranking.
 
@@ -8,8 +8,8 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 
 - Works scanned: 170
 - Unique work-surface rows: 1226504
-- Matched: 363525 (29.6%)
-- Unmatched: 862979
+- Matched: 363560 (29.6%)
+- Unmatched: 862944
 - Token occurrences: 6066624
 - Rows with missing source/license metadata: 0
 - Suspect parser rows: 0
@@ -20,7 +20,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 |---|---:|---:|---:|---:|---:|---:|---:|
 | Ari / Kabbalah | 11 | 30527 | 70057 | 30.3% | 622095 | 0 | 0 |
 | Gra School | 22 | 22593 | 61307 | 26.9% | 467563 | 0 | 0 |
-| Midrash / Aggadah | 91 | 214239 | 581333 | 26.9% | 4455143 | 0 | 0 |
+| Midrash / Aggadah | 91 | 214274 | 581298 | 26.9% | 4455143 | 0 | 0 |
 | Rav Kook School | 6 | 31440 | 27739 | 53.1% | 248230 | 0 | 0 |
 | Talmud / Commentary | 1 | 861 | 1327 | 39.4% | 4927 | 0 | 0 |
 | Tanakh | 39 | 63865 | 121216 | 34.5% | 268666 | 0 | 0 |
@@ -29,176 +29,176 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 
 | Work | Family | Coverage | Function canaries | Formula canaries | Missing sources | Suspect parser | Largest chunk | Page | Readiness |
 |---|---|---:|---|---|---:|---:|---:|---:|---|
-| Beur HaGra on Sifra DeTzniuta | Gra School | 2814/10860 (25.9%) | all ok | כתיב:miss, א״ר:miss, א״ל:miss, ד״א:absent, זש״ה:absent, וגומר:absent | 0 | 0 | 1.00 MB | 2.92 MB | needs Midrash formula layer |
-| Gra's Nuschah on Tractate Derekh Eretz Rabbah | Gra School | 52/121 (43.0%) | כי:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent | ד״א:miss, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 193.67 KB | 96.34 KB | needs Midrash formula layer |
-| Otzar Midrashim | Midrash / Aggadah | 10881/56400 (19.3%) | all ok | all ok | 0 | 0 | 828.19 KB | 26.03 MB | low coverage; leave until family pass |
-| Ein Yaakov | Midrash / Aggadah | 13153/70278 (18.7%) | all ok | זש״ה:absent | 0 | 0 | 915.18 KB | 23.19 MB | low coverage; leave until family pass |
-| Midrash Lekach Tov | Midrash / Aggadah | 7814/41646 (18.8%) | all ok | all ok | 0 | 0 | 834.63 KB | 24.56 MB | low coverage; leave until family pass |
-| Beur HaRadal on Pirkei DeRabbi Eliezer | Midrash / Aggadah | 7736/41996 (18.4%) | all ok | all ok | 0 | 0 | 828.81 KB | 15.79 MB | low coverage; leave until family pass |
-| Midrash Tanchuma | Midrash / Aggadah | 9626/37138 (25.9%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.14 MB | 15.93 MB | low coverage; leave until family pass |
-| Midrash Sekhel Tov | Midrash / Aggadah | 6945/38876 (17.9%) | all ok | all ok | 0 | 0 | 804.41 KB | 18.46 MB | low coverage; leave until family pass |
-| Beur HaGra on Shulchan Arukh, Yoreh De'ah | Gra School | 3926/25673 (15.3%) | all ok | n/a | 0 | 0 | 752.03 KB | 19.72 MB | low coverage; leave until family pass |
-| Chafetz Chaim on Sifra | Midrash / Aggadah | 5414/29588 (18.3%) | all ok | זש״ה:absent | 0 | 0 | 865.76 KB | 22.32 MB | low coverage; leave until family pass |
-| Midrash Tanchuma Buber | Midrash / Aggadah | 5977/26484 (22.6%) | all ok | וגומר:absent | 0 | 0 | 1.00 MB | 11.21 MB | low coverage; leave until family pass |
-| Ra'avad on Sifra | Midrash / Aggadah | 4604/23139 (19.9%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 943.85 KB | 9.42 MB | low coverage; leave until family pass |
-| Sha'ar Ma'amarei Rashbi | Ari / Kabbalah | 4651/19780 (23.5%) | all ok | n/a | 0 | 0 | 948.50 KB | 7.25 MB | low coverage; leave until family pass |
-| Notes and Corrections on Midrash Lekach Tov | Midrash / Aggadah | 4553/19908 (22.9%) | all ok | וגומר:absent | 0 | 0 | 968.89 KB | 14.40 MB | low coverage; leave until family pass |
-| Midrash Tehillim | Midrash / Aggadah | 5168/20099 (25.7%) | all ok | ד״א:absent, זש״ה:absent | 0 | 0 | 1015.62 KB | 5.82 MB | low coverage; leave until family pass |
-| Midrash Aggadah | Midrash / Aggadah | 5246/20618 (25.4%) | all ok | וגומר:absent, א״ר:absent | 0 | 0 | 1005.98 KB | 9.02 MB | low coverage; leave until family pass |
-| Sha'ar HaPesukim | Ari / Kabbalah | 4562/16032 (28.5%) | all ok | n/a | 0 | 0 | 1.04 MB | 8.18 MB | low coverage; leave until family pass |
-| Midbar Shur | Rav Kook School | 6385/19798 (32.3%) | all ok | n/a | 0 | 0 | 1.14 MB | 4.34 MB | low coverage; leave until family pass |
-| Etz Yosef on Shir HaShirim Rabbah | Midrash / Aggadah | 5491/20691 (26.5%) | all ok | ד״א:absent, זש״ה:absent | 0 | 0 | 1.01 MB | 7.32 MB | low coverage; leave until family pass |
-| Sha'ar HaGilgulim | Ari / Kabbalah | 4064/13104 (31.0%) | all ok | n/a | 0 | 0 | 1.09 MB | 4.42 MB | low coverage; leave until family pass |
-| Sefer HaYashar (midrash) | Midrash / Aggadah | 3111/11610 (26.8%) | all ok | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.13 MB | 3.80 MB | low coverage; leave until family pass |
-| Sifrei Devarim | Midrash / Aggadah | 3862/13236 (29.2%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.17 MB | 5.88 MB | low coverage; leave until family pass |
-| Orot HaKodesh | Rav Kook School | 7990/18735 (42.6%) | all ok | n/a | 0 | 0 | 1.31 MB | 3.50 MB | usable; content coverage remains |
-| Pesikta DeRav Kahana | Midrash / Aggadah | 3518/13970 (25.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.03 MB | 2.99 MB | low coverage; leave until family pass |
-| Notes and Corrections on Midrash Aggadah | Midrash / Aggadah | 3404/12167 (28.0%) | all ok | וגומר:absent | 0 | 0 | 1.08 MB | 7.85 MB | low coverage; leave until family pass |
-| Beur HaGra on Shulchan Arukh, Orach Chayim | Gra School | 2503/12656 (19.8%) | all ok | n/a | 0 | 0 | 862.34 KB | 6.46 MB | low coverage; leave until family pass |
-| Tanna DeBei Eliyahu Rabbah | Midrash / Aggadah | 3808/11930 (31.9%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.17 MB | 2.45 MB | low coverage; leave until family pass |
-| Sha'ar HaKavanot | Ari / Kabbalah | 3343/10910 (30.6%) | all ok | n/a | 0 | 0 | 1.09 MB | 3.03 MB | low coverage; leave until family pass |
-| Orot | Rav Kook School | 14870/17307 (85.9%) | all ok | n/a | 0 | 0 | 2.18 MB | 3.09 MB | ready/hardened |
-| Sha'ar HaMitzvot | Ari / Kabbalah | 3418/11959 (28.6%) | all ok | n/a | 0 | 0 | 1.03 MB | 2.74 MB | low coverage; leave until family pass |
-| Sifrei Bamidbar | Midrash / Aggadah | 3062/9816 (31.2%) | all ok | זש״ה:absent | 0 | 0 | 1.23 MB | 2.57 MB | low coverage; leave until family pass |
-| Beur HaRe'em on Midrash Lekach Tov | Midrash / Aggadah | 3596/13211 (27.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.03 MB | 7.46 MB | low coverage; leave until family pass |
-| Mishnat Rabbi Eliezer | Midrash / Aggadah | 3852/12809 (30.1%) | all ok | זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.14 MB | 2.76 MB | low coverage; leave until family pass |
-| Pri Etz Chaim | Ari / Kabbalah | 3175/9512 (33.4%) | all ok | n/a | 0 | 0 | 1.20 MB | 2.92 MB | low coverage; leave until family pass |
-| Etz Yosef on Kohelet Rabbah | Midrash / Aggadah | 3850/13312 (28.9%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 0 | 1.07 MB | 4.80 MB | low coverage; leave until family pass |
-| Yefeh Kol on Shir HaShirim Rabbah | Midrash / Aggadah | 4332/13612 (31.8%) | all ok | וגומר:absent | 0 | 0 | 1.11 MB | 3.33 MB | low coverage; leave until family pass |
-| Sha'ar HaHakdamot | Ari / Kabbalah | 2892/9189 (31.5%) | all ok | n/a | 0 | 0 | 1.11 MB | 1.90 MB | low coverage; leave until family pass |
-| Aggadat Bereshit | Midrash / Aggadah | 2999/8840 (33.9%) | all ok | all ok | 0 | 0 | 1.20 MB | 1.95 MB | low coverage; leave until family pass |
-| Pirkei DeRabbi Eliezer | Midrash / Aggadah | 3864/11509 (33.6%) | all ok | ד״א:absent, זש״ה:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.23 MB | 3.02 MB | low coverage; leave until family pass |
-| Perush Maharzu on Shir HaShirim Rabbah | Midrash / Aggadah | 3052/9196 (33.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.23 MB | 3.09 MB | low coverage; leave until family pass |
-| Midrash Shmuel | Midrash / Aggadah | 2377/7023 (33.8%) | all ok | וגומר:absent | 0 | 0 | 1.25 MB | 1.34 MB | low coverage; leave until family pass |
-| Tanna DeBei Eliyahu Zuta | Midrash / Aggadah | 2896/8411 (34.4%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.18 MB | 1.30 MB | low coverage; leave until family pass |
-| Eikhah Rabbah | Midrash / Aggadah | 2627/8321 (31.6%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.18 MB | 1.49 MB | low coverage; leave until family pass |
-| Sifrei Aggadah on Esther | Midrash / Aggadah | 2190/6654 (32.9%) | all ok | וגומר:absent | 0 | 0 | 1.20 MB | 1.23 MB | low coverage; leave until family pass |
-| Matnot Kehunah on Shir HaShirim Rabbah | Midrash / Aggadah | 2460/7681 (32.0%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.16 MB | 3.54 MB | low coverage; leave until family pass |
-| Perush Maharzu on Bereshit Rabbah | Midrash / Aggadah | 2503/6701 (37.4%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.26 MB | 1.56 MB | usable; content coverage remains |
-| Perush Maharzu on Kohelet Rabbah | Midrash / Aggadah | 2534/6700 (37.8%) | all ok | זש״ה:absent | 0 | 0 | 1.31 MB | 2.08 MB | usable; content coverage remains |
-| Matnot Kehunah on Kohelet Rabbah | Midrash / Aggadah | 2340/7005 (33.4%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.17 MB | 3.18 MB | low coverage; leave until family pass |
-| Etz Yosef on Bereishit Rabbah | Midrash / Aggadah | 2755/7900 (34.9%) | all ok | all ok | 0 | 0 | 1.20 MB | 1.94 MB | low coverage; leave until family pass |
-| Etz Yosef on Vayikra Rabbah | Midrash / Aggadah | 2637/7738 (34.1%) | all ok | וגומר:absent | 0 | 0 | 1.22 MB | 1.76 MB | low coverage; leave until family pass |
-| Etz Yosef on Shemot Rabbah | Midrash / Aggadah | 2530/6882 (36.8%) | all ok | וגומר:absent | 0 | 0 | 1.27 MB | 1.76 MB | usable; content coverage remains |
-| Jeremiah | Tanakh | 4132/12098 (34.2%) | מן:absent | n/a | 0 | 0 | 1.18 MB | 2.71 MB | low coverage; leave until family pass |
-| Sha'ar Ma'amarei Razal | Ari / Kabbalah | 2046/5388 (38.0%) | all ok | n/a | 0 | 0 | 1.26 MB | 951.67 KB | usable; content coverage remains |
-| Genesis | Tanakh | 3743/11363 (32.9%) | מן:absent | n/a | 0 | 0 | 1.14 MB | 2.76 MB | low coverage; leave until family pass |
-| Yefeh To'ar on Bereshit Rabbah | Midrash / Aggadah | 2417/6072 (39.8%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.36 MB | 1.10 MB | usable; content coverage remains |
-| Psalms | Tanakh | 4047/12462 (32.5%) | all ok | n/a | 0 | 0 | 1.17 MB | 3.87 MB | low coverage; leave until family pass |
-| Beur HaGra on Jerusalem Talmud Challah | Gra School | 1002/3544 (28.3%) | all ok | n/a | 0 | 0 | 1.01 MB | 1.63 MB | low coverage; leave until family pass |
-| Perush Maharzu on Shemot Rabbah | Midrash / Aggadah | 2033/5256 (38.7%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.30 MB | 1.36 MB | usable; content coverage remains |
-| Etz Yosef on Eichah Rabbah | Midrash / Aggadah | 2175/6435 (33.8%) | all ok | שנאמר:absent, וגומר:absent | 0 | 0 | 1.24 MB | 1.53 MB | low coverage; leave until family pass |
-| Ezekiel | Tanakh | 3784/10759 (35.2%) | מן:absent, אם:absent | n/a | 0 | 0 | 1.18 MB | 2.44 MB | usable; content coverage remains |
-| Isaiah | Tanakh | 4231/11650 (36.3%) | מן:absent | n/a | 0 | 0 | 1.33 MB | 2.36 MB | usable; content coverage remains |
-| Kol HaTor | Gra School | 1914/4308 (44.4%) | all ok | n/a | 0 | 0 | 1.40 MB | 902.94 KB | usable; content coverage remains |
-| Par Echad on Pirkei DeRabbi Eliezer | Midrash / Aggadah | 2061/5738 (35.9%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.24 MB | 895.75 KB | usable; content coverage remains |
-| Exodus | Tanakh | 2934/8879 (33.0%) | all ok | n/a | 0 | 0 | 1.13 MB | 2.22 MB | low coverage; leave until family pass |
-| Numbers | Tanakh | 2758/8225 (33.5%) | מן:absent | n/a | 0 | 0 | 1.11 MB | 2.30 MB | low coverage; leave until family pass |
-| Yahel Ohr on Zohar | Gra School | 1728/4871 (35.5%) | all ok | n/a | 0 | 0 | 1.25 MB | 962.50 KB | usable; content coverage remains |
-| Yefeh To'ar on Shemot Rabbah | Midrash / Aggadah | 1982/4774 (41.5%) | all ok | וגומר:absent, א״ר:absent | 0 | 0 | 1.37 MB | 880.84 KB | usable; content coverage remains |
-| Alphabet of Ben Sira | Midrash / Aggadah | 1673/4510 (37.1%) | all ok | זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 0 | 1.29 MB | 701.60 KB | usable; content coverage remains |
-| Deuteronomy | Tanakh | 2939/8113 (36.2%) | אם:absent | n/a | 0 | 0 | 1.18 MB | 1.89 MB | usable; content coverage remains |
-| Perush Maharzu on Vayikra Rabbah | Midrash / Aggadah | 1839/4678 (39.3%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 0 | 1.32 MB | 967.20 KB | usable; content coverage remains |
-| II Chronicles | Tanakh | 2786/8092 (34.4%) | מן:absent | n/a | 0 | 0 | 1.21 MB | 1.73 MB | low coverage; leave until family pass |
-| I Samuel | Tanakh | 2736/7707 (35.5%) | אם:absent | n/a | 0 | 0 | 1.14 MB | 1.66 MB | usable; content coverage remains |
-| I Kings | Tanakh | 2645/7590 (34.8%) | מן:absent | n/a | 0 | 0 | 1.16 MB | 1.63 MB | low coverage; leave until family pass |
-| II Kings | Tanakh | 2352/6901 (34.1%) | מן:absent | n/a | 0 | 0 | 1.12 MB | 1.49 MB | low coverage; leave until family pass |
-| Leviticus | Tanakh | 2036/6089 (33.4%) | מן:absent | n/a | 0 | 0 | 1.11 MB | 1.61 MB | low coverage; leave until family pass |
-| Pesikta Rabbati | Midrash / Aggadah | 1332/3103 (42.9%) | all ok | וגומר:absent | 0 | 0 | 1.44 MB | 471.41 KB | usable; content coverage remains |
-| I Chronicles | Tanakh | 2019/6945 (29.1%) | מן:absent | n/a | 0 | 0 | 1.07 MB | 1.75 MB | low coverage; leave until family pass |
-| II Samuel | Tanakh | 2337/6700 (34.9%) | מן:absent | n/a | 0 | 0 | 1.11 MB | 1.42 MB | low coverage; leave until family pass |
-| Nefesh HaChayim | Gra School | 1850/4430 (41.8%) | all ok | n/a | 0 | 0 | 1.31 MB | 747.20 KB | usable; content coverage remains |
-| Perush Maharzu on Eichah Rabbah | Midrash / Aggadah | 1499/3692 (40.6%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 0 | 1.38 MB | 906.75 KB | usable; content coverage remains |
-| Yefeh Anaf on Eichah Rabbah | Midrash / Aggadah | 1531/3783 (40.5%) | all ok | וגומר:absent, א״ר:absent | 0 | 0 | 1.36 MB | 684.57 KB | usable; content coverage remains |
-| Aderet Eliyahu | Gra School | 1647/3711 (44.4%) | all ok | n/a | 0 | 0 | 1.46 MB | 478.78 KB | usable; content coverage remains |
-| Joshua | Tanakh | 2136/5856 (36.5%) | all ok | n/a | 0 | 0 | 1.12 MB | 1.30 MB | usable; content coverage remains |
-| Judges | Tanakh | 2124/6131 (34.6%) | מן:absent | n/a | 0 | 0 | 1.15 MB | 1.24 MB | low coverage; leave until family pass |
-| Perush Maharzu on Bamidbar Rabbah | Midrash / Aggadah | 1447/3476 (41.6%) | all ok | וגומר:absent, א״ל:absent | 0 | 0 | 1.38 MB | 779.55 KB | usable; content coverage remains |
-| Midrash Tannaim on Deuteronomy | Midrash / Aggadah | 1176/2712 (43.4%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.47 MB | 696.94 KB | usable; content coverage remains |
-| Matnot Kehunah on Bereshit Rabbah | Midrash / Aggadah | 1454/3705 (39.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.35 MB | 1.10 MB | usable; content coverage remains |
-| Yedei Moshe on Shir HaShirim Rabbah | Midrash / Aggadah | 1225/3038 (40.3%) | all ok | ד״א:absent, וגומר:absent, א״ל:absent | 0 | 0 | 1.30 MB | 501.46 KB | usable; content coverage remains |
-| Etz Yosef on Bamidbar Rabbah | Midrash / Aggadah | 1510/3554 (42.5%) | all ok | ד״א:absent, וגומר:absent | 0 | 0 | 1.38 MB | 770.38 KB | usable; content coverage remains |
-| Job | Tanakh | 1790/5899 (30.3%) | all ok | n/a | 0 | 0 | 1.08 MB | 1.61 MB | low coverage; leave until family pass |
-| Etz Yosef on Esther Rabbah | Midrash / Aggadah | 1180/2889 (40.8%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 0 | 1.32 MB | 588.38 KB | usable; content coverage remains |
-| Shir HaShirim Rabbah | Midrash / Aggadah | 1185/2477 (47.8%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.53 MB | 434.44 KB | usable; content coverage remains |
-| Beur HaGra on Jerusalem Talmud Bikkurim | Gra School | 821/2487 (33.0%) | all ok | n/a | 0 | 0 | 1.06 MB | 568.18 KB | low coverage; leave until family pass |
-| Matnot Kehunah on Eichah Rabbah | Midrash / Aggadah | 1152/2981 (38.6%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 0 | 1.32 MB | 1.02 MB | usable; content coverage remains |
-| HaGra on Sefer Yetzirah Gra Version | Gra School | 896/2250 (39.8%) | אשר:absent, אם:absent | n/a | 0 | 0 | 1.27 MB | 357.29 KB | usable; content coverage remains |
-| Maaseh Rav | Gra School | 1022/2700 (37.9%) | all ok | n/a | 0 | 0 | 1.25 MB | 664.17 KB | usable; content coverage remains |
-| Proverbs | Tanakh | 1578/4705 (33.5%) | מן:absent | n/a | 0 | 0 | 1.23 MB | 1.43 MB | low coverage; leave until family pass |
-| Rashi on Bereshit Rabbah | Midrash / Aggadah | 1181/2795 (42.3%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.37 MB | 668.14 KB | usable; content coverage remains |
-| Yefeh To'ar on Vayikra Rabbah | Midrash / Aggadah | 1207/2548 (47.4%) | all ok | וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.48 MB | 452.34 KB | usable; content coverage remains |
-| Daniel | Tanakh | 1229/4269 (28.8%) | מן:absent, אם:absent, אין:absent | n/a | 0 | 0 | 1.07 MB | 800.73 KB | low coverage; leave until family pass |
-| Beur HaGra on Shulchan Arukh, Even HaEzer | Gra School | 577/2159 (26.7%) | אשר:absent | n/a | 0 | 0 | 938.06 KB | 811.47 KB | low coverage; leave until family pass |
-| Kohelet Rabbah | Midrash / Aggadah | 984/2205 (44.6%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.43 MB | 350.23 KB | usable; content coverage remains |
-| Jerusalem Talmud Taanit | Talmud / Commentary | 861/2188 (39.4%) | all ok | n/a | 0 | 0 | 1.25 MB | 377.87 KB | usable; content coverage remains |
-| Yedei Moshe on Bereshit Rabbah | Midrash / Aggadah | 975/2172 (44.9%) | all ok | א״ל:absent | 0 | 0 | 1.42 MB | 377.73 KB | usable; content coverage remains |
-| Nehemiah | Tanakh | 1311/3818 (34.3%) | מן:absent | n/a | 0 | 0 | 1.11 MB | 828.70 KB | low coverage; leave until family pass |
-| Matnot Kehunah on Vayikra Rabbah | Midrash / Aggadah | 1019/2518 (40.5%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 0 | 1.37 MB | 776.53 KB | usable; content coverage remains |
-| Sha'ar Ruach HaKodesh | Ari / Kabbalah | 895/2004 (44.7%) | all ok | n/a | 0 | 0 | 1.38 MB | 283.92 KB | usable; content coverage remains |
-| Yedei Moshe on Shemot Rabbah | Midrash / Aggadah | 879/1947 (45.1%) | all ok | זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent | 0 | 0 | 1.35 MB | 338.26 KB | usable; content coverage remains |
-| Ruth Rabbah | Midrash / Aggadah | 792/1529 (51.8%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.48 MB | 264.39 KB | usable; content coverage remains |
-| Yedei Moshe on Kohelet Rabbah | Midrash / Aggadah | 829/1854 (44.7%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent | 0 | 0 | 1.34 MB | 298.60 KB | usable; content coverage remains |
-| Ezra | Tanakh | 785/2665 (29.5%) | את:absent, מן:absent | n/a | 0 | 0 | 1007.25 KB | 599.07 KB | low coverage; leave until family pass |
-| Sha'arei Kedusha | Ari / Kabbalah | 930/1732 (53.7%) | all ok | n/a | 0 | 0 | 1.56 MB | 287.96 KB | usable; content coverage remains |
-| Ma'amar Hador | Rav Kook School | 1280/1965 (65.1%) | all ok | n/a | 0 | 0 | 1.83 MB | 218.75 KB | usable; content coverage remains |
-| Notes and Corrections on Midrash Lekach Tov on Esther | Midrash / Aggadah | 483/1178 (41.0%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 0 | 1.37 MB | 583.99 KB | usable; content coverage remains |
-| Matnot Kehunah on Shemot Rabbah | Midrash / Aggadah | 747/1632 (45.8%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 0 | 1.39 MB | 507.80 KB | usable; content coverage remains |
-| Zechariah | Tanakh | 920/2181 (42.2%) | מן:absent, אם:absent | n/a | 0 | 0 | 1.18 MB | 471.26 KB | usable; content coverage remains |
-| Etz Yosef on Devarim Rabbah | Midrash / Aggadah | 709/1541 (46.0%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.42 MB | 307.14 KB | usable; content coverage remains |
-| Seder Olam Zutta | Midrash / Aggadah | 316/976 (32.4%) | אין:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.14 MB | 181.99 KB | low coverage; leave until family pass |
-| Etz Yosef on Ruth Rabbah | Midrash / Aggadah | 688/1387 (49.6%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.41 MB | 294.96 KB | usable; content coverage remains |
-| Perush Maharzu on Devarim Rabbah | Midrash / Aggadah | 665/1369 (48.6%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 0 | 1.39 MB | 269.51 KB | usable; content coverage remains |
-| Esther | Tanakh | 713/1962 (36.3%) | מן:absent, כל:absent | n/a | 0 | 0 | 1023.87 KB | 415.07 KB | usable; content coverage remains |
-| Beur HaGra on Shulchan Arukh, Choshen Mishpat | Gra School | 309/1106 (27.9%) | אשר:absent | n/a | 0 | 0 | 860.12 KB | 234.19 KB | low coverage; leave until family pass |
-| Ecclesiastes | Tanakh | 1000/2047 (48.9%) | מן:absent, אם:absent | n/a | 0 | 0 | 1.29 MB | 473.97 KB | usable; content coverage remains |
-| Midrash Lekach Tov on Esther | Midrash / Aggadah | 522/1030 (50.7%) | אין:absent | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.58 MB | 174.47 KB | usable; content coverage remains |
-| Yefeh Anaf on Ruth Rabbah | Midrash / Aggadah | 636/1292 (49.2%) | מן:absent | זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.47 MB | 213.17 KB | usable; content coverage remains |
-| Yefeh Anaf on Esther Rabbah | Midrash / Aggadah | 578/1231 (47.0%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.45 MB | 242.78 KB | usable; content coverage remains |
-| Matnot Kehunah on Bamidbar Rabbah | Midrash / Aggadah | 643/1378 (46.7%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.46 MB | 404.07 KB | usable; content coverage remains |
-| Hosea | Tanakh | 709/1828 (38.8%) | את:absent, מן:absent, כל:absent | n/a | 0 | 0 | 1.10 MB | 405.85 KB | usable; content coverage remains |
-| Sefer Yetzirah Gra Version | Gra School | 356/743 (47.9%) | לא:absent, אם:absent | n/a | 0 | 0 | 1.10 MB | 217.64 KB | usable; content coverage remains |
-| Sefer Etz Chaim | Ari / Kabbalah | 551/974 (56.6%) | all ok | n/a | 0 | 0 | 1.43 MB | 146.16 KB | usable; content coverage remains |
-| Iggeret HaGra | Gra School | 557/1069 (52.1%) | מן:absent | n/a | 0 | 0 | 1.52 MB | 156.32 KB | usable; content coverage remains |
-| Amos | Tanakh | 570/1437 (39.7%) | מן:absent, אם:absent | n/a | 0 | 0 | 1.13 MB | 328.51 KB | usable; content coverage remains |
-| Perush Maharzu on Ruth Rabbah | Midrash / Aggadah | 452/883 (51.2%) | מן:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.29 MB | 225.11 KB | usable; content coverage remains |
-| Lamentations | Tanakh | 476/1264 (37.7%) | אם:absent | n/a | 0 | 0 | 1.05 MB | 347.83 KB | usable; content coverage remains |
-| Midrash Lekach Tov on Ruth | Midrash / Aggadah | 417/759 (54.9%) | all ok | זש״ה:absent, שנאמר:absent, כתיב:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.22 MB | 132.22 KB | usable; content coverage remains |
-| Midrash Lekach Tov on Lamentations | Midrash / Aggadah | 402/757 (53.1%) | all ok | זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.23 MB | 124.16 KB | usable; content coverage remains |
-| Midrash Lekach Tov on Song of Songs | Midrash / Aggadah | 462/787 (58.7%) | all ok | זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.44 MB | 117.87 KB | usable; content coverage remains |
-| Perush Maharzu on Esther Rabbah | Midrash / Aggadah | 352/755 (46.6%) | all ok | ד״א:absent, זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.08 MB | 170.38 KB | usable; content coverage remains |
-| Micah | Tanakh | 469/1144 (41.0%) | מן:absent, כל:absent, אם:absent | n/a | 0 | 0 | 1.17 MB | 253.30 KB | usable; content coverage remains |
-| Song of Songs | Tanakh | 328/984 (33.3%) | כי:absent, הוא:absent, מן:absent, אם:absent | n/a | 0 | 0 | 984.13 KB | 272.72 KB | low coverage; leave until family pass |
-| Orot HaTorah | Rav Kook School | 543/807 (67.3%) | אם:absent | n/a | 0 | 0 | 1.59 MB | 139.26 KB | usable; content coverage remains |
-| Ruth | Tanakh | 402/999 (40.2%) | על:absent, מן:absent | n/a | 0 | 0 | 902.69 KB | 222.60 KB | usable; content coverage remains |
-| Yefeh To'ar on Bamidbar Rabbah | Midrash / Aggadah | 340/646 (52.6%) | אשר:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1006.97 KB | 126.99 KB | usable; content coverage remains |
-| Matnot Kehunah on Ruth Rabbah | Midrash / Aggadah | 297/594 (50.0%) | כי:absent, אשר:absent | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 907.47 KB | 204.52 KB | usable; content coverage remains |
-| Joel | Tanakh | 321/776 (41.4%) | את:absent, על:absent, מן:absent, אם:absent | n/a | 0 | 0 | 922.36 KB | 192.93 KB | usable; content coverage remains |
-| Musar Avikha | Rav Kook School | 372/567 (65.6%) | all ok | n/a | 0 | 0 | 1.02 MB | 115.00 KB | usable; content coverage remains |
-| Matnot Kehunah on Esther Rabbah | Midrash / Aggadah | 266/558 (47.7%) | אם:absent | זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 891.50 KB | 208.24 KB | usable; content coverage remains |
-| Malachi | Tanakh | 317/676 (46.9%) | מן:absent, כל:absent, אם:absent | n/a | 0 | 0 | 876.66 KB | 170.12 KB | usable; content coverage remains |
-| Midrash Yelamdenu, Selections from Yalkut Talmud Torah | Midrash / Aggadah | 279/523 (53.3%) | מן:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 868.28 KB | 105.33 KB | usable; content coverage remains |
-| Gra on Pirkei Avot | Gra School | 196/419 (46.8%) | אם:absent, אין:absent | n/a | 0 | 0 | 651.35 KB | 114.18 KB | usable; content coverage remains |
-| Midrash Lekach Tov on Ecclesiastes | Midrash / Aggadah | 256/421 (60.8%) | אין:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 823.03 KB | 92.44 KB | usable; content coverage remains |
-| Zephaniah | Tanakh | 258/618 (41.7%) | הוא:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 0 | 732.23 KB | 163.37 KB | usable; content coverage remains |
-| Matnot Kehunah on Devarim Rabbah | Midrash / Aggadah | 220/454 (48.5%) | כי:absent, אשר:absent | זש״ה:absent, כתיב:absent, וגומר:absent, א״ל:absent | 0 | 0 | 687.62 KB | 170.77 KB | usable; content coverage remains |
-| Habakkuk | Tanakh | 248/578 (42.9%) | את:absent, מן:absent, כל:absent | n/a | 0 | 0 | 783.46 KB | 161.28 KB | usable; content coverage remains |
-| Jonah | Tanakh | 224/525 (42.7%) | את:absent, על:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 0 | 606.11 KB | 151.03 KB | usable; content coverage remains |
-| Nahum | Tanakh | 203/503 (40.4%) | את:absent, על:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 0 | 707.89 KB | 145.28 KB | usable; content coverage remains |
-| Mishnat DeRabbi Eliezer on Eichah Rabbah | Midrash / Aggadah | 191/407 (46.9%) | אשר:absent, מן:absent, אם:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 629.37 KB | 103.71 KB | usable; content coverage remains |
-| Yedei Moshe on Devarim Rabbah | Midrash / Aggadah | 222/357 (62.2%) | כי:absent, אם:absent | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 632.71 KB | 97.24 KB | usable; content coverage remains |
-| Gra's Nuschah on Avot D'Rabbi Natan | Gra School | 203/387 (52.5%) | אשר:absent, מן:absent, אם:absent | n/a | 0 | 0 | 703.03 KB | 238.77 KB | usable; content coverage remains |
-| Haggai | Tanakh | 183/406 (45.1%) | על:absent, הוא:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 0 | 499.66 KB | 135.76 KB | usable; content coverage remains |
-| Seder Olam Rabbah | Midrash / Aggadah | 147/268 (54.9%) | כל:absent, אין:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 498.73 KB | 82.54 KB | usable; content coverage remains |
-| Yedei Moshe on Vayikra Rabbah | Midrash / Aggadah | 183/346 (52.9%) | אשר:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 588.59 KB | 121.69 KB | usable; content coverage remains |
-| Yefeh To'ar on Devarim Rabbah | Midrash / Aggadah | 137/263 (52.1%) | מן:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 430.50 KB | 84.79 KB | usable; content coverage remains |
-| Gra's Nuschah on Tractate Soferim | Gra School | 124/236 (52.5%) | הוא:absent, מן:absent | n/a | 0 | 0 | 398.09 KB | 123.78 KB | usable; content coverage remains |
-| Maharzu Hakatzar on Bereshit Rabbah | Midrash / Aggadah | 104/198 (52.5%) | כי:absent, לא:absent, מן:absent, כל:absent, אם:absent, אין:absent | זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 300.98 KB | 86.94 KB | usable; content coverage remains |
-| Obadiah | Tanakh | 92/237 (38.8%) | על:absent, לא:absent, הוא:absent, מן:absent, אם:absent | n/a | 0 | 0 | 285.61 KB | 100.94 KB | usable; content coverage remains |
-| Gra's Nuschah on Tractate Semachot | Gra School | 53/110 (48.2%) | את:absent, כי:absent, הוא:absent, אשר:absent, מן:absent, אין:absent | n/a | 0 | 0 | 193.82 KB | 101.13 KB | usable; content coverage remains |
-| Mishnat DeRabbi Eliezer on Ruth Rabbah | Midrash / Aggadah | 21/46 (45.7%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 57.85 KB | 67.53 KB | usable; content coverage remains |
-| Gra's Nuschah on Tractate Kallah | Gra School | 25/36 (69.4%) | את:absent, כי:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 0 | 68.13 KB | 74.64 KB | usable; content coverage remains |
-| Gra's Nuschah on Tractate Derekh Eretz Zuta | Gra School | 18/24 (75.0%) | את:absent, כי:absent, על:absent, הוא:absent, אשר:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 0 | 77.76 KB | 72.90 KB | ready/hardened |
+| Beur HaGra on Sifra DeTzniuta | Gra School | 2814/10860 (25.9%) | all ok | כתיב:miss, א״ר:miss, א״ל:miss, ד״א:absent, זש״ה:absent, וגומר:absent | 0 | 0 | 1.00 MB | 2.30 MB | needs Midrash formula layer |
+| Gra's Nuschah on Tractate Derekh Eretz Rabbah | Gra School | 52/121 (43.0%) | כי:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent | ד״א:miss, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 193.67 KB | 94.95 KB | needs Midrash formula layer |
+| Otzar Midrashim | Midrash / Aggadah | 10881/56400 (19.3%) | all ok | all ok | 0 | 0 | 828.19 KB | 21.85 MB | low coverage; leave until family pass |
+| Ein Yaakov | Midrash / Aggadah | 13153/70278 (18.7%) | all ok | זש״ה:absent | 0 | 0 | 915.18 KB | 17.42 MB | low coverage; leave until family pass |
+| Midrash Lekach Tov | Midrash / Aggadah | 7849/41646 (18.8%) | all ok | all ok | 0 | 0 | 837.55 KB | 21.24 MB | low coverage; leave until family pass |
+| Beur HaRadal on Pirkei DeRabbi Eliezer | Midrash / Aggadah | 7736/41996 (18.4%) | all ok | all ok | 0 | 0 | 828.81 KB | 13.06 MB | low coverage; leave until family pass |
+| Midrash Tanchuma | Midrash / Aggadah | 9626/37138 (25.9%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.14 MB | 12.00 MB | low coverage; leave until family pass |
+| Midrash Sekhel Tov | Midrash / Aggadah | 6945/38876 (17.9%) | all ok | all ok | 0 | 0 | 804.41 KB | 16.11 MB | low coverage; leave until family pass |
+| Beur HaGra on Shulchan Arukh, Yoreh De'ah | Gra School | 3926/25673 (15.3%) | all ok | n/a | 0 | 0 | 752.03 KB | 17.65 MB | low coverage; leave until family pass |
+| Chafetz Chaim on Sifra | Midrash / Aggadah | 5414/29588 (18.3%) | all ok | זש״ה:absent | 0 | 0 | 865.76 KB | 20.25 MB | low coverage; leave until family pass |
+| Midrash Tanchuma Buber | Midrash / Aggadah | 5977/26484 (22.6%) | all ok | וגומר:absent | 0 | 0 | 1.00 MB | 9.30 MB | low coverage; leave until family pass |
+| Ra'avad on Sifra | Midrash / Aggadah | 4604/23139 (19.9%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 943.85 KB | 7.78 MB | low coverage; leave until family pass |
+| Sha'ar Ma'amarei Rashbi | Ari / Kabbalah | 4651/19780 (23.5%) | all ok | n/a | 0 | 0 | 948.50 KB | 5.69 MB | low coverage; leave until family pass |
+| Notes and Corrections on Midrash Lekach Tov | Midrash / Aggadah | 4553/19908 (22.9%) | all ok | וגומר:absent | 0 | 0 | 968.89 KB | 13.10 MB | low coverage; leave until family pass |
+| Midrash Tehillim | Midrash / Aggadah | 5168/20099 (25.7%) | all ok | ד״א:absent, זש״ה:absent | 0 | 0 | 1015.62 KB | 4.63 MB | low coverage; leave until family pass |
+| Midrash Aggadah | Midrash / Aggadah | 5246/20618 (25.4%) | all ok | וגומר:absent, א״ר:absent | 0 | 0 | 1005.98 KB | 7.94 MB | low coverage; leave until family pass |
+| Sha'ar HaPesukim | Ari / Kabbalah | 4562/16032 (28.5%) | all ok | n/a | 0 | 0 | 1.04 MB | 7.05 MB | low coverage; leave until family pass |
+| Midbar Shur | Rav Kook School | 6385/19798 (32.3%) | all ok | n/a | 0 | 0 | 1.14 MB | 3.31 MB | low coverage; leave until family pass |
+| Etz Yosef on Shir HaShirim Rabbah | Midrash / Aggadah | 5491/20691 (26.5%) | all ok | ד״א:absent, זש״ה:absent | 0 | 0 | 1.01 MB | 6.39 MB | low coverage; leave until family pass |
+| Sha'ar HaGilgulim | Ari / Kabbalah | 4064/13104 (31.0%) | all ok | n/a | 0 | 0 | 1.09 MB | 3.57 MB | low coverage; leave until family pass |
+| Sefer HaYashar (midrash) | Midrash / Aggadah | 3111/11610 (26.8%) | all ok | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.13 MB | 2.98 MB | low coverage; leave until family pass |
+| Sifrei Devarim | Midrash / Aggadah | 3862/13236 (29.2%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.17 MB | 5.15 MB | low coverage; leave until family pass |
+| Orot HaKodesh | Rav Kook School | 7990/18735 (42.6%) | all ok | n/a | 0 | 0 | 1.31 MB | 2.71 MB | usable; content coverage remains |
+| Pesikta DeRav Kahana | Midrash / Aggadah | 3518/13970 (25.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.03 MB | 2.36 MB | low coverage; leave until family pass |
+| Notes and Corrections on Midrash Aggadah | Midrash / Aggadah | 3404/12167 (28.0%) | all ok | וגומר:absent | 0 | 0 | 1.08 MB | 7.22 MB | low coverage; leave until family pass |
+| Beur HaGra on Shulchan Arukh, Orach Chayim | Gra School | 2503/12656 (19.8%) | all ok | n/a | 0 | 0 | 862.34 KB | 5.85 MB | low coverage; leave until family pass |
+| Tanna DeBei Eliyahu Rabbah | Midrash / Aggadah | 3808/11930 (31.9%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.17 MB | 1.86 MB | low coverage; leave until family pass |
+| Sha'ar HaKavanot | Ari / Kabbalah | 3343/10910 (30.6%) | all ok | n/a | 0 | 0 | 1.09 MB | 2.45 MB | low coverage; leave until family pass |
+| Orot | Rav Kook School | 14870/17307 (85.9%) | all ok | n/a | 0 | 0 | 2.18 MB | 2.47 MB | ready/hardened |
+| Sha'ar HaMitzvot | Ari / Kabbalah | 3418/11959 (28.6%) | all ok | n/a | 0 | 0 | 1.03 MB | 2.18 MB | low coverage; leave until family pass |
+| Sifrei Bamidbar | Midrash / Aggadah | 3062/9816 (31.2%) | all ok | זש״ה:absent | 0 | 0 | 1.23 MB | 2.03 MB | low coverage; leave until family pass |
+| Beur HaRe'em on Midrash Lekach Tov | Midrash / Aggadah | 3596/13211 (27.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.03 MB | 6.92 MB | low coverage; leave until family pass |
+| Mishnat Rabbi Eliezer | Midrash / Aggadah | 3852/12809 (30.1%) | all ok | זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.14 MB | 2.25 MB | low coverage; leave until family pass |
+| Pri Etz Chaim | Ari / Kabbalah | 3175/9512 (33.4%) | all ok | n/a | 0 | 0 | 1.20 MB | 2.43 MB | low coverage; leave until family pass |
+| Etz Yosef on Kohelet Rabbah | Midrash / Aggadah | 3850/13312 (28.9%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 0 | 1.07 MB | 4.32 MB | low coverage; leave until family pass |
+| Yefeh Kol on Shir HaShirim Rabbah | Midrash / Aggadah | 4332/13612 (31.8%) | all ok | וגומר:absent | 0 | 0 | 1.11 MB | 2.88 MB | low coverage; leave until family pass |
+| Sha'ar HaHakdamot | Ari / Kabbalah | 2892/9189 (31.5%) | all ok | n/a | 0 | 0 | 1.11 MB | 1.46 MB | low coverage; leave until family pass |
+| Aggadat Bereshit | Midrash / Aggadah | 2999/8840 (33.9%) | all ok | all ok | 0 | 0 | 1.20 MB | 1.56 MB | low coverage; leave until family pass |
+| Pirkei DeRabbi Eliezer | Midrash / Aggadah | 3864/11509 (33.6%) | all ok | ד״א:absent, זש״ה:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.23 MB | 2.34 MB | low coverage; leave until family pass |
+| Perush Maharzu on Shir HaShirim Rabbah | Midrash / Aggadah | 3052/9196 (33.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.23 MB | 2.79 MB | low coverage; leave until family pass |
+| Midrash Shmuel | Midrash / Aggadah | 2377/7023 (33.8%) | all ok | וגומר:absent | 0 | 0 | 1.25 MB | 1.08 MB | low coverage; leave until family pass |
+| Tanna DeBei Eliyahu Zuta | Midrash / Aggadah | 2896/8411 (34.4%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.18 MB | 1.03 MB | low coverage; leave until family pass |
+| Eikhah Rabbah | Midrash / Aggadah | 2627/8321 (31.6%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.18 MB | 1.09 MB | low coverage; leave until family pass |
+| Sifrei Aggadah on Esther | Midrash / Aggadah | 2190/6654 (32.9%) | all ok | וגומר:absent | 0 | 0 | 1.20 MB | 1.02 MB | low coverage; leave until family pass |
+| Matnot Kehunah on Shir HaShirim Rabbah | Midrash / Aggadah | 2460/7681 (32.0%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.16 MB | 3.32 MB | low coverage; leave until family pass |
+| Perush Maharzu on Bereshit Rabbah | Midrash / Aggadah | 2503/6701 (37.4%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.26 MB | 1.35 MB | usable; content coverage remains |
+| Perush Maharzu on Kohelet Rabbah | Midrash / Aggadah | 2534/6700 (37.8%) | all ok | זש״ה:absent | 0 | 0 | 1.31 MB | 1.87 MB | usable; content coverage remains |
+| Matnot Kehunah on Kohelet Rabbah | Midrash / Aggadah | 2340/7005 (33.4%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.17 MB | 2.98 MB | low coverage; leave until family pass |
+| Etz Yosef on Bereishit Rabbah | Midrash / Aggadah | 2755/7900 (34.9%) | all ok | all ok | 0 | 0 | 1.20 MB | 1.73 MB | low coverage; leave until family pass |
+| Etz Yosef on Vayikra Rabbah | Midrash / Aggadah | 2637/7738 (34.1%) | all ok | וגומר:absent | 0 | 0 | 1.22 MB | 1.55 MB | low coverage; leave until family pass |
+| Etz Yosef on Shemot Rabbah | Midrash / Aggadah | 2530/6882 (36.8%) | all ok | וגומר:absent | 0 | 0 | 1.27 MB | 1.57 MB | usable; content coverage remains |
+| Jeremiah | Tanakh | 4132/12098 (34.2%) | מן:absent | n/a | 0 | 0 | 1.18 MB | 2.31 MB | low coverage; leave until family pass |
+| Sha'ar Ma'amarei Razal | Ari / Kabbalah | 2046/5388 (38.0%) | all ok | n/a | 0 | 0 | 1.26 MB | 779.16 KB | usable; content coverage remains |
+| Genesis | Tanakh | 3743/11363 (32.9%) | מן:absent | n/a | 0 | 0 | 1.14 MB | 2.40 MB | low coverage; leave until family pass |
+| Yefeh To'ar on Bereshit Rabbah | Midrash / Aggadah | 2417/6072 (39.8%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.36 MB | 957.92 KB | usable; content coverage remains |
+| Psalms | Tanakh | 4047/12462 (32.5%) | all ok | n/a | 0 | 0 | 1.17 MB | 3.50 MB | low coverage; leave until family pass |
+| Beur HaGra on Jerusalem Talmud Challah | Gra School | 1002/3544 (28.3%) | all ok | n/a | 0 | 0 | 1.01 MB | 1.47 MB | low coverage; leave until family pass |
+| Perush Maharzu on Shemot Rabbah | Midrash / Aggadah | 2033/5256 (38.7%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.30 MB | 1.21 MB | usable; content coverage remains |
+| Etz Yosef on Eichah Rabbah | Midrash / Aggadah | 2175/6435 (33.8%) | all ok | שנאמר:absent, וגומר:absent | 0 | 0 | 1.24 MB | 1.37 MB | low coverage; leave until family pass |
+| Ezekiel | Tanakh | 3784/10759 (35.2%) | מן:absent, אם:absent | n/a | 0 | 0 | 1.18 MB | 2.10 MB | usable; content coverage remains |
+| Isaiah | Tanakh | 4231/11650 (36.3%) | מן:absent | n/a | 0 | 0 | 1.33 MB | 2.05 MB | usable; content coverage remains |
+| Kol HaTor | Gra School | 1914/4308 (44.4%) | all ok | n/a | 0 | 0 | 1.40 MB | 750.37 KB | usable; content coverage remains |
+| Par Echad on Pirkei DeRabbi Eliezer | Midrash / Aggadah | 2061/5738 (35.9%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.24 MB | 755.84 KB | usable; content coverage remains |
+| Exodus | Tanakh | 2934/8879 (33.0%) | all ok | n/a | 0 | 0 | 1.13 MB | 1.92 MB | low coverage; leave until family pass |
+| Numbers | Tanakh | 2758/8225 (33.5%) | מן:absent | n/a | 0 | 0 | 1.11 MB | 2.01 MB | low coverage; leave until family pass |
+| Yahel Ohr on Zohar | Gra School | 1728/4871 (35.5%) | all ok | n/a | 0 | 0 | 1.25 MB | 832.51 KB | usable; content coverage remains |
+| Yefeh To'ar on Shemot Rabbah | Midrash / Aggadah | 1982/4774 (41.5%) | all ok | וגומר:absent, א״ר:absent | 0 | 0 | 1.37 MB | 756.61 KB | usable; content coverage remains |
+| Alphabet of Ben Sira | Midrash / Aggadah | 1673/4510 (37.1%) | all ok | זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 0 | 1.29 MB | 581.43 KB | usable; content coverage remains |
+| Deuteronomy | Tanakh | 2939/8113 (36.2%) | אם:absent | n/a | 0 | 0 | 1.18 MB | 1.63 MB | usable; content coverage remains |
+| Perush Maharzu on Vayikra Rabbah | Midrash / Aggadah | 1839/4678 (39.3%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 0 | 1.32 MB | 849.54 KB | usable; content coverage remains |
+| II Chronicles | Tanakh | 2786/8092 (34.4%) | מן:absent | n/a | 0 | 0 | 1.21 MB | 1.48 MB | low coverage; leave until family pass |
+| I Samuel | Tanakh | 2736/7707 (35.5%) | אם:absent | n/a | 0 | 0 | 1.14 MB | 1.42 MB | usable; content coverage remains |
+| I Kings | Tanakh | 2645/7590 (34.8%) | מן:absent | n/a | 0 | 0 | 1.16 MB | 1.39 MB | low coverage; leave until family pass |
+| II Kings | Tanakh | 2352/6901 (34.1%) | מן:absent | n/a | 0 | 0 | 1.12 MB | 1.26 MB | low coverage; leave until family pass |
+| Leviticus | Tanakh | 2036/6089 (33.4%) | מן:absent | n/a | 0 | 0 | 1.11 MB | 1.40 MB | low coverage; leave until family pass |
+| Pesikta Rabbati | Midrash / Aggadah | 1332/3103 (42.9%) | all ok | וגומר:absent | 0 | 0 | 1.44 MB | 381.77 KB | usable; content coverage remains |
+| I Chronicles | Tanakh | 2019/6945 (29.1%) | מן:absent | n/a | 0 | 0 | 1.07 MB | 1.55 MB | low coverage; leave until family pass |
+| II Samuel | Tanakh | 2337/6700 (34.9%) | מן:absent | n/a | 0 | 0 | 1.11 MB | 1.22 MB | low coverage; leave until family pass |
+| Nefesh HaChayim | Gra School | 1850/4430 (41.8%) | all ok | n/a | 0 | 0 | 1.31 MB | 651.15 KB | usable; content coverage remains |
+| Perush Maharzu on Eichah Rabbah | Midrash / Aggadah | 1499/3692 (40.6%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 0 | 1.38 MB | 817.82 KB | usable; content coverage remains |
+| Yefeh Anaf on Eichah Rabbah | Midrash / Aggadah | 1531/3783 (40.5%) | all ok | וגומר:absent, א״ר:absent | 0 | 0 | 1.36 MB | 595.51 KB | usable; content coverage remains |
+| Aderet Eliyahu | Gra School | 1647/3711 (44.4%) | all ok | n/a | 0 | 0 | 1.46 MB | 394.11 KB | usable; content coverage remains |
+| Joshua | Tanakh | 2136/5856 (36.5%) | all ok | n/a | 0 | 0 | 1.12 MB | 1.11 MB | usable; content coverage remains |
+| Judges | Tanakh | 2124/6131 (34.6%) | מן:absent | n/a | 0 | 0 | 1.15 MB | 1.06 MB | low coverage; leave until family pass |
+| Perush Maharzu on Bamidbar Rabbah | Midrash / Aggadah | 1447/3476 (41.6%) | all ok | וגומר:absent, א״ל:absent | 0 | 0 | 1.38 MB | 699.34 KB | usable; content coverage remains |
+| Midrash Tannaim on Deuteronomy | Midrash / Aggadah | 1176/2712 (43.4%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.47 MB | 622.02 KB | usable; content coverage remains |
+| Matnot Kehunah on Bereshit Rabbah | Midrash / Aggadah | 1454/3705 (39.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.35 MB | 1.03 MB | usable; content coverage remains |
+| Yedei Moshe on Shir HaShirim Rabbah | Midrash / Aggadah | 1225/3038 (40.3%) | all ok | ד״א:absent, וגומר:absent, א״ל:absent | 0 | 0 | 1.30 MB | 430.78 KB | usable; content coverage remains |
+| Etz Yosef on Bamidbar Rabbah | Midrash / Aggadah | 1510/3554 (42.5%) | all ok | ד״א:absent, וגומר:absent | 0 | 0 | 1.38 MB | 698.92 KB | usable; content coverage remains |
+| Job | Tanakh | 1790/5899 (30.3%) | all ok | n/a | 0 | 0 | 1.08 MB | 1.46 MB | low coverage; leave until family pass |
+| Etz Yosef on Esther Rabbah | Midrash / Aggadah | 1180/2889 (40.8%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 0 | 1.32 MB | 521.14 KB | usable; content coverage remains |
+| Shir HaShirim Rabbah | Midrash / Aggadah | 1185/2477 (47.8%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.53 MB | 330.45 KB | usable; content coverage remains |
+| Beur HaGra on Jerusalem Talmud Bikkurim | Gra School | 821/2487 (33.0%) | all ok | n/a | 0 | 0 | 1.06 MB | 503.20 KB | low coverage; leave until family pass |
+| Matnot Kehunah on Eichah Rabbah | Midrash / Aggadah | 1152/2981 (38.6%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 0 | 1.32 MB | 977.75 KB | usable; content coverage remains |
+| HaGra on Sefer Yetzirah Gra Version | Gra School | 896/2250 (39.8%) | אשר:absent, אם:absent | n/a | 0 | 0 | 1.27 MB | 295.84 KB | usable; content coverage remains |
+| Maaseh Rav | Gra School | 1022/2700 (37.9%) | all ok | n/a | 0 | 0 | 1.25 MB | 605.20 KB | usable; content coverage remains |
+| Proverbs | Tanakh | 1578/4705 (33.5%) | מן:absent | n/a | 0 | 0 | 1.23 MB | 1.30 MB | low coverage; leave until family pass |
+| Rashi on Bereshit Rabbah | Midrash / Aggadah | 1181/2795 (42.3%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.37 MB | 609.79 KB | usable; content coverage remains |
+| Yefeh To'ar on Vayikra Rabbah | Midrash / Aggadah | 1207/2548 (47.4%) | all ok | וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.48 MB | 399.95 KB | usable; content coverage remains |
+| Daniel | Tanakh | 1229/4269 (28.8%) | מן:absent, אם:absent, אין:absent | n/a | 0 | 0 | 1.07 MB | 684.71 KB | low coverage; leave until family pass |
+| Beur HaGra on Shulchan Arukh, Even HaEzer | Gra School | 577/2159 (26.7%) | אשר:absent | n/a | 0 | 0 | 938.06 KB | 763.12 KB | low coverage; leave until family pass |
+| Kohelet Rabbah | Midrash / Aggadah | 984/2205 (44.6%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.43 MB | 270.24 KB | usable; content coverage remains |
+| Jerusalem Talmud Taanit | Talmud / Commentary | 861/2188 (39.4%) | all ok | n/a | 0 | 0 | 1.25 MB | 300.90 KB | usable; content coverage remains |
+| Yedei Moshe on Bereshit Rabbah | Midrash / Aggadah | 975/2172 (44.9%) | all ok | א״ל:absent | 0 | 0 | 1.42 MB | 332.65 KB | usable; content coverage remains |
+| Nehemiah | Tanakh | 1311/3818 (34.3%) | מן:absent | n/a | 0 | 0 | 1.11 MB | 722.29 KB | low coverage; leave until family pass |
+| Matnot Kehunah on Vayikra Rabbah | Midrash / Aggadah | 1019/2518 (40.5%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 0 | 1.37 MB | 730.94 KB | usable; content coverage remains |
+| Sha'ar Ruach HaKodesh | Ari / Kabbalah | 895/2004 (44.7%) | all ok | n/a | 0 | 0 | 1.38 MB | 237.73 KB | usable; content coverage remains |
+| Yedei Moshe on Shemot Rabbah | Midrash / Aggadah | 879/1947 (45.1%) | all ok | זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent | 0 | 0 | 1.35 MB | 296.38 KB | usable; content coverage remains |
+| Ruth Rabbah | Midrash / Aggadah | 792/1529 (51.8%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.48 MB | 208.30 KB | usable; content coverage remains |
+| Yedei Moshe on Kohelet Rabbah | Midrash / Aggadah | 829/1854 (44.7%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent | 0 | 0 | 1.34 MB | 263.69 KB | usable; content coverage remains |
+| Ezra | Tanakh | 785/2665 (29.5%) | את:absent, מן:absent | n/a | 0 | 0 | 1007.25 KB | 523.71 KB | low coverage; leave until family pass |
+| Sha'arei Kedusha | Ari / Kabbalah | 930/1732 (53.7%) | all ok | n/a | 0 | 0 | 1.56 MB | 253.47 KB | usable; content coverage remains |
+| Ma'amar Hador | Rav Kook School | 1280/1965 (65.1%) | all ok | n/a | 0 | 0 | 1.83 MB | 184.25 KB | usable; content coverage remains |
+| Notes and Corrections on Midrash Lekach Tov on Esther | Midrash / Aggadah | 483/1178 (41.0%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 0 | 1.37 MB | 556.42 KB | usable; content coverage remains |
+| Matnot Kehunah on Shemot Rabbah | Midrash / Aggadah | 747/1632 (45.8%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 0 | 1.39 MB | 479.64 KB | usable; content coverage remains |
+| Zechariah | Tanakh | 920/2181 (42.2%) | מן:absent, אם:absent | n/a | 0 | 0 | 1.18 MB | 412.39 KB | usable; content coverage remains |
+| Etz Yosef on Devarim Rabbah | Midrash / Aggadah | 709/1541 (46.0%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.42 MB | 279.97 KB | usable; content coverage remains |
+| Seder Olam Zutta | Midrash / Aggadah | 316/976 (32.4%) | אין:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.14 MB | 154.56 KB | low coverage; leave until family pass |
+| Etz Yosef on Ruth Rabbah | Midrash / Aggadah | 688/1387 (49.6%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.41 MB | 269.05 KB | usable; content coverage remains |
+| Perush Maharzu on Devarim Rabbah | Midrash / Aggadah | 665/1369 (48.6%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 0 | 1.39 MB | 244.72 KB | usable; content coverage remains |
+| Esther | Tanakh | 713/1962 (36.3%) | מן:absent, כל:absent | n/a | 0 | 0 | 1023.87 KB | 356.54 KB | usable; content coverage remains |
+| Beur HaGra on Shulchan Arukh, Choshen Mishpat | Gra School | 309/1106 (27.9%) | אשר:absent | n/a | 0 | 0 | 860.12 KB | 211.04 KB | low coverage; leave until family pass |
+| Ecclesiastes | Tanakh | 1000/2047 (48.9%) | מן:absent, אם:absent | n/a | 0 | 0 | 1.29 MB | 421.64 KB | usable; content coverage remains |
+| Midrash Lekach Tov on Esther | Midrash / Aggadah | 522/1030 (50.7%) | אין:absent | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.58 MB | 150.70 KB | usable; content coverage remains |
+| Yefeh Anaf on Ruth Rabbah | Midrash / Aggadah | 636/1292 (49.2%) | מן:absent | זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.47 MB | 191.58 KB | usable; content coverage remains |
+| Yefeh Anaf on Esther Rabbah | Midrash / Aggadah | 578/1231 (47.0%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.45 MB | 221.78 KB | usable; content coverage remains |
+| Matnot Kehunah on Bamidbar Rabbah | Midrash / Aggadah | 643/1378 (46.7%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.46 MB | 382.21 KB | usable; content coverage remains |
+| Hosea | Tanakh | 709/1828 (38.8%) | את:absent, מן:absent, כל:absent | n/a | 0 | 0 | 1.10 MB | 361.12 KB | usable; content coverage remains |
+| Sefer Yetzirah Gra Version | Gra School | 356/743 (47.9%) | לא:absent, אם:absent | n/a | 0 | 0 | 1.10 MB | 199.34 KB | usable; content coverage remains |
+| Sefer Etz Chaim | Ari / Kabbalah | 551/974 (56.6%) | all ok | n/a | 0 | 0 | 1.43 MB | 127.51 KB | usable; content coverage remains |
+| Iggeret HaGra | Gra School | 557/1069 (52.1%) | מן:absent | n/a | 0 | 0 | 1.52 MB | 138.64 KB | usable; content coverage remains |
+| Amos | Tanakh | 570/1437 (39.7%) | מן:absent, אם:absent | n/a | 0 | 0 | 1.13 MB | 290.68 KB | usable; content coverage remains |
+| Perush Maharzu on Ruth Rabbah | Midrash / Aggadah | 452/883 (51.2%) | מן:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.29 MB | 209.86 KB | usable; content coverage remains |
+| Lamentations | Tanakh | 476/1264 (37.7%) | אם:absent | n/a | 0 | 0 | 1.05 MB | 318.70 KB | usable; content coverage remains |
+| Midrash Lekach Tov on Ruth | Midrash / Aggadah | 417/759 (54.9%) | all ok | זש״ה:absent, שנאמר:absent, כתיב:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.22 MB | 119.78 KB | usable; content coverage remains |
+| Midrash Lekach Tov on Lamentations | Midrash / Aggadah | 402/757 (53.1%) | all ok | זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.23 MB | 111.65 KB | usable; content coverage remains |
+| Midrash Lekach Tov on Song of Songs | Midrash / Aggadah | 462/787 (58.7%) | all ok | זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.44 MB | 105.30 KB | usable; content coverage remains |
+| Perush Maharzu on Esther Rabbah | Midrash / Aggadah | 352/755 (46.6%) | all ok | ד״א:absent, זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.08 MB | 158.21 KB | usable; content coverage remains |
+| Micah | Tanakh | 469/1144 (41.0%) | מן:absent, כל:absent, אם:absent | n/a | 0 | 0 | 1.17 MB | 226.88 KB | usable; content coverage remains |
+| Song of Songs | Tanakh | 328/984 (33.3%) | כי:absent, הוא:absent, מן:absent, אם:absent | n/a | 0 | 0 | 984.13 KB | 248.05 KB | low coverage; leave until family pass |
+| Orot HaTorah | Rav Kook School | 543/807 (67.3%) | אם:absent | n/a | 0 | 0 | 1.59 MB | 119.70 KB | usable; content coverage remains |
+| Ruth | Tanakh | 402/999 (40.2%) | על:absent, מן:absent | n/a | 0 | 0 | 902.69 KB | 198.73 KB | usable; content coverage remains |
+| Yefeh To'ar on Bamidbar Rabbah | Midrash / Aggadah | 340/646 (52.6%) | אשר:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1006.97 KB | 118.19 KB | usable; content coverage remains |
+| Matnot Kehunah on Ruth Rabbah | Midrash / Aggadah | 297/594 (50.0%) | כי:absent, אשר:absent | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 907.47 KB | 195.88 KB | usable; content coverage remains |
+| Joel | Tanakh | 321/776 (41.4%) | את:absent, על:absent, מן:absent, אם:absent | n/a | 0 | 0 | 922.36 KB | 174.62 KB | usable; content coverage remains |
+| Musar Avikha | Rav Kook School | 372/567 (65.6%) | all ok | n/a | 0 | 0 | 1.02 MB | 106.27 KB | usable; content coverage remains |
+| Matnot Kehunah on Esther Rabbah | Midrash / Aggadah | 266/558 (47.7%) | אם:absent | זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 891.50 KB | 200.11 KB | usable; content coverage remains |
+| Malachi | Tanakh | 317/676 (46.9%) | מן:absent, כל:absent, אם:absent | n/a | 0 | 0 | 876.66 KB | 153.89 KB | usable; content coverage remains |
+| Midrash Yelamdenu, Selections from Yalkut Talmud Torah | Midrash / Aggadah | 279/523 (53.3%) | מן:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 868.28 KB | 97.82 KB | usable; content coverage remains |
+| Gra on Pirkei Avot | Gra School | 196/419 (46.8%) | אם:absent, אין:absent | n/a | 0 | 0 | 651.35 KB | 107.92 KB | usable; content coverage remains |
+| Midrash Lekach Tov on Ecclesiastes | Midrash / Aggadah | 256/421 (60.8%) | אין:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 823.03 KB | 86.11 KB | usable; content coverage remains |
+| Zephaniah | Tanakh | 258/618 (41.7%) | הוא:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 0 | 732.23 KB | 149.08 KB | usable; content coverage remains |
+| Matnot Kehunah on Devarim Rabbah | Midrash / Aggadah | 220/454 (48.5%) | כי:absent, אשר:absent | זש״ה:absent, כתיב:absent, וגומר:absent, א״ל:absent | 0 | 0 | 687.62 KB | 164.48 KB | usable; content coverage remains |
+| Habakkuk | Tanakh | 248/578 (42.9%) | את:absent, מן:absent, כל:absent | n/a | 0 | 0 | 783.46 KB | 148.97 KB | usable; content coverage remains |
+| Jonah | Tanakh | 224/525 (42.7%) | את:absent, על:absent, מן:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 0 | 606.11 KB | 138.14 KB | usable; content coverage remains |
+| Nahum | Tanakh | 203/503 (40.4%) | את:absent, על:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 0 | 707.89 KB | 134.47 KB | usable; content coverage remains |
+| Mishnat DeRabbi Eliezer on Eichah Rabbah | Midrash / Aggadah | 191/407 (46.9%) | אשר:absent, מן:absent, אם:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 629.37 KB | 98.78 KB | usable; content coverage remains |
+| Yedei Moshe on Devarim Rabbah | Midrash / Aggadah | 222/357 (62.2%) | כי:absent, אם:absent | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 632.71 KB | 92.56 KB | usable; content coverage remains |
+| Gra's Nuschah on Avot D'Rabbi Natan | Gra School | 203/387 (52.5%) | אשר:absent, מן:absent, אם:absent | n/a | 0 | 0 | 703.03 KB | 233.81 KB | usable; content coverage remains |
+| Haggai | Tanakh | 183/406 (45.1%) | על:absent, הוא:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 0 | 499.66 KB | 124.62 KB | usable; content coverage remains |
+| Seder Olam Rabbah | Midrash / Aggadah | 147/268 (54.9%) | כל:absent, אין:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 498.73 KB | 78.59 KB | usable; content coverage remains |
+| Yedei Moshe on Vayikra Rabbah | Midrash / Aggadah | 183/346 (52.9%) | אשר:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 588.59 KB | 117.30 KB | usable; content coverage remains |
+| Yefeh To'ar on Devarim Rabbah | Midrash / Aggadah | 137/263 (52.1%) | מן:absent | ד״א:absent, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 430.50 KB | 81.56 KB | usable; content coverage remains |
+| Gra's Nuschah on Tractate Soferim | Gra School | 124/236 (52.5%) | הוא:absent, מן:absent | n/a | 0 | 0 | 398.09 KB | 120.47 KB | usable; content coverage remains |
+| Maharzu Hakatzar on Bereshit Rabbah | Midrash / Aggadah | 104/198 (52.5%) | כי:absent, לא:absent, מן:absent, כל:absent, אם:absent, אין:absent | זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 300.98 KB | 83.80 KB | usable; content coverage remains |
+| Obadiah | Tanakh | 92/237 (38.8%) | על:absent, לא:absent, הוא:absent, מן:absent, אם:absent | n/a | 0 | 0 | 285.61 KB | 95.57 KB | usable; content coverage remains |
+| Gra's Nuschah on Tractate Semachot | Gra School | 53/110 (48.2%) | את:absent, כי:absent, הוא:absent, אשר:absent, מן:absent, אין:absent | n/a | 0 | 0 | 193.82 KB | 99.80 KB | usable; content coverage remains |
+| Mishnat DeRabbi Eliezer on Ruth Rabbah | Midrash / Aggadah | 21/46 (45.7%) | את:absent, כי:absent, על:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent, אין:absent | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 57.85 KB | 67.04 KB | usable; content coverage remains |
+| Gra's Nuschah on Tractate Kallah | Gra School | 25/36 (69.4%) | את:absent, כי:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, אם:absent, אין:absent | n/a | 0 | 0 | 68.13 KB | 74.28 KB | usable; content coverage remains |
+| Gra's Nuschah on Tractate Derekh Eretz Zuta | Gra School | 18/24 (75.0%) | את:absent, כי:absent, על:absent, הוא:absent, אשר:absent, כל:absent, אם:absent, אין:absent | n/a | 0 | 0 | 77.76 KB | 72.66 KB | ready/hardened |
 
 ## Top Integrity Issues
 
@@ -321,7 +321,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Midrash Lekach Tov
 
 - Readiness: low coverage; leave until family pass
-- Top unmatched: פס׳ (2190), מלמד (933), ת״ל (656), רבי (534), מיכן (467), כענין (369), לה׳ (343), אביו (273), ג׳ (270), להלן (241), שמעון (241), יב (236)
+- Top unmatched: מלמד (933), כענין (369), אביו (273), ג׳ (270), יב (236), ב׳ (232), כתוב (222), חייב (212), ז׳ (204), אחיו (197), יג (188), כסף (187)
 
 ### Beur HaRadal on Pirkei DeRabbi Eliezer
 
