@@ -1974,7 +1974,9 @@ function Append-LibrarySections {
     'Other' = 7
     'Works' = 8
   }
-  $homeGroups = $Sources | Group-Object { Get-HomeGroup $_ } | Sort-Object @{ Expression = { if ($groupOrder.ContainsKey($_.Name)) { $groupOrder[$_.Name] } else { 99 } } }, Name
+  $allHomeGroups = $Sources | Group-Object { Get-HomeGroup $_ } | Sort-Object @{ Expression = { if ($groupOrder.ContainsKey($_.Name)) { $groupOrder[$_.Name] } else { 99 } } }, Name
+  $internalArchiveGroups = @($allHomeGroups | Where-Object { $_.Name -eq 'Talmud / Commentary' })
+  $homeGroups = @($allHomeGroups | Where-Object { $_.Name -ne 'Talmud / Commentary' })
   [void]$Builder.AppendLine('        <div class="library-stack">')
   foreach ($homeGroup in $homeGroups) {
     $groupSources = @($homeGroup.Group)
@@ -2018,6 +2020,28 @@ function Append-LibrarySections {
         [void]$Builder.AppendLine('              </details>')
       }
     }
+    [void]$Builder.AppendLine('            </div>')
+    [void]$Builder.AppendLine('          </details>')
+  }
+  if ($internalArchiveGroups.Count -gt 0) {
+    $internalSources = @($internalArchiveGroups | ForEach-Object { $_.Group })
+    $internalUnits = [int](($internalSources | ForEach-Object { @($_.units).Count } | Measure-Object -Sum).Sum)
+    $internalCountText = "$(Format-CountPhrase -Count $internalSources.Count -Singular 'work' -Plural 'works') | $(Format-CountPhrase -Count $internalUnits -Singular 'source unit' -Plural 'source units')"
+    [void]$Builder.AppendLine('          <details class="library-shelf">')
+    [void]$Builder.AppendLine('            <summary>')
+    [void]$Builder.AppendLine('              <span class="library-shelf-title">')
+    [void]$Builder.AppendLine('                <strong>Internal archive / not public-featured yet</strong>')
+    [void]$Builder.AppendLine("                <span>$(Encode-Html $internalCountText)</span>")
+    [void]$Builder.AppendLine('              </span>')
+    [void]$Builder.AppendLine('              <span class="library-summary-meta">Direct links</span>')
+    [void]$Builder.AppendLine('            </summary>')
+    [void]$Builder.AppendLine('            <div class="library-shelf-body">')
+    [void]$Builder.AppendLine('              <p class="placeholder">Talmud / Commentary material remains preserved and direct-linkable, but is hidden from the public-featured library categories until it is hardened.</p>')
+    [void]$Builder.AppendLine('              <div class="library-grid direct">')
+    foreach ($source in @($internalSources | Sort-Object work_title)) {
+      Append-LibraryWorkCard -Builder $Builder -Source $source -HrefPrefix $HrefPrefix
+    }
+    [void]$Builder.AppendLine('              </div>')
     [void]$Builder.AppendLine('            </div>')
     [void]$Builder.AppendLine('          </details>')
   }
@@ -2102,7 +2126,7 @@ Append-SiteHead -Builder $libraryPage -Title 'Full Library'
 [void]$libraryPage.AppendLine('      <div class="hero">')
 [void]$libraryPage.AppendLine('        <p class="crumbs"><a href="../">Home</a> &middot; <a href="../about/">About / License</a></p>')
 [void]$libraryPage.AppendLine('        <h1>Full Library</h1>')
-[void]$libraryPage.AppendLine('        <p>All imported source works remain available here. The homepage is intentionally limited to featured workbench-ready pages.</p>')
+[void]$libraryPage.AppendLine('        <p>All imported source works remain available here. The homepage is intentionally limited to featured workbench-ready pages; Talmud and commentary material stays in an internal archive shelf until hardened.</p>')
 [void]$libraryPage.AppendLine('      </div>')
 [void]$libraryPage.AppendLine('      <div style="padding:22px">')
 Append-LibrarySections -Builder $libraryPage -Sources $sources -HrefPrefix '../'
