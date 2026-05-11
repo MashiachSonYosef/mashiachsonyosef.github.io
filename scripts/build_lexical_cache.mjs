@@ -300,6 +300,13 @@ const projectMidrashFormulaDefinitions = [
     work_scope: midrashAggadahScope,
   },
   {
+    source_id: 'project-midrash-formula:pasuk-label',
+    surface: '\u05E4\u05E1\u05D5\u05E7',
+    renderings: ['verse', 'scriptural verse'],
+    kind: 'Citation label',
+    work_scope: midrashAggadahScope,
+  },
+  {
     source_id: 'project-midrash-formula:talmud-lomar',
     surface: '\u05EA\u05F4\u05DC',
     surface_forms: ['\u05EA"\u05DC'],

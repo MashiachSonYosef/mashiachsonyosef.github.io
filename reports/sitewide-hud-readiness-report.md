@@ -1,6 +1,6 @@
 # Sitewide HUD Readiness Report
 
-Generated: 2026-05-11T10:39:16.934Z
+Generated: 2026-05-11T12:54:28.649Z
 
 This report is diagnostic only. It does not import sources, add definitions, or change lexical ranking.
 
@@ -8,8 +8,8 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 
 - Works scanned: 170
 - Unique work-surface rows: 1226504
-- Matched: 363560 (29.6%)
-- Unmatched: 862944
+- Matched: 363636 (29.6%)
+- Unmatched: 862868
 - Token occurrences: 6066624
 - Rows with missing source/license metadata: 0
 - Suspect parser rows: 0
@@ -20,7 +20,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 |---|---:|---:|---:|---:|---:|---:|---:|
 | Ari / Kabbalah | 11 | 30527 | 70057 | 30.3% | 622095 | 0 | 0 |
 | Gra School | 22 | 22593 | 61307 | 26.9% | 467563 | 0 | 0 |
-| Midrash / Aggadah | 91 | 214274 | 581298 | 26.9% | 4455143 | 0 | 0 |
+| Midrash / Aggadah | 91 | 214350 | 581222 | 26.9% | 4455143 | 0 | 0 |
 | Rav Kook School | 6 | 31440 | 27739 | 53.1% | 248230 | 0 | 0 |
 | Talmud / Commentary | 1 | 861 | 1327 | 39.4% | 4927 | 0 | 0 |
 | Tanakh | 39 | 63865 | 121216 | 34.5% | 268666 | 0 | 0 |
@@ -35,8 +35,8 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 | Ein Yaakov | Midrash / Aggadah | 13153/70278 (18.7%) | all ok | זש״ה:absent | 0 | 0 | 915.18 KB | 17.42 MB | low coverage; leave until family pass |
 | Midrash Lekach Tov | Midrash / Aggadah | 7849/41646 (18.8%) | all ok | all ok | 0 | 0 | 837.55 KB | 21.24 MB | low coverage; leave until family pass |
 | Beur HaRadal on Pirkei DeRabbi Eliezer | Midrash / Aggadah | 7736/41996 (18.4%) | all ok | all ok | 0 | 0 | 828.81 KB | 13.06 MB | low coverage; leave until family pass |
-| Midrash Tanchuma | Midrash / Aggadah | 9626/37138 (25.9%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.14 MB | 12.00 MB | low coverage; leave until family pass |
-| Midrash Sekhel Tov | Midrash / Aggadah | 6945/38876 (17.9%) | all ok | all ok | 0 | 0 | 804.41 KB | 16.11 MB | low coverage; leave until family pass |
+| Midrash Tanchuma | Midrash / Aggadah | 9673/37138 (26.0%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.14 MB | 12.00 MB | low coverage; leave until family pass |
+| Midrash Sekhel Tov | Midrash / Aggadah | 6974/38876 (17.9%) | all ok | all ok | 0 | 0 | 805.47 KB | 16.11 MB | low coverage; leave until family pass |
 | Beur HaGra on Shulchan Arukh, Yoreh De'ah | Gra School | 3926/25673 (15.3%) | all ok | n/a | 0 | 0 | 752.03 KB | 17.65 MB | low coverage; leave until family pass |
 | Chafetz Chaim on Sifra | Midrash / Aggadah | 5414/29588 (18.3%) | all ok | זש״ה:absent | 0 | 0 | 865.76 KB | 20.25 MB | low coverage; leave until family pass |
 | Midrash Tanchuma Buber | Midrash / Aggadah | 5977/26484 (22.6%) | all ok | וגומר:absent | 0 | 0 | 1.00 MB | 9.30 MB | low coverage; leave until family pass |
@@ -331,12 +331,12 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ### Midrash Tanchuma
 
 - Readiness: low coverage; leave until family pass
-- Top unmatched: רַבִּי (1514), יב (449), יז (332), יג (326), כב (320), טז (314), וְאָמַר (309), יח (281), כא (272), כד (263), פסוק (263), כג (255)
+- Top unmatched: יב (449), יז (332), יג (326), כב (320), טז (314), וְאָמַר (309), יח (281), כא (272), כד (263), כג (255), הַמֶּלֶךְ (253), כו (216)
 
 ### Midrash Sekhel Tov
 
 - Readiness: low coverage; leave until family pass
-- Top unmatched: ודומה (430), בשבת (352), כגון (326), יב (285), יג (281), טז (272), אסור (236), יח (234), אביו (227), רבותינו (221), חייב (220), יז (219)
+- Top unmatched: ודומה (430), בשבת (352), יב (285), יג (281), טז (272), אסור (236), יח (234), אביו (227), רבותינו (221), חייב (220), יז (219), נמי (217)
 
 ### Beur HaGra on Shulchan Arukh, Yoreh De'ah
 
