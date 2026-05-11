@@ -20,8 +20,6 @@ const badParserNeedlePatterns = [
   /\boften adverb(?:ial)?\b/i,
   /\bremote time\b/i,
   /\bthe number\b/i,
-  /\bfrom letter\b/i,
-  /\bof letter\b/i,
   /\bfrom fourth\b/i,
   /\bof fourth\b/i,
   /\bmister\b/i,

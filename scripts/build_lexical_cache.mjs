@@ -1183,6 +1183,10 @@ const unsafeAffixBaseNormalizations = new Set([
   '\u05D0\u05D5\u05EA', // אות: creates false מ־ parses such as מאות.
 ]);
 
+const unsafeNonConjunctiveAffixBaseNormalizations = new Set([
+  '\u05D0\u05DC\u05D9\u05E0\u05D5', // אלינו: avoid false מ־ parse such as מאלינו -> "from to".
+]);
+
 const possessiveParticleNormalized = '\u05E9\u05DC';
 
 const safeQuoteArtifactBaseNormalizations = new Set([
@@ -1734,7 +1738,7 @@ function cleanLexicalRenderings(values) {
       if (/[()[\];]/.test(rendering)) return false;
       if (/\b(i\.e|literally|figuratively|concretely|implication|name of|by resemblance)\b/i.test(rendering)) return false;
       if (/\b(good|bad|properly|direct|implied|transitive|advise|appear|compare|enemy|coffee|sea|Mediterranean|whether|specifically|infix|hello|salutation|greeting|lust|probably|gleesome|spite|unexpectedly|thereby|copula|beacon|dwell|continue)\b/i.test(rendering)) return false;
-      if (/\b(clear liquid h(?:₂|2)o|liquid water|often adverb|often adverbial|remote time|past indefinitely|generally used|generally to|often used with other particles|intransitively|nonentity|of place|of\/pertaining to|mister|deity|noble man|notebook|of the sole|off)\b/i.test(rendering)) return false;
+      if (/\b(clear liquid h(?:₂|2)o|liquid water|often adverb|often adverbial|remote time|past indefinitely|generally used|generally to|often used with other particles|often in general|intransitively|nonentity|of place|of\/pertaining to|mister|deity|noble man|notebook|of the sole|off|see also\s+\d+)\b/i.test(rendering)) return false;
       if (/\b(go one way or other|turn rosy|such like|that's that|cheer up|ordinary sense|literal and immediate|figurative and remote|superlative)\b/i.test(rendering)) return false;
       if (/^(?:the )?number \d+$/i.test(rendering) || /^\d+$/.test(rendering)) return false;
       if (/^(to|be|being|become|became)\s+/i.test(rendering)) return false;
@@ -2021,6 +2025,7 @@ function analyzeAffixSurfaceForm(surfaceWord, normalizedWord, workId) {
 
   for (const attempt of attempts) {
     if (unsafeAffixBaseNormalizations.has(attempt.baseNormalized)) continue;
+    if (unsafeNonConjunctiveAffixBaseNormalizations.has(attempt.baseNormalized) && attempt.prefixSequence !== '\u05D5') continue;
     if (attempt.baseNormalized === possessiveParticleNormalized && attempt.prefixSequence !== '\u05D5') continue;
     const entryId = lookupLexiconEntryId(attempt.baseNormalized, workId);
     if (!entryId) continue;

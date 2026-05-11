@@ -1,6 +1,6 @@
 # Sitewide HUD Readiness Report
 
-Generated: 2026-05-10T21:01:33.868Z
+Generated: 2026-05-10T22:07:27.652Z
 
 This report is diagnostic only. It does not import sources, add definitions, or change lexical ranking.
 
@@ -8,19 +8,19 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 
 - Works scanned: 170
 - Unique work-surface rows: 1226504
-- Matched: 363526 (29.6%)
-- Unmatched: 862978
+- Matched: 363525 (29.6%)
+- Unmatched: 862979
 - Token occurrences: 6066624
 - Rows with missing source/license metadata: 0
-- Suspect parser rows: 25
+- Suspect parser rows: 0
 
 ## Family Summary
 
 | Family | Works | Matched | Unmatched | Coverage | Occurrences | Missing source rows | Suspect parser rows |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Ari / Kabbalah | 11 | 30527 | 70057 | 30.3% | 622095 | 0 | 8 |
-| Gra School | 22 | 22593 | 61307 | 26.9% | 467563 | 0 | 5 |
-| Midrash / Aggadah | 91 | 214240 | 581332 | 26.9% | 4455143 | 0 | 12 |
+| Ari / Kabbalah | 11 | 30527 | 70057 | 30.3% | 622095 | 0 | 0 |
+| Gra School | 22 | 22593 | 61307 | 26.9% | 467563 | 0 | 0 |
+| Midrash / Aggadah | 91 | 214239 | 581333 | 26.9% | 4455143 | 0 | 0 |
 | Rav Kook School | 6 | 31440 | 27739 | 53.1% | 248230 | 0 | 0 |
 | Talmud / Commentary | 1 | 861 | 1327 | 39.4% | 4927 | 0 | 0 |
 | Tanakh | 39 | 63865 | 121216 | 34.5% | 268666 | 0 | 0 |
@@ -29,44 +29,40 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 
 | Work | Family | Coverage | Function canaries | Formula canaries | Missing sources | Suspect parser | Largest chunk | Page | Readiness |
 |---|---|---:|---|---|---:|---:|---:|---:|---|
-| Otzar Midrashim | Midrash / Aggadah | 10881/56400 (19.3%) | all ok | all ok | 0 | 1 | 828.19 KB | 26.03 MB | fix HUD integrity |
-| Ein Yaakov | Midrash / Aggadah | 13153/70278 (18.7%) | all ok | זש״ה:absent | 0 | 1 | 915.18 KB | 23.19 MB | fix HUD integrity |
-| Midrash Lekach Tov | Midrash / Aggadah | 7815/41646 (18.8%) | all ok | all ok | 0 | 2 | 834.63 KB | 24.56 MB | fix HUD integrity |
-| Beur HaRadal on Pirkei DeRabbi Eliezer | Midrash / Aggadah | 7736/41996 (18.4%) | all ok | all ok | 0 | 2 | 828.81 KB | 15.79 MB | fix HUD integrity |
-| Sha'ar Ma'amarei Rashbi | Ari / Kabbalah | 4651/19780 (23.5%) | all ok | n/a | 0 | 2 | 948.50 KB | 7.25 MB | fix HUD integrity |
-| Notes and Corrections on Midrash Lekach Tov | Midrash / Aggadah | 4553/19908 (22.9%) | all ok | וגומר:absent | 0 | 1 | 968.89 KB | 14.40 MB | fix HUD integrity |
-| Midrash Aggadah | Midrash / Aggadah | 5246/20618 (25.4%) | all ok | וגומר:absent, א״ר:absent | 0 | 1 | 1005.98 KB | 9.02 MB | fix HUD integrity |
-| Sha'ar HaPesukim | Ari / Kabbalah | 4562/16032 (28.5%) | all ok | n/a | 0 | 1 | 1.04 MB | 8.18 MB | fix HUD integrity |
-| Etz Yosef on Shir HaShirim Rabbah | Midrash / Aggadah | 5491/20691 (26.5%) | all ok | ד״א:absent, זש״ה:absent | 0 | 1 | 1.01 MB | 7.32 MB | fix HUD integrity |
-| Sha'ar HaGilgulim | Ari / Kabbalah | 4064/13104 (31.0%) | all ok | n/a | 0 | 2 | 1.09 MB | 4.42 MB | fix HUD integrity |
-| Notes and Corrections on Midrash Aggadah | Midrash / Aggadah | 3404/12167 (28.0%) | all ok | וגומר:absent | 0 | 1 | 1.08 MB | 7.85 MB | fix HUD integrity |
-| Beur HaGra on Shulchan Arukh, Orach Chayim | Gra School | 2503/12656 (19.8%) | all ok | n/a | 0 | 1 | 862.34 KB | 6.46 MB | fix HUD integrity |
-| Beur HaRe'em on Midrash Lekach Tov | Midrash / Aggadah | 3596/13211 (27.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 1 | 1.03 MB | 7.46 MB | fix HUD integrity |
-| Pri Etz Chaim | Ari / Kabbalah | 3175/9512 (33.4%) | all ok | n/a | 0 | 3 | 1.20 MB | 2.92 MB | fix HUD integrity |
-| Yahel Ohr on Zohar | Gra School | 1728/4871 (35.5%) | all ok | n/a | 0 | 2 | 1.25 MB | 962.50 KB | fix HUD integrity |
-| Yefeh Anaf on Eichah Rabbah | Midrash / Aggadah | 1531/3783 (40.5%) | all ok | וגומר:absent, א״ר:absent | 0 | 1 | 1.36 MB | 684.57 KB | fix HUD integrity |
-| HaGra on Sefer Yetzirah Gra Version | Gra School | 896/2250 (39.8%) | אשר:absent, אם:absent | n/a | 0 | 1 | 1.27 MB | 357.29 KB | fix HUD integrity |
-| Maaseh Rav | Gra School | 1022/2700 (37.9%) | all ok | n/a | 0 | 1 | 1.25 MB | 664.17 KB | fix HUD integrity |
 | Beur HaGra on Sifra DeTzniuta | Gra School | 2814/10860 (25.9%) | all ok | כתיב:miss, א״ר:miss, א״ל:miss, ד״א:absent, זש״ה:absent, וגומר:absent | 0 | 0 | 1.00 MB | 2.92 MB | needs Midrash formula layer |
 | Gra's Nuschah on Tractate Derekh Eretz Rabbah | Gra School | 52/121 (43.0%) | כי:absent, לא:absent, הוא:absent, אשר:absent, מן:absent, כל:absent, אם:absent | ד״א:miss, זש״ה:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 193.67 KB | 96.34 KB | needs Midrash formula layer |
+| Otzar Midrashim | Midrash / Aggadah | 10881/56400 (19.3%) | all ok | all ok | 0 | 0 | 828.19 KB | 26.03 MB | low coverage; leave until family pass |
+| Ein Yaakov | Midrash / Aggadah | 13153/70278 (18.7%) | all ok | זש״ה:absent | 0 | 0 | 915.18 KB | 23.19 MB | low coverage; leave until family pass |
+| Midrash Lekach Tov | Midrash / Aggadah | 7814/41646 (18.8%) | all ok | all ok | 0 | 0 | 834.63 KB | 24.56 MB | low coverage; leave until family pass |
+| Beur HaRadal on Pirkei DeRabbi Eliezer | Midrash / Aggadah | 7736/41996 (18.4%) | all ok | all ok | 0 | 0 | 828.81 KB | 15.79 MB | low coverage; leave until family pass |
 | Midrash Tanchuma | Midrash / Aggadah | 9626/37138 (25.9%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.14 MB | 15.93 MB | low coverage; leave until family pass |
 | Midrash Sekhel Tov | Midrash / Aggadah | 6945/38876 (17.9%) | all ok | all ok | 0 | 0 | 804.41 KB | 18.46 MB | low coverage; leave until family pass |
 | Beur HaGra on Shulchan Arukh, Yoreh De'ah | Gra School | 3926/25673 (15.3%) | all ok | n/a | 0 | 0 | 752.03 KB | 19.72 MB | low coverage; leave until family pass |
 | Chafetz Chaim on Sifra | Midrash / Aggadah | 5414/29588 (18.3%) | all ok | זש״ה:absent | 0 | 0 | 865.76 KB | 22.32 MB | low coverage; leave until family pass |
 | Midrash Tanchuma Buber | Midrash / Aggadah | 5977/26484 (22.6%) | all ok | וגומר:absent | 0 | 0 | 1.00 MB | 11.21 MB | low coverage; leave until family pass |
 | Ra'avad on Sifra | Midrash / Aggadah | 4604/23139 (19.9%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 943.85 KB | 9.42 MB | low coverage; leave until family pass |
+| Sha'ar Ma'amarei Rashbi | Ari / Kabbalah | 4651/19780 (23.5%) | all ok | n/a | 0 | 0 | 948.50 KB | 7.25 MB | low coverage; leave until family pass |
+| Notes and Corrections on Midrash Lekach Tov | Midrash / Aggadah | 4553/19908 (22.9%) | all ok | וגומר:absent | 0 | 0 | 968.89 KB | 14.40 MB | low coverage; leave until family pass |
 | Midrash Tehillim | Midrash / Aggadah | 5168/20099 (25.7%) | all ok | ד״א:absent, זש״ה:absent | 0 | 0 | 1015.62 KB | 5.82 MB | low coverage; leave until family pass |
+| Midrash Aggadah | Midrash / Aggadah | 5246/20618 (25.4%) | all ok | וגומר:absent, א״ר:absent | 0 | 0 | 1005.98 KB | 9.02 MB | low coverage; leave until family pass |
+| Sha'ar HaPesukim | Ari / Kabbalah | 4562/16032 (28.5%) | all ok | n/a | 0 | 0 | 1.04 MB | 8.18 MB | low coverage; leave until family pass |
 | Midbar Shur | Rav Kook School | 6385/19798 (32.3%) | all ok | n/a | 0 | 0 | 1.14 MB | 4.34 MB | low coverage; leave until family pass |
+| Etz Yosef on Shir HaShirim Rabbah | Midrash / Aggadah | 5491/20691 (26.5%) | all ok | ד״א:absent, זש״ה:absent | 0 | 0 | 1.01 MB | 7.32 MB | low coverage; leave until family pass |
+| Sha'ar HaGilgulim | Ari / Kabbalah | 4064/13104 (31.0%) | all ok | n/a | 0 | 0 | 1.09 MB | 4.42 MB | low coverage; leave until family pass |
 | Sefer HaYashar (midrash) | Midrash / Aggadah | 3111/11610 (26.8%) | all ok | ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.13 MB | 3.80 MB | low coverage; leave until family pass |
 | Sifrei Devarim | Midrash / Aggadah | 3862/13236 (29.2%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.17 MB | 5.88 MB | low coverage; leave until family pass |
 | Orot HaKodesh | Rav Kook School | 7990/18735 (42.6%) | all ok | n/a | 0 | 0 | 1.31 MB | 3.50 MB | usable; content coverage remains |
 | Pesikta DeRav Kahana | Midrash / Aggadah | 3518/13970 (25.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.03 MB | 2.99 MB | low coverage; leave until family pass |
+| Notes and Corrections on Midrash Aggadah | Midrash / Aggadah | 3404/12167 (28.0%) | all ok | וגומר:absent | 0 | 0 | 1.08 MB | 7.85 MB | low coverage; leave until family pass |
+| Beur HaGra on Shulchan Arukh, Orach Chayim | Gra School | 2503/12656 (19.8%) | all ok | n/a | 0 | 0 | 862.34 KB | 6.46 MB | low coverage; leave until family pass |
 | Tanna DeBei Eliyahu Rabbah | Midrash / Aggadah | 3808/11930 (31.9%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.17 MB | 2.45 MB | low coverage; leave until family pass |
 | Sha'ar HaKavanot | Ari / Kabbalah | 3343/10910 (30.6%) | all ok | n/a | 0 | 0 | 1.09 MB | 3.03 MB | low coverage; leave until family pass |
 | Orot | Rav Kook School | 14870/17307 (85.9%) | all ok | n/a | 0 | 0 | 2.18 MB | 3.09 MB | ready/hardened |
 | Sha'ar HaMitzvot | Ari / Kabbalah | 3418/11959 (28.6%) | all ok | n/a | 0 | 0 | 1.03 MB | 2.74 MB | low coverage; leave until family pass |
 | Sifrei Bamidbar | Midrash / Aggadah | 3062/9816 (31.2%) | all ok | זש״ה:absent | 0 | 0 | 1.23 MB | 2.57 MB | low coverage; leave until family pass |
+| Beur HaRe'em on Midrash Lekach Tov | Midrash / Aggadah | 3596/13211 (27.2%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.03 MB | 7.46 MB | low coverage; leave until family pass |
 | Mishnat Rabbi Eliezer | Midrash / Aggadah | 3852/12809 (30.1%) | all ok | זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.14 MB | 2.76 MB | low coverage; leave until family pass |
+| Pri Etz Chaim | Ari / Kabbalah | 3175/9512 (33.4%) | all ok | n/a | 0 | 0 | 1.20 MB | 2.92 MB | low coverage; leave until family pass |
 | Etz Yosef on Kohelet Rabbah | Midrash / Aggadah | 3850/13312 (28.9%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 0 | 1.07 MB | 4.80 MB | low coverage; leave until family pass |
 | Yefeh Kol on Shir HaShirim Rabbah | Midrash / Aggadah | 4332/13612 (31.8%) | all ok | וגומר:absent | 0 | 0 | 1.11 MB | 3.33 MB | low coverage; leave until family pass |
 | Sha'ar HaHakdamot | Ari / Kabbalah | 2892/9189 (31.5%) | all ok | n/a | 0 | 0 | 1.11 MB | 1.90 MB | low coverage; leave until family pass |
@@ -98,6 +94,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 | Par Echad on Pirkei DeRabbi Eliezer | Midrash / Aggadah | 2061/5738 (35.9%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.24 MB | 895.75 KB | usable; content coverage remains |
 | Exodus | Tanakh | 2934/8879 (33.0%) | all ok | n/a | 0 | 0 | 1.13 MB | 2.22 MB | low coverage; leave until family pass |
 | Numbers | Tanakh | 2758/8225 (33.5%) | מן:absent | n/a | 0 | 0 | 1.11 MB | 2.30 MB | low coverage; leave until family pass |
+| Yahel Ohr on Zohar | Gra School | 1728/4871 (35.5%) | all ok | n/a | 0 | 0 | 1.25 MB | 962.50 KB | usable; content coverage remains |
 | Yefeh To'ar on Shemot Rabbah | Midrash / Aggadah | 1982/4774 (41.5%) | all ok | וגומר:absent, א״ר:absent | 0 | 0 | 1.37 MB | 880.84 KB | usable; content coverage remains |
 | Alphabet of Ben Sira | Midrash / Aggadah | 1673/4510 (37.1%) | all ok | זש״ה:absent, וגומר:absent, א״ר:absent | 0 | 0 | 1.29 MB | 701.60 KB | usable; content coverage remains |
 | Deuteronomy | Tanakh | 2939/8113 (36.2%) | אם:absent | n/a | 0 | 0 | 1.18 MB | 1.89 MB | usable; content coverage remains |
@@ -112,6 +109,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 | II Samuel | Tanakh | 2337/6700 (34.9%) | מן:absent | n/a | 0 | 0 | 1.11 MB | 1.42 MB | low coverage; leave until family pass |
 | Nefesh HaChayim | Gra School | 1850/4430 (41.8%) | all ok | n/a | 0 | 0 | 1.31 MB | 747.20 KB | usable; content coverage remains |
 | Perush Maharzu on Eichah Rabbah | Midrash / Aggadah | 1499/3692 (40.6%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 0 | 1.38 MB | 906.75 KB | usable; content coverage remains |
+| Yefeh Anaf on Eichah Rabbah | Midrash / Aggadah | 1531/3783 (40.5%) | all ok | וגומר:absent, א״ר:absent | 0 | 0 | 1.36 MB | 684.57 KB | usable; content coverage remains |
 | Aderet Eliyahu | Gra School | 1647/3711 (44.4%) | all ok | n/a | 0 | 0 | 1.46 MB | 478.78 KB | usable; content coverage remains |
 | Joshua | Tanakh | 2136/5856 (36.5%) | all ok | n/a | 0 | 0 | 1.12 MB | 1.30 MB | usable; content coverage remains |
 | Judges | Tanakh | 2124/6131 (34.6%) | מן:absent | n/a | 0 | 0 | 1.15 MB | 1.24 MB | low coverage; leave until family pass |
@@ -125,6 +123,8 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 | Shir HaShirim Rabbah | Midrash / Aggadah | 1185/2477 (47.8%) | all ok | ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.53 MB | 434.44 KB | usable; content coverage remains |
 | Beur HaGra on Jerusalem Talmud Bikkurim | Gra School | 821/2487 (33.0%) | all ok | n/a | 0 | 0 | 1.06 MB | 568.18 KB | low coverage; leave until family pass |
 | Matnot Kehunah on Eichah Rabbah | Midrash / Aggadah | 1152/2981 (38.6%) | all ok | זש״ה:absent, וגומר:absent, א״ל:absent | 0 | 0 | 1.32 MB | 1.02 MB | usable; content coverage remains |
+| HaGra on Sefer Yetzirah Gra Version | Gra School | 896/2250 (39.8%) | אשר:absent, אם:absent | n/a | 0 | 0 | 1.27 MB | 357.29 KB | usable; content coverage remains |
+| Maaseh Rav | Gra School | 1022/2700 (37.9%) | all ok | n/a | 0 | 0 | 1.25 MB | 664.17 KB | usable; content coverage remains |
 | Proverbs | Tanakh | 1578/4705 (33.5%) | מן:absent | n/a | 0 | 0 | 1.23 MB | 1.43 MB | low coverage; leave until family pass |
 | Rashi on Bereshit Rabbah | Midrash / Aggadah | 1181/2795 (42.3%) | all ok | זש״ה:absent, וגומר:absent | 0 | 0 | 1.37 MB | 668.14 KB | usable; content coverage remains |
 | Yefeh To'ar on Vayikra Rabbah | Midrash / Aggadah | 1207/2548 (47.4%) | all ok | וגומר:absent, א״ר:absent, א״ל:absent | 0 | 0 | 1.48 MB | 452.34 KB | usable; content coverage remains |
@@ -202,24 +202,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 
 ## Top Integrity Issues
 
-- Otzar Midrashim: missing source rows 0; suspect parser rows 1; examples: לאותיות: to letter/for letter/of letter
-- Ein Yaakov: missing source rows 0; suspect parser rows 1; examples: לָאוֹתִיּוֹת: to letter/for letter/of letter
-- Midrash Lekach Tov: missing source rows 0; suspect parser rows 2; examples: לאותיות: to letter/for letter/of letter; מאלינו: from near/of near/from with/of with/from among/of among/from often in general/of often in general
-- Beur HaRadal on Pirkei DeRabbi Eliezer: missing source rows 0; suspect parser rows 2; examples: לאותיות: to letter/for letter/of letter; מאותיות: from letter/of letter
-- Sha'ar Ma'amarei Rashbi: missing source rows 0; suspect parser rows 2; examples: לאותיות: to letter/for letter/of letter; מאותיות: from letter/of letter
-- Notes and Corrections on Midrash Lekach Tov: missing source rows 0; suspect parser rows 1; examples: מאותיות: from letter/of letter
-- Midrash Aggadah: missing source rows 0; suspect parser rows 1; examples: לאותיות: to letter/for letter/of letter
-- Sha'ar HaPesukim: missing source rows 0; suspect parser rows 1; examples: לאותיות: to letter/for letter/of letter
-- Etz Yosef on Shir HaShirim Rabbah: missing source rows 0; suspect parser rows 1; examples: לאותיות: to letter/for letter/of letter
-- Sha'ar HaGilgulim: missing source rows 0; suspect parser rows 2; examples: לאותיות: to letter/for letter/of letter; מאותיות: from letter/of letter
-- Notes and Corrections on Midrash Aggadah: missing source rows 0; suspect parser rows 1; examples: לאותיות: to letter/for letter/of letter
-- Beur HaGra on Shulchan Arukh, Orach Chayim: missing source rows 0; suspect parser rows 1; examples: לאותיות: to letter/for letter/of letter
-- Beur HaRe'em on Midrash Lekach Tov: missing source rows 0; suspect parser rows 1; examples: מאותיות: from letter/of letter
-- Pri Etz Chaim: missing source rows 0; suspect parser rows 3; examples: לאותיות: to letter/for letter/of letter; מאותיות: from letter/of letter; מאותיותיו: from his letter/from its letter/of his letter/of its letter
-- Yahel Ohr on Zohar: missing source rows 0; suspect parser rows 2; examples: לאותיות: to letter/for letter/of letter; מאותיות: from letter/of letter
-- Yefeh Anaf on Eichah Rabbah: missing source rows 0; suspect parser rows 1; examples: מאותיות: from letter/of letter
-- HaGra on Sefer Yetzirah Gra Version: missing source rows 0; suspect parser rows 1; examples: לאותיות: to letter/for letter/of letter
-- Maaseh Rav: missing source rows 0; suspect parser rows 1; examples: מאותיות: from letter/of letter
+- No missing source/license rows or suspect parser rows were detected from token-index data.
 
 ## Stale Cache / Wiring Suspects
 
@@ -228,22 +211,21 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 ## Midrash Formula Layer Candidates
 
 - Ein Yaakov: זש״ה:absent
-- Notes and Corrections on Midrash Lekach Tov: וגומר:absent
-- Midrash Aggadah: וגומר:absent, א״ר:absent
-- Etz Yosef on Shir HaShirim Rabbah: ד״א:absent, זש״ה:absent
-- Notes and Corrections on Midrash Aggadah: וגומר:absent
-- Beur HaRe'em on Midrash Lekach Tov: זש״ה:absent, וגומר:absent
-- Yefeh Anaf on Eichah Rabbah: וגומר:absent, א״ר:absent
 - Midrash Tanchuma: ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent
 - Chafetz Chaim on Sifra: זש״ה:absent
 - Midrash Tanchuma Buber: וגומר:absent
 - Ra'avad on Sifra: זש״ה:absent, וגומר:absent
+- Notes and Corrections on Midrash Lekach Tov: וגומר:absent
 - Midrash Tehillim: ד״א:absent, זש״ה:absent
+- Midrash Aggadah: וגומר:absent, א״ר:absent
+- Etz Yosef on Shir HaShirim Rabbah: ד״א:absent, זש״ה:absent
 - Sefer HaYashar (midrash): ד״א:absent, זש״ה:absent, שנאמר:absent, כתיב:absent, וגומר:absent, א״ר:absent, א״ל:absent
 - Sifrei Devarim: ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent
 - Pesikta DeRav Kahana: זש״ה:absent, וגומר:absent
+- Notes and Corrections on Midrash Aggadah: וגומר:absent
 - Tanna DeBei Eliyahu Rabbah: זש״ה:absent, וגומר:absent
 - Sifrei Bamidbar: זש״ה:absent
+- Beur HaRe'em on Midrash Lekach Tov: זש״ה:absent, וגומר:absent
 - Mishnat Rabbi Eliezer: זש״ה:absent, וגומר:absent, א״ר:absent, א״ל:absent
 - Etz Yosef on Kohelet Rabbah: ד״א:absent, זש״ה:absent, וגומר:absent, א״ר:absent
 - Yefeh Kol on Shir HaShirim Rabbah: וגומר:absent
@@ -268,6 +250,7 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 - Perush Maharzu on Vayikra Rabbah: זש״ה:absent, וגומר:absent, א״ל:absent
 - Pesikta Rabbati: וגומר:absent
 - Perush Maharzu on Eichah Rabbah: זש״ה:absent, וגומר:absent, א״ל:absent
+- Yefeh Anaf on Eichah Rabbah: וגומר:absent, א״ר:absent
 - Perush Maharzu on Bamidbar Rabbah: וגומר:absent, א״ל:absent
 - Midrash Tannaim on Deuteronomy: זש״ה:absent, וגומר:absent
 - Matnot Kehunah on Bereshit Rabbah: זש״ה:absent, וגומר:absent
@@ -315,96 +298,6 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 
 ## Top Remaining Unmatched By Work
 
-### Otzar Midrashim
-
-- Readiness: fix HUD integrity
-- Top unmatched: המלך (845), ג׳ (826), ואמר (739), ב׳ (592), א׳ (544), ז׳ (434), מדרש (385), ו׳ (371), י״ב (352), עי׳ (347), ט׳ (345), ח׳ (332)
-
-### Ein Yaakov
-
-- Readiness: fix HUD integrity
-- Top unmatched: רַבִּי (5287), מַאי (1610), יוֹחָנָן (889), דְּאָמַר (836), לְהוּ (805), רבי (791), וְאָמַר (764), רַבָּנָן (706), אֶלְעָזָר (656), הָכִי (560), רָבָא (523), שִׁמְעוֹן (518)
-
-### Midrash Lekach Tov
-
-- Readiness: fix HUD integrity
-- Top unmatched: פס׳ (2190), מלמד (933), ת״ל (656), רבי (534), מיכן (467), כענין (369), לה׳ (343), אביו (273), ג׳ (270), להלן (241), שמעון (241), יב (236)
-
-### Beur HaRadal on Pirkei DeRabbi Eliezer
-
-- Readiness: fix HUD integrity
-- Top unmatched: י״ל (648), מ״ש (633), הי׳ (623), משמע (484), וז״ש (466), א׳ (380), ואפשר (376), וכ״ה (367), בס״ד (357), דרש (347), ועיין (342), לי׳ (342)
-
-### Sha'ar Ma'amarei Rashbi
-
-- Readiness: fix HUD integrity
-- Top unmatched: ע״ב (652), בחינת (471), ע״א (460), וזהו (406), ה׳ (331), בפ׳ (313), וזמ״ש (297), קצוות (280), ד״ש (255), תרין (247), כנודע (246), רישא (220)
-
-### Notes and Corrections on Midrash Lekach Tov
-
-- Readiness: fix HUD integrity
-- Top unmatched: ר (2547), ב״ (1511), ע״ (1318), וילקוט (1148), פלארענץ (842), מכילתא (753), ועיין (663), הגי׳ (624), עיין (578), פ״ (559), ע״א (533), ת (530)
-
-### Midrash Aggadah
-
-- Readiness: fix HUD integrity
-- Top unmatched: ולמה (268), מלמד (184), ואמר (141), פסוק (116), יב (105), ב׳ (95), אביו (93), א׳ (85), יז (83), המלך (79), בניו (78), יג (78)
-
-### Sha'ar HaPesukim
-
-- Readiness: fix HUD integrity
-- Top unmatched: ה׳ (600), בגימטריא (511), כנודע (412), ב׳ (336), ג׳ (324), מזולתו (220), נתבאר (213), ר״ת (203), בפרשת (187), גבורות (185), בבחי׳ (178), הוי״ה (175)
-
-### Etz Yosef on Shir HaShirim Rabbah
-
-- Readiness: fix HUD integrity
-- Top unmatched: ועיין (324), רבי (271), רצה (248), תואר (239), לעיל (153), וזהו (145), איתא (130), עיין (118), כדאיתא (117), דף (116), פסוק (115), פירושו (113)
-
-### Sha'ar HaGilgulim
-
-- Readiness: fix HUD integrity
-- Top unmatched: שרש (224), ואח״כ (212), מורי (160), נצוצות (156), א׳ (146), ב׳ (144), אדה״ר (143), כנודע (141), דע (138), כנז״ל (128), כלם (124), מבחי׳ (123)
-
-### Notes and Corrections on Midrash Aggadah
-
-- Readiness: fix HUD integrity
-- Top unmatched: ב״ר (630), ועיין (512), ע״א (486), ע״ב (454), ורש״י (427), הביא (419), עיין (366), ולק״ט (338), בלק״ט (271), עה״ת (264), תנחומא (263), מכבר (260)
-
-### Beur HaGra on Shulchan Arukh, Orach Chayim
-
-- Readiness: fix HUD integrity
-- Top unmatched: ב׳ (710), א׳ (706), ס״א (603), וע׳ (240), אסור (198), וכ״כ (170), הרא״ש (166), וז״ש (159), כ׳ (155), הרי״ף (117), בשבת (108), מ׳ (107)
-
-### Beur HaRe'em on Midrash Lekach Tov
-
-- Readiness: fix HUD integrity
-- Top unmatched: כצ״ל (339), בת״ (328), עיין (294), כצ״ (293), ועיין (234), ע״ (214), ת״ (167), בספרי (156), ש (153), וכ״ (128), המחבר (105), קאי (103)
-
-### Pri Etz Chaim
-
-- Readiness: fix HUD integrity
-- Top unmatched: א׳ (336), ב׳ (332), ה׳ (278), ג׳ (201), גי׳ (173), ו׳ (142), ואח״כ (113), הוי״ה (110), ז׳ (110), כנודע (103), ס״ג (88), ע״ב (87)
-
-### Yahel Ohr on Zohar
-
-- Readiness: fix HUD integrity
-- Top unmatched: ב׳ (89), ג׳ (88), ה׳ (71), א׳ (62), וזהו (47), כידוע (46), י״ב (36), ו׳ (28), וז״ש (26), בפרשת (25), היכל (25), י״ג (24)
-
-### Yefeh Anaf on Eichah Rabbah
-
-- Readiness: fix HUD integrity
-- Top unmatched: ישבה (28), ודריש (20), כוכבים (18), פסוק (18), גלו (16), דריש (16), ופי׳ (16), כדאיתא (13), רבתי (13), וז״ש (12), כצ״ל (12), ולפ״ז (10)
-
-### HaGra on Sefer Yetzirah Gra Version
-
-- Readiness: fix HUD integrity
-- Top unmatched: ג׳ (72), כידוע (50), ה׳ (37), ב׳ (35), י״ב (27), בג׳ (26), כ״ב (26), ע״ב (26), א׳ (24), ל״ב (23), לקמן (23), שלכן (23)
-
-### Maaseh Rav
-
-- Readiness: fix HUD integrity
-- Top unmatched: ס״ק (44), ה׳ (32), הש״ץ (28), פסוק (27), ש״ע (24), כ״א (20), בשבת (19), עיין (19), א״א (17), ב׳ (17), בש״ע (16), מברך (16)
-
 ### Beur HaGra on Sifra DeTzniuta
 
 - Readiness: needs Midrash formula layer
@@ -414,6 +307,26 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 
 - Readiness: needs Midrash formula layer
 - Top unmatched: אחותה (2), ב׳ (2), בתה (2), א׳ (1), איתא (1), אשתו (1), בפרוסה (1), ג׳ (1), ד״א (1), דיבמות (1), דרומית (1), ה׳ (1)
+
+### Otzar Midrashim
+
+- Readiness: low coverage; leave until family pass
+- Top unmatched: המלך (845), ג׳ (826), ואמר (739), ב׳ (592), א׳ (544), ז׳ (434), מדרש (385), ו׳ (371), י״ב (352), עי׳ (347), ט׳ (345), ח׳ (332)
+
+### Ein Yaakov
+
+- Readiness: low coverage; leave until family pass
+- Top unmatched: רַבִּי (5287), מַאי (1610), יוֹחָנָן (889), דְּאָמַר (836), לְהוּ (805), רבי (791), וְאָמַר (764), רַבָּנָן (706), אֶלְעָזָר (656), הָכִי (560), רָבָא (523), שִׁמְעוֹן (518)
+
+### Midrash Lekach Tov
+
+- Readiness: low coverage; leave until family pass
+- Top unmatched: פס׳ (2190), מלמד (933), ת״ל (656), רבי (534), מיכן (467), כענין (369), לה׳ (343), אביו (273), ג׳ (270), להלן (241), שמעון (241), יב (236)
+
+### Beur HaRadal on Pirkei DeRabbi Eliezer
+
+- Readiness: low coverage; leave until family pass
+- Top unmatched: י״ל (648), מ״ש (633), הי׳ (623), משמע (484), וז״ש (466), א׳ (380), ואפשר (376), וכ״ה (367), בס״ד (357), דרש (347), ועיין (342), לי׳ (342)
 
 ### Midrash Tanchuma
 
@@ -445,15 +358,45 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 - Readiness: low coverage; leave until family pass
 - Top unmatched: ת״ל (707), נמי (653), הכי (340), והכי (276), קאמר (268), קא (257), מנין (251), מפרש (240), איתא (224), כגון (216), מאי (205), יהא (202)
 
+### Sha'ar Ma'amarei Rashbi
+
+- Readiness: low coverage; leave until family pass
+- Top unmatched: ע״ב (652), בחינת (471), ע״א (460), וזהו (406), ה׳ (331), בפ׳ (313), וזמ״ש (297), קצוות (280), ד״ש (255), תרין (247), כנודע (246), רישא (220)
+
+### Notes and Corrections on Midrash Lekach Tov
+
+- Readiness: low coverage; leave until family pass
+- Top unmatched: ר (2547), ב״ (1511), ע״ (1318), וילקוט (1148), פלארענץ (842), מכילתא (753), ועיין (663), הגי׳ (624), עיין (578), פ״ (559), ע״א (533), ת (530)
+
 ### Midrash Tehillim
 
 - Readiness: low coverage; leave until family pass
 - Top unmatched: רבי (828), יב (256), אלקים (253), יג (228), טז (189), יח (188), כב (186), יז (176), ירמיה (158), כא (156), ואמר (143), כד (137)
 
+### Midrash Aggadah
+
+- Readiness: low coverage; leave until family pass
+- Top unmatched: ולמה (268), מלמד (184), ואמר (141), פסוק (116), יב (105), ב׳ (95), אביו (93), א׳ (85), יז (83), המלך (79), בניו (78), יג (78)
+
+### Sha'ar HaPesukim
+
+- Readiness: low coverage; leave until family pass
+- Top unmatched: ה׳ (600), בגימטריא (511), כנודע (412), ב׳ (336), ג׳ (324), מזולתו (220), נתבאר (213), ר״ת (203), בפרשת (187), גבורות (185), בבחי׳ (178), הוי״ה (175)
+
 ### Midbar Shur
 
 - Readiness: low coverage; leave until family pass
 - Top unmatched: השי״ת (577), כ״א (529), הי׳ (367), ית׳ (310), חז״ל (215), שיהי׳ (198), יהי׳ (176), וזהו (152), ח״ו (151), שהי׳ (138), שתהי׳ (129), ע״ה (107)
+
+### Etz Yosef on Shir HaShirim Rabbah
+
+- Readiness: low coverage; leave until family pass
+- Top unmatched: ועיין (324), רבי (271), רצה (248), תואר (239), לעיל (153), וזהו (145), איתא (130), עיין (118), כדאיתא (117), דף (116), פסוק (115), פירושו (113)
+
+### Sha'ar HaGilgulim
+
+- Readiness: low coverage; leave until family pass
+- Top unmatched: שרש (224), ואח״כ (212), מורי (160), נצוצות (156), א׳ (146), ב׳ (144), אדה״ר (143), כנודע (141), דע (138), כנז״ל (128), כלם (124), מבחי׳ (123)
 
 ### Sefer HaYashar (midrash)
 
@@ -474,6 +417,16 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 
 - Readiness: low coverage; leave until family pass
 - Top unmatched: א׳ (596), י״י (447), אמ׳ (429), וג׳ (352), ישר׳ (251), דכת׳ (235), יב (191), כת׳ (183), או׳ (165), אילו (159), ירמיה (151), יג (143)
+
+### Notes and Corrections on Midrash Aggadah
+
+- Readiness: low coverage; leave until family pass
+- Top unmatched: ב״ר (630), ועיין (512), ע״א (486), ע״ב (454), ורש״י (427), הביא (419), עיין (366), ולק״ט (338), בלק״ט (271), עה״ת (264), תנחומא (263), מכבר (260)
+
+### Beur HaGra on Shulchan Arukh, Orach Chayim
+
+- Readiness: low coverage; leave until family pass
+- Top unmatched: ב׳ (710), א׳ (706), ס״א (603), וע׳ (240), אסור (198), וכ״כ (170), הרא״ש (166), וז״ש (159), כ׳ (155), הרי״ף (117), בשבת (108), מ׳ (107)
 
 ### Tanna DeBei Eliyahu Rabbah
 
@@ -500,10 +453,20 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 - Readiness: low coverage; leave until family pass
 - Top unmatched: ת״ל (407), מנין (158), שומע (129), רבי (117), מגיד (115), נזירות (101), להלן (98), לה׳ (87), ק״ו (83), הואיל (82), כיוצא (82), בדין (78)
 
+### Beur HaRe'em on Midrash Lekach Tov
+
+- Readiness: low coverage; leave until family pass
+- Top unmatched: כצ״ל (339), בת״ (328), עיין (294), כצ״ (293), ועיין (234), ע״ (214), ת״ (167), בספרי (156), ש (153), וכ״ (128), המחבר (105), קאי (103)
+
 ### Mishnat Rabbi Eliezer
 
 - Readiness: low coverage; leave until family pass
 - Top unmatched: שנ׳ (1063), אומ׳ (543), ייי (270), אמ׳ (150), יוי (129), ואומ׳ (114), מניין (95), ת״ל (94), מנ׳ (79), מלמד (78), ומנ׳ (70), ארבעה (61)
+
+### Pri Etz Chaim
+
+- Readiness: low coverage; leave until family pass
+- Top unmatched: א׳ (336), ב׳ (332), ה׳ (278), ג׳ (201), גי׳ (173), ו׳ (142), ואח״כ (113), הוי״ה (110), ז׳ (110), כנודע (103), ס״ג (88), ע״ב (87)
 
 ### Etz Yosef on Kohelet Rabbah
 
@@ -660,6 +623,11 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 - Readiness: low coverage; leave until family pass
 - Top unmatched: יְהֹוָ֖ה (91), אֶל־מֹשֶׁ֥ה (43), וַיִּסְע֖וּ (42), יְהֹוָ֔ה (41), יִשְׂרָאֵֽל׃ (37), וַֽיַּחֲנ֖וּ (36), יְהֹוָה֙ (36), לֵּאמֹֽר׃ (36), וַיְדַבֵּ֥ר (33), מֵאֽוֹת׃ (33), יְהֹוָֽה׃ (28), יְהֹוָ֑ה (23)
 
+### Yahel Ohr on Zohar
+
+- Readiness: usable; content coverage remains
+- Top unmatched: ב׳ (89), ג׳ (88), ה׳ (71), א׳ (62), וזהו (47), כידוע (46), י״ב (36), ו׳ (28), וז״ש (26), בפרשת (25), היכל (25), י״ג (24)
+
 ### Yefeh To'ar on Shemot Rabbah
 
 - Readiness: usable; content coverage remains
@@ -730,6 +698,11 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 - Readiness: usable; content coverage remains
 - Top unmatched: פסוק (73), וזהו (34), ירמיה (30), ט׳ (25), ג׳ (24), פתיחא (21), לקמן (19), וס״ד (18), מ״ש (18), ומ״ש (16), ועכשיו (16), כתוב (16)
 
+### Yefeh Anaf on Eichah Rabbah
+
+- Readiness: usable; content coverage remains
+- Top unmatched: ישבה (28), ודריש (20), כוכבים (18), פסוק (18), גלו (16), דריש (16), ופי׳ (16), כדאיתא (13), רבתי (13), וז״ש (12), כצ״ל (12), ולפ״ז (10)
+
 ### Aderet Eliyahu
 
 - Readiness: usable; content coverage remains
@@ -794,6 +767,16 @@ This report is diagnostic only. It does not import sources, add definitions, or 
 
 - Readiness: usable; content coverage remains
 - Top unmatched: ה״ג (74), גרסי׳ (45), בילקוט (35), גרס (27), ועיין (26), פתיחא (25), בירושלמי (23), גרסינן (22), ואזיל (16), ובילקוט (14), פ׳ (14), לקמן (13)
+
+### HaGra on Sefer Yetzirah Gra Version
+
+- Readiness: usable; content coverage remains
+- Top unmatched: ג׳ (72), כידוע (50), ה׳ (37), ב׳ (35), י״ב (27), בג׳ (26), כ״ב (26), ע״ב (26), א׳ (24), ל״ב (23), לקמן (23), שלכן (23)
+
+### Maaseh Rav
+
+- Readiness: usable; content coverage remains
+- Top unmatched: ס״ק (44), ה׳ (32), הש״ץ (28), פסוק (27), ש״ע (24), כ״א (20), בשבת (19), עיין (19), א״א (17), ב׳ (17), בש״ע (16), מברך (16)
 
 ### Proverbs
 
