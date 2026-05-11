@@ -1,9 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 
 const root = process.cwd();
 const exportRoot = 'data/public-lexical';
-const generatedAt = new Date().toISOString();
+const existingManifestPath = path.join(root, exportRoot, 'manifest.json');
+const generatedAt = process.env.PUBLIC_LEXICAL_GENERATED_AT
+  || (fs.existsSync(existingManifestPath) ? JSON.parse(fs.readFileSync(existingManifestPath, 'utf8')).generated_at : '')
+  || new Date().toISOString();
 
 const workSpecs = [
   {
@@ -52,6 +56,10 @@ function writeJsonl(rel, rows) {
 
 function unique(values) {
   return [...new Set((values || []).filter((value) => value !== null && value !== undefined && `${value}`.trim()))];
+}
+
+function stableId(prefix, value) {
+  return `${prefix}-${crypto.createHash('sha1').update(value).digest('hex').slice(0, 16)}`;
 }
 
 function canonicalRenderings(values) {
@@ -222,6 +230,38 @@ function makeClaim({ work, token, status, hebrewForm, renderings, breakdown, can
     notes: unique([candidate?.relation_label, candidate?.context_note, sourceRow.notes]).join(' '),
     not_a_translation: true,
   };
+}
+
+function makeCompactClaim({ status, normalizedForms, hebrewForm, renderings, candidate, sourceRow }) {
+  const row = {
+    schema_version: 1,
+    generated_at: generatedAt,
+    claim_id: '',
+    normalized_forms: unique(normalizedForms),
+    hebrew_lemma_or_form: hebrewForm || '',
+    transliteration: candidate?.transliteration || '',
+    status,
+    confidence: null,
+    confidence_note: 'HUD confidence is computed in-browser from token/context evidence; it is not persisted in this static export.',
+    strict_renderings: canonicalRenderings(renderings),
+    source_name: sourceRow.source_name || '',
+    source_id: sourceRow.source_id || '',
+    source_url: sourceRow.source_url || '',
+    license: sourceRow.license || '',
+    license_url: sourceRow.license_url || '',
+    attribution_requirements: licenseAttribution(sourceRow.license, sourceRow.source_name),
+    notes: unique([candidate?.relation_label, candidate?.context_note, sourceRow.notes]).join(' '),
+    not_a_translation: true,
+  };
+  row.claim_id = stableId('claim', [
+    row.status,
+    row.hebrew_lemma_or_form,
+    row.strict_renderings.join('|'),
+    row.source_name,
+    row.source_id,
+    row.license,
+  ].join('\u001f'));
+  return row;
 }
 
 function loadWorkExportContext(spec) {
@@ -417,6 +457,120 @@ for (const [bucket, rel] of Object.entries(licenseFiles)) {
   writeJsonl(rel, byLicenseRows[bucket]);
 }
 
+function listManifestFiles(dir) {
+  const files = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const rel = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...listManifestFiles(rel));
+    } else if (entry.isFile() && entry.name.endsWith('.manifest.json')) {
+      files.push(rel);
+    }
+  }
+  return files;
+}
+
+function buildSitewideCompactExport() {
+  const claimById = new Map();
+  const lookup = new Map();
+  const workSummary = [];
+  const diagnostics = {
+    manifests: 0,
+    chunks: 0,
+    candidates_without_renderings: 0,
+    candidates_without_source_license: 0,
+  };
+
+  for (const manifestPath of listManifestFiles(abs('data/lexical'))) {
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    if (!manifest.work_id || !Array.isArray(manifest.chunks)) continue;
+    diagnostics.manifests += 1;
+    let workClaimCount = 0;
+    const workClaimIds = new Set();
+
+    for (const chunkInfo of manifest.chunks) {
+      diagnostics.chunks += 1;
+      const chunk = readJson(path.join('data/lexical', chunkInfo.url));
+      const sourceRowsByKey = new Map();
+      for (const [key, value] of Object.entries(chunk.source_rows || {})) {
+        sourceRowsByKey.set(key, { ...value, __source_key: key });
+      }
+
+      for (const entry of chunk.lexicon?.entries || []) {
+        for (const candidate of entry.possible_entries || []) {
+          const renderings = canonicalRenderings(candidate.strict_renderings || []);
+          if (!renderings.length) {
+            diagnostics.candidates_without_renderings += 1;
+            continue;
+          }
+          const sourceRows = sourceRowsForCandidate(entry, candidate, sourceRowsByKey);
+          if (!sourceRows.length) {
+            diagnostics.candidates_without_source_license += 1;
+            continue;
+          }
+          const normalizedForms = unique([
+            candidate.match_key,
+            entry.hebrew_word,
+            candidate.lemma,
+          ]);
+          for (const sourceRow of sourceRows) {
+            if (!sourceHasUsableLicense(sourceRow)) {
+              diagnostics.candidates_without_source_license += 1;
+              continue;
+            }
+            const claim = makeCompactClaim({
+              status: claimStatusForCandidate(candidate, sourceRows),
+              normalizedForms,
+              hebrewForm: candidate.lemma || candidate.match_key || entry.hebrew_word,
+              renderings,
+              candidate,
+              sourceRow,
+            });
+            if (!claimById.has(claim.claim_id)) {
+              claimById.set(claim.claim_id, claim);
+            }
+            workClaimIds.add(claim.claim_id);
+            workClaimCount += 1;
+            for (const normalized of claim.normalized_forms) {
+              if (!normalized) continue;
+              if (!lookup.has(normalized)) lookup.set(normalized, new Set());
+              lookup.get(normalized).add(claim.claim_id);
+            }
+          }
+        }
+      }
+    }
+
+    workSummary.push({
+      work_id: manifest.work_id,
+      chunks: manifest.chunks.length,
+      candidate_claim_links: workClaimCount,
+      unique_claims: workClaimIds.size,
+    });
+  }
+
+  const claims = [...claimById.values()].sort((a, b) => a.claim_id.localeCompare(b.claim_id));
+  const lookupObject = Object.fromEntries(
+    [...lookup.entries()]
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map(([normalized, ids]) => [normalized, [...ids].sort()])
+  );
+  const workRows = workSummary.sort((a, b) => a.work_id.localeCompare(b.work_id));
+
+  writeJsonl('data/public-lexical/sitewide/claim-index.jsonl', claims);
+  writeJson('data/public-lexical/sitewide/normalized-lookup.json', lookupObject);
+  writeJsonl('data/public-lexical/sitewide/work-summary.jsonl', workRows);
+
+  return {
+    claims,
+    lookup_terms: lookup.size,
+    work_rows: workRows,
+    diagnostics,
+  };
+}
+
+const sitewideCompact = buildSitewideCompactExport();
+
 const manifest = {
   schema_version: 1,
   generated_at: generatedAt,
@@ -440,6 +594,9 @@ const manifest = {
       row_count: byLicenseRows[bucket].length,
       bytes: fileSize(rel),
     })),
+    { path: 'data/public-lexical/sitewide/claim-index.jsonl', row_count: sitewideCompact.claims.length, bytes: fileSize('data/public-lexical/sitewide/claim-index.jsonl') },
+    { path: 'data/public-lexical/sitewide/normalized-lookup.json', row_count: sitewideCompact.lookup_terms, bytes: fileSize('data/public-lexical/sitewide/normalized-lookup.json') },
+    { path: 'data/public-lexical/sitewide/work-summary.jsonl', row_count: sitewideCompact.work_rows.length, bytes: fileSize('data/public-lexical/sitewide/work-summary.jsonl') },
   ],
   license_policy: {
     note: 'Rows retain their own source/license metadata. Do not combine CC BY-SA/GFDL rows into CC0-only downstream output.',
@@ -494,6 +651,25 @@ const reportLines = [
   '',
   'Rows are skipped from the public JSONL export when they have no renderings or when a rendered claim cannot be tied to source/license metadata. Rows with project lexical-rule license labels that are not explicitly CC0 remain in all-claims/by-work output but are not placed in the CC0 by-license file.',
   '',
+  '## Sitewide Compact Claim Index',
+  '',
+  '| File | Rows / terms | Purpose |',
+  '| --- | ---: | --- |',
+  `| data/public-lexical/sitewide/claim-index.jsonl | ${sitewideCompact.claims.length} | Deduplicated claim-shaped lexical rows across all imported works |`,
+  `| data/public-lexical/sitewide/normalized-lookup.json | ${sitewideCompact.lookup_terms} | Normalized Hebrew form to claim ID lookup |`,
+  `| data/public-lexical/sitewide/work-summary.jsonl | ${sitewideCompact.work_rows.length} | Per-work compact-export coverage summary |`,
+  '',
+  'The compact sitewide files are intended for AI/tool import. They preserve source/license metadata per claim and avoid repeating the same source-backed lexical row for every work-token occurrence.',
+  '',
+  '### Sitewide Compact Diagnostics',
+  '',
+  '| Item | Count |',
+  '| --- | ---: |',
+  `| manifests scanned | ${sitewideCompact.diagnostics.manifests} |`,
+  `| chunks scanned | ${sitewideCompact.diagnostics.chunks} |`,
+  `| candidate rows without renderings | ${sitewideCompact.diagnostics.candidates_without_renderings} |`,
+  `| candidate rows without source/license | ${sitewideCompact.diagnostics.candidates_without_source_license} |`,
+  '',
   '## User-Facing Prompt',
   '',
   'The AI-assisted workflow prompt is at `prompts/use-lexical-workbench.md`.',
@@ -519,4 +695,10 @@ console.log(JSON.stringify({
   by_license: licenseCounts,
   skipped: skippedTotals,
   not_placed_by_license: notPlacedByLicense,
+  sitewide_compact: {
+    claims: sitewideCompact.claims.length,
+    lookup_terms: sitewideCompact.lookup_terms,
+    works: sitewideCompact.work_rows.length,
+    diagnostics: sitewideCompact.diagnostics,
+  },
 }, null, 2));

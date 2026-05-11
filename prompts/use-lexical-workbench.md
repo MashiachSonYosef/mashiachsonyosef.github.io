@@ -24,3 +24,9 @@ You are helping a human translator inspect Hebrew source text. Use the attached 
 The public export manifest is:
 
 `data/public-lexical/manifest.json`
+
+For large workflows, prefer the compact sitewide files:
+
+- `data/public-lexical/sitewide/claim-index.jsonl`
+- `data/public-lexical/sitewide/normalized-lookup.json`
+- `data/public-lexical/sitewide/work-summary.jsonl`

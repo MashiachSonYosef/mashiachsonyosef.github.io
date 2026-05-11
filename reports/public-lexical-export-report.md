@@ -35,6 +35,25 @@ This export contains claim-shaped lexical HUD rows for hardened public workbench
 
 Rows are skipped from the public JSONL export when they have no renderings or when a rendered claim cannot be tied to source/license metadata. Rows with project lexical-rule license labels that are not explicitly CC0 remain in all-claims/by-work output but are not placed in the CC0 by-license file.
 
+## Sitewide Compact Claim Index
+
+| File | Rows / terms | Purpose |
+| --- | ---: | --- |
+| data/public-lexical/sitewide/claim-index.jsonl | 9088 | Deduplicated claim-shaped lexical rows across all imported works |
+| data/public-lexical/sitewide/normalized-lookup.json | 19234 | Normalized Hebrew form to claim ID lookup |
+| data/public-lexical/sitewide/work-summary.jsonl | 170 | Per-work compact-export coverage summary |
+
+The compact sitewide files are intended for AI/tool import. They preserve source/license metadata per claim and avoid repeating the same source-backed lexical row for every work-token occurrence.
+
+### Sitewide Compact Diagnostics
+
+| Item | Count |
+| --- | ---: |
+| manifests scanned | 170 |
+| chunks scanned | 1309 |
+| candidate rows without renderings | 274760 |
+| candidate rows without source/license | 0 |
+
 ## User-Facing Prompt
 
 The AI-assisted workflow prompt is at `prompts/use-lexical-workbench.md`.
