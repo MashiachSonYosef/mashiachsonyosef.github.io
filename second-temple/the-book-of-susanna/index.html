@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Book of Susanna</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>The Book of Susanna</h1>
+        <p class="meta">76 total source units | imported 2026-05-11</p>
+        <p class="meta source-citation">Hebrew version: Leipzig, 1830, Wikisource | Version source: <a href="https://he.wikisource.org/wiki/%D7%9B%D7%AA%D7%95%D7%91%D7%99%D7%9D_%D7%90%D7%97%D7%A8%D7%95%D7%A0%D7%99%D7%9D/%D7%A9%D7%95%D7%A9%D7%A0%D7%94">he.wikisource.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>The Book of Susanna <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>The Book of Susanna <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-the-book-of-susanna-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-1" title="The Book of Susanna 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-2" title="The Book of Susanna 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-3" title="The Book of Susanna 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-4" title="The Book of Susanna 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-5" title="The Book of Susanna 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-6" title="The Book of Susanna 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-7" title="The Book of Susanna 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-8" title="The Book of Susanna 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-9" title="The Book of Susanna 1:9">1:9</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-10" title="The Book of Susanna 1:10">1:10</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-11" title="The Book of Susanna 1:11">1:11</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-12" title="The Book of Susanna 1:12">1:12</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-13" title="The Book of Susanna 1:13">1:13</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-14" title="The Book of Susanna 1:14">1:14</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-15" title="The Book of Susanna 1:15">1:15</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-16" title="The Book of Susanna 1:16">1:16</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-17" title="The Book of Susanna 1:17">1:17</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-18" title="The Book of Susanna 1:18">1:18</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-19" title="The Book of Susanna 1:19">1:19</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-20" title="The Book of Susanna 1:20">1:20</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-21" title="The Book of Susanna 1:21">1:21</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-22" title="The Book of Susanna 1:22">1:22</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-23" title="The Book of Susanna 1:23">1:23</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-24" title="The Book of Susanna 1:24">1:24</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-25" title="The Book of Susanna 1:25">1:25</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-26" title="The Book of Susanna 1:26">1:26</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-27" title="The Book of Susanna 1:27">1:27</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-28" title="The Book of Susanna 1:28">1:28</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-29" title="The Book of Susanna 1:29">1:29</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-30" title="The Book of Susanna 1:30">1:30</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-31" title="The Book of Susanna 1:31">1:31</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-32" title="The Book of Susanna 1:32">1:32</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-33" title="The Book of Susanna 1:33">1:33</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-34" title="The Book of Susanna 1:34">1:34</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-35" title="The Book of Susanna 1:35">1:35</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-36" title="The Book of Susanna 1:36">1:36</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-37" title="The Book of Susanna 1:37">1:37</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-38" title="The Book of Susanna 1:38">1:38</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-39" title="The Book of Susanna 1:39">1:39</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-40" title="The Book of Susanna 1:40">1:40</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-41" title="The Book of Susanna 1:41">1:41</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-42" title="The Book of Susanna 1:42">1:42</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-43" title="The Book of Susanna 1:43">1:43</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-44" title="The Book of Susanna 1:44">1:44</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-45" title="The Book of Susanna 1:45">1:45</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-46" title="The Book of Susanna 1:46">1:46</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-47" title="The Book of Susanna 1:47">1:47</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-48" title="The Book of Susanna 1:48">1:48</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-49" title="The Book of Susanna 1:49">1:49</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-50" title="The Book of Susanna 1:50">1:50</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-51" title="The Book of Susanna 1:51">1:51</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-52" title="The Book of Susanna 1:52">1:52</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-53" title="The Book of Susanna 1:53">1:53</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-54" title="The Book of Susanna 1:54">1:54</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-55" title="The Book of Susanna 1:55">1:55</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-56" title="The Book of Susanna 1:56">1:56</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-57" title="The Book of Susanna 1:57">1:57</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-58" title="The Book of Susanna 1:58">1:58</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-59" title="The Book of Susanna 1:59">1:59</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-60" title="The Book of Susanna 1:60">1:60</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-61" title="The Book of Susanna 1:61">1:61</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-62" title="The Book of Susanna 1:62">1:62</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-63" title="The Book of Susanna 1:63">1:63</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-64" title="The Book of Susanna 1:64">1:64</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-65" title="The Book of Susanna 1:65">1:65</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-66" title="The Book of Susanna 1:66">1:66</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-67" title="The Book of Susanna 1:67">1:67</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-68" title="The Book of Susanna 1:68">1:68</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-69" title="The Book of Susanna 1:69">1:69</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-70" title="The Book of Susanna 1:70">1:70</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-71" title="The Book of Susanna 1:71">1:71</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-72" title="The Book of Susanna 1:72">1:72</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-73" title="The Book of Susanna 1:73">1:73</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-74" title="The Book of Susanna 1:74">1:74</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-75" title="The Book of Susanna 1:75">1:75</a></li>
+                    <li><a class="toc-unit" href="#the-book-of-susanna-1-76" title="The Book of Susanna 1:76">1:76</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-the-book-of-susanna-text-1">Chapter 1</h4>
+          <section class="unit" id="the-book-of-susanna-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:1</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-1" aria-label="Copy link to The Book of Susanna 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">איש היה בעיר בבל ושמו יהויקים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:2</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-2" aria-label="Copy link to The Book of Susanna 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויקח לו אשה שושנה בת חלקיהו והיא היתה יפת תאר ויראת אלהים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:3</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-3" aria-label="Copy link to The Book of Susanna 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כי אבותיה היו ישרי לב וידריכוה בדרכי תורת משה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:4</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-4" aria-label="Copy link to The Book of Susanna 1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויהויקים היה עשיר מאד ויהי לו כרם חמד אצל ביתו וכל התאספו אליו כי נכבד היה מכל אנשי העיר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:5</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-5" aria-label="Copy link to The Book of Susanna 1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויהי בשנה ההיא ויקימו שנים מזקני העיר לשופטים על העם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:6</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-6" aria-label="Copy link to The Book of Susanna 1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והם היו מן האנשים אשר אמר יי עליהם מבבל יצאה הרעה ומזקניה שפטי העם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:7</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-7" aria-label="Copy link to The Book of Susanna 1:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויבאו מדי יום ביומו אל בית יהויקים וכי היה לאיש דבר בא אליהם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:8</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-8" aria-label="Copy link to The Book of Susanna 1:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויהי בעת הצהרים וכל איש הלך לדרכו ותלך שושנה לשוח בכרם בעלה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:9</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-9" aria-label="Copy link to The Book of Susanna 1:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויראו הזקנים את האשה מתהלכת יום יום בכרם ויתאוו תאווה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:10</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-10" aria-label="Copy link to The Book of Susanna 1:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וייהפך לבבם ותחת נשוא מרום עיניהם נשאו את עיניהם אליה ולא זכרו תורת ה ומשפטו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:11</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-11" aria-label="Copy link to The Book of Susanna 1:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וגם כי חיצי התשוקה נחתו בלבב שניהם לא גילו את אהבתם איש אל אחיו כי התבוששו וכל אחד חשב לחללה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:12</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-12" aria-label="Copy link to The Book of Susanna 1:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וישקדו יום יום על דלתי הכרם ללכת אחריהם ולהביט אליה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:13</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-13" aria-label="Copy link to The Book of Susanna 1:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויאמרו איש אל רעו נשובה נא אל בתינו כי קרבה העת לאכול בצהרים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:14</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-14" aria-label="Copy link to The Book of Susanna 1:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויהי אחרי לכתם ואחרי היפרדם איש מעל אחיו ויפן כל אחד וישב אל הכרם וימצאו שניהם יחדיו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:15</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-15" aria-label="Copy link to The Book of Susanna 1:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וכאשר שאלו איש את אחיו לאמור מה זאת ויתוודו את תשוקתם הרעה ויועצו יחדיו וישימו מועד לארוב לה בהיותה לבדה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:16</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-16" aria-label="Copy link to The Book of Susanna 1:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויהי היום והם במארב ותבוא שושנה כדרכה לרחוץ בכרם כחום היום ושתי נערותיה איתה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:17</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-17" aria-label="Copy link to The Book of Susanna 1:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואיש לא היה בכרם זולתי שני הזקנים אשר התחבאו לארוב לה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:18</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-18" aria-label="Copy link to The Book of Susanna 1:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ותאמר שושנה אל נערותיה קחנה לי שמן ובורית וסגורנה הכרם עד כלותי לרחוץ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-19" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:19</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-19" aria-label="Copy link to The Book of Susanna 1:19">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ותעשינה הנערות כאשר בקשה ותסגורנה הדלת בעדה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-20" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:20</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-20" aria-label="Copy link to The Book of Susanna 1:20">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ולא ראו את האנשים כי התחבאו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-21" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:21</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-21" aria-label="Copy link to The Book of Susanna 1:21">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הנה הלכו והנה שני הזקנים הגיחו מן המחבוא וירוצו אל שושנה ויאמרו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-22" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:22</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-22" aria-label="Copy link to The Book of Susanna 1:22">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הנה הכרם נעול ואין פה איש לראות ונפשנו חשקה בך לכן הבה נא ונבוא אליך:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-23" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:23</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-23" aria-label="Copy link to The Book of Susanna 1:23">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואם מאן תמאני לשמוע בקולנו העד נעיד עליך כי ראינו איש עמך בכרם ולכן שלחת את הנערות מאיתך:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-24" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:24</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-24" aria-label="Copy link to The Book of Susanna 1:24">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ותאנח שושנה ותאמר אויה לי כי צר ומצקו סבבוני יחד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-25" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:25</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-25" aria-label="Copy link to The Book of Susanna 1:25">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אם אעשה את חפצם בת מות אנוכי ואם אחדל מי יצילני מידם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-26" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:26</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-26" aria-label="Copy link to The Book of Susanna 1:26">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אפס טוב לי לנפול בניקיון כפי בידי אדם מחטוא לאלוהים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-27" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:27</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-27" aria-label="Copy link to The Book of Susanna 1:27">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ותשא שושנה את קולה ותצעק ויצעקו גם הזקנים לקראתה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-28" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:28</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-28" aria-label="Copy link to The Book of Susanna 1:28">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וירוץ האחד אל הדלת ויפתח:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-29" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:29</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-29" aria-label="Copy link to The Book of Susanna 1:29">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואנשי הבית שמעו את קול צעקתה וירוצו אל הכרם לראות מה זה נעשה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-30" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:30</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-30" aria-label="Copy link to The Book of Susanna 1:30">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויהי כי הוציאו הזקנים עליה את דיבתם רעה ויתבוששו העבדים כי מיום היוולדה לא נשמע כזאת עליהָ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-31" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:31</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-31" aria-label="Copy link to The Book of Susanna 1:31">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויהי ממחרת בהיקבץ העם בית יהויקים בעלה ויבוא גם שני הזקנים ויוציאו עליה שם רע למען שפוט אותה משפט מוות:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-32" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:32</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-32" aria-label="Copy link to The Book of Susanna 1:32">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויאמרו אל העם שלחו נא והגישו את שושנה בת חלקיהו אשת יהויקים אלינו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-33" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:33</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-33" aria-label="Copy link to The Book of Susanna 1:33">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וישלחו אליה להביאה ותבוא היא ואבותיה עם בניהם וכל משפחתה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-34" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:34</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-34" aria-label="Copy link to The Book of Susanna 1:34">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ושושנה הייתה טובת מראה רכה וענוגה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-35" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:35</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-35" aria-label="Copy link to The Book of Susanna 1:35">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויצוו הרשעים האלה להסיר הצעיף מעל פניה למען התענג עוד בהוד מראיה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-36" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:36</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-36" aria-label="Copy link to The Book of Susanna 1:36">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וכל מוׂדעֶיהָ וכל הניצבים עליה בכו בְּכי גדול מאוד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-37" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:37</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-37" aria-label="Copy link to The Book of Susanna 1:37">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויקומו שני הזקנים ויתייצבו בקרב העם וישימו את ידיהם על ראש שושנה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-38" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:38</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-38" aria-label="Copy link to The Book of Susanna 1:38">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והיא בכתה במר נפשה ותישא עיניה השמימה כי בטח לִבָּה בה׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-39" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:39</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-39" aria-label="Copy link to The Book of Susanna 1:39">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויענו הזקנים ויאמרו הנה התהלכנו שנינו בכרם ותבוא שושנה ושתי נערותיה איתה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-40" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:40</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-40" aria-label="Copy link to The Book of Susanna 1:40">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואחרי כן שלחה את הנערות מפניה ואת הכרם סגרה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-41" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:41</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-41" aria-label="Copy link to The Book of Susanna 1:41">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויגש אליה עלם אשר נחבא בגן וישכב עמה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-42" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:42</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-42" aria-label="Copy link to The Book of Susanna 1:42">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויהי כי ראינו בפינת הגן את הנבלה הזאת וקרבנו אליה והנה היא שוכבת בחיקו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-43" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:43</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-43" aria-label="Copy link to The Book of Susanna 1:43">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אפס לא היה לאל ידנו לתפוש את העלם כי חזק היה ממנו ויפתח הדלת וימלט:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-44" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:44</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-44" aria-label="Copy link to The Book of Susanna 1:44">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויהי כי החזקנו בה ושאלנוהָ לאמור מי הוא העלם ותמאן להשיב לנו דבר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-45" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:45</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-45" aria-label="Copy link to The Book of Susanna 1:45">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ועתה עדים אנחנו בדבר הזה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-46" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:46</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-46" aria-label="Copy link to The Book of Susanna 1:46">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויאמן העם אל דברי הזקנים השופטים וישפטו אותה משפט מוות:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-47" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:47</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-47" aria-label="Copy link to The Book of Susanna 1:47">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ותזעק שושנה בצרת נפשה ותאמר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-48" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:48</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-48" aria-label="Copy link to The Book of Susanna 1:48">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יי אלוהים לך נגלו כל תעלומות וחדשות אתה יודע בטרם תצמחנה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-49" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:49</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-49" aria-label="Copy link to The Book of Susanna 1:49">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ידעת גם ידעת כי אין בפיהם נכונה וכי שקר העידו עלי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-50" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:50</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-50" aria-label="Copy link to The Book of Susanna 1:50">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ועתה הנני הולכת למות גם כי ניקיתי מן הפשע אשר בדו מלִבָּם הרע:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-51" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:51</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-51" aria-label="Copy link to The Book of Susanna 1:51">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וישמע אלוהים את נאקתה וייעתר לה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-52" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:52</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-52" aria-label="Copy link to The Book of Susanna 1:52">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">היא מוצאת למות וה׳ העיר את רוח נער רך ושמו דניאל ויישא את קולו ויאמר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-53" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:53</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-53" aria-label="Copy link to The Book of Susanna 1:53">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">נקי אנוכי מן הדם אשר יישפך:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-54" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:54</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-54" aria-label="Copy link to The Book of Susanna 1:54">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויפן כל העם וישאלוהו מה זה הדבר אשר דיברת?:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-55" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:55</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-55" aria-label="Copy link to The Book of Susanna 1:55">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויתייצב דניאל בקרב העם ויאמר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-56" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:56</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-56" aria-label="Copy link to The Book of Susanna 1:56">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שמעו נא בני ישראל הסכלתם עשה להרשיע בת ישראל בטרם חקרתם ודרשתם הדבר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-57" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:57</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-57" aria-label="Copy link to The Book of Susanna 1:57">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שובו נא אל בית המשפט וראיתם כי שקר ענו בה האנשים האלה וימהרו כל העם וישובו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-58" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:58</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-58" aria-label="Copy link to The Book of Susanna 1:58">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויאמרו הזקנים אל דניאל שב נא בתוכנו והַשׂכילֵנו אתה אם שָׂמְךָ אלוהים לאיש מוכיח ושופט:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-59" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:59</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-59" aria-label="Copy link to The Book of Susanna 1:59">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויען דניאל ויאמר ייפרדו נא שני העדים איש מעל אחיו ואשאל איש איש לבדו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-60" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:60</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-60" aria-label="Copy link to The Book of Susanna 1:60">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויהי אחרי היפרדם ויקרא לראשון ויאמר אליו: הזקן בימים ובפשעים כעת יחולו על ראשך:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-61" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:61</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-61" aria-label="Copy link to The Book of Susanna 1:61">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דע נא כי משפט עוול שפטת והצדקת את הרשע והרשעת את הצדיק אף כי אמר אלוהים &quot;ונקי וצדיק אל תהרוג&quot;:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-62" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:62</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-62" aria-label="Copy link to The Book of Susanna 1:62">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ועתה אם ראיתָ את אשר דברת הגד לי את שם העץ אשר מצאת שניהם תחתיו. ויען ויאמר תחת אַלָה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-63" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:63</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-63" aria-label="Copy link to The Book of Susanna 1:63">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויאמר דניאל יִתֶנְךָ ה׳ לאלה ומלאכוֹ יצווה לָךְ להכריתֶךָ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-64" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:64</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-64" aria-label="Copy link to The Book of Susanna 1:64">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וישלח אותו מעל פניו ויצַו להגיש את השני ויאמר אליו בן כנעני אתה ולא בן יהודי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-65" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:65</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-65" aria-label="Copy link to The Book of Susanna 1:65">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הן יְפִי האישה השיאך ורוח זנונים הפך לִבֶּךָ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-66" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:66</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-66" aria-label="Copy link to The Book of Susanna 1:66">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ככה היו מעשיכם כל הימים לזנות את בנות ישראל ומִיִרְאָתָן אתכם הִטיתֶם אותן לכל חֶפציכם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-67" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:67</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-67" aria-label="Copy link to The Book of Susanna 1:67">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">זולתי בת יהודה הזאת אשר לא שמעה לקול תַזנוּתֶךָ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-68" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:68</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-68" aria-label="Copy link to The Book of Susanna 1:68">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ועתה הגד לי את שם העץ אשר ראית שניהם תחתיו ויען ויאמר תחת אלון:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-69" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:69</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-69" aria-label="Copy link to The Book of Susanna 1:69">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויאמר דניאל השקר יכסה פניך קָלון רְאה כי מלאך ה׳ ינופף חרבו עליך להשחיתֶך:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-70" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:70</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-70" aria-label="Copy link to The Book of Susanna 1:70">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וישמע כל העם ויישאו את קולם להודות לה׳ המושיע לכל המייחלים לחסדו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-71" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:71</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-71" aria-label="Copy link to The Book of Susanna 1:71">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויקומו כולם על שני הזקנים אשר נלכדו באִמרֵי פּיהֶם על יד דניאל כי שקר ענו בשושנה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-72" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:72</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-72" aria-label="Copy link to The Book of Susanna 1:72">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויעשו להם כמשפט תורת משה &quot;ועשיתם לו כאשר זמם לעשות לאחיו&quot;:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-73" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:73</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-73" aria-label="Copy link to The Book of Susanna 1:73">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויהרגו אותם וינצלו ביום ההוא מִשפוֹך דם נקי בישראל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-74" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:74</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-74" aria-label="Copy link to The Book of Susanna 1:74">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וחלקיהו ואשתו נתנו שבח והלל לה׳ על דבר בִּתם כי לא נמצא בָהּ עֶרְוַת דָּבָר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-75" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:75</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-75" aria-label="Copy link to The Book of Susanna 1:75">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וכן עשה יהויקים בעלה וכל משפחתו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-book-of-susanna-1-76" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Book of Susanna 1:76</h4></div>
+              <a class="anchor" href="#the-book-of-susanna-1-76" aria-label="Copy link to The Book of Susanna 1:76">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויהי דניאל גדול ויקר בעיני העם מיום ההוא והלאה עד יום מותו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-the-book-of-susanna-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"the-book-of-susanna","work_title":"The Book of Susanna","work_slug":"second-temple/the-book-of-susanna","scope_label":"All imported Hebrew works","generated_at":"2026-05-11T22:42:25.341Z","total_occurrences":909,"units":{"the-book-of-susanna-1-1":{"unit_id":"the-book-of-susanna-1-1","anchor_id":"the-book-of-susanna-1-1","source_ref":"The Book of Susanna 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-62d8e8f76250","tok-dbc96c2df145","tok-d16e27e48c2c","tok-97981b6e4a86","tok-58ad84cff432","tok-b75392a62a2d"]}]},"the-book-of-susanna-1-2":{"unit_id":"the-book-of-susanna-1-2","anchor_id":"the-book-of-susanna-1-2","source_ref":"The Book of Susanna 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6eaf6d1b5dac","tok-cf7e48bb1f1a","tok-0d109a80ad1a","tok-61994112d672","tok-53439693b314","tok-56d6a7839b7b","tok-077bd977ebc7","tok-a6e9106c83bd","tok-4d741de60a0d","tok-7bb35a73b4a8","tok-c77c234cd2c9","tok-cd5f16e979df"]}]},"the-book-of-susanna-1-3":{"unit_id":"the-book-of-susanna-1-3","anchor_id":"the-book-of-susanna-1-3","source_ref":"The Book of Susanna 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e6bcccc9238c","tok-96c4c49c611a","tok-a9c6d45f134a","tok-795a35299256","tok-68eaa54e06b4","tok-7faf06b357cb","tok-a402f777ad1d","tok-c4d32a960f44","tok-feb7bd98323c"]}]},"the-book-of-susanna-1-4":{"unit_id":"the-book-of-susanna-1-4","anchor_id":"the-book-of-susanna-1-4","source_ref":"The Book of Susanna 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c2ce59ae70a1","tok-dbc96c2df145","tok-dd5c75de0b71","tok-5b07a65d3930","tok-bbee64d952bf","tok-cf7e48bb1f1a","tok-5087fedcb83f","tok-1cb398aa8df3","tok-be8296e19327","tok-f40ae364911b","tok-16f037e2ddd8","tok-30b3bb815a13","tok-3f2cf1fe7a39","tok-e6bcccc9238c","tok-21f9a704cb64","tok-dbc96c2df145","tok-2a5f03ec3131","tok-2da1314ef545","tok-54ac664c9fa0"]}]},"the-book-of-susanna-1-5":{"unit_id":"the-book-of-susanna-1-5","anchor_id":"the-book-of-susanna-1-5","source_ref":"The Book of Susanna 1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bbee64d952bf","tok-802b8d6732c1","tok-074415271787","tok-164cac93d570","tok-ea4e0bcbf520","tok-863a653c34b8","tok-54ac664c9fa0","tok-b3f60be8a4d9","tok-956335c1bdce","tok-a908778c8b1c"]}]},"the-book-of-susanna-1-6":{"unit_id":"the-book-of-susanna-1-6","anchor_id":"the-book-of-susanna-1-6","source_ref":"The Book of Susanna 1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-45cb419d2b9b","tok-a9c6d45f134a","tok-d69522f43355","tok-ef5323e02d35","tok-87c66109f678","tok-ef5d537b7b1f","tok-5679e8755ab5","tok-67f662a463c4","tok-a5ee18db819e","tok-26860159261f","tok-c56de1bb0318","tok-7d2a0098f857","tok-7a5c995fa343","tok-a908778c8b1c"]}]},"the-book-of-susanna-1-7":{"unit_id":"the-book-of-susanna-1-7","anchor_id":"the-book-of-susanna-1-7","source_ref":"The Book of Susanna 1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b1f152802125","tok-9e19f007d467","tok-035eb9fc7006","tok-e1a40930572b","tok-31c992f50c53","tok-552ce0e9af31","tok-b75392a62a2d","tok-75a297798981","tok-dbc96c2df145","tok-12aaa1c89d9e","tok-256a8f0a5af9","tok-1610e4b4d443","tok-d11665dfa5cb"]}]},"the-book-of-susanna-1-8":{"unit_id":"the-book-of-susanna-1-8","anchor_id":"the-book-of-susanna-1-8","source_ref":"The Book of Susanna 1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bbee64d952bf","tok-4b458689fd47","tok-e1c3aeaf728a","tok-16f037e2ddd8","tok-62d8e8f76250","tok-e3df71586572","tok-4d6eb9ba6342","tok-116c332bac44","tok-61994112d672","tok-bc6cda3d77e5","tok-9a04ac212f32","tok-d70ba15f0b03"]}]},"the-book-of-susanna-1-9":{"unit_id":"the-book-of-susanna-1-9","anchor_id":"the-book-of-susanna-1-9","source_ref":"The Book of Susanna 1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b51f910596aa","tok-188802bd5f63","tok-199e8c099839","tok-8b6790f62622","tok-0764c8c2e23a","tok-035eb9fc7006","tok-035eb9fc7006","tok-9a04ac212f32","tok-9f3edd9b492c","tok-b2a128960dad"]}]},"the-book-of-susanna-1-10":{"unit_id":"the-book-of-susanna-1-10","anchor_id":"the-book-of-susanna-1-10","source_ref":"The Book of Susanna 1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e3759a6b70a7","tok-2cce33999ff8","tok-0d5d9646e183","tok-509605af51e3","tok-2bd6f880a1f3","tok-c35baf3616d2","tok-8cad5bac6138","tok-199e8c099839","tok-c35baf3616d2","tok-fa4c90c00016","tok-5187915e6bcf","tok-c99b97968d26","tok-c4d32a960f44","tok-bb0413497e09","tok-859de8642421"]}]},"the-book-of-susanna-1-11":{"unit_id":"the-book-of-susanna-1-11","anchor_id":"the-book-of-susanna-1-11","source_ref":"The Book of Susanna 1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3ba1f9e0de13","tok-e6bcccc9238c","tok-db414abf7e33","tok-b2d785f7a6ef","tok-ea4139293999","tok-72b04ad02436","tok-22e6e16f3bf4","tok-3b0233650de3","tok-5e1ed0919ba1","tok-199e8c099839","tok-4bfb191d946c","tok-62d8e8f76250","tok-31c992f50c53","tok-b7e43a7d873d","tok-e6bcccc9238c","tok-d3f39283abb8","tok-16f037e2ddd8","tok-0b880492d4c1","tok-1d14cae9b135","tok-95e654b317d5"]}]},"the-book-of-susanna-1-12":{"unit_id":"the-book-of-susanna-1-12","anchor_id":"the-book-of-susanna-1-12","source_ref":"The Book of Susanna 1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4e3aab918e6d","tok-035eb9fc7006","tok-035eb9fc7006","tok-956335c1bdce","tok-9b8dd6de0b13","tok-bacb3b3d485e","tok-c0dcc8b54213","tok-140948c57e32","tok-68351c84bedf","tok-fa4c90c00016"]}]},"the-book-of-susanna-1-13":{"unit_id":"the-book-of-susanna-1-13","anchor_id":"the-book-of-susanna-1-13","source_ref":"The Book of Susanna 1:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3d5d0f0b9a65","tok-62d8e8f76250","tok-31c992f50c53","tok-3eaf067b45ea","tok-68b747c95268","tok-7d7ddcc879b0","tok-31c992f50c53","tok-86cbb1c0735b","tok-e6bcccc9238c","tok-1ec04e070100","tok-a7cb76b6f139","tok-1b9d931cee04","tok-7597a95bb374"]}]},"the-book-of-susanna-1-14":{"unit_id":"the-book-of-susanna-1-14","anchor_id":"the-book-of-susanna-1-14","source_ref":"The Book of Susanna 1:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bbee64d952bf","tok-905adc2c1bba","tok-94179212497d","tok-cfdb0fa3a5e8","tok-3cdecb5251e9","tok-62d8e8f76250","tok-5b8152e666b1","tok-b7e43a7d873d","tok-e63b69c4b7b8","tok-de8000fcd3f1","tok-0b880492d4c1","tok-1cbb8be071b9","tok-31c992f50c53","tok-bacb3b3d485e","tok-99ca0cad1970","tok-22e6e16f3bf4","tok-a6a09c18246e"]}]},"the-book-of-susanna-1-15":{"unit_id":"the-book-of-susanna-1-15","anchor_id":"the-book-of-susanna-1-15","source_ref":"The Book of Susanna 1:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0dca7802e9ba","tok-3427a416e730","tok-62d8e8f76250","tok-199e8c099839","tok-b7e43a7d873d","tok-9f4f60112e12","tok-358f3061d853","tok-2b76b8b63cd6","tok-a8cb52f61ade","tok-199e8c099839","tok-561f00ee9ec8","tok-c56de1bb0318","tok-50402729421e","tok-a6a09c18246e","tok-d5ac7ed821aa","tok-444d131ad91b","tok-b65e07814f1d","tok-90a6a1e43f48","tok-81d10ca61402","tok-00136350558e"]}]},"the-book-of-susanna-1-16":{"unit_id":"the-book-of-susanna-1-16","anchor_id":"the-book-of-susanna-1-16","source_ref":"The Book of Susanna 1:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bbee64d952bf","tok-b7a014908b8d","tok-45cb419d2b9b","tok-24b1519c0e1b","tok-a5259e736ce8","tok-61994112d672","tok-4b5dccab0efb","tok-0914cc4bfd18","tok-9a04ac212f32","tok-aefb500422ab","tok-b7a014908b8d","tok-9eac0dc1e01a","tok-a8f4d854eaed","tok-ec7ed16f15c3"]}]},"the-book-of-susanna-1-17":{"unit_id":"the-book-of-susanna-1-17","anchor_id":"the-book-of-susanna-1-17","source_ref":"The Book of Susanna 1:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-790afb3dbe57","tok-3b0233650de3","tok-dbc96c2df145","tok-9a04ac212f32","tok-2ee1544bc5a6","tok-a29552e247e8","tok-188802bd5f63","tok-87c66109f678","tok-6f3360880114","tok-b65e07814f1d","tok-90a6a1e43f48"]}]},"the-book-of-susanna-1-18":{"unit_id":"the-book-of-susanna-1-18","anchor_id":"the-book-of-susanna-1-18","source_ref":"The Book of Susanna 1:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c961f0018c5f","tok-61994112d672","tok-31c992f50c53","tok-a8f4d854eaed","tok-5c43ac229a3c","tok-a27e4771a02a","tok-699e647c7956","tok-cb320803ca68","tok-59b3173c9fc1","tok-bacb3b3d485e","tok-bf67991076f9","tok-6051a4237fa7","tok-0914cc4bfd18"]}]},"the-book-of-susanna-1-19":{"unit_id":"the-book-of-susanna-1-19","anchor_id":"the-book-of-susanna-1-19","source_ref":"The Book of Susanna 1:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f4d6dd196e7e","tok-8340b1d1739d","tok-670daa2a49a1","tok-4ffb7fe383a3","tok-f03c5aa9d1f6","tok-2be00e873bb5","tok-6cb0a48e08f4"]}]},"the-book-of-susanna-1-20":{"unit_id":"the-book-of-susanna-1-20","anchor_id":"the-book-of-susanna-1-20","source_ref":"The Book of Susanna 1:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5187915e6bcf","tok-e9a58d7ca80d","tok-199e8c099839","tok-ef5323e02d35","tok-e6bcccc9238c","tok-6f3360880114"]}]},"the-book-of-susanna-1-21":{"unit_id":"the-book-of-susanna-1-21","anchor_id":"the-book-of-susanna-1-21","source_ref":"The Book of Susanna 1:21","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2c3c42d10755","tok-bfe1883872d4","tok-d793d602c0fe","tok-a29552e247e8","tok-188802bd5f63","tok-be557d631923","tok-d69522f43355","tok-a3333d912138","tok-4dee2a44cb39","tok-31c992f50c53","tok-61994112d672","tok-3d5d0f0b9a65"]}]},"the-book-of-susanna-1-22":{"unit_id":"the-book-of-susanna-1-22","anchor_id":"the-book-of-susanna-1-22","source_ref":"The Book of Susanna 1:22","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2c3c42d10755","tok-bacb3b3d485e","tok-c72039647700","tok-93beae1608be","tok-06285cfdc091","tok-62d8e8f76250","tok-95b5062a61a4","tok-8463e8b2e1b7","tok-167bbfcf2b30","tok-8f7b34b9280e","tok-ab5a7e70c3e0","tok-fea97596b040","tok-7d7ddcc879b0","tok-def062149af3","tok-caee84b09bfc"]}]},"the-book-of-susanna-1-23":{"unit_id":"the-book-of-susanna-1-23","anchor_id":"the-book-of-susanna-1-23","source_ref":"The Book of Susanna 1:23","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-98a2b8f30583","tok-05a0f9fbd39a","tok-2ac4b91d7dc3","tok-f8cb5a9e8700","tok-c07d9aac9bdd","tok-448382c91a3f","tok-d55166ef9b43","tok-ded7698f9005","tok-e6bcccc9238c","tok-946c7adbca2c","tok-62d8e8f76250","tok-7c3115eae03e","tok-9a04ac212f32","tok-afd99980c37a","tok-125266e8d5ec","tok-199e8c099839","tok-8340b1d1739d","tok-08ad27854766"]}]},"the-book-of-susanna-1-24":{"unit_id":"the-book-of-susanna-1-24","anchor_id":"the-book-of-susanna-1-24","source_ref":"The Book of Susanna 1:24","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fb08d0d5743f","tok-61994112d672","tok-c961f0018c5f","tok-f45c62b98f87","tok-a27e4771a02a","tok-e6bcccc9238c","tok-cef40d1a6cff","tok-baae0d61d3d7","tok-cc02e44c3126","tok-1977e7ce954a"]}]},"the-book-of-susanna-1-25":{"unit_id":"the-book-of-susanna-1-25","anchor_id":"the-book-of-susanna-1-25","source_ref":"The Book of Susanna 1:25","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-58f7bc57c680","tok-d8859e55a6d0","tok-199e8c099839","tok-841ab2ecffdc","tok-53439693b314","tok-621e7615c150","tok-902f8afe66b9","tok-98a2b8f30583","tok-c0283b888b90","tok-0271d5fc1d39","tok-396012860907","tok-3f6ab597a377"]}]},"the-book-of-susanna-1-26":{"unit_id":"the-book-of-susanna-1-26","anchor_id":"the-book-of-susanna-1-26","source_ref":"The Book of Susanna 1:26","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-98e3583d7e9b","tok-b491aba8112a","tok-a27e4771a02a","tok-d2aca7bf6bfb","tok-4779efabfccc","tok-bd41dde4b004","tok-7d9a0ca00ec3","tok-cd4232c05d95","tok-81de6263c51e","tok-d7704f470a95"]}]},"the-book-of-susanna-1-27":{"unit_id":"the-book-of-susanna-1-27","anchor_id":"the-book-of-susanna-1-27","source_ref":"The Book of Susanna 1:27","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f52bd9850325","tok-61994112d672","tok-199e8c099839","tok-db3cb9881c25","tok-baa981598faf","tok-0cefc2c46ffe","tok-afb8ff914d41","tok-188802bd5f63","tok-f49e91799211"]}]},"the-book-of-susanna-1-28":{"unit_id":"the-book-of-susanna-1-28","anchor_id":"the-book-of-susanna-1-28","source_ref":"The Book of Susanna 1:28","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-111b1c9d3a39","tok-eeb340e308dd","tok-31c992f50c53","tok-2be00e873bb5","tok-b9e85863a3b4"]}]},"the-book-of-susanna-1-29":{"unit_id":"the-book-of-susanna-1-29","anchor_id":"the-book-of-susanna-1-29","source_ref":"The Book of Susanna 1:29","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3cd212b8fbfe","tok-a9575d349d44","tok-ae139cb284e8","tok-199e8c099839","tok-45c474cd654a","tok-8196be83308a","tok-4dee2a44cb39","tok-31c992f50c53","tok-bacb3b3d485e","tok-95b5062a61a4","tok-358f3061d853","tok-6775ca1fc76d","tok-74b3ac59d1b9"]}]},"the-book-of-susanna-1-30":{"unit_id":"the-book-of-susanna-1-30","anchor_id":"the-book-of-susanna-1-30","source_ref":"The Book of Susanna 1:30","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bbee64d952bf","tok-e6bcccc9238c","tok-46b67b5773b0","tok-188802bd5f63","tok-a4d356197f63","tok-199e8c099839","tok-057a22c28395","tok-c99ca1e0be10","tok-169c0850a9be","tok-fae33f59fa6d","tok-e6bcccc9238c","tok-4af1707d0872","tok-f91e56534af5","tok-3b0233650de3","tok-d20f0dd9f946","tok-8dd57257e35c","tok-ff2bc71e919e"]}]},"the-book-of-susanna-1-31":{"unit_id":"the-book-of-susanna-1-31","anchor_id":"the-book-of-susanna-1-31","source_ref":"The Book of Susanna 1:31","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bbee64d952bf","tok-bb81f0e71876","tok-f8026e6c361b","tok-a908778c8b1c","tok-552ce0e9af31","tok-b75392a62a2d","tok-d70ba15f0b03","tok-3b298f5ccd75","tok-afb8ff914d41","tok-a29552e247e8","tok-188802bd5f63","tok-1d8e7dc6a698","tok-a4d356197f63","tok-eb71c4927413","tok-ca9599c1da1f","tok-25cb5273b3f7","tok-052e91a66a46","tok-45fb51888e9b","tok-fe720ca0e706","tok-31d25fa469b6"]}]},"the-book-of-susanna-1-32":{"unit_id":"the-book-of-susanna-1-32","anchor_id":"the-book-of-susanna-1-32","source_ref":"The Book of Susanna 1:32","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3d5d0f0b9a65","tok-31c992f50c53","tok-a908778c8b1c","tok-597e2a84dd9f","tok-7d7ddcc879b0","tok-a2631a6a6afa","tok-199e8c099839","tok-61994112d672","tok-53439693b314","tok-56d6a7839b7b","tok-ac9ee840e464","tok-b75392a62a2d","tok-66bafc60175f"]}]},"the-book-of-susanna-1-33":{"unit_id":"the-book-of-susanna-1-33","anchor_id":"the-book-of-susanna-1-33","source_ref":"The Book of Susanna 1:33","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-eb5b4db989b4","tok-fa4c90c00016","tok-ebc29619b674","tok-a5259e736ce8","tok-684d2f2d530b","tok-23a999f1d3ee","tok-a5abf965b1f7","tok-5c2b8ef9c9d9","tok-16f037e2ddd8","tok-2a027e4c4bdb"]}]},"the-book-of-susanna-1-34":{"unit_id":"the-book-of-susanna-1-34","anchor_id":"the-book-of-susanna-1-34","source_ref":"The Book of Susanna 1:34","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4f437890397f","tok-73976f44779d","tok-b7684b48a836","tok-faaa6b1e80df","tok-ccf84921ab6a","tok-595a7adcea4a"]}]},"the-book-of-susanna-1-35":{"unit_id":"the-book-of-susanna-1-35","anchor_id":"the-book-of-susanna-1-35","source_ref":"The Book of Susanna 1:35","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d8ebb100a23c","tok-d340709ba3b2","tok-5e041acc085a","tok-77dbacea45ee","tok-1c509937bcf4","tok-5b8152e666b1","tok-ac74f200ed0c","tok-25cb5273b3f7","tok-eb48dda1206c","tok-f538249f6329","tok-add74a480afc","tok-87f4c26cb85d"]}]},"the-book-of-susanna-1-36":{"unit_id":"the-book-of-susanna-1-36","anchor_id":"the-book-of-susanna-1-36","source_ref":"The Book of Susanna 1:36","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-16f037e2ddd8","tok-6b61ed46fb8e","tok-16f037e2ddd8","tok-bc7eddd48b18","tok-a4d356197f63","tok-da6a58ab068b","tok-f8f80d08479f","tok-52c7aa5813a1","tok-d30c05e49e3e"]}]},"the-book-of-susanna-1-37":{"unit_id":"the-book-of-susanna-1-37","anchor_id":"the-book-of-susanna-1-37","source_ref":"The Book of Susanna 1:37","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bae8149553e8","tok-a29552e247e8","tok-188802bd5f63","tok-6eb2ce1e55d1","tok-79e6ae8421c6","tok-a908778c8b1c","tok-d5ac7ed821aa","tok-199e8c099839","tok-3fca58677171","tok-956335c1bdce","tok-b374c9bea1e2","tok-61994112d672"]}]},"the-book-of-susanna-1-38":{"unit_id":"the-book-of-susanna-1-38","anchor_id":"the-book-of-susanna-1-38","source_ref":"The Book of Susanna 1:38","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-077bd977ebc7","tok-6243d84eac7c","tok-753c1d230de8","tok-88dbf5b55493","tok-9de51a128cf3","tok-c3a8e25f20ad","tok-4f5683fb27a0","tok-e6bcccc9238c","tok-7802c89fcf4f","tok-bf6954e46d0f","tok-4899ae29b341"]}]},"the-book-of-susanna-1-39":{"unit_id":"the-book-of-susanna-1-39","anchor_id":"the-book-of-susanna-1-39","source_ref":"The Book of Susanna 1:39","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6d7410490787","tok-188802bd5f63","tok-3d5d0f0b9a65","tok-2c3c42d10755","tok-6738b36be7ed","tok-58ab71179065","tok-9a04ac212f32","tok-a5259e736ce8","tok-61994112d672","tok-9eac0dc1e01a","tok-a8f4d854eaed","tok-ec7ed16f15c3"]}]},"the-book-of-susanna-1-40":{"unit_id":"the-book-of-susanna-1-40","anchor_id":"the-book-of-susanna-1-40","source_ref":"The Book of Susanna 1:40","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cfdb0fa3a5e8","tok-88b16126a25a","tok-b706ca300019","tok-199e8c099839","tok-8340b1d1739d","tok-a2a7784b351c","tok-1a7e45fdef56","tok-bacb3b3d485e","tok-908315288ab5"]}]},"the-book-of-susanna-1-41":{"unit_id":"the-book-of-susanna-1-41","anchor_id":"the-book-of-susanna-1-41","source_ref":"The Book of Susanna 1:41","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-90a9b7d85f22","tok-fa4c90c00016","tok-4a3cd0cce37c","tok-87c66109f678","tok-2fb8287d1406","tok-e0e4a34b78a6","tok-03614027602f","tok-e3fb3d1603f3"]}]},"the-book-of-susanna-1-42":{"unit_id":"the-book-of-susanna-1-42","anchor_id":"the-book-of-susanna-1-42","source_ref":"The Book of Susanna 1:42","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bbee64d952bf","tok-e6bcccc9238c","tok-946c7adbca2c","tok-20120262b18f","tok-901a98b0ba1f","tok-199e8c099839","tok-386eedecc1ca","tok-b8e398f9192b","tok-d0fc8fd4fce5","tok-fa4c90c00016","tok-d793d602c0fe","tok-684d2f2d530b","tok-11b3726dab01","tok-9d5b19ccbe57"]}]},"the-book-of-susanna-1-43":{"unit_id":"the-book-of-susanna-1-43","anchor_id":"the-book-of-susanna-1-43","source_ref":"The Book of Susanna 1:43","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-98e3583d7e9b","tok-3b0233650de3","tok-dbc96c2df145","tok-5fc648f5734c","tok-0cd51cb8e842","tok-75903f043d1d","tok-199e8c099839","tok-ad8f155a2562","tok-e6bcccc9238c","tok-6aee303e3b16","tok-dbc96c2df145","tok-262002ad3f74","tok-b9e85863a3b4","tok-2be00e873bb5","tok-3555d4e8c3dc"]}]},"the-book-of-susanna-1-44":{"unit_id":"the-book-of-susanna-1-44","anchor_id":"the-book-of-susanna-1-44","source_ref":"The Book of Susanna 1:44","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bbee64d952bf","tok-e6bcccc9238c","tok-4037bc35efaf","tok-d7b01ab38eaa","tok-b8ab03e4ac26","tok-9f4f60112e12","tok-0271d5fc1d39","tok-01bfcc5dec65","tok-ad8f155a2562","tok-1c0437d833a1","tok-a4c99ea26a21","tok-9ea58cd9a511","tok-256a8f0a5af9"]}]},"the-book-of-susanna-1-45":{"unit_id":"the-book-of-susanna-1-45","anchor_id":"the-book-of-susanna-1-45","source_ref":"The Book of Susanna 1:45","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bed59111a694","tok-e44ca3cdb6b7","tok-146e636e28f2","tok-406f00b78cfd","tok-cb511f6d4a06"]}]},"the-book-of-susanna-1-46":{"unit_id":"the-book-of-susanna-1-46","anchor_id":"the-book-of-susanna-1-46","source_ref":"The Book of Susanna 1:46","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-da011e09bf74","tok-a908778c8b1c","tok-31c992f50c53","tok-b90aea92acd3","tok-188802bd5f63","tok-6e8083ee2fc8","tok-bfc431f9fca5","tok-45fb51888e9b","tok-fe720ca0e706","tok-31d25fa469b6"]}]},"the-book-of-susanna-1-47":{"unit_id":"the-book-of-susanna-1-47","anchor_id":"the-book-of-susanna-1-47","source_ref":"The Book of Susanna 1:47","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d8cce78f892b","tok-61994112d672","tok-8b8abe1f148c","tok-88dbf5b55493","tok-c961f0018c5f"]}]},"the-book-of-susanna-1-48":{"unit_id":"the-book-of-susanna-1-48","anchor_id":"the-book-of-susanna-1-48","source_ref":"The Book of Susanna 1:48","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5679e8755ab5","tok-d216c916cb43","tok-c7d19fc7ab1c","tok-187ed35d217d","tok-de8000fcd3f1","tok-d3844cc5f188","tok-24500debd9f3","tok-426a68c9f387","tok-e6e8ad274dee","tok-9f191a0af41b","tok-6be46e418935"]}]},"the-book-of-susanna-1-49":{"unit_id":"the-book-of-susanna-1-49","anchor_id":"the-book-of-susanna-1-49","source_ref":"The Book of Susanna 1:49","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fe25426497a8","tok-afb8ff914d41","tok-fe25426497a8","tok-e6bcccc9238c","tok-b614c1842bbb","tok-e6b1b57c9d71","tok-f910e8d6ef0d","tok-75a297798981","tok-c2a4925c840a","tok-bda1980669f4","tok-729a28d6ae95"]}]},"the-book-of-susanna-1-50":{"unit_id":"the-book-of-susanna-1-50","anchor_id":"the-book-of-susanna-1-50","source_ref":"The Book of Susanna 1:50","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bed59111a694","tok-de155d7d5504","tok-dd369fb902e7","tok-f518fb2beb59","tok-afb8ff914d41","tok-e6bcccc9238c","tok-d220a8aa7042","tok-d69522f43355","tok-b1e3a720ecc8","tok-87c66109f678","tok-b6da684ae926","tok-a8a1c974dca8","tok-3cd0206036f8"]}]},"the-book-of-susanna-1-51":{"unit_id":"the-book-of-susanna-1-51","anchor_id":"the-book-of-susanna-1-51","source_ref":"The Book of Susanna 1:51","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9255594b27d3","tok-d216c916cb43","tok-199e8c099839","tok-b81688baf488","tok-a76e1edd1d84","tok-90a6a1e43f48"]}]},"the-book-of-susanna-1-52":{"unit_id":"the-book-of-susanna-1-52","anchor_id":"the-book-of-susanna-1-52","source_ref":"The Book of Susanna 1:52","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-684d2f2d530b","tok-316c69797cb6","tok-f518fb2beb59","tok-07d75f7cca72","tok-54ac664c9fa0","tok-199e8c099839","tok-5da94bb7cc90","tok-05fc1f9c5376","tok-15fcd3304c59","tok-58ad84cff432","tok-ba2bf567587c","tok-10331112a259","tok-199e8c099839","tok-f48e873006b4","tok-9e7dc0ef6840"]}]},"the-book-of-susanna-1-53":{"unit_id":"the-book-of-susanna-1-53","anchor_id":"the-book-of-susanna-1-53","source_ref":"The Book of Susanna 1:53","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3f90f8660afa","tok-902f8afe66b9","tok-d69522f43355","tok-41e6bdd5f541","tok-87c66109f678","tok-32f37dc0fa64"]}]},"the-book-of-susanna-1-54":{"unit_id":"the-book-of-susanna-1-54","anchor_id":"the-book-of-susanna-1-54","source_ref":"The Book of Susanna 1:54","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e63b69c4b7b8","tok-de8000fcd3f1","tok-a908778c8b1c","tok-dbe6be4dc6dc","tok-358f3061d853","tok-6775ca1fc76d","tok-5aef10bfac3a","tok-87c66109f678","tok-4c407b2c3489"]}]},"the-book-of-susanna-1-55":{"unit_id":"the-book-of-susanna-1-55","anchor_id":"the-book-of-susanna-1-55","source_ref":"The Book of Susanna 1:55","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0b536008b9d5","tok-ba2bf567587c","tok-79e6ae8421c6","tok-a908778c8b1c","tok-9e7dc0ef6840"]}]},"the-book-of-susanna-1-56":{"unit_id":"the-book-of-susanna-1-56","anchor_id":"the-book-of-susanna-1-56","source_ref":"The Book of Susanna 1:56","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ae139cb284e8","tok-7d7ddcc879b0","tok-827f021558ef","tok-f76e4aba8dc7","tok-bf8caa3f3fe4","tok-cbf1513b33cd","tok-9c0c1c08bae6","tok-53439693b314","tok-f76e4aba8dc7","tok-9f191a0af41b","tok-a3f48dc898e7","tok-414ea425e2e3","tok-5aef10bfac3a"]}]},"the-book-of-susanna-1-57":{"unit_id":"the-book-of-susanna-1-57","anchor_id":"the-book-of-susanna-1-57","source_ref":"The Book of Susanna 1:57","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-03d716775a24","tok-7d7ddcc879b0","tok-31c992f50c53","tok-552ce0e9af31","tok-bdc141c1676b","tok-d1b029aaf024","tok-e6bcccc9238c","tok-c2a4925c840a","tok-7f5656f9b0fa","tok-d7b01ab38eaa","tok-ef5323e02d35","tok-5e041acc085a","tok-265b65fa9a12","tok-de8000fcd3f1","tok-a908778c8b1c","tok-65341ffdeeb8"]}]},"the-book-of-susanna-1-58":{"unit_id":"the-book-of-susanna-1-58","anchor_id":"the-book-of-susanna-1-58","source_ref":"The Book of Susanna 1:58","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3d5d0f0b9a65","tok-188802bd5f63","tok-31c992f50c53","tok-ba2bf567587c","tok-cdc0b3c70d1c","tok-7d7ddcc879b0","tok-66fc32c10e23","tok-ed93c5f98a54","tok-426a68c9f387","tok-58f7bc57c680","tok-9b398e7eb92b","tok-d216c916cb43","tok-12aaa1c89d9e","tok-284c11503015","tok-3857314ba648"]}]},"the-book-of-susanna-1-59":{"unit_id":"the-book-of-susanna-1-59","anchor_id":"the-book-of-susanna-1-59","source_ref":"The Book of Susanna 1:59","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1f571b2ac790","tok-ba2bf567587c","tok-9e7dc0ef6840","tok-50c8ad9a8afa","tok-7d7ddcc879b0","tok-a29552e247e8","tok-7cc5e353d812","tok-62d8e8f76250","tok-5b8152e666b1","tok-b7e43a7d873d","tok-e28043c61d41","tok-62d8e8f76250","tok-62d8e8f76250","tok-4bd15a11f7bc"]}]},"the-book-of-susanna-1-60":{"unit_id":"the-book-of-susanna-1-60","anchor_id":"the-book-of-susanna-1-60","source_ref":"The Book of Susanna 1:60","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bbee64d952bf","tok-905adc2c1bba","tok-3cdecb5251e9","tok-9ce3997d49c3","tok-00a8e1feaf37","tok-9e7dc0ef6840","tok-3f2cf1fe7a39","tok-b4db5934de78","tok-bf250d19ee79","tok-6d0e73b5e48b","tok-db8c66114e3e","tok-333cacbdc7a7","tok-956335c1bdce","tok-37c2d000ba18"]}]},"the-book-of-susanna-1-61":{"unit_id":"the-book-of-susanna-1-61","anchor_id":"the-book-of-susanna-1-61","source_ref":"The Book of Susanna 1:61","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f92e7fefe9c4","tok-7d7ddcc879b0","tok-e6bcccc9238c","tok-fe720ca0e706","tok-d7ae874576d6","tok-2c275b0625f0","tok-9641fed6319e","tok-199e8c099839","tok-b036fee3d982","tok-36fe6409654d","tok-199e8c099839","tok-bbea3dd477dc","tok-701af3c0560d","tok-e6bcccc9238c","tok-ef5d537b7b1f","tok-d216c916cb43","tok-5679af7ea065","tok-b8ea9920551d","tok-31c992f50c53","tok-93f51f12d817"]}]},"the-book-of-susanna-1-62":{"unit_id":"the-book-of-susanna-1-62","anchor_id":"the-book-of-susanna-1-62","source_ref":"The Book of Susanna 1:62","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bed59111a694","tok-58f7bc57c680","tok-bee655b629e8","tok-199e8c099839","tok-87c66109f678","tok-dafe102ec4bb","tok-85a816c6e085","tok-a27e4771a02a","tok-199e8c099839","tok-eb71c4927413","tok-3abd224ef9d3","tok-87c66109f678","tok-6cbf0526ef52","tok-22e6e16f3bf4","tok-b0c286dffbf1","tok-1f571b2ac790","tok-9e7dc0ef6840","tok-c441db80b09a","tok-4269f33652b6"]}]},"the-book-of-susanna-1-63":{"unit_id":"the-book-of-susanna-1-63","anchor_id":"the-book-of-susanna-1-63","source_ref":"The Book of Susanna 1:63","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9e7dc0ef6840","tok-ba2bf567587c","tok-447c006deccd","tok-796c3b429faf","tok-725b23ce89da","tok-a5e9dc454720","tok-44f797fb8519","tok-896b943a9ad4","tok-80ebd0e8aa63"]}]},"the-book-of-susanna-1-64":{"unit_id":"the-book-of-susanna-1-64","anchor_id":"the-book-of-susanna-1-64","source_ref":"The Book of Susanna 1:64","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-33ae4c73fa2a","tok-b44b74fbb214","tok-5b8152e666b1","tok-417e30930fca","tok-cd4fdd2424f7","tok-db7be825d8d1","tok-199e8c099839","tok-d3e23a4400d0","tok-9e7dc0ef6840","tok-3f2cf1fe7a39","tok-7ac580ca6eb7","tok-9d8fe91140c7","tok-426a68c9f387","tok-5187915e6bcf","tok-7ac580ca6eb7","tok-a498f936af95"]}]},"the-book-of-susanna-1-65":{"unit_id":"the-book-of-susanna-1-65","anchor_id":"the-book-of-susanna-1-65","source_ref":"The Book of Susanna 1:65","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-317ea930fa25","tok-1c7d084e7966","tok-6ba3d88b0b8c","tok-b912b16a3ba5","tok-adf85f01175a","tok-a201b621a8a0","tok-d9764cdc0938","tok-8eec89d4a239"]}]},"the-book-of-susanna-1-66":{"unit_id":"the-book-of-susanna-1-66","anchor_id":"the-book-of-susanna-1-66","source_ref":"The Book of Susanna 1:66","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f8087e03ee0d","tok-a9c6d45f134a","tok-5dd4633975c8","tok-de8000fcd3f1","tok-569441124ffe","tok-80a5411196e2","tok-199e8c099839","tok-f86d624b38cb","tok-f76e4aba8dc7","tok-fbbfd701b71b","tok-b8849002df5d","tok-6176d24d3a7a","tok-966088f058c6","tok-04f86e1ee1e4","tok-08c6c630918e"]}]},"the-book-of-susanna-1-67":{"unit_id":"the-book-of-susanna-1-67","anchor_id":"the-book-of-susanna-1-67","source_ref":"The Book of Susanna 1:67","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2ee1544bc5a6","tok-53439693b314","tok-dcf3cff288d9","tok-b8e398f9192b","tok-87c66109f678","tok-3b0233650de3","tok-a9705f85cd27","tok-425e20be4adb","tok-bd65e4c21b1f"]}]},"the-book-of-susanna-1-68":{"unit_id":"the-book-of-susanna-1-68","anchor_id":"the-book-of-susanna-1-68","source_ref":"The Book of Susanna 1:68","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bed59111a694","tok-85a816c6e085","tok-a27e4771a02a","tok-199e8c099839","tok-eb71c4927413","tok-3abd224ef9d3","tok-87c66109f678","tok-d0bb7962d8b7","tok-22e6e16f3bf4","tok-b0c286dffbf1","tok-1f571b2ac790","tok-9e7dc0ef6840","tok-c441db80b09a","tok-b7f15ca369b7"]}]},"the-book-of-susanna-1-69":{"unit_id":"the-book-of-susanna-1-69","anchor_id":"the-book-of-susanna-1-69","source_ref":"The Book of Susanna 1:69","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9e7dc0ef6840","tok-ba2bf567587c","tok-9c46af136041","tok-0096f6ec1cb8","tok-8353226e9e58","tok-bb9e1aeede18","tok-0b6228977e30","tok-e6bcccc9238c","tok-78d464efd7d4","tok-796c3b429faf","tok-a8c8ede1acf1","tok-02cc9c9cc806","tok-ded7698f9005","tok-5595a878db3a"]}]},"the-book-of-susanna-1-70":{"unit_id":"the-book-of-susanna-1-70","anchor_id":"the-book-of-susanna-1-70","source_ref":"The Book of Susanna 1:70","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9255594b27d3","tok-de8000fcd3f1","tok-a908778c8b1c","tok-6ab102b8d925","tok-199e8c099839","tok-07a970697e8c","tok-f1e65c632425","tok-e679cf1a1f5c","tok-73d347a387f3","tok-04f86e1ee1e4","tok-5c22ac95d13c","tok-d4ad5cc79cea"]}]},"the-book-of-susanna-1-71":{"unit_id":"the-book-of-susanna-1-71","anchor_id":"the-book-of-susanna-1-71","source_ref":"The Book of Susanna 1:71","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bae8149553e8","tok-7c955e2a10bc","tok-956335c1bdce","tok-a29552e247e8","tok-188802bd5f63","tok-87c66109f678","tok-3a53a425279c","tok-e8de6382d444","tok-3fa39725e0bd","tok-956335c1bdce","tok-4f6e85397e31","tok-ba2bf567587c","tok-e6bcccc9238c","tok-c2a4925c840a","tok-7f5656f9b0fa","tok-3231b8e896c5"]}]},"the-book-of-susanna-1-72":{"unit_id":"the-book-of-susanna-1-72","anchor_id":"the-book-of-susanna-1-72","source_ref":"The Book of Susanna 1:72","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e1f3db3bee2c","tok-8009eead25f2","tok-5717fe2ef4e9","tok-c4d32a960f44","tok-feb7bd98323c","tok-09714f23511c","tok-cf7e48bb1f1a","tok-670daa2a49a1","tok-2574a48163a5","tok-1195592765e8","tok-1b5866776ba7"]}]},"the-book-of-susanna-1-73":{"unit_id":"the-book-of-susanna-1-73","anchor_id":"the-book-of-susanna-1-73","source_ref":"The Book of Susanna 1:73","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1eea75af7ee7","tok-06b852ca7c0d","tok-9cbf89347c0a","tok-4a82a885cced","tok-d05c707c51f2","tok-96e974cd1300","tok-4c5ed43728af","tok-3f90f8660afa","tok-ff146f7d9cde"]}]},"the-book-of-susanna-1-74":{"unit_id":"the-book-of-susanna-1-74","anchor_id":"the-book-of-susanna-1-74","source_ref":"The Book of Susanna 1:74","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-37463fcc3eef","tok-9f2561e8d551","tok-3c5ef28b7578","tok-4d617ce53619","tok-d2483243b5e9","tok-e679cf1a1f5c","tok-956335c1bdce","tok-256a8f0a5af9","tok-015be395cd17","tok-e6bcccc9238c","tok-3b0233650de3","tok-bd03c56cb143","tok-55f909797c75","tok-d58afb54f591","tok-004aa712efaf"]}]},"the-book-of-susanna-1-75":{"unit_id":"the-book-of-susanna-1-75","anchor_id":"the-book-of-susanna-1-75","source_ref":"The Book of Susanna 1:75","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-59f4b367cfed","tok-cbf1513b33cd","tok-b75392a62a2d","tok-d70ba15f0b03","tok-16f037e2ddd8","tok-fd570d890b37"]}]},"the-book-of-susanna-1-76":{"unit_id":"the-book-of-susanna-1-76","anchor_id":"the-book-of-susanna-1-76","source_ref":"The Book of Susanna 1:76","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bbee64d952bf","tok-ba2bf567587c","tok-52c7aa5813a1","tok-6d8203972c8b","tok-49bdae13ca98","tok-a908778c8b1c","tok-4af1707d0872","tok-d05c707c51f2","tok-f40d556c9aee","tok-bf67991076f9","tok-035eb9fc7006","tok-d972fcc6cbe0"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/the-book-of-susanna.manifest.json","root_href":"../../"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

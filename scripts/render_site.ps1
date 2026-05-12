@@ -3,6 +3,7 @@ param(
   [string]$OverlayDir = 'data/overlays',
   [int]$MaxUnits = 0,
   [string[]]$WorkIds = @(),
+  [string]$OnlyWorkIdsPath = '',
   [switch]$SkipOverlayExports
 )
 
@@ -2138,6 +2139,15 @@ Append-LibrarySections -Builder $libraryPage -Sources $sources -HrefPrefix '../'
 Write-Utf8 -Path 'library\index.html' -Content $libraryPage.ToString()
 
 $targetWorkIds = @($WorkIds | Where-Object { $_ -and $_.ToString().Trim() } | ForEach-Object { $_.ToString().Trim() })
+if ($OnlyWorkIdsPath) {
+  if (-not (Test-Path -LiteralPath $OnlyWorkIdsPath)) {
+    throw "OnlyWorkIdsPath not found: $OnlyWorkIdsPath"
+  }
+  $targetWorkIds += @(Get-Content -LiteralPath $OnlyWorkIdsPath -Encoding UTF8 |
+    Where-Object { $_ -and $_.ToString().Trim() } |
+    ForEach-Object { $_.ToString().Trim() })
+  $targetWorkIds = @($targetWorkIds | Select-Object -Unique)
+}
 $renderSources = if ($targetWorkIds.Count -gt 0) {
   @($sources | Where-Object { $targetWorkIds -contains [string]$_.work_id })
 } else {
@@ -2145,9 +2155,9 @@ $renderSources = if ($targetWorkIds.Count -gt 0) {
 }
 
 $allExportRows = New-Object System.Collections.Generic.List[object]
-foreach ($source in $sources) {
-  $overlay = Get-OverlayForSource -Source $source -OverlayDir $OverlayDir
-  if (-not $SkipOverlayExports) {
+if (-not $SkipOverlayExports) {
+  foreach ($source in $sources) {
+    $overlay = Get-OverlayForSource -Source $source -OverlayDir $OverlayDir
     $exportRows = Get-OverlayExportRows -Source $source -Overlay $overlay
     Write-OverlayExports -WorkSlug $source.work_slug -Rows $exportRows
     foreach ($row in @($exportRows)) {

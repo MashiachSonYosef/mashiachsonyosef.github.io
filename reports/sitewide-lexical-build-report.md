@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-10T22:07:10.788Z
+Generated: 2026-05-11T22:42:49.228Z
 
 ## Scope
 
@@ -15,18 +15,18 @@ Generated: 2026-05-10T22:07:10.788Z
 
 ## Counts
 
-- Total work-surface rows: 1226504
-- Total sitewide unique surface forms: 428299
-- Sitewide unique surface forms matched at least once: 67816
-- Sitewide unique surface forms unmatched everywhere: 360483
-- Total token occurrences: 6066624
-- Matched before prefix/suffix parser: 308874
-- Newly resolved by prefix/suffix parser: 43548
-- Total matched after parser: 363525
-- Percent matched: 29.6%
-- Matched via Wikidata: 266141
-- Enriched via OpenScriptures: 306519
-- Unmatched: 862979
+- Total work-surface rows: 1267743
+- Total sitewide unique surface forms: 436578
+- Sitewide unique surface forms matched at least once: 68821
+- Sitewide unique surface forms unmatched everywhere: 367757
+- Total token occurrences: 6174320
+- Matched before prefix/suffix parser: 322961
+- Newly resolved by prefix/suffix parser: 45686
+- Total matched after parser: 380623
+- Percent matched: 30.0%
+- Matched via Wikidata: 277702
+- Enriched via OpenScriptures: 321286
+- Unmatched: 887120
 
 ## Newly Resolved Parsed Forms
 
@@ -34,6 +34,7 @@ Generated: 2026-05-10T22:07:10.788Z
 - וּכְתִיב -> and it is written (workspace) -- ein-yaakov
 - לרבות -> to rabbi, for rabbi, of rabbi (wikidata + openscriptures) -- chafetz-chaim-on-sifra
 - מובא -> from abide, of abide, from apply (openscriptures) -- notes-and-corrections-on-midrash-lekach-tov
+- רבינו -> our Rabbi (workspace) -- notes-and-corrections-on-midrash-lekach-tov
 - וְהָא -> and behold, and this (workspace) -- ein-yaakov
 - מובא -> from abide, of abide, from apply (openscriptures) -- notes-and-corrections-on-midrash-aggadah
 - שאם -> that if, which if, who if (workspace) -- midrash-lekach-tov
@@ -46,10 +47,9 @@ Generated: 2026-05-10T22:07:10.788Z
 - ואלו -> and this/that, and demonstrative pronoun (wikidata + openscriptures) -- otzar-midrashim
 - שאם -> that if, which if, who if (workspace) -- raavad-on-sifra
 - וּכְתִיב -> and it is written (workspace) -- midrash-tanchuma
+- בְּרַבִּי -> in Rabbi, with Rabbi, by Rabbi (workspace) -- ein-yaakov
 - לרבות -> to rabbi, for rabbi, of rabbi (wikidata + openscriptures) -- raavad-on-sifra
 - ודוקא -> and in fact, actually (kaikki) -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- כדכתיב -> as as it is written, like as it is written, as that it is written (workspace) -- midrash-sekhel-tov
-- כנגד -> as resistor, like resistor (wikidata + openscriptures) -- shaar-maamarei-rashbi
 
 ## Sample Matched Words With Refs To Test
 
@@ -90,22 +90,19 @@ Generated: 2026-05-10T22:07:10.788Z
 - אאגרייהו -- midrash-sekhel-tov
 - אאגרייכון -- midrash-sekhel-tov
 - אאהבנו -- etz-yosef-on-bamidbar-rabbah
+- אאהוב -- book-of-jubilees
 - אַאוּגְרַיְהוּ -- ein-yaakov
 - אאוכל -- chafetz-chaim-on-sifra
 - אאוכלין -- raavad-on-sifra
+- אאומינס -- the-book-of-maccabees-i
 - אַאוּסְיָא -- ein-yaakov
-- אַאוֹפְתָּא -- ein-yaakov
-- אאור -- midrash-lekach-tov
 
 ## Top 50 Remaining Unmatched By Frequency
 
-- 5287x רַבִּי -- ein-yaakov
 - 2547x ר -- notes-and-corrections-on-midrash-lekach-tov
 - 2533x א׳ -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 2433x ב׳ -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- 2190x פס׳ -- midrash-lekach-tov
 - 1610x מַאי -- ein-yaakov
-- 1514x רַבִּי -- midrash-tanchuma
 - 1511x ב״ -- notes-and-corrections-on-midrash-lekach-tov
 - 1318x ע״ -- notes-and-corrections-on-midrash-lekach-tov
 - 1148x וילקוט -- notes-and-corrections-on-midrash-lekach-tov
@@ -116,23 +113,19 @@ Generated: 2026-05-10T22:07:10.788Z
 - 845x המלך -- otzar-midrashim
 - 842x פלארענץ -- notes-and-corrections-on-midrash-lekach-tov
 - 836x דְּאָמַר -- ein-yaakov
-- 828x רבי -- midrash-tehillim
 - 826x ג׳ -- otzar-midrashim
 - 805x לְהוּ -- ein-yaakov
-- 791x רבי -- ein-yaakov
 - 764x וְאָמַר -- ein-yaakov
 - 753x מכילתא -- notes-and-corrections-on-midrash-lekach-tov
 - 743x אסור -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 739x ואמר -- otzar-midrashim
 - 710x ב׳ -- beur-hagra-on-shulchan-arukh-orach-chayim
-- 707x ת״ל -- raavad-on-sifra
 - 706x א׳ -- beur-hagra-on-shulchan-arukh-orach-chayim
 - 706x רַבָּנָן -- ein-yaakov
 - 689x הרא״ש -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 673x כוכבים -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 663x ועיין -- notes-and-corrections-on-midrash-lekach-tov
 - 656x אֶלְעָזָר -- ein-yaakov
-- 656x ת״ל -- midrash-lekach-tov
 - 655x וכ״כ -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 653x נמי -- raavad-on-sifra
 - 652x ע״ב -- shaar-maamarei-rashbi
@@ -149,6 +142,13 @@ Generated: 2026-05-10T22:07:10.788Z
 - 578x עיין -- notes-and-corrections-on-midrash-lekach-tov
 - 577x השי״ת -- midbar-shur
 - 575x דף -- beur-hagra-on-sifra-detzniuta
+- 560x הָכִי -- ein-yaakov
+- 559x פ״ -- notes-and-corrections-on-midrash-lekach-tov
+- 544x א׳ -- otzar-midrashim
+- 543x אומ׳ -- mishnat-rabbi-eliezer
+- 533x ע״א -- notes-and-corrections-on-midrash-lekach-tov
+- 530x ת -- notes-and-corrections-on-midrash-lekach-tov
+- 529x כ״א -- midbar-shur
 
 ## Exact Orot Refs To Test
 
