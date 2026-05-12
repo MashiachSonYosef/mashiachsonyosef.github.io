@@ -1,0 +1,14 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| tosefta-tevul-yom | Tosefta Tevul Yom | Tosefta Tevul Yom 1:1 | tosefta-tevul-yom-1-1 |  |  | not_done |  |
+| tosefta-tevul-yom | Tosefta Tevul Yom | Tosefta Tevul Yom 1:2 | tosefta-tevul-yom-1-2 |  |  | not_done |  |
+| tosefta-tevul-yom | Tosefta Tevul Yom | Tosefta Tevul Yom 1:3 | tosefta-tevul-yom-1-3 |  |  | not_done |  |
+| tosefta-tevul-yom | Tosefta Tevul Yom | Tosefta Tevul Yom 1:4 | tosefta-tevul-yom-1-4 |  |  | not_done |  |
+| tosefta-tevul-yom | Tosefta Tevul Yom | Tosefta Tevul Yom 2:1 | tosefta-tevul-yom-2-1 |  |  | not_done |  |
+| tosefta-tevul-yom | Tosefta Tevul Yom | Tosefta Tevul Yom 2:2 | tosefta-tevul-yom-2-2 |  |  | not_done |  |
+| tosefta-tevul-yom | Tosefta Tevul Yom | Tosefta Tevul Yom 2:3 | tosefta-tevul-yom-2-3 |  |  | not_done |  |
+| tosefta-tevul-yom | Tosefta Tevul Yom | Tosefta Tevul Yom 2:4 | tosefta-tevul-yom-2-4 |  |  | not_done |  |
+| tosefta-tevul-yom | Tosefta Tevul Yom | Tosefta Tevul Yom 2:5 | tosefta-tevul-yom-2-5 |  |  | not_done |  |
+| tosefta-tevul-yom | Tosefta Tevul Yom | Tosefta Tevul Yom 2:6 | tosefta-tevul-yom-2-6 |  |  | not_done |  |
+| tosefta-tevul-yom | Tosefta Tevul Yom | Tosefta Tevul Yom 2:7 | tosefta-tevul-yom-2-7 |  |  | not_done |  |
+| tosefta-tevul-yom | Tosefta Tevul Yom | Tosefta Tevul Yom 2:8 | tosefta-tevul-yom-2-8 |  |  | not_done |  |

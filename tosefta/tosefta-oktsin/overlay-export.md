@@ -1,0 +1,23 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 1:1 | tosefta-oktsin-1-1 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 1:2 | tosefta-oktsin-1-2 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 1:3 | tosefta-oktsin-1-3 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 1:4 | tosefta-oktsin-1-4 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 2:1 | tosefta-oktsin-2-1 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 2:2 | tosefta-oktsin-2-2 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 2:3 | tosefta-oktsin-2-3 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 2:4 | tosefta-oktsin-2-4 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 2:5 | tosefta-oktsin-2-5 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 2:6 | tosefta-oktsin-2-6 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 2:7 | tosefta-oktsin-2-7 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 2:8 | tosefta-oktsin-2-8 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 3:1 | tosefta-oktsin-3-1 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 3:2 | tosefta-oktsin-3-2 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 3:3 | tosefta-oktsin-3-3 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 3:4 | tosefta-oktsin-3-4 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 3:5 | tosefta-oktsin-3-5 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 3:6 | tosefta-oktsin-3-6 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 3:7 | tosefta-oktsin-3-7 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 3:8 | tosefta-oktsin-3-8 |  |  | not_done |  |
+| tosefta-oktsin | Tosefta Oktsin | Tosefta Oktsin 3:9 | tosefta-oktsin-3-9 |  |  | not_done |  |

@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tosefta Oktsin</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Tosefta Oktsin</h1>
+        <p class="meta">21 total source units | imported 2026-05-12</p>
+        <p class="meta source-citation">Hebrew version: Tosefta Uktsin - Machon Mamre | Version source: <a href="http://www.mechon-mamre.org/b/f/f6c.htm">www.mechon-mamre.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Tosefta Oktsin <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Tosefta Oktsin <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tosefta-oktsin-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tosefta-oktsin-1-1" title="Tosefta Oktsin 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-1-2" title="Tosefta Oktsin 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-1-3" title="Tosefta Oktsin 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-1-4" title="Tosefta Oktsin 1:4">1:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-tosefta-oktsin-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tosefta-oktsin-2-1" title="Tosefta Oktsin 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-2-2" title="Tosefta Oktsin 2:2">2:2</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-2-3" title="Tosefta Oktsin 2:3">2:3</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-2-4" title="Tosefta Oktsin 2:4">2:4</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-2-5" title="Tosefta Oktsin 2:5">2:5</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-2-6" title="Tosefta Oktsin 2:6">2:6</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-2-7" title="Tosefta Oktsin 2:7">2:7</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-2-8" title="Tosefta Oktsin 2:8">2:8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-tosefta-oktsin-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tosefta-oktsin-3-1" title="Tosefta Oktsin 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-3-2" title="Tosefta Oktsin 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-3-3" title="Tosefta Oktsin 3:3">3:3</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-3-4" title="Tosefta Oktsin 3:4">3:4</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-3-5" title="Tosefta Oktsin 3:5">3:5</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-3-6" title="Tosefta Oktsin 3:6">3:6</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-3-7" title="Tosefta Oktsin 3:7">3:7</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-3-8" title="Tosefta Oktsin 3:8">3:8</a></li>
+                    <li><a class="toc-unit" href="#tosefta-oktsin-3-9" title="Tosefta Oktsin 3:9">3:9</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-tosefta-oktsin-text-1">Chapter 1</h4>
+          <section class="unit" id="tosefta-oktsin-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 1:1</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-1-1" aria-label="Copy link to Tosefta Oktsin 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">העוקץ ענב מטמא ומיטמא &amp;lt;ומצא&amp;gt; עלי שום ועלי בצלים והקפלוטות לחין מיטמאין ומטמאין &amp;lt;ומצטרפין יבשין מטמאין ומיטמאין&amp;gt; ואין מצטרפים. שורשי השבת מיטמאין ומטמאין ומצטרפין דברי ר&quot;מ ר׳ יהודה אומר הנוגע בעמוד טמא בסיב ובשער טהור.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 1:2</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-1-2" aria-label="Copy link to Tosefta Oktsin 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ר׳ אליעזר אומר הסיג של אשכול של רצפות מפני שהוא שומר את האוכל שרשי כל הנעקרין לא מיטמאין ולא מטמאין ולא מצטרפים ר׳ יהודה אומר סלעים של שבלים כנגד האוכל טמא שלא כנגד האוכל טהור מפני שהן נשפכין. אגד את הכריכה בין לפנים מכשיעור בין יתר מכשיעור אינו טמא אלא &amp;lt;עד&amp;gt; כשיעור בלבד. והמקטף מלילות להכניסן לתוך ביתן שיעורן טפח. מכבדת של תרומה ששייר בהן אחת טמאה וכו היד חיבור לה והשרביטין אינן חיבור זה לזה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 1:3</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-1-3" aria-label="Copy link to Tosefta Oktsin 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יד הפרכין שהיה יתרת טפח מכאן וטפח מכאן מכבדת של תמרה שהיא יתרה מד׳ טפחים וקנה של שבלים שהוא יתר משלשה טפחים ושאר כל הנקצרים לא מיטמאין ולא מטמאין ולא מצטרפין ר׳ יוסי אומר אם ליקטן לתלותן חופתו על פתח חנותו הרי אלו טמאין. תבואה שנפססה בגורן לא טמאה ולא מטמאה ולא מצטרפת ר׳ יוסי אומר מצטרפת מפני שהותכה בעתר וכן היה ר׳ יוסי אומר עוקצי האובשים והתפוחים והאתרוגים שלקטן לתלותן בחופתו על פתח חנותו אלו הן טמאין וכן היה ר׳ יוסי אומר שרשי חלפות התרדין טמאין מפני שהן נמכרין עמהן וכן היה ר׳ יוסי אומר עוקץ דלעת טמא מפני שנשלק עמה. ר&quot;ש אומר עוקץ מרחפות טמא מפני שנאכל עמה ור&quot;א בר׳ יוסי אומר עוקץ הקפרם שלשה טפחים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 1:4</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-1-4" aria-label="Copy link to Tosefta Oktsin 1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">קליפה של שום שנפל משקין על אחד מהן הוא טמא וחבירו טהור שאין חיבור אדם חיבור. אתרוג שנפרץ ותחבו בכוש או בקיסם ה&quot;ז אינו חיבור חיבורי אדם חיבור עיסה שלש במי פירות הרי זו טהורה שאין לך שהוא מחבר את האוכלין אלא שבעה משקין בלבד. אמרו לו לר׳ יהודה לא יד ולא שומר היה לא מטמאה ולא מיטמאה ולא מצטרפת עמהן. עוקץ הרימון טמא ר׳ אליעזר אומר הנוגע בעמוד טמא בשיער ובמסרק טמא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tosefta-oktsin-text-2">Chapter 2</h4>
+          <section class="unit" id="tosefta-oktsin-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 2:1</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-2-1" aria-label="Copy link to Tosefta Oktsin 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רוטב שנאכל חציו וחציו קיים כנגד האוכל מצטרף שלא כנגד האוכל אין מצטרף ביבשה כנגד האוכל טמא שלא כנגד האוכל טהור דברי ר&quot;מ וחכ&quot;א ביבשה הכל טהור. ברוטב כנגד האוכל מצטרף שלא כנגד האוכל אין מצטרף עלי סיאה אזוב וקורנית כנגד האוכל מצטרף ואיזהו כנגד האוכלין רבי אומר עד חלל עצם שיש עמו שיתיבש וכן מוח שבקולית כנגד האוכל מצטרף ואיזה הוא כנגד האוכל אם יש שם חלל עד חלל אם אין שם חלל אינו טמא אלא חיסום העליון בלבד. ר׳ יהודה אומר קולית שיש עליה כזית בשר גורר את כולה לטומאה. ור׳ ישמעאל אומר רואין את הבשר שעליה שאם ימתח ויש בו כדי להקיפו בחוט עוכבו כנגדו מצטרף.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-2-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 2:2</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-2-2" aria-label="Copy link to Tosefta Oktsin 2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">העצמות והגידין הקרנים והטלפים מצטרפין לטמא טומאת אוכלין אבל לא טומאת נבלות שכל נעשין הן ידות לטמא טומאת נבלות. הרוטב שנתנו על גבי חתיכות להקפותן וכן גריסין שנתנן ע&quot;ג פרוסות &amp;lt;ללותתן&amp;gt; הנוגע בין ברוטב בין בחתיכות בין במקפה בין בפרוסות הרי אלו חיבור התמרים והגרוגרות ששלקן ונעשו אום חבור. רבי אומר אם ללותתן חיבור אם להוציא את מימיהן אינן חבור. הרואה תפוחה משתערה כמין שהיא תפוחה צריך למערה האגוז והשקד והתמרה והמתקרקשים משערין כמות שהן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-2-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 2:3</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-2-3" aria-label="Copy link to Tosefta Oktsin 2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">המחתך לבשל כיון שקרצו אינו חבור. לכבוש ולשלוק ולהניח על השלחן חבור עד שיתחיל לפרק. קליפי פולין וקליפי תורמוסין זרקן אין מטמאין טומאת אוכלין כנסן לאוכלין מטמאין טומאת אוכלין קליפי מלפון אע&quot;פ שאין בהן מטמאין טומאת אוכלין גרעיני זיתים וגרעיני תמרים אע&quot;פ ששלקן לאוכלין אינן מטמאין טומאת אוכלין וגרעיני הריחים אע&quot;פ שכנסן לאוכלין אין מטמאין טומאת אוכלין. שלקן לאוכלין אין מטמא טומאת אוכלין. החרצנין והזגין אע&quot;פ שכנסן למשקה בטלה דעתו ירקות שיבשו באיביהן כגון כרוב ודלעת שיבשו באיביהן אין מטמאין טומאת אוכלין. לקטן ויבשן מטמאין טומאת אוכלין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-2-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 2:4</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-2-4" aria-label="Copy link to Tosefta Oktsin 2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אילן נכסשח ובו פירות הרי הן כתלושין יבש ובו פירות הרי הן כמחוברין. שנימוק חציה וחציה קיים ה&quot;ז אינו חיבור. נמוק האמצעי והצדדין קיימין אין הצדדין חיבור זה את זה. רמון שנמוק חציו וחציו קיים ה&quot;ז אינו חיבור. נמוק האמצעי והצדדין קיימין אין הצדדין חיבור זה לזה. התחיל לפרק באגוזין [ולפקל] בבצלים אע&quot;פ שיש לפניו ק׳ כור ה&quot;ז אינו חיבור ובן עזאי אומר טהרו שלשתן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-2-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 2:5</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-2-5" aria-label="Copy link to Tosefta Oktsin 2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מלפון שחתכו ונתנו על השלחן חיבור עד שיתחיל לפרק. התחיל לפרק חתיכה וכל העולה עמה חיבור והשאר אינה חיבור. פיקה התחתונה חיבור לעצמה ואינו הוא חיבור לחתיכת. היו ב׳ או ג׳ והתחיל בא׳ מהן זה שהתחיל בו חיבור והשאר אינו חיבור ובן עזאי אומר טהרו שלשתן וחכ&quot;א אפי׳ אמר חציו אני אוכל שחרית וחציו אני אוכל בין הערבים. זה שהתחיל בו חיבור והשאר אינו חיבור. האגוזין והשקדין אע&quot;פ שריסס חיבור עד שיגיע לפרק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-2-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 2:6</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-2-6" aria-label="Copy link to Tosefta Oktsin 2:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מצא שלוקה וביצה טורמיטה אע&quot;פ שריסס חיבור עד שיגיע לקלף. ביצה שנתבשלה בקליפתה כולה חיבור שער שבראשי כבשים ושער שבזקן תישים אע&quot;פ שפשפשן באור עד שיתחיל לתלש. כנפי חגבים וקשקשי דגים אע&quot;פ שהעביר סכין עליהן חיבור עד שיתחיל לקלף.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-2-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 2:7</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-2-7" aria-label="Copy link to Tosefta Oktsin 2:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עציץ נקוב שנתנו על גבי שתי יתידות אפי׳ גבוה מן הארץ אמה אינו מכשיר את הזרעים בד&quot;א מלמטה אבל מן הצד הרי זה מכשיר את הזרעים אם יש על גב הנקב עפר כל שהוא אינו מכשיר את הזרעים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-2-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 2:8</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-2-8" aria-label="Copy link to Tosefta Oktsin 2:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">טבלא שיש לה לבזבזין והטה על צדה מכשרת &amp;lt;את הזרעים&amp;gt; היה משקה בעציץ שאינו נקוב ונפלו משקין על גבי הקישות ונטמאת הגדולה ויצאת חוץ לעציץ טהורה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tosefta-oktsin-text-3">Chapter 3</h4>
+          <section class="unit" id="tosefta-oktsin-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 3:1</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-3-1" aria-label="Copy link to Tosefta Oktsin 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דגים טהורין וחגבים טהורין בכל מקום דגים טמאין וחגבים טמאין בכפרין צריכים הכשר ואין צריכים מחשבה חלב מתה בכל מקום צריכה הכשר ואין צריכה מחשבה מפני שהיא מגופה. חלב שחוטה בכפרים צריכה מחשבה והכשר. אמר ר&quot;ע שונה חלב שחוטה בכפרים &amp;lt;שהוא&amp;gt; צריכה מחשבה ואין צריכה הכשר מפני שהוכשר בשחיטה. אמרתי לו למדתני בעולשין שקלטן והרי הן של בהמה ואח&quot;כ חישב עליהן לאדם שאין צריכין הכשר שני אם יש עליהן משקה טופח הוכשרו חזר ר&quot;ע להיות שונה &amp;lt;כן&amp;gt; כדברי ר׳ יהודה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-3-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 3:2</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-3-2" aria-label="Copy link to Tosefta Oktsin 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">חלב בהמה טמאה &amp;lt;ה&quot;ז&amp;gt; טמא. חלב חיה בין טמאה בין טהורה הרי היא כגופה. חלב נבלה &amp;lt;וחלב&amp;gt; וטרפה ה&quot;ז מותר בהנאה שנאמר (ויקרא ז) וחלב נבלה וחלב טרפה יעשה לכל מלאכה. החותך בשר מאבר מן החי ואח&quot;כ חשב עליו ואח&quot;כ חתכו אינו צריך הכשר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-3-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 3:3</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-3-3" aria-label="Copy link to Tosefta Oktsin 3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">א&quot;ר יוסי מפני מה אמרו נבלת העוף טהור אינה צריכה הכשר מפני שהיא מטמאה טומאה חמורה וכל המטמא טומאה חמורה אינו צריך הכשר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-3-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 3:4</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-3-4" aria-label="Copy link to Tosefta Oktsin 3:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואלו הן פריצי זיתים וענבים היוצאין מתחת הקדרה מנגפת הזוגין כנסן לאוכלין מטמא טומאת אוכלין החרצנין והזגין שכנסן לאוכלין בטלה דעתו. מודה ר׳ יוחנן בן נורי בעגין ובשר ששלקן עד שלא באו לעונת המעשרות שהן מטמאין טומאת אוכלין. ומפני הסופות מטמאין טומאת אוכלין מפני הקרוסטמלין והפרישין והעוזרדין בעונתן למעשרות אין מטמאין טומאת אוכלין פחות מכאן &amp;lt;או&amp;gt; ששלקן מטמאין טומאת אוכלין. ר׳ נחמיה אומר זיתים ובשר שסחטן עד שלא באו לעונת המעשרות משקה היוצא מהן טהור שאינו אלא שרף.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-3-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 3:5</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-3-5" aria-label="Copy link to Tosefta Oktsin 3:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לולבי הזרדין והחרובין עד שלא המתיקו אין מטמאין טומאת אוכלין משהמתיקו מטמאין טומאת אוכלין אבל הלוף והחרדל והתורמוסים ושאר כל הנכבשים בין שהמתיקן בין עד שלא המתיקן מטמאין טומאת אוכלין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-3-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 3:6</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-3-6" aria-label="Copy link to Tosefta Oktsin 3:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">קור ניקח בכסף מעשר ואינו מטמא טומאת אוכלין. כפניות נקחות בכסף מעשר ומטמאין טומאת אוכלין ר׳ יוחנן בן נורי אומר בכולן ר׳ יהודה אומר קור הרי הוא כעץ לכל דבר שהוא ניקח בכסף מעשר ומטמא טומאת אוכלין כפניות הרי הן כפרי לכל דבריהן אלא שהן פטורות מן המעשר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-3-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 3:7</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-3-7" aria-label="Copy link to Tosefta Oktsin 3:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ערלה וכלאי הכרם ושור הנסקל ועגלה ערופה וצפרי מצורע ופטר חמור ובשר בחלב כולן הן מטמאין טומאת אוכלין ר&quot;ש אומר כולן אין מטמאין טומאת אוכלין וכן היה ר&quot;ש אומר יש נותר &amp;lt;שהוא&amp;gt; שמטמא טומאת אוכלין ויש נותר שאינו מטמא טומאת אוכלין כיצד לפני זריקת דמים אין מטמא טומאת אוכלין לאחר זריקת דמים מטמא טומאת אוכלין. פיגול מקדשי קדשים ומקדשים קלים אינו מטמא טומאת אוכלין. כרשינין מטמאין טומאת אוכלין דברי ר׳ יהודה ור&quot;ש אומר אין מטמאין טומאת אוכלין אמר לו ר׳ יהודה יש לך דבר שהוא חייב במעשרות ואינו מטמא טומאת אוכלין אמר לו ר&quot;ש יש לך דבר שאין מטמא טומאת אוכלין וחייב במעשרות אמר לו ר׳ יהודה אף אתה כפרת בהלכה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-3-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 3:8</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-3-8" aria-label="Copy link to Tosefta Oktsin 3:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תלתן הכל מודין שהוא מטמא טומאת אוכלין ביקי אינו מטמא טומאת אוכלין [קור ששלק מטמא טומאת אוכלין]. התמרים והגרוגרות שנתנן בקדירה לתבלין מטמא טומאת אוכלין עד שיפסלו לכלב &amp;lt;ר׳ יהודה אומר&amp;gt; חגבים שנתנן בקדרה והחבילו מטמאין טומאת אוכלין עד שיפסלו מלאכול לאדם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-oktsin-3-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Oktsin 3:9</h4></div>
+              <a class="anchor" href="#tosefta-oktsin-3-9" aria-label="Copy link to Tosefta Oktsin 3:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמר רבי יהודה לא נחלקו ר׳ אליעזר וחכמים על חלות דבש שאינן מקבלות טומאה באיביהן. ומימיהם של כהנים לא נמנעו בוזקין יין בטומאה ורודין אותן בטהרה על מה נחלקו על השבת ועל השביעית שר&quot;א אומר הרי היא כקרקע וחכ&quot;א הרי הוא ככלי. ואם היה מחובר בטיט הכל מודין שהוא כקרקע לכל דבר. היה נתון על גבי שתי יתידות הכל מודין שהוא ככלי לכל דבר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-oktsin-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"tosefta-oktsin","work_title":"Tosefta Oktsin","work_slug":"tosefta/tosefta-oktsin","scope_label":"All imported Hebrew works","generated_at":"2026-05-12T13:59:00.300Z","total_occurrences":1334,"units":{"tosefta-oktsin-1-1":{"unit_id":"tosefta-oktsin-1-1","anchor_id":"tosefta-oktsin-1-1","source_ref":"Tosefta Oktsin 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3f4231cde85e","tok-4e619e010361","tok-ea5bcd4f5fff","tok-0be7f389fd19","tok-0824005da7a7","tok-431bcdd1445a","tok-7352c4fdfa50","tok-c3576a21d260","tok-d31188e13bf7","tok-5ea48b311852","tok-2417c89b7fb0","tok-338998ea8198","tok-577a3e9fc66d","tok-b1b7e4258beb","tok-d1342c60ed30","tok-93c2033bb2c8","tok-25cad1ed3290","tok-8a524f4566b1","tok-d40cca0f42c2","tok-00dbc84aca33","tok-5a1edaa2cb6c","tok-338998ea8198","tok-577a3e9fc66d","tok-b1b7e4258beb","tok-c81e6410224e","tok-6caedc8857f4","tok-26ec9c2303d6","tok-7b12fba5a5d5","tok-354c2a47019c","tok-f09f9dfd4a95","tok-f1f883b3637a","tok-09269fb87aa7","tok-f11074257f80","tok-80f9127abf43","tok-f89847f22028"]}]},"tosefta-oktsin-1-2":{"unit_id":"tosefta-oktsin-1-2","anchor_id":"tosefta-oktsin-1-2","source_ref":"Tosefta Oktsin 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-26ec9c2303d6","tok-060752c7b66b","tok-354c2a47019c","tok-e21126eb28b7","tok-0d8eee84cffb","tok-a6d226f17ceb","tok-0d8eee84cffb","tok-3cc65a108efd","tok-66eff128d6b9","tok-3e3381da4db9","tok-021c74fc70b7","tok-4d308c81d9e1","tok-b6ce4e8a5a6d","tok-f91313602b41","tok-3087d4f25cfc","tok-8f081e78838e","tok-527333add508","tok-338998ea8198","tok-624da7ee1270","tok-93c2033bb2c8","tok-624da7ee1270","tok-d40cca0f42c2","tok-26ec9c2303d6","tok-7b12fba5a5d5","tok-354c2a47019c","tok-c3a25259e18a","tok-0d8eee84cffb","tok-d6648e840500","tok-f3f95ba0c3d0","tok-b6ce4e8a5a6d","tok-09269fb87aa7","tok-f2b420cc7ef0","tok-f3f95ba0c3d0","tok-b6ce4e8a5a6d","tok-f89847f22028","tok-66eff128d6b9","tok-b5823f56e2d2","tok-1a73eda71afc","tok-3ac70255a9cf","tok-4d308c81d9e1","tok-ffebd15135f1","tok-ab3ec971a289","tok-239c5de0669c","tok-5f2a6b5ce92f","tok-ab3ec971a289","tok-f0ffcd5ff66a","tok-5f2a6b5ce92f","tok-b83e75e71f09","tok-09269fb87aa7","tok-7de660b977c1","tok-9f49bdca2190","tok-02794a389b26","tok-2b4522d6f6cf","tok-920338d19a15","tok-a8cc1e95e7be","tok-207e7d8b9a29","tok-4129f2320d98","tok-4bd8f6378d80","tok-0ede0fecac29","tok-5afc6aa30401","tok-1a2bb175986f","tok-0d8eee84cffb","tok-b32691ac35e8","tok-ed7c80fb9b6f","tok-a7a8d563261f","tok-e513d135c0b9","tok-111779eba8bf","tok-eba1f05f5616","tok-46b0dd1cf813","tok-5a51bbe1ef6a","tok-f819d5b5400e","tok-680331500ae0","tok-0830759ae85c","tok-5a51bbe1ef6a","tok-185a2355adab","tok-434ecbaf1e01"]}]},"tosefta-oktsin-1-3":{"unit_id":"tosefta-oktsin-1-3","anchor_id":"tosefta-oktsin-1-3","source_ref":"Tosefta Oktsin 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4dcf0d6cee63","tok-db1da1626b27","tok-c745d1ae6ee5","tok-88def82ef48e","tok-5afc6aa30401","tok-ae7c02b259b3","tok-45066961de96","tok-ae7c02b259b3","tok-1a2bb175986f","tok-0d8eee84cffb","tok-bfe9438a3106","tok-8e365b8a2191","tok-396303ebbe16","tok-e2367efa5361","tok-f571a24977bb","tok-cae888cb62fb","tok-0d8eee84cffb","tok-d6648e840500","tok-3e3381da4db9","tok-f0ffcd5ff66a","tok-54055f3d642d","tok-f571a24977bb","tok-63976ead3584","tok-3087d4f25cfc","tok-f657fb0934a6","tok-527333add508","tok-338998ea8198","tok-624da7ee1270","tok-93c2033bb2c8","tok-624da7ee1270","tok-8bd3e8680789","tok-26ec9c2303d6","tok-3480dff946ff","tok-354c2a47019c","tok-fc10e1e4ef7c","tok-e1d3e85c56f2","tok-9afc3287174c","tok-0d127456cc3f","tok-17bd42f26698","tok-78aa62270c33","tok-a464746e7e1c","tok-daad9132f808","tok-ad4ee2bf2f92","tok-aa8b6c9220df","tok-58a12c03688e","tok-619f9ccfc5ce","tok-e99e4ae11714","tok-527333add508","tok-111779eba8bf","tok-624da7ee1270","tok-4a709658fbbf","tok-624da7ee1270","tok-40090a5d9764","tok-26ec9c2303d6","tok-3480dff946ff","tok-354c2a47019c","tok-40090a5d9764","tok-66eff128d6b9","tok-f79de638686c","tok-948d24577b62","tok-9c0ad8cd0fb2","tok-2e78f50486de","tok-26ec9c2303d6","tok-3480dff946ff","tok-354c2a47019c","tok-a957fed8b4b4","tok-9437ed0730f5","tok-69747f5217d4","tok-44837b38c516","tok-9f2ebf9657d7","tok-9afc3287174c","tok-dffd7fe1d0bc","tok-17bd42f26698","tok-78aa62270c33","tok-a464746e7e1c","tok-ad4ee2bf2f92","tok-58138c3e9faa","tok-aa8b6c9220df","tok-9c0ad8cd0fb2","tok-2e78f50486de","tok-26ec9c2303d6","tok-3480dff946ff","tok-354c2a47019c","tok-f91313602b41","tok-46b58fee2ccf","tok-efcd2247d38d","tok-aa8b6c9220df","tok-66eff128d6b9","tok-b5823f56e2d2","tok-97f9ea1953e4","tok-b5c27cb41d88","tok-9c0ad8cd0fb2","tok-2e78f50486de","tok-26ec9c2303d6","tok-3480dff946ff","tok-354c2a47019c","tok-c7d2490272ff","tok-23c13e15721b","tok-09269fb87aa7","tok-66eff128d6b9","tok-00f8381f789e","tok-6bac81d4823b","tok-8048a093fc78","tok-354c2a47019c","tok-c7d2490272ff","tok-291412a84a1c","tok-09269fb87aa7","tok-66eff128d6b9","tok-5048271b1d4f","tok-6bac81d4823b","tok-4c8a8b7b0a44","tok-7f3ef964c1bc","tok-3480dff946ff","tok-354c2a47019c","tok-c7d2490272ff","tok-047eb7e602f4","tok-2162de9b0b0d","tok-f571a24977bb"]}]},"tosefta-oktsin-1-4":{"unit_id":"tosefta-oktsin-1-4","anchor_id":"tosefta-oktsin-1-4","source_ref":"Tosefta Oktsin 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3768723972e7","tok-0d8eee84cffb","tok-7352c4fdfa50","tok-073a9609043a","tok-124caa6e78e1","tok-17bd42f26698","tok-ce9c1770a555","tok-9ff46363b4b9","tok-d42a78a93e15","tok-09269fb87aa7","tok-d12a0d1492d3","tok-f89847f22028","tok-9a2243e74e6d","tok-5a51bbe1ef6a","tok-c7243e897f17","tok-5a51bbe1ef6a","tok-a5dffa42a6a4","tok-fe0fef815f52","tok-30864103e8e1","tok-7bd0f3d4a138","tok-4eef8001399d","tok-9d0458045667","tok-7f320612de18","tok-b83e75e71f09","tok-5a51bbe1ef6a","tok-13f58ac0adef","tok-c7243e897f17","tok-5a51bbe1ef6a","tok-67979dad4b63","tok-1c4082365dde","tok-a02153ef6c8d","tok-eb43077bcaa7","tok-daad9132f808","tok-e845b8edc169","tok-2f23ff199480","tok-9a2243e74e6d","tok-425976e411e4","tok-3e3381da4db9","tok-a26cdf1c78b4","tok-4d308c81d9e1","tok-432903daf494","tok-7de660b977c1","tok-2c7fba12549e","tok-124caa6e78e1","tok-2b4522d6f6cf","tok-13842c160971","tok-3701df2a7455","tok-19bf362e5c82","tok-7b12fba5a5d5","tok-527333add508","tok-4dcf0d6cee63","tok-624da7ee1270","tok-021c74fc70b7","tok-2e78f50486de","tok-527333add508","tok-4a709658fbbf","tok-624da7ee1270","tok-0eddb81e1271","tok-624da7ee1270","tok-40090a5d9764","tok-b5c27cb41d88","tok-c7d2490272ff","tok-9fb228e3dab7","tok-09269fb87aa7","tok-26ec9c2303d6","tok-060752c7b66b","tok-354c2a47019c","tok-f09f9dfd4a95","tok-f1f883b3637a","tok-09269fb87aa7","tok-a7eb20528826","tok-df306f7c83a3","tok-09269fb87aa7"]}]},"tosefta-oktsin-2-1":{"unit_id":"tosefta-oktsin-2-1","anchor_id":"tosefta-oktsin-2-1","source_ref":"Tosefta Oktsin 2:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3f3891e5f4b4","tok-5048271b1d4f","tok-c973a545971b","tok-68e64b4178b5","tok-b53396cd2a6f","tok-f3f95ba0c3d0","tok-b6ce4e8a5a6d","tok-58e4455851ba","tok-f2b420cc7ef0","tok-f3f95ba0c3d0","tok-b6ce4e8a5a6d","tok-4fe30bd79bc1","tok-58e4455851ba","tok-2fbe8582fd13","tok-f3f95ba0c3d0","tok-b6ce4e8a5a6d","tok-09269fb87aa7","tok-f2b420cc7ef0","tok-f3f95ba0c3d0","tok-b6ce4e8a5a6d","tok-f89847f22028","tok-c81e6410224e","tok-6caedc8857f4","tok-c3c6559f8fd1","tok-2fbe8582fd13","tok-c9277bbc6acf","tok-f89847f22028","tok-330ce27db867","tok-f3f95ba0c3d0","tok-b6ce4e8a5a6d","tok-58e4455851ba","tok-f2b420cc7ef0","tok-f3f95ba0c3d0","tok-b6ce4e8a5a6d","tok-4fe30bd79bc1","tok-58e4455851ba","tok-431bcdd1445a","tok-c4f88b1363ed","tok-e7789cf60010","tok-6e2da76195af","tok-f3f95ba0c3d0","tok-b6ce4e8a5a6d","tok-58e4455851ba","tok-b57b936496cc","tok-f3f95ba0c3d0","tok-432903daf494","tok-3689c448095d","tok-354c2a47019c","tok-9f49bdca2190","tok-d3b8cdf7cab6","tok-ed17462111bb","tok-b9995adf7a82","tok-f5b5455f6461","tok-4e3137773aa9","tok-9c0ad8cd0fb2","tok-f1649939d25d","tok-8d3c739723f9","tok-f3f95ba0c3d0","tok-b6ce4e8a5a6d","tok-58e4455851ba","tok-f57f4624fee5","tok-d42a78a93e15","tok-f3f95ba0c3d0","tok-b6ce4e8a5a6d","tok-fc10e1e4ef7c","tok-ec8069269812","tok-1448e8e8c1cf","tok-d3b8cdf7cab6","tok-9f49bdca2190","tok-d3b8cdf7cab6","tok-fc10e1e4ef7c","tok-4fe30bd79bc1","tok-1448e8e8c1cf","tok-d3b8cdf7cab6","tok-b83e75e71f09","tok-09269fb87aa7","tok-7de660b977c1","tok-8b65a88fb046","tok-61848a14310a","tok-2b4522d6f6cf","tok-26ec9c2303d6","tok-7b12fba5a5d5","tok-354c2a47019c","tok-7c2cfb7c61cf","tok-b9995adf7a82","tok-b5e30d4b46c1","tok-82cb9cac4a04","tok-75297c9673a8","tok-fa88da370d57","tok-4d308c81d9e1","tok-6288b5bf7953","tok-0dea4dd7fe4f","tok-7857a6198e3a","tok-281a3f102426","tok-354c2a47019c","tok-65b0bf078f92","tok-4d308c81d9e1","tok-7709ed12c952","tok-82b057d80977","tok-dc0c1c5d5b0b","tok-aa74ec4768ce","tok-3eceb923c0ef","tok-462f2044e23b","tok-bee0cc0f393a","tok-5d5d966b1b43","tok-293e734a0a7a","tok-721460c35386","tok-198e76d7be00","tok-58e4455851ba"]}]},"tosefta-oktsin-2-2":{"unit_id":"tosefta-oktsin-2-2","anchor_id":"tosefta-oktsin-2-2","source_ref":"Tosefta Oktsin 2:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c2eb7408c4e3","tok-719f36b38ac3","tok-99fa966b3ac6","tok-8711c0fda532","tok-8bd3e8680789","tok-530d7f67f8a6","tok-9e974ea16b6e","tok-94149a88b654","tok-e2fcf35643f5","tok-527333add508","tok-9e974ea16b6e","tok-5caaf58e3083","tok-d334beb30688","tok-214180c471a0","tok-58138c3e9faa","tok-9d3cfe314a70","tok-530d7f67f8a6","tok-9e974ea16b6e","tok-5caaf58e3083","tok-f9557cc0b888","tok-5841f6cc60bd","tok-17bd42f26698","tok-6751bfa31476","tok-663a1eee306b","tok-93fb5f9abefd","tok-9c0ad8cd0fb2","tok-90ac24f85979","tok-c61e8482bb01","tok-bfbc02182a46","tok-ffe70983b2f0","tok-3ddc5ac82610","tok-f09f9dfd4a95","tok-ab3ec971a289","tok-330ce27db867","tok-ab3ec971a289","tok-bbcd1540acf0","tok-ab3ec971a289","tok-7138c66f637a","tok-ab3ec971a289","tok-cb51db60de40","tok-daad9132f808","tok-ad4ee2bf2f92","tok-5a51bbe1ef6a","tok-fa5882af02e7","tok-8c5d80d83b83","tok-5f0f9f34c6bd","tok-3394e52d8bd6","tok-7ba54562b1c7","tok-44e34c651b97","tok-3689c448095d","tok-354c2a47019c","tok-fc10e1e4ef7c","tok-3ddc5ac82610","tok-5a51bbe1ef6a","tok-fc10e1e4ef7c","tok-3aa5ad06f909","tok-4d308c81d9e1","tok-58dc54da68ce","tok-0830759ae85c","tok-44e34c651b97","tok-2004101d4a4c","tok-176fc823bf0c","tok-94ac62c5c93a","tok-5e29a2432848","tok-8e365b8a2191","tok-176fc823bf0c","tok-4507c05b87d6","tok-2d19db7813b1","tok-fb7e21c7b76c","tok-dcc48a64b644","tok-97ce31f0115b","tok-ae86aec1809f","tok-d81de29a53b9","tok-74e5d76e85d8","tok-b5823f56e2d2"]}]},"tosefta-oktsin-2-3":{"unit_id":"tosefta-oktsin-2-3","anchor_id":"tosefta-oktsin-2-3","source_ref":"Tosefta Oktsin 2:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a9cb538fd2df","tok-f104c4e58e7a","tok-7b7b9ca3ff60","tok-00ead6e9faeb","tok-b83e75e71f09","tok-44e34c651b97","tok-c7073b359e4d","tok-57e6982903c0","tok-730c6758ba06","tok-17bd42f26698","tok-16e17a950dad","tok-44e34c651b97","tok-9f49bdca2190","tok-7178b4ef074e","tok-9060cffd8126","tok-66e2baf7e0fd","tok-b11fa8a596fa","tok-2a6c5b80c3c2","tok-e4095e1172c7","tok-2b0da5f1eb19","tok-4fe30bd79bc1","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654","tok-c3f888968ee3","tok-02830cb75633","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654","tok-66e2baf7e0fd","tok-b3bba940fee4","tok-8c935367cb42","tok-9a2243e74e6d","tok-a7a8d563261f","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654","tok-ffaf9047863e","tok-9df14a703187","tok-607b866d940a","tok-2976def6ca17","tok-8c935367cb42","tok-5f0f9f34c6bd","tok-02830cb75633","tok-0830759ae85c","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654","tok-607b866d940a","tok-2aeeaf3e04bb","tok-8c935367cb42","tok-19e0dd8567dd","tok-02830cb75633","tok-4fe30bd79bc1","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654","tok-7ed09dfe5c90","tok-02830cb75633","tok-4fe30bd79bc1","tok-ea5bcd4f5fff","tok-9e974ea16b6e","tok-94149a88b654","tok-316fe7742e95","tok-816e63b8504c","tok-8c935367cb42","tok-19e0dd8567dd","tok-e80cc81d10f0","tok-2ef26bb2cf49","tok-c3d99b1b34e5","tok-a646442985e9","tok-93bf3b8d79b6","tok-7996bd9ba3d0","tok-5aad60f6aa71","tok-69527b73808b","tok-f2d1f1d4b14a","tok-93bf3b8d79b6","tok-7996bd9ba3d0","tok-4fe30bd79bc1","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654","tok-04a00a441ba9","tok-621b05cc2e93","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654"]}]},"tosefta-oktsin-2-4":{"unit_id":"tosefta-oktsin-2-4","anchor_id":"tosefta-oktsin-2-4","source_ref":"Tosefta Oktsin 2:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cf6d985f7385","tok-c18b43a8fe85","tok-cc62d6bbc9c6","tok-eb43077bcaa7","tok-daad9132f808","tok-58138c3e9faa","tok-67a931a1978a","tok-2082444665c7","tok-cc62d6bbc9c6","tok-eb43077bcaa7","tok-daad9132f808","tok-58138c3e9faa","tok-6d90fec417c9","tok-10022437fc05","tok-8741ccc5a2dd","tok-b2110955e0dd","tok-b53396cd2a6f","tok-7f320612de18","tok-b83e75e71f09","tok-5a51bbe1ef6a","tok-3770605b49f6","tok-edf7bd5d2f75","tok-dd068ae63901","tok-ecf312350aa2","tok-4fe30bd79bc1","tok-91019e2e7eaf","tok-5a51bbe1ef6a","tok-185a2355adab","tok-4d308c81d9e1","tok-185a2355adab","tok-e70c5392a29b","tok-f202ed1d7d80","tok-c973a545971b","tok-68e64b4178b5","tok-b53396cd2a6f","tok-7f320612de18","tok-b83e75e71f09","tok-5a51bbe1ef6a","tok-3770605b49f6","tok-edf7bd5d2f75","tok-dd068ae63901","tok-ecf312350aa2","tok-4fe30bd79bc1","tok-91019e2e7eaf","tok-5a51bbe1ef6a","tok-185a2355adab","tok-434ecbaf1e01","tok-f6d90d427251","tok-9060cffd8126","tok-10638dd23476","tok-f772d4a4c61d","tok-4db8365181cf","tok-8c935367cb42","tok-b9995adf7a82","tok-4cdd994eb096","tok-d7bfc1955887","tok-7135f40d08f9","tok-7f320612de18","tok-b83e75e71f09","tok-5a51bbe1ef6a","tok-7f6457652819","tok-e324cd7cdb7b","tok-354c2a47019c","tok-a71e2f97a33b","tok-351ccca71388"]}]},"tosefta-oktsin-2-5":{"unit_id":"tosefta-oktsin-2-5","anchor_id":"tosefta-oktsin-2-5","source_ref":"Tosefta Oktsin 2:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b3bba940fee4","tok-0f2eb48586b3","tok-40a0f3556da8","tok-17bd42f26698","tok-16e17a950dad","tok-5a51bbe1ef6a","tok-9f49bdca2190","tok-7178b4ef074e","tok-9060cffd8126","tok-f6d90d427251","tok-9060cffd8126","tok-17adedc0f614","tok-4b1c0f31c749","tok-66f3cf55fb20","tok-6bac81d4823b","tok-5a51bbe1ef6a","tok-267c48e96b78","tok-79fdb8f2dd79","tok-5a51bbe1ef6a","tok-d0709d42132a","tok-7a8190d6a34a","tok-5a51bbe1ef6a","tok-b4b7455757d1","tok-c811bacefdf8","tok-d42a78a93e15","tok-5a51bbe1ef6a","tok-3b55f930f351","tok-7e4d62e4ff9c","tok-7d24fcfff793","tok-4eef8001399d","tok-e136ecfa1b32","tok-ef1e7f1d4ccc","tok-fe275a9c5bdc","tok-9ff46363b4b9","tok-185a2355adab","tok-53c3fd9b2b4d","tok-462f2044e23b","tok-5a51bbe1ef6a","tok-267c48e96b78","tok-b83e75e71f09","tok-5a51bbe1ef6a","tok-7f6457652819","tok-e324cd7cdb7b","tok-354c2a47019c","tok-a71e2f97a33b","tok-351ccca71388","tok-c3c6559f8fd1","tok-e1fa87346d18","tok-b5fbac271bfb","tok-c973a545971b","tok-bcdff0ea25c8","tok-bfce533a249f","tok-fce59e2e8d1c","tok-68e64b4178b5","tok-bcdff0ea25c8","tok-bfce533a249f","tok-ab3ec971a289","tok-c1c2918b77c9","tok-185a2355adab","tok-53c3fd9b2b4d","tok-462f2044e23b","tok-5a51bbe1ef6a","tok-267c48e96b78","tok-b83e75e71f09","tok-5a51bbe1ef6a","tok-96cbf8fb11e3","tok-0d40468bbed8","tok-8c935367cb42","tok-6fa3121ff604","tok-5a51bbe1ef6a","tok-9f49bdca2190","tok-1b481f833a2d","tok-9060cffd8126"]}]},"tosefta-oktsin-2-6":{"unit_id":"tosefta-oktsin-2-6","anchor_id":"tosefta-oktsin-2-6","source_ref":"Tosefta Oktsin 2:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6dc4a1a4b4c8","tok-133036bbc780","tok-9f833ee6aac9","tok-f425ea67c3f7","tok-8c935367cb42","tok-6fa3121ff604","tok-5a51bbe1ef6a","tok-9f49bdca2190","tok-1b481f833a2d","tok-8ee75da0894f","tok-63b2fd54f08e","tok-c81fe34899e7","tok-f7680b81357e","tok-6288b5bf7953","tok-5a51bbe1ef6a","tok-b7a151b4f154","tok-9de36997bf38","tok-263059bcb540","tok-156c743b1b43","tok-bd0d80f682c7","tok-579e2621bdeb","tok-8c935367cb42","tok-a7259e2427e0","tok-9ef7d0ff77f2","tok-9f49bdca2190","tok-7178b4ef074e","tok-1a2afef40b9f","tok-046dfd88f806","tok-b8679d667a7b","tok-bcbec7b42bfe","tok-9ce72db831a3","tok-8c935367cb42","tok-ff924c217797","tok-e86070c8ac9c","tok-1124f1da3a82","tok-5a51bbe1ef6a","tok-9f49bdca2190","tok-7178b4ef074e","tok-8ee75da0894f"]}]},"tosefta-oktsin-2-7":{"unit_id":"tosefta-oktsin-2-7","anchor_id":"tosefta-oktsin-2-7","source_ref":"Tosefta Oktsin 2:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b07e81b6dee8","tok-9c1d3785f5ec","tok-5841f6cc60bd","tok-17bd42f26698","tok-6751bfa31476","tok-62c6be47a0b4","tok-a894f92b61d9","tok-e1fa87346d18","tok-d1acace51192","tok-1dceed715762","tok-e311ee491613","tok-0ff75cff684f","tok-b83e75e71f09","tok-e57c095e2e31","tok-4d308c81d9e1","tok-f65a468e49fb","tok-e6efb009411e","tok-e07c3cd83826","tok-e2fcf35643f5","tok-1dceed715762","tok-700eb7ace7b4","tok-daad9132f808","tok-185a2355adab","tok-e57c095e2e31","tok-4d308c81d9e1","tok-f65a468e49fb","tok-fc10e1e4ef7c","tok-ec8069269812","tok-17bd42f26698","tok-0d339dbcb4b5","tok-0e023d3361bb","tok-62b65c56885e","tok-3087d4f25cfc","tok-3e3381da4db9","tok-b83e75e71f09","tok-e57c095e2e31","tok-4d308c81d9e1","tok-f65a468e49fb"]}]},"tosefta-oktsin-2-8":{"unit_id":"tosefta-oktsin-2-8","anchor_id":"tosefta-oktsin-2-8","source_ref":"Tosefta Oktsin 2:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-67988f0dc1ba","tok-b9995adf7a82","tok-f819d5b5400e","tok-cbe2bea382ec","tok-388dd7fd5d0d","tok-17bd42f26698","tok-4ccfb2da1d19","tok-e5f18f10f8f7","tok-4d308c81d9e1","tok-f65a468e49fb","tok-2e78f50486de","tok-2de7586aafd9","tok-2f60b55c6e75","tok-a0670d3152ee","tok-9c1d3785f5ec","tok-5d2536a8364a","tok-124caa6e78e1","tok-17bd42f26698","tok-6751bfa31476","tok-978100b07a37","tok-b5ef4c7bb984","tok-9852b166b5b5","tok-20c65d763d2a","tok-8feb70ec239d","tok-8e8f0d2642f0","tok-2f23ff199480"]}]},"tosefta-oktsin-3-1":{"unit_id":"tosefta-oktsin-3-1","anchor_id":"tosefta-oktsin-3-1","source_ref":"Tosefta Oktsin 3:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9ce72db831a3","tok-298bdbc29ab1","tok-1c4e96bb1f95","tok-298bdbc29ab1","tok-aac0d510abfa","tok-3d947bec005d","tok-9ce72db831a3","tok-aa8b6c9220df","tok-1c4e96bb1f95","tok-aa8b6c9220df","tok-50adc622fc99","tok-676a273df9f8","tok-1bd4479ec3dd","tok-8a524f4566b1","tok-676a273df9f8","tok-98991fa9fa67","tok-61089af834d6","tok-ac1ebea5816e","tok-aac0d510abfa","tok-3d947bec005d","tok-56724014faab","tok-1bd4479ec3dd","tok-8a524f4566b1","tok-56724014faab","tok-98991fa9fa67","tok-66eff128d6b9","tok-8e365b8a2191","tok-283151ce8283","tok-61089af834d6","tok-15ed60329c8f","tok-a0c9ae3ea74b","tok-56724014faab","tok-98991fa9fa67","tok-be985a0083da","tok-b5fbac271bfb","tok-8c967823c3cd","tok-a33af64ad36d","tok-61089af834d6","tok-15ed60329c8f","tok-a0c9ae3ea74b","tok-3e3381da4db9","tok-56724014faab","tok-98991fa9fa67","tok-8a524f4566b1","tok-56724014faab","tok-1bd4479ec3dd","tok-66eff128d6b9","tok-fa39f4d4f796","tok-5805557c7ff3","tok-6d83e52e4006","tok-3701df2a7455","tok-78a6acae017a","tok-c27e54861e69","tok-61db91fe278e","tok-00dc4d0ea26c","tok-58138c3e9faa","tok-0d8eee84cffb","tok-138439416b70","tok-8d2f607ffdf1","tok-10d4c33ff7e2","tok-1124f1da3a82","tok-53b3dec6bb20","tok-9a2243e74e6d","tok-1730f0c3b720","tok-1bd4479ec3dd","tok-f91055d1ac73","tok-fc10e1e4ef7c","tok-ec8069269812","tok-1124f1da3a82","tok-2de7586aafd9","tok-5a9ae62d3d76","tok-1051194d9905","tok-514097e64bb6","tok-8c967823c3cd","tok-00b053a99ffa","tok-a33af64ad36d","tok-3c4936af83a2","tok-251db32c441e","tok-26ec9c2303d6","tok-7b12fba5a5d5"]}]},"tosefta-oktsin-3-2":{"unit_id":"tosefta-oktsin-3-2","anchor_id":"tosefta-oktsin-3-2","source_ref":"Tosefta Oktsin 3:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-61089af834d6","tok-138439416b70","tok-111779eba8bf","tok-7f320612de18","tok-09269fb87aa7","tok-61089af834d6","tok-82ad2ba6659e","tok-ab3ec971a289","tok-111779eba8bf","tok-ab3ec971a289","tok-2f23ff199480","tok-daad9132f808","tok-d2835efc7131","tok-699d97437cf2","tok-61089af834d6","tok-99e0224cd08e","tok-78356d7158da","tok-04e7f27700af","tok-7f320612de18","tok-2d5a82d81374","tok-f997830c3523","tok-a1071c955418","tok-14970b5701a3","tok-d50f20e8872b","tok-78356d7158da","tok-99e0224cd08e","tok-78356d7158da","tok-8fd1b0d2a03a","tok-6a7bf4c0e370","tok-c17927f0395e","tok-379fa910820f","tok-5b140e76df51","tok-75297c9673a8","tok-cd0198e70e82","tok-1dceed715762","tok-85050624cd05","tok-8d2f607ffdf1","tok-70b3438cdf91","tok-e254a1e853f1","tok-8d2f607ffdf1","tok-7c17dbfef09c","tok-b83e75e71f09","tok-4507c05b87d6","tok-1bd4479ec3dd"]}]},"tosefta-oktsin-3-3":{"unit_id":"tosefta-oktsin-3-3","anchor_id":"tosefta-oktsin-3-3","source_ref":"Tosefta Oktsin 3:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5d32272538d5","tok-3480dff946ff","tok-66eff128d6b9","tok-71b4cf7df52a","tok-13842c160971","tok-547bec9c8f3d","tok-4d94ae49948c","tok-f89847f22028","tok-79fdb8f2dd79","tok-56724014faab","tok-1bd4479ec3dd","tok-66eff128d6b9","tok-8e365b8a2191","tok-4a709658fbbf","tok-7f6141d8fae0","tok-d7c933bde12e","tok-4b1c0f31c749","tok-a0f67970289a","tok-7f6141d8fae0","tok-d7c933bde12e","tok-b83e75e71f09","tok-4507c05b87d6","tok-1bd4479ec3dd"]}]},"tosefta-oktsin-3-4":{"unit_id":"tosefta-oktsin-3-4","anchor_id":"tosefta-oktsin-3-4","source_ref":"Tosefta Oktsin 3:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ffedefe5f572","tok-58138c3e9faa","tok-5d8fd84725f5","tok-9df14a703187","tok-774004a6fc31","tok-77d767b40c78","tok-e45f91ccf298","tok-43757b079cda","tok-3b47f3a0a0da","tok-0a00a1ca0e9a","tok-c3f888968ee3","tok-02830cb75633","tok-ea5bcd4f5fff","tok-9e974ea16b6e","tok-94149a88b654","tok-316fe7742e95","tok-816e63b8504c","tok-19e0dd8567dd","tok-02830cb75633","tok-2ef26bb2cf49","tok-c3d99b1b34e5","tok-559a407096ca","tok-26ec9c2303d6","tok-6a1c581850fb","tok-3a83ea9ba59c","tok-26e7ec19ff8a","tok-e3957d54bba7","tok-dac618d689ba","tok-5f0f9f34c6bd","tok-9f49bdca2190","tok-f2b420cc7ef0","tok-a2ce073619f8","tok-d7b6551ccedf","tok-05f0482737cb","tok-b5823f56e2d2","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654","tok-177398d413fa","tok-088d0af37278","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654","tok-66eff128d6b9","tok-85594f62b379","tok-6d5cfc9ce9be","tok-2dd34874a96a","tok-011c66909ae0","tok-5ea3b3b9280b","tok-4fe30bd79bc1","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654","tok-e53e96cc7904","tok-ae7c02b259b3","tok-4eef8001399d","tok-5f0f9f34c6bd","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654","tok-26ec9c2303d6","tok-7b404d878129","tok-354c2a47019c","tok-9df14a703187","tok-dac618d689ba","tok-4ff647c1b675","tok-9f49bdca2190","tok-f2b420cc7ef0","tok-a2ce073619f8","tok-d7b6551ccedf","tok-05f0482737cb","tok-2de7586aafd9","tok-df00d1f1dc29","tok-9ff46363b4b9","tok-f89847f22028","tok-a0670d3152ee","tok-7de660b977c1","tok-f45ddab7f2f2"]}]},"tosefta-oktsin-3-5":{"unit_id":"tosefta-oktsin-3-5","anchor_id":"tosefta-oktsin-3-5","source_ref":"Tosefta Oktsin 3:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-448d16a3ab68","tok-160e75f35c4a","tok-188973fc8c3a","tok-9f49bdca2190","tok-f2b420cc7ef0","tok-d86767bd6dc5","tok-4fe30bd79bc1","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654","tok-117dc2a22189","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654","tok-e2fcf35643f5","tok-3de63e11fbc7","tok-69e3272ad28e","tok-dc3e3c822782","tok-63976ead3584","tok-3087d4f25cfc","tok-ac7640baff2e","tok-ab3ec971a289","tok-7ff4ce3e478e","tok-ab3ec971a289","tok-9f49bdca2190","tok-f2b420cc7ef0","tok-0d350191efb2","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654"]}]},"tosefta-oktsin-3-6":{"unit_id":"tosefta-oktsin-3-6","anchor_id":"tosefta-oktsin-3-6","source_ref":"Tosefta Oktsin 3:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e5e741820e7d","tok-ca0c452e6acd","tok-83187f1887c5","tok-878118c0a3e3","tok-c811bacefdf8","tok-ea5bcd4f5fff","tok-9e974ea16b6e","tok-94149a88b654","tok-d25caf9a4d5e","tok-2df8b91f82c3","tok-83187f1887c5","tok-878118c0a3e3","tok-577a3e9fc66d","tok-9e974ea16b6e","tok-94149a88b654","tok-26ec9c2303d6","tok-6a1c581850fb","tok-3a83ea9ba59c","tok-26e7ec19ff8a","tok-354c2a47019c","tok-83ce68efeee6","tok-26ec9c2303d6","tok-7b12fba5a5d5","tok-354c2a47019c","tok-e5e741820e7d","tok-daad9132f808","tok-d42a78a93e15","tok-426de6b41b24","tok-c17927f0395e","tok-657a11557669","tok-3e3381da4db9","tok-ca0c452e6acd","tok-83187f1887c5","tok-878118c0a3e3","tok-f9ead875aab7","tok-9e974ea16b6e","tok-94149a88b654","tok-d25caf9a4d5e","tok-daad9132f808","tok-58138c3e9faa","tok-e984fb627cd9","tok-c17927f0395e","tok-d6eda7ea2203","tok-7de660b977c1","tok-b5823f56e2d2","tok-af6edb09cdf5","tok-1dceed715762","tok-a90ba9e3836a"]}]},"tosefta-oktsin-3-7":{"unit_id":"tosefta-oktsin-3-7","anchor_id":"tosefta-oktsin-3-7","source_ref":"Tosefta Oktsin 3:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ef4856b88801","tok-3ab65d820960","tok-94368bd16393","tok-91a7b411ea47","tok-29b32e04ed3b","tok-aa402234f22e","tok-26e08a9455a0","tok-8e6fb758c4d8","tok-385351d4c1d1","tok-52c237cc3e27","tok-13c65e35f81c","tok-dac618d689ba","tok-99db1ede5d1a","tok-a8c4ec138233","tok-58138c3e9faa","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654","tok-8048a093fc78","tok-354c2a47019c","tok-a8c4ec138233","tok-4fe30bd79bc1","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654","tok-9c0ad8cd0fb2","tok-2e78f50486de","tok-8048a093fc78","tok-354c2a47019c","tok-ec8069269812","tok-380a501fed2e","tok-3e3381da4db9","tok-de138dae8bc6","tok-9e974ea16b6e","tok-94149a88b654","tok-3eceb923c0ef","tok-380a501fed2e","tok-a0670d3152ee","tok-ea5bcd4f5fff","tok-9e974ea16b6e","tok-94149a88b654","tok-b557eb022b6b","tok-96c078b8c931","tok-f7d822afcbf4","tok-e641ba0a2cf9","tok-4fe30bd79bc1","tok-ea5bcd4f5fff","tok-9e974ea16b6e","tok-94149a88b654","tok-1ce1b03692be","tok-f7d822afcbf4","tok-e641ba0a2cf9","tok-ea5bcd4f5fff","tok-9e974ea16b6e","tok-94149a88b654","tok-c5bb96f2e337","tok-110fe55ab46a","tok-26f88442c54c","tok-b39587d62033","tok-9cce92b78a78","tok-b83e75e71f09","tok-ea5bcd4f5fff","tok-9e974ea16b6e","tok-94149a88b654","tok-3aa87004c8e9","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654","tok-c81e6410224e","tok-26ec9c2303d6","tok-7b12fba5a5d5","tok-52bf6f1c5eff","tok-354c2a47019c","tok-4fe30bd79bc1","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654","tok-b5fbac271bfb","tok-3701df2a7455","tok-26ec9c2303d6","tok-7b12fba5a5d5","tok-ec8069269812","tok-425976e411e4","tok-657a11557669","tok-3e3381da4db9","tok-f1afc8c7fee4","tok-072701c7e7c2","tok-c811bacefdf8","tok-ea5bcd4f5fff","tok-9e974ea16b6e","tok-94149a88b654","tok-b5fbac271bfb","tok-3701df2a7455","tok-8048a093fc78","tok-ec8069269812","tok-425976e411e4","tok-657a11557669","tok-9a2243e74e6d","tok-ea5bcd4f5fff","tok-9e974ea16b6e","tok-94149a88b654","tok-b418e9f71c44","tok-072701c7e7c2","tok-b5fbac271bfb","tok-3701df2a7455","tok-26ec9c2303d6","tok-7b12fba5a5d5","tok-ce8aca1c441b","tok-14aefd420077","tok-94ad43fd996b","tok-c04510220d72"]}]},"tosefta-oktsin-3-8":{"unit_id":"tosefta-oktsin-3-8","anchor_id":"tosefta-oktsin-3-8","source_ref":"Tosefta Oktsin 3:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-801e6418f905","tok-c9277bbc6acf","tok-f18a1f753b67","tok-3e3381da4db9","tok-ea5bcd4f5fff","tok-9e974ea16b6e","tok-94149a88b654","tok-57200d2ab6bd","tok-b83e75e71f09","tok-ea5bcd4f5fff","tok-9e974ea16b6e","tok-94149a88b654","tok-e5e741820e7d","tok-13ed0e294e21","tok-ea5bcd4f5fff","tok-9e974ea16b6e","tok-94149a88b654","tok-fa5882af02e7","tok-8c5d80d83b83","tok-c61e8482bb01","tok-f92550322d20","tok-e766629de3fc","tok-ea5bcd4f5fff","tok-9e974ea16b6e","tok-94149a88b654","tok-9f49bdca2190","tok-95b637b311ad","tok-53687ff8ddf0","tok-26ec9c2303d6","tok-7b12fba5a5d5","tok-354c2a47019c","tok-b8679d667a7b","tok-c61e8482bb01","tok-e1b4a8f779be","tok-c5b0294b66c7","tok-93c2033bb2c8","tok-9e974ea16b6e","tok-94149a88b654","tok-9f49bdca2190","tok-95b637b311ad","tok-b790b296c325","tok-53b3dec6bb20"]}]},"tosefta-oktsin-3-9":{"unit_id":"tosefta-oktsin-3-9","anchor_id":"tosefta-oktsin-3-9","source_ref":"Tosefta Oktsin 3:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b5fbac271bfb","tok-3689c448095d","tok-7b12fba5a5d5","tok-527333add508","tok-d72f57e8ae45","tok-26ec9c2303d6","tok-060752c7b66b","tok-1cf86f9329d6","tok-17bd42f26698","tok-fa52321de478","tok-6f16720c7ebb","tok-5d50ff023adc","tok-1cab1801cc9e","tok-7f6141d8fae0","tok-7996bd9ba3d0","tok-817751bb279b","tok-0d8eee84cffb","tok-7e50690d58fd","tok-527333add508","tok-9db3a40c195d","tok-6c104002c50d","tok-9b20c17224d9","tok-b41d366e24bf","tok-e5f00daa60c8","tok-7b26f4e3756c","tok-0dba66a11e58","tok-17bd42f26698","tok-71b4cf7df52a","tok-d72f57e8ae45","tok-17bd42f26698","tok-5a1edaa2cb6c","tok-229bc72bf198","tok-673d235216cd","tok-68d3b86fcb9c","tok-354c2a47019c","tok-daad9132f808","tok-d2835efc7131","tok-1465c3642f3b","tok-c3c6559f8fd1","tok-daad9132f808","tok-d42a78a93e15","tok-41bdc3961e3f","tok-6a1c4c04fe63","tok-2e78f50486de","tok-d2d6adc25ab9","tok-9a4d88d05ce6","tok-c9277bbc6acf","tok-f18a1f753b67","tok-3e3381da4db9","tok-1465c3642f3b","tok-c17927f0395e","tok-657a11557669","tok-2e78f50486de","tok-68a0c20396c2","tok-17bd42f26698","tok-6751bfa31476","tok-62c6be47a0b4","tok-a894f92b61d9","tok-c9277bbc6acf","tok-f18a1f753b67","tok-3e3381da4db9","tok-41bdc3961e3f","tok-c17927f0395e","tok-657a11557669"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/tosefta-oktsin.manifest.json","root_href":"../../"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 1:1 | tosefta-bikkurim-1-1 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 1:2 | tosefta-bikkurim-1-2 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 1:3 | tosefta-bikkurim-1-3 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 1:4 | tosefta-bikkurim-1-4 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 1:5 | tosefta-bikkurim-1-5 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 1:6 | tosefta-bikkurim-1-6 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 1:7 | tosefta-bikkurim-1-7 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 1:8 | tosefta-bikkurim-1-8 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 1:9 | tosefta-bikkurim-1-9 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 1:10 | tosefta-bikkurim-1-10 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 1:11 | tosefta-bikkurim-1-11 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 1:12 | tosefta-bikkurim-1-12 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 2:1 | tosefta-bikkurim-2-1 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 2:2 | tosefta-bikkurim-2-2 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 2:3 | tosefta-bikkurim-2-3 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 2:4 | tosefta-bikkurim-2-4 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 2:5 | tosefta-bikkurim-2-5 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 2:6 | tosefta-bikkurim-2-6 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 2:7 | tosefta-bikkurim-2-7 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 2:8 | tosefta-bikkurim-2-8 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 2:9 | tosefta-bikkurim-2-9 |  |  | not_done |  |
+| tosefta-bikkurim | Tosefta Bikkurim | Tosefta Bikkurim 2:10 | tosefta-bikkurim-2-10 |  |  | not_done |  |

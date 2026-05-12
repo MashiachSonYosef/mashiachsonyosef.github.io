@@ -1,0 +1,33 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 1:1 | tosefta-rosh-hashanah-1-1 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 1:2 | tosefta-rosh-hashanah-1-2 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 1:3 | tosefta-rosh-hashanah-1-3 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 1:4 | tosefta-rosh-hashanah-1-4 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 1:5 | tosefta-rosh-hashanah-1-5 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 1:6 | tosefta-rosh-hashanah-1-6 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 1:7 | tosefta-rosh-hashanah-1-7 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 1:8 | tosefta-rosh-hashanah-1-8 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 1:9 | tosefta-rosh-hashanah-1-9 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 1:10 | tosefta-rosh-hashanah-1-10 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 1:11 | tosefta-rosh-hashanah-1-11 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 1:12 | tosefta-rosh-hashanah-1-12 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 1:13 | tosefta-rosh-hashanah-1-13 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 1:14 | tosefta-rosh-hashanah-1-14 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 1:15 | tosefta-rosh-hashanah-1-15 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 1:16 | tosefta-rosh-hashanah-1-16 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 1:17 | tosefta-rosh-hashanah-1-17 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 2:1 | tosefta-rosh-hashanah-2-1 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 2:2 | tosefta-rosh-hashanah-2-2 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 2:3 | tosefta-rosh-hashanah-2-3 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 2:4 | tosefta-rosh-hashanah-2-4 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 2:5 | tosefta-rosh-hashanah-2-5 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 2:6 | tosefta-rosh-hashanah-2-6 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 2:7 | tosefta-rosh-hashanah-2-7 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 2:8 | tosefta-rosh-hashanah-2-8 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 2:9 | tosefta-rosh-hashanah-2-9 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 2:10 | tosefta-rosh-hashanah-2-10 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 2:11 | tosefta-rosh-hashanah-2-11 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 2:12 | tosefta-rosh-hashanah-2-12 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 2:13 | tosefta-rosh-hashanah-2-13 |  |  | not_done |  |
+| tosefta-rosh-hashanah | Tosefta Rosh Hashanah | Tosefta Rosh Hashanah 2:14 | tosefta-rosh-hashanah-2-14 |  |  | not_done |  |

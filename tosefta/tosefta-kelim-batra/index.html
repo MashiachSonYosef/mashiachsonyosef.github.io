@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tosefta Kelim Batra</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Tosefta Kelim Batra</h1>
+        <p class="meta">29 total source units | imported 2026-05-12</p>
+        <p class="meta source-citation">Hebrew version: Tosefta Keilim Batra - Machon Mamre | Version source: <a href="http://www.mechon-mamre.org/b/f/f61.htm">www.mechon-mamre.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Tosefta Kelim Batra <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Tosefta Kelim Batra <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tosefta-kelim-batra-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-1-1" title="Tosefta Kelim Batra 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-1-2" title="Tosefta Kelim Batra 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-1-3" title="Tosefta Kelim Batra 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-1-4" title="Tosefta Kelim Batra 1:4">1:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-tosefta-kelim-batra-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-2-1" title="Tosefta Kelim Batra 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-2-2" title="Tosefta Kelim Batra 2:2">2:2</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-2-3" title="Tosefta Kelim Batra 2:3">2:3</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-2-4" title="Tosefta Kelim Batra 2:4">2:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-tosefta-kelim-batra-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-3-1" title="Tosefta Kelim Batra 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-3-2" title="Tosefta Kelim Batra 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-3-3" title="Tosefta Kelim Batra 3:3">3:3</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-3-4" title="Tosefta Kelim Batra 3:4">3:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-tosefta-kelim-batra-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-4-1" title="Tosefta Kelim Batra 4:1">4:1</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-4-2" title="Tosefta Kelim Batra 4:2">4:2</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-4-3" title="Tosefta Kelim Batra 4:3">4:3</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-4-4" title="Tosefta Kelim Batra 4:4">4:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-tosefta-kelim-batra-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-5-1" title="Tosefta Kelim Batra 5:1">5:1</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-5-2" title="Tosefta Kelim Batra 5:2">5:2</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-5-3" title="Tosefta Kelim Batra 5:3">5:3</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-5-4" title="Tosefta Kelim Batra 5:4">5:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-tosefta-kelim-batra-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-6-1" title="Tosefta Kelim Batra 6:1">6:1</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-6-2" title="Tosefta Kelim Batra 6:2">6:2</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-6-3" title="Tosefta Kelim Batra 6:3">6:3</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-6-4" title="Tosefta Kelim Batra 6:4">6:4</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-6-5" title="Tosefta Kelim Batra 6:5">6:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-tosefta-kelim-batra-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-7-1" title="Tosefta Kelim Batra 7:1">7:1</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-7-2" title="Tosefta Kelim Batra 7:2">7:2</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-7-3" title="Tosefta Kelim Batra 7:3">7:3</a></li>
+                    <li><a class="toc-unit" href="#tosefta-kelim-batra-7-4" title="Tosefta Kelim Batra 7:4">7:4</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-tosefta-kelim-batra-text-1">Chapter 1</h4>
+          <section class="unit" id="tosefta-kelim-batra-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 1:1</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-1-1" aria-label="Copy link to Tosefta Kelim Batra 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הנוגע בעמודין שבצדדין מכאן ומכאן ובמכבש שעל גבי הקנים אע&quot;פ שחקוק ומקבל טהור ואינו טמא אלא הנוגע בברזל לבד. נדה שמשכה את החבל ודרסה על הקנה העולה ויורד הבגד טמא מעשה באשה אחת שהיתה אורגת בגד בטהרה ובאת לפני ר׳ ישמעאל והיה בודקה אמרה לו רבי יודעת אני שלא נטמא הבגד אלא שלא היה בלבי לשומרו. מתוך בדיקות שהיה בודקה ר׳ ישמעאל אמרה לו רבי יודעת אני שנכנסה נדה ומשכה עמי בחבל א&quot;ר ישמעאל כמה גדולים דברי חכמים שהיו אומרים לא נתכוון לשומרו טמא. שוב מעשה באשה אחת שהיתה אורגת מפה בטהרה ובאתה לפני ר׳ ישמעאל והיה בודקה אמרה לו רבי יודעת אני שלא נטמאת המפה אלא שלא היה בלבי לשומרה. מתוך בדיקות שהיה רבי ישמעאל בודקה אמרה לו רבי יודעת אני שנפסקה נימה וקשרתיה בפי א&quot;ר ישמעאל כמה גדולים דברי חכמים שהיו אומרים אם לא נתכוון לשומרו טמא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 1:2</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-1-2" aria-label="Copy link to Tosefta Kelim Batra 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">חולדה שגררה את העירה שהוא עתיד להחזירה והכניסתו לבית שהמת בתוכו אע&quot;פ שאין באהל אלא כל שהוא הבגד טמא טמא מת. דרס עליה הזב בתוך י׳ טפחים הבגד טמא מדרס. שתי כל זמן שהוא עתיד לארוג חבור לאריג. גמר מלארוג אינו טמא אלא עד מקום שהוא עתיד לפצוע. הנוגע בפסיקות של שתי ושל ערב הרי זה אינו חבור. ר׳ יוסי אומר הנוגע בפסיקות של שתי עד ג׳ אצבעות חבור מפני שחבובים אומן מחלידו לתוכו. הנוגע בצמר שעל גבי האומה ובטווי &amp;lt;שעל גבי הפלך&amp;gt; טהור ובכוש ובעומד טמא. נוגע בשחור שעל גבי השחור טהור אבל אם היה כולו שחור מצד אחד והעבירו ע&quot;ג לבן או כולו לבן מצד אחד והעבירו על גבי שחור טמא. החרב שפירשה עם יתדות המחרישה הרי זו טמאה מפני שהוא מנקר בה חוליות של באר העיין שבמעצד והעיין שבמחרישה והמסוה שבמעדר בזמן שהן קבועין חבור לטומאה ולהזאה. בזמן שהן בפני עצמן טהורין. המשיחות והרצועות שבמעדר תפורות חבור וקשורות אין חבור. מכבש של נגר בזמן שהוא קבוע חבור לטומאה ולהזאה. ניטל אין חבור לא לטומאה ולא להזאה רבי יהודה אומר אף הנוגע במלבן של מסר הגדול מכאן ומכאן טהור ואינו טמא אלא מקום החיות יד מכאן ומכאן כלפי הברזל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 1:3</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-1-3" aria-label="Copy link to Tosefta Kelim Batra 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">השלחן והטבלא והדולפקי שנתקסמו ונשתייר בהן טפח טמאים שלחן שגררו התחתון טמא והעליון טהור מתפרק מקבל טומאה מכאן ולהבא טבלא שגררה העליונה טמאה והתחתונה טהורה נתפרקה מקבלת טומאה מכאן ולהבא. טבלא שמלאה עצים ותקעה טהורה חיפה בנסרים טמאה. שלחן שחפהו בשיש להיות אוכל עליו אע&quot;פ שעשה לו עץ רחב להיות מקבל בו את השיש טהור שלא עשאו אלא לחזוק להיות מקבל בו את השיש. הספסלין שבפונדקאות אע&quot;פ שנקובין ומכניסין בהם את הרגלים טהורים. קבע במסמר טמאין. הספסלין של מלמדי תינוקות אע&quot;פ שנקובין ומכניסין בהן טהורין קבען במסמר טמאין ספסל שנתפרק טהור. סירגו במשיחות או בחבלים טמא. טרקיש שעשה לו עץ כמין שירתוע להיות אוכל עליו טהור עשה לו עץ רחב לצרכיו טמא. כסא שקבעו בעריבה כדרך ישיבתו טמא שלא כדרך ישיבתו טהור העשוי בה ב&quot;ש מטמאין וב&quot;ה מטהרין דברי ר&quot;מ ר׳ יהודה אומר לא נחלקו ב&quot;ש וב&quot;ה על העשוי בה שהוא טהור ושמאי היה מטמא על מה נחלקו על שהביא ממקום אחר וקבעו בה שב&quot;ש מטמאין וב&quot;ה מטהרין א&quot;ר יוסי רואה אני את דברי שמאי שאני אומר מלבן אפילו מבית האומן טמא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 1:4</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-1-4" aria-label="Copy link to Tosefta Kelim Batra 1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ישיבת הקרון התירה טהורה קשרה טמאה ושבאחורי הקרון בין כך ובין כך טהורה שאינה אלא ישיבת הצער. ישיבת הסתת התירה טהורה קשרה טמאה מטמאת ומטהרת אפילו י׳ פעמים ביום. עור האסלא וחלל שלה הרי אלו נמדדין בטפח הזהב והפרד שלפני המטה הרי אלו טמאין מדרס. דפין שחובטין עליו את השלחין הרי זה טמא טמא מת זה הכלל כל שניטל ואין רגליו נטלות עמו בין של עץ ובין של אבן טהור וכל שניטל ורגליו נטלות עמו של עץ טהור של אבן טמא. מכבש של שכף שהוא מותח עליו את העור ומניח עליו את האבן אע&quot;פ שחקוק ומקבל טהור ואין בו משום כלי קבול.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tosefta-kelim-batra-text-2">Chapter 2</h4>
+          <section class="unit" id="tosefta-kelim-batra-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 2:1</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-2-1" aria-label="Copy link to Tosefta Kelim Batra 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כופת חלקה שאין בה גובה טפח טהור ושיש בה גובה טפח ר&quot;מ ור&quot;ש מטמאין ר׳ יוסי ור׳ אלעזר בר׳ צדוק מטהרין אמר ר&quot;מ מעשה באחד שכיפת שתי כיפין של תמרה להיות יושב עליה ובא מעשה לפני חכמים וטמאוה. א&quot;ר שמעון מעשה באחד שהביא גרופית של זית שהוא משופה כמגדל לפני ר׳ עקיבה ואמר על זו הייתי יושב וטמאוה לו ראה תלמידיו תוהין אמר להן מה לכם תוהין כעורה מזה טימא רבי יהושע. א&quot;ר יוסי מעשה בד׳ זקנים שהיו יושבין אצל רבי אלעזר בן עזריה חרש בצפורי רבי חוצפית ור׳ ישבב ורבי חלפתא ורבי יוחנן בן נורי והביאו לפניהם ראש כלונס אחד שהוא נטול ברהיטני ואמר על זה הייתי יושב וטהרתיו לו א&quot;ר אלעזר ברבי צדוק ראשי כלונסאות היו בהר הבית שעליהן אומנין יושבין ושפין את האבנים ולא חשו להן חכמים משום טומאה וכן היה רבי אלעזר ברבי צדוק אומר שני כתפין היו בבית אבא אחד טמא ואחד טהור אמרתי לפני אבא מפני מה זה טמא וזה טהור אמר לי זה שהוא חקוק טמא וזה שאין חקוק טהור ועליו ישב חגי הנביא. וכולן אם לא נתכוין לחוקקן טהורין מצאן חקוקין וחשב עליהן מקבלין טומאה מכאן ולהבא. חשב עליהן חרש שוטה וקטן או אדם שאינן שלו טהורין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-2-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 2:2</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-2-2" aria-label="Copy link to Tosefta Kelim Batra 2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כף שהכהנים גובלין בה וכן חבית של קדרה אם חקוקין ומקבלין כל שהן טמאין ואם לאו טהורין. מעשה בטבחו של אונקלוס הגר שהביא פתו לפני ר&quot;ג והיו שם שמונים וחמשה זקנים יושבין נטלה ר&quot;ג ונסתכל בה ונתנה לחבירו וחבירו לחבירו כשראה שלא אמרו בה דבר נטל רבן גמליאל חוט מסדינו של תלמיד שהוא יושב לפניו ומתחו עליה ונמצאת חקוקה כל שהוא וטמאה לו. אם לא נתכוין לחוקקן טהורים. מצאן חקוקין וחשב עליהן מקבלין טומאה מכאן ולהבא. חשב עליהן חרש שוטה וקטן או אדם שאינן שלו טהורין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-2-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 2:3</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-2-3" aria-label="Copy link to Tosefta Kelim Batra 2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">המקציע למשכב אין פחות משלשה על שלשה ולמושב טפח ולמעמיד כל שהוא. של עץ עד שיחוק או עד שיעשה רגלים. הכדור והאימן והקמיע והתפילין וכסת עגולה שנקרעו אם מקבלין את מה שבתוכן טמאין רבי יהושע בן קרחה אומר משום רבי אליעזר &amp;lt;בן עזריה&amp;gt; מטבילן כל שהן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-2-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 2:4</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-2-4" aria-label="Copy link to Tosefta Kelim Batra 2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">האוכף טמא מושב והתפוס שלו טמא מרכב ושאר כל תפיות שבצדדין אם היו רחבות טפח טמאות ר&quot;ש אומר שלשה מושב ושלשה מרכב. זריז האשקלוני ומדוכה המדית והתפוס אלו שלשה מרכב. ישיבת הנקה והסוס והאוכף אלו שלשה מושב. המטה הכר והכסת של מת ר&quot;מ אומר אין מטמאין מדרס וחכ&quot;א מטמאין מדרס מפני שהנשים יושבות עליהן ומבכות את מתיהן והכל שוין שהן טמאין טומאת מת. שלשה מטות הן העשויה לשכיבה טמאה מדרס שמוכרים עליה כלים טמאה טמא מת ושל מלבני בני לוי טהורה מכלום. שלש עריסות הן העשויה לשכיבה טמאה מדרס ושל בנות טמאה טמא מת ושל יד סיירין ושל ציורות טהורה מכלום. שלש סבכות הן של זקנה טמאה מדרס ושל ילדה טמאה טמא מת נקרעה ואינה מקבלת רוב השער טהורה מכלום. שלשה סנדלין הן של אדם טמא מדרס של מתכת ושל בהמה טמאה טמא מת ושל שעם ושל צפירה טהורה מכלום. רבי יוסי אומר כל הפרגלינין טהורים. וחכמים אומרים שלשה פרגלינין הן של צדי חיה טמא מדרס ושל צדי עופות טמא טמא מת ושל קייצין טהור מכלום ר׳ אלעזר בר׳ צדוק אומר כף של מאזנים טמא טמא מת וטלאו על שולי המיחם מבפנים בין נקוב ובין שאינו נקוב טמא מבחוץ נקוב טמא ושאין נקוב טהור. טלאו על צדו מבפנים נקוב טמא שאינו נקוב טהור. מבחוץ בין נקוב ובין שאינו נקוב טהור.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tosefta-kelim-batra-text-3">Chapter 3</h4>
+          <section class="unit" id="tosefta-kelim-batra-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 3:1</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-3-1" aria-label="Copy link to Tosefta Kelim Batra 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כר שהפכו נעשה אחוריו תוכו ותוכו אחוריו קופה שהפכה נעשה אחוריה תוכה ותוכה אחוריה רבי מאיר אומר כל שיש לה תפארות יש לה אחוריים ותוך אין לה תפארות אין לה אחוריים ותוך רבי יהודה אומר כל שיש לו פנים פניו תוכו. המזנין שנפלו משקין על מקצתו כולו טמא דברי ר&quot;מ רבי יהודה אומר נפלו על תוכו כולו טמא על אחוריו אין טמא אלא אחוריו. נפלו על גבי הרחב שלו מנגבו והוא טהור. טרכש חלק וטבלא חלקה שנפלו משקין על מקצתו כולו טמא דברי ר&quot;מ רבי יהודה אומר נפלו על תוכו כולו טמא על אחוריו אינו טמא אלא אחוריו בלבד נפלו על גבי הרחב שלו מנגבו והוא טהור. שולחן שנפלו משקין על מקצתו כולו טמא נפלו על אחוריו אינו טמא אלא אחוריו נפלו על גבי הרגל שלו מנגבו והיא טהורה. אמר רבי יהודה אני אומר הלכה מימיהם של כהנים לא נמנעו מלהיות נותנין רגלו של שולחן משקין טמאין אמרו מפני רגל מנגבה והיא טהורה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-3-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 3:2</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-3-2" aria-label="Copy link to Tosefta Kelim Batra 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">המרדע שנפלו משקין על מקצתו כולו טמא &amp;lt;נפלו לאחוריו אין טמא אלא אחוריו&amp;gt; דברי ר&quot;מ וחכ&quot;א נפלו על החרחור אינו טמא אלא שבעה. ועל הדרבן אין טמא אלא ארבעה זומא ליסטרון שנפלו משקין לתוכה טמאה כולה נפלו על אחוריה אינו טמאה אלא אחוריה. תוכה והמזלג והיד טהורין. נפלו על גבי המזלג חולקין את היד המשמש את הטמא טמא והמשמש את הטהור טהור. נפלו על גבי היד מנגבה והיא טהורה. קופה שנפלו משקין לתוכה כולה טמאה נפלו על אחוריה אחוריה טמאין תוכה והאוזן טהורין. נפלו על גבי האוזן מנגבה והיא טהורה אלא שנהגו כהנים שלא יהו מקיימים את הגביים טמאין מפני התקלה. הרובע וחצי הרובע חקק את הרובע ועתיד לחוק את חצי הרובע עד שיחוק את חצי הרובע נטמאו אחורי הרובע במשקין אחורי חצי הרובע טמאין וכשהוא מטביל את הרובע צריך להטביל את חצי הרובע היה עליו דבר חוצץ והטבילו לא עשה כלום.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-3-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 3:3</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-3-3" aria-label="Copy link to Tosefta Kelim Batra 3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הרובע שמלאוהו עצים ותקעו רבן שמעון בן גמליאל ורבי מטמאין עד שיקבענו במסמר א&quot;ר עקיבה לא הוזכרו בית הצביטה אלא לכסות שלא יהיה שותה וראשון ראשון מטמא. משקין טמאין שהיו נתונין אבית צביטתו של כוס ונגע בהן ככר טהור נטמא הככר. משקין טהורין שהיו נתונין אבית צביטתו של כוס ונגע בהן ככר טמא נטמאו המשקין. משקין טמאין שהיו נתונין על גבי הארץ ונגע בו שאחוריו טהורין בית צביעתו נטמאו אחורי הכוס. משקין טהורין שהיו נתונין על גבי הארץ ונגע בהן כוס שאחוריו טמאים בבית צביטתו נטמאו המשקין רבי מאיר אומר לידים הטמאות כיצד אפשר לומר בנגוב שאין הידים מטמאות הנגוב. אי אפשר לומר במלא משקין שעד שלא יגע בהן נטמאו המשקין אמור מעתה היו ידיו טמאות ואחורי הכוס היו טהורין ומשקה טופח באחורי הכוס אוחזו בבית צביטתו ואינו חושש שמא נטמאו המשקין שבאחורי הכוס מחמת ידיו ויחזרו ויטמאו את הכוס.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-3-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 3:4</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-3-4" aria-label="Copy link to Tosefta Kelim Batra 3:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ר׳ יוסי אומר בידים טהורות כיצד היו ידיו טהורות ועליהן משקה טופח ואחורי הכוס טמאין אוחזו בבית צביעתו ואינו חושש שמא נטמאו משקין שע&quot;ג ידיו מחמת הכוס ויחזרו ויטמאו את ידיו ר׳ טרפון אומר עריבה גדולה של עץ יש לה בית הצביעה זה הכלל נטילתו באחת צביעתו באחת. נטילתו בשתים צביעתו בשתים מקום אחיזתו שם צביעתו ר׳ יהודה אומר כלי שיש לה אוזן ואוזן ויד ואין לו בית הצביעה. כלי הקדש אין להם אחוריים ותוך ובית הצביעה ואין מטבילין כלים בתוך כלים לקדש א&quot;ר יוסי זה לשון כפול כל שיש לו אחוריים ותוך יש לו בית הצביעה וכל שאין לו אחוריים ותוך אין לו בית הצביעה. אחד קדשי המקדש ואחד קדשי הגבול לכך. כל הכלים יורדין לידי טומאתן במחשבה ואין עולין מידי טומאתן אלא בשינוי מעשה. ר׳ יהודה אומר אין שינוי מעשה אלא לקלקול.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tosefta-kelim-batra-text-4">Chapter 4</h4>
+          <section class="unit" id="tosefta-kelim-batra-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 4:1</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-4-1" aria-label="Copy link to Tosefta Kelim Batra 4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תפלה אימתי מקבלת טומאה משתגמר מלאכתה קיצעה אע&quot;פ שהוא עתיד ליתן בה את הרצועה טמאה ומאימתי טהרתה של יד משיתיר משלש רוחות ושל ראש משיתיר שלש רוחות בין קציעה לחברתה. כיס בתוך כיס שנטמא אחד מהם במשקה הוא טמא וחברו טהור בד&quot;א בזמן שהיו שניהן שוין אבל אם היה חיצון על הפנימי נטמא פנימי נטמא חיצון. נטמא חיצון לא נטמא פנימי בד&quot;א במשקה אבל בשרץ שניהן שוין. אמר רבי נתן לא נחלקו ר׳ אליעזר וחכמים על צרור המעות שהוא טהור על מה נחלקו על צרור המרגליות שר׳ אליעזר מטמא וחכמים מטהרין. צרור המרגליות בזמן שבתוכו טמא פשוטו טהור. מיטמא ומיטהר אפילו עשרה פעמים ביום. עור שעשאו להיות נותנו על לבו בשעת הקציר מפני השרב אם יש בו חמשה על חמשה טמא ואם לאו טהור. לעקבו ולפרסתו אם חופה רוב הרגל טמא ואם לאו טהור.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-4-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 4:2</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-4-2" aria-label="Copy link to Tosefta Kelim Batra 4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">סנדל של קש רבי עקיבה מטמא והאשה חולצת בו ויוצאין בו בשבת ולא הודו לו סנדל שנתפסקו אזניו ונתפסקו תרסיותיו או שפירש ממנו רוב של כף אחת טהור. נפסקה אחת מאזנו או אחת מתרסיותיו או שפירשה ממנו מלא כף טמא רבי יהודה אומר הפנימית טמא החיצונה טהור. סנדל שנפחת ומקבל את רוב הרגל מנעל שנפרם וחופה את רוב הרגל ונתפסקו רצועותיו או שניטלו האצטלות שלו טמא נפחת ואינו מקבל את רוב הרגל נפרם ואינו חופה את רוב הרגל ונתפסקו אזניו טהור מנעל שעל האימום ר׳ אליעזר מטהר וחכמים מטמאין אר&quot;ש שהרי לא נחלקו רבי אליעזר וחכמים על מנעל שהוא טהור על מה נחלקו על שנטל מן האימום שר׳ אליעזר מטהר וחכמים מטמאין מפני שהאשה ננעלת בו ומחזירתו לאימום.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-4-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 4:3</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-4-3" aria-label="Copy link to Tosefta Kelim Batra 4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עור החמור ועור החמר ועור הכתן ועור הרופא ועור הלב של קטן ועור שהבנות טוות עליה אם יש בו חמשה על חמשה טמא ואם לאו טהור עור השטיח ועור המקבלים ועור הכר ועור הכסת אע&quot;פ שאין בו חמשה על חמשה טמא רשב&quot;ג אומר אם יש בו חמשה טמא ואם לאו טהור שאין העור פחות מחמשה על חמשה. עור שעשאו לתכריך אפילו כל שהוא טמא אמר רבי אלעזר ברבי יוסי לא נחלקו ב&quot;ש וב&quot;ה על עובי ארגמן ותכריך ארגמן שהן טמאים על מה נחלקו על עובי כסות ותכריך כסות שבית שמאי מטמאין ובית הלל מטהרין. תכריך ארגמן בזמן שתוכו טמא פשוטו טהור מיטמא ומיטהר אפילו עשרה פעמים ביום. עובי הצמר ואוירטין הבאין ממדינת הים אע&quot;פ שהן באין במדה טמאין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-4-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 4:4</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-4-4" aria-label="Copy link to Tosefta Kelim Batra 4:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">השידה והתיבה והמגדל של עצם ושל גמי רבי מטמא ור׳ יוסי בר׳ יהודה מטהר. ר&quot;ש בן מנסיא אומר אצבע שהוא עתיד לקצעה וליטול זנבה טהורה וכולן שהן מחוסרין לשלוח למתח ולנגב טהורין. מחוסרין סבכה טמאין. מחצלת בין בית הגנב ובין בית הגזלן מחשבה טמאה מפני שהבעלים מתיאשין ממנה. חיפוי בית הלגינין ובית הכוסות אע&quot;פ שיש בו חמשה על חמשה טהור שאינו אלא חפוי ומשום חבורי כלים טמא. עור שבפני החמור אע&quot;פ שיש בו ה׳ על ה׳ טהור שאינו אלא חפוי. הכסת שלו טהורה היתה תפורה לאוכף טמאה. ומקבלת כל שהוא טמאה. העושה פסיקה לשפיר ללבב ולצייר בהמה טהורה לתחת כריסו של חמור טמאה שירי פסיקיא ארבעה טפחים כדי ליתן תחת כריסו של חמור. העושה פסיקיא כל שהוא טהורה לחזק בה ומרצופין להלך בה ממקום למקום טמאה. כל הגדילות בבהמה טהורים ובאדם כולן טהורין חוץ משל שק ושל בגד הקלע שבית קבול שלה של משוחות רבי דוסא בן הרכינס מטהר וחכמים אומרים שלש טמאה ושתים טהורה. נפסקה אמצעית טמאה והחיצונה טהורה. נשתייר בה טפח טמאה. נפסק בית הפקוע שלה טמאה. כל החוצלות בין של שעם ובין של שק ובין של צפור רבי דוסא אומר טמא טמא מת וחכמים אומרים מדרס.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tosefta-kelim-batra-text-5">Chapter 5</h4>
+          <section class="unit" id="tosefta-kelim-batra-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 5:1</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-5-1" aria-label="Copy link to Tosefta Kelim Batra 5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">חלוק של בד מאימתי מקבל טומאה משתגמר מלאכתה ואיזו היא גמר מלאכתה משיפתח את פיה. הגדול לפי גדלו והקטן לפי קטנו. ומאימתי טהרתו משבלה ואינו משמש מעין מלאכתו בלה ונשתייר בו רובו מלמעלה טמא. רובו מלמטה טהור. ואם נקרע מבית פיו טהור. חלוק של נייר מאימתי מקבל טומאה משתגמר מלאכתו איזוהי גמר מלאכתו משיפתח את פיו. הגדול לפי גדלו והקטן לפי קטנו ומאימתי טהרתו משבלה ואינו משמש מעין מלאכתו. בלה ונשתייר בו רובו מלמעלה טמא. רובו מלמטה טהור. ואם נקרע מבית פיו טהור. העושה חלוק מן הלבד אם יש בו שלשה על שלשה טמא ואם לאו טהור שחלוק של לבד שבלה אם משמש מעין מלאכתו ראשונה טמא ואם לאו טהור &amp;lt;העושה חלוק מן הלבד אם יש בו שלשה על שלשה העושה לתכריך אפי׳ כל שהוא טמא&amp;gt;. העושה מעטפת מן הלבד אינה מקבלת טומאה עד שתגמר מלאכתה. בלתה אם יש בה שלשה טמאה ואם לאו טהורה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-5-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 5:2</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-5-2" aria-label="Copy link to Tosefta Kelim Batra 5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כף של נייר שהתקינה לחגור בה את מתניו טמאה. כף של סיב שהתקינה לחגור בה את מתניו טהורה. שתי כפין של סיב שתפרן זו בזו והתקינם לחגור בהן את מתניו טמאות. א&quot;ר יוסי שאל יונתן בן חרסא איש גינוסר לפני זקנים ביבנה שני כיפין של סיב שתפרן זו בזו והתקינם לחגור בהן את מתניו מה הן. אמרו לו טמאות. ניקורי רוטב באביהן מה הן. אמרו לו אפי׳ כל הדקל כולו אסור. מותר אפיפירות מהו לקדש אמרו לו עד מקום שהחדש יכול להלך כל אותה שנה. העושה חגור מצדו של בגד ומצדו של סדין ב&quot;ש מטמאין וב&quot;ה מטהרין עד שימול. מאמצעיתו של בגד ומאמצעיתו של סדין ומל מרוח אחת ב&quot;ש מטמאין וב&quot;ה מטהרין עד שימול מצדו השני. ר׳ שמעון בן יהודה אומר משום ר&quot;ש לא נחלקו ב&quot;ש וב&quot;ה על העושה חגור מאמצעיתו של בגד ומאמצעיתו של סדין שב&quot;ש מטמאין וב&quot;ה מטהרין עד שעה שימול. רשב&quot;ג אומר חגור שבלו צדדיו ואמצעיתו קיימת טמא משום שירי חגור. שפה שפירשה מן הבגד והתקינה לחגור בה מתניו טמאה מפני שהיא כנגלין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-5-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 5:3</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-5-3" aria-label="Copy link to Tosefta Kelim Batra 5:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">טלית שהתחיל בה לקרוע עד שלא נקרע רובה הנוגע אפי׳ במופרש מכאן ומכאן חיבור. משנקרע רובה הנוגע אפי׳ במחובר אינו חיבור. אלו הן העבין ואלו הן הדקין. כגון הבורצין. והברתצים והפמליאות והחמילות והלבדים והסגוסין אלו הן העבים. השירשין והסריקים והכלך והפיליון של ראש אין בהן משום שלשה על שלשה אבל יש בהן שלש על שלש. העושה חלוק מן המשמרת אם יש בה שלשה על שלשה טמא אם לאו טהור. משמרת של יין שבלתה אם משמשת מעין מלאכתה טמאה ואם לאו טהורה ר׳ אלעזר בר&quot;ש אומר של שק ושל בגד שיעורה בשמרים. של שעם ושל צפירה ושל חבלים שיעורן ברמונים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-5-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 5:4</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-5-4" aria-label="Copy link to Tosefta Kelim Batra 5:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">משפך של גתות אע&quot;פ שהוא עשוי ככברה טמא. חוט שפירש מן הבגד אפי׳ מאה אמה כולו חיבור אחד. וזה שהוא תופר בו כל שהוא צורך התפירה חיבור וכל שאינו צורך התפירה אינו חיבור. חלוק של יוצאת החוץ שהוא עשוי כשבכה עשה לו שלש אצבעות בין מלמעלה ובין מלמטה ובין מן הצדדין טמא ר׳ אליעזר בן יעקב אומר העושה בגד מן החרם ומן המצודה וכפלו ותפרו ואין בשרו נראה מתוכו טמא. שביס של סבכה טמא בפני עצמו מפני שהוא מתקנו לשבכה אחרת וכמה יהיה שיעורו כדי שיהא מקיף מאוזן לאוזן. הסטין והצפויין והחוליות שבו טהורין. ומשום חיבורי שביס טמאין והרצועות שבו תפורות חיבור קשורות אינן חיבור אחרים אומרים שבכה של זקנה שנקרע נתנתה על הכסא ובשרה נוגע בכסא טהורה ואם לאו טמאה. שירי פסיקיא כדי לחגור על מתניה של קטנה. שירי הקרפן ואוזמיאות כדי לכרוך על אצבע קטנה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tosefta-kelim-batra-text-6">Chapter 6</h4>
+          <section class="unit" id="tosefta-kelim-batra-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 6:1</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-6-1" aria-label="Copy link to Tosefta Kelim Batra 6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">המשנה בכלי עור מן הפשוט לפשוט טמא. מן הפשוט לקבול מן הקבול לפשוט מן הקבול לקבול טהור. ובגד הכל טמא אמר ר׳ יהודה חבריי היו אומרים השק והעור והמפץ שטלאן זה על זה לא ביטלו זה את זה. השק והעור והמפץ שנקרעו אם נותנן על הכסא ובשרו נוגע בכסא טמא ואם לאו טהור. השק והעור והמפץ שזרקן לאשפה טמאין. מטלית שטלאה על הקופה צריכה מחשבה אחר פרישתה. טלית של עני שבלתה אם היו רוב שפתותיה קיימות אע&quot;פ שאין בה שלש על שלש טמאה. אין רוב שפתותיה קיימות אם יש בה שלש על שלש טמאה ואם לאו טהורה. רשב&quot;ג אומר אם יש בה שלש על שלש טמאה ואם לאו טהורה היו דבדולין יוצאין הימנה כל שכנגד השפה חיבור וכל שאינו כנגד השפה אינו חיבור.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-6-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 6:2</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-6-2" aria-label="Copy link to Tosefta Kelim Batra 6:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">החמת שפחתה הכהן להיות רודה בה ככר תרומה טהורה. עור שעשאו לשלחן להיות אוכל עליו טמא ושיעורו בטפח. בית יד וחפת של חלון הרי אלו נמדדין כפולין זה הכלל הבא כפול נמדד כפול הבא פשוט נמדד פשוט א&quot;ר יוסי שאם היו שנים זה על גבי זה שלא בטלו זה את זה. שלש על שלש בתוך הבית הרי זו טמאה שכל הבית מן המוצנע. מצאה אחר הדלת או בכסותה או פונדיון צרור בה או מחט תחוב בה או שהיתה פקוקה בסל ובקופה טהורה ולעולם אינה טמאה עד שיצביענה לבגד ר&quot;ש אומר לדבר שהוא מקבל טומאה טמאה ולדבר שאין מקבל טומאה טהורה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-6-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 6:3</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-6-3" aria-label="Copy link to Tosefta Kelim Batra 6:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שלש על שלש שהיתה כולה של תיאמות טמאה ר׳ יוסי ברבי יהודה אומר אם היתה כולה של תאומות טמאה אם יש בה אימרא טהורה. פחות משלשה על שלשה שהתקינו לפוק בו את המרחץ ולנער בו את הקדרה ולקנח בו את הרחיים מן המוכן טמא ומן שאינו מוכן טהור דברי ר׳ אליעזר ר׳ יהושע אומר בין שהוא מן המוכן ובין שאינו מן המוכן טהור דברי ר&quot;מ ר׳ יהודה אומר ר׳ אליעזר אומר בין שהוא מן המוכן ובין שאינו מן המוכן טמא ר׳ יהושע אומר בין מן המוכן ובין שאינו מן המוכן טהור ר&quot;ע אומר מן המוכן טמא ומן שאינו מוכן טהור.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-6-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 6:4</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-6-4" aria-label="Copy link to Tosefta Kelim Batra 6:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שלש על שלש שעשאה לאספלנית מלוגמא ורטיה טהורה. שלשה על שלשה שעשאו לאספלנית מלוגמא ורטיה טמאה רשב&quot;ג אומר אספלנית טמאה מלוגמא ורטיה טמאה וכן היה רשב&quot;ג אומר העושה אספלנית מן הסממנין טהורה ומן העשבים טמאה מפני שהיא מנערת ובעור איספלנית טהורה מלוגמא ורטיה טמאה ר׳ יוסי ור&quot;ש אומרים נראין דברי רבן גמליאל במטפחות ספרים ובדבריו אנו מודים ר׳ יהודה אומר אף של קבתית כיוצא בהן ר&quot;א בר׳ צדוק אומר אלו לגמן של ספר טהור והתיק שלו טמא והעמוד שבו חיבור לטומאה ולהזאה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-6-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 6:5</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-6-5" aria-label="Copy link to Tosefta Kelim Batra 6:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כפה של זקנה שהוא טמא מדרס ונתנו לספר ר׳ מאיר מטהר ור׳ יוסי מטמא. כל הכלים יורדין לידי טומאתן במחשבה ואין עולין מידי טומאתן אלא בשנוי מעשה ר׳ יהודה אומר שנוי מעשה אינו אלא לקלקול.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tosefta-kelim-batra-text-7">Chapter 7</h4>
+          <section class="unit" id="tosefta-kelim-batra-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 7:1</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-7-1" aria-label="Copy link to Tosefta Kelim Batra 7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">נימי פסיקיא ומקטורן כל שהן. נימי של אפוקרסין עשר ואם יש להן סכך כל שהן רשב&quot;ג אומר סכך עולה למדת שלשה ואינו עולה למדת שלש על שלש היה רחב אם נותנו על הכסא ובשרו נוגע בכסא טהור ואם לאו טמא. נימי הברסין והברדסין והפמליאות והחמילות והלבדין והסגוסין והכרים והכסתות ג׳ אצבעות. חוט המשקולת שנים עשר ושל חרשים שמנה עשר ואם לאו עובי כלינוס. חוט של בנאין ושל סיידין חמשים אמה רשב&quot;ג אומר אף של משוחות חמשים אמה. חוט המאזנים של שוקלי מתכות טפחיים מפני שהוא תופס בשתי ידיו ומגביה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-7-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 7:2</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-7-2" aria-label="Copy link to Tosefta Kelim Batra 7:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יד הסכין טפח ושירי הכוס טפח ושירי השפוד טפח ושירי המזרה טפחיים ויד הקרדום מאחוריו ג׳ אצבעות ור׳ יוסי אומר טפח מאחוריו טהור כולו. יד הכילוף ובין הכולף ששה יד הפחות ובין הפחות חמשה יד בן חולף חמשה ושל חולף עשרה. יד מגריפה של בעלי בתים ב&quot;ש אומרים שבעה וב&quot;ה אומרים שמנה. של סיידין ב&quot;ש אומרים תשעה וב&quot;ה אומרים עשרה. יותר מכאן אינו חיבור לא לטומאה ולא להזאה. בד&quot;א בזמן שאין עתיד לגוד אבל בזמן שעתיד לגוד חיבור לטומאה ואין חיבור להזאה דברי ר&quot;מ ר׳ יהודה ור׳ יוסי אומרים אף לא לטומאה. אמר ר׳ יוסי אני אומר דבר אחד והם אמרו דבר אחד אני אומר להם אי אתם מודים לי בחוט של בנאים ושל סיידין חמשים אמה שאם רוצה לקיים יותר מכאן שהוא טהור. והם אמרו לי אי אתה מודה בנימי הסדין והסודרין והטרסי והפליון של ראש ששה אצבעות. ושל אפקרסות עשר שאם רוצה לקיים יותר מכן שהוא טמא. ורואה אני את דברי מדבריהן שאני משיבן מדבר שהוא חיבור לטומאה ולהזאה על דבר שהוא חיבור לטומאה ולהזאה והן משיבין אותי מדבר שהוא חיבור לטומאה ולהזאה על דבר שמודים שאינו חיבור להזאה. כל אלו שאמרו שירי ידות ידותיהן מלפניהם. את שדרכו לאחוז בידו אחת כגון יד הקרדום טפח ואת שדרכו לאחוז בשתי ידיו כגון יד המגרפה טפחיים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-7-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 7:3</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-7-3" aria-label="Copy link to Tosefta Kelim Batra 7:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כלי זכוכית מדברי סופרים פשוטיהן טהורין ומקבליהן טמאין. השידה והתיבה והמגדל של זכוכית הבאין במדה טהורין ושאר כל כלי זכוכית אע&quot;פ שבאין במדה טמאים. וזה חומר בכלי זכוכית מכלי עץ. כלי זכוכית אין מקבלין טומאה עד שתגמר מלאכתן ורשב&quot;ג אומר משינטלו מן הספות תמחוי שעשאו אספקלריא אע&quot;פ שמשתמש בו טהור. היה טמא ועשאו אספקלריא טמא עד שיקבענו במסמר. תרווד של מתכת בין שיש לו יד ובין שאין לו יד בין מקבל כל שהוא ובין שאין מקבל כל שהוא טמא. ושל עץ ושל עצם ושל זכוכית מקבל כל שהוא טמא שאין מקבל כל שהוא אלא ממגמג ושופך ר&quot;ע מטמא ור׳ יוחנן בן נורי מטהר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tosefta-kelim-batra-7-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tosefta Kelim Batra 7:4</h4></div>
+              <a class="anchor" href="#tosefta-kelim-batra-7-4" aria-label="Copy link to Tosefta Kelim Batra 7:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כוס של אבן שניקב והטיף לתוכו אבר ר׳ יוסי אומר משום ר׳ יוחנן בן נורי טמא משום כלי מתכת רשב&quot;ג אומר יהודה בן שמוע היה מטמא משום ר&quot;מ. קיתון של זכוכית שניטלו שוליו אם יכול לישב כדרכו רבי מטמא וחכמים מטהרין ואם מתחלה עשאו של שולים הכל מודים שהוא טמא. הכוס והצלוחית שניקבו בין מלמעלה ובין מלמטה טהורין. תמחוי וקערה שנקבו מלמעלה טמאין מלמטה טהורין. נסדקו אם יכולין לקבל את החמין כצונן טמאין ואם לאו טהורין. ר&quot;א בר׳ צדוק אומר הכוסות הצידונים החתוכין טהורין מפני שסורחין את הפה וחכמים מטמאין. צלוחית של שמן ושל יין שניטל פיה אם ניטלת ביד אחת טמאה ואם בשתי ידיו טהורה. פנס של זכוכית שיש בו בית קיבול שמן טמא. בית קיבול נר טהור. ואינו טמא אלא המשמש את הצורך. המטה והכסא והספסל והקתדרא ועריסה של זכוכית וכל מדרס כלי זכוכית טהורין. האולר והקולמס והמטוטלת והמשקלות והעמידין והכן והכנה של זכוכית טהורין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tosefta-kelim-batra-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"tosefta-kelim-batra","work_title":"Tosefta Kelim Batra","work_slug":"tosefta/tosefta-kelim-batra","scope_label":"All imported Hebrew works","generated_at":"2026-05-12T13:58:59.006Z","total_occurrences":3801,"units":{"tosefta-kelim-batra-1-1":{"unit_id":"tosefta-kelim-batra-1-1","anchor_id":"tosefta-kelim-batra-1-1","source_ref":"Tosefta Kelim Batra 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-066f04dbe392","tok-2eb4460490b0","tok-d48368451cdb","tok-8d7cf112ad9b","tok-2ba273324b6b","tok-f720674bd673","tok-7a8a73028ae8","tok-34be60f3421f","tok-0d62423d7755","tok-6527147935f7","tok-f43a23add6e3","tok-56c8238ee6df","tok-bd123a0fa7c8","tok-423202ed7a54","tok-a7bca352992c","tok-abb6a63b9c05","tok-066f04dbe392","tok-2732a836dc2b","tok-35d38bfe8a61","tok-9a515dd2d23c","tok-7c7f81476780","tok-54d18cd1a4de","tok-bfe8d922d9cf","tok-12bb29cac8f0","tok-99d1f7818e58","tok-1c0c2fcfcf3e","tok-4b74ce9eb183","tok-6ba92e2c97c5","tok-94b09509da7a","tok-a7bca352992c","tok-2c7c6cf5b5ad","tok-ae4706d64e4f","tok-9d0abab16eab","tok-db12ed169f6c","tok-9ca0c379f877","tok-69cce167571d","tok-87fa7a74c845","tok-dd357091e0a2","tok-baa26d5f9463","tok-3ae0c1c1f91c","tok-81b97dd243b2","tok-b0ed4eac4b51","tok-197fb92c24e4","tok-90af821360bf","tok-5a80620b930b","tok-991d9b1feccd","tok-ffb378dbe2f4","tok-b31ce9d63ee9","tok-0a284c8530cc","tok-52d6e79bf2fc","tok-94b09509da7a","tok-abb6a63b9c05","tok-0a284c8530cc","tok-9106163061d0","tok-48bafc674f2a","tok-b8dfda3dbd61","tok-cd8624e591e0","tok-d6c9db26a3e4","tok-e46cf18060b5","tok-197fb92c24e4","tok-3ae0c1c1f91c","tok-81b97dd243b2","tok-90af821360bf","tok-5a80620b930b","tok-991d9b1feccd","tok-ffb378dbe2f4","tok-b31ce9d63ee9","tok-16068f972516","tok-9a515dd2d23c","tok-c78dcac154b8","tok-bd80ab095fa4","tok-c8bac88b2545","tok-6e50ee600278","tok-81b97dd243b2","tok-3359621cd3ad","tok-e9c68caf8b5e","tok-af848e174f1a","tok-823a2454ddcb","tok-bb7aad8de045","tok-e65c5d244cfb","tok-fb489af66040","tok-3dd210d64e75","tok-b8dfda3dbd61","tok-a7bca352992c","tok-8fdbd5c03e81","tok-2c7c6cf5b5ad","tok-ae4706d64e4f","tok-9d0abab16eab","tok-db12ed169f6c","tok-9ca0c379f877","tok-cbae0f65e323","tok-87fa7a74c845","tok-dfc0d75fdcdf","tok-baa26d5f9463","tok-3ae0c1c1f91c","tok-81b97dd243b2","tok-b0ed4eac4b51","tok-197fb92c24e4","tok-90af821360bf","tok-5a80620b930b","tok-991d9b1feccd","tok-ffb378dbe2f4","tok-b31ce9d63ee9","tok-0a284c8530cc","tok-7e892dc1ce85","tok-9cbeeb70e4bf","tok-abb6a63b9c05","tok-0a284c8530cc","tok-9106163061d0","tok-48bafc674f2a","tok-987e0b3ea222","tok-cd8624e591e0","tok-d6c9db26a3e4","tok-e46cf18060b5","tok-991d9b1feccd","tok-81b97dd243b2","tok-197fb92c24e4","tok-90af821360bf","tok-5a80620b930b","tok-991d9b1feccd","tok-ffb378dbe2f4","tok-b31ce9d63ee9","tok-970b5db5a42c","tok-689c37553e41","tok-a5e468fec12a","tok-5ae27fb6af89","tok-6e50ee600278","tok-81b97dd243b2","tok-3359621cd3ad","tok-e9c68caf8b5e","tok-af848e174f1a","tok-823a2454ddcb","tok-bb7aad8de045","tok-e65c5d244cfb","tok-e0901541fbb3","tok-fb489af66040","tok-3dd210d64e75","tok-b8dfda3dbd61","tok-a7bca352992c"]}]},"tosefta-kelim-batra-1-2":{"unit_id":"tosefta-kelim-batra-1-2","anchor_id":"tosefta-kelim-batra-1-2","source_ref":"Tosefta Kelim Batra 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-77e262c3701d","tok-893d58d8b682","tok-54d18cd1a4de","tok-0a1d2c2e27f9","tok-6249f49b941d","tok-0f64e77c7e60","tok-4043be64e1b0","tok-9a9999435b00","tok-e242a78f55eb","tok-3baedac6ed1a","tok-85c1f8368f70","tok-6527147935f7","tok-bca93ca77c34","tok-f043c7179b04","tok-abb6a63b9c05","tok-218873611519","tok-6249f49b941d","tok-94b09509da7a","tok-a7bca352992c","tok-a7bca352992c","tok-f83da38890e5","tok-5db6605a0a4d","tok-6f3af5831855","tok-1fedc6380ee9","tok-30bc613cfa54","tok-ca5018248517","tok-98193107341a","tok-94b09509da7a","tok-a7bca352992c","tok-0a9d8d3b58f2","tok-11b1807fd04e","tok-218873611519","tok-9ff32a74e576","tok-6249f49b941d","tok-0f64e77c7e60","tok-6bf2b9f9a00c","tok-894003a914b5","tok-677b9abfd047","tok-01825873c3f7","tok-d0ad13b443ea","tok-b29246faa48e","tok-a7bca352992c","tok-abb6a63b9c05","tok-df6e3a5325c3","tok-9e7e2c2aaaf0","tok-6249f49b941d","tok-0f64e77c7e60","tok-dfcb7498d008","tok-066f04dbe392","tok-a0b1c88bb97a","tok-ae7f0320ea7a","tok-11b1807fd04e","tok-30d3fd56127a","tok-cc7f339d48b1","tok-e3eb9c0663c8","tok-78b423d01445","tok-b29246faa48e","tok-894003a914b5","tok-3ae0c1c1f91c","tok-6c2c5694a2be","tok-7519bf1cbae9","tok-066f04dbe392","tok-a0b1c88bb97a","tok-ae7f0320ea7a","tok-11b1807fd04e","tok-df6e3a5325c3","tok-f795c21b88dc","tok-e045d6ca69dd","tok-894003a914b5","tok-46ddeb9b18b9","tok-889a39ef6770","tok-388ad29db773","tok-e97b01c2e100","tok-054b071568cf","tok-066f04dbe392","tok-828d05a11743","tok-7a8a73028ae8","tok-34be60f3421f","tok-6c2d510548c6","tok-b2463e4b8e0a","tok-7a8a73028ae8","tok-34be60f3421f","tok-77260e126122","tok-bd123a0fa7c8","tok-9747006635c3","tok-0630321d95f0","tok-a7bca352992c","tok-5d95be81998c","tok-18c155f1138a","tok-7a8a73028ae8","tok-34be60f3421f","tok-e104f02630ac","tok-bd123a0fa7c8","tok-2b3e430fb5e2","tok-e0901541fbb3","tok-9106163061d0","tok-35fd8bcce087","tok-8268bf546fa2","tok-24b625c2e572","tok-48c96adfa2ea","tok-cad555d0135c","tok-354ac7f762d5","tok-8f5d04ad6f81","tok-73fd990f94b9","tok-35fd8bcce087","tok-8f5d04ad6f81","tok-24b625c2e572","tok-48c96adfa2ea","tok-cad555d0135c","tok-99d1f7818e58","tok-34be60f3421f","tok-8268bf546fa2","tok-a7bca352992c","tok-6a6a20b813e1","tok-e7b800deec2f","tok-cd57cdd270c2","tok-6c0bc8498dc7","tok-4c2157cbd4a3","tok-e3eb9c0663c8","tok-26b835ca9000","tok-6da5c9d0d571","tok-46ddeb9b18b9","tok-6249f49b941d","tok-d6ffdd5c5813","tok-f4d6db23fca7","tok-64b3c6c08c4a","tok-ae7f0320ea7a","tok-f5131a455cbb","tok-fb8dc1f91b2f","tok-898a11e7ca32","tok-a2bfff1f997d","tok-a12c8e804fc7","tok-28e4d3205b8a","tok-fc7faf55dd47","tok-d77913083738","tok-424e1a108c1e","tok-f838866a9d1b","tok-894003a914b5","tok-c43a78ad7529","tok-0ec3ef6f1004","tok-d77913083738","tok-424e1a108c1e","tok-7b342d0b5ab4","tok-8a50962303a7","tok-96988572cf76","tok-409be1ea5dcc","tok-64e9c9e372f9","tok-fc7faf55dd47","tok-92c17b1ebfa6","tok-894003a914b5","tok-10c82c4bf913","tok-f1fb208f0cb2","tok-894003a914b5","tok-c633f8e88fb0","tok-ae7f0320ea7a","tok-919748fa3821","tok-d77913083738","tok-6249f49b941d","tok-a7e5c588ebaf","tok-894003a914b5","tok-c43a78ad7529","tok-0ec3ef6f1004","tok-1fbddd154689","tok-f1fb208f0cb2","tok-894003a914b5","tok-fb489af66040","tok-c43a78ad7529","tok-e31f6f03f071","tok-476869891a4a","tok-991d9b1feccd","tok-451ed816111b","tok-7519bf1cbae9","tok-2794dc9d8e67","tok-066f04dbe392","tok-c9ad7cc783c1","tok-ae7f0320ea7a","tok-d6639a1fde64","tok-31de67f1a477","tok-8d7cf112ad9b","tok-2ba273324b6b","tok-bd123a0fa7c8","tok-423202ed7a54","tok-a7bca352992c","tok-abb6a63b9c05","tok-9e7e2c2aaaf0","tok-4e499d4de471","tok-4e9a33e584d1","tok-8d7cf112ad9b","tok-2ba273324b6b","tok-450ff3a79367","tok-56f2a53b445f"]}]},"tosefta-kelim-batra-1-3":{"unit_id":"tosefta-kelim-batra-1-3","anchor_id":"tosefta-kelim-batra-1-3","source_ref":"Tosefta Kelim Batra 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c6b3ac2a97d2","tok-154585fbf6f4","tok-10c1303ac9ce","tok-4c35544699f2","tok-33d18393c89d","tok-6e85a2a1e3ba","tok-0a416e19037e","tok-188673cf8a13","tok-e9ef037d73dd","tok-dfe2c0ba21e6","tok-6b6aeb5ed598","tok-a7bca352992c","tok-edf76cbe1fac","tok-bd123a0fa7c8","tok-87ad2c716102","tok-c465b0ad5d11","tok-67a82dc13877","tok-8d7cf112ad9b","tok-9cc1bb43de09","tok-25ca06857b1f","tok-893d58d8b682","tok-7f35035bfdd1","tok-6da5c9d0d571","tok-a4d21357ef4a","tok-8b4772158c42","tok-9cc30ff8bc7a","tok-9b9a8a09a012","tok-67a82dc13877","tok-8d7cf112ad9b","tok-9cc1bb43de09","tok-25ca06857b1f","tok-4ecdca49173f","tok-c37645d4841c","tok-5c338ab9d36b","tok-8b4772158c42","tok-f5f30cfdd6dc","tok-cac746cd0ee9","tok-6da5c9d0d571","tok-e9ef037d73dd","tok-1fc7bd52f122","tok-a9cc8713be57","tok-afc4c4e50be4","tok-80ac95c2adc3","tok-356c9afd2319","tok-6527147935f7","tok-bc3a78253f32","tok-5a80620b930b","tok-df3bbe485546","tok-9ebacfc93d1a","tok-afc4c4e50be4","tok-c465b0ad5d11","tok-60147c85662d","tok-54d18cd1a4de","tok-12a5a5dcdcc5","tok-bd123a0fa7c8","tok-0a284c8530cc","tok-0bc02562c507","tok-abb6a63b9c05","tok-658b4ae0f680","tok-afc4c4e50be4","tok-c465b0ad5d11","tok-60147c85662d","tok-54d18cd1a4de","tok-12a5a5dcdcc5","tok-f4bceedf02d5","tok-1a2263d929e6","tok-6527147935f7","tok-880e42b384e2","tok-585a371dfd17","tok-8dc616633c29","tok-54d18cd1a4de","tok-8ed97420e2dc","tok-307799bc14de","tok-e3f6ad0882dd","tok-e365765cb95d","tok-c196c9283e68","tok-f4bceedf02d5","tok-ae7f0320ea7a","tok-f7390c16d9d8","tok-0d4e8c61ee46","tok-6527147935f7","tok-880e42b384e2","tok-585a371dfd17","tok-6e85a2a1e3ba","tok-96988572cf76","tok-7cab7a4246d3","tok-e365765cb95d","tok-c196c9283e68","tok-bae3c915e813","tok-19fd282ce18f","tok-bd123a0fa7c8","tok-5b2b007c4c0e","tok-5318c87ca491","tok-73fd990f94b9","tok-ec0a8bb9194e","tok-a7bca352992c","tok-1d1591803633","tok-bc3a78253f32","tok-5a80620b930b","tok-df3bbe485546","tok-ade7178c120c","tok-1f47bc89e72d","tok-afc4c4e50be4","tok-80ac95c2adc3","tok-356c9afd2319","tok-bd123a0fa7c8","tok-bb4057e62d2b","tok-5a80620b930b","tok-df3bbe485546","tok-9ebacfc93d1a","tok-d75a11025ba4","tok-a7bca352992c","tok-a105b43b5663","tok-0eb172d39af6","tok-7eb42dc554e5","tok-e436ad70bc63","tok-b26e8c0ea1ce","tok-a7bca352992c","tok-0a284c8530cc","tok-e436ad70bc63","tok-b26e8c0ea1ce","tok-bd123a0fa7c8","tok-50aeb42b3c7b","tok-f4d6db23fca7","tok-7171f3569e91","tok-35f724ba53bf","tok-c4b607312a51","tok-e524c0fb4b23","tok-af848e174f1a","tok-6f2fe6f86856","tok-3ae0c1c1f91c","tok-451ed816111b","tok-7519bf1cbae9","tok-fb489af66040","tok-9b06582f2016","tok-7171f3569e91","tok-c4b607312a51","tok-99d1f7818e58","tok-50aeb42b3c7b","tok-f4d6db23fca7","tok-6249f49b941d","tok-bd123a0fa7c8","tok-876b579f0589","tok-9106163061d0","tok-b1f471f468cb","tok-99d1f7818e58","tok-aff93b931d77","tok-9b06582f2016","tok-99d1f7818e58","tok-47a418c0482f","tok-bb8a0e94b0ea","tok-d8fe0f6a164e","tok-c6c1f20f4253","tok-f4d6db23fca7","tok-26a5f852a6ea","tok-35f724ba53bf","tok-c4b607312a51","tok-e524c0fb4b23","tok-6e50ee600278","tok-6c2c5694a2be","tok-82e8ec4dfe10","tok-b31ce9d63ee9","tok-54d18cd1a4de","tok-af848e174f1a","tok-ff029d91b7f5","tok-77eb059cf461","tok-7519bf1cbae9","tok-ef740f7c2f1e","tok-093c0a78cf5e","tok-f72c169977c0","tok-e7e8ffe7b634","tok-a7bca352992c"]}]},"tosefta-kelim-batra-1-4":{"unit_id":"tosefta-kelim-batra-1-4","anchor_id":"tosefta-kelim-batra-1-4","source_ref":"Tosefta Kelim Batra 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4c1c3c43fe14","tok-ff47c46d525f","tok-cbaf1aa8918c","tok-8b4772158c42","tok-92727c8a2432","tok-6da5c9d0d571","tok-ee3708b717d0","tok-ff47c46d525f","tok-22d76bc4d5a7","tok-c26838891b0d","tok-ad240fcd9b42","tok-c26838891b0d","tok-8b4772158c42","tok-3d27f2b8afb8","tok-abb6a63b9c05","tok-4c1c3c43fe14","tok-385a022daadf","tok-4c1c3c43fe14","tok-c01919428e28","tok-cbaf1aa8918c","tok-8b4772158c42","tok-92727c8a2432","tok-6da5c9d0d571","tok-1e53fb59f1be","tok-6687c3023460","tok-093c0a78cf5e","tok-ca5018248517","tok-3e6850025407","tok-12ecfa9c0133","tok-e0aa833dc71b","tok-9a3e27c4474f","tok-759fde841afb","tok-53673ab05e19","tok-e3eb9c0663c8","tok-81e4fb5cc689","tok-3b55f965de21","tok-37801200f861","tok-fe55ea864864","tok-13e85e1fa956","tok-dc38c58a1744","tok-8dc5bea85ea3","tok-e3eb9c0663c8","tok-81e4fb5cc689","tok-c196c9283e68","tok-0a9d8d3b58f2","tok-82be658b0ccf","tok-7df6d44af856","tok-356c9afd2319","tok-54d18cd1a4de","tok-0d8d99cb7d93","tok-e3eb9c0663c8","tok-78b423d01445","tok-a7bca352992c","tok-a7bca352992c","tok-f83da38890e5","tok-78b423d01445","tok-59129bacd870","tok-218873611519","tok-c6aaa4eb4193","tok-1b8edd89bd1f","tok-9d1c95f3c199","tok-635dc20abed5","tok-2a7f6c0cc5e9","tok-22d76bc4d5a7","tok-ae7f0320ea7a","tok-df3bbe485546","tok-ad240fcd9b42","tok-ae7f0320ea7a","tok-822e75bf6cb7","tok-bd123a0fa7c8","tok-d93b192062ff","tok-c6aaa4eb4193","tok-a1cb949e4c36","tok-635dc20abed5","tok-2a7f6c0cc5e9","tok-ae7f0320ea7a","tok-df3bbe485546","tok-bd123a0fa7c8","tok-ae7f0320ea7a","tok-822e75bf6cb7","tok-a7bca352992c","tok-c633f8e88fb0","tok-ae7f0320ea7a","tok-5a476b4c37c7","tok-6249f49b941d","tok-442ad107da04","tok-356c9afd2319","tok-54d18cd1a4de","tok-af2e17d686ae","tok-d89306bacade","tok-356c9afd2319","tok-54d18cd1a4de","tok-a13b66d38e68","tok-6527147935f7","tok-f43a23add6e3","tok-56c8238ee6df","tok-bd123a0fa7c8","tok-1b8edd89bd1f","tok-60147c85662d","tok-7013c5af4fac","tok-ad3e69b9614a","tok-256de3dd0de2"]}]},"tosefta-kelim-batra-2-1":{"unit_id":"tosefta-kelim-batra-2-1","anchor_id":"tosefta-kelim-batra-2-1","source_ref":"Tosefta Kelim Batra 2:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-213e27f4afb3","tok-6f1db0ec3ebf","tok-bca93ca77c34","tok-f4d6db23fca7","tok-2b48cf5e41c6","tok-0a416e19037e","tok-bd123a0fa7c8","tok-fd45077ff649","tok-f4d6db23fca7","tok-2b48cf5e41c6","tok-0a416e19037e","tok-6f2fe6f86856","tok-16a1b8f4e059","tok-35f724ba53bf","tok-3ae0c1c1f91c","tok-6c2c5694a2be","tok-3f9374389a1c","tok-fd1df14d9eed","tok-0bd1e0d64030","tok-6bad3ea00b93","tok-e524c0fb4b23","tok-96006c7c4a94","tok-6f2fe6f86856","tok-2c7c6cf5b5ad","tok-d17bdde4cba3","tok-81307316b5f4","tok-11b1807fd04e","tok-8aff4f664150","tok-ae7f0320ea7a","tok-9d86763c04ca","tok-afc4c4e50be4","tok-0d65e9808100","tok-6f3af5831855","tok-1be0bb5eb019","tok-2c7c6cf5b5ad","tok-baa26d5f9463","tok-823a2454ddcb","tok-bc201c853204","tok-6e50ee600278","tok-6c8d9a8ab7a2","tok-2c7c6cf5b5ad","tok-d17bdde4cba3","tok-47a418c0482f","tok-d20ee58e19b8","tok-ae7f0320ea7a","tok-7e2ce6108b45","tok-6249f49b941d","tok-3e4a1f2592e0","tok-dad113d836f4","tok-baa26d5f9463","tok-3ae0c1c1f91c","tok-6aad88a53930","tok-3cee6ede8bab","tok-99d1f7818e58","tok-26b835ca9000","tok-26a709c3020a","tok-0d65e9808100","tok-bc201c853204","tok-5a80620b930b","tok-851ff006e727","tok-fb25f9840f6c","tok-f3fa764ceb7b","tok-96006c7c4a94","tok-3dd3b2f82f4b","tok-aff93b931d77","tok-fc52da0d8d40","tok-f3fa764ceb7b","tok-28cfa4dcf620","tok-d71d2e5d3b78","tok-44fd71f885cd","tok-991d9b1feccd","tok-9ac816bfeeeb","tok-6e50ee600278","tok-6c2c5694a2be","tok-2c7c6cf5b5ad","tok-b746d72d6996","tok-950f598b8f1d","tok-bb7aad8de045","tok-80cb056d743e","tok-25bc9611a20b","tok-991d9b1feccd","tok-fd1df14d9eed","tok-a5f2fdb1dc75","tok-84466773f9a5","tok-771b8ecc7958","tok-4c0bec3b79ac","tok-991d9b1feccd","tok-e5160254b0d5","tok-3f9374389a1c","tok-882b86ba51bd","tok-304401648276","tok-ddc5817c5a1a","tok-304401648276","tok-626283d98708","tok-a5f2fdb1dc75","tok-41d6e81864dd","tok-50591e834d03","tok-d5db174d43a9","tok-3004c8f5f077","tok-3543bd5b48f0","tok-48c96adfa2ea","tok-6249f49b941d","tok-9495bf004298","tok-75811872fe32","tok-3cee6ede8bab","tok-99d1f7818e58","tok-78b423d01445","tok-26a709c3020a","tok-0d65e9808100","tok-15e833bd5c28","tok-5a80620b930b","tok-6e50ee600278","tok-fd1df14d9eed","tok-f88279a55d5a","tok-6bad3ea00b93","tok-40583e6e826b","tok-20b8a8b4cdee","tok-c6e8ae65c513","tok-cc7dfbffd23e","tok-398e30253b51","tok-4805704fd8c8","tok-4fa0591b92ed","tok-80cb056d743e","tok-a64f512a59ef","tok-54d18cd1a4de","tok-26a45f14cb2c","tok-e31f6f03f071","tok-8f24e3ffdc12","tok-3dd3b2f82f4b","tok-823a2454ddcb","tok-7013c5af4fac","tok-67a82dc13877","tok-220c0f44c06c","tok-9106163061d0","tok-991d9b1feccd","tok-fd1df14d9eed","tok-f88279a55d5a","tok-6bad3ea00b93","tok-7519bf1cbae9","tok-e59002732b93","tok-48542b8f4d50","tok-c6e8ae65c513","tok-f2e9446ba2bb","tok-95ba55a99b46","tok-48c96adfa2ea","tok-a7bca352992c","tok-c6b7ced7c093","tok-bd123a0fa7c8","tok-1e49df46a0f1","tok-baa26d5f9463","tok-95ba55a99b46","tok-46ddeb9b18b9","tok-aff93b931d77","tok-78b423d01445","tok-a7bca352992c","tok-25ed4ef48be2","tok-bd123a0fa7c8","tok-96006c7c4a94","tok-b238f87b9bf2","tok-78b423d01445","tok-6249f49b941d","tok-88eed1efa799","tok-a7bca352992c","tok-25ed4ef48be2","tok-bca93ca77c34","tok-88eed1efa799","tok-bd123a0fa7c8","tok-36034e34f40c","tok-9f3487e14e36","tok-c95bb5560ec5","tok-29014970f17e","tok-be336b504ddd","tok-e0901541fbb3","tok-fb489af66040","tok-e39d7bd78be7","tok-6216eabf9d26","tok-96988572cf76","tok-1aaa07b1c89a","tok-869953dccfd2","tok-4c6ca1be45ed","tok-5a435128e45f","tok-6b4440cce596","tok-67a82dc13877","tok-8d7cf112ad9b","tok-9cc1bb43de09","tok-3dae48d5c9c8","tok-5a435128e45f","tok-771b8ecc7958","tok-105a49977db7","tok-80726b37e40b","tok-73fd990f94b9","tok-6dcfc86c18ed","tok-b9733ce1614a","tok-76de576c47b4","tok-96988572cf76"]}]},"tosefta-kelim-batra-2-2":{"unit_id":"tosefta-kelim-batra-2-2","anchor_id":"tosefta-kelim-batra-2-2","source_ref":"Tosefta Kelim Batra 2:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d14511500199","tok-ef6597711d42","tok-1e220e7f49a0","tok-f4d6db23fca7","tok-220c0f44c06c","tok-b43e393b327b","tok-ae7f0320ea7a","tok-36b027326611","tok-e0901541fbb3","tok-869953dccfd2","tok-7b9e0d3f070a","tok-218873611519","tok-424e1a108c1e","tok-c196c9283e68","tok-182b4b227e92","tok-43da00e46faa","tok-96988572cf76","tok-2c7c6cf5b5ad","tok-fba3630ca794","tok-ae7f0320ea7a","tok-00617ff98565","tok-45a79a2068bc","tok-47a418c0482f","tok-2430e57114c4","tok-baa26d5f9463","tok-6fbcc3a2ff01","tok-1354372a8164","tok-3f679cd1b68f","tok-843befefeb72","tok-24d62927fded","tok-950f598b8f1d","tok-80cb056d743e","tok-ab7b9b701dbf","tok-6fbcc3a2ff01","tok-762bb812db7d","tok-f4d6db23fca7","tok-35331ff5f235","tok-7b77589bb6ce","tok-ed8cb7d7da07","tok-7b77589bb6ce","tok-2328861223a4","tok-0a284c8530cc","tok-a230eb89ac08","tok-f4d6db23fca7","tok-9de980b1ee75","tok-e09fb7b96330","tok-79eabfc83aa0","tok-e7a82ff3992f","tok-af1324f0e51f","tok-81ee6b0d6352","tok-ae7f0320ea7a","tok-c3b52b63b67f","tok-6249f49b941d","tok-0d65e9808100","tok-23741c6d107f","tok-3b73b9b0c44f","tok-6f3af5831855","tok-916c114dfa71","tok-0f8df79fe4aa","tok-218873611519","tok-6249f49b941d","tok-51485aaaa9a0","tok-5a80620b930b","tok-e0901541fbb3","tok-fb489af66040","tok-e39d7bd78be7","tok-6216eabf9d26","tok-307799bc14de","tok-1aaa07b1c89a","tok-869953dccfd2","tok-4c6ca1be45ed","tok-5a435128e45f","tok-6b4440cce596","tok-67a82dc13877","tok-8d7cf112ad9b","tok-9cc1bb43de09","tok-3dae48d5c9c8","tok-5a435128e45f","tok-771b8ecc7958","tok-105a49977db7","tok-80726b37e40b","tok-73fd990f94b9","tok-6dcfc86c18ed","tok-b9733ce1614a","tok-76de576c47b4","tok-96988572cf76"]}]},"tosefta-kelim-batra-2-3":{"unit_id":"tosefta-kelim-batra-2-3","anchor_id":"tosefta-kelim-batra-2-3","source_ref":"Tosefta Kelim Batra 2:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fe52be77f3b6","tok-959954d97761","tok-f1fb208f0cb2","tok-621fbefb0015","tok-8dc0ea8b62bf","tok-99d1f7818e58","tok-47e101633034","tok-9a3f624513fe","tok-0a416e19037e","tok-f52a44f5fcfd","tok-218873611519","tok-6249f49b941d","tok-ae7f0320ea7a","tok-df3bbe485546","tok-df6e3a5325c3","tok-ac3847a6f1d4","tok-73fd990f94b9","tok-df6e3a5325c3","tok-506930739495","tok-1579d4d45487","tok-0cccb0c453e7","tok-f12835198317","tok-d1d51ea6ca4e","tok-adc6da14250d","tok-89482cf48e23","tok-a947bd2bff58","tok-0eb227bfcf17","tok-e0901541fbb3","tok-6b4440cce596","tok-54d18cd1a4de","tok-aff93b931d77","tok-63f75105aeea","tok-c196c9283e68","tok-991d9b1feccd","tok-9ac816bfeeeb","tok-a5f2fdb1dc75","tok-2d100f0800ff","tok-7519bf1cbae9","tok-7013c5af4fac","tok-991d9b1feccd","tok-9d1562f00c50","tok-a5f2fdb1dc75","tok-84466773f9a5","tok-efb2d7c5fd5b","tok-218873611519","tok-424e1a108c1e"]}]},"tosefta-kelim-batra-2-4":{"unit_id":"tosefta-kelim-batra-2-4","anchor_id":"tosefta-kelim-batra-2-4","source_ref":"Tosefta Kelim Batra 2:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-59e03b1a5a7a","tok-a7bca352992c","tok-0bf53068dfb8","tok-6dcc571f9af4","tok-76de576c47b4","tok-a7bca352992c","tok-c03815967382","tok-f1d631f8b5ce","tok-218873611519","tok-5f4939adb336","tok-d48368451cdb","tok-e0901541fbb3","tok-c6e8ae65c513","tok-ad225d5e4c2e","tok-0a416e19037e","tok-fe4d09c9bf9b","tok-21d9b2175252","tok-7519bf1cbae9","tok-47e101633034","tok-0bf53068dfb8","tok-8e58fb474a80","tok-c03815967382","tok-4b9d8a398350","tok-c68bcbc02ae0","tok-f6c07cc46ded","tok-83adeccd1623","tok-6dcc571f9af4","tok-81e4fb5cc689","tok-47e101633034","tok-c03815967382","tok-4c1c3c43fe14","tok-2cf9ba5ed776","tok-7c9097332ff2","tok-9f24d95f582f","tok-81e4fb5cc689","tok-47e101633034","tok-0bf53068dfb8","tok-8dc5bea85ea3","tok-a3bc15b5870b","tok-3c5f0e3824a9","tok-ae7f0320ea7a","tok-f83da38890e5","tok-6f2fe6f86856","tok-7519bf1cbae9","tok-f1fb208f0cb2","tok-35f724ba53bf","tok-0a9d8d3b58f2","tok-6b16f563dcf2","tok-35f724ba53bf","tok-0a9d8d3b58f2","tok-46ddeb9b18b9","tok-bae9bca6ec4e","tok-d170f6e97b28","tok-5a435128e45f","tok-1f530d9a6c8b","tok-54d18cd1a4de","tok-e7ef9fd2abf8","tok-6a3c2483a14f","tok-981f6e4ea139","tok-424e1a108c1e","tok-c196c9283e68","tok-012d7196f5b3","tok-f83da38890e5","tok-47e101633034","tok-bd04bff3d3e6","tok-3c1cc6a317a3","tok-a015aa7a7546","tok-938831224844","tok-6da5c9d0d571","tok-0a9d8d3b58f2","tok-5eddce44a083","tok-6f3af5831855","tok-2586b1eaba0a","tok-6da5c9d0d571","tok-a7bca352992c","tok-f83da38890e5","tok-30d3fd56127a","tok-e62ffa96e703","tok-b22012a69294","tok-e5962344c94b","tok-8b4772158c42","tok-390590a66b0d","tok-577a42f348f4","tok-f27b16b825b9","tok-3c1cc6a317a3","tok-a015aa7a7546","tok-938831224844","tok-6da5c9d0d571","tok-0a9d8d3b58f2","tok-30d3fd56127a","tok-d14ded340472","tok-6da5c9d0d571","tok-a7bca352992c","tok-f83da38890e5","tok-30d3fd56127a","tok-4e9a33e584d1","tok-c4ccc43bb8ce","tok-30d3fd56127a","tok-89c0e06c2255","tok-8b4772158c42","tok-390590a66b0d","tok-577a42f348f4","tok-c348aeae3700","tok-3c1cc6a317a3","tok-ae7f0320ea7a","tok-64ededb416fc","tok-6da5c9d0d571","tok-0a9d8d3b58f2","tok-30d3fd56127a","tok-5924d5103687","tok-6da5c9d0d571","tok-a7bca352992c","tok-f83da38890e5","tok-acd9892c1f4a","tok-62d44b1ffb1d","tok-9b9a8a09a012","tok-0ddd1524127e","tok-dc4197672d45","tok-8b4772158c42","tok-390590a66b0d","tok-47e101633034","tok-e48f0a3ea3c9","tok-3c1cc6a317a3","tok-ae7f0320ea7a","tok-6dcfc86c18ed","tok-a7bca352992c","tok-0a9d8d3b58f2","tok-ae7f0320ea7a","tok-2d21b4cf6288","tok-30d3fd56127a","tok-38dc98d7c4a2","tok-6da5c9d0d571","tok-a7bca352992c","tok-f83da38890e5","tok-30d3fd56127a","tok-6446808de5c4","tok-30d3fd56127a","tok-cb2f05f7c593","tok-8b4772158c42","tok-390590a66b0d","tok-991d9b1feccd","tok-6c2c5694a2be","tok-7519bf1cbae9","tok-218873611519","tok-dc137ecfb7cd","tok-307799bc14de","tok-2adaded52203","tok-e65c5d244cfb","tok-47e101633034","tok-88ec91b7dfb9","tok-3c1cc6a317a3","tok-ae7f0320ea7a","tok-85df9f270e09","tok-1715f6d22c86","tok-a7bca352992c","tok-0a9d8d3b58f2","tok-30d3fd56127a","tok-85df9f270e09","tok-c37579f0e385","tok-a7bca352992c","tok-a7bca352992c","tok-f83da38890e5","tok-30d3fd56127a","tok-d9ca99b1c52e","tok-bd123a0fa7c8","tok-390590a66b0d","tok-3ae0c1c1f91c","tok-fd1df14d9eed","tok-0bd1e0d64030","tok-6bad3ea00b93","tok-7519bf1cbae9","tok-d14511500199","tok-ae7f0320ea7a","tok-4c2d5a548286","tok-a7bca352992c","tok-a7bca352992c","tok-f83da38890e5","tok-a5cc5d256951","tok-99d1f7818e58","tok-d977af372453","tok-5d635c817390","tok-1147693e6864","tok-22d76bc4d5a7","tok-3db7fcffdb05","tok-ad240fcd9b42","tok-e34449801197","tok-3db7fcffdb05","tok-a7bca352992c","tok-e466dc999425","tok-3db7fcffdb05","tok-a7bca352992c","tok-fc1e75220267","tok-3db7fcffdb05","tok-bd123a0fa7c8","tok-a975d43225b5","tok-99d1f7818e58","tok-408577f65dfb","tok-1147693e6864","tok-3db7fcffdb05","tok-a7bca352992c","tok-e34449801197","tok-3db7fcffdb05","tok-bd123a0fa7c8","tok-e466dc999425","tok-22d76bc4d5a7","tok-3db7fcffdb05","tok-ad240fcd9b42","tok-e34449801197","tok-3db7fcffdb05","tok-bd123a0fa7c8"]}]},"tosefta-kelim-batra-3-1":{"unit_id":"tosefta-kelim-batra-3-1","anchor_id":"tosefta-kelim-batra-3-1","source_ref":"Tosefta Kelim Batra 3:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-52eb3bc84ae3","tok-eb642f1c1b3c","tok-b4a67d6c2faa","tok-cb491c061638","tok-09782d250881","tok-31f1d4a7f425","tok-cb491c061638","tok-500c45008ffe","tok-1831224ea889","tok-b4a67d6c2faa","tok-3cec592e7864","tok-9e9a68820700","tok-971ee75bcfd8","tok-3cec592e7864","tok-991d9b1feccd","tok-e2087612e5a9","tok-7519bf1cbae9","tok-218873611519","tok-75b31141b28c","tok-4db4c908b2ea","tok-8a111d2d7ca0","tok-bbe78c1c0460","tok-4db4c908b2ea","tok-f2dfa37c369b","tok-5975c52594c3","tok-f1fb208f0cb2","tok-4db4c908b2ea","tok-8a111d2d7ca0","tok-f1fb208f0cb2","tok-4db4c908b2ea","tok-f2dfa37c369b","tok-5975c52594c3","tok-991d9b1feccd","tok-451ed816111b","tok-7519bf1cbae9","tok-218873611519","tok-75b31141b28c","tok-5a80620b930b","tok-ff1e543abaa1","tok-632eed330f52","tok-09782d250881","tok-a4bb810ca48d","tok-8bbe1530f61f","tok-6a3aa0a4f143","tok-99d1f7818e58","tok-e28481b1f759","tok-35fd8bcce087","tok-a7bca352992c","tok-af848e174f1a","tok-6f2fe6f86856","tok-991d9b1feccd","tok-451ed816111b","tok-7519bf1cbae9","tok-0946ec8b86fe","tok-99d1f7818e58","tok-09782d250881","tok-35fd8bcce087","tok-a7bca352992c","tok-99d1f7818e58","tok-cb491c061638","tok-f1fb208f0cb2","tok-a7bca352992c","tok-abb6a63b9c05","tok-cb491c061638","tok-0946ec8b86fe","tok-99d1f7818e58","tok-34be60f3421f","tok-0efeed47fa12","tok-76de576c47b4","tok-7e172610a9bb","tok-b5c76ef2a592","tok-bd123a0fa7c8","tok-daa66129b636","tok-f3d5a19a3dfe","tok-4e824299a471","tok-6f1db0ec3ebf","tok-8bbe1530f61f","tok-6a3aa0a4f143","tok-99d1f7818e58","tok-e28481b1f759","tok-35fd8bcce087","tok-a7bca352992c","tok-af848e174f1a","tok-6f2fe6f86856","tok-991d9b1feccd","tok-451ed816111b","tok-7519bf1cbae9","tok-0946ec8b86fe","tok-99d1f7818e58","tok-09782d250881","tok-35fd8bcce087","tok-a7bca352992c","tok-99d1f7818e58","tok-cb491c061638","tok-b29246faa48e","tok-a7bca352992c","tok-abb6a63b9c05","tok-cb491c061638","tok-ae9928c47294","tok-0946ec8b86fe","tok-99d1f7818e58","tok-34be60f3421f","tok-0efeed47fa12","tok-76de576c47b4","tok-7e172610a9bb","tok-b5c76ef2a592","tok-bd123a0fa7c8","tok-ff827bfccbd8","tok-8bbe1530f61f","tok-6a3aa0a4f143","tok-99d1f7818e58","tok-e28481b1f759","tok-35fd8bcce087","tok-a7bca352992c","tok-0946ec8b86fe","tok-99d1f7818e58","tok-cb491c061638","tok-b29246faa48e","tok-a7bca352992c","tok-abb6a63b9c05","tok-cb491c061638","tok-0946ec8b86fe","tok-99d1f7818e58","tok-34be60f3421f","tok-6db7bdfd8c58","tok-76de576c47b4","tok-7e172610a9bb","tok-26c8b7f58811","tok-8b4772158c42","tok-96006c7c4a94","tok-991d9b1feccd","tok-451ed816111b","tok-b31ce9d63ee9","tok-7519bf1cbae9","tok-23799e850189","tok-0b4fa52a904a","tok-ae7f0320ea7a","tok-4a27af42743e","tok-fb489af66040","tok-7aed45058b43","tok-88d67229ceed","tok-5130389803d3","tok-48e998bca9a3","tok-ae7f0320ea7a","tok-ff827bfccbd8","tok-6a3aa0a4f143","tok-c196c9283e68","tok-a230eb89ac08","tok-46ddeb9b18b9","tok-54756cd281e9","tok-26d7ad86c15f","tok-26c8b7f58811","tok-8b4772158c42"]}]},"tosefta-kelim-batra-3-2":{"unit_id":"tosefta-kelim-batra-3-2","anchor_id":"tosefta-kelim-batra-3-2","source_ref":"Tosefta Kelim Batra 3:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bac38d664d7c","tok-8bbe1530f61f","tok-6a3aa0a4f143","tok-99d1f7818e58","tok-e28481b1f759","tok-35fd8bcce087","tok-a7bca352992c","tok-0946ec8b86fe","tok-583f7b4e953d","tok-f1fb208f0cb2","tok-a7bca352992c","tok-abb6a63b9c05","tok-cb491c061638","tok-af848e174f1a","tok-6f2fe6f86856","tok-6b16f563dcf2","tok-0946ec8b86fe","tok-99d1f7818e58","tok-9a7656e64a33","tok-b29246faa48e","tok-a7bca352992c","tok-abb6a63b9c05","tok-cda86993be66","tok-649ce6047e71","tok-f7b0acf0088d","tok-f1fb208f0cb2","tok-a7bca352992c","tok-abb6a63b9c05","tok-376a3a748a85","tok-a31a3df2aade","tok-e8449533d294","tok-8bbe1530f61f","tok-6a3aa0a4f143","tok-6244fac49278","tok-6da5c9d0d571","tok-4eb41561e4a5","tok-0946ec8b86fe","tok-99d1f7818e58","tok-3cec592e7864","tok-b29246faa48e","tok-6da5c9d0d571","tok-abb6a63b9c05","tok-3cec592e7864","tok-9e9a68820700","tok-a6fb20dee1bc","tok-65b9cc10a51e","tok-96988572cf76","tok-0946ec8b86fe","tok-99d1f7818e58","tok-34be60f3421f","tok-51bc2abe4ddb","tok-b27f52c3bf8b","tok-54d18cd1a4de","tok-e45f2ec43d6b","tok-fdefef645aec","tok-54d18cd1a4de","tok-e1504537da4b","tok-a7bca352992c","tok-2dea588a9e51","tok-54d18cd1a4de","tok-ef1be888248f","tok-bd123a0fa7c8","tok-0946ec8b86fe","tok-99d1f7818e58","tok-34be60f3421f","tok-e45f2ec43d6b","tok-26d7ad86c15f","tok-26c8b7f58811","tok-8b4772158c42","tok-500c45008ffe","tok-8bbe1530f61f","tok-6a3aa0a4f143","tok-6244fac49278","tok-4eb41561e4a5","tok-6da5c9d0d571","tok-0946ec8b86fe","tok-99d1f7818e58","tok-3cec592e7864","tok-3cec592e7864","tok-c196c9283e68","tok-9e9a68820700","tok-7259cafdad04","tok-96988572cf76","tok-0946ec8b86fe","tok-99d1f7818e58","tok-34be60f3421f","tok-56a02b5314d3","tok-26d7ad86c15f","tok-26c8b7f58811","tok-8b4772158c42","tok-abb6a63b9c05","tok-0c00fe76edec","tok-4a27af42743e","tok-0a284c8530cc","tok-143d7913b362","tok-6f88e5e50aa8","tok-54d18cd1a4de","tok-e76d73943187","tok-c196c9283e68","tok-46ddeb9b18b9","tok-940780176d18","tok-31a31b1569bc","tok-9ec2bdb9d2b7","tok-31a31b1569bc","tok-0b97fe8a1ea7","tok-54d18cd1a4de","tok-31a31b1569bc","tok-71b4e3e0b600","tok-6c9905fed561","tok-54d18cd1a4de","tok-75890023e1da","tok-31a31b1569bc","tok-df6e3a5325c3","tok-ac3847a6f1d4","tok-54d18cd1a4de","tok-75890023e1da","tok-31a31b1569bc","tok-168c622e92e6","tok-9aeb0e1d3a62","tok-31a31b1569bc","tok-4bfd66e0f201","tok-9aeb0e1d3a62","tok-75890023e1da","tok-31a31b1569bc","tok-c196c9283e68","tok-a4d20a31497a","tok-10adfa3a18a5","tok-54d18cd1a4de","tok-31a31b1569bc","tok-8aa6e9b50ac9","tok-15c462addb90","tok-54d18cd1a4de","tok-75890023e1da","tok-31a31b1569bc","tok-9106163061d0","tok-356c9afd2319","tok-9de980b1ee75","tok-1466e8c20a44","tok-2eba46087e74","tok-fb489af66040","tok-bb4057e62d2b","tok-708bb67c4461"]}]},"tosefta-kelim-batra-3-3":{"unit_id":"tosefta-kelim-batra-3-3","anchor_id":"tosefta-kelim-batra-3-3","source_ref":"Tosefta Kelim Batra 3:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-31a31b1569bc","tok-23eef6c44a8e","tok-c37645d4841c","tok-81e94d50730b","tok-79eabfc83aa0","tok-6c8d9a8ab7a2","tok-a5f2fdb1dc75","tok-e7a82ff3992f","tok-304401648276","tok-35f724ba53bf","tok-df6e3a5325c3","tok-b92fb74c9ea8","tok-e365765cb95d","tok-6e50ee600278","tok-6aad88a53930","tok-fb489af66040","tok-fdda5bf02f75","tok-98cc986ce24d","tok-417c6e7d8b1d","tok-abb6a63b9c05","tok-50c114de4952","tok-0a284c8530cc","tok-745db43532a9","tok-1315ac5e2bf9","tok-5b14e14179eb","tok-c2561d9f0438","tok-b1f471f468cb","tok-6a3aa0a4f143","tok-c196c9283e68","tok-bb7aad8de045","tok-80c34306136b","tok-a2d248aa7211","tok-d9bd16d55bd5","tok-ae7f0320ea7a","tok-08260cc7df56","tok-f9f8d14c6ac8","tok-6e85a2a1e3ba","tok-20070c9c3701","tok-bd123a0fa7c8","tok-52d6e79bf2fc","tok-2760c94a0f02","tok-6a3aa0a4f143","tok-96988572cf76","tok-bb7aad8de045","tok-80c34306136b","tok-a2d248aa7211","tok-d9bd16d55bd5","tok-ae7f0320ea7a","tok-08260cc7df56","tok-f9f8d14c6ac8","tok-6e85a2a1e3ba","tok-20070c9c3701","tok-a7bca352992c","tok-168c622e92e6","tok-5de17eed3cce","tok-6a3aa0a4f143","tok-c196c9283e68","tok-bb7aad8de045","tok-80c34306136b","tok-99d1f7818e58","tok-34be60f3421f","tok-3ce8083f098c","tok-f9f8d14c6ac8","tok-60147c85662d","tok-693230717498","tok-96988572cf76","tok-98cc986ce24d","tok-63619ea54b4b","tok-168c622e92e6","tok-9aeb0e1d3a62","tok-87001f5fab44","tok-6a3aa0a4f143","tok-96988572cf76","tok-bb7aad8de045","tok-80c34306136b","tok-99d1f7818e58","tok-34be60f3421f","tok-3ce8083f098c","tok-f9f8d14c6ac8","tok-6e85a2a1e3ba","tok-08260cc7df56","tok-693230717498","tok-188673cf8a13","tok-f2e9446ba2bb","tok-d9bd16d55bd5","tok-168c622e92e6","tok-5de17eed3cce","tok-991d9b1feccd","tok-e2087612e5a9","tok-7519bf1cbae9","tok-741983a5e10d","tok-cfeccb31a200","tok-974a73873c6b","tok-d8431ca0a88c","tok-6bdd9baa4252","tok-b77b8a6cd3a3","tok-bca93ca77c34","tok-18c05a900756","tok-69aa039172b1","tok-54b1c590398b","tok-6329bbb2a036","tok-d8431ca0a88c","tok-6bdd9baa4252","tok-e24dade9c615","tok-6a3aa0a4f143","tok-076cf9db1e7f","tok-0a284c8530cc","tok-fa052201cf40","tok-6e85a2a1e3ba","tok-168c622e92e6","tok-5de17eed3cce","tok-3397ceb3894b","tok-bc088b91097e","tok-c6e8ae65c513","tok-717f84a7b31b","tok-fe4d09c9bf9b","tok-68173aeb34bd","tok-87001f5fab44","tok-c6e8ae65c513","tok-96988572cf76","tok-bf666f119267","tok-0f0e72a50214","tok-1e6207714471","tok-87001f5fab44","tok-9eef6fe34270","tok-f2e9446ba2bb","tok-d9bd16d55bd5","tok-423202ed7a54","tok-158d8abd33a2","tok-9b3d18010909","tok-168c622e92e6","tok-5de17eed3cce","tok-5d9e4f802ab9","tok-87001f5fab44","tok-fe1e29d1fce7","tok-717f84a7b31b","tok-48bfd38d9056","tok-501741f1bd5d","tok-54d18cd1a4de","tok-87001f5fab44"]}]},"tosefta-kelim-batra-3-4":{"unit_id":"tosefta-kelim-batra-3-4","anchor_id":"tosefta-kelim-batra-3-4","source_ref":"Tosefta Kelim Batra 3:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3ae0c1c1f91c","tok-6c2c5694a2be","tok-7519bf1cbae9","tok-e20197ab51b8","tok-47240d98c125","tok-974a73873c6b","tok-c6e8ae65c513","tok-717f84a7b31b","tok-47240d98c125","tok-60f0e2304779","tok-a63560b18a58","tok-0f0e72a50214","tok-68173aeb34bd","tok-87001f5fab44","tok-c196c9283e68","tok-9eef6fe34270","tok-f2e9446ba2bb","tok-63619ea54b4b","tok-423202ed7a54","tok-158d8abd33a2","tok-9b3d18010909","tok-168c622e92e6","tok-6a3aa0a4f143","tok-0739e34efbcf","tok-717f84a7b31b","tok-fe1e29d1fce7","tok-87001f5fab44","tok-48bfd38d9056","tok-501741f1bd5d","tok-54d18cd1a4de","tok-717f84a7b31b","tok-3ae0c1c1f91c","tok-86c9776b0820","tok-7519bf1cbae9","tok-c93a7a051c0e","tok-06c4503756f5","tok-ae7f0320ea7a","tok-df3bbe485546","tok-bbe78c1c0460","tok-4db4c908b2ea","tok-98cc986ce24d","tok-f608c04d7e8d","tok-78b423d01445","tok-59129bacd870","tok-58a4d2c69154","tok-f166ef50bc48","tok-63619ea54b4b","tok-f166ef50bc48","tok-58a4d2c69154","tok-a897cd1775b9","tok-63619ea54b4b","tok-a897cd1775b9","tok-9e7e2c2aaaf0","tok-8da3965d8ac3","tok-3f679cd1b68f","tok-63619ea54b4b","tok-3ae0c1c1f91c","tok-451ed816111b","tok-7519bf1cbae9","tok-ad3e69b9614a","tok-75b31141b28c","tok-4db4c908b2ea","tok-828fd2ad4fd5","tok-ab6032005ab9","tok-92750fc043a7","tok-1b8edd89bd1f","tok-5a80620b930b","tok-98cc986ce24d","tok-f608c04d7e8d","tok-ad3e69b9614a","tok-d3d3099080aa","tok-f1fb208f0cb2","tok-aaea1c97f59b","tok-f2dfa37c369b","tok-5975c52594c3","tok-670f55b7a5d2","tok-f608c04d7e8d","tok-1b8edd89bd1f","tok-0771d2482b32","tok-2586b1eaba0a","tok-30bc613cfa54","tok-2586b1eaba0a","tok-40f321a1486a","tok-6e50ee600278","tok-6c2c5694a2be","tok-78b423d01445","tok-5996a7fce9e3","tok-19f6d30ffae2","tok-218873611519","tok-75b31141b28c","tok-5a80620b930b","tok-f2dfa37c369b","tok-5975c52594c3","tok-bbe78c1c0460","tok-5a80620b930b","tok-98cc986ce24d","tok-f608c04d7e8d","tok-d93b192062ff","tok-bca93ca77c34","tok-5a80620b930b","tok-f2dfa37c369b","tok-5975c52594c3","tok-f1fb208f0cb2","tok-5a80620b930b","tok-98cc986ce24d","tok-f608c04d7e8d","tok-48c96adfa2ea","tok-236a287791c6","tok-e7473ec73cc2","tok-c6b7ced7c093","tok-236a287791c6","tok-c6778da41664","tok-95fd3562f47f","tok-218873611519","tok-7e8630d2fc5a","tok-62f8138935ed","tok-7de8c3a28195","tok-33d217dfbdc3","tok-91782a83c680","tok-1b8edd89bd1f","tok-eb6ae1ebb48f","tok-63a074ad9431","tok-33d217dfbdc3","tok-abb6a63b9c05","tok-feff9dd12082","tok-2c7c6cf5b5ad","tok-3ae0c1c1f91c","tok-451ed816111b","tok-7519bf1cbae9","tok-f1fb208f0cb2","tok-9316319106e6","tok-2c7c6cf5b5ad","tok-abb6a63b9c05","tok-5f75e17db8cf"]}]},"tosefta-kelim-batra-4-1":{"unit_id":"tosefta-kelim-batra-4-1","anchor_id":"tosefta-kelim-batra-4-1","source_ref":"Tosefta Kelim Batra 4:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1479298d10b4","tok-cc7c9cc6cd60","tok-9b9a8a09a012","tok-67a82dc13877","tok-c78ef431c407","tok-cb49cebf2403","tok-5f3679fb49a8","tok-6527147935f7","tok-6249f49b941d","tok-0f64e77c7e60","tok-29ccd982d220","tok-f4d6db23fca7","tok-54d18cd1a4de","tok-dd7761fa2df3","tok-6da5c9d0d571","tok-3a549e426cf7","tok-a1306f88a7a8","tok-ae7f0320ea7a","tok-4e9a33e584d1","tok-d9cf9d956e1c","tok-4ce7cd9dade3","tok-7a8aedc46114","tok-30d3fd56127a","tok-3004c8f5f077","tok-d9cf9d956e1c","tok-577a42f348f4","tok-7a8aedc46114","tok-22d76bc4d5a7","tok-a1bdd313cccf","tok-7d8327a7d682","tok-3f418e20e5a9","tok-30bc613cfa54","tok-3f418e20e5a9","tok-285bbdfed206","tok-48c96adfa2ea","tok-f759d4ebc95f","tok-8efebef1012c","tok-355880b0bd57","tok-a7bca352992c","tok-715485c7dc70","tok-bd123a0fa7c8","tok-82f8cf12e411","tok-d77913083738","tok-bb7aad8de045","tok-8781ab33b1d2","tok-981f6e4ea139","tok-2b3e430fb5e2","tok-e0901541fbb3","tok-9106163061d0","tok-4d699e48bdcc","tok-99d1f7818e58","tok-274331469783","tok-52d6e79bf2fc","tok-979edf1d40cb","tok-52d6e79bf2fc","tok-4d699e48bdcc","tok-52d6e79bf2fc","tok-4d699e48bdcc","tok-fb489af66040","tok-52d6e79bf2fc","tok-979edf1d40cb","tok-82f8cf12e411","tok-8efebef1012c","tok-2b3e430fb5e2","tok-de4c8cde09a5","tok-8781ab33b1d2","tok-981f6e4ea139","tok-96006c7c4a94","tok-991d9b1feccd","tok-22c8fd859ad3","tok-fb489af66040","tok-9b06582f2016","tok-3ae0c1c1f91c","tok-9d1562f00c50","tok-2adaded52203","tok-99d1f7818e58","tok-99a1d960a3d9","tok-2eb5e73d298a","tok-6249f49b941d","tok-bd123a0fa7c8","tok-99d1f7818e58","tok-aff93b931d77","tok-9b06582f2016","tok-99d1f7818e58","tok-99a1d960a3d9","tok-f22583fb4934","tok-d08b797c242f","tok-9d1562f00c50","tok-b1f471f468cb","tok-2adaded52203","tok-e524c0fb4b23","tok-99a1d960a3d9","tok-f22583fb4934","tok-d77913083738","tok-07830f445172","tok-a7bca352992c","tok-dcb17df34ec7","tok-bd123a0fa7c8","tok-27085b0f97d6","tok-5c50868a17b1","tok-093c0a78cf5e","tok-0163bbfdadc7","tok-3e6850025407","tok-12ecfa9c0133","tok-e0aa833dc71b","tok-a387457e4542","tok-afc4c4e50be4","tok-e27933febf2d","tok-99d1f7818e58","tok-bb652bfede6a","tok-41351bcdf478","tok-198c270895a6","tok-46ddeb9b18b9","tok-2dad40815fe7","tok-e0901541fbb3","tok-bbe78c1c0460","tok-60147c85662d","tok-553d7b7c15ba","tok-99d1f7818e58","tok-553d7b7c15ba","tok-a7bca352992c","tok-182b4b227e92","tok-43da00e46faa","tok-bd123a0fa7c8","tok-79cb1228400b","tok-a266abba4c07","tok-e0901541fbb3","tok-4cd4d4ac7a5f","tok-0ddd1524127e","tok-6db7bdfd8c58","tok-a7bca352992c","tok-182b4b227e92","tok-43da00e46faa","tok-bd123a0fa7c8"]}]},"tosefta-kelim-batra-4-2":{"unit_id":"tosefta-kelim-batra-4-2","anchor_id":"tosefta-kelim-batra-4-2","source_ref":"Tosefta Kelim Batra 4:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-32904a351a8b","tok-ae7f0320ea7a","tok-b2ca2f29ed87","tok-991d9b1feccd","tok-6aad88a53930","tok-b1f471f468cb","tok-11195f4ff018","tok-15a389feb79b","tok-60147c85662d","tok-95e0686d042a","tok-60147c85662d","tok-32840dfe0eec","tok-e31f6f03f071","tok-239c2230e500","tok-5a80620b930b","tok-32904a351a8b","tok-456cddd68b57","tok-dcc3b0dda491","tok-2e936e5782e0","tok-fd285a98b4df","tok-73fd990f94b9","tok-f7940dfdc9a1","tok-8188343e39b4","tok-0ddd1524127e","tok-ae7f0320ea7a","tok-d14511500199","tok-9d0abab16eab","tok-bd123a0fa7c8","tok-3c0f9b6eb2d1","tok-9d0abab16eab","tok-07bd6b73f566","tok-73fd990f94b9","tok-9d0abab16eab","tok-7855a827f408","tok-73fd990f94b9","tok-e7b800deec2f","tok-8188343e39b4","tok-7859d309055a","tok-d14511500199","tok-a7bca352992c","tok-991d9b1feccd","tok-451ed816111b","tok-7519bf1cbae9","tok-56c1e69c9026","tok-a7bca352992c","tok-b41d8818c78e","tok-bd123a0fa7c8","tok-32904a351a8b","tok-01308bfc4492","tok-56c8238ee6df","tok-54d18cd1a4de","tok-0ddd1524127e","tok-6db7bdfd8c58","tok-9bad5a7fe836","tok-1f54da44d425","tok-afaf3c0a8d4a","tok-54d18cd1a4de","tok-0ddd1524127e","tok-6db7bdfd8c58","tok-2e936e5782e0","tok-75184df63beb","tok-73fd990f94b9","tok-695cd9bf948d","tok-1ea44eae234d","tok-76de576c47b4","tok-a7bca352992c","tok-23836f232346","tok-423202ed7a54","tok-c465b0ad5d11","tok-54d18cd1a4de","tok-0ddd1524127e","tok-6db7bdfd8c58","tok-43e94fa23a6a","tok-423202ed7a54","tok-4cd4d4ac7a5f","tok-54d18cd1a4de","tok-0ddd1524127e","tok-6db7bdfd8c58","tok-2e936e5782e0","tok-dcc3b0dda491","tok-bd123a0fa7c8","tok-9bad5a7fe836","tok-7a8a73028ae8","tok-05585da712e2","tok-3ae0c1c1f91c","tok-9d1562f00c50","tok-a7aa0b08e397","tok-2adaded52203","tok-35f724ba53bf","tok-2d7e4f851315","tok-caa470a20dd2","tok-fb489af66040","tok-9b06582f2016","tok-991d9b1feccd","tok-9d1562f00c50","tok-2adaded52203","tok-99d1f7818e58","tok-9bad5a7fe836","tok-6249f49b941d","tok-bd123a0fa7c8","tok-99d1f7818e58","tok-aff93b931d77","tok-9b06582f2016","tok-99d1f7818e58","tok-142503a615e0","tok-892b73431112","tok-05585da712e2","tok-d08b797c242f","tok-9d1562f00c50","tok-a7aa0b08e397","tok-2adaded52203","tok-35f724ba53bf","tok-46ddeb9b18b9","tok-3071c526a074","tok-ccd8368bfbe9","tok-60147c85662d","tok-49ba841aa68d","tok-e41c72d502f9"]}]},"tosefta-kelim-batra-4-3":{"unit_id":"tosefta-kelim-batra-4-3","anchor_id":"tosefta-kelim-batra-4-3","source_ref":"Tosefta Kelim Batra 4:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e0aa833dc71b","tok-acb9014f715c","tok-a8f785aa3de2","tok-9c5a419bac54","tok-a8f785aa3de2","tok-ba5cdc1d1435","tok-a8f785aa3de2","tok-ca54c765b812","tok-a8f785aa3de2","tok-29335b6b8272","tok-ae7f0320ea7a","tok-445e93c4739c","tok-a8f785aa3de2","tok-ff2b1faa7a9c","tok-3444f005f4a5","tok-6f3af5831855","tok-e0901541fbb3","tok-bbe78c1c0460","tok-60147c85662d","tok-553d7b7c15ba","tok-99d1f7818e58","tok-553d7b7c15ba","tok-a7bca352992c","tok-182b4b227e92","tok-43da00e46faa","tok-bd123a0fa7c8","tok-e0aa833dc71b","tok-2ebb1cfe1ad4","tok-a8f785aa3de2","tok-f6fd1ab85ec2","tok-a8f785aa3de2","tok-a3bc15b5870b","tok-a8f785aa3de2","tok-e859dbfa1b93","tok-6527147935f7","tok-bca93ca77c34","tok-60147c85662d","tok-553d7b7c15ba","tok-99d1f7818e58","tok-553d7b7c15ba","tok-a7bca352992c","tok-10b2840c75fc","tok-7519bf1cbae9","tok-e0901541fbb3","tok-bbe78c1c0460","tok-60147c85662d","tok-553d7b7c15ba","tok-a7bca352992c","tok-182b4b227e92","tok-43da00e46faa","tok-bd123a0fa7c8","tok-bca93ca77c34","tok-af2e17d686ae","tok-621fbefb0015","tok-ce2412560eaa","tok-99d1f7818e58","tok-553d7b7c15ba","tok-e0aa833dc71b","tok-a387457e4542","tok-ac5f6e058b7c","tok-093c0a78cf5e","tok-218873611519","tok-6249f49b941d","tok-a7bca352992c","tok-96006c7c4a94","tok-991d9b1feccd","tok-fd1df14d9eed","tok-f88279a55d5a","tok-6c2c5694a2be","tok-fb489af66040","tok-9b06582f2016","tok-7171f3569e91","tok-c4b607312a51","tok-99d1f7818e58","tok-d9b1faa4d956","tok-6fa734196ba4","tok-2ff055b03bb6","tok-6fa734196ba4","tok-424e1a108c1e","tok-188673cf8a13","tok-99d1f7818e58","tok-aff93b931d77","tok-9b06582f2016","tok-99d1f7818e58","tok-d9b1faa4d956","tok-783958ce22c8","tok-2ff055b03bb6","tok-783958ce22c8","tok-a6834fd19550","tok-ff029d91b7f5","tok-35f724ba53bf","tok-670f55b7a5d2","tok-a72edcec58f5","tok-e524c0fb4b23","tok-750b5e4f60ec","tok-6fa734196ba4","tok-d77913083738","tok-9d3109e522ca","tok-a7bca352992c","tok-dcb17df34ec7","tok-bd123a0fa7c8","tok-27085b0f97d6","tok-5c50868a17b1","tok-093c0a78cf5e","tok-0163bbfdadc7","tok-3e6850025407","tok-12ecfa9c0133","tok-d9b1faa4d956","tok-a8e7fe5cfd96","tok-1937c6338e53","tok-eea014f57922","tok-90cd6d526778","tok-818507225556","tok-6527147935f7","tok-424e1a108c1e","tok-b8b38f8c4b6e","tok-41d1911f9b26","tok-c196c9283e68"]}]},"tosefta-kelim-batra-4-4":{"unit_id":"tosefta-kelim-batra-4-4","anchor_id":"tosefta-kelim-batra-4-4","source_ref":"Tosefta Kelim Batra 4:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0446ef996ed1","tok-a5a9c41bec08","tok-4ba62bb8c02f","tok-ae7f0320ea7a","tok-03ecb62474da","tok-30d3fd56127a","tok-cdfc9e370068","tok-991d9b1feccd","tok-b1f471f468cb","tok-3f9374389a1c","tok-6c2c5694a2be","tok-0bd1e0d64030","tok-451ed816111b","tok-a7aa0b08e397","tok-21d9b2175252","tok-a5f2fdb1dc75","tok-a56ee68b30dc","tok-7519bf1cbae9","tok-836fa3858f9f","tok-6249f49b941d","tok-0f64e77c7e60","tok-6f359a3e5cd6","tok-81139dfcba30","tok-a8e7f8015224","tok-8b4772158c42","tok-be336b504ddd","tok-424e1a108c1e","tok-7a3286f6ce62","tok-be17b67b5733","tok-a17c52c124c7","tok-489258aa59c0","tok-96988572cf76","tok-7a3286f6ce62","tok-c7c7589468ad","tok-c196c9283e68","tok-353d32e9c183","tok-22d76bc4d5a7","tok-98cc986ce24d","tok-0fb795934277","tok-ad240fcd9b42","tok-98cc986ce24d","tok-d6371491ab0f","tok-97deac07bdb3","tok-6da5c9d0d571","tok-46ddeb9b18b9","tok-2044042a0571","tok-8818af431724","tok-9d8229dd1a9a","tok-ca44b2cc6986","tok-98cc986ce24d","tok-d76b321f9636","tok-670f55b7a5d2","tok-f043f20e6371","tok-6527147935f7","tok-75b31141b28c","tok-60147c85662d","tok-553d7b7c15ba","tok-99d1f7818e58","tok-553d7b7c15ba","tok-bd123a0fa7c8","tok-e34449801197","tok-abb6a63b9c05","tok-ad2d985abf5b","tok-2a86782e66b2","tok-719a41e91218","tok-2586b1eaba0a","tok-a7bca352992c","tok-e0aa833dc71b","tok-3801416bb118","tok-acb9014f715c","tok-6527147935f7","tok-75b31141b28c","tok-60147c85662d","tok-1bad88a88e06","tok-99d1f7818e58","tok-1bad88a88e06","tok-bd123a0fa7c8","tok-e34449801197","tok-abb6a63b9c05","tok-ad2d985abf5b","tok-e859dbfa1b93","tok-76de576c47b4","tok-8b4772158c42","tok-f608518a0b60","tok-e833b2f7da81","tok-5b26d663ba64","tok-6da5c9d0d571","tok-958ee36623a2","tok-218873611519","tok-6249f49b941d","tok-6da5c9d0d571","tok-f687bc1535da","tok-124b301549a8","tok-f1736f06b602","tok-bafd983ec4bf","tok-e0c367965ef0","tok-38dc98d7c4a2","tok-8b4772158c42","tok-b5ef3d4405aa","tok-f5eb48e29b95","tok-ae7f0320ea7a","tok-be85d3742bed","tok-6da5c9d0d571","tok-bc4f744856c0","tok-c21e7350ae64","tok-376a3a748a85","tok-98193107341a","tok-c8886133d30c","tok-29ccd982d220","tok-7635175143d2","tok-f5eb48e29b95","tok-ae7f0320ea7a","tok-be85d3742bed","tok-f687bc1535da","tok-c21e7350ae64","tok-218873611519","tok-6249f49b941d","tok-8b4772158c42","tok-024d2b2d22f1","tok-f4d6db23fca7","tok-e2dc562ef3e3","tok-2fb844b25781","tok-f4d6db23fca7","tok-bb8a0e94b0ea","tok-7997c877d25d","tok-6da5c9d0d571","tok-218873611519","tok-749a46602e29","tok-7ae94e90263c","tok-307799bc14de","tok-b5295d3afca2","tok-a79492369d46","tok-96988572cf76","tok-15bb41709d87","tok-b8ffc4df96c3","tok-cf102fdd92e8","tok-30d3fd56127a","tok-69cce167571d","tok-5c52a9b6a499","tok-a6834fd19550","tok-256de3dd0de2","tok-53673ab05e19","tok-ae7f0320ea7a","tok-ab01b3e784b8","tok-991d9b1feccd","tok-c164e1b4a5a4","tok-a5f2fdb1dc75","tok-88a69cfa6f7e","tok-a7aa0b08e397","tok-2adaded52203","tok-e65c5d244cfb","tok-577a42f348f4","tok-6da5c9d0d571","tok-26adb6d231eb","tok-8b4772158c42","tok-3c0f9b6eb2d1","tok-443ddd52f63e","tok-6da5c9d0d571","tok-e9b40a0fb863","tok-8b4772158c42","tok-bbd04d7a955b","tok-f4d6db23fca7","tok-0a416e19037e","tok-6da5c9d0d571","tok-ecb0f59a90fe","tok-98cc986ce24d","tok-822496835eb4","tok-53673ab05e19","tok-6da5c9d0d571","tok-218873611519","tok-bfed416e21a6","tok-22d76bc4d5a7","tok-ae7f0320ea7a","tok-6446808de5c4","tok-ad240fcd9b42","tok-ae7f0320ea7a","tok-cf102fdd92e8","tok-ad240fcd9b42","tok-ae7f0320ea7a","tok-2161e4432cd2","tok-991d9b1feccd","tok-c164e1b4a5a4","tok-7519bf1cbae9","tok-a7bca352992c","tok-a7bca352992c","tok-f83da38890e5","tok-2adaded52203","tok-e65c5d244cfb","tok-0a9d8d3b58f2"]}]},"tosefta-kelim-batra-5-1":{"unit_id":"tosefta-kelim-batra-5-1","anchor_id":"tosefta-kelim-batra-5-1","source_ref":"Tosefta Kelim Batra 5:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c6028d888786","tok-ae7f0320ea7a","tok-14f2e5cddd5b","tok-ee58351b9638","tok-c465b0ad5d11","tok-67a82dc13877","tok-c78ef431c407","tok-cb49cebf2403","tok-5793d5d84416","tok-33313b006482","tok-01825873c3f7","tok-cb49cebf2403","tok-dd73ffb71981","tok-54d18cd1a4de","tok-87a7dd4412c7","tok-31de67f1a477","tok-124147d0c74a","tok-edf686b67d1b","tok-7ced9cf5a8ec","tok-124147d0c74a","tok-306d0328ad3d","tok-3a549e426cf7","tok-624361257898","tok-9fa2fa1e059f","tok-423202ed7a54","tok-710a4d3e4db3","tok-431e57acb898","tok-39220e2c4973","tok-74f1a3838515","tok-33d18393c89d","tok-60147c85662d","tok-7f0a645be4c8","tok-207663e8e819","tok-a7bca352992c","tok-7f0a645be4c8","tok-f198ad548e1d","tok-bd123a0fa7c8","tok-182b4b227e92","tok-56d0163bcbe2","tok-f72c169977c0","tok-5ad8c7fb782c","tok-bd123a0fa7c8","tok-c6028d888786","tok-ae7f0320ea7a","tok-3fe0b6b140c0","tok-ee58351b9638","tok-c465b0ad5d11","tok-67a82dc13877","tok-c78ef431c407","tok-39220e2c4973","tok-57a1adef616c","tok-01825873c3f7","tok-39220e2c4973","tok-dd73ffb71981","tok-54d18cd1a4de","tok-5ad8c7fb782c","tok-31de67f1a477","tok-124147d0c74a","tok-edf686b67d1b","tok-7ced9cf5a8ec","tok-124147d0c74a","tok-306d0328ad3d","tok-3a549e426cf7","tok-624361257898","tok-9fa2fa1e059f","tok-423202ed7a54","tok-710a4d3e4db3","tok-431e57acb898","tok-39220e2c4973","tok-74f1a3838515","tok-33d18393c89d","tok-60147c85662d","tok-7f0a645be4c8","tok-207663e8e819","tok-a7bca352992c","tok-7f0a645be4c8","tok-f198ad548e1d","tok-bd123a0fa7c8","tok-182b4b227e92","tok-56d0163bcbe2","tok-f72c169977c0","tok-5ad8c7fb782c","tok-bd123a0fa7c8","tok-f687bc1535da","tok-c6028d888786","tok-892b73431112","tok-a64b3922227c","tok-e0901541fbb3","tok-bbe78c1c0460","tok-60147c85662d","tok-47e101633034","tok-99d1f7818e58","tok-47e101633034","tok-a7bca352992c","tok-182b4b227e92","tok-43da00e46faa","tok-bd123a0fa7c8","tok-f8742abf3b52","tok-ae7f0320ea7a","tok-35d38bfe8a61","tok-62a87d774ef4","tok-e0901541fbb3","tok-710a4d3e4db3","tok-431e57acb898","tok-39220e2c4973","tok-20cfb9db4d9b","tok-a7bca352992c","tok-182b4b227e92","tok-43da00e46faa","tok-bd123a0fa7c8","tok-f687bc1535da","tok-c6028d888786","tok-892b73431112","tok-a64b3922227c","tok-e0901541fbb3","tok-bbe78c1c0460","tok-60147c85662d","tok-47e101633034","tok-99d1f7818e58","tok-47e101633034","tok-f687bc1535da","tok-ac5f6e058b7c","tok-a3e1e70b6910","tok-218873611519","tok-6249f49b941d","tok-a7bca352992c","tok-f687bc1535da","tok-3c5009eb75fb","tok-892b73431112","tok-a64b3922227c","tok-7333ef0dbdd1","tok-9b9a8a09a012","tok-67a82dc13877","tok-df6e3a5325c3","tok-9b8df13368db","tok-cb49cebf2403","tok-d031dd79b4fd","tok-e0901541fbb3","tok-bbe78c1c0460","tok-f4d6db23fca7","tok-47e101633034","tok-6da5c9d0d571","tok-182b4b227e92","tok-43da00e46faa","tok-8b4772158c42"]}]},"tosefta-kelim-batra-5-2":{"unit_id":"tosefta-kelim-batra-5-2","anchor_id":"tosefta-kelim-batra-5-2","source_ref":"Tosefta Kelim Batra 5:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d14511500199","tok-ae7f0320ea7a","tok-3fe0b6b140c0","tok-67b7b9dee58c","tok-97d9e4947f83","tok-f4d6db23fca7","tok-54d18cd1a4de","tok-d88680a207de","tok-6da5c9d0d571","tok-d14511500199","tok-ae7f0320ea7a","tok-cc5241ffbecc","tok-67b7b9dee58c","tok-97d9e4947f83","tok-f4d6db23fca7","tok-54d18cd1a4de","tok-d88680a207de","tok-8b4772158c42","tok-11b1807fd04e","tok-86286a52f3d8","tok-ae7f0320ea7a","tok-cc5241ffbecc","tok-f4701cc8a60b","tok-26b835ca9000","tok-6cafb5885b64","tok-3478be7d5642","tok-97d9e4947f83","tok-6e85a2a1e3ba","tok-54d18cd1a4de","tok-d88680a207de","tok-fe4d09c9bf9b","tok-6e50ee600278","tok-6c2c5694a2be","tok-767abb04aef7","tok-6097175b319f","tok-a5f2fdb1dc75","tok-e65563e9ae71","tok-096a9fd67556","tok-e7299ce073cb","tok-baa26d5f9463","tok-950f598b8f1d","tok-f438a27e31fe","tok-e59002732b93","tok-8aff4f664150","tok-ae7f0320ea7a","tok-cc5241ffbecc","tok-f4701cc8a60b","tok-26b835ca9000","tok-6cafb5885b64","tok-3478be7d5642","tok-97d9e4947f83","tok-6e85a2a1e3ba","tok-54d18cd1a4de","tok-d88680a207de","tok-aff93b931d77","tok-3c1cc6a317a3","tok-a230eb89ac08","tok-5a80620b930b","tok-fe4d09c9bf9b","tok-d72533c0ed6a","tok-b49fa0e7d0d1","tok-e67d33b82e4f","tok-aff93b931d77","tok-3c1cc6a317a3","tok-a230eb89ac08","tok-5a80620b930b","tok-a3e1e70b6910","tok-218873611519","tok-873e869a9cf0","tok-35fd8bcce087","tok-379402956b14","tok-fe03f9d0d0e9","tok-7bef5aeffa8b","tok-9ec4de1b63d4","tok-40f321a1486a","tok-a230eb89ac08","tok-5a80620b930b","tok-df6e3a5325c3","tok-9e7e2c2aaaf0","tok-28e1d091e0dc","tok-88a88fdfd15f","tok-2fb844b25781","tok-218873611519","tok-1d8896b3d0d8","tok-1e0f986d8356","tok-f687bc1535da","tok-3748bcef08f4","tok-be9e2cbb296d","tok-ae7f0320ea7a","tok-69cce167571d","tok-6738d3c0b6ed","tok-ae7f0320ea7a","tok-54ab519ac727","tok-7171f3569e91","tok-35f724ba53bf","tok-c4b607312a51","tok-e524c0fb4b23","tok-df6e3a5325c3","tok-236351876377","tok-59c28e30b48a","tok-ae7f0320ea7a","tok-69cce167571d","tok-bf72aad5d36e","tok-ae7f0320ea7a","tok-54ab519ac727","tok-acf60edabfa5","tok-a661a70b7fd3","tok-9d0abab16eab","tok-7171f3569e91","tok-35f724ba53bf","tok-c4b607312a51","tok-e524c0fb4b23","tok-df6e3a5325c3","tok-236351876377","tok-be9e2cbb296d","tok-f4d937da1cd6","tok-3ae0c1c1f91c","tok-6c8d9a8ab7a2","tok-a5f2fdb1dc75","tok-451ed816111b","tok-7519bf1cbae9","tok-7013c5af4fac","tok-21d9b2175252","tok-fb489af66040","tok-9b06582f2016","tok-7171f3569e91","tok-c4b607312a51","tok-99d1f7818e58","tok-f687bc1535da","tok-3748bcef08f4","tok-59c28e30b48a","tok-ae7f0320ea7a","tok-69cce167571d","tok-bf72aad5d36e","tok-ae7f0320ea7a","tok-54ab519ac727","tok-26a5f852a6ea","tok-35f724ba53bf","tok-c4b607312a51","tok-e524c0fb4b23","tok-df6e3a5325c3","tok-9905610482e8","tok-236351876377","tok-10b2840c75fc","tok-7519bf1cbae9","tok-3748bcef08f4","tok-1f8141955b17","tok-b3c87802604f","tok-a691241aa538","tok-720932e96b32","tok-a7bca352992c","tok-7013c5af4fac","tok-bc4f744856c0","tok-3748bcef08f4","tok-37912d92dc2e","tok-e7b800deec2f","tok-892b73431112","tok-94b09509da7a","tok-b1d00f8e0602","tok-97d9e4947f83","tok-f4d6db23fca7","tok-d88680a207de","tok-6da5c9d0d571","tok-46ddeb9b18b9","tok-28c62f1ea690","tok-eb65edd0e0ed"]}]},"tosefta-kelim-batra-5-3":{"unit_id":"tosefta-kelim-batra-5-3","anchor_id":"tosefta-kelim-batra-5-3","source_ref":"Tosefta Kelim Batra 5:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f5c322d439de","tok-7d3edadeb718","tok-f4d6db23fca7","tok-eaebba77891e","tok-df6e3a5325c3","tok-0a284c8530cc","tok-56d0163bcbe2","tok-9489750784c3","tok-066f04dbe392","tok-a3e1e70b6910","tok-0278076d851a","tok-8d7cf112ad9b","tok-2ba273324b6b","tok-ad3753dd46f3","tok-a575793373a5","tok-9489750784c3","tok-066f04dbe392","tok-a3e1e70b6910","tok-6a195ea69872","tok-b29246faa48e","tok-ad3753dd46f3","tok-81e4fb5cc689","tok-3c1cc6a317a3","tok-6aad906ef32e","tok-8ab3f1483476","tok-3c1cc6a317a3","tok-b8dffb9afee6","tok-b2a2fd41d988","tok-972173f9e61b","tok-418a0420a528","tok-df22e530fc5a","tok-99998f406962","tok-d7fbf8572965","tok-bc394abfbe43","tok-81e4fb5cc689","tok-3c1cc6a317a3","tok-b5c2b57ebbd2","tok-6ec360c0fb3c","tok-d411b216cbe4","tok-82c9902021db","tok-d717bc8eea55","tok-ae7f0320ea7a","tok-3004c8f5f077","tok-f1fb208f0cb2","tok-6e85a2a1e3ba","tok-7013c5af4fac","tok-47e101633034","tok-99d1f7818e58","tok-47e101633034","tok-2b3e430fb5e2","tok-bbe78c1c0460","tok-6e85a2a1e3ba","tok-577a42f348f4","tok-99d1f7818e58","tok-577a42f348f4","tok-f687bc1535da","tok-c6028d888786","tok-892b73431112","tok-eb18b21cc31f","tok-e0901541fbb3","tok-bbe78c1c0460","tok-f4d6db23fca7","tok-47e101633034","tok-99d1f7818e58","tok-47e101633034","tok-a7bca352992c","tok-e0901541fbb3","tok-43da00e46faa","tok-bd123a0fa7c8","tok-a3d59fc1979c","tok-ae7f0320ea7a","tok-87247b5673da","tok-0ff4ef63be26","tok-e0901541fbb3","tok-0bea0e2d3749","tok-431e57acb898","tok-cb49cebf2403","tok-6da5c9d0d571","tok-182b4b227e92","tok-43da00e46faa","tok-8b4772158c42","tok-3ae0c1c1f91c","tok-fd1df14d9eed","tok-c6d5d9b3b9c3","tok-7519bf1cbae9","tok-ae7f0320ea7a","tok-cf102fdd92e8","tok-30d3fd56127a","tok-69cce167571d","tok-469e590fe153","tok-9f15f8224af4","tok-ae7f0320ea7a","tok-6446808de5c4","tok-30d3fd56127a","tok-cb2f05f7c593","tok-30d3fd56127a","tok-86c73518db25","tok-4f45aee89825","tok-c2d99d0337ae"]}]},"tosefta-kelim-batra-5-4":{"unit_id":"tosefta-kelim-batra-5-4","anchor_id":"tosefta-kelim-batra-5-4","source_ref":"Tosefta Kelim Batra 5:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ee14e3b806bf","tok-ae7f0320ea7a","tok-9ba7d4013a02","tok-6527147935f7","tok-6249f49b941d","tok-20870de3415e","tok-556b1ed86a73","tok-a7bca352992c","tok-af1324f0e51f","tok-f7940dfdc9a1","tok-892b73431112","tok-94b09509da7a","tok-a3e1e70b6910","tok-72ea6d8b54a0","tok-e92da8bafc49","tok-35fd8bcce087","tok-ad3753dd46f3","tok-48c96adfa2ea","tok-25ed4ef48be2","tok-6249f49b941d","tok-9a899ce38b0f","tok-60147c85662d","tok-218873611519","tok-6249f49b941d","tok-4b862ba4221c","tok-4b7c84920f89","tok-ad3753dd46f3","tok-d93b192062ff","tok-e34449801197","tok-4b862ba4221c","tok-4b7c84920f89","tok-b29246faa48e","tok-ad3753dd46f3","tok-c6028d888786","tok-ae7f0320ea7a","tok-056428e3dffa","tok-060615d39f11","tok-6249f49b941d","tok-20870de3415e","tok-9c11231705ba","tok-bb4057e62d2b","tok-5a80620b930b","tok-577a42f348f4","tok-e045d6ca69dd","tok-22d76bc4d5a7","tok-207663e8e819","tok-ad240fcd9b42","tok-f198ad548e1d","tok-ad240fcd9b42","tok-892b73431112","tok-b72a71eca274","tok-a7bca352992c","tok-3ae0c1c1f91c","tok-9d1562f00c50","tok-a5f2fdb1dc75","tok-c6c5e7bb0dfd","tok-7519bf1cbae9","tok-f687bc1535da","tok-69cce167571d","tok-892b73431112","tok-c68074550e83","tok-801775d505b1","tok-711cd5d4347f","tok-f8801aefbac2","tok-31cbf228b4e8","tok-1b8edd89bd1f","tok-e70f75714f8f","tok-0d8c0520e353","tok-07ac42c7cc5a","tok-a7bca352992c","tok-95ccc922e531","tok-ae7f0320ea7a","tok-c7c7589468ad","tok-a7bca352992c","tok-7b342d0b5ab4","tok-44de2ddd365f","tok-46ddeb9b18b9","tok-6249f49b941d","tok-09e34abb9d2e","tok-a91cfc69a236","tok-baddf7c0301c","tok-63e3aa766cf5","tok-745db43532a9","tok-fa078828605e","tok-c8886133d30c","tok-b2b7a9641841","tok-beef48b0b865","tok-f5534ff71d98","tok-075fec596867","tok-ae0cea6203ad","tok-42c6331324fd","tok-09a26c27857b","tok-407b2d9ea8fa","tok-96988572cf76","tok-2a86782e66b2","tok-79d6bf412cca","tok-95ccc922e531","tok-c196c9283e68","tok-64e9c9e372f9","tok-407b2d9ea8fa","tok-92c17b1ebfa6","tok-ad3753dd46f3","tok-8e4bbb2fd783","tok-c1019891a69a","tok-ad3753dd46f3","tok-cbcc442bd5c8","tok-e65c5d244cfb","tok-f38108174de2","tok-ae7f0320ea7a","tok-64ededb416fc","tok-b9ff7c487cda","tok-b7d142327d77","tok-99d1f7818e58","tok-25229cd335e9","tok-afe25f45d6a0","tok-5d95be81998c","tok-849be31c7354","tok-8b4772158c42","tok-182b4b227e92","tok-43da00e46faa","tok-6da5c9d0d571","tok-bc4f744856c0","tok-c21e7350ae64","tok-c8886133d30c","tok-97d9e4947f83","tok-99d1f7818e58","tok-65435d72d119","tok-ae7f0320ea7a","tok-6c7cc9a7eb50","tok-bc4f744856c0","tok-75aca0f88fd3","tok-96b12bf64804","tok-c8886133d30c","tok-ef942901c462","tok-99d1f7818e58","tok-836fa3858f9f","tok-6c7cc9a7eb50"]}]},"tosefta-kelim-batra-6-1":{"unit_id":"tosefta-kelim-batra-6-1","anchor_id":"tosefta-kelim-batra-6-1","source_ref":"Tosefta Kelim Batra 6:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1e34dec86d57","tok-667b6ee8f316","tok-e0aa833dc71b","tok-892b73431112","tok-edbf5ffa557d","tok-ee20d5c8325a","tok-a7bca352992c","tok-892b73431112","tok-edbf5ffa557d","tok-ec82ac0ce6cd","tok-892b73431112","tok-351ad40da338","tok-ee20d5c8325a","tok-892b73431112","tok-351ad40da338","tok-ec82ac0ce6cd","tok-bd123a0fa7c8","tok-373f97c6f3a2","tok-910328908d3f","tok-a7bca352992c","tok-96006c7c4a94","tok-3ae0c1c1f91c","tok-451ed816111b","tok-3fa200f774ab","tok-c6e8ae65c513","tok-e65c5d244cfb","tok-ee24cf85f16e","tok-ad81d035890d","tok-0d725c7571a9","tok-b3afe48c31b9","tok-78b423d01445","tok-99d1f7818e58","tok-78b423d01445","tok-fb489af66040","tok-cf5daeffd56d","tok-78b423d01445","tok-54d18cd1a4de","tok-78b423d01445","tok-ee24cf85f16e","tok-ad81d035890d","tok-0d725c7571a9","tok-0eb227bfcf17","tok-e0901541fbb3","tok-e0ddf17569ac","tok-99d1f7818e58","tok-25229cd335e9","tok-ca0a4f708717","tok-5d95be81998c","tok-849be31c7354","tok-a7bca352992c","tok-182b4b227e92","tok-43da00e46faa","tok-bd123a0fa7c8","tok-ee24cf85f16e","tok-ad81d035890d","tok-0d725c7571a9","tok-4e4429f7077c","tok-440884bbef7a","tok-c196c9283e68","tok-188c1d20a98f","tok-89ef9456b8b9","tok-99d1f7818e58","tok-05e416e881d0","tok-36371dd99e0a","tok-97deac07bdb3","tok-d8fe0f6a164e","tok-6babbe226df5","tok-f5c322d439de","tok-ae7f0320ea7a","tok-a65e2961ba14","tok-0ff4ef63be26","tok-e0901541fbb3","tok-c6e8ae65c513","tok-0ddd1524127e","tok-8f20153f5b45","tok-ff00f285529f","tok-6527147935f7","tok-bca93ca77c34","tok-f4d6db23fca7","tok-577a42f348f4","tok-99d1f7818e58","tok-577a42f348f4","tok-6da5c9d0d571","tok-f1fb208f0cb2","tok-0ddd1524127e","tok-8f20153f5b45","tok-ff00f285529f","tok-e0901541fbb3","tok-bbe78c1c0460","tok-f4d6db23fca7","tok-577a42f348f4","tok-99d1f7818e58","tok-577a42f348f4","tok-6da5c9d0d571","tok-182b4b227e92","tok-43da00e46faa","tok-8b4772158c42","tok-10b2840c75fc","tok-7519bf1cbae9","tok-e0901541fbb3","tok-bbe78c1c0460","tok-f4d6db23fca7","tok-577a42f348f4","tok-99d1f7818e58","tok-577a42f348f4","tok-6da5c9d0d571","tok-182b4b227e92","tok-43da00e46faa","tok-8b4772158c42","tok-c6e8ae65c513","tok-d3db001759b7","tok-5b7e0c089c4a","tok-9d640eb2d22c","tok-218873611519","tok-88dbcd597577","tok-47e0b57ed8dc","tok-ad3753dd46f3","tok-d93b192062ff","tok-e34449801197","tok-d6c1acbad5b5","tok-47e0b57ed8dc","tok-b29246faa48e","tok-ad3753dd46f3"]}]},"tosefta-kelim-batra-6-2":{"unit_id":"tosefta-kelim-batra-6-2","anchor_id":"tosefta-kelim-batra-6-2","source_ref":"Tosefta Kelim Batra 6:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-861a53be3e3a","tok-ede895de9d31","tok-a673a31e664e","tok-afc4c4e50be4","tok-47b629ac9826","tok-f4d6db23fca7","tok-20070c9c3701","tok-d295a2ac8673","tok-8b4772158c42","tok-e0aa833dc71b","tok-a387457e4542","tok-1240f17078a0","tok-afc4c4e50be4","tok-80ac95c2adc3","tok-356c9afd2319","tok-a7bca352992c","tok-1ae45e8bc30e","tok-37801200f861","tok-98cc986ce24d","tok-4e9a33e584d1","tok-49016be076a1","tok-ae7f0320ea7a","tok-69f350bd781a","tok-e3eb9c0663c8","tok-81e4fb5cc689","tok-3b55f965de21","tok-6884526aa44e","tok-78b423d01445","tok-59129bacd870","tok-1d2da6a91b15","tok-19f6d30ffae2","tok-f3b2fc2f9e75","tok-19f6d30ffae2","tok-1d2da6a91b15","tok-139a6b41dd53","tok-f3b2fc2f9e75","tok-139a6b41dd53","tok-6e50ee600278","tok-6c2c5694a2be","tok-3e47979d697b","tok-c6e8ae65c513","tok-9be22de2fab7","tok-78b423d01445","tok-99d1f7818e58","tok-34be60f3421f","tok-78b423d01445","tok-0a284c8530cc","tok-8e25cc699ff6","tok-78b423d01445","tok-54d18cd1a4de","tok-78b423d01445","tok-577a42f348f4","tok-99d1f7818e58","tok-577a42f348f4","tok-30bc613cfa54","tok-398e30253b51","tok-e3eb9c0663c8","tok-26b835ca9000","tok-6da5c9d0d571","tok-eb25ee3fd47e","tok-398e30253b51","tok-892b73431112","tok-a3e890a5f102","tok-e7c187e3e6d1","tok-d8fe0f6a164e","tok-151d8f319413","tok-73fd990f94b9","tok-8da7b8dd77f8","tok-73fd990f94b9","tok-6e372da0c324","tok-99a1d960a3d9","tok-f4d6db23fca7","tok-73fd990f94b9","tok-20dbbfb01262","tok-87e510fcf6d9","tok-f4d6db23fca7","tok-73fd990f94b9","tok-db12ed169f6c","tok-9865b2f3fd85","tok-dc79e01b1def","tok-b2b8442405df","tok-8b4772158c42","tok-f327b9845cc2","tok-7333ef0dbdd1","tok-6da5c9d0d571","tok-df6e3a5325c3","tok-cd98ad676fb7","tok-65f2987beee8","tok-21d9b2175252","tok-7519bf1cbae9","tok-f90677f0a59f","tok-6249f49b941d","tok-c465b0ad5d11","tok-67a82dc13877","tok-6da5c9d0d571","tok-edd5f3c771b9","tok-bca93ca77c34","tok-c465b0ad5d11","tok-67a82dc13877","tok-8b4772158c42"]}]},"tosefta-kelim-batra-6-3":{"unit_id":"tosefta-kelim-batra-6-3","anchor_id":"tosefta-kelim-batra-6-3","source_ref":"Tosefta Kelim Batra 6:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-577a42f348f4","tok-99d1f7818e58","tok-577a42f348f4","tok-db12ed169f6c","tok-4eb41561e4a5","tok-ae7f0320ea7a","tok-c0360c17a762","tok-6da5c9d0d571","tok-3ae0c1c1f91c","tok-6c2c5694a2be","tok-f88279a55d5a","tok-451ed816111b","tok-7519bf1cbae9","tok-e0901541fbb3","tok-f608518a0b60","tok-4eb41561e4a5","tok-ae7f0320ea7a","tok-371c7f453b8c","tok-6da5c9d0d571","tok-e0901541fbb3","tok-bbe78c1c0460","tok-f4d6db23fca7","tok-277db71f4004","tok-8b4772158c42","tok-621fbefb0015","tok-8dc0ea8b62bf","tok-99d1f7818e58","tok-47e101633034","tok-a8a9360ea625","tok-48ac76caa0a5","tok-60147c85662d","tok-54d18cd1a4de","tok-2907fe8e53fa","tok-ac6f917996c8","tok-60147c85662d","tok-54d18cd1a4de","tok-f88c3f531fba","tok-310e78686ea5","tok-60147c85662d","tok-54d18cd1a4de","tok-8aa4f17f12a4","tok-892b73431112","tok-b101db7788d0","tok-a7bca352992c","tok-801775d505b1","tok-e34449801197","tok-3cea1661272c","tok-bd123a0fa7c8","tok-af848e174f1a","tok-3ae0c1c1f91c","tok-9d1562f00c50","tok-3ae0c1c1f91c","tok-9ac816bfeeeb","tok-7519bf1cbae9","tok-22d76bc4d5a7","tok-6249f49b941d","tok-892b73431112","tok-b101db7788d0","tok-ad240fcd9b42","tok-e34449801197","tok-892b73431112","tok-b101db7788d0","tok-bd123a0fa7c8","tok-af848e174f1a","tok-6f2fe6f86856","tok-3ae0c1c1f91c","tok-451ed816111b","tok-7519bf1cbae9","tok-3ae0c1c1f91c","tok-9d1562f00c50","tok-7519bf1cbae9","tok-22d76bc4d5a7","tok-6249f49b941d","tok-892b73431112","tok-b101db7788d0","tok-ad240fcd9b42","tok-e34449801197","tok-892b73431112","tok-b101db7788d0","tok-a7bca352992c","tok-3ae0c1c1f91c","tok-9ac816bfeeeb","tok-7519bf1cbae9","tok-22d76bc4d5a7","tok-892b73431112","tok-b101db7788d0","tok-ad240fcd9b42","tok-e34449801197","tok-892b73431112","tok-b101db7788d0","tok-bd123a0fa7c8","tok-c62e50fae495","tok-7519bf1cbae9","tok-892b73431112","tok-b101db7788d0","tok-a7bca352992c","tok-801775d505b1","tok-e34449801197","tok-3cea1661272c","tok-bd123a0fa7c8"]}]},"tosefta-kelim-batra-6-4":{"unit_id":"tosefta-kelim-batra-6-4","anchor_id":"tosefta-kelim-batra-6-4","source_ref":"Tosefta Kelim Batra 6:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-577a42f348f4","tok-99d1f7818e58","tok-577a42f348f4","tok-b9af469803a8","tok-4215680e298f","tok-e150527c0836","tok-0849f1899bd0","tok-8b4772158c42","tok-47e101633034","tok-99d1f7818e58","tok-47e101633034","tok-a387457e4542","tok-4215680e298f","tok-e150527c0836","tok-0849f1899bd0","tok-6da5c9d0d571","tok-10b2840c75fc","tok-7519bf1cbae9","tok-e03686c8513e","tok-6da5c9d0d571","tok-e150527c0836","tok-0849f1899bd0","tok-6da5c9d0d571","tok-220c0f44c06c","tok-9106163061d0","tok-10b2840c75fc","tok-7519bf1cbae9","tok-f687bc1535da","tok-e03686c8513e","tok-892b73431112","tok-975395ac3431","tok-8b4772158c42","tok-801775d505b1","tok-856f78f98acf","tok-6da5c9d0d571","tok-46ddeb9b18b9","tok-28c62f1ea690","tok-ab82f3d422dd","tok-76ac53269dd3","tok-c3f1ed274cb1","tok-8b4772158c42","tok-e150527c0836","tok-0849f1899bd0","tok-6da5c9d0d571","tok-3ae0c1c1f91c","tok-6c2c5694a2be","tok-16a1b8f4e059","tok-e65c5d244cfb","tok-18e98b6a7912","tok-af848e174f1a","tok-79eabfc83aa0","tok-e7a82ff3992f","tok-f652cc6007ec","tok-da3990e8cc06","tok-ba4d21238484","tok-27125b16dbd6","tok-708c1f650cd6","tok-3ae0c1c1f91c","tok-451ed816111b","tok-7519bf1cbae9","tok-2794dc9d8e67","tok-ae7f0320ea7a","tok-a27cb4a4fcfa","tok-a87420b5ddb5","tok-6e85a2a1e3ba","tok-3e3b3dfa13d7","tok-0bd1e0d64030","tok-6bad3ea00b93","tok-7519bf1cbae9","tok-81e4fb5cc689","tok-0991932934ee","tok-ae7f0320ea7a","tok-d7a750acffc4","tok-bd123a0fa7c8","tok-0761b9aeb5ac","tok-76de576c47b4","tok-a7bca352992c","tok-afd048eaf32b","tok-407b2d9ea8fa","tok-ad3753dd46f3","tok-c43a78ad7529","tok-0ec3ef6f1004"]}]},"tosefta-kelim-batra-6-5":{"unit_id":"tosefta-kelim-batra-6-5","anchor_id":"tosefta-kelim-batra-6-5","source_ref":"Tosefta Kelim Batra 6:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7573fda76b8e","tok-ae7f0320ea7a","tok-64ededb416fc","tok-6249f49b941d","tok-a7bca352992c","tok-0a9d8d3b58f2","tok-f9ed30250a84","tok-29fa1a5baa88","tok-3ae0c1c1f91c","tok-e2087612e5a9","tok-a7aa0b08e397","tok-3f9374389a1c","tok-6c2c5694a2be","tok-b1f471f468cb","tok-218873611519","tok-7e8630d2fc5a","tok-62f8138935ed","tok-7de8c3a28195","tok-33d217dfbdc3","tok-91782a83c680","tok-1b8edd89bd1f","tok-eb6ae1ebb48f","tok-63a074ad9431","tok-33d217dfbdc3","tok-abb6a63b9c05","tok-e26d5319091e","tok-2c7c6cf5b5ad","tok-3ae0c1c1f91c","tok-451ed816111b","tok-7519bf1cbae9","tok-dd734986b102","tok-2c7c6cf5b5ad","tok-b29246faa48e","tok-abb6a63b9c05","tok-5f75e17db8cf"]}]},"tosefta-kelim-batra-7-1":{"unit_id":"tosefta-kelim-batra-7-1","anchor_id":"tosefta-kelim-batra-7-1","source_ref":"Tosefta Kelim Batra 7:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6d57e680f597","tok-c21e7350ae64","tok-3fff503d030d","tok-218873611519","tok-424e1a108c1e","tok-6d57e680f597","tok-ae7f0320ea7a","tok-893aafa925a2","tok-2e0ab9129c39","tok-182b4b227e92","tok-bbe78c1c0460","tok-3dd3b2f82f4b","tok-2deb54983637","tok-218873611519","tok-424e1a108c1e","tok-10b2840c75fc","tok-7519bf1cbae9","tok-2deb54983637","tok-f172d4d706f1","tok-84a0c62c8330","tok-47e101633034","tok-423202ed7a54","tok-f172d4d706f1","tok-84a0c62c8330","tok-577a42f348f4","tok-99d1f7818e58","tok-577a42f348f4","tok-9106163061d0","tok-9ebacfc93d1a","tok-e0901541fbb3","tok-e27933febf2d","tok-99d1f7818e58","tok-25229cd335e9","tok-ca0a4f708717","tok-5d95be81998c","tok-849be31c7354","tok-bd123a0fa7c8","tok-182b4b227e92","tok-43da00e46faa","tok-a7bca352992c","tok-6d57e680f597","tok-07d2f9a18035","tok-ccc1481ec695","tok-df22e530fc5a","tok-99998f406962","tok-820276f87317","tok-bc394abfbe43","tok-da154a538b0f","tok-d9abe8389158","tok-f795c21b88dc","tok-e045d6ca69dd","tok-af1324f0e51f","tok-3d50fad5da02","tok-9be22de2fab7","tok-2e0ab9129c39","tok-30d3fd56127a","tok-7574658085b8","tok-fddcb6001e59","tok-2e0ab9129c39","tok-182b4b227e92","tok-43da00e46faa","tok-d9b1faa4d956","tok-f75465c3b352","tok-af1324f0e51f","tok-ae7f0320ea7a","tok-ffa6a859a108","tok-30d3fd56127a","tok-c0b06736d159","tok-f758b5037591","tok-e92da8bafc49","tok-10b2840c75fc","tok-7519bf1cbae9","tok-2794dc9d8e67","tok-ae7f0320ea7a","tok-ab01b3e784b8","tok-f758b5037591","tok-e92da8bafc49","tok-af1324f0e51f","tok-e43466927cee","tok-ae7f0320ea7a","tok-6c4e1a14827a","tok-eee5e3259758","tok-87ab6f503fe7","tok-46ddeb9b18b9","tok-6249f49b941d","tok-8734fd1846ef","tok-feefe991d5cc","tok-717f84a7b31b","tok-ce9056bd9459"]}]},"tosefta-kelim-batra-7-2":{"unit_id":"tosefta-kelim-batra-7-2","anchor_id":"tosefta-kelim-batra-7-2","source_ref":"Tosefta Kelim Batra 7:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4e9a33e584d1","tok-89964799793b","tok-0a416e19037e","tok-166a83c3459c","tok-87001f5fab44","tok-0a416e19037e","tok-166a83c3459c","tok-0b8aaf0059fc","tok-0a416e19037e","tok-166a83c3459c","tok-8afae4b1d23b","tok-87ab6f503fe7","tok-92750fc043a7","tok-d5b23981ed27","tok-a83d2de18c00","tok-f795c21b88dc","tok-e045d6ca69dd","tok-3f9374389a1c","tok-6c2c5694a2be","tok-7519bf1cbae9","tok-0a416e19037e","tok-a83d2de18c00","tok-bd123a0fa7c8","tok-35fd8bcce087","tok-4e9a33e584d1","tok-1308cb1e81c7","tok-ad240fcd9b42","tok-e4b292897980","tok-28a2027ca8a2","tok-4e9a33e584d1","tok-96a641553c0c","tok-ad240fcd9b42","tok-96a641553c0c","tok-553d7b7c15ba","tok-4e9a33e584d1","tok-a5f2fdb1dc75","tok-f430a3a8b1d6","tok-553d7b7c15ba","tok-30d3fd56127a","tok-f430a3a8b1d6","tok-0163bbfdadc7","tok-4e9a33e584d1","tok-eef5a733e601","tok-ae7f0320ea7a","tok-4178cb005639","tok-715a85ea7216","tok-7171f3569e91","tok-e65c5d244cfb","tok-cda86993be66","tok-c4b607312a51","tok-e65c5d244cfb","tok-fddcb6001e59","tok-ae7f0320ea7a","tok-c0b06736d159","tok-7171f3569e91","tok-e65c5d244cfb","tok-792cd0c2048e","tok-c4b607312a51","tok-e65c5d244cfb","tok-0163bbfdadc7","tok-4b3e080d6e59","tok-8d7cf112ad9b","tok-b29246faa48e","tok-ad3753dd46f3","tok-fb489af66040","tok-c43a78ad7529","tok-e31f6f03f071","tok-476869891a4a","tok-82f8cf12e411","tok-d77913083738","tok-bca93ca77c34","tok-0f64e77c7e60","tok-7c57dd7dc6f5","tok-2b3e430fb5e2","tok-d77913083738","tok-57740f41d291","tok-7c57dd7dc6f5","tok-ad3753dd46f3","tok-c43a78ad7529","tok-1b8edd89bd1f","tok-ad3753dd46f3","tok-476869891a4a","tok-af848e174f1a","tok-6f2fe6f86856","tok-3ae0c1c1f91c","tok-451ed816111b","tok-3f9374389a1c","tok-6c2c5694a2be","tok-e65c5d244cfb","tok-2794dc9d8e67","tok-fb489af66040","tok-c43a78ad7529","tok-96006c7c4a94","tok-3ae0c1c1f91c","tok-6c2c5694a2be","tok-b31ce9d63ee9","tok-7519bf1cbae9","tok-9de980b1ee75","tok-48c96adfa2ea","tok-46747cb05b31","tok-a230eb89ac08","tok-9de980b1ee75","tok-48c96adfa2ea","tok-b31ce9d63ee9","tok-7519bf1cbae9","tok-aaea1c97f59b","tok-6329bbb2a036","tok-56a12deacead","tok-708c1f650cd6","tok-b238f87b9bf2","tok-c6af6ad4244a","tok-ae7f0320ea7a","tok-4cae8cac7db9","tok-30d3fd56127a","tok-c0b06736d159","tok-f758b5037591","tok-e92da8bafc49","tok-3e47979d697b","tok-30c32b1d99d9","tok-a911ef86682c","tok-4b3e080d6e59","tok-8d7cf112ad9b","tok-6249f49b941d","tok-bd123a0fa7c8","tok-46747cb05b31","tok-a230eb89ac08","tok-b238f87b9bf2","tok-6329bbb2a036","tok-3cda31d80bdb","tok-b2d15ffdd03f","tok-e45aed78b1d3","tok-3622333cc546","tok-885cb69caf61","tok-abebe2c42e1b","tok-1ca38f6e9a74","tok-ae7f0320ea7a","tok-3004c8f5f077","tok-28a2027ca8a2","tok-e045d6ca69dd","tok-30d3fd56127a","tok-47ec3f6769b3","tok-2e0ab9129c39","tok-3e47979d697b","tok-30c32b1d99d9","tok-a911ef86682c","tok-4b3e080d6e59","tok-3a3d09315a61","tok-6249f49b941d","tok-a7bca352992c","tok-2c12ae97c8d1","tok-b31ce9d63ee9","tok-54d18cd1a4de","tok-af848e174f1a","tok-c08344f590d6","tok-77eb059cf461","tok-6db19e5b409c","tok-6b810fb1d94f","tok-6249f49b941d","tok-ad3753dd46f3","tok-c43a78ad7529","tok-0ec3ef6f1004","tok-99d1f7818e58","tok-9de980b1ee75","tok-6249f49b941d","tok-ad3753dd46f3","tok-c43a78ad7529","tok-0ec3ef6f1004","tok-c0cd0ff1aba3","tok-c6e561c99988","tok-bf2daf9bd47c","tok-6b810fb1d94f","tok-6249f49b941d","tok-ad3753dd46f3","tok-c43a78ad7529","tok-0ec3ef6f1004","tok-99d1f7818e58","tok-9de980b1ee75","tok-80a3e764e695","tok-e34449801197","tok-ad3753dd46f3","tok-476869891a4a","tok-218873611519","tok-81e4fb5cc689","tok-85a6c604c7a2","tok-bc4f744856c0","tok-ff6127e5e9a8","tok-68ba93385501","tok-279cb3abb3dc","tok-54d18cd1a4de","tok-1099267055a0","tok-7f99a7e9ec17","tok-91401a0dd6a6","tok-9d0abab16eab","tok-b2a2fd41d988","tok-4e9a33e584d1","tok-d5b23981ed27","tok-0a416e19037e","tok-7afb6da4cd19","tok-1099267055a0","tok-7f99a7e9ec17","tok-feefe991d5cc","tok-717f84a7b31b","tok-b2a2fd41d988","tok-4e9a33e584d1","tok-facd8e300c0c","tok-87ab6f503fe7"]}]},"tosefta-kelim-batra-7-3":{"unit_id":"tosefta-kelim-batra-7-3","anchor_id":"tosefta-kelim-batra-7-3","source_ref":"Tosefta Kelim Batra 7:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ad3e69b9614a","tok-e208842a13d0","tok-430b8bf5c000","tok-05343b9d75e1","tok-0633228ed0ed","tok-96988572cf76","tok-3c3abbb7c62d","tok-c196c9283e68","tok-0446ef996ed1","tok-a5a9c41bec08","tok-4ba62bb8c02f","tok-ae7f0320ea7a","tok-e208842a13d0","tok-eea014f57922","tok-41d1911f9b26","tok-96988572cf76","tok-f1d631f8b5ce","tok-218873611519","tok-ad3e69b9614a","tok-e208842a13d0","tok-6527147935f7","tok-409e27c88588","tok-41d1911f9b26","tok-188673cf8a13","tok-25ed4ef48be2","tok-1d7cbdaa6c06","tok-667b6ee8f316","tok-e208842a13d0","tok-91e92164871d","tok-df3bbe485546","tok-ad3e69b9614a","tok-e208842a13d0","tok-f1fb208f0cb2","tok-6b4440cce596","tok-67a82dc13877","tok-df6e3a5325c3","tok-9b8df13368db","tok-d308338681a0","tok-57a8c3fb12ed","tok-7519bf1cbae9","tok-5990dfaa6774","tok-892b73431112","tok-36731622b5e1","tok-6b06ae47d2c2","tok-a387457e4542","tok-40bf133bac48","tok-6527147935f7","tok-7f7537d50530","tok-60147c85662d","tok-bd123a0fa7c8","tok-9106163061d0","tok-a7bca352992c","tok-062a7a913196","tok-40bf133bac48","tok-a7bca352992c","tok-df6e3a5325c3","tok-b92fb74c9ea8","tok-e365765cb95d","tok-1d91f2f71c64","tok-ae7f0320ea7a","tok-2d21b4cf6288","tok-22d76bc4d5a7","tok-75b31141b28c","tok-5a80620b930b","tok-4e9a33e584d1","tok-ad240fcd9b42","tok-bca93ca77c34","tok-5a80620b930b","tok-4e9a33e584d1","tok-22d76bc4d5a7","tok-c465b0ad5d11","tok-218873611519","tok-6249f49b941d","tok-ad240fcd9b42","tok-bca93ca77c34","tok-c465b0ad5d11","tok-218873611519","tok-6249f49b941d","tok-a7bca352992c","tok-30d3fd56127a","tok-df3bbe485546","tok-30d3fd56127a","tok-03ecb62474da","tok-30d3fd56127a","tok-e208842a13d0","tok-c465b0ad5d11","tok-218873611519","tok-6249f49b941d","tok-a7bca352992c","tok-bca93ca77c34","tok-c465b0ad5d11","tok-218873611519","tok-6249f49b941d","tok-abb6a63b9c05","tok-e514675917fa","tok-54996324cc94","tok-c62e50fae495","tok-b1f471f468cb","tok-3f9374389a1c","tok-626283d98708","tok-a5f2fdb1dc75","tok-41d6e81864dd","tok-a7aa0b08e397"]}]},"tosefta-kelim-batra-7-4":{"unit_id":"tosefta-kelim-batra-7-4","anchor_id":"tosefta-kelim-batra-7-4","source_ref":"Tosefta Kelim Batra 7:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-08260cc7df56","tok-ae7f0320ea7a","tok-822e75bf6cb7","tok-5738c6e56eb1","tok-fd88270c4071","tok-054b071568cf","tok-0b793b100481","tok-3ae0c1c1f91c","tok-6c2c5694a2be","tok-7519bf1cbae9","tok-7013c5af4fac","tok-3ae0c1c1f91c","tok-626283d98708","tok-a5f2fdb1dc75","tok-41d6e81864dd","tok-a7bca352992c","tok-7013c5af4fac","tok-ad3e69b9614a","tok-2d21b4cf6288","tok-10b2840c75fc","tok-7519bf1cbae9","tok-451ed816111b","tok-a5f2fdb1dc75","tok-8e0d9d653d77","tok-9106163061d0","tok-b1f471f468cb","tok-7013c5af4fac","tok-6f2fe6f86856","tok-cc0f112c54e8","tok-ae7f0320ea7a","tok-e208842a13d0","tok-695cd9bf948d","tok-3352b7457d88","tok-e0901541fbb3","tok-88a88fdfd15f","tok-63d286ea3db0","tok-167c8c399cfd","tok-991d9b1feccd","tok-b1f471f468cb","tok-2adaded52203","tok-e524c0fb4b23","tok-182b4b227e92","tok-a7f353c2065e","tok-0bc02562c507","tok-ae7f0320ea7a","tok-6ff33d7ad720","tok-910328908d3f","tok-708c1f650cd6","tok-6249f49b941d","tok-a7bca352992c","tok-87001f5fab44","tok-cc3e86725981","tok-eb9cd1ecb269","tok-22d76bc4d5a7","tok-207663e8e819","tok-ad240fcd9b42","tok-f198ad548e1d","tok-96988572cf76","tok-6b06ae47d2c2","tok-e95eb635c052","tok-2ff01aa596ee","tok-207663e8e819","tok-c196c9283e68","tok-f198ad548e1d","tok-96988572cf76","tok-c62cb0b0f511","tok-e0901541fbb3","tok-650cc52b7523","tok-5d74486fc7b2","tok-54d18cd1a4de","tok-857e06b7f0df","tok-e46dfde01493","tok-c196c9283e68","tok-182b4b227e92","tok-43da00e46faa","tok-96988572cf76","tok-3e3b3dfa13d7","tok-0bd1e0d64030","tok-6bad3ea00b93","tok-7519bf1cbae9","tok-f043f20e6371","tok-f07bb30c6a7d","tok-5bee9582332c","tok-96988572cf76","tok-46ddeb9b18b9","tok-7176e2b77e95","tok-54d18cd1a4de","tok-a09b3a645d67","tok-2adaded52203","tok-35f724ba53bf","tok-800d769ba573","tok-ae7f0320ea7a","tok-5110ffd2ce83","tok-30d3fd56127a","tok-87247b5673da","tok-c6aaa4eb4193","tok-87a7dd4412c7","tok-e0901541fbb3","tok-6c400dc8a095","tok-7407098f2605","tok-9d0abab16eab","tok-6da5c9d0d571","tok-182b4b227e92","tok-feefe991d5cc","tok-717f84a7b31b","tok-8b4772158c42","tok-da5f563bdfd5","tok-ae7f0320ea7a","tok-e208842a13d0","tok-75b31141b28c","tok-60147c85662d","tok-98cc986ce24d","tok-f07886cb3892","tok-5110ffd2ce83","tok-a7bca352992c","tok-98cc986ce24d","tok-f07886cb3892","tok-ab7e9f48f2fa","tok-bd123a0fa7c8","tok-423202ed7a54","tok-a7bca352992c","tok-abb6a63b9c05","tok-fdefef645aec","tok-54d18cd1a4de","tok-44236258c8bd","tok-8dc5bea85ea3","tok-bd9977e76f41","tok-02aef0d769ac","tok-4874a50bae90","tok-46a8597bf95d","tok-ae7f0320ea7a","tok-e208842a13d0","tok-d93b192062ff","tok-0a9d8d3b58f2","tok-ad3e69b9614a","tok-e208842a13d0","tok-96988572cf76","tok-f06dbd6e85c6","tok-01cac438ebdf","tok-ff76421bb467","tok-e5f99a32a9d0","tok-0d957b4f168a","tok-1184190ff237","tok-d7574b1b62f8","tok-ae7f0320ea7a","tok-e208842a13d0","tok-96988572cf76"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/tosefta-kelim-batra.manifest.json","root_href":"../../"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

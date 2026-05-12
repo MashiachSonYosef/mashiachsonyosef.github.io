@@ -1,0 +1,24 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 1:1 | tosefta-meilah-1-1 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 1:2 | tosefta-meilah-1-2 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 1:3 | tosefta-meilah-1-3 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 1:4 | tosefta-meilah-1-4 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 1:5 | tosefta-meilah-1-5 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 1:6 | tosefta-meilah-1-6 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 1:7 | tosefta-meilah-1-7 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 1:8 | tosefta-meilah-1-8 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 1:9 | tosefta-meilah-1-9 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 1:10 | tosefta-meilah-1-10 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 1:11 | tosefta-meilah-1-11 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 1:12 | tosefta-meilah-1-12 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 1:13 | tosefta-meilah-1-13 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 1:14 | tosefta-meilah-1-14 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 1:15 | tosefta-meilah-1-15 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 1:16 | tosefta-meilah-1-16 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 2:1 | tosefta-meilah-2-1 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 2:2 | tosefta-meilah-2-2 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 2:3 | tosefta-meilah-2-3 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 2:4 | tosefta-meilah-2-4 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 2:5 | tosefta-meilah-2-5 |  |  | not_done |  |
+| tosefta-meilah | Tosefta Meilah | Tosefta Meilah 3:1 | tosefta-meilah-3-1 |  |  | not_done |  |

@@ -1,0 +1,21 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 1:1 | tosefta-horayot-1-1 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 1:2 | tosefta-horayot-1-2 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 1:3 | tosefta-horayot-1-3 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 1:4 | tosefta-horayot-1-4 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 1:5 | tosefta-horayot-1-5 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 1:6 | tosefta-horayot-1-6 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 1:7 | tosefta-horayot-1-7 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 1:8 | tosefta-horayot-1-8 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 2:1 | tosefta-horayot-2-1 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 2:2 | tosefta-horayot-2-2 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 2:3 | tosefta-horayot-2-3 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 2:4 | tosefta-horayot-2-4 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 2:5 | tosefta-horayot-2-5 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 2:6 | tosefta-horayot-2-6 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 2:7 | tosefta-horayot-2-7 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 2:8 | tosefta-horayot-2-8 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 2:9 | tosefta-horayot-2-9 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 2:10 | tosefta-horayot-2-10 |  |  | not_done |  |
+| tosefta-horayot | Tosefta Horayot | Tosefta Horayot 2:11 | tosefta-horayot-2-11 |  |  | not_done |  |

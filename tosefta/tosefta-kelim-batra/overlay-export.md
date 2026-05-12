@@ -1,0 +1,31 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 1:1 | tosefta-kelim-batra-1-1 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 1:2 | tosefta-kelim-batra-1-2 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 1:3 | tosefta-kelim-batra-1-3 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 1:4 | tosefta-kelim-batra-1-4 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 2:1 | tosefta-kelim-batra-2-1 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 2:2 | tosefta-kelim-batra-2-2 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 2:3 | tosefta-kelim-batra-2-3 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 2:4 | tosefta-kelim-batra-2-4 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 3:1 | tosefta-kelim-batra-3-1 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 3:2 | tosefta-kelim-batra-3-2 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 3:3 | tosefta-kelim-batra-3-3 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 3:4 | tosefta-kelim-batra-3-4 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 4:1 | tosefta-kelim-batra-4-1 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 4:2 | tosefta-kelim-batra-4-2 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 4:3 | tosefta-kelim-batra-4-3 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 4:4 | tosefta-kelim-batra-4-4 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 5:1 | tosefta-kelim-batra-5-1 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 5:2 | tosefta-kelim-batra-5-2 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 5:3 | tosefta-kelim-batra-5-3 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 5:4 | tosefta-kelim-batra-5-4 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 6:1 | tosefta-kelim-batra-6-1 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 6:2 | tosefta-kelim-batra-6-2 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 6:3 | tosefta-kelim-batra-6-3 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 6:4 | tosefta-kelim-batra-6-4 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 6:5 | tosefta-kelim-batra-6-5 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 7:1 | tosefta-kelim-batra-7-1 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 7:2 | tosefta-kelim-batra-7-2 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 7:3 | tosefta-kelim-batra-7-3 |  |  | not_done |  |
+| tosefta-kelim-batra | Tosefta Kelim Batra | Tosefta Kelim Batra 7:4 | tosefta-kelim-batra-7-4 |  |  | not_done |  |
