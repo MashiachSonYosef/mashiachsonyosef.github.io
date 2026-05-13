@@ -1,0 +1,4423 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:1 | zohar-chadash-bereshit-bereshit-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:2 | zohar-chadash-bereshit-bereshit-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:3 | zohar-chadash-bereshit-bereshit-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:4 | zohar-chadash-bereshit-bereshit-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:5 | zohar-chadash-bereshit-bereshit-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:6 | zohar-chadash-bereshit-bereshit-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:7 | zohar-chadash-bereshit-bereshit-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:8 | zohar-chadash-bereshit-bereshit-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:9 | zohar-chadash-bereshit-bereshit-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:10 | zohar-chadash-bereshit-bereshit-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:11 | zohar-chadash-bereshit-bereshit-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:12 | zohar-chadash-bereshit-bereshit-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:13 | zohar-chadash-bereshit-bereshit-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:14 | zohar-chadash-bereshit-bereshit-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:15 | zohar-chadash-bereshit-bereshit-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:16 | zohar-chadash-bereshit-bereshit-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:17 | zohar-chadash-bereshit-bereshit-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:18 | zohar-chadash-bereshit-bereshit-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:19 | zohar-chadash-bereshit-bereshit-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:20 | zohar-chadash-bereshit-bereshit-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:21 | zohar-chadash-bereshit-bereshit-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:22 | zohar-chadash-bereshit-bereshit-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:23 | zohar-chadash-bereshit-bereshit-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:24 | zohar-chadash-bereshit-bereshit-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:25 | zohar-chadash-bereshit-bereshit-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:26 | zohar-chadash-bereshit-bereshit-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:27 | zohar-chadash-bereshit-bereshit-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:28 | zohar-chadash-bereshit-bereshit-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:29 | zohar-chadash-bereshit-bereshit-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:30 | zohar-chadash-bereshit-bereshit-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:31 | zohar-chadash-bereshit-bereshit-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:32 | zohar-chadash-bereshit-bereshit-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:33 | zohar-chadash-bereshit-bereshit-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:34 | zohar-chadash-bereshit-bereshit-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:35 | zohar-chadash-bereshit-bereshit-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:36 | zohar-chadash-bereshit-bereshit-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:37 | zohar-chadash-bereshit-bereshit-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:38 | zohar-chadash-bereshit-bereshit-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:39 | zohar-chadash-bereshit-bereshit-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:40 | zohar-chadash-bereshit-bereshit-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:41 | zohar-chadash-bereshit-bereshit-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:42 | zohar-chadash-bereshit-bereshit-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:43 | zohar-chadash-bereshit-bereshit-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:44 | zohar-chadash-bereshit-bereshit-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:45 | zohar-chadash-bereshit-bereshit-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:46 | zohar-chadash-bereshit-bereshit-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:47 | zohar-chadash-bereshit-bereshit-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:48 | zohar-chadash-bereshit-bereshit-48 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:49 | zohar-chadash-bereshit-bereshit-49 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:50 | zohar-chadash-bereshit-bereshit-50 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:51 | zohar-chadash-bereshit-bereshit-51 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:52 | zohar-chadash-bereshit-bereshit-52 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:53 | zohar-chadash-bereshit-bereshit-53 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:54 | zohar-chadash-bereshit-bereshit-54 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:55 | zohar-chadash-bereshit-bereshit-55 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:56 | zohar-chadash-bereshit-bereshit-56 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:57 | zohar-chadash-bereshit-bereshit-57 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:58 | zohar-chadash-bereshit-bereshit-58 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:59 | zohar-chadash-bereshit-bereshit-59 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:60 | zohar-chadash-bereshit-bereshit-60 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:61 | zohar-chadash-bereshit-bereshit-61 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:62 | zohar-chadash-bereshit-bereshit-62 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:63 | zohar-chadash-bereshit-bereshit-63 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:64 | zohar-chadash-bereshit-bereshit-64 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:65 | zohar-chadash-bereshit-bereshit-65 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:66 | zohar-chadash-bereshit-bereshit-66 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:67 | zohar-chadash-bereshit-bereshit-67 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:68 | zohar-chadash-bereshit-bereshit-68 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:69 | zohar-chadash-bereshit-bereshit-69 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:70 | zohar-chadash-bereshit-bereshit-70 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:71 | zohar-chadash-bereshit-bereshit-71 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:72 | zohar-chadash-bereshit-bereshit-72 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:73 | zohar-chadash-bereshit-bereshit-73 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:74 | zohar-chadash-bereshit-bereshit-74 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:75 | zohar-chadash-bereshit-bereshit-75 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:76 | zohar-chadash-bereshit-bereshit-76 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:77 | zohar-chadash-bereshit-bereshit-77 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:78 | zohar-chadash-bereshit-bereshit-78 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:79 | zohar-chadash-bereshit-bereshit-79 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:80 | zohar-chadash-bereshit-bereshit-80 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:81 | zohar-chadash-bereshit-bereshit-81 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:82 | zohar-chadash-bereshit-bereshit-82 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:83 | zohar-chadash-bereshit-bereshit-83 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:84 | zohar-chadash-bereshit-bereshit-84 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:85 | zohar-chadash-bereshit-bereshit-85 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:86 | zohar-chadash-bereshit-bereshit-86 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:87 | zohar-chadash-bereshit-bereshit-87 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:88 | zohar-chadash-bereshit-bereshit-88 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:89 | zohar-chadash-bereshit-bereshit-89 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:90 | zohar-chadash-bereshit-bereshit-90 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:91 | zohar-chadash-bereshit-bereshit-91 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:92 | zohar-chadash-bereshit-bereshit-92 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:93 | zohar-chadash-bereshit-bereshit-93 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:94 | zohar-chadash-bereshit-bereshit-94 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:95 | zohar-chadash-bereshit-bereshit-95 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:96 | zohar-chadash-bereshit-bereshit-96 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:97 | zohar-chadash-bereshit-bereshit-97 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:98 | zohar-chadash-bereshit-bereshit-98 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:99 | zohar-chadash-bereshit-bereshit-99 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:100 | zohar-chadash-bereshit-bereshit-100 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:101 | zohar-chadash-bereshit-bereshit-101 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:102 | zohar-chadash-bereshit-bereshit-102 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:103 | zohar-chadash-bereshit-bereshit-103 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:104 | zohar-chadash-bereshit-bereshit-104 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:105 | zohar-chadash-bereshit-bereshit-105 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:106 | zohar-chadash-bereshit-bereshit-106 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:107 | zohar-chadash-bereshit-bereshit-107 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:108 | zohar-chadash-bereshit-bereshit-108 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:109 | zohar-chadash-bereshit-bereshit-109 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:110 | zohar-chadash-bereshit-bereshit-110 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:111 | zohar-chadash-bereshit-bereshit-111 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:112 | zohar-chadash-bereshit-bereshit-112 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:113 | zohar-chadash-bereshit-bereshit-113 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:114 | zohar-chadash-bereshit-bereshit-114 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:115 | zohar-chadash-bereshit-bereshit-115 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:116 | zohar-chadash-bereshit-bereshit-116 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:117 | zohar-chadash-bereshit-bereshit-117 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:118 | zohar-chadash-bereshit-bereshit-118 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:119 | zohar-chadash-bereshit-bereshit-119 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:120 | zohar-chadash-bereshit-bereshit-120 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:121 | zohar-chadash-bereshit-bereshit-121 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:122 | zohar-chadash-bereshit-bereshit-122 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:123 | zohar-chadash-bereshit-bereshit-123 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:124 | zohar-chadash-bereshit-bereshit-124 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:125 | zohar-chadash-bereshit-bereshit-125 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:126 | zohar-chadash-bereshit-bereshit-126 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:127 | zohar-chadash-bereshit-bereshit-127 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:128 | zohar-chadash-bereshit-bereshit-128 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:129 | zohar-chadash-bereshit-bereshit-129 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:130 | zohar-chadash-bereshit-bereshit-130 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:131 | zohar-chadash-bereshit-bereshit-131 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:132 | zohar-chadash-bereshit-bereshit-132 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:133 | zohar-chadash-bereshit-bereshit-133 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:134 | zohar-chadash-bereshit-bereshit-134 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:135 | zohar-chadash-bereshit-bereshit-135 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:136 | zohar-chadash-bereshit-bereshit-136 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:137 | zohar-chadash-bereshit-bereshit-137 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:138 | zohar-chadash-bereshit-bereshit-138 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:139 | zohar-chadash-bereshit-bereshit-139 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:140 | zohar-chadash-bereshit-bereshit-140 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:141 | zohar-chadash-bereshit-bereshit-141 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:142 | zohar-chadash-bereshit-bereshit-142 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:143 | zohar-chadash-bereshit-bereshit-143 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:144 | zohar-chadash-bereshit-bereshit-144 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:145 | zohar-chadash-bereshit-bereshit-145 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:146 | zohar-chadash-bereshit-bereshit-146 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:147 | zohar-chadash-bereshit-bereshit-147 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:148 | zohar-chadash-bereshit-bereshit-148 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:149 | zohar-chadash-bereshit-bereshit-149 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:150 | zohar-chadash-bereshit-bereshit-150 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:151 | zohar-chadash-bereshit-bereshit-151 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:152 | zohar-chadash-bereshit-bereshit-152 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:153 | zohar-chadash-bereshit-bereshit-153 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:154 | zohar-chadash-bereshit-bereshit-154 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:155 | zohar-chadash-bereshit-bereshit-155 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:156 | zohar-chadash-bereshit-bereshit-156 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:157 | zohar-chadash-bereshit-bereshit-157 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:158 | zohar-chadash-bereshit-bereshit-158 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:159 | zohar-chadash-bereshit-bereshit-159 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:160 | zohar-chadash-bereshit-bereshit-160 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:161 | zohar-chadash-bereshit-bereshit-161 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:162 | zohar-chadash-bereshit-bereshit-162 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:163 | zohar-chadash-bereshit-bereshit-163 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:164 | zohar-chadash-bereshit-bereshit-164 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:165 | zohar-chadash-bereshit-bereshit-165 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:166 | zohar-chadash-bereshit-bereshit-166 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:167 | zohar-chadash-bereshit-bereshit-167 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:168 | zohar-chadash-bereshit-bereshit-168 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:169 | zohar-chadash-bereshit-bereshit-169 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:170 | zohar-chadash-bereshit-bereshit-170 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:171 | zohar-chadash-bereshit-bereshit-171 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:172 | zohar-chadash-bereshit-bereshit-172 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:173 | zohar-chadash-bereshit-bereshit-173 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:174 | zohar-chadash-bereshit-bereshit-174 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:175 | zohar-chadash-bereshit-bereshit-175 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:176 | zohar-chadash-bereshit-bereshit-176 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:177 | zohar-chadash-bereshit-bereshit-177 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:178 | zohar-chadash-bereshit-bereshit-178 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:179 | zohar-chadash-bereshit-bereshit-179 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:180 | zohar-chadash-bereshit-bereshit-180 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:181 | zohar-chadash-bereshit-bereshit-181 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:182 | zohar-chadash-bereshit-bereshit-182 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:183 | zohar-chadash-bereshit-bereshit-183 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:184 | zohar-chadash-bereshit-bereshit-184 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:185 | zohar-chadash-bereshit-bereshit-185 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:186 | zohar-chadash-bereshit-bereshit-186 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:187 | zohar-chadash-bereshit-bereshit-187 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:188 | zohar-chadash-bereshit-bereshit-188 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:189 | zohar-chadash-bereshit-bereshit-189 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:190 | zohar-chadash-bereshit-bereshit-190 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:191 | zohar-chadash-bereshit-bereshit-191 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:192 | zohar-chadash-bereshit-bereshit-192 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:193 | zohar-chadash-bereshit-bereshit-193 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:194 | zohar-chadash-bereshit-bereshit-194 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:195 | zohar-chadash-bereshit-bereshit-195 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:196 | zohar-chadash-bereshit-bereshit-196 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:197 | zohar-chadash-bereshit-bereshit-197 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:198 | zohar-chadash-bereshit-bereshit-198 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:199 | zohar-chadash-bereshit-bereshit-199 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:200 | zohar-chadash-bereshit-bereshit-200 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:201 | zohar-chadash-bereshit-bereshit-201 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:202 | zohar-chadash-bereshit-bereshit-202 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:203 | zohar-chadash-bereshit-bereshit-203 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:204 | zohar-chadash-bereshit-bereshit-204 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:205 | zohar-chadash-bereshit-bereshit-205 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:206 | zohar-chadash-bereshit-bereshit-206 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:207 | zohar-chadash-bereshit-bereshit-207 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:208 | zohar-chadash-bereshit-bereshit-208 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:209 | zohar-chadash-bereshit-bereshit-209 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:210 | zohar-chadash-bereshit-bereshit-210 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:211 | zohar-chadash-bereshit-bereshit-211 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:212 | zohar-chadash-bereshit-bereshit-212 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:213 | zohar-chadash-bereshit-bereshit-213 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:214 | zohar-chadash-bereshit-bereshit-214 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:215 | zohar-chadash-bereshit-bereshit-215 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:216 | zohar-chadash-bereshit-bereshit-216 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:217 | zohar-chadash-bereshit-bereshit-217 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:218 | zohar-chadash-bereshit-bereshit-218 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:219 | zohar-chadash-bereshit-bereshit-219 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:220 | zohar-chadash-bereshit-bereshit-220 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:221 | zohar-chadash-bereshit-bereshit-221 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:222 | zohar-chadash-bereshit-bereshit-222 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:223 | zohar-chadash-bereshit-bereshit-223 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:224 | zohar-chadash-bereshit-bereshit-224 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:225 | zohar-chadash-bereshit-bereshit-225 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:226 | zohar-chadash-bereshit-bereshit-226 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:227 | zohar-chadash-bereshit-bereshit-227 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:228 | zohar-chadash-bereshit-bereshit-228 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:229 | zohar-chadash-bereshit-bereshit-229 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:230 | zohar-chadash-bereshit-bereshit-230 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:231 | zohar-chadash-bereshit-bereshit-231 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:232 | zohar-chadash-bereshit-bereshit-232 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:233 | zohar-chadash-bereshit-bereshit-233 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:234 | zohar-chadash-bereshit-bereshit-234 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:235 | zohar-chadash-bereshit-bereshit-235 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:236 | zohar-chadash-bereshit-bereshit-236 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:237 | zohar-chadash-bereshit-bereshit-237 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:238 | zohar-chadash-bereshit-bereshit-238 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:239 | zohar-chadash-bereshit-bereshit-239 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:240 | zohar-chadash-bereshit-bereshit-240 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:241 | zohar-chadash-bereshit-bereshit-241 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:242 | zohar-chadash-bereshit-bereshit-242 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:243 | zohar-chadash-bereshit-bereshit-243 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:244 | zohar-chadash-bereshit-bereshit-244 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:245 | zohar-chadash-bereshit-bereshit-245 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:246 | zohar-chadash-bereshit-bereshit-246 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:247 | zohar-chadash-bereshit-bereshit-247 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:248 | zohar-chadash-bereshit-bereshit-248 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:249 | zohar-chadash-bereshit-bereshit-249 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:250 | zohar-chadash-bereshit-bereshit-250 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:251 | zohar-chadash-bereshit-bereshit-251 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:252 | zohar-chadash-bereshit-bereshit-252 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:253 | zohar-chadash-bereshit-bereshit-253 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:254 | zohar-chadash-bereshit-bereshit-254 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:255 | zohar-chadash-bereshit-bereshit-255 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:256 | zohar-chadash-bereshit-bereshit-256 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:257 | zohar-chadash-bereshit-bereshit-257 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:258 | zohar-chadash-bereshit-bereshit-258 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:259 | zohar-chadash-bereshit-bereshit-259 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:260 | zohar-chadash-bereshit-bereshit-260 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:261 | zohar-chadash-bereshit-bereshit-261 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:262 | zohar-chadash-bereshit-bereshit-262 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:263 | zohar-chadash-bereshit-bereshit-263 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:264 | zohar-chadash-bereshit-bereshit-264 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:265 | zohar-chadash-bereshit-bereshit-265 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:266 | zohar-chadash-bereshit-bereshit-266 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:267 | zohar-chadash-bereshit-bereshit-267 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:268 | zohar-chadash-bereshit-bereshit-268 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:269 | zohar-chadash-bereshit-bereshit-269 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:270 | zohar-chadash-bereshit-bereshit-270 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:271 | zohar-chadash-bereshit-bereshit-271 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:272 | zohar-chadash-bereshit-bereshit-272 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:273 | zohar-chadash-bereshit-bereshit-273 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:274 | zohar-chadash-bereshit-bereshit-274 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:275 | zohar-chadash-bereshit-bereshit-275 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:276 | zohar-chadash-bereshit-bereshit-276 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:277 | zohar-chadash-bereshit-bereshit-277 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:278 | zohar-chadash-bereshit-bereshit-278 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:279 | zohar-chadash-bereshit-bereshit-279 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:280 | zohar-chadash-bereshit-bereshit-280 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:281 | zohar-chadash-bereshit-bereshit-281 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:282 | zohar-chadash-bereshit-bereshit-282 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:283 | zohar-chadash-bereshit-bereshit-283 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:284 | zohar-chadash-bereshit-bereshit-284 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:285 | zohar-chadash-bereshit-bereshit-285 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:286 | zohar-chadash-bereshit-bereshit-286 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:287 | zohar-chadash-bereshit-bereshit-287 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:288 | zohar-chadash-bereshit-bereshit-288 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:289 | zohar-chadash-bereshit-bereshit-289 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:290 | zohar-chadash-bereshit-bereshit-290 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:291 | zohar-chadash-bereshit-bereshit-291 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:292 | zohar-chadash-bereshit-bereshit-292 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:293 | zohar-chadash-bereshit-bereshit-293 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:294 | zohar-chadash-bereshit-bereshit-294 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:295 | zohar-chadash-bereshit-bereshit-295 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:296 | zohar-chadash-bereshit-bereshit-296 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:297 | zohar-chadash-bereshit-bereshit-297 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:298 | zohar-chadash-bereshit-bereshit-298 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:299 | zohar-chadash-bereshit-bereshit-299 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:300 | zohar-chadash-bereshit-bereshit-300 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:301 | zohar-chadash-bereshit-bereshit-301 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:302 | zohar-chadash-bereshit-bereshit-302 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:303 | zohar-chadash-bereshit-bereshit-303 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:304 | zohar-chadash-bereshit-bereshit-304 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:305 | zohar-chadash-bereshit-bereshit-305 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:306 | zohar-chadash-bereshit-bereshit-306 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:307 | zohar-chadash-bereshit-bereshit-307 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:308 | zohar-chadash-bereshit-bereshit-308 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:309 | zohar-chadash-bereshit-bereshit-309 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:310 | zohar-chadash-bereshit-bereshit-310 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:311 | zohar-chadash-bereshit-bereshit-311 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:312 | zohar-chadash-bereshit-bereshit-312 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:313 | zohar-chadash-bereshit-bereshit-313 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:314 | zohar-chadash-bereshit-bereshit-314 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:315 | zohar-chadash-bereshit-bereshit-315 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:316 | zohar-chadash-bereshit-bereshit-316 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:317 | zohar-chadash-bereshit-bereshit-317 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:318 | zohar-chadash-bereshit-bereshit-318 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:319 | zohar-chadash-bereshit-bereshit-319 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:320 | zohar-chadash-bereshit-bereshit-320 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:321 | zohar-chadash-bereshit-bereshit-321 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:322 | zohar-chadash-bereshit-bereshit-322 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:323 | zohar-chadash-bereshit-bereshit-323 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:324 | zohar-chadash-bereshit-bereshit-324 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:325 | zohar-chadash-bereshit-bereshit-325 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:326 | zohar-chadash-bereshit-bereshit-326 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:327 | zohar-chadash-bereshit-bereshit-327 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:328 | zohar-chadash-bereshit-bereshit-328 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:329 | zohar-chadash-bereshit-bereshit-329 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:330 | zohar-chadash-bereshit-bereshit-330 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:331 | zohar-chadash-bereshit-bereshit-331 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:332 | zohar-chadash-bereshit-bereshit-332 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:333 | zohar-chadash-bereshit-bereshit-333 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:334 | zohar-chadash-bereshit-bereshit-334 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:335 | zohar-chadash-bereshit-bereshit-335 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:336 | zohar-chadash-bereshit-bereshit-336 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:337 | zohar-chadash-bereshit-bereshit-337 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:338 | zohar-chadash-bereshit-bereshit-338 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:339 | zohar-chadash-bereshit-bereshit-339 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:340 | zohar-chadash-bereshit-bereshit-340 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:341 | zohar-chadash-bereshit-bereshit-341 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:342 | zohar-chadash-bereshit-bereshit-342 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:343 | zohar-chadash-bereshit-bereshit-343 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:344 | zohar-chadash-bereshit-bereshit-344 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:345 | zohar-chadash-bereshit-bereshit-345 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:346 | zohar-chadash-bereshit-bereshit-346 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:347 | zohar-chadash-bereshit-bereshit-347 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:348 | zohar-chadash-bereshit-bereshit-348 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:349 | zohar-chadash-bereshit-bereshit-349 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:350 | zohar-chadash-bereshit-bereshit-350 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:351 | zohar-chadash-bereshit-bereshit-351 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:352 | zohar-chadash-bereshit-bereshit-352 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:353 | zohar-chadash-bereshit-bereshit-353 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:354 | zohar-chadash-bereshit-bereshit-354 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:355 | zohar-chadash-bereshit-bereshit-355 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:356 | zohar-chadash-bereshit-bereshit-356 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:357 | zohar-chadash-bereshit-bereshit-357 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:358 | zohar-chadash-bereshit-bereshit-358 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:359 | zohar-chadash-bereshit-bereshit-359 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:360 | zohar-chadash-bereshit-bereshit-360 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:361 | zohar-chadash-bereshit-bereshit-361 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:362 | zohar-chadash-bereshit-bereshit-362 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:363 | zohar-chadash-bereshit-bereshit-363 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:364 | zohar-chadash-bereshit-bereshit-364 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:365 | zohar-chadash-bereshit-bereshit-365 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:366 | zohar-chadash-bereshit-bereshit-366 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:367 | zohar-chadash-bereshit-bereshit-367 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:368 | zohar-chadash-bereshit-bereshit-368 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:369 | zohar-chadash-bereshit-bereshit-369 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:370 | zohar-chadash-bereshit-bereshit-370 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:371 | zohar-chadash-bereshit-bereshit-371 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:372 | zohar-chadash-bereshit-bereshit-372 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:373 | zohar-chadash-bereshit-bereshit-373 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:374 | zohar-chadash-bereshit-bereshit-374 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:375 | zohar-chadash-bereshit-bereshit-375 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:376 | zohar-chadash-bereshit-bereshit-376 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:377 | zohar-chadash-bereshit-bereshit-377 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:378 | zohar-chadash-bereshit-bereshit-378 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:379 | zohar-chadash-bereshit-bereshit-379 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:380 | zohar-chadash-bereshit-bereshit-380 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:381 | zohar-chadash-bereshit-bereshit-381 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:382 | zohar-chadash-bereshit-bereshit-382 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:383 | zohar-chadash-bereshit-bereshit-383 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:384 | zohar-chadash-bereshit-bereshit-384 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:385 | zohar-chadash-bereshit-bereshit-385 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:386 | zohar-chadash-bereshit-bereshit-386 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:387 | zohar-chadash-bereshit-bereshit-387 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:388 | zohar-chadash-bereshit-bereshit-388 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:389 | zohar-chadash-bereshit-bereshit-389 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:390 | zohar-chadash-bereshit-bereshit-390 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:391 | zohar-chadash-bereshit-bereshit-391 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:392 | zohar-chadash-bereshit-bereshit-392 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:393 | zohar-chadash-bereshit-bereshit-393 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:394 | zohar-chadash-bereshit-bereshit-394 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:395 | zohar-chadash-bereshit-bereshit-395 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:396 | zohar-chadash-bereshit-bereshit-396 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:397 | zohar-chadash-bereshit-bereshit-397 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:398 | zohar-chadash-bereshit-bereshit-398 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:399 | zohar-chadash-bereshit-bereshit-399 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:400 | zohar-chadash-bereshit-bereshit-400 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:401 | zohar-chadash-bereshit-bereshit-401 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:402 | zohar-chadash-bereshit-bereshit-402 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:403 | zohar-chadash-bereshit-bereshit-403 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:404 | zohar-chadash-bereshit-bereshit-404 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:405 | zohar-chadash-bereshit-bereshit-405 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:406 | zohar-chadash-bereshit-bereshit-406 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:407 | zohar-chadash-bereshit-bereshit-407 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:408 | zohar-chadash-bereshit-bereshit-408 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:409 | zohar-chadash-bereshit-bereshit-409 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:410 | zohar-chadash-bereshit-bereshit-410 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:411 | zohar-chadash-bereshit-bereshit-411 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:412 | zohar-chadash-bereshit-bereshit-412 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:413 | zohar-chadash-bereshit-bereshit-413 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:414 | zohar-chadash-bereshit-bereshit-414 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:415 | zohar-chadash-bereshit-bereshit-415 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:416 | zohar-chadash-bereshit-bereshit-416 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:417 | zohar-chadash-bereshit-bereshit-417 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:418 | zohar-chadash-bereshit-bereshit-418 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:419 | zohar-chadash-bereshit-bereshit-419 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:420 | zohar-chadash-bereshit-bereshit-420 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:421 | zohar-chadash-bereshit-bereshit-421 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:422 | zohar-chadash-bereshit-bereshit-422 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:423 | zohar-chadash-bereshit-bereshit-423 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:424 | zohar-chadash-bereshit-bereshit-424 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:425 | zohar-chadash-bereshit-bereshit-425 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:426 | zohar-chadash-bereshit-bereshit-426 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:427 | zohar-chadash-bereshit-bereshit-427 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:428 | zohar-chadash-bereshit-bereshit-428 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:429 | zohar-chadash-bereshit-bereshit-429 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:430 | zohar-chadash-bereshit-bereshit-430 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:431 | zohar-chadash-bereshit-bereshit-431 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:432 | zohar-chadash-bereshit-bereshit-432 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:433 | zohar-chadash-bereshit-bereshit-433 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:434 | zohar-chadash-bereshit-bereshit-434 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:435 | zohar-chadash-bereshit-bereshit-435 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:436 | zohar-chadash-bereshit-bereshit-436 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:437 | zohar-chadash-bereshit-bereshit-437 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:438 | zohar-chadash-bereshit-bereshit-438 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:439 | zohar-chadash-bereshit-bereshit-439 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:440 | zohar-chadash-bereshit-bereshit-440 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:441 | zohar-chadash-bereshit-bereshit-441 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:442 | zohar-chadash-bereshit-bereshit-442 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:443 | zohar-chadash-bereshit-bereshit-443 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:444 | zohar-chadash-bereshit-bereshit-444 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:445 | zohar-chadash-bereshit-bereshit-445 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:446 | zohar-chadash-bereshit-bereshit-446 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:447 | zohar-chadash-bereshit-bereshit-447 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:448 | zohar-chadash-bereshit-bereshit-448 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:449 | zohar-chadash-bereshit-bereshit-449 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:450 | zohar-chadash-bereshit-bereshit-450 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:451 | zohar-chadash-bereshit-bereshit-451 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:452 | zohar-chadash-bereshit-bereshit-452 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:453 | zohar-chadash-bereshit-bereshit-453 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:454 | zohar-chadash-bereshit-bereshit-454 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:455 | zohar-chadash-bereshit-bereshit-455 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:456 | zohar-chadash-bereshit-bereshit-456 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:457 | zohar-chadash-bereshit-bereshit-457 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:458 | zohar-chadash-bereshit-bereshit-458 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:459 | zohar-chadash-bereshit-bereshit-459 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:460 | zohar-chadash-bereshit-bereshit-460 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:461 | zohar-chadash-bereshit-bereshit-461 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:462 | zohar-chadash-bereshit-bereshit-462 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:463 | zohar-chadash-bereshit-bereshit-463 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:464 | zohar-chadash-bereshit-bereshit-464 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:465 | zohar-chadash-bereshit-bereshit-465 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:466 | zohar-chadash-bereshit-bereshit-466 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:467 | zohar-chadash-bereshit-bereshit-467 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:468 | zohar-chadash-bereshit-bereshit-468 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:469 | zohar-chadash-bereshit-bereshit-469 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:470 | zohar-chadash-bereshit-bereshit-470 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:471 | zohar-chadash-bereshit-bereshit-471 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:472 | zohar-chadash-bereshit-bereshit-472 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:473 | zohar-chadash-bereshit-bereshit-473 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:474 | zohar-chadash-bereshit-bereshit-474 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:475 | zohar-chadash-bereshit-bereshit-475 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:476 | zohar-chadash-bereshit-bereshit-476 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:477 | zohar-chadash-bereshit-bereshit-477 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:478 | zohar-chadash-bereshit-bereshit-478 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:479 | zohar-chadash-bereshit-bereshit-479 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:480 | zohar-chadash-bereshit-bereshit-480 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:481 | zohar-chadash-bereshit-bereshit-481 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:482 | zohar-chadash-bereshit-bereshit-482 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:483 | zohar-chadash-bereshit-bereshit-483 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:484 | zohar-chadash-bereshit-bereshit-484 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:485 | zohar-chadash-bereshit-bereshit-485 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:486 | zohar-chadash-bereshit-bereshit-486 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:487 | zohar-chadash-bereshit-bereshit-487 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:488 | zohar-chadash-bereshit-bereshit-488 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:489 | zohar-chadash-bereshit-bereshit-489 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:490 | zohar-chadash-bereshit-bereshit-490 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:491 | zohar-chadash-bereshit-bereshit-491 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:492 | zohar-chadash-bereshit-bereshit-492 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:493 | zohar-chadash-bereshit-bereshit-493 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:494 | zohar-chadash-bereshit-bereshit-494 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:495 | zohar-chadash-bereshit-bereshit-495 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:496 | zohar-chadash-bereshit-bereshit-496 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:497 | zohar-chadash-bereshit-bereshit-497 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:498 | zohar-chadash-bereshit-bereshit-498 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:499 | zohar-chadash-bereshit-bereshit-499 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:500 | zohar-chadash-bereshit-bereshit-500 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:501 | zohar-chadash-bereshit-bereshit-501 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:502 | zohar-chadash-bereshit-bereshit-502 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:503 | zohar-chadash-bereshit-bereshit-503 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:504 | zohar-chadash-bereshit-bereshit-504 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:505 | zohar-chadash-bereshit-bereshit-505 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:506 | zohar-chadash-bereshit-bereshit-506 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:507 | zohar-chadash-bereshit-bereshit-507 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:508 | zohar-chadash-bereshit-bereshit-508 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:509 | zohar-chadash-bereshit-bereshit-509 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:510 | zohar-chadash-bereshit-bereshit-510 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:511 | zohar-chadash-bereshit-bereshit-511 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:512 | zohar-chadash-bereshit-bereshit-512 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:513 | zohar-chadash-bereshit-bereshit-513 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:514 | zohar-chadash-bereshit-bereshit-514 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:515 | zohar-chadash-bereshit-bereshit-515 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:516 | zohar-chadash-bereshit-bereshit-516 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:517 | zohar-chadash-bereshit-bereshit-517 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:518 | zohar-chadash-bereshit-bereshit-518 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:519 | zohar-chadash-bereshit-bereshit-519 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:520 | zohar-chadash-bereshit-bereshit-520 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:521 | zohar-chadash-bereshit-bereshit-521 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:522 | zohar-chadash-bereshit-bereshit-522 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:523 | zohar-chadash-bereshit-bereshit-523 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:524 | zohar-chadash-bereshit-bereshit-524 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:525 | zohar-chadash-bereshit-bereshit-525 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:526 | zohar-chadash-bereshit-bereshit-526 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:527 | zohar-chadash-bereshit-bereshit-527 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:528 | zohar-chadash-bereshit-bereshit-528 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:529 | zohar-chadash-bereshit-bereshit-529 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:530 | zohar-chadash-bereshit-bereshit-530 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:531 | zohar-chadash-bereshit-bereshit-531 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:532 | zohar-chadash-bereshit-bereshit-532 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:533 | zohar-chadash-bereshit-bereshit-533 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:534 | zohar-chadash-bereshit-bereshit-534 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:535 | zohar-chadash-bereshit-bereshit-535 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:536 | zohar-chadash-bereshit-bereshit-536 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:537 | zohar-chadash-bereshit-bereshit-537 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:538 | zohar-chadash-bereshit-bereshit-538 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:539 | zohar-chadash-bereshit-bereshit-539 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:540 | zohar-chadash-bereshit-bereshit-540 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:541 | zohar-chadash-bereshit-bereshit-541 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:542 | zohar-chadash-bereshit-bereshit-542 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:543 | zohar-chadash-bereshit-bereshit-543 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:544 | zohar-chadash-bereshit-bereshit-544 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:545 | zohar-chadash-bereshit-bereshit-545 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:546 | zohar-chadash-bereshit-bereshit-546 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:547 | zohar-chadash-bereshit-bereshit-547 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:548 | zohar-chadash-bereshit-bereshit-548 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:549 | zohar-chadash-bereshit-bereshit-549 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:550 | zohar-chadash-bereshit-bereshit-550 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:551 | zohar-chadash-bereshit-bereshit-551 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:552 | zohar-chadash-bereshit-bereshit-552 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:553 | zohar-chadash-bereshit-bereshit-553 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:554 | zohar-chadash-bereshit-bereshit-554 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:555 | zohar-chadash-bereshit-bereshit-555 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:556 | zohar-chadash-bereshit-bereshit-556 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:557 | zohar-chadash-bereshit-bereshit-557 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:558 | zohar-chadash-bereshit-bereshit-558 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:559 | zohar-chadash-bereshit-bereshit-559 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:560 | zohar-chadash-bereshit-bereshit-560 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:561 | zohar-chadash-bereshit-bereshit-561 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:562 | zohar-chadash-bereshit-bereshit-562 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:563 | zohar-chadash-bereshit-bereshit-563 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:564 | zohar-chadash-bereshit-bereshit-564 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:565 | zohar-chadash-bereshit-bereshit-565 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:566 | zohar-chadash-bereshit-bereshit-566 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:567 | zohar-chadash-bereshit-bereshit-567 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:568 | zohar-chadash-bereshit-bereshit-568 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:569 | zohar-chadash-bereshit-bereshit-569 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:570 | zohar-chadash-bereshit-bereshit-570 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:571 | zohar-chadash-bereshit-bereshit-571 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:572 | zohar-chadash-bereshit-bereshit-572 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:573 | zohar-chadash-bereshit-bereshit-573 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:574 | zohar-chadash-bereshit-bereshit-574 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:575 | zohar-chadash-bereshit-bereshit-575 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:576 | zohar-chadash-bereshit-bereshit-576 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:577 | zohar-chadash-bereshit-bereshit-577 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:578 | zohar-chadash-bereshit-bereshit-578 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:579 | zohar-chadash-bereshit-bereshit-579 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:580 | zohar-chadash-bereshit-bereshit-580 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:581 | zohar-chadash-bereshit-bereshit-581 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:582 | zohar-chadash-bereshit-bereshit-582 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:583 | zohar-chadash-bereshit-bereshit-583 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:584 | zohar-chadash-bereshit-bereshit-584 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:585 | zohar-chadash-bereshit-bereshit-585 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:586 | zohar-chadash-bereshit-bereshit-586 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:587 | zohar-chadash-bereshit-bereshit-587 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:588 | zohar-chadash-bereshit-bereshit-588 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:589 | zohar-chadash-bereshit-bereshit-589 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:590 | zohar-chadash-bereshit-bereshit-590 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:591 | zohar-chadash-bereshit-bereshit-591 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:592 | zohar-chadash-bereshit-bereshit-592 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:593 | zohar-chadash-bereshit-bereshit-593 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:594 | zohar-chadash-bereshit-bereshit-594 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:595 | zohar-chadash-bereshit-bereshit-595 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:596 | zohar-chadash-bereshit-bereshit-596 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:597 | zohar-chadash-bereshit-bereshit-597 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:598 | zohar-chadash-bereshit-bereshit-598 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:599 | zohar-chadash-bereshit-bereshit-599 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:600 | zohar-chadash-bereshit-bereshit-600 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:601 | zohar-chadash-bereshit-bereshit-601 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:602 | zohar-chadash-bereshit-bereshit-602 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:603 | zohar-chadash-bereshit-bereshit-603 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:604 | zohar-chadash-bereshit-bereshit-604 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:605 | zohar-chadash-bereshit-bereshit-605 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:606 | zohar-chadash-bereshit-bereshit-606 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:607 | zohar-chadash-bereshit-bereshit-607 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:608 | zohar-chadash-bereshit-bereshit-608 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:609 | zohar-chadash-bereshit-bereshit-609 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:610 | zohar-chadash-bereshit-bereshit-610 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:611 | zohar-chadash-bereshit-bereshit-611 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:612 | zohar-chadash-bereshit-bereshit-612 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:613 | zohar-chadash-bereshit-bereshit-613 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:614 | zohar-chadash-bereshit-bereshit-614 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:615 | zohar-chadash-bereshit-bereshit-615 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:616 | zohar-chadash-bereshit-bereshit-616 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:617 | zohar-chadash-bereshit-bereshit-617 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:618 | zohar-chadash-bereshit-bereshit-618 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:619 | zohar-chadash-bereshit-bereshit-619 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:620 | zohar-chadash-bereshit-bereshit-620 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:621 | zohar-chadash-bereshit-bereshit-621 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:622 | zohar-chadash-bereshit-bereshit-622 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:623 | zohar-chadash-bereshit-bereshit-623 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:624 | zohar-chadash-bereshit-bereshit-624 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:625 | zohar-chadash-bereshit-bereshit-625 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:626 | zohar-chadash-bereshit-bereshit-626 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:627 | zohar-chadash-bereshit-bereshit-627 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:628 | zohar-chadash-bereshit-bereshit-628 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:629 | zohar-chadash-bereshit-bereshit-629 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:630 | zohar-chadash-bereshit-bereshit-630 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:631 | zohar-chadash-bereshit-bereshit-631 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:632 | zohar-chadash-bereshit-bereshit-632 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:633 | zohar-chadash-bereshit-bereshit-633 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:634 | zohar-chadash-bereshit-bereshit-634 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:635 | zohar-chadash-bereshit-bereshit-635 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:636 | zohar-chadash-bereshit-bereshit-636 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:637 | zohar-chadash-bereshit-bereshit-637 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:638 | zohar-chadash-bereshit-bereshit-638 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:639 | zohar-chadash-bereshit-bereshit-639 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:640 | zohar-chadash-bereshit-bereshit-640 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:641 | zohar-chadash-bereshit-bereshit-641 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:642 | zohar-chadash-bereshit-bereshit-642 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:643 | zohar-chadash-bereshit-bereshit-643 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:644 | zohar-chadash-bereshit-bereshit-644 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:645 | zohar-chadash-bereshit-bereshit-645 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:646 | zohar-chadash-bereshit-bereshit-646 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:647 | zohar-chadash-bereshit-bereshit-647 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:648 | zohar-chadash-bereshit-bereshit-648 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:649 | zohar-chadash-bereshit-bereshit-649 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:650 | zohar-chadash-bereshit-bereshit-650 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:651 | zohar-chadash-bereshit-bereshit-651 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:652 | zohar-chadash-bereshit-bereshit-652 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:653 | zohar-chadash-bereshit-bereshit-653 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:654 | zohar-chadash-bereshit-bereshit-654 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:655 | zohar-chadash-bereshit-bereshit-655 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:656 | zohar-chadash-bereshit-bereshit-656 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:657 | zohar-chadash-bereshit-bereshit-657 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:658 | zohar-chadash-bereshit-bereshit-658 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:659 | zohar-chadash-bereshit-bereshit-659 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:660 | zohar-chadash-bereshit-bereshit-660 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:661 | zohar-chadash-bereshit-bereshit-661 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:662 | zohar-chadash-bereshit-bereshit-662 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:663 | zohar-chadash-bereshit-bereshit-663 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:664 | zohar-chadash-bereshit-bereshit-664 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:665 | zohar-chadash-bereshit-bereshit-665 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:666 | zohar-chadash-bereshit-bereshit-666 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:667 | zohar-chadash-bereshit-bereshit-667 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:668 | zohar-chadash-bereshit-bereshit-668 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:669 | zohar-chadash-bereshit-bereshit-669 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:670 | zohar-chadash-bereshit-bereshit-670 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:671 | zohar-chadash-bereshit-bereshit-671 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:672 | zohar-chadash-bereshit-bereshit-672 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:673 | zohar-chadash-bereshit-bereshit-673 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:674 | zohar-chadash-bereshit-bereshit-674 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:675 | zohar-chadash-bereshit-bereshit-675 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:676 | zohar-chadash-bereshit-bereshit-676 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:677 | zohar-chadash-bereshit-bereshit-677 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:678 | zohar-chadash-bereshit-bereshit-678 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:679 | zohar-chadash-bereshit-bereshit-679 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:680 | zohar-chadash-bereshit-bereshit-680 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:681 | zohar-chadash-bereshit-bereshit-681 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:682 | zohar-chadash-bereshit-bereshit-682 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:683 | zohar-chadash-bereshit-bereshit-683 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:684 | zohar-chadash-bereshit-bereshit-684 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:685 | zohar-chadash-bereshit-bereshit-685 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:686 | zohar-chadash-bereshit-bereshit-686 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:687 | zohar-chadash-bereshit-bereshit-687 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:688 | zohar-chadash-bereshit-bereshit-688 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:689 | zohar-chadash-bereshit-bereshit-689 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:690 | zohar-chadash-bereshit-bereshit-690 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:691 | zohar-chadash-bereshit-bereshit-691 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:692 | zohar-chadash-bereshit-bereshit-692 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:693 | zohar-chadash-bereshit-bereshit-693 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:694 | zohar-chadash-bereshit-bereshit-694 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:695 | zohar-chadash-bereshit-bereshit-695 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:696 | zohar-chadash-bereshit-bereshit-696 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:697 | zohar-chadash-bereshit-bereshit-697 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:698 | zohar-chadash-bereshit-bereshit-698 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:699 | zohar-chadash-bereshit-bereshit-699 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:700 | zohar-chadash-bereshit-bereshit-700 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:701 | zohar-chadash-bereshit-bereshit-701 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:702 | zohar-chadash-bereshit-bereshit-702 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:703 | zohar-chadash-bereshit-bereshit-703 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:704 | zohar-chadash-bereshit-bereshit-704 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:705 | zohar-chadash-bereshit-bereshit-705 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:706 | zohar-chadash-bereshit-bereshit-706 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:707 | zohar-chadash-bereshit-bereshit-707 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:708 | zohar-chadash-bereshit-bereshit-708 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:709 | zohar-chadash-bereshit-bereshit-709 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:710 | zohar-chadash-bereshit-bereshit-710 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:711 | zohar-chadash-bereshit-bereshit-711 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:712 | zohar-chadash-bereshit-bereshit-712 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:713 | zohar-chadash-bereshit-bereshit-713 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:714 | zohar-chadash-bereshit-bereshit-714 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:715 | zohar-chadash-bereshit-bereshit-715 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:716 | zohar-chadash-bereshit-bereshit-716 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:717 | zohar-chadash-bereshit-bereshit-717 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:718 | zohar-chadash-bereshit-bereshit-718 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:719 | zohar-chadash-bereshit-bereshit-719 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:720 | zohar-chadash-bereshit-bereshit-720 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:721 | zohar-chadash-bereshit-bereshit-721 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:722 | zohar-chadash-bereshit-bereshit-722 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:723 | zohar-chadash-bereshit-bereshit-723 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:724 | zohar-chadash-bereshit-bereshit-724 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:725 | zohar-chadash-bereshit-bereshit-725 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:726 | zohar-chadash-bereshit-bereshit-726 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:727 | zohar-chadash-bereshit-bereshit-727 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:728 | zohar-chadash-bereshit-bereshit-728 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:729 | zohar-chadash-bereshit-bereshit-729 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:730 | zohar-chadash-bereshit-bereshit-730 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:731 | zohar-chadash-bereshit-bereshit-731 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:732 | zohar-chadash-bereshit-bereshit-732 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:733 | zohar-chadash-bereshit-bereshit-733 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:734 | zohar-chadash-bereshit-bereshit-734 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:735 | zohar-chadash-bereshit-bereshit-735 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:736 | zohar-chadash-bereshit-bereshit-736 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:737 | zohar-chadash-bereshit-bereshit-737 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:738 | zohar-chadash-bereshit-bereshit-738 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:739 | zohar-chadash-bereshit-bereshit-739 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:740 | zohar-chadash-bereshit-bereshit-740 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:741 | zohar-chadash-bereshit-bereshit-741 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:742 | zohar-chadash-bereshit-bereshit-742 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:743 | zohar-chadash-bereshit-bereshit-743 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:744 | zohar-chadash-bereshit-bereshit-744 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:745 | zohar-chadash-bereshit-bereshit-745 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:746 | zohar-chadash-bereshit-bereshit-746 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:747 | zohar-chadash-bereshit-bereshit-747 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:748 | zohar-chadash-bereshit-bereshit-748 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:749 | zohar-chadash-bereshit-bereshit-749 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:750 | zohar-chadash-bereshit-bereshit-750 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:751 | zohar-chadash-bereshit-bereshit-751 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:752 | zohar-chadash-bereshit-bereshit-752 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:753 | zohar-chadash-bereshit-bereshit-753 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:754 | zohar-chadash-bereshit-bereshit-754 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:755 | zohar-chadash-bereshit-bereshit-755 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:756 | zohar-chadash-bereshit-bereshit-756 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:757 | zohar-chadash-bereshit-bereshit-757 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:758 | zohar-chadash-bereshit-bereshit-758 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:759 | zohar-chadash-bereshit-bereshit-759 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:760 | zohar-chadash-bereshit-bereshit-760 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:761 | zohar-chadash-bereshit-bereshit-761 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:762 | zohar-chadash-bereshit-bereshit-762 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:763 | zohar-chadash-bereshit-bereshit-763 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:764 | zohar-chadash-bereshit-bereshit-764 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:765 | zohar-chadash-bereshit-bereshit-765 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:766 | zohar-chadash-bereshit-bereshit-766 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:767 | zohar-chadash-bereshit-bereshit-767 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:768 | zohar-chadash-bereshit-bereshit-768 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:769 | zohar-chadash-bereshit-bereshit-769 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:770 | zohar-chadash-bereshit-bereshit-770 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:771 | zohar-chadash-bereshit-bereshit-771 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:772 | zohar-chadash-bereshit-bereshit-772 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:773 | zohar-chadash-bereshit-bereshit-773 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:774 | zohar-chadash-bereshit-bereshit-774 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:775 | zohar-chadash-bereshit-bereshit-775 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:776 | zohar-chadash-bereshit-bereshit-776 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:777 | zohar-chadash-bereshit-bereshit-777 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:778 | zohar-chadash-bereshit-bereshit-778 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:779 | zohar-chadash-bereshit-bereshit-779 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:780 | zohar-chadash-bereshit-bereshit-780 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:781 | zohar-chadash-bereshit-bereshit-781 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:782 | zohar-chadash-bereshit-bereshit-782 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:783 | zohar-chadash-bereshit-bereshit-783 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:784 | zohar-chadash-bereshit-bereshit-784 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:785 | zohar-chadash-bereshit-bereshit-785 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:786 | zohar-chadash-bereshit-bereshit-786 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:787 | zohar-chadash-bereshit-bereshit-787 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:788 | zohar-chadash-bereshit-bereshit-788 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:789 | zohar-chadash-bereshit-bereshit-789 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:790 | zohar-chadash-bereshit-bereshit-790 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:791 | zohar-chadash-bereshit-bereshit-791 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:792 | zohar-chadash-bereshit-bereshit-792 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:793 | zohar-chadash-bereshit-bereshit-793 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:794 | zohar-chadash-bereshit-bereshit-794 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:795 | zohar-chadash-bereshit-bereshit-795 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:796 | zohar-chadash-bereshit-bereshit-796 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:797 | zohar-chadash-bereshit-bereshit-797 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:798 | zohar-chadash-bereshit-bereshit-798 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:799 | zohar-chadash-bereshit-bereshit-799 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:800 | zohar-chadash-bereshit-bereshit-800 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:801 | zohar-chadash-bereshit-bereshit-801 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:802 | zohar-chadash-bereshit-bereshit-802 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:803 | zohar-chadash-bereshit-bereshit-803 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:804 | zohar-chadash-bereshit-bereshit-804 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:805 | zohar-chadash-bereshit-bereshit-805 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:806 | zohar-chadash-bereshit-bereshit-806 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:807 | zohar-chadash-bereshit-bereshit-807 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:808 | zohar-chadash-bereshit-bereshit-808 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:809 | zohar-chadash-bereshit-bereshit-809 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:810 | zohar-chadash-bereshit-bereshit-810 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:811 | zohar-chadash-bereshit-bereshit-811 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:812 | zohar-chadash-bereshit-bereshit-812 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:813 | zohar-chadash-bereshit-bereshit-813 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:814 | zohar-chadash-bereshit-bereshit-814 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:815 | zohar-chadash-bereshit-bereshit-815 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:816 | zohar-chadash-bereshit-bereshit-816 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:817 | zohar-chadash-bereshit-bereshit-817 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:818 | zohar-chadash-bereshit-bereshit-818 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:819 | zohar-chadash-bereshit-bereshit-819 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:820 | zohar-chadash-bereshit-bereshit-820 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:821 | zohar-chadash-bereshit-bereshit-821 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:822 | zohar-chadash-bereshit-bereshit-822 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:823 | zohar-chadash-bereshit-bereshit-823 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:824 | zohar-chadash-bereshit-bereshit-824 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:825 | zohar-chadash-bereshit-bereshit-825 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:826 | zohar-chadash-bereshit-bereshit-826 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:827 | zohar-chadash-bereshit-bereshit-827 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:828 | zohar-chadash-bereshit-bereshit-828 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:829 | zohar-chadash-bereshit-bereshit-829 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:830 | zohar-chadash-bereshit-bereshit-830 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:831 | zohar-chadash-bereshit-bereshit-831 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:832 | zohar-chadash-bereshit-bereshit-832 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:833 | zohar-chadash-bereshit-bereshit-833 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:834 | zohar-chadash-bereshit-bereshit-834 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:835 | zohar-chadash-bereshit-bereshit-835 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:836 | zohar-chadash-bereshit-bereshit-836 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:837 | zohar-chadash-bereshit-bereshit-837 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:838 | zohar-chadash-bereshit-bereshit-838 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:839 | zohar-chadash-bereshit-bereshit-839 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:840 | zohar-chadash-bereshit-bereshit-840 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:841 | zohar-chadash-bereshit-bereshit-841 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:842 | zohar-chadash-bereshit-bereshit-842 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:843 | zohar-chadash-bereshit-bereshit-843 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:844 | zohar-chadash-bereshit-bereshit-844 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:845 | zohar-chadash-bereshit-bereshit-845 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:846 | zohar-chadash-bereshit-bereshit-846 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:847 | zohar-chadash-bereshit-bereshit-847 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:848 | zohar-chadash-bereshit-bereshit-848 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:849 | zohar-chadash-bereshit-bereshit-849 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:850 | zohar-chadash-bereshit-bereshit-850 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:851 | zohar-chadash-bereshit-bereshit-851 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:852 | zohar-chadash-bereshit-bereshit-852 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:853 | zohar-chadash-bereshit-bereshit-853 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:854 | zohar-chadash-bereshit-bereshit-854 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:855 | zohar-chadash-bereshit-bereshit-855 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:856 | zohar-chadash-bereshit-bereshit-856 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:857 | zohar-chadash-bereshit-bereshit-857 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:858 | zohar-chadash-bereshit-bereshit-858 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:859 | zohar-chadash-bereshit-bereshit-859 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:860 | zohar-chadash-bereshit-bereshit-860 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Bereshit:861 | zohar-chadash-bereshit-bereshit-861 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:1 | zohar-chadash-noach-noach-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:2 | zohar-chadash-noach-noach-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:3 | zohar-chadash-noach-noach-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:4 | zohar-chadash-noach-noach-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:5 | zohar-chadash-noach-noach-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:6 | zohar-chadash-noach-noach-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:7 | zohar-chadash-noach-noach-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:8 | zohar-chadash-noach-noach-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:9 | zohar-chadash-noach-noach-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:10 | zohar-chadash-noach-noach-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:11 | zohar-chadash-noach-noach-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:12 | zohar-chadash-noach-noach-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:13 | zohar-chadash-noach-noach-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:14 | zohar-chadash-noach-noach-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:15 | zohar-chadash-noach-noach-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:16 | zohar-chadash-noach-noach-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:17 | zohar-chadash-noach-noach-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:18 | zohar-chadash-noach-noach-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:19 | zohar-chadash-noach-noach-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:20 | zohar-chadash-noach-noach-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:21 | zohar-chadash-noach-noach-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:22 | zohar-chadash-noach-noach-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:23 | zohar-chadash-noach-noach-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:24 | zohar-chadash-noach-noach-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:25 | zohar-chadash-noach-noach-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:26 | zohar-chadash-noach-noach-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:27 | zohar-chadash-noach-noach-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:28 | zohar-chadash-noach-noach-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:29 | zohar-chadash-noach-noach-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:30 | zohar-chadash-noach-noach-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:31 | zohar-chadash-noach-noach-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:32 | zohar-chadash-noach-noach-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:33 | zohar-chadash-noach-noach-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:34 | zohar-chadash-noach-noach-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:35 | zohar-chadash-noach-noach-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:36 | zohar-chadash-noach-noach-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:37 | zohar-chadash-noach-noach-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:38 | zohar-chadash-noach-noach-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:39 | zohar-chadash-noach-noach-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:40 | zohar-chadash-noach-noach-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:41 | zohar-chadash-noach-noach-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:42 | zohar-chadash-noach-noach-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:43 | zohar-chadash-noach-noach-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:44 | zohar-chadash-noach-noach-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:45 | zohar-chadash-noach-noach-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:46 | zohar-chadash-noach-noach-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:47 | zohar-chadash-noach-noach-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:48 | zohar-chadash-noach-noach-48 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:49 | zohar-chadash-noach-noach-49 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:50 | zohar-chadash-noach-noach-50 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:51 | zohar-chadash-noach-noach-51 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:52 | zohar-chadash-noach-noach-52 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:53 | zohar-chadash-noach-noach-53 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:54 | zohar-chadash-noach-noach-54 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:55 | zohar-chadash-noach-noach-55 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:56 | zohar-chadash-noach-noach-56 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:57 | zohar-chadash-noach-noach-57 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:58 | zohar-chadash-noach-noach-58 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:59 | zohar-chadash-noach-noach-59 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:60 | zohar-chadash-noach-noach-60 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:61 | zohar-chadash-noach-noach-61 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:62 | zohar-chadash-noach-noach-62 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:63 | zohar-chadash-noach-noach-63 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:64 | zohar-chadash-noach-noach-64 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:65 | zohar-chadash-noach-noach-65 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:66 | zohar-chadash-noach-noach-66 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:67 | zohar-chadash-noach-noach-67 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:68 | zohar-chadash-noach-noach-68 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:69 | zohar-chadash-noach-noach-69 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:70 | zohar-chadash-noach-noach-70 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:71 | zohar-chadash-noach-noach-71 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:72 | zohar-chadash-noach-noach-72 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:73 | zohar-chadash-noach-noach-73 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:74 | zohar-chadash-noach-noach-74 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:75 | zohar-chadash-noach-noach-75 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:76 | zohar-chadash-noach-noach-76 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:77 | zohar-chadash-noach-noach-77 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:78 | zohar-chadash-noach-noach-78 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:79 | zohar-chadash-noach-noach-79 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:80 | zohar-chadash-noach-noach-80 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:81 | zohar-chadash-noach-noach-81 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:82 | zohar-chadash-noach-noach-82 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:83 | zohar-chadash-noach-noach-83 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:84 | zohar-chadash-noach-noach-84 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:85 | zohar-chadash-noach-noach-85 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:86 | zohar-chadash-noach-noach-86 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:87 | zohar-chadash-noach-noach-87 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:88 | zohar-chadash-noach-noach-88 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:89 | zohar-chadash-noach-noach-89 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:90 | zohar-chadash-noach-noach-90 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:91 | zohar-chadash-noach-noach-91 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:92 | zohar-chadash-noach-noach-92 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:93 | zohar-chadash-noach-noach-93 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:94 | zohar-chadash-noach-noach-94 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:95 | zohar-chadash-noach-noach-95 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:96 | zohar-chadash-noach-noach-96 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:97 | zohar-chadash-noach-noach-97 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:98 | zohar-chadash-noach-noach-98 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:99 | zohar-chadash-noach-noach-99 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:100 | zohar-chadash-noach-noach-100 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:101 | zohar-chadash-noach-noach-101 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:102 | zohar-chadash-noach-noach-102 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:103 | zohar-chadash-noach-noach-103 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:104 | zohar-chadash-noach-noach-104 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:105 | zohar-chadash-noach-noach-105 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:106 | zohar-chadash-noach-noach-106 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:107 | zohar-chadash-noach-noach-107 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:108 | zohar-chadash-noach-noach-108 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:109 | zohar-chadash-noach-noach-109 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:110 | zohar-chadash-noach-noach-110 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:111 | zohar-chadash-noach-noach-111 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:112 | zohar-chadash-noach-noach-112 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:113 | zohar-chadash-noach-noach-113 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:114 | zohar-chadash-noach-noach-114 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:115 | zohar-chadash-noach-noach-115 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:116 | zohar-chadash-noach-noach-116 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:117 | zohar-chadash-noach-noach-117 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:118 | zohar-chadash-noach-noach-118 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:119 | zohar-chadash-noach-noach-119 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:120 | zohar-chadash-noach-noach-120 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:121 | zohar-chadash-noach-noach-121 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:122 | zohar-chadash-noach-noach-122 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:123 | zohar-chadash-noach-noach-123 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:124 | zohar-chadash-noach-noach-124 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:125 | zohar-chadash-noach-noach-125 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:126 | zohar-chadash-noach-noach-126 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:127 | zohar-chadash-noach-noach-127 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:128 | zohar-chadash-noach-noach-128 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:129 | zohar-chadash-noach-noach-129 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:130 | zohar-chadash-noach-noach-130 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:131 | zohar-chadash-noach-noach-131 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:132 | zohar-chadash-noach-noach-132 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:133 | zohar-chadash-noach-noach-133 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:134 | zohar-chadash-noach-noach-134 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:135 | zohar-chadash-noach-noach-135 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:136 | zohar-chadash-noach-noach-136 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:137 | zohar-chadash-noach-noach-137 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:138 | zohar-chadash-noach-noach-138 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:139 | zohar-chadash-noach-noach-139 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:140 | zohar-chadash-noach-noach-140 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:141 | zohar-chadash-noach-noach-141 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:142 | zohar-chadash-noach-noach-142 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:143 | zohar-chadash-noach-noach-143 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:144 | zohar-chadash-noach-noach-144 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:145 | zohar-chadash-noach-noach-145 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:146 | zohar-chadash-noach-noach-146 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:147 | zohar-chadash-noach-noach-147 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:148 | zohar-chadash-noach-noach-148 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:149 | zohar-chadash-noach-noach-149 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:150 | zohar-chadash-noach-noach-150 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:151 | zohar-chadash-noach-noach-151 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:152 | zohar-chadash-noach-noach-152 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Noach:153 | zohar-chadash-noach-noach-153 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:1 | zohar-chadash-lech-lecha-lech-lecha-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:2 | zohar-chadash-lech-lecha-lech-lecha-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:3 | zohar-chadash-lech-lecha-lech-lecha-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:4 | zohar-chadash-lech-lecha-lech-lecha-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:5 | zohar-chadash-lech-lecha-lech-lecha-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:6 | zohar-chadash-lech-lecha-lech-lecha-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:7 | zohar-chadash-lech-lecha-lech-lecha-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:8 | zohar-chadash-lech-lecha-lech-lecha-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:9 | zohar-chadash-lech-lecha-lech-lecha-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:10 | zohar-chadash-lech-lecha-lech-lecha-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:11 | zohar-chadash-lech-lecha-lech-lecha-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:12 | zohar-chadash-lech-lecha-lech-lecha-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:13 | zohar-chadash-lech-lecha-lech-lecha-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:14 | zohar-chadash-lech-lecha-lech-lecha-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:15 | zohar-chadash-lech-lecha-lech-lecha-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:16 | zohar-chadash-lech-lecha-lech-lecha-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:17 | zohar-chadash-lech-lecha-lech-lecha-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:18 | zohar-chadash-lech-lecha-lech-lecha-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:19 | zohar-chadash-lech-lecha-lech-lecha-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:20 | zohar-chadash-lech-lecha-lech-lecha-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:21 | zohar-chadash-lech-lecha-lech-lecha-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:22 | zohar-chadash-lech-lecha-lech-lecha-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:23 | zohar-chadash-lech-lecha-lech-lecha-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:24 | zohar-chadash-lech-lecha-lech-lecha-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:25 | zohar-chadash-lech-lecha-lech-lecha-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:26 | zohar-chadash-lech-lecha-lech-lecha-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:27 | zohar-chadash-lech-lecha-lech-lecha-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:28 | zohar-chadash-lech-lecha-lech-lecha-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:29 | zohar-chadash-lech-lecha-lech-lecha-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:30 | zohar-chadash-lech-lecha-lech-lecha-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:31 | zohar-chadash-lech-lecha-lech-lecha-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:32 | zohar-chadash-lech-lecha-lech-lecha-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:33 | zohar-chadash-lech-lecha-lech-lecha-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:34 | zohar-chadash-lech-lecha-lech-lecha-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:35 | zohar-chadash-lech-lecha-lech-lecha-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:36 | zohar-chadash-lech-lecha-lech-lecha-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:37 | zohar-chadash-lech-lecha-lech-lecha-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:38 | zohar-chadash-lech-lecha-lech-lecha-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:39 | zohar-chadash-lech-lecha-lech-lecha-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:40 | zohar-chadash-lech-lecha-lech-lecha-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:41 | zohar-chadash-lech-lecha-lech-lecha-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:42 | zohar-chadash-lech-lecha-lech-lecha-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:43 | zohar-chadash-lech-lecha-lech-lecha-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:44 | zohar-chadash-lech-lecha-lech-lecha-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:45 | zohar-chadash-lech-lecha-lech-lecha-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:46 | zohar-chadash-lech-lecha-lech-lecha-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:47 | zohar-chadash-lech-lecha-lech-lecha-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:48 | zohar-chadash-lech-lecha-lech-lecha-48 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:49 | zohar-chadash-lech-lecha-lech-lecha-49 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:50 | zohar-chadash-lech-lecha-lech-lecha-50 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:51 | zohar-chadash-lech-lecha-lech-lecha-51 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:52 | zohar-chadash-lech-lecha-lech-lecha-52 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:53 | zohar-chadash-lech-lecha-lech-lecha-53 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:54 | zohar-chadash-lech-lecha-lech-lecha-54 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:55 | zohar-chadash-lech-lecha-lech-lecha-55 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:56 | zohar-chadash-lech-lecha-lech-lecha-56 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:57 | zohar-chadash-lech-lecha-lech-lecha-57 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:58 | zohar-chadash-lech-lecha-lech-lecha-58 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:59 | zohar-chadash-lech-lecha-lech-lecha-59 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:60 | zohar-chadash-lech-lecha-lech-lecha-60 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:61 | zohar-chadash-lech-lecha-lech-lecha-61 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:62 | zohar-chadash-lech-lecha-lech-lecha-62 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:63 | zohar-chadash-lech-lecha-lech-lecha-63 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:64 | zohar-chadash-lech-lecha-lech-lecha-64 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:65 | zohar-chadash-lech-lecha-lech-lecha-65 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:66 | zohar-chadash-lech-lecha-lech-lecha-66 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:67 | zohar-chadash-lech-lecha-lech-lecha-67 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:68 | zohar-chadash-lech-lecha-lech-lecha-68 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:69 | zohar-chadash-lech-lecha-lech-lecha-69 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:70 | zohar-chadash-lech-lecha-lech-lecha-70 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:71 | zohar-chadash-lech-lecha-lech-lecha-71 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:72 | zohar-chadash-lech-lecha-lech-lecha-72 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:73 | zohar-chadash-lech-lecha-lech-lecha-73 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:74 | zohar-chadash-lech-lecha-lech-lecha-74 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:75 | zohar-chadash-lech-lecha-lech-lecha-75 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:76 | zohar-chadash-lech-lecha-lech-lecha-76 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:77 | zohar-chadash-lech-lecha-lech-lecha-77 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:78 | zohar-chadash-lech-lecha-lech-lecha-78 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:79 | zohar-chadash-lech-lecha-lech-lecha-79 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:80 | zohar-chadash-lech-lecha-lech-lecha-80 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:81 | zohar-chadash-lech-lecha-lech-lecha-81 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:82 | zohar-chadash-lech-lecha-lech-lecha-82 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:83 | zohar-chadash-lech-lecha-lech-lecha-83 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:84 | zohar-chadash-lech-lecha-lech-lecha-84 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:85 | zohar-chadash-lech-lecha-lech-lecha-85 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:86 | zohar-chadash-lech-lecha-lech-lecha-86 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:87 | zohar-chadash-lech-lecha-lech-lecha-87 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:88 | zohar-chadash-lech-lecha-lech-lecha-88 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:89 | zohar-chadash-lech-lecha-lech-lecha-89 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:90 | zohar-chadash-lech-lecha-lech-lecha-90 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:91 | zohar-chadash-lech-lecha-lech-lecha-91 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:92 | zohar-chadash-lech-lecha-lech-lecha-92 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:93 | zohar-chadash-lech-lecha-lech-lecha-93 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:94 | zohar-chadash-lech-lecha-lech-lecha-94 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:95 | zohar-chadash-lech-lecha-lech-lecha-95 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:96 | zohar-chadash-lech-lecha-lech-lecha-96 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:97 | zohar-chadash-lech-lecha-lech-lecha-97 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:98 | zohar-chadash-lech-lecha-lech-lecha-98 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:99 | zohar-chadash-lech-lecha-lech-lecha-99 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:100 | zohar-chadash-lech-lecha-lech-lecha-100 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:101 | zohar-chadash-lech-lecha-lech-lecha-101 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:102 | zohar-chadash-lech-lecha-lech-lecha-102 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:103 | zohar-chadash-lech-lecha-lech-lecha-103 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:104 | zohar-chadash-lech-lecha-lech-lecha-104 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:105 | zohar-chadash-lech-lecha-lech-lecha-105 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:106 | zohar-chadash-lech-lecha-lech-lecha-106 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:107 | zohar-chadash-lech-lecha-lech-lecha-107 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:108 | zohar-chadash-lech-lecha-lech-lecha-108 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:109 | zohar-chadash-lech-lecha-lech-lecha-109 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:110 | zohar-chadash-lech-lecha-lech-lecha-110 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:111 | zohar-chadash-lech-lecha-lech-lecha-111 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:112 | zohar-chadash-lech-lecha-lech-lecha-112 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:113 | zohar-chadash-lech-lecha-lech-lecha-113 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:114 | zohar-chadash-lech-lecha-lech-lecha-114 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Lech Lecha:115 | zohar-chadash-lech-lecha-lech-lecha-115 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayera:1 | zohar-chadash-vayera-vayera-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayera:2 | zohar-chadash-vayera-vayera-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayera:3 | zohar-chadash-vayera-vayera-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayera:4 | zohar-chadash-vayera-vayera-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:1 | zohar-chadash-toldot-toldot-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:2 | zohar-chadash-toldot-toldot-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:3 | zohar-chadash-toldot-toldot-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:4 | zohar-chadash-toldot-toldot-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:5 | zohar-chadash-toldot-toldot-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:6 | zohar-chadash-toldot-toldot-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:7 | zohar-chadash-toldot-toldot-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:8 | zohar-chadash-toldot-toldot-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:9 | zohar-chadash-toldot-toldot-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:10 | zohar-chadash-toldot-toldot-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:11 | zohar-chadash-toldot-toldot-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:12 | zohar-chadash-toldot-toldot-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:13 | zohar-chadash-toldot-toldot-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:14 | zohar-chadash-toldot-toldot-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:15 | zohar-chadash-toldot-toldot-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:16 | zohar-chadash-toldot-toldot-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:17 | zohar-chadash-toldot-toldot-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:18 | zohar-chadash-toldot-toldot-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:19 | zohar-chadash-toldot-toldot-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:20 | zohar-chadash-toldot-toldot-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:21 | zohar-chadash-toldot-toldot-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:22 | zohar-chadash-toldot-toldot-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:23 | zohar-chadash-toldot-toldot-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:24 | zohar-chadash-toldot-toldot-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:25 | zohar-chadash-toldot-toldot-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:26 | zohar-chadash-toldot-toldot-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:27 | zohar-chadash-toldot-toldot-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:28 | zohar-chadash-toldot-toldot-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:29 | zohar-chadash-toldot-toldot-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:30 | zohar-chadash-toldot-toldot-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:31 | zohar-chadash-toldot-toldot-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:32 | zohar-chadash-toldot-toldot-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:33 | zohar-chadash-toldot-toldot-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:34 | zohar-chadash-toldot-toldot-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:35 | zohar-chadash-toldot-toldot-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:36 | zohar-chadash-toldot-toldot-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:37 | zohar-chadash-toldot-toldot-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:38 | zohar-chadash-toldot-toldot-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:39 | zohar-chadash-toldot-toldot-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:40 | zohar-chadash-toldot-toldot-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Toldot:41 | zohar-chadash-toldot-toldot-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:1 | zohar-chadash-vayetzei-vayetzei-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:2 | zohar-chadash-vayetzei-vayetzei-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:3 | zohar-chadash-vayetzei-vayetzei-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:4 | zohar-chadash-vayetzei-vayetzei-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:5 | zohar-chadash-vayetzei-vayetzei-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:6 | zohar-chadash-vayetzei-vayetzei-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:7 | zohar-chadash-vayetzei-vayetzei-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:8 | zohar-chadash-vayetzei-vayetzei-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:9 | zohar-chadash-vayetzei-vayetzei-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:10 | zohar-chadash-vayetzei-vayetzei-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:11 | zohar-chadash-vayetzei-vayetzei-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:12 | zohar-chadash-vayetzei-vayetzei-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:13 | zohar-chadash-vayetzei-vayetzei-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:14 | zohar-chadash-vayetzei-vayetzei-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:15 | zohar-chadash-vayetzei-vayetzei-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:16 | zohar-chadash-vayetzei-vayetzei-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:17 | zohar-chadash-vayetzei-vayetzei-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:18 | zohar-chadash-vayetzei-vayetzei-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:19 | zohar-chadash-vayetzei-vayetzei-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:20 | zohar-chadash-vayetzei-vayetzei-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:21 | zohar-chadash-vayetzei-vayetzei-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:22 | zohar-chadash-vayetzei-vayetzei-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:23 | zohar-chadash-vayetzei-vayetzei-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:24 | zohar-chadash-vayetzei-vayetzei-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:25 | zohar-chadash-vayetzei-vayetzei-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:26 | zohar-chadash-vayetzei-vayetzei-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:27 | zohar-chadash-vayetzei-vayetzei-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:28 | zohar-chadash-vayetzei-vayetzei-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:29 | zohar-chadash-vayetzei-vayetzei-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:30 | zohar-chadash-vayetzei-vayetzei-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:31 | zohar-chadash-vayetzei-vayetzei-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:32 | zohar-chadash-vayetzei-vayetzei-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:33 | zohar-chadash-vayetzei-vayetzei-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:34 | zohar-chadash-vayetzei-vayetzei-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:35 | zohar-chadash-vayetzei-vayetzei-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:36 | zohar-chadash-vayetzei-vayetzei-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:37 | zohar-chadash-vayetzei-vayetzei-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:38 | zohar-chadash-vayetzei-vayetzei-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:39 | zohar-chadash-vayetzei-vayetzei-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:40 | zohar-chadash-vayetzei-vayetzei-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:41 | zohar-chadash-vayetzei-vayetzei-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:42 | zohar-chadash-vayetzei-vayetzei-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:43 | zohar-chadash-vayetzei-vayetzei-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:44 | zohar-chadash-vayetzei-vayetzei-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:45 | zohar-chadash-vayetzei-vayetzei-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:46 | zohar-chadash-vayetzei-vayetzei-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:47 | zohar-chadash-vayetzei-vayetzei-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:48 | zohar-chadash-vayetzei-vayetzei-48 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:49 | zohar-chadash-vayetzei-vayetzei-49 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:50 | zohar-chadash-vayetzei-vayetzei-50 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:51 | zohar-chadash-vayetzei-vayetzei-51 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:52 | zohar-chadash-vayetzei-vayetzei-52 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:53 | zohar-chadash-vayetzei-vayetzei-53 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:54 | zohar-chadash-vayetzei-vayetzei-54 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:55 | zohar-chadash-vayetzei-vayetzei-55 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:56 | zohar-chadash-vayetzei-vayetzei-56 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:57 | zohar-chadash-vayetzei-vayetzei-57 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:58 | zohar-chadash-vayetzei-vayetzei-58 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:59 | zohar-chadash-vayetzei-vayetzei-59 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:60 | zohar-chadash-vayetzei-vayetzei-60 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:61 | zohar-chadash-vayetzei-vayetzei-61 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:62 | zohar-chadash-vayetzei-vayetzei-62 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:63 | zohar-chadash-vayetzei-vayetzei-63 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:64 | zohar-chadash-vayetzei-vayetzei-64 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:65 | zohar-chadash-vayetzei-vayetzei-65 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:66 | zohar-chadash-vayetzei-vayetzei-66 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:67 | zohar-chadash-vayetzei-vayetzei-67 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:68 | zohar-chadash-vayetzei-vayetzei-68 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:69 | zohar-chadash-vayetzei-vayetzei-69 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:70 | zohar-chadash-vayetzei-vayetzei-70 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:71 | zohar-chadash-vayetzei-vayetzei-71 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:72 | zohar-chadash-vayetzei-vayetzei-72 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:73 | zohar-chadash-vayetzei-vayetzei-73 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:74 | zohar-chadash-vayetzei-vayetzei-74 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayetzei:75 | zohar-chadash-vayetzei-vayetzei-75 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:1 | zohar-chadash-vayeshev-vayeshev-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:2 | zohar-chadash-vayeshev-vayeshev-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:3 | zohar-chadash-vayeshev-vayeshev-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:4 | zohar-chadash-vayeshev-vayeshev-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:5 | zohar-chadash-vayeshev-vayeshev-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:6 | zohar-chadash-vayeshev-vayeshev-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:7 | zohar-chadash-vayeshev-vayeshev-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:8 | zohar-chadash-vayeshev-vayeshev-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:9 | zohar-chadash-vayeshev-vayeshev-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:10 | zohar-chadash-vayeshev-vayeshev-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:11 | zohar-chadash-vayeshev-vayeshev-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:12 | zohar-chadash-vayeshev-vayeshev-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:13 | zohar-chadash-vayeshev-vayeshev-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:14 | zohar-chadash-vayeshev-vayeshev-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:15 | zohar-chadash-vayeshev-vayeshev-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:16 | zohar-chadash-vayeshev-vayeshev-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:17 | zohar-chadash-vayeshev-vayeshev-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:18 | zohar-chadash-vayeshev-vayeshev-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:19 | zohar-chadash-vayeshev-vayeshev-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:20 | zohar-chadash-vayeshev-vayeshev-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:21 | zohar-chadash-vayeshev-vayeshev-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:22 | zohar-chadash-vayeshev-vayeshev-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:23 | zohar-chadash-vayeshev-vayeshev-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:24 | zohar-chadash-vayeshev-vayeshev-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:25 | zohar-chadash-vayeshev-vayeshev-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:26 | zohar-chadash-vayeshev-vayeshev-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:27 | zohar-chadash-vayeshev-vayeshev-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:28 | zohar-chadash-vayeshev-vayeshev-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:29 | zohar-chadash-vayeshev-vayeshev-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:30 | zohar-chadash-vayeshev-vayeshev-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:31 | zohar-chadash-vayeshev-vayeshev-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:32 | zohar-chadash-vayeshev-vayeshev-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:33 | zohar-chadash-vayeshev-vayeshev-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:34 | zohar-chadash-vayeshev-vayeshev-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:35 | zohar-chadash-vayeshev-vayeshev-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:36 | zohar-chadash-vayeshev-vayeshev-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:37 | zohar-chadash-vayeshev-vayeshev-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:38 | zohar-chadash-vayeshev-vayeshev-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:39 | zohar-chadash-vayeshev-vayeshev-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:40 | zohar-chadash-vayeshev-vayeshev-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:41 | zohar-chadash-vayeshev-vayeshev-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:42 | zohar-chadash-vayeshev-vayeshev-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:43 | zohar-chadash-vayeshev-vayeshev-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:44 | zohar-chadash-vayeshev-vayeshev-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:45 | zohar-chadash-vayeshev-vayeshev-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:46 | zohar-chadash-vayeshev-vayeshev-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:47 | zohar-chadash-vayeshev-vayeshev-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vayeshev:48 | zohar-chadash-vayeshev-vayeshev-48 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:1 | zohar-chadash-beshalach-beshalach-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:2 | zohar-chadash-beshalach-beshalach-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:3 | zohar-chadash-beshalach-beshalach-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:4 | zohar-chadash-beshalach-beshalach-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:5 | zohar-chadash-beshalach-beshalach-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:6 | zohar-chadash-beshalach-beshalach-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:7 | zohar-chadash-beshalach-beshalach-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:8 | zohar-chadash-beshalach-beshalach-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:9 | zohar-chadash-beshalach-beshalach-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:10 | zohar-chadash-beshalach-beshalach-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:11 | zohar-chadash-beshalach-beshalach-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:12 | zohar-chadash-beshalach-beshalach-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:13 | zohar-chadash-beshalach-beshalach-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:14 | zohar-chadash-beshalach-beshalach-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:15 | zohar-chadash-beshalach-beshalach-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:16 | zohar-chadash-beshalach-beshalach-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:17 | zohar-chadash-beshalach-beshalach-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:18 | zohar-chadash-beshalach-beshalach-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:19 | zohar-chadash-beshalach-beshalach-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:20 | zohar-chadash-beshalach-beshalach-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:21 | zohar-chadash-beshalach-beshalach-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:22 | zohar-chadash-beshalach-beshalach-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:23 | zohar-chadash-beshalach-beshalach-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:24 | zohar-chadash-beshalach-beshalach-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:25 | zohar-chadash-beshalach-beshalach-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:26 | zohar-chadash-beshalach-beshalach-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:27 | zohar-chadash-beshalach-beshalach-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:28 | zohar-chadash-beshalach-beshalach-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:29 | zohar-chadash-beshalach-beshalach-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:30 | zohar-chadash-beshalach-beshalach-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:31 | zohar-chadash-beshalach-beshalach-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:32 | zohar-chadash-beshalach-beshalach-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:33 | zohar-chadash-beshalach-beshalach-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:34 | zohar-chadash-beshalach-beshalach-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:35 | zohar-chadash-beshalach-beshalach-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:36 | zohar-chadash-beshalach-beshalach-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:37 | zohar-chadash-beshalach-beshalach-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:38 | zohar-chadash-beshalach-beshalach-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:39 | zohar-chadash-beshalach-beshalach-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:40 | zohar-chadash-beshalach-beshalach-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:41 | zohar-chadash-beshalach-beshalach-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:42 | zohar-chadash-beshalach-beshalach-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:43 | zohar-chadash-beshalach-beshalach-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:44 | zohar-chadash-beshalach-beshalach-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Beshalach:45 | zohar-chadash-beshalach-beshalach-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:1 | zohar-chadash-yitro-yitro-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:2 | zohar-chadash-yitro-yitro-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:3 | zohar-chadash-yitro-yitro-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:4 | zohar-chadash-yitro-yitro-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:5 | zohar-chadash-yitro-yitro-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:6 | zohar-chadash-yitro-yitro-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:7 | zohar-chadash-yitro-yitro-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:8 | zohar-chadash-yitro-yitro-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:9 | zohar-chadash-yitro-yitro-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:10 | zohar-chadash-yitro-yitro-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:11 | zohar-chadash-yitro-yitro-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:12 | zohar-chadash-yitro-yitro-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:13 | zohar-chadash-yitro-yitro-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:14 | zohar-chadash-yitro-yitro-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:15 | zohar-chadash-yitro-yitro-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:16 | zohar-chadash-yitro-yitro-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:17 | zohar-chadash-yitro-yitro-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:18 | zohar-chadash-yitro-yitro-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:19 | zohar-chadash-yitro-yitro-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:20 | zohar-chadash-yitro-yitro-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:21 | zohar-chadash-yitro-yitro-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:22 | zohar-chadash-yitro-yitro-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:23 | zohar-chadash-yitro-yitro-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:24 | zohar-chadash-yitro-yitro-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:25 | zohar-chadash-yitro-yitro-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:26 | zohar-chadash-yitro-yitro-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:27 | zohar-chadash-yitro-yitro-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:28 | zohar-chadash-yitro-yitro-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:29 | zohar-chadash-yitro-yitro-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:30 | zohar-chadash-yitro-yitro-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:31 | zohar-chadash-yitro-yitro-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:32 | zohar-chadash-yitro-yitro-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:33 | zohar-chadash-yitro-yitro-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:34 | zohar-chadash-yitro-yitro-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:35 | zohar-chadash-yitro-yitro-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:36 | zohar-chadash-yitro-yitro-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:37 | zohar-chadash-yitro-yitro-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:38 | zohar-chadash-yitro-yitro-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:39 | zohar-chadash-yitro-yitro-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:40 | zohar-chadash-yitro-yitro-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:41 | zohar-chadash-yitro-yitro-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:42 | zohar-chadash-yitro-yitro-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:43 | zohar-chadash-yitro-yitro-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:44 | zohar-chadash-yitro-yitro-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:45 | zohar-chadash-yitro-yitro-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:46 | zohar-chadash-yitro-yitro-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:47 | zohar-chadash-yitro-yitro-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:48 | zohar-chadash-yitro-yitro-48 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:49 | zohar-chadash-yitro-yitro-49 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:50 | zohar-chadash-yitro-yitro-50 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:51 | zohar-chadash-yitro-yitro-51 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:52 | zohar-chadash-yitro-yitro-52 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:53 | zohar-chadash-yitro-yitro-53 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:54 | zohar-chadash-yitro-yitro-54 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:55 | zohar-chadash-yitro-yitro-55 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:56 | zohar-chadash-yitro-yitro-56 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:57 | zohar-chadash-yitro-yitro-57 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:58 | zohar-chadash-yitro-yitro-58 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:59 | zohar-chadash-yitro-yitro-59 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:60 | zohar-chadash-yitro-yitro-60 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:61 | zohar-chadash-yitro-yitro-61 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:62 | zohar-chadash-yitro-yitro-62 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:63 | zohar-chadash-yitro-yitro-63 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:64 | zohar-chadash-yitro-yitro-64 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:65 | zohar-chadash-yitro-yitro-65 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:66 | zohar-chadash-yitro-yitro-66 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:67 | zohar-chadash-yitro-yitro-67 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:68 | zohar-chadash-yitro-yitro-68 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:69 | zohar-chadash-yitro-yitro-69 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:70 | zohar-chadash-yitro-yitro-70 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:71 | zohar-chadash-yitro-yitro-71 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:72 | zohar-chadash-yitro-yitro-72 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:73 | zohar-chadash-yitro-yitro-73 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:74 | zohar-chadash-yitro-yitro-74 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:75 | zohar-chadash-yitro-yitro-75 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:76 | zohar-chadash-yitro-yitro-76 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:77 | zohar-chadash-yitro-yitro-77 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:78 | zohar-chadash-yitro-yitro-78 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:79 | zohar-chadash-yitro-yitro-79 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:80 | zohar-chadash-yitro-yitro-80 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:81 | zohar-chadash-yitro-yitro-81 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:82 | zohar-chadash-yitro-yitro-82 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:83 | zohar-chadash-yitro-yitro-83 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:84 | zohar-chadash-yitro-yitro-84 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:85 | zohar-chadash-yitro-yitro-85 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:86 | zohar-chadash-yitro-yitro-86 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:87 | zohar-chadash-yitro-yitro-87 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:88 | zohar-chadash-yitro-yitro-88 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:89 | zohar-chadash-yitro-yitro-89 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:90 | zohar-chadash-yitro-yitro-90 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:91 | zohar-chadash-yitro-yitro-91 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:92 | zohar-chadash-yitro-yitro-92 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:93 | zohar-chadash-yitro-yitro-93 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:94 | zohar-chadash-yitro-yitro-94 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:95 | zohar-chadash-yitro-yitro-95 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:96 | zohar-chadash-yitro-yitro-96 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:97 | zohar-chadash-yitro-yitro-97 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:98 | zohar-chadash-yitro-yitro-98 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:99 | zohar-chadash-yitro-yitro-99 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:100 | zohar-chadash-yitro-yitro-100 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:101 | zohar-chadash-yitro-yitro-101 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:102 | zohar-chadash-yitro-yitro-102 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:103 | zohar-chadash-yitro-yitro-103 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:104 | zohar-chadash-yitro-yitro-104 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:105 | zohar-chadash-yitro-yitro-105 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:106 | zohar-chadash-yitro-yitro-106 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:107 | zohar-chadash-yitro-yitro-107 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:108 | zohar-chadash-yitro-yitro-108 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:109 | zohar-chadash-yitro-yitro-109 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:110 | zohar-chadash-yitro-yitro-110 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:111 | zohar-chadash-yitro-yitro-111 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:112 | zohar-chadash-yitro-yitro-112 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:113 | zohar-chadash-yitro-yitro-113 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:114 | zohar-chadash-yitro-yitro-114 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:115 | zohar-chadash-yitro-yitro-115 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:116 | zohar-chadash-yitro-yitro-116 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:117 | zohar-chadash-yitro-yitro-117 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:118 | zohar-chadash-yitro-yitro-118 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:119 | zohar-chadash-yitro-yitro-119 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:120 | zohar-chadash-yitro-yitro-120 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:121 | zohar-chadash-yitro-yitro-121 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:122 | zohar-chadash-yitro-yitro-122 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:123 | zohar-chadash-yitro-yitro-123 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:124 | zohar-chadash-yitro-yitro-124 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:125 | zohar-chadash-yitro-yitro-125 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:126 | zohar-chadash-yitro-yitro-126 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:127 | zohar-chadash-yitro-yitro-127 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:128 | zohar-chadash-yitro-yitro-128 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:129 | zohar-chadash-yitro-yitro-129 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:130 | zohar-chadash-yitro-yitro-130 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:131 | zohar-chadash-yitro-yitro-131 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:132 | zohar-chadash-yitro-yitro-132 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:133 | zohar-chadash-yitro-yitro-133 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:134 | zohar-chadash-yitro-yitro-134 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:135 | zohar-chadash-yitro-yitro-135 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:136 | zohar-chadash-yitro-yitro-136 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:137 | zohar-chadash-yitro-yitro-137 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:138 | zohar-chadash-yitro-yitro-138 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:139 | zohar-chadash-yitro-yitro-139 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:140 | zohar-chadash-yitro-yitro-140 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:141 | zohar-chadash-yitro-yitro-141 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:142 | zohar-chadash-yitro-yitro-142 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:143 | zohar-chadash-yitro-yitro-143 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:144 | zohar-chadash-yitro-yitro-144 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:145 | zohar-chadash-yitro-yitro-145 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:146 | zohar-chadash-yitro-yitro-146 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:147 | zohar-chadash-yitro-yitro-147 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:148 | zohar-chadash-yitro-yitro-148 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:149 | zohar-chadash-yitro-yitro-149 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:150 | zohar-chadash-yitro-yitro-150 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:151 | zohar-chadash-yitro-yitro-151 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:152 | zohar-chadash-yitro-yitro-152 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:153 | zohar-chadash-yitro-yitro-153 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:154 | zohar-chadash-yitro-yitro-154 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:155 | zohar-chadash-yitro-yitro-155 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:156 | zohar-chadash-yitro-yitro-156 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:157 | zohar-chadash-yitro-yitro-157 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:158 | zohar-chadash-yitro-yitro-158 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:159 | zohar-chadash-yitro-yitro-159 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:160 | zohar-chadash-yitro-yitro-160 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:161 | zohar-chadash-yitro-yitro-161 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:162 | zohar-chadash-yitro-yitro-162 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:163 | zohar-chadash-yitro-yitro-163 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:164 | zohar-chadash-yitro-yitro-164 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:165 | zohar-chadash-yitro-yitro-165 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:166 | zohar-chadash-yitro-yitro-166 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:167 | zohar-chadash-yitro-yitro-167 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:168 | zohar-chadash-yitro-yitro-168 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:169 | zohar-chadash-yitro-yitro-169 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:170 | zohar-chadash-yitro-yitro-170 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:171 | zohar-chadash-yitro-yitro-171 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:172 | zohar-chadash-yitro-yitro-172 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:173 | zohar-chadash-yitro-yitro-173 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:174 | zohar-chadash-yitro-yitro-174 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:175 | zohar-chadash-yitro-yitro-175 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:176 | zohar-chadash-yitro-yitro-176 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:177 | zohar-chadash-yitro-yitro-177 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:178 | zohar-chadash-yitro-yitro-178 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:179 | zohar-chadash-yitro-yitro-179 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:180 | zohar-chadash-yitro-yitro-180 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:181 | zohar-chadash-yitro-yitro-181 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:182 | zohar-chadash-yitro-yitro-182 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:183 | zohar-chadash-yitro-yitro-183 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:184 | zohar-chadash-yitro-yitro-184 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:185 | zohar-chadash-yitro-yitro-185 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:186 | zohar-chadash-yitro-yitro-186 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:187 | zohar-chadash-yitro-yitro-187 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:188 | zohar-chadash-yitro-yitro-188 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:189 | zohar-chadash-yitro-yitro-189 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:190 | zohar-chadash-yitro-yitro-190 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:191 | zohar-chadash-yitro-yitro-191 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:192 | zohar-chadash-yitro-yitro-192 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:193 | zohar-chadash-yitro-yitro-193 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:194 | zohar-chadash-yitro-yitro-194 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:195 | zohar-chadash-yitro-yitro-195 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:196 | zohar-chadash-yitro-yitro-196 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:197 | zohar-chadash-yitro-yitro-197 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:198 | zohar-chadash-yitro-yitro-198 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:199 | zohar-chadash-yitro-yitro-199 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:200 | zohar-chadash-yitro-yitro-200 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:201 | zohar-chadash-yitro-yitro-201 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:202 | zohar-chadash-yitro-yitro-202 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:203 | zohar-chadash-yitro-yitro-203 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:204 | zohar-chadash-yitro-yitro-204 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:205 | zohar-chadash-yitro-yitro-205 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:206 | zohar-chadash-yitro-yitro-206 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:207 | zohar-chadash-yitro-yitro-207 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:208 | zohar-chadash-yitro-yitro-208 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:209 | zohar-chadash-yitro-yitro-209 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:210 | zohar-chadash-yitro-yitro-210 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:211 | zohar-chadash-yitro-yitro-211 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:212 | zohar-chadash-yitro-yitro-212 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:213 | zohar-chadash-yitro-yitro-213 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:214 | zohar-chadash-yitro-yitro-214 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:215 | zohar-chadash-yitro-yitro-215 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:216 | zohar-chadash-yitro-yitro-216 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:217 | zohar-chadash-yitro-yitro-217 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:218 | zohar-chadash-yitro-yitro-218 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:219 | zohar-chadash-yitro-yitro-219 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:220 | zohar-chadash-yitro-yitro-220 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:221 | zohar-chadash-yitro-yitro-221 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:222 | zohar-chadash-yitro-yitro-222 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:223 | zohar-chadash-yitro-yitro-223 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:224 | zohar-chadash-yitro-yitro-224 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:225 | zohar-chadash-yitro-yitro-225 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:226 | zohar-chadash-yitro-yitro-226 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:227 | zohar-chadash-yitro-yitro-227 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:228 | zohar-chadash-yitro-yitro-228 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:229 | zohar-chadash-yitro-yitro-229 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:230 | zohar-chadash-yitro-yitro-230 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:231 | zohar-chadash-yitro-yitro-231 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:232 | zohar-chadash-yitro-yitro-232 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:233 | zohar-chadash-yitro-yitro-233 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:234 | zohar-chadash-yitro-yitro-234 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:235 | zohar-chadash-yitro-yitro-235 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:236 | zohar-chadash-yitro-yitro-236 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:237 | zohar-chadash-yitro-yitro-237 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:238 | zohar-chadash-yitro-yitro-238 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:239 | zohar-chadash-yitro-yitro-239 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:240 | zohar-chadash-yitro-yitro-240 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:241 | zohar-chadash-yitro-yitro-241 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:242 | zohar-chadash-yitro-yitro-242 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:243 | zohar-chadash-yitro-yitro-243 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:244 | zohar-chadash-yitro-yitro-244 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:245 | zohar-chadash-yitro-yitro-245 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:246 | zohar-chadash-yitro-yitro-246 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:247 | zohar-chadash-yitro-yitro-247 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:248 | zohar-chadash-yitro-yitro-248 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:249 | zohar-chadash-yitro-yitro-249 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:250 | zohar-chadash-yitro-yitro-250 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:251 | zohar-chadash-yitro-yitro-251 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:252 | zohar-chadash-yitro-yitro-252 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:253 | zohar-chadash-yitro-yitro-253 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:254 | zohar-chadash-yitro-yitro-254 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:255 | zohar-chadash-yitro-yitro-255 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:256 | zohar-chadash-yitro-yitro-256 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:257 | zohar-chadash-yitro-yitro-257 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:258 | zohar-chadash-yitro-yitro-258 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:259 | zohar-chadash-yitro-yitro-259 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:260 | zohar-chadash-yitro-yitro-260 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:261 | zohar-chadash-yitro-yitro-261 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:262 | zohar-chadash-yitro-yitro-262 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:263 | zohar-chadash-yitro-yitro-263 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:264 | zohar-chadash-yitro-yitro-264 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:265 | zohar-chadash-yitro-yitro-265 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:266 | zohar-chadash-yitro-yitro-266 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:267 | zohar-chadash-yitro-yitro-267 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:268 | zohar-chadash-yitro-yitro-268 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:269 | zohar-chadash-yitro-yitro-269 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:270 | zohar-chadash-yitro-yitro-270 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:271 | zohar-chadash-yitro-yitro-271 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:272 | zohar-chadash-yitro-yitro-272 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:273 | zohar-chadash-yitro-yitro-273 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:274 | zohar-chadash-yitro-yitro-274 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:275 | zohar-chadash-yitro-yitro-275 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:276 | zohar-chadash-yitro-yitro-276 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:277 | zohar-chadash-yitro-yitro-277 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:278 | zohar-chadash-yitro-yitro-278 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:279 | zohar-chadash-yitro-yitro-279 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:280 | zohar-chadash-yitro-yitro-280 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:281 | zohar-chadash-yitro-yitro-281 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:282 | zohar-chadash-yitro-yitro-282 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:283 | zohar-chadash-yitro-yitro-283 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:284 | zohar-chadash-yitro-yitro-284 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:285 | zohar-chadash-yitro-yitro-285 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:286 | zohar-chadash-yitro-yitro-286 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:287 | zohar-chadash-yitro-yitro-287 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:288 | zohar-chadash-yitro-yitro-288 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:289 | zohar-chadash-yitro-yitro-289 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:290 | zohar-chadash-yitro-yitro-290 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:291 | zohar-chadash-yitro-yitro-291 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:292 | zohar-chadash-yitro-yitro-292 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:293 | zohar-chadash-yitro-yitro-293 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:294 | zohar-chadash-yitro-yitro-294 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:295 | zohar-chadash-yitro-yitro-295 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:296 | zohar-chadash-yitro-yitro-296 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:297 | zohar-chadash-yitro-yitro-297 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:298 | zohar-chadash-yitro-yitro-298 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:299 | zohar-chadash-yitro-yitro-299 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:300 | zohar-chadash-yitro-yitro-300 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:301 | zohar-chadash-yitro-yitro-301 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:302 | zohar-chadash-yitro-yitro-302 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:303 | zohar-chadash-yitro-yitro-303 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:304 | zohar-chadash-yitro-yitro-304 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:305 | zohar-chadash-yitro-yitro-305 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:306 | zohar-chadash-yitro-yitro-306 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:307 | zohar-chadash-yitro-yitro-307 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:308 | zohar-chadash-yitro-yitro-308 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:309 | zohar-chadash-yitro-yitro-309 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:310 | zohar-chadash-yitro-yitro-310 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:311 | zohar-chadash-yitro-yitro-311 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:312 | zohar-chadash-yitro-yitro-312 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:313 | zohar-chadash-yitro-yitro-313 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:314 | zohar-chadash-yitro-yitro-314 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:315 | zohar-chadash-yitro-yitro-315 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:316 | zohar-chadash-yitro-yitro-316 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:317 | zohar-chadash-yitro-yitro-317 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:318 | zohar-chadash-yitro-yitro-318 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:319 | zohar-chadash-yitro-yitro-319 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:320 | zohar-chadash-yitro-yitro-320 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:321 | zohar-chadash-yitro-yitro-321 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:322 | zohar-chadash-yitro-yitro-322 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:323 | zohar-chadash-yitro-yitro-323 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:324 | zohar-chadash-yitro-yitro-324 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:325 | zohar-chadash-yitro-yitro-325 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:326 | zohar-chadash-yitro-yitro-326 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:327 | zohar-chadash-yitro-yitro-327 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:328 | zohar-chadash-yitro-yitro-328 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:329 | zohar-chadash-yitro-yitro-329 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:330 | zohar-chadash-yitro-yitro-330 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:331 | zohar-chadash-yitro-yitro-331 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:332 | zohar-chadash-yitro-yitro-332 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:333 | zohar-chadash-yitro-yitro-333 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:334 | zohar-chadash-yitro-yitro-334 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:335 | zohar-chadash-yitro-yitro-335 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:336 | zohar-chadash-yitro-yitro-336 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:337 | zohar-chadash-yitro-yitro-337 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:338 | zohar-chadash-yitro-yitro-338 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:339 | zohar-chadash-yitro-yitro-339 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:340 | zohar-chadash-yitro-yitro-340 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:341 | zohar-chadash-yitro-yitro-341 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:342 | zohar-chadash-yitro-yitro-342 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:343 | zohar-chadash-yitro-yitro-343 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:344 | zohar-chadash-yitro-yitro-344 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:345 | zohar-chadash-yitro-yitro-345 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:346 | zohar-chadash-yitro-yitro-346 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:347 | zohar-chadash-yitro-yitro-347 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:348 | zohar-chadash-yitro-yitro-348 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:349 | zohar-chadash-yitro-yitro-349 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:350 | zohar-chadash-yitro-yitro-350 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:351 | zohar-chadash-yitro-yitro-351 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:352 | zohar-chadash-yitro-yitro-352 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:353 | zohar-chadash-yitro-yitro-353 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:354 | zohar-chadash-yitro-yitro-354 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:355 | zohar-chadash-yitro-yitro-355 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:356 | zohar-chadash-yitro-yitro-356 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:357 | zohar-chadash-yitro-yitro-357 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:358 | zohar-chadash-yitro-yitro-358 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:359 | zohar-chadash-yitro-yitro-359 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:360 | zohar-chadash-yitro-yitro-360 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:361 | zohar-chadash-yitro-yitro-361 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:362 | zohar-chadash-yitro-yitro-362 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:363 | zohar-chadash-yitro-yitro-363 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:364 | zohar-chadash-yitro-yitro-364 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:365 | zohar-chadash-yitro-yitro-365 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:366 | zohar-chadash-yitro-yitro-366 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:367 | zohar-chadash-yitro-yitro-367 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:368 | zohar-chadash-yitro-yitro-368 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:369 | zohar-chadash-yitro-yitro-369 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:370 | zohar-chadash-yitro-yitro-370 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:371 | zohar-chadash-yitro-yitro-371 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:372 | zohar-chadash-yitro-yitro-372 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:373 | zohar-chadash-yitro-yitro-373 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:374 | zohar-chadash-yitro-yitro-374 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:375 | zohar-chadash-yitro-yitro-375 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:376 | zohar-chadash-yitro-yitro-376 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:377 | zohar-chadash-yitro-yitro-377 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:378 | zohar-chadash-yitro-yitro-378 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:379 | zohar-chadash-yitro-yitro-379 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:380 | zohar-chadash-yitro-yitro-380 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:381 | zohar-chadash-yitro-yitro-381 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:382 | zohar-chadash-yitro-yitro-382 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:383 | zohar-chadash-yitro-yitro-383 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:384 | zohar-chadash-yitro-yitro-384 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:385 | zohar-chadash-yitro-yitro-385 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:386 | zohar-chadash-yitro-yitro-386 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:387 | zohar-chadash-yitro-yitro-387 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:388 | zohar-chadash-yitro-yitro-388 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:389 | zohar-chadash-yitro-yitro-389 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:390 | zohar-chadash-yitro-yitro-390 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:391 | zohar-chadash-yitro-yitro-391 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:392 | zohar-chadash-yitro-yitro-392 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:393 | zohar-chadash-yitro-yitro-393 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:394 | zohar-chadash-yitro-yitro-394 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:395 | zohar-chadash-yitro-yitro-395 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:396 | zohar-chadash-yitro-yitro-396 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:397 | zohar-chadash-yitro-yitro-397 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:398 | zohar-chadash-yitro-yitro-398 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:399 | zohar-chadash-yitro-yitro-399 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:400 | zohar-chadash-yitro-yitro-400 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:401 | zohar-chadash-yitro-yitro-401 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:402 | zohar-chadash-yitro-yitro-402 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:403 | zohar-chadash-yitro-yitro-403 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:404 | zohar-chadash-yitro-yitro-404 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:405 | zohar-chadash-yitro-yitro-405 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:406 | zohar-chadash-yitro-yitro-406 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:407 | zohar-chadash-yitro-yitro-407 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:408 | zohar-chadash-yitro-yitro-408 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:409 | zohar-chadash-yitro-yitro-409 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:410 | zohar-chadash-yitro-yitro-410 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:411 | zohar-chadash-yitro-yitro-411 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:412 | zohar-chadash-yitro-yitro-412 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:413 | zohar-chadash-yitro-yitro-413 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:414 | zohar-chadash-yitro-yitro-414 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:415 | zohar-chadash-yitro-yitro-415 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:416 | zohar-chadash-yitro-yitro-416 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:417 | zohar-chadash-yitro-yitro-417 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:418 | zohar-chadash-yitro-yitro-418 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:419 | zohar-chadash-yitro-yitro-419 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:420 | zohar-chadash-yitro-yitro-420 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:421 | zohar-chadash-yitro-yitro-421 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:422 | zohar-chadash-yitro-yitro-422 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:423 | zohar-chadash-yitro-yitro-423 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:424 | zohar-chadash-yitro-yitro-424 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:425 | zohar-chadash-yitro-yitro-425 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:426 | zohar-chadash-yitro-yitro-426 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:427 | zohar-chadash-yitro-yitro-427 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:428 | zohar-chadash-yitro-yitro-428 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:429 | zohar-chadash-yitro-yitro-429 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:430 | zohar-chadash-yitro-yitro-430 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:431 | zohar-chadash-yitro-yitro-431 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:432 | zohar-chadash-yitro-yitro-432 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:433 | zohar-chadash-yitro-yitro-433 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:434 | zohar-chadash-yitro-yitro-434 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:435 | zohar-chadash-yitro-yitro-435 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:436 | zohar-chadash-yitro-yitro-436 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:437 | zohar-chadash-yitro-yitro-437 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:438 | zohar-chadash-yitro-yitro-438 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:439 | zohar-chadash-yitro-yitro-439 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:440 | zohar-chadash-yitro-yitro-440 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:441 | zohar-chadash-yitro-yitro-441 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:442 | zohar-chadash-yitro-yitro-442 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:443 | zohar-chadash-yitro-yitro-443 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:444 | zohar-chadash-yitro-yitro-444 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:445 | zohar-chadash-yitro-yitro-445 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:446 | zohar-chadash-yitro-yitro-446 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:447 | zohar-chadash-yitro-yitro-447 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:448 | zohar-chadash-yitro-yitro-448 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:449 | zohar-chadash-yitro-yitro-449 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:450 | zohar-chadash-yitro-yitro-450 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:451 | zohar-chadash-yitro-yitro-451 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:452 | zohar-chadash-yitro-yitro-452 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:453 | zohar-chadash-yitro-yitro-453 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:454 | zohar-chadash-yitro-yitro-454 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:455 | zohar-chadash-yitro-yitro-455 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:456 | zohar-chadash-yitro-yitro-456 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:457 | zohar-chadash-yitro-yitro-457 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:458 | zohar-chadash-yitro-yitro-458 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:459 | zohar-chadash-yitro-yitro-459 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:460 | zohar-chadash-yitro-yitro-460 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:461 | zohar-chadash-yitro-yitro-461 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:462 | zohar-chadash-yitro-yitro-462 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:463 | zohar-chadash-yitro-yitro-463 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:464 | zohar-chadash-yitro-yitro-464 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:465 | zohar-chadash-yitro-yitro-465 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:466 | zohar-chadash-yitro-yitro-466 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:467 | zohar-chadash-yitro-yitro-467 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:468 | zohar-chadash-yitro-yitro-468 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:469 | zohar-chadash-yitro-yitro-469 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:470 | zohar-chadash-yitro-yitro-470 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:471 | zohar-chadash-yitro-yitro-471 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:472 | zohar-chadash-yitro-yitro-472 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:473 | zohar-chadash-yitro-yitro-473 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:474 | zohar-chadash-yitro-yitro-474 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:475 | zohar-chadash-yitro-yitro-475 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:476 | zohar-chadash-yitro-yitro-476 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:477 | zohar-chadash-yitro-yitro-477 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:478 | zohar-chadash-yitro-yitro-478 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:479 | zohar-chadash-yitro-yitro-479 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:480 | zohar-chadash-yitro-yitro-480 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:481 | zohar-chadash-yitro-yitro-481 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:482 | zohar-chadash-yitro-yitro-482 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:483 | zohar-chadash-yitro-yitro-483 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:484 | zohar-chadash-yitro-yitro-484 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:485 | zohar-chadash-yitro-yitro-485 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:486 | zohar-chadash-yitro-yitro-486 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:487 | zohar-chadash-yitro-yitro-487 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:488 | zohar-chadash-yitro-yitro-488 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:489 | zohar-chadash-yitro-yitro-489 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:490 | zohar-chadash-yitro-yitro-490 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:491 | zohar-chadash-yitro-yitro-491 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:492 | zohar-chadash-yitro-yitro-492 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:493 | zohar-chadash-yitro-yitro-493 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:494 | zohar-chadash-yitro-yitro-494 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:495 | zohar-chadash-yitro-yitro-495 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:496 | zohar-chadash-yitro-yitro-496 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:497 | zohar-chadash-yitro-yitro-497 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:498 | zohar-chadash-yitro-yitro-498 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:499 | zohar-chadash-yitro-yitro-499 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:500 | zohar-chadash-yitro-yitro-500 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:501 | zohar-chadash-yitro-yitro-501 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:502 | zohar-chadash-yitro-yitro-502 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:503 | zohar-chadash-yitro-yitro-503 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:504 | zohar-chadash-yitro-yitro-504 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:505 | zohar-chadash-yitro-yitro-505 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:506 | zohar-chadash-yitro-yitro-506 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:507 | zohar-chadash-yitro-yitro-507 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:508 | zohar-chadash-yitro-yitro-508 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:509 | zohar-chadash-yitro-yitro-509 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:510 | zohar-chadash-yitro-yitro-510 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Yitro:511 | zohar-chadash-yitro-yitro-511 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:1 | zohar-chadash-terumah-terumah-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:2 | zohar-chadash-terumah-terumah-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:3 | zohar-chadash-terumah-terumah-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:4 | zohar-chadash-terumah-terumah-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:5 | zohar-chadash-terumah-terumah-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:6 | zohar-chadash-terumah-terumah-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:7 | zohar-chadash-terumah-terumah-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:8 | zohar-chadash-terumah-terumah-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:9 | zohar-chadash-terumah-terumah-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:10 | zohar-chadash-terumah-terumah-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:11 | zohar-chadash-terumah-terumah-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:12 | zohar-chadash-terumah-terumah-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:13 | zohar-chadash-terumah-terumah-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:14 | zohar-chadash-terumah-terumah-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:15 | zohar-chadash-terumah-terumah-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:16 | zohar-chadash-terumah-terumah-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:17 | zohar-chadash-terumah-terumah-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:18 | zohar-chadash-terumah-terumah-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:19 | zohar-chadash-terumah-terumah-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:20 | zohar-chadash-terumah-terumah-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:21 | zohar-chadash-terumah-terumah-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:22 | zohar-chadash-terumah-terumah-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:23 | zohar-chadash-terumah-terumah-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:24 | zohar-chadash-terumah-terumah-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:25 | zohar-chadash-terumah-terumah-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:26 | zohar-chadash-terumah-terumah-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:27 | zohar-chadash-terumah-terumah-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:28 | zohar-chadash-terumah-terumah-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:29 | zohar-chadash-terumah-terumah-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:30 | zohar-chadash-terumah-terumah-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:31 | zohar-chadash-terumah-terumah-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:32 | zohar-chadash-terumah-terumah-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:33 | zohar-chadash-terumah-terumah-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:34 | zohar-chadash-terumah-terumah-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:35 | zohar-chadash-terumah-terumah-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:36 | zohar-chadash-terumah-terumah-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:37 | zohar-chadash-terumah-terumah-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:38 | zohar-chadash-terumah-terumah-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:39 | zohar-chadash-terumah-terumah-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:40 | zohar-chadash-terumah-terumah-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:41 | zohar-chadash-terumah-terumah-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:42 | zohar-chadash-terumah-terumah-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:43 | zohar-chadash-terumah-terumah-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:44 | zohar-chadash-terumah-terumah-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:45 | zohar-chadash-terumah-terumah-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:46 | zohar-chadash-terumah-terumah-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:47 | zohar-chadash-terumah-terumah-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:48 | zohar-chadash-terumah-terumah-48 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:49 | zohar-chadash-terumah-terumah-49 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:50 | zohar-chadash-terumah-terumah-50 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:51 | zohar-chadash-terumah-terumah-51 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:52 | zohar-chadash-terumah-terumah-52 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:53 | zohar-chadash-terumah-terumah-53 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:54 | zohar-chadash-terumah-terumah-54 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:55 | zohar-chadash-terumah-terumah-55 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:56 | zohar-chadash-terumah-terumah-56 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:57 | zohar-chadash-terumah-terumah-57 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:58 | zohar-chadash-terumah-terumah-58 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:59 | zohar-chadash-terumah-terumah-59 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:60 | zohar-chadash-terumah-terumah-60 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:61 | zohar-chadash-terumah-terumah-61 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:62 | zohar-chadash-terumah-terumah-62 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:63 | zohar-chadash-terumah-terumah-63 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:64 | zohar-chadash-terumah-terumah-64 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:65 | zohar-chadash-terumah-terumah-65 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:66 | zohar-chadash-terumah-terumah-66 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:67 | zohar-chadash-terumah-terumah-67 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:68 | zohar-chadash-terumah-terumah-68 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:69 | zohar-chadash-terumah-terumah-69 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:70 | zohar-chadash-terumah-terumah-70 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:71 | zohar-chadash-terumah-terumah-71 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:72 | zohar-chadash-terumah-terumah-72 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:73 | zohar-chadash-terumah-terumah-73 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:74 | zohar-chadash-terumah-terumah-74 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:75 | zohar-chadash-terumah-terumah-75 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:76 | zohar-chadash-terumah-terumah-76 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:77 | zohar-chadash-terumah-terumah-77 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Terumah:78 | zohar-chadash-terumah-terumah-78 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:1 | zohar-chadash-ki-tisa-ki-tisa-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:2 | zohar-chadash-ki-tisa-ki-tisa-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:3 | zohar-chadash-ki-tisa-ki-tisa-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:4 | zohar-chadash-ki-tisa-ki-tisa-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:5 | zohar-chadash-ki-tisa-ki-tisa-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:6 | zohar-chadash-ki-tisa-ki-tisa-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:7 | zohar-chadash-ki-tisa-ki-tisa-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:8 | zohar-chadash-ki-tisa-ki-tisa-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:9 | zohar-chadash-ki-tisa-ki-tisa-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:10 | zohar-chadash-ki-tisa-ki-tisa-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:11 | zohar-chadash-ki-tisa-ki-tisa-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:12 | zohar-chadash-ki-tisa-ki-tisa-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:13 | zohar-chadash-ki-tisa-ki-tisa-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:14 | zohar-chadash-ki-tisa-ki-tisa-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:15 | zohar-chadash-ki-tisa-ki-tisa-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:16 | zohar-chadash-ki-tisa-ki-tisa-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:17 | zohar-chadash-ki-tisa-ki-tisa-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:18 | zohar-chadash-ki-tisa-ki-tisa-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:19 | zohar-chadash-ki-tisa-ki-tisa-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:20 | zohar-chadash-ki-tisa-ki-tisa-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:21 | zohar-chadash-ki-tisa-ki-tisa-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:22 | zohar-chadash-ki-tisa-ki-tisa-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:23 | zohar-chadash-ki-tisa-ki-tisa-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:24 | zohar-chadash-ki-tisa-ki-tisa-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:25 | zohar-chadash-ki-tisa-ki-tisa-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:26 | zohar-chadash-ki-tisa-ki-tisa-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:27 | zohar-chadash-ki-tisa-ki-tisa-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:28 | zohar-chadash-ki-tisa-ki-tisa-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:29 | zohar-chadash-ki-tisa-ki-tisa-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:30 | zohar-chadash-ki-tisa-ki-tisa-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:31 | zohar-chadash-ki-tisa-ki-tisa-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:32 | zohar-chadash-ki-tisa-ki-tisa-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:33 | zohar-chadash-ki-tisa-ki-tisa-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:34 | zohar-chadash-ki-tisa-ki-tisa-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:35 | zohar-chadash-ki-tisa-ki-tisa-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:36 | zohar-chadash-ki-tisa-ki-tisa-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:37 | zohar-chadash-ki-tisa-ki-tisa-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:38 | zohar-chadash-ki-tisa-ki-tisa-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:39 | zohar-chadash-ki-tisa-ki-tisa-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:40 | zohar-chadash-ki-tisa-ki-tisa-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:41 | zohar-chadash-ki-tisa-ki-tisa-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:42 | zohar-chadash-ki-tisa-ki-tisa-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:43 | zohar-chadash-ki-tisa-ki-tisa-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:44 | zohar-chadash-ki-tisa-ki-tisa-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:45 | zohar-chadash-ki-tisa-ki-tisa-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:46 | zohar-chadash-ki-tisa-ki-tisa-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:47 | zohar-chadash-ki-tisa-ki-tisa-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:48 | zohar-chadash-ki-tisa-ki-tisa-48 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:49 | zohar-chadash-ki-tisa-ki-tisa-49 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:50 | zohar-chadash-ki-tisa-ki-tisa-50 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:51 | zohar-chadash-ki-tisa-ki-tisa-51 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:52 | zohar-chadash-ki-tisa-ki-tisa-52 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:53 | zohar-chadash-ki-tisa-ki-tisa-53 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:54 | zohar-chadash-ki-tisa-ki-tisa-54 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:55 | zohar-chadash-ki-tisa-ki-tisa-55 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:56 | zohar-chadash-ki-tisa-ki-tisa-56 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:57 | zohar-chadash-ki-tisa-ki-tisa-57 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:58 | zohar-chadash-ki-tisa-ki-tisa-58 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:59 | zohar-chadash-ki-tisa-ki-tisa-59 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:60 | zohar-chadash-ki-tisa-ki-tisa-60 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:61 | zohar-chadash-ki-tisa-ki-tisa-61 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:62 | zohar-chadash-ki-tisa-ki-tisa-62 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:63 | zohar-chadash-ki-tisa-ki-tisa-63 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:64 | zohar-chadash-ki-tisa-ki-tisa-64 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:65 | zohar-chadash-ki-tisa-ki-tisa-65 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:66 | zohar-chadash-ki-tisa-ki-tisa-66 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:67 | zohar-chadash-ki-tisa-ki-tisa-67 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:68 | zohar-chadash-ki-tisa-ki-tisa-68 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:69 | zohar-chadash-ki-tisa-ki-tisa-69 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:70 | zohar-chadash-ki-tisa-ki-tisa-70 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:71 | zohar-chadash-ki-tisa-ki-tisa-71 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:72 | zohar-chadash-ki-tisa-ki-tisa-72 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:73 | zohar-chadash-ki-tisa-ki-tisa-73 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:74 | zohar-chadash-ki-tisa-ki-tisa-74 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:75 | zohar-chadash-ki-tisa-ki-tisa-75 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:76 | zohar-chadash-ki-tisa-ki-tisa-76 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:77 | zohar-chadash-ki-tisa-ki-tisa-77 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:78 | zohar-chadash-ki-tisa-ki-tisa-78 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:79 | zohar-chadash-ki-tisa-ki-tisa-79 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:80 | zohar-chadash-ki-tisa-ki-tisa-80 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:81 | zohar-chadash-ki-tisa-ki-tisa-81 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:82 | zohar-chadash-ki-tisa-ki-tisa-82 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:83 | zohar-chadash-ki-tisa-ki-tisa-83 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:84 | zohar-chadash-ki-tisa-ki-tisa-84 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:85 | zohar-chadash-ki-tisa-ki-tisa-85 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:86 | zohar-chadash-ki-tisa-ki-tisa-86 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:87 | zohar-chadash-ki-tisa-ki-tisa-87 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:88 | zohar-chadash-ki-tisa-ki-tisa-88 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:89 | zohar-chadash-ki-tisa-ki-tisa-89 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:90 | zohar-chadash-ki-tisa-ki-tisa-90 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:91 | zohar-chadash-ki-tisa-ki-tisa-91 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:92 | zohar-chadash-ki-tisa-ki-tisa-92 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:93 | zohar-chadash-ki-tisa-ki-tisa-93 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:94 | zohar-chadash-ki-tisa-ki-tisa-94 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:95 | zohar-chadash-ki-tisa-ki-tisa-95 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:96 | zohar-chadash-ki-tisa-ki-tisa-96 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:97 | zohar-chadash-ki-tisa-ki-tisa-97 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:98 | zohar-chadash-ki-tisa-ki-tisa-98 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:99 | zohar-chadash-ki-tisa-ki-tisa-99 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:100 | zohar-chadash-ki-tisa-ki-tisa-100 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:101 | zohar-chadash-ki-tisa-ki-tisa-101 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:102 | zohar-chadash-ki-tisa-ki-tisa-102 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:103 | zohar-chadash-ki-tisa-ki-tisa-103 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:104 | zohar-chadash-ki-tisa-ki-tisa-104 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:105 | zohar-chadash-ki-tisa-ki-tisa-105 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:106 | zohar-chadash-ki-tisa-ki-tisa-106 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tisa:107 | zohar-chadash-ki-tisa-ki-tisa-107 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tzav:1 | zohar-chadash-tzav-tzav-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tzav:2 | zohar-chadash-tzav-tzav-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tzav:3 | zohar-chadash-tzav-tzav-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tzav:4 | zohar-chadash-tzav-tzav-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tzav:5 | zohar-chadash-tzav-tzav-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tzav:6 | zohar-chadash-tzav-tzav-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tzav:7 | zohar-chadash-tzav-tzav-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tzav:8 | zohar-chadash-tzav-tzav-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:1 | zohar-chadash-achrei-mot-achrei-mot-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:2 | zohar-chadash-achrei-mot-achrei-mot-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:3 | zohar-chadash-achrei-mot-achrei-mot-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:4 | zohar-chadash-achrei-mot-achrei-mot-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:5 | zohar-chadash-achrei-mot-achrei-mot-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:6 | zohar-chadash-achrei-mot-achrei-mot-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:7 | zohar-chadash-achrei-mot-achrei-mot-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:8 | zohar-chadash-achrei-mot-achrei-mot-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:9 | zohar-chadash-achrei-mot-achrei-mot-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:10 | zohar-chadash-achrei-mot-achrei-mot-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:11 | zohar-chadash-achrei-mot-achrei-mot-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:12 | zohar-chadash-achrei-mot-achrei-mot-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:13 | zohar-chadash-achrei-mot-achrei-mot-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:14 | zohar-chadash-achrei-mot-achrei-mot-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:15 | zohar-chadash-achrei-mot-achrei-mot-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:16 | zohar-chadash-achrei-mot-achrei-mot-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:17 | zohar-chadash-achrei-mot-achrei-mot-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:18 | zohar-chadash-achrei-mot-achrei-mot-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:19 | zohar-chadash-achrei-mot-achrei-mot-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:20 | zohar-chadash-achrei-mot-achrei-mot-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:21 | zohar-chadash-achrei-mot-achrei-mot-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:22 | zohar-chadash-achrei-mot-achrei-mot-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:23 | zohar-chadash-achrei-mot-achrei-mot-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:24 | zohar-chadash-achrei-mot-achrei-mot-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:25 | zohar-chadash-achrei-mot-achrei-mot-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:26 | zohar-chadash-achrei-mot-achrei-mot-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:27 | zohar-chadash-achrei-mot-achrei-mot-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:28 | zohar-chadash-achrei-mot-achrei-mot-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:29 | zohar-chadash-achrei-mot-achrei-mot-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:30 | zohar-chadash-achrei-mot-achrei-mot-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:31 | zohar-chadash-achrei-mot-achrei-mot-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:32 | zohar-chadash-achrei-mot-achrei-mot-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:33 | zohar-chadash-achrei-mot-achrei-mot-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:34 | zohar-chadash-achrei-mot-achrei-mot-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:35 | zohar-chadash-achrei-mot-achrei-mot-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:36 | zohar-chadash-achrei-mot-achrei-mot-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:37 | zohar-chadash-achrei-mot-achrei-mot-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:38 | zohar-chadash-achrei-mot-achrei-mot-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:39 | zohar-chadash-achrei-mot-achrei-mot-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:40 | zohar-chadash-achrei-mot-achrei-mot-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:41 | zohar-chadash-achrei-mot-achrei-mot-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:42 | zohar-chadash-achrei-mot-achrei-mot-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:43 | zohar-chadash-achrei-mot-achrei-mot-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:44 | zohar-chadash-achrei-mot-achrei-mot-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:45 | zohar-chadash-achrei-mot-achrei-mot-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:46 | zohar-chadash-achrei-mot-achrei-mot-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:47 | zohar-chadash-achrei-mot-achrei-mot-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:48 | zohar-chadash-achrei-mot-achrei-mot-48 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:49 | zohar-chadash-achrei-mot-achrei-mot-49 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:50 | zohar-chadash-achrei-mot-achrei-mot-50 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:51 | zohar-chadash-achrei-mot-achrei-mot-51 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:52 | zohar-chadash-achrei-mot-achrei-mot-52 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:53 | zohar-chadash-achrei-mot-achrei-mot-53 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:54 | zohar-chadash-achrei-mot-achrei-mot-54 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:55 | zohar-chadash-achrei-mot-achrei-mot-55 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:56 | zohar-chadash-achrei-mot-achrei-mot-56 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:57 | zohar-chadash-achrei-mot-achrei-mot-57 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:58 | zohar-chadash-achrei-mot-achrei-mot-58 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:59 | zohar-chadash-achrei-mot-achrei-mot-59 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:60 | zohar-chadash-achrei-mot-achrei-mot-60 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:61 | zohar-chadash-achrei-mot-achrei-mot-61 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:62 | zohar-chadash-achrei-mot-achrei-mot-62 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:63 | zohar-chadash-achrei-mot-achrei-mot-63 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:64 | zohar-chadash-achrei-mot-achrei-mot-64 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:65 | zohar-chadash-achrei-mot-achrei-mot-65 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:66 | zohar-chadash-achrei-mot-achrei-mot-66 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:67 | zohar-chadash-achrei-mot-achrei-mot-67 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:68 | zohar-chadash-achrei-mot-achrei-mot-68 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:69 | zohar-chadash-achrei-mot-achrei-mot-69 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:70 | zohar-chadash-achrei-mot-achrei-mot-70 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:71 | zohar-chadash-achrei-mot-achrei-mot-71 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:72 | zohar-chadash-achrei-mot-achrei-mot-72 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:73 | zohar-chadash-achrei-mot-achrei-mot-73 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:74 | zohar-chadash-achrei-mot-achrei-mot-74 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:75 | zohar-chadash-achrei-mot-achrei-mot-75 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:76 | zohar-chadash-achrei-mot-achrei-mot-76 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:77 | zohar-chadash-achrei-mot-achrei-mot-77 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:78 | zohar-chadash-achrei-mot-achrei-mot-78 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:79 | zohar-chadash-achrei-mot-achrei-mot-79 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:80 | zohar-chadash-achrei-mot-achrei-mot-80 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:81 | zohar-chadash-achrei-mot-achrei-mot-81 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:82 | zohar-chadash-achrei-mot-achrei-mot-82 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:83 | zohar-chadash-achrei-mot-achrei-mot-83 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:84 | zohar-chadash-achrei-mot-achrei-mot-84 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:85 | zohar-chadash-achrei-mot-achrei-mot-85 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:86 | zohar-chadash-achrei-mot-achrei-mot-86 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:87 | zohar-chadash-achrei-mot-achrei-mot-87 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:88 | zohar-chadash-achrei-mot-achrei-mot-88 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:89 | zohar-chadash-achrei-mot-achrei-mot-89 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:90 | zohar-chadash-achrei-mot-achrei-mot-90 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:91 | zohar-chadash-achrei-mot-achrei-mot-91 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:92 | zohar-chadash-achrei-mot-achrei-mot-92 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:93 | zohar-chadash-achrei-mot-achrei-mot-93 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:94 | zohar-chadash-achrei-mot-achrei-mot-94 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:95 | zohar-chadash-achrei-mot-achrei-mot-95 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:96 | zohar-chadash-achrei-mot-achrei-mot-96 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:97 | zohar-chadash-achrei-mot-achrei-mot-97 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:98 | zohar-chadash-achrei-mot-achrei-mot-98 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:99 | zohar-chadash-achrei-mot-achrei-mot-99 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:100 | zohar-chadash-achrei-mot-achrei-mot-100 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:101 | zohar-chadash-achrei-mot-achrei-mot-101 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:102 | zohar-chadash-achrei-mot-achrei-mot-102 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:103 | zohar-chadash-achrei-mot-achrei-mot-103 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:104 | zohar-chadash-achrei-mot-achrei-mot-104 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:105 | zohar-chadash-achrei-mot-achrei-mot-105 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:106 | zohar-chadash-achrei-mot-achrei-mot-106 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:107 | zohar-chadash-achrei-mot-achrei-mot-107 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:108 | zohar-chadash-achrei-mot-achrei-mot-108 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:109 | zohar-chadash-achrei-mot-achrei-mot-109 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:110 | zohar-chadash-achrei-mot-achrei-mot-110 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:111 | zohar-chadash-achrei-mot-achrei-mot-111 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:112 | zohar-chadash-achrei-mot-achrei-mot-112 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:113 | zohar-chadash-achrei-mot-achrei-mot-113 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:114 | zohar-chadash-achrei-mot-achrei-mot-114 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:115 | zohar-chadash-achrei-mot-achrei-mot-115 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:116 | zohar-chadash-achrei-mot-achrei-mot-116 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:117 | zohar-chadash-achrei-mot-achrei-mot-117 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:118 | zohar-chadash-achrei-mot-achrei-mot-118 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:119 | zohar-chadash-achrei-mot-achrei-mot-119 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:120 | zohar-chadash-achrei-mot-achrei-mot-120 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:121 | zohar-chadash-achrei-mot-achrei-mot-121 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:122 | zohar-chadash-achrei-mot-achrei-mot-122 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:123 | zohar-chadash-achrei-mot-achrei-mot-123 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:124 | zohar-chadash-achrei-mot-achrei-mot-124 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Achrei Mot:125 | zohar-chadash-achrei-mot-achrei-mot-125 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Behar:1 | zohar-chadash-behar-behar-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Behar:2 | zohar-chadash-behar-behar-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Behar:3 | zohar-chadash-behar-behar-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Behar:4 | zohar-chadash-behar-behar-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Behar:5 | zohar-chadash-behar-behar-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Behar:6 | zohar-chadash-behar-behar-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Behar:7 | zohar-chadash-behar-behar-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Behar:8 | zohar-chadash-behar-behar-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Behar:9 | zohar-chadash-behar-behar-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Behar:10 | zohar-chadash-behar-behar-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Behar:11 | zohar-chadash-behar-behar-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Behar:12 | zohar-chadash-behar-behar-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Behar:13 | zohar-chadash-behar-behar-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Behar:14 | zohar-chadash-behar-behar-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Behar:15 | zohar-chadash-behar-behar-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Behar:16 | zohar-chadash-behar-behar-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Behar:17 | zohar-chadash-behar-behar-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Nasso:1 | zohar-chadash-nasso-nasso-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Nasso:2 | zohar-chadash-nasso-nasso-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Nasso:3 | zohar-chadash-nasso-nasso-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Nasso:4 | zohar-chadash-nasso-nasso-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:1 | zohar-chadash-chukat-chukat-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:2 | zohar-chadash-chukat-chukat-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:3 | zohar-chadash-chukat-chukat-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:4 | zohar-chadash-chukat-chukat-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:5 | zohar-chadash-chukat-chukat-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:6 | zohar-chadash-chukat-chukat-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:7 | zohar-chadash-chukat-chukat-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:8 | zohar-chadash-chukat-chukat-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:9 | zohar-chadash-chukat-chukat-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:10 | zohar-chadash-chukat-chukat-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:11 | zohar-chadash-chukat-chukat-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:12 | zohar-chadash-chukat-chukat-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:13 | zohar-chadash-chukat-chukat-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:14 | zohar-chadash-chukat-chukat-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:15 | zohar-chadash-chukat-chukat-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:16 | zohar-chadash-chukat-chukat-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:17 | zohar-chadash-chukat-chukat-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:18 | zohar-chadash-chukat-chukat-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:19 | zohar-chadash-chukat-chukat-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:20 | zohar-chadash-chukat-chukat-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:21 | zohar-chadash-chukat-chukat-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:22 | zohar-chadash-chukat-chukat-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:23 | zohar-chadash-chukat-chukat-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:24 | zohar-chadash-chukat-chukat-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:25 | zohar-chadash-chukat-chukat-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:26 | zohar-chadash-chukat-chukat-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:27 | zohar-chadash-chukat-chukat-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:28 | zohar-chadash-chukat-chukat-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:29 | zohar-chadash-chukat-chukat-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:30 | zohar-chadash-chukat-chukat-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:31 | zohar-chadash-chukat-chukat-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:32 | zohar-chadash-chukat-chukat-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:33 | zohar-chadash-chukat-chukat-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:34 | zohar-chadash-chukat-chukat-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:35 | zohar-chadash-chukat-chukat-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:36 | zohar-chadash-chukat-chukat-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:37 | zohar-chadash-chukat-chukat-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:38 | zohar-chadash-chukat-chukat-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:39 | zohar-chadash-chukat-chukat-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:40 | zohar-chadash-chukat-chukat-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:41 | zohar-chadash-chukat-chukat-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:42 | zohar-chadash-chukat-chukat-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:43 | zohar-chadash-chukat-chukat-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:44 | zohar-chadash-chukat-chukat-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:45 | zohar-chadash-chukat-chukat-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:46 | zohar-chadash-chukat-chukat-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:47 | zohar-chadash-chukat-chukat-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:48 | zohar-chadash-chukat-chukat-48 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:49 | zohar-chadash-chukat-chukat-49 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:50 | zohar-chadash-chukat-chukat-50 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:51 | zohar-chadash-chukat-chukat-51 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:52 | zohar-chadash-chukat-chukat-52 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:53 | zohar-chadash-chukat-chukat-53 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:54 | zohar-chadash-chukat-chukat-54 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:55 | zohar-chadash-chukat-chukat-55 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:56 | zohar-chadash-chukat-chukat-56 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:57 | zohar-chadash-chukat-chukat-57 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:58 | zohar-chadash-chukat-chukat-58 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:59 | zohar-chadash-chukat-chukat-59 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:60 | zohar-chadash-chukat-chukat-60 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:61 | zohar-chadash-chukat-chukat-61 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:62 | zohar-chadash-chukat-chukat-62 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:63 | zohar-chadash-chukat-chukat-63 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:64 | zohar-chadash-chukat-chukat-64 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:65 | zohar-chadash-chukat-chukat-65 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:66 | zohar-chadash-chukat-chukat-66 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:67 | zohar-chadash-chukat-chukat-67 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:68 | zohar-chadash-chukat-chukat-68 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:69 | zohar-chadash-chukat-chukat-69 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:70 | zohar-chadash-chukat-chukat-70 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:71 | zohar-chadash-chukat-chukat-71 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:72 | zohar-chadash-chukat-chukat-72 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:73 | zohar-chadash-chukat-chukat-73 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:74 | zohar-chadash-chukat-chukat-74 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:75 | zohar-chadash-chukat-chukat-75 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:76 | zohar-chadash-chukat-chukat-76 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:77 | zohar-chadash-chukat-chukat-77 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:78 | zohar-chadash-chukat-chukat-78 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:79 | zohar-chadash-chukat-chukat-79 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:80 | zohar-chadash-chukat-chukat-80 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:81 | zohar-chadash-chukat-chukat-81 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:82 | zohar-chadash-chukat-chukat-82 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:83 | zohar-chadash-chukat-chukat-83 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:84 | zohar-chadash-chukat-chukat-84 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:85 | zohar-chadash-chukat-chukat-85 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:86 | zohar-chadash-chukat-chukat-86 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:87 | zohar-chadash-chukat-chukat-87 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:88 | zohar-chadash-chukat-chukat-88 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:89 | zohar-chadash-chukat-chukat-89 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:90 | zohar-chadash-chukat-chukat-90 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:91 | zohar-chadash-chukat-chukat-91 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:92 | zohar-chadash-chukat-chukat-92 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:93 | zohar-chadash-chukat-chukat-93 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:94 | zohar-chadash-chukat-chukat-94 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:95 | zohar-chadash-chukat-chukat-95 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:96 | zohar-chadash-chukat-chukat-96 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:97 | zohar-chadash-chukat-chukat-97 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:98 | zohar-chadash-chukat-chukat-98 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:99 | zohar-chadash-chukat-chukat-99 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:100 | zohar-chadash-chukat-chukat-100 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:101 | zohar-chadash-chukat-chukat-101 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:102 | zohar-chadash-chukat-chukat-102 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:103 | zohar-chadash-chukat-chukat-103 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:104 | zohar-chadash-chukat-chukat-104 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:105 | zohar-chadash-chukat-chukat-105 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:106 | zohar-chadash-chukat-chukat-106 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:107 | zohar-chadash-chukat-chukat-107 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:108 | zohar-chadash-chukat-chukat-108 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:109 | zohar-chadash-chukat-chukat-109 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:110 | zohar-chadash-chukat-chukat-110 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:111 | zohar-chadash-chukat-chukat-111 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:112 | zohar-chadash-chukat-chukat-112 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:113 | zohar-chadash-chukat-chukat-113 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:114 | zohar-chadash-chukat-chukat-114 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:115 | zohar-chadash-chukat-chukat-115 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:116 | zohar-chadash-chukat-chukat-116 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:117 | zohar-chadash-chukat-chukat-117 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:118 | zohar-chadash-chukat-chukat-118 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:119 | zohar-chadash-chukat-chukat-119 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:120 | zohar-chadash-chukat-chukat-120 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:121 | zohar-chadash-chukat-chukat-121 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:122 | zohar-chadash-chukat-chukat-122 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:123 | zohar-chadash-chukat-chukat-123 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:124 | zohar-chadash-chukat-chukat-124 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:125 | zohar-chadash-chukat-chukat-125 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:126 | zohar-chadash-chukat-chukat-126 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:127 | zohar-chadash-chukat-chukat-127 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:128 | zohar-chadash-chukat-chukat-128 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:129 | zohar-chadash-chukat-chukat-129 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:130 | zohar-chadash-chukat-chukat-130 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:131 | zohar-chadash-chukat-chukat-131 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:132 | zohar-chadash-chukat-chukat-132 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:133 | zohar-chadash-chukat-chukat-133 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:134 | zohar-chadash-chukat-chukat-134 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:135 | zohar-chadash-chukat-chukat-135 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:136 | zohar-chadash-chukat-chukat-136 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:137 | zohar-chadash-chukat-chukat-137 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Chukat:138 | zohar-chadash-chukat-chukat-138 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:1 | zohar-chadash-balak-balak-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:2 | zohar-chadash-balak-balak-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:3 | zohar-chadash-balak-balak-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:4 | zohar-chadash-balak-balak-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:5 | zohar-chadash-balak-balak-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:6 | zohar-chadash-balak-balak-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:7 | zohar-chadash-balak-balak-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:8 | zohar-chadash-balak-balak-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:9 | zohar-chadash-balak-balak-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:10 | zohar-chadash-balak-balak-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:11 | zohar-chadash-balak-balak-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:12 | zohar-chadash-balak-balak-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:13 | zohar-chadash-balak-balak-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:14 | zohar-chadash-balak-balak-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:15 | zohar-chadash-balak-balak-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:16 | zohar-chadash-balak-balak-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:17 | zohar-chadash-balak-balak-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:18 | zohar-chadash-balak-balak-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:19 | zohar-chadash-balak-balak-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:20 | zohar-chadash-balak-balak-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:21 | zohar-chadash-balak-balak-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:22 | zohar-chadash-balak-balak-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:23 | zohar-chadash-balak-balak-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:24 | zohar-chadash-balak-balak-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:25 | zohar-chadash-balak-balak-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:26 | zohar-chadash-balak-balak-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:27 | zohar-chadash-balak-balak-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:28 | zohar-chadash-balak-balak-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:29 | zohar-chadash-balak-balak-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:30 | zohar-chadash-balak-balak-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:31 | zohar-chadash-balak-balak-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:32 | zohar-chadash-balak-balak-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:33 | zohar-chadash-balak-balak-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:34 | zohar-chadash-balak-balak-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:35 | zohar-chadash-balak-balak-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:36 | zohar-chadash-balak-balak-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:37 | zohar-chadash-balak-balak-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:38 | zohar-chadash-balak-balak-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:39 | zohar-chadash-balak-balak-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:40 | zohar-chadash-balak-balak-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:41 | zohar-chadash-balak-balak-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:42 | zohar-chadash-balak-balak-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:43 | zohar-chadash-balak-balak-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:44 | zohar-chadash-balak-balak-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:45 | zohar-chadash-balak-balak-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:46 | zohar-chadash-balak-balak-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:47 | zohar-chadash-balak-balak-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:48 | zohar-chadash-balak-balak-48 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:49 | zohar-chadash-balak-balak-49 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:50 | zohar-chadash-balak-balak-50 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:51 | zohar-chadash-balak-balak-51 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:52 | zohar-chadash-balak-balak-52 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:53 | zohar-chadash-balak-balak-53 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:54 | zohar-chadash-balak-balak-54 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:55 | zohar-chadash-balak-balak-55 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:56 | zohar-chadash-balak-balak-56 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:57 | zohar-chadash-balak-balak-57 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:58 | zohar-chadash-balak-balak-58 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:59 | zohar-chadash-balak-balak-59 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:60 | zohar-chadash-balak-balak-60 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:61 | zohar-chadash-balak-balak-61 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:62 | zohar-chadash-balak-balak-62 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:63 | zohar-chadash-balak-balak-63 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:64 | zohar-chadash-balak-balak-64 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:65 | zohar-chadash-balak-balak-65 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:66 | zohar-chadash-balak-balak-66 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:67 | zohar-chadash-balak-balak-67 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:68 | zohar-chadash-balak-balak-68 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:69 | zohar-chadash-balak-balak-69 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:70 | zohar-chadash-balak-balak-70 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:71 | zohar-chadash-balak-balak-71 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:72 | zohar-chadash-balak-balak-72 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:73 | zohar-chadash-balak-balak-73 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:74 | zohar-chadash-balak-balak-74 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:75 | zohar-chadash-balak-balak-75 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:76 | zohar-chadash-balak-balak-76 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:77 | zohar-chadash-balak-balak-77 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:78 | zohar-chadash-balak-balak-78 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:79 | zohar-chadash-balak-balak-79 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:80 | zohar-chadash-balak-balak-80 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:81 | zohar-chadash-balak-balak-81 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:82 | zohar-chadash-balak-balak-82 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:83 | zohar-chadash-balak-balak-83 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:84 | zohar-chadash-balak-balak-84 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:85 | zohar-chadash-balak-balak-85 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:86 | zohar-chadash-balak-balak-86 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:87 | zohar-chadash-balak-balak-87 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:88 | zohar-chadash-balak-balak-88 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:89 | zohar-chadash-balak-balak-89 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:90 | zohar-chadash-balak-balak-90 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:91 | zohar-chadash-balak-balak-91 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:92 | zohar-chadash-balak-balak-92 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:93 | zohar-chadash-balak-balak-93 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:94 | zohar-chadash-balak-balak-94 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:95 | zohar-chadash-balak-balak-95 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:96 | zohar-chadash-balak-balak-96 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:97 | zohar-chadash-balak-balak-97 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:98 | zohar-chadash-balak-balak-98 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:99 | zohar-chadash-balak-balak-99 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:100 | zohar-chadash-balak-balak-100 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:101 | zohar-chadash-balak-balak-101 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:102 | zohar-chadash-balak-balak-102 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:103 | zohar-chadash-balak-balak-103 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:104 | zohar-chadash-balak-balak-104 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:105 | zohar-chadash-balak-balak-105 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:106 | zohar-chadash-balak-balak-106 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:107 | zohar-chadash-balak-balak-107 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:108 | zohar-chadash-balak-balak-108 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:109 | zohar-chadash-balak-balak-109 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:110 | zohar-chadash-balak-balak-110 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:111 | zohar-chadash-balak-balak-111 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:112 | zohar-chadash-balak-balak-112 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:113 | zohar-chadash-balak-balak-113 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:114 | zohar-chadash-balak-balak-114 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:115 | zohar-chadash-balak-balak-115 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:116 | zohar-chadash-balak-balak-116 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:117 | zohar-chadash-balak-balak-117 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:118 | zohar-chadash-balak-balak-118 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:119 | zohar-chadash-balak-balak-119 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:120 | zohar-chadash-balak-balak-120 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:121 | zohar-chadash-balak-balak-121 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:122 | zohar-chadash-balak-balak-122 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:123 | zohar-chadash-balak-balak-123 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:124 | zohar-chadash-balak-balak-124 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:125 | zohar-chadash-balak-balak-125 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:126 | zohar-chadash-balak-balak-126 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:127 | zohar-chadash-balak-balak-127 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:128 | zohar-chadash-balak-balak-128 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:129 | zohar-chadash-balak-balak-129 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:130 | zohar-chadash-balak-balak-130 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:131 | zohar-chadash-balak-balak-131 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:132 | zohar-chadash-balak-balak-132 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:133 | zohar-chadash-balak-balak-133 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:134 | zohar-chadash-balak-balak-134 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:135 | zohar-chadash-balak-balak-135 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:136 | zohar-chadash-balak-balak-136 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Balak:137 | zohar-chadash-balak-balak-137 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Matot:1 | zohar-chadash-matot-matot-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Matot:2 | zohar-chadash-matot-matot-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Matot:3 | zohar-chadash-matot-matot-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Matot:4 | zohar-chadash-matot-matot-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Matot:5 | zohar-chadash-matot-matot-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Matot:6 | zohar-chadash-matot-matot-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Matot:7 | zohar-chadash-matot-matot-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:1 | zohar-chadash-vaetchanan-vaetchanan-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:2 | zohar-chadash-vaetchanan-vaetchanan-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:3 | zohar-chadash-vaetchanan-vaetchanan-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:4 | zohar-chadash-vaetchanan-vaetchanan-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:5 | zohar-chadash-vaetchanan-vaetchanan-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:6 | zohar-chadash-vaetchanan-vaetchanan-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:7 | zohar-chadash-vaetchanan-vaetchanan-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:8 | zohar-chadash-vaetchanan-vaetchanan-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:9 | zohar-chadash-vaetchanan-vaetchanan-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:10 | zohar-chadash-vaetchanan-vaetchanan-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:11 | zohar-chadash-vaetchanan-vaetchanan-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:12 | zohar-chadash-vaetchanan-vaetchanan-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:13 | zohar-chadash-vaetchanan-vaetchanan-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:14 | zohar-chadash-vaetchanan-vaetchanan-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:15 | zohar-chadash-vaetchanan-vaetchanan-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:16 | zohar-chadash-vaetchanan-vaetchanan-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:17 | zohar-chadash-vaetchanan-vaetchanan-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:18 | zohar-chadash-vaetchanan-vaetchanan-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:19 | zohar-chadash-vaetchanan-vaetchanan-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:20 | zohar-chadash-vaetchanan-vaetchanan-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:21 | zohar-chadash-vaetchanan-vaetchanan-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:22 | zohar-chadash-vaetchanan-vaetchanan-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:23 | zohar-chadash-vaetchanan-vaetchanan-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:24 | zohar-chadash-vaetchanan-vaetchanan-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:25 | zohar-chadash-vaetchanan-vaetchanan-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:26 | zohar-chadash-vaetchanan-vaetchanan-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:27 | zohar-chadash-vaetchanan-vaetchanan-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:28 | zohar-chadash-vaetchanan-vaetchanan-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:29 | zohar-chadash-vaetchanan-vaetchanan-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:30 | zohar-chadash-vaetchanan-vaetchanan-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:31 | zohar-chadash-vaetchanan-vaetchanan-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:32 | zohar-chadash-vaetchanan-vaetchanan-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:33 | zohar-chadash-vaetchanan-vaetchanan-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:34 | zohar-chadash-vaetchanan-vaetchanan-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:35 | zohar-chadash-vaetchanan-vaetchanan-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:36 | zohar-chadash-vaetchanan-vaetchanan-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:37 | zohar-chadash-vaetchanan-vaetchanan-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:38 | zohar-chadash-vaetchanan-vaetchanan-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:39 | zohar-chadash-vaetchanan-vaetchanan-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:40 | zohar-chadash-vaetchanan-vaetchanan-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:41 | zohar-chadash-vaetchanan-vaetchanan-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:42 | zohar-chadash-vaetchanan-vaetchanan-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:43 | zohar-chadash-vaetchanan-vaetchanan-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:44 | zohar-chadash-vaetchanan-vaetchanan-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:45 | zohar-chadash-vaetchanan-vaetchanan-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:46 | zohar-chadash-vaetchanan-vaetchanan-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:47 | zohar-chadash-vaetchanan-vaetchanan-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:48 | zohar-chadash-vaetchanan-vaetchanan-48 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:49 | zohar-chadash-vaetchanan-vaetchanan-49 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:50 | zohar-chadash-vaetchanan-vaetchanan-50 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:51 | zohar-chadash-vaetchanan-vaetchanan-51 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:52 | zohar-chadash-vaetchanan-vaetchanan-52 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:53 | zohar-chadash-vaetchanan-vaetchanan-53 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:54 | zohar-chadash-vaetchanan-vaetchanan-54 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:55 | zohar-chadash-vaetchanan-vaetchanan-55 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:56 | zohar-chadash-vaetchanan-vaetchanan-56 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:57 | zohar-chadash-vaetchanan-vaetchanan-57 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:58 | zohar-chadash-vaetchanan-vaetchanan-58 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:59 | zohar-chadash-vaetchanan-vaetchanan-59 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:60 | zohar-chadash-vaetchanan-vaetchanan-60 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:61 | zohar-chadash-vaetchanan-vaetchanan-61 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:62 | zohar-chadash-vaetchanan-vaetchanan-62 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:63 | zohar-chadash-vaetchanan-vaetchanan-63 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:64 | zohar-chadash-vaetchanan-vaetchanan-64 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:65 | zohar-chadash-vaetchanan-vaetchanan-65 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:66 | zohar-chadash-vaetchanan-vaetchanan-66 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:67 | zohar-chadash-vaetchanan-vaetchanan-67 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:68 | zohar-chadash-vaetchanan-vaetchanan-68 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:69 | zohar-chadash-vaetchanan-vaetchanan-69 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:70 | zohar-chadash-vaetchanan-vaetchanan-70 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:71 | zohar-chadash-vaetchanan-vaetchanan-71 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:72 | zohar-chadash-vaetchanan-vaetchanan-72 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:73 | zohar-chadash-vaetchanan-vaetchanan-73 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:74 | zohar-chadash-vaetchanan-vaetchanan-74 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:75 | zohar-chadash-vaetchanan-vaetchanan-75 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:76 | zohar-chadash-vaetchanan-vaetchanan-76 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:77 | zohar-chadash-vaetchanan-vaetchanan-77 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:78 | zohar-chadash-vaetchanan-vaetchanan-78 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:79 | zohar-chadash-vaetchanan-vaetchanan-79 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:80 | zohar-chadash-vaetchanan-vaetchanan-80 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:81 | zohar-chadash-vaetchanan-vaetchanan-81 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:82 | zohar-chadash-vaetchanan-vaetchanan-82 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:83 | zohar-chadash-vaetchanan-vaetchanan-83 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:84 | zohar-chadash-vaetchanan-vaetchanan-84 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:85 | zohar-chadash-vaetchanan-vaetchanan-85 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:86 | zohar-chadash-vaetchanan-vaetchanan-86 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:87 | zohar-chadash-vaetchanan-vaetchanan-87 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:88 | zohar-chadash-vaetchanan-vaetchanan-88 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:89 | zohar-chadash-vaetchanan-vaetchanan-89 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:90 | zohar-chadash-vaetchanan-vaetchanan-90 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:91 | zohar-chadash-vaetchanan-vaetchanan-91 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:92 | zohar-chadash-vaetchanan-vaetchanan-92 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:93 | zohar-chadash-vaetchanan-vaetchanan-93 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Vaetchanan:94 | zohar-chadash-vaetchanan-vaetchanan-94 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:1 | zohar-chadash-ki-teitzei-ki-teitzei-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:2 | zohar-chadash-ki-teitzei-ki-teitzei-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:3 | zohar-chadash-ki-teitzei-ki-teitzei-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:4 | zohar-chadash-ki-teitzei-ki-teitzei-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:5 | zohar-chadash-ki-teitzei-ki-teitzei-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:6 | zohar-chadash-ki-teitzei-ki-teitzei-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:7 | zohar-chadash-ki-teitzei-ki-teitzei-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:8 | zohar-chadash-ki-teitzei-ki-teitzei-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:9 | zohar-chadash-ki-teitzei-ki-teitzei-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:10 | zohar-chadash-ki-teitzei-ki-teitzei-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:11 | zohar-chadash-ki-teitzei-ki-teitzei-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:12 | zohar-chadash-ki-teitzei-ki-teitzei-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:13 | zohar-chadash-ki-teitzei-ki-teitzei-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:14 | zohar-chadash-ki-teitzei-ki-teitzei-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:15 | zohar-chadash-ki-teitzei-ki-teitzei-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:16 | zohar-chadash-ki-teitzei-ki-teitzei-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:17 | zohar-chadash-ki-teitzei-ki-teitzei-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:18 | zohar-chadash-ki-teitzei-ki-teitzei-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:19 | zohar-chadash-ki-teitzei-ki-teitzei-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:20 | zohar-chadash-ki-teitzei-ki-teitzei-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:21 | zohar-chadash-ki-teitzei-ki-teitzei-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:22 | zohar-chadash-ki-teitzei-ki-teitzei-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:23 | zohar-chadash-ki-teitzei-ki-teitzei-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:24 | zohar-chadash-ki-teitzei-ki-teitzei-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:25 | zohar-chadash-ki-teitzei-ki-teitzei-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:26 | zohar-chadash-ki-teitzei-ki-teitzei-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:27 | zohar-chadash-ki-teitzei-ki-teitzei-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:28 | zohar-chadash-ki-teitzei-ki-teitzei-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:29 | zohar-chadash-ki-teitzei-ki-teitzei-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:30 | zohar-chadash-ki-teitzei-ki-teitzei-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:31 | zohar-chadash-ki-teitzei-ki-teitzei-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:32 | zohar-chadash-ki-teitzei-ki-teitzei-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:33 | zohar-chadash-ki-teitzei-ki-teitzei-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:34 | zohar-chadash-ki-teitzei-ki-teitzei-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:35 | zohar-chadash-ki-teitzei-ki-teitzei-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:36 | zohar-chadash-ki-teitzei-ki-teitzei-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:37 | zohar-chadash-ki-teitzei-ki-teitzei-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:38 | zohar-chadash-ki-teitzei-ki-teitzei-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:39 | zohar-chadash-ki-teitzei-ki-teitzei-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:40 | zohar-chadash-ki-teitzei-ki-teitzei-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:41 | zohar-chadash-ki-teitzei-ki-teitzei-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:42 | zohar-chadash-ki-teitzei-ki-teitzei-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:43 | zohar-chadash-ki-teitzei-ki-teitzei-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:44 | zohar-chadash-ki-teitzei-ki-teitzei-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:45 | zohar-chadash-ki-teitzei-ki-teitzei-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:46 | zohar-chadash-ki-teitzei-ki-teitzei-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Teitzei:47 | zohar-chadash-ki-teitzei-ki-teitzei-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:1 | zohar-chadash-ki-tavo-ki-tavo-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:2 | zohar-chadash-ki-tavo-ki-tavo-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:3 | zohar-chadash-ki-tavo-ki-tavo-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:4 | zohar-chadash-ki-tavo-ki-tavo-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:5 | zohar-chadash-ki-tavo-ki-tavo-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:6 | zohar-chadash-ki-tavo-ki-tavo-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:7 | zohar-chadash-ki-tavo-ki-tavo-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:8 | zohar-chadash-ki-tavo-ki-tavo-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:9 | zohar-chadash-ki-tavo-ki-tavo-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:10 | zohar-chadash-ki-tavo-ki-tavo-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:11 | zohar-chadash-ki-tavo-ki-tavo-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:12 | zohar-chadash-ki-tavo-ki-tavo-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:13 | zohar-chadash-ki-tavo-ki-tavo-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:14 | zohar-chadash-ki-tavo-ki-tavo-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:15 | zohar-chadash-ki-tavo-ki-tavo-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:16 | zohar-chadash-ki-tavo-ki-tavo-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:17 | zohar-chadash-ki-tavo-ki-tavo-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:18 | zohar-chadash-ki-tavo-ki-tavo-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:19 | zohar-chadash-ki-tavo-ki-tavo-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:20 | zohar-chadash-ki-tavo-ki-tavo-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:21 | zohar-chadash-ki-tavo-ki-tavo-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:22 | zohar-chadash-ki-tavo-ki-tavo-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:23 | zohar-chadash-ki-tavo-ki-tavo-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:24 | zohar-chadash-ki-tavo-ki-tavo-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:25 | zohar-chadash-ki-tavo-ki-tavo-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:26 | zohar-chadash-ki-tavo-ki-tavo-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:27 | zohar-chadash-ki-tavo-ki-tavo-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:28 | zohar-chadash-ki-tavo-ki-tavo-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:29 | zohar-chadash-ki-tavo-ki-tavo-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:30 | zohar-chadash-ki-tavo-ki-tavo-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:31 | zohar-chadash-ki-tavo-ki-tavo-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:32 | zohar-chadash-ki-tavo-ki-tavo-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:33 | zohar-chadash-ki-tavo-ki-tavo-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:34 | zohar-chadash-ki-tavo-ki-tavo-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:35 | zohar-chadash-ki-tavo-ki-tavo-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:36 | zohar-chadash-ki-tavo-ki-tavo-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:37 | zohar-chadash-ki-tavo-ki-tavo-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:38 | zohar-chadash-ki-tavo-ki-tavo-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:39 | zohar-chadash-ki-tavo-ki-tavo-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Ki Tavo:40 | zohar-chadash-ki-tavo-ki-tavo-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:1 | zohar-chadash-shir-hashirim-shir-hashirim-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:2 | zohar-chadash-shir-hashirim-shir-hashirim-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:3 | zohar-chadash-shir-hashirim-shir-hashirim-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:4 | zohar-chadash-shir-hashirim-shir-hashirim-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:5 | zohar-chadash-shir-hashirim-shir-hashirim-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:6 | zohar-chadash-shir-hashirim-shir-hashirim-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:7 | zohar-chadash-shir-hashirim-shir-hashirim-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:8 | zohar-chadash-shir-hashirim-shir-hashirim-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:9 | zohar-chadash-shir-hashirim-shir-hashirim-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:10 | zohar-chadash-shir-hashirim-shir-hashirim-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:11 | zohar-chadash-shir-hashirim-shir-hashirim-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:12 | zohar-chadash-shir-hashirim-shir-hashirim-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:13 | zohar-chadash-shir-hashirim-shir-hashirim-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:14 | zohar-chadash-shir-hashirim-shir-hashirim-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:15 | zohar-chadash-shir-hashirim-shir-hashirim-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:16 | zohar-chadash-shir-hashirim-shir-hashirim-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:17 | zohar-chadash-shir-hashirim-shir-hashirim-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:18 | zohar-chadash-shir-hashirim-shir-hashirim-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:19 | zohar-chadash-shir-hashirim-shir-hashirim-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:20 | zohar-chadash-shir-hashirim-shir-hashirim-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:21 | zohar-chadash-shir-hashirim-shir-hashirim-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:22 | zohar-chadash-shir-hashirim-shir-hashirim-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:23 | zohar-chadash-shir-hashirim-shir-hashirim-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:24 | zohar-chadash-shir-hashirim-shir-hashirim-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:25 | zohar-chadash-shir-hashirim-shir-hashirim-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:26 | zohar-chadash-shir-hashirim-shir-hashirim-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:27 | zohar-chadash-shir-hashirim-shir-hashirim-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:28 | zohar-chadash-shir-hashirim-shir-hashirim-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:29 | zohar-chadash-shir-hashirim-shir-hashirim-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:30 | zohar-chadash-shir-hashirim-shir-hashirim-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:31 | zohar-chadash-shir-hashirim-shir-hashirim-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:32 | zohar-chadash-shir-hashirim-shir-hashirim-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:33 | zohar-chadash-shir-hashirim-shir-hashirim-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:34 | zohar-chadash-shir-hashirim-shir-hashirim-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:35 | zohar-chadash-shir-hashirim-shir-hashirim-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:36 | zohar-chadash-shir-hashirim-shir-hashirim-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:37 | zohar-chadash-shir-hashirim-shir-hashirim-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:38 | zohar-chadash-shir-hashirim-shir-hashirim-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:39 | zohar-chadash-shir-hashirim-shir-hashirim-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:40 | zohar-chadash-shir-hashirim-shir-hashirim-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:41 | zohar-chadash-shir-hashirim-shir-hashirim-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:42 | zohar-chadash-shir-hashirim-shir-hashirim-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:43 | zohar-chadash-shir-hashirim-shir-hashirim-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:44 | zohar-chadash-shir-hashirim-shir-hashirim-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:45 | zohar-chadash-shir-hashirim-shir-hashirim-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:46 | zohar-chadash-shir-hashirim-shir-hashirim-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:47 | zohar-chadash-shir-hashirim-shir-hashirim-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:48 | zohar-chadash-shir-hashirim-shir-hashirim-48 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:49 | zohar-chadash-shir-hashirim-shir-hashirim-49 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:50 | zohar-chadash-shir-hashirim-shir-hashirim-50 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:51 | zohar-chadash-shir-hashirim-shir-hashirim-51 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:52 | zohar-chadash-shir-hashirim-shir-hashirim-52 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:53 | zohar-chadash-shir-hashirim-shir-hashirim-53 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:54 | zohar-chadash-shir-hashirim-shir-hashirim-54 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:55 | zohar-chadash-shir-hashirim-shir-hashirim-55 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:56 | zohar-chadash-shir-hashirim-shir-hashirim-56 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:57 | zohar-chadash-shir-hashirim-shir-hashirim-57 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:58 | zohar-chadash-shir-hashirim-shir-hashirim-58 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:59 | zohar-chadash-shir-hashirim-shir-hashirim-59 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:60 | zohar-chadash-shir-hashirim-shir-hashirim-60 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:61 | zohar-chadash-shir-hashirim-shir-hashirim-61 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:62 | zohar-chadash-shir-hashirim-shir-hashirim-62 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:63 | zohar-chadash-shir-hashirim-shir-hashirim-63 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:64 | zohar-chadash-shir-hashirim-shir-hashirim-64 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:65 | zohar-chadash-shir-hashirim-shir-hashirim-65 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:66 | zohar-chadash-shir-hashirim-shir-hashirim-66 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:67 | zohar-chadash-shir-hashirim-shir-hashirim-67 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:68 | zohar-chadash-shir-hashirim-shir-hashirim-68 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:69 | zohar-chadash-shir-hashirim-shir-hashirim-69 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:70 | zohar-chadash-shir-hashirim-shir-hashirim-70 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:71 | zohar-chadash-shir-hashirim-shir-hashirim-71 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:72 | zohar-chadash-shir-hashirim-shir-hashirim-72 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:73 | zohar-chadash-shir-hashirim-shir-hashirim-73 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:74 | zohar-chadash-shir-hashirim-shir-hashirim-74 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:75 | zohar-chadash-shir-hashirim-shir-hashirim-75 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:76 | zohar-chadash-shir-hashirim-shir-hashirim-76 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:77 | zohar-chadash-shir-hashirim-shir-hashirim-77 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:78 | zohar-chadash-shir-hashirim-shir-hashirim-78 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:79 | zohar-chadash-shir-hashirim-shir-hashirim-79 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:80 | zohar-chadash-shir-hashirim-shir-hashirim-80 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:81 | zohar-chadash-shir-hashirim-shir-hashirim-81 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:82 | zohar-chadash-shir-hashirim-shir-hashirim-82 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:83 | zohar-chadash-shir-hashirim-shir-hashirim-83 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:84 | zohar-chadash-shir-hashirim-shir-hashirim-84 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:85 | zohar-chadash-shir-hashirim-shir-hashirim-85 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:86 | zohar-chadash-shir-hashirim-shir-hashirim-86 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:87 | zohar-chadash-shir-hashirim-shir-hashirim-87 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:88 | zohar-chadash-shir-hashirim-shir-hashirim-88 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:89 | zohar-chadash-shir-hashirim-shir-hashirim-89 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:90 | zohar-chadash-shir-hashirim-shir-hashirim-90 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:91 | zohar-chadash-shir-hashirim-shir-hashirim-91 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:92 | zohar-chadash-shir-hashirim-shir-hashirim-92 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:93 | zohar-chadash-shir-hashirim-shir-hashirim-93 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:94 | zohar-chadash-shir-hashirim-shir-hashirim-94 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:95 | zohar-chadash-shir-hashirim-shir-hashirim-95 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:96 | zohar-chadash-shir-hashirim-shir-hashirim-96 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:97 | zohar-chadash-shir-hashirim-shir-hashirim-97 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:98 | zohar-chadash-shir-hashirim-shir-hashirim-98 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:99 | zohar-chadash-shir-hashirim-shir-hashirim-99 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:100 | zohar-chadash-shir-hashirim-shir-hashirim-100 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:101 | zohar-chadash-shir-hashirim-shir-hashirim-101 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:102 | zohar-chadash-shir-hashirim-shir-hashirim-102 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:103 | zohar-chadash-shir-hashirim-shir-hashirim-103 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:104 | zohar-chadash-shir-hashirim-shir-hashirim-104 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:105 | zohar-chadash-shir-hashirim-shir-hashirim-105 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:106 | zohar-chadash-shir-hashirim-shir-hashirim-106 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:107 | zohar-chadash-shir-hashirim-shir-hashirim-107 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:108 | zohar-chadash-shir-hashirim-shir-hashirim-108 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:109 | zohar-chadash-shir-hashirim-shir-hashirim-109 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:110 | zohar-chadash-shir-hashirim-shir-hashirim-110 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:111 | zohar-chadash-shir-hashirim-shir-hashirim-111 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:112 | zohar-chadash-shir-hashirim-shir-hashirim-112 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:113 | zohar-chadash-shir-hashirim-shir-hashirim-113 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:114 | zohar-chadash-shir-hashirim-shir-hashirim-114 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:115 | zohar-chadash-shir-hashirim-shir-hashirim-115 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:116 | zohar-chadash-shir-hashirim-shir-hashirim-116 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:117 | zohar-chadash-shir-hashirim-shir-hashirim-117 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:118 | zohar-chadash-shir-hashirim-shir-hashirim-118 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:119 | zohar-chadash-shir-hashirim-shir-hashirim-119 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:120 | zohar-chadash-shir-hashirim-shir-hashirim-120 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:121 | zohar-chadash-shir-hashirim-shir-hashirim-121 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:122 | zohar-chadash-shir-hashirim-shir-hashirim-122 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:123 | zohar-chadash-shir-hashirim-shir-hashirim-123 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:124 | zohar-chadash-shir-hashirim-shir-hashirim-124 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:125 | zohar-chadash-shir-hashirim-shir-hashirim-125 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:126 | zohar-chadash-shir-hashirim-shir-hashirim-126 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:127 | zohar-chadash-shir-hashirim-shir-hashirim-127 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:128 | zohar-chadash-shir-hashirim-shir-hashirim-128 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:129 | zohar-chadash-shir-hashirim-shir-hashirim-129 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:130 | zohar-chadash-shir-hashirim-shir-hashirim-130 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:131 | zohar-chadash-shir-hashirim-shir-hashirim-131 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:132 | zohar-chadash-shir-hashirim-shir-hashirim-132 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:133 | zohar-chadash-shir-hashirim-shir-hashirim-133 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:134 | zohar-chadash-shir-hashirim-shir-hashirim-134 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:135 | zohar-chadash-shir-hashirim-shir-hashirim-135 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:136 | zohar-chadash-shir-hashirim-shir-hashirim-136 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:137 | zohar-chadash-shir-hashirim-shir-hashirim-137 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:138 | zohar-chadash-shir-hashirim-shir-hashirim-138 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:139 | zohar-chadash-shir-hashirim-shir-hashirim-139 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:140 | zohar-chadash-shir-hashirim-shir-hashirim-140 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:141 | zohar-chadash-shir-hashirim-shir-hashirim-141 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:142 | zohar-chadash-shir-hashirim-shir-hashirim-142 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:143 | zohar-chadash-shir-hashirim-shir-hashirim-143 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:144 | zohar-chadash-shir-hashirim-shir-hashirim-144 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:145 | zohar-chadash-shir-hashirim-shir-hashirim-145 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:146 | zohar-chadash-shir-hashirim-shir-hashirim-146 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:147 | zohar-chadash-shir-hashirim-shir-hashirim-147 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:148 | zohar-chadash-shir-hashirim-shir-hashirim-148 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:149 | zohar-chadash-shir-hashirim-shir-hashirim-149 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:150 | zohar-chadash-shir-hashirim-shir-hashirim-150 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:151 | zohar-chadash-shir-hashirim-shir-hashirim-151 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:152 | zohar-chadash-shir-hashirim-shir-hashirim-152 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:153 | zohar-chadash-shir-hashirim-shir-hashirim-153 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:154 | zohar-chadash-shir-hashirim-shir-hashirim-154 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:155 | zohar-chadash-shir-hashirim-shir-hashirim-155 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:156 | zohar-chadash-shir-hashirim-shir-hashirim-156 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:157 | zohar-chadash-shir-hashirim-shir-hashirim-157 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:158 | zohar-chadash-shir-hashirim-shir-hashirim-158 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:159 | zohar-chadash-shir-hashirim-shir-hashirim-159 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:160 | zohar-chadash-shir-hashirim-shir-hashirim-160 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:161 | zohar-chadash-shir-hashirim-shir-hashirim-161 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:162 | zohar-chadash-shir-hashirim-shir-hashirim-162 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:163 | zohar-chadash-shir-hashirim-shir-hashirim-163 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:164 | zohar-chadash-shir-hashirim-shir-hashirim-164 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:165 | zohar-chadash-shir-hashirim-shir-hashirim-165 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:166 | zohar-chadash-shir-hashirim-shir-hashirim-166 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:167 | zohar-chadash-shir-hashirim-shir-hashirim-167 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:168 | zohar-chadash-shir-hashirim-shir-hashirim-168 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:169 | zohar-chadash-shir-hashirim-shir-hashirim-169 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:170 | zohar-chadash-shir-hashirim-shir-hashirim-170 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:171 | zohar-chadash-shir-hashirim-shir-hashirim-171 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:172 | zohar-chadash-shir-hashirim-shir-hashirim-172 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:173 | zohar-chadash-shir-hashirim-shir-hashirim-173 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:174 | zohar-chadash-shir-hashirim-shir-hashirim-174 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:175 | zohar-chadash-shir-hashirim-shir-hashirim-175 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:176 | zohar-chadash-shir-hashirim-shir-hashirim-176 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:177 | zohar-chadash-shir-hashirim-shir-hashirim-177 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:178 | zohar-chadash-shir-hashirim-shir-hashirim-178 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:179 | zohar-chadash-shir-hashirim-shir-hashirim-179 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:180 | zohar-chadash-shir-hashirim-shir-hashirim-180 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:181 | zohar-chadash-shir-hashirim-shir-hashirim-181 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:182 | zohar-chadash-shir-hashirim-shir-hashirim-182 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:183 | zohar-chadash-shir-hashirim-shir-hashirim-183 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:184 | zohar-chadash-shir-hashirim-shir-hashirim-184 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:185 | zohar-chadash-shir-hashirim-shir-hashirim-185 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:186 | zohar-chadash-shir-hashirim-shir-hashirim-186 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:187 | zohar-chadash-shir-hashirim-shir-hashirim-187 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:188 | zohar-chadash-shir-hashirim-shir-hashirim-188 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:189 | zohar-chadash-shir-hashirim-shir-hashirim-189 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:190 | zohar-chadash-shir-hashirim-shir-hashirim-190 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:191 | zohar-chadash-shir-hashirim-shir-hashirim-191 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:192 | zohar-chadash-shir-hashirim-shir-hashirim-192 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:193 | zohar-chadash-shir-hashirim-shir-hashirim-193 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:194 | zohar-chadash-shir-hashirim-shir-hashirim-194 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:195 | zohar-chadash-shir-hashirim-shir-hashirim-195 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:196 | zohar-chadash-shir-hashirim-shir-hashirim-196 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:197 | zohar-chadash-shir-hashirim-shir-hashirim-197 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:198 | zohar-chadash-shir-hashirim-shir-hashirim-198 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:199 | zohar-chadash-shir-hashirim-shir-hashirim-199 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:200 | zohar-chadash-shir-hashirim-shir-hashirim-200 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:201 | zohar-chadash-shir-hashirim-shir-hashirim-201 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:202 | zohar-chadash-shir-hashirim-shir-hashirim-202 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:203 | zohar-chadash-shir-hashirim-shir-hashirim-203 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:204 | zohar-chadash-shir-hashirim-shir-hashirim-204 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:205 | zohar-chadash-shir-hashirim-shir-hashirim-205 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:206 | zohar-chadash-shir-hashirim-shir-hashirim-206 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:207 | zohar-chadash-shir-hashirim-shir-hashirim-207 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:208 | zohar-chadash-shir-hashirim-shir-hashirim-208 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:209 | zohar-chadash-shir-hashirim-shir-hashirim-209 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:210 | zohar-chadash-shir-hashirim-shir-hashirim-210 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:211 | zohar-chadash-shir-hashirim-shir-hashirim-211 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:212 | zohar-chadash-shir-hashirim-shir-hashirim-212 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:213 | zohar-chadash-shir-hashirim-shir-hashirim-213 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:214 | zohar-chadash-shir-hashirim-shir-hashirim-214 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:215 | zohar-chadash-shir-hashirim-shir-hashirim-215 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:216 | zohar-chadash-shir-hashirim-shir-hashirim-216 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:217 | zohar-chadash-shir-hashirim-shir-hashirim-217 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:218 | zohar-chadash-shir-hashirim-shir-hashirim-218 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:219 | zohar-chadash-shir-hashirim-shir-hashirim-219 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:220 | zohar-chadash-shir-hashirim-shir-hashirim-220 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:221 | zohar-chadash-shir-hashirim-shir-hashirim-221 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:222 | zohar-chadash-shir-hashirim-shir-hashirim-222 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:223 | zohar-chadash-shir-hashirim-shir-hashirim-223 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:224 | zohar-chadash-shir-hashirim-shir-hashirim-224 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:225 | zohar-chadash-shir-hashirim-shir-hashirim-225 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:226 | zohar-chadash-shir-hashirim-shir-hashirim-226 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:227 | zohar-chadash-shir-hashirim-shir-hashirim-227 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:228 | zohar-chadash-shir-hashirim-shir-hashirim-228 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:229 | zohar-chadash-shir-hashirim-shir-hashirim-229 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:230 | zohar-chadash-shir-hashirim-shir-hashirim-230 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:231 | zohar-chadash-shir-hashirim-shir-hashirim-231 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:232 | zohar-chadash-shir-hashirim-shir-hashirim-232 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:233 | zohar-chadash-shir-hashirim-shir-hashirim-233 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:234 | zohar-chadash-shir-hashirim-shir-hashirim-234 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:235 | zohar-chadash-shir-hashirim-shir-hashirim-235 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:236 | zohar-chadash-shir-hashirim-shir-hashirim-236 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:237 | zohar-chadash-shir-hashirim-shir-hashirim-237 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:238 | zohar-chadash-shir-hashirim-shir-hashirim-238 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:239 | zohar-chadash-shir-hashirim-shir-hashirim-239 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:240 | zohar-chadash-shir-hashirim-shir-hashirim-240 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:241 | zohar-chadash-shir-hashirim-shir-hashirim-241 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:242 | zohar-chadash-shir-hashirim-shir-hashirim-242 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:243 | zohar-chadash-shir-hashirim-shir-hashirim-243 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:244 | zohar-chadash-shir-hashirim-shir-hashirim-244 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:245 | zohar-chadash-shir-hashirim-shir-hashirim-245 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:246 | zohar-chadash-shir-hashirim-shir-hashirim-246 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:247 | zohar-chadash-shir-hashirim-shir-hashirim-247 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:248 | zohar-chadash-shir-hashirim-shir-hashirim-248 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:249 | zohar-chadash-shir-hashirim-shir-hashirim-249 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:250 | zohar-chadash-shir-hashirim-shir-hashirim-250 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:251 | zohar-chadash-shir-hashirim-shir-hashirim-251 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:252 | zohar-chadash-shir-hashirim-shir-hashirim-252 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:253 | zohar-chadash-shir-hashirim-shir-hashirim-253 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:254 | zohar-chadash-shir-hashirim-shir-hashirim-254 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:255 | zohar-chadash-shir-hashirim-shir-hashirim-255 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:256 | zohar-chadash-shir-hashirim-shir-hashirim-256 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:257 | zohar-chadash-shir-hashirim-shir-hashirim-257 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:258 | zohar-chadash-shir-hashirim-shir-hashirim-258 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:259 | zohar-chadash-shir-hashirim-shir-hashirim-259 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:260 | zohar-chadash-shir-hashirim-shir-hashirim-260 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:261 | zohar-chadash-shir-hashirim-shir-hashirim-261 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:262 | zohar-chadash-shir-hashirim-shir-hashirim-262 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:263 | zohar-chadash-shir-hashirim-shir-hashirim-263 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:264 | zohar-chadash-shir-hashirim-shir-hashirim-264 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:265 | zohar-chadash-shir-hashirim-shir-hashirim-265 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:266 | zohar-chadash-shir-hashirim-shir-hashirim-266 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:267 | zohar-chadash-shir-hashirim-shir-hashirim-267 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:268 | zohar-chadash-shir-hashirim-shir-hashirim-268 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:269 | zohar-chadash-shir-hashirim-shir-hashirim-269 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:270 | zohar-chadash-shir-hashirim-shir-hashirim-270 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:271 | zohar-chadash-shir-hashirim-shir-hashirim-271 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:272 | zohar-chadash-shir-hashirim-shir-hashirim-272 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:273 | zohar-chadash-shir-hashirim-shir-hashirim-273 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:274 | zohar-chadash-shir-hashirim-shir-hashirim-274 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:275 | zohar-chadash-shir-hashirim-shir-hashirim-275 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:276 | zohar-chadash-shir-hashirim-shir-hashirim-276 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:277 | zohar-chadash-shir-hashirim-shir-hashirim-277 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:278 | zohar-chadash-shir-hashirim-shir-hashirim-278 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:279 | zohar-chadash-shir-hashirim-shir-hashirim-279 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:280 | zohar-chadash-shir-hashirim-shir-hashirim-280 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:281 | zohar-chadash-shir-hashirim-shir-hashirim-281 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:282 | zohar-chadash-shir-hashirim-shir-hashirim-282 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:283 | zohar-chadash-shir-hashirim-shir-hashirim-283 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:284 | zohar-chadash-shir-hashirim-shir-hashirim-284 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:285 | zohar-chadash-shir-hashirim-shir-hashirim-285 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:286 | zohar-chadash-shir-hashirim-shir-hashirim-286 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:287 | zohar-chadash-shir-hashirim-shir-hashirim-287 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:288 | zohar-chadash-shir-hashirim-shir-hashirim-288 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:289 | zohar-chadash-shir-hashirim-shir-hashirim-289 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:290 | zohar-chadash-shir-hashirim-shir-hashirim-290 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:291 | zohar-chadash-shir-hashirim-shir-hashirim-291 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:292 | zohar-chadash-shir-hashirim-shir-hashirim-292 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:293 | zohar-chadash-shir-hashirim-shir-hashirim-293 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:294 | zohar-chadash-shir-hashirim-shir-hashirim-294 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:295 | zohar-chadash-shir-hashirim-shir-hashirim-295 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:296 | zohar-chadash-shir-hashirim-shir-hashirim-296 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:297 | zohar-chadash-shir-hashirim-shir-hashirim-297 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:298 | zohar-chadash-shir-hashirim-shir-hashirim-298 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:299 | zohar-chadash-shir-hashirim-shir-hashirim-299 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:300 | zohar-chadash-shir-hashirim-shir-hashirim-300 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:301 | zohar-chadash-shir-hashirim-shir-hashirim-301 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:302 | zohar-chadash-shir-hashirim-shir-hashirim-302 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:303 | zohar-chadash-shir-hashirim-shir-hashirim-303 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:304 | zohar-chadash-shir-hashirim-shir-hashirim-304 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:305 | zohar-chadash-shir-hashirim-shir-hashirim-305 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:306 | zohar-chadash-shir-hashirim-shir-hashirim-306 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:307 | zohar-chadash-shir-hashirim-shir-hashirim-307 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:308 | zohar-chadash-shir-hashirim-shir-hashirim-308 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:309 | zohar-chadash-shir-hashirim-shir-hashirim-309 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:310 | zohar-chadash-shir-hashirim-shir-hashirim-310 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:311 | zohar-chadash-shir-hashirim-shir-hashirim-311 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:312 | zohar-chadash-shir-hashirim-shir-hashirim-312 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:313 | zohar-chadash-shir-hashirim-shir-hashirim-313 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:314 | zohar-chadash-shir-hashirim-shir-hashirim-314 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:315 | zohar-chadash-shir-hashirim-shir-hashirim-315 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:316 | zohar-chadash-shir-hashirim-shir-hashirim-316 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:317 | zohar-chadash-shir-hashirim-shir-hashirim-317 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:318 | zohar-chadash-shir-hashirim-shir-hashirim-318 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:319 | zohar-chadash-shir-hashirim-shir-hashirim-319 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:320 | zohar-chadash-shir-hashirim-shir-hashirim-320 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:321 | zohar-chadash-shir-hashirim-shir-hashirim-321 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:322 | zohar-chadash-shir-hashirim-shir-hashirim-322 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:323 | zohar-chadash-shir-hashirim-shir-hashirim-323 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:324 | zohar-chadash-shir-hashirim-shir-hashirim-324 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:325 | zohar-chadash-shir-hashirim-shir-hashirim-325 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:326 | zohar-chadash-shir-hashirim-shir-hashirim-326 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:327 | zohar-chadash-shir-hashirim-shir-hashirim-327 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:328 | zohar-chadash-shir-hashirim-shir-hashirim-328 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:329 | zohar-chadash-shir-hashirim-shir-hashirim-329 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:330 | zohar-chadash-shir-hashirim-shir-hashirim-330 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:331 | zohar-chadash-shir-hashirim-shir-hashirim-331 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:332 | zohar-chadash-shir-hashirim-shir-hashirim-332 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:333 | zohar-chadash-shir-hashirim-shir-hashirim-333 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:334 | zohar-chadash-shir-hashirim-shir-hashirim-334 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:335 | zohar-chadash-shir-hashirim-shir-hashirim-335 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:336 | zohar-chadash-shir-hashirim-shir-hashirim-336 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:337 | zohar-chadash-shir-hashirim-shir-hashirim-337 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:338 | zohar-chadash-shir-hashirim-shir-hashirim-338 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:339 | zohar-chadash-shir-hashirim-shir-hashirim-339 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:340 | zohar-chadash-shir-hashirim-shir-hashirim-340 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:341 | zohar-chadash-shir-hashirim-shir-hashirim-341 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:342 | zohar-chadash-shir-hashirim-shir-hashirim-342 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:343 | zohar-chadash-shir-hashirim-shir-hashirim-343 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:344 | zohar-chadash-shir-hashirim-shir-hashirim-344 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:345 | zohar-chadash-shir-hashirim-shir-hashirim-345 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:346 | zohar-chadash-shir-hashirim-shir-hashirim-346 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:347 | zohar-chadash-shir-hashirim-shir-hashirim-347 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:348 | zohar-chadash-shir-hashirim-shir-hashirim-348 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:349 | zohar-chadash-shir-hashirim-shir-hashirim-349 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:350 | zohar-chadash-shir-hashirim-shir-hashirim-350 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:351 | zohar-chadash-shir-hashirim-shir-hashirim-351 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:352 | zohar-chadash-shir-hashirim-shir-hashirim-352 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:353 | zohar-chadash-shir-hashirim-shir-hashirim-353 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:354 | zohar-chadash-shir-hashirim-shir-hashirim-354 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:355 | zohar-chadash-shir-hashirim-shir-hashirim-355 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:356 | zohar-chadash-shir-hashirim-shir-hashirim-356 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:357 | zohar-chadash-shir-hashirim-shir-hashirim-357 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:358 | zohar-chadash-shir-hashirim-shir-hashirim-358 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:359 | zohar-chadash-shir-hashirim-shir-hashirim-359 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:360 | zohar-chadash-shir-hashirim-shir-hashirim-360 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:361 | zohar-chadash-shir-hashirim-shir-hashirim-361 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:362 | zohar-chadash-shir-hashirim-shir-hashirim-362 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:363 | zohar-chadash-shir-hashirim-shir-hashirim-363 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:364 | zohar-chadash-shir-hashirim-shir-hashirim-364 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:365 | zohar-chadash-shir-hashirim-shir-hashirim-365 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:366 | zohar-chadash-shir-hashirim-shir-hashirim-366 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:367 | zohar-chadash-shir-hashirim-shir-hashirim-367 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:368 | zohar-chadash-shir-hashirim-shir-hashirim-368 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:369 | zohar-chadash-shir-hashirim-shir-hashirim-369 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:370 | zohar-chadash-shir-hashirim-shir-hashirim-370 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:371 | zohar-chadash-shir-hashirim-shir-hashirim-371 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:372 | zohar-chadash-shir-hashirim-shir-hashirim-372 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:373 | zohar-chadash-shir-hashirim-shir-hashirim-373 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:374 | zohar-chadash-shir-hashirim-shir-hashirim-374 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:375 | zohar-chadash-shir-hashirim-shir-hashirim-375 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:376 | zohar-chadash-shir-hashirim-shir-hashirim-376 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:377 | zohar-chadash-shir-hashirim-shir-hashirim-377 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:378 | zohar-chadash-shir-hashirim-shir-hashirim-378 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:379 | zohar-chadash-shir-hashirim-shir-hashirim-379 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:380 | zohar-chadash-shir-hashirim-shir-hashirim-380 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:381 | zohar-chadash-shir-hashirim-shir-hashirim-381 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:382 | zohar-chadash-shir-hashirim-shir-hashirim-382 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:383 | zohar-chadash-shir-hashirim-shir-hashirim-383 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:384 | zohar-chadash-shir-hashirim-shir-hashirim-384 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:385 | zohar-chadash-shir-hashirim-shir-hashirim-385 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:386 | zohar-chadash-shir-hashirim-shir-hashirim-386 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:387 | zohar-chadash-shir-hashirim-shir-hashirim-387 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:388 | zohar-chadash-shir-hashirim-shir-hashirim-388 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:389 | zohar-chadash-shir-hashirim-shir-hashirim-389 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:390 | zohar-chadash-shir-hashirim-shir-hashirim-390 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:391 | zohar-chadash-shir-hashirim-shir-hashirim-391 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:392 | zohar-chadash-shir-hashirim-shir-hashirim-392 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:393 | zohar-chadash-shir-hashirim-shir-hashirim-393 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:394 | zohar-chadash-shir-hashirim-shir-hashirim-394 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:395 | zohar-chadash-shir-hashirim-shir-hashirim-395 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:396 | zohar-chadash-shir-hashirim-shir-hashirim-396 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:397 | zohar-chadash-shir-hashirim-shir-hashirim-397 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:398 | zohar-chadash-shir-hashirim-shir-hashirim-398 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:399 | zohar-chadash-shir-hashirim-shir-hashirim-399 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:400 | zohar-chadash-shir-hashirim-shir-hashirim-400 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:401 | zohar-chadash-shir-hashirim-shir-hashirim-401 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:402 | zohar-chadash-shir-hashirim-shir-hashirim-402 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:403 | zohar-chadash-shir-hashirim-shir-hashirim-403 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:404 | zohar-chadash-shir-hashirim-shir-hashirim-404 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:405 | zohar-chadash-shir-hashirim-shir-hashirim-405 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:406 | zohar-chadash-shir-hashirim-shir-hashirim-406 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:407 | zohar-chadash-shir-hashirim-shir-hashirim-407 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:408 | zohar-chadash-shir-hashirim-shir-hashirim-408 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:409 | zohar-chadash-shir-hashirim-shir-hashirim-409 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:410 | zohar-chadash-shir-hashirim-shir-hashirim-410 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:411 | zohar-chadash-shir-hashirim-shir-hashirim-411 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:412 | zohar-chadash-shir-hashirim-shir-hashirim-412 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:413 | zohar-chadash-shir-hashirim-shir-hashirim-413 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:414 | zohar-chadash-shir-hashirim-shir-hashirim-414 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:415 | zohar-chadash-shir-hashirim-shir-hashirim-415 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:416 | zohar-chadash-shir-hashirim-shir-hashirim-416 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:417 | zohar-chadash-shir-hashirim-shir-hashirim-417 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:418 | zohar-chadash-shir-hashirim-shir-hashirim-418 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:419 | zohar-chadash-shir-hashirim-shir-hashirim-419 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:420 | zohar-chadash-shir-hashirim-shir-hashirim-420 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:421 | zohar-chadash-shir-hashirim-shir-hashirim-421 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:422 | zohar-chadash-shir-hashirim-shir-hashirim-422 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:423 | zohar-chadash-shir-hashirim-shir-hashirim-423 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:424 | zohar-chadash-shir-hashirim-shir-hashirim-424 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:425 | zohar-chadash-shir-hashirim-shir-hashirim-425 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:426 | zohar-chadash-shir-hashirim-shir-hashirim-426 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:427 | zohar-chadash-shir-hashirim-shir-hashirim-427 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:428 | zohar-chadash-shir-hashirim-shir-hashirim-428 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:429 | zohar-chadash-shir-hashirim-shir-hashirim-429 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:430 | zohar-chadash-shir-hashirim-shir-hashirim-430 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:431 | zohar-chadash-shir-hashirim-shir-hashirim-431 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:432 | zohar-chadash-shir-hashirim-shir-hashirim-432 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:433 | zohar-chadash-shir-hashirim-shir-hashirim-433 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:434 | zohar-chadash-shir-hashirim-shir-hashirim-434 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:435 | zohar-chadash-shir-hashirim-shir-hashirim-435 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:436 | zohar-chadash-shir-hashirim-shir-hashirim-436 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:437 | zohar-chadash-shir-hashirim-shir-hashirim-437 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:438 | zohar-chadash-shir-hashirim-shir-hashirim-438 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:439 | zohar-chadash-shir-hashirim-shir-hashirim-439 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:440 | zohar-chadash-shir-hashirim-shir-hashirim-440 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:441 | zohar-chadash-shir-hashirim-shir-hashirim-441 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:442 | zohar-chadash-shir-hashirim-shir-hashirim-442 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:443 | zohar-chadash-shir-hashirim-shir-hashirim-443 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:444 | zohar-chadash-shir-hashirim-shir-hashirim-444 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:445 | zohar-chadash-shir-hashirim-shir-hashirim-445 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:446 | zohar-chadash-shir-hashirim-shir-hashirim-446 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:447 | zohar-chadash-shir-hashirim-shir-hashirim-447 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:448 | zohar-chadash-shir-hashirim-shir-hashirim-448 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:449 | zohar-chadash-shir-hashirim-shir-hashirim-449 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:450 | zohar-chadash-shir-hashirim-shir-hashirim-450 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:451 | zohar-chadash-shir-hashirim-shir-hashirim-451 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:452 | zohar-chadash-shir-hashirim-shir-hashirim-452 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:453 | zohar-chadash-shir-hashirim-shir-hashirim-453 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:454 | zohar-chadash-shir-hashirim-shir-hashirim-454 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:455 | zohar-chadash-shir-hashirim-shir-hashirim-455 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:456 | zohar-chadash-shir-hashirim-shir-hashirim-456 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:457 | zohar-chadash-shir-hashirim-shir-hashirim-457 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:458 | zohar-chadash-shir-hashirim-shir-hashirim-458 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:459 | zohar-chadash-shir-hashirim-shir-hashirim-459 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:460 | zohar-chadash-shir-hashirim-shir-hashirim-460 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:461 | zohar-chadash-shir-hashirim-shir-hashirim-461 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:462 | zohar-chadash-shir-hashirim-shir-hashirim-462 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:463 | zohar-chadash-shir-hashirim-shir-hashirim-463 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:464 | zohar-chadash-shir-hashirim-shir-hashirim-464 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:465 | zohar-chadash-shir-hashirim-shir-hashirim-465 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:466 | zohar-chadash-shir-hashirim-shir-hashirim-466 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:467 | zohar-chadash-shir-hashirim-shir-hashirim-467 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:468 | zohar-chadash-shir-hashirim-shir-hashirim-468 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:469 | zohar-chadash-shir-hashirim-shir-hashirim-469 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:470 | zohar-chadash-shir-hashirim-shir-hashirim-470 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:471 | zohar-chadash-shir-hashirim-shir-hashirim-471 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:472 | zohar-chadash-shir-hashirim-shir-hashirim-472 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:473 | zohar-chadash-shir-hashirim-shir-hashirim-473 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:474 | zohar-chadash-shir-hashirim-shir-hashirim-474 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:475 | zohar-chadash-shir-hashirim-shir-hashirim-475 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:476 | zohar-chadash-shir-hashirim-shir-hashirim-476 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:477 | zohar-chadash-shir-hashirim-shir-hashirim-477 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:478 | zohar-chadash-shir-hashirim-shir-hashirim-478 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:479 | zohar-chadash-shir-hashirim-shir-hashirim-479 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:480 | zohar-chadash-shir-hashirim-shir-hashirim-480 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:481 | zohar-chadash-shir-hashirim-shir-hashirim-481 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:482 | zohar-chadash-shir-hashirim-shir-hashirim-482 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:483 | zohar-chadash-shir-hashirim-shir-hashirim-483 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:484 | zohar-chadash-shir-hashirim-shir-hashirim-484 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:485 | zohar-chadash-shir-hashirim-shir-hashirim-485 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:486 | zohar-chadash-shir-hashirim-shir-hashirim-486 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:487 | zohar-chadash-shir-hashirim-shir-hashirim-487 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:488 | zohar-chadash-shir-hashirim-shir-hashirim-488 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:489 | zohar-chadash-shir-hashirim-shir-hashirim-489 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:490 | zohar-chadash-shir-hashirim-shir-hashirim-490 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:491 | zohar-chadash-shir-hashirim-shir-hashirim-491 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:492 | zohar-chadash-shir-hashirim-shir-hashirim-492 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:493 | zohar-chadash-shir-hashirim-shir-hashirim-493 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:494 | zohar-chadash-shir-hashirim-shir-hashirim-494 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:495 | zohar-chadash-shir-hashirim-shir-hashirim-495 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:496 | zohar-chadash-shir-hashirim-shir-hashirim-496 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:497 | zohar-chadash-shir-hashirim-shir-hashirim-497 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:498 | zohar-chadash-shir-hashirim-shir-hashirim-498 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:499 | zohar-chadash-shir-hashirim-shir-hashirim-499 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:500 | zohar-chadash-shir-hashirim-shir-hashirim-500 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:501 | zohar-chadash-shir-hashirim-shir-hashirim-501 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:502 | zohar-chadash-shir-hashirim-shir-hashirim-502 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:503 | zohar-chadash-shir-hashirim-shir-hashirim-503 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:504 | zohar-chadash-shir-hashirim-shir-hashirim-504 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:505 | zohar-chadash-shir-hashirim-shir-hashirim-505 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:506 | zohar-chadash-shir-hashirim-shir-hashirim-506 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:507 | zohar-chadash-shir-hashirim-shir-hashirim-507 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:508 | zohar-chadash-shir-hashirim-shir-hashirim-508 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:509 | zohar-chadash-shir-hashirim-shir-hashirim-509 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:510 | zohar-chadash-shir-hashirim-shir-hashirim-510 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:511 | zohar-chadash-shir-hashirim-shir-hashirim-511 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:512 | zohar-chadash-shir-hashirim-shir-hashirim-512 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:513 | zohar-chadash-shir-hashirim-shir-hashirim-513 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:514 | zohar-chadash-shir-hashirim-shir-hashirim-514 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:515 | zohar-chadash-shir-hashirim-shir-hashirim-515 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:516 | zohar-chadash-shir-hashirim-shir-hashirim-516 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:517 | zohar-chadash-shir-hashirim-shir-hashirim-517 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:518 | zohar-chadash-shir-hashirim-shir-hashirim-518 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:519 | zohar-chadash-shir-hashirim-shir-hashirim-519 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:520 | zohar-chadash-shir-hashirim-shir-hashirim-520 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:521 | zohar-chadash-shir-hashirim-shir-hashirim-521 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:522 | zohar-chadash-shir-hashirim-shir-hashirim-522 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:523 | zohar-chadash-shir-hashirim-shir-hashirim-523 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:524 | zohar-chadash-shir-hashirim-shir-hashirim-524 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:525 | zohar-chadash-shir-hashirim-shir-hashirim-525 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:526 | zohar-chadash-shir-hashirim-shir-hashirim-526 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:527 | zohar-chadash-shir-hashirim-shir-hashirim-527 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:528 | zohar-chadash-shir-hashirim-shir-hashirim-528 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:529 | zohar-chadash-shir-hashirim-shir-hashirim-529 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:530 | zohar-chadash-shir-hashirim-shir-hashirim-530 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:531 | zohar-chadash-shir-hashirim-shir-hashirim-531 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:532 | zohar-chadash-shir-hashirim-shir-hashirim-532 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:533 | zohar-chadash-shir-hashirim-shir-hashirim-533 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:534 | zohar-chadash-shir-hashirim-shir-hashirim-534 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:535 | zohar-chadash-shir-hashirim-shir-hashirim-535 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:536 | zohar-chadash-shir-hashirim-shir-hashirim-536 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:537 | zohar-chadash-shir-hashirim-shir-hashirim-537 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:538 | zohar-chadash-shir-hashirim-shir-hashirim-538 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:539 | zohar-chadash-shir-hashirim-shir-hashirim-539 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:540 | zohar-chadash-shir-hashirim-shir-hashirim-540 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:541 | zohar-chadash-shir-hashirim-shir-hashirim-541 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:542 | zohar-chadash-shir-hashirim-shir-hashirim-542 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:543 | zohar-chadash-shir-hashirim-shir-hashirim-543 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:544 | zohar-chadash-shir-hashirim-shir-hashirim-544 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:545 | zohar-chadash-shir-hashirim-shir-hashirim-545 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:546 | zohar-chadash-shir-hashirim-shir-hashirim-546 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:547 | zohar-chadash-shir-hashirim-shir-hashirim-547 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:548 | zohar-chadash-shir-hashirim-shir-hashirim-548 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:549 | zohar-chadash-shir-hashirim-shir-hashirim-549 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:550 | zohar-chadash-shir-hashirim-shir-hashirim-550 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:551 | zohar-chadash-shir-hashirim-shir-hashirim-551 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:552 | zohar-chadash-shir-hashirim-shir-hashirim-552 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:553 | zohar-chadash-shir-hashirim-shir-hashirim-553 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:554 | zohar-chadash-shir-hashirim-shir-hashirim-554 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:555 | zohar-chadash-shir-hashirim-shir-hashirim-555 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:556 | zohar-chadash-shir-hashirim-shir-hashirim-556 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:557 | zohar-chadash-shir-hashirim-shir-hashirim-557 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:558 | zohar-chadash-shir-hashirim-shir-hashirim-558 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:559 | zohar-chadash-shir-hashirim-shir-hashirim-559 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:560 | zohar-chadash-shir-hashirim-shir-hashirim-560 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:561 | zohar-chadash-shir-hashirim-shir-hashirim-561 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:562 | zohar-chadash-shir-hashirim-shir-hashirim-562 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:563 | zohar-chadash-shir-hashirim-shir-hashirim-563 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:564 | zohar-chadash-shir-hashirim-shir-hashirim-564 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:565 | zohar-chadash-shir-hashirim-shir-hashirim-565 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:566 | zohar-chadash-shir-hashirim-shir-hashirim-566 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:567 | zohar-chadash-shir-hashirim-shir-hashirim-567 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:568 | zohar-chadash-shir-hashirim-shir-hashirim-568 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:569 | zohar-chadash-shir-hashirim-shir-hashirim-569 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:570 | zohar-chadash-shir-hashirim-shir-hashirim-570 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:571 | zohar-chadash-shir-hashirim-shir-hashirim-571 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:572 | zohar-chadash-shir-hashirim-shir-hashirim-572 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:573 | zohar-chadash-shir-hashirim-shir-hashirim-573 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:574 | zohar-chadash-shir-hashirim-shir-hashirim-574 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:575 | zohar-chadash-shir-hashirim-shir-hashirim-575 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:576 | zohar-chadash-shir-hashirim-shir-hashirim-576 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:577 | zohar-chadash-shir-hashirim-shir-hashirim-577 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:578 | zohar-chadash-shir-hashirim-shir-hashirim-578 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:579 | zohar-chadash-shir-hashirim-shir-hashirim-579 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:580 | zohar-chadash-shir-hashirim-shir-hashirim-580 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:581 | zohar-chadash-shir-hashirim-shir-hashirim-581 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:582 | zohar-chadash-shir-hashirim-shir-hashirim-582 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:583 | zohar-chadash-shir-hashirim-shir-hashirim-583 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:584 | zohar-chadash-shir-hashirim-shir-hashirim-584 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:585 | zohar-chadash-shir-hashirim-shir-hashirim-585 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:586 | zohar-chadash-shir-hashirim-shir-hashirim-586 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:587 | zohar-chadash-shir-hashirim-shir-hashirim-587 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:588 | zohar-chadash-shir-hashirim-shir-hashirim-588 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:589 | zohar-chadash-shir-hashirim-shir-hashirim-589 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:590 | zohar-chadash-shir-hashirim-shir-hashirim-590 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:591 | zohar-chadash-shir-hashirim-shir-hashirim-591 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:592 | zohar-chadash-shir-hashirim-shir-hashirim-592 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:593 | zohar-chadash-shir-hashirim-shir-hashirim-593 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:594 | zohar-chadash-shir-hashirim-shir-hashirim-594 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:595 | zohar-chadash-shir-hashirim-shir-hashirim-595 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:596 | zohar-chadash-shir-hashirim-shir-hashirim-596 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:597 | zohar-chadash-shir-hashirim-shir-hashirim-597 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:598 | zohar-chadash-shir-hashirim-shir-hashirim-598 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:599 | zohar-chadash-shir-hashirim-shir-hashirim-599 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:600 | zohar-chadash-shir-hashirim-shir-hashirim-600 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:601 | zohar-chadash-shir-hashirim-shir-hashirim-601 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:602 | zohar-chadash-shir-hashirim-shir-hashirim-602 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:603 | zohar-chadash-shir-hashirim-shir-hashirim-603 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:604 | zohar-chadash-shir-hashirim-shir-hashirim-604 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:605 | zohar-chadash-shir-hashirim-shir-hashirim-605 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:606 | zohar-chadash-shir-hashirim-shir-hashirim-606 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:607 | zohar-chadash-shir-hashirim-shir-hashirim-607 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:608 | zohar-chadash-shir-hashirim-shir-hashirim-608 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:609 | zohar-chadash-shir-hashirim-shir-hashirim-609 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:610 | zohar-chadash-shir-hashirim-shir-hashirim-610 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:611 | zohar-chadash-shir-hashirim-shir-hashirim-611 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:612 | zohar-chadash-shir-hashirim-shir-hashirim-612 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:613 | zohar-chadash-shir-hashirim-shir-hashirim-613 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:614 | zohar-chadash-shir-hashirim-shir-hashirim-614 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:615 | zohar-chadash-shir-hashirim-shir-hashirim-615 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:616 | zohar-chadash-shir-hashirim-shir-hashirim-616 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:617 | zohar-chadash-shir-hashirim-shir-hashirim-617 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:618 | zohar-chadash-shir-hashirim-shir-hashirim-618 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:619 | zohar-chadash-shir-hashirim-shir-hashirim-619 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:620 | zohar-chadash-shir-hashirim-shir-hashirim-620 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:621 | zohar-chadash-shir-hashirim-shir-hashirim-621 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:622 | zohar-chadash-shir-hashirim-shir-hashirim-622 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:623 | zohar-chadash-shir-hashirim-shir-hashirim-623 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:624 | zohar-chadash-shir-hashirim-shir-hashirim-624 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:625 | zohar-chadash-shir-hashirim-shir-hashirim-625 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:626 | zohar-chadash-shir-hashirim-shir-hashirim-626 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:627 | zohar-chadash-shir-hashirim-shir-hashirim-627 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:628 | zohar-chadash-shir-hashirim-shir-hashirim-628 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:629 | zohar-chadash-shir-hashirim-shir-hashirim-629 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:630 | zohar-chadash-shir-hashirim-shir-hashirim-630 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:631 | zohar-chadash-shir-hashirim-shir-hashirim-631 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:632 | zohar-chadash-shir-hashirim-shir-hashirim-632 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:633 | zohar-chadash-shir-hashirim-shir-hashirim-633 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:634 | zohar-chadash-shir-hashirim-shir-hashirim-634 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:635 | zohar-chadash-shir-hashirim-shir-hashirim-635 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:636 | zohar-chadash-shir-hashirim-shir-hashirim-636 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:637 | zohar-chadash-shir-hashirim-shir-hashirim-637 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:638 | zohar-chadash-shir-hashirim-shir-hashirim-638 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:639 | zohar-chadash-shir-hashirim-shir-hashirim-639 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:640 | zohar-chadash-shir-hashirim-shir-hashirim-640 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:641 | zohar-chadash-shir-hashirim-shir-hashirim-641 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:642 | zohar-chadash-shir-hashirim-shir-hashirim-642 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:643 | zohar-chadash-shir-hashirim-shir-hashirim-643 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:644 | zohar-chadash-shir-hashirim-shir-hashirim-644 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:645 | zohar-chadash-shir-hashirim-shir-hashirim-645 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:646 | zohar-chadash-shir-hashirim-shir-hashirim-646 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:647 | zohar-chadash-shir-hashirim-shir-hashirim-647 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:648 | zohar-chadash-shir-hashirim-shir-hashirim-648 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:649 | zohar-chadash-shir-hashirim-shir-hashirim-649 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:650 | zohar-chadash-shir-hashirim-shir-hashirim-650 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:651 | zohar-chadash-shir-hashirim-shir-hashirim-651 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:652 | zohar-chadash-shir-hashirim-shir-hashirim-652 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:653 | zohar-chadash-shir-hashirim-shir-hashirim-653 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:654 | zohar-chadash-shir-hashirim-shir-hashirim-654 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:655 | zohar-chadash-shir-hashirim-shir-hashirim-655 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:656 | zohar-chadash-shir-hashirim-shir-hashirim-656 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:657 | zohar-chadash-shir-hashirim-shir-hashirim-657 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:658 | zohar-chadash-shir-hashirim-shir-hashirim-658 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:659 | zohar-chadash-shir-hashirim-shir-hashirim-659 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:660 | zohar-chadash-shir-hashirim-shir-hashirim-660 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:661 | zohar-chadash-shir-hashirim-shir-hashirim-661 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Shir HaShirim:662 | zohar-chadash-shir-hashirim-shir-hashirim-662 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:1 | zohar-chadash-midrash-rut-midrash-rut-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:2 | zohar-chadash-midrash-rut-midrash-rut-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:3 | zohar-chadash-midrash-rut-midrash-rut-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:4 | zohar-chadash-midrash-rut-midrash-rut-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:5 | zohar-chadash-midrash-rut-midrash-rut-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:6 | zohar-chadash-midrash-rut-midrash-rut-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:7 | zohar-chadash-midrash-rut-midrash-rut-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:8 | zohar-chadash-midrash-rut-midrash-rut-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:9 | zohar-chadash-midrash-rut-midrash-rut-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:10 | zohar-chadash-midrash-rut-midrash-rut-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:11 | zohar-chadash-midrash-rut-midrash-rut-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:12 | zohar-chadash-midrash-rut-midrash-rut-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:13 | zohar-chadash-midrash-rut-midrash-rut-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:14 | zohar-chadash-midrash-rut-midrash-rut-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:15 | zohar-chadash-midrash-rut-midrash-rut-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:16 | zohar-chadash-midrash-rut-midrash-rut-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:17 | zohar-chadash-midrash-rut-midrash-rut-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:18 | zohar-chadash-midrash-rut-midrash-rut-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:19 | zohar-chadash-midrash-rut-midrash-rut-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:20 | zohar-chadash-midrash-rut-midrash-rut-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:21 | zohar-chadash-midrash-rut-midrash-rut-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:22 | zohar-chadash-midrash-rut-midrash-rut-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:23 | zohar-chadash-midrash-rut-midrash-rut-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:24 | zohar-chadash-midrash-rut-midrash-rut-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:25 | zohar-chadash-midrash-rut-midrash-rut-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:26 | zohar-chadash-midrash-rut-midrash-rut-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:27 | zohar-chadash-midrash-rut-midrash-rut-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:28 | zohar-chadash-midrash-rut-midrash-rut-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:29 | zohar-chadash-midrash-rut-midrash-rut-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:30 | zohar-chadash-midrash-rut-midrash-rut-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:31 | zohar-chadash-midrash-rut-midrash-rut-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:32 | zohar-chadash-midrash-rut-midrash-rut-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:33 | zohar-chadash-midrash-rut-midrash-rut-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:34 | zohar-chadash-midrash-rut-midrash-rut-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:35 | zohar-chadash-midrash-rut-midrash-rut-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:36 | zohar-chadash-midrash-rut-midrash-rut-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:37 | zohar-chadash-midrash-rut-midrash-rut-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:38 | zohar-chadash-midrash-rut-midrash-rut-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:39 | zohar-chadash-midrash-rut-midrash-rut-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:40 | zohar-chadash-midrash-rut-midrash-rut-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:41 | zohar-chadash-midrash-rut-midrash-rut-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:42 | zohar-chadash-midrash-rut-midrash-rut-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:43 | zohar-chadash-midrash-rut-midrash-rut-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:44 | zohar-chadash-midrash-rut-midrash-rut-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:45 | zohar-chadash-midrash-rut-midrash-rut-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:46 | zohar-chadash-midrash-rut-midrash-rut-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:47 | zohar-chadash-midrash-rut-midrash-rut-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:48 | zohar-chadash-midrash-rut-midrash-rut-48 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:49 | zohar-chadash-midrash-rut-midrash-rut-49 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:50 | zohar-chadash-midrash-rut-midrash-rut-50 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:51 | zohar-chadash-midrash-rut-midrash-rut-51 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:52 | zohar-chadash-midrash-rut-midrash-rut-52 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:53 | zohar-chadash-midrash-rut-midrash-rut-53 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:54 | zohar-chadash-midrash-rut-midrash-rut-54 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:55 | zohar-chadash-midrash-rut-midrash-rut-55 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:56 | zohar-chadash-midrash-rut-midrash-rut-56 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:57 | zohar-chadash-midrash-rut-midrash-rut-57 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:58 | zohar-chadash-midrash-rut-midrash-rut-58 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:59 | zohar-chadash-midrash-rut-midrash-rut-59 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:60 | zohar-chadash-midrash-rut-midrash-rut-60 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:61 | zohar-chadash-midrash-rut-midrash-rut-61 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:62 | zohar-chadash-midrash-rut-midrash-rut-62 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:63 | zohar-chadash-midrash-rut-midrash-rut-63 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:64 | zohar-chadash-midrash-rut-midrash-rut-64 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:65 | zohar-chadash-midrash-rut-midrash-rut-65 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:66 | zohar-chadash-midrash-rut-midrash-rut-66 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:67 | zohar-chadash-midrash-rut-midrash-rut-67 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:68 | zohar-chadash-midrash-rut-midrash-rut-68 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:69 | zohar-chadash-midrash-rut-midrash-rut-69 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:70 | zohar-chadash-midrash-rut-midrash-rut-70 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:71 | zohar-chadash-midrash-rut-midrash-rut-71 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:72 | zohar-chadash-midrash-rut-midrash-rut-72 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:73 | zohar-chadash-midrash-rut-midrash-rut-73 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:74 | zohar-chadash-midrash-rut-midrash-rut-74 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:75 | zohar-chadash-midrash-rut-midrash-rut-75 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:76 | zohar-chadash-midrash-rut-midrash-rut-76 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:77 | zohar-chadash-midrash-rut-midrash-rut-77 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:78 | zohar-chadash-midrash-rut-midrash-rut-78 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:79 | zohar-chadash-midrash-rut-midrash-rut-79 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:80 | zohar-chadash-midrash-rut-midrash-rut-80 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:81 | zohar-chadash-midrash-rut-midrash-rut-81 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:82 | zohar-chadash-midrash-rut-midrash-rut-82 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:83 | zohar-chadash-midrash-rut-midrash-rut-83 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:84 | zohar-chadash-midrash-rut-midrash-rut-84 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:85 | zohar-chadash-midrash-rut-midrash-rut-85 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:86 | zohar-chadash-midrash-rut-midrash-rut-86 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:87 | zohar-chadash-midrash-rut-midrash-rut-87 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:88 | zohar-chadash-midrash-rut-midrash-rut-88 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:89 | zohar-chadash-midrash-rut-midrash-rut-89 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:90 | zohar-chadash-midrash-rut-midrash-rut-90 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:91 | zohar-chadash-midrash-rut-midrash-rut-91 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:92 | zohar-chadash-midrash-rut-midrash-rut-92 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:93 | zohar-chadash-midrash-rut-midrash-rut-93 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:94 | zohar-chadash-midrash-rut-midrash-rut-94 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:95 | zohar-chadash-midrash-rut-midrash-rut-95 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:96 | zohar-chadash-midrash-rut-midrash-rut-96 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:97 | zohar-chadash-midrash-rut-midrash-rut-97 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:98 | zohar-chadash-midrash-rut-midrash-rut-98 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:99 | zohar-chadash-midrash-rut-midrash-rut-99 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:100 | zohar-chadash-midrash-rut-midrash-rut-100 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:101 | zohar-chadash-midrash-rut-midrash-rut-101 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:102 | zohar-chadash-midrash-rut-midrash-rut-102 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:103 | zohar-chadash-midrash-rut-midrash-rut-103 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:104 | zohar-chadash-midrash-rut-midrash-rut-104 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:105 | zohar-chadash-midrash-rut-midrash-rut-105 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:106 | zohar-chadash-midrash-rut-midrash-rut-106 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:107 | zohar-chadash-midrash-rut-midrash-rut-107 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:108 | zohar-chadash-midrash-rut-midrash-rut-108 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:109 | zohar-chadash-midrash-rut-midrash-rut-109 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:110 | zohar-chadash-midrash-rut-midrash-rut-110 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:111 | zohar-chadash-midrash-rut-midrash-rut-111 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:112 | zohar-chadash-midrash-rut-midrash-rut-112 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:113 | zohar-chadash-midrash-rut-midrash-rut-113 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:114 | zohar-chadash-midrash-rut-midrash-rut-114 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:115 | zohar-chadash-midrash-rut-midrash-rut-115 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:116 | zohar-chadash-midrash-rut-midrash-rut-116 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:117 | zohar-chadash-midrash-rut-midrash-rut-117 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:118 | zohar-chadash-midrash-rut-midrash-rut-118 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:119 | zohar-chadash-midrash-rut-midrash-rut-119 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:120 | zohar-chadash-midrash-rut-midrash-rut-120 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:121 | zohar-chadash-midrash-rut-midrash-rut-121 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:122 | zohar-chadash-midrash-rut-midrash-rut-122 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:123 | zohar-chadash-midrash-rut-midrash-rut-123 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:124 | zohar-chadash-midrash-rut-midrash-rut-124 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:125 | zohar-chadash-midrash-rut-midrash-rut-125 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:126 | zohar-chadash-midrash-rut-midrash-rut-126 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:127 | zohar-chadash-midrash-rut-midrash-rut-127 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:128 | zohar-chadash-midrash-rut-midrash-rut-128 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:129 | zohar-chadash-midrash-rut-midrash-rut-129 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:130 | zohar-chadash-midrash-rut-midrash-rut-130 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:131 | zohar-chadash-midrash-rut-midrash-rut-131 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:132 | zohar-chadash-midrash-rut-midrash-rut-132 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:133 | zohar-chadash-midrash-rut-midrash-rut-133 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:134 | zohar-chadash-midrash-rut-midrash-rut-134 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:135 | zohar-chadash-midrash-rut-midrash-rut-135 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:136 | zohar-chadash-midrash-rut-midrash-rut-136 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:137 | zohar-chadash-midrash-rut-midrash-rut-137 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:138 | zohar-chadash-midrash-rut-midrash-rut-138 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:139 | zohar-chadash-midrash-rut-midrash-rut-139 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:140 | zohar-chadash-midrash-rut-midrash-rut-140 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:141 | zohar-chadash-midrash-rut-midrash-rut-141 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:142 | zohar-chadash-midrash-rut-midrash-rut-142 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:143 | zohar-chadash-midrash-rut-midrash-rut-143 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:144 | zohar-chadash-midrash-rut-midrash-rut-144 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:145 | zohar-chadash-midrash-rut-midrash-rut-145 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:146 | zohar-chadash-midrash-rut-midrash-rut-146 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:147 | zohar-chadash-midrash-rut-midrash-rut-147 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:148 | zohar-chadash-midrash-rut-midrash-rut-148 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:149 | zohar-chadash-midrash-rut-midrash-rut-149 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:150 | zohar-chadash-midrash-rut-midrash-rut-150 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:151 | zohar-chadash-midrash-rut-midrash-rut-151 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:152 | zohar-chadash-midrash-rut-midrash-rut-152 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:153 | zohar-chadash-midrash-rut-midrash-rut-153 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:154 | zohar-chadash-midrash-rut-midrash-rut-154 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:155 | zohar-chadash-midrash-rut-midrash-rut-155 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:156 | zohar-chadash-midrash-rut-midrash-rut-156 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:157 | zohar-chadash-midrash-rut-midrash-rut-157 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:158 | zohar-chadash-midrash-rut-midrash-rut-158 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:159 | zohar-chadash-midrash-rut-midrash-rut-159 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:160 | zohar-chadash-midrash-rut-midrash-rut-160 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:161 | zohar-chadash-midrash-rut-midrash-rut-161 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:162 | zohar-chadash-midrash-rut-midrash-rut-162 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:163 | zohar-chadash-midrash-rut-midrash-rut-163 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:164 | zohar-chadash-midrash-rut-midrash-rut-164 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:165 | zohar-chadash-midrash-rut-midrash-rut-165 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:166 | zohar-chadash-midrash-rut-midrash-rut-166 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:167 | zohar-chadash-midrash-rut-midrash-rut-167 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:168 | zohar-chadash-midrash-rut-midrash-rut-168 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:169 | zohar-chadash-midrash-rut-midrash-rut-169 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:170 | zohar-chadash-midrash-rut-midrash-rut-170 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:171 | zohar-chadash-midrash-rut-midrash-rut-171 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:172 | zohar-chadash-midrash-rut-midrash-rut-172 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:173 | zohar-chadash-midrash-rut-midrash-rut-173 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:174 | zohar-chadash-midrash-rut-midrash-rut-174 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:175 | zohar-chadash-midrash-rut-midrash-rut-175 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:176 | zohar-chadash-midrash-rut-midrash-rut-176 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:177 | zohar-chadash-midrash-rut-midrash-rut-177 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:178 | zohar-chadash-midrash-rut-midrash-rut-178 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:179 | zohar-chadash-midrash-rut-midrash-rut-179 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:180 | zohar-chadash-midrash-rut-midrash-rut-180 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:181 | zohar-chadash-midrash-rut-midrash-rut-181 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:182 | zohar-chadash-midrash-rut-midrash-rut-182 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:183 | zohar-chadash-midrash-rut-midrash-rut-183 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:184 | zohar-chadash-midrash-rut-midrash-rut-184 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:185 | zohar-chadash-midrash-rut-midrash-rut-185 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:186 | zohar-chadash-midrash-rut-midrash-rut-186 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:187 | zohar-chadash-midrash-rut-midrash-rut-187 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:188 | zohar-chadash-midrash-rut-midrash-rut-188 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:189 | zohar-chadash-midrash-rut-midrash-rut-189 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:190 | zohar-chadash-midrash-rut-midrash-rut-190 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:191 | zohar-chadash-midrash-rut-midrash-rut-191 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:192 | zohar-chadash-midrash-rut-midrash-rut-192 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:193 | zohar-chadash-midrash-rut-midrash-rut-193 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:194 | zohar-chadash-midrash-rut-midrash-rut-194 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:195 | zohar-chadash-midrash-rut-midrash-rut-195 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:196 | zohar-chadash-midrash-rut-midrash-rut-196 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:197 | zohar-chadash-midrash-rut-midrash-rut-197 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:198 | zohar-chadash-midrash-rut-midrash-rut-198 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:199 | zohar-chadash-midrash-rut-midrash-rut-199 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:200 | zohar-chadash-midrash-rut-midrash-rut-200 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:201 | zohar-chadash-midrash-rut-midrash-rut-201 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:202 | zohar-chadash-midrash-rut-midrash-rut-202 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:203 | zohar-chadash-midrash-rut-midrash-rut-203 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:204 | zohar-chadash-midrash-rut-midrash-rut-204 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:205 | zohar-chadash-midrash-rut-midrash-rut-205 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:206 | zohar-chadash-midrash-rut-midrash-rut-206 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:207 | zohar-chadash-midrash-rut-midrash-rut-207 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:208 | zohar-chadash-midrash-rut-midrash-rut-208 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:209 | zohar-chadash-midrash-rut-midrash-rut-209 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:210 | zohar-chadash-midrash-rut-midrash-rut-210 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:211 | zohar-chadash-midrash-rut-midrash-rut-211 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:212 | zohar-chadash-midrash-rut-midrash-rut-212 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:213 | zohar-chadash-midrash-rut-midrash-rut-213 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:214 | zohar-chadash-midrash-rut-midrash-rut-214 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:215 | zohar-chadash-midrash-rut-midrash-rut-215 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:216 | zohar-chadash-midrash-rut-midrash-rut-216 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:217 | zohar-chadash-midrash-rut-midrash-rut-217 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:218 | zohar-chadash-midrash-rut-midrash-rut-218 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:219 | zohar-chadash-midrash-rut-midrash-rut-219 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:220 | zohar-chadash-midrash-rut-midrash-rut-220 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:221 | zohar-chadash-midrash-rut-midrash-rut-221 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:222 | zohar-chadash-midrash-rut-midrash-rut-222 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:223 | zohar-chadash-midrash-rut-midrash-rut-223 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:224 | zohar-chadash-midrash-rut-midrash-rut-224 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:225 | zohar-chadash-midrash-rut-midrash-rut-225 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:226 | zohar-chadash-midrash-rut-midrash-rut-226 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:227 | zohar-chadash-midrash-rut-midrash-rut-227 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:228 | zohar-chadash-midrash-rut-midrash-rut-228 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:229 | zohar-chadash-midrash-rut-midrash-rut-229 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:230 | zohar-chadash-midrash-rut-midrash-rut-230 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:231 | zohar-chadash-midrash-rut-midrash-rut-231 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:232 | zohar-chadash-midrash-rut-midrash-rut-232 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:233 | zohar-chadash-midrash-rut-midrash-rut-233 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:234 | zohar-chadash-midrash-rut-midrash-rut-234 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:235 | zohar-chadash-midrash-rut-midrash-rut-235 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:236 | zohar-chadash-midrash-rut-midrash-rut-236 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:237 | zohar-chadash-midrash-rut-midrash-rut-237 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:238 | zohar-chadash-midrash-rut-midrash-rut-238 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:239 | zohar-chadash-midrash-rut-midrash-rut-239 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:240 | zohar-chadash-midrash-rut-midrash-rut-240 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:241 | zohar-chadash-midrash-rut-midrash-rut-241 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:242 | zohar-chadash-midrash-rut-midrash-rut-242 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:243 | zohar-chadash-midrash-rut-midrash-rut-243 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:244 | zohar-chadash-midrash-rut-midrash-rut-244 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:245 | zohar-chadash-midrash-rut-midrash-rut-245 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:246 | zohar-chadash-midrash-rut-midrash-rut-246 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:247 | zohar-chadash-midrash-rut-midrash-rut-247 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:248 | zohar-chadash-midrash-rut-midrash-rut-248 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:249 | zohar-chadash-midrash-rut-midrash-rut-249 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:250 | zohar-chadash-midrash-rut-midrash-rut-250 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:251 | zohar-chadash-midrash-rut-midrash-rut-251 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:252 | zohar-chadash-midrash-rut-midrash-rut-252 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:253 | zohar-chadash-midrash-rut-midrash-rut-253 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:254 | zohar-chadash-midrash-rut-midrash-rut-254 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:255 | zohar-chadash-midrash-rut-midrash-rut-255 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:256 | zohar-chadash-midrash-rut-midrash-rut-256 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:257 | zohar-chadash-midrash-rut-midrash-rut-257 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:258 | zohar-chadash-midrash-rut-midrash-rut-258 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:259 | zohar-chadash-midrash-rut-midrash-rut-259 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:260 | zohar-chadash-midrash-rut-midrash-rut-260 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:261 | zohar-chadash-midrash-rut-midrash-rut-261 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:262 | zohar-chadash-midrash-rut-midrash-rut-262 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:263 | zohar-chadash-midrash-rut-midrash-rut-263 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:264 | zohar-chadash-midrash-rut-midrash-rut-264 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:265 | zohar-chadash-midrash-rut-midrash-rut-265 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:266 | zohar-chadash-midrash-rut-midrash-rut-266 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:267 | zohar-chadash-midrash-rut-midrash-rut-267 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:268 | zohar-chadash-midrash-rut-midrash-rut-268 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:269 | zohar-chadash-midrash-rut-midrash-rut-269 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:270 | zohar-chadash-midrash-rut-midrash-rut-270 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:271 | zohar-chadash-midrash-rut-midrash-rut-271 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:272 | zohar-chadash-midrash-rut-midrash-rut-272 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:273 | zohar-chadash-midrash-rut-midrash-rut-273 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:274 | zohar-chadash-midrash-rut-midrash-rut-274 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:275 | zohar-chadash-midrash-rut-midrash-rut-275 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:276 | zohar-chadash-midrash-rut-midrash-rut-276 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:277 | zohar-chadash-midrash-rut-midrash-rut-277 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:278 | zohar-chadash-midrash-rut-midrash-rut-278 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:279 | zohar-chadash-midrash-rut-midrash-rut-279 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:280 | zohar-chadash-midrash-rut-midrash-rut-280 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:281 | zohar-chadash-midrash-rut-midrash-rut-281 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:282 | zohar-chadash-midrash-rut-midrash-rut-282 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:283 | zohar-chadash-midrash-rut-midrash-rut-283 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:284 | zohar-chadash-midrash-rut-midrash-rut-284 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:285 | zohar-chadash-midrash-rut-midrash-rut-285 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:286 | zohar-chadash-midrash-rut-midrash-rut-286 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:287 | zohar-chadash-midrash-rut-midrash-rut-287 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:288 | zohar-chadash-midrash-rut-midrash-rut-288 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:289 | zohar-chadash-midrash-rut-midrash-rut-289 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:290 | zohar-chadash-midrash-rut-midrash-rut-290 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:291 | zohar-chadash-midrash-rut-midrash-rut-291 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:292 | zohar-chadash-midrash-rut-midrash-rut-292 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:293 | zohar-chadash-midrash-rut-midrash-rut-293 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:294 | zohar-chadash-midrash-rut-midrash-rut-294 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:295 | zohar-chadash-midrash-rut-midrash-rut-295 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:296 | zohar-chadash-midrash-rut-midrash-rut-296 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:297 | zohar-chadash-midrash-rut-midrash-rut-297 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:298 | zohar-chadash-midrash-rut-midrash-rut-298 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:299 | zohar-chadash-midrash-rut-midrash-rut-299 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:300 | zohar-chadash-midrash-rut-midrash-rut-300 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:301 | zohar-chadash-midrash-rut-midrash-rut-301 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:302 | zohar-chadash-midrash-rut-midrash-rut-302 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:303 | zohar-chadash-midrash-rut-midrash-rut-303 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:304 | zohar-chadash-midrash-rut-midrash-rut-304 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:305 | zohar-chadash-midrash-rut-midrash-rut-305 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:306 | zohar-chadash-midrash-rut-midrash-rut-306 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:307 | zohar-chadash-midrash-rut-midrash-rut-307 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:308 | zohar-chadash-midrash-rut-midrash-rut-308 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:309 | zohar-chadash-midrash-rut-midrash-rut-309 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:310 | zohar-chadash-midrash-rut-midrash-rut-310 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:311 | zohar-chadash-midrash-rut-midrash-rut-311 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:312 | zohar-chadash-midrash-rut-midrash-rut-312 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:313 | zohar-chadash-midrash-rut-midrash-rut-313 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:314 | zohar-chadash-midrash-rut-midrash-rut-314 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:315 | zohar-chadash-midrash-rut-midrash-rut-315 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:316 | zohar-chadash-midrash-rut-midrash-rut-316 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:317 | zohar-chadash-midrash-rut-midrash-rut-317 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:318 | zohar-chadash-midrash-rut-midrash-rut-318 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:319 | zohar-chadash-midrash-rut-midrash-rut-319 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:320 | zohar-chadash-midrash-rut-midrash-rut-320 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:321 | zohar-chadash-midrash-rut-midrash-rut-321 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:322 | zohar-chadash-midrash-rut-midrash-rut-322 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:323 | zohar-chadash-midrash-rut-midrash-rut-323 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:324 | zohar-chadash-midrash-rut-midrash-rut-324 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:325 | zohar-chadash-midrash-rut-midrash-rut-325 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:326 | zohar-chadash-midrash-rut-midrash-rut-326 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:327 | zohar-chadash-midrash-rut-midrash-rut-327 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:328 | zohar-chadash-midrash-rut-midrash-rut-328 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:329 | zohar-chadash-midrash-rut-midrash-rut-329 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:330 | zohar-chadash-midrash-rut-midrash-rut-330 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:331 | zohar-chadash-midrash-rut-midrash-rut-331 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:332 | zohar-chadash-midrash-rut-midrash-rut-332 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:333 | zohar-chadash-midrash-rut-midrash-rut-333 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:334 | zohar-chadash-midrash-rut-midrash-rut-334 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:335 | zohar-chadash-midrash-rut-midrash-rut-335 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:336 | zohar-chadash-midrash-rut-midrash-rut-336 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:337 | zohar-chadash-midrash-rut-midrash-rut-337 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:338 | zohar-chadash-midrash-rut-midrash-rut-338 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:339 | zohar-chadash-midrash-rut-midrash-rut-339 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:340 | zohar-chadash-midrash-rut-midrash-rut-340 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:341 | zohar-chadash-midrash-rut-midrash-rut-341 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:342 | zohar-chadash-midrash-rut-midrash-rut-342 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:343 | zohar-chadash-midrash-rut-midrash-rut-343 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:344 | zohar-chadash-midrash-rut-midrash-rut-344 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:345 | zohar-chadash-midrash-rut-midrash-rut-345 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:346 | zohar-chadash-midrash-rut-midrash-rut-346 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:347 | zohar-chadash-midrash-rut-midrash-rut-347 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:348 | zohar-chadash-midrash-rut-midrash-rut-348 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:349 | zohar-chadash-midrash-rut-midrash-rut-349 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:350 | zohar-chadash-midrash-rut-midrash-rut-350 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:351 | zohar-chadash-midrash-rut-midrash-rut-351 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:352 | zohar-chadash-midrash-rut-midrash-rut-352 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:353 | zohar-chadash-midrash-rut-midrash-rut-353 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:354 | zohar-chadash-midrash-rut-midrash-rut-354 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:355 | zohar-chadash-midrash-rut-midrash-rut-355 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:356 | zohar-chadash-midrash-rut-midrash-rut-356 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:357 | zohar-chadash-midrash-rut-midrash-rut-357 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:358 | zohar-chadash-midrash-rut-midrash-rut-358 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:359 | zohar-chadash-midrash-rut-midrash-rut-359 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:360 | zohar-chadash-midrash-rut-midrash-rut-360 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:361 | zohar-chadash-midrash-rut-midrash-rut-361 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:362 | zohar-chadash-midrash-rut-midrash-rut-362 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:363 | zohar-chadash-midrash-rut-midrash-rut-363 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:364 | zohar-chadash-midrash-rut-midrash-rut-364 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:365 | zohar-chadash-midrash-rut-midrash-rut-365 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:366 | zohar-chadash-midrash-rut-midrash-rut-366 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:367 | zohar-chadash-midrash-rut-midrash-rut-367 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:368 | zohar-chadash-midrash-rut-midrash-rut-368 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:369 | zohar-chadash-midrash-rut-midrash-rut-369 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:370 | zohar-chadash-midrash-rut-midrash-rut-370 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:371 | zohar-chadash-midrash-rut-midrash-rut-371 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:372 | zohar-chadash-midrash-rut-midrash-rut-372 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:373 | zohar-chadash-midrash-rut-midrash-rut-373 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:374 | zohar-chadash-midrash-rut-midrash-rut-374 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:375 | zohar-chadash-midrash-rut-midrash-rut-375 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:376 | zohar-chadash-midrash-rut-midrash-rut-376 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:377 | zohar-chadash-midrash-rut-midrash-rut-377 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:378 | zohar-chadash-midrash-rut-midrash-rut-378 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:379 | zohar-chadash-midrash-rut-midrash-rut-379 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:380 | zohar-chadash-midrash-rut-midrash-rut-380 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:381 | zohar-chadash-midrash-rut-midrash-rut-381 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:382 | zohar-chadash-midrash-rut-midrash-rut-382 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:383 | zohar-chadash-midrash-rut-midrash-rut-383 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:384 | zohar-chadash-midrash-rut-midrash-rut-384 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:385 | zohar-chadash-midrash-rut-midrash-rut-385 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:386 | zohar-chadash-midrash-rut-midrash-rut-386 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:387 | zohar-chadash-midrash-rut-midrash-rut-387 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:388 | zohar-chadash-midrash-rut-midrash-rut-388 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:389 | zohar-chadash-midrash-rut-midrash-rut-389 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:390 | zohar-chadash-midrash-rut-midrash-rut-390 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:391 | zohar-chadash-midrash-rut-midrash-rut-391 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:392 | zohar-chadash-midrash-rut-midrash-rut-392 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:393 | zohar-chadash-midrash-rut-midrash-rut-393 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:394 | zohar-chadash-midrash-rut-midrash-rut-394 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:395 | zohar-chadash-midrash-rut-midrash-rut-395 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:396 | zohar-chadash-midrash-rut-midrash-rut-396 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:397 | zohar-chadash-midrash-rut-midrash-rut-397 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:398 | zohar-chadash-midrash-rut-midrash-rut-398 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:399 | zohar-chadash-midrash-rut-midrash-rut-399 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:400 | zohar-chadash-midrash-rut-midrash-rut-400 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:401 | zohar-chadash-midrash-rut-midrash-rut-401 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:402 | zohar-chadash-midrash-rut-midrash-rut-402 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:403 | zohar-chadash-midrash-rut-midrash-rut-403 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:404 | zohar-chadash-midrash-rut-midrash-rut-404 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:405 | zohar-chadash-midrash-rut-midrash-rut-405 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:406 | zohar-chadash-midrash-rut-midrash-rut-406 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:407 | zohar-chadash-midrash-rut-midrash-rut-407 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:408 | zohar-chadash-midrash-rut-midrash-rut-408 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:409 | zohar-chadash-midrash-rut-midrash-rut-409 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:410 | zohar-chadash-midrash-rut-midrash-rut-410 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:411 | zohar-chadash-midrash-rut-midrash-rut-411 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:412 | zohar-chadash-midrash-rut-midrash-rut-412 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:413 | zohar-chadash-midrash-rut-midrash-rut-413 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:414 | zohar-chadash-midrash-rut-midrash-rut-414 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:415 | zohar-chadash-midrash-rut-midrash-rut-415 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:416 | zohar-chadash-midrash-rut-midrash-rut-416 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:417 | zohar-chadash-midrash-rut-midrash-rut-417 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:418 | zohar-chadash-midrash-rut-midrash-rut-418 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:419 | zohar-chadash-midrash-rut-midrash-rut-419 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:420 | zohar-chadash-midrash-rut-midrash-rut-420 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:421 | zohar-chadash-midrash-rut-midrash-rut-421 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:422 | zohar-chadash-midrash-rut-midrash-rut-422 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:423 | zohar-chadash-midrash-rut-midrash-rut-423 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:424 | zohar-chadash-midrash-rut-midrash-rut-424 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:425 | zohar-chadash-midrash-rut-midrash-rut-425 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:426 | zohar-chadash-midrash-rut-midrash-rut-426 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:427 | zohar-chadash-midrash-rut-midrash-rut-427 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:428 | zohar-chadash-midrash-rut-midrash-rut-428 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:429 | zohar-chadash-midrash-rut-midrash-rut-429 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:430 | zohar-chadash-midrash-rut-midrash-rut-430 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:431 | zohar-chadash-midrash-rut-midrash-rut-431 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:432 | zohar-chadash-midrash-rut-midrash-rut-432 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:433 | zohar-chadash-midrash-rut-midrash-rut-433 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:434 | zohar-chadash-midrash-rut-midrash-rut-434 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:435 | zohar-chadash-midrash-rut-midrash-rut-435 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:436 | zohar-chadash-midrash-rut-midrash-rut-436 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:437 | zohar-chadash-midrash-rut-midrash-rut-437 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:438 | zohar-chadash-midrash-rut-midrash-rut-438 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:439 | zohar-chadash-midrash-rut-midrash-rut-439 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:440 | zohar-chadash-midrash-rut-midrash-rut-440 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:441 | zohar-chadash-midrash-rut-midrash-rut-441 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:442 | zohar-chadash-midrash-rut-midrash-rut-442 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:443 | zohar-chadash-midrash-rut-midrash-rut-443 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:444 | zohar-chadash-midrash-rut-midrash-rut-444 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:445 | zohar-chadash-midrash-rut-midrash-rut-445 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:446 | zohar-chadash-midrash-rut-midrash-rut-446 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:447 | zohar-chadash-midrash-rut-midrash-rut-447 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:448 | zohar-chadash-midrash-rut-midrash-rut-448 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:449 | zohar-chadash-midrash-rut-midrash-rut-449 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:450 | zohar-chadash-midrash-rut-midrash-rut-450 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:451 | zohar-chadash-midrash-rut-midrash-rut-451 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:452 | zohar-chadash-midrash-rut-midrash-rut-452 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:453 | zohar-chadash-midrash-rut-midrash-rut-453 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:454 | zohar-chadash-midrash-rut-midrash-rut-454 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:455 | zohar-chadash-midrash-rut-midrash-rut-455 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:456 | zohar-chadash-midrash-rut-midrash-rut-456 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:457 | zohar-chadash-midrash-rut-midrash-rut-457 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:458 | zohar-chadash-midrash-rut-midrash-rut-458 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:459 | zohar-chadash-midrash-rut-midrash-rut-459 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:460 | zohar-chadash-midrash-rut-midrash-rut-460 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:461 | zohar-chadash-midrash-rut-midrash-rut-461 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:462 | zohar-chadash-midrash-rut-midrash-rut-462 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:463 | zohar-chadash-midrash-rut-midrash-rut-463 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:464 | zohar-chadash-midrash-rut-midrash-rut-464 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:465 | zohar-chadash-midrash-rut-midrash-rut-465 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:466 | zohar-chadash-midrash-rut-midrash-rut-466 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:467 | zohar-chadash-midrash-rut-midrash-rut-467 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:468 | zohar-chadash-midrash-rut-midrash-rut-468 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:469 | zohar-chadash-midrash-rut-midrash-rut-469 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:470 | zohar-chadash-midrash-rut-midrash-rut-470 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:471 | zohar-chadash-midrash-rut-midrash-rut-471 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:472 | zohar-chadash-midrash-rut-midrash-rut-472 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:473 | zohar-chadash-midrash-rut-midrash-rut-473 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:474 | zohar-chadash-midrash-rut-midrash-rut-474 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:475 | zohar-chadash-midrash-rut-midrash-rut-475 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:476 | zohar-chadash-midrash-rut-midrash-rut-476 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:477 | zohar-chadash-midrash-rut-midrash-rut-477 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:478 | zohar-chadash-midrash-rut-midrash-rut-478 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:479 | zohar-chadash-midrash-rut-midrash-rut-479 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:480 | zohar-chadash-midrash-rut-midrash-rut-480 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:481 | zohar-chadash-midrash-rut-midrash-rut-481 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:482 | zohar-chadash-midrash-rut-midrash-rut-482 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:483 | zohar-chadash-midrash-rut-midrash-rut-483 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:484 | zohar-chadash-midrash-rut-midrash-rut-484 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:485 | zohar-chadash-midrash-rut-midrash-rut-485 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:486 | zohar-chadash-midrash-rut-midrash-rut-486 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:487 | zohar-chadash-midrash-rut-midrash-rut-487 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:488 | zohar-chadash-midrash-rut-midrash-rut-488 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:489 | zohar-chadash-midrash-rut-midrash-rut-489 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:490 | zohar-chadash-midrash-rut-midrash-rut-490 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:491 | zohar-chadash-midrash-rut-midrash-rut-491 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:492 | zohar-chadash-midrash-rut-midrash-rut-492 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:493 | zohar-chadash-midrash-rut-midrash-rut-493 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:494 | zohar-chadash-midrash-rut-midrash-rut-494 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:495 | zohar-chadash-midrash-rut-midrash-rut-495 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:496 | zohar-chadash-midrash-rut-midrash-rut-496 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:497 | zohar-chadash-midrash-rut-midrash-rut-497 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:498 | zohar-chadash-midrash-rut-midrash-rut-498 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:499 | zohar-chadash-midrash-rut-midrash-rut-499 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:500 | zohar-chadash-midrash-rut-midrash-rut-500 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:501 | zohar-chadash-midrash-rut-midrash-rut-501 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:502 | zohar-chadash-midrash-rut-midrash-rut-502 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:503 | zohar-chadash-midrash-rut-midrash-rut-503 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:504 | zohar-chadash-midrash-rut-midrash-rut-504 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:505 | zohar-chadash-midrash-rut-midrash-rut-505 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:506 | zohar-chadash-midrash-rut-midrash-rut-506 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:507 | zohar-chadash-midrash-rut-midrash-rut-507 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:508 | zohar-chadash-midrash-rut-midrash-rut-508 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:509 | zohar-chadash-midrash-rut-midrash-rut-509 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:510 | zohar-chadash-midrash-rut-midrash-rut-510 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:511 | zohar-chadash-midrash-rut-midrash-rut-511 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:512 | zohar-chadash-midrash-rut-midrash-rut-512 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:513 | zohar-chadash-midrash-rut-midrash-rut-513 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:514 | zohar-chadash-midrash-rut-midrash-rut-514 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:515 | zohar-chadash-midrash-rut-midrash-rut-515 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:516 | zohar-chadash-midrash-rut-midrash-rut-516 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:517 | zohar-chadash-midrash-rut-midrash-rut-517 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:518 | zohar-chadash-midrash-rut-midrash-rut-518 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:519 | zohar-chadash-midrash-rut-midrash-rut-519 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:520 | zohar-chadash-midrash-rut-midrash-rut-520 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:521 | zohar-chadash-midrash-rut-midrash-rut-521 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:522 | zohar-chadash-midrash-rut-midrash-rut-522 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:523 | zohar-chadash-midrash-rut-midrash-rut-523 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:524 | zohar-chadash-midrash-rut-midrash-rut-524 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:525 | zohar-chadash-midrash-rut-midrash-rut-525 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:526 | zohar-chadash-midrash-rut-midrash-rut-526 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:527 | zohar-chadash-midrash-rut-midrash-rut-527 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:528 | zohar-chadash-midrash-rut-midrash-rut-528 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:529 | zohar-chadash-midrash-rut-midrash-rut-529 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:530 | zohar-chadash-midrash-rut-midrash-rut-530 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:531 | zohar-chadash-midrash-rut-midrash-rut-531 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:532 | zohar-chadash-midrash-rut-midrash-rut-532 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:533 | zohar-chadash-midrash-rut-midrash-rut-533 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:534 | zohar-chadash-midrash-rut-midrash-rut-534 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:535 | zohar-chadash-midrash-rut-midrash-rut-535 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:536 | zohar-chadash-midrash-rut-midrash-rut-536 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:537 | zohar-chadash-midrash-rut-midrash-rut-537 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:538 | zohar-chadash-midrash-rut-midrash-rut-538 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:539 | zohar-chadash-midrash-rut-midrash-rut-539 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:540 | zohar-chadash-midrash-rut-midrash-rut-540 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:541 | zohar-chadash-midrash-rut-midrash-rut-541 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:542 | zohar-chadash-midrash-rut-midrash-rut-542 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:543 | zohar-chadash-midrash-rut-midrash-rut-543 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:544 | zohar-chadash-midrash-rut-midrash-rut-544 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:545 | zohar-chadash-midrash-rut-midrash-rut-545 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:546 | zohar-chadash-midrash-rut-midrash-rut-546 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:547 | zohar-chadash-midrash-rut-midrash-rut-547 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:548 | zohar-chadash-midrash-rut-midrash-rut-548 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:549 | zohar-chadash-midrash-rut-midrash-rut-549 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:550 | zohar-chadash-midrash-rut-midrash-rut-550 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:551 | zohar-chadash-midrash-rut-midrash-rut-551 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:552 | zohar-chadash-midrash-rut-midrash-rut-552 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:553 | zohar-chadash-midrash-rut-midrash-rut-553 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:554 | zohar-chadash-midrash-rut-midrash-rut-554 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:555 | zohar-chadash-midrash-rut-midrash-rut-555 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:556 | zohar-chadash-midrash-rut-midrash-rut-556 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:557 | zohar-chadash-midrash-rut-midrash-rut-557 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:558 | zohar-chadash-midrash-rut-midrash-rut-558 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:559 | zohar-chadash-midrash-rut-midrash-rut-559 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:560 | zohar-chadash-midrash-rut-midrash-rut-560 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:561 | zohar-chadash-midrash-rut-midrash-rut-561 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:562 | zohar-chadash-midrash-rut-midrash-rut-562 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:563 | zohar-chadash-midrash-rut-midrash-rut-563 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:564 | zohar-chadash-midrash-rut-midrash-rut-564 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:565 | zohar-chadash-midrash-rut-midrash-rut-565 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:566 | zohar-chadash-midrash-rut-midrash-rut-566 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:567 | zohar-chadash-midrash-rut-midrash-rut-567 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:568 | zohar-chadash-midrash-rut-midrash-rut-568 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:569 | zohar-chadash-midrash-rut-midrash-rut-569 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:570 | zohar-chadash-midrash-rut-midrash-rut-570 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:571 | zohar-chadash-midrash-rut-midrash-rut-571 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:572 | zohar-chadash-midrash-rut-midrash-rut-572 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:573 | zohar-chadash-midrash-rut-midrash-rut-573 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:574 | zohar-chadash-midrash-rut-midrash-rut-574 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:575 | zohar-chadash-midrash-rut-midrash-rut-575 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:576 | zohar-chadash-midrash-rut-midrash-rut-576 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:577 | zohar-chadash-midrash-rut-midrash-rut-577 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:578 | zohar-chadash-midrash-rut-midrash-rut-578 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:579 | zohar-chadash-midrash-rut-midrash-rut-579 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:580 | zohar-chadash-midrash-rut-midrash-rut-580 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:581 | zohar-chadash-midrash-rut-midrash-rut-581 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:582 | zohar-chadash-midrash-rut-midrash-rut-582 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:583 | zohar-chadash-midrash-rut-midrash-rut-583 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:584 | zohar-chadash-midrash-rut-midrash-rut-584 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:585 | zohar-chadash-midrash-rut-midrash-rut-585 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:586 | zohar-chadash-midrash-rut-midrash-rut-586 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:587 | zohar-chadash-midrash-rut-midrash-rut-587 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:588 | zohar-chadash-midrash-rut-midrash-rut-588 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:589 | zohar-chadash-midrash-rut-midrash-rut-589 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:590 | zohar-chadash-midrash-rut-midrash-rut-590 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:591 | zohar-chadash-midrash-rut-midrash-rut-591 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:592 | zohar-chadash-midrash-rut-midrash-rut-592 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:593 | zohar-chadash-midrash-rut-midrash-rut-593 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:594 | zohar-chadash-midrash-rut-midrash-rut-594 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:595 | zohar-chadash-midrash-rut-midrash-rut-595 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:596 | zohar-chadash-midrash-rut-midrash-rut-596 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:597 | zohar-chadash-midrash-rut-midrash-rut-597 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:598 | zohar-chadash-midrash-rut-midrash-rut-598 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:599 | zohar-chadash-midrash-rut-midrash-rut-599 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:600 | zohar-chadash-midrash-rut-midrash-rut-600 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:601 | zohar-chadash-midrash-rut-midrash-rut-601 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:602 | zohar-chadash-midrash-rut-midrash-rut-602 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:603 | zohar-chadash-midrash-rut-midrash-rut-603 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:604 | zohar-chadash-midrash-rut-midrash-rut-604 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:605 | zohar-chadash-midrash-rut-midrash-rut-605 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:606 | zohar-chadash-midrash-rut-midrash-rut-606 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:607 | zohar-chadash-midrash-rut-midrash-rut-607 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:608 | zohar-chadash-midrash-rut-midrash-rut-608 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:609 | zohar-chadash-midrash-rut-midrash-rut-609 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:610 | zohar-chadash-midrash-rut-midrash-rut-610 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:611 | zohar-chadash-midrash-rut-midrash-rut-611 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:612 | zohar-chadash-midrash-rut-midrash-rut-612 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:613 | zohar-chadash-midrash-rut-midrash-rut-613 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:614 | zohar-chadash-midrash-rut-midrash-rut-614 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:615 | zohar-chadash-midrash-rut-midrash-rut-615 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:616 | zohar-chadash-midrash-rut-midrash-rut-616 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:617 | zohar-chadash-midrash-rut-midrash-rut-617 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:618 | zohar-chadash-midrash-rut-midrash-rut-618 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:619 | zohar-chadash-midrash-rut-midrash-rut-619 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:620 | zohar-chadash-midrash-rut-midrash-rut-620 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:621 | zohar-chadash-midrash-rut-midrash-rut-621 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:622 | zohar-chadash-midrash-rut-midrash-rut-622 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:623 | zohar-chadash-midrash-rut-midrash-rut-623 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:624 | zohar-chadash-midrash-rut-midrash-rut-624 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:625 | zohar-chadash-midrash-rut-midrash-rut-625 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:626 | zohar-chadash-midrash-rut-midrash-rut-626 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:627 | zohar-chadash-midrash-rut-midrash-rut-627 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:628 | zohar-chadash-midrash-rut-midrash-rut-628 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:629 | zohar-chadash-midrash-rut-midrash-rut-629 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:630 | zohar-chadash-midrash-rut-midrash-rut-630 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:631 | zohar-chadash-midrash-rut-midrash-rut-631 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:632 | zohar-chadash-midrash-rut-midrash-rut-632 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:633 | zohar-chadash-midrash-rut-midrash-rut-633 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:634 | zohar-chadash-midrash-rut-midrash-rut-634 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:635 | zohar-chadash-midrash-rut-midrash-rut-635 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:636 | zohar-chadash-midrash-rut-midrash-rut-636 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:637 | zohar-chadash-midrash-rut-midrash-rut-637 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:638 | zohar-chadash-midrash-rut-midrash-rut-638 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:639 | zohar-chadash-midrash-rut-midrash-rut-639 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:640 | zohar-chadash-midrash-rut-midrash-rut-640 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:641 | zohar-chadash-midrash-rut-midrash-rut-641 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:642 | zohar-chadash-midrash-rut-midrash-rut-642 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:643 | zohar-chadash-midrash-rut-midrash-rut-643 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:644 | zohar-chadash-midrash-rut-midrash-rut-644 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:645 | zohar-chadash-midrash-rut-midrash-rut-645 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:646 | zohar-chadash-midrash-rut-midrash-rut-646 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:647 | zohar-chadash-midrash-rut-midrash-rut-647 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:648 | zohar-chadash-midrash-rut-midrash-rut-648 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:649 | zohar-chadash-midrash-rut-midrash-rut-649 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:650 | zohar-chadash-midrash-rut-midrash-rut-650 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:651 | zohar-chadash-midrash-rut-midrash-rut-651 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:652 | zohar-chadash-midrash-rut-midrash-rut-652 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:653 | zohar-chadash-midrash-rut-midrash-rut-653 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:654 | zohar-chadash-midrash-rut-midrash-rut-654 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:655 | zohar-chadash-midrash-rut-midrash-rut-655 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:656 | zohar-chadash-midrash-rut-midrash-rut-656 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:657 | zohar-chadash-midrash-rut-midrash-rut-657 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:658 | zohar-chadash-midrash-rut-midrash-rut-658 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:659 | zohar-chadash-midrash-rut-midrash-rut-659 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:660 | zohar-chadash-midrash-rut-midrash-rut-660 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:661 | zohar-chadash-midrash-rut-midrash-rut-661 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:662 | zohar-chadash-midrash-rut-midrash-rut-662 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:663 | zohar-chadash-midrash-rut-midrash-rut-663 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:664 | zohar-chadash-midrash-rut-midrash-rut-664 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:665 | zohar-chadash-midrash-rut-midrash-rut-665 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:666 | zohar-chadash-midrash-rut-midrash-rut-666 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:667 | zohar-chadash-midrash-rut-midrash-rut-667 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:668 | zohar-chadash-midrash-rut-midrash-rut-668 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:669 | zohar-chadash-midrash-rut-midrash-rut-669 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:670 | zohar-chadash-midrash-rut-midrash-rut-670 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:671 | zohar-chadash-midrash-rut-midrash-rut-671 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:672 | zohar-chadash-midrash-rut-midrash-rut-672 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:673 | zohar-chadash-midrash-rut-midrash-rut-673 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:674 | zohar-chadash-midrash-rut-midrash-rut-674 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:675 | zohar-chadash-midrash-rut-midrash-rut-675 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:676 | zohar-chadash-midrash-rut-midrash-rut-676 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:677 | zohar-chadash-midrash-rut-midrash-rut-677 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:678 | zohar-chadash-midrash-rut-midrash-rut-678 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:679 | zohar-chadash-midrash-rut-midrash-rut-679 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:680 | zohar-chadash-midrash-rut-midrash-rut-680 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:681 | zohar-chadash-midrash-rut-midrash-rut-681 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:682 | zohar-chadash-midrash-rut-midrash-rut-682 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:683 | zohar-chadash-midrash-rut-midrash-rut-683 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:684 | zohar-chadash-midrash-rut-midrash-rut-684 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:685 | zohar-chadash-midrash-rut-midrash-rut-685 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:686 | zohar-chadash-midrash-rut-midrash-rut-686 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:687 | zohar-chadash-midrash-rut-midrash-rut-687 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:688 | zohar-chadash-midrash-rut-midrash-rut-688 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:689 | zohar-chadash-midrash-rut-midrash-rut-689 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:690 | zohar-chadash-midrash-rut-midrash-rut-690 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:691 | zohar-chadash-midrash-rut-midrash-rut-691 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:692 | zohar-chadash-midrash-rut-midrash-rut-692 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:693 | zohar-chadash-midrash-rut-midrash-rut-693 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:694 | zohar-chadash-midrash-rut-midrash-rut-694 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:695 | zohar-chadash-midrash-rut-midrash-rut-695 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:696 | zohar-chadash-midrash-rut-midrash-rut-696 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:697 | zohar-chadash-midrash-rut-midrash-rut-697 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:698 | zohar-chadash-midrash-rut-midrash-rut-698 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:699 | zohar-chadash-midrash-rut-midrash-rut-699 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:700 | zohar-chadash-midrash-rut-midrash-rut-700 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:701 | zohar-chadash-midrash-rut-midrash-rut-701 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:702 | zohar-chadash-midrash-rut-midrash-rut-702 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:703 | zohar-chadash-midrash-rut-midrash-rut-703 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:704 | zohar-chadash-midrash-rut-midrash-rut-704 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:705 | zohar-chadash-midrash-rut-midrash-rut-705 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:706 | zohar-chadash-midrash-rut-midrash-rut-706 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:707 | zohar-chadash-midrash-rut-midrash-rut-707 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:708 | zohar-chadash-midrash-rut-midrash-rut-708 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:709 | zohar-chadash-midrash-rut-midrash-rut-709 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:710 | zohar-chadash-midrash-rut-midrash-rut-710 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:711 | zohar-chadash-midrash-rut-midrash-rut-711 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:712 | zohar-chadash-midrash-rut-midrash-rut-712 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:713 | zohar-chadash-midrash-rut-midrash-rut-713 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:714 | zohar-chadash-midrash-rut-midrash-rut-714 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:715 | zohar-chadash-midrash-rut-midrash-rut-715 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:716 | zohar-chadash-midrash-rut-midrash-rut-716 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:717 | zohar-chadash-midrash-rut-midrash-rut-717 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:718 | zohar-chadash-midrash-rut-midrash-rut-718 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:719 | zohar-chadash-midrash-rut-midrash-rut-719 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:720 | zohar-chadash-midrash-rut-midrash-rut-720 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:721 | zohar-chadash-midrash-rut-midrash-rut-721 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:722 | zohar-chadash-midrash-rut-midrash-rut-722 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:723 | zohar-chadash-midrash-rut-midrash-rut-723 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:724 | zohar-chadash-midrash-rut-midrash-rut-724 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:725 | zohar-chadash-midrash-rut-midrash-rut-725 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:726 | zohar-chadash-midrash-rut-midrash-rut-726 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:727 | zohar-chadash-midrash-rut-midrash-rut-727 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:728 | zohar-chadash-midrash-rut-midrash-rut-728 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:729 | zohar-chadash-midrash-rut-midrash-rut-729 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:730 | zohar-chadash-midrash-rut-midrash-rut-730 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:731 | zohar-chadash-midrash-rut-midrash-rut-731 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:732 | zohar-chadash-midrash-rut-midrash-rut-732 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:733 | zohar-chadash-midrash-rut-midrash-rut-733 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:734 | zohar-chadash-midrash-rut-midrash-rut-734 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:735 | zohar-chadash-midrash-rut-midrash-rut-735 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:736 | zohar-chadash-midrash-rut-midrash-rut-736 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:737 | zohar-chadash-midrash-rut-midrash-rut-737 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:738 | zohar-chadash-midrash-rut-midrash-rut-738 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:739 | zohar-chadash-midrash-rut-midrash-rut-739 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:740 | zohar-chadash-midrash-rut-midrash-rut-740 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:741 | zohar-chadash-midrash-rut-midrash-rut-741 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash Rut:742 | zohar-chadash-midrash-rut-midrash-rut-742 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:1 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:2 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:3 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:4 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:5 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:6 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:7 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:8 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:9 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:10 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:11 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:12 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:13 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:14 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:15 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:16 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:17 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:18 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:19 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:20 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:21 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:22 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:23 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:24 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:25 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:26 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:27 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:28 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:29 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:30 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:31 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:32 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:33 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:34 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:35 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:36 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:37 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:38 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:39 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:40 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:41 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:42 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:43 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:44 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:45 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:46 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:47 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:48 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-48 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:49 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-49 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:50 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-50 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:51 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-51 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:52 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-52 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:53 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-53 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:54 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-54 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:55 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-55 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:56 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-56 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:57 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-57 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:58 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-58 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:59 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-59 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:60 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-60 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:61 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-61 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:62 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-62 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:63 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-63 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:64 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-64 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:65 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-65 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:66 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-66 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:67 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-67 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:68 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-68 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:69 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-69 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:70 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-70 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:71 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-71 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:72 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-72 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:73 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-73 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:74 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-74 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:75 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-75 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:76 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-76 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:77 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-77 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:78 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-78 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:79 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-79 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:80 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-80 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:81 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-81 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:82 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-82 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:83 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-83 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:84 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-84 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:85 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-85 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:86 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-86 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:87 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-87 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:88 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-88 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:89 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-89 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:90 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-90 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:91 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-91 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:92 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-92 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:93 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-93 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:94 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-94 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:95 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-95 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:96 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-96 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:97 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-97 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:98 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-98 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:99 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-99 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:100 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-100 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:101 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-101 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:102 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-102 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:103 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-103 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:104 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-104 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:105 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-105 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:106 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-106 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:107 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-107 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:108 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-108 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:109 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-109 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:110 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-110 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:111 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-111 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:112 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-112 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:113 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-113 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:114 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-114 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:115 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-115 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:116 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-116 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:117 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-117 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Midrash HaNe'elam Al Eichah:118 | zohar-chadash-midrash-haneelam-al-eichah-midrash-haneelam-al-eichah-118 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikkunim Mizohar Chadash:1 | zohar-chadash-tikkunim-mizohar-chadash-tikkunim-mizohar-chadash-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikkunim Mizohar Chadash:2 | zohar-chadash-tikkunim-mizohar-chadash-tikkunim-mizohar-chadash-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikkunim Mizohar Chadash:3 | zohar-chadash-tikkunim-mizohar-chadash-tikkunim-mizohar-chadash-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikkunim Mizohar Chadash:4 | zohar-chadash-tikkunim-mizohar-chadash-tikkunim-mizohar-chadash-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikkunim Mizohar Chadash:5 | zohar-chadash-tikkunim-mizohar-chadash-tikkunim-mizohar-chadash-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:1 | zohar-chadash-sifra-tanina-sifra-tanina-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:2 | zohar-chadash-sifra-tanina-sifra-tanina-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:3 | zohar-chadash-sifra-tanina-sifra-tanina-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:4 | zohar-chadash-sifra-tanina-sifra-tanina-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:5 | zohar-chadash-sifra-tanina-sifra-tanina-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:6 | zohar-chadash-sifra-tanina-sifra-tanina-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:7 | zohar-chadash-sifra-tanina-sifra-tanina-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:8 | zohar-chadash-sifra-tanina-sifra-tanina-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:9 | zohar-chadash-sifra-tanina-sifra-tanina-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:10 | zohar-chadash-sifra-tanina-sifra-tanina-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:11 | zohar-chadash-sifra-tanina-sifra-tanina-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:12 | zohar-chadash-sifra-tanina-sifra-tanina-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:13 | zohar-chadash-sifra-tanina-sifra-tanina-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:14 | zohar-chadash-sifra-tanina-sifra-tanina-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:15 | zohar-chadash-sifra-tanina-sifra-tanina-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:16 | zohar-chadash-sifra-tanina-sifra-tanina-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:17 | zohar-chadash-sifra-tanina-sifra-tanina-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:18 | zohar-chadash-sifra-tanina-sifra-tanina-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:19 | zohar-chadash-sifra-tanina-sifra-tanina-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:20 | zohar-chadash-sifra-tanina-sifra-tanina-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:21 | zohar-chadash-sifra-tanina-sifra-tanina-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:22 | zohar-chadash-sifra-tanina-sifra-tanina-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:23 | zohar-chadash-sifra-tanina-sifra-tanina-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:24 | zohar-chadash-sifra-tanina-sifra-tanina-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:25 | zohar-chadash-sifra-tanina-sifra-tanina-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:26 | zohar-chadash-sifra-tanina-sifra-tanina-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:27 | zohar-chadash-sifra-tanina-sifra-tanina-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:28 | zohar-chadash-sifra-tanina-sifra-tanina-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:29 | zohar-chadash-sifra-tanina-sifra-tanina-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:30 | zohar-chadash-sifra-tanina-sifra-tanina-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:31 | zohar-chadash-sifra-tanina-sifra-tanina-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:32 | zohar-chadash-sifra-tanina-sifra-tanina-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:33 | zohar-chadash-sifra-tanina-sifra-tanina-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:34 | zohar-chadash-sifra-tanina-sifra-tanina-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:35 | zohar-chadash-sifra-tanina-sifra-tanina-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:36 | zohar-chadash-sifra-tanina-sifra-tanina-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:37 | zohar-chadash-sifra-tanina-sifra-tanina-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:38 | zohar-chadash-sifra-tanina-sifra-tanina-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:39 | zohar-chadash-sifra-tanina-sifra-tanina-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:40 | zohar-chadash-sifra-tanina-sifra-tanina-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:41 | zohar-chadash-sifra-tanina-sifra-tanina-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:42 | zohar-chadash-sifra-tanina-sifra-tanina-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:43 | zohar-chadash-sifra-tanina-sifra-tanina-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:44 | zohar-chadash-sifra-tanina-sifra-tanina-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:45 | zohar-chadash-sifra-tanina-sifra-tanina-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:46 | zohar-chadash-sifra-tanina-sifra-tanina-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:47 | zohar-chadash-sifra-tanina-sifra-tanina-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:48 | zohar-chadash-sifra-tanina-sifra-tanina-48 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:49 | zohar-chadash-sifra-tanina-sifra-tanina-49 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:50 | zohar-chadash-sifra-tanina-sifra-tanina-50 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:51 | zohar-chadash-sifra-tanina-sifra-tanina-51 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:52 | zohar-chadash-sifra-tanina-sifra-tanina-52 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:53 | zohar-chadash-sifra-tanina-sifra-tanina-53 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:54 | zohar-chadash-sifra-tanina-sifra-tanina-54 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:55 | zohar-chadash-sifra-tanina-sifra-tanina-55 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:56 | zohar-chadash-sifra-tanina-sifra-tanina-56 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:57 | zohar-chadash-sifra-tanina-sifra-tanina-57 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:58 | zohar-chadash-sifra-tanina-sifra-tanina-58 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:59 | zohar-chadash-sifra-tanina-sifra-tanina-59 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:60 | zohar-chadash-sifra-tanina-sifra-tanina-60 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:61 | zohar-chadash-sifra-tanina-sifra-tanina-61 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:62 | zohar-chadash-sifra-tanina-sifra-tanina-62 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:63 | zohar-chadash-sifra-tanina-sifra-tanina-63 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:64 | zohar-chadash-sifra-tanina-sifra-tanina-64 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:65 | zohar-chadash-sifra-tanina-sifra-tanina-65 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:66 | zohar-chadash-sifra-tanina-sifra-tanina-66 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:67 | zohar-chadash-sifra-tanina-sifra-tanina-67 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:68 | zohar-chadash-sifra-tanina-sifra-tanina-68 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:69 | zohar-chadash-sifra-tanina-sifra-tanina-69 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:70 | zohar-chadash-sifra-tanina-sifra-tanina-70 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:71 | zohar-chadash-sifra-tanina-sifra-tanina-71 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:72 | zohar-chadash-sifra-tanina-sifra-tanina-72 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:73 | zohar-chadash-sifra-tanina-sifra-tanina-73 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:74 | zohar-chadash-sifra-tanina-sifra-tanina-74 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:75 | zohar-chadash-sifra-tanina-sifra-tanina-75 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:76 | zohar-chadash-sifra-tanina-sifra-tanina-76 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:77 | zohar-chadash-sifra-tanina-sifra-tanina-77 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:78 | zohar-chadash-sifra-tanina-sifra-tanina-78 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:79 | zohar-chadash-sifra-tanina-sifra-tanina-79 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:80 | zohar-chadash-sifra-tanina-sifra-tanina-80 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:81 | zohar-chadash-sifra-tanina-sifra-tanina-81 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:82 | zohar-chadash-sifra-tanina-sifra-tanina-82 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:83 | zohar-chadash-sifra-tanina-sifra-tanina-83 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:84 | zohar-chadash-sifra-tanina-sifra-tanina-84 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:85 | zohar-chadash-sifra-tanina-sifra-tanina-85 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:86 | zohar-chadash-sifra-tanina-sifra-tanina-86 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:87 | zohar-chadash-sifra-tanina-sifra-tanina-87 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:88 | zohar-chadash-sifra-tanina-sifra-tanina-88 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:89 | zohar-chadash-sifra-tanina-sifra-tanina-89 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:90 | zohar-chadash-sifra-tanina-sifra-tanina-90 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:91 | zohar-chadash-sifra-tanina-sifra-tanina-91 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:92 | zohar-chadash-sifra-tanina-sifra-tanina-92 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:93 | zohar-chadash-sifra-tanina-sifra-tanina-93 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:94 | zohar-chadash-sifra-tanina-sifra-tanina-94 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:95 | zohar-chadash-sifra-tanina-sifra-tanina-95 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:96 | zohar-chadash-sifra-tanina-sifra-tanina-96 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:97 | zohar-chadash-sifra-tanina-sifra-tanina-97 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:98 | zohar-chadash-sifra-tanina-sifra-tanina-98 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:99 | zohar-chadash-sifra-tanina-sifra-tanina-99 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:100 | zohar-chadash-sifra-tanina-sifra-tanina-100 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:101 | zohar-chadash-sifra-tanina-sifra-tanina-101 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:102 | zohar-chadash-sifra-tanina-sifra-tanina-102 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:103 | zohar-chadash-sifra-tanina-sifra-tanina-103 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:104 | zohar-chadash-sifra-tanina-sifra-tanina-104 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:105 | zohar-chadash-sifra-tanina-sifra-tanina-105 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:106 | zohar-chadash-sifra-tanina-sifra-tanina-106 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Sifra Tanina:107 | zohar-chadash-sifra-tanina-sifra-tanina-107 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:1 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:2 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:3 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:4 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:5 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:6 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:7 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:8 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:9 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:10 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:11 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:12 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:13 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:14 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:15 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:16 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:17 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:18 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:19 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:20 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:21 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-21 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:22 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-22 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:23 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-23 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:24 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-24 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:25 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-25 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:26 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-26 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:27 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-27 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:28 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-28 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:29 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-29 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:30 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-30 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:31 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-31 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:32 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-32 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:33 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-33 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:34 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-34 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:35 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-35 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:36 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-36 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:37 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-37 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:38 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-38 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:39 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-39 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:40 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-40 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:41 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-41 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:42 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-42 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:43 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-43 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:44 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-44 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:45 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-45 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:46 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-46 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:47 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-47 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:48 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-48 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:49 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-49 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:50 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-50 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:51 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-51 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:52 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-52 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:53 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-53 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:54 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-54 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:55 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-55 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:56 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-56 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:57 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-57 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:58 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-58 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:59 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-59 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:60 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-60 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:61 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-61 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:62 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-62 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:63 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-63 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:64 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-64 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:65 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-65 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:66 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-66 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:67 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-67 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:68 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-68 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:69 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-69 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:70 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-70 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:71 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-71 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:72 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-72 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:73 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-73 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:74 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-74 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:75 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-75 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:76 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-76 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:77 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-77 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:78 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-78 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:79 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-79 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:80 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-80 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:81 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-81 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:82 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-82 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:83 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-83 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:84 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-84 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:85 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-85 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:86 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-86 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:87 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-87 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:88 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-88 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:89 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-89 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:90 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-90 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:91 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-91 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:92 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-92 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:93 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-93 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:94 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-94 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:95 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-95 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:96 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-96 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:97 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-97 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:98 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-98 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:99 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-99 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:100 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-100 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:101 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-101 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, Tikuna Kadma'ah:102 | zohar-chadash-tikuna-kadmaah-tikuna-kadmaah-102 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Noach:1 | zohar-chadash-more-about-parshat-noach-more-about-parshat-noach-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:1 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:2 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:3 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:4 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:5 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:6 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:7 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:8 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:9 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-9 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:10 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-10 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:11 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-11 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:12 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-12 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:13 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-13 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:14 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-14 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:15 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-15 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:16 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-16 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:17 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-17 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:18 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-18 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:19 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-19 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Shelach:20 | zohar-chadash-more-about-parshat-shelach-more-about-parshat-shelach-20 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Vayera:1 | zohar-chadash-more-about-parshat-vayera-more-about-parshat-vayera-1 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Vayera:2 | zohar-chadash-more-about-parshat-vayera-more-about-parshat-vayera-2 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Vayera:3 | zohar-chadash-more-about-parshat-vayera-more-about-parshat-vayera-3 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Vayera:4 | zohar-chadash-more-about-parshat-vayera-more-about-parshat-vayera-4 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Vayera:5 | zohar-chadash-more-about-parshat-vayera-more-about-parshat-vayera-5 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Vayera:6 | zohar-chadash-more-about-parshat-vayera-more-about-parshat-vayera-6 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Vayera:7 | zohar-chadash-more-about-parshat-vayera-more-about-parshat-vayera-7 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Vayera:8 | zohar-chadash-more-about-parshat-vayera-more-about-parshat-vayera-8 |  |  | not_done |  |
+| zohar-chadash | Zohar Chadash | Zohar Chadash, More about Parshat Vayera:9 | zohar-chadash-more-about-parshat-vayera-more-about-parshat-vayera-9 |  |  | not_done |  |

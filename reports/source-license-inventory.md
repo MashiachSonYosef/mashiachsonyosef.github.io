@@ -1,6 +1,6 @@
 # Source License Inventory
 
-Generated: 2026-05-09
+Generated: 2026-05-13
 
 | Work | Units | Hebrew version title (source URL) | License | Commercial reuse allowed | Share-alike | Attribution requirements |
 |---|---:|---|---|---|---|---|
@@ -174,5 +174,6 @@ Generated: 2026-05-09
 | Yefeh To'ar on Devarim Rabbah | 5 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Yefeh To'ar on Shemot Rabbah | 227 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Yefeh To'ar on Vayikra Rabbah | 124 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Zohar Chadash | 4421 | Zohar Chadash (http://www.toratemetfreeware.com/online/d_root__106_kblh.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Zechariah | 211 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Zephaniah | 53 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
