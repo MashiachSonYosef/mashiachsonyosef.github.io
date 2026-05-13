@@ -100,6 +100,8 @@ function Get-HomeGroup {
     if ($first -eq 'ari') { return 'Ari / Kabbalah' }
     if ($first -eq 'gra') { return 'Gra School' }
     if ($first -eq 'rav-kook') { return 'Rav Kook School' }
+    if ($first -eq 'second-temple') { return 'Second Temple / Apocrypha' }
+    if ($first -eq 'tosefta') { return 'Tosefta / Tannaitic' }
     return (Get-Culture).TextInfo.ToTitleCase(($first -replace '-', ' '))
   }
   return 'Other'
@@ -156,6 +158,21 @@ function Get-LibrarySubgroup {
     'Ari / Kabbalah' {
       return 'Ari / Chaim Vital Corpus'
     }
+    'Second Temple / Apocrypha' {
+      if ($title -match 'Ben Sira|Wisdom') { return 'Wisdom and Instruction' }
+      if ($title -match 'Maccabees|Judith|Tobit|Susanna|Aristeas|Ta.anit|Taanit') { return 'Historical and Court Tales' }
+      if ($title -match 'Jubilees|Testaments') { return 'Jubilees and Testamentary' }
+      return 'Other Second Temple Works'
+    }
+    'Tosefta / Tannaitic' {
+      if ($title -match 'Berakhot|Peah|Demai|Kilayim|Sheviit|Terumot|Maasrot|Maaser Sheni|Challah|Orlah|Bikkurim') { return 'Zeraim' }
+      if ($title -match 'Shabbat|Eruvin|Pesachim|Shekalim|Yoma|Sukkah|Beitzah|Rosh Hashanah|Ta.anit|Taanit|Megillah|Moed Katan|Chagigah') { return 'Moed' }
+      if ($title -match 'Yevamot|Ketubot|Nedarim|Nazir|Sotah|Gittin|Kiddushin') { return 'Nashim' }
+      if ($title -match 'Bava Kamma|Bava Metzia|Bava Batra|Sanhedrin|Makkot|Shevuot|Eduyot|Avodah Zarah|Horayot') { return 'Nezikin' }
+      if ($title -match 'Zevachim|Menachot|Chullin|Bekhorot|Arakhin|Temurah|Keritot|Meilah|Tamid|Middot|Kinnim') { return 'Kodashim' }
+      if ($title -match 'Kelim|Oholot|Negaim|Parah|Tahorot|Mikvaot|Niddah|Makhshirin|Zavim|Tevul Yom|Yadayim|Oktsin') { return 'Tahorot' }
+      return 'Other Tosefta'
+    }
     'Talmud / Commentary' {
       if ($isCommentary) { return 'Commentary' }
       return 'Talmud'
@@ -205,6 +222,21 @@ function Get-LibrarySubgroupOrder {
     'Talmud / Commentary' = @{
       'Talmud' = 1
       'Commentary' = 2
+    }
+    'Second Temple / Apocrypha' = @{
+      'Wisdom and Instruction' = 1
+      'Historical and Court Tales' = 2
+      'Jubilees and Testamentary' = 3
+      'Other Second Temple Works' = 9
+    }
+    'Tosefta / Tannaitic' = @{
+      'Zeraim' = 1
+      'Moed' = 2
+      'Nashim' = 3
+      'Nezikin' = 4
+      'Kodashim' = 5
+      'Tahorot' = 6
+      'Other Tosefta' = 9
     }
   }
 
@@ -1971,9 +2003,11 @@ function Append-LibrarySections {
     'Rav Kook School' = 3
     'Gra School' = 4
     'Ari / Kabbalah' = 5
-    'Talmud / Commentary' = 6
-    'Other' = 7
-    'Works' = 8
+    'Second Temple / Apocrypha' = 6
+    'Tosefta / Tannaitic' = 7
+    'Talmud / Commentary' = 8
+    'Other' = 9
+    'Works' = 10
   }
   $allHomeGroups = $Sources | Group-Object { Get-HomeGroup $_ } | Sort-Object @{ Expression = { if ($groupOrder.ContainsKey($_.Name)) { $groupOrder[$_.Name] } else { 99 } } }, Name
   $internalArchiveGroups = @($allHomeGroups | Where-Object { $_.Name -eq 'Talmud / Commentary' })
