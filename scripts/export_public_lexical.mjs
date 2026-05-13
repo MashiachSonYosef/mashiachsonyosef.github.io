@@ -54,6 +54,39 @@ function writeJsonl(rel, rows) {
   writeText(rel, text ? `${text}\n` : '');
 }
 
+function flattenCsvValue(value) {
+  if (value === null || value === undefined) return '';
+  if (Array.isArray(value)) {
+    return value.map((item) => flattenCsvValue(item)).filter(Boolean).join(' | ');
+  }
+  if (typeof value === 'object') {
+    if (Array.isArray(value.renderings)) {
+      return `${value.hebrew || ''}${value.hebrew ? ' = ' : ''}${value.renderings.join(' / ')}`;
+    }
+    if (Array.isArray(value.strict_renderings)) {
+      return `${value.hebrew || ''}${value.hebrew ? ' = ' : ''}${value.strict_renderings.join(' / ')}`;
+    }
+    return JSON.stringify(value);
+  }
+  return `${value}`;
+}
+
+function csvEscape(value) {
+  const text = flattenCsvValue(value).replace(/\r?\n/g, ' ').trim();
+  if (/[",\r\n]/.test(text)) {
+    return `"${text.replaceAll('"', '""')}"`;
+  }
+  return text;
+}
+
+function writeCsv(rel, rows, columns) {
+  const lines = [
+    columns.map((column) => csvEscape(column.header)).join(','),
+    ...rows.map((row) => columns.map((column) => csvEscape(column.value(row))).join(',')),
+  ];
+  writeText(rel, `${lines.join('\n')}\n`);
+}
+
 function unique(values) {
   return [...new Set((values || []).filter((value) => value !== null && value !== undefined && `${value}`.trim()))];
 }
@@ -287,7 +320,57 @@ function loadWorkExportContext(spec) {
     }
   }
 
-  return { work, tokenIndex, entryById, sourceRowsByKey };
+  return { work, tokenIndex, manifest, entryById, sourceRowsByKey };
+}
+
+function makeTokenStatusRows({ spec, work, tokenIndex, manifest, rows }) {
+  const rowsByTokenKey = new Map();
+  for (const row of rows) {
+    const key = `${row.clicked_surface_form || ''}\u001f${row.normalized_form || ''}`;
+    if (!rowsByTokenKey.has(key)) rowsByTokenKey.set(key, []);
+    rowsByTokenKey.get(key).push(row);
+  }
+
+  return (tokenIndex.forms || []).map((token) => {
+    const key = `${token.surface_word || ''}\u001f${token.normalized_word || ''}`;
+    const claimRows = rowsByTokenKey.get(key) || [];
+    const strictRows = claimRows.filter((row) => row.status === 'Strict Hebrew' || row.status === 'Strict Aramaic');
+    const bestRows = strictRows.length ? strictRows : claimRows;
+    const exportedRenderings = unique(bestRows.flatMap((row) => row.strict_renderings || []));
+    const exportStatus = claimRows.length
+      ? (strictRows.length ? 'source_backed_strict_options' : 'source_backed_non_strict_options')
+      : (token.status === 'matched' ? 'matched_no_public_claim_exported' : 'unresolved');
+    const note = claimRows.length
+      ? 'Use claim rows for source/license details; this is a token-status index, not a translation.'
+      : (token.status === 'matched'
+        ? 'Token is matched internally, but no public source-backed rendering row was exported.'
+        : 'No lexical entry yet.');
+
+    return {
+      schema_version: 1,
+      generated_at: generatedAt,
+      work_id: work.work_id || spec.work_id,
+      work_title: work.work_title || work.label || spec.label,
+      token_index_id: token.token_index_id || '',
+      chunk_id: manifest.token_chunks?.[token.token_index_id] || '',
+      clicked_surface_form: token.surface_word || '',
+      normalized_form: token.normalized_word || '',
+      lexical_status: token.status || '',
+      match_method: token.match_method || '',
+      occurrence_count: token.occurrence_count || 0,
+      lexicon_entry_id: token.lexicon_entry_id || '',
+      surface_renderings: canonicalRenderings(token.surface_renderings || []),
+      exported_statuses: unique(claimRows.map((row) => row.status)),
+      exported_rendering_options: exportedRenderings,
+      exported_source_names: unique(bestRows.map((row) => row.source_name)),
+      exported_source_ids: unique(bestRows.map((row) => row.source_id)),
+      exported_licenses: unique(bestRows.map((row) => row.license)),
+      exported_claim_count: claimRows.length,
+      export_status: exportStatus,
+      notes: note,
+      not_a_translation: true,
+    };
+  });
 }
 
 function exportWork(spec) {
@@ -305,7 +388,7 @@ function exportWork(spec) {
     };
   }
 
-  const { work, tokenIndex, entryById, sourceRowsByKey } = loadWorkExportContext(spec);
+  const { work, tokenIndex, manifest, entryById, sourceRowsByKey } = loadWorkExportContext(spec);
   const rows = [];
   const skipped = {
     missing_work_files: 0,
@@ -410,7 +493,8 @@ function exportWork(spec) {
     }
   }
 
-  return { spec, work, rows, skipped };
+  const tokenStatusRows = makeTokenStatusRows({ spec, work, tokenIndex, manifest, rows });
+  return { spec, work, rows, tokenStatusRows, skipped };
 }
 
 function countBy(rows, getter) {
@@ -430,6 +514,51 @@ function fileSize(rel) {
 
 const workResults = workSpecs.map(exportWork);
 const allRows = workResults.flatMap((result) => result.rows);
+
+const claimCsvColumns = [
+  { header: 'work_id', value: (row) => row.work_id },
+  { header: 'work_title', value: (row) => row.work_title },
+  { header: 'clicked_surface_form', value: (row) => row.clicked_surface_form },
+  { header: 'normalized_form', value: (row) => row.normalized_form },
+  { header: 'hebrew_lemma_or_form', value: (row) => row.hebrew_lemma_or_form },
+  { header: 'transliteration', value: (row) => row.transliteration },
+  { header: 'status', value: (row) => row.status },
+  { header: 'strict_renderings', value: (row) => row.strict_renderings },
+  { header: 'breakdown', value: (row) => row.breakdown },
+  { header: 'source_name', value: (row) => row.source_name },
+  { header: 'source_id', value: (row) => row.source_id },
+  { header: 'source_url', value: (row) => row.source_url },
+  { header: 'license', value: (row) => row.license },
+  { header: 'license_url', value: (row) => row.license_url },
+  { header: 'attribution_requirements', value: (row) => row.attribution_requirements },
+  { header: 'occurrence_count', value: (row) => row.occurrence_count },
+  { header: 'ref_examples', value: (row) => row.ref_examples },
+  { header: 'notes', value: (row) => row.notes },
+  { header: 'not_a_translation', value: (row) => row.not_a_translation },
+];
+
+const tokenStatusCsvColumns = [
+  { header: 'work_id', value: (row) => row.work_id },
+  { header: 'work_title', value: (row) => row.work_title },
+  { header: 'token_index_id', value: (row) => row.token_index_id },
+  { header: 'chunk_id', value: (row) => row.chunk_id },
+  { header: 'clicked_surface_form', value: (row) => row.clicked_surface_form },
+  { header: 'normalized_form', value: (row) => row.normalized_form },
+  { header: 'lexical_status', value: (row) => row.lexical_status },
+  { header: 'match_method', value: (row) => row.match_method },
+  { header: 'occurrence_count', value: (row) => row.occurrence_count },
+  { header: 'lexicon_entry_id', value: (row) => row.lexicon_entry_id },
+  { header: 'surface_renderings', value: (row) => row.surface_renderings },
+  { header: 'exported_statuses', value: (row) => row.exported_statuses },
+  { header: 'exported_rendering_options', value: (row) => row.exported_rendering_options },
+  { header: 'exported_source_names', value: (row) => row.exported_source_names },
+  { header: 'exported_source_ids', value: (row) => row.exported_source_ids },
+  { header: 'exported_licenses', value: (row) => row.exported_licenses },
+  { header: 'exported_claim_count', value: (row) => row.exported_claim_count },
+  { header: 'export_status', value: (row) => row.export_status },
+  { header: 'notes', value: (row) => row.notes },
+  { header: 'not_a_translation', value: (row) => row.not_a_translation },
+];
 
 writeJsonl('data/public-lexical/all-claims.jsonl', allRows);
 
@@ -455,6 +584,16 @@ for (const row of allRows) {
 }
 for (const [bucket, rel] of Object.entries(licenseFiles)) {
   writeJsonl(rel, byLicenseRows[bucket]);
+  writeCsv(rel.replace(/\.jsonl$/, '.csv'), byLicenseRows[bucket], claimCsvColumns);
+}
+
+const cc0OnlyRows = [...byLicenseRows.projectCc0, ...byLicenseRows.wikidataCc0];
+writeCsv('data/public-lexical/by-license/cc0-only.csv', cc0OnlyRows, claimCsvColumns);
+
+for (const result of workResults) {
+  if (result.tokenStatusRows?.length) {
+    writeCsv(`data/public-lexical/by-work/${result.spec.work_id}-token-status.csv`, result.tokenStatusRows, tokenStatusCsvColumns);
+  }
 }
 
 function listManifestFiles(dir) {
@@ -560,6 +699,13 @@ function buildSitewideCompactExport() {
   writeJsonl('data/public-lexical/sitewide/claim-index.jsonl', claims);
   writeJson('data/public-lexical/sitewide/normalized-lookup.json', lookupObject);
   writeJsonl('data/public-lexical/sitewide/work-summary.jsonl', workRows);
+  writeCsv('data/public-lexical/sitewide/claim-index.csv', claims, claimCsvColumns);
+  writeCsv('data/public-lexical/sitewide/work-summary.csv', workRows, [
+    { header: 'work_id', value: (row) => row.work_id },
+    { header: 'chunks', value: (row) => row.chunks },
+    { header: 'candidate_claim_links', value: (row) => row.candidate_claim_links },
+    { header: 'unique_claims', value: (row) => row.unique_claims },
+  ]);
 
   return {
     claims,
@@ -594,9 +740,26 @@ const manifest = {
       row_count: byLicenseRows[bucket].length,
       bytes: fileSize(rel),
     })),
+    ...Object.entries(licenseFiles).map(([bucket, rel]) => ({
+      path: rel.replace(/\.jsonl$/, '.csv'),
+      license_bucket: bucket,
+      row_count: byLicenseRows[bucket].length,
+      bytes: fileSize(rel.replace(/\.jsonl$/, '.csv')),
+    })),
+    { path: 'data/public-lexical/by-license/cc0-only.csv', license_bucket: 'cc0Only', row_count: cc0OnlyRows.length, bytes: fileSize('data/public-lexical/by-license/cc0-only.csv') },
+    ...workResults
+      .filter((result) => result.tokenStatusRows?.length)
+      .map((result) => ({
+        path: `data/public-lexical/by-work/${result.spec.work_id}-token-status.csv`,
+        work_id: result.spec.work_id,
+        row_count: result.tokenStatusRows.length,
+        bytes: fileSize(`data/public-lexical/by-work/${result.spec.work_id}-token-status.csv`),
+      })),
     { path: 'data/public-lexical/sitewide/claim-index.jsonl', row_count: sitewideCompact.claims.length, bytes: fileSize('data/public-lexical/sitewide/claim-index.jsonl') },
+    { path: 'data/public-lexical/sitewide/claim-index.csv', row_count: sitewideCompact.claims.length, bytes: fileSize('data/public-lexical/sitewide/claim-index.csv') },
     { path: 'data/public-lexical/sitewide/normalized-lookup.json', row_count: sitewideCompact.lookup_terms, bytes: fileSize('data/public-lexical/sitewide/normalized-lookup.json') },
     { path: 'data/public-lexical/sitewide/work-summary.jsonl', row_count: sitewideCompact.work_rows.length, bytes: fileSize('data/public-lexical/sitewide/work-summary.jsonl') },
+    { path: 'data/public-lexical/sitewide/work-summary.csv', row_count: sitewideCompact.work_rows.length, bytes: fileSize('data/public-lexical/sitewide/work-summary.csv') },
   ],
   license_policy: {
     note: 'Rows retain their own source/license metadata. Do not combine CC BY-SA/GFDL rows into CC0-only downstream output.',
@@ -641,6 +804,19 @@ const reportLines = [
   `| Wikidata CC0 | ${licenseCounts.wikidataCc0} | data/public-lexical/by-license/wikidata-cc0.jsonl |`,
   `| OpenScriptures CC BY 4.0 | ${licenseCounts.openscripturesCcBy4} | data/public-lexical/by-license/openscriptures-cc-by-4.jsonl |`,
   `| Kaikki/Wiktionary CC BY-SA/GFDL | ${licenseCounts.kaikkiWiktionaryCcBySaGfdl} | data/public-lexical/by-license/kaikki-wiktionary-cc-by-sa-gfdl.jsonl |`,
+  `| Combined CC0-only CSV | ${cc0OnlyRows.length} | data/public-lexical/by-license/cc0-only.csv |`,
+  '',
+  'CSV mirrors are available beside the JSONL license-bucket files. The CSV files are meant for spreadsheet import or AI-assisted workflows that prefer flat rows.',
+  '',
+  '## Token Status CSVs',
+  '',
+  '| Work | Unique token rows | CSV |',
+  '| --- | ---: | --- |',
+  ...workResults
+    .filter((result) => result.tokenStatusRows?.length)
+    .map((result) => `| ${result.spec.work_id} | ${result.tokenStatusRows.length} | data/public-lexical/by-work/${result.spec.work_id}-token-status.csv |`),
+  '',
+  'Token-status CSVs include unresolved forms explicitly. An unresolved row means `No lexical entry yet`, not a hidden translation or inferred definition.',
   '',
   '## Skipped / Diagnostic Counts',
   '',
@@ -656,8 +832,10 @@ const reportLines = [
   '| File | Rows / terms | Purpose |',
   '| --- | ---: | --- |',
   `| data/public-lexical/sitewide/claim-index.jsonl | ${sitewideCompact.claims.length} | Deduplicated claim-shaped lexical rows across all imported works |`,
+  `| data/public-lexical/sitewide/claim-index.csv | ${sitewideCompact.claims.length} | CSV mirror of the compact claim index |`,
   `| data/public-lexical/sitewide/normalized-lookup.json | ${sitewideCompact.lookup_terms} | Normalized Hebrew form to claim ID lookup |`,
   `| data/public-lexical/sitewide/work-summary.jsonl | ${sitewideCompact.work_rows.length} | Per-work compact-export coverage summary |`,
+  `| data/public-lexical/sitewide/work-summary.csv | ${sitewideCompact.work_rows.length} | CSV mirror of per-work compact-export coverage summary |`,
   '',
   'The compact sitewide files are intended for AI/tool import. They preserve source/license metadata per claim and avoid repeating the same source-backed lexical row for every work-token occurrence.',
   '',

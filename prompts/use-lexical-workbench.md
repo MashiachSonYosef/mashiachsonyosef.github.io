@@ -28,5 +28,19 @@ The public export manifest is:
 For large workflows, prefer the compact sitewide files:
 
 - `data/public-lexical/sitewide/claim-index.jsonl`
+- `data/public-lexical/sitewide/claim-index.csv`
 - `data/public-lexical/sitewide/normalized-lookup.json`
 - `data/public-lexical/sitewide/work-summary.jsonl`
+
+For CC0-only workflows, use:
+
+- `data/public-lexical/by-license/cc0-only.csv`
+- `data/public-lexical/by-license/project-cc0.csv`
+- `data/public-lexical/by-license/wikidata-cc0.csv`
+
+For work-level coverage audits, use token-status CSVs such as:
+
+- `data/public-lexical/by-work/orot-token-status.csv`
+- `data/public-lexical/by-work/aggadat-bereshit-token-status.csv`
+
+Token-status CSVs include unresolved rows explicitly as `No lexical entry yet`; do not invent definitions for those rows.

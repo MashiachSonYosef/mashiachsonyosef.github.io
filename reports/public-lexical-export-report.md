@@ -21,6 +21,18 @@ This export contains claim-shaped lexical HUD rows for hardened public workbench
 | Wikidata CC0 | 7783 | data/public-lexical/by-license/wikidata-cc0.jsonl |
 | OpenScriptures CC BY 4.0 | 28358 | data/public-lexical/by-license/openscriptures-cc-by-4.jsonl |
 | Kaikki/Wiktionary CC BY-SA/GFDL | 964 | data/public-lexical/by-license/kaikki-wiktionary-cc-by-sa-gfdl.jsonl |
+| Combined CC0-only CSV | 8213 | data/public-lexical/by-license/cc0-only.csv |
+
+CSV mirrors are available beside the JSONL license-bucket files. The CSV files are meant for spreadsheet import or AI-assisted workflows that prefer flat rows.
+
+## Token Status CSVs
+
+| Work | Unique token rows | CSV |
+| --- | ---: | --- |
+| orot | 17307 | data/public-lexical/by-work/orot-token-status.csv |
+| aggadat-bereshit | 8840 | data/public-lexical/by-work/aggadat-bereshit-token-status.csv |
+
+Token-status CSVs include unresolved forms explicitly. An unresolved row means `No lexical entry yet`, not a hidden translation or inferred definition.
 
 ## Skipped / Diagnostic Counts
 
@@ -40,8 +52,10 @@ Rows are skipped from the public JSONL export when they have no renderings or wh
 | File | Rows / terms | Purpose |
 | --- | ---: | --- |
 | data/public-lexical/sitewide/claim-index.jsonl | 9101 | Deduplicated claim-shaped lexical rows across all imported works |
+| data/public-lexical/sitewide/claim-index.csv | 9101 | CSV mirror of the compact claim index |
 | data/public-lexical/sitewide/normalized-lookup.json | 19234 | Normalized Hebrew form to claim ID lookup |
 | data/public-lexical/sitewide/work-summary.jsonl | 242 | Per-work compact-export coverage summary |
+| data/public-lexical/sitewide/work-summary.csv | 242 | CSV mirror of per-work compact-export coverage summary |
 
 The compact sitewide files are intended for AI/tool import. They preserve source/license metadata per claim and avoid repeating the same source-backed lexical row for every work-token occurrence.
 
