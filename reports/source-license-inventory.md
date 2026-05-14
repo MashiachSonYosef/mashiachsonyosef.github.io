@@ -250,3 +250,15 @@ Generated: 2026-05-13
 | Mishnah Zavim | 32 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Mishnah Tevul Yom | 26 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Mishnah Yadayim | 22 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Aramaic Targum to Psalms | 2527 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Aramaic Targum to Job | 1070 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Aramaic Targum to Ecclesiastes | 222 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Aramaic Targum to Esther | 167 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum of I Chronicles | 943 | Wikisource Aramaic Targum to Chronicles (https://he.wikisource.org/wiki/%D7%AA%D7%A8%D7%92%D7%95%D7%9D_%D7%93%D7%91%D7%A8%D7%99_%D7%94%D7%99%D7%9E%D7%99%D7%9D) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Genesis | 1525 | Targum Jonathan on Genesis (http://toratemetfreeware.com/) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Exodus | 1210 | Targum Jonathan on Exodus (http://toratemetfreeware.com/) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Leviticus | 859 | Targum Jonathan on Leviticus (http://toratemetfreeware.com/) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Deuteronomy | 956 | Targum Jonathan on Deuteronomy (http://toratemetfreeware.com/) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Isaiah | 1291 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Jonah | 48 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Malachi | 55 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |

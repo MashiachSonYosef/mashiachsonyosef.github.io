@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-14T14:30:57.337Z
+Generated: 2026-05-14T16:23:51.077Z
 
 ## Scope
 
@@ -15,18 +15,18 @@ Generated: 2026-05-14T14:30:57.337Z
 
 ## Counts
 
-- Total work-surface rows: 1529744
-- Total sitewide unique surface forms: 484257
-- Sitewide unique surface forms matched at least once: 72498
-- Sitewide unique surface forms unmatched everywhere: 411759
-- Total token occurrences: 7130846
-- Matched before prefix/suffix parser: 404367
-- Newly resolved by prefix/suffix parser: 54178
-- Total matched after parser: 473943
-- Percent matched: 31.0%
-- Matched via Wikidata: 345982
-- Enriched via OpenScriptures: 400901
-- Unmatched: 1055801
+- Total work-surface rows: 1594609
+- Total sitewide unique surface forms: 520783
+- Sitewide unique surface forms matched at least once: 74059
+- Sitewide unique surface forms unmatched everywhere: 446724
+- Total token occurrences: 7300828
+- Matched before prefix/suffix parser: 409853
+- Newly resolved by prefix/suffix parser: 54958
+- Total matched after parser: 480500
+- Percent matched: 30.1%
+- Matched via Wikidata: 350314
+- Enriched via OpenScriptures: 406626
+- Unmatched: 1114109
 
 ## Newly Resolved Parsed Forms
 
@@ -127,6 +127,7 @@ Generated: 2026-05-14T14:30:57.337Z
 - 706x א׳ -- beur-hagra-on-shulchan-arukh-orach-chayim
 - 706x רַבָּנָן -- ein-yaakov
 - 689x הרא״ש -- beur-hagra-on-shulchan-arukh-yoreh-deah
+- 674x יַת -- targum-jonathan-on-genesis
 - 673x כוכבים -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 663x ועיין -- notes-and-corrections-on-midrash-lekach-tov
 - 662x בְּגִין -- zohar-chadash
@@ -136,19 +137,18 @@ Generated: 2026-05-14T14:30:57.337Z
 - 653x נמי -- raavad-on-sifra
 - 652x ע״ב -- shaar-maamarei-rashbi
 - 648x י״ל -- beur-haradal-on-pirkei-derabbi-eliezer
+- 637x יַת -- targum-jonathan-on-exodus
 - 633x מ״ש -- beur-haradal-on-pirkei-derabbi-eliezer
 - 630x ב״ר -- notes-and-corrections-on-midrash-aggadah
 - 626x דְּאִיהוּ -- zohar-chadash
 - 624x הגי׳ -- notes-and-corrections-on-midrash-lekach-tov
 - 623x הי׳ -- beur-haradal-on-pirkei-derabbi-eliezer
+- 609x יְיָ -- aramaic-targum-to-psalms
 - 607x המלך -- sefer-hayashar-midrash
 - 603x ס״א -- beur-hagra-on-shulchan-arukh-orach-chayim
 - 600x ה׳ -- shaar-hapesukim
 - 596x א׳ -- pesikta-derav-kahana
 - 592x ב׳ -- otzar-midrashim
-- 582x כמנין -- maaseh-rokeach-on-mishnah
-- 578x עיין -- notes-and-corrections-on-midrash-lekach-tov
-- 577x השי״ת -- midbar-shur
 
 ## Exact Orot Refs To Test
 
