@@ -51,11 +51,11 @@ Rows are skipped from the public JSONL export when they have no renderings or wh
 
 | File | Rows / terms | Purpose |
 | --- | ---: | --- |
-| data/public-lexical/sitewide/claim-index.jsonl | 9101 | Deduplicated claim-shaped lexical rows across all imported works |
-| data/public-lexical/sitewide/claim-index.csv | 9101 | CSV mirror of the compact claim index |
+| data/public-lexical/sitewide/claim-index.jsonl | 9107 | Deduplicated claim-shaped lexical rows across all imported works |
+| data/public-lexical/sitewide/claim-index.csv | 9107 | CSV mirror of the compact claim index |
 | data/public-lexical/sitewide/normalized-lookup.json | 19234 | Normalized Hebrew form to claim ID lookup |
-| data/public-lexical/sitewide/work-summary.jsonl | 242 | Per-work compact-export coverage summary |
-| data/public-lexical/sitewide/work-summary.csv | 242 | CSV mirror of per-work compact-export coverage summary |
+| data/public-lexical/sitewide/work-summary.jsonl | 248 | Per-work compact-export coverage summary |
+| data/public-lexical/sitewide/work-summary.csv | 248 | CSV mirror of per-work compact-export coverage summary |
 
 The compact sitewide files are intended for AI/tool import. They preserve source/license metadata per claim and avoid repeating the same source-backed lexical row for every work-token occurrence.
 
@@ -63,9 +63,9 @@ The compact sitewide files are intended for AI/tool import. They preserve source
 
 | Item | Count |
 | --- | ---: |
-| manifests scanned | 242 |
-| chunks scanned | 1483 |
-| candidate rows without renderings | 316667 |
+| manifests scanned | 248 |
+| chunks scanned | 1562 |
+| candidate rows without renderings | 331728 |
 | candidate rows without source/license | 0 |
 
 ## User-Facing Prompt
