@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tractate Kallah</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Tractate Kallah</h1>
+        <p class="meta">26 total source units | imported 2026-05-14</p>
+        <p class="meta source-citation">Hebrew version: Talmud Bavli, Vilna 1883 ed. | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001300957">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Tractate Kallah <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Tractate Kallah <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tractate-kallah-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tractate-kallah-1-1" title="Tractate Kallah 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-1-2" title="Tractate Kallah 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-1-3" title="Tractate Kallah 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-1-4" title="Tractate Kallah 1:4">1:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-tractate-kallah-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tractate-kallah-2-1" title="Tractate Kallah 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-2-2" title="Tractate Kallah 2:2">2:2</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-2-3" title="Tractate Kallah 2:3">2:3</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-2-4" title="Tractate Kallah 2:4">2:4</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-2-5" title="Tractate Kallah 2:5">2:5</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-2-6" title="Tractate Kallah 2:6">2:6</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-2-7" title="Tractate Kallah 2:7">2:7</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-2-8" title="Tractate Kallah 2:8">2:8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-tractate-kallah-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tractate-kallah-3-1" title="Tractate Kallah 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-3-2" title="Tractate Kallah 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-3-3" title="Tractate Kallah 3:3">3:3</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-3-4" title="Tractate Kallah 3:4">3:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-tractate-kallah-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tractate-kallah-4-1" title="Tractate Kallah 4:1">4:1</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-4-2" title="Tractate Kallah 4:2">4:2</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-4-3" title="Tractate Kallah 4:3">4:3</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-4-4" title="Tractate Kallah 4:4">4:4</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-4-5" title="Tractate Kallah 4:5">4:5</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-4-6" title="Tractate Kallah 4:6">4:6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-tractate-kallah-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tractate-kallah-5-1" title="Tractate Kallah 5:1">5:1</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-5-2" title="Tractate Kallah 5:2">5:2</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-5-3" title="Tractate Kallah 5:3">5:3</a></li>
+                    <li><a class="toc-unit" href="#tractate-kallah-5-4" title="Tractate Kallah 5:4">5:4</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-tractate-kallah-text-1">Chapter 1</h4>
+          <section class="unit" id="tractate-kallah-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 1:1</h4></div>
+              <a class="anchor" href="#tractate-kallah-1-1" aria-label="Copy link to Tractate Kallah 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כלה בלא ברכה &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;אסורה לבעלה כנדה מה נדה שלא טבלה אסורה לבעלה (כנדה) אף כלה בלא ברכה אסורה לבעלה. ומניין לברכת חתנים מן התורה שנאמר (בראשית כ״ד:ס׳) ויברכו את רבקה. ומנין &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;שאפילו אלמנה אסורה שנאמר (רות ד׳:י״א) ויקח (בועז) עשרה אנשים וגו׳ ויאמרו כל העם אשר בשער והזקנים עדים יתן ה׳ וגו׳ ויהי ביתך כבית פרץ וגו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 1:2</h4></div>
+              <a class="anchor" href="#tractate-kallah-1-2" aria-label="Copy link to Tractate Kallah 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;כלה שנבעלה יום ראשון אסורה כל שבעה ואסור ליטול הימנה כוס כל שבעה דברי רבי אליעזר ורבי יהושע אומר עד &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;שיבדוק הדבר אם היתה נדה בבית אביה אסורה ואם לאו מותרת. שאלו את ר״א מהו לשתות מיד הכלה כל זמן שבעלה מיסב עמה. אמר להם כל השותה מיד כלה כאילו שותה מיד זונה אמרו לו והלא כל &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;בנות ישראל יש להם דרך ארץ. אמר להם חס ושלום כל מי שאין התורה עובר על פיו אין בו דרך ארץ. הכריז ר״א (בן עזריה) בשלש מאות שופרות ואמר כלה אחת בנות ת״ח ואחת בנות עמי הארץ השותה בכלה כשותה בזונה ועוד &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;אמרו כל המקבל כוס מיד כלה ושותהו אין לו חלק לעולם הבא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 1:3</h4></div>
+              <a class="anchor" href="#tractate-kallah-1-3" aria-label="Copy link to Tractate Kallah 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;הקורא פסוק משיר השירים ועשאו כמין זמר וכן הקורא פסוק מדברי תורה בבית המשתאות שלא בזמנו מביא &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;מבול לעולם מפני שהתורה חוגרת שק ועומדת לפני הקב״ה ואומרת רבש&quot;ע עשאוני בניך ככנור המנגנים בו ליצים. אמר לה בתי בשעה שהן שמחים מה יהיו עושים אמרה &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;לו רבש״ע אם תלמיד חכם הוא יעסוק בתורה ובלימוד ובמעשים טובים ובאגדות ובעלי מקרא במקרא ובעלי משנה במשנה בהלכות הפסח בפסח ושל עצרת בעצרת ושל חג בחג. העיד ר״ש &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;ואמר כל הקורא פסוק בזמנו מביא טובה לעולם [שנאמר] (משלי טו) ודבר בעתו מה טוב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 1:4</h4></div>
+              <a class="anchor" href="#tractate-kallah-1-4" aria-label="Copy link to Tractate Kallah 1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">המשגר כוס של ברכה לאשה שלא מדעת בעלה חייב מיתה מפני שדעתו רבה &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;עליו. רבי אומר מפני שיצר הרע רבה &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;עליו. וכן בני חבורה ששגרו כוס של ברכה לאשה שלא מדעת בעלה חייבים מיתה מפני שדעתן רבה &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;עליהן. רבי אומר מפני שיצר הרע רבה עליהן. &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;4&quot;&gt;&lt;/i&gt;</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tractate-kallah-text-2">Chapter 2</h4>
+          <section class="unit" id="tractate-kallah-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 2:1</h4></div>
+              <a class="anchor" href="#tractate-kallah-2-1" aria-label="Copy link to Tractate Kallah 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;המרצה מעות לאשה מידו לידה בשביל להסתכל בה אפילו הוא כמשה רבינו שקבל תורה מהר סיני לא ינקה מדינה של גיהנם שנאמר (משלי י״א:כ״א) יד ליד לא ינקה רע. הרי הוא אומר (במדבר ל״א:נ׳) ונקרב את קרבן ה׳ איש אשר מצא כלי זהב אצעדה וגו׳ אצעדה &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;זו בירית. וצמיד אלו השיראים. עגול זה דפוס של (בית) הדדים. כומז זה דפוס של בית הרחם. לכפר על נפשותינו לפני ה׳ א״ל משה לישראל שמא חזרתם לקלקלכם הראשון. אמרו לו (שם) לא נפקד ממנו איש אמר להם א״כ כפרה זו למה. אמרו לו אם מידי עבירה יצאנו מידי הרהור לא יצאנו. טבעת למה &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;לפי שכל המסתכל באשה בכוונה כאילו בא עליה מכאן אמרו חכמים כל הנוגע באצבע קטנה של אשה כאילו נוגע באותו מקום.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-2-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 2:2</h4></div>
+              <a class="anchor" href="#tractate-kallah-2-2" aria-label="Copy link to Tractate Kallah 2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">(וכן) כל המסתכל בעקיבה של אשה הויין לו בנים &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;בעלי מומין חגרין סומין אלמין חרשין. רבי אליעזר אומר מפני שתבעה למטה ואינה נתבעת. רבי יהושע אומר מפני שאמרה בשעת בעילה אנוסה אני רבי עקיבא אומר מפני שאומרת בשעת טהרתה טמאה אני.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-2-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 2:3</h4></div>
+              <a class="anchor" href="#tractate-kallah-2-3" aria-label="Copy link to Tractate Kallah 2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;רבי נחמיה אומר בעון שנאת חנם אשתו מפלת נפלים ומריבה רבה בתוך ביתו ובניו ובנותיו מתים כשהם קטנים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-2-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 2:4</h4></div>
+              <a class="anchor" href="#tractate-kallah-2-4" aria-label="Copy link to Tractate Kallah 2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רבי נהוראי אומר כל המבייש פני חבירו סוף הוא מתבייש ולא עוד אלא שמלאכי חבלה דוחפין אותו וטורדין אותו מן העולם ומראין קלונו לכל באי עולם &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;וכל מי שיש לו בושת פנים לא במהרה הוא חוטא שנאמר (שמות כ׳:י״ז) ובעבור תהיה יראתו על פניכם לבלתי תחטאו. וכל מי שאין לו בושת פנים בידוע שלא עמדו אבותיו תחת הר סיני.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-2-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 2:5</h4></div>
+              <a class="anchor" href="#tractate-kallah-2-5" aria-label="Copy link to Tractate Kallah 2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;אמר רבי יוחנן &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;ארבעה דברים סחו לי מלאכי השרת ואלו הן חגרים סומים אלמים חרשים. חגרים מפני מה מפני שהופכים את שולחנם ועושים כמעשה בהמות. סומים מפני מה מפני שמסתכלין באותו מקום. חרשים מפני מה מפני שמספרין בשעת תשמיש. אלמים מפני מה מפני שנושקים באותו מקום. וחכמים אומרים [אין הלכה כרבי יוחנן אלא] כל מה שאדם רוצה לעשות באשתו [עושה כי אין הדבר דומה אלא למי שלקח בשר מטבח רצה אוכלו צלי רצה אוכלו מבושל רצה אוכלו ע״ג גחלים]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-2-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 2:6</h4></div>
+              <a class="anchor" href="#tractate-kallah-2-6" aria-label="Copy link to Tractate Kallah 2:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;שאלו את אימא שלום אשתו של רבי אליעזר אחותו של רבן גמליאל אמרו לה מפני מה בניך יפין ובשעת תשמיש מהו אצלך. אמרה להם לא היה מספר עמי לא במשמרה ראשונה ולא במשמרה אחרונה אלא בבינונית מגלה טפח ומכסה טפח ודומה כמי שכפאו שד. אמרתי לו כל כך למה. אמר לי שלא תעלה על דעתי באשה אחרת ונמצאו בניי באים לידי ממזרות:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-2-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 2:7</h4></div>
+              <a class="anchor" href="#tractate-kallah-2-7" aria-label="Copy link to Tractate Kallah 2:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;מכאן אמרו עשרה הם כממזרים ואינם ממזרים ואלו הן &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;בני אמה בני &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;שפחה בני שנואה (בני נדה) בני נדוי בני תמורה בני מריבה בני שכורה בני גרושת הלב בני ערבוביא וי״א אף בני ישינה. והבועל ארוסתו בבית חמיו שלא בכתובה הויין לו בנים ויתקין &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;חלשות אלו בועלי נדות. מכוערים אלו בני טהרות ספק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-2-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 2:8</h4></div>
+              <a class="anchor" href="#tractate-kallah-2-8" aria-label="Copy link to Tractate Kallah 2:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;היוצא מבית הכסא ושימש הוויין לו בנים נכפים מפני ששד של בית הכסא מלווה &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;עמו עד כמה ישהה וישמש עד שיעור מהלך חצי מיל &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;הקיז דם ושימש הויין לו בנים ויתקין חלשות. הקיזו שניהם ושמשו הויין לו בנים בני ראתן אימתי בזמן שלא טעמו כלום [אבל טעמו כלום לית לן בה].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tractate-kallah-text-3">Chapter 3</h4>
+          <section class="unit" id="tractate-kallah-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 3:1</h4></div>
+              <a class="anchor" href="#tractate-kallah-3-1" aria-label="Copy link to Tractate Kallah 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;המשמש מטתו מעומד אוחזתו אחילו וזו היא אש של עצמות. ואיזו היא רפואתו קמח של עדשים ויין. כל הרפואות כולן אדם עושה אותן כשהוא שבע וזו כשהוא רעב. כל הרפואות כולן אדם עושה אותן &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;על גבי רגליו וזה עושה אותן רגלו אחת במטה ורגלו אחת בארץ. כל הרפואות כולן אין אדם עושה אותן אלא &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;עד שלש שעות ושלש פעמים וזו עושה אותה עד שיתרפא</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-3-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 3:2</h4></div>
+              <a class="anchor" href="#tractate-kallah-3-2" aria-label="Copy link to Tractate Kallah 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;הרגיל בקצח אינו בא לידי כאב לב. רשב״ג אומר קצח הזה אחד מששים סימני המות והישן למזרח גרנו דמו בראשו (ולא אמרו אלא באפויה וזה אינו באפויה). האוכל משקל דינר קצח לבו נעקר ארבעים ביצים (לבו נעקר) ארבעים אגוזים רביעית דבש לבו נעקר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-3-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 3:3</h4></div>
+              <a class="anchor" href="#tractate-kallah-3-3" aria-label="Copy link to Tractate Kallah 3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כיוצא בו &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;האוכל בשר שור שמן בלפת בלילי י״ד ובלילי ט״ו וישן בלבנה (אפילו) בתקופת תמוז דמו בראשו. המשמש מטתו שיכור &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;סופו נעקר שניהם שיכורין לבן נעקר. המשמש מטתו לאור הנר הויין לו בנים נכפין. המשמש מטתו מיושב אוחזתו דלריא ואיזו היא רפואתו &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;ארקין של קוצין. הוא מלמטה והיא מלמעלה אחזתו עוית. הוא מלמעלה והיא מלמטה זהו דרכן של בני אדם שימשו שניהם כאחד הרי זה דרך עיקש &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;. ר׳ יהודה אומר עז פנים לגיהנם ובושת פנים לגן עדן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-3-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 3:4</h4></div>
+              <a class="anchor" href="#tractate-kallah-3-4" aria-label="Copy link to Tractate Kallah 3:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עז פנים רבי אליעזר אומר ממזר רבי יהושע אומר בן הנדה רבי עקיבא אומר ממזר ובן הנדה. פעם אחת היו זקנים יושבין בשער ועברו לפניהם שני תינוקות אחד כסה את ראשו ואחד גילה את ראשו זה שגילה את ראשו רבי אליעזר אומר ממזר רבי יהושע אומר בן הנדה רבי עקיבא אומר ממזר ובן הנדה. אמרו לו לרבי עקיבא היאך מלאך לבך לעבור על דברי &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;חבירך. אמר להן (זה) אני אקימנו. הלך אצל אמו של תינוק וראה שהיתה יושבת ומוכרת קטניות בשוק. אמר לה בתי אם את אומרת לי דבר שאני שואלך אני מביאך לחיי עולם הבא אמרה לו השבע לי. היה רבי עקיבא נשבע בשפתיו ומבטל בלבו אמר לה בנך זה מה טיבו אמרה לו כשנכנסתי לחופה נדה הייתי ופירש ממני בעלי ובא עלי שושביני והיה לי בן זה נמצא התינוק ממזר ובן הנדה. אמרו גדול היה רבי עקיבא כשהכחיש את רבותיו. באותה שעה אמרו ברוך ה׳ אלהי ישראל אשר גילה סודו לרבי עקיבא בן יוסף.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tractate-kallah-text-4">Chapter 4</h4>
+          <section class="unit" id="tractate-kallah-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 4:1</h4></div>
+              <a class="anchor" href="#tractate-kallah-4-1" aria-label="Copy link to Tractate Kallah 4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמר רבי יוחאי בר יאשיה כל המפנה דעתו בנשים סוף בא לידי עבירה. וכל המפנה עצמו מעבירה ולא עשאה אפילו הוא ישראל ראוי הוא לעלות עולה ככהן גדול על גבי המזבח שנאמר (שמות כד) וישלח את נערי בני ישראל ויעלו עולות וכל מי שעושה את עצמו עצל מן העבירה ולא עשאה ניזון מזיו שכינה כמלאכי השרת שנאמר (שם) ויחזו את האלהים ויאכלו וישתו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-4-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 4:2</h4></div>
+              <a class="anchor" href="#tractate-kallah-4-2" aria-label="Copy link to Tractate Kallah 4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רבי אליעזר בן יעקב אומר &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;כל המוציא שכבת זרע לבטלה כאילו הורג את הנפש שנאמר (ישעיה נז) שוחטי הילדים אל תקרי שוחטי אלא סוחטי. וחכמים אומרים כאילו עובד עבודת כוכבים שנאמר (שם) הנחמים באלים תחת כל עץ רענן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-4-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 4:3</h4></div>
+              <a class="anchor" href="#tractate-kallah-4-3" aria-label="Copy link to Tractate Kallah 4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;(אמר רבי כל המחליף בדבורו כאילו עובד עבודת כוכבים שנאמר (בראשית כז) אולי ימושני אבי והייתי בעיניו כמתעתע ואין מתעתע אלא עבודת כוכבים שנאמר (ירמיה נא) הבל המה מעשה תעתועים).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-4-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 4:4</h4></div>
+              <a class="anchor" href="#tractate-kallah-4-4" aria-label="Copy link to Tractate Kallah 4:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מכאן אמרו חכמים אין אדם רשאי ליתן ידו לאמה שלו. שלש ידות הן ושלשתן לקציצה. יד לאמה תיקצץ יד לעין תיקצץ יד לחסודה תיקצץ. &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;יד לאמה תיקצץ מפני שהיא מחממת. יד לעין מפני שמסמא. יד לחסודה מפני שמביא  לידי שפיכות דמים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-4-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 4:5</h4></div>
+              <a class="anchor" href="#tractate-kallah-4-5" aria-label="Copy link to Tractate Kallah 4:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;דבר אחר הנחמים באלים כל המחמם עצמו להוציא זרע לבטלה חשוב כבהמה מה בהמה אינה מקפדת &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;ועושה (כן הוא מה בהמה אינה ידיעתה למיתה) אף הוא כן מה בהמה אינה עומדת אלא לשחיטה ואין לה חלק לעולם הבא אף הוא אין לו חלק לעולם הבא. עליו אמר שלמה בחכמתו (קהלת ג) מי יודע רוח בני האדם העולה היא למעלה זו נשמתן של צדיקים שאין מחממין עצמן ואין מוציאין שכבת זרע לבטלה. ורוח הבהמה היורדת היא למטה לארץ זו היא נשמתן של רשעים שמחממין עצמן ומוציאין שכבת זרע לבטלה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-4-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 4:6</h4></div>
+              <a class="anchor" href="#tractate-kallah-4-6" aria-label="Copy link to Tractate Kallah 4:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;ד״א הנחמים באלים כל המחמם עצמו ומוציא שכבת זרע לבטלה חייב מיתה שנאמר (בראשית לח) ויהי ער בכור יהודה רע בעיני ה׳ וימיתהו &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;ה׳ וכל המקשה את עצמו הרי זה עבריין שנאמר (שם) וירע בעיני ה׳ (את) אשר עשה &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;ואפילו קטנים מקבלין פני שכינה שנאמר (תהלים כב) זרע יעבדנו יסופר לה׳ לדור &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;. &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;בעון מה בניו של אדם מתים ר״א &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;אומר בעון נדרים שנאמר (קהלת ה) אל תתן את פיך לחטיא את בשרך וגו׳ וחבל את מעשה ידיך. רבי נתן אומר בעון מזוזה דכתיב (דברים יא) על מזוזות ביתך ובשעריך וכתיב אחריו למען ירבו ימיכם וימי בניכם. רבי נהוראי אומר בעון ציצית דכתיב (ירמיה ב) גם בכנפיך נמצאו דם נפשות אביונים וגו׳. רבי &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;4&quot;&gt;&lt;/i&gt;יהושע אומר בעון ביטול תורה קטנים מתים שנאמר (הושע ד) ותשכח (את) תורת אלהיך אשכח בניך גם אני. &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;5&quot;&gt;&lt;/i&gt;ר״ע אומר כל [מי] שאינו עוסק בתורה גורם עניות לבניו. מה יעשה אדם ויהיו בניו עשירים &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;6&quot;&gt;&lt;/i&gt;ויקיימו יעשה חפצי שמים וחפצי אשתו. ואלו הן חפצי שמים יפזר מעותיו לעניים שנאמר (תהלים קיב) פזר נתן לאביונים צדקתו עומדת לעד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tractate-kallah-text-5">Chapter 5</h4>
+          <section class="unit" id="tractate-kallah-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 5:1</h4></div>
+              <a class="anchor" href="#tractate-kallah-5-1" aria-label="Copy link to Tractate Kallah 5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמרו עליו על ר״ט שהיה עשיר גדול ולא היה נותן מתנות לאביונים &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;פעם אחת מצאו רבי עקיבא אמר לו רבי רצונך שאקח לך עיר אחת או שתים [אמר לו הן] מיד עמד ר״ט ונתן לו ארבעה אלפים דינרי זהב. &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;נטלו ר״ע חלקו לעניים. לימים מצאו ר״ט א״ל היכן העיירות שלקחת לי תפסו בידו והביאו לבית המדרש. והביא ספר תהלים והניחו בפניהן והיו הולכין וקורין עד שהגיעו לפסוק זה פזר נתן לאביונים וגו׳ א״ל זו העיר שקניתי לך. עמד ר״ט ונשקו ואמר לו רבי אלופי רבי בחכמה ואלופי בדרך ארץ והוסיף לו ממון לבזבז.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-5-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 5:2</h4></div>
+              <a class="anchor" href="#tractate-kallah-5-2" aria-label="Copy link to Tractate Kallah 5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שוב מעשה בר״ט שהיה אוכל קציעות מפרדס (שלו) בא האריס שלו ומצאו הכהו מכה רבה ולא אמר לו שהוא ר״ט עד שעמד אותו אריס והכיר בו כיון שהכירו קרע בגדיו ותלש בשערו היה צועק ובוכה ומתנפל לפני רגליו אמר לו אדוני מורי מחול לי. וכל כך למה שלא רצה להשתמש בכתר תורה שכל המשתמש בכתר תורה אין לו חלק לעולם הבא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-5-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 5:3</h4></div>
+              <a class="anchor" href="#tractate-kallah-5-3" aria-label="Copy link to Tractate Kallah 5:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אלו הן חפצי אשתו ר״א אומר יפתה אותה בשעת תשמיש רבי יהודה אומר ישמחנה בשעת תשמיש בדבר מצוה שנאמר (קהלת ח׳:ה׳) שומר מצוה לא ידע דבר רע. הרוצה שיהיו בניו זכרים בעלי תורה &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;ימשמש במעשיו ויפתה את אשתו בשעת תשמיש. ר״א בן יעקב אומר אין &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;תלמיד חכם רשאי [למשמש במעשיו] וליתן מעותיו בארנקי של צדקה אלא א״כ ממונה עליה כרבי חנינא בן תרדיון.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tractate-kallah-5-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tractate Kallah 5:4</h4></div>
+              <a class="anchor" href="#tractate-kallah-5-4" aria-label="Copy link to Tractate Kallah 5:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמרו עליו על רבי חנינא בן תרדיון שפעם אחת נתחלפו לו מעות פורים במעות של צדקה והיה יושב ותמיה ואמר אוי לי שמא נתחייבתי מיתה לשמים. עד שהיה יושב ותמיה בא קסטינר א״ל רבי גזרו עליך לכורכך &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;ולשורפך בתורתך ולישראל עמך ועמד וכרכוהו בתורתו והקיפוהו חבילי זמורות והציץ בו האור והיה אור מצטנן ומתרחק ממנו. עמד קסטינר בבהלה א׳׳ל רבי אתה הוא שגזרו לשורפך א״ל הן. א״ל ולמה האור מכבה א״ל נשבעתיו בשם קוני שלא יגע בי עד שאדע אם גזרו עלי מן השמים המתן לי שעה אחת ואודיעך. היה קסטינר יושב ותמיה אמר הללו שגוזרין מיתה וחיים לעצמן למה עול מלכות עליהן. א׳׳ל קום לך וכל מה שמלכות רוצה לעשות בי יעשה אמר לו ריקה הסכימה עלי גזרה מן השמים ואם אין אתה הורגני &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;הרבה הורגים יש למקום הרבה דובים ונמרים ואריות וזאבים והרבה נחשים ועקרבים שיפנעו בי אלא סוף שהמקום עתיד ליפרע דמי מידך. וידע קסטינר שכך היא המדה מיד &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;עמד ונפל על פניו וכיון אבד והשמיע קולו מן האש ואמר באשר תמותי אמות ושם אקבר באשר תחיה אחיה מיד יצתה בת קול ואמרה רבי חנינא בן תרדיון וקסטנירו מזומנין לחיי העולם הבא. ר׳ אליעזר אומר הנותן שלום לרבו חייב מיתה. בן עזאי אומר כל הנותן שלום לרבו ומחזיר לו שלום וחולק על ישיבתו חייב מיתה. &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;וכל האומר דבר משם חכם שלא אמרו ממנו גורם לשכינה שתסתלק מישראל וכל &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;האומר דבר בשם אומרו מביא גאולה לעולם שנאמר (אסתר ב׳:כ״ב) ותאמר אסתר למלך בשם מרדכי &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;ואיזהו רבו כל שלמדו משנה וש״ס אבל לא מקרא דברי רבי מאיר. רבי יהודה אומר כל שרוב חכמתו ממנו. רבי יוסי אומר כל שהאיר עיניו במשנתו. (ואם היה סומא לא יאמר לו שקעה החמה אלא יאמר לו סלוק תפלתך):</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tractate-kallah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"tractate-kallah","work_title":"Tractate Kallah","work_slug":"midrash/tractate-kallah","scope_label":"All imported Hebrew works","generated_at":"2026-05-14T12:03:43.503Z","total_occurrences":2053,"units":{"tractate-kallah-1-1":{"unit_id":"tractate-kallah-1-1","anchor_id":"tractate-kallah-1-1","source_ref":"Tractate Kallah 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8b210a416f64","tok-1a67dd81d959","tok-88f3d49fb6f3","tok-42684c954208","tok-5a2867f29ca3","tok-dfef025bfd98","tok-4910e4193ae0","tok-6ee24410e8b6","tok-26abd1f67e53","tok-d051d9f91f6c","tok-42684c954208","tok-5a2867f29ca3","tok-dfef025bfd98","tok-163229eafeb4","tok-8b210a416f64","tok-1a67dd81d959","tok-88f3d49fb6f3","tok-42684c954208","tok-5a2867f29ca3","tok-551ba6869ebc","tok-4c962e58673c","tok-90f238a76a72","tok-e0d5285421e1","tok-4076bf2064cd","tok-c3280a1d4e71","tok-f269c1c32203","tok-3e9c9e965bf4","tok-0a5381fac560","tok-b7a0fd44480c","tok-fedb4a0f91e1","tok-064432c3ae3f","tok-fa35397b2c54","tok-9768525e8af5","tok-10e73622bb01","tok-42684c954208","tok-c3280a1d4e71","tok-89e9dfd1a0ab","tok-cca90fbb30c6","tok-4902654bc070","tok-d25365be7c8c","tok-b73d463aca07","tok-4b5c4119b03b","tok-cea155d7175a","tok-0af9c883a2f9","tok-90d30b781746","tok-87b11500fbac","tok-77208ec0fe89","tok-b2f1350688e5","tok-a9ef5872d72d","tok-c873800c03e7","tok-cba48991b28d","tok-3590d9b1db85","tok-4a2f6b73bb0f","tok-0af9c883a2f9","tok-23109c98b0a0","tok-081bc0fbe1e6","tok-123a8320ca52","tok-7f8d1d9e4683","tok-0af9c883a2f9"]}]},"tractate-kallah-1-2":{"unit_id":"tractate-kallah-1-2","anchor_id":"tractate-kallah-1-2","source_ref":"Tractate Kallah 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8b210a416f64","tok-eeedb1138380","tok-bc9a59ffff94","tok-cd93b1b63fef","tok-42684c954208","tok-87b11500fbac","tok-7ded9bdf921f","tok-431a89363cdc","tok-a972187eba65","tok-df8ed2b20ffd","tok-58fa608fc588","tok-87b11500fbac","tok-7ded9bdf921f","tok-98d74b2d61a1","tok-04adc2ad535b","tok-e907b13ef391","tok-b6c3071aaaeb","tok-c26276c971a5","tok-3a70c5fcbda4","tok-e487f30c3dcd","tok-80f3c96a8aae","tok-955b53faa5b8","tok-088081e0881f","tok-905fd7319a18","tok-6ee24410e8b6","tok-7194cdb6b356","tok-9014dc710b58","tok-42684c954208","tok-9205a3e19e2e","tok-769255def4d2","tok-c9fb3962262b","tok-d6f7deb35095","tok-fedb4a0f91e1","tok-973cae083172","tok-880c74216da8","tok-9c70d881af73","tok-7853b8b092e1","tok-c02799091c70","tok-87b11500fbac","tok-63cb10038eeb","tok-303c98f353a3","tok-4b3c45fb5519","tok-6235bab904b9","tok-af87889a9bd3","tok-bb74508ee2d9","tok-87b11500fbac","tok-bbf12c119670","tok-7853b8b092e1","tok-8b210a416f64","tok-c268d51b513d","tok-67d7c9249f83","tok-7853b8b092e1","tok-b0efda26f3f6","tok-4fb3c76ccc60","tok-fc6df7e82294","tok-508e6a9953ca","tok-87b11500fbac","tok-b020113d3fc0","tok-4949ba655dbb","tok-16b638d221c1","tok-bb74508ee2d9","tok-423341531fb4","tok-44311f63c1dc","tok-af87889a9bd3","tok-bb74508ee2d9","tok-c26c094ddcd8","tok-d07ea3f960f9","tok-87b11500fbac","tok-a517f7cc6f3a","tok-d497a2e7ab11","tok-4076bf2064cd","tok-309dd28b0db3","tok-78ac5f83834c","tok-3d7c803436bb","tok-c9d516b59bbb","tok-f43f8e13cdae","tok-423341531fb4","tok-44311f63c1dc","tok-3eeb495aa0ca","tok-973cae083172","tok-252cbc242db8","tok-03175d48398a","tok-ac976f680dcd","tok-7146326341e8","tok-8b205e1053f4","tok-080b0a0223dc","tok-8b210a416f64","tok-fec3f211cb9b","tok-b020113d3fc0","tok-3682b67ea613","tok-bb426de9ace0","tok-b020113d3fc0","tok-d10c492dbec6","tok-0f89c431e7b6","tok-bbf12c119670","tok-fbfcc4aa2ada","tok-e16744f7c57e","tok-0d5d856f2a05","tok-2cbd2ff953ff","tok-4fb3c76ccc60","tok-87b11500fbac","tok-4ebc80bc108c","tok-58fa608fc588","tok-7853b8b092e1","tok-8b210a416f64","tok-13a9ec314356","tok-c9d516b59bbb","tok-fc6df7e82294","tok-a68ef8c3d523","tok-ef637c37cba3","tok-dc08b208d998"]}]},"tractate-kallah-1-3":{"unit_id":"tractate-kallah-1-3","anchor_id":"tractate-kallah-1-3","source_ref":"Tractate Kallah 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1884c71e90a6","tok-d42ea337a621","tok-7cc1905b9812","tok-8561b1b9defc","tok-f5f9fe54468b","tok-d4144f7b35ce","tok-6596e3744fb1","tok-6e456edd0f1c","tok-1884c71e90a6","tok-d42ea337a621","tok-56d75b06c885","tok-90312818c430","tok-7194cdb6b356","tok-f4892da907f5","tok-26abd1f67e53","tok-6decbbc75309","tok-f01ab86ad549","tok-6beec48aaa41","tok-ef637c37cba3","tok-477837a81732","tok-3a74e5c152aa","tok-7e14dfef5642","tok-3bae979526ac","tok-8f3a29bdf1f8","tok-7fa62d71eb56","tok-f6b83d7a46af","tok-e760f1bcbfcd","tok-6b0da143262b","tok-615c6d186a4a","tok-43d27fd5eca7","tok-26a9ae96d09c","tok-bb377322757c","tok-f43f8e13cdae","tok-0689d3f7af6a","tok-af87889a9bd3","tok-db0bb8ebb428","tok-206edc39b91d","tok-f8309aec604d","tok-246b3888bc77","tok-379c61aef7ad","tok-4910e4193ae0","tok-aa1df714d3e9","tok-b28d183b8ea2","tok-f2e26dcdcbaf","tok-fc6df7e82294","tok-6b0da143262b","tok-088081e0881f","tok-4ad4f8e598f8","tok-40078d53b58f","tok-33f51a3c7758","tok-11e659b4a168","tok-b6f836c5348b","tok-4246c7968bc0","tok-2f06f5982fa2","tok-79fccd7498dc","tok-9d3ccb0761fb","tok-b1a9edaa94fa","tok-f2e71442b450","tok-13ecca9a2439","tok-b1a9edaa94fa","tok-ce811e67f28b","tok-68df1a92605e","tok-55f93ad81b5a","tok-268ba1e483d0","tok-68729676e5c6","tok-2eea6e0ce2a6","tok-48963f941538","tok-6e965fbe02e2","tok-2eea6e0ce2a6","tok-4d94451d2a34","tok-ee70a34eee2a","tok-2076d9f6b55b","tok-3fa19cd39386","tok-080b0a0223dc","tok-87b11500fbac","tok-1884c71e90a6","tok-d42ea337a621","tok-6decbbc75309","tok-f01ab86ad549","tok-29882f0d9780","tok-ef637c37cba3","tok-c3280a1d4e71","tok-81017f93d141","tok-98f3b6021a1a","tok-d4e300d9064c","tok-c1858519a8ad","tok-4910e4193ae0","tok-319a0ffbc2d2"]}]},"tractate-kallah-1-4":{"unit_id":"tractate-kallah-1-4","anchor_id":"tractate-kallah-1-4","source_ref":"Tractate Kallah 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9735e44770bf","tok-58fa608fc588","tok-62ad93321360","tok-88f3d49fb6f3","tok-e5b0b5ee4f77","tok-26abd1f67e53","tok-a1b65ee41edf","tok-9ed101a81078","tok-c5b9e54d896f","tok-44bb955cd6af","tok-477837a81732","tok-788d6777a122","tok-8860774b2902","tok-3cc9bacb9e41","tok-04adc2ad535b","tok-3a70c5fcbda4","tok-477837a81732","tok-3b963c2cf754","tok-fdfd79a46d19","tok-8860774b2902","tok-3cc9bacb9e41","tok-6e456edd0f1c","tok-5be33ce1b33e","tok-6bbfc92b1d1d","tok-35b7744a2765","tok-58fa608fc588","tok-62ad93321360","tok-88f3d49fb6f3","tok-e5b0b5ee4f77","tok-26abd1f67e53","tok-a1b65ee41edf","tok-9ed101a81078","tok-48d1b2290fae","tok-44bb955cd6af","tok-477837a81732","tok-e7351c41d8fa","tok-8860774b2902","tok-d6e622d4ea20","tok-04adc2ad535b","tok-3a70c5fcbda4","tok-477837a81732","tok-3b963c2cf754","tok-fdfd79a46d19","tok-8860774b2902","tok-d6e622d4ea20"]}]},"tractate-kallah-2-1":{"unit_id":"tractate-kallah-2-1","anchor_id":"tractate-kallah-2-1","source_ref":"Tractate Kallah 2:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bfaf97b9dc6a","tok-1a261b300889","tok-e5b0b5ee4f77","tok-18003da01718","tok-0476ec79d202","tok-07533cce9a63","tok-cc2636eea6c0","tok-839177ac0de1","tok-2b18963634a2","tok-33f51a3c7758","tok-24390b841abd","tok-69181f076451","tok-2ce9e3c8d69b","tok-90312818c430","tok-d73b7b346feb","tok-4e53f4763df7","tok-bcdf30a5c755","tok-04e218a4c168","tok-09c9a7c527ac","tok-62ad93321360","tok-023bdf30bc33","tok-c3280a1d4e71","tok-81017f93d141","tok-4902654bc070","tok-2a57b2be8a11","tok-116e3d30293b","tok-c2457ec221b3","tok-bcdf30a5c755","tok-04e218a4c168","tok-318179ee65ef","tok-8d6811639b65","tok-33f51a3c7758","tok-3a70c5fcbda4","tok-6f18087db914","tok-cf6e71f166d4","tok-aa6dabab0282","tok-a2e4f9cf8aea","tok-fedb4a0f91e1","tok-ca27b67d2e6c","tok-4a2f6b73bb0f","tok-cc34b586724d","tok-b2f1350688e5","tok-b4570ed4439c","tok-ca73057eea36","tok-7c5d30cfde49","tok-2d05a93adb7c","tok-0af9c883a2f9","tok-2d05a93adb7c","tok-136c5d8fb5db","tok-291bcf4d283a","tok-593f1894bcf2","tok-9b4e88754c69","tok-e8e06f3b2567","tok-f8a6d3d4520e","tok-351db5752d79","tok-7d139c774513","tok-62ad93321360","tok-2eed798b41c8","tok-e97a11d1613e","tok-0b91be943f14","tok-351db5752d79","tok-7d139c774513","tok-62ad93321360","tok-2eed798b41c8","tok-60748d2eeb88","tok-593f5b57cc89","tok-78ac5f83834c","tok-d5472bbdb958","tok-7fa62d71eb56","tok-4a2f6b73bb0f","tok-4857758b4215","tok-2e15574b6acf","tok-793add50a883","tok-0f90ec24ac6a","tok-e40dbfda2fb9","tok-0c88e683541e","tok-e4baedb5aee3","tok-4fb3c76ccc60","tok-fc6df7e82294","tok-d44d1a4e7c0c","tok-bcdf30a5c755","tok-b39c10ed36e5","tok-e4289d8758ab","tok-cc34b586724d","tok-af87889a9bd3","tok-bb74508ee2d9","tok-c1c286d9303c","tok-2f2025369124","tok-136c5d8fb5db","tok-0fa17fb91787","tok-4fb3c76ccc60","tok-fc6df7e82294","tok-088081e0881f","tok-2bb8016348d4","tok-e2fd1dc78f9f","tok-d2f6c47d2397","tok-2bb8016348d4","tok-55cc43d5f838","tok-bcdf30a5c755","tok-d2f6c47d2397","tok-c31ed9aa64bb","tok-0fa17fb91787","tok-1aedfd217acf","tok-3afd2b041161","tok-2a86c66c4269","tok-1f829402ee30","tok-b664048dfd88","tok-c268d51b513d","tok-96f1d1fdf42b","tok-e26d4d2ece65","tok-ff769e36e91e","tok-4fb3c76ccc60","tok-a583186d34d1","tok-87b11500fbac","tok-9ae469e4682f","tok-fa6d80a6ea60","tok-26292a898a24","tok-62ad93321360","tok-b7049ac58557","tok-c268d51b513d","tok-0dd1ce5c75e5","tok-d70685a3d772","tok-847baf414e10"]}]},"tractate-kallah-2-2":{"unit_id":"tractate-kallah-2-2","anchor_id":"tractate-kallah-2-2","source_ref":"Tractate Kallah 2:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6e456edd0f1c","tok-87b11500fbac","tok-2a86c66c4269","tok-dd78621e212f","tok-62ad93321360","tok-b7049ac58557","tok-b5df90998753","tok-fc6df7e82294","tok-d2c61af3677b","tok-6fb536a028d5","tok-f76b1362310f","tok-091991d17a84","tok-799871984436","tok-bba4a95d6c45","tok-78453d9f3652","tok-04adc2ad535b","tok-e907b13ef391","tok-3a70c5fcbda4","tok-477837a81732","tok-017862871bb0","tok-9237f82e4e40","tok-cc3eff572025","tok-44b706a7e224","tok-04adc2ad535b","tok-c26276c971a5","tok-3a70c5fcbda4","tok-477837a81732","tok-f16624b4e5e1","tok-14bcf5e5fc6c","tok-83a14922e0c2","tok-e48ee4db8c20","tok-54a64e085cba","tok-04adc2ad535b","tok-076d230f1db5","tok-3a70c5fcbda4","tok-477837a81732","tok-7b191b1d9fd5","tok-14bcf5e5fc6c","tok-03ba68408051","tok-806f86831857","tok-54a64e085cba"]}]},"tractate-kallah-2-3":{"unit_id":"tractate-kallah-2-3","anchor_id":"tractate-kallah-2-3","source_ref":"Tractate Kallah 2:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-04adc2ad535b","tok-529ecb6f780c","tok-3a70c5fcbda4","tok-a261539ccb5b","tok-4e45facffff2","tok-841b1ffb95a0","tok-814f5de3666e","tok-254c8fe81e4f","tok-0138d009cc6b","tok-464eb46b1017","tok-8860774b2902","tok-f2071c6f6b85","tok-1dd2a5a1a3cd","tok-8526edd44441","tok-850f236037f4","tok-6a065193f052","tok-248abf799814","tok-d0afc9a0705b"]}]},"tractate-kallah-2-4":{"unit_id":"tractate-kallah-2-4","anchor_id":"tractate-kallah-2-4","source_ref":"Tractate Kallah 2:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-04adc2ad535b","tok-4d307a66234c","tok-3a70c5fcbda4","tok-87b11500fbac","tok-259abc32f0d2","tok-ae4f708376cf","tok-ca2953921a3b","tok-77ccf455497f","tok-33f51a3c7758","tok-81d22a872e8c","tok-7767ff492923","tok-52d6ce729942","tok-9aeab46f9937","tok-c67a33ca1381","tok-bfa417bad792","tok-5b5eefd2c749","tok-26c56bcdcd22","tok-87430b1aacf5","tok-26c56bcdcd22","tok-e0d5285421e1","tok-9b2ecd886f79","tok-de8284fbb20c","tok-890464827d56","tok-df1e1be97a9d","tok-0d47928fbbf1","tok-277b9d6a0c1d","tok-f955edf130fc","tok-a517f7cc6f3a","tok-b7aebbdab3a7","tok-fc6df7e82294","tok-168a2acf9224","tok-ab4e46ad9797","tok-bcdf30a5c755","tok-03ae88df2a0b","tok-33f51a3c7758","tok-dd23056e0d98","tok-c3280a1d4e71","tok-da8aecac3f83","tok-335608ddb8f1","tok-6a47f3ac4c4f","tok-aa967f77df16","tok-95459ef830ae","tok-2597342c2158","tok-78ac5f83834c","tok-f401d20ece63","tok-f07f968fc4e1","tok-ba4455396bc8","tok-f955edf130fc","tok-a517f7cc6f3a","tok-d497a2e7ab11","tok-fc6df7e82294","tok-168a2acf9224","tok-ab4e46ad9797","tok-4127ce3a317e","tok-26abd1f67e53","tok-733e9be5ac9f","tok-8a17c3de27a1","tok-7c72fcb488aa","tok-f068dfb06095","tok-4e53f4763df7"]}]},"tractate-kallah-2-5":{"unit_id":"tractate-kallah-2-5","anchor_id":"tractate-kallah-2-5","source_ref":"Tractate Kallah 2:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-af87889a9bd3","tok-04adc2ad535b","tok-6946265a4913","tok-a42e9048c292","tok-246b2e978ba6","tok-569d494a25f6","tok-17d144f0071b","tok-d421022a6329","tok-b06e749ecb39","tok-94dd2aef4540","tok-6db421542990","tok-6fd4301caf97","tok-5e9f7a9b2322","tok-cc1026f351f7","tok-83fb37379a77","tok-6fd4301caf97","tok-477837a81732","tok-4910e4193ae0","tok-477837a81732","tok-4bed3b1a303b","tok-fedb4a0f91e1","tok-32a7a7a1f456","tok-2dd2942fb04a","tok-7a8c66c286e5","tok-40c57b6342cf","tok-5e9f7a9b2322","tok-477837a81732","tok-4910e4193ae0","tok-477837a81732","tok-f0caf54e6f70","tok-d70685a3d772","tok-847baf414e10","tok-83fb37379a77","tok-477837a81732","tok-4910e4193ae0","tok-477837a81732","tok-a44142b1f569","tok-14bcf5e5fc6c","tok-54a36a599787","tok-cc1026f351f7","tok-477837a81732","tok-4910e4193ae0","tok-477837a81732","tok-af4291330f84","tok-d70685a3d772","tok-847baf414e10","tok-03eebabeae8b","tok-90b027ea000e","tok-c9d516b59bbb","tok-6f351d2660d1","tok-ca557149c1f6","tok-6946265a4913","tok-9aeab46f9937","tok-87b11500fbac","tok-4910e4193ae0","tok-a2c4f36088b2","tok-4273aef56577","tok-b0a1faffa32b","tok-70a540275cbd","tok-e7299e76d837","tok-7cc10b51816c","tok-c9d516b59bbb","tok-955b53faa5b8","tok-5a2b5f7ce217","tok-9aeab46f9937","tok-0abc29392018","tok-c76cce777308","tok-bec54522d8ab","tok-3ddbe57df7b2","tok-91b242950083","tok-666ffa1e6da2","tok-64d30657b371","tok-91b242950083","tok-666ffa1e6da2","tok-fe23d92d2264","tok-91b242950083","tok-666ffa1e6da2","tok-4834bf8b13d6","tok-33fab9ea58eb"]}]},"tractate-kallah-2-6":{"unit_id":"tractate-kallah-2-6","anchor_id":"tractate-kallah-2-6","source_ref":"Tractate Kallah 2:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d6f7deb35095","tok-fedb4a0f91e1","tok-3a8a7d517dbe","tok-cc1cee41bb84","tok-814f5de3666e","tok-62ad93321360","tok-04adc2ad535b","tok-e907b13ef391","tok-bee1a2257772","tok-62ad93321360","tok-d1a25784fb00","tok-ad93450b7217","tok-4fb3c76ccc60","tok-db0bb8ebb428","tok-477837a81732","tok-4910e4193ae0","tok-43d27fd5eca7","tok-e88f0fa4c38f","tok-2e83a1a5445e","tok-54a36a599787","tok-880c74216da8","tok-cd54ccb09b2c","tok-f2e26dcdcbaf","tok-bb74508ee2d9","tok-bcdf30a5c755","tok-91451ca1c56f","tok-b6e46680b5fe","tok-d10c492dbec6","tok-bcdf30a5c755","tok-ae883a07848b","tok-76a67a0cfece","tok-7767ff492923","tok-ae883a07848b","tok-89f091b2426f","tok-9aeab46f9937","tok-30c5e24c1488","tok-c488ae9e9acd","tok-f4df8de3b9af","tok-1fc3fdac849e","tok-f4df8de3b9af","tok-aa6a909844c1","tok-44dee1667513","tok-de6ffb2e37d4","tok-ee653e7108d5","tok-8f828297142f","tok-fc6df7e82294","tok-87b11500fbac","tok-9407f67255f5","tok-0fa17fb91787","tok-af87889a9bd3","tok-17d144f0071b","tok-26abd1f67e53","tok-8ff98ec19a78","tok-78ac5f83834c","tok-1ea8502125a9","tok-1f829402ee30","tok-4da65e26819c","tok-e0198f7ca01d","tok-ef07e3200c85","tok-252e3ac70f6a","tok-fdeb43fc04fd","tok-0fc5037b9312"]}]},"tractate-kallah-2-7":{"unit_id":"tractate-kallah-2-7","anchor_id":"tractate-kallah-2-7","source_ref":"Tractate Kallah 2:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ff769e36e91e","tok-4fb3c76ccc60","tok-4b5c4119b03b","tok-66a8d5a11b98","tok-45e96dcfc7a0","tok-458b01176697","tok-4688b1ca7afc","tok-94dd2aef4540","tok-6db421542990","tok-5be33ce1b33e","tok-9db5b73350cd","tok-5be33ce1b33e","tok-fe82b8a5ede5","tok-5be33ce1b33e","tok-f5d5e63c4f0d","tok-5be33ce1b33e","tok-6ee24410e8b6","tok-5be33ce1b33e","tok-ecf17038f59d","tok-5be33ce1b33e","tok-b888f0c01d76","tok-5be33ce1b33e","tok-cafd00bae1ad","tok-5be33ce1b33e","tok-2b7d54da45c1","tok-5be33ce1b33e","tok-f7163efba076","tok-e7c59227519c","tok-5be33ce1b33e","tok-0aa41f427558","tok-8af5d4a18ac3","tok-163229eafeb4","tok-5be33ce1b33e","tok-c062290503f5","tok-4cb41fd11f06","tok-57379afc17f4","tok-7194cdb6b356","tok-a14714ef06cd","tok-26abd1f67e53","tok-54630c555428","tok-b5df90998753","tok-fc6df7e82294","tok-d2c61af3677b","tok-c90a4e3b275d","tok-422aab44a68a","tok-9b4e88754c69","tok-45ba94202405","tok-7e2bf9445e93","tok-e82c37ba0c3b","tok-9b4e88754c69","tok-5be33ce1b33e","tok-f4c3c9d6829c","tok-81e0ee7970cd"]}]},"tractate-kallah-2-8":{"unit_id":"tractate-kallah-2-8","anchor_id":"tractate-kallah-2-8","source_ref":"Tractate Kallah 2:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-533eb9d5ba4e","tok-43f4a24329eb","tok-b4b267b2495b","tok-ca0e382ded7a","tok-239d8fe3a682","tok-fc6df7e82294","tok-d2c61af3677b","tok-83205bccef42","tok-477837a81732","tok-4bd5b67055b3","tok-62ad93321360","tok-2eed798b41c8","tok-b4b267b2495b","tok-0abba9ff9f65","tok-04dca345aa69","tok-e487f30c3dcd","tok-60330f88bb44","tok-d5c094bdb9f5","tok-43e4249fd4ff","tok-e487f30c3dcd","tok-29e9d747d866","tok-472278c67259","tok-5c964c3a4158","tok-02bdb12e74c2","tok-25ff9975966d","tok-a7aee3bd8c15","tok-ca0e382ded7a","tok-b5df90998753","tok-fc6df7e82294","tok-d2c61af3677b","tok-c90a4e3b275d","tok-422aab44a68a","tok-54f0b0c580d7","tok-9a1477076067","tok-23f684b8c1b9","tok-b5df90998753","tok-fc6df7e82294","tok-d2c61af3677b","tok-5be33ce1b33e","tok-41988bc99827","tok-32141af2efa7","tok-691f73e217af","tok-26abd1f67e53","tok-53453f7598d4","tok-72e691cb7cad","tok-87fe32e0d766","tok-53453f7598d4","tok-72e691cb7cad","tok-6785cf775c02","tok-1cb15242235b","tok-839177ac0de1"]}]},"tractate-kallah-3-1":{"unit_id":"tractate-kallah-3-1","anchor_id":"tractate-kallah-3-1","source_ref":"Tractate Kallah 3:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-925601e51bd9","tok-6e4650304db8","tok-b861fffb6286","tok-34e017fe63bc","tok-3feba5665d1e","tok-2db2151420b2","tok-a7c5f89f78e9","tok-17e5c24a0373","tok-62ad93321360","tok-474dbf20507a","tok-1d551b3ca18f","tok-a7c5f89f78e9","tok-a5f18840659a","tok-71d0a7b1e908","tok-62ad93321360","tok-a626ad1ecafc","tok-89609f2336a7","tok-87b11500fbac","tok-8c07f0785754","tok-6c347e7c65b5","tok-72d8255ded7b","tok-e7299e76d837","tok-23c09db98dab","tok-6e88e898380d","tok-ff7eaae7c76f","tok-2db2151420b2","tok-6e88e898380d","tok-53a5c2d233bd","tok-87b11500fbac","tok-8c07f0785754","tok-6c347e7c65b5","tok-72d8255ded7b","tok-e7299e76d837","tok-23c09db98dab","tok-78ac5f83834c","tok-8a80cdea4b4e","tok-ba40c36481c7","tok-763fbf5348c2","tok-e7299e76d837","tok-23c09db98dab","tok-aaed4200df78","tok-fec3f211cb9b","tok-7229a79e4a26","tok-98a0c99d3956","tok-fec3f211cb9b","tok-45e25db2d7ce","tok-87b11500fbac","tok-8c07f0785754","tok-6c347e7c65b5","tok-c9d516b59bbb","tok-72d8255ded7b","tok-e7299e76d837","tok-23c09db98dab","tok-9aeab46f9937","tok-e487f30c3dcd","tok-a3950d54aa44","tok-fe148bce3e6c","tok-ba67d37d13c0","tok-c5cef8cae88e","tok-2db2151420b2","tok-e7299e76d837","tok-56afbf779c63","tok-e487f30c3dcd","tok-4b5cf35da186"]}]},"tractate-kallah-3-2":{"unit_id":"tractate-kallah-3-2","anchor_id":"tractate-kallah-3-2","source_ref":"Tractate Kallah 3:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-563d1b5b23f4","tok-ae0df2cae57f","tok-84e1f5d5a689","tok-96f1d1fdf42b","tok-fdeb43fc04fd","tok-7c90a8be6077","tok-6051d3cf3709","tok-68a68a2ee385","tok-3a70c5fcbda4","tok-0332978bb7cb","tok-41288832966a","tok-0d3f364678cf","tok-833249a58b99","tok-ad62c78fb7d7","tok-1636727dadf9","tok-27fefe8d38a0","tok-aca1c97a22db","tok-c952f9d72ef8","tok-2881d96e8be3","tok-c804ac1f28e7","tok-7767ff492923","tok-4fb3c76ccc60","tok-9aeab46f9937","tok-90dcb6c034ba","tok-763fbf5348c2","tok-84e1f5d5a689","tok-90dcb6c034ba","tok-06f1aafbcf64","tok-ecb7fcc066af","tok-e487fd63d6d3","tok-0332978bb7cb","tok-73bf6f5ffe81","tok-76483f42b496","tok-9745220356b9","tok-ff78a44d9d41","tok-73bf6f5ffe81","tok-76483f42b496","tok-9745220356b9","tok-979a5e66e36e","tok-cf27ce4e55b9","tok-5a3b092cb78f","tok-73bf6f5ffe81","tok-76483f42b496"]}]},"tractate-kallah-3-3":{"unit_id":"tractate-kallah-3-3","anchor_id":"tractate-kallah-3-3","source_ref":"Tractate Kallah 3:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-805c4feceaeb","tok-f43f8e13cdae","tok-06f1aafbcf64","tok-bec54522d8ab","tok-9f347b757de9","tok-63a0cb785e09","tok-72458af0fd36","tok-86f7e7951711","tok-04aa8156f190","tok-382a27b5f567","tok-e5f2d575814d","tok-2020d9b5df8d","tok-641d4679351c","tok-2b18963634a2","tok-622a641eb587","tok-b9cc4c0d2cca","tok-2881d96e8be3","tok-c804ac1f28e7","tok-925601e51bd9","tok-6e4650304db8","tok-ca010c9d2762","tok-b02e981e85b0","tok-76483f42b496","tok-9a1477076067","tok-c8ebe3c29b33","tok-1ed1fd3a4796","tok-76483f42b496","tok-925601e51bd9","tok-6e4650304db8","tok-cdca2a814965","tok-813ceab103d7","tok-b5df90998753","tok-fc6df7e82294","tok-d2c61af3677b","tok-f544e77bd2a0","tok-925601e51bd9","tok-6e4650304db8","tok-f37d6e2a5e62","tok-34e017fe63bc","tok-8959fe78a38d","tok-1d551b3ca18f","tok-a7c5f89f78e9","tok-a5f18840659a","tok-c9674c7e7b37","tok-62ad93321360","tok-a5b9f1b217bd","tok-33f51a3c7758","tok-4e88af039f0c","tok-652b1acb4cbe","tok-3b360ba2b0d6","tok-6b7b65725a68","tok-3c8c007e07f6","tok-33f51a3c7758","tok-3b360ba2b0d6","tok-652b1acb4cbe","tok-4e88af039f0c","tok-d504d94cee83","tok-9fdfaf4863dd","tok-62ad93321360","tok-5be33ce1b33e","tok-72d8255ded7b","tok-c66f7a9b196f","tok-9a1477076067","tok-50f8d7e7e689","tok-8d6811639b65","tok-351db5752d79","tok-423341531fb4","tok-7c3fcc55b8db","tok-a5d1ddbbf66b","tok-3bdfffe5de5e","tok-3a70c5fcbda4","tok-07267de9b8f2","tok-ab4e46ad9797","tok-20f5832ed3be","tok-49e9058c2ecf","tok-ab4e46ad9797","tok-97fa6013302a","tok-76a81aa18984"]}]},"tractate-kallah-3-4":{"unit_id":"tractate-kallah-3-4","anchor_id":"tractate-kallah-3-4","source_ref":"Tractate Kallah 3:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-07267de9b8f2","tok-ab4e46ad9797","tok-04adc2ad535b","tok-e907b13ef391","tok-3a70c5fcbda4","tok-7c79847eb34a","tok-04adc2ad535b","tok-c26276c971a5","tok-3a70c5fcbda4","tok-252cbc242db8","tok-99d083dd6962","tok-04adc2ad535b","tok-076d230f1db5","tok-3a70c5fcbda4","tok-7c79847eb34a","tok-43e4ed2a11e5","tok-99d083dd6962","tok-482afc725cbd","tok-fec3f211cb9b","tok-14f3d61c2bff","tok-f648d7a37ff1","tok-a3990be8be93","tok-a9ef5872d72d","tok-9bad8c5fdb9b","tok-42724753bf8b","tok-2927360a6389","tok-8457573130ae","tok-0d3f364678cf","tok-83e235f3da6f","tok-fedb4a0f91e1","tok-85b9633559de","tok-f3df482d0503","tok-34af80725138","tok-fedb4a0f91e1","tok-85b9633559de","tok-351db5752d79","tok-fedfd02d7c5e","tok-fedb4a0f91e1","tok-85b9633559de","tok-04adc2ad535b","tok-e907b13ef391","tok-3a70c5fcbda4","tok-7c79847eb34a","tok-04adc2ad535b","tok-c26276c971a5","tok-3a70c5fcbda4","tok-252cbc242db8","tok-99d083dd6962","tok-04adc2ad535b","tok-076d230f1db5","tok-3a70c5fcbda4","tok-7c79847eb34a","tok-43e4ed2a11e5","tok-99d083dd6962","tok-4fb3c76ccc60","tok-fc6df7e82294","tok-b0becfc20693","tok-076d230f1db5","tok-d34c1cc50f8f","tok-1cfde53b54b6","tok-9952660c39be","tok-d1b4ce734240","tok-78ac5f83834c","tok-98d74b2d61a1","tok-a8a7598b1861","tok-af87889a9bd3","tok-c56d10aa514d","tok-351db5752d79","tok-54a64e085cba","tok-0a55d137ba70","tok-a16ba406bd3a","tok-5d18f45f43f7","tok-05045d96cbbd","tok-62ad93321360","tok-1261d9e6d06e","tok-ff6005c58c70","tok-be5ab8befdb6","tok-2d76321d4a92","tok-98d782f3b53c","tok-2f733073822a","tok-3603fedc0832","tok-af87889a9bd3","tok-db0bb8ebb428","tok-206edc39b91d","tok-088081e0881f","tok-fedb4a0f91e1","tok-a8d539a35923","tok-17d144f0071b","tok-e4f665c599b1","tok-32bff138c750","tok-471654d91935","tok-54a64e085cba","tok-cc8d65670ff3","tok-b65255f8a5b1","tok-277b9d6a0c1d","tok-dc08b208d998","tok-f2e26dcdcbaf","tok-fc6df7e82294","tok-cb98bf5f6f9e","tok-17d144f0071b","tok-91451ca1c56f","tok-04adc2ad535b","tok-076d230f1db5","tok-7fcaa025b31a","tok-6bb3bf237df1","tok-bb005bc01c2d","tok-e80482a786c2","tok-af87889a9bd3","tok-db0bb8ebb428","tok-a7e4cab2ddc7","tok-351db5752d79","tok-4910e4193ae0","tok-995bbf2f2165","tok-f2e26dcdcbaf","tok-fc6df7e82294","tok-baad69ca43c0","tok-4cc183b6c50a","tok-6ee24410e8b6","tok-aae1ad862ee6","tok-8de96d06a5b3","tok-be8eac4705b3","tok-6fb536a028d5","tok-47218889adbc","tok-7ab40ceb368d","tok-994f745916cb","tok-d4f0ccd54657","tok-17d144f0071b","tok-252cbc242db8","tok-351db5752d79","tok-101b7a077e18","tok-5e57a44fc565","tok-7c79847eb34a","tok-43e4ed2a11e5","tok-99d083dd6962","tok-4fb3c76ccc60","tok-515024d6a440","tok-91451ca1c56f","tok-04adc2ad535b","tok-076d230f1db5","tok-990b1bccbd2a","tok-fedb4a0f91e1","tok-3f03693236e9","tok-d70433524b63","tok-a9c0fc7b8943","tok-4fb3c76ccc60","tok-c640256496ac","tok-4a2f6b73bb0f","tok-7a98874f1957","tok-4949ba655dbb","tok-b2f1350688e5","tok-34af80725138","tok-27096f71db16","tok-b0becfc20693","tok-076d230f1db5","tok-252cbc242db8","tok-a5062d6725b2"]}]},"tractate-kallah-4-1":{"unit_id":"tractate-kallah-4-1","anchor_id":"tractate-kallah-4-1","source_ref":"Tractate Kallah 4:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-af87889a9bd3","tok-04adc2ad535b","tok-c001c13ede78","tok-ae20cf23f069","tok-c5399431a721","tok-87b11500fbac","tok-f4b902db66c9","tok-598dae0b6b33","tok-43a7c3804849","tok-77ccf455497f","tok-96f1d1fdf42b","tok-fdeb43fc04fd","tok-e2fd1dc78f9f","tok-f955edf130fc","tok-f4b902db66c9","tok-bc93ca681f1f","tok-45079c17bbad","tok-7767ff492923","tok-6bf559c44128","tok-2b18963634a2","tok-33f51a3c7758","tok-4949ba655dbb","tok-7f16b6fd13db","tok-33f51a3c7758","tok-73d1436043bd","tok-a869191198d7","tok-dff81521a205","tok-515024d6a440","tok-78ac5f83834c","tok-8a80cdea4b4e","tok-cb5aeb700e57","tok-c3280a1d4e71","tok-da8aecac3f83","tok-627f621b0988","tok-633c47e72c79","tok-fedb4a0f91e1","tok-8867591cb68e","tok-5be33ce1b33e","tok-4949ba655dbb","tok-73ff862d1490","tok-84675eedf0cc","tok-f955edf130fc","tok-a517f7cc6f3a","tok-e2fab67a3bd3","tok-fedb4a0f91e1","tok-bc93ca681f1f","tok-ab597b14fc0c","tok-e0d5285421e1","tok-cf024147ede4","tok-7767ff492923","tok-6bf559c44128","tok-71409a51ff36","tok-cb18bd5f5848","tok-c153c795d2bc","tok-7381ddc98244","tok-b06e749ecb39","tok-c3280a1d4e71","tok-d44d1a4e7c0c","tok-289a8714395d","tok-fedb4a0f91e1","tok-5b268f816fe0","tok-014da85a8158","tok-532ffc787fa8"]}]},"tractate-kallah-4-2":{"unit_id":"tractate-kallah-4-2","anchor_id":"tractate-kallah-4-2","source_ref":"Tractate Kallah 4:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-04adc2ad535b","tok-e907b13ef391","tok-252cbc242db8","tok-799ac8c9f5d8","tok-3a70c5fcbda4","tok-87b11500fbac","tok-10ee8cf0c4c7","tok-34aad5a3cee2","tok-160a62dc23be","tok-0934e2d7251b","tok-c268d51b513d","tok-1ac70d17984a","tok-fedb4a0f91e1","tok-cf9a354c3319","tok-c3280a1d4e71","tok-4dca7223ae65","tok-799d37ab779c","tok-74325fff1311","tok-8e9523f1fda7","tok-ab0487d6fc82","tok-0a89c7a84f51","tok-74325fff1311","tok-9aeab46f9937","tok-4072aecdf593","tok-03eebabeae8b","tok-90b027ea000e","tok-c268d51b513d","tok-5d8eca276611","tok-1acde5dd8486","tok-d89f59e832b0","tok-c3280a1d4e71","tok-d44d1a4e7c0c","tok-7c1f070ace48","tok-668bde358c12","tok-7c72fcb488aa","tok-87b11500fbac","tok-ab87deb1005e","tok-b7802bd3d152"]}]},"tractate-kallah-4-3":{"unit_id":"tractate-kallah-4-3","anchor_id":"tractate-kallah-4-3","source_ref":"Tractate Kallah 4:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-af87889a9bd3","tok-04adc2ad535b","tok-87b11500fbac","tok-2f68d921017f","tok-7b2554c663c9","tok-c268d51b513d","tok-5d8eca276611","tok-1acde5dd8486","tok-d89f59e832b0","tok-c3280a1d4e71","tok-f269c1c32203","tok-b7cf1e218797","tok-61a9621dd733","tok-814b54674da4","tok-67fd9d91dbfe","tok-420e23fd808e","tok-d91a57665be8","tok-99d3cf64e1ae","tok-600f38e85170","tok-aaecdd3537e2","tok-9aeab46f9937","tok-1acde5dd8486","tok-d89f59e832b0","tok-c3280a1d4e71","tok-24ad1094779b","tok-f8cadd56b80b","tok-e8e4699ce529","tok-74edaca43ca7","tok-c7a044e8e1b3","tok-1bd3ef3a40ad"]}]},"tractate-kallah-4-4":{"unit_id":"tractate-kallah-4-4","anchor_id":"tractate-kallah-4-4","source_ref":"Tractate Kallah 4:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ff769e36e91e","tok-4fb3c76ccc60","tok-a583186d34d1","tok-c9d516b59bbb","tok-72d8255ded7b","tok-9be3c16821d0","tok-2871e1e9f190","tok-3a9079732a5c","tok-6ca2114cd3c1","tok-4ad402f0d7c5","tok-a3950d54aa44","tok-5ac76eb8f5e3","tok-6db421542990","tok-fa98e872f2ea","tok-e1b407a9ffda","tok-116e3d30293b","tok-6ca2114cd3c1","tok-03d5c675e46c","tok-116e3d30293b","tok-82c7faf746bb","tok-03d5c675e46c","tok-116e3d30293b","tok-1ad377f5af35","tok-03d5c675e46c","tok-116e3d30293b","tok-6ca2114cd3c1","tok-03d5c675e46c","tok-477837a81732","tok-cb4d4b30037d","tok-ca93eb8a6444","tok-116e3d30293b","tok-82c7faf746bb","tok-477837a81732","tok-6d29ca319f9d","tok-116e3d30293b","tok-1ad377f5af35","tok-477837a81732","tok-1566f6829efe","tok-fdeb43fc04fd","tok-5bdd43ef8dbc","tok-87f0dbaef058"]}]},"tractate-kallah-4-5":{"unit_id":"tractate-kallah-4-5","anchor_id":"tractate-kallah-4-5","source_ref":"Tractate Kallah 4:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e4f665c599b1","tok-5807bf8525f7","tok-7c1f070ace48","tok-668bde358c12","tok-87b11500fbac","tok-80b78869ff79","tok-bc93ca681f1f","tok-f082a345cc1b","tok-160a62dc23be","tok-0934e2d7251b","tok-ce3b4628a00b","tok-a8af6ce36262","tok-4910e4193ae0","tok-7a8f97d000d1","tok-edbb5f308940","tok-0731b02b616b","tok-5fa50fd8ee49","tok-efaaaf81f2e9","tok-33f51a3c7758","tok-4910e4193ae0","tok-7a8f97d000d1","tok-edbb5f308940","tok-e62a271903db","tok-7116c870a64e","tok-163229eafeb4","tok-33f51a3c7758","tok-efaaaf81f2e9","tok-4910e4193ae0","tok-7a8f97d000d1","tok-edbb5f308940","tok-9aad4da5be59","tok-9aeab46f9937","tok-60f0f6bfbeaf","tok-600f38e85170","tok-db0bb8ebb428","tok-a68ef8c3d523","tok-ef637c37cba3","tok-dc08b208d998","tok-163229eafeb4","tok-33f51a3c7758","tok-c9d516b59bbb","tok-fc6df7e82294","tok-a68ef8c3d523","tok-ef637c37cba3","tok-dc08b208d998","tok-3cc9bacb9e41","tok-af87889a9bd3","tok-e5463982dbbb","tok-932453e7c0fb","tok-15de4d8a64ab","tok-c188330f242a","tok-a517f7cc6f3a","tok-f9e76b5ae857","tok-1a103e379cf5","tok-5be33ce1b33e","tok-bf4aa71b8951","tok-92bfb4d269d4","tok-a7c5f89f78e9","tok-b47fbde10a67","tok-136c5d8fb5db","tok-501337fd63dd","tok-62ad93321360","tok-17badb2f5d69","tok-d497a2e7ab11","tok-abe75b803e0d","tok-e20f19b6aa7d","tok-600f38e85170","tok-5ffd5c3f56ea","tok-34aad5a3cee2","tok-160a62dc23be","tok-0934e2d7251b","tok-3eb0b7ab3116","tok-98fca82da6ab","tok-47c29965e3bd","tok-a7c5f89f78e9","tok-9237f82e4e40","tok-1d0768e4269e","tok-136c5d8fb5db","tok-a7c5f89f78e9","tok-501337fd63dd","tok-62ad93321360","tok-bd8a8016c63b","tok-4967bd7c371f","tok-e20f19b6aa7d","tok-5a0d7aed3e4b","tok-34aad5a3cee2","tok-160a62dc23be","tok-0934e2d7251b"]}]},"tractate-kallah-4-6":{"unit_id":"tractate-kallah-4-6","anchor_id":"tractate-kallah-4-6","source_ref":"Tractate Kallah 4:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-728bd124c623","tok-7c1f070ace48","tok-668bde358c12","tok-87b11500fbac","tok-80b78869ff79","tok-bc93ca681f1f","tok-7059fba7ef80","tok-34aad5a3cee2","tok-160a62dc23be","tok-0934e2d7251b","tok-c5b9e54d896f","tok-44bb955cd6af","tok-c3280a1d4e71","tok-f269c1c32203","tok-e00e1a8c4508","tok-23109c98b0a0","tok-b050de39b658","tok-a3479144373a","tok-3bdfffe5de5e","tok-318179ee65ef","tok-235cbf75d211","tok-4a2f6b73bb0f","tok-ec0ca4ac66db","tok-4a2f6b73bb0f","tok-f955edf130fc","tok-18ea923f696e","tok-fedb4a0f91e1","tok-bc93ca681f1f","tok-8d6811639b65","tok-351db5752d79","tok-ce2475be980b","tok-c3280a1d4e71","tok-d44d1a4e7c0c","tok-36037bdeed18","tok-235cbf75d211","tok-4a2f6b73bb0f","tok-fedb4a0f91e1","tok-b2f1350688e5","tok-8d3407efebb0","tok-45548dc2fb6b","tok-d0afc9a0705b","tok-6f3a7221c461","tok-ae4f708376cf","tok-c153c795d2bc","tok-c3280a1d4e71","tok-1195adcc2319","tok-de52bfc2040b","tok-160a62dc23be","tok-a61928f7738b","tok-80db61f27c25","tok-3e182e227f00","tok-f6ed0eabca70","tok-a261539ccb5b","tok-4910e4193ae0","tok-4ac6d4a7561d","tok-62ad93321360","tok-72d8255ded7b","tok-6a065193f052","tok-973cae083172","tok-3a70c5fcbda4","tok-a261539ccb5b","tok-e279c9b00fe4","tok-c3280a1d4e71","tok-15de4d8a64ab","tok-b5b51aa63e18","tok-ab0487d6fc82","tok-47df088529f1","tok-fedb4a0f91e1","tok-daf9c54bfed4","tok-cbd329fc3187","tok-fedb4a0f91e1","tok-af2424f10a1c","tok-0af9c883a2f9","tok-c56feb04fef0","tok-fedb4a0f91e1","tok-c7a044e8e1b3","tok-136821e9e882","tok-04adc2ad535b","tok-31d73bb9afed","tok-3a70c5fcbda4","tok-a261539ccb5b","tok-4e7f673d5b11","tok-6d75d74886e6","tok-246b2e978ba6","tok-120e440b94e1","tok-78ac5f83834c","tok-1a3f6081e3c7","tok-081bc0fbe1e6","tok-54231aa8e5f4","tok-9aab21690385","tok-82a5cdae6495","tok-f4aae96388d6","tok-a04789eb1390","tok-5a00f8adbc1f","tok-2d0c97413beb","tok-1d929f9f37ee","tok-04adc2ad535b","tok-4d307a66234c","tok-3a70c5fcbda4","tok-a261539ccb5b","tok-93f15b7a86ad","tok-6d75d74886e6","tok-24ad1094779b","tok-a60c6732795b","tok-fa3117f9b829","tok-93418d1543a7","tok-e533329d3f19","tok-a7aee3bd8c15","tok-85165b261781","tok-c603df0f88d2","tok-0af9c883a2f9","tok-04adc2ad535b","tok-c26276c971a5","tok-3a70c5fcbda4","tok-a261539ccb5b","tok-b39db0bb2b67","tok-90312818c430","tok-d0afc9a0705b","tok-6a065193f052","tok-c3280a1d4e71","tok-f22a4ccf242a","tok-b174aa8765fc","tok-81545cae2c71","tok-fedb4a0f91e1","tok-5b82a8ace0d0","tok-91bb2b633820","tok-1f501f9c39e3","tok-43d27fd5eca7","tok-fa3117f9b829","tok-54a64e085cba","tok-5b9eff9f6c7b","tok-3a70c5fcbda4","tok-87b11500fbac","tok-a517f7cc6f3a","tok-9b17cea662ae","tok-6655d8b6d93e","tok-b6f836c5348b","tok-cad439763c3b","tok-6eec80ca0fd6","tok-9832a8c06779","tok-4910e4193ae0","tok-5e73393c523d","tok-72d8255ded7b","tok-6decc4512146","tok-4ac6d4a7561d","tok-aefa0b96afbb","tok-ffe2846833da","tok-5e73393c523d","tok-4b6b5775a5f1","tok-c77b5e61d590","tok-5bc9a04e395f","tok-814f5de3666e","tok-94dd2aef4540","tok-6db421542990","tok-4b6b5775a5f1","tok-c77b5e61d590","tok-bb9cf2947150","tok-2050d34d2e2a","tok-5eebab55c398","tok-c3280a1d4e71","tok-1195adcc2319","tok-f50cf0647308","tok-85ab3d733b5e","tok-31d73bb9afed","tok-9f57a8cc05bb","tok-db2d6cedda67","tok-9aad4da5be59","tok-2e43d583f770"]}]},"tractate-kallah-5-1":{"unit_id":"tractate-kallah-5-1","anchor_id":"tractate-kallah-5-1","source_ref":"Tractate Kallah 5:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4fb3c76ccc60","tok-3cc9bacb9e41","tok-78ac5f83834c","tok-ee86e1347574","tok-1f5d881e4dbd","tok-7becd03dcd04","tok-515024d6a440","tok-7767ff492923","tok-91451ca1c56f","tok-95bab553cc6a","tok-fdf98a8348f6","tok-9f57a8cc05bb","tok-482afc725cbd","tok-fec3f211cb9b","tok-b5fddf39cb3c","tok-04adc2ad535b","tok-076d230f1db5","tok-af87889a9bd3","tok-fc6df7e82294","tok-04adc2ad535b","tok-29dd3c35d29b","tok-516931d7e99f","tok-a5b11f3d753f","tok-ef448ffc7bb9","tok-fec3f211cb9b","tok-a1f2b6cbb470","tok-14ca1ec2739d","tok-af87889a9bd3","tok-fc6df7e82294","tok-6db421542990","tok-7853b8b092e1","tok-094a72e951c7","tok-ee86e1347574","tok-86d3b10e3a1b","tok-fc6df7e82294","tok-a42e9048c292","tok-8be4b6653749","tok-a40c13005beb","tok-7c5d30cfde49","tok-133ebb3e0f1a","tok-5b9eff9f6c7b","tok-80e11e8502ca","tok-5eebab55c398","tok-63a0fb363561","tok-b5fddf39cb3c","tok-ee86e1347574","tok-4857758b4215","tok-5cfbe663f669","tok-6cf375d4312d","tok-4b195c09b7f6","tok-17d144f0071b","tok-a00c088dc617","tok-c2837cb2287a","tok-d585c5f6fa1d","tok-4490079263e2","tok-83c4cc7ed5f3","tok-55386f7adaf5","tok-57ea177131ce","tok-1195adcc2319","tok-4abacbdc53ff","tok-8588730426f8","tok-9a8e4453bda4","tok-bbf2f92f16d8","tok-8b29d080076e","tok-e487f30c3dcd","tok-45f28ea58109","tok-2a323fdaea6d","tok-351db5752d79","tok-85ab3d733b5e","tok-31d73bb9afed","tok-9f57a8cc05bb","tok-0af9c883a2f9","tok-4857758b4215","tok-136c5d8fb5db","tok-448df01e8fbb","tok-6e23afb03968","tok-a5b11f3d753f","tok-094a72e951c7","tok-ee86e1347574","tok-cbc45e94744c","tok-080b0a0223dc","tok-fc6df7e82294","tok-04adc2ad535b","tok-356a10ae2383","tok-04adc2ad535b","tok-53563bda006d","tok-eb8dcf282ce5","tok-e0a39c06da77","tok-44311f63c1dc","tok-d839971655c7","tok-fc6df7e82294","tok-87eee7b42f5c","tok-5d732716b0a1"]}]},"tractate-kallah-5-2":{"unit_id":"tractate-kallah-5-2","anchor_id":"tractate-kallah-5-2","source_ref":"Tractate Kallah 5:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-35356a614395","tok-c7a044e8e1b3","tok-2372e576f186","tok-1f5d881e4dbd","tok-abca9fad9868","tok-42075f68a707","tok-cfff422c9b6b","tok-4ad402f0d7c5","tok-96f1d1fdf42b","tok-4305dda15b55","tok-4ad402f0d7c5","tok-637f7f19f2b9","tok-f62bd14f3c18","tok-3967f5a3a79a","tok-8860774b2902","tok-7767ff492923","tok-af87889a9bd3","tok-fc6df7e82294","tok-f5ec2783e614","tok-ee86e1347574","tok-e487f30c3dcd","tok-f68e24d994d9","tok-26c56bcdcd22","tok-41c289535dc7","tok-193ff801c824","tok-f43f8e13cdae","tok-9ddf56b4c79c","tok-63ca5a851d3c","tok-50ff9803e7e2","tok-33eb70dd0b81","tok-0e9e9e0e3a94","tok-f25b382e077e","tok-91451ca1c56f","tok-6e9f13cb366d","tok-6c65faf7a794","tok-4c0899eeed83","tok-7fa62d71eb56","tok-ba40c36481c7","tok-af87889a9bd3","tok-fc6df7e82294","tok-97af848827cd","tok-62e00afe6e26","tok-c301f2e175ef","tok-17d144f0071b","tok-f955edf130fc","tok-9407f67255f5","tok-0fa17fb91787","tok-26abd1f67e53","tok-91b242950083","tok-ca4957bb6a85","tok-4cdbd555d56e","tok-90312818c430","tok-3afd2b041161","tok-c5005f0608fa","tok-4cdbd555d56e","tok-90312818c430","tok-c9d516b59bbb","tok-fc6df7e82294","tok-a68ef8c3d523","tok-ef637c37cba3","tok-dc08b208d998"]}]},"tractate-kallah-5-3":{"unit_id":"tractate-kallah-5-3","anchor_id":"tractate-kallah-5-3","source_ref":"Tractate Kallah 5:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9b4e88754c69","tok-6db421542990","tok-4b6b5775a5f1","tok-814f5de3666e","tok-973cae083172","tok-3a70c5fcbda4","tok-2d4f159cbcac","tok-56afbf779c63","tok-14bcf5e5fc6c","tok-54a36a599787","tok-04adc2ad535b","tok-3bdfffe5de5e","tok-3a70c5fcbda4","tok-d09eece698af","tok-14bcf5e5fc6c","tok-54a36a599787","tok-e059c8297c38","tok-c6fa82a35359","tok-c3280a1d4e71","tok-15de4d8a64ab","tok-af3182789a03","tok-4a2f6b73bb0f","tok-3fe39adda776","tok-c6fa82a35359","tok-bcdf30a5c755","tok-5b48edd7dff2","tok-e4f665c599b1","tok-318179ee65ef","tok-fc5d30aa3111","tok-851d00ac5628","tok-4ac6d4a7561d","tok-f1a974067c0b","tok-6fb536a028d5","tok-90312818c430","tok-a5456c9e0f8d","tok-32617fe5e14d","tok-879443c8709a","tok-fedb4a0f91e1","tok-814f5de3666e","tok-14bcf5e5fc6c","tok-54a36a599787","tok-973cae083172","tok-252cbc242db8","tok-799ac8c9f5d8","tok-3a70c5fcbda4","tok-c9d516b59bbb","tok-4ad4f8e598f8","tok-40078d53b58f","tok-9be3c16821d0","tok-57bf576052ce","tok-32617fe5e14d","tok-3dd0a1396db3","tok-2050d34d2e2a","tok-44763cfc85ee","tok-62ad93321360","tok-e66cfb983d7c","tok-9aeab46f9937","tok-c1c286d9303c","tok-1062e2d03193","tok-e26d4d2ece65","tok-ca557149c1f6","tok-ca6915d30f6b","tok-252cbc242db8","tok-49fc9d0fed44"]}]},"tractate-kallah-5-4":{"unit_id":"tractate-kallah-5-4","anchor_id":"tractate-kallah-5-4","source_ref":"Tractate Kallah 5:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4fb3c76ccc60","tok-3cc9bacb9e41","tok-78ac5f83834c","tok-04adc2ad535b","tok-ca6915d30f6b","tok-252cbc242db8","tok-49fc9d0fed44","tok-e3159e94cb92","tok-fec3f211cb9b","tok-86668f345a84","tok-fc6df7e82294","tok-1a261b300889","tok-a32e8e26f14a","tok-b5b44cb99c0d","tok-62ad93321360","tok-e66cfb983d7c","tok-d4f0ccd54657","tok-17cbd6a5fb8b","tok-5b437e9c2063","tok-080b0a0223dc","tok-aecec0d47119","tok-17d144f0071b","tok-0f90ec24ac6a","tok-8e3e2f2684a4","tok-44bb955cd6af","tok-201dc83c36a5","tok-e487f30c3dcd","tok-1f5d881e4dbd","tok-17cbd6a5fb8b","tok-5b437e9c2063","tok-96f1d1fdf42b","tok-37a6dc06d2c1","tok-4857758b4215","tok-04adc2ad535b","tok-49713e8caf28","tok-e09e8ee09c9f","tok-36b175ad1ff2","tok-a500eacbb92f","tok-f8b04f24833a","tok-4609a2e564fd","tok-ef703bea0ff6","tok-4806eae3d1d0","tok-93af3759a4a9","tok-3a2892586485","tok-e36b356cf188","tok-29beedfdecc4","tok-b94cbda3f555","tok-a2247befb73a","tok-f43f8e13cdae","tok-f91d1cdcf353","tok-d4f0ccd54657","tok-c27aa517c1ff","tok-099a939c2aaf","tok-b95cd85a3805","tok-e4289d8758ab","tok-094a72e951c7","tok-37a6dc06d2c1","tok-4ca39088a8dc","tok-b36a3a73e7bd","tok-04adc2ad535b","tok-b2e3c85beede","tok-33f51a3c7758","tok-9e4a4c3d2bc7","tok-4f74c5bc27f6","tok-4857758b4215","tok-6db421542990","tok-4857758b4215","tok-df47f1bf1c69","tok-f91d1cdcf353","tok-60fe825868de","tok-4857758b4215","tok-d44013dfdb24","tok-ed59c013b3be","tok-be4553f45136","tok-26abd1f67e53","tok-403ef9f538d1","tok-0d73707792c1","tok-e487f30c3dcd","tok-b15d781a7025","tok-088081e0881f","tok-49713e8caf28","tok-7ab40ceb368d","tok-e0d5285421e1","tok-85f5deaabe35","tok-a2162ce007ba","tok-17d144f0071b","tok-a9c0fc7b8943","tok-fec3f211cb9b","tok-bcb4cffffe91","tok-91451ca1c56f","tok-37a6dc06d2c1","tok-17cbd6a5fb8b","tok-5b437e9c2063","tok-af87889a9bd3","tok-2f75ff731d6e","tok-5a27e5634441","tok-44bb955cd6af","tok-319e2ad52051","tok-b28566c8b59c","tok-0fa17fb91787","tok-684731a978c2","tok-8af5d6bd3e51","tok-d6e622d4ea20","tok-b36a3a73e7bd","tok-0ffddaca0301","tok-a5b11f3d753f","tok-f955edf130fc","tok-4910e4193ae0","tok-0f7aa4efcab0","tok-4273aef56577","tok-b0a1faffa32b","tok-0d73707792c1","tok-5e73393c523d","tok-af87889a9bd3","tok-fc6df7e82294","tok-6f54397c93f4","tok-8053872e7b1e","tok-7ab40ceb368d","tok-640853c56710","tok-e0d5285421e1","tok-85f5deaabe35","tok-9205a3e19e2e","tok-c9d516b59bbb","tok-b2e3c85beede","tok-a9d7e44a1301","tok-da95e382026d","tok-228871aff833","tok-16b638d221c1","tok-c818c7036050","tok-da95e382026d","tok-cb998c3886bf","tok-b081545998c9","tok-e3bee43630b8","tok-7b23336d30b9","tok-c38861dec9b0","tok-268fc48e2ed2","tok-7cef94bc72f7","tok-72fa64d34237","tok-0d73707792c1","tok-9aeab46f9937","tok-77ccf455497f","tok-b1048ce92ed3","tok-d44dd155490a","tok-be6240248a56","tok-09a6d4f4962c","tok-bfdbb189a42e","tok-68ea696fcddf","tok-37a6dc06d2c1","tok-7248cb84c246","tok-a7c5f89f78e9","tok-e867a8934e24","tok-7853b8b092e1","tok-094a72e951c7","tok-1bd45791bb09","tok-78ac5f83834c","tok-0b90cb713e30","tok-477ea9ad8b48","tok-79f8bd4d4007","tok-37ce1111705d","tok-9c24ff9d5deb","tok-e0d5285421e1","tok-5dcc188a07bd","tok-080b0a0223dc","tok-073098efd513","tok-8de5ce595c6e","tok-18257f7cc446","tok-4c89588fa45e","tok-dbf706e1ce23","tok-073098efd513","tok-97148daf6e69","tok-142da6efbf0b","tok-7853b8b092e1","tok-a07f95480b75","tok-02854a3c5d67","tok-e5551c3ad922","tok-5b06bea26f18","tok-04adc2ad535b","tok-ca6915d30f6b","tok-252cbc242db8","tok-49fc9d0fed44","tok-0f537fde1dae","tok-90a4536cd60c","tok-b65255f8a5b1","tok-9b2ecd886f79","tok-dc08b208d998","tok-a5d1ddbbf66b","tok-e907b13ef391","tok-3a70c5fcbda4","tok-c72b3490d43b","tok-cc1cee41bb84","tok-10090f954a17","tok-c5b9e54d896f","tok-44bb955cd6af","tok-252cbc242db8","tok-1e5a38a13861","tok-3a70c5fcbda4","tok-87b11500fbac","tok-c72b3490d43b","tok-cc1cee41bb84","tok-10090f954a17","tok-0e6b14eb4958","tok-fc6df7e82294","tok-cc1cee41bb84","tok-de457c76ac13","tok-78ac5f83834c","tok-00f0995ebbde","tok-c5b9e54d896f","tok-44bb955cd6af","tok-f955edf130fc","tok-a0fb6b98b044","tok-e4f665c599b1","tok-6bdeb549bbdd","tok-40078d53b58f","tok-26abd1f67e53","tok-4fb3c76ccc60","tok-e4289d8758ab","tok-cad439763c3b","tok-050c9d1186cb","tok-258418855af0","tok-c81956c1f575","tok-f955edf130fc","tok-a0fb6b98b044","tok-e4f665c599b1","tok-ed59c013b3be","tok-db8fa2236e36","tok-f01ab86ad549","tok-72097fecab1d","tok-ef637c37cba3","tok-c3280a1d4e71","tok-9e7433824f2c","tok-e6ea3763132d","tok-86b27e354b9e","tok-629a5fcbd65d","tok-9e7433824f2c","tok-c24a3b6ee730","tok-ed59c013b3be","tok-58b076f7874f","tok-b64d2d3fe4cf","tok-ff70c7978edd","tok-87b11500fbac","tok-8c08333e809f","tok-ce811e67f28b","tok-ead7f46ea988","tok-87fe32e0d766","tok-bcdf30a5c755","tok-f2e71442b450","tok-98d74b2d61a1","tok-04adc2ad535b","tok-ba2705d5e66d","tok-04adc2ad535b","tok-3bdfffe5de5e","tok-3a70c5fcbda4","tok-87b11500fbac","tok-8ec0383ed99a","tok-b9a07ff07338","tok-e4289d8758ab","tok-04adc2ad535b","tok-4230f8ca511e","tok-3a70c5fcbda4","tok-87b11500fbac","tok-aeb6be037d44","tok-5c6e7378a0b0","tok-518d3ff04b99","tok-9205a3e19e2e","tok-91451ca1c56f","tok-8d12e19490e4","tok-bcdf30a5c755","tok-98885051bc19","tok-fc6df7e82294","tok-33aebc2413f3","tok-36379d49152e","tok-9aeab46f9937","tok-98885051bc19","tok-fc6df7e82294","tok-8a1353f5ef94","tok-31db6da21127"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/tractate-kallah.manifest.json","root_href":"../../"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

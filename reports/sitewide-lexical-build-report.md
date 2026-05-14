@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-13T23:46:48.061Z
+Generated: 2026-05-14T12:04:16.358Z
 
 ## Scope
 
@@ -15,18 +15,18 @@ Generated: 2026-05-13T23:46:48.061Z
 
 ## Counts
 
-- Total work-surface rows: 1439973
-- Total sitewide unique surface forms: 469143
-- Sitewide unique surface forms matched at least once: 70830
-- Sitewide unique surface forms unmatched everywhere: 398313
-- Total token occurrences: 6886991
-- Matched before prefix/suffix parser: 371354
-- Newly resolved by prefix/suffix parser: 51257
-- Total matched after parser: 436380
-- Percent matched: 30.3%
-- Matched via Wikidata: 318855
-- Enriched via OpenScriptures: 368419
-- Unmatched: 1003593
+- Total work-surface rows: 1458749
+- Total sitewide unique surface forms: 470293
+- Sitewide unique surface forms matched at least once: 70919
+- Sitewide unique surface forms unmatched everywhere: 399374
+- Total token occurrences: 6944012
+- Matched before prefix/suffix parser: 377643
+- Newly resolved by prefix/suffix parser: 52009
+- Total matched after parser: 443781
+- Percent matched: 30.4%
+- Matched via Wikidata: 324131
+- Enriched via OpenScriptures: 374686
+- Unmatched: 1014968
 
 ## Newly Resolved Parsed Forms
 
@@ -67,17 +67,18 @@ Generated: 2026-05-13T23:46:48.061Z
 - א״א -> Arikh Anpin (workspace) -- yahel-ohr-on-zohar
 - א״כ -> if so, therefore (workspace) -- aderet-eliyahu
 - א״כ -> if so, therefore (workspace) -- aggadat-bereshit
+- א״כ -> if so, therefore (workspace) -- avot-derabbi-natan
 - א״כ -> if so, therefore (workspace) -- beur-hagra-on-jerusalem-talmud-bikkurim
 - א״כ -> if so, therefore (workspace) -- beur-hagra-on-jerusalem-talmud-challah
 - א״כ -> if so, therefore (workspace) -- beur-hagra-on-shulchan-arukh-choshen-mishpat
 - א״כ -> if so, therefore (workspace) -- beur-hagra-on-shulchan-arukh-even-haezer
 - א״כ -> if so, therefore (workspace) -- beur-hagra-on-shulchan-arukh-orach-chayim
-- א״כ -> if so, therefore (workspace) -- beur-hagra-on-shulchan-arukh-yoreh-deah
 
 ## Sample Unmatched Words
 
 - אֵ־ל -- ein-yaakov
 - אאא -- otzar-midrashim
+- אאבד -- avot-derabbi-natan
 - אאבד -- ein-yaakov
 - אאבד -- raavad-on-sifra
 - אַאֲבוּהָ -- ein-yaakov
@@ -95,7 +96,6 @@ Generated: 2026-05-13T23:46:48.061Z
 - אאוכל -- chafetz-chaim-on-sifra
 - אאוכלין -- raavad-on-sifra
 - אאומינס -- the-book-of-maccabees-i
-- אַאוּסְיָא -- ein-yaakov
 
 ## Top 50 Remaining Unmatched By Frequency
 
