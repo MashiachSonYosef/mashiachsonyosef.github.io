@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Beginning of Wisdom</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>The Beginning of Wisdom</h1>
+        <p class="meta">40 total source units | imported 2026-05-13</p>
+        <p class="meta source-citation">Hebrew version: Klalei Hatchalat HaChochmah, Jerusalem 2018 | Version source: <a href="https://he.wikisource.org/wiki/%D7%9B%D7%9C%D7%9C%D7%99_%D7%94%D7%AA%D7%97%D7%9C%D7%AA_%D7%94%D7%97%D7%9B%D7%9E%D7%94">he.wikisource.org</a> | Digitization: Sefaria API | License: CC-BY-SA</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Introduction <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#group-introduction">Start</a>
+              <details class="toc-section">
+                <summary>Introduction <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#section-introduction-introduction">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-introduction-introduction-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-introduction-introduction-1" title="The Beginning of Wisdom, Introduction:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-introduction-introduction-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-introduction-introduction-2" title="The Beginning of Wisdom, Introduction:2">2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-introduction-introduction-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-introduction-introduction-3" title="The Beginning of Wisdom, Introduction:3">3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-introduction-introduction-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-introduction-introduction-4" title="The Beginning of Wisdom, Introduction:4">4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-introduction-introduction-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-introduction-introduction-5" title="The Beginning of Wisdom, Introduction:5">5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-introduction-introduction-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-introduction-introduction-6" title="The Beginning of Wisdom, Introduction:6">6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-introduction-introduction-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-introduction-introduction-7" title="The Beginning of Wisdom, Introduction:7">7</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="toc-group">
+              <summary>default <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#group-default">Start</a>
+              <details class="toc-section">
+                <summary>default <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#section-default-default">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-default-default-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-1" title="The Beginning of Wisdom 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-2" title="The Beginning of Wisdom 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-3" title="The Beginning of Wisdom 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-4" title="The Beginning of Wisdom 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-5" title="The Beginning of Wisdom 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-6" title="The Beginning of Wisdom 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-7" title="The Beginning of Wisdom 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-8" title="The Beginning of Wisdom 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-9" title="The Beginning of Wisdom 1:9">1:9</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-10" title="The Beginning of Wisdom 1:10">1:10</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-11" title="The Beginning of Wisdom 1:11">1:11</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-12" title="The Beginning of Wisdom 1:12">1:12</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-13" title="The Beginning of Wisdom 1:13">1:13</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-14" title="The Beginning of Wisdom 1:14">1:14</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-15" title="The Beginning of Wisdom 1:15">1:15</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-16" title="The Beginning of Wisdom 1:16">1:16</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-17" title="The Beginning of Wisdom 1:17">1:17</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-18" title="The Beginning of Wisdom 1:18">1:18</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-19" title="The Beginning of Wisdom 1:19">1:19</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-20" title="The Beginning of Wisdom 1:20">1:20</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-21" title="The Beginning of Wisdom 1:21">1:21</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-22" title="The Beginning of Wisdom 1:22">1:22</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-23" title="The Beginning of Wisdom 1:23">1:23</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-24" title="The Beginning of Wisdom 1:24">1:24</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-25" title="The Beginning of Wisdom 1:25">1:25</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-26" title="The Beginning of Wisdom 1:26">1:26</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-27" title="The Beginning of Wisdom 1:27">1:27</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-28" title="The Beginning of Wisdom 1:28">1:28</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-29" title="The Beginning of Wisdom 1:29">1:29</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-30" title="The Beginning of Wisdom 1:30">1:30</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-31" title="The Beginning of Wisdom 1:31">1:31</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-32" title="The Beginning of Wisdom 1:32">1:32</a></li>
+                    <li><a class="toc-unit" href="#the-beginning-of-wisdom-default-default-1-33" title="The Beginning of Wisdom 1:33">1:33</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h2 id="group-introduction">Introduction <span class="hud-badge">Lexical layer active</span></h2>
+          <h3 id="section-introduction-introduction">Introduction <span class="hud-badge">Lexical layer active</span></h3>
+          <h4 id="chapter-introduction-introduction-1">Chapter 1</h4>
+          <section class="unit" id="the-beginning-of-wisdom-introduction-introduction-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom, Introduction:1</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-introduction-introduction-1" aria-label="Copy link to The Beginning of Wisdom, Introduction:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מגיד דבריו ליעקב כו׳</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introduction-introduction-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-introduction-introduction-2">Chapter 2</h4>
+          <section class="unit" id="the-beginning-of-wisdom-introduction-introduction-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom, Introduction:2</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-introduction-introduction-2" aria-label="Copy link to The Beginning of Wisdom, Introduction:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תוכן ספר היקר הזה, הוא יקר חרוץ. כי הוא מבוא והקדמת הכללים לשלומי אמוני ישראל הישרים בלבותם, אשר חשקה נפשם לבוא בפנימי[ו]ת השערים המצויינים בחכמת האמת, וללמוד ולהבין אמרי יושר ודברי אמת, כתבי קבלת האר&quot;י ז&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introduction-introduction-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-introduction-introduction-3">Chapter 3</h4>
+          <section class="unit" id="the-beginning-of-wisdom-introduction-introduction-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom, Introduction:3</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-introduction-introduction-3" aria-label="Copy link to The Beginning of Wisdom, Introduction:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אולם, באשר שנעלם מהם ידיעת דרכי לימוד חכמה זו, המה מגששים כעורים סביב לשערים, ואין פותח (להם) לבם בחכמה, מקוצר הבנתם מקודם, ההקדמות והכללים הנצרכים לחכמה זו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introduction-introduction-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-introduction-introduction-4">Chapter 4</h4>
+          <section class="unit" id="the-beginning-of-wisdom-introduction-introduction-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom, Introduction:4</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-introduction-introduction-4" aria-label="Copy link to The Beginning of Wisdom, Introduction:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הספר הזה יאיר להם עינים בעזהי&quot;ת. אם כי הוא מעט הכמות, הוא רב האיכות בזה. כי בו ימצאו כל חפץ לבבם. כי הוא יורה דעת החכמה בכללי אמת, והקדמות יקרות המסולאים בפז. וגם הוא מורה דרך האמת ונתיב היֹשר בהשכל ודעת – סדר הלימוד בספרי המקובלים ואופן לימודם. איך לעלות מעלה מעלה, עד אשר לאורו יגיעו אל היכלי נוגה, זיו החכמה העליונה וזוהר הקבלה, על אופן מאד נעלה. וכל ההקדמות והכללים שבו, מיוסדים על אדני האמת ועמודי זרועות עולם. הלא המה ספרי הרמ&quot;ח לוצאטו ז&quot;ל, ועל פי פירושי וביאורי הגר&quot;א ז&quot;ל בזוהר הקדוש וכתבי האר&quot;י ז&quot;ל וספר יצירה. [ועל פי כללי והקדמות עץ חיים ופרי עץ חיים, ושאר כתבי האר&quot;י ז&quot;ל, כאשר עוררתי זה בעזה&quot;י באיזה מקומות גם אני לדוגמא, בשולי היריעה בהג&quot;ה בשם המעתיק.]</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introduction-introduction-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-introduction-introduction-5">Chapter 5</h4>
+          <section class="unit" id="the-beginning-of-wisdom-introduction-introduction-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom, Introduction:5</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-introduction-introduction-5" aria-label="Copy link to The Beginning of Wisdom, Introduction:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וגם לחכמים הבאים כבר תוך היכלי החכמה פנימה, אקוה לה׳ שימצא הספר חן בעיניהם, כי יהי׳ להם קילורין לעינים, שעל ידו יוחקו לזכרון בלבם כלליות רוב חכמה שמפוזרים בכמה ספרים ובמקומות שונות צפונים. ופה נקבצים יחד כעמיר גורנה, בסידור נכון. בקיצור דברים. ומיעוט אמרים. והזכרת מקום מוצאם. ושם מחברם. כאשר עיני הקורא תחזינה מישרים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introduction-introduction-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-introduction-introduction-6">Chapter 6</h4>
+          <section class="unit" id="the-beginning-of-wisdom-introduction-introduction-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom, Introduction:6</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-introduction-introduction-6" aria-label="Copy link to The Beginning of Wisdom, Introduction:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ובזה אבוא על המוגמר מלהתיצב בשער לדבר. כי אם עוד זאת להזכיר – מאמר החכם שלמה המלך, ע&quot;ה, תחלת חכמה יראת ה׳ כו׳. ומאמר חז&quot;ל, כל בעלי אמונה. ידעו נאמנה. יגעתי ומצאתי תאמין באמונה שלמה. וזה הוא העיקר לכל בית ישראל, ובפרט לכל באי לפתוח שער בחכמה זו. ואז יקויים בם מאמר החכם הנ&quot;ל, אני אוהבי אהב גו׳ כי מוצאי מצא חיים גו׳, כרצון נפשם הטוב, אמן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introduction-introduction-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-introduction-introduction-7">Chapter 7</h4>
+          <section class="unit" id="the-beginning-of-wisdom-introduction-introduction-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom, Introduction:7</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-introduction-introduction-7" aria-label="Copy link to The Beginning of Wisdom, Introduction:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וכנפש המעתיק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-introduction-introduction-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h2 id="group-default">default <span class="hud-badge">Lexical layer active</span></h2>
+          <h3 id="section-default-default">default <span class="hud-badge">Lexical layer active</span></h3>
+          <h4 id="chapter-default-default-1">Chapter 1</h4>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:1</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-1" aria-label="Copy link to The Beginning of Wisdom 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כללים למתחילים בחכמה. חכמת האמת:</strong><br><span class="source-small">לתועלת החפצים להתחיל בלימודה, ועדיין לא למדו בהספרים. ויכבד עליהם הבנתם שם, מחסרון ידיעת הכללים המוכרחים למתחיל לדעת. לכן סדרנו לפניהם הכללים האלה, להקל עליהם אחר כך, שיוכלו להכנס בשערי׳, וגם להישיר לפניהם הדרך אשר ילכו בה. (רוב) כללים אלה נלמדו ונלקטו [מכתבי האר&quot;י ז&quot;ל], ומדברי הגאון רמ&quot;ח לוצאטו ז&quot;ל, ומדברי הגר&quot;א ז&quot;ל, וכנרשם על רוב הדברים את מקורם.</span><br><br><strong>פרק ראשון - בו מדובר ענין הספירות, וההנהגות ושמותן, ובו ל&quot;ג סעיפים</strong><br>[א] הנה להוי&quot;ה יתברך יקראוהו הספרים בשם אין סוף, יען הוא בלתי גבול ובלתי תכלית. וכשם שהוא בלתי גבול ובלתי תכלית, כן הוא רצונו ית׳ (וע&quot;ע לקמן פ&quot;ח, סעיף כ&quot;א וכ&quot;ב).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:2</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-2" aria-label="Copy link to The Beginning of Wisdom 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[ב] ידוע שהא&quot;ס ב&quot;ה אסור לחשוב בו כלל וכלל כו׳, וכל מה שאנו מדברים בו ובספירות הכל מרצונו והשגחתו הידוע מצד פעולותיו. וזהו הכלל לכל דרכי הקבלה. (עכ&quot;ל הגר&quot;א ז&quot;ל בליקוטים שבסוף ספר ספרא דצניעותא שנדפס מחדש) וכן כתב הרמ&quot;ח לוצאטו ז&quot;ל בספרו אדיר במרום דף נ&quot;ט ע&quot;א, וז&quot;ל שם: הנה מה שאנו מדברים במאציל ב&quot;ה, הנה דבר פשוט הוא שאין אנו מדברים רק בבחינת פעולותיו ולא בבחינת מהותו ועצמותו כלל. ותדע שאפילו מה שאנו מזכירין אותו בשם אין סוף ב&quot;ה, אין הכונה על עצמותו כלל, אלא על פעולותיו עכ&quot;ל. ועיין עוד בספרו חוקר ומקובל בתחלתו בד&quot;ה הנה ידוע תדע כו׳ ע&quot;ש באורך.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:3</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-3" aria-label="Copy link to The Beginning of Wisdom 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[ג] והנה בענין דרכי הנהגתו יתברך את העולמות, עשר ספירות הן. ואלה שמותן: כתר, חכמה, בינה, חסד, גבורה, תפארת, נצח, הוד, יסוד, מלכות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:4</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-4" aria-label="Copy link to The Beginning of Wisdom 1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[ד] כל ספירה הוא מדה אחת מן המדות של הא&quot;ס ב׳׳ה, אשר ברא בם את העולמות ומנהג אותם. (עכ&quot;ל בס׳ קל&quot;ח פתחי חכמה סי׳ ו׳, ועיין עוד בליקוטי הגר&quot;א ז&quot;ל שם, ובריש ספר חוקר ומקובל, ובריש ספר קנאת ה׳ צבאות, ענין הספירות מה המה), עיי&quot;ש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:5</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-5" aria-label="Copy link to The Beginning of Wisdom 1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[ה] בענין ההנהגה, יש החסד הגמור, ויש הדין הגמור, ויש הנהגה ממוצעת בין החסד והדין, ונקרא רחמים. וסימנם חד&quot;ר – ח׳סד ד׳ין ר׳חמים (עיין ספר יצירה פ&quot;ג).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:6</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-6" aria-label="Copy link to The Beginning of Wisdom 1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[ו] ספירת הכתר הוא חסד גדול ורחמים עד אין קץ, שהוא לפי התכלית לו יתברך, שהתכלית הוא להיטיב לכל, וגם למי שאין לו זכות, על דרך שאמרו בברכות (ז ע&quot;א): &quot;וחנותי את אשר אחון&quot;, אעפ&quot;י שאינו הגון. (הגר&quot;א ז&quot;ל שם ד&quot;ה ואמר כו׳.)</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:7</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-7" aria-label="Copy link to The Beginning of Wisdom 1:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[ז] ספירת החכמה גם כן חסד גדול, גם למי שאין לו זכות כל כך. אך לא חסד כל כך כמו הכתר. וגם הבינה הוא חסד כנ&quot;ל. והחכמה הוא יותר חסד מבינה (שם), ומבינה דינין מתעוררין ממנה. פירוש: שלפעמים זהו נכלל בחסד לעשות דין בעולם, שזה גם כן לטובה, למען לא יהיה עולם של הפקר. או על דרך: &quot;כי אשר יאהב ה׳ יוכיח&quot; (משלי ג׳ י&quot;ב), ועל דרך הכתוב (פרשת עקב): &quot;כי כאשר ייסר איש את בנו&quot; כו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:8</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-8" aria-label="Copy link to The Beginning of Wisdom 1:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[ח] כל השלשה הנ&quot;ל: כתר, חכמה, בינה, נקראו ג׳ ראשונות או ג׳ עליונות, והם רחמים גדולים שהם לפי רצונו יתברך בעולם, לא לפי המעשה כו׳. ולכן כשאלה מתגלים, אז רחמים ורצון גדול בעולם (הגר&quot;א ז&quot;ל שם).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:9</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-9" aria-label="Copy link to The Beginning of Wisdom 1:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[ט] ספירת החסד הוא החסד הגמור, רק הוא למי שמגיע לו בעד מעשיו (כמו בגן עדן להצדיקים). ספירת הגבורה הוא הדין הגמור והעונש הגמור למי שמגיע לו בעד מעשיו (וכמו בגיהנם להרשעים). והתפארת הוא ההנהגה הממוצעת בין החסד והדין, שנקרא רחמים כנ&quot;ל (כל זה נלמד מדברי הגר&quot;א ז&quot;ל שם) (והתפארת נוטה לחסד יותר מלדין).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:10</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-10" aria-label="Copy link to The Beginning of Wisdom 1:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[י] הנצח הוא הנהגת החסד, אבל אינו חסד גמור, רק חסד ממוזג בדין קצת. ובכלל זה, מה שמתדמה שהוא רע לשעתו, אבל באמת הוא טוב אמיתית לפי התכלית, כמו שמשלמין להצדיקים מיעוט עונותם בעולם הזה, להטיבם באחריתם לעוה&quot;ב טובה אמיתית ונצחיות (עיין יומא פ&quot;ו ע&quot;א וקדושין ל&quot;ט ע&quot;א ומ ע&quot;א). וכדומה לזה, נכלל בהנהגת הנצח. (נלמד מדברי הגר&quot;א ז&quot;ל שם.)</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:11</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-11" aria-label="Copy link to The Beginning of Wisdom 1:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[יא] ההוד הוא הנהגת הדין. אבל אינו דין גמור, רק ממוזג בחסד קצת. ובכלל זה, הרע שמתדמה לשעתו שהוא טוב וערב, אבל באמת הוא לעונש, כמו שמשלמין להרשעים מיעוט זכיותיהם בעולם הזה, להאבידם לעולם הבא, (וכמ&quot;ש פרשת ואתחנן: &quot;ומשלם לשונאיו על פניו להאבידו&quot;) (וע&quot;ש בקדושין שם וביומא שם) וכדומה לזה, נכלל בכלל הנהגת ההוד. (כל זה נלמד מדברי הגר&quot;א ז&quot;ל שם ד&quot;ה ואמר שם שהצמצום כו׳ עי&quot;ש). היסוד הוא הנהגת העולם בכללו (שם), והוא הנהגה ממוצעת בין הנצח וההוד (ונוטה קצת יותר לדין).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:12</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-12" aria-label="Copy link to The Beginning of Wisdom 1:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[יב] כל הששה ספירות הנ&quot;ל: חסד, גבורה, ת&quot;ת, נצח, הוד, יסוד, הם הכל לפי מעשי בני אדם, שגם החסד הגמור הוא רק למי שמגיע לו בעד מעשיו כנ&quot;ל. (הגר&quot;א ז&quot;ל שם). ולכן נקראו הששה הנ&quot;ל בכלל הנהגת המשפט (עיין קל&quot;ח פתחי חכמה סימן צ&quot;ב עיי&quot;ש).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:13</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-13" aria-label="Copy link to The Beginning of Wisdom 1:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[יג] ובאשר הכתר הוא הרחמים גדולים באין קץ וכנ&quot;ל, לכן נקרא ארך אפים, ובלשון הזוהר ארך אנפין (וגם לפי שההנהגה הזאת תהיה רק להתכלית לעתיד, כמו שנכתוב לקמן בס&quot;ד), לכן נכלל בכלל ארך אפים, שממתין ומאריך אף לצדיקים ולרשעים (כמ&quot;ש חז&quot;ל בב&quot;ק נ׳ ע&quot;ב ע&quot;ש). וששה ספירות חג&quot;ת נה&quot;י הנ&quot;ל, שהם הנהגת המשפט כנ&quot;ל, נקראו זעיר אנפין. פירוש, מיעוט אפים, שהוא הנהגת המשפט (וגם הנהגה של עכשיו וכנ&quot;ל) ומיעוט חסד, שהוא רק למי שזוכה כנ&quot;ל (ועיין קל&quot;ח פתחי חכמה סימן צ&quot;ב, צ&quot;ג, צ&quot;ד, צ&quot;ה).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:14</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-14" aria-label="Copy link to The Beginning of Wisdom 1:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[יד] ספירת מלכות, הוא הנהגה להשגיח בתחתונים, ולגלות מלכותו בעולם שתהי׳ שכינתו יתברך בעולם, (פירוש, שיהי׳ נודע שהוא שוכן בקרבם) ושיקבל מעשי המצות שלהם ותפלתם, ולעשות שיקבלו התחתונים עול מלכותו עליהם כו׳ (עיין בפירוש הגר&quot;א ז&quot;ל על רעיא מהימנא סוף חלק א׳, מהזוהר במהדורה תנינא ד&quot;ה ויחלום כו׳), (וע&quot;ע בספר קנאת ה׳ צבאות חלק א׳, נתבאר גם כן ענין עשר ספירות ולמה הם עשר, ע&quot;ש).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:15</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-15" aria-label="Copy link to The Beginning of Wisdom 1:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[טו] מה שנקראו ספירות, הוא לשון מספר (פירוש הגר&quot;א ז&quot;ל בספר יהל אור בפירוש זוהר בראשית ט&quot;ו ע&quot;א ד&quot;ה ליקוט כו׳, ע&quot;ש הטעם באורך). ולכן נדרש הלשון &quot;ספירת&quot; גם על שאר דברים, שכל מה שבעולם נחלק לעשר ספירות, וכמו שיתבאר, לפי שספירות הוא לשון מספר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:16</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-16" aria-label="Copy link to The Beginning of Wisdom 1:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[טז] והנה אמרו חז&quot;ל על המקרא (מלכים א׳ כ&quot;ב, י&quot;ט מובא בפירש&quot;י שם): &quot;וכל צבא השמים עומדים עליו מימינו ומשמאלו&quot;, וכי יש ימין ושמאל למעלה. אלא אלו מיימינים לזכות, ואלו משמאילים לחובה. ולכן ספירה שהיא הנהגת החסד למי שיש לו זכות, נקרא בדרך משל ימין. וספירה שהיא הנהגת הדין להעניש החוטאים, נקרא בדרך משל שמאל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:17</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-17" aria-label="Copy link to The Beginning of Wisdom 1:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[יז] ולכן, אם נכתוב הספירות ונרצה להורות בסדר כתיבתם את ענין הנהגותיהם, נכתוב אותם בסדר זה: מקודם ג׳ עליונות – כתר למעלה (לפי שהוא השורש כמו שיתבאר), תחתיו חכמה מימין, ובינה משמאל, לפי שבבחינת ג׳ ראשונות, הבינה ממנה דינין מתעוררין וכנ&quot;ל. ותחתיהם חסד מימין, וגבורה משמאל, ותפארת תחתיהם באמצע (לפי שהת&quot;ת הנהגה ממוצעת כנ&quot;ל). תחתיהם נצח מימין, והוד משמאל, ותחתיהם יסוד באמצע, שהוא הנהגה ממוצעת בין הנצח וההוד וכנ&quot;ל. ותחתיהם מלכות באמצע. כזה:<br>&#160;&#160;&#160;&#160;&#160;&#160;כתר<br>חכמה&#160;&#160;&#160;&#160;בינה<br>&#160;&#160;&#160;&#160;(דעת)<br>חסד&#160;&#160;&#160;&#160;גבורה<br>&#160;&#160;&#160;תפארת<br>נצח&#160;&#160;&#160;&#160;הוד<br>&#160;&#160;&#160;&#160;יסוד<br>&#160;&#160;מלכות<br></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:18</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-18" aria-label="Copy link to The Beginning of Wisdom 1:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[יח] וסדר הנ&quot;ל נקרא בדרך משל סדר עמידתם, והוא בדרך משל כנ&quot;ל, וכשנצייר אותם בסדר הזה נקרא עשר ספירות דיושר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-19" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:19</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-19" aria-label="Copy link to The Beginning of Wisdom 1:19">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[יט] ולפעמים נצייר העשר ספירות בדרך משל כמו עיגולים זה בתוך זה, כתר מקיף סביב בעיגול, ובתוכו עיגול חכמה, ובתוכו עיגול בינה, וכו׳ עד מלכות. סדר זה נקרא עשר ספירות דעגולים, ויש בזה כללים בענין ההנהגה, שבציור העיגולים נלמד את סדר השתלשלות זה מזה, שיתבאר ענינו לקמן בס&quot;ד (פ&quot;ה סעיף ב׳ וג׳ וד׳) (ואיזה הנהגה היא העיקרית המסבבת את ההנהגה השני׳ וכמו שיתבאר), ועל זה מורה סדר עגולים הנ&quot;ל. וכשנדבר בסדר ההנהגה, מהו דין, מהו חסד, נציירה בסדר הנקרא עשר ספירות דיושר וכנ&quot;ל. כן כתב בספר קל&quot;ח פתחי חכמה סי׳ י&quot;ג ע&quot;ש. והגר&quot;א ז&quot;ל כתב לפי שיש שני מיני הנהגות, הנהגה בכלל והנהגה בפרט, ועל זה מורה שני הדרכים הנ&quot;ל עיגולים ויושר, (ע&quot;ש בליקוט שבסוף ספר ספרא דצניעותא, בד&quot;ה דע כו׳ ע&quot;ש)&lt;sup class=&quot;footnote-marker&quot;&gt;[1]&lt;/sup&gt;&lt;i class=&quot;footnote&quot;&gt;הג&quot;ה [ועיין בעץ חיים היכל א׳ בדרוש עיגולים ויושר באריכות בזה ע״ש. המעתיק.]&lt;/i&gt;.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-20" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:20</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-20" aria-label="Copy link to The Beginning of Wisdom 1:20">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[כ] ספירת המלכות, הנהגתה יותר דין מששה ספירות חג&quot;ת נה&quot;י הנ&quot;ל שנקראו הנהגת המשפט וכנ&quot;ל, ויש לפעמים בה משפט. אבל מלכות שנקראת לפעמים צדק, היינו משפט צדק, דין יותר. ורק לפעמים בזכות התחתונים משתתפת הנהגת המלכות בחסד ונעשה הנהגת הרחמים, וכמו שיתבאר בס&quot;ד. (ועיין אדרא זוטא בזוהר האזינו דף רצ&quot;א ע&quot;ב, רצ&quot;ב ע&quot;א ע&quot;ש, ולקמן פ&quot;ז סעיף ד׳ ה׳ ו׳).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-21" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:21</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-21" aria-label="Copy link to The Beginning of Wisdom 1:21">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[כא] והנה הנהגה כללית שמתנהגת בדין, נקרא בלשון נקבה. וכמו שכתוב בפרשת בהעלותך: &quot;ואם ככה את עושה לי&quot;, ע&quot;ש פירש&quot;י. לכן נקרא הנהגת המלכות נוקבא בדרך משל, ועוד יתבאר בס&quot;ד לקמן טעם על שם זה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-22" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:22</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-22" aria-label="Copy link to The Beginning of Wisdom 1:22">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[כב] וכן הבינה, אשר בערך החכמה היא קצת דין, שדינין מתעוררין ממנה וכנ&quot;ל, נקראת הבינה ג&quot;כ בלשון נקבה, כי בערך של ספירת חכמה היא בחינת דין כנ&quot;ל. ועל פי זה, לפעמים כשרוצה לזכור בחינת דין שבספירה אחת, כמו כשנאמר הכתר (שנקרא ארך אנפין) ובחינת קצת דין שבו, נאמר ארך אנפין ונוקבי׳. פירוש, כתר שהוא רחמים גמורים, ובחינת הדין שבו. (ומה שלא נקרא גבורה והוד נוקבא, נראה שהששה ספירות חג&quot;ת נה&quot;י, הם בכלל נקראת הנהגה אחת – הנהגת המשפט כנ&quot;ל, ליתן שכר לעושי מצוה ולענוש לעוברי מצותיו. כן נראה לכאורה.)</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-23" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:23</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-23" aria-label="Copy link to The Beginning of Wisdom 1:23">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[כג] והנה מדובר בספירות בשני בחינות, בחינת פנימיות, ובחינת חיצוניות. היינו שלפעמים [ה]הנהגה גלויה ומפורסמת וניכרת, ולפעמים היא מסותרת, כגון שעושין חסד בהסתר, שאינו נודע ונרגש החסד והטוב וכדומה, וכלשון הכתוב משלי כ&quot;ז, ה׳: &quot;טובה תוכחת מגולה מאהבה מסותרת&quot;, וכמ&quot;ש (נדה ל&quot;א ע&quot;א) שאין בעל הנס מכיר בניסו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-24" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:24</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-24" aria-label="Copy link to The Beginning of Wisdom 1:24">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[כד] והנה לפעמים נמנה עוד במנין הספירות דבר הנקרא שמה דרך משל דעת, והיינו שלא נחשב הכתר במנין העשר, רק נמנה במקומו הנקרא בשם אחר שנקרא דעת. וכתב בספר משנת חסידים בתחלתו, וכן כתב גם הגר&quot;א ז&quot;ל (בפירוש ספר יצירה פרק א משנה א, אופן ג׳), שבבחינת הפנימית הנ&quot;ל, נחשב כתר ולא דעת, ובבחינה החיצוניות נחשב דעת ולא כתר, (ולכן תנן בספר יצירה עשר ולא תשע, עשר ולא אחד עשר).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-25" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:25</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-25" aria-label="Copy link to The Beginning of Wisdom 1:25">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[כה] וביאור הדברים הנ&quot;ל הוא, שהנהגת הכתר, שהוא רחמים גדולים מאד, לפי הנראה והגלוי – איננה נראה עכשיו. רק עתידה להיות לעולם הבא, בזמן התכלית, שהוא לאחר ששת אלפים שנה. ולכן מורה על זה שם אהי&quot;ה, לשון עתיד, אני עתיד להיות (וכמו שיתבאר בס׳׳ד). אך בבחינת ההסתר הגדול גם הנהגת הכתר מנהגת עכשיו, שההנהגות של עכשיו הם הכנות להעתיד, ועיקר כוונת השם יתברך להטיב, וכמ&quot;ש כל מה דעביד רחמנא לטב עביד. ולכן נאמר שרק בבחינת הפנימית, שהוא ההסתר הגדול, נחשב כתר גם כן, אבל בבחינת הנהגות הגלויות, שהוא בחינת החיצוניות, לא נחשב כתר, ורק יש ממנה מקצת מעט גם בבחינת ההתגלות מבחינת הכתר מעט, שלכן לא נקרא כתר רק שם אחר, ונקרא דעת, והוא במדרגה מועטת, שנחשב בערך רק כמו הנהגה ממוצעת בין החכמה והבינה. שהחכמה הוא בלא דין כלל, ובבינה דינים מתעוררין ממנה כנ&quot;ל, ודעת הוא הנהגה ממוצעת ביניהם, ולכן נחשב דעת בסדר עמידתם תחת חכמה ובינה באמצע, שהוא בדרך משל הנהגה הממוצעת כנ&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-26" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:26</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-26" aria-label="Copy link to The Beginning of Wisdom 1:26">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[כו] ורק זאת ידוע בבחינת התגלות, שכל ההנהגות של עכשיו הם סיבובים והכנות להנהגת העתיד – הנהגת הכתר, שנחשב לפי זה הנהגת הכתר השורש לכל הנהגות של עכשיו, שלפי שרצה בהנהגת הכתר לעתיד, מקדים כל ההנהגות של עכשיו, כי סוף מעשה במחשבה תחילה (עיין קל&quot;ח פתחי חכמה סי׳ צ&quot;ב צ&quot;ג עיי&quot;ש).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-27" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:27</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-27" aria-label="Copy link to The Beginning of Wisdom 1:27">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[כז] ובזה מבואר מה שכתבנו למעלה (בשם המשנת חסידים והגר&quot;א ז&quot;ל) שבבחינת הפנימית נחשב כתר ולא דעת, ובבחינת החיצונית לא נחשב כתר רק נחשב דעת במקומו, והכתר נחשב רק בבחינת שורש לבד וכנ&quot;ל. [ולכן נקרא כתר אַיִן לפי שבהתגלות כמעט איננה לפי השגתנו, וכן נקרא רישא דאין כדלקמן]. ונחשב סדר הספירות חכמה, בינה, דעת, חסד כו׳, וכן כתב הגר&quot;א ז&quot;ל בהתחלת ספר ספרא דצניעותא (שהשירותא), פירוש, ההתחלה בגלוי, הוא מחכמה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-28" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:28</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-28" aria-label="Copy link to The Beginning of Wisdom 1:28">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[כח] ולכן באשר בבחינת התגלות, ההתחלה הוא מחכמה ובינה, לכן נקרא חכמה בשם אבא ובינה נקראת בשם אימא, שלפי שממנה דנין מתעוררין נקראת לשון נקבה וכנ&quot;ל. ולקמן יתבאר עוד בס&quot;ד טעם שנקראו בשם זה, ועיין לקמן (פ&quot;ה סעיף ג׳ וד׳).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-29" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:29</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-29" aria-label="Copy link to The Beginning of Wisdom 1:29">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[כט] העולה מכל הנ&quot;ל, שהעשר ספירות הנ&quot;ל בדרך כלל נחלקו לחמשה מיני הנהגות כוללות, וכל אחד נקרא עוד בשם בפני עצמה. כתר נקרא ארך אנפין, חכמה נקרא אבא, בינה נקראת אימא, הששה ספירות חסד גבורה ת&quot;ת נצח הוד יסוד שהם בכלל הנהגת המשפט כנ&quot;ל נקרא זעיר אנפין, מלכות נקרא נוקבא &#39;וכמו שנתבאר טעמם (שנקראו בשמות אלו).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-30" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:30</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-30" aria-label="Copy link to The Beginning of Wisdom 1:30">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[ל] ולפעמים נקראו העשר ספירות בכלל חמשה חסדים וחמשה גבורות. והיינו: כתר, חכמה, חסד, תפארת, נצח – נקראו ה׳ חסדים (לפי שהת&quot;ת נוטה יותר לחסד כנ&quot;ל). וחמשה ספירות: בינה, גבורה, הוד, יסוד, מלכות – נקראות ה׳ גבורות (שהיסוד נוטה לדין יותר, וכנ&quot;ל גם כן).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-31" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:31</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-31" aria-label="Copy link to The Beginning of Wisdom 1:31">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[לא] הששה ספירות: חסד, גבורה, ת&quot;ת, נצח, הוד, יסוד – נקראו בספרים ששה קצוות (או ו׳ קצות), לפי שכנגדם יש ששה קצוות בעולם: דרום, צפון, מזרח, מערב, מעלה, מטה (דרום נגד חסד, צפון נגד גבורה, מזרח נגד ת&quot;ת, מעלה נגד נצח, מטה נגד הוד, מערב נגד יסוד), ועיין ספר יצירה פ&quot;א, מ&quot;ה ומי&quot;ג וביאור הגר&quot;א ז&quot;ל שם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-32" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:32</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-32" aria-label="Copy link to The Beginning of Wisdom 1:32">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[לב] והנה השם יתברך ברא את האדם באיבריו וחלקיו, וחִלקם במספר חלקים כנגד חלקי ההנהגות בכלל, וחלקי האדם מרמז כל אחד על חלק מן ההנהגה. ובאשר בדרך כלל עשר ספירות הם וכנ&quot;ל, לכן יש באדם גם כן עשרה דברים בכלל שהם כנגד העשר ספירות בכלל. והם: הראש נגד שלש ראשונות, היינו גלגולת והאויר שבו נגד כתר, מוח ימין נגד חכמה, מוח שמאל נגד בינה (מוח ג׳ שבאחורי שניהם נגד דעת), זרוע ויד ימין נגד חסד, זרוע ויד שמאל נגד גבורה, הגוף נגד תפארת, הירך ורגל ימין נגד נצח, הירך ורגל שמאל נגד הוד, ברית קודש נגד יסוד, עטרת הברית נגד מלכות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="the-beginning-of-wisdom-default-default-1-33" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">The Beginning of Wisdom 1:33</h4></div>
+              <a class="anchor" href="#the-beginning-of-wisdom-default-default-1-33" aria-label="Copy link to The Beginning of Wisdom 1:33">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[לג] ולפעמים נקראו הספירות עצמן גם כן באותן השמות של איברי האדם שמרמזין עליהם בדרך משל. כתר נקרא גלגלתא, חכמה בינה מוחין, חסד זרוע ימין, וכן כולם (עיין בכל ספרי קבלת האמת). והדבר פשוט מאד שהם רק שמות לבד שנקראו ההנהגות בשמות אלו בדרך משל, אבל חלילה להעלות על הדעת ח&quot;ו שיש שם שום תמונה ח&quot;ו, שזה כפירה ח&quot;ו, והוא פשוט מאד. ועיין כל זה בהודעה והאזהרה בהעץ חיים החדשים. [ובספר האילן הגדול הנדפס מחדש, ובספר מקדש מלך, ושערי קדושה להררח&quot;ו ז&quot;ל בסופו עיי&quot;ש, ובהקדמה שניה על תיקוני זוהר בתפלת אליהו הנביא].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-default-default-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"the-beginning-of-wisdom","work_title":"The Beginning of Wisdom","work_slug":"kabbalah/the-beginning-of-wisdom","scope_label":"All imported Hebrew works","generated_at":"2026-05-13T23:46:06.635Z","total_occurrences":2466,"units":{"the-beginning-of-wisdom-introduction-introduction-1":{"unit_id":"the-beginning-of-wisdom-introduction-introduction-1","anchor_id":"the-beginning-of-wisdom-introduction-introduction-1","source_ref":"The Beginning of Wisdom, Introduction:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e05037615205","tok-91869991e6f9","tok-1a989309fa88","tok-7b39852509ae"]}]},"the-beginning-of-wisdom-introduction-introduction-2":{"unit_id":"the-beginning-of-wisdom-introduction-introduction-2","anchor_id":"the-beginning-of-wisdom-introduction-introduction-2","source_ref":"The Beginning of Wisdom, Introduction:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-354fdb2f2f5a","tok-acd59302b322","tok-d71f4fea3a52","tok-99c54440d520","tok-7ef6e4e90440","tok-3382e99c81e2","tok-ebfb06006aec","tok-54a88366d723","tok-7ef6e4e90440","tok-cc89fd84fc06","tok-4e74fc6f4465","tok-db812199f21e","tok-f24944c50309","tok-33c35889648a","tok-8be7699a9012","tok-13d47c5e5986","tok-509a226c7930","tok-ac43279c96d3","tok-4562a5d67c6e","tok-65bf6adb3435","tok-c2eff4a635ba","tok-a7817e27f6e0","tok-2b4bda39f43a","tok-c27416dc8d3c","tok-9de8ca9a4cf4","tok-13a15376e356","tok-8a007674262e","tok-cab139dc33cd","tok-30d357e2983c","tok-cf4164608819","tok-ecaab446c14b","tok-ba1d528df6bc","tok-748e28d17bf5","tok-fc5d19bdac23","tok-bbb5b301e6bd","tok-497ba65883b3","tok-e6eb88ed197a","tok-adee3bda14b7"]}]},"the-beginning-of-wisdom-introduction-introduction-3":{"unit_id":"the-beginning-of-wisdom-introduction-introduction-3","anchor_id":"the-beginning-of-wisdom-introduction-introduction-3","source_ref":"The Beginning of Wisdom, Introduction:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ac8685cc215d","tok-4694a694b339","tok-85a6d6ffea3e","tok-6fc027100ff3","tok-1986bd6ecb39","tok-af8766800c21","tok-7f8b7118bb28","tok-ab2d7c620e90","tok-38e3bc22b19f","tok-c24b2c30653b","tok-c692ce7298d6","tok-f8c14dd16650","tok-f41e52302998","tok-11d96f8e9c56","tok-a2a9f507d6cd","tok-c55a30e339c2","tok-bfb0b6053a1c","tok-d08ce8f570e3","tok-435e219a327b","tok-d826f204ff95","tok-65ae607ab633","tok-9908adf0621e","tok-85a935f29310","tok-d97141303f52","tok-03a94352cc5d","tok-996f82bbb683","tok-38e3bc22b19f"]}]},"the-beginning-of-wisdom-introduction-introduction-4":{"unit_id":"the-beginning-of-wisdom-introduction-introduction-4","anchor_id":"the-beginning-of-wisdom-introduction-introduction-4","source_ref":"The Beginning of Wisdom, Introduction:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-559f2739881e","tok-99c54440d520","tok-511cc86fb98d","tok-bfb0b6053a1c","tok-0d4e028dc691","tok-fcd27d005684","tok-77ca247c3e71","tok-54a88366d723","tok-7ef6e4e90440","tok-8ae03d2073e5","tok-85905b05e1a9","tok-7ef6e4e90440","tok-fb60fb02d2d3","tok-6b82ad4b5dca","tok-a4abdd570641","tok-54a88366d723","tok-9529686dc4b8","tok-9d61b614677f","tok-74808860594c","tok-057fc9766b04","tok-0f3aee86ac3b","tok-54a88366d723","tok-7ef6e4e90440","tok-b8138de0a870","tok-78271eac62f4","tok-c51faf279b8a","tok-ace99bdf8298","tok-fc5d19bdac23","tok-112984c1414b","tok-b1a1aaeb0205","tok-ddf7ace6cb0f","tok-81202055fb25","tok-fd4fd62f2f60","tok-7ef6e4e90440","tok-621f2d28b0b5","tok-e060af821565","tok-cab139dc33cd","tok-5b8c77fb194b","tok-263f77a5c858","tok-93c7de5d7e30","tok-86f6b4698a60","tok-84037f2aba46","tok-898bc902bc9a","tok-39ea33765f56","tok-e892408bbe4e","tok-9e5a6c586e65","tok-e9d55ba68a14","tok-69c9bb18c25a","tok-d61f36fc50ee","tok-d685e4160885","tok-d685e4160885","tok-6ce22da20be8","tok-ac43279c96d3","tok-cb2d7215b8e7","tok-97d884ed682c","tok-be3e8a667968","tok-b1a7fca389b2","tok-e3907c542c58","tok-f9a32357d64a","tok-c51faf279b8a","tok-9311e41c63bd","tok-29c20d41afc1","tok-7976282ed1d2","tok-baf4b5c20341","tok-a5ffa5f13950","tok-8ad3af7e9a2a","tok-6fbe55919ac3","tok-72e740f3b6f6","tok-85a935f29310","tok-d97141303f52","tok-de1968f6c260","tok-6fb0ff5e4ded","tok-baf4b5c20341","tok-de3cd90f08f1","tok-cab139dc33cd","tok-624ca2d78916","tok-abdbbfe1ebed","tok-64ac795ad8b0","tok-4bbe7a47a5d4","tok-c24b2c30653b","tok-102c7863e7aa","tok-57c8b35ea3e2","tok-43f13f320d6b","tok-adee3bda14b7","tok-7179081a722b","tok-adee65aed2e1","tok-75a8ccb50caf","tok-440df9d43811","tok-4c2ce16d4cef","tok-adee3bda14b7","tok-d117e49162de","tok-c3e2fbd8f32f","tok-1408f756b822","tok-e6eb88ed197a","tok-adee3bda14b7","tok-3c573c265775","tok-a4ee22716d7b","tok-7179081a722b","tok-adee65aed2e1","tok-8a72a68efc94","tok-112984c1414b","tok-4f78eeeee9d4","tok-854f800ba044","tok-33bb9dd59b8c","tok-4f78eeeee9d4","tok-854f800ba044","tok-68a321cb79cb","tok-bbb5b301e6bd","tok-e6eb88ed197a","tok-adee3bda14b7","tok-8dae5a8f3171","tok-881441cbf472","tok-b1efd187b6f2","tok-bb517bebd9a8","tok-7afbf0bba62f","tok-8024dd768b7e","tok-c2d98ee5c519","tok-08a4bf093ccb","tok-f48c84fa60f1","tok-358b861673cf","tok-9411f6daa599","tok-29aacbefaf04","tok-ce1160e174de","tok-6636ae5b277a"]}]},"the-beginning-of-wisdom-introduction-introduction-5":{"unit_id":"the-beginning-of-wisdom-introduction-introduction-5","anchor_id":"the-beginning-of-wisdom-introduction-introduction-5","source_ref":"The Beginning of Wisdom, Introduction:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fd4fd62f2f60","tok-11e131d5d26a","tok-a4b05a7b3412","tok-59af056626bb","tok-c74a0d81d043","tok-b1a7fca389b2","tok-c51faf279b8a","tok-fba44b2ead4e","tok-892c1a73b351","tok-41251c6beddf","tok-83fa7ccbfc34","tok-559f2739881e","tok-0ca634f24778","tok-ad1d22aa3dd6","tok-54a88366d723","tok-3a90a382af7c","tok-bfb0b6053a1c","tok-76106ba0035e","tok-74b8291b20a1","tok-ad3ca3785c0d","tok-c2643aec3eea","tok-155636434835","tok-b40f22d84413","tok-8a785215e66f","tok-0f05e7febd88","tok-bf26d66ec358","tok-ab2d7c620e90","tok-d093db34aa59","tok-17a1a2f5a7a4","tok-529e97381928","tok-172a85af4959","tok-77289fadab68","tok-5e072e258c7c","tok-de9f0d885f76","tok-086c2d5ad18a","tok-d69c6ef5d835","tok-3a9128c75f35","tok-8154d69205a9","tok-4fb4d857da80","tok-a69198717e39","tok-d8e7315de111","tok-1acdbc68c612","tok-319a1d17e4a1","tok-ca318bd2b57e","tok-e994a7abe7fd","tok-192248018681","tok-a11cab930881","tok-daf4e2a3ddec","tok-5d9a4559b0fc","tok-8dae5a8f3171","tok-a9b13765c0a7","tok-eebd904ea556","tok-0bcfa6be4859","tok-82a2da7c12f2"]}]},"the-beginning-of-wisdom-introduction-introduction-6":{"unit_id":"the-beginning-of-wisdom-introduction-introduction-6","anchor_id":"the-beginning-of-wisdom-introduction-introduction-6","source_ref":"The Beginning of Wisdom, Introduction:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c6b1a540ccdc","tok-9745a03e5600","tok-baf4b5c20341","tok-d9c44bb335b6","tok-314804fc0e0c","tok-086644710df5","tok-3d277bb3843c","tok-54a88366d723","tok-77ca247c3e71","tok-54fd0f1f3ce8","tok-f52882b98e29","tok-f33995f903cc","tok-aea0d8af4d55","tok-47274f1ff48b","tok-f60b094f89cc","tok-c0c2c51948ac","tok-618a19a52bf5","tok-12727f77b048","tok-ab2d7c620e90","tok-dfa6e19d37e1","tok-995d887b7423","tok-7b39852509ae","tok-fefda634d853","tok-1989b5cddb33","tok-74808860594c","tok-53a736d66b1b","tok-a9ea2994a7ec","tok-7e1732f4e96c","tok-20248a637c34","tok-3f4ee0705fc6","tok-8ba26af667a2","tok-f4c051ca58db","tok-2e6bb59adc44","tok-f60b094f89cc","tok-45e1448d91d6","tok-7ef6e4e90440","tok-cfa684860404","tok-6933805bfca0","tok-0ab6b89df724","tok-8be7699a9012","tok-e92a2e40571e","tok-6933805bfca0","tok-bf0146ac3729","tok-108d158e2541","tok-33f21659acde","tok-435e219a327b","tok-38e3bc22b19f","tok-9d32d8caecfa","tok-2715df3b1d2c","tok-f87a49f208ac","tok-aea0d8af4d55","tok-47274f1ff48b","tok-0bfa7a5cf931","tok-08a4bf093ccb","tok-5c8f4d5dcaf8","tok-4a386c86a0fc","tok-e8b6b16f66b9","tok-54a88366d723","tok-865f06ca749d","tok-880aac92833e","tok-854f800ba044","tok-e8b6b16f66b9","tok-e2e6dca8051d","tok-65bf6adb3435","tok-e453dee9c865","tok-e2939024269c"]}]},"the-beginning-of-wisdom-introduction-introduction-7":{"unit_id":"the-beginning-of-wisdom-introduction-introduction-7","anchor_id":"the-beginning-of-wisdom-introduction-introduction-7","source_ref":"The Beginning of Wisdom, Introduction:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e71be042acd6","tok-6636ae5b277a"]}]},"the-beginning-of-wisdom-default-default-1-1":{"unit_id":"the-beginning-of-wisdom-default-default-1-1","anchor_id":"the-beginning-of-wisdom-default-default-1-1","source_ref":"The Beginning of Wisdom 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b04c20b8d2da","tok-b157f5663163","tok-435e219a327b","tok-bf99eff84ad4","tok-cab139dc33cd","tok-d757fa1660ac","tok-4e3728cb3cec","tok-38d22fef30e1","tok-95a5574252af","tok-b682383026d2","tok-d6be269cfc8d","tok-9c874fc39497","tok-ff8fd5fe37af","tok-9ee92baf6c89","tok-4fdf46dfccd5","tok-65ae607ab633","tok-9ea8c28fc880","tok-fadf814d7ec1","tok-1986bd6ecb39","tok-db812199f21e","tok-75f1c3886d43","tok-b403a5757b10","tok-2747c76edf49","tok-1b386c3dcd22","tok-370f109be5ec","tok-fd8664678ce3","tok-db812199f21e","tok-5f9973858d74","tok-d8ba47236d87","tok-4fdf46dfccd5","tok-1322f43ece8f","tok-80bdb715533d","tok-70ae0cc4792d","tok-971f7098e1a8","tok-a143be30d63a","tok-fd4fd62f2f60","tok-f4d1d2b4d74e","tok-fd8664678ce3","tok-9f5c73cc1fef","tok-ac43279c96d3","tok-20e9be0a7c0b","tok-67b4715084ed","tok-bf26d66ec358","tok-b04c20b8d2da","tok-fcbe76437eda","tok-d402a7f21670","tok-35bfa86a73e0","tok-2bcfe4810e0b","tok-e6eb88ed197a","tok-adee3bda14b7","tok-25b14d0d208a","tok-1c4c06afd357","tok-69703326bab8","tok-43f13f320d6b","tok-adee3bda14b7","tok-25b14d0d208a","tok-4c2ce16d4cef","tok-adee3bda14b7","tok-2f8b6c711462","tok-baf4b5c20341","tok-bf26d66ec358","tok-c398ec66a4a8","tok-c981be97fedb","tok-ec30e2240a34","tok-a46f6645e1e1","tok-d3860537285c","tok-9529686dc4b8","tok-ba2cf1f74cc3","tok-8759a92fef42","tok-e4779511cf99","tok-7d10910db18e","tok-e6fd68e0cb4a","tok-464176076b3a","tok-96b5e1b40209","tok-27a3294c7f94","tok-1ef428aa3cf3","tok-a85f2b5c62e2","tok-bf9b14f0523b","tok-e542065e4ced","tok-bf483219beda","tok-de59f3fc7f28","tok-ce1160e174de","tok-98fce42658d5","tok-fef37e557fbc","tok-5e7d8c9406e8","tok-7ef6e4e90440","tok-c28732ff4dc7","tok-19084d16a628","tok-bf9becebbb8f","tok-d3bfcf2f52af","tok-f159f2e49e5a","tok-b4deeeda060f","tok-c28732ff4dc7","tok-19084d16a628","tok-bf9becebbb8f","tok-d3bfcf2f52af","tok-7b417294e8f7","tok-7ef6e4e90440","tok-a2b6c024a87f","tok-1d42b8ac9f8e","tok-970695dfb59f","tok-9595cbd97d87","tok-90c678540376","tok-93cfae16eeb8","tok-0729f0d14623","tok-32dc47807ea0"]}]},"the-beginning-of-wisdom-default-default-1-2":{"unit_id":"the-beginning-of-wisdom-default-default-1-2","anchor_id":"the-beginning-of-wisdom-default-default-1-2","source_ref":"The Beginning of Wisdom 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-13073e9b7ccf","tok-1de397ff1a1c","tok-9d8fe61863be","tok-40d4a39ce608","tok-11cf3ebb3559","tok-8947e8bb4b3a","tok-9529686dc4b8","tok-8b0265989efe","tok-7c43f9f042b9","tok-7b39852509ae","tok-72e740f3b6f6","tok-3e2451ca08a6","tok-2e533c3aaef0","tok-57f3bb37b3a2","tok-9529686dc4b8","tok-2be8bd94417d","tok-2b582ab8e66d","tok-4ab90913d5b3","tok-5a4fece92537","tok-195bc97d5f9c","tok-04290885e7d8","tok-038490dfebb3","tok-8db422d126d1","tok-57ec73ab5d08","tok-6933805bfca0","tok-af8766800c21","tok-7976282ed1d2","tok-b4fa0165e518","tok-4c2ce16d4cef","tok-adee3bda14b7","tok-979112766a25","tok-b2307663423d","tok-acd59302b322","tok-13d4d316e8b2","tok-8d6941386c66","tok-5ae4d5d48289","tok-80fe596acfa0","tok-a9372013a95d","tok-4247184ac6b3","tok-57c8b35ea3e2","tok-43f13f320d6b","tok-adee3bda14b7","tok-38f0c4cf7095","tok-883ea9dc2db5","tok-a724085436ca","tok-471f74d9019c","tok-1ac5002d22ec","tok-097485d96cf0","tok-1cc3e69d6432","tok-9ea8c28fc880","tok-a85f2b5c62e2","tok-3e2451ca08a6","tok-2e533c3aaef0","tok-57f3bb37b3a2","tok-a64d7782f90b","tok-40d4a39ce608","tok-a85f2b5c62e2","tok-dfed53a44e95","tok-9a4bd272a960","tok-7ef6e4e90440","tok-219674b9a37f","tok-77f7560f8113","tok-57f3bb37b3a2","tok-fe62f7b04d0e","tok-03b5609a2e1d","tok-038490dfebb3","tok-1a12c58c1aae","tok-03b5609a2e1d","tok-12b0db3cbe25","tok-ecc91bbb7f7c","tok-8b0265989efe","tok-ada9db9ae385","tok-6442cea27a22","tok-3e2451ca08a6","tok-2e533c3aaef0","tok-d6ecc431dbd3","tok-50395d4a77da","tok-ce1160e174de","tok-98fce42658d5","tok-fef37e557fbc","tok-40d4a39ce608","tok-98fce42658d5","tok-ef3b8dcbe420","tok-baf4b5c20341","tok-d750efe6a680","tok-8b0265989efe","tok-8fe0f1b8b298","tok-baf4b5c20341","tok-038490dfebb3","tok-b4fa0165e518","tok-49e70ba3e619","tok-54fd0f1f3ce8","tok-38f0c4cf7095","tok-cf167391a963","tok-1f65cd35ea9c","tok-9e227d3c21bb","tok-eadee6196790","tok-a85f2b5c62e2","tok-1de397ff1a1c","tok-3b101ee1e3b8","tok-7b39852509ae","tok-32170936345e","tok-f3eef4560631"]}]},"the-beginning-of-wisdom-default-default-1-3":{"unit_id":"the-beginning-of-wisdom-default-default-1-3","anchor_id":"the-beginning-of-wisdom-default-default-1-3","source_ref":"The Beginning of Wisdom 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2b94f65b4735","tok-d6ca1a551ea7","tok-df57a4fc41c9","tok-af8766800c21","tok-ef0a13c99793","tok-e542065e4ced","tok-c981be97fedb","tok-038c19751a94","tok-662e7e95d83c","tok-6c70c88a4053","tok-2067aa5055a1","tok-ebb10fffde9e","tok-75355a00a12b","tok-d9bf038cd4b8","tok-ab2d7c620e90","tok-873cef55d6f4","tok-5c86e50d6076","tok-eb0c21152708","tok-4a8891e02793","tok-ced6c6cf149f","tok-7ebf252fe511","tok-2793c5c88bcd","tok-cfcacd95d8dd"]}]},"the-beginning-of-wisdom-default-default-1-4":{"unit_id":"the-beginning-of-wisdom-default-default-1-4","anchor_id":"the-beginning-of-wisdom-default-default-1-4","source_ref":"The Beginning of Wisdom 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4bb3b0325c2d","tok-74808860594c","tok-27033d16909a","tok-7ef6e4e90440","tok-45513172df68","tok-82ff3e069090","tok-8af57141da1f","tok-14d5499ec7c3","tok-0b49d7b4ca28","tok-2a201a55b140","tok-33cf6996820e","tok-ac43279c96d3","tok-babbde2789d2","tok-f87a49f208ac","tok-c981be97fedb","tok-038c19751a94","tok-a2b312f72ed5","tok-ba9863b1d48d","tok-b4fa0165e518","tok-80efce8b4ea7","tok-5c9b124a369e","tok-dded340a2e7c","tok-ab2d7c620e90","tok-0f891b7c5253","tok-a717852a7b3d","tok-49e70ba3e619","tok-54fd0f1f3ce8","tok-eaff911fca7b","tok-4c2ce16d4cef","tok-adee3bda14b7","tok-9ea8c28fc880","tok-e2ff218ab737","tok-acd59302b322","tok-cf167391a963","tok-1f65cd35ea9c","tok-e2ff218ab737","tok-acd59302b322","tok-df8e07730b9b","tok-995d887b7423","tok-8e1d5a925141","tok-8759a92fef42","tok-e4779511cf99","tok-3e2451ca08a6","tok-c24b2c30653b","tok-6c59af2172b2"]}]},"the-beginning-of-wisdom-default-default-1-5":{"unit_id":"the-beginning-of-wisdom-default-default-1-5","anchor_id":"the-beginning-of-wisdom-default-default-1-5","source_ref":"The Beginning of Wisdom 1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-32ac8ef1954a","tok-df57a4fc41c9","tok-9d744844a80e","tok-9de29ea739c2","tok-ee31feb3c0db","tok-bb11f13c0fcc","tok-357130fb13eb","tok-fd965eb89041","tok-bb11f13c0fcc","tok-357130fb13eb","tok-a0f2050eb60c","tok-1951431dc173","tok-097cafece91b","tok-ee31feb3c0db","tok-b749440b710f","tok-48818c6786a6","tok-336e72c1b455","tok-422a66f83180","tok-a347d1b25d30","tok-2f877f2af49e","tok-c6110521705b","tok-17990a1d333a","tok-17dfc5da73bb","tok-acd59302b322","tok-a4ee22716d7b","tok-89d2f0899917"]}]},"the-beginning-of-wisdom-default-default-1-6":{"unit_id":"the-beginning-of-wisdom-default-default-1-6","anchor_id":"the-beginning-of-wisdom-default-default-1-6","source_ref":"The Beginning of Wisdom 1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2b4bda39f43a","tok-3a6090127f88","tok-d2043bcb9e27","tok-7ef6e4e90440","tok-5c86e50d6076","tok-d114c380d45e","tok-e0d6b5218fb8","tok-6ce22da20be8","tok-98fce42658d5","tok-28636f0c525c","tok-b4deeeda060f","tok-808a76635458","tok-1950db5c6a9c","tok-8e14dcccd420","tok-e542065e4ced","tok-6a71c5ae8c38","tok-7ef6e4e90440","tok-45e9f31521cf","tok-6933805bfca0","tok-fd4fd62f2f60","tok-407c1fdb5dfd","tok-219674b9a37f","tok-8e14dcccd420","tok-d492fd2c4d7f","tok-baf4b5c20341","tok-e060af821565","tok-0a9f1af047c0","tok-fcfe7241ec07","tok-505e22655f51","tok-097485d96cf0","tok-42397cc76114","tok-c981be97fedb","tok-ac43279c96d3","tok-a345f6e10b7f","tok-ba1f631e9800","tok-652957cff6b0","tok-111992839417","tok-4c2ce16d4cef","tok-adee3bda14b7","tok-9ea8c28fc880","tok-9f9320d8a17c","tok-d116ddfebd1a","tok-7b39852509ae"]}]},"the-beginning-of-wisdom-default-default-1-7":{"unit_id":"the-beginning-of-wisdom-default-default-1-7","anchor_id":"the-beginning-of-wisdom-default-default-1-7","source_ref":"The Beginning of Wisdom 1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-505e22655f51","tok-3a6090127f88","tok-c51faf279b8a","tok-c2d98ee5c519","tok-7b417294e8f7","tok-5c86e50d6076","tok-d114c380d45e","tok-c2d98ee5c519","tok-407c1fdb5dfd","tok-219674b9a37f","tok-8e14dcccd420","tok-d492fd2c4d7f","tok-74808860594c","tok-80bdb715533d","tok-f16b99be819f","tok-d6be269cfc8d","tok-5c86e50d6076","tok-74808860594c","tok-80bdb715533d","tok-8b20a5c33007","tok-d2043bcb9e27","tok-fd4fd62f2f60","tok-31c84f54b3d4","tok-7ef6e4e90440","tok-5c86e50d6076","tok-c2966d5d5ad7","tok-917ef8c3348f","tok-7ef6e4e90440","tok-19f319d13d47","tok-5c86e50d6076","tok-4f9988fde6ac","tok-9ea8c28fc880","tok-e92d7f13c46e","tok-8fe9e8a86049","tok-fc5266801aa0","tok-83a992dcf411","tok-ba6c255ac5fd","tok-afd7944e3e2f","tok-2a0e7bd7137d","tok-b06e5abb9af9","tok-37a81b790f72","tok-8b85197da008","tok-97410ee7b221","tok-ae30f30b9e5c","tok-c9fefd868fe9","tok-c2d98ee5c519","tok-7b417294e8f7","tok-a66a040f9311","tok-097c1ae4f121","tok-d6be269cfc8d","tok-db79c21f1e40","tok-64ac795ad8b0","tok-0b49d7b4ca28","tok-ce4771ff00b8","tok-e77749aa5e42","tok-baf4b5c20341","tok-e060af821565","tok-54a88366d723","tok-ac43279c96d3","tok-fb0db59113cb","tok-995d887b7423","tok-ea9665374e3d","tok-75aedb86a05a","tok-bf46d85cb033","tok-4270545ff911","tok-7179081a722b","tok-e060af821565","tok-b4d15d4897c2","tok-9247bf193f68","tok-520b54472170","tok-54a88366d723","tok-8dae5a8f3171","tok-203ed0015fb5","tok-a40ba43b294d","tok-c981be97fedb","tok-1a258a661ca8","tok-7b39852509ae"]}]},"the-beginning-of-wisdom-default-default-1-8":{"unit_id":"the-beginning-of-wisdom-default-default-1-8","anchor_id":"the-beginning-of-wisdom-default-default-1-8","source_ref":"The Beginning of Wisdom 1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8cc39368930b","tok-74808860594c","tok-9125f7125c2e","tok-0bfa7a5cf931","tok-d9bf038cd4b8","tok-ab2d7c620e90","tok-873cef55d6f4","tok-07f0a6be163e","tok-bf46d85cb033","tok-a0aa9e785c50","tok-e77749aa5e42","tok-bf46d85cb033","tok-b01204f46dee","tok-b3e4fde8a6ec","tok-336e72c1b455","tok-ad1e12a28f40","tok-32df666bf2fd","tok-808a76635458","tok-a2b6c024a87f","tok-e542065e4ced","tok-ae30f30b9e5c","tok-d6be269cfc8d","tok-808a76635458","tok-649cdc9e4662","tok-7b39852509ae","tok-420dd39a61ba","tok-dcf64042e644","tok-9c753cab9b41","tok-6ab7fee63d6e","tok-336e72c1b455","tok-e293953540ec","tok-d114c380d45e","tok-ae30f30b9e5c","tok-4c2ce16d4cef","tok-adee3bda14b7","tok-9ea8c28fc880"]}]},"the-beginning-of-wisdom-default-default-1-9":{"unit_id":"the-beginning-of-wisdom-default-default-1-9","anchor_id":"the-beginning-of-wisdom-default-default-1-9","source_ref":"The Beginning of Wisdom 1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f55311fc1373","tok-3a6090127f88","tok-ee31feb3c0db","tok-7ef6e4e90440","tok-ee31feb3c0db","tok-bb11f13c0fcc","tok-fe62f7b04d0e","tok-7ef6e4e90440","tok-407c1fdb5dfd","tok-d13c8047d6a4","tok-8e14dcccd420","tok-c212c485e605","tok-7d1dc484de79","tok-8b20a5c33007","tok-48a90d89134c","tok-a9514e70c53a","tok-c20ba88dfae1","tok-3a6090127f88","tok-c77b91907aa5","tok-7ef6e4e90440","tok-fd965eb89041","tok-bb11f13c0fcc","tok-6b00415b01f5","tok-bb11f13c0fcc","tok-407c1fdb5dfd","tok-d13c8047d6a4","tok-8e14dcccd420","tok-c212c485e605","tok-7d1dc484de79","tok-1f0d6eafe405","tok-c20d5f8b5042","tok-6872ca635c20","tok-1a71af5686b6","tok-7ef6e4e90440","tok-9d744844a80e","tok-45511565dc0a","tok-097cafece91b","tok-ee31feb3c0db","tok-b749440b710f","tok-c7d1c9e85640","tok-336e72c1b455","tok-c2966d5d5ad7","tok-74808860594c","tok-b1efd187b6f2","tok-f31ede2ad108","tok-bf9eff2fd470","tok-4c2ce16d4cef","tok-adee3bda14b7","tok-9ea8c28fc880","tok-1a71af5686b6","tok-63cafb9481b7","tok-ebfcafed3b9a","tok-19f319d13d47","tok-8641aa90cb57"]}]},"the-beginning-of-wisdom-default-default-1-10":{"unit_id":"the-beginning-of-wisdom-default-default-1-10","anchor_id":"the-beginning-of-wisdom-default-default-1-10","source_ref":"The Beginning of Wisdom 1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c88d0f34895d","tok-bc2b0e39b139","tok-7ef6e4e90440","tok-9c81fdd7f5f9","tok-ee31feb3c0db","tok-b3289a0d8ea7","tok-699a49f23f5c","tok-5c86e50d6076","tok-6d5582ca2e6a","tok-fe62f7b04d0e","tok-5c86e50d6076","tok-fd4e4315e205","tok-3ffe461a3c47","tok-62beeb90bfde","tok-8784fc8a03ad","tok-b1efd187b6f2","tok-3e2451ca08a6","tok-d4902715354a","tok-b4deeeda060f","tok-5e5457225e9a","tok-b73649c96b90","tok-b3289a0d8ea7","tok-93983f2a0eba","tok-7ef6e4e90440","tok-8d1ef8588dc8","tok-2a984ff975a5","tok-808a76635458","tok-1950db5c6a9c","tok-8b20a5c33007","tok-35767423ace1","tok-c20ba88dfae1","tok-376dc8d9b1b2","tok-9658d1d6cdd7","tok-ae30f30b9e5c","tok-99c54440d520","tok-9e2c38f289c5","tok-ae16b9502592","tok-86c088ae249a","tok-22b1d5136530","tok-2a984ff975a5","tok-c6c583660912","tok-17dfc5da73bb","tok-56b503e5af77","tok-737c8e309221","tok-097485d96cf0","tok-dd4428f08952","tok-7671a0c29e8e","tok-097485d96cf0","tok-9a8fd52fc83a","tok-097485d96cf0","tok-eec5c2991ae4","tok-1c925f34bc82","tok-b06e5abb9af9","tok-15964657f2b3","tok-bc2b0e39b139","tok-f31ede2ad108","tok-bf9eff2fd470","tok-4c2ce16d4cef","tok-adee3bda14b7","tok-9ea8c28fc880"]}]},"the-beginning-of-wisdom-default-default-1-11":{"unit_id":"the-beginning-of-wisdom-default-default-1-11","anchor_id":"the-beginning-of-wisdom-default-default-1-11","source_ref":"The Beginning of Wisdom 1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-dfc1d5ab66b1","tok-20e5036f9b8b","tok-7ef6e4e90440","tok-9c81fdd7f5f9","tok-fd965eb89041","tok-b3289a0d8ea7","tok-699a49f23f5c","tok-97410ee7b221","tok-6d5582ca2e6a","tok-fe62f7b04d0e","tok-fd4e4315e205","tok-37a81b790f72","tok-62beeb90bfde","tok-8784fc8a03ad","tok-b1efd187b6f2","tok-f8d2f62d94b1","tok-d4902715354a","tok-b73649c96b90","tok-b4deeeda060f","tok-8d1ef8588dc8","tok-0698c3299035","tok-b3289a0d8ea7","tok-93983f2a0eba","tok-7ef6e4e90440","tok-be0921267263","tok-8b20a5c33007","tok-35767423ace1","tok-6872ca635c20","tok-376dc8d9b1b2","tok-75c0f93531d4","tok-ae30f30b9e5c","tok-99c54440d520","tok-f5f0bf6d3d55","tok-4cbc604f8970","tok-1cb27704afbf","tok-48c86fcab2d3","tok-9247bf193f68","tok-07c9e382f235","tok-60a1fc86310f","tok-aaf621b4aaa4","tok-baf4b5c20341","tok-abef29d412dc","tok-02ad60195593","tok-ee497d8d4b35","tok-af4a8d0e160e","tok-9ea8c28fc880","tok-37084b590712","tok-9ea8c28fc880","tok-eec5c2991ae4","tok-1c925f34bc82","tok-b06e5abb9af9","tok-2d9ae19c8530","tok-9c81fdd7f5f9","tok-20e5036f9b8b","tok-74808860594c","tok-b1efd187b6f2","tok-f31ede2ad108","tok-bf9eff2fd470","tok-4c2ce16d4cef","tok-adee3bda14b7","tok-9ea8c28fc880","tok-9f9320d8a17c","tok-d116ddfebd1a","tok-9ea8c28fc880","tok-7875703ada37","tok-7b39852509ae","tok-93a5622157af","tok-afd70d2cdd71","tok-7ef6e4e90440","tok-9c81fdd7f5f9","tok-2e49d6846dff","tok-9ad2db4f175a","tok-9ea8c28fc880","tok-197d1fed28ad","tok-a0f2050eb60c","tok-1951431dc173","tok-097cafece91b","tok-bc2b0e39b139","tok-6a1ab7cf258a","tok-7972c015952c","tok-62beeb90bfde","tok-19f319d13d47","tok-f955e7415ffc"]}]},"the-beginning-of-wisdom-default-default-1-12":{"unit_id":"the-beginning-of-wisdom-default-default-1-12","anchor_id":"the-beginning-of-wisdom-default-default-1-12","source_ref":"The Beginning of Wisdom 1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-27eac70630cc","tok-74808860594c","tok-417c5957ee7a","tok-6c70c88a4053","tok-0bfa7a5cf931","tok-5c86e50d6076","tok-eb0c21152708","tok-12de6bd4b70d","tok-ced6c6cf149f","tok-7ebf252fe511","tok-2793c5c88bcd","tok-d725161b82be","tok-2b582ab8e66d","tok-808a76635458","tok-6dc5848346dc","tok-5b7c2abd0449","tok-d6919f2ee39e","tok-01b89c57eaa5","tok-ee31feb3c0db","tok-bb11f13c0fcc","tok-7ef6e4e90440","tok-fe62f7b04d0e","tok-407c1fdb5dfd","tok-d13c8047d6a4","tok-8e14dcccd420","tok-c212c485e605","tok-7d1dc484de79","tok-c2966d5d5ad7","tok-4c2ce16d4cef","tok-adee3bda14b7","tok-9ea8c28fc880","tok-420dd39a61ba","tok-07f0a6be163e","tok-417c5957ee7a","tok-0bfa7a5cf931","tok-2d9ae19c8530","tok-9c81fdd7f5f9","tok-7cfd9e95a45b","tok-17dfc5da73bb","tok-5c9b124a369e","tok-dded340a2e7c","tok-ab2d7c620e90","tok-ad0f7fb9058e","tok-404edb1fa62a","tok-6c59af2172b2"]}]},"the-beginning-of-wisdom-default-default-1-13":{"unit_id":"the-beginning-of-wisdom-default-default-1-13","anchor_id":"the-beginning-of-wisdom-default-default-1-13","source_ref":"The Beginning of Wisdom 1:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4e72aed1d365","tok-be2501e60336","tok-d2043bcb9e27","tok-7ef6e4e90440","tok-66fc6b103aa1","tok-ad1e12a28f40","tok-507374b8e0db","tok-28636f0c525c","tok-1f9b1d8e32dc","tok-1b386c3dcd22","tok-9ee9f0065a69","tok-67f88f7ed8ec","tok-bf9e5e6ac273","tok-bf04d3a3ff84","tok-3248d242b86d","tok-67f88f7ed8ec","tok-380828eed5a0","tok-fd4fd62f2f60","tok-808a76635458","tok-1a1f837517e0","tok-f768cb0f49bd","tok-c1febeb8b68b","tok-fe62f7b04d0e","tok-0e7affcd0e41","tok-e81e9005a0bf","tok-8b20a5c33007","tok-ed5d44f383c5","tok-9595cbd97d87","tok-6d8b5ac92de3","tok-1b386c3dcd22","tok-b06e5abb9af9","tok-2d9ae19c8530","tok-67f88f7ed8ec","tok-bf9e5e6ac273","tok-e994ec5d0fa0","tok-27bea13b5f17","tok-e4ac0d9f5b60","tok-f2c6a02ca4a1","tok-70663a51d1d7","tok-fb1e08895f5c","tok-1989b5cddb33","tok-84fa00fe68f0","tok-699141a2c51e","tok-6e0f31ec7abf","tok-32170936345e","tok-243bea1b7cba","tok-6c70c88a4053","tok-98858f444160","tok-d07737fdb0e6","tok-0bfa7a5cf931","tok-32df666bf2fd","tok-9c81fdd7f5f9","tok-7cfd9e95a45b","tok-c2966d5d5ad7","tok-07f0a6be163e","tok-4f89b525100d","tok-380828eed5a0","tok-ba6c255ac5fd","tok-376dc8d9b1b2","tok-bf9e5e6ac273","tok-b4deeeda060f","tok-9c81fdd7f5f9","tok-7cfd9e95a45b","tok-fd4fd62f2f60","tok-a0f2050eb60c","tok-0b49d7b4ca28","tok-e799878e77ea","tok-1f9b1d8e32dc","tok-319a1d17e4a1","tok-5c86e50d6076","tok-b4deeeda060f","tok-fe62f7b04d0e","tok-407c1fdb5dfd","tok-9714f42c003e","tok-c2966d5d5ad7","tok-49e70ba3e619","tok-5c9b124a369e","tok-dded340a2e7c","tok-ab2d7c620e90","tok-ad0f7fb9058e","tok-404edb1fa62a","tok-13ed4de09549","tok-d9bc24849843","tok-b1d665e93370"]}]},"the-beginning-of-wisdom-default-default-1-14":{"unit_id":"the-beginning-of-wisdom-default-default-1-14","anchor_id":"the-beginning-of-wisdom-default-default-1-14","source_ref":"The Beginning of Wisdom 1:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-65021f54f98a","tok-3a6090127f88","tok-cfcacd95d8dd","tok-7ef6e4e90440","tok-a0f2050eb60c","tok-f27c323d52fe","tok-cb940a10739b","tok-170dfe4c2fa8","tok-7beb8a33a992","tok-ae30f30b9e5c","tok-aefbf57eea2a","tok-7a54bac1e3b0","tok-e542065e4ced","tok-ae30f30b9e5c","tok-ba6c255ac5fd","tok-30c4c41de90b","tok-6f1655730559","tok-b4deeeda060f","tok-1a238e250669","tok-388e0d7b16dc","tok-8324974b23e7","tok-6dc5848346dc","tok-09241e0a6246","tok-1234a5f90864","tok-ff6ebcb440d1","tok-953d6cf56c84","tok-143fd793993f","tok-43aa9daca28e","tok-39b8540bc6d2","tok-7beb8a33a992","tok-4fdf46dfccd5","tok-7b39852509ae","tok-17dfc5da73bb","tok-a060e4643fe9","tok-4c2ce16d4cef","tok-adee3bda14b7","tok-baf4b5c20341","tok-4807734b13b0","tok-f76e6c4285e6","tok-fef37e557fbc","tok-64fcc75e70e2","tok-84c184e94ec1","tok-ef05d0b456bd","tok-0090645c88e7","tok-20fc80d4ea34","tok-9f9320d8a17c","tok-a17fb29df5fc","tok-7b39852509ae","tok-970695dfb59f","tok-50c1bcb46a94","tok-df8e07730b9b","tok-995d887b7423","tok-8e1d5a925141","tok-64fcc75e70e2","tok-84c184e94ec1","tok-044e0ec45bad","tok-c2d98ee5c519","tok-7b417294e8f7","tok-8759a92fef42","tok-662e7e95d83c","tok-6c70c88a4053","tok-98232ba2559b","tok-d725161b82be","tok-662e7e95d83c","tok-32170936345e"]}]},"the-beginning-of-wisdom-default-default-1-15":{"unit_id":"the-beginning-of-wisdom-default-default-1-15","anchor_id":"the-beginning-of-wisdom-default-default-1-15","source_ref":"The Beginning of Wisdom 1:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b1164d1b52ad","tok-3e2451ca08a6","tok-e10820cc3ded","tok-6c70c88a4053","tok-7ef6e4e90440","tok-ca2e1e966b21","tok-6a9e9056a83e","tok-ba6c255ac5fd","tok-4c2ce16d4cef","tok-adee3bda14b7","tok-50c1bcb46a94","tok-e7d4525c6145","tok-bf5cc44feb04","tok-a060e4643fe9","tok-049afb662424","tok-089d2b6ea218","tok-b767ec86fea5","tok-097485d96cf0","tok-9f9320d8a17c","tok-c70cc5f31744","tok-7b39852509ae","tok-32170936345e","tok-719b979ab24b","tok-f3eef4560631","tok-420dd39a61ba","tok-9b1c754d68ee","tok-73c2ab13ebe0","tok-17008a08fe23","tok-c2d98ee5c519","tok-baf4b5c20341","tok-732198995587","tok-1acdbc68c612","tok-874ff800d0c2","tok-3e2451ca08a6","tok-d192293c0fc4","tok-263f993f2e8e","tok-584e5d84f62e","tok-6c70c88a4053","tok-1f0d6eafe405","tok-5a2532ba6262","tok-808a76635458","tok-e259108b13f3","tok-7ef6e4e90440","tok-ca2e1e966b21","tok-6a9e9056a83e"]}]},"the-beginning-of-wisdom-default-default-1-16":{"unit_id":"the-beginning-of-wisdom-default-default-1-16","anchor_id":"the-beginning-of-wisdom-default-default-1-16","source_ref":"The Beginning of Wisdom 1:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fd6c6b62a4be","tok-d6ca1a551ea7","tok-bcd5756586d5","tok-1989b5cddb33","tok-baf4b5c20341","tok-0bbeb0803c0d","tok-b1f7937d64df","tok-84c184e94ec1","tok-31935f6b0808","tok-208f25dc2d3b","tok-88ba465e317f","tok-d7d9f0d0a63e","tok-9ea8c28fc880","tok-72e740f3b6f6","tok-66e45fa5d75f","tok-3d38252cb054","tok-40e176efb465","tok-4774d1ef4675","tok-8f933b215ee4","tok-03a61506212d","tok-130f6754e5cb","tok-9de29ea739c2","tok-715ecc775a46","tok-b2039ffc588e","tok-f42ddca83602","tok-8fe0f1b8b298","tok-5ede7942ebb6","tok-520c2080068c","tok-6b45bb1afc7d","tok-9999d5e65832","tok-d7e7533d52a9","tok-c3c9b3666846","tok-420dd39a61ba","tok-27033d16909a","tok-60b457451956","tok-9c81fdd7f5f9","tok-ee31feb3c0db","tok-407c1fdb5dfd","tok-81dda68d68d8","tok-8e14dcccd420","tok-d492fd2c4d7f","tok-9ee9f0065a69","tok-dc1ea262217e","tok-269b82ef4d3e","tok-715ecc775a46","tok-42fd5043e532","tok-60b457451956","tok-9c81fdd7f5f9","tok-fd965eb89041","tok-173c4523f75a","tok-4129b311301f","tok-9ee9f0065a69","tok-dc1ea262217e","tok-269b82ef4d3e","tok-a30d97e6bf8f"]}]},"the-beginning-of-wisdom-default-default-1-17":{"unit_id":"the-beginning-of-wisdom-default-default-1-17","anchor_id":"the-beginning-of-wisdom-default-default-1-17","source_ref":"The Beginning of Wisdom 1:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-99ca2d8561b0","tok-420dd39a61ba","tok-77ca247c3e71","tok-7f33d6d02ed6","tok-e4779511cf99","tok-05f1611502f1","tok-8ed507548ba6","tok-439c2554db89","tok-d7c05456f5cd","tok-c981be97fedb","tok-8759a92fef42","tok-88a057e75ed9","tok-7f33d6d02ed6","tok-ba9863b1d48d","tok-439c2554db89","tok-b1efd187b6f2","tok-9908adf0621e","tok-bf46d85cb033","tok-b01204f46dee","tok-d9bf038cd4b8","tok-f42ddca83602","tok-808a76635458","tok-b4deeeda060f","tok-c29f75fe59bc","tok-8b20a5c33007","tok-5a2532ba6262","tok-b374cc3830e9","tok-ab2d7c620e90","tok-14cc63c2f118","tok-665ae9e294f7","tok-1a8997e9503f","tok-808a76635458","tok-b86843077b23","tok-bf46d85cb033","tok-a0aa9e785c50","tok-31c84f54b3d4","tok-83a992dcf411","tok-8fe9e8a86049","tok-fc5266801aa0","tok-1f9b1d8e32dc","tok-20833f9d1e13","tok-5c86e50d6076","tok-14cc63c2f118","tok-a86d4d878ff7","tok-1a8997e9503f","tok-73a2253f6056","tok-c43a6bae2fbf","tok-78a21d04ea8b","tok-808a76635458","tok-87116b65bcb1","tok-a0f2050eb60c","tok-1951431dc173","tok-c2966d5d5ad7","tok-c43a6bae2fbf","tok-ced6c6cf149f","tok-14cc63c2f118","tok-ae817b73d9ab","tok-1a8997e9503f","tok-20833f9d1e13","tok-2793c5c88bcd","tok-78a21d04ea8b","tok-b4deeeda060f","tok-a0f2050eb60c","tok-1951431dc173","tok-097cafece91b","tok-bc2b0e39b139","tok-6a1ab7cf258a","tok-1f9b1d8e32dc","tok-20833f9d1e13","tok-cfcacd95d8dd","tok-78a21d04ea8b","tok-66d4acff80be","tok-d9bf038cd4b8","tok-ab2d7c620e90","tok-873cef55d6f4","tok-78271eac62f4","tok-5c86e50d6076","tok-eb0c21152708","tok-4a8891e02793","tok-ced6c6cf149f","tok-7ebf252fe511","tok-2793c5c88bcd","tok-cfcacd95d8dd"]}]},"the-beginning-of-wisdom-default-default-1-18":{"unit_id":"the-beginning-of-wisdom-default-default-1-18","anchor_id":"the-beginning-of-wisdom-default-default-1-18","source_ref":"The Beginning of Wisdom 1:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-362cf08118c0","tok-30fca8e28ba8","tok-0bfa7a5cf931","tok-9ee9f0065a69","tok-dc1ea262217e","tok-269b82ef4d3e","tok-84037f2aba46","tok-f572cf128688","tok-197d1fed28ad","tok-dc1ea262217e","tok-269b82ef4d3e","tok-c2966d5d5ad7","tok-6ebf5a401e55","tok-ba9863b1d48d","tok-439c2554db89","tok-99c54440d520","tok-9ee9f0065a69","tok-662e7e95d83c","tok-6c70c88a4053","tok-7093282fbf11"]}]},"the-beginning-of-wisdom-default-default-1-19":{"unit_id":"the-beginning-of-wisdom-default-default-1-19","anchor_id":"the-beginning-of-wisdom-default-default-1-19","source_ref":"The Beginning of Wisdom 1:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3aa9e0db6d7e","tok-9d07cbab6e3f","tok-862f08349faa","tok-85b8e548f86e","tok-6c70c88a4053","tok-dc1ea262217e","tok-269b82ef4d3e","tok-8b20a5c33007","tok-c2a63823e6e7","tok-b1efd187b6f2","tok-a10bb8637b79","tok-b1efd187b6f2","tok-d9bf038cd4b8","tok-5b3e108035a9","tok-f41e52302998","tok-8639bc194b6e","tok-e528e86ee919","tok-5ddf913be24a","tok-ab2d7c620e90","tok-e528e86ee919","tok-5ddf913be24a","tok-873cef55d6f4","tok-b7f796814b12","tok-6ce22da20be8","tok-cfcacd95d8dd","tok-84037f2aba46","tok-b1efd187b6f2","tok-9ee9f0065a69","tok-662e7e95d83c","tok-6c70c88a4053","tok-20bdc41cc73f","tok-357130fb13eb","tok-a4abdd570641","tok-b04c20b8d2da","tok-df57a4fc41c9","tok-9d744844a80e","tok-dc350da8949d","tok-486dcf1d43c4","tok-f31ede2ad108","tok-c981be97fedb","tok-84037f2aba46","tok-db4eabc41b71","tok-b1efd187b6f2","tok-3a9cd919bfa4","tok-5a2532ba6262","tok-361bdb43a165","tok-9595cbd97d87","tok-6d8b5ac92de3","tok-8f51bbada690","tok-93cfae16eeb8","tok-3fdb5ec373ed","tok-85a3a0d97e7e","tok-ce2506c968b3","tok-e368e31fc882","tok-a0f2050eb60c","tok-f3e1eef369d1","tok-d224731ce667","tok-00e8d419c801","tok-c981be97fedb","tok-9d744844a80e","tok-092963a53117","tok-1f0d6eafe405","tok-5a2532ba6262","tok-7179081a722b","tok-b1efd187b6f2","tok-621f2d28b0b5","tok-84037f2aba46","tok-31c6a56b5725","tok-0bfa7a5cf931","tok-f3e20ae92a9c","tok-439c2554db89","tok-9d744844a80e","tok-2ab8ac2a274f","tok-97410ee7b221","tok-2ab8ac2a274f","tok-5c86e50d6076","tok-e83f9a9c841a","tok-439c2554db89","tok-24b761379432","tok-662e7e95d83c","tok-6c70c88a4053","tok-7093282fbf11","tok-1f9b1d8e32dc","tok-7b417294e8f7","tok-4247184ac6b3","tok-50c1bcb46a94","tok-5c9b124a369e","tok-dded340a2e7c","tok-ab2d7c620e90","tok-0f891b7c5253","tok-30416831d3e6","tok-32170936345e","tok-ef3b7f6709ae","tok-adee3bda14b7","tok-4247184ac6b3","tok-808a76635458","tok-81dda68d68d8","tok-2bddb7e56d97","tok-60d29fe391f7","tok-afac9132a12e","tok-a0f2050eb60c","tok-2d9ae19c8530","tok-eb5472887de6","tok-a871b265f3a3","tok-7179081a722b","tok-b1efd187b6f2","tok-621f2d28b0b5","tok-2bddb7e56d97","tok-85b7dce87411","tok-0bfa7a5cf931","tok-c2a63823e6e7","tok-37da057ce9f8","tok-32170936345e","tok-7bca176bdad9","tok-b2307663423d","tok-acd59302b322","tok-13d4d316e8b2","tok-8d6941386c66","tok-eadee6196790","tok-095ba2d9266f","tok-7b39852509ae","tok-32170936345e","tok-ae240999ad6a","tok-49e70ba3e619","tok-aa663e2f2ad0","tok-854f800ba044","tok-ea7ffbe673c1","tok-84c184e94ec1","tok-2518c5f3d7a0","tok-c2a63823e6e7","tok-37da057ce9f8","tok-3e3d676aa931","tok-a4abdd570641","tok-32170936345e","tok-6636ae5b277a"]}]},"the-beginning-of-wisdom-default-default-1-20":{"unit_id":"the-beginning-of-wisdom-default-default-1-20","anchor_id":"the-beginning-of-wisdom-default-default-1-20","source_ref":"The Beginning of Wisdom 1:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e7263cae69a3","tok-3a6090127f88","tok-25ae6f29ca00","tok-bf239e8e6e62","tok-19f319d13d47","tok-97410ee7b221","tok-2c328fbd6be0","tok-6c70c88a4053","tok-98858f444160","tok-d07737fdb0e6","tok-0bfa7a5cf931","tok-e10820cc3ded","tok-9c81fdd7f5f9","tok-7cfd9e95a45b","tok-1f9b1d8e32dc","tok-357130fb13eb","tok-e6e6276b50f8","tok-67b4715084ed","tok-0f1841c60c8c","tok-b3289a0d8ea7","tok-cfcacd95d8dd","tok-191739235fe8","tok-e6e6276b50f8","tok-06f0eaded6fb","tok-b987a7519d8b","tok-0f1841c60c8c","tok-06f0eaded6fb","tok-97410ee7b221","tok-19f319d13d47","tok-d0445c85ddb8","tok-e6e6276b50f8","tok-a407438c65da","tok-43aa9daca28e","tok-20ba9db6b696","tok-9c81fdd7f5f9","tok-25ae6f29ca00","tok-37a81b790f72","tok-0b426b52ef00","tok-9c81fdd7f5f9","tok-66fc6b103aa1","tok-1f0d6eafe405","tok-5a2532ba6262","tok-6d8b5ac92de3","tok-49e70ba3e619","tok-a9dd94c1d382","tok-22bcd335487f","tok-d117e49162de","tok-2ed645bc3061","tok-471f74d9019c","tok-bd62e551151a","tok-6e0f31ec7abf","tok-a80e58966fdb","tok-097485d96cf0","tok-32170936345e","tok-4e4f4e0861a4","tok-838a7e703d3e","tok-93cfae16eeb8","tok-d83def0801ad","tok-995d887b7423","tok-a717852a7b3d"]}]},"the-beginning-of-wisdom-default-default-1-21":{"unit_id":"the-beginning-of-wisdom-default-default-1-21","anchor_id":"the-beginning-of-wisdom-default-default-1-21","source_ref":"The Beginning of Wisdom 1:21","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5503720b770d","tok-d6ca1a551ea7","tok-a0f2050eb60c","tok-a6247e270fe3","tok-d945ac53cd3e","tok-3ffe461a3c47","tok-9ee9f0065a69","tok-8420c0ea4257","tok-a84f50355584","tok-1f0d6eafe405","tok-6d43b9a26711","tok-78c2c36523a2","tok-aab3eec9cfb9","tok-b918b6fae7e7","tok-6c38b79b0eaf","tok-c981be97fedb","tok-31edafb8813c","tok-0064d9083a25","tok-32170936345e","tok-ba787e97b18e","tok-1b386c3dcd22","tok-9ee9f0065a69","tok-9c81fdd7f5f9","tok-25ae6f29ca00","tok-1445b2851217","tok-dc1ea262217e","tok-269b82ef4d3e","tok-b70e71e6e6a1","tok-2b78274c212f","tok-6d8b5ac92de3","tok-9595cbd97d87","tok-ccc482f61229","tok-baf4b5c20341","tok-9ea8c28fc880","tok-b1efd187b6f2"]}]},"the-beginning-of-wisdom-default-default-1-22":{"unit_id":"the-beginning-of-wisdom-default-default-1-22","anchor_id":"the-beginning-of-wisdom-default-default-1-22","source_ref":"The Beginning of Wisdom 1:22","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5798c1bfd92d","tok-a9372013a95d","tok-31c84f54b3d4","tok-ac43279c96d3","tok-8a6f1aa078b5","tok-c51faf279b8a","tok-f3e1eef369d1","tok-62beeb90bfde","tok-97410ee7b221","tok-887b622a06b2","tok-fc5266801aa0","tok-83a992dcf411","tok-1f9b1d8e32dc","tok-7c0f194a12dc","tok-31c84f54b3d4","tok-50240c31551e","tok-8420c0ea4257","tok-a84f50355584","tok-54a88366d723","tok-8a6f1aa078b5","tok-0b49d7b4ca28","tok-3a6090127f88","tok-ab2d7c620e90","tok-f3e1eef369d1","tok-d11068e86b03","tok-97410ee7b221","tok-c2966d5d5ad7","tok-7179081a722b","tok-adee65aed2e1","tok-b1efd187b6f2","tok-e6e6276b50f8","tok-1b279190cdd1","tok-16daf427cac5","tok-d11068e86b03","tok-97410ee7b221","tok-9e792aad4f4a","tok-82ff3e069090","tok-8b20a5c33007","tok-fc4b1c859d21","tok-d2043bcb9e27","tok-c7d1c9e85640","tok-67f88f7ed8ec","tok-380828eed5a0","tok-1c95eab223b0","tok-62beeb90bfde","tok-97410ee7b221","tok-de1968f6c260","tok-07eca168f206","tok-67f88f7ed8ec","tok-380828eed5a0","tok-fc1444c0247d","tok-ba6c255ac5fd","tok-d9bf038cd4b8","tok-b4deeeda060f","tok-336e72c1b455","tok-05474470625c","tok-1c95eab223b0","tok-fd965eb89041","tok-de1968f6c260","tok-b42bb5f89904","tok-3c2301bd3cd8","tok-9ee9f0065a69","tok-eb0c21152708","tok-ae817b73d9ab","tok-1445b2851217","tok-3b0a28b34a69","tok-0f5641ed025c","tok-6c70c88a4053","tok-98858f444160","tok-d07737fdb0e6","tok-d725161b82be","tok-2d9ae19c8530","tok-7c0f194a12dc","tok-a0f2050eb60c","tok-82ff3e069090","tok-9c81fdd7f5f9","tok-7cfd9e95a45b","tok-c2966d5d5ad7","tok-c9b2da652f03","tok-826b9839df50","tok-989cecae39af","tok-f3f52010ee23","tok-28819ff72a5c","tok-95fb36b24dc8","tok-6b1a7161888c","tok-7b417294e8f7","tok-3b0a28b34a69","tok-a10dd019809d"]}]},"the-beginning-of-wisdom-default-default-1-23":{"unit_id":"the-beginning-of-wisdom-default-default-1-23","anchor_id":"the-beginning-of-wisdom-default-default-1-23","source_ref":"The Beginning of Wisdom 1:23","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d18dfb17ebcc","tok-d6ca1a551ea7","tok-ba2cf1f74cc3","tok-8af2d9e4a0a9","tok-d216c9391083","tok-7289d664ee1c","tok-d11068e86b03","tok-ba1528a389f3","tok-1c95eab223b0","tok-e2e5137d7910","tok-b987a7519d8b","tok-afd7944e3e2f","tok-32ac8ef1954a","tok-a0f2050eb60c","tok-73874be7dd44","tok-8573e8779d92","tok-708dd4e09c04","tok-9d07cbab6e3f","tok-f3e1eef369d1","tok-a1724b5c77ca","tok-73b4bd0dc5e3","tok-f78a513e2c11","tok-5c86e50d6076","tok-b7bb4a6feb2f","tok-652957cff6b0","tok-6f1655730559","tok-58f18e80de1f","tok-ee31feb3c0db","tok-604b89e56768","tok-eec5c2991ae4","tok-4014920a9230","tok-b4d15d4897c2","tok-75aedb86a05a","tok-95fdee0643ca","tok-995d887b7423","tok-22b1d5136530","tok-8362be278861","tok-6095faecc538","tok-b9ee78790ba7","tok-08d759d79dcb","tok-48c86fcab2d3","tok-066c3ec8aa4a","tok-4046b771ffbe","tok-097485d96cf0","tok-219674b9a37f","tok-7fafbfdc1625","tok-a51cf4a544ad","tok-2cf24101dd76","tok-9caa32faa15a"]}]},"the-beginning-of-wisdom-default-default-1-24":{"unit_id":"the-beginning-of-wisdom-default-default-1-24","anchor_id":"the-beginning-of-wisdom-default-default-1-24","source_ref":"The Beginning of Wisdom 1:24","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1009783ab833","tok-d6ca1a551ea7","tok-e6e6276b50f8","tok-1abff0805c49","tok-54fd0f1f3ce8","tok-434c4dd9c064","tok-e4779511cf99","tok-dfed53a44e95","tok-24b761379432","tok-8f054d3fd39f","tok-e060af821565","tok-269b82ef4d3e","tok-78271eac62f4","tok-cf8d191d22c9","tok-3c2301bd3cd8","tok-43493d4b003c","tok-d2043bcb9e27","tok-434c4dd9c064","tok-85b8e548f86e","tok-fe62f7b04d0e","tok-1abff0805c49","tok-63cf4888fd2d","tok-24b761379432","tok-ce1160e174de","tok-1322f43ece8f","tok-c7d1c9e85640","tok-78271eac62f4","tok-8f4857e871e1","tok-50c1bcb46a94","tok-9151c7ec6798","tok-6712343dda33","tok-9e227d3c21bb","tok-a9372013a95d","tok-4247184ac6b3","tok-c2d98ee5c519","tok-4c2ce16d4cef","tok-adee3bda14b7","tok-a060e4643fe9","tok-acd59302b322","tok-a4ee22716d7b","tok-a46f6645e1e1","tok-1ef428aa3cf3","tok-09fcfc530d50","tok-1ef428aa3cf3","tok-a5ffa5f13950","tok-bf46d85cb033","tok-b86843077b23","tok-abed08d14800","tok-0bfa7a5cf931","tok-43493d4b003c","tok-d9bf038cd4b8","tok-1a12c58c1aae","tok-78271eac62f4","tok-1d225333555e","tok-e25246059ff8","tok-43493d4b003c","tok-78271eac62f4","tok-1a12c58c1aae","tok-d9bf038cd4b8","tok-420dd39a61ba","tok-058f1642750b","tok-50c1bcb46a94","tok-a4ee22716d7b","tok-662e7e95d83c","tok-1a12c58c1aae","tok-299d4de5a02a","tok-662e7e95d83c","tok-1a12c58c1aae","tok-38c41fcf269b","tok-662e7e95d83c"]}]},"the-beginning-of-wisdom-default-default-1-25":{"unit_id":"the-beginning-of-wisdom-default-default-1-25","anchor_id":"the-beginning-of-wisdom-default-default-1-25","source_ref":"The Beginning of Wisdom 1:25","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6406ba270453","tok-a00b50d20753","tok-c398ec66a4a8","tok-0bfa7a5cf931","tok-7ef6e4e90440","tok-01cd139535d4","tok-d2043bcb9e27","tok-b4deeeda060f","tok-336e72c1b455","tok-ad1e12a28f40","tok-8ad3af7e9a2a","tok-808a76635458","tok-aa129dd912f9","tok-6d701f092770","tok-4a292bd3a459","tok-3b0a28b34a69","tok-e799878e77ea","tok-fe62f7b04d0e","tok-204484739430","tok-a8da71e74b2f","tok-4cbc604f8970","tok-1cb27704afbf","tok-8995aeebf169","tok-1950db5c6a9c","tok-b4deeeda060f","tok-d1a0ba12e475","tok-73a6d171334e","tok-da27631a7a5e","tok-3438e1c81835","tok-420dd39a61ba","tok-621f2d28b0b5","tok-baf4b5c20341","tok-b1efd187b6f2","tok-9ea8c28fc880","tok-173b96ba45e2","tok-ca2e1e966b21","tok-eb720463cbd0","tok-08a4bf093ccb","tok-eb720463cbd0","tok-a8da71e74b2f","tok-1f0d6eafe405","tok-5a2532ba6262","tok-ad48be220e52","tok-f16b99be819f","tok-03b5609a2e1d","tok-ea90b9fa05fe","tok-4397863e25cd","tok-c2d98ee5c519","tok-9c81fdd7f5f9","tok-d2043bcb9e27","tok-ceae187785b0","tok-e799878e77ea","tok-71db614633f6","tok-0b49d7b4ca28","tok-e799878e77ea","tok-d725161b82be","tok-125271852f72","tok-a90609b4c610","tok-5bbfffca0719","tok-68aa1e685de1","tok-961be145ae7c","tok-e542065e4ced","tok-d80c96f94b41","tok-48c86fcab2d3","tok-74808860594c","tok-3e2451ca08a6","tok-a61affd3eacc","tok-a5c0bb55763c","tok-0ba606b0d5ce","tok-fdffb2eaeab0","tok-420dd39a61ba","tok-07eca168f206","tok-30dacd79d14e","tok-03b5609a2e1d","tok-abed08d14800","tok-b4deeeda060f","tok-ea90b9fa05fe","tok-4397863e25cd","tok-43493d4b003c","tok-d9bf038cd4b8","tok-c2d98ee5c519","tok-7b417294e8f7","tok-b3289a0d8ea7","tok-03b5609a2e1d","tok-afac9132a12e","tok-8f1bebc5e208","tok-b4deeeda060f","tok-d11068e86b03","tok-e25246059ff8","tok-d6be269cfc8d","tok-43493d4b003c","tok-d9bf038cd4b8","tok-d0445c85ddb8","tok-9de29ea739c2","tok-83a992dcf411","tok-2c88b3e6ca4d","tok-8ae03d2073e5","tok-c2d98ee5c519","tok-03b5609a2e1d","tok-57f220eb31b5","tok-122d860feab8","tok-d2043bcb9e27","tok-8ae03d2073e5","tok-6038db25f474","tok-d6be269cfc8d","tok-9ee9f0065a69","tok-d9bf038cd4b8","tok-fe62f7b04d0e","tok-9ea8c28fc880","tok-1322f43ece8f","tok-48818c6786a6","tok-78271eac62f4","tok-197d1fed28ad","tok-bad246688ca5","tok-41d304941905","tok-2bfdaa448b84","tok-8a6f1aa078b5","tok-fe62f7b04d0e","tok-8b20a5c33007","tok-a0f2050eb60c","tok-1951431dc173","tok-097cafece91b","tok-c51faf279b8a","tok-6064641f06e0","tok-457e23e38bfc","tok-7ef6e4e90440","tok-3ff5ae979eb2","tok-97410ee7b221","tok-8b0265989efe","tok-63438cb50c10","tok-b5bf037bb23b","tok-fc5266801aa0","tok-83a992dcf411","tok-c2966d5d5ad7","tok-86f6b4698a60","tok-7ef6e4e90440","tok-a0f2050eb60c","tok-1951431dc173","tok-17dd9e00711d","tok-420dd39a61ba","tok-43493d4b003c","tok-78271eac62f4","tok-439c2554db89","tok-f572cf128688","tok-c77021fdba45","tok-ab2d7c620e90","tok-665ae9e294f7","tok-78a21d04ea8b","tok-b4deeeda060f","tok-dc1ea262217e","tok-269b82ef4d3e","tok-a0f2050eb60c","tok-45511565dc0a","tok-c2966d5d5ad7"]}]},"the-beginning-of-wisdom-default-default-1-26":{"unit_id":"the-beginning-of-wisdom-default-default-1-26","anchor_id":"the-beginning-of-wisdom-default-default-1-26","source_ref":"The Beginning of Wisdom 1:26","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3b974085d9d9","tok-d0445c85ddb8","tok-f52882b98e29","tok-1de397ff1a1c","tok-03b5609a2e1d","tok-827ec34002f0","tok-874ff800d0c2","tok-1d5fe4d5f93f","tok-0b49d7b4ca28","tok-e799878e77ea","tok-d725161b82be","tok-07aba095f762","tok-1feb024825d0","tok-990e680eb502","tok-ebe13b10cd68","tok-9c81fdd7f5f9","tok-d2043bcb9e27","tok-2bfdaa448b84","tok-808a76635458","tok-b1efd187b6f2","tok-9c81fdd7f5f9","tok-d2043bcb9e27","tok-c29f75fe59bc","tok-6933805bfca0","tok-afac9132a12e","tok-0b49d7b4ca28","tok-e799878e77ea","tok-9be960fbbd3d","tok-dd55773f6a7e","tok-15964657f2b3","tok-d2043bcb9e27","tok-e81e9005a0bf","tok-0aec6653fb11","tok-74808860594c","tok-1d5fe4d5f93f","tok-0b49d7b4ca28","tok-e799878e77ea","tok-54a88366d723","tok-fef37e557fbc","tok-d5225dd56127","tok-8df66603eb6c","tok-658b3c759672","tok-17dfc5da73bb","tok-5c9b124a369e","tok-dded340a2e7c","tok-ab2d7c620e90","tok-0f891b7c5253","tok-404edb1fa62a","tok-13ed4de09549","tok-6c59af2172b2"]}]},"the-beginning-of-wisdom-default-default-1-27":{"unit_id":"the-beginning-of-wisdom-default-default-1-27","anchor_id":"the-beginning-of-wisdom-default-default-1-27","source_ref":"The Beginning of Wisdom 1:27","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-185066dbfefb","tok-c6b1a540ccdc","tok-e39d4c6da5b6","tok-3e2451ca08a6","tok-28b3fec165d7","tok-f42ddca83602","tok-ce1160e174de","tok-4604e9edb4f4","tok-6712343dda33","tok-ef3b7f6709ae","tok-adee3bda14b7","tok-b86843077b23","tok-abed08d14800","tok-43493d4b003c","tok-d9bf038cd4b8","tok-1a12c58c1aae","tok-78271eac62f4","tok-59369d3a54d2","tok-01f29a504d45","tok-d6be269cfc8d","tok-43493d4b003c","tok-d9bf038cd4b8","tok-fe62f7b04d0e","tok-43493d4b003c","tok-78271eac62f4","tok-63cf4888fd2d","tok-d6e0f7534017","tok-43493d4b003c","tok-fe62f7b04d0e","tok-03b5609a2e1d","tok-d62b6fee6d24","tok-e191f377d9f0","tok-1f9b1d8e32dc","tok-420dd39a61ba","tok-9ee9f0065a69","tok-d9bf038cd4b8","tok-e74b8b43d454","tok-808a76635458","tok-1c456a57d4ea","tok-a602a476e1dc","tok-4a292bd3a459","tok-808a76635458","tok-f14da161f35c","tok-a9372013a95d","tok-9ee9f0065a69","tok-d5a694993dcf","tok-1a46e6fdb739","tok-e61464f027b6","tok-1686bfe14ac0","tok-84037f2aba46","tok-e4779511cf99","tok-ab2d7c620e90","tok-873cef55d6f4","tok-78271eac62f4","tok-5c86e50d6076","tok-7b39852509ae","tok-a9372013a95d","tok-4247184ac6b3","tok-4c2ce16d4cef","tok-adee3bda14b7","tok-f65d6b8e8151","tok-acd59302b322","tok-13d4d316e8b2","tok-8d6941386c66","tok-77429cea403f","tok-ba6c255ac5fd","tok-079cf534f6e6","tok-24305118605c","tok-7ef6e4e90440","tok-53d87fddd641"]}]},"the-beginning-of-wisdom-default-default-1-28":{"unit_id":"the-beginning-of-wisdom-default-default-1-28","anchor_id":"the-beginning-of-wisdom-default-default-1-28","source_ref":"The Beginning of Wisdom 1:28","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-32ef49768a3f","tok-420dd39a61ba","tok-4694a694b339","tok-03b5609a2e1d","tok-827ec34002f0","tok-079cf534f6e6","tok-7ef6e4e90440","tok-53d87fddd641","tok-665ae9e294f7","tok-1b386c3dcd22","tok-9ee9f0065a69","tok-ab2d7c620e90","tok-ce1160e174de","tok-233b55adbdfa","tok-665ae9e294f7","tok-7c0f194a12dc","tok-ce1160e174de","tok-8659bc126dd2","tok-9be960fbbd3d","tok-1696677d928e","tok-ceb163dd5f64","tok-fc5266801aa0","tok-7c0f194a12dc","tok-ca2e1e966b21","tok-a84f50355584","tok-1f9b1d8e32dc","tok-4e4f4e0861a4","tok-2b78274c212f","tok-54fd0f1f3ce8","tok-6d8b5ac92de3","tok-ccc482f61229","tok-e10820cc3ded","tok-ce1160e174de","tok-b1efd187b6f2","tok-49e70ba3e619","tok-9595cbd97d87","tok-8f51bbada690","tok-93cfae16eeb8","tok-bf46d85cb033","tok-ce2506c968b3"]}]},"the-beginning-of-wisdom-default-default-1-29":{"unit_id":"the-beginning-of-wisdom-default-default-1-29","anchor_id":"the-beginning-of-wisdom-default-default-1-29","source_ref":"The Beginning of Wisdom 1:29","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fc1405a9d79b","tok-fbe47b0cfe05","tok-db349f0ce28d","tok-0bfa7a5cf931","tok-d500242aed7e","tok-6c70c88a4053","tok-0bfa7a5cf931","tok-dc1ea262217e","tok-8b0265989efe","tok-08281c7e35ec","tok-36b80ec9c027","tok-60d29fe391f7","tok-afac9132a12e","tok-f6aae468a829","tok-72e740f3b6f6","tok-38c41fcf269b","tok-9ee9f0065a69","tok-54fd0f1f3ce8","tok-ce1160e174de","tok-27f9a809b4b7","tok-28c2243e5a67","tok-d9bf038cd4b8","tok-9ee9f0065a69","tok-67f88f7ed8ec","tok-380828eed5a0","tok-ab2d7c620e90","tok-9ee9f0065a69","tok-233b55adbdfa","tok-873cef55d6f4","tok-7c0f194a12dc","tok-8659bc126dd2","tok-417c5957ee7a","tok-6c70c88a4053","tok-5c86e50d6076","tok-eb0c21152708","tok-12de6bd4b70d","tok-ced6c6cf149f","tok-7ebf252fe511","tok-2793c5c88bcd","tok-32df666bf2fd","tok-2d9ae19c8530","tok-9c81fdd7f5f9","tok-7cfd9e95a45b","tok-c2966d5d5ad7","tok-9ee9f0065a69","tok-4f89b525100d","tok-380828eed5a0","tok-cfcacd95d8dd","tok-9ee9f0065a69","tok-1445b2851217","tok-1f0d6eafe405","tok-9d60dfe34935","tok-af1220764ca2","tok-e10820cc3ded","tok-779ff745194d","tok-5ede7942ebb6"]}]},"the-beginning-of-wisdom-default-default-1-30":{"unit_id":"the-beginning-of-wisdom-default-default-1-30","anchor_id":"the-beginning-of-wisdom-default-default-1-30","source_ref":"The Beginning of Wisdom 1:30","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2c381ae11df1","tok-9d07cbab6e3f","tok-07f0a6be163e","tok-85b8e548f86e","tok-6c70c88a4053","tok-2d9ae19c8530","tok-8de8afa9abb7","tok-0206c7b3348f","tok-25d496698e2c","tok-d4358b041b6f","tok-cf8d191d22c9","tok-d9bf038cd4b8","tok-ab2d7c620e90","tok-5c86e50d6076","tok-4a8891e02793","tok-ced6c6cf149f","tok-07f0a6be163e","tok-995d887b7423","tok-0206c7b3348f","tok-808a76635458","tok-87116b65bcb1","tok-63cafb9481b7","tok-19f319d13d47","tok-ebfcafed3b9a","tok-c2966d5d5ad7","tok-25d496698e2c","tok-6c70c88a4053","tok-873cef55d6f4","tok-eb0c21152708","tok-7ebf252fe511","tok-2793c5c88bcd","tok-cfcacd95d8dd","tok-b465b84647b7","tok-995d887b7423","tok-d4358b041b6f","tok-8f37ce6078f8","tok-63cafb9481b7","tok-f955e7415ffc","tok-19f319d13d47","tok-1f9b1d8e32dc","tok-c2d98ee5c519","tok-7b417294e8f7"]}]},"the-beginning-of-wisdom-default-default-1-31":{"unit_id":"the-beginning-of-wisdom-default-default-1-31","anchor_id":"the-beginning-of-wisdom-default-default-1-31","source_ref":"The Beginning of Wisdom 1:31","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d6be269cfc8d","tok-417c5957ee7a","tok-6c70c88a4053","tok-5c86e50d6076","tok-eb0c21152708","tok-12de6bd4b70d","tok-ced6c6cf149f","tok-7ebf252fe511","tok-2793c5c88bcd","tok-07f0a6be163e","tok-121af121f9ae","tok-f8f98575d8d5","tok-4c59937e9951","tok-e77749aa5e42","tok-a717852a7b3d","tok-d56c5f93490a","tok-808a76635458","tok-97231db83335","tok-9de29ea739c2","tok-f8f98575d8d5","tok-4c59937e9951","tok-ae30f30b9e5c","tok-64713e3caa5d","tok-c3a2738f458d","tok-a913c19cf48a","tok-2c709ff462c6","tok-d685e4160885","tok-cde17532acdb","tok-64713e3caa5d","tok-c72c423b5b96","tok-5c86e50d6076","tok-c3a2738f458d","tok-c72c423b5b96","tok-eb0c21152708","tok-a913c19cf48a","tok-c72c423b5b96","tok-12de6bd4b70d","tok-d685e4160885","tok-c72c423b5b96","tok-ced6c6cf149f","tok-cde17532acdb","tok-c72c423b5b96","tok-7ebf252fe511","tok-2c709ff462c6","tok-c72c423b5b96","tok-2793c5c88bcd","tok-49e70ba3e619","tok-acd59302b322","tok-a4ee22716d7b","tok-cb6de71ccad4","tok-e72a473828ea","tok-9cb1b4420336","tok-a00b50d20753","tok-4c2ce16d4cef","tok-adee3bda14b7","tok-9ea8c28fc880"]}]},"the-beginning-of-wisdom-default-default-1-32":{"unit_id":"the-beginning-of-wisdom-default-default-1-32","anchor_id":"the-beginning-of-wisdom-default-default-1-32","source_ref":"The Beginning of Wisdom 1:32","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3e872b1f8bfc","tok-d6ca1a551ea7","tok-961be145ae7c","tok-e542065e4ced","tok-babbde2789d2","tok-c981be97fedb","tok-0c92a0db49f4","tok-ddc436604e11","tok-c2c3c0ea4e57","tok-59f859d3a204","tok-1fa7b0ed2e47","tok-c77348b91372","tok-58e6988b5fa8","tok-d76306d11bdf","tok-1d5fe4d5f93f","tok-2d9ae19c8530","tok-5727d1a96e52","tok-0c92a0db49f4","tok-6abf2c8d35b5","tok-74808860594c","tok-38c41fcf269b","tok-baf4b5c20341","tok-64fcc75e70e2","tok-8af57141da1f","tok-9d744844a80e","tok-be2501e60336","tok-dc1ea262217e","tok-8b0265989efe","tok-662e7e95d83c","tok-6c70c88a4053","tok-d725161b82be","tok-1f9b1d8e32dc","tok-1b386c3dcd22","tok-9de29ea739c2","tok-7a6980ff6a6e","tok-c2d98ee5c519","tok-7b417294e8f7","tok-b01fe8948dbc","tok-1acdbc68c612","tok-2d9ae19c8530","tok-32df666bf2fd","tok-58e6988b5fa8","tok-85b8e548f86e","tok-6c70c88a4053","tok-2d9ae19c8530","tok-b3e4fde8a6ec","tok-a74769f6356c","tok-c72c423b5b96","tok-7c32eea714a6","tok-a0aa9e785c50","tok-b987a7519d8b","tok-f96bc82cc361","tok-f5f2a601f79f","tok-de1968f6c260","tok-c72c423b5b96","tok-d9bf038cd4b8","tok-3b01ef0891d9","tok-715ecc775a46","tok-c72c423b5b96","tok-ab2d7c620e90","tok-3b01ef0891d9","tok-a30d97e6bf8f","tok-c72c423b5b96","tok-873cef55d6f4","tok-3b01ef0891d9","tok-bf46d85cb033","tok-d8d007fec4c6","tok-3dcc7f27caa3","tok-c72c423b5b96","tok-78271eac62f4","tok-82cf767b80aa","tok-71c13a2cd4e3","tok-715ecc775a46","tok-c72c423b5b96","tok-5c86e50d6076","tok-82cf767b80aa","tok-71c13a2cd4e3","tok-a30d97e6bf8f","tok-c72c423b5b96","tok-eb0c21152708","tok-5dae86c25721","tok-c72c423b5b96","tok-4a8891e02793","tok-880c42e37b05","tok-0834d19bdc63","tok-715ecc775a46","tok-c72c423b5b96","tok-ced6c6cf149f","tok-880c42e37b05","tok-0834d19bdc63","tok-a30d97e6bf8f","tok-c72c423b5b96","tok-7ebf252fe511","tok-8cb7d50ee417","tok-420223d2c46d","tok-c72c423b5b96","tok-2793c5c88bcd","tok-44de521452e9","tok-e9788e3026df","tok-c72c423b5b96","tok-cfcacd95d8dd"]}]},"the-beginning-of-wisdom-default-default-1-33":{"unit_id":"the-beginning-of-wisdom-default-default-1-33","anchor_id":"the-beginning-of-wisdom-default-default-1-33","source_ref":"The Beginning of Wisdom 1:33","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c020f22a47e5","tok-9d07cbab6e3f","tok-07f0a6be163e","tok-e4779511cf99","tok-3ffa1d331aef","tok-c2d98ee5c519","tok-7b417294e8f7","tok-44e5bf142e42","tok-79721f39ec28","tok-0b49d7b4ca28","tok-92069ff565b8","tok-0c92a0db49f4","tok-b3994c23d9da","tok-4fdf46dfccd5","tok-dc1ea262217e","tok-269b82ef4d3e","tok-d9bf038cd4b8","tok-9ee9f0065a69","tok-1620f3246739","tok-ab2d7c620e90","tok-873cef55d6f4","tok-8ab6453f52b5","tok-5c86e50d6076","tok-82cf767b80aa","tok-715ecc775a46","tok-a9372013a95d","tok-e903fe91a92c","tok-17dfc5da73bb","tok-1e1d50e52aa9","tok-102c7863e7aa","tok-497ba65883b3","tok-cab139dc33cd","tok-c204062f6c6b","tok-9a4bd272a960","tok-8ad3af7e9a2a","tok-32df666bf2fd","tok-fe62f7b04d0e","tok-c6cf6f59b0d2","tok-e191f377d9f0","tok-e10820cc3ded","tok-1d5fe4d5f93f","tok-779ff745194d","tok-5ede7942ebb6","tok-dc1ea262217e","tok-269b82ef4d3e","tok-b3289a0d8ea7","tok-2679126a9a90","tok-93ee717e5ccd","tok-baf4b5c20341","tok-b2aaca7bbb41","tok-99acea7f5136","tok-81dda68d68d8","tok-9ea8c28fc880","tok-a30857835206","tok-c90b32b4b224","tok-99acea7f5136","tok-c9fefd868fe9","tok-5a8257267015","tok-99acea7f5136","tok-197d1fed28ad","tok-9a4bd272a960","tok-8ad3af7e9a2a","tok-49e70ba3e619","tok-74808860594c","tok-b1efd187b6f2","tok-a986fcf9c9e2","tok-4b1c7d7e8873","tok-a4d5162ca58b","tok-854f800ba044","tok-4b023b93f251","tok-c75073c1ef33","tok-9bb511e7c64a","tok-4397863e25cd","tok-96f342299be1","tok-80fe596acfa0","tok-c75073c1ef33","tok-e22852dc6371","tok-310b8f643237","tok-7e8f799c776a","tok-85b699b9ca53","tok-750b64447f74","tok-adee3bda14b7","tok-5a46504e535d","tok-6c59af2172b2","tok-7c07999d5951","tok-78bf59b54a11","tok-baf4b5c20341","tok-a063c6890490","tok-049afb662424","tok-378dff944fd5","tok-46aa92b0ed24","tok-a7c774476fc4"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/the-beginning-of-wisdom.manifest.json","root_href":"../../"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

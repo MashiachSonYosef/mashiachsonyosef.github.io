@@ -177,3 +177,8 @@ Generated: 2026-05-13
 | Zohar Chadash | 4421 | Zohar Chadash (http://www.toratemetfreeware.com/online/d_root__106_kblh.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Zechariah | 211 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Zephaniah | 53 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| Derech Etz Chayim (Ramchal) | 78 | Derech Etz Chayim - Wikisource (https://he.wikisource.org/wiki/%D7%A7%D7%9C%22%D7%97_%D7%A4%D7%AA%D7%97%D7%99_%D7%97%D7%9B%D7%9E%D7%94/%D7%94%D7%A7%D7%93%D7%9E%D7%94) | CC-BY-SA | yes | yes | required |
+| Maaseh Rokeach on Mishnah | 1506 | Maaseh Rokeach, Amsterdam 1740 (https://he.wikisource.org/wiki/%D7%9E%D7%A2%D7%A9%D7%94_%D7%A8%D7%95%D7%A7%D7%97_%D7%A2%D7%9C_%D7%94%D7%9E%D7%A9%D7%A0%D7%94) | CC-BY-SA | yes | yes | required |
+| Mitpachat Sefarim | 54 | מטפחת ספרים (https://he.wikisource.org/wiki/%D7%9E%D7%98%D7%A4%D7%97%D7%AA_%D7%A1%D7%A4%D7%A8%D7%99%D7%9D) | CC-BY-SA | yes | yes | required |
+| The Beginning of Wisdom | 40 | Klalei Hatchalat HaChochmah, Jerusalem 2018 (https://he.wikisource.org/wiki/%D7%9B%D7%9C%D7%9C%D7%99_%D7%94%D7%AA%D7%97%D7%9C%D7%AA_%D7%94%D7%97%D7%9B%D7%9E%D7%94) | CC-BY-SA | yes | yes | required |
+| The Wars of God | 254 | ויקיטקסט (https://he.wikisource.org/wiki/%D7%9E%D7%9C%D7%97%D7%9E%D7%95%D7%AA_%D7%94%27_(%D7%99%D7%97%D7%99%D7%90_%D7%A7%D7%90%D7%A4%D7%97)) | CC-BY-SA | yes | yes | required |
