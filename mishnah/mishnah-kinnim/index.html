@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mishnah Kinnim</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Mishnah Kinnim</h1>
+        <p class="meta">15 total source units | imported 2026-05-14</p>
+        <p class="meta source-citation">Hebrew version: Torat Emet 357 | Version source: <a href="http://www.toratemetfreeware.com/index.html?downloads">www.toratemetfreeware.com</a> | Digitization: Sefaria API | License: Public Domain</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Mishnah Kinnim <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Mishnah Kinnim <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-mishnah-kinnim-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#mishnah-kinnim-1-1" title="Mishnah Kinnim 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#mishnah-kinnim-1-2" title="Mishnah Kinnim 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#mishnah-kinnim-1-3" title="Mishnah Kinnim 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#mishnah-kinnim-1-4" title="Mishnah Kinnim 1:4">1:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-mishnah-kinnim-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#mishnah-kinnim-2-1" title="Mishnah Kinnim 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#mishnah-kinnim-2-2" title="Mishnah Kinnim 2:2">2:2</a></li>
+                    <li><a class="toc-unit" href="#mishnah-kinnim-2-3" title="Mishnah Kinnim 2:3">2:3</a></li>
+                    <li><a class="toc-unit" href="#mishnah-kinnim-2-4" title="Mishnah Kinnim 2:4">2:4</a></li>
+                    <li><a class="toc-unit" href="#mishnah-kinnim-2-5" title="Mishnah Kinnim 2:5">2:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-mishnah-kinnim-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#mishnah-kinnim-3-1" title="Mishnah Kinnim 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#mishnah-kinnim-3-2" title="Mishnah Kinnim 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#mishnah-kinnim-3-3" title="Mishnah Kinnim 3:3">3:3</a></li>
+                    <li><a class="toc-unit" href="#mishnah-kinnim-3-4" title="Mishnah Kinnim 3:4">3:4</a></li>
+                    <li><a class="toc-unit" href="#mishnah-kinnim-3-5" title="Mishnah Kinnim 3:5">3:5</a></li>
+                    <li><a class="toc-unit" href="#mishnah-kinnim-3-6" title="Mishnah Kinnim 3:6">3:6</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-mishnah-kinnim-text-1">Chapter 1</h4>
+          <section class="unit" id="mishnah-kinnim-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Kinnim 1:1</h4></div>
+              <a class="anchor" href="#mishnah-kinnim-1-1" aria-label="Copy link to Mishnah Kinnim 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;i data-overlay=&quot;Vilna Pages&quot; data-value=&quot;כב.&quot;&gt;&lt;/i&gt;חַטַּאת הָעוֹף נַעֲשֵׂית לְמַטָּה, וְחַטַּאת בְּהֵמָה לְמַעְלָה. עוֹלַת הָעוֹף נַעֲשֵׂית לְמַעְלָה, וְעוֹלַת הַבְּהֵמָה לְמַטָּה. אִם שִׁנָּה בָּזֶה וּבָזֶה, פָּסוּל. סֵדֶר קִנִּים כָּךְ הוּא. הַחוֹבָה, אֶחָד חַטָּאת וְאֶחָד עוֹלָה. בִּנְדָרִים וּנְדָבוֹת, כֻּלָּן עוֹלוֹת. אֵיזֶהוּ נֶדֶר, הָאוֹמֵר הֲרֵי עָלַי עוֹלָה. וְאֵיזוֹ הִיא נְדָבָה, הָאוֹמֵר הֲרֵי זוֹ עוֹלָה. מַה בֵּין נְדָרִים לִנְדָבוֹת. אֶלָּא שֶׁהַנְּדָרִים, מֵתוּ אוֹ נִגְנְבוּ, חַיָּבִים בְּאַחֲרָיוּתָם. וּנְדָבוֹת, מֵתוּ אוֹ נִגְנְבוּ, אֵין חַיָּבִים בְּאַחֲרָיוּתָן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-kinnim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-kinnim-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Kinnim 1:2</h4></div>
+              <a class="anchor" href="#mishnah-kinnim-1-2" aria-label="Copy link to Mishnah Kinnim 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;i data-overlay=&quot;Vilna Pages&quot; data-value=&quot;כב:&quot;&gt;&lt;/i&gt;חַטָּאת שֶׁנִּתְעָרְבָה בְעוֹלָה וְעוֹלָה בְחַטָּאת, אֲפִלּוּ אֶחָד בְּרִבּוֹא, יָמוּתוּ כֻלָּם. חַטָּאת שֶׁנִּתְעָרְבָה בְחוֹבָה, אֵין כָּשֵׁר אֶלָּא כְמִנְיַן חַטָּאוֹת שֶׁבַּחוֹבָה. וְכֵן עוֹלָה שֶׁנִּתְעָרְבָה בְחוֹבָה, אֵין כָּשֵׁר אֶלָּא כְמִנְיַן עוֹלוֹת שֶׁבַּחוֹבָה, בֵּין שֶׁהַחוֹבָה מְרֻבָּה וְהַנְּדָבָה מְמֻעֶטֶת, בֵּין שֶׁהַנְּדָבָה מְרֻבָּה וְהַחוֹבָה מְמֻעֶטֶת, בֵּין שֶׁשְּׁתֵּיהֶן שָׁווֹת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-kinnim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-kinnim-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Kinnim 1:3</h4></div>
+              <a class="anchor" href="#mishnah-kinnim-1-3" aria-label="Copy link to Mishnah Kinnim 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בַּמֶּה דְבָרִים אֲמוּרִים, בְּחוֹבָה וּבִנְדָבָה. אֲבָל בְּחוֹבָה שֶׁנִּתְעָרְבָה זוֹ בָזוֹ, אַחַת לָזוֹ וְאַחַת לָזוֹ, שְׁתַּיִם לָזוֹ וּשְׁתַּיִם לָזוֹ, שָׁלשׁ לָזוֹ וְשָׁלשׁ לָזוֹ, מֶחֱצָה כָּשֵׁר וּמֶחֱצָה פָּסוּל. אַחַת לָזוֹ וּשְׁתַּיִם לָזוֹ, וְשָׁלשׁ לָזוֹ, וְעֶשֶׂר לָזוֹ, וּמֵאָה לָזוֹ, הַמֻּעָט כָּשֵׁר, בֵּין מִשֵּׁם אֶחָד, בֵּין מִשְּׁנֵי שֵׁמוֹת, בֵּין מֵאִשָּׁה אַחַת, בֵּין מִשְּׁתֵּי נָשִׁים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-kinnim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-kinnim-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Kinnim 1:4</h4></div>
+              <a class="anchor" href="#mishnah-kinnim-1-4" aria-label="Copy link to Mishnah Kinnim 1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כֵּיצַד מִשֵּׁם אֶחָד, לֵידָה וְלֵידָה, זִיבָה וְזִיבָה, מִשֵּׁם אֶחָד. מִשְּׁנֵי שֵׁמוֹת, לֵידָה וְזִיבָה. כֵּיצַד שְׁתֵּי נָשִׁים, עַל זוֹ לֵידָה וְעַל זוֹ לֵידָה, עַל זוֹ זִיבָה וְעַל זוֹ זִיבָה, מִשֵּׁם אֶחָד. מִשְּׁנֵי שֵׁמוֹת, עַל זוֹ לֵידָה וְעַל זוֹ זִיבָה. רַבִּי יוֹסֵי אוֹמֵר, שְׁתֵּי נָשִׁים שֶׁלָּקְחוּ קִנֵּיהֶן בְּעֵרוּב, אוֹ שֶׁנָּתְנוּ דְמֵי קִנֵּיהֶן לַכֹּהֵן, לְאֵיזוֹ שֶׁיִּרְצֶה כֹהֵן יַקְרִיב חַטָּאת, וּלְאֵיזוֹ שֶׁיִּרְצֶה כֹהֵן יַקְרִיב עוֹלָה, בֵּין מִשֵּׁם אֶחָד, בֵּין מִשְּׁנֵי שֵׁמוֹת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-kinnim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-mishnah-kinnim-text-2">Chapter 2</h4>
+          <section class="unit" id="mishnah-kinnim-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Kinnim 2:1</h4></div>
+              <a class="anchor" href="#mishnah-kinnim-2-1" aria-label="Copy link to Mishnah Kinnim 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;i data-overlay=&quot;Vilna Pages&quot; data-value=&quot;כג.&quot;&gt;&lt;/i&gt;קֵן סְתוּמָה שֶׁפָּרַח מִמֶּנָּה גוֹזָל לָאֲוִיר, אוֹ שֶׁפָּרַח בֵּין הַמֵּתוֹת, אוֹ שֶׁמֵּת אַחַד מֵהֶן, יִקַּח זוּג לַשֵּׁנִי. פָּרַח לְבֵין הַקְּרֵבוֹת, פָּסוּל וּפוֹסֵל אֶחָד כְּנֶגְדּוֹ, שֶׁהַגּוֹזָל הַפּוֹרֵחַ, פָּסוּל וּפוֹסֵל אֶחָד כְּנֶגְדּוֹ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-kinnim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-kinnim-2-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Kinnim 2:2</h4></div>
+              <a class="anchor" href="#mishnah-kinnim-2-2" aria-label="Copy link to Mishnah Kinnim 2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כֵּיצַד. שְׁתֵּי נָשִׁים, לָזוֹ שְׁתֵּי קִנִּים וְלָזוֹ שְׁתֵּי קִנִּים, פָּרַח מִזּוֹ לָזוֹ, פּוֹסֵל אֶחָד בַּהֲלִיכָתוֹ. חָזַר, פּוֹסֵל אֶחָד בַּחֲזִירָתוֹ. פָּרַח וְחָזַר, פָּרַח וְחָזַר, לֹא הִפְסִיד כְּלוּם, שֶׁאֲפִלּוּ הֵן מְעֹרָבוֹת, אֵין פָּחוֹת מִשְּׁתָּיִם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-kinnim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-kinnim-2-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Kinnim 2:3</h4></div>
+              <a class="anchor" href="#mishnah-kinnim-2-3" aria-label="Copy link to Mishnah Kinnim 2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לָזוֹ אַחַת, לָזוֹ שְׁתַּיִם, לָזוֹ שָׁלשׁ, לָזוֹ אַרְבַּע, לָזוֹ חָמֵשׁ, לָזוֹ שֵׁשׁ, לָזוֹ שֶׁבַע. פָּרַח מִן הָרִאשׁוֹנָה לַשְּׁנִיָּה, לַשְּׁלִישִׁית, לָרְבִיעִית, לַחֲמִישִׁית, לַשִּׁשִּׁית, לַשְּׁבִיעִית, חָזַר, פּוֹסֵל אֶחָד בַּהֲלִיכָתוֹ וְאֶחָד בַּחֲזִירָתוֹ. הָרִאשׁוֹנָה וְהַשְּׁנִיָּה אֵין לָהֶם כְּלוּם, הַשְּׁלִישִׁית יֶשׁ לָהּ אַחַת, הָרְבִיעִית יֶשׁ לָהּ שְׁתַּיִם, הַחֲמִישִׁית יֶשׁ לָהּ שָׁלשׁ, הַשִּׁשִּׁית יֶשׁ לָהּ אַרְבַּע, הַשְּׁבִיעִית יֶשׁ לָהּ שֵׁשׁ. פָּרַח וְחָזַר, פּוֹסֵל אֶחָד בַּהֲלִיכָתוֹ וְאֶחָד בַּחֲזִירָתוֹ. הַשְּׁלִישִׁית וְהָרְבִיעִית אֵין לָהֶם כְּלוּם, הַחֲמִישִׁית יֶשׁ לָהּ אַחַת, הַשִּׁשִּׁית יֶשׁ לָהּ שְׁתַּיִם, הַשְּׁבִיעִית יֶשׁ לָהּ חָמֵשׁ. פָּרַח וְחָזַר, פּוֹסֵל אֶחָד בַּהֲלִיכָתוֹ וְאֶחָד בַּחֲזִירָתוֹ, הַחֲמִישִׁית וְהַשִּׁשִּׁית אֵין לָהֶם כְּלוּם, הַשְּׁבִיעִית יֶשׁ לָהּ אַרְבַּע. &lt;i data-overlay=&quot;Vilna Pages&quot; data-value=&quot;כג:&quot;&gt;&lt;/i&gt;וְיֵשׁ אוֹמְרִים, הַשְּׁבִיעִית לֹא הִפְסִידָה כְלוּם. וְאִם פָּרַח מִבֵּין הַמֵּתוֹת לְכֻלָּם, הֲרֵי כֻלָּם יָמוּתוּ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-kinnim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-kinnim-2-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Kinnim 2:4</h4></div>
+              <a class="anchor" href="#mishnah-kinnim-2-4" aria-label="Copy link to Mishnah Kinnim 2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">קֵן סְתוּמָה וְקֵן מְפֹרֶשֶׁת, פָּרַח מִן הַסְּתוּמָה לַמְפֹרֶשֶׁת, יִקַּח זוּג לַשֵּׁנִי. חָזַר, אוֹ שֶׁפָּרַח מִן הַמְפֹרֶשֶׁת רִאשׁוֹן, הֲרֵי כֻלָּן יָמוּתוּ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-kinnim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-kinnim-2-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Kinnim 2:5</h4></div>
+              <a class="anchor" href="#mishnah-kinnim-2-5" aria-label="Copy link to Mishnah Kinnim 2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">חַטָּאת מִיכָּן וְעוֹלָה מִיכָּן וּסְתוּמָה בָאֶמְצַע, פָּרַח מִן הָאֶמְצַע לַצְּדָדִין, אֶחָד הֵלָךְ וְאֶחָד הֵלָךְ, לֹא הִפְסִיד כְּלוּם, אֶלָּא יֹאמַר, זֶה שֶׁהָלַךְ אֵצֶל חַטָּאוֹת, חַטָּאת. וְזֶה שֶׁהָלַךְ אֵצֶל עוֹלוֹת, עוֹלָה. חָזַר לָאֶמְצַע, הָאֶמְצָעִיִּים יָמוּתוּ, אֵלּוּ יִקְרְבוּ חַטָּאוֹת, וְאֵלּוּ יִקְרְבוּ עוֹלוֹת. חָזַר אוֹ שֶׁפָּרַח מִן הָאֶמְצַע לַצְּדָדִין, הֲרֵי כֻלָּן יָמוּתוּ. אֵין מְבִיאִין תּוֹרִין כְּנֶגֶד בְּנֵי יוֹנָה, וְלֹא בְנֵי יוֹנָה כְּנֶגֶד תּוֹרִין. כֵּיצַד. הָאִשָּׁה שֶׁהֵבִיאָה חַטָּאתָהּ תּוֹר, וְעוֹלָתָהּ בֶּן יוֹנָה, תִּכְפֹּל וְתָבִיא עוֹלָתָהּ תּוֹר. עוֹלָתָהּ תּוֹר, וְחַטָּאתָהּ בֶּן יוֹנָה, תִּכְפֹּל וְתָבִיא עוֹלָתָהּ בֶּן יוֹנָה. בֶּן עַזַּאי אוֹמֵר, הוֹלְכִין אַחַר הָרִאשׁוֹן. הָאִשָּׁה שֶׁהֵבִיאָה חַטָּאתָהּ וּמֵתָה, יָבִיאוּ הַיּוֹרְשִׁין עוֹלָתָהּ. עוֹלָתָהּ וּמֵתָה, לֹא יָבִיאוּ הַיּוֹרְשִׁין חַטָּאתָהּ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-kinnim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-mishnah-kinnim-text-3">Chapter 3</h4>
+          <section class="unit" id="mishnah-kinnim-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Kinnim 3:1</h4></div>
+              <a class="anchor" href="#mishnah-kinnim-3-1" aria-label="Copy link to Mishnah Kinnim 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בַּמֶּה דְבָרִים אֲמוּרִים, בְּכֹהֵן נִמְלָךְ. אֲבָל בְּכֹהֵן שֶׁאֵינוֹ נִמְלָךְ, אַחַת לָזוֹ וְאַחַת לָזוֹ, &lt;i data-overlay=&quot;Vilna Pages&quot; data-value=&quot;כד.&quot;&gt;&lt;/i&gt;שְׁתַּיִם לָזוֹ וּשְׁתַּיִם לָזוֹ, שָׁלשׁ לָזוֹ וְשָׁלשׁ לָזוֹ, עָשָׂה כֻלָּן לְמַעְלָה, מֶחֱצָה כָשֵׁר וּמֶחֱצָה פָסוּל. כֻּלָּן לְמַטָּן, מֶחֱצָה כָשֵׁר וּמֶחֱצָה פָסוּל. חֶצְיָם לְמַעְלָה וְחֶצְיָם לְמַטָּה, אֶת שֶׁלְּמַעְלָה, מֶחֱצָה כָשֵׁר וּמֶחֱצָה פָסוּל, וְאֶת שֶׁלְּמַטָּה, מֶחֱצָה כָשֵׁר וּמֶחֱצָה פָסוּל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-kinnim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-kinnim-3-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Kinnim 3:2</h4></div>
+              <a class="anchor" href="#mishnah-kinnim-3-2" aria-label="Copy link to Mishnah Kinnim 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אַחַת לָזוֹ, וּשְׁתַּיִם לָזוֹ, וְשָׁלשׁ לָזוֹ, וְעֶשֶׂר לָזוֹ, וּמֵאָה לָזוֹ, עָשָׂה כֻלָּן לְמַעְלָה, מֶחֱצָה כָשֵׁר וּמֶחֱצָה פָסוּל. כֻּלָּן לְמַטָּן, מֶחֱצָה כָשֵׁר וּמֶחֱצָה פָסוּל. חֶצְיָן לְמַעְלָן וְחֶצְיָן לְמַטָּן, הַמְרֻבֶּה כָשֵׁר. זֶה הַכְּלָל, כָּל מָקוֹם שֶׁאַתָּה יָכוֹל לַחֲלֹק אֶת הַקִּנִּין וְלֹא יְהוּ מִשֶּׁל אִשָּׁה אַחַת, בֵּין מִלְמַעְלָן בֵּין מִלְּמַטָּן, מֶחֱצָה כָשֵׁר וּמֶחֱצָה פָסוּל. כָּל מָקוֹם שֶׁאֵין אַתָּה יָכוֹל לַחֲלֹק אֶת הַקִּנִּין עַד שֶׁיְּהוּ מִשֶּׁל אִשָּׁה אַחַת, בֵּין מִלְמַעְלָן בֵּין מִלְּמַטָּן, הַמְרֻבֶּה כָשֵׁר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-kinnim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-kinnim-3-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Kinnim 3:3</h4></div>
+              <a class="anchor" href="#mishnah-kinnim-3-3" aria-label="Copy link to Mishnah Kinnim 3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">חַטָּאת לָזוֹ, וְעוֹלָה לָזוֹ, עָשָׂה כֻלָּן לְמַעְלָן, מֶחֱצָה כָשֵׁר וּמֶחֱצָה פָסוּל. כֻּלָּן לְמַטָּן, מֱחֱצָה כָשֵׁר וּמֶחֱצָה פָסוּל. חֶצְיָן לְמַעְלָן וְחֶצְיָן לְמַטָּן, שְׁתֵּיהֶן פָּסוּל, שֶׁאֲנִי אוֹמֵר, חַטָּאת קְרֵבָה לְמַעְלָן וְעוֹלָה לְמַטָּן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-kinnim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-kinnim-3-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Kinnim 3:4</h4></div>
+              <a class="anchor" href="#mishnah-kinnim-3-4" aria-label="Copy link to Mishnah Kinnim 3:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">חַטָּאת וְעוֹלָה וּסְתוּמָה וּמְפֹרֶשֶׁת, עָשָׂה כֻלָּן לְמַעְלָן, מֶחֱצָה כָשֵׁר וּמֶחֱצָה פָסוּל. כֻּלָּן לְמַטָּה, מֶחֱצָה כָשֵׁר וּמֶחֱצָה פָסוּל. חֶצְיָן לְמַעְלָן וְחֶצְיָן לְמַטָּן, אֵין כָּשֵׁר אֶלָּא סְתוּמָה, וְהִיא מִתְחַלֶּקֶת בֵּינֵיהֶן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-kinnim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-kinnim-3-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Kinnim 3:5</h4></div>
+              <a class="anchor" href="#mishnah-kinnim-3-5" aria-label="Copy link to Mishnah Kinnim 3:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">חַטָּאת שֶׁנִּתְעָרְבָה בְחוֹבָה, אֵין כָּשֵׁר אֶלָּא מִנְיַן חַטָּאת שֶׁבַּחוֹבָה. &lt;i data-overlay=&quot;Vilna Pages&quot; data-value=&quot;כד:&quot;&gt;&lt;/i&gt;חוֹבָה שְׁנַיִם בְּחַטָּאת, מֶחֱצָה כָשֵׁר וּמֶחֱצָה פָסוּל. וְחַטָּאת שְׁנַיִם בְּחוֹבָה, הַמִּנְיָן שֶׁבַּחוֹבָה כָּשֵׁר. וְכֵן עוֹלָה שֶׁנִּתְעָרְבָה בְחוֹבָה, אֵין כָּשֵׁר אֶלָּא מִנְיַן עוֹלוֹת שֶׁבַּחוֹבָה. חוֹבָה שְׁנַיִם בְּעוֹלָה, מֶחֱצָה כָשֵׁר וּמֶחֱצָה פָסוּל. עוֹלָה שְׁנַיִם בְּחוֹבָה, הַמִּנְיָן שֶׁבַּחוֹבָה כָּשֵׁר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-kinnim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-kinnim-3-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Kinnim 3:6</h4></div>
+              <a class="anchor" href="#mishnah-kinnim-3-6" aria-label="Copy link to Mishnah Kinnim 3:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הָאִשָּׁה שֶׁאָמְרָה, הֲרֵי עָלַי קֵן כְּשֶׁאֵלֵד זָכָר, יָלְדָה זָכָר, מְבִיאָה שְׁתֵּי קִנִּים, אַחַת לְנִדְרָהּ וְאַחַת לְחוֹבָתָהּ. נְתָנָתַם לַכֹּהֵן, וְהַכֹּהֵן צָרִיךְ לַעֲשׂוֹת שָׁלשׁ פְּרִידִים מִלְמַעְלָן וְאַחַת מִלְּמַטָּן. לֹא עָשָׂה כֵן, אֶלָּא עָשָׂה שְׁתַּיִם לְמַעְלָן וּשְׁתַּיִם לְמַטָּן וְלֹא נִמְלַךְ, צְרִיכָה לְהָבִיא עוֹד פְּרִידָה אַחַת, וְיַקְרִיבֶנָּה לְמַעְלָן, מִמִּין אֶחָד. מִשְּׁנֵי מִינִין, תָּבִיא שְׁתַּיִם. פֵּרְשָׁה נִדְרָהּ, צְרִיכָה לְהָבִיא עוֹד שָׁלשׁ פְּרִידִים, מִמִּין אֶחָד. מִשְּׁנֵי מִינִין, תָּבִיא אַרְבַּע. קָבְעָה נִדְרָהּ, צְרִיכָה לְהָבִיא עוֹד חָמֵשׁ פְּרִידִים, מִמִּין אֶחָד. מִשְּׁנֵי מִינִין, תָּבִיא שֵׁשׁ. נְתָנָתַם לַכֹּהֵן וְאֵין יָדוּעַ מַה נָּתְנָה, הָלַךְ הַכֹּהֵן וְעָשָׂה וְאֵין יָדוּעַ מֶה עָשָׂה, צְרִיכָה לְהָבִיא עוֹד אַרְבַּע פְּרִידִים לְנִדְרָהּ, וּשְׁתַּיִם לְחוֹבָתָהּ, וְחַטָּאת אֶחָת. &lt;i data-overlay=&quot;Vilna Pages&quot; data-value=&quot;כה.&quot;&gt;&lt;/i&gt;בֶּן עַזַּאי אוֹמֵר, שְׁתֵּי חַטָּאוֹת. אָמַר רַבִּי יְהוֹשֻׁעַ, זֶה הוּא שֶׁאָמְרוּ, כְּשֶׁהוּא חַי קוֹלוֹ אֶחָד, וּכְשֶׁהוּא מֵת קוֹלוֹ שִׁבְעָה. כֵּיצַד קוֹלוֹ שִׁבְעָה. שְׁתֵּי קַרְנָיו, שְׁתֵּי חֲצוֹצְרוֹת. שְׁתֵּי שׁוֹקָיו, שְׁנֵי חֲלִילִין. עוֹרוֹ, לְתֹף. מֵעָיו, לִנְבָלִים. בְּנֵי מֵעָיו, לְכִנּוֹרוֹת. וְיֵשׁ אוֹמְרִים, אַף צַמְרוֹ לִתְכֵלֶת. רַבִּי שִׁמְעוֹן בֶּן עֲקַשְׁיָא אוֹמֵר, זִקְנֵי עַם הָאָרֶץ, כָּל זְמַן שֶׁמַּזְקִינִין, דַּעְתָּן מִטָּרֶפֶת עֲלֵיהֶן, שֶׁנֶּאֱמַר (איוב יב), מֵסִיר שָׂפָה לְנֶאֱמָנִים וְטַעַם זְקֵנִים יִקָּח. אֲבָל זִקְנֵי תוֹרָה אֵינָן כֵן, אֶלָּא כָל זְמַן שֶׁמַּזְקִינִין, דַּעְתָּן מִתְיַשֶּׁבֶת עֲלֵיהֶן, שֶׁנֶּאֱמַר (שם), בִּישִׁישִׁים חָכְמָה וְאֹרֶךְ יָמִים תְּבוּנָה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-kinnim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"mishnah-kinnim","work_title":"Mishnah Kinnim","work_slug":"mishnah/mishnah-kinnim","scope_label":"All imported Hebrew works","generated_at":"2026-05-14T14:29:38.749Z","total_occurrences":925,"units":{"mishnah-kinnim-1-1":{"unit_id":"mishnah-kinnim-1-1","anchor_id":"mishnah-kinnim-1-1","source_ref":"Mishnah Kinnim 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b0e237aa9280","tok-1d0d56872718","tok-d83a98747285","tok-add9bb43f462","tok-33717f0b642a","tok-98f7fd465445","tok-56a8130ac35d","tok-74404d6b1e64","tok-1d6b95280e28","tok-d83a98747285","tok-add9bb43f462","tok-74404d6b1e64","tok-0545f9aa5375","tok-2f27e46471fa","tok-33717f0b642a","tok-2619436583b7","tok-dc35f0101f5d","tok-93ae165b8ef8","tok-4333d02ab0af","tok-fd5014882206","tok-5bf261fcf682","tok-042cdfddf4c6","tok-1d2ccdeeb250","tok-963571aeae2f","tok-905833c40489","tok-bae042cfed96","tok-1a04b99b6843","tok-4c97c0e01e3c","tok-9b8c4606609f","tok-5054d0068c1f","tok-213da4e1f04c","tok-3ea942768b0e","tok-87bce6ed994f","tok-8e3282c09a09","tok-815547c078f2","tok-c11c74f24ec7","tok-305dfcf14591","tok-2b67c3ca9d05","tok-9b8c4606609f","tok-00041649f45b","tok-14def718ca24","tok-b111bf20f619","tok-c11c74f24ec7","tok-305dfcf14591","tok-1bc805326486","tok-9b8c4606609f","tok-e28b28d434ca","tok-379369f41081","tok-7bf340486106","tok-c760af776e10","tok-453a2894156b","tok-7af9d09c7b88","tok-58fd19447413","tok-0d02167f8121","tok-85ba319bdf2f","tok-ac8eb318cd72","tok-330dbd968ae3","tok-213da4e1f04c","tok-58fd19447413","tok-0d02167f8121","tok-85ba319bdf2f","tok-4aab121dd025","tok-ac8eb318cd72","tok-23c787461d02"]}]},"mishnah-kinnim-1-2":{"unit_id":"mishnah-kinnim-1-2","anchor_id":"mishnah-kinnim-1-2","source_ref":"Mishnah Kinnim 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b0e237aa9280","tok-1a04b99b6843","tok-d43406fe6d15","tok-338d9b084562","tok-22e6bc528d41","tok-806ca60c3e79","tok-691ddabece6e","tok-bae042cfed96","tok-26d2fcc8cae1","tok-7c951df77449","tok-97ab809cf9ad","tok-1a04b99b6843","tok-d43406fe6d15","tok-45c953d905f8","tok-4aab121dd025","tok-cd74c87e9b31","tok-453a2894156b","tok-dd599ba8f98b","tok-68766ee20f58","tok-5f832fda976c","tok-f5e2c392c17c","tok-9b8c4606609f","tok-d43406fe6d15","tok-45c953d905f8","tok-4aab121dd025","tok-cd74c87e9b31","tok-453a2894156b","tok-dd599ba8f98b","tok-87bce6ed994f","tok-5f832fda976c","tok-379369f41081","tok-9604a5ce7a0d","tok-6331921921cf","tok-fa203fd813c4","tok-fec31e696534","tok-379369f41081","tok-16458d1bd268","tok-6331921921cf","tok-85519a31b235","tok-fec31e696534","tok-379369f41081","tok-de568bfc90bd","tok-c402bca58236"]}]},"mishnah-kinnim-1-3":{"unit_id":"mishnah-kinnim-1-3","anchor_id":"mishnah-kinnim-1-3","source_ref":"Mishnah Kinnim 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2b82a5b11efb","tok-706405b10a7b","tok-3a907bcf6f7c","tok-1079165df090","tok-a1fa1a7e67d0","tok-d3285a4ec168","tok-1079165df090","tok-d43406fe6d15","tok-1bc805326486","tok-fdaa00e1ccb5","tok-af924005a3f9","tok-3e21fce8570b","tok-ab2c56d55cd0","tok-3e21fce8570b","tok-b67133e30afa","tok-3e21fce8570b","tok-7efa4b7f555e","tok-3e21fce8570b","tok-46555eb2b1e8","tok-3e21fce8570b","tok-f7ad43c7f214","tok-3e21fce8570b","tok-ed4e1976ca4f","tok-cd74c87e9b31","tok-e3eb6ce09f47","tok-fd5014882206","tok-af924005a3f9","tok-3e21fce8570b","tok-7efa4b7f555e","tok-3e21fce8570b","tok-f7ad43c7f214","tok-3e21fce8570b","tok-42644fc32e1a","tok-3e21fce8570b","tok-bfdfeb3a3dc5","tok-3e21fce8570b","tok-50fac9482c10","tok-cd74c87e9b31","tok-379369f41081","tok-816f5ed09699","tok-bae042cfed96","tok-379369f41081","tok-8ba8b5751a1c","tok-72a999b14acd","tok-379369f41081","tok-efdf3ef55174","tok-af924005a3f9","tok-379369f41081","tok-e0e811d57908","tok-93e27ae238e3"]}]},"mishnah-kinnim-1-4":{"unit_id":"mishnah-kinnim-1-4","anchor_id":"mishnah-kinnim-1-4","source_ref":"Mishnah Kinnim 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-83eadbd5dd3b","tok-816f5ed09699","tok-bae042cfed96","tok-0eea89b92ce8","tok-f781672f517b","tok-4b6b61dd942a","tok-157059181410","tok-816f5ed09699","tok-bae042cfed96","tok-8ba8b5751a1c","tok-72a999b14acd","tok-0eea89b92ce8","tok-157059181410","tok-83eadbd5dd3b","tok-8553ed07b0fe","tok-93e27ae238e3","tok-feaa6e5bcbb8","tok-1bc805326486","tok-0eea89b92ce8","tok-33ba1ab5cc01","tok-1bc805326486","tok-0eea89b92ce8","tok-feaa6e5bcbb8","tok-1bc805326486","tok-4b6b61dd942a","tok-33ba1ab5cc01","tok-1bc805326486","tok-4b6b61dd942a","tok-816f5ed09699","tok-bae042cfed96","tok-8ba8b5751a1c","tok-72a999b14acd","tok-feaa6e5bcbb8","tok-1bc805326486","tok-0eea89b92ce8","tok-33ba1ab5cc01","tok-1bc805326486","tok-4b6b61dd942a","tok-15b790fedf83","tok-4d12044a744c","tok-921913d171b1","tok-8553ed07b0fe","tok-93e27ae238e3","tok-d42bc93a0080","tok-e9c5a3616e91","tok-66ff2a0cef23","tok-0d02167f8121","tok-b96982b052a1","tok-8dbfcc09a04b","tok-e9c5a3616e91","tok-841e48099e91","tok-2619f95cd5b1","tok-626d18a42cd3","tok-7486f352000d","tok-1d65e5d14ff6","tok-1a04b99b6843","tok-9a4d30a81780","tok-626d18a42cd3","tok-7486f352000d","tok-1d65e5d14ff6","tok-9b8c4606609f","tok-379369f41081","tok-816f5ed09699","tok-bae042cfed96","tok-379369f41081","tok-8ba8b5751a1c","tok-72a999b14acd"]}]},"mishnah-kinnim-2-1":{"unit_id":"mishnah-kinnim-2-1","anchor_id":"mishnah-kinnim-2-1","source_ref":"Mishnah Kinnim 2:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9c9ef9e1c918","tok-ef0f9bb75c3a","tok-4a15196786f3","tok-843caa3ccfb2","tok-6d4339ec9d06","tok-0c9fdcf46ec4","tok-53cb8aaef2fb","tok-0d02167f8121","tok-843caa3ccfb2","tok-379369f41081","tok-0810152ccf77","tok-0d02167f8121","tok-4b6584a9fc80","tok-5b878dc9fd77","tok-92a449c57a73","tok-a9c32a441b47","tok-dac1eb5ca511","tok-70e9785a5158","tok-f4f287a11fbe","tok-c8705431761d","tok-4da109a30c99","tok-fd5014882206","tok-33d475e8d5cb","tok-bae042cfed96","tok-eb2f09acdfa1","tok-e57a6d6f8014","tok-86dcf6f82b53","tok-fd5014882206","tok-33d475e8d5cb","tok-bae042cfed96","tok-eb2f09acdfa1"]}]},"mishnah-kinnim-2-2":{"unit_id":"mishnah-kinnim-2-2","anchor_id":"mishnah-kinnim-2-2","source_ref":"Mishnah Kinnim 2:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-83eadbd5dd3b","tok-8553ed07b0fe","tok-93e27ae238e3","tok-3e21fce8570b","tok-8553ed07b0fe","tok-042cdfddf4c6","tok-88a991a4e415","tok-8553ed07b0fe","tok-042cdfddf4c6","tok-f4f287a11fbe","tok-4e16ae580692","tok-3e21fce8570b","tok-9c9370136847","tok-bae042cfed96","tok-90e129643cd2","tok-6ac319d4be70","tok-9c9370136847","tok-bae042cfed96","tok-125ec0cf5b24","tok-f4f287a11fbe","tok-682f1d699acb","tok-f4f287a11fbe","tok-682f1d699acb","tok-3d35d32a089b","tok-644e39232259","tok-cf8d0dd8e2df","tok-d165b836337c","tok-e32d4da92359","tok-481762ff8b1b","tok-4aab121dd025","tok-32f653fd1018","tok-fce20af62c6f"]}]},"mishnah-kinnim-2-3":{"unit_id":"mishnah-kinnim-2-3","anchor_id":"mishnah-kinnim-2-3","source_ref":"Mishnah Kinnim 2:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3e21fce8570b","tok-af924005a3f9","tok-3e21fce8570b","tok-b67133e30afa","tok-3e21fce8570b","tok-46555eb2b1e8","tok-3e21fce8570b","tok-281ec07bcf98","tok-3e21fce8570b","tok-3f67151a6b76","tok-3e21fce8570b","tok-78bc73c2d508","tok-3e21fce8570b","tok-490b7f953eaa","tok-f4f287a11fbe","tok-5b1a6fd5e54f","tok-f77311ad27f5","tok-d1398c587a5d","tok-3fe0a872f702","tok-eb9035a68d56","tok-431f37ff9b12","tok-028fd94d60ec","tok-a63fce6f7bd7","tok-6ac319d4be70","tok-9c9370136847","tok-bae042cfed96","tok-90e129643cd2","tok-4c97c0e01e3c","tok-125ec0cf5b24","tok-f77311ad27f5","tok-2e0baf55aa06","tok-4aab121dd025","tok-c797eb2b7833","tok-cf8d0dd8e2df","tok-79935e4f07bd","tok-8ee3da2185cc","tok-d91e709ad86c","tok-af924005a3f9","tok-dc1848a06f2d","tok-8ee3da2185cc","tok-d91e709ad86c","tok-b67133e30afa","tok-19cf10f9dbbe","tok-8ee3da2185cc","tok-d91e709ad86c","tok-46555eb2b1e8","tok-1821cbf8fd29","tok-8ee3da2185cc","tok-d91e709ad86c","tok-281ec07bcf98","tok-7b41d14287bc","tok-8ee3da2185cc","tok-d91e709ad86c","tok-78bc73c2d508","tok-f4f287a11fbe","tok-682f1d699acb","tok-9c9370136847","tok-bae042cfed96","tok-90e129643cd2","tok-4c97c0e01e3c","tok-125ec0cf5b24","tok-79935e4f07bd","tok-e9c91279d669","tok-4aab121dd025","tok-c797eb2b7833","tok-cf8d0dd8e2df","tok-19cf10f9dbbe","tok-8ee3da2185cc","tok-d91e709ad86c","tok-af924005a3f9","tok-1821cbf8fd29","tok-8ee3da2185cc","tok-d91e709ad86c","tok-b67133e30afa","tok-7b41d14287bc","tok-8ee3da2185cc","tok-d91e709ad86c","tok-3f67151a6b76","tok-f4f287a11fbe","tok-682f1d699acb","tok-9c9370136847","tok-bae042cfed96","tok-90e129643cd2","tok-4c97c0e01e3c","tok-125ec0cf5b24","tok-19cf10f9dbbe","tok-40ee6c56e6df","tok-4aab121dd025","tok-c797eb2b7833","tok-cf8d0dd8e2df","tok-7b41d14287bc","tok-8ee3da2185cc","tok-d91e709ad86c","tok-281ec07bcf98","tok-9c9ef9e1c918","tok-5a2a2ecf5190","tok-b1f96228e173","tok-7b41d14287bc","tok-3d35d32a089b","tok-38c626af5eaa","tok-5bec1ba3578f","tok-4fa39faffc66","tok-f4f287a11fbe","tok-3498b42ca4e7","tok-0810152ccf77","tok-3a7c2467fc01","tok-305dfcf14591","tok-97ab809cf9ad","tok-7c951df77449"]}]},"mishnah-kinnim-2-4":{"unit_id":"mishnah-kinnim-2-4","anchor_id":"mishnah-kinnim-2-4","source_ref":"Mishnah Kinnim 2:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ef0f9bb75c3a","tok-4a15196786f3","tok-b65fcd7b947e","tok-b5d1c84355ad","tok-f4f287a11fbe","tok-5b1a6fd5e54f","tok-a1751e8e065c","tok-3f0de4e50551","tok-a9c32a441b47","tok-dac1eb5ca511","tok-70e9785a5158","tok-6ac319d4be70","tok-0d02167f8121","tok-843caa3ccfb2","tok-5b1a6fd5e54f","tok-79732475d251","tok-37068cdd64bf","tok-305dfcf14591","tok-f3f2befce4b9","tok-7c951df77449"]}]},"mishnah-kinnim-2-5":{"unit_id":"mishnah-kinnim-2-5","anchor_id":"mishnah-kinnim-2-5","source_ref":"Mishnah Kinnim 2:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1a04b99b6843","tok-d6702ef76146","tok-22e6bc528d41","tok-d6702ef76146","tok-8430325cd8ad","tok-9bebd679f4bd","tok-f4f287a11fbe","tok-5b1a6fd5e54f","tok-302317ad8648","tok-09d8ad2884ef","tok-bae042cfed96","tok-05dfde8463ec","tok-4c97c0e01e3c","tok-05dfde8463ec","tok-3d35d32a089b","tok-644e39232259","tok-cf8d0dd8e2df","tok-453a2894156b","tok-005b089689e1","tok-cc14310c61da","tok-bfad31f3d771","tok-87e7c168abba","tok-68766ee20f58","tok-1a04b99b6843","tok-eedb529e2674","tok-bfad31f3d771","tok-87e7c168abba","tok-87bce6ed994f","tok-9b8c4606609f","tok-6ac319d4be70","tok-bb6d9baf34aa","tok-aed679e348d6","tok-7c951df77449","tok-106d412ba623","tok-1e8224ce1c7d","tok-68766ee20f58","tok-ea9800d4f262","tok-1e8224ce1c7d","tok-87bce6ed994f","tok-6ac319d4be70","tok-0d02167f8121","tok-843caa3ccfb2","tok-5b1a6fd5e54f","tok-302317ad8648","tok-09d8ad2884ef","tok-305dfcf14591","tok-f3f2befce4b9","tok-7c951df77449","tok-4aab121dd025","tok-73926ba49031","tok-b753e491483a","tok-98a97845afd4","tok-fa156fb81897","tok-a7ab6b22c183","tok-3c9d5014b3c8","tok-891943dcfbf9","tok-a7ab6b22c183","tok-98a97845afd4","tok-b753e491483a","tok-83eadbd5dd3b","tok-57cac9eed9c1","tok-f2ba7ce66167","tok-3497d19d2a07","tok-969b8ac6f350","tok-99640fc4af8b","tok-a0d98e7aee0e","tok-a7ab6b22c183","tok-a97eddd6734c","tok-e398a77b632e","tok-048bed094198","tok-969b8ac6f350","tok-048bed094198","tok-969b8ac6f350","tok-41c39c834de7","tok-a0d98e7aee0e","tok-a7ab6b22c183","tok-a97eddd6734c","tok-e398a77b632e","tok-048bed094198","tok-a0d98e7aee0e","tok-a7ab6b22c183","tok-a0d98e7aee0e","tok-4caddf696d34","tok-921913d171b1","tok-484d6ad55c98","tok-86547d994251","tok-936fa06f4a18","tok-57cac9eed9c1","tok-f2ba7ce66167","tok-3497d19d2a07","tok-f1e353a5f8cb","tok-df9f66225b77","tok-d245dae862b2","tok-048bed094198","tok-048bed094198","tok-f1e353a5f8cb","tok-3d35d32a089b","tok-df9f66225b77","tok-d245dae862b2","tok-3497d19d2a07"]}]},"mishnah-kinnim-3-1":{"unit_id":"mishnah-kinnim-3-1","anchor_id":"mishnah-kinnim-3-1","source_ref":"Mishnah Kinnim 3:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2b82a5b11efb","tok-706405b10a7b","tok-3a907bcf6f7c","tok-964081ddfed1","tok-69a68285cc80","tok-d3285a4ec168","tok-964081ddfed1","tok-79cc4f2a4999","tok-69a68285cc80","tok-af924005a3f9","tok-3e21fce8570b","tok-ab2c56d55cd0","tok-3e21fce8570b","tok-47573adb23b6","tok-b67133e30afa","tok-3e21fce8570b","tok-7efa4b7f555e","tok-3e21fce8570b","tok-46555eb2b1e8","tok-3e21fce8570b","tok-f7ad43c7f214","tok-3e21fce8570b","tok-1b889e2aefb7","tok-f3f2befce4b9","tok-74404d6b1e64","tok-ed4e1976ca4f","tok-a837a9b95196","tok-e3eb6ce09f47","tok-178c44a58889","tok-3ea942768b0e","tok-6ad5a1d2e273","tok-ed4e1976ca4f","tok-a837a9b95196","tok-e3eb6ce09f47","tok-178c44a58889","tok-9902fa63b3bb","tok-74404d6b1e64","tok-7d6ed066cfaf","tok-33717f0b642a","tok-61635c6d0627","tok-e75e98ffc914","tok-ed4e1976ca4f","tok-a837a9b95196","tok-e3eb6ce09f47","tok-178c44a58889","tok-443594482bfe","tok-0d6babb069d1","tok-ed4e1976ca4f","tok-a837a9b95196","tok-e3eb6ce09f47","tok-178c44a58889"]}]},"mishnah-kinnim-3-2":{"unit_id":"mishnah-kinnim-3-2","anchor_id":"mishnah-kinnim-3-2","source_ref":"Mishnah Kinnim 3:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-af924005a3f9","tok-3e21fce8570b","tok-7efa4b7f555e","tok-3e21fce8570b","tok-f7ad43c7f214","tok-3e21fce8570b","tok-42644fc32e1a","tok-3e21fce8570b","tok-bfdfeb3a3dc5","tok-3e21fce8570b","tok-1b889e2aefb7","tok-f3f2befce4b9","tok-74404d6b1e64","tok-ed4e1976ca4f","tok-a837a9b95196","tok-e3eb6ce09f47","tok-178c44a58889","tok-3ea942768b0e","tok-6ad5a1d2e273","tok-ed4e1976ca4f","tok-a837a9b95196","tok-e3eb6ce09f47","tok-178c44a58889","tok-93b1ed0ef5ca","tok-250e26f5448b","tok-a240be2f9ce6","tok-6ad5a1d2e273","tok-7ef07b6e6d6f","tok-a837a9b95196","tok-cc14310c61da","tok-8732c83b2a11","tok-fceaf0d050f2","tok-caace7f4daea","tok-3937c02261e3","tok-b4ad54851d4a","tok-58dba51eabb5","tok-61635c6d0627","tok-58f86add5e61","tok-3c9d5014b3c8","tok-a703fa1ce9b0","tok-d653791248fb","tok-67449cc757cb","tok-af924005a3f9","tok-379369f41081","tok-d69222e73b41","tok-379369f41081","tok-270a081f51b2","tok-ed4e1976ca4f","tok-a837a9b95196","tok-e3eb6ce09f47","tok-178c44a58889","tok-fceaf0d050f2","tok-caace7f4daea","tok-78497338362b","tok-98a9caa90a1d","tok-b4ad54851d4a","tok-58dba51eabb5","tok-61635c6d0627","tok-58f86add5e61","tok-e09abbdff2a3","tok-f27643376583","tok-d653791248fb","tok-67449cc757cb","tok-af924005a3f9","tok-379369f41081","tok-d69222e73b41","tok-379369f41081","tok-270a081f51b2","tok-7ef07b6e6d6f","tok-a837a9b95196"]}]},"mishnah-kinnim-3-3":{"unit_id":"mishnah-kinnim-3-3","anchor_id":"mishnah-kinnim-3-3","source_ref":"Mishnah Kinnim 3:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1a04b99b6843","tok-3e21fce8570b","tok-22e6bc528d41","tok-3e21fce8570b","tok-1b889e2aefb7","tok-f3f2befce4b9","tok-250e26f5448b","tok-ed4e1976ca4f","tok-a837a9b95196","tok-e3eb6ce09f47","tok-178c44a58889","tok-3ea942768b0e","tok-6ad5a1d2e273","tok-fb891560e50d","tok-a837a9b95196","tok-e3eb6ce09f47","tok-178c44a58889","tok-93b1ed0ef5ca","tok-250e26f5448b","tok-a240be2f9ce6","tok-6ad5a1d2e273","tok-188a3f033418","tok-fd5014882206","tok-041fe7df2065","tok-921913d171b1","tok-1a04b99b6843","tok-0348ea130705","tok-250e26f5448b","tok-22e6bc528d41","tok-6ad5a1d2e273"]}]},"mishnah-kinnim-3-4":{"unit_id":"mishnah-kinnim-3-4","anchor_id":"mishnah-kinnim-3-4","source_ref":"Mishnah Kinnim 3:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1a04b99b6843","tok-22e6bc528d41","tok-8430325cd8ad","tok-f65ba2a6954e","tok-1b889e2aefb7","tok-f3f2befce4b9","tok-250e26f5448b","tok-ed4e1976ca4f","tok-a837a9b95196","tok-e3eb6ce09f47","tok-178c44a58889","tok-3ea942768b0e","tok-33717f0b642a","tok-ed4e1976ca4f","tok-a837a9b95196","tok-e3eb6ce09f47","tok-178c44a58889","tok-93b1ed0ef5ca","tok-250e26f5448b","tok-a240be2f9ce6","tok-6ad5a1d2e273","tok-4aab121dd025","tok-cd74c87e9b31","tok-453a2894156b","tok-4a15196786f3","tok-5cdef1b68aab","tok-1fb52342a987","tok-9d4be04efca4"]}]},"mishnah-kinnim-3-5":{"unit_id":"mishnah-kinnim-3-5","anchor_id":"mishnah-kinnim-3-5","source_ref":"Mishnah Kinnim 3:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1a04b99b6843","tok-d43406fe6d15","tok-45c953d905f8","tok-4aab121dd025","tok-cd74c87e9b31","tok-453a2894156b","tok-a156b485dc80","tok-1a04b99b6843","tok-5f832fda976c","tok-47573adb23b6","tok-7ee723e01f4a","tok-13703f30b274","tok-ef69f272aa10","tok-ed4e1976ca4f","tok-a837a9b95196","tok-e3eb6ce09f47","tok-178c44a58889","tok-26ddc662f566","tok-13703f30b274","tok-1079165df090","tok-e83376e9c314","tok-5f832fda976c","tok-cd74c87e9b31","tok-f5e2c392c17c","tok-9b8c4606609f","tok-d43406fe6d15","tok-45c953d905f8","tok-4aab121dd025","tok-cd74c87e9b31","tok-453a2894156b","tok-a156b485dc80","tok-87bce6ed994f","tok-5f832fda976c","tok-7ee723e01f4a","tok-13703f30b274","tok-410b02aa20ff","tok-ed4e1976ca4f","tok-a837a9b95196","tok-e3eb6ce09f47","tok-178c44a58889","tok-9b8c4606609f","tok-13703f30b274","tok-1079165df090","tok-e83376e9c314","tok-5f832fda976c","tok-cd74c87e9b31"]}]},"mishnah-kinnim-3-6":{"unit_id":"mishnah-kinnim-3-6","anchor_id":"mishnah-kinnim-3-6","source_ref":"Mishnah Kinnim 3:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-57cac9eed9c1","tok-40f27711b937","tok-305dfcf14591","tok-2b67c3ca9d05","tok-ef0f9bb75c3a","tok-b83af988fcb0","tok-59dbbdfb2129","tok-be80600ed66f","tok-59dbbdfb2129","tok-74247c55d1a8","tok-8553ed07b0fe","tok-042cdfddf4c6","tok-af924005a3f9","tok-a82b05d82200","tok-ab2c56d55cd0","tok-e7db83530607","tok-08494181eeff","tok-841e48099e91","tok-64f2ceaecc5f","tok-912f5a115b61","tok-df187ecb6234","tok-46555eb2b1e8","tok-9144271bf3d1","tok-d69222e73b41","tok-ab2c56d55cd0","tok-270a081f51b2","tok-3d35d32a089b","tok-1b889e2aefb7","tok-b93185bd68ca","tok-453a2894156b","tok-1b889e2aefb7","tok-b67133e30afa","tok-250e26f5448b","tok-7efa4b7f555e","tok-6ad5a1d2e273","tok-3c9d5014b3c8","tok-5eb8a2f69ae3","tok-0f3a7ac34046","tok-5ba5cb296ef6","tok-1c412ee66dbe","tok-2c0d8f1dd432","tok-af924005a3f9","tok-87eef927f9ad","tok-250e26f5448b","tok-d6e6193ac84c","tok-bae042cfed96","tok-8ba8b5751a1c","tok-c3c8f0a88de5","tok-4c79fa4a909c","tok-b67133e30afa","tok-f30f32e53343","tok-c182019d4d09","tok-0f3a7ac34046","tok-5ba5cb296ef6","tok-1c412ee66dbe","tok-46555eb2b1e8","tok-9144271bf3d1","tok-d6e6193ac84c","tok-bae042cfed96","tok-8ba8b5751a1c","tok-c3c8f0a88de5","tok-4c79fa4a909c","tok-281ec07bcf98","tok-465edd281746","tok-c182019d4d09","tok-0f3a7ac34046","tok-5ba5cb296ef6","tok-1c412ee66dbe","tok-3f67151a6b76","tok-9144271bf3d1","tok-d6e6193ac84c","tok-bae042cfed96","tok-8ba8b5751a1c","tok-c3c8f0a88de5","tok-4c79fa4a909c","tok-78bc73c2d508","tok-08494181eeff","tok-841e48099e91","tok-10766d339351","tok-4fa27162489c","tok-e28b28d434ca","tok-3504204fbdea","tok-ea09677ab6a4","tok-f2a7094b9d41","tok-e15d3ea69ee9","tok-10766d339351","tok-4fa27162489c","tok-fddacf65d02a","tok-1b889e2aefb7","tok-0f3a7ac34046","tok-5ba5cb296ef6","tok-1c412ee66dbe","tok-281ec07bcf98","tok-9144271bf3d1","tok-a82b05d82200","tok-7efa4b7f555e","tok-e7db83530607","tok-26ddc662f566","tok-3d798c93258b","tok-8994a81891c3","tok-a0d98e7aee0e","tok-4caddf696d34","tok-921913d171b1","tok-8553ed07b0fe","tok-68766ee20f58","tok-59f7f73a37bc","tok-15b790fedf83","tok-f0744867688b","tok-cc14310c61da","tok-963571aeae2f","tok-667944a2e1d4","tok-a8208026bc15","tok-640c62ffc8d3","tok-79b0f9cf5cac","tok-bae042cfed96","tok-19b418020390","tok-3c8eaeae3b67","tok-79b0f9cf5cac","tok-443f0898adb7","tok-83eadbd5dd3b","tok-79b0f9cf5cac","tok-443f0898adb7","tok-8553ed07b0fe","tok-44964db09bc9","tok-8553ed07b0fe","tok-ce14b4b8e321","tok-8553ed07b0fe","tok-21324d220c9e","tok-70782baf3794","tok-e47f2c568057","tok-0b119fb032ce","tok-85a15009f282","tok-8516cca7e184","tok-b316e86e8792","tok-fa156fb81897","tok-8516cca7e184","tok-d86374d20c6d","tok-5a2a2ecf5190","tok-b1f96228e173","tok-d333b2232468","tok-f7c8fb61e625","tok-5e5b05d05f21","tok-15b790fedf83","tok-575071a27424","tok-a0d98e7aee0e","tok-570b54b7431e","tok-921913d171b1","tok-8f6520ec501d","tok-3524fb8c04a9","tok-0805a991d03b","tok-fceaf0d050f2","tok-40a3ba8e0421","tok-5deb7f4ca759","tok-50da97374551","tok-386c7c3ddcae","tok-52cbef9efdc9","tok-f0b260a9a8b3","tok-bb732408229a","tok-4072258f9c72","tok-530c1bdb9865","tok-631f8ef78c32","tok-43bd1f0f5de7","tok-fb8d34b39fc3","tok-020a1b4ced6d","tok-dbf6eddaf303","tok-d3285a4ec168","tok-8f6520ec501d","tok-3bb0f80ba62c","tok-e06b297e84c2","tok-b93185bd68ca","tok-453a2894156b","tok-53bab02a603e","tok-40a3ba8e0421","tok-5deb7f4ca759","tok-50da97374551","tok-413fccdb22bf","tok-52cbef9efdc9","tok-f0b260a9a8b3","tok-85c729d5c0b5","tok-4635d5c786ee","tok-df768e7b3110","tok-fc342b6c3847","tok-f2e62a10714b","tok-3494c3cc1f75"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/mishnah-kinnim.manifest.json","root_href":"../../"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

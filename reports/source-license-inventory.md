@@ -189,3 +189,64 @@ Generated: 2026-05-13
 | Tractate Kallah | 26 | Talmud Bavli, Vilna 1883 ed. (https://www.nli.org.il/he/books/NNL_ALEPH001300957) | Public Domain | yes | no | none required by license; source/version retained |
 | Tractate Semachot | 14 | Talmud Bavli, Vilna 1883 ed. (https://www.nli.org.il/he/books/NNL_ALEPH001300957) | Public Domain | yes | no | none required by license; source/version retained |
 | Tractate Soferim | 227 | Talmud Bavli, Vilna 1883 ed. (https://www.nli.org.il/he/books/NNL_ALEPH001300957) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Berakhot | 57 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Peah | 69 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Demai | 53 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Kilayim | 77 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Sheviit | 89 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Terumot | 101 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Maasrot | 40 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Maaser Sheni | 57 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Challah | 38 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Orlah | 35 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Bikkurim | 39 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Shabbat | 139 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Eruvin | 96 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Pesachim | 89 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Shekalim | 52 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Yoma | 61 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Sukkah | 53 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Beitzah | 42 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Rosh Hashanah | 35 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Ta'anit | 34 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Megillah | 33 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Moed Katan | 24 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Chagigah | 23 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Yevamot | 128 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Ketubot | 111 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Nedarim | 90 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Nazir | 60 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Sotah | 67 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Gittin | 75 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Kiddushin | 47 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Bava Kamma | 79 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Bava Metzia | 101 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Bava Batra | 86 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Sanhedrin | 71 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Makkot | 34 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Shevuot | 62 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Eduyot | 74 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Avodah Zarah | 50 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Horayot | 20 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Zevachim | 101 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Menachot | 93 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Chullin | 74 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Bekhorot | 73 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Arakhin | 50 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Temurah | 35 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Keritot | 43 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Meilah | 38 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Tamid | 34 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Middot | 34 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Kinnim | 15 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Kelim | 254 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Oholot | 134 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Negaim | 115 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Parah | 96 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Tahorot | 92 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Mikvaot | 71 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Niddah | 79 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Makhshirin | 54 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Zavim | 32 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Tevul Yom | 26 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishnah Yadayim | 22 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |

@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-14T12:04:16.358Z
+Generated: 2026-05-14T14:30:57.337Z
 
 ## Scope
 
@@ -15,18 +15,18 @@ Generated: 2026-05-14T12:04:16.358Z
 
 ## Counts
 
-- Total work-surface rows: 1458749
-- Total sitewide unique surface forms: 470293
-- Sitewide unique surface forms matched at least once: 70919
-- Sitewide unique surface forms unmatched everywhere: 399374
-- Total token occurrences: 6944012
-- Matched before prefix/suffix parser: 377643
-- Newly resolved by prefix/suffix parser: 52009
-- Total matched after parser: 443781
-- Percent matched: 30.4%
-- Matched via Wikidata: 324131
-- Enriched via OpenScriptures: 374686
-- Unmatched: 1014968
+- Total work-surface rows: 1529744
+- Total sitewide unique surface forms: 484257
+- Sitewide unique surface forms matched at least once: 72498
+- Sitewide unique surface forms unmatched everywhere: 411759
+- Total token occurrences: 7130846
+- Matched before prefix/suffix parser: 404367
+- Newly resolved by prefix/suffix parser: 54178
+- Total matched after parser: 473943
+- Percent matched: 31.0%
+- Matched via Wikidata: 345982
+- Enriched via OpenScriptures: 400901
+- Unmatched: 1055801
 
 ## Newly Resolved Parsed Forms
 

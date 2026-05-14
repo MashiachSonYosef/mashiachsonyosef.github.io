@@ -1,0 +1,25 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 1:1 | mishnah-chagigah-1-1 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 1:2 | mishnah-chagigah-1-2 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 1:3 | mishnah-chagigah-1-3 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 1:4 | mishnah-chagigah-1-4 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 1:5 | mishnah-chagigah-1-5 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 1:6 | mishnah-chagigah-1-6 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 1:7 | mishnah-chagigah-1-7 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 1:8 | mishnah-chagigah-1-8 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 2:1 | mishnah-chagigah-2-1 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 2:2 | mishnah-chagigah-2-2 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 2:3 | mishnah-chagigah-2-3 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 2:4 | mishnah-chagigah-2-4 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 2:5 | mishnah-chagigah-2-5 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 2:6 | mishnah-chagigah-2-6 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 2:7 | mishnah-chagigah-2-7 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 3:1 | mishnah-chagigah-3-1 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 3:2 | mishnah-chagigah-3-2 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 3:3 | mishnah-chagigah-3-3 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 3:4 | mishnah-chagigah-3-4 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 3:5 | mishnah-chagigah-3-5 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 3:6 | mishnah-chagigah-3-6 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 3:7 | mishnah-chagigah-3-7 |  |  | not_done |  |
+| mishnah-chagigah | Mishnah Chagigah | Mishnah Chagigah 3:8 | mishnah-chagigah-3-8 |  |  | not_done |  |

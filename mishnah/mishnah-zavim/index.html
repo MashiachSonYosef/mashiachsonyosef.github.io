@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mishnah Zavim</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Mishnah Zavim</h1>
+        <p class="meta">32 total source units | imported 2026-05-14</p>
+        <p class="meta source-citation">Hebrew version: Torat Emet 357 | Version source: <a href="http://www.toratemetfreeware.com/index.html?downloads">www.toratemetfreeware.com</a> | Digitization: Sefaria API | License: Public Domain</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Mishnah Zavim <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Mishnah Zavim <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-mishnah-zavim-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#mishnah-zavim-1-1" title="Mishnah Zavim 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-1-2" title="Mishnah Zavim 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-1-3" title="Mishnah Zavim 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-1-4" title="Mishnah Zavim 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-1-5" title="Mishnah Zavim 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-1-6" title="Mishnah Zavim 1:6">1:6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-mishnah-zavim-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#mishnah-zavim-2-1" title="Mishnah Zavim 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-2-2" title="Mishnah Zavim 2:2">2:2</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-2-3" title="Mishnah Zavim 2:3">2:3</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-2-4" title="Mishnah Zavim 2:4">2:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-mishnah-zavim-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#mishnah-zavim-3-1" title="Mishnah Zavim 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-3-2" title="Mishnah Zavim 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-3-3" title="Mishnah Zavim 3:3">3:3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-mishnah-zavim-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#mishnah-zavim-4-1" title="Mishnah Zavim 4:1">4:1</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-4-2" title="Mishnah Zavim 4:2">4:2</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-4-3" title="Mishnah Zavim 4:3">4:3</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-4-4" title="Mishnah Zavim 4:4">4:4</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-4-5" title="Mishnah Zavim 4:5">4:5</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-4-6" title="Mishnah Zavim 4:6">4:6</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-4-7" title="Mishnah Zavim 4:7">4:7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-mishnah-zavim-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#mishnah-zavim-5-1" title="Mishnah Zavim 5:1">5:1</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-5-2" title="Mishnah Zavim 5:2">5:2</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-5-3" title="Mishnah Zavim 5:3">5:3</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-5-4" title="Mishnah Zavim 5:4">5:4</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-5-5" title="Mishnah Zavim 5:5">5:5</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-5-6" title="Mishnah Zavim 5:6">5:6</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-5-7" title="Mishnah Zavim 5:7">5:7</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-5-8" title="Mishnah Zavim 5:8">5:8</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-5-9" title="Mishnah Zavim 5:9">5:9</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-5-10" title="Mishnah Zavim 5:10">5:10</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-5-11" title="Mishnah Zavim 5:11">5:11</a></li>
+                    <li><a class="toc-unit" href="#mishnah-zavim-5-12" title="Mishnah Zavim 5:12">5:12</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-mishnah-zavim-text-1">Chapter 1</h4>
+          <section class="unit" id="mishnah-zavim-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 1:1</h4></div>
+              <a class="anchor" href="#mishnah-zavim-1-1" aria-label="Copy link to Mishnah Zavim 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הָרוֹאֶה רְאִיָּה אַחַת שֶׁל זוֹב, בֵּית שַׁמַּאי אוֹמְרִים, כְּשׁוֹמֶרֶת יוֹם כְּנֶגֶד יוֹם. וּבֵית הִלֵּל אוֹמְרִים, כְּבַעַל קֶרִי. רָאָה אַחַת, וּבַשֵּׁנִי הִפְסִיק, וּבַשְּׁלִישִׁי רָאָה שְׁתַּיִם אוֹ אַחַת מְרֻבָּה כִשְׁתַּיִם, בֵּית שַׁמַּאי אוֹמְרִים, זָב גָּמוּר. וּבֵית הִלֵּל אוֹמְרִים, מְטַמֵּא מִשְׁכָּב וּמוֹשָׁב, וְצָרִיךְ בִּיאַת מַיִם חַיִּים, וּפָטוּר מִן הַקָּרְבָּן. אָמַר רַבִּי אֱלִיעֶזֶר בֶּן יְהוּדָה, מוֹדִים בֵּית שַׁמַּאי בָּזֶה שֶׁאֵינוֹ זָב גָּמוּר. וְעַל מַה נֶּחְלְקוּ, עַל הָרוֹאֶה שְׁתַּיִם אוֹ אַחַת מְרֻבָּה כִשְׁתַּיִם, וּבַשֵּׁנִי הִפְסִיק, וּבַשְּׁלִישִׁי רָאָה אַחַת, בֵּית שַׁמַּאי אוֹמְרִים, זָב גָּמוּר. וּבֵית הִלֵּל אוֹמְרִים, מְטַמֵּא מִשְׁכָּב וּמוֹשָׁב, וְצָרִיךְ בִּיאַת מַיִם חַיִּים, וּפָטוּר מִן הַקָּרְבָּן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 1:2</h4></div>
+              <a class="anchor" href="#mishnah-zavim-1-2" aria-label="Copy link to Mishnah Zavim 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הָרוֹאֶה קֶרִי בַּיּוֹם הַשְּׁלִישִׁי לִסְפִירַת זוֹבוֹ, בֵּית שַׁמַּאי אוֹמְרִים, סוֹתֵר שְׁנֵי יָמִים שֶׁלְּפָנָיו. וּבֵית הִלֵּל אוֹמְרִים, לֹא סָתַר אֶלָּא יוֹמוֹ. רַבִּי יִשְׁמָעֵאל אוֹמֵר, הָרוֹאֶה בַשֵּׁנִי, סוֹתֵר אֶת שֶׁלְּפָנָיו. רַבִּי עֲקִיבָא אוֹמֵר, אֶחָד הָרוֹאֶה בַשֵּׁנִי וְאֶחָד הָרוֹאֶה בַשְּׁלִישִׁי, שֶׁבֵּית שַׁמַּאי אוֹמְרִים, סָתַר שְׁנֵי יָמִים שֶׁלְּפָנָיו. וּבֵית הִלֵּל אוֹמְרִים, לֹא סָתַר אֶלָּא יוֹמוֹ. וּמוֹדִים בְּרוֹאֶה בָרְבִיעִי שֶׁלֹּא סָתַר אֶלָּא יוֹמוֹ, בְּרָאָה קֶרִי. אֲבָל אִם רָאָה זוֹב, אֲפִלּוּ יוֹם שְׁבִיעִי, סָתַר אֶת שֶׁלְּפָנָיו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 1:3</h4></div>
+              <a class="anchor" href="#mishnah-zavim-1-3" aria-label="Copy link to Mishnah Zavim 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רָאָה אַחַת הַיּוֹם וּשְׁתַּיִם לְמָחָר, שְׁתַּיִם הַיּוֹם וְאַחַת לְמָחָר, שָׁלשׁ לִשְׁלשָׁה יָמִים אוֹ לִשְׁלשָׁה לֵילוֹת, הֲרֵי זֶה זָב גָּמוּר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 1:4</h4></div>
+              <a class="anchor" href="#mishnah-zavim-1-4" aria-label="Copy link to Mishnah Zavim 1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רָאָה אַחַת וְהִפְסִיק כְּדֵי טְבִילָה וְסִפּוּג, וְאַחַר כָּךְ רָאָה שְׁתַּיִם אוֹ אַחַת מְרֻבָּה כִשְׁתַּיִם, אוֹ רָאָה שְׁתַּיִם אוֹ אַחַת מְרֻבָּה כִשְׁתַּיִם, וְהִפְסִיק כְּדֵי טְבִילָה וְסִפּוּג, וְאַחַר כָּךְ רָאָה אַחַת, הֲרֵי זֶה זָב גָּמוּר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 1:5</h4></div>
+              <a class="anchor" href="#mishnah-zavim-1-5" aria-label="Copy link to Mishnah Zavim 1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רָאָה אַחַת מְרֻבָּה כְשָׁלשׁ, שֶׁהִיא כְמִין גַּד יוֹן לַשִּׁילוֹחַ, שֶׁהֵן כְּדֵי שְׁתֵּי טְבִילוֹת וְכִשְׁנֵי סִפּוּגִין, הֲרֵי זֶה זָב גָּמוּר. רָאָה אַחַת מְרֻבָּה כִשְׁתַּיִם, מְטַמֵּא מִשְׁכָּב וּמוֹשָׁב, וְצָרִיךְ בִּיאַת מַיִם חַיִּים, וּפָטוּר מִן הַקָּרְבָּן. אָמַר רַבִּי יוֹסֵי, לֹא אָמְרוּ אַחַת מְרֻבָּה אֶלָּא אִם כֵּן יֶשׁ בָּהּ כְּדֵי שָׁלשׁ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 1:6</h4></div>
+              <a class="anchor" href="#mishnah-zavim-1-6" aria-label="Copy link to Mishnah Zavim 1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רָאָה אַחַת הַיּוֹם וְאַחַת בֵּין הַשְּׁמָשׁוֹת, אַחַת בֵּין הַשְּׁמָשׁוֹת וְאַחַת לְמָחָר, אִם יָדוּעַ שֶׁמִּקְצָת הָרְאִיָּה מֵהַיּוֹם וּמִקְצָתָהּ לְמָחָר, וַדַּאי לַקָּרְבָּן וְלַטֻּמְאָה. אִם סָפֵק שֶׁמִּקְצָת הָרְאִיָּה מֵהַיּוֹם וּמִקְצָתָהּ לְמָחָר, וַדַּאי לַטֻּמְאָה וְסָפֵק לַקָּרְבָּן. רָאָה שְׁנֵי יָמִים בֵּין הַשְּׁמָשׁוֹת, סָפֵק לַטֻּמְאָה וְלַקָּרְבָּן. אַחַת בֵּין הַשְּׁמָשׁוֹת, סָפֵק לַטֻּמְאָה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-mishnah-zavim-text-2">Chapter 2</h4>
+          <section class="unit" id="mishnah-zavim-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 2:1</h4></div>
+              <a class="anchor" href="#mishnah-zavim-2-1" aria-label="Copy link to Mishnah Zavim 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַכֹּל מִטַּמְּאִין בְּזִיבָה, אַף הַגֵּרִים, אַף הָעֲבָדִים, בֵּין מְשֻׁחְרָרִין בֵּין שֶׁאֵינָן מְשֻׁחְרָרִין, חֵרֵשׁ, שׁוֹטֶה, וְקָטָן, סְרִיס אָדָם, סְרִיס חַמָּה. טֻמְטוּם וְאַנְדְּרוֹגִינוֹס, נוֹתְנִין עֲלֵיהֶן חֻמְרֵי הָאִישׁ וְחֻמְרֵי הָאִשָּׁה, מִטַּמְּאִין בְּדָם כָּאִשָּׁה וּבְלֹבֶן כָּאִישׁ, וְטֻמְאָתָן בְּסָפֵק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-2-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 2:2</h4></div>
+              <a class="anchor" href="#mishnah-zavim-2-2" aria-label="Copy link to Mishnah Zavim 2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בְּשִׁבְעָה דְרָכִים בּוֹדְקִין אֶת הַזָּב עַד שֶׁלֹּא נִזְקַק לְזִיבָה. בְּמַאֲכָל, בְּמִשְׁתֶּה, וּבְמַשָּׂא, בִּקְפִיצָה, בְּחֹלִי, וּבְמַרְאֶה וּבְהִרְהוּר. הִרְהֵר עַד שֶׁלֹּא רָאָה אוֹ שֶׁרָאָה עַד שֶׁלֹּא הִרְהֵר. רַבִּי יְהוּדָה אוֹמֵר, אֲפִלּוּ רָאָה בְהֵמָה, חַיָּה וָעוֹף מִתְעַסְּקִין זֶה עִם זֶה, אֲפִלּוּ רָאָה בִגְדֵי צֶבַע הָאִשָּׁה. רַבִּי עֲקִיבָא אוֹמֵר, אֲפִלּוּ אָכַל כָּל מַאֲכָל, בֵּין רַע בֵּין יָפֶה, וְשָׁתָה כָל מַשְׁקֶה. אָמְרוּ לוֹ, אֵין כָּאן זָבִין מֵעָתָּה. אָמַר לָהֶם, אֵין אַחֲרָיוּת זָבִים עֲלֵיכֶם. מִשֶּׁנִּזְקַק לְזִיבָה, אֵין בּוֹדְקִין אוֹתוֹ. אָנְסוֹ וּסְפֵקוֹ וְשִׁכְבַת זַרְעוֹ טְמֵאִים, שֶׁרַגְלַיִם לַדָּבָר. רָאָה רְאִיָּה רִאשׁוֹנָה, בּוֹדְקִין אוֹתוֹ. בַּשְּׁנִיָּה, בּוֹדְקִין אוֹתוֹ. בַּשְּׁלִישִׁית, אֵין בּוֹדְקִין אוֹתוֹ. רַבִּי אֱלִיעֶזֶר אוֹמֵר, אַף בַּשְּׁלִישִׁית בּוֹדְקִין אוֹתוֹ, מִפְּנֵי הַקָּרְבָּן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-2-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 2:3</h4></div>
+              <a class="anchor" href="#mishnah-zavim-2-3" aria-label="Copy link to Mishnah Zavim 2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הָרוֹאֶה קֶרִי, אֵינוֹ מִטַּמֵּא בְזִיבָה מֵעֵת לְעֵת. רַבִּי יוֹסֵי אוֹמֵר, יוֹמוֹ. נָכְרִי שֶׁרָאָה קֶרִי וְנִתְגַּיֵּר, מִיָּד הוּא מִטַּמֵּא בְזִיבָה. הָרוֹאָה דָם וְהַמַּקְשָׁה, מֵעֵת לְעֵת. וְהַמַּכֶּה אֶת עַבְדּוֹ יוֹם יוֹמַיִם, מֵעֵת לְעֵת. כֶּלֶב שֶׁאָכַל בְּשַׂר הַמֵּת, שְׁלשָׁה יָמִים מֵעֵת לְעֵת, הֲרֵי הוּא כִבְרִיָּתוֹ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-2-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 2:4</h4></div>
+              <a class="anchor" href="#mishnah-zavim-2-4" aria-label="Copy link to Mishnah Zavim 2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַזָּב מְטַמֵּא אֶת הַמִּשְׁכָּב בַּחֲמִשָּׁה דְרָכִים, לְטַמֵּא אָדָם לְטַמֵּא בְגָדִים. עוֹמֵד, יוֹשֵׁב, שׁוֹכֵב, נִתְלֶה וְנִשְׁעָן. וְהַמִּשְׁכָּב מְטַמֵּא אֶת הָאָדָם בְּשִׁבְעָה דְרָכִים לְטַמֵּא בְגָדִים. עוֹמֵד, יוֹשֵׁב, שׁוֹכֵב, נִתְלֶה, וְנִשְׁעָן, בְּמַגָּע וּבְמַשָּׂא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-mishnah-zavim-text-3">Chapter 3</h4>
+          <section class="unit" id="mishnah-zavim-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 3:1</h4></div>
+              <a class="anchor" href="#mishnah-zavim-3-1" aria-label="Copy link to Mishnah Zavim 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַזָּב וְהַטָּהוֹר שֶׁיָּשְׁבוּ בִסְפִינָה אוֹ בְאַסְדָּא אוֹ שֶׁרָכְבוּ עַל גַּבֵּי בְהֵמָה, אַף עַל פִּי שֶׁאֵין בִּגְדֵיהֶם נוֹגְעִים, הֲרֵי אֵלּוּ טְמֵאִים מִדְרָס. יָשְׁבוּ עַל הַנֶּסֶר, עַל הַסַּפְסָל, עַל הַגָּשִׁישׁ שֶׁל מִטָּה וְעַל הָאַכְלוֹנָס, בִּזְמַן שֶׁהֵן מַחְגִּירִין, עָלוּ בְאִילָן שֶׁכֹּחוֹ רַע, בְּסוֹכָה שֶׁכֹּחָהּ רַע, בְּאִילָן יָפֶה, בְּסֻלָּם מִצְרִי בִּזְמַן שֶׁאֵינוֹ קָבוּעַ בְּמַסְמֵר, עַל הַכֶּבֶשׁ וְעַל הַקּוֹרָה וְעַל הַדֶּלֶת בִּזְמַן שֶׁאֵין עֲשׂוּיִין בְּטִיט, טְמֵאִים. רַבִּי יְהוּדָה מְטַהֵר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-3-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 3:2</h4></div>
+              <a class="anchor" href="#mishnah-zavim-3-2" aria-label="Copy link to Mishnah Zavim 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מְגִיפִין אוֹ פוֹתְחִין. וַחֲכָמִים אוֹמְרִים, עַד שֶׁיְּהֵא זֶה מֵגִיף וְזֶה פוֹתֵחַ. מַעֲלִין זֶה אֶת זֶה מִן הַבּוֹר. רַבִּי יְהוּדָה אוֹמֵר, עַד שֶׁיְּהֵא הַטָּהוֹר מַעֲלֶה אֶת הַטָּמֵא. מַפְשִׁילִין בַּחֲבָלִין. וַחֲכָמִים אוֹמְרִים, עַד שֶׁיִּהְיֶה זֶה מוֹשֵׁךְ הֵילֵךְ וְזֶה מוֹשֵׁךְ הֵילֵךְ. אוֹרְגִים, בֵּין בְּעוֹמְדִין בֵּין בְּיוֹשְׁבִין אוֹ טוֹחֲנִין. רַבִּי שִׁמְעוֹן מְטַהֵר בְּכֻלָּן, חוּץ מִן הַטּוֹחֲנִין בְּרֵחַיִם שֶׁל יָד. פּוֹרְקִין מִן הַחֲמוֹר אוֹ טוֹעֲנִין, בִּזְמַן שֶׁמַּשָּׂאָם כָּבֵד, טְמֵאִין. בִּזְמַן שֶׁמַּשָׂאָם קַל, טְהוֹרִין. וְכֻלָּן טְהוֹרִין לִבְנֵי הַכְּנֶסֶת וּטְמֵאִין לַתְּרוּמָה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-3-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 3:3</h4></div>
+              <a class="anchor" href="#mishnah-zavim-3-3" aria-label="Copy link to Mishnah Zavim 3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַזָּב וְהַטָּהוֹר שֶׁיָּשְׁבוּ בִסְפִינָה גְדוֹלָה, אֵיזוֹ הִיא סְפִינָה גְדוֹלָה. רַבִּי יְהוּדָה אוֹמֵר, כֹּל שֶׁאֵינָהּ יְכוֹלָה לְהָמִיט בָּאָדָם. יָשְׁבוּ עַל הַנֶּסֶר, עַל הַסַּפְסָל, עַל הַגָּשִׁישׁ שֶׁל מִטָּה וְעַל הָאַכְלוֹנָס בִּזְמַן שֶׁאֵינָן מַחְגִּירִין, עָלוּ בְאִילָן שֶׁכֹּחוֹ יָפֶה, בְּסוֹכָה שֶׁכֹּחָהּ יָפֶה, וּבְסֻלָּם צוֹרִי אוֹ מִצְרִי בִּזְמַן שֶׁהוּא קָבוּעַ בְּמַסְמֵר, עַל הַכֶּבֶשׁ, עַל הַקּוֹרָה וְעַל הַדֶּלֶת בִּזְמַן שֶׁהֵן עֲשׂוּיִין בְּטִיט אֲפִלּוּ מִצַּד אֶחָד, טְהוֹרִין. הַטָּהוֹר מַכֶּה אֶת הַטָּמֵא, טָהוֹר. הַטָּמֵא מַכֶּה אֶת הַטָּהוֹר, טָמֵא, שֶׁאִם יִמָּשֵׁךְ הַטָּהוֹר, הֲרֵי הַטָּמֵא נוֹפֵל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-mishnah-zavim-text-4">Chapter 4</h4>
+          <section class="unit" id="mishnah-zavim-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 4:1</h4></div>
+              <a class="anchor" href="#mishnah-zavim-4-1" aria-label="Copy link to Mishnah Zavim 4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רַבִּי יְהוֹשֻׁעַ אוֹמֵר, נִדָּה שֶׁיָּשְׁבָה עִם הַטְּהוֹרָה בְּמִטָּה, כִּפָּה שֶׁבְּרֹאשָׁהּ טָמֵא מִדְרָס. יָשְׁבָה בִסְפִינָה, כֵּלִים שֶׁבְּרֹאשׁ הַנֵּס שֶׁבַּסְּפִינָה טְמֵאִין מִדְרָס. נוֹטֶלֶת עֲרֵבָה מְלֵאָה בְגָדִים, בִּזְמַן שֶׁמַּשָּׂאָן כָּבֵד, טְמֵאִין. בִּזְמַן שֶׁמַּשָּׂאָן קַל, טְהוֹרִין. זָב שֶׁהִקִּישׁ עַל כְּצוֹצְרָא, וְנָפַל כִּכָּר שֶׁל תְּרוּמָה, טָהוֹר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-4-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 4:2</h4></div>
+              <a class="anchor" href="#mishnah-zavim-4-2" aria-label="Copy link to Mishnah Zavim 4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הִקִּישׁ עַל הַמָּרִישׁ, עַל הַמַּלְבֵּן, עַל הַצִּנּוֹר, וְעַל הַדַּף, אַף עַל פִּי שֶׁהוּא עָשׂוּי בַּחֲבָלִים, עַל הַתַּנּוּר, וְעַל הַיָּם, וְעַל אִצְטְרֻבָּל, וְעַל חֲמוֹר שֶׁל רֵחַיִם שֶׁל יָד, וְעַל סְאָה שֶׁל רֵחַיִם שֶׁל זֵיתִים, רַבִּי יוֹסֵי אוֹמֵר, אַף עַל קוֹרַת הַבַּלָּנִין, טָהוֹר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-4-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 4:3</h4></div>
+              <a class="anchor" href="#mishnah-zavim-4-3" aria-label="Copy link to Mishnah Zavim 4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הִקִּישׁ עַל הַדֶּלֶת, עַל הַנֶּגֶר, עַל הַמַּנְעוּל, עַל הַמָּשׁוֹט, וְעַל הַקֶּלֶת, וְעַל אִילָן שֶׁכֹּחוֹ רַע, וְעַל סוֹכָה שֶׁכֹּחָהּ רַע, עַל אִילָן יָפֶה, עַל סֻלָּם מִצְרִי בִּזְמַן שֶׁאֵינוֹ קָבוּעַ בְּמַסְמֵר, עַל הַכֶּבֶשׁ, עַל הַקּוֹרָה וְעַל הַדֶּלֶת בִּזְמַן שֶׁאֵינָן עֲשׂוּיִין בְּטִיט, טְמֵאִין. עַל הַשִּׁדָּה, עַל הַתֵּבָה וְעַל הַמִּגְדָּל, טְמֵאִין. רַבִּי נְחֶמְיָה וְרַבִּי שִׁמְעוֹן מְטַהֲרִין בָּאֵלּוּ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-4-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 4:4</h4></div>
+              <a class="anchor" href="#mishnah-zavim-4-4" aria-label="Copy link to Mishnah Zavim 4:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">זָב שֶׁהָיָה מֻטָּל עַל חֲמִשָּׁה סַפְסָלִים אוֹ עַל חָמֵשׁ פֻּנְדִּיּוֹת, לְאָרְכָּן, טְמֵאִין. לְרָחְבָּן, טְהוֹרִין. יָשֵׁן, סָפֵק שֶׁנִּתְהַפֵּךְ עֲלֵיהֶן, טְמֵאִין. הָיָה מֻטָּל עַל שִׁשָּׁה כִסְיוֹת, שְׁתֵּי יָדָיו עַל שְׁנַיִם, שְׁתֵּי רַגְלָיו עַל שְׁנַיִם, רֹאשׁוֹ עַל אֶחָד, גּוּפוֹ עַל אֶחָד, אֵין טָמֵא אֶלָּא זֶה שֶׁתַּחַת הַגּוּף. עוֹמֵד עַל שְׁנֵי כִסְאוֹת, רַבִּי שִׁמְעוֹן אוֹמֵר, אִם רְחוֹקִין זֶה מִזֶּה, טְהוֹרִין:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-4-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 4:5</h4></div>
+              <a class="anchor" href="#mishnah-zavim-4-5" aria-label="Copy link to Mishnah Zavim 4:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עֶשֶׂר טַלִּיּוֹת זוֹ עַל גַּב זוֹ, יָשֵׁן עַל גַּבֵּי הָעֶלְיוֹנָה, כֻּלָּן טְמֵאוֹת. הַזָּב בְּכַף מֹאזְנַיִם וּמִשְׁכָּב וּמוֹשָׁב כְּנֶגְדּוֹ, כָּרַע הַזָּב, טְהוֹרִין. כָּרְעוּ הֵן, טְמֵאִין. רַבִּי שִׁמְעוֹן אוֹמֵר, בִּיחִידִי, טָמֵא. וּבִמְרֻבִּין, טָהוֹר, שֶׁאֵין אֶחָד נוֹשֵׂא אֶת רֻבּוֹ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-4-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 4:6</h4></div>
+              <a class="anchor" href="#mishnah-zavim-4-6" aria-label="Copy link to Mishnah Zavim 4:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַזָּב בְּכַף מֹאזְנַיִם וְאֳכָלִין וּמַשְׁקִין בְּכַף שְׁנִיָּה, טְמֵאִין. וּבַמֵּת, הַכֹּל טָהוֹר, חוּץ מִן הָאָדָם. זֶה חֹמֶר בַּזָּב מִבַּמֵּת. חֹמֶר בַּמֵּת מִבַּזָּב, שֶׁהַזָּב עוֹשֶׂה מִשְׁכָּב וּמוֹשָׁב מִתַּחְתָּיו לְטַמֵּא אָדָם וּלְטַמֵּא בְגָדִים, וְעַל גַּבָּיו מַדָּף לְטַמֵּא אֳכָלִין וּמַשְׁקִין, מַה שֶּׁאֵין הַמֵּת מְטַמֵּא. חֹמֶר בַּמֵּת, שֶׁהַמֵּת מְטַמֵּא בְאֹהֶל וּמְטַמֵּא טֻמְאַת שִׁבְעָה, מַה שֶּׁאֵין הַזָּב מְטַמֵּא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-4-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 4:7</h4></div>
+              <a class="anchor" href="#mishnah-zavim-4-7" aria-label="Copy link to Mishnah Zavim 4:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הָיָה יוֹשֵׁב עַל גַּבֵּי הַמִּטָּה וְאַרְבַּע טַלִּיּוֹת תַּחַת אַרְבַּע רַגְלֵי הַמִּטָּה, טְמֵאוֹת, מִפְּנֵי שֶׁאֵינָהּ יְכוֹלָה לַעֲמֹד עַל שָׁלשׁ. רַבִּי שִׁמְעוֹן מְטַהֵר. הָיָה רוֹכֵב עַל גַּבֵּי בְהֵמָה וְאַרְבַּע טַלִּיּוֹת תַּחַת אַרְבַּע רַגְלֵי בְהֵמָה, טְהוֹרוֹת, מִפְּנֵי שֶׁהִיא יְכוֹלָה לַעֲמֹד עַל שְׁלשָׁה. הָיְתָה טַלִּית אַחַת תַּחַת שְׁנֵי יָדַיִם, תַּחַת שְׁנֵי רַגְלַיִם, תַּחַת יָד וָרֶגֶל, טְמֵאָה. רַבִּי יוֹסֵי אוֹמֵר, הַסּוּס מְטַמֵּא בְרַגְלָיו וְהַחֲמוֹר בְּיָדָיו, שֶׁמִּשְׁעֶנֶת הַסּוּס עַל רַגְלָיו וּמִשְׁעֶנֶת הַחֲמוֹר עַל יָדָיו. יָשַׁב עַל קוֹרַת בֵּית הַבַּד, כֵּלִים שֶׁבָּעֵקֶל טְמֵאִין. עַל הַמַּכְבֵּשׁ שֶׁל כּוֹבֵס, כֵּלִים שֶׁתַּחְתָּיו, טְהוֹרִין. רַבִּי נְחֶמְיָה מְטַמֵּא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-mishnah-zavim-text-5">Chapter 5</h4>
+          <section class="unit" id="mishnah-zavim-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 5:1</h4></div>
+              <a class="anchor" href="#mishnah-zavim-5-1" aria-label="Copy link to Mishnah Zavim 5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַנּוֹגֵעַ בַּזָּב אוֹ שֶׁהַזָּב נוֹגֵע בּוֹ, הַמַּסִּיט אֶת הַזָּב אוֹ שֶׁהַזָּב מַסִּיטוֹ, מְטַמֵּא אֳכָלִים וּמַשְׁקִים וּכְלֵי שֶׁטֶף בְּמַגָּע, אֲבָל לֹא בְמַשָּׂא. כְּלָל אָמַר רַבִּי יְהוֹשֻׁעַ, כָּל הַמְטַמֵּא בְגָדִים בִּשְׁעַת מַגָּעוֹ, מְטַמֵּא אֳכָלִים וּמַשְׁקִין לִהְיוֹת תְּחִלָּה, וְהַיָּדַיִם לִהְיוֹת שְׁנִיּוֹת, וְאֵינוֹ מְטַמֵּא לֹא אָדָם וְלֹא כְלֵי חֶרֶס. לְאַחַר פְּרִישָׁתוֹ מִמְּטַמְּאָיו, מְטַמֵּא מַשְׁקִין לִהְיוֹת תְּחִלָּה, וְהָאֳכָלִין וְהַיָּדַיִם לִהְיוֹת שְׁנִיּוֹת, וְאֵינוֹ מְטַמֵּא בְגָדִים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-5-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 5:2</h4></div>
+              <a class="anchor" href="#mishnah-zavim-5-2" aria-label="Copy link to Mishnah Zavim 5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעוֹד כְּלָל אַחֵר אָמְרוּ. כֹּל הַנִּשָּׂא עַל גַּבֵּי הַזָּב, טָמֵא. וְכֹל שֶׁהַזָּב נִשָּׂא עָלָיו, טָהוֹר, חוּץ מִן הָרָאוּי לְמִשְׁכָּב וּלְמוֹשָׁב וְהָאָדָם. כֵּיצַד. אֶצְבָּעוֹ שֶׁל זָב תַּחַת הַנִּדְבָּךְ, הַטָּהוֹר מִלְמַעְלָן, מְטַמֵּא שְׁנַיִם וּפוֹסֵל אֶחָד. פֵּרַשׁ, מְטַמֵּא אֶחָד וּפוֹסֵל אֶחָד. הַטָּמֵא מִלְמַעְלָן וְהַטָּהוֹר מִלְּמַטָּן, מְטַמֵּא שְׁנַיִם וּפוֹסֵל אֶחָד. פֵּרַשׁ, מְטַמֵא אֶחָד וּפוֹסֵל אֶחָד. הָאֳכָלִין וְהַמַּשְׁקִין, הַמִּשְׁכָּב, וְהַמּוֹשָׁב וְהַמַּדָּף מִלְמַעְלָן, מְטַמְּאִין שְׁנַיִם וּפוֹסְלִין אֶחָד. פֵּרְשׁוּ, מְטַמְּאִין אֶחָד וּפוֹסְלִין אֶחָד. וְהַמִּשְׁכָּב וְהַמּוֹשָׁב מִלְּמַטָּן, מְטַמְּאִין שְׁנַיִם וּפוֹסְלִין אֶחָד. פֵּרְשׁוּ, מְטַמְּאִין שְׁנַיִם וּפוֹסְלִין אֶחָד. הָאֳכָלִין וְהַמַּשְׁקִין וְהַמַּדָּף מִלְּמַטָּן, טְהוֹרִין:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-5-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 5:3</h4></div>
+              <a class="anchor" href="#mishnah-zavim-5-3" aria-label="Copy link to Mishnah Zavim 5:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מִפְּנֵי שֶׁאָמְרוּ, כֹּל הַנּוֹשֵׂא וְנִשָּׂא עַל גַּבֵּי מִשְׁכָּב, טָהוֹר, חוּץ מִן הָאָדָם. כֹּל הַנּוֹשֵׂא וְנִשָּׂא עַל גַּבֵּי הַנְּבֵלָה, טָהוֹר, חוּץ מִן הַמַּסִּיט. רַבִּי אֱלִיעֶזֶר אוֹמֵר, אַף הַנּוֹשֵׂא. כֹּל הַנּוֹשֵׂא וְנִשָּׂא עַל גַּבֵּי הַמֵּת, טָהוֹר, חוּץ מִן הַמַּאֲהִיל, וְאָדָם בִּזְמַן שֶׁהוּא מַסִּיט:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-5-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 5:4</h4></div>
+              <a class="anchor" href="#mishnah-zavim-5-4" aria-label="Copy link to Mishnah Zavim 5:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מִקְצָת טָמֵא עַל הַטָּהוֹר וּמִקְצָת טָהוֹר עַל הַטָּמֵא, חִבּוּרֵי טָמֵא עַל הַטָּהוֹר וְחִבּוּרֵי טָהוֹר עַל הַטָּמֵא, טָמֵא. רַבִּי שִׁמְעוֹן אוֹמֵר, מִקְצָת טָמֵא עַל הַטָּהוֹר, טָמֵא. וּמִקְצָת טָהוֹר עַל הַטָּמֵא, טָהוֹר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-5-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 5:5</h4></div>
+              <a class="anchor" href="#mishnah-zavim-5-5" aria-label="Copy link to Mishnah Zavim 5:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַטָּמֵא עַל מִקְצָת הַמִּשְׁכָּב וְהַטָּהוֹר עַל מִקְצָת הַמִּשְׁכָּב, טָמֵא. מִקְצָת טָמֵא עַל הַמִּשְׁכָּב וּמִקְצָת טָהוֹר עַל הַמִּשְׁכָּב, טָהוֹר. נִמְצֵאת טֻמְאָה נִכְנֶסֶת לוֹ וְיוֹצֵאת מִמֶּנּוּ בְּמִעוּטוֹ. וְכֵן כִּכָּר שֶׁל תְּרוּמָה שֶׁהוּא נָתוּן עַל גַּבֵּי מִשְׁכָּב וְהַנְּיָר בֵּינְתַיִם, בֵּין מִלְמַעְלָן בֵּין מִלְּמַטָּן, טָהוֹר. וְכֵן בְּאֶבֶן הַמְנֻגַּעַת, טָהוֹר. רַבִּי שִׁמְעוֹן מְטַמֵּא בָזוֹ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-5-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 5:6</h4></div>
+              <a class="anchor" href="#mishnah-zavim-5-6" aria-label="Copy link to Mishnah Zavim 5:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַנּוֹגֵעַ בְּזָב, וּבְזָבָה, וּבְנִדָּה, וּבְיוֹלֶדֶת, וּבִמְצֹרָע, בְּמִשְׁכָּב, וּמוֹשָׁב, מְטַמֵּא שְׁנַיִם וּפוֹסֵל אֶחָד. פֵּרַשׁ, מְטַמֵּא אֶחָד וּפוֹסֵל אֶחָד, אֶחָד הַנּוֹגֵעַ וְאֶחָד הַמַּסִּיט וְאֶחָד הַנּוֹשֵׂא וְאֶחָד הַנִּשָּׂא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-5-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 5:7</h4></div>
+              <a class="anchor" href="#mishnah-zavim-5-7" aria-label="Copy link to Mishnah Zavim 5:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַנּוֹגֵעַ בְּזוֹבוֹ שֶׁל זָב, וּבְרֻקּוֹ, בְּשִׁכְבַת זַרְעוֹ, בְּמֵימֵי רַגְלָיו, וּבְדַם הַנִּדָּה, מְטַמֵּא שְׁנַיִם וּפוֹסֵל אֶחָד. פֵּרַשׁ, מְטַמֵּא אֶחָד וּפוֹסֵל אֶחָד, אֶחָד הַנּוֹגֵעַ וְאֶחָד הַמַּסִּיט. רַבִּי אֱלִיעֶזֶר אוֹמֵר, אַף הַנּוֹשֵׂא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-5-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 5:8</h4></div>
+              <a class="anchor" href="#mishnah-zavim-5-8" aria-label="Copy link to Mishnah Zavim 5:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַנּוֹשֵׂא אֶת הַמֶּרְכָּב וְהַנִּשָּׂא עָלָיו וְהַמַּסִּיטוֹ, מְטַמֵּא שְׁנַיִם וּפוֹסֵל אֶחָד. פֵּרַשׁ, מְטַמֵּא אֶחָד וּפוֹסֵל אֶחָד. הַנּוֹשֵׂא אֶת הַנְּבֵלָה, וְאֶת מֵי חַטָּאת שֶׁיֶּשׁ בָּהֶם כְּדֵי הַזָּיָה, מְטַמֵּא שְׁנַיִם וּפוֹסֵל אֶחָד. פֵּרַשׁ, מְטַמֵּא אֶחָד וּפוֹסֵל אֶחָד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-5-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 5:9</h4></div>
+              <a class="anchor" href="#mishnah-zavim-5-9" aria-label="Copy link to Mishnah Zavim 5:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הָאוֹכֵל מִנִּבְלַת עוֹף טָהוֹר וְהִיא בְּבֵית הַבְּלִיעָה, מְטַמֵּא שְׁנַיִם וּפוֹסֵל אֶחָד. הִכְנִיס רֹאשׁוֹ לַאֲוִיר הַתַּנּוּר, טָהוֹר, וְטָהוֹר הַתַּנּוּר. הֱקִיאָהּ אוֹ בְלָעָהּ, מְטַמֵּא אֶחָד וּפוֹסֵל אֶחָד. וּכְשֶׁהִיא בְתוֹךְ פִּיו, עַד שֶׁיִּבְלָעֶנָּה, טָהוֹר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-5-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 5:10</h4></div>
+              <a class="anchor" href="#mishnah-zavim-5-10" aria-label="Copy link to Mishnah Zavim 5:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַנּוֹגֵעַ בְּשֶׁרֶץ וּבְשִׁכְבַת זֶרַע, וּבִטְמֵא מֵת, וּבִמְצֹרָע בִּימֵי סָפְרוֹ, וּבְמֵי חַטָּאת שֶׁאֵין בָּהֶם כְּדֵי הַזָּיָה, וּבִנְבֵלָה, וּבְמֶרְכָּב, מְטַמֵּא אֶחָד וּפוֹסֵל אֶחָד. זֶה הַכְּלָל, כֹּל הַנּוֹגֵעַ בְּאַחַד מִכָּל אֲבוֹת הַטֻּמְאוֹת שֶׁבַּתּוֹרָה, מְטַמֵּא אֶחָד וּפוֹסֵל אֶחָד, חוּץ מִן הָאָדָם. פֵּרַשׁ, מְטַמֵּא אֶחָד וּפוֹסֵל אֶחָד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-5-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 5:11</h4></div>
+              <a class="anchor" href="#mishnah-zavim-5-11" aria-label="Copy link to Mishnah Zavim 5:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בַּעַל קֶרִי, כְּמַגַּע שֶׁרֶץ. וּבוֹעֵל נִדָּה, כִּטְמֵא מֵת, אֶלָּא שֶׁחָמוּר מִמֶּנּוּ בּוֹעֵל נִדָּה, שֶׁהוּא מְטַמֵּא מִשְׁכָּב וּמוֹשָׁב טֻמְאָה קַלָּה לְטַמֵּא אֳכָלִין וּמַשְׁקִין:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishnah-zavim-5-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnah Zavim 5:12</h4></div>
+              <a class="anchor" href="#mishnah-zavim-5-12" aria-label="Copy link to Mishnah Zavim 5:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֵלּוּ פוֹסְלִים אֶת הַתְּרוּמָה. הָאוֹכֵל אֹכֶל רִאשׁוֹן, וְהָאוֹכֵל אֹכֶל שֵׁנִי, וְהַשּׁוֹתֶה מַשְׁקִין טְמֵאִין, וְהַבָּא רֹאשׁוֹ וְרֻבּוֹ בְּמַיִם שְׁאוּבִין, וְטָהוֹר שֶׁנָּפְלוּ עַל רֹאשׁוֹ וְעַל רֻבּוֹ שְׁלשָׁה לֻגִּין מַיִם שְׁאוּבִין, וְהַסֵּפֶר, וְהַיָּדַיִם, וּטְבוּל יוֹם, וְהָאֳכָלִים וְהַכֵּלִים שֶׁנִּטְמְאוּ בְמַשְׁקִים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishnah-zavim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"mishnah-zavim","work_title":"Mishnah Zavim","work_slug":"mishnah/mishnah-zavim","scope_label":"All imported Hebrew works","generated_at":"2026-05-14T14:29:40.590Z","total_occurrences":1572,"units":{"mishnah-zavim-1-1":{"unit_id":"mishnah-zavim-1-1","anchor_id":"mishnah-zavim-1-1","source_ref":"Mishnah Zavim 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d77a7b87b45e","tok-b7cc1cc4aba8","tok-9ee7ff9399d5","tok-28a71b970cbb","tok-dd0de9f083d3","tok-81f6ddafcc01","tok-65b57025f7e2","tok-7a4364bb6ca1","tok-b7affc83c8eb","tok-552dbb30f770","tok-48ae96051fe7","tok-552dbb30f770","tok-c5488b4d940e","tok-2f1a70a44130","tok-7a4364bb6ca1","tok-8c1982ddaad1","tok-4c644c6de3cf","tok-987467784864","tok-9ee7ff9399d5","tok-1ad9bccaa560","tok-ab32cbaca084","tok-afca7368860f","tok-987467784864","tok-ed2324ac45ab","tok-43aab3d679f3","tok-9ee7ff9399d5","tok-1b2941e6db75","tok-1942eed8f744","tok-81f6ddafcc01","tok-65b57025f7e2","tok-7a4364bb6ca1","tok-b78686001371","tok-f7c8077ff5df","tok-c5488b4d940e","tok-2f1a70a44130","tok-7a4364bb6ca1","tok-df6258cbaea9","tok-c9b69d39d87d","tok-6e449318682d","tok-eca9a904fbb1","tok-7ba161b27859","tok-ff0981928bab","tok-1a295af92383","tok-ab6287287ef9","tok-acb2ac52c3ad","tok-18ff0a331433","tok-805ff3d6b829","tok-85ba64a0dc9d","tok-b21ba7999b18","tok-a907b7af72bc","tok-594addcf7b26","tok-146eb7a172a5","tok-81f6ddafcc01","tok-65b57025f7e2","tok-119aecfb4429","tok-01fe76a4392f","tok-b78686001371","tok-f7c8077ff5df","tok-94561c127a61","tok-7a97e13e2561","tok-6d37132fc7cd","tok-3bca81a7a778","tok-d77a7b87b45e","tok-ed2324ac45ab","tok-43aab3d679f3","tok-9ee7ff9399d5","tok-1b2941e6db75","tok-1942eed8f744","tok-1ad9bccaa560","tok-ab32cbaca084","tok-afca7368860f","tok-987467784864","tok-9ee7ff9399d5","tok-81f6ddafcc01","tok-65b57025f7e2","tok-7a4364bb6ca1","tok-b78686001371","tok-f7c8077ff5df","tok-c5488b4d940e","tok-2f1a70a44130","tok-7a4364bb6ca1","tok-df6258cbaea9","tok-c9b69d39d87d","tok-6e449318682d","tok-eca9a904fbb1","tok-7ba161b27859","tok-ff0981928bab","tok-1a295af92383","tok-ab6287287ef9","tok-acb2ac52c3ad","tok-18ff0a331433"]}]},"mishnah-zavim-1-2":{"unit_id":"mishnah-zavim-1-2","anchor_id":"mishnah-zavim-1-2","source_ref":"Mishnah Zavim 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d77a7b87b45e","tok-4c644c6de3cf","tok-b11a9818371f","tok-ed5df0e6f754","tok-ad8d23ad5676","tok-4be15ec2292c","tok-81f6ddafcc01","tok-65b57025f7e2","tok-7a4364bb6ca1","tok-ec621173b283","tok-7cd32b5127e5","tok-e8139e58e079","tok-520fc61bd907","tok-c5488b4d940e","tok-2f1a70a44130","tok-7a4364bb6ca1","tok-ab78801ee022","tok-8559184557f3","tok-a40568a70ada","tok-c21ac1e1bb26","tok-85ba64a0dc9d","tok-6fe2a392b1db","tok-3960a2ed44c9","tok-d77a7b87b45e","tok-d1c337b71251","tok-ec621173b283","tok-7929d77d892c","tok-520fc61bd907","tok-85ba64a0dc9d","tok-de5dd34ccdcf","tok-3960a2ed44c9","tok-29638ac34057","tok-d77a7b87b45e","tok-d1c337b71251","tok-d7da44f270a9","tok-d77a7b87b45e","tok-7c3b7488cdcd","tok-1bd6780b1888","tok-65b57025f7e2","tok-7a4364bb6ca1","tok-8559184557f3","tok-7cd32b5127e5","tok-e8139e58e079","tok-520fc61bd907","tok-c5488b4d940e","tok-2f1a70a44130","tok-7a4364bb6ca1","tok-ab78801ee022","tok-8559184557f3","tok-a40568a70ada","tok-c21ac1e1bb26","tok-9e8b0d07306e","tok-defdaa4b17dd","tok-c36fa6e0602f","tok-6223cd4628a0","tok-8559184557f3","tok-a40568a70ada","tok-c21ac1e1bb26","tok-af26ee9af656","tok-4c644c6de3cf","tok-574c8f444026","tok-5072ee8f7471","tok-987467784864","tok-dd0de9f083d3","tok-6eea890087d2","tok-552dbb30f770","tok-42536b11b321","tok-8559184557f3","tok-7929d77d892c","tok-520fc61bd907"]}]},"mishnah-zavim-1-3":{"unit_id":"mishnah-zavim-1-3","anchor_id":"mishnah-zavim-1-3","source_ref":"Mishnah Zavim 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-987467784864","tok-9ee7ff9399d5","tok-19d126721d69","tok-bd161138cdc1","tok-97c57f7d1fa9","tok-ed2324ac45ab","tok-19d126721d69","tok-a87beb80f89b","tok-97c57f7d1fa9","tok-ef19f62d2058","tok-761585a95eaa","tok-e8139e58e079","tok-43aab3d679f3","tok-761585a95eaa","tok-25789a79d824","tok-b3e6144bc1f1","tok-f8a926345100","tok-b78686001371","tok-f7c8077ff5df"]}]},"mishnah-zavim-1-4":{"unit_id":"mishnah-zavim-1-4","anchor_id":"mishnah-zavim-1-4","source_ref":"Mishnah Zavim 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-987467784864","tok-9ee7ff9399d5","tok-02ad7190e8e1","tok-3335b8d82ba9","tok-192650093f2d","tok-2950d8c4445c","tok-3124b3865d53","tok-f55324176323","tok-987467784864","tok-ed2324ac45ab","tok-43aab3d679f3","tok-9ee7ff9399d5","tok-1b2941e6db75","tok-1942eed8f744","tok-43aab3d679f3","tok-987467784864","tok-ed2324ac45ab","tok-43aab3d679f3","tok-9ee7ff9399d5","tok-1b2941e6db75","tok-1942eed8f744","tok-02ad7190e8e1","tok-3335b8d82ba9","tok-192650093f2d","tok-2950d8c4445c","tok-3124b3865d53","tok-f55324176323","tok-987467784864","tok-9ee7ff9399d5","tok-b3e6144bc1f1","tok-f8a926345100","tok-b78686001371","tok-f7c8077ff5df"]}]},"mishnah-zavim-1-5":{"unit_id":"mishnah-zavim-1-5","anchor_id":"mishnah-zavim-1-5","source_ref":"Mishnah Zavim 1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-987467784864","tok-9ee7ff9399d5","tok-1b2941e6db75","tok-e755fd284c6b","tok-cc30d0d7858c","tok-7a28e40f629b","tok-10685bfab1ad","tok-54e98efefc45","tok-fdb6ccd99505","tok-1277392fd0f3","tok-3335b8d82ba9","tok-362a4ddd6e55","tok-92f2306a0148","tok-d00c2742f125","tok-b1f95a1dadda","tok-b3e6144bc1f1","tok-f8a926345100","tok-b78686001371","tok-f7c8077ff5df","tok-987467784864","tok-9ee7ff9399d5","tok-1b2941e6db75","tok-1942eed8f744","tok-df6258cbaea9","tok-c9b69d39d87d","tok-6e449318682d","tok-eca9a904fbb1","tok-7ba161b27859","tok-ff0981928bab","tok-1a295af92383","tok-ab6287287ef9","tok-acb2ac52c3ad","tok-18ff0a331433","tok-805ff3d6b829","tok-85ba64a0dc9d","tok-72feed5eb077","tok-ab78801ee022","tok-72231df4464f","tok-9ee7ff9399d5","tok-1b2941e6db75","tok-a40568a70ada","tok-5072ee8f7471","tok-ad805cfd5a78","tok-15501c16a0ad","tok-c436e0299fec","tok-3335b8d82ba9","tok-ef19f62d2058"]}]},"mishnah-zavim-1-6":{"unit_id":"mishnah-zavim-1-6","anchor_id":"mishnah-zavim-1-6","source_ref":"Mishnah Zavim 1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-987467784864","tok-9ee7ff9399d5","tok-19d126721d69","tok-a87beb80f89b","tok-6bc2c975b14d","tok-83be7e33371e","tok-9ee7ff9399d5","tok-6bc2c975b14d","tok-83be7e33371e","tok-a87beb80f89b","tok-97c57f7d1fa9","tok-5072ee8f7471","tok-033cbbbc928d","tok-b22960ed0f95","tok-99949c2c7b31","tok-828934c327ab","tok-6fb37e996e76","tok-97c57f7d1fa9","tok-8a88d29cf3fd","tok-994ccd99a549","tok-5b256ca9c220","tok-5072ee8f7471","tok-4795936449dd","tok-b22960ed0f95","tok-99949c2c7b31","tok-828934c327ab","tok-6fb37e996e76","tok-97c57f7d1fa9","tok-8a88d29cf3fd","tok-c95d395de246","tok-601db1d6ff03","tok-994ccd99a549","tok-987467784864","tok-7cd32b5127e5","tok-e8139e58e079","tok-6bc2c975b14d","tok-83be7e33371e","tok-4795936449dd","tok-c95d395de246","tok-acc21951d868","tok-9ee7ff9399d5","tok-6bc2c975b14d","tok-83be7e33371e","tok-4795936449dd","tok-c95d395de246"]}]},"mishnah-zavim-2-1":{"unit_id":"mishnah-zavim-2-1","anchor_id":"mishnah-zavim-2-1","source_ref":"Mishnah Zavim 2:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9a2dcb187b2a","tok-b058229f2a7c","tok-41c96da9d44f","tok-7f9ec25a89b2","tok-8ecf6162a468","tok-7f9ec25a89b2","tok-077127bbb5ec","tok-6bc2c975b14d","tok-5ce8b78d2a56","tok-6bc2c975b14d","tok-f02bf95b5756","tok-5ce8b78d2a56","tok-beb403183527","tok-375fba9101f2","tok-714c34aaa7cd","tok-fb8aef700cd7","tok-63484f8bd059","tok-fb8aef700cd7","tok-db1c9b2980cd","tok-448e459c80ab","tok-0b71bade776e","tok-314d6e52a5e9","tok-21d2658844a7","tok-2396dd2a8ffa","tok-565d6369580e","tok-13ffe2661a11","tok-f50b37496577","tok-b058229f2a7c","tok-f0ad3fd9e062","tok-e0689b0a65f8","tok-5f7dcec556a3","tok-c2a47bdffd77","tok-ce19230f1ad9","tok-15a5381b7b5c"]}]},"mishnah-zavim-2-2":{"unit_id":"mishnah-zavim-2-2","anchor_id":"mishnah-zavim-2-2","source_ref":"Mishnah Zavim 2:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-eb35f56e3c91","tok-f8bbee22e7c7","tok-870da4dafea7","tok-7929d77d892c","tok-cd41cc9f3f1b","tok-62ed0cb61108","tok-6223cd4628a0","tok-71065e06b872","tok-97ddb6019443","tok-f4c5012f3a07","tok-7e3be943e409","tok-2e1b5ba0fc44","tok-d602dc9b94b6","tok-53f924565f7a","tok-b088c4cdf689","tok-593f4298c6f0","tok-4e9cb5b59bd1","tok-62ed0cb61108","tok-6223cd4628a0","tok-987467784864","tok-43aab3d679f3","tok-c76e11a310c2","tok-62ed0cb61108","tok-6223cd4628a0","tok-4e9cb5b59bd1","tok-85ba64a0dc9d","tok-594addcf7b26","tok-3960a2ed44c9","tok-6eea890087d2","tok-987467784864","tok-0c7c2c465893","tok-802498749490","tok-51085269586f","tok-017d48763a38","tok-f8a926345100","tok-fef0a7dd606a","tok-f8a926345100","tok-6eea890087d2","tok-987467784864","tok-49659f6bf6ec","tok-280ba069471a","tok-f50b37496577","tok-85ba64a0dc9d","tok-de5dd34ccdcf","tok-3960a2ed44c9","tok-6eea890087d2","tok-3b6411b567dc","tok-b53a80926224","tok-18c6bfa07a14","tok-6bc2c975b14d","tok-6ceec9bf6dfc","tok-6bc2c975b14d","tok-750c2a858a7c","tok-2e658a91c977","tok-fa956800534b","tok-9b0baea7ea97","tok-72231df4464f","tok-7a45b9d6da17","tok-a15355def02a","tok-e20458b08fd8","tok-fcf9de2961a8","tok-36d0e6e16fd2","tok-805ff3d6b829","tok-e1b4a5191004","tok-a15355def02a","tok-bc153cbb64f1","tok-69f0187a9e96","tok-1bd3441f3fc0","tok-a1c16556b723","tok-97ddb6019443","tok-a15355def02a","tok-870da4dafea7","tok-49103922d759","tok-4677c45c94e8","tok-3c56789fe2d5","tok-a2619e129704","tok-6d3425d327af","tok-bd91ea54319c","tok-294622ab4c98","tok-2fed752563bd","tok-987467784864","tok-b7cc1cc4aba8","tok-a8e2c09b59e7","tok-870da4dafea7","tok-49103922d759","tok-a670311c0ca0","tok-870da4dafea7","tok-49103922d759","tok-559ee47248d8","tok-a15355def02a","tok-870da4dafea7","tok-49103922d759","tok-85ba64a0dc9d","tok-b21ba7999b18","tok-3960a2ed44c9","tok-7f9ec25a89b2","tok-559ee47248d8","tok-870da4dafea7","tok-49103922d759","tok-607a1041d8bd","tok-18ff0a331433"]}]},"mishnah-zavim-2-3":{"unit_id":"mishnah-zavim-2-3","anchor_id":"mishnah-zavim-2-3","source_ref":"Mishnah Zavim 2:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d77a7b87b45e","tok-4c644c6de3cf","tok-139da29b1f33","tok-f29c9ecaf3be","tok-9840ba075e9b","tok-63919f688de2","tok-3ae85bcd30bf","tok-85ba64a0dc9d","tok-72feed5eb077","tok-3960a2ed44c9","tok-c21ac1e1bb26","tok-9a1ab9891d70","tok-c76e11a310c2","tok-4c644c6de3cf","tok-28350bd0a3e9","tok-33e836010a88","tok-c799f16be001","tok-f29c9ecaf3be","tok-9840ba075e9b","tok-768402ba736c","tok-c200c8ff52ce","tok-ea80adc6c197","tok-63919f688de2","tok-3ae85bcd30bf","tok-3e72706916cd","tok-7929d77d892c","tok-6d551f0ef334","tok-552dbb30f770","tok-144195e63e7e","tok-63919f688de2","tok-3ae85bcd30bf","tok-14a26be876f5","tok-87679934566c","tok-71ea6361962e","tok-f0c31201dacc","tok-60284eef9bc8","tok-e8139e58e079","tok-63919f688de2","tok-3ae85bcd30bf","tok-b3e6144bc1f1","tok-c799f16be001","tok-c5d63c4a0189"]}]},"mishnah-zavim-2-4":{"unit_id":"mishnah-zavim-2-4","anchor_id":"mishnah-zavim-2-4","source_ref":"Mishnah Zavim 2:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cd41cc9f3f1b","tok-df6258cbaea9","tok-7929d77d892c","tok-3f3b4833e81d","tok-449f5d628495","tok-f8bbee22e7c7","tok-519bc98362ae","tok-63484f8bd059","tok-519bc98362ae","tok-b846ca01e1c7","tok-820e563d3de3","tok-db79673c0cbd","tok-ef2c14cf7ccf","tok-51148b0c4631","tok-1d8f10568158","tok-7341452e8a48","tok-df6258cbaea9","tok-7929d77d892c","tok-2f74c17055d6","tok-eb35f56e3c91","tok-f8bbee22e7c7","tok-519bc98362ae","tok-b846ca01e1c7","tok-820e563d3de3","tok-db79673c0cbd","tok-ef2c14cf7ccf","tok-51148b0c4631","tok-1d8f10568158","tok-4d9a3cf1797f","tok-2e1b5ba0fc44"]}]},"mishnah-zavim-3-1":{"unit_id":"mishnah-zavim-3-1","anchor_id":"mishnah-zavim-3-1","source_ref":"Mishnah Zavim 3:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cd41cc9f3f1b","tok-e76e3bbf816f","tok-01ec0c1e3c58","tok-4af304f3c8ea","tok-43aab3d679f3","tok-0bfcf34ccb79","tok-43aab3d679f3","tok-fbcd52420bc5","tok-3bca81a7a778","tok-e859bbf3b768","tok-0c7c2c465893","tok-7f9ec25a89b2","tok-3bca81a7a778","tok-1430bcf7cbaa","tok-4e694da67f2c","tok-1ba2d90fe699","tok-f928681f7236","tok-b3e6144bc1f1","tok-ea11b892dfcd","tok-bd91ea54319c","tok-ce504a06c4df","tok-b907779719f7","tok-3bca81a7a778","tok-a90acec1adab","tok-3bca81a7a778","tok-1c85fb675215","tok-3bca81a7a778","tok-f8158141e3f5","tok-28a71b970cbb","tok-ae5841f757b4","tok-94561c127a61","tok-5318404399e2","tok-1cd659d4c689","tok-1277392fd0f3","tok-2059f3d8cbc8","tok-3a2a4e5c1527","tok-f180f7ee078b","tok-d278d464b08b","tok-6ceec9bf6dfc","tok-f59b73e1c7c5","tok-737670e4c33e","tok-6ceec9bf6dfc","tok-150173325e5a","tok-750c2a858a7c","tok-3cc8b58ec25e","tok-b28f64388920","tok-1cd659d4c689","tok-01fe76a4392f","tok-8392b3ea5ced","tok-15ac8c268a43","tok-3bca81a7a778","tok-600b2e783b70","tok-94561c127a61","tok-b3874619659f","tok-94561c127a61","tok-3c96c2b81135","tok-1cd659d4c689","tok-4e694da67f2c","tok-94660db5b1e1","tok-4685a7fb94d8","tok-bd91ea54319c","tok-85ba64a0dc9d","tok-594addcf7b26","tok-8262761e9c36"]}]},"mishnah-zavim-3-2":{"unit_id":"mishnah-zavim-3-2","anchor_id":"mishnah-zavim-3-2","source_ref":"Mishnah Zavim 3:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6132a66b7045","tok-43aab3d679f3","tok-300186044054","tok-ae590a2ec0d3","tok-7a4364bb6ca1","tok-62ed0cb61108","tok-04ff1b720205","tok-f8a926345100","tok-c129f510e4d0","tok-bc947358bce7","tok-44badbd83fbb","tok-715a09839167","tok-f8a926345100","tok-7929d77d892c","tok-f8a926345100","tok-acb2ac52c3ad","tok-789c8cd58d1a","tok-85ba64a0dc9d","tok-594addcf7b26","tok-3960a2ed44c9","tok-62ed0cb61108","tok-04ff1b720205","tok-116a262bfeff","tok-fa2284c14c85","tok-7929d77d892c","tok-491abe8c7b0e","tok-bb12eca8cd26","tok-258ed2b88949","tok-ae590a2ec0d3","tok-7a4364bb6ca1","tok-62ed0cb61108","tok-e5f92347f07f","tok-f8a926345100","tok-11f9ac954d2a","tok-76a46d6f0523","tok-bc947358bce7","tok-11f9ac954d2a","tok-76a46d6f0523","tok-17959e33591a","tok-6bc2c975b14d","tok-27d161315c1c","tok-6bc2c975b14d","tok-c101504a4622","tok-43aab3d679f3","tok-ae2c82fd574d","tok-85ba64a0dc9d","tok-b8d977782f59","tok-8262761e9c36","tok-906fc86341e9","tok-642552acc4d5","tok-acb2ac52c3ad","tok-bcb8668abdec","tok-d777d9ddd898","tok-28a71b970cbb","tok-caecbcf90bdf","tok-edbd259e053c","tok-acb2ac52c3ad","tok-0e6efd4cf739","tok-43aab3d679f3","tok-dd7c97d88c5d","tok-1cd659d4c689","tok-2034aee62d89","tok-8c13fee3d515","tok-1fc9ef45db03","tok-1cd659d4c689","tok-befffcef1be4","tok-bf7778239c75","tok-8bb83dcaca31","tok-364d9ba6154c","tok-8bb83dcaca31","tok-e39153ed7229","tok-adb63094d1c1","tok-6d7606903fc3","tok-5afebedc4e40"]}]},"mishnah-zavim-3-3":{"unit_id":"mishnah-zavim-3-3","anchor_id":"mishnah-zavim-3-3","source_ref":"Mishnah Zavim 3:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cd41cc9f3f1b","tok-e76e3bbf816f","tok-01ec0c1e3c58","tok-4af304f3c8ea","tok-193f436bff41","tok-523a729ba6b4","tok-3a1bb864a004","tok-7e0ce1cddc32","tok-193f436bff41","tok-85ba64a0dc9d","tok-594addcf7b26","tok-3960a2ed44c9","tok-3090622ce6c7","tok-72913a79112a","tok-6eafa9b4e3fa","tok-7d4d78aeca57","tok-3dc0e6797884","tok-b907779719f7","tok-3bca81a7a778","tok-a90acec1adab","tok-3bca81a7a778","tok-1c85fb675215","tok-3bca81a7a778","tok-f8158141e3f5","tok-28a71b970cbb","tok-ae5841f757b4","tok-94561c127a61","tok-5318404399e2","tok-1cd659d4c689","tok-f02bf95b5756","tok-2059f3d8cbc8","tok-3a2a4e5c1527","tok-f180f7ee078b","tok-d278d464b08b","tok-750c2a858a7c","tok-f59b73e1c7c5","tok-737670e4c33e","tok-750c2a858a7c","tok-6f6d43055227","tok-b7d21c8402b6","tok-43aab3d679f3","tok-b28f64388920","tok-1cd659d4c689","tok-19763c334cd1","tok-8392b3ea5ced","tok-15ac8c268a43","tok-3bca81a7a778","tok-600b2e783b70","tok-3bca81a7a778","tok-b3874619659f","tok-94561c127a61","tok-3c96c2b81135","tok-1cd659d4c689","tok-1277392fd0f3","tok-94660db5b1e1","tok-4685a7fb94d8","tok-6eea890087d2","tok-21a89467a3a5","tok-29638ac34057","tok-8bb83dcaca31","tok-116a262bfeff","tok-27001ba8ac53","tok-7929d77d892c","tok-491abe8c7b0e","tok-092da8a9ea29","tok-491abe8c7b0e","tok-27001ba8ac53","tok-7929d77d892c","tok-116a262bfeff","tok-fdccb4188b87","tok-f769869385ef","tok-43e9c1d6fca6","tok-116a262bfeff","tok-b3e6144bc1f1","tok-491abe8c7b0e","tok-0d64aee0a5a6"]}]},"mishnah-zavim-4-1":{"unit_id":"mishnah-zavim-4-1","anchor_id":"mishnah-zavim-4-1","source_ref":"Mishnah Zavim 4:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-85ba64a0dc9d","tok-e877f447f2d0","tok-3960a2ed44c9","tok-6bd3c432658f","tok-c185e4a5ec75","tok-fef0a7dd606a","tok-844964ae8100","tok-c579e3ce8ab2","tok-bf6894dc9980","tok-9b3c495ba0f3","tok-fdccb4188b87","tok-ce504a06c4df","tok-456564641406","tok-4af304f3c8ea","tok-03a214adfeda","tok-3534ff8a031c","tok-89fed2849038","tok-d0ca73ac0a8a","tok-1fc9ef45db03","tok-ce504a06c4df","tok-eda0829f79e4","tok-e64a02a78fa9","tok-32a2a35d5ed0","tok-b846ca01e1c7","tok-1cd659d4c689","tok-665265ddf604","tok-8c13fee3d515","tok-1fc9ef45db03","tok-1cd659d4c689","tok-665265ddf604","tok-bf7778239c75","tok-8bb83dcaca31","tok-b78686001371","tok-a612883cf7df","tok-3bca81a7a778","tok-c0a9342c702c","tok-ddbc497c1c4a","tok-edb4ed904ddc","tok-28a71b970cbb","tok-70e872845e49","tok-092da8a9ea29"]}]},"mishnah-zavim-4-2":{"unit_id":"mishnah-zavim-4-2","anchor_id":"mishnah-zavim-4-2","source_ref":"Mishnah Zavim 4:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9c8b2cf2af75","tok-3bca81a7a778","tok-2e6a8257a46b","tok-3bca81a7a778","tok-5ff8831cd4aa","tok-3bca81a7a778","tok-7e3713247396","tok-94561c127a61","tok-860d8010a40b","tok-7f9ec25a89b2","tok-3bca81a7a778","tok-1430bcf7cbaa","tok-19763c334cd1","tok-4ed30df89da4","tok-8c570352c93e","tok-3bca81a7a778","tok-8245ffa7119e","tok-94561c127a61","tok-85b74a09dd98","tok-94561c127a61","tok-e6a31810a3c1","tok-94561c127a61","tok-1718af4ffd49","tok-28a71b970cbb","tok-c74859430c03","tok-28a71b970cbb","tok-caecbcf90bdf","tok-94561c127a61","tok-f6b0dba872c4","tok-28a71b970cbb","tok-c74859430c03","tok-28a71b970cbb","tok-b570dfa61128","tok-85ba64a0dc9d","tok-72feed5eb077","tok-3960a2ed44c9","tok-7f9ec25a89b2","tok-3bca81a7a778","tok-ac5019d2f042","tok-e890eeac86a3","tok-092da8a9ea29"]}]},"mishnah-zavim-4-3":{"unit_id":"mishnah-zavim-4-3","anchor_id":"mishnah-zavim-4-3","source_ref":"Mishnah Zavim 4:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9c8b2cf2af75","tok-3bca81a7a778","tok-3c96c2b81135","tok-3bca81a7a778","tok-9f723e361e34","tok-3bca81a7a778","tok-a4085a1f967c","tok-3bca81a7a778","tok-414be0ce78eb","tok-94561c127a61","tok-6750065ec34f","tok-94561c127a61","tok-bb1232633a17","tok-d278d464b08b","tok-6ceec9bf6dfc","tok-94561c127a61","tok-be2cad96cee5","tok-737670e4c33e","tok-6ceec9bf6dfc","tok-3bca81a7a778","tok-bb1232633a17","tok-750c2a858a7c","tok-3bca81a7a778","tok-df0522966f17","tok-b28f64388920","tok-1cd659d4c689","tok-01fe76a4392f","tok-8392b3ea5ced","tok-15ac8c268a43","tok-3bca81a7a778","tok-600b2e783b70","tok-3bca81a7a778","tok-b3874619659f","tok-94561c127a61","tok-3c96c2b81135","tok-1cd659d4c689","tok-f02bf95b5756","tok-94660db5b1e1","tok-4685a7fb94d8","tok-1fc9ef45db03","tok-3bca81a7a778","tok-6951eee66c2c","tok-3bca81a7a778","tok-f35329544f76","tok-94561c127a61","tok-020718446099","tok-1fc9ef45db03","tok-85ba64a0dc9d","tok-cead801721f8","tok-b20a6ff70ff8","tok-b8d977782f59","tok-25924a248e8e","tok-8d91043cc6e2"]}]},"mishnah-zavim-4-4":{"unit_id":"mishnah-zavim-4-4","anchor_id":"mishnah-zavim-4-4","source_ref":"Mishnah Zavim 4:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b78686001371","tok-43f07a06deac","tok-bf6cdc95f5f5","tok-3bca81a7a778","tok-add6c29450a5","tok-d71dfb817b7e","tok-43aab3d679f3","tok-3bca81a7a778","tok-a5805b336caf","tok-48a895711cb9","tok-1d0d93b5febc","tok-1fc9ef45db03","tok-10fac025f303","tok-8bb83dcaca31","tok-8f992a615621","tok-4795936449dd","tok-c98ca6eba72d","tok-21d2658844a7","tok-1fc9ef45db03","tok-a96a54c8c6e3","tok-bf6cdc95f5f5","tok-3bca81a7a778","tok-da631713745e","tok-859920eae102","tok-362a4ddd6e55","tok-bd98001fe054","tok-3bca81a7a778","tok-84c070ab7283","tok-362a4ddd6e55","tok-0e780a980c49","tok-3bca81a7a778","tok-84c070ab7283","tok-1bb1267b9897","tok-3bca81a7a778","tok-29638ac34057","tok-0b2c6126d2be","tok-3bca81a7a778","tok-29638ac34057","tok-a15355def02a","tok-fdccb4188b87","tok-a40568a70ada","tok-f8a926345100","tok-c1bee45d5ff1","tok-268792945ddd","tok-820e563d3de3","tok-3bca81a7a778","tok-7cd32b5127e5","tok-7680cf0c3691","tok-85ba64a0dc9d","tok-b8d977782f59","tok-3960a2ed44c9","tok-5072ee8f7471","tok-5e87b5af7047","tok-f8a926345100","tok-298505aa7722","tok-8bb83dcaca31"]}]},"mishnah-zavim-4-5":{"unit_id":"mishnah-zavim-4-5","anchor_id":"mishnah-zavim-4-5","source_ref":"Mishnah Zavim 4:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2291a4d94431","tok-efd432f40ef1","tok-5b6dd2884d68","tok-3bca81a7a778","tok-830d049e2bfd","tok-5b6dd2884d68","tok-8f992a615621","tok-3bca81a7a778","tok-e859bbf3b768","tok-38ad9cdcb86c","tok-3cb4f4988d67","tok-f7f31362215d","tok-cd41cc9f3f1b","tok-9e76ed9be4d1","tok-96ad5edcb40e","tok-5b6fc7e4a185","tok-6e449318682d","tok-aa46fd1ad7fc","tok-483be9e3a64c","tok-cd41cc9f3f1b","tok-8bb83dcaca31","tok-3e27ab25f147","tok-fc070853b18a","tok-1fc9ef45db03","tok-85ba64a0dc9d","tok-b8d977782f59","tok-3960a2ed44c9","tok-0b80007a5362","tok-fdccb4188b87","tok-4acbfe3f665e","tok-092da8a9ea29","tok-4e694da67f2c","tok-29638ac34057","tok-00aa378be846","tok-7929d77d892c","tok-ddb5ce53288c"]}]},"mishnah-zavim-4-6":{"unit_id":"mishnah-zavim-4-6","anchor_id":"mishnah-zavim-4-6","source_ref":"Mishnah Zavim 4:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-cd41cc9f3f1b","tok-9e76ed9be4d1","tok-96ad5edcb40e","tok-78e8540b9a98","tok-30e058bfdf8e","tok-9e76ed9be4d1","tok-92cc9f31831d","tok-1fc9ef45db03","tok-9d3cca04fe7f","tok-9a2dcb187b2a","tok-092da8a9ea29","tok-642552acc4d5","tok-acb2ac52c3ad","tok-2f74c17055d6","tok-f8a926345100","tok-5810da4d5d21","tok-cc4b43c61b94","tok-f9ef6446b5b0","tok-5810da4d5d21","tok-e2f8cf131978","tok-71d849144a57","tok-6bf09ec373e2","tok-ed23d123fa79","tok-c9b69d39d87d","tok-6e449318682d","tok-7bb140692197","tok-519bc98362ae","tok-63484f8bd059","tok-6dcb69c7fa45","tok-b846ca01e1c7","tok-94561c127a61","tok-150d9a28a96a","tok-e87961ed0b2e","tok-519bc98362ae","tok-a4a067b694e4","tok-30e058bfdf8e","tok-7a97e13e2561","tok-e7e10f6b4d24","tok-f0c31201dacc","tok-df6258cbaea9","tok-5810da4d5d21","tok-e2f8cf131978","tok-a34fa01334d3","tok-df6258cbaea9","tok-e5b5c1d8f3a0","tok-9ecfdf555394","tok-f2a6f5351ede","tok-2190e5f402c4","tok-7a97e13e2561","tok-e7e10f6b4d24","tok-cd41cc9f3f1b","tok-df6258cbaea9"]}]},"mishnah-zavim-4-7":{"unit_id":"mishnah-zavim-4-7","anchor_id":"mishnah-zavim-4-7","source_ref":"Mishnah Zavim 4:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a96a54c8c6e3","tok-db79673c0cbd","tok-3bca81a7a778","tok-e859bbf3b768","tok-80da47e93371","tok-d8903209b45c","tok-efd432f40ef1","tok-507246ccbc00","tok-e6d1790238b8","tok-e61048c263fb","tok-80da47e93371","tok-f7f31362215d","tok-607a1041d8bd","tok-72913a79112a","tok-6eafa9b4e3fa","tok-2db73566c3c3","tok-3bca81a7a778","tok-ef19f62d2058","tok-85ba64a0dc9d","tok-b8d977782f59","tok-8262761e9c36","tok-a96a54c8c6e3","tok-c4f7f21b9b6d","tok-3bca81a7a778","tok-e859bbf3b768","tok-0c7c2c465893","tok-d8903209b45c","tok-efd432f40ef1","tok-507246ccbc00","tok-e6d1790238b8","tok-e61048c263fb","tok-0c7c2c465893","tok-97419f546b69","tok-607a1041d8bd","tok-cc30d0d7858c","tok-6eafa9b4e3fa","tok-2db73566c3c3","tok-3bca81a7a778","tok-60284eef9bc8","tok-5ad26f43a2ff","tok-0bcc9d9d5a00","tok-9ee7ff9399d5","tok-507246ccbc00","tok-7cd32b5127e5","tok-820137b69764","tok-507246ccbc00","tok-7cd32b5127e5","tok-210794d8a240","tok-507246ccbc00","tok-caecbcf90bdf","tok-27acbd46cddf","tok-df7f37f4bdeb","tok-85ba64a0dc9d","tok-72feed5eb077","tok-3960a2ed44c9","tok-1d2c83d1ef9b","tok-df6258cbaea9","tok-f5fb07033a8a","tok-b40085ddacc8","tok-4fd88e968362","tok-38edf7df03ab","tok-1d2c83d1ef9b","tok-3bca81a7a778","tok-0e780a980c49","tok-4ad51a2b6f7a","tok-0e6efd4cf739","tok-3bca81a7a778","tok-bd98001fe054","tok-4bd4072572af","tok-3bca81a7a778","tok-ac5019d2f042","tok-81f6ddafcc01","tok-8ccd920d7e8f","tok-03a214adfeda","tok-2eaa5ad63b96","tok-1fc9ef45db03","tok-3bca81a7a778","tok-15773c490784","tok-28a71b970cbb","tok-861141b0200e","tok-03a214adfeda","tok-cf6feffad1b6","tok-8bb83dcaca31","tok-85ba64a0dc9d","tok-cead801721f8","tok-df6258cbaea9"]}]},"mishnah-zavim-5-1":{"unit_id":"mishnah-zavim-5-1","anchor_id":"mishnah-zavim-5-1","source_ref":"Mishnah Zavim 5:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3aaa088cdb7e","tok-cc4b43c61b94","tok-43aab3d679f3","tok-6bf09ec373e2","tok-e95128497431","tok-b77da202c222","tok-9408842f0db1","tok-7929d77d892c","tok-cd41cc9f3f1b","tok-43aab3d679f3","tok-6bf09ec373e2","tok-0f7b8600b820","tok-df6258cbaea9","tok-ed9e3e1f214d","tok-f8d44e7f4d84","tok-7b98160b1ed9","tok-0866072f5a2b","tok-4d9a3cf1797f","tok-574c8f444026","tok-ab78801ee022","tok-efb038d98280","tok-202a8d992ae7","tok-805ff3d6b829","tok-85ba64a0dc9d","tok-e877f447f2d0","tok-b53a80926224","tok-ce9c2dd569fd","tok-b846ca01e1c7","tok-b586a0e62ce6","tok-31db851586fd","tok-df6258cbaea9","tok-ed9e3e1f214d","tok-30e058bfdf8e","tok-93914c9bbd1b","tok-939307f9c1d9","tok-3fc1fb61deb5","tok-93914c9bbd1b","tok-240ab50d90f8","tok-ac33e6e0cf3a","tok-df6258cbaea9","tok-ab78801ee022","tok-63484f8bd059","tok-0bf4c84313fe","tok-f017ae4a525d","tok-6a7118f1720a","tok-e2bfda244498","tok-2d649b0e6726","tok-a895e368801f","tok-df6258cbaea9","tok-3b81c86f4b44","tok-93914c9bbd1b","tok-939307f9c1d9","tok-bbe570d21040","tok-3fc1fb61deb5","tok-93914c9bbd1b","tok-240ab50d90f8","tok-ac33e6e0cf3a","tok-df6258cbaea9","tok-b846ca01e1c7"]}]},"mishnah-zavim-5-2":{"unit_id":"mishnah-zavim-5-2","anchor_id":"mishnah-zavim-5-2","source_ref":"Mishnah Zavim 5:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a850e84e7708","tok-202a8d992ae7","tok-7d5ceee9f80d","tok-72231df4464f","tok-3090622ce6c7","tok-f4d514845b6c","tok-3bca81a7a778","tok-e859bbf3b768","tok-cd41cc9f3f1b","tok-fdccb4188b87","tok-7ac5c22a907d","tok-6bf09ec373e2","tok-8242fd46af5d","tok-80f6ea7b87f3","tok-092da8a9ea29","tok-642552acc4d5","tok-acb2ac52c3ad","tok-7f1c02c84c47","tok-117aebb9aa80","tok-aa480cfa7072","tok-f62cbdf18f6b","tok-81a2dee83591","tok-f6e0d9653647","tok-28a71b970cbb","tok-b78686001371","tok-507246ccbc00","tok-c44629a282c0","tok-116a262bfeff","tok-fed907f1004b","tok-df6258cbaea9","tok-84c070ab7283","tok-fcfc4a9d26b9","tok-29638ac34057","tok-57e6982c5589","tok-df6258cbaea9","tok-29638ac34057","tok-fcfc4a9d26b9","tok-29638ac34057","tok-491abe8c7b0e","tok-fed907f1004b","tok-e76e3bbf816f","tok-d6abc48c7497","tok-df6258cbaea9","tok-84c070ab7283","tok-fcfc4a9d26b9","tok-29638ac34057","tok-57e6982c5589","tok-54018fe8edf4","tok-29638ac34057","tok-fcfc4a9d26b9","tok-29638ac34057","tok-d46b33d27822","tok-41d17b46145e","tok-3f3b4833e81d","tok-8579b1f59835","tok-778b2169a5cf","tok-fed907f1004b","tok-08b4ce787748","tok-84c070ab7283","tok-b07de0167f28","tok-29638ac34057","tok-347428b5b4c8","tok-08b4ce787748","tok-29638ac34057","tok-b07de0167f28","tok-29638ac34057","tok-7341452e8a48","tok-8579b1f59835","tok-d6abc48c7497","tok-08b4ce787748","tok-84c070ab7283","tok-b07de0167f28","tok-29638ac34057","tok-347428b5b4c8","tok-08b4ce787748","tok-84c070ab7283","tok-b07de0167f28","tok-29638ac34057","tok-d46b33d27822","tok-41d17b46145e","tok-778b2169a5cf","tok-d6abc48c7497","tok-8bb83dcaca31"]}]},"mishnah-zavim-5-3":{"unit_id":"mishnah-zavim-5-3","anchor_id":"mishnah-zavim-5-3","source_ref":"Mishnah Zavim 5:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-607a1041d8bd","tok-844ecb7f6c24","tok-3090622ce6c7","tok-9c5297040d79","tok-e4bb73e872a3","tok-3bca81a7a778","tok-e859bbf3b768","tok-c9b69d39d87d","tok-092da8a9ea29","tok-642552acc4d5","tok-acb2ac52c3ad","tok-2f74c17055d6","tok-3090622ce6c7","tok-9c5297040d79","tok-e4bb73e872a3","tok-3bca81a7a778","tok-e859bbf3b768","tok-078207802e5c","tok-092da8a9ea29","tok-642552acc4d5","tok-acb2ac52c3ad","tok-9408842f0db1","tok-85ba64a0dc9d","tok-b21ba7999b18","tok-3960a2ed44c9","tok-7f9ec25a89b2","tok-9c5297040d79","tok-3090622ce6c7","tok-9c5297040d79","tok-e4bb73e872a3","tok-3bca81a7a778","tok-e859bbf3b768","tok-f0c31201dacc","tok-092da8a9ea29","tok-642552acc4d5","tok-acb2ac52c3ad","tok-6fcf21b43c76","tok-ce6ce125060f","tok-1cd659d4c689","tok-19763c334cd1","tok-5cbabcbeb2cc"]}]},"mishnah-zavim-5-4":{"unit_id":"mishnah-zavim-5-4","anchor_id":"mishnah-zavim-5-4","source_ref":"Mishnah Zavim 5:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c8382af4f32c","tok-fdccb4188b87","tok-3bca81a7a778","tok-116a262bfeff","tok-a1860b507d67","tok-092da8a9ea29","tok-3bca81a7a778","tok-491abe8c7b0e","tok-79183864fc4d","tok-fdccb4188b87","tok-3bca81a7a778","tok-116a262bfeff","tok-f02b4d34af15","tok-092da8a9ea29","tok-3bca81a7a778","tok-491abe8c7b0e","tok-fdccb4188b87","tok-85ba64a0dc9d","tok-b8d977782f59","tok-3960a2ed44c9","tok-c8382af4f32c","tok-fdccb4188b87","tok-3bca81a7a778","tok-116a262bfeff","tok-fdccb4188b87","tok-a1860b507d67","tok-092da8a9ea29","tok-3bca81a7a778","tok-491abe8c7b0e","tok-092da8a9ea29"]}]},"mishnah-zavim-5-5":{"unit_id":"mishnah-zavim-5-5","anchor_id":"mishnah-zavim-5-5","source_ref":"Mishnah Zavim 5:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-491abe8c7b0e","tok-3bca81a7a778","tok-c8382af4f32c","tok-3f3b4833e81d","tok-e76e3bbf816f","tok-3bca81a7a778","tok-c8382af4f32c","tok-3f3b4833e81d","tok-fdccb4188b87","tok-c8382af4f32c","tok-fdccb4188b87","tok-3bca81a7a778","tok-3f3b4833e81d","tok-a1860b507d67","tok-092da8a9ea29","tok-3bca81a7a778","tok-3f3b4833e81d","tok-092da8a9ea29","tok-da3c1113a7a8","tok-d509e539f19d","tok-5c9e300e274d","tok-7a45b9d6da17","tok-e97a0628a88c","tok-8185bb084e60","tok-e97e074f43fe","tok-1f3d26d3a241","tok-edb4ed904ddc","tok-28a71b970cbb","tok-70e872845e49","tok-19763c334cd1","tok-93a9928f4ebe","tok-3bca81a7a778","tok-e859bbf3b768","tok-c9b69d39d87d","tok-727821b3ea1f","tok-88818787eb7e","tok-6bc2c975b14d","tok-fed907f1004b","tok-6bc2c975b14d","tok-d6abc48c7497","tok-092da8a9ea29","tok-1f3d26d3a241","tok-66f8c3b73215","tok-349703db31ad","tok-092da8a9ea29","tok-85ba64a0dc9d","tok-b8d977782f59","tok-df6258cbaea9","tok-818a7e921ef6"]}]},"mishnah-zavim-5-6":{"unit_id":"mishnah-zavim-5-6","anchor_id":"mishnah-zavim-5-6","source_ref":"Mishnah Zavim 5:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3aaa088cdb7e","tok-e93463dcbff9","tok-b970d8a86fdf","tok-ada72800ef36","tok-c98a3e1e6250","tok-c564b65c4421","tok-b2e25c7e3ee8","tok-6e449318682d","tok-df6258cbaea9","tok-84c070ab7283","tok-fcfc4a9d26b9","tok-29638ac34057","tok-57e6982c5589","tok-df6258cbaea9","tok-29638ac34057","tok-fcfc4a9d26b9","tok-29638ac34057","tok-29638ac34057","tok-3aaa088cdb7e","tok-d7da44f270a9","tok-9408842f0db1","tok-d7da44f270a9","tok-9c5297040d79","tok-d7da44f270a9","tok-f4d514845b6c"]}]},"mishnah-zavim-5-7":{"unit_id":"mishnah-zavim-5-7","anchor_id":"mishnah-zavim-5-7","source_ref":"Mishnah Zavim 5:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3aaa088cdb7e","tok-23737f870206","tok-28a71b970cbb","tok-b78686001371","tok-b0c6febd98d0","tok-139a8ab8e576","tok-6d3425d327af","tok-4143e245abfc","tok-0e780a980c49","tok-ce5b83e79a27","tok-c6b06a45aa56","tok-df6258cbaea9","tok-84c070ab7283","tok-fcfc4a9d26b9","tok-29638ac34057","tok-57e6982c5589","tok-df6258cbaea9","tok-29638ac34057","tok-fcfc4a9d26b9","tok-29638ac34057","tok-29638ac34057","tok-3aaa088cdb7e","tok-d7da44f270a9","tok-9408842f0db1","tok-85ba64a0dc9d","tok-b21ba7999b18","tok-3960a2ed44c9","tok-7f9ec25a89b2","tok-9c5297040d79"]}]},"mishnah-zavim-5-8":{"unit_id":"mishnah-zavim-5-8","anchor_id":"mishnah-zavim-5-8","source_ref":"Mishnah Zavim 5:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9c5297040d79","tok-7929d77d892c","tok-237f612fc1db","tok-e846a1c3fdab","tok-80f6ea7b87f3","tok-0b581d9569b2","tok-df6258cbaea9","tok-84c070ab7283","tok-fcfc4a9d26b9","tok-29638ac34057","tok-57e6982c5589","tok-df6258cbaea9","tok-29638ac34057","tok-fcfc4a9d26b9","tok-29638ac34057","tok-9c5297040d79","tok-7929d77d892c","tok-078207802e5c","tok-58f755a3135f","tok-7787896b6f7f","tok-ae74e09477dc","tok-c7ca69d33eb2","tok-89a020f36b3d","tok-3335b8d82ba9","tok-ebce057ad774","tok-df6258cbaea9","tok-84c070ab7283","tok-fcfc4a9d26b9","tok-29638ac34057","tok-57e6982c5589","tok-df6258cbaea9","tok-29638ac34057","tok-fcfc4a9d26b9","tok-29638ac34057"]}]},"mishnah-zavim-5-9":{"unit_id":"mishnah-zavim-5-9","anchor_id":"mishnah-zavim-5-9","source_ref":"Mishnah Zavim 5:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-afc98fc0220e","tok-d6b9bf5e6487","tok-cc0f979481de","tok-092da8a9ea29","tok-8ea81759acef","tok-9a21f4fe6b0b","tok-66e56c83af86","tok-df6258cbaea9","tok-84c070ab7283","tok-fcfc4a9d26b9","tok-29638ac34057","tok-b90497c880e9","tok-1bb1267b9897","tok-5a6b60db0216","tok-8245ffa7119e","tok-092da8a9ea29","tok-5f3dd96f9328","tok-8245ffa7119e","tok-05c15a13490c","tok-43aab3d679f3","tok-ddfa7b3318ed","tok-df6258cbaea9","tok-29638ac34057","tok-fcfc4a9d26b9","tok-29638ac34057","tok-4a5d7e9812c2","tok-c942286c2053","tok-702177583f7c","tok-62ed0cb61108","tok-99812ab02c11","tok-092da8a9ea29"]}]},"mishnah-zavim-5-10":{"unit_id":"mishnah-zavim-5-10","anchor_id":"mishnah-zavim-5-10","source_ref":"Mishnah Zavim 5:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3aaa088cdb7e","tok-c112dc365fd9","tok-511adf967944","tok-ef593fd0f3b8","tok-c26fc35ea8fb","tok-a608c09774f9","tok-c564b65c4421","tok-a524087eb71a","tok-94f916d61c70","tok-7a485f553702","tok-ae74e09477dc","tok-4e694da67f2c","tok-89a020f36b3d","tok-3335b8d82ba9","tok-ebce057ad774","tok-e28ad210d43b","tok-46486d0587d5","tok-df6258cbaea9","tok-29638ac34057","tok-fcfc4a9d26b9","tok-29638ac34057","tok-f8a926345100","tok-54f120e26c57","tok-3090622ce6c7","tok-3aaa088cdb7e","tok-3c3072731597","tok-3c3428cd27c1","tok-accd770d9259","tok-6195f6ff34ff","tok-23d52cdfc4b6","tok-df6258cbaea9","tok-29638ac34057","tok-fcfc4a9d26b9","tok-29638ac34057","tok-642552acc4d5","tok-acb2ac52c3ad","tok-2f74c17055d6","tok-57e6982c5589","tok-df6258cbaea9","tok-29638ac34057","tok-fcfc4a9d26b9","tok-29638ac34057"]}]},"mishnah-zavim-5-11":{"unit_id":"mishnah-zavim-5-11","anchor_id":"mishnah-zavim-5-11","source_ref":"Mishnah Zavim 5:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f94166c0ad23","tok-4c644c6de3cf","tok-f781fa1adf32","tok-343f359d2821","tok-21c02b4b6a46","tok-6bd3c432658f","tok-382169ae6490","tok-a608c09774f9","tok-a40568a70ada","tok-6b93bb52ca89","tok-8185bb084e60","tok-6a156120f878","tok-6bd3c432658f","tok-19763c334cd1","tok-df6258cbaea9","tok-c9b69d39d87d","tok-6e449318682d","tok-d509e539f19d","tok-7b068d5f9372","tok-519bc98362ae","tok-a4a067b694e4","tok-30e058bfdf8e"]}]},"mishnah-zavim-5-12":{"unit_id":"mishnah-zavim-5-12","anchor_id":"mishnah-zavim-5-12","source_ref":"Mishnah Zavim 5:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ea11b892dfcd","tok-8290cb2ecd60","tok-7929d77d892c","tok-a42a72d7259b","tok-afc98fc0220e","tok-3cc39fb329f2","tok-c142fcea50eb","tok-7398dbdcc979","tok-3cc39fb329f2","tok-b50174a0aa53","tok-e15ed1d80f24","tok-3b81c86f4b44","tok-1fc9ef45db03","tok-a40cd7ca4d8d","tok-1bb1267b9897","tok-7da7b19b3167","tok-8a6165822d5a","tok-9aee874649e8","tok-5f3dd96f9328","tok-45c7ce43ecce","tok-3bca81a7a778","tok-1bb1267b9897","tok-94561c127a61","tok-ddb5ce53288c","tok-60284eef9bc8","tok-703222ca245a","tok-ff0981928bab","tok-9aee874649e8","tok-b7204bf47b7c","tok-3fc1fb61deb5","tok-60dd78c15bd1","tok-552dbb30f770","tok-8ec79baa0d24","tok-d3f913d20da9","tok-d1f29ddae14c","tok-0188cb06b82c"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/mishnah-zavim.manifest.json","root_href":"../../"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

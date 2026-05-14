@@ -1,0 +1,24 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 1:1 | mishnah-yadayim-1-1 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 1:2 | mishnah-yadayim-1-2 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 1:3 | mishnah-yadayim-1-3 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 1:4 | mishnah-yadayim-1-4 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 1:5 | mishnah-yadayim-1-5 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 2:1 | mishnah-yadayim-2-1 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 2:2 | mishnah-yadayim-2-2 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 2:3 | mishnah-yadayim-2-3 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 2:4 | mishnah-yadayim-2-4 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 3:1 | mishnah-yadayim-3-1 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 3:2 | mishnah-yadayim-3-2 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 3:3 | mishnah-yadayim-3-3 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 3:4 | mishnah-yadayim-3-4 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 3:5 | mishnah-yadayim-3-5 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 4:1 | mishnah-yadayim-4-1 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 4:2 | mishnah-yadayim-4-2 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 4:3 | mishnah-yadayim-4-3 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 4:4 | mishnah-yadayim-4-4 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 4:5 | mishnah-yadayim-4-5 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 4:6 | mishnah-yadayim-4-6 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 4:7 | mishnah-yadayim-4-7 |  |  | not_done |  |
+| mishnah-yadayim | Mishnah Yadayim | Mishnah Yadayim 4:8 | mishnah-yadayim-4-8 |  |  | not_done |  |
