@@ -109,6 +109,31 @@ function writeExports(exportDir, rows) {
   writeText(path.join(exportDir, 'overlay-export.md'), renderMarkdown(rows));
 }
 
+function writeFullSiteExports(rows, sources) {
+  writeText(path.join(root, 'overlay-export.csv'), renderCsv(rows));
+  writeText(path.join(root, 'overlay-export.md'), renderMarkdown(rows));
+
+  const manifest = {
+    schema_version: 2,
+    kind: 'overlay_export_manifest',
+    generated_at: new Date().toISOString(),
+    row_count: rows.length,
+    note: 'The full-site JSON export is split by work to avoid a single oversized repository file. Use the per-work overlay-export.json paths listed here, or use the full-site CSV/Markdown exports at the repository root.',
+    full_site_exports: {
+      csv: 'overlay-export.csv',
+      markdown: 'overlay-export.md'
+    },
+    per_work_json: sources.map(source => ({
+      work_id: source.work_id,
+      work_title: source.work_title,
+      path: `${source.work_slug}/overlay-export.json`,
+      unit_count: (source.units || []).length
+    }))
+  };
+
+  writeText(path.join(root, 'overlay-export.json'), JSON.stringify(manifest, null, 2) + '\n');
+}
+
 const onlyWorkIds = new Set();
 if (onlyWorkIdsPath) {
   for (const line of readText(path.join(root, onlyWorkIdsPath)).split(/\r?\n/)) {
@@ -135,7 +160,7 @@ for (const source of sources) {
 }
 
 if (writeFullSite) {
-  writeExports(root, fullSiteRows);
+  writeFullSiteExports(fullSiteRows, sources);
 }
 
 console.log(JSON.stringify({
