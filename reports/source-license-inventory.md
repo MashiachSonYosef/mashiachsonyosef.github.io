@@ -262,3 +262,28 @@ Generated: 2026-05-13
 | Targum Jonathan on Isaiah | 1291 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Targum Jonathan on Jonah | 48 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Targum Jonathan on Malachi | 55 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Aramaic Targum to Proverbs | 915 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Aramaic Targum to Song of Songs | 117 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Aramaic Targum to Ruth | 85 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Aramaic Targum to Lamentations | 154 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jerusalem | 868 | Targum Jerusalem on Torah (https://he.wikisource.org/wiki/%D7%AA%D7%A8%D7%92%D7%95%D7%9D_%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%9E%D7%99_(%D7%A7%D7%98%D7%A2%D7%99%D7%9D)_%D7%9C%D7%AA%D7%95%D7%A8%D7%94) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum of II Chronicles | 822 | Wikisource Aramaic Targum to Chronicles (https://he.wikisource.org/wiki/%D7%AA%D7%A8%D7%92%D7%95%D7%9D_%D7%93%D7%91%D7%A8%D7%99_%D7%94%D7%99%D7%9E%D7%99%D7%9D) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Numbers | 1288 | Targum Jonathan on Numbers (http://toratemetfreeware.com/) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Joshua | 658 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Judges | 618 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on I Samuel | 811 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on II Samuel | 695 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on I Kings | 817 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on II Kings | 719 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Jeremiah | 1364 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Ezekiel | 1273 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Hosea | 197 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Joel | 73 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Amos | 146 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Obadiah | 21 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Micah | 105 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Nahum | 47 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Habakkuk | 56 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Zephaniah | 53 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Haggai | 38 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Targum Jonathan on Zechariah | 211 | Mikraot Gedolot (Mikraot Gedolot) | Public Domain | yes | no | none required by license; source/version retained |

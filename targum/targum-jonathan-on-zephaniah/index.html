@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Targum Jonathan on Zephaniah</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Targum Jonathan on Zephaniah</h1>
+        <p class="meta">53 total source units | imported 2026-05-14</p>
+        <p class="meta source-citation">Hebrew version: Mikraot Gedolot | Version source: <a href="https://www.sefaria.org">www.sefaria.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Targum Jonathan on Zephaniah <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Targum Jonathan on Zephaniah <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-targum-jonathan-on-zephaniah-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-1" title="Targum Jonathan on Zephaniah 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-2" title="Targum Jonathan on Zephaniah 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-3" title="Targum Jonathan on Zephaniah 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-4" title="Targum Jonathan on Zephaniah 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-5" title="Targum Jonathan on Zephaniah 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-6" title="Targum Jonathan on Zephaniah 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-7" title="Targum Jonathan on Zephaniah 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-8" title="Targum Jonathan on Zephaniah 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-9" title="Targum Jonathan on Zephaniah 1:9">1:9</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-10" title="Targum Jonathan on Zephaniah 1:10">1:10</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-11" title="Targum Jonathan on Zephaniah 1:11">1:11</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-12" title="Targum Jonathan on Zephaniah 1:12">1:12</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-13" title="Targum Jonathan on Zephaniah 1:13">1:13</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-14" title="Targum Jonathan on Zephaniah 1:14">1:14</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-15" title="Targum Jonathan on Zephaniah 1:15">1:15</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-16" title="Targum Jonathan on Zephaniah 1:16">1:16</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-17" title="Targum Jonathan on Zephaniah 1:17">1:17</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-1-18" title="Targum Jonathan on Zephaniah 1:18">1:18</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-targum-jonathan-on-zephaniah-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-2-1" title="Targum Jonathan on Zephaniah 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-2-2" title="Targum Jonathan on Zephaniah 2:2">2:2</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-2-3" title="Targum Jonathan on Zephaniah 2:3">2:3</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-2-4" title="Targum Jonathan on Zephaniah 2:4">2:4</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-2-5" title="Targum Jonathan on Zephaniah 2:5">2:5</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-2-6" title="Targum Jonathan on Zephaniah 2:6">2:6</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-2-7" title="Targum Jonathan on Zephaniah 2:7">2:7</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-2-8" title="Targum Jonathan on Zephaniah 2:8">2:8</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-2-9" title="Targum Jonathan on Zephaniah 2:9">2:9</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-2-10" title="Targum Jonathan on Zephaniah 2:10">2:10</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-2-11" title="Targum Jonathan on Zephaniah 2:11">2:11</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-2-12" title="Targum Jonathan on Zephaniah 2:12">2:12</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-2-13" title="Targum Jonathan on Zephaniah 2:13">2:13</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-2-14" title="Targum Jonathan on Zephaniah 2:14">2:14</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-2-15" title="Targum Jonathan on Zephaniah 2:15">2:15</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-targum-jonathan-on-zephaniah-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-1" title="Targum Jonathan on Zephaniah 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-2" title="Targum Jonathan on Zephaniah 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-3" title="Targum Jonathan on Zephaniah 3:3">3:3</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-4" title="Targum Jonathan on Zephaniah 3:4">3:4</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-5" title="Targum Jonathan on Zephaniah 3:5">3:5</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-6" title="Targum Jonathan on Zephaniah 3:6">3:6</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-7" title="Targum Jonathan on Zephaniah 3:7">3:7</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-8" title="Targum Jonathan on Zephaniah 3:8">3:8</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-9" title="Targum Jonathan on Zephaniah 3:9">3:9</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-10" title="Targum Jonathan on Zephaniah 3:10">3:10</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-11" title="Targum Jonathan on Zephaniah 3:11">3:11</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-12" title="Targum Jonathan on Zephaniah 3:12">3:12</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-13" title="Targum Jonathan on Zephaniah 3:13">3:13</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-14" title="Targum Jonathan on Zephaniah 3:14">3:14</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-15" title="Targum Jonathan on Zephaniah 3:15">3:15</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-16" title="Targum Jonathan on Zephaniah 3:16">3:16</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-17" title="Targum Jonathan on Zephaniah 3:17">3:17</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-18" title="Targum Jonathan on Zephaniah 3:18">3:18</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-19" title="Targum Jonathan on Zephaniah 3:19">3:19</a></li>
+                    <li><a class="toc-unit" href="#targum-jonathan-on-zephaniah-3-20" title="Targum Jonathan on Zephaniah 3:20">3:20</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-targum-jonathan-on-zephaniah-text-1">Chapter 1</h4>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:1</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-1" aria-label="Copy link to Targum Jonathan on Zephaniah 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">פִּתְגַם נְבוּאָה דַהֲוָה קֳדָם יְיָ עִם צְפַנְיָה בַּר כּוּשִׁי בַר גְדַלְיָה בַר אֲמַרְיָה בַּר חִזְקִיָה בְּיוֹמֵי יֹאשִׁיָהוּ בַר אָמוֹן מְלַךְ שִׁבְטָא דְבֵית יְהוּדָה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:2</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-2" aria-label="Copy link to Targum Jonathan on Zephaniah 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שֵׁיצָאָה אֱשֵׁיצֵי כּוֹלָא מֵעַל אַפֵּי אַרְעָא אֲמַר יְיָ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:3</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-3" aria-label="Copy link to Targum Jonathan on Zephaniah 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אָסֵיף אֱנָשָׁא וּבְעִירָא אָסֵיף עוֹפָא דִשְׁמַיָא וְנוּנֵי יַמָא עַל דְסַגִיאָה תַּקְלַת רַשִׁיעַיָא וֶאֱשֵׁיצֵי יַת אֱנָשָׁא מֵעַל אַפֵּי אַרְעָא אֲמַר יְיָ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:4</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-4" aria-label="Copy link to Targum Jonathan on Zephaniah 1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַאֲרִים מְחַת גְבוּרְתִּי עַל אֱנַשׁ יְהוּדָה וְעַל כָּל יַתְבֵי יְרוּשְׁלֵם וֶאֱשֵׁיצֵי מִן אַתְרָא הָדֵין יַת שְׁאַר בַּעֲלָא וְיַת שׁוּם פָּלְחֵיהוֹן עִם כּוּמָרֵיהוֹן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:5</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-5" aria-label="Copy link to Targum Jonathan on Zephaniah 1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְיַת דְסַגְדִין לֶאֱגוֹרַיָא לְחֵילֵי שְׁמַיָא וְיַת דְסַגְדִין דִי מְקַיְמִין בִּשְׁמָא דַייָ תָּיְבִין וְיֵימִין בְּשׁוּם פַּתְכָּרֵיהוֹן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:6</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-6" aria-label="Copy link to Targum Jonathan on Zephaniah 1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְיַת דְאִסְתַּחָרוּ לַאֲחוֹרָא מִבָּתַר פּוּלְחָנָא דַייָ וּדְלָא תְבָעוּ יַת דַחַלְתָּא דַייָ וְלָא בְעוֹ מִן קֳדָמוֹהִי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:7</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-7" aria-label="Copy link to Targum Jonathan on Zephaniah 1:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">סָפוּ כָל רַשִׁיעַיָא מִן קֳדָם יְיָ אֱלֹהִים אֲרֵי קָרֵיב יוֹמָא דַעֲתִיד לְמֵיתֵי מִן קֳדָם יְיָ אֲרֵי אַתְקִין יְיָ קְטוֹל עֲרַע מְזַמְנוֹהִי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:8</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-8" aria-label="Copy link to Targum Jonathan on Zephaniah 1:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וִיהֵי בְּיוֹם קְטָלָא דַעֲתִיד לְמֵיתֵי מִן קֳדָם יְיָ וְאַסְעַר עַל רַבְרְבַיָא וְעַל בְּנֵי מַלְכָּא וְעַל כָּל דְמִתְרַגְשִׁין לְמִפְלַח לְטַעֲוָתָא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:9</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-9" aria-label="Copy link to Targum Jonathan on Zephaniah 1:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאַסְעַר עַל כָּל דִמְהַלְכִין בְּנִימוּסֵי פְלִשְׁתָּאֵי בְּעִדָנָא הַהִיא דְמָלַן בֵּית רִבּוֹנֵיהוֹן חֲטוֹף וְנִכְלִין:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:10</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-10" aria-label="Copy link to Targum Jonathan on Zephaniah 1:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וִיהֵי בְּעִדָנָא הַהִיא אֲמַר יְיָ קַל צְוַחְתָּא מִתְּרַע נוּנַיָא וִילָלָא מִן עוֹפָא וּתְבִירָא רַבָּא מִן גִבְעָתָא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:11</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-11" aria-label="Copy link to Targum Jonathan on Zephaniah 1:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אַיְלִילוּ כָּל דְיָתְבִין בְּנַחֲלָא דְקִדְרוֹן אֲרֵי אִתְּבַר כָּל עַמָא דְדָמָן עוֹבָדֵיהוֹן לְעוֹבָדֵי עַמָא דְאַרְעָא דִכְנָעַן אִשְׁתֵּיצִיאוּ כָּל עֲתִּירֵי נִכְסַיָא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:12</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-12" aria-label="Copy link to Targum Jonathan on Zephaniah 1:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וִיהֵי בְעִדָנָא הַהִיא אֲפַקֵיד בָּלוֹשִׁין וְיִבְלְשׁוּן יַת יְרוּשְׁלֵם כְּמָא דְבָלְשִׁין בְּנִבְרַשְׁתָּא וְאַסְעַר עַל גִבָּרַיָא דְשָׁלָן שְׁלֵיוָא עַל נִכְסֵיהוֹן דְאָמְרִין בְּלִבְּהוֹן לָא רַעֲוָא קֳדָם יְיָ לְאַיְטָבָא לְצַדִיקַיָא וְאַף לָא לְאַבְאָשָׁא לְרַשִׁיעַיָא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:13</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-13" aria-label="Copy link to Targum Jonathan on Zephaniah 1:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וִיהוֹן נִכְסֵיהוֹן לַעֲדִי וּבָתֵּיהוֹן לְבִזָא וְיִבְנוּן בָּתִּין וְלָא יַתְבוּן וְיִצְבוּן כַּרְמִין וְלָא יִשְׁתּוּן יַת חֲמָרֵיהוֹן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:14</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-14" aria-label="Copy link to Targum Jonathan on Zephaniah 1:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">קָרִיב יוֹמָא דַעֲתִיד לְמֵיתֵי מִן קֳדָם יְיָ רַבָּא קָרִיב וּמוֹחִי לַחֲדָא קַל יוֹמָא דַעֲתִיד לְמֵיתֵי מִן קֳדָם יְיָ דִי בֵיהּ מְרִיר וְצָוַח תַּמָן גִבָּרַיָא מִתְקַטְלִין:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:15</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-15" aria-label="Copy link to Targum Jonathan on Zephaniah 1:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יוֹמָא תַּעֲבוֹר יוֹמָא הַהוּא יוֹם עָקָא וְעִיוּק יוֹם רְגוּשׁ וְאִתְרְגוּשָׁא חֲשׁוֹךְ וְקִבְלָא יוֹם עֲנָנָא וַאֲמִטְתָא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:16</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-16" aria-label="Copy link to Targum Jonathan on Zephaniah 1:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יוֹם שׁוֹפָרָא וְיַבָּבָא עַל קִרְוַיָא כְרִיכָתָא וְעַל רָמָתָא מְנַטְלָתָא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:17</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-17" aria-label="Copy link to Targum Jonathan on Zephaniah 1:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאָעִיק לִבְנֵי אֱנָשָׁא וְיַהֲכוֹן כְּסָמָן אֲרֵי קֳדָם יְיָ חָבוּ וְיִשְׁתְּפַךְ דִמְהוֹן לְעַפְרָא וּנְבַלְתְּהוֹן כְּסָחִיתָא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-1-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 1:18</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-1-18" aria-label="Copy link to Targum Jonathan on Zephaniah 1:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אַף כַּסְפֵּיהוֹן אַף דְהַבְהוֹן לָא יוּכַל לְשֵׁיזְבוּתְהוֹן בְּיוֹם רוּגְזָא דַייָ וּבְאָשָׁא דְפוּרְעֲנוּתֵיהּ יְסוּפוּן כָּל רַשִׁיעֵי אַרְעָא אֲרֵי גְמִירָא בְּרַם שֵׁיצָאָה יַעְבֵּיד עִם כָּל יַתְבֵי אַרְעָא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-targum-jonathan-on-zephaniah-text-2">Chapter 2</h4>
+          <section class="unit" id="targum-jonathan-on-zephaniah-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 2:1</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-2-1" aria-label="Copy link to Targum Jonathan on Zephaniah 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אִתְכְּנָשׁוּ וֶאֱתוֹ וְאִתְקְרָבוּ עַמָא דְלָא חָמֵיד לְמֵיתַב לְאוֹרַיְתָא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-2-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 2:2</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-2-2" aria-label="Copy link to Targum Jonathan on Zephaniah 2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַד לָא תִפּוֹק עֲלֵיכוֹן גְזֵירַת בֵּית דִינָא וּתְהוֹן דָמָן לִכְמוֹצָא דְנָשְׁבָא בֵיהּ רוּחָא וּכְטוּלָא דְעָדֵי מִן קֳדָם יוֹמָא עַד דְלָא יֵיתֵי עֲלֵיכוֹן תְּקוֹף רוּגְזָא דַייָ עַד לָא יֵיתֵי עֲלֵיכוֹן יוֹם רוּגְזָא דַיָי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-2-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 2:3</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-2-3" aria-label="Copy link to Targum Jonathan on Zephaniah 2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תְּבָעוּ יַת דְחַלְתָּא דַייָ כָּל עִנְוְתָנֵי אַרְעָא דְדִינֵי רְעוּתֵיהּ עָבָדוּ תְּבָעוּ קוּשְׁטָא תְּבָעוּ עִנְוְתָנוּתָא מָאִים יִתְגֵין עֲלֵיכוֹן בְּיוֹם רוּגְזָא דַיָי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-2-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 2:4</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-2-4" aria-label="Copy link to Targum Jonathan on Zephaniah 2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֲרֵי עַזָה שְׁבִיקָא תְהֵי וְאַשְׁקְלוֹן לְצָדוּ אַשְׁדוֹד בְּטִיהֲרָא יִתָרְכוּנָהּ וְעֶקְרוֹן תִּתְעַקֵר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-2-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 2:5</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-2-5" aria-label="Copy link to Targum Jonathan on Zephaniah 2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַי דְיָתְבִין בִּסְפַר יַמָא עַמָא דְחַיָבִין לְאִשְׁתֵּיצָאָה גְזֵירַת פִּתְגָמָא דַייָ עֲלֵיכוֹן דְיָתְבִין בִּכְנָעַן אַרְעָא דִפְלִשְׁתָּאֵי וְאַבְּדִינָךְ מִבְּלִי יָתֵיב:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-2-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 2:6</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-2-6" aria-label="Copy link to Targum Jonathan on Zephaniah 2:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וּתְהֵי סְפַר יַמָא דִרְוַת בֵּית מֵישְׁרֵי רָעַיָן וְחוּטְרִין דְעָן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-2-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 2:7</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-2-7" aria-label="Copy link to Targum Jonathan on Zephaniah 2:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וִיהֵי עַדְבָא לִשְׁאָרָא דְבֵית יְהוּדָה עֲלֵיהוֹן יִתְפַּרְנְסוּן בְּבָתֵּי אַשְׁקְלוֹן כַּד בְּרַמְשָׁא יְבִיתוּן אֲרֵי יֵעוֹל דָכְרָנְהוֹן קֳדָם יְיָ אֱלָהָהוֹן וִיתִיב גָלוּתְהוֹן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-2-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 2:8</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-2-8" aria-label="Copy link to Targum Jonathan on Zephaniah 2:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שְׁמִיעַ קֳדָמַי חִסוּדֵי מוֹאָב וְאִתְרַבְרְבוּת בְּנֵי עַמוֹן דַחֲסִידוּ יַת עַמִי וְאִתְרַבְרְבוּ עַל תְּחוּמְהוֹן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-2-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 2:9</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-2-9" aria-label="Copy link to Targum Jonathan on Zephaniah 2:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בְּכֵן קַיָם אֲנָא אֲמַר יְיָ צְבָאוֹת אֱלָהָא דְיִשְׂרָאֵל אֲרֵי מוֹאָב כִּסְדוֹם תְּהֵא וּבְנֵי עַמוֹן כַּעֲמוֹרָה מַשְׁמַט מִלוּחִין וּמַחֲפוּרִין דִמְלַח וְצָדוּ עַד עַלְמָא שְׁאָרָא דְעַמִי יִבְזוּנוּנוּן וּשְׁאַר שִׁבְטַיָא יַחְסְנוּנוּן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-2-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 2:10</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-2-10" aria-label="Copy link to Targum Jonathan on Zephaniah 2:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דָא לְהוֹן חֲלַף אִתְרַבְרְבוּתְהוֹן אֲרֵי חֲסִידוּ וְאִתְרַבְרְבוּ עַל עַמֵיהּ דַייָ צְבָאוֹת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-2-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 2:11</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-2-11" aria-label="Copy link to Targum Jonathan on Zephaniah 2:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דְחִילָא דַייָ לְמִפְרַקְהוֹן אֲרֵי אַמְעִיךְ יַת כֹּל דַחֲלַת אַרְעָא וְיִבְעוֹן מִן קֳדָמוֹהִי גְבַר מֵאַתְרֵיהּ כָּל נַגְוַת עַמְמַיָא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-2-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 2:12</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-2-12" aria-label="Copy link to Targum Jonathan on Zephaniah 2:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אַף אַתּוּן כּוּשָׁאֵי קְטִילֵי חַרְבִּי תְּהוֹן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-2-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 2:13</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-2-13" aria-label="Copy link to Targum Jonathan on Zephaniah 2:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וִירִים מְחַת גְבוּרְתֵּיהּ עַל צִפּוּנָא וִיאַבֵּיד יַת אִתּוּרָאָה וִישַׁוֵי יַת נִינְוֵה לְצָדוּ אִשְׁתְּמָמוּ כְּמַדְבְּרָא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-2-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 2:14</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-2-14" aria-label="Copy link to Targum Jonathan on Zephaniah 2:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְיִשְׁרוּן בְּגַוָהּ עֶדְרִין דְכָל חֵיוַת בָּרָא אַף קָתִין וְאַף קוּפְדִין בְּפִתּוּחַ תַּרְעַיָא יְבִיתוּן קַל עוֹפָא דִמְנַצַף בְּכַוָא חֲרָבוּ תַרְעָא וּטְלָלָה סַתָּרוּ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-2-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 2:15</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-2-15" aria-label="Copy link to Targum Jonathan on Zephaniah 2:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דָא קַרְתָּא תַקִפְתָּא דְיָתְבָא לְרוֹחֲצָן דְאָמְרָה בְּלִבָּהּ אֲנָא וְלֵית בַּר מִנִי עוֹד אֵיכְדֵין הֲוַת לְצָדוּ בֵּית מֵישְׁרֵי חַיְתָא כָּל דִי עֲבַר עֲלָהּ יִכְלֵי וְיָנִיד יְדֵיהּ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-targum-jonathan-on-zephaniah-text-3">Chapter 3</h4>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:1</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-1" aria-label="Copy link to Targum Jonathan on Zephaniah 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַי דְמוֹחֲיָא וּמִתְפָּרְקָא קַרְתָּא דִמְסַגְיָא לְאַרְגָזָא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:2</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-2" aria-label="Copy link to Targum Jonathan on Zephaniah 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לָא שְׁמָעַת בְּקַל עַבְדוֹהִי נְבִיַיָא וְלָא קַבִּילַת אוּלְפַן בְּמֵימְרָא דַייָ לָא אִתְרְחִיצַת וּלְפוּלְחַן דֶאֱלָהָא לָא אִתְקְרָבַת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:3</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-3" aria-label="Copy link to Targum Jonathan on Zephaniah 3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רַבְרְבָהָא בְּגַוָה כְּאַרְיְוָן נָהֲמִין דַיָנָהָא דֵיבֵי רַמְשָׁא לָא מוֹרִיכִין לְצַפְרָא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:4</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-4" aria-label="Copy link to Targum Jonathan on Zephaniah 3:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">נְבִיֵי שִׁקְרָא דִי בְגַוָהּ בָּאֲשִׁין גַבְרִין שָׁקְרִין כַּהֲנָתָא מַפְסִין קוּדְשָׁא חָטְפִין בְּאוֹרַיְתָא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:5</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-5" aria-label="Copy link to Targum Jonathan on Zephaniah 3:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יְיָ זַכָּאָה אֲמַר לְאַשְׁרָאָה שְׁכִנְתֵּיהּ בְּגַוָהּ לֵית קֳדָמוֹהִי לְמֶעְבַּד שְׁקַר הָא כִנְהוֹר צַפְרָא דְאָזֵיל וְתַקִין כֵּן דִינֵיהּ נָפֵיק לְאַפְּרַשׁ לָא מִתְעַכֵּב וְלָא יָדְעִין עַיְלַיָא בַהֲתָא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:6</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-6" aria-label="Copy link to Targum Jonathan on Zephaniah 3:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שֵׁיצֵיתִי עַמְמַיָא אַצְדִיאָה בִּרְנְיָתְהוֹן אַחֲרִיבַית שׁוּקֵיהוֹן מִבְּלִי עָדֵי צְדִיאָה קִרְוֵיהוֹן מִבְּלִי אֱנַשׁ מִבְּלִי יָתֵיב:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:7</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-7" aria-label="Copy link to Targum Jonathan on Zephaniah 3:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֲמָרֵית בְּרַם תִּדְחֲלוּן מִן קֳדָמַי תְּקַבְּלוּן אוּלְפַן וְלָא יִפְסוֹק מְדוֹרֵיהוֹן מֵאַרְעָא בֵּית שְׁכִנְתִּי כָּל טַבְוָן דַאֲמָרֵית לְהוֹן אַיְתֵי לְהוֹן בְּכֵן אַקְדִימוּ חַבִּילוּ כָּל עוֹבָדֵיהוֹן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:8</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-8" aria-label="Copy link to Targum Jonathan on Zephaniah 3:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בְּכֵן סַבָּרוּ לְמֵימְרִי אֲמַר יְיָ לְיוֹם אִתְגְלָיוּתִי לְמֵדַן אֲרֵי דִינַי לְכַנָשָׁא עַמְמַיָא לְקָרָבָא מַלְכוּתָא לְמִשְׁפַּךְ עֲלֵיהוֹן חֵימְתִי כָּל תְּקוֹף רוּגְזִי אֲרֵי בְּאֶשַׁת פּוּרְעֲנוּתִי יְסוּפוּן כָּל רִשְׁעֵי אַרְעָא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:9</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-9" aria-label="Copy link to Targum Jonathan on Zephaniah 3:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֲרֵי בְּכֵן אֱשַׁנֵי עַל עַמְמַיָא מַמְלַל חָד בְּהִיר לְצַלָאָה כּוּלְהוֹן בִּשְׁמָא דַייָ לְמִפְלַח קֳדָמוֹהִי כְּתַף חָד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:10</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-10" aria-label="Copy link to Targum Jonathan on Zephaniah 3:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מֵעֵבֶר לְנַהֲרֵי הוֹדוּ בְּרַחֲמִין יְתוּבוּן גַלְוַת עַמִי דְאִתְגְלִיאָה וִיהוֹן מַיְתָן לְכוֹן הָא בְּקוּרְבָּנִין:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:11</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-11" aria-label="Copy link to Targum Jonathan on Zephaniah 3:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בְּעִדָנָא הַהִיא לָא תִבְהֲתוּן מִכָּל עוֹבָדַיִךְ בִּישַׁיָא דִי מָרַדְתָּ בְּמֵימְרִי אֲרֵי בְכֵן אֲגַלֵי מִגַוֵיךְ תַּקִיפֵי תוּשְׁבַּחְתֵּךְ וְלָא תוֹסִיפוּן לְאִתְרַבְרָבָא עוֹד בְּטוּרָא דְקוּדְשִׁי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:12</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-12" aria-label="Copy link to Targum Jonathan on Zephaniah 3:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאַשְׁאַר בְּגַוֵיךְ עַם עִנְוְתָן וּמְקַבֵּל עוּלְבָן וְיִתְרַחֲצוּן בִּשְׁמָא דַיָי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:13</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-13" aria-label="Copy link to Targum Jonathan on Zephaniah 3:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שְׁאָרָא דְיִשְׂרָאֵל לָא יַעְבְּדוּן שְׁקַר וְלָא יְמַלְלוּן כַּדְבִין וְלָא יִשְׁתְּכַח בְּפוּמֵיהוֹן לִישַׁן דְנִכְלִין אֲרֵי אִינוּן יִתְפַּרְנְסוּן וְיִשְׁרוֹן וְלֵית דְמָנִיד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:14</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-14" aria-label="Copy link to Targum Jonathan on Zephaniah 3:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שַׁבְּחִי כְּנִשְׁתָּא דְצִיוֹן וּבוּעוּ יִשְׂרָאֵל חֲדוּ וּבוּעוּ בְּכָל לִבָּא כְּנִשְׁתָּא דִירוּשְׁלֵם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:15</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-15" aria-label="Copy link to Targum Jonathan on Zephaniah 3:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אַגְלֵי יְיָ דַיָנֵי שִׁקְרָא מִגַוִיךְ פַּלֵי בַּעֲלֵי דְבָבֵיךְ מַלְכֵיהּ דְיִשְׂרָאֵל יְיָ אֲמֵר לְאַשְׁרָאָה שְׁכִנְתֵּיהּ בְּגַוֵיךְ לָא תִדְחֲלִין מִן קֳדָם בִּישָׁא עוֹד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:16</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-16" aria-label="Copy link to Targum Jonathan on Zephaniah 3:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בְּעִדָנָא הַהִיא יִתְאַמַר לִירוּשְׁלֵם לָא תִדְחֲלוּן צִיוֹן לָא יִתְרַשְׁלָן יְדָךְ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:17</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-17" aria-label="Copy link to Targum Jonathan on Zephaniah 3:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יְיָ אֱלָהָךְ אֲמַר לְאַשְׁרָאָה שְׁכִנְתֵּיהּ בְּגַוֵיךְ גִבַּר פָּרִיק יֶחְדֵי עֲלָךְ בְּחֶדְוָא יִכְבּוֹשׁ עַל חוֹבָךְ בִּרְחִמְתֵּיהּ יְדוּץ עֲלָךְ בְּדִיץ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:18</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-18" aria-label="Copy link to Targum Jonathan on Zephaniah 3:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דִי הֲווֹ מְעַכְּבִין בִּיךְ זְמַנֵי מוֹעֲדֵיךְ אַרְחִיקֵית מִנֵיךְ וַי עֲלֵיהוֹן עַל דַהֲווֹ נַטְלִין זְיָנֵיהוֹן לְקִבְלֵיךְ וּמְחַסְדִין לִיךְ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-19" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:19</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-19" aria-label="Copy link to Targum Jonathan on Zephaniah 3:19">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הָא אֲנָא עָבֵיד גְמִירָא עִם כָּל מְשַׁעְבְּדַיִךְ בְּעִדָנָא הַהִיא וְאֶפְרוֹק יַת מְטַלְטְלַיָא וּמְבַדְרַיָא אֲקַרֵיב וַאֲשַׁוִינוּן לְתוּשְׁבְּחָא וּלְשׁוּם בְּכָל אַרְעָא בַּהֲתָתְהוֹן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="targum-jonathan-on-zephaniah-3-20" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Targum Jonathan on Zephaniah 3:20</h4></div>
+              <a class="anchor" href="#targum-jonathan-on-zephaniah-3-20" aria-label="Copy link to Targum Jonathan on Zephaniah 3:20">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בְּעִדָנָא הַהִיא אַכְנֵישׁ יַתְכוֹן וּבְעִדָנָא הַהִיא אֲקָרֵיב גָלוּתְכוֹן אֲרֵי אֶתֵּן יַתְכוֹן לְשׁוּם וּלְתוּשְׁבְּחָא בְּכָל עַמְמֵי אַרְעָא כַּד אָתֵיב יַת גָלוּתְכוֹן לְעֵינֵיכוֹן אֲמַר יְיָ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-targum-jonathan-on-zephaniah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"targum-jonathan-on-zephaniah","work_title":"Targum Jonathan on Zephaniah","work_slug":"targum/targum-jonathan-on-zephaniah","scope_label":"All imported Hebrew works","generated_at":"2026-05-14T23:34:59.369Z","total_occurrences":910,"units":{"targum-jonathan-on-zephaniah-1-1":{"unit_id":"targum-jonathan-on-zephaniah-1-1","anchor_id":"targum-jonathan-on-zephaniah-1-1","source_ref":"Targum Jonathan on Zephaniah 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-03e1dfb88956","tok-044be7a3c25f","tok-88836eb8c808","tok-7ff3822314b9","tok-3c09fa3e3f77","tok-1a361d36a793","tok-21129f043cd2","tok-e051811a5348","tok-f0d82bb5df5d","tok-ce34efab8e3e","tok-f7faec219e3c","tok-ce34efab8e3e","tok-10f0a02bdbbe","tok-e051811a5348","tok-f386f866723b","tok-24313431d94a","tok-88a654a227c6","tok-ce34efab8e3e","tok-37e4dd297a4b","tok-a6076de4b9cf","tok-9f174537b412","tok-472d1b65caa8","tok-a4008cddd2fb"]}]},"targum-jonathan-on-zephaniah-1-2":{"unit_id":"targum-jonathan-on-zephaniah-1-2","anchor_id":"targum-jonathan-on-zephaniah-1-2","source_ref":"Targum Jonathan on Zephaniah 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ea9d4c643d15","tok-180d986c5ac9","tok-ac1a685bbfb2","tok-c0ffc23ffba7","tok-f6dbdc562446","tok-78b43e42b7c2","tok-b4f5c8cb89b9","tok-3c09fa3e3f77"]}]},"targum-jonathan-on-zephaniah-1-3":{"unit_id":"targum-jonathan-on-zephaniah-1-3","anchor_id":"targum-jonathan-on-zephaniah-1-3","source_ref":"Targum Jonathan on Zephaniah 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-57df5a649757","tok-6f075821643c","tok-b050f6b6972c","tok-57df5a649757","tok-0ee0dd7174b3","tok-588160d1a109","tok-1a04ecf6755f","tok-e3ccd2569e70","tok-53055891424b","tok-67dfaa9d81e5","tok-a123798fd7e1","tok-8a9f3dcd6081","tok-7746a26397e6","tok-a1799176cab0","tok-6f075821643c","tok-c0ffc23ffba7","tok-f6dbdc562446","tok-78b43e42b7c2","tok-b4f5c8cb89b9","tok-3c09fa3e3f77"]}]},"targum-jonathan-on-zephaniah-1-4":{"unit_id":"targum-jonathan-on-zephaniah-1-4","anchor_id":"targum-jonathan-on-zephaniah-1-4","source_ref":"Targum Jonathan on Zephaniah 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1774f257e721","tok-eac0453b74a3","tok-3f5ecc4b014a","tok-53055891424b","tok-99119dcbbd88","tok-a4008cddd2fb","tok-98067951717a","tok-e1035ff0f58b","tok-6eb664a61a44","tok-d6509727d564","tok-7746a26397e6","tok-74c5dd280854","tok-1fcb0bfeb071","tok-2e32ff8d865e","tok-a1799176cab0","tok-553b6fd74d60","tok-6be1f6d817b0","tok-77c2e286f64d","tok-0cae53d74fad","tok-ef2d97e52aaf","tok-1a361d36a793","tok-e499ae377a9f"]}]},"targum-jonathan-on-zephaniah-1-5":{"unit_id":"targum-jonathan-on-zephaniah-1-5","anchor_id":"targum-jonathan-on-zephaniah-1-5","source_ref":"Targum Jonathan on Zephaniah 1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-77c2e286f64d","tok-57c6308bd950","tok-002bcc6a0862","tok-346df85b636c","tok-4d96e9985c18","tok-77c2e286f64d","tok-57c6308bd950","tok-5bcc49b3eaba","tok-4aa8dc22f0f2","tok-cc2e820db8fe","tok-21b15c7ffd4d","tok-4c28de7e2e06","tok-9d409edaba92","tok-ce90bbd65b89","tok-acdda0a8a69f"]}]},"targum-jonathan-on-zephaniah-1-6":{"unit_id":"targum-jonathan-on-zephaniah-1-6","anchor_id":"targum-jonathan-on-zephaniah-1-6","source_ref":"Targum Jonathan on Zephaniah 1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-77c2e286f64d","tok-e70c29f1083f","tok-e8f383b957d2","tok-c729f5ed0280","tok-69305dda5303","tok-21b15c7ffd4d","tok-414f02b9456d","tok-4ef975eb8694","tok-a1799176cab0","tok-a455cbce3e58","tok-21b15c7ffd4d","tok-2e7b87023b66","tok-bcfb84bdafbe","tok-74c5dd280854","tok-89a7bd2bf750"]}]},"targum-jonathan-on-zephaniah-1-7":{"unit_id":"targum-jonathan-on-zephaniah-1-7","anchor_id":"targum-jonathan-on-zephaniah-1-7","source_ref":"Targum Jonathan on Zephaniah 1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-065aa36de6a8","tok-c3d836791f73","tok-8a9f3dcd6081","tok-74c5dd280854","tok-7ff3822314b9","tok-3c09fa3e3f77","tok-9e606d8b11d8","tok-aab416a50736","tok-53bb1e2fdc4c","tok-a50633523800","tok-c945e62c9bf8","tok-b19e8f2b6801","tok-74c5dd280854","tok-7ff3822314b9","tok-3c09fa3e3f77","tok-aab416a50736","tok-b9a947676dea","tok-3c09fa3e3f77","tok-88dce3aeaef8","tok-8e7ef565596f","tok-88d7d6fa527b"]}]},"targum-jonathan-on-zephaniah-1-8":{"unit_id":"targum-jonathan-on-zephaniah-1-8","anchor_id":"targum-jonathan-on-zephaniah-1-8","source_ref":"Targum Jonathan on Zephaniah 1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8c52e07e1780","tok-83176842341a","tok-0dfc13213c49","tok-c945e62c9bf8","tok-b19e8f2b6801","tok-74c5dd280854","tok-7ff3822314b9","tok-3c09fa3e3f77","tok-55c9e07e9964","tok-53055891424b","tok-26b3da4574c7","tok-98067951717a","tok-9b500ef8ee42","tok-1c37037ef558","tok-98067951717a","tok-e1035ff0f58b","tok-b631eb973d86","tok-cde69d0e6456","tok-0e420bb9fbb1"]}]},"targum-jonathan-on-zephaniah-1-9":{"unit_id":"targum-jonathan-on-zephaniah-1-9","anchor_id":"targum-jonathan-on-zephaniah-1-9","source_ref":"Targum Jonathan on Zephaniah 1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-55c9e07e9964","tok-53055891424b","tok-e1035ff0f58b","tok-4db579cc61e6","tok-86dc0c0f8842","tok-4bfc2101f7e3","tok-fa7fb8a77c02","tok-98c293810955","tok-633ca67d48ee","tok-9abcf30eb7cb","tok-ae44f0df57e1","tok-b204c458887c","tok-44051347f9e6"]}]},"targum-jonathan-on-zephaniah-1-10":{"unit_id":"targum-jonathan-on-zephaniah-1-10","anchor_id":"targum-jonathan-on-zephaniah-1-10","source_ref":"Targum Jonathan on Zephaniah 1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8c52e07e1780","tok-fa7fb8a77c02","tok-98c293810955","tok-b4f5c8cb89b9","tok-3c09fa3e3f77","tok-7973663b0310","tok-23302a8c8c5e","tok-cf53f7ee482c","tok-a7cff9db318e","tok-975f3ebd9f7b","tok-74c5dd280854","tok-0ee0dd7174b3","tok-58d64df33d68","tok-88ae2c6ccd85","tok-74c5dd280854","tok-af9650a554aa"]}]},"targum-jonathan-on-zephaniah-1-11":{"unit_id":"targum-jonathan-on-zephaniah-1-11","anchor_id":"targum-jonathan-on-zephaniah-1-11","source_ref":"Targum Jonathan on Zephaniah 1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-00c16f394568","tok-e1035ff0f58b","tok-c48d67d7ac69","tok-83bc861021d7","tok-204f418ce854","tok-aab416a50736","tok-775eff7a8334","tok-e1035ff0f58b","tok-9cdc1bc683df","tok-50dd6261fd81","tok-018861a62a51","tok-26bc82fbb807","tok-9cdc1bc683df","tok-858723bd9037","tok-6dbf39fd2acc","tok-4765e7737827","tok-e1035ff0f58b","tok-24efe59e0d02","tok-26cf05a04eda"]}]},"targum-jonathan-on-zephaniah-1-12":{"unit_id":"targum-jonathan-on-zephaniah-1-12","anchor_id":"targum-jonathan-on-zephaniah-1-12","source_ref":"Targum Jonathan on Zephaniah 1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8c52e07e1780","tok-c18c594db2a7","tok-98c293810955","tok-55bf735cbfdc","tok-eddd681b5653","tok-283922c8546a","tok-a1799176cab0","tok-d6509727d564","tok-088a4bbe83b9","tok-a705e34121ea","tok-b0710973672c","tok-55c9e07e9964","tok-53055891424b","tok-3a53da979db9","tok-fcd17c987033","tok-8fed98c56b71","tok-53055891424b","tok-1d730173f312","tok-d80a25e5a15a","tok-e886b8f8fe16","tok-36c775c198b5","tok-88e1ac421d27","tok-7ff3822314b9","tok-3c09fa3e3f77","tok-0a03976af74b","tok-3a988e272084","tok-4a9c478d7776","tok-36c775c198b5","tok-06a0ebc49f64","tok-ce8172740bbd"]}]},"targum-jonathan-on-zephaniah-1-13":{"unit_id":"targum-jonathan-on-zephaniah-1-13","anchor_id":"targum-jonathan-on-zephaniah-1-13","source_ref":"Targum Jonathan on Zephaniah 1:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-62f81b719f3c","tok-1d730173f312","tok-479b648c704e","tok-0931164fced4","tok-44188c08a266","tok-58f75be9a8e0","tok-89c9a2a7c287","tok-2e7b87023b66","tok-ce0deba44246","tok-ae31c9a72401","tok-19ca2a323909","tok-2e7b87023b66","tok-6c502b8b7a2e","tok-a1799176cab0","tok-5810a3d9201d"]}]},"targum-jonathan-on-zephaniah-1-14":{"unit_id":"targum-jonathan-on-zephaniah-1-14","anchor_id":"targum-jonathan-on-zephaniah-1-14","source_ref":"Targum Jonathan on Zephaniah 1:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bbe2b9838024","tok-a50633523800","tok-c945e62c9bf8","tok-b19e8f2b6801","tok-74c5dd280854","tok-7ff3822314b9","tok-3c09fa3e3f77","tok-88ae2c6ccd85","tok-bbe2b9838024","tok-8edf316292a3","tok-d06d7c9067ae","tok-7973663b0310","tok-a50633523800","tok-c945e62c9bf8","tok-b19e8f2b6801","tok-74c5dd280854","tok-7ff3822314b9","tok-3c09fa3e3f77","tok-5bcc49b3eaba","tok-e976c26d23e2","tok-6885b39315c4","tok-dc147fdcd8d7","tok-eeef4368b10f","tok-3a53da979db9","tok-f8b596d3fc7c"]}]},"targum-jonathan-on-zephaniah-1-15":{"unit_id":"targum-jonathan-on-zephaniah-1-15","anchor_id":"targum-jonathan-on-zephaniah-1-15","source_ref":"Targum Jonathan on Zephaniah 1:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a50633523800","tok-b8cc19294bc1","tok-a50633523800","tok-b604b4766491","tok-6fd6619d1797","tok-a3453cb898a4","tok-2212878512ee","tok-6fd6619d1797","tok-aeeaf7c629b7","tok-9491ac80ba91","tok-22be28d6d57b","tok-ee26ac329294","tok-6fd6619d1797","tok-cc65721cce30","tok-d9aa4a3373b1"]}]},"targum-jonathan-on-zephaniah-1-16":{"unit_id":"targum-jonathan-on-zephaniah-1-16","anchor_id":"targum-jonathan-on-zephaniah-1-16","source_ref":"Targum Jonathan on Zephaniah 1:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-6fd6619d1797","tok-b396d7476e39","tok-2d3f9d4bdf51","tok-53055891424b","tok-313d315f6ddc","tok-b881ba2ef6e3","tok-98067951717a","tok-6fba9afdb322","tok-bd403a80a602"]}]},"targum-jonathan-on-zephaniah-1-17":{"unit_id":"targum-jonathan-on-zephaniah-1-17","anchor_id":"targum-jonathan-on-zephaniah-1-17","source_ref":"Targum Jonathan on Zephaniah 1:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9addde7f1236","tok-05c7833c8fd2","tok-6f075821643c","tok-e7095967347f","tok-9abd891e8604","tok-aab416a50736","tok-7ff3822314b9","tok-3c09fa3e3f77","tok-3c737c5f7ec1","tok-d04b4d72209d","tok-6fa5aa5c76e9","tok-f700a7c9a54a","tok-b579da6973e0","tok-d10017b514f8"]}]},"targum-jonathan-on-zephaniah-1-18":{"unit_id":"targum-jonathan-on-zephaniah-1-18","anchor_id":"targum-jonathan-on-zephaniah-1-18","source_ref":"Targum Jonathan on Zephaniah 1:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c5ddf1ab3370","tok-117465efafbe","tok-c5ddf1ab3370","tok-016d0e4e3a56","tok-36c775c198b5","tok-8e6416be8e0b","tok-0c8a65093453","tok-83176842341a","tok-769e43954c54","tok-21b15c7ffd4d","tok-b9b279cb7824","tok-0bc0049fa133","tok-0f318f1c8031","tok-e1035ff0f58b","tok-ac79d1cfc7b1","tok-78b43e42b7c2","tok-aab416a50736","tok-dc9382bbb133","tok-296bafbb3bd9","tok-ea9d4c643d15","tok-4659d6b5c7e0","tok-1a361d36a793","tok-e1035ff0f58b","tok-6eb664a61a44","tok-78b43e42b7c2"]}]},"targum-jonathan-on-zephaniah-2-1":{"unit_id":"targum-jonathan-on-zephaniah-2-1","anchor_id":"targum-jonathan-on-zephaniah-2-1","source_ref":"Targum Jonathan on Zephaniah 2:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a485d7339c8f","tok-8c5325747f66","tok-00b4f29421ef","tok-9cdc1bc683df","tok-36b2641be8ab","tok-a7f2d1e5bac6","tok-05a9b5afcb44","tok-2890f3515111"]}]},"targum-jonathan-on-zephaniah-2-2":{"unit_id":"targum-jonathan-on-zephaniah-2-2","anchor_id":"targum-jonathan-on-zephaniah-2-2","source_ref":"Targum Jonathan on Zephaniah 2:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3c9382f20578","tok-36c775c198b5","tok-fb1e8e4e895b","tok-befe17fcd9eb","tok-4039b5891b91","tok-9abcf30eb7cb","tok-3e998963206e","tok-fa1fd47e710d","tok-de94ad387bbe","tok-96a32168c5b6","tok-1d8abedf32e6","tok-e976c26d23e2","tok-424781f93d35","tok-8770f9ba16c9","tok-e18a0fa7e191","tok-74c5dd280854","tok-7ff3822314b9","tok-a50633523800","tok-3c9382f20578","tok-36b2641be8ab","tok-0b9a4fda398f","tok-befe17fcd9eb","tok-7cb4322ca2bc","tok-769e43954c54","tok-21b15c7ffd4d","tok-3c9382f20578","tok-36c775c198b5","tok-0b9a4fda398f","tok-befe17fcd9eb","tok-6fd6619d1797","tok-769e43954c54","tok-04121df5a104"]}]},"targum-jonathan-on-zephaniah-2-3":{"unit_id":"targum-jonathan-on-zephaniah-2-3","anchor_id":"targum-jonathan-on-zephaniah-2-3","source_ref":"Targum Jonathan on Zephaniah 2:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ac9cc60c3fc5","tok-a1799176cab0","tok-80f7b562b170","tok-21b15c7ffd4d","tok-e1035ff0f58b","tok-84175fe3152b","tok-78b43e42b7c2","tok-f2c7fe987998","tok-91445bb8f69c","tok-8408a9f51936","tok-ac9cc60c3fc5","tok-250730ae84db","tok-ac9cc60c3fc5","tok-9dcd0697fd7f","tok-b384a6d721a8","tok-d17b22776451","tok-befe17fcd9eb","tok-83176842341a","tok-769e43954c54","tok-04121df5a104"]}]},"targum-jonathan-on-zephaniah-2-4":{"unit_id":"targum-jonathan-on-zephaniah-2-4","anchor_id":"targum-jonathan-on-zephaniah-2-4","source_ref":"Targum Jonathan on Zephaniah 2:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-aab416a50736","tok-9f2f94e620b4","tok-deeee56fe5f0","tok-c4bb2c54ffcf","tok-04c243cdf478","tok-dc245b565135","tok-19167ff6fce4","tok-e6e57a555786","tok-d0665c7f1ec2","tok-2c0b48259298","tok-87f55e05c356"]}]},"targum-jonathan-on-zephaniah-2-5":{"unit_id":"targum-jonathan-on-zephaniah-2-5","anchor_id":"targum-jonathan-on-zephaniah-2-5","source_ref":"Targum Jonathan on Zephaniah 2:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-968be2d652db","tok-c48d67d7ac69","tok-1144b1c9ec75","tok-e3ccd2569e70","tok-9cdc1bc683df","tok-264b14db32f5","tok-9f35f88d0483","tok-4039b5891b91","tok-5a92f0416050","tok-21b15c7ffd4d","tok-befe17fcd9eb","tok-c48d67d7ac69","tok-6d97abfba3b3","tok-78b43e42b7c2","tok-342c53c56c97","tok-636a12eb6a70","tok-ca4571423351","tok-b9a370aa2cc5"]}]},"targum-jonathan-on-zephaniah-2-6":{"unit_id":"targum-jonathan-on-zephaniah-2-6","anchor_id":"targum-jonathan-on-zephaniah-2-6","source_ref":"Targum Jonathan on Zephaniah 2:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-411f6647916e","tok-869df127d4f3","tok-e3ccd2569e70","tok-28d0ef3b01e9","tok-9abcf30eb7cb","tok-1864053688c2","tok-2e0dba03c869","tok-3812b80018b4","tok-dc4c1872ee79"]}]},"targum-jonathan-on-zephaniah-2-7":{"unit_id":"targum-jonathan-on-zephaniah-2-7","anchor_id":"targum-jonathan-on-zephaniah-2-7","source_ref":"Targum Jonathan on Zephaniah 2:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8c52e07e1780","tok-87e076d2fc8f","tok-0840c27ef476","tok-472d1b65caa8","tok-a4008cddd2fb","tok-d2e3ae1e7488","tok-5d1bddbbec64","tok-e11a368c88b5","tok-c090cdaab00f","tok-aa058e7010d9","tok-a436d3059ac2","tok-6b1754a83670","tok-aab416a50736","tok-08bd14a43224","tok-0fc3c7d2b48f","tok-7ff3822314b9","tok-3c09fa3e3f77","tok-b10e93bc4d8b","tok-a540593f54cf","tok-1394d824fc96"]}]},"targum-jonathan-on-zephaniah-2-8":{"unit_id":"targum-jonathan-on-zephaniah-2-8","anchor_id":"targum-jonathan-on-zephaniah-2-8","source_ref":"Targum Jonathan on Zephaniah 2:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bc9fdd3d5c8c","tok-06aca0e8cedd","tok-dcc309bb52a0","tok-22c66737207b","tok-70eb98e50ec3","tok-9b500ef8ee42","tok-094ddbc95b17","tok-c47166a1c157","tok-a1799176cab0","tok-e4e87428953e","tok-217a9557532b","tok-53055891424b","tok-2f1844d72bda"]}]},"targum-jonathan-on-zephaniah-2-9":{"unit_id":"targum-jonathan-on-zephaniah-2-9","anchor_id":"targum-jonathan-on-zephaniah-2-9","source_ref":"Targum Jonathan on Zephaniah 2:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-24b6e67e478e","tok-0baeecc1391b","tok-bd19fa7b10e2","tok-b4f5c8cb89b9","tok-3c09fa3e3f77","tok-d6d3f578fc88","tok-7296ee358735","tok-ffa09e987600","tok-aab416a50736","tok-22c66737207b","tok-29cf70b8432a","tok-17c6a0ef983c","tok-0cf9ab932b76","tok-094ddbc95b17","tok-9167fa29e85d","tok-16260b722fe7","tok-04a1824fb4bf","tok-947d3fec2a5d","tok-437e91afbbb5","tok-006e62719a42","tok-3c9382f20578","tok-e02baa5f42f9","tok-53f73f998e0e","tok-cae5eaafcc35","tok-6de07218a5d7","tok-904ecff85a85","tok-c1bb2d90306a","tok-3e5f4b1ec6c2"]}]},"targum-jonathan-on-zephaniah-2-10":{"unit_id":"targum-jonathan-on-zephaniah-2-10","anchor_id":"targum-jonathan-on-zephaniah-2-10","source_ref":"Targum Jonathan on Zephaniah 2:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9fa0abce0ddd","tok-1fedd71bc022","tok-56fcb3387ae4","tok-85cb0591d69a","tok-aab416a50736","tok-9d57ee1320f0","tok-217a9557532b","tok-53055891424b","tok-aae1966b0a3a","tok-21b15c7ffd4d","tok-d6d3f578fc88"]}]},"targum-jonathan-on-zephaniah-2-11":{"unit_id":"targum-jonathan-on-zephaniah-2-11","anchor_id":"targum-jonathan-on-zephaniah-2-11","source_ref":"Targum Jonathan on Zephaniah 2:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a84c447ddb8e","tok-21b15c7ffd4d","tok-d3195f325adc","tok-aab416a50736","tok-ea1eccd2064e","tok-a1799176cab0","tok-0cbc198a6262","tok-967d16aa51a3","tok-78b43e42b7c2","tok-33e664960842","tok-74c5dd280854","tok-89a7bd2bf750","tok-102482bf783a","tok-d1daefdad093","tok-e1035ff0f58b","tok-27232190bc53","tok-1dfc0dc2ab1c"]}]},"targum-jonathan-on-zephaniah-2-12":{"unit_id":"targum-jonathan-on-zephaniah-2-12","anchor_id":"targum-jonathan-on-zephaniah-2-12","source_ref":"Targum Jonathan on Zephaniah 2:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c5ddf1ab3370","tok-9d1a95a721f4","tok-5af6a95d2f25","tok-389db4baba20","tok-4a65852bc885","tok-417224edf8ca"]}]},"targum-jonathan-on-zephaniah-2-13":{"unit_id":"targum-jonathan-on-zephaniah-2-13","anchor_id":"targum-jonathan-on-zephaniah-2-13","source_ref":"Targum Jonathan on Zephaniah 2:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-014688a2da87","tok-eac0453b74a3","tok-656508678345","tok-53055891424b","tok-d63b7f8403ed","tok-0cc89d51ddae","tok-a1799176cab0","tok-e83a1b6edaf2","tok-8dde6600a172","tok-a1799176cab0","tok-027c07559385","tok-dc245b565135","tok-c185649cb0f3","tok-afbc62776308"]}]},"targum-jonathan-on-zephaniah-2-14":{"unit_id":"targum-jonathan-on-zephaniah-2-14","anchor_id":"targum-jonathan-on-zephaniah-2-14","source_ref":"Targum Jonathan on Zephaniah 2:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-80827d41a6de","tok-6eb440433b69","tok-04a51bd1eec2","tok-cd61fb731c1a","tok-b60efd327208","tok-c2bfc06fad87","tok-c5ddf1ab3370","tok-48ec4ae034e1","tok-4a9c478d7776","tok-2dbe57fd257d","tok-e7f7975d9480","tok-85b6cb3412a4","tok-6b1754a83670","tok-7973663b0310","tok-0ee0dd7174b3","tok-5a5872f3044a","tok-3356793c712a","tok-9448580cf1a0","tok-0a00ac4b30d3","tok-de5f7679f803","tok-2ca0da1aeb8f"]}]},"targum-jonathan-on-zephaniah-2-15":{"unit_id":"targum-jonathan-on-zephaniah-2-15","anchor_id":"targum-jonathan-on-zephaniah-2-15","source_ref":"Targum Jonathan on Zephaniah 2:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9fa0abce0ddd","tok-aa41527a6734","tok-45bf6a217948","tok-8ec8ffadc356","tok-9f84ef8e0192","tok-87cb317438ad","tok-300f9e1aebbf","tok-bd19fa7b10e2","tok-4ee93b5c5953","tok-e051811a5348","tok-8ca57ba57951","tok-fc49a00d3fa2","tok-e2acd3d0dd42","tok-00838debe3e7","tok-dc245b565135","tok-9abcf30eb7cb","tok-1864053688c2","tok-834ca9510586","tok-e1035ff0f58b","tok-5bcc49b3eaba","tok-dc85fd829db4","tok-87fb98ca58ca","tok-ed951e531fe5","tok-3b168ca679f3","tok-9e48d4c261ff"]}]},"targum-jonathan-on-zephaniah-3-1":{"unit_id":"targum-jonathan-on-zephaniah-3-1","anchor_id":"targum-jonathan-on-zephaniah-3-1","source_ref":"Targum Jonathan on Zephaniah 3:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-968be2d652db","tok-0391b8ec42b7","tok-6df60e8abf09","tok-aa41527a6734","tok-0c230d33911e","tok-ea9a6d7c75d7"]}]},"targum-jonathan-on-zephaniah-3-2":{"unit_id":"targum-jonathan-on-zephaniah-3-2","anchor_id":"targum-jonathan-on-zephaniah-3-2","source_ref":"Targum Jonathan on Zephaniah 3:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-36c775c198b5","tok-613e93beeb63","tok-adee40471053","tok-b272c4dba3ba","tok-17e8f685c83e","tok-2e7b87023b66","tok-e6293f765de0","tok-ab6a61979200","tok-80d08514205f","tok-21b15c7ffd4d","tok-36c775c198b5","tok-557eec6f634e","tok-c46e4a913fd6","tok-b7c3913be55a","tok-36c775c198b5","tok-81e680eb3eea"]}]},"targum-jonathan-on-zephaniah-3-3":{"unit_id":"targum-jonathan-on-zephaniah-3-3","anchor_id":"targum-jonathan-on-zephaniah-3-3","source_ref":"Targum Jonathan on Zephaniah 3:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7ecd8a1af488","tok-76f8451d264f","tok-3737eabfaa03","tok-029632f0a738","tok-06f4bca2eccd","tok-787576eff62c","tok-e32bd85532f7","tok-36c775c198b5","tok-dda289b45e2d","tok-8adcce71f74d"]}]},"targum-jonathan-on-zephaniah-3-4":{"unit_id":"targum-jonathan-on-zephaniah-3-4","anchor_id":"targum-jonathan-on-zephaniah-3-4","source_ref":"Targum Jonathan on Zephaniah 3:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b4b21c409e7c","tok-1b5959813efe","tok-5bcc49b3eaba","tok-3c8eb2829c23","tok-5e6983579d84","tok-878b02b78400","tok-149082a74f7b","tok-c954570db5c9","tok-6d047b930db0","tok-f3fb71289ef9","tok-5951ef7ffdbb","tok-03a58fc62d0a"]}]},"targum-jonathan-on-zephaniah-3-5":{"unit_id":"targum-jonathan-on-zephaniah-3-5","anchor_id":"targum-jonathan-on-zephaniah-3-5","source_ref":"Targum Jonathan on Zephaniah 3:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3c09fa3e3f77","tok-5faa16edb658","tok-b4f5c8cb89b9","tok-2c491d36cadb","tok-e335eca520b4","tok-6eb440433b69","tok-fcbee3298cb6","tok-89a7bd2bf750","tok-b47a72e934de","tok-695fbe272f67","tok-8757e37f9d04","tok-b0517f6412a0","tok-49ae3c1c60d1","tok-83dfdd9f1c05","tok-214b63d6c012","tok-ecdc1aa11634","tok-5fa085176213","tok-237d2075e5b5","tok-1af4928b44b9","tok-36c775c198b5","tok-ceec9e7214e2","tok-2e7b87023b66","tok-1a636925aa69","tok-7847a6c93ef0","tok-60767da90a57"]}]},"targum-jonathan-on-zephaniah-3-6":{"unit_id":"targum-jonathan-on-zephaniah-3-6","anchor_id":"targum-jonathan-on-zephaniah-3-6","source_ref":"Targum Jonathan on Zephaniah 3:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d1de61ee9ce6","tok-1dfc0dc2ab1c","tok-9eb27a2d812b","tok-180f23aea284","tok-76cb41e86a9f","tok-47cbb54f20eb","tok-ca4571423351","tok-7690ac4f6e9c","tok-74a3f96cd262","tok-00daa49d6a30","tok-ca4571423351","tok-99119dcbbd88","tok-ca4571423351","tok-b9a370aa2cc5"]}]},"targum-jonathan-on-zephaniah-3-7":{"unit_id":"targum-jonathan-on-zephaniah-3-7","anchor_id":"targum-jonathan-on-zephaniah-3-7","source_ref":"Targum Jonathan on Zephaniah 3:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9c3bd6e5dee5","tok-296bafbb3bd9","tok-157433b6bb47","tok-74c5dd280854","tok-06aca0e8cedd","tok-fca975f069ef","tok-ab6a61979200","tok-2e7b87023b66","tok-907c192371b4","tok-d21541f9f371","tok-a1ea5cc5cbc6","tok-9abcf30eb7cb","tok-aa87f59c5165","tok-e1035ff0f58b","tok-5403b40daf94","tok-58f9709be47a","tok-1fedd71bc022","tok-d2ed087ee054","tok-1fedd71bc022","tok-24b6e67e478e","tok-e2969ff8b244","tok-f372cd4b89df","tok-e1035ff0f58b","tok-018861a62a51"]}]},"targum-jonathan-on-zephaniah-3-8":{"unit_id":"targum-jonathan-on-zephaniah-3-8","anchor_id":"targum-jonathan-on-zephaniah-3-8","source_ref":"Targum Jonathan on Zephaniah 3:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-24b6e67e478e","tok-c62d8dcdcadf","tok-cce9f1f6b118","tok-b4f5c8cb89b9","tok-3c09fa3e3f77","tok-928486c1694f","tok-2b1cc5d45f3c","tok-31ff8f1c666a","tok-aab416a50736","tok-fdf097153507","tok-7b30eef82f08","tok-1dfc0dc2ab1c","tok-28b0a217da9b","tok-302b40c25ab4","tok-1abb000b5049","tok-d2e3ae1e7488","tok-66f971aac1ad","tok-e1035ff0f58b","tok-7cb4322ca2bc","tok-31f95a36aa7f","tok-aab416a50736","tok-de20d23e39a6","tok-6b18ea6f5295","tok-0f318f1c8031","tok-e1035ff0f58b","tok-dacc697b28e3","tok-78b43e42b7c2"]}]},"targum-jonathan-on-zephaniah-3-9":{"unit_id":"targum-jonathan-on-zephaniah-3-9","anchor_id":"targum-jonathan-on-zephaniah-3-9","source_ref":"Targum Jonathan on Zephaniah 3:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-aab416a50736","tok-24b6e67e478e","tok-399e886fa411","tok-53055891424b","tok-1dfc0dc2ab1c","tok-7212a26d2dee","tok-5270e14b763d","tok-3ebc23b07fb2","tok-bdef36433592","tok-07f86a14f787","tok-cc2e820db8fe","tok-21b15c7ffd4d","tok-cde69d0e6456","tok-89a7bd2bf750","tok-85f739d1f8c6","tok-5270e14b763d"]}]},"targum-jonathan-on-zephaniah-3-10":{"unit_id":"targum-jonathan-on-zephaniah-3-10","anchor_id":"targum-jonathan-on-zephaniah-3-10","source_ref":"Targum Jonathan on Zephaniah 3:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-aefe732e16d2","tok-0f88c929e1aa","tok-2bce950d4bf5","tok-e1ac79f59737","tok-2b63476ad852","tok-1bdf9effe234","tok-e4e87428953e","tok-a78f9a1efaef","tok-62f81b719f3c","tok-39ccf7718bdc","tok-fb74bf2709b5","tok-8757e37f9d04","tok-c7f30147db85"]}]},"targum-jonathan-on-zephaniah-3-11":{"unit_id":"targum-jonathan-on-zephaniah-3-11","anchor_id":"targum-jonathan-on-zephaniah-3-11","source_ref":"Targum Jonathan on Zephaniah 3:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fa7fb8a77c02","tok-98c293810955","tok-36c775c198b5","tok-03659c611659","tok-7d4b362fe2d2","tok-a4a964727aa9","tok-5206fbf02dc0","tok-5bcc49b3eaba","tok-c1c6f80bbef5","tok-ac664bfa9a53","tok-aab416a50736","tok-5a32d0d8af8e","tok-68789b3047df","tok-aa624adb6c4b","tok-f4d517735f00","tok-1efd509acab4","tok-2e7b87023b66","tok-ad8aeda85a92","tok-4c85076ab141","tok-fc49a00d3fa2","tok-57856b208738","tok-6fb8b5d9e724"]}]},"targum-jonathan-on-zephaniah-3-12":{"unit_id":"targum-jonathan-on-zephaniah-3-12","anchor_id":"targum-jonathan-on-zephaniah-3-12","source_ref":"Targum Jonathan on Zephaniah 3:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-9e14a5ae5a6f","tok-903833fdc0e4","tok-7e5565b0a9b6","tok-429f83824960","tok-0ebfd5399853","tok-8c468ca8df5d","tok-7be46bc48372","tok-cc2e820db8fe","tok-04121df5a104"]}]},"targum-jonathan-on-zephaniah-3-13":{"unit_id":"targum-jonathan-on-zephaniah-3-13","anchor_id":"targum-jonathan-on-zephaniah-3-13","source_ref":"Targum Jonathan on Zephaniah 3:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-53f73f998e0e","tok-ffa09e987600","tok-36c775c198b5","tok-6c7e48e457df","tok-695fbe272f67","tok-2e7b87023b66","tok-5994f05cd524","tok-f04989a8c2d3","tok-2e7b87023b66","tok-287df879714d","tok-42b5882d8a3b","tok-e84c8b15d80b","tok-4748771cc65b","tok-aab416a50736","tok-6a0c66ed6a8f","tok-5d1bddbbec64","tok-5436bcaf44e3","tok-4ee93b5c5953","tok-15dac0bff408"]}]},"targum-jonathan-on-zephaniah-3-14":{"unit_id":"targum-jonathan-on-zephaniah-3-14","anchor_id":"targum-jonathan-on-zephaniah-3-14","source_ref":"Targum Jonathan on Zephaniah 3:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-054f4cc21c52","tok-4fc430bc2000","tok-6050a3d892c0","tok-ffac68d4f382","tok-b1db94c9486d","tok-754717f06c44","tok-ffac68d4f382","tok-ac7c9f15bcf3","tok-a773e5f681d4","tok-4fc430bc2000","tok-79da845fc012"]}]},"targum-jonathan-on-zephaniah-3-15":{"unit_id":"targum-jonathan-on-zephaniah-3-15","anchor_id":"targum-jonathan-on-zephaniah-3-15","source_ref":"Targum Jonathan on Zephaniah 3:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3798693d50ce","tok-3c09fa3e3f77","tok-d0bcfb6cb89e","tok-1b5959813efe","tok-a97c01da89b0","tok-2029008ef88d","tok-5c067a551791","tok-968dc4637af2","tok-d1263ec3ab43","tok-ffa09e987600","tok-3c09fa3e3f77","tok-75895777eb18","tok-2c491d36cadb","tok-e335eca520b4","tok-903833fdc0e4","tok-36c775c198b5","tok-2fc17d876464","tok-74c5dd280854","tok-7ff3822314b9","tok-acd0ebf91ae9","tok-fc49a00d3fa2"]}]},"targum-jonathan-on-zephaniah-3-16":{"unit_id":"targum-jonathan-on-zephaniah-3-16","anchor_id":"targum-jonathan-on-zephaniah-3-16","source_ref":"Targum Jonathan on Zephaniah 3:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fa7fb8a77c02","tok-98c293810955","tok-892a239da0c5","tok-03a6ff9d522c","tok-36c775c198b5","tok-441e9276e0ed","tok-f4926cd5d46e","tok-36c775c198b5","tok-ee9f03980807","tok-2b512a782f5f"]}]},"targum-jonathan-on-zephaniah-3-17":{"unit_id":"targum-jonathan-on-zephaniah-3-17","anchor_id":"targum-jonathan-on-zephaniah-3-17","source_ref":"Targum Jonathan on Zephaniah 3:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3c09fa3e3f77","tok-01551b135e1e","tok-b4f5c8cb89b9","tok-2c491d36cadb","tok-e335eca520b4","tok-903833fdc0e4","tok-adcda1a08ca1","tok-ba0663303b38","tok-53f4d1037339","tok-e25b1203b88a","tok-802713f79bc7","tok-bbe4d84171ac","tok-53055891424b","tok-a20afd641815","tok-61b9022ead43","tok-1daadb6975fb","tok-e25b1203b88a","tok-14d634195d91"]}]},"targum-jonathan-on-zephaniah-3-18":{"unit_id":"targum-jonathan-on-zephaniah-3-18","anchor_id":"targum-jonathan-on-zephaniah-3-18","source_ref":"Targum Jonathan on Zephaniah 3:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5bcc49b3eaba","tok-ddff178d9d04","tok-24e90756bffc","tok-f096c9665261","tok-c2c4e05a48e3","tok-99c6a14d833a","tok-faa085756228","tok-b140ba9ea9df","tok-968be2d652db","tok-d2e3ae1e7488","tok-53055891424b","tok-9c367763028d","tok-e130610950d6","tok-6aa769bed6bd","tok-01e42bf182fb","tok-211693448828","tok-e605bd2b9f55"]}]},"targum-jonathan-on-zephaniah-3-19":{"unit_id":"targum-jonathan-on-zephaniah-3-19","anchor_id":"targum-jonathan-on-zephaniah-3-19","source_ref":"Targum Jonathan on Zephaniah 3:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8757e37f9d04","tok-bd19fa7b10e2","tok-b42439502eb5","tok-dc9382bbb133","tok-1a361d36a793","tok-e1035ff0f58b","tok-a4c3e3740493","tok-fa7fb8a77c02","tok-98c293810955","tok-760aec1592b6","tok-a1799176cab0","tok-dacc07d82303","tok-21801ed63cf4","tok-60e5020ec106","tok-6ecdb6d99c60","tok-107a538c4ca3","tok-1fc208c2ac78","tok-ac7c9f15bcf3","tok-78b43e42b7c2","tok-d83387b3e41c"]}]},"targum-jonathan-on-zephaniah-3-20":{"unit_id":"targum-jonathan-on-zephaniah-3-20","anchor_id":"targum-jonathan-on-zephaniah-3-20","source_ref":"Targum Jonathan on Zephaniah 3:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fa7fb8a77c02","tok-98c293810955","tok-dc121fe93115","tok-74d00f010007","tok-78718549c6df","tok-98c293810955","tok-275957c85eb1","tok-cb569fc62bc2","tok-aab416a50736","tok-f36cdd0484cd","tok-74d00f010007","tok-c212d011ddbc","tok-e5f997eb97d8","tok-ac7c9f15bcf3","tok-86333031fcf0","tok-78b43e42b7c2","tok-aa058e7010d9","tok-93bc5f7dcad1","tok-a1799176cab0","tok-cb569fc62bc2","tok-c11c10e757b7","tok-b4f5c8cb89b9","tok-3c09fa3e3f77"]}]}}}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/targum-jonathan-on-zephaniah.manifest.json","root_href":"../../"}</script>
+  <script>
+    (() => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>
