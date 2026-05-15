@@ -286,6 +286,7 @@ function Get-LeafRef {
     [string[]]$TitlePath
   )
   if ($TitlePath.Count -eq 0) { return $WorkRef }
+  if ($TitlePath.Count -eq 1 -and $TitlePath[0] -eq 'default') { return $WorkRef }
   return "$WorkRef, $($TitlePath -join ', ')"
 }
 
@@ -434,6 +435,10 @@ function Add-UnitsFromPayload {
       Write-Warning "Skipping $sourceRef with unsupported Hebrew source license '$($versionMeta.license)' from '$($versionMeta.version_title)'"
       continue
     }
+    if (-not ($text.text -match '[\u0590-\u05ff]')) {
+      Write-Warning "Skipping $sourceRef because the selected Hebrew source text has no Hebrew letters"
+      continue
+    }
 
     $SequenceRef.Value += 1
     $addressParts = @()
@@ -562,7 +567,7 @@ foreach ($work in $config.works) {
     $meta = Get-OutlineEntry -Work $work -Leaf $leaf
     Add-OutlineSection -Outline $outline -SeenGroups $seenGroups -SeenSections $seenSections -Meta $meta
 
-    if (Test-UseNextTraversal -Leaf $leaf) {
+    if (($work.work_type -eq 'commentary' -and $leaf.depth -ge 3) -or (Test-UseNextTraversal -Leaf $leaf)) {
       Add-UnitsByNextTraversal -Units $units -SequenceRef ([ref]$sequence) -Work $work -Meta $meta -StartRef $leafRef -StopPrefixes @($leafRef, $canonicalLeafRef)
       continue
     }

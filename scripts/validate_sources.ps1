@@ -56,6 +56,41 @@ function Test-ExportFiles {
   }
 
   $parsedRows = Get-Content -Path $jsonPath -Raw -Encoding UTF8 | ConvertFrom-Json
+  $parsedProps = @($parsedRows.PSObject.Properties.Name)
+  if ($parsedProps -contains 'kind' -and $parsedRows.kind -eq 'overlay_export_manifest') {
+    if ($Label -ne 'full-site') {
+      $errors.Add("Per-work overlay JSON must contain rows, not a manifest: $Label")
+      return
+    }
+    if ($parsedRows.PSObject.Properties.Name -notcontains 'row_count') {
+      $errors.Add("Full-site overlay manifest missing row_count")
+    } elseif ([int]$parsedRows.row_count -ne $ExpectedRows) {
+      $errors.Add("Overlay JSON manifest row count mismatch for $Label`: expected $ExpectedRows, found $($parsedRows.row_count)")
+    }
+    foreach ($field in @('schema_version', 'full_site_exports', 'per_work_json')) {
+      if ($parsedRows.PSObject.Properties.Name -notcontains $field) {
+        $errors.Add("Full-site overlay manifest missing $field")
+      }
+    }
+    foreach ($entry in @($parsedRows.per_work_json)) {
+      foreach ($field in @('work_id', 'path', 'unit_count')) {
+        if ($entry.PSObject.Properties.Name -notcontains $field) {
+          $errors.Add("Full-site overlay manifest entry missing $field")
+        }
+      }
+      if ($entry.PSObject.Properties.Name -contains 'path' -and -not (Test-Path $entry.path)) {
+        $errors.Add("Full-site overlay manifest references missing per-work JSON: $($entry.path)")
+      }
+      if ($entry.PSObject.Properties.Name -contains 'work_id' -and $unitCountByWorkId.ContainsKey([string]$entry.work_id)) {
+        $expectedWorkRows = [int]$unitCountByWorkId[[string]$entry.work_id]
+        if ([int]$entry.unit_count -ne $expectedWorkRows) {
+          $errors.Add("Full-site overlay manifest unit_count mismatch for $($entry.work_id): expected $expectedWorkRows, found $($entry.unit_count)")
+        }
+      }
+    }
+    return
+  }
+
   $rows = @(if ($parsedRows -is [array]) { $parsedRows } else { $parsedRows })
   if ($rows.Count -ne $ExpectedRows) {
     $errors.Add("Overlay JSON row count mismatch for $Label`: expected $ExpectedRows, found $($rows.Count)")

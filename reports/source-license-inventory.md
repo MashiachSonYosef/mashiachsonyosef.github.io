@@ -287,3 +287,13 @@ Generated: 2026-05-13
 | Targum Jonathan on Zephaniah | 53 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Targum Jonathan on Haggai | 38 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Targum Jonathan on Zechariah | 211 | Mikraot Gedolot (Mikraot Gedolot) | Public Domain | yes | no | none required by license; source/version retained |
+| Rashi on Genesis | 2017 | Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934 (https://www.nli.org.il/he/books/NNL_ALEPH001969084) | Public Domain | yes | no | none required by license; source/version retained |
+| Rashi on Leviticus | 1332 | Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934 / On Your Way (https://www.nli.org.il/he/books/NNL_ALEPH001969084; http://mobile.tora.ws/) | Public Domain | yes | no | none required by license; source/version retained |
+| Rashi on Numbers | 1292 | Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann -- corrected vocalization (https://www.nli.org.il/he/books/NNL_ALEPH001969084) | Public Domain | yes | no | none required by license; source/version retained |
+| Rashi on Deuteronomy | 1369 | Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934 / On Your Way (https://www.nli.org.il/he/books/NNL_ALEPH001969084; http://mobile.tora.ws/) | Public Domain | yes | no | none required by license; source/version retained |
+| Ibn Ezra on Genesis | 1315 | Piotrkow, 1907-1911 / On Your Way (https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI; http://mobile.tora.ws/) | Public Domain | yes | no | none required by license; source/version retained |
+| Ibn Ezra on Exodus | 1652 | Piotrkow, 1907-1911 (https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Ibn Ezra on Leviticus | 1023 | On Your Way (http://mobile.tora.ws/) | Public Domain | yes | no | none required by license; source/version retained |
+| Ibn Ezra on Numbers | 1107 | On Your Way (http://mobile.tora.ws/) | Public Domain | yes | no | none required by license; source/version retained |
+| Ibn Ezra on Deuteronomy | 1201 | On Your Way (http://mobile.tora.ws/) | Public Domain | yes | no | none required by license; source/version retained |
+| Ibn Ezra on Zechariah | 345 | Ibn Ezra on Zecharia -- Daat (http://www.daat.ac.il/he-il/tanach/parshanut_hamikra/full-text/eben-ezra/zecharya) | Public Domain | yes | no | none required by license; source/version retained |
