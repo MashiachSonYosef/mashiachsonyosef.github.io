@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-15T17:24:30.850Z
+Generated: 2026-05-16T00:17:13.650Z
 
 ## Scope
 
@@ -17,16 +17,16 @@ Generated: 2026-05-15T17:24:30.850Z
 
 - Total work-surface rows: 1758660
 - Total sitewide unique surface forms: 561920
-- Sitewide unique surface forms matched at least once: 76641
-- Sitewide unique surface forms unmatched everywhere: 485279
+- Sitewide unique surface forms matched at least once: 76664
+- Sitewide unique surface forms unmatched everywhere: 485256
 - Total token occurrences: 7797109
 - Matched before prefix/suffix parser: 444207
-- Newly resolved by prefix/suffix parser: 59034
-- Total matched after parser: 519989
+- Newly resolved by prefix/suffix parser: 59191
+- Total matched after parser: 520194
 - Percent matched: 29.6%
 - Matched via Wikidata: 378787
 - Enriched via OpenScriptures: 441854
-- Unmatched: 1238671
+- Unmatched: 1238466
 
 ## Newly Resolved Parsed Forms
 
@@ -127,7 +127,6 @@ Generated: 2026-05-15T17:24:30.850Z
 - 706x א׳ -- beur-hagra-on-shulchan-arukh-orach-chayim
 - 706x רַבָּנָן -- ein-yaakov
 - 689x הרא״ש -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- 674x יַת -- targum-jonathan-on-genesis
 - 673x כוכבים -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 663x ועיין -- notes-and-corrections-on-midrash-lekach-tov
 - 662x בְּגִין -- zohar-chadash
@@ -137,7 +136,6 @@ Generated: 2026-05-15T17:24:30.850Z
 - 653x נמי -- raavad-on-sifra
 - 652x ע״ב -- shaar-maamarei-rashbi
 - 648x י״ל -- beur-haradal-on-pirkei-derabbi-eliezer
-- 637x יַת -- targum-jonathan-on-exodus
 - 633x מ״ש -- beur-haradal-on-pirkei-derabbi-eliezer
 - 630x ב״ר -- notes-and-corrections-on-midrash-aggadah
 - 626x דְּאִיהוּ -- zohar-chadash
@@ -149,6 +147,8 @@ Generated: 2026-05-15T17:24:30.850Z
 - 600x ה׳ -- shaar-hapesukim
 - 596x א׳ -- pesikta-derav-kahana
 - 592x ב׳ -- otzar-midrashim
+- 585x יְיָ -- targum-jonathan-on-jeremiah
+- 582x כמנין -- maaseh-rokeach-on-mishnah
 
 ## Exact Orot Refs To Test
 

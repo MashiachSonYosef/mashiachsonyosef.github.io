@@ -509,3 +509,4 @@ if ($errors.Count -gt 0) {
 }
 
 Write-Host "Validation passed. $($unitIds.Count) source units checked."
+exit 0

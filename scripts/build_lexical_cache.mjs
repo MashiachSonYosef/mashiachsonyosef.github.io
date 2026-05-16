@@ -229,6 +229,7 @@ const projectAbbreviationDefinitions = [
 
 const aggadatBereshitScope = 'aggadat-bereshit';
 const midrashAggadahScope = 'midrash_aggadah';
+const aramaicScope = 'aramaic';
 const projectMidrashFormulaDefinitions = [
   {
     source_id: 'project-midrash-formula:davar-acher',
@@ -735,6 +736,14 @@ const projectAramaicGrammarDefinitions = [
     source_id: 'project-aramaic:ha',
     surface: '\u05D4\u05D0',
     renderings: ['behold', 'this'],
+  },
+  {
+    source_id: 'project-aramaic:yat-object-marker',
+    surface: '\u05D9\u05B7\u05EA',
+    surface_forms: ['\u05D9\u05B8\u05EA', '\u05D9\u05EA'],
+    renderings: ['direct-object marker', 'object marker'],
+    work_scope: aramaicScope,
+    note: 'resolved as an Aramaic object marker in Aramaic/Targumic works.',
   },
   {
     source_id: 'project-aramaic:ilaah',
@@ -1592,6 +1601,7 @@ function ensureProjectMidrashFormulaEntries(lexicon) {
 
 function makeProjectAramaicGrammarEntry(definition) {
   const surface = normalizeHebrewPunctuation(definition.surface);
+  const surfaceForms = unique([surface, ...(definition.surface_forms || [])].map(normalizeHebrewPunctuation));
   const sourceId = definition.source_id;
   const entryId = stableId('lex-aram', sourceId);
   const sourceRowKey = `workspace|${sourceId}`;
@@ -1626,7 +1636,7 @@ function makeProjectAramaicGrammarEntry(definition) {
   return {
     entry_id: entryId,
     hebrew_word: surface,
-    surface_forms: [surface],
+    surface_forms: surfaceForms,
     language: 'Aramaic',
     register: definition.register || 'Aramaic',
     transliteration: '',
@@ -1925,8 +1935,9 @@ function isEntryAllowedForWork(entry, workId) {
   if (entry?.work_scope === 'orot' && workId !== 'orot') return false;
   if (entry?.work_scope === 'kabbalah' && !isKabbalahWork(workId)) return false;
   if (entry?.work_scope === 'zohar_ari' && !isZoharAriWork(workId)) return false;
+  if (entry?.work_scope === aramaicScope && !isAramaicWork(workId)) return false;
   if (entry?.work_scope === midrashAggadahScope && !isMidrashAggadahWork(workId)) return false;
-  if (entry?.work_scope && !['orot', 'kabbalah', 'zohar_ari', midrashAggadahScope].includes(entry.work_scope) && entry.work_scope !== workId) return false;
+  if (entry?.work_scope && !['orot', 'kabbalah', 'zohar_ari', aramaicScope, midrashAggadahScope].includes(entry.work_scope) && entry.work_scope !== workId) return false;
   const sourceIds = [
     ...(entry?.source_rows || []).map((row) => row.source_id),
     ...(entry?.possible_entries || []).map((row) => row.source_id || row.entry_key),
@@ -1959,6 +1970,18 @@ function isKabbalahWork(workId) {
       'beur-hagra-on-sifra-detzniuta',
       'hagra-on-sefer-yetzirah-gra-version',
       'sefer-yetzirah-gra-version',
+      'yahel-ohr-on-zohar',
+    ].includes(workId);
+}
+
+function isAramaicWork(workId) {
+  const meta = sourceMetaByWorkId.get(workId) || {};
+  const slug = String(meta.work_slug || '');
+  return slug.startsWith('targum/')
+    || String(workId || '').startsWith('targum-')
+    || String(workId || '').startsWith('aramaic-targum-')
+    || [
+      'zohar-chadash',
       'yahel-ohr-on-zohar',
     ].includes(workId);
 }
