@@ -88,6 +88,7 @@ const lexicalLayerFiles = [
 ];
 
 const tokenRe = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4'"]*/gu;
+const htmlTagRe = /<[^>]*>/g;
 const niqqudRe = /[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/gu;
 const finalLetters = new Map([
   ['\u05DA', '\u05DB'],
@@ -149,7 +150,7 @@ function normalizeHebrewTokenWithQubutsMater(value) {
 }
 
 function getTokens(text) {
-  return Array.from(String(text || '').matchAll(tokenRe), (match) => normalizeHebrewPunctuation(match[0]));
+  return Array.from(String(text || '').replace(htmlTagRe, ' ').matchAll(tokenRe), (match) => normalizeHebrewPunctuation(match[0]));
 }
 
 function unique(values) {

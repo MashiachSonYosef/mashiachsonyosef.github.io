@@ -69,6 +69,10 @@ foreach ($path in @($tokenIndexPath, $lexiconPath)) {
 }
 
 $tokenIndex = Get-Content -LiteralPath $tokenIndexPath -Raw -Encoding UTF8 | ConvertFrom-Json
+$sampleWorkIds = @{}
+foreach ($sample in $samples) {
+  $sampleWorkIds[[string]$sample.WorkId] = $true
+}
 $tokenIndexRows = @()
 if ($tokenIndex.PSObject.Properties.Name -contains 'forms') {
   $tokenIndexRows = @($tokenIndex.forms)
@@ -76,6 +80,9 @@ if ($tokenIndex.PSObject.Properties.Name -contains 'forms') {
 if ($tokenIndexRows.Count -eq 0 -and $tokenIndex.PSObject.Properties.Name -contains 'work_indexes') {
   foreach ($indexFile in @($tokenIndex.work_indexes)) {
     if (-not $indexFile.path) { continue }
+    if ($indexFile.PSObject.Properties.Name -contains 'work_id' -and -not $sampleWorkIds.ContainsKey([string]$indexFile.work_id)) {
+      continue
+    }
     $indexPath = Join-Path (Join-Path $PSScriptRoot '..\data\lexical') ([string]$indexFile.path)
     if (-not (Test-Path -LiteralPath $indexPath)) {
       throw "Required per-work token index file not found: $indexPath"
@@ -673,3 +680,4 @@ $results = foreach ($sample in $samples) {
 
 $summary = ($results | ForEach-Object { "$($_.Label): $($_.TokenCount) indexed token occurrences" }) -join '; '
 Write-Host "Lexical DOM validation passed. $summary."
+exit 0
