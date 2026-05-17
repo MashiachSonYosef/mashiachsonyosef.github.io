@@ -57,11 +57,11 @@ const lexicalLayerFiles = [
     description: 'Project-authored scoped Midrash citation formulas, source labels, and proper-name labels. Short factual mappings only.',
   },
   {
-    layer_id: 'project-orot-technical-terms',
+    layer_id: 'project-technical-terms',
     source_family: 'workspace',
     license: 'project-authored / CC0',
-    path: 'source-layers/project-orot-technical-terms.json',
-    description: 'Project-authored Orot-specific technical term rows. Scoped to Orot only.',
+    path: 'source-layers/project-technical-terms.json',
+    description: 'Project-authored scoped technical term rows. Short factual mappings only.',
   },
   {
     layer_id: 'wikidata-cc0',
@@ -1173,7 +1173,7 @@ const fixedExpressions = [
 
 const fixedExpressionByNormalized = new Map(fixedExpressions.map((expression) => [expression.normalized_word, expression]));
 
-const projectOrotFinalTechnicalDefinitions = [
+const projectTechnicalTermDefinitions = [
   {
     key: 'tokhen',
     lemma: '\u05EA\u05D5\u05DB\u05DF',
@@ -1185,6 +1185,48 @@ const projectOrotFinalTechnicalDefinitions = [
     lemma: '\u05E0\u05D8\u05D9\u05D5\u05EA',
     renderings: ['tendencies', 'inclinations'],
     forms: ['\u05E0\u05D8\u05D9\u05D5\u05EA', '\u05D4\u05E0\u05D8\u05D9\u05D5\u05EA'],
+  },
+  {
+    key: 'elohit',
+    lemma: '\u05D0\u05DC\u05D4\u05D9\u05EA',
+    renderings: ['divine', 'godly'],
+    forms: ['\u05D4\u05D0\u05DC\u05D4\u05D9\u05EA', '\u05D0\u05DC\u05D4\u05D9\u05EA'],
+  },
+  {
+    key: 'elohiyim',
+    lemma: '\u05D0\u05DC\u05D4\u05D9\u05D9\u05DD',
+    renderings: ['divine', 'godly'],
+    forms: ['\u05D4\u05D0\u05DC\u05D4\u05D9\u05D9\u05DD'],
+  },
+  {
+    key: 'elohiyot',
+    lemma: '\u05D0\u05DC\u05D4\u05D9\u05D5\u05EA',
+    renderings: ['divine', 'godly'],
+    forms: ['\u05D4\u05D0\u05DC\u05D4\u05D9\u05D5\u05EA'],
+  },
+  {
+    key: 'elohut',
+    lemma: '\u05D0\u05DC\u05D4\u05D5\u05EA',
+    renderings: ['divinity', 'godhood'],
+    forms: ['\u05D4\u05D0\u05DC\u05D4\u05D5\u05EA'],
+  },
+  {
+    key: 'idea',
+    lemma: '\u05D0\u05D9\u05D3\u05D9\u05D0\u05D4',
+    renderings: ['idea'],
+    forms: ['\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05D4', '\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05D5\u05EA'],
+  },
+  {
+    key: 'ideal',
+    lemma: '\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC',
+    renderings: ['ideal'],
+    forms: ['\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05EA', '\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05EA', '\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9', '\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05DD'],
+  },
+  {
+    key: 'mussari',
+    lemma: '\u05DE\u05D5\u05E1\u05E8\u05D9\u05EA',
+    renderings: ['moral', 'ethical'],
+    forms: ['\u05D4\u05DE\u05D5\u05E1\u05E8\u05D9\u05EA', '\u05D4\u05DE\u05D5\u05E1\u05E8\u05D9\u05D5\u05EA'],
   },
   {
     key: 'datit',
@@ -1235,6 +1277,12 @@ const projectOrotFinalTechnicalDefinitions = [
     forms: ['\u05D7\u05DE\u05E8\u05D9\u05D5\u05EA', '\u05D4\u05D7\u05DE\u05E8\u05D9\u05D5\u05EA'],
   },
   {
+    key: 'homri',
+    lemma: '\u05D7\u05DE\u05E8',
+    renderings: ['material', 'physical'],
+    forms: ['\u05D7\u05DE\u05E8\u05D9\u05EA', '\u05D4\u05D7\u05DE\u05E8\u05D9\u05EA', '\u05D7\u05DE\u05E8\u05D9\u05D9\u05DD', '\u05D4\u05D7\u05DE\u05E8\u05D9\u05D9\u05DD'],
+  },
+  {
     key: 'tzinorot',
     lemma: '\u05E6\u05E0\u05D5\u05E8\u05D5\u05EA',
     renderings: ['channels', 'conduits'],
@@ -1251,6 +1299,18 @@ const projectOrotFinalTechnicalDefinitions = [
     lemma: '\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05D5\u05EA',
     renderings: ['ideality', 'ideal qualities'],
     forms: ['\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05D5\u05EA', '\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05D5\u05EA', '\u05D5\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05D5\u05EA'],
+  },
+  {
+    key: 'nishmati',
+    lemma: '\u05E0\u05E9\u05DE\u05EA\u05D9\u05EA',
+    renderings: ['soul-related', 'spiritual-soul'],
+    forms: ['\u05D4\u05E0\u05E9\u05DE\u05EA\u05D9\u05EA'],
+  },
+  {
+    key: 'mekori-prefixed',
+    lemma: '\u05DE\u05E7\u05D5\u05E8\u05D9\u05EA',
+    renderings: ['original', 'source-like'],
+    forms: ['\u05D4\u05DE\u05E7\u05D5\u05E8\u05D9\u05EA'],
   },
   {
     key: 'pnimi',
@@ -1428,9 +1488,9 @@ function entryLayerId(entry) {
     || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-midrash-'))) {
     return 'project-midrash-formulas';
   }
-  if (String(entry.entry_id || '').startsWith('lex-orot-term-')
-    || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-orot-technical:'))) {
-    return 'project-orot-technical-terms';
+  if (String(entry.entry_id || '').startsWith('lex-project-technical-term-')
+    || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-technical:'))) {
+    return 'project-technical-terms';
   }
   const families = unique((entry.source_rows || []).map((row) => row.source_family || row.source_name).filter(Boolean));
   if (families.some((family) => family === 'kaikki' || family === 'wiktionary')) return 'kaikki-wiktionary-cc-by-sa-gfdl';
@@ -1796,17 +1856,18 @@ function ensureProjectZoharAriTechnicalTermEntries(lexicon) {
   return changed;
 }
 
-function makeProjectOrotFinalTechnicalEntry(definition) {
+function makeProjectTechnicalTermEntry(definition) {
   const lemma = normalizeHebrewPunctuation(definition.lemma);
-  const sourceId = `project-orot-technical:final-${definition.key}`;
-  const entryId = stableId('lex-orot-term', sourceId);
+  const workScope = definition.work_scope || 'orot';
+  const sourceId = `project-technical:${workScope}:${definition.key}`;
+  const entryId = stableId('lex-project-technical-term', sourceId);
   const sourceRowKey = `workspace|${sourceId}`;
   const surfaceForms = unique([lemma, ...(definition.forms || [])].map(normalizeHebrewPunctuation));
   const possibleEntry = {
     entry_key: sourceId,
     lemma,
     match_key: normalizeHebrewToken(lemma),
-    source_name: 'Project Orot technical term table',
+    source_name: 'Project scoped technical term table',
     source_family: 'workspace',
     source_id: sourceId,
     transliteration: '',
@@ -1815,18 +1876,18 @@ function makeProjectOrotFinalTechnicalEntry(definition) {
     root_transliteration: '',
     root_meaning: [],
     context_role: 'likely_contextual',
-    relation_label: 'project Orot technical term',
+    relation_label: 'scoped project technical term',
     source_row_keys: [sourceRowKey],
   };
   const sourceRow = {
-    source_name: 'Project Orot technical term table',
+    source_name: 'Project scoped technical term table',
     source_family: 'workspace',
     source_id: sourceId,
-    source_url: 'local:project-orot-technical-term-table',
+    source_url: 'local:project-technical-term-table',
     license: 'project-authored / CC0',
     license_url: 'https://creativecommons.org/publicdomain/zero/1.0/',
     fields_used: ['surface form', 'mechanical normalization', 'short lexical renderings'],
-    notes: 'Project-authored Orot technical term row. Short lexical renderings only; no external dictionary prose imported.',
+    notes: 'Project-authored scoped technical term row. Short lexical renderings only; no external dictionary prose imported.',
   };
   return {
     entry_id: entryId,
@@ -1838,25 +1899,29 @@ function makeProjectOrotFinalTechnicalEntry(definition) {
     root_transliteration: '',
     root_meaning: [],
     disambiguation_status: 'likely',
-    context_note: 'Resolved as a repeated Orot technical term.',
+    context_note: 'Resolved as a scoped project technical term.',
+    work_scope: workScope,
     possible_entries_truncated: 0,
     possible_entries: [possibleEntry],
     source_rows: [sourceRow],
   };
 }
 
-function ensureProjectOrotFinalTechnicalEntries(lexicon) {
+function ensureProjectTechnicalTermEntries(lexicon) {
   const entries = Array.isArray(lexicon.entries) ? lexicon.entries : [];
-  const withoutFinalTerms = entries.filter((entry) => {
+  const generatedSourceIds = new Set(projectTechnicalTermDefinitions.map((definition) => (
+    `project-technical:${definition.work_scope || 'orot'}:${definition.key}`
+  )));
+  const withoutGeneratedTerms = entries.filter((entry) => {
     const ids = [
       ...(entry?.source_rows || []).map((row) => row.source_id),
       ...(entry?.possible_entries || []).map((row) => row.source_id || row.entry_key),
     ].filter(Boolean).map(String);
-    return !ids.some((sourceId) => sourceId.startsWith('project-orot-technical:final-'));
+    return !ids.some((sourceId) => generatedSourceIds.has(sourceId));
   });
   const nextEntries = [
-    ...withoutFinalTerms,
-    ...projectOrotFinalTechnicalDefinitions.map(makeProjectOrotFinalTechnicalEntry),
+    ...withoutGeneratedTerms,
+    ...projectTechnicalTermDefinitions.map(makeProjectTechnicalTermEntry),
   ];
   const changed = JSON.stringify(entries) !== JSON.stringify(nextEntries);
   lexicon.entries = nextEntries;
@@ -1996,20 +2061,12 @@ function getPrefixSequences(normalized) {
 }
 
 function isEntryAllowedForWork(entry, workId) {
-  if (entry?.work_scope === 'orot' && workId !== 'orot') return false;
   if (entry?.work_scope === 'kabbalah' && !isKabbalahWork(workId)) return false;
   if (entry?.work_scope === 'zohar_ari' && !isZoharAriWork(workId)) return false;
   if (entry?.work_scope === aramaicScope && !isAramaicWork(workId)) return false;
   if (entry?.work_scope === midrashAggadahScope && !isMidrashAggadahWork(workId)) return false;
   if (entry?.work_scope === rabbinicTitleScope && !isRabbinicTitleWork(workId)) return false;
-  if (entry?.work_scope && !['orot', 'kabbalah', 'zohar_ari', aramaicScope, midrashAggadahScope, rabbinicTitleScope].includes(entry.work_scope) && entry.work_scope !== workId) return false;
-  const sourceIds = [
-    ...(entry?.source_rows || []).map((row) => row.source_id),
-    ...(entry?.possible_entries || []).map((row) => row.source_id || row.entry_key),
-  ].filter(Boolean).map(String);
-  if (sourceIds.some((sourceId) => sourceId.startsWith('project-orot-technical:'))) {
-    return workId === 'orot';
-  }
+  if (entry?.work_scope && !['kabbalah', 'zohar_ari', aramaicScope, midrashAggadahScope, rabbinicTitleScope].includes(entry.work_scope) && entry.work_scope !== workId) return false;
   return true;
 }
 
@@ -2068,12 +2125,12 @@ function isRabbinicTitleWork(workId) {
     || String(workId || '').startsWith('beur-hagra-on-jerusalem-talmud-');
 }
 
-function isProjectOrotTechnicalEntry(entry) {
+function isProjectTechnicalTermEntry(entry) {
   const sourceIds = [
     ...(entry?.source_rows || []).map((row) => row.source_id),
     ...(entry?.possible_entries || []).map((row) => row.source_id || row.entry_key),
   ].filter(Boolean).map(String);
-  return sourceIds.some((sourceId) => sourceId.startsWith('project-orot-technical:'));
+  return sourceIds.some((sourceId) => sourceId.startsWith('project-technical:'));
 }
 
 function isProjectMidrashFormulaEntry(entry) {
@@ -2095,10 +2152,8 @@ function lookupLexiconEntryId(normalized, workId) {
       return projectMidrashEntry.entry_id;
     }
   }
-  if (workId === 'orot') {
-    const projectOrotEntry = candidates.find(isProjectOrotTechnicalEntry);
-    if (projectOrotEntry) return projectOrotEntry.entry_id;
-  }
+  const projectTechnicalEntry = candidates.find(isProjectTechnicalTermEntry);
+  if (projectTechnicalEntry) return projectTechnicalEntry.entry_id;
   return candidates[0].entry_id || '';
 }
 
@@ -2107,7 +2162,6 @@ function stripEdgeQuoteArtifact(value) {
 }
 
 function analyzeQuoteArtifactSurfaceForm(surfaceWord, normalizedWord, workId) {
-  if (workId !== 'orot') return null;
   const strippedSurface = stripEdgeQuoteArtifact(surfaceWord);
   const strippedNormalized = normalizeHebrewToken(strippedSurface);
   if (!strippedSurface || strippedSurface === surfaceWord || strippedNormalized === normalizedWord) return null;
@@ -2133,7 +2187,7 @@ function analyzeQuoteArtifactSurfaceForm(surfaceWord, normalizedWord, workId) {
 }
 
 function analyzePrefixedKnownEntrySurfaceForm(surfaceWord, normalizedWord, workId) {
-  if (workId !== 'orot' || !normalizedWord || normalizedWord.length < 3 || !hasAbbreviationMark(normalizedWord)) return null;
+  if (!normalizedWord || normalizedWord.length < 3 || !hasAbbreviationMark(normalizedWord)) return null;
   for (const prefix of Array.from(normalizedWord.slice(0, 1))) {
     if (!prefixRules.has(prefix)) continue;
     const baseNormalized = normalizedWord.slice(prefix.length);
@@ -2179,7 +2233,7 @@ function matchMethodForEntry(entry, fallback = 'direct') {
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-aramaic:'))) return 'project_aramaic_grammar';
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-zohar-ari-technical:'))) return 'project_zohar_ari_technical';
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-midrash-'))) return 'project_midrash_formula';
-  if (sourceIds.some((sourceId) => sourceId.startsWith('project-orot-technical:'))) return 'project_orot_technical';
+  if (sourceIds.some((sourceId) => sourceId.startsWith('project-technical:'))) return 'project_technical';
   return fallback;
 }
 
@@ -2215,7 +2269,7 @@ function analyzeAffixSurfaceForm(surfaceWord, normalizedWord, workId) {
     const entry = lexiconById.get(entryId);
     const matchMethod = matchMethodForEntry(entry, 'direct');
     if (matchMethod === 'project_function_word' && !isAllowedProjectFunctionAffix(attempt)) continue;
-    const trustedProjectBase = ['project_orot_technical', 'project_function_word', 'project_abbreviation', 'project_midrash_formula'].includes(matchMethod);
+    const trustedProjectBase = ['project_technical', 'project_function_word', 'project_abbreviation', 'project_midrash_formula'].includes(matchMethod);
     if (!trustedProjectBase && (observedNormalizedCounts.get(attempt.baseNormalized) || 0) < 5) continue;
     const baseRenderings = conservativeBaseRenderings(entry, attempt.baseNormalized, workId);
     if (!baseRenderings.length) continue;
@@ -2321,7 +2375,7 @@ function analyzeSurfaceForm(surfaceWord, entry) {
       breakdown: entry?.breakdown || [],
     };
   }
-  if (sourceIds.some((sourceId) => sourceId.startsWith('project-orot-technical:final-machshavah'))) {
+  if (sourceIds.some((sourceId) => sourceId === 'project-technical:orot:machshavah')) {
     const normalized = normalizeHebrewToken(surfaceWord);
     const baseBreakdown = {
       hebrew: '\u05DE\u05D7\u05E9\u05D1\u05D4',
@@ -2370,13 +2424,13 @@ function analyzeSurfaceForm(surfaceWord, entry) {
       return {
         surface_transliteration: '',
         surface_renderings: formAnalysis.surface_renderings,
-        surface_context_status: 'resolved_orot_technical',
-        surface_context_note: 'Resolved as the Orot machshavah/thought technical field.',
+        surface_context_status: 'resolved_project_technical',
+        surface_context_note: 'Resolved as the scoped machshavah/thought technical field.',
         breakdown: formAnalysis.breakdown,
       };
     }
   }
-  if (sourceIds.some((sourceId) => sourceId.startsWith('project-orot-technical:final-segulot'))) {
+  if (sourceIds.some((sourceId) => sourceId === 'project-technical:orot:segulot')) {
     const normalized = normalizeHebrewToken(surfaceWord);
     const normalizedWithQubutsMater = normalizeHebrewTokenWithQubutsMater(surfaceWord);
     const isBetSegulot = normalized === '\u05D1\u05E1\u05D2\u05D5\u05DC\u05D5\u05EA'
@@ -2387,7 +2441,7 @@ function analyzeSurfaceForm(surfaceWord, entry) {
         surface_transliteration: '',
         surface_renderings: ['with qualities', 'with properties', 'in qualities', 'by qualities'],
         surface_context_status: 'resolved_prefix_base',
-        surface_context_note: 'Resolved as bet prefix plus the Orot technical base term.',
+        surface_context_note: 'Resolved as bet prefix plus the scoped technical base term.',
         breakdown: [
           {
             hebrew: '\u05D1\u05B4\u05BC\u05BE',
@@ -2401,12 +2455,12 @@ function analyzeSurfaceForm(surfaceWord, entry) {
       };
     }
   }
-  if (sourceIds.some((sourceId) => sourceId.startsWith('project-orot-technical:'))) {
+  if (sourceIds.some((sourceId) => sourceId.startsWith('project-technical:'))) {
     return {
       surface_transliteration: '',
       surface_renderings: entry?.strict_renderings || [],
-      surface_context_status: 'resolved_orot_technical',
-      surface_context_note: entry?.context_note || 'Resolved as a repeated Orot technical term.',
+      surface_context_status: 'resolved_project_technical',
+      surface_context_note: entry?.context_note || 'Resolved as a scoped project technical term.',
       breakdown: entry?.breakdown || [],
     };
   }
@@ -2469,8 +2523,8 @@ const abbreviationEntriesChanged = ensureProjectAbbreviationEntries(lexicon);
 const midrashFormulaEntriesChanged = ensureProjectMidrashFormulaEntries(lexicon);
 const aramaicGrammarEntriesChanged = ensureProjectAramaicGrammarEntries(lexicon);
 const zoharAriTermEntriesChanged = ensureProjectZoharAriTechnicalTermEntries(lexicon);
-const orotFinalTechnicalEntriesChanged = ensureProjectOrotFinalTechnicalEntries(lexicon);
-const lexiconChanged = fixedExpressionEntriesChanged || abbreviationEntriesChanged || midrashFormulaEntriesChanged || aramaicGrammarEntriesChanged || zoharAriTermEntriesChanged || orotFinalTechnicalEntriesChanged;
+const projectTechnicalEntriesChanged = ensureProjectTechnicalTermEntries(lexicon);
+const lexiconChanged = fixedExpressionEntriesChanged || abbreviationEntriesChanged || midrashFormulaEntriesChanged || aramaicGrammarEntriesChanged || zoharAriTermEntriesChanged || projectTechnicalEntriesChanged;
 writeLexicon(lexicon);
 const lexiconByNormalized = new Map();
 const lexiconById = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));

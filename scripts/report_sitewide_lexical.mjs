@@ -54,7 +54,7 @@ function entryLayer(entry) {
   const families = new Set(sourceRows.map((row) => row.source_family).filter(Boolean));
   if (ids.some((id) => id.startsWith('project-abbreviation:'))) return 'project_abbreviations';
   if (ids.some((id) => id.startsWith('project-function-word:'))) return 'project_function_words';
-  if (ids.some((id) => id.startsWith('project-orot-technical:'))) return 'work_specific_technical_terms';
+  if (ids.some((id) => id.startsWith('project-technical:'))) return 'work_specific_technical_terms';
   if (families.has('kaikki') || families.has('wiktionary')) return 'kaikki_wiktionary_cc_by_sa_gfdl';
   if (families.has('openscriptures')) return 'openscriptures_cc_by_4';
   if (families.has('wikidata')) return 'wikidata_cc0';
@@ -69,7 +69,7 @@ function rowLayers(row, entriesById) {
   if (row.match_method === 'affix_parser') layers.add('parser_affix_resolution');
   if (row.match_method === 'project_function_word') layers.add('project_function_words');
   if (row.match_method === 'project_abbreviation') layers.add('project_abbreviations');
-  if (row.match_method === 'project_orot_technical') layers.add('work_specific_technical_terms');
+  if (row.match_method === 'project_technical') layers.add('work_specific_technical_terms');
   return Array.from(layers);
 }
 

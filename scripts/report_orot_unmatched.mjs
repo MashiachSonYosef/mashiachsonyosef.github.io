@@ -55,7 +55,7 @@ const layerCounts = {
   quote_artifact_cleanup: matched.filter((row) => row.match_method === 'quote_artifact_cleanup').length,
   project_abbreviations: matched.filter((row) => row.match_method === 'project_abbreviation').length,
   project_function_words: matched.filter((row) => row.match_method === 'project_function_word').length,
-  project_orot_technical_terms: matched.filter((row) => row.match_method === 'project_orot_technical').length,
+  project_technical_terms: matched.filter((row) => row.match_method === 'project_technical').length,
   kaikki_wiktionary_cc_by_sa_gfdl: matched.filter((row) => {
     const families = entryFamilies(row);
     return families.has('kaikki') || families.has('wiktionary');
@@ -290,7 +290,7 @@ lines.push(`| Prefix + known entry parser | ${layerCounts.prefix_known_entry_par
 lines.push(`| Quote artifact cleanup | ${layerCounts.quote_artifact_cleanup} |`);
 lines.push(`| Project abbreviations | ${layerCounts.project_abbreviations} |`);
 lines.push(`| Project function words | ${layerCounts.project_function_words} |`);
-lines.push(`| Orot technical terms | ${layerCounts.project_orot_technical_terms} |`);
+lines.push(`| Project scoped technical terms | ${layerCounts.project_technical_terms} |`);
 lines.push(`| Kaikki/Wiktionary CC BY-SA/GFDL | ${layerCounts.kaikki_wiktionary_cc_by_sa_gfdl} |`);
 lines.push('');
 lines.push('## Unmatched Buckets');

@@ -609,7 +609,7 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();')
   [void]$Builder.AppendLine('      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");')
   [void]$Builder.AppendLine('      const localSourceUrlMap = {')
-  [void]$Builder.AppendLine('        "local:project-orot-technical-term-table": "data/lexical/source-layers/project-orot-technical-terms.json",')
+  [void]$Builder.AppendLine('        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",')
   [void]$Builder.AppendLine('        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",')
   [void]$Builder.AppendLine('        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",')
   [void]$Builder.AppendLine('        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",')

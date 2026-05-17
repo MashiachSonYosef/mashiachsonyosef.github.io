@@ -170,7 +170,7 @@ const rejectedRows = [];
 
 for (const row of tokenIndex.forms || []) {
   if (row.status !== 'matched' || !row.lexicon_entry_id) continue;
-  if (['project_abbreviation', 'project_orot_technical_term', 'quote_artifact_cleanup', 'affix_parser'].includes(row.match_method)) continue;
+  if (['project_abbreviation', 'project_technical', 'quote_artifact_cleanup', 'affix_parser'].includes(row.match_method)) continue;
 
   const entry = entriesById.get(row.lexicon_entry_id);
   if (!entry) continue;

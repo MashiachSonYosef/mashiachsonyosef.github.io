@@ -330,8 +330,8 @@ foreach ($rendering in @('that not', 'which does not', 'without')) {
 
 $pnimiyutNormalized = -join @([char]0x05E4, [char]0x05E0, [char]0x05D9, [char]0x05DE, [char]0x05D9, [char]0x05D5, [char]0x05EA)
 $pnimiyut = Select-TokenRow -WorkId 'orot' -Normalized $pnimiyutNormalized
-if ($null -eq $pnimiyut -or $pnimiyut.status -ne 'matched' -or $pnimiyut.match_method -ne 'project_orot_technical') {
-  throw "Expected pnimiyut to resolve through the Orot technical term layer."
+if ($null -eq $pnimiyut -or $pnimiyut.status -ne 'matched' -or $pnimiyut.match_method -ne 'project_technical') {
+  throw "Expected pnimiyut to resolve through the scoped project technical term layer."
 }
 $pnimiyutEntry = $entriesById[[string]$pnimiyut.lexicon_entry_id]
 $pnimiyutVisibleRenderings = @($pnimiyut.surface_renderings) + @($pnimiyutEntry.strict_renderings)
@@ -343,8 +343,8 @@ foreach ($rendering in @('inner', 'internal', 'inward')) {
 
 $bSegulotSurface = -join @([char]0x05D1, [char]0x05B4, [char]0x05BC, [char]0x05E1, [char]0x05B0, [char]0x05D2, [char]0x05BB, [char]0x05DC, [char]0x05D5, [char]0x05B9, [char]0x05EA)
 $bSegulot = Select-TokenRow -WorkId 'orot' -Surface $bSegulotSurface
-if ($null -eq $bSegulot -or $bSegulot.status -ne 'matched' -or $bSegulot.match_method -ne 'project_orot_technical') {
-  throw "Expected bisegulot to resolve through the Orot technical term layer."
+if ($null -eq $bSegulot -or $bSegulot.status -ne 'matched' -or $bSegulot.match_method -ne 'project_technical') {
+  throw "Expected bisegulot to resolve through the scoped project technical term layer."
 }
 Assert-Codepoints -Label 'bisegulot surface' -Value $bSegulot.surface_word -Expected @(0x05D1, 0x05B4, 0x05BC, 0x05E1, 0x05B0, 0x05D2, 0x05BB, 0x05DC, 0x05D5, 0x05B9, 0x05EA)
 foreach ($rendering in @('with qualities', 'with properties', 'in qualities', 'by qualities')) {
@@ -369,8 +369,8 @@ if (@($bSegulot.surface_renderings) -contains 'dotted with a segol') {
 
 $segulatSurface = -join @([char]0x05E1, [char]0x05D2, [char]0x05D5, [char]0x05DC, [char]0x05EA)
 $segulat = Select-TokenRow -WorkId 'orot' -Surface $segulatSurface
-if ($null -eq $segulat -or $segulat.status -ne 'matched' -or $segulat.match_method -ne 'project_orot_technical') {
-  throw "Expected segulat to resolve through the Orot technical term layer."
+if ($null -eq $segulat -or $segulat.status -ne 'matched' -or $segulat.match_method -ne 'project_technical') {
+  throw "Expected segulat to resolve through the scoped project technical term layer."
 }
 Assert-Codepoints -Label 'segulat surface' -Value $segulat.surface_word -Expected @(0x05E1, 0x05D2, 0x05D5, 0x05DC, 0x05EA)
 $segulatEntry = $entriesById[[string]$segulat.lexicon_entry_id]
@@ -389,8 +389,8 @@ if ($segulatVisibleRenderings -contains 'dotted with a segol') {
 
 $machshavahSurface = -join @([char]0x05D4, [char]0x05DE, [char]0x05D7, [char]0x05E9, [char]0x05D1, [char]0x05D4)
 $machshavah = Select-TokenRow -WorkId 'orot' -Surface $machshavahSurface
-if ($null -eq $machshavah -or $machshavah.status -ne 'matched' -or $machshavah.match_method -ne 'project_orot_technical') {
-  throw "Expected ha-machshavah to resolve through the Orot technical term layer."
+if ($null -eq $machshavah -or $machshavah.status -ne 'matched' -or $machshavah.match_method -ne 'project_technical') {
+  throw "Expected ha-machshavah to resolve through the scoped project technical term layer."
 }
 Assert-Codepoints -Label 'ha-machshavah surface' -Value $machshavah.surface_word -Expected @(0x05D4, 0x05DE, 0x05D7, 0x05E9, 0x05D1, 0x05D4)
 foreach ($rendering in @('the thought', 'the thinking', 'the idea', 'the contemplation')) {
