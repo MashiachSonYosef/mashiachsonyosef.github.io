@@ -2092,23 +2092,19 @@ function Append-PublicExportLinks {
 }
 
 $homePage = New-Object System.Text.StringBuilder
-Append-SiteHead -Builder $homePage -Title 'Full Library'
+[void]$homePage.AppendLine('<!DOCTYPE html>')
+[void]$homePage.AppendLine('<html lang="en">')
+[void]$homePage.AppendLine('<head>')
+[void]$homePage.AppendLine('  <meta charset="UTF-8">')
+[void]$homePage.AppendLine('  <meta name="viewport" content="width=device-width, initial-scale=1.0">')
+[void]$homePage.AppendLine('  <meta http-equiv="refresh" content="0; url=library/">')
+[void]$homePage.AppendLine('  <link rel="canonical" href="library/">')
+[void]$homePage.AppendLine('  <title>Hebrew Source Workbench</title>')
+[void]$homePage.AppendLine('  <script>window.location.replace("library/");</script>')
+[void]$homePage.AppendLine('</head>')
+[void]$homePage.AppendLine('<body>')
 [void]$homePage.AppendLine('  <main>')
-[void]$homePage.AppendLine('    <div class="shell">')
-[void]$homePage.AppendLine('      <div class="hero">')
-[void]$homePage.AppendLine('        <h1>Full Library</h1>')
-[void]$homePage.AppendLine('        <p>Hebrew Source Workbench: Hebrew-first source pages with clickable lexical HUD support, explicit source/license layers, and downloadable lexical claim exports. Browse the complete imported library below.</p>')
-[void]$homePage.AppendLine('        <div class="home-actions"><a href="about/">About / License</a><a href="data/public-lexical/manifest.json">Lexical Export Manifest</a><a href="data/public-lexical/sitewide/work-downloads.csv" download>Per-work Downloads CSV</a></div>')
-[void]$homePage.AppendLine('      </div>')
-[void]$homePage.AppendLine('      <div style="padding:22px">')
-[void]$homePage.AppendLine('        <section class="home-section">')
-[void]$homePage.AppendLine('          <h2>Lexical Downloads</h2>')
-[void]$homePage.AppendLine('          <p>CSV and JSONL exports are lexical options, not translations. The AI CSVs include every token row and leave unresolved or below-threshold tokens blank instead of inventing renderings.</p>')
-Append-PublicExportLinks -Builder $homePage -HrefPrefix ''
-[void]$homePage.AppendLine('        </section>')
-Append-LibrarySections -Builder $homePage -Sources $sources -HrefPrefix ''
-[void]$homePage.AppendLine('      </div>')
-[void]$homePage.AppendLine('    </div>')
+[void]$homePage.AppendLine('    <p>Hebrew Source Workbench with lexical HUD support. Redirecting to the <a href="library/">Full Library</a>.</p>')
 [void]$homePage.AppendLine('  </main>')
 [void]$homePage.AppendLine('</body>')
 [void]$homePage.AppendLine('</html>')
