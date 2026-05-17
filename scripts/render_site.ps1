@@ -4,7 +4,8 @@ param(
   [int]$MaxUnits = 0,
   [string[]]$WorkIds = @(),
   [string]$OnlyWorkIdsPath = '',
-  [switch]$SkipOverlayExports
+  [switch]$SkipOverlayExports,
+  [switch]$SkipLexicalPayloadFiles
 )
 
 $ErrorActionPreference = 'Stop'
@@ -2091,6 +2092,45 @@ function Append-PublicExportLinks {
   [void]$Builder.AppendLine("          <p class=""export-actions""><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/manifest.json"">Manifest</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/sitewide/work-downloads.csv"" download>Per-work downloads CSV</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/all-claims.csv"" download>All claims CSV</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/by-license/cc0-only.csv"" download>CC0 CSV</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/by-license/project-cc0.csv"" download>Project CC0 CSV</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/by-work/orot-ai-options-min60.csv"" download>Orot AI CSV</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/by-work/aggadat-bereshit-ai-options-min60.csv"" download>Aggadat AI CSV</a><a class=""export-button"" href=""$($HrefPrefix)prompts/use-lexical-workbench.md"">AI workflow prompt</a></p>")
 }
 
+function Append-WorkLexicalDownloadLinks {
+  param(
+    [System.Text.StringBuilder]$Builder,
+    [object]$Source,
+    [string]$RootHref,
+    [AllowNull()][object]$WorkLexicalExternal
+  )
+
+  $workId = [string]$Source.work_id
+  if (-not $workId) { return }
+
+  $links = New-Object System.Collections.Generic.List[string]
+  if ($null -ne $WorkLexicalExternal -and $WorkLexicalExternal.manifest_url) {
+    $links.Add("<a class=""export-button"" href=""$($WorkLexicalExternal.manifest_url)"">Lexical manifest</a>")
+  }
+  $links.Add("<a class=""export-button"" href=""$($RootHref)data/public-lexical/sitewide/work-downloads.csv"" download>Per-work download index CSV</a>")
+  $links.Add("<a class=""export-button"" href=""$($RootHref)data/public-lexical/all-claims.csv"" download>All lexical claims CSV</a>")
+
+  $workClaimCsv = "data/public-lexical/by-work/$workId.csv"
+  if (Test-Path -LiteralPath $workClaimCsv) {
+    $links.Add("<a class=""export-button"" href=""$($RootHref)$workClaimCsv"" download>Work claims CSV</a>")
+  }
+  $tokenStatusCsv = "data/public-lexical/by-work/$workId-token-status.csv"
+  if (Test-Path -LiteralPath $tokenStatusCsv) {
+    $links.Add("<a class=""export-button"" href=""$($RootHref)$tokenStatusCsv"" download>Token status CSV</a>")
+  }
+  $aiOptionsCsv = "data/public-lexical/by-work/$workId-ai-options-min60.csv"
+  if (Test-Path -LiteralPath $aiOptionsCsv) {
+    $links.Add("<a class=""export-button"" href=""$($RootHref)$aiOptionsCsv"" download>AI options CSV</a>")
+  }
+
+  if ($links.Count -gt 0) {
+    [void]$Builder.AppendLine('        <div class="license-notice lexical-downloads">')
+    [void]$Builder.AppendLine('          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.')
+    [void]$Builder.AppendLine("          <p class=""export-actions"">$($links -join '')</p>")
+    [void]$Builder.AppendLine('        </div>')
+  }
+}
+
 $homePage = New-Object System.Text.StringBuilder
 [void]$homePage.AppendLine('<!DOCTYPE html>')
 [void]$homePage.AppendLine('<html lang="en">')
@@ -2219,7 +2259,16 @@ foreach ($source in $renderSources) {
   $workOccurrence = if ($lexicalCache.occurrences_by_work.ContainsKey([string]$source.work_id)) { $lexicalCache.occurrences_by_work[[string]$source.work_id] } else { $null }
   $workHasLexical = ($null -ne $workOccurrence)
   $workLexicalPayload = if ($workHasLexical) { Get-WorkLexicalPayload -WorkOccurrence $workOccurrence -LexicalCache $lexicalCache } else { $null }
-  $workLexicalExternal = if ($workHasLexical) { Write-WorkLexicalPayloadFiles -WorkId $source.work_id -WorkLexicalPayload $workLexicalPayload -RootHref $rootHref } else { $null }
+  $workLexicalExternal = if ($workHasLexical) {
+    if ($SkipLexicalPayloadFiles) {
+      [pscustomobject]@{
+        manifest_url = "$rootHref" + "data/lexical/$($source.work_id).manifest.json"
+        root_href = $rootHref
+      }
+    } else {
+      Write-WorkLexicalPayloadFiles -WorkId $source.work_id -WorkLexicalPayload $workLexicalPayload -RootHref $rootHref
+    }
+  } else { $null }
 
   Append-SiteHead -Builder $page -Title $source.work_title -IncludeLexicalStyles:$workHasLexical
   [void]$page.AppendLine('  <main>')
@@ -2264,13 +2313,16 @@ foreach ($source in $renderSources) {
   } else {
     [void]$page.AppendLine("        <p class=""meta source-citation"">$($sourceNotes.Count) source/license notes. See footer table for details.</p>")
   }
-  if ($workHasLexical -and [string]$source.work_id -eq 'orot') {
+  if ($workHasLexical) {
     $workLexicalForms = @($workLexicalPayload.token_index.forms)
     $lexicalMatched = @($workLexicalForms | Where-Object { $_.status -eq 'matched' -and $_.lexicon_entry_id }).Count
     $lexicalTotal = $workLexicalForms.Count
     if ($lexicalTotal -gt 0) {
       [void]$page.AppendLine("        <p class=""meta lexical-coverage"">Lexical HUD coverage: <strong>$lexicalMatched matched</strong> / $lexicalTotal unique forms.</p>")
     }
+  }
+  if ($workHasLexical) {
+    Append-WorkLexicalDownloadLinks -Builder $page -Source $source -RootHref $rootHref -WorkLexicalExternal $workLexicalExternal
   }
   if ($MaxUnits -gt 0) {
     [void]$page.AppendLine("        <p class=""fallback-note"">Fallback render active. Showing first $MaxUnits units only while route stability is verified.</p>")
