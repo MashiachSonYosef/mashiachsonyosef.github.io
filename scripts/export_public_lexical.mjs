@@ -30,6 +30,8 @@ const licenseFiles = {
   openscripturesCcBy4: 'data/public-lexical/by-license/openscriptures-cc-by-4.jsonl',
   kaikkiWiktionaryCcBySaGfdl: 'data/public-lexical/by-license/kaikki-wiktionary-cc-by-sa-gfdl.jsonl',
 };
+const safeAiMinConfidence = 60;
+const unsafeAiStatuses = new Set(['Related', 'Caution', 'Unresolved']);
 
 function abs(rel) {
   return path.join(root, rel);
@@ -237,8 +239,49 @@ function classifyLicenseFile(row) {
   return '';
 }
 
+function confidenceForClaim({ status, token, candidate, sourceRow, surfaceClaim = false }) {
+  if (status === 'Unresolved') return 0;
+  const matchMethod = `${token?.match_method || ''}`;
+  const sourceFamily = `${sourceRow?.source_family || ''}`.toLowerCase();
+  const sourceName = `${sourceRow?.source_name || ''}`.toLowerCase();
+  const relation = `${candidate?.relation_label || ''}`.toLowerCase();
+  const role = `${candidate?.context_role || ''}`;
+
+  let score = 60;
+  if (status === 'Strict Hebrew' || status === 'Strict Aramaic') score = 88;
+  if (status === 'Potential') score = 62;
+  if (status === 'Related') score = 48;
+  if (status === 'Caution') score = 35;
+
+  if (matchMethod.startsWith('project_') || sourceFamily === 'workspace') score += 7;
+  if (matchMethod === 'fixed_expression') score += 8;
+  if (matchMethod === 'project_function_word' || matchMethod === 'project_abbreviation' || matchMethod === 'project_midrash_formula' || matchMethod === 'project_aramaic_grammar') score += 5;
+  if (matchMethod === 'project_technical') score += 4;
+  if (matchMethod.includes('prefix') || matchMethod.includes('affix')) score -= 4;
+  if (sourceFamily === 'openscriptures' || sourceName.includes('openscriptures')) score += 3;
+  if (sourceFamily === 'wikidata' || sourceName.includes('wikidata')) score += 1;
+  if (sourceFamily === 'kaikki' || sourceName.includes('kaikki') || sourceName.includes('wiktionary')) score -= 10;
+  if (role === 'likely_contextual') score += 4;
+  if (surfaceClaim) score += 3;
+  if (relation.includes('homograph') || relation.includes('noisy') || relation.includes('caution')) score -= 15;
+
+  if (status === 'Potential') score = Math.min(score, 74);
+  if (status === 'Related') score = Math.min(score, 59);
+  if (status === 'Caution') score = Math.min(score, 49);
+  return Math.max(0, Math.min(99, Math.round(score)));
+}
+
+function confidenceNote(row) {
+  if (row.status === 'Unresolved') return '0%: no lexical entry yet.';
+  return `${row.confidence}% deterministic export assurance from HUD status, match method, source layer, context role, and homograph/noise guards.`;
+}
+
+function isSafeAiOption(row) {
+  return row.confidence >= safeAiMinConfidence && !unsafeAiStatuses.has(row.status);
+}
+
 function makeClaim({ work, token, status, hebrewForm, renderings, breakdown, candidate, sourceRow }) {
-  return {
+  const row = {
     schema_version: 1,
     generated_at: generatedAt,
     work_id: work.work_id,
@@ -250,8 +293,8 @@ function makeClaim({ work, token, status, hebrewForm, renderings, breakdown, can
     hebrew_lemma_or_form: hebrewForm || token.surface_word || '',
     transliteration: candidate?.transliteration || token.surface_transliteration || '',
     status,
-    confidence: null,
-    confidence_note: 'HUD confidence is computed in-browser from token/context evidence; it is not persisted in this static export.',
+    confidence: 0,
+    confidence_note: '',
     strict_renderings: canonicalRenderings(renderings),
     breakdown: normalizeBreakdown(breakdown),
     source_name: sourceRow.source_name || '',
@@ -263,6 +306,9 @@ function makeClaim({ work, token, status, hebrewForm, renderings, breakdown, can
     notes: unique([candidate?.relation_label, candidate?.context_note, sourceRow.notes]).join(' '),
     not_a_translation: true,
   };
+  row.confidence = confidenceForClaim({ status, token, candidate, sourceRow, surfaceClaim: Boolean(breakdown?.length) });
+  row.confidence_note = confidenceNote(row);
+  return row;
 }
 
 function makeCompactClaim({ status, normalizedForms, hebrewForm, renderings, candidate, sourceRow }) {
@@ -274,8 +320,8 @@ function makeCompactClaim({ status, normalizedForms, hebrewForm, renderings, can
     hebrew_lemma_or_form: hebrewForm || '',
     transliteration: candidate?.transliteration || '',
     status,
-    confidence: null,
-    confidence_note: 'HUD confidence is computed in-browser from token/context evidence; it is not persisted in this static export.',
+    confidence: 0,
+    confidence_note: '',
     strict_renderings: canonicalRenderings(renderings),
     source_name: sourceRow.source_name || '',
     source_id: sourceRow.source_id || '',
@@ -286,6 +332,8 @@ function makeCompactClaim({ status, normalizedForms, hebrewForm, renderings, can
     notes: unique([candidate?.relation_label, candidate?.context_note, sourceRow.notes]).join(' '),
     not_a_translation: true,
   };
+  row.confidence = confidenceForClaim({ status, token: null, candidate, sourceRow });
+  row.confidence_note = confidenceNote(row);
   row.claim_id = stableId('claim', [
     row.status,
     row.hebrew_lemma_or_form,
@@ -336,12 +384,28 @@ function makeTokenStatusRows({ spec, work, tokenIndex, manifest, rows }) {
     const claimRows = rowsByTokenKey.get(key) || [];
     const strictRows = claimRows.filter((row) => row.status === 'Strict Hebrew' || row.status === 'Strict Aramaic');
     const bestRows = strictRows.length ? strictRows : claimRows;
+    const safeRows = claimRows.filter(isSafeAiOption);
+    const safeBestRows = safeRows.length
+      ? (safeRows.filter((row) => row.status === 'Strict Hebrew' || row.status === 'Strict Aramaic').length
+        ? safeRows.filter((row) => row.status === 'Strict Hebrew' || row.status === 'Strict Aramaic')
+        : safeRows)
+      : [];
     const exportedRenderings = unique(bestRows.flatMap((row) => row.strict_renderings || []));
+    const safeRenderings = unique(safeBestRows.flatMap((row) => row.strict_renderings || []));
+    const bestConfidence = claimRows.length ? Math.max(...claimRows.map((row) => row.confidence || 0)) : 0;
+    const safeMaxConfidence = safeRows.length ? Math.max(...safeRows.map((row) => row.confidence || 0)) : 0;
     const exportStatus = claimRows.length
       ? (strictRows.length ? 'source_backed_strict_options' : 'source_backed_non_strict_options')
       : (token.status === 'matched' ? 'matched_no_public_claim_exported' : 'unresolved');
+    const safeExportStatus = safeRows.length
+      ? `safe_options_min${safeAiMinConfidence}`
+      : (claimRows.length
+        ? `no_safe_option_min${safeAiMinConfidence}`
+        : (token.status === 'matched' ? 'matched_no_public_claim_exported' : 'unresolved'));
     const note = claimRows.length
-      ? 'Use claim rows for source/license details; this is a token-status index, not a translation.'
+      ? (safeRows.length
+        ? `Use safe_export_* columns for >=${safeAiMinConfidence}% AI workflow options; this is not a translation.`
+        : `Matched rows exist, but none meet the >=${safeAiMinConfidence}% safe AI export threshold. Do not infer a definition.`)
       : (token.status === 'matched'
         ? 'Token is matched internally, but no public source-backed rendering row was exported.'
         : 'No lexical entry yet.');
@@ -366,6 +430,15 @@ function makeTokenStatusRows({ spec, work, tokenIndex, manifest, rows }) {
       exported_source_ids: unique(bestRows.map((row) => row.source_id)),
       exported_licenses: unique(bestRows.map((row) => row.license)),
       exported_claim_count: claimRows.length,
+      best_confidence: bestConfidence,
+      safe_min_confidence: safeAiMinConfidence,
+      safe_max_confidence: safeMaxConfidence,
+      safe_export_status: safeExportStatus,
+      safe_export_statuses: unique(safeRows.map((row) => row.status)),
+      safe_export_rendering_options: safeRenderings,
+      safe_source_names: unique(safeBestRows.map((row) => row.source_name)),
+      safe_source_ids: unique(safeBestRows.map((row) => row.source_id)),
+      safe_licenses: unique(safeBestRows.map((row) => row.license)),
       export_status: exportStatus,
       notes: note,
       not_a_translation: true,
@@ -523,6 +596,8 @@ const claimCsvColumns = [
   { header: 'hebrew_lemma_or_form', value: (row) => row.hebrew_lemma_or_form },
   { header: 'transliteration', value: (row) => row.transliteration },
   { header: 'status', value: (row) => row.status },
+  { header: 'confidence', value: (row) => row.confidence },
+  { header: 'confidence_note', value: (row) => row.confidence_note },
   { header: 'strict_renderings', value: (row) => row.strict_renderings },
   { header: 'breakdown', value: (row) => row.breakdown },
   { header: 'source_name', value: (row) => row.source_name },
@@ -555,16 +630,53 @@ const tokenStatusCsvColumns = [
   { header: 'exported_source_ids', value: (row) => row.exported_source_ids },
   { header: 'exported_licenses', value: (row) => row.exported_licenses },
   { header: 'exported_claim_count', value: (row) => row.exported_claim_count },
+  { header: 'best_confidence', value: (row) => row.best_confidence },
+  { header: 'safe_min_confidence', value: (row) => row.safe_min_confidence },
+  { header: 'safe_max_confidence', value: (row) => row.safe_max_confidence },
+  { header: 'safe_export_status', value: (row) => row.safe_export_status },
+  { header: 'safe_export_statuses', value: (row) => row.safe_export_statuses },
+  { header: 'safe_export_rendering_options', value: (row) => row.safe_export_rendering_options },
+  { header: 'safe_source_names', value: (row) => row.safe_source_names },
+  { header: 'safe_source_ids', value: (row) => row.safe_source_ids },
+  { header: 'safe_licenses', value: (row) => row.safe_licenses },
   { header: 'export_status', value: (row) => row.export_status },
   { header: 'notes', value: (row) => row.notes },
   { header: 'not_a_translation', value: (row) => row.not_a_translation },
 ];
 
+const aiOptionsCsvColumns = [
+  { header: 'work_id', value: (row) => row.work_id },
+  { header: 'work_title', value: (row) => row.work_title },
+  { header: 'token_index_id', value: (row) => row.token_index_id },
+  { header: 'chunk_id', value: (row) => row.chunk_id },
+  { header: 'clicked_surface_form', value: (row) => row.clicked_surface_form },
+  { header: 'normalized_form', value: (row) => row.normalized_form },
+  { header: 'lexical_status', value: (row) => row.lexical_status },
+  { header: 'match_method', value: (row) => row.match_method },
+  { header: 'occurrence_count', value: (row) => row.occurrence_count },
+  { header: 'safe_min_confidence', value: (row) => row.safe_min_confidence },
+  { header: 'safe_max_confidence', value: (row) => row.safe_max_confidence },
+  { header: 'safe_export_status', value: (row) => row.safe_export_status },
+  { header: 'safe_export_statuses', value: (row) => row.safe_export_statuses },
+  { header: 'safe_export_rendering_options', value: (row) => row.safe_export_rendering_options },
+  { header: 'safe_source_names', value: (row) => row.safe_source_names },
+  { header: 'safe_source_ids', value: (row) => row.safe_source_ids },
+  { header: 'safe_licenses', value: (row) => row.safe_licenses },
+  { header: 'best_confidence_any_public_claim', value: (row) => row.best_confidence },
+  { header: 'all_exported_statuses', value: (row) => row.exported_statuses },
+  { header: 'all_exported_rendering_options', value: (row) => row.exported_rendering_options },
+  { header: 'all_exported_licenses', value: (row) => row.exported_licenses },
+  { header: 'notes', value: (row) => row.notes },
+  { header: 'not_a_translation', value: (row) => row.not_a_translation },
+];
+
 writeJsonl('data/public-lexical/all-claims.jsonl', allRows);
+writeCsv('data/public-lexical/all-claims.csv', allRows, claimCsvColumns);
 
 for (const result of workResults) {
   if (!result.rows.length && result.skipped.missing_work_files) continue;
   writeJsonl(`data/public-lexical/by-work/${result.spec.work_id}.jsonl`, result.rows);
+  writeCsv(`data/public-lexical/by-work/${result.spec.work_id}.csv`, result.rows, claimCsvColumns);
 }
 
 const byLicenseRows = {
@@ -593,6 +705,7 @@ writeCsv('data/public-lexical/by-license/cc0-only.csv', cc0OnlyRows, claimCsvCol
 for (const result of workResults) {
   if (result.tokenStatusRows?.length) {
     writeCsv(`data/public-lexical/by-work/${result.spec.work_id}-token-status.csv`, result.tokenStatusRows, tokenStatusCsvColumns);
+    writeCsv(`data/public-lexical/by-work/${result.spec.work_id}-ai-options-min${safeAiMinConfidence}.csv`, result.tokenStatusRows, aiOptionsCsvColumns);
   }
 }
 
@@ -607,6 +720,61 @@ function listManifestFiles(dir) {
     }
   }
   return files;
+}
+
+function listJsonFiles(dir) {
+  if (!fs.existsSync(dir)) return [];
+  const files = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const rel = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...listJsonFiles(rel));
+    } else if (entry.isFile() && entry.name.endsWith('.json')) {
+      files.push(rel);
+    }
+  }
+  return files;
+}
+
+function repoRel(file) {
+  return path.relative(root, file).replaceAll(path.sep, '/');
+}
+
+function buildWorkDownloadIndex() {
+  const tokenIndexesByWork = new Map();
+  for (const tokenIndexPath of listJsonFiles(abs('data/lexical/token-indexes'))) {
+    try {
+      const tokenIndex = JSON.parse(fs.readFileSync(tokenIndexPath, 'utf8'));
+      if (tokenIndex.work_id && !tokenIndexesByWork.has(tokenIndex.work_id)) {
+        tokenIndexesByWork.set(tokenIndex.work_id, repoRel(tokenIndexPath));
+      }
+    } catch {
+      // Keep the public download index best-effort; validation scripts catch malformed JSON elsewhere.
+    }
+  }
+
+  const rows = [];
+  for (const manifestPath of listManifestFiles(abs('data/lexical'))) {
+    try {
+      const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+      if (!manifest.work_id) continue;
+      const workId = manifest.work_id;
+      rows.push({
+        work_id: workId,
+        lexical_manifest: repoRel(manifestPath),
+        token_index: tokenIndexesByWork.get(workId) || '',
+        public_claims_jsonl: fs.existsSync(abs(`data/public-lexical/by-work/${workId}.jsonl`)) ? `data/public-lexical/by-work/${workId}.jsonl` : '',
+        public_claims_csv: fs.existsSync(abs(`data/public-lexical/by-work/${workId}.csv`)) ? `data/public-lexical/by-work/${workId}.csv` : '',
+        token_status_csv: fs.existsSync(abs(`data/public-lexical/by-work/${workId}-token-status.csv`)) ? `data/public-lexical/by-work/${workId}-token-status.csv` : '',
+        ai_options_min60_csv: fs.existsSync(abs(`data/public-lexical/by-work/${workId}-ai-options-min${safeAiMinConfidence}.csv`)) ? `data/public-lexical/by-work/${workId}-ai-options-min${safeAiMinConfidence}.csv` : '',
+        sitewide_claim_index_csv: 'data/public-lexical/sitewide/claim-index.csv',
+        sitewide_normalized_lookup: 'data/public-lexical/sitewide/normalized-lookup.json',
+      });
+    } catch {
+      // Keep scanning the rest of the corpus.
+    }
+  }
+  return rows.sort((a, b) => a.work_id.localeCompare(b.work_id));
 }
 
 function buildSitewideCompactExport() {
@@ -716,6 +884,20 @@ function buildSitewideCompactExport() {
 }
 
 const sitewideCompact = buildSitewideCompactExport();
+const workDownloadRows = buildWorkDownloadIndex();
+const workDownloadColumns = [
+  { header: 'work_id', value: (row) => row.work_id },
+  { header: 'lexical_manifest', value: (row) => row.lexical_manifest },
+  { header: 'token_index', value: (row) => row.token_index },
+  { header: 'public_claims_jsonl', value: (row) => row.public_claims_jsonl },
+  { header: 'public_claims_csv', value: (row) => row.public_claims_csv },
+  { header: 'token_status_csv', value: (row) => row.token_status_csv },
+  { header: 'ai_options_min60_csv', value: (row) => row.ai_options_min60_csv },
+  { header: 'sitewide_claim_index_csv', value: (row) => row.sitewide_claim_index_csv },
+  { header: 'sitewide_normalized_lookup', value: (row) => row.sitewide_normalized_lookup },
+];
+writeJsonl('data/public-lexical/sitewide/work-downloads.jsonl', workDownloadRows);
+writeCsv('data/public-lexical/sitewide/work-downloads.csv', workDownloadRows, workDownloadColumns);
 
 const manifest = {
   schema_version: 1,
@@ -726,6 +908,7 @@ const manifest = {
   reports: ['reports/public-lexical-export-report.md'],
   files: [
     { path: 'data/public-lexical/all-claims.jsonl', row_count: allRows.length, bytes: fileSize('data/public-lexical/all-claims.jsonl') },
+    { path: 'data/public-lexical/all-claims.csv', row_count: allRows.length, bytes: fileSize('data/public-lexical/all-claims.csv') },
     ...workResults
       .filter((result) => result.rows.length || !result.skipped.missing_work_files)
       .map((result) => ({
@@ -733,6 +916,14 @@ const manifest = {
         work_id: result.spec.work_id,
         row_count: result.rows.length,
         bytes: fileSize(`data/public-lexical/by-work/${result.spec.work_id}.jsonl`),
+      })),
+    ...workResults
+      .filter((result) => result.rows.length || !result.skipped.missing_work_files)
+      .map((result) => ({
+        path: `data/public-lexical/by-work/${result.spec.work_id}.csv`,
+        work_id: result.spec.work_id,
+        row_count: result.rows.length,
+        bytes: fileSize(`data/public-lexical/by-work/${result.spec.work_id}.csv`),
       })),
     ...Object.entries(licenseFiles).map(([bucket, rel]) => ({
       path: rel,
@@ -755,12 +946,27 @@ const manifest = {
         row_count: result.tokenStatusRows.length,
         bytes: fileSize(`data/public-lexical/by-work/${result.spec.work_id}-token-status.csv`),
       })),
+    ...workResults
+      .filter((result) => result.tokenStatusRows?.length)
+      .map((result) => ({
+        path: `data/public-lexical/by-work/${result.spec.work_id}-ai-options-min${safeAiMinConfidence}.csv`,
+        work_id: result.spec.work_id,
+        row_count: result.tokenStatusRows.length,
+        safe_min_confidence: safeAiMinConfidence,
+        bytes: fileSize(`data/public-lexical/by-work/${result.spec.work_id}-ai-options-min${safeAiMinConfidence}.csv`),
+      })),
     { path: 'data/public-lexical/sitewide/claim-index.jsonl', row_count: sitewideCompact.claims.length, bytes: fileSize('data/public-lexical/sitewide/claim-index.jsonl') },
     { path: 'data/public-lexical/sitewide/claim-index.csv', row_count: sitewideCompact.claims.length, bytes: fileSize('data/public-lexical/sitewide/claim-index.csv') },
     { path: 'data/public-lexical/sitewide/normalized-lookup.json', row_count: sitewideCompact.lookup_terms, bytes: fileSize('data/public-lexical/sitewide/normalized-lookup.json') },
     { path: 'data/public-lexical/sitewide/work-summary.jsonl', row_count: sitewideCompact.work_rows.length, bytes: fileSize('data/public-lexical/sitewide/work-summary.jsonl') },
     { path: 'data/public-lexical/sitewide/work-summary.csv', row_count: sitewideCompact.work_rows.length, bytes: fileSize('data/public-lexical/sitewide/work-summary.csv') },
+    { path: 'data/public-lexical/sitewide/work-downloads.jsonl', row_count: workDownloadRows.length, bytes: fileSize('data/public-lexical/sitewide/work-downloads.jsonl') },
+    { path: 'data/public-lexical/sitewide/work-downloads.csv', row_count: workDownloadRows.length, bytes: fileSize('data/public-lexical/sitewide/work-downloads.csv') },
   ],
+  ai_export_policy: {
+    safe_min_confidence: safeAiMinConfidence,
+    note: 'AI options CSVs include every token row. Renderings below the threshold, Related, Caution, and unresolved rows are retained as placeholders or diagnostics but are not safe_export_rendering_options.',
+  },
   license_policy: {
     note: 'Rows retain their own source/license metadata. Do not combine CC BY-SA/GFDL rows into CC0-only downstream output.',
     projectCc0: 'Project-authored rows explicitly labeled project-authored / CC0.',
@@ -806,7 +1012,9 @@ const reportLines = [
   `| Kaikki/Wiktionary CC BY-SA/GFDL | ${licenseCounts.kaikkiWiktionaryCcBySaGfdl} | data/public-lexical/by-license/kaikki-wiktionary-cc-by-sa-gfdl.jsonl |`,
   `| Combined CC0-only CSV | ${cc0OnlyRows.length} | data/public-lexical/by-license/cc0-only.csv |`,
   '',
-  'CSV mirrors are available beside the JSONL license-bucket files. The CSV files are meant for spreadsheet import or AI-assisted workflows that prefer flat rows.',
+  'CSV mirrors are available beside the JSONL files. The CSV files are meant for spreadsheet import or AI-assisted workflows that prefer flat rows.',
+  '',
+  `All claim rows are also available as \`data/public-lexical/all-claims.csv\`, with deterministic confidence columns attached.`,
   '',
   '## Token Status CSVs',
   '',
@@ -817,6 +1025,14 @@ const reportLines = [
     .map((result) => `| ${result.spec.work_id} | ${result.tokenStatusRows.length} | data/public-lexical/by-work/${result.spec.work_id}-token-status.csv |`),
   '',
   'Token-status CSVs include unresolved forms explicitly. An unresolved row means `No lexical entry yet`, not a hidden translation or inferred definition.',
+  '',
+  `For AI-assisted workflows, use the \`*-ai-options-min${safeAiMinConfidence}.csv\` files. They include every token row, but only expose \`safe_export_rendering_options\` when a public claim is at least ${safeAiMinConfidence}% confident and is not Related/Caution.`,
+  '',
+  '| Work | Unique token rows | AI options CSV |',
+  '| --- | ---: | --- |',
+  ...workResults
+    .filter((result) => result.tokenStatusRows?.length)
+    .map((result) => `| ${result.spec.work_id} | ${result.tokenStatusRows.length} | data/public-lexical/by-work/${result.spec.work_id}-ai-options-min${safeAiMinConfidence}.csv |`),
   '',
   '## Skipped / Diagnostic Counts',
   '',
@@ -836,6 +1052,7 @@ const reportLines = [
   `| data/public-lexical/sitewide/normalized-lookup.json | ${sitewideCompact.lookup_terms} | Normalized Hebrew form to claim ID lookup |`,
   `| data/public-lexical/sitewide/work-summary.jsonl | ${sitewideCompact.work_rows.length} | Per-work compact-export coverage summary |`,
   `| data/public-lexical/sitewide/work-summary.csv | ${sitewideCompact.work_rows.length} | CSV mirror of per-work compact-export coverage summary |`,
+  `| data/public-lexical/sitewide/work-downloads.csv | ${workDownloadRows.length} | Per-work download index for lexical manifests, token indexes, and public export files |`,
   '',
   'The compact sitewide files are intended for AI/tool import. They preserve source/license metadata per claim and avoid repeating the same source-backed lexical row for every work-token occurrence.',
   '',
@@ -854,7 +1071,9 @@ const reportLines = [
   '',
   '## Public Library Navigation',
   '',
-  'The public library now keeps Talmud / Commentary out of the normal visible category list. Those works remain direct-linkable through an internal archive shelf labeled `Internal archive / not public-featured yet`.',
+  'The root page now opens directly as the Full Library instead of a splash/featured shelf. Lexical export downloads are linked from the root page, library page, and About / License page.',
+  '',
+  'The public library keeps Talmud / Commentary out of the normal visible category list. Those works remain direct-linkable through an internal archive shelf labeled `Internal archive / not public-featured yet`.',
   '',
   '## Integrity Confirmations',
   '',

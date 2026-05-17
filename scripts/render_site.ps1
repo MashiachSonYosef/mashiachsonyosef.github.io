@@ -2083,39 +2083,30 @@ function Append-LibrarySections {
   [void]$Builder.AppendLine('        </div>')
 }
 
-$featureCards = @(
-  [pscustomobject]@{
-    Label = "Rav Kook's Orot"
-    Role = ''
-    Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('orot') -Titles @('Orot'))
-    Placeholder = 'Coming soon'
-  },
-  [pscustomobject]@{
-    Label = 'Aggadat Bereshit'
-    Role = ''
-    Source = (Find-SourceForFeature -SourceById $sourceById -Sources $sources -Ids @('aggadat-bereshit') -Titles @('Aggadat Bereshit'))
-    Placeholder = 'Coming soon'
-  }
-)
+function Append-PublicExportLinks {
+  param(
+    [System.Text.StringBuilder]$Builder,
+    [string]$HrefPrefix = ''
+  )
+  [void]$Builder.AppendLine("          <p class=""export-actions""><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/manifest.json"">Manifest</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/sitewide/work-downloads.csv"" download>Per-work downloads CSV</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/all-claims.csv"" download>All claims CSV</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/by-license/cc0-only.csv"" download>CC0 CSV</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/by-license/project-cc0.csv"" download>Project CC0 CSV</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/by-work/orot-ai-options-min60.csv"" download>Orot AI CSV</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/by-work/aggadat-bereshit-ai-options-min60.csv"" download>Aggadat AI CSV</a><a class=""export-button"" href=""$($HrefPrefix)prompts/use-lexical-workbench.md"">AI workflow prompt</a></p>")
+}
 
 $homePage = New-Object System.Text.StringBuilder
-Append-SiteHead -Builder $homePage -Title 'Hebrew Source Workbench'
+Append-SiteHead -Builder $homePage -Title 'Full Library'
 [void]$homePage.AppendLine('  <main>')
 [void]$homePage.AppendLine('    <div class="shell">')
 [void]$homePage.AppendLine('      <div class="hero">')
-[void]$homePage.AppendLine('        <h1>Hebrew Source Workbench</h1>')
-[void]$homePage.AppendLine('        <p>Hebrew-first source workbench centered on hardened work pages, with clickable lexical HUD support and explicit source/license layers. Other imported works remain available in the full library.</p>')
-[void]$homePage.AppendLine('        <div class="home-actions"><a href="library/">Full Library</a><a href="about/">About / License</a><a href="data/public-lexical/manifest.json">Lexical Export Manifest</a><a href="data/public-lexical/by-license/cc0-only.csv" download>CC0 Lexical CSV</a></div>')
+[void]$homePage.AppendLine('        <h1>Full Library</h1>')
+[void]$homePage.AppendLine('        <p>Hebrew Source Workbench: Hebrew-first source pages with clickable lexical HUD support, explicit source/license layers, and downloadable lexical claim exports. Browse the complete imported library below.</p>')
+[void]$homePage.AppendLine('        <div class="home-actions"><a href="about/">About / License</a><a href="data/public-lexical/manifest.json">Lexical Export Manifest</a><a href="data/public-lexical/sitewide/work-downloads.csv" download>Per-work Downloads CSV</a></div>')
 [void]$homePage.AppendLine('      </div>')
 [void]$homePage.AppendLine('      <div style="padding:22px">')
 [void]$homePage.AppendLine('        <section class="home-section">')
-[void]$homePage.AppendLine('          <h2>Featured Works</h2>')
-[void]$homePage.AppendLine('          <div class="home-grid">')
-foreach ($card in $featureCards) {
-  Append-FeatureCard -Builder $homePage -Label $card.Label -Role $card.Role -Source $card.Source -Placeholder $card.Placeholder
-}
-[void]$homePage.AppendLine('          </div>')
+[void]$homePage.AppendLine('          <h2>Lexical Downloads</h2>')
+[void]$homePage.AppendLine('          <p>CSV and JSONL exports are lexical options, not translations. The AI CSVs include every token row and leave unresolved or below-threshold tokens blank instead of inventing renderings.</p>')
+Append-PublicExportLinks -Builder $homePage -HrefPrefix ''
 [void]$homePage.AppendLine('        </section>')
+Append-LibrarySections -Builder $homePage -Sources $sources -HrefPrefix ''
 [void]$homePage.AppendLine('      </div>')
 [void]$homePage.AppendLine('    </div>')
 [void]$homePage.AppendLine('  </main>')
@@ -2146,7 +2137,7 @@ Append-SiteHead -Builder $aboutPage -Title 'About / License'
 [void]$aboutPage.AppendLine('        <section class="home-section">')
 [void]$aboutPage.AppendLine('          <h2>Public Lexical Export</h2>')
 [void]$aboutPage.AppendLine('          <p>The public lexical export exposes claim-shaped HUD rows for tool-assisted study workflows. These files are lexical options, not prose translations, and each row keeps source/license metadata attached.</p>')
-[void]$aboutPage.AppendLine('          <p class="export-actions"><a class="export-button" href="../data/public-lexical/manifest.json">Manifest</a><a class="export-button" href="../data/public-lexical/by-license/cc0-only.csv" download>CC0 CSV</a><a class="export-button" href="../data/public-lexical/by-license/project-cc0.csv" download>Project CC0 CSV</a><a class="export-button" href="../data/public-lexical/by-work/orot-token-status.csv" download>Orot token status CSV</a><a class="export-button" href="../data/public-lexical/sitewide/claim-index.csv" download>Compact claim CSV</a><a class="export-button" href="../data/public-lexical/sitewide/normalized-lookup.json">Normalized lookup</a><a class="export-button" href="../prompts/use-lexical-workbench.md">AI workflow prompt</a></p>')
+Append-PublicExportLinks -Builder $aboutPage -HrefPrefix '../'
 [void]$aboutPage.AppendLine('        </section>')
 [void]$aboutPage.AppendLine('        <section class="home-section">')
 [void]$aboutPage.AppendLine('          <h2>Translation Status</h2>')
@@ -2166,9 +2157,14 @@ Append-SiteHead -Builder $libraryPage -Title 'Full Library'
 [void]$libraryPage.AppendLine('      <div class="hero">')
 [void]$libraryPage.AppendLine('        <p class="crumbs"><a href="../">Home</a> &middot; <a href="../about/">About / License</a></p>')
 [void]$libraryPage.AppendLine('        <h1>Full Library</h1>')
-[void]$libraryPage.AppendLine('        <p>All imported source works remain available here. The homepage is intentionally limited to featured workbench-ready pages; Talmud and commentary material stays in an internal archive shelf until hardened.</p>')
+[void]$libraryPage.AppendLine('        <p>All imported Hebrew source works remain available here. Talmud and commentary material stays in an internal archive shelf until hardened.</p>')
 [void]$libraryPage.AppendLine('      </div>')
 [void]$libraryPage.AppendLine('      <div style="padding:22px">')
+[void]$libraryPage.AppendLine('        <section class="home-section">')
+[void]$libraryPage.AppendLine('          <h2>Lexical Downloads</h2>')
+[void]$libraryPage.AppendLine('          <p>Use the per-work downloads CSV to find available manifests, token indexes, token-status CSVs, and AI option CSVs for each work.</p>')
+Append-PublicExportLinks -Builder $libraryPage -HrefPrefix '../'
+[void]$libraryPage.AppendLine('        </section>')
 Append-LibrarySections -Builder $libraryPage -Sources $sources -HrefPrefix '../'
 [void]$libraryPage.AppendLine('      </div>')
 [void]$libraryPage.AppendLine('    </div>')

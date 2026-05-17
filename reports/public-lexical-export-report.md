@@ -23,7 +23,9 @@ This export contains claim-shaped lexical HUD rows for hardened public workbench
 | Kaikki/Wiktionary CC BY-SA/GFDL | 966 | data/public-lexical/by-license/kaikki-wiktionary-cc-by-sa-gfdl.jsonl |
 | Combined CC0-only CSV | 8254 | data/public-lexical/by-license/cc0-only.csv |
 
-CSV mirrors are available beside the JSONL license-bucket files. The CSV files are meant for spreadsheet import or AI-assisted workflows that prefer flat rows.
+CSV mirrors are available beside the JSONL files. The CSV files are meant for spreadsheet import or AI-assisted workflows that prefer flat rows.
+
+All claim rows are also available as `data/public-lexical/all-claims.csv`, with deterministic confidence columns attached.
 
 ## Token Status CSVs
 
@@ -33,6 +35,13 @@ CSV mirrors are available beside the JSONL license-bucket files. The CSV files a
 | aggadat-bereshit | 8840 | data/public-lexical/by-work/aggadat-bereshit-token-status.csv |
 
 Token-status CSVs include unresolved forms explicitly. An unresolved row means `No lexical entry yet`, not a hidden translation or inferred definition.
+
+For AI-assisted workflows, use the `*-ai-options-min60.csv` files. They include every token row, but only expose `safe_export_rendering_options` when a public claim is at least 60% confident and is not Related/Caution.
+
+| Work | Unique token rows | AI options CSV |
+| --- | ---: | --- |
+| orot | 17307 | data/public-lexical/by-work/orot-ai-options-min60.csv |
+| aggadat-bereshit | 8840 | data/public-lexical/by-work/aggadat-bereshit-ai-options-min60.csv |
 
 ## Skipped / Diagnostic Counts
 
@@ -56,6 +65,7 @@ Rows are skipped from the public JSONL export when they have no renderings or wh
 | data/public-lexical/sitewide/normalized-lookup.json | 19235 | Normalized Hebrew form to claim ID lookup |
 | data/public-lexical/sitewide/work-summary.jsonl | 363 | Per-work compact-export coverage summary |
 | data/public-lexical/sitewide/work-summary.csv | 363 | CSV mirror of per-work compact-export coverage summary |
+| data/public-lexical/sitewide/work-downloads.csv | 363 | Per-work download index for lexical manifests, token indexes, and public export files |
 
 The compact sitewide files are intended for AI/tool import. They preserve source/license metadata per claim and avoid repeating the same source-backed lexical row for every work-token occurrence.
 
@@ -74,7 +84,9 @@ The AI-assisted workflow prompt is at `prompts/use-lexical-workbench.md`.
 
 ## Public Library Navigation
 
-The public library now keeps Talmud / Commentary out of the normal visible category list. Those works remain direct-linkable through an internal archive shelf labeled `Internal archive / not public-featured yet`.
+The root page now opens directly as the Full Library instead of a splash/featured shelf. Lexical export downloads are linked from the root page, library page, and About / License page.
+
+The public library keeps Talmud / Commentary out of the normal visible category list. Those works remain direct-linkable through an internal archive shelf labeled `Internal archive / not public-featured yet`.
 
 ## Integrity Confirmations
 

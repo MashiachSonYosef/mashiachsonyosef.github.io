@@ -11,95 +11,126 @@
     {
       "path": "data/public-lexical/all-claims.jsonl",
       "row_count": 37641,
-      "bytes": 38231021
+      "bytes": 38607431
+    },
+    {
+      "path": "data/public-lexical/all-claims.csv",
+      "row_count": 37641,
+      "bytes": 22482028
     },
     {
       "path": "data/public-lexical/by-work/orot.jsonl",
       "work_id": "orot",
       "row_count": 28255,
-      "bytes": 28482775
+      "bytes": 28765325
     },
     {
       "path": "data/public-lexical/by-work/aggadat-bereshit.jsonl",
       "work_id": "aggadat-bereshit",
       "row_count": 9386,
-      "bytes": 9748246
+      "bytes": 9842106
+    },
+    {
+      "path": "data/public-lexical/by-work/orot.csv",
+      "work_id": "orot",
+      "row_count": 28255,
+      "bytes": 16689352
+    },
+    {
+      "path": "data/public-lexical/by-work/aggadat-bereshit.csv",
+      "work_id": "aggadat-bereshit",
+      "row_count": 9386,
+      "bytes": 5792963
     },
     {
       "path": "data/public-lexical/by-license/project-cc0.jsonl",
       "license_bucket": "projectCc0",
       "row_count": 471,
-      "bytes": 500533
+      "bytes": 505243
     },
     {
       "path": "data/public-lexical/by-license/wikidata-cc0.jsonl",
       "license_bucket": "wikidataCc0",
       "row_count": 7783,
-      "bytes": 7233458
+      "bytes": 7311288
     },
     {
       "path": "data/public-lexical/by-license/openscriptures-cc-by-4.jsonl",
       "license_bucket": "openscripturesCcBy4",
       "row_count": 28358,
-      "bytes": 29357809
+      "bytes": 29641389
     },
     {
       "path": "data/public-lexical/by-license/kaikki-wiktionary-cc-by-sa-gfdl.jsonl",
       "license_bucket": "kaikkiWiktionaryCcBySaGfdl",
       "row_count": 966,
-      "bytes": 1075441
+      "bytes": 1085101
     },
     {
       "path": "data/public-lexical/by-license/project-cc0.csv",
       "license_bucket": "projectCc0",
       "row_count": 471,
-      "bytes": 234158
+      "bytes": 294002
     },
     {
       "path": "data/public-lexical/by-license/wikidata-cc0.csv",
       "license_bucket": "wikidataCc0",
       "row_count": 7783,
-      "bytes": 2980803
+      "bytes": 3969271
     },
     {
       "path": "data/public-lexical/by-license/openscriptures-cc-by-4.csv",
       "license_bucket": "openscripturesCcBy4",
       "row_count": 28358,
-      "bytes": 13914381
+      "bytes": 17515874
     },
     {
       "path": "data/public-lexical/by-license/kaikki-wiktionary-cc-by-sa-gfdl.csv",
       "license_bucket": "kaikkiWiktionaryCcBySaGfdl",
       "row_count": 966,
-      "bytes": 545079
+      "bytes": 667788
     },
     {
       "path": "data/public-lexical/by-license/cc0-only.csv",
       "license_bucket": "cc0Only",
       "row_count": 8254,
-      "bytes": 3214701
+      "bytes": 4262986
     },
     {
       "path": "data/public-lexical/by-work/orot-token-status.csv",
       "work_id": "orot",
       "row_count": 17307,
-      "bytes": 6308769
+      "bytes": 9221403
     },
     {
       "path": "data/public-lexical/by-work/aggadat-bereshit-token-status.csv",
       "work_id": "aggadat-bereshit",
       "row_count": 8840,
-      "bytes": 2535520
+      "bytes": 3488844
+    },
+    {
+      "path": "data/public-lexical/by-work/orot-ai-options-min60.csv",
+      "work_id": "orot",
+      "row_count": 17307,
+      "safe_min_confidence": 60,
+      "bytes": 7820095
+    },
+    {
+      "path": "data/public-lexical/by-work/aggadat-bereshit-ai-options-min60.csv",
+      "work_id": "aggadat-bereshit",
+      "row_count": 8840,
+      "safe_min_confidence": 60,
+      "bytes": 3050235
     },
     {
       "path": "data/public-lexical/sitewide/claim-index.jsonl",
       "row_count": 9120,
-      "bytes": 8570590
+      "bytes": 8661790
     },
     {
       "path": "data/public-lexical/sitewide/claim-index.csv",
       "row_count": 9120,
-      "bytes": 4003459
+      "bytes": 5161726
     },
     {
       "path": "data/public-lexical/sitewide/normalized-lookup.json",
@@ -115,8 +146,22 @@
       "path": "data/public-lexical/sitewide/work-summary.csv",
       "row_count": 363,
       "bytes": 11792
+    },
+    {
+      "path": "data/public-lexical/sitewide/work-downloads.jsonl",
+      "row_count": 363,
+      "bytes": 157447
+    },
+    {
+      "path": "data/public-lexical/sitewide/work-downloads.csv",
+      "row_count": 363,
+      "bytes": 83923
     }
   ],
+  "ai_export_policy": {
+    "safe_min_confidence": 60,
+    "note": "AI options CSVs include every token row. Renderings below the threshold, Related, Caution, and unresolved rows are retained as placeholders or diagnostics but are not safe_export_rendering_options."
+  },
   "license_policy": {
     "note": "Rows retain their own source/license metadata. Do not combine CC BY-SA/GFDL rows into CC0-only downstream output.",
     "projectCc0": "Project-authored rows explicitly labeled project-authored / CC0.",
