@@ -102,14 +102,77 @@ function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
+function withoutGeneratedAt(value) {
+  if (Array.isArray(value)) return value.map(withoutGeneratedAt);
+  if (!value || typeof value !== 'object') return value;
+  return Object.fromEntries(Object.entries(value)
+    .filter(([key]) => key !== 'generated_at')
+    .map(([key, child]) => [key, withoutGeneratedAt(child)]));
+}
+
+function preserveGeneratedAtIfUnchanged(filePath, value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value) || !Object.hasOwn(value, 'generated_at')) {
+    return value;
+  }
+  if (!fs.existsSync(filePath)) return value;
+  try {
+    const previous = readJson(filePath);
+    if (previous?.generated_at && JSON.stringify(withoutGeneratedAt(previous)) === JSON.stringify(withoutGeneratedAt(value))) {
+      return { ...value, generated_at: previous.generated_at };
+    }
+  } catch {
+    // If an existing generated artifact is not JSON, rewrite normally.
+  }
+  return value;
+}
+
+function normalizeGeneratedAtText(value) {
+  return String(value)
+    .replace(/\r\n/g, '\n')
+    .replace(/"generated_at"\s*:\s*"[^"]+"/g, '"generated_at":"<generated_at>"');
+}
+
+function preserveGeneratedAtTextIfUnchanged(filePath, value) {
+  if (!fs.existsSync(filePath)) return value;
+  try {
+    const previous = fs.readFileSync(filePath, 'utf8');
+    if (normalizeGeneratedAtText(previous) === normalizeGeneratedAtText(value)) return previous;
+  } catch {
+    // If the previous artifact cannot be read, rewrite normally.
+  }
+  return value;
+}
+
 function writeJson(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
+  const body = `${JSON.stringify(preserveGeneratedAtIfUnchanged(filePath, value), null, 2)}\n`;
+  fs.writeFileSync(filePath, preserveGeneratedAtTextIfUnchanged(filePath, body), 'utf8');
 }
 
 function writeCompactJson(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, `${JSON.stringify(value)}\n`, 'utf8');
+  const body = `${JSON.stringify(preserveGeneratedAtIfUnchanged(filePath, value))}\n`;
+  fs.writeFileSync(filePath, preserveGeneratedAtTextIfUnchanged(filePath, body), 'utf8');
+}
+
+function listJsonFilesRecursive(dir) {
+  if (!fs.existsSync(dir)) return [];
+  const results = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      results.push(...listJsonFilesRecursive(fullPath));
+    } else if (entry.isFile() && entry.name.endsWith('.json')) {
+      results.push(fullPath);
+    }
+  }
+  return results;
+}
+
+function removeStaleJsonFiles(root, expectedPaths) {
+  for (const filePath of listJsonFilesRecursive(root)) {
+    if (!expectedPaths.has(path.resolve(filePath))) fs.unlinkSync(filePath);
+  }
 }
 
 function stableId(prefix, value) {
@@ -229,6 +292,7 @@ const projectAbbreviationDefinitions = [
 
 const aggadatBereshitScope = 'aggadat-bereshit';
 const midrashAggadahScope = 'midrash_aggadah';
+const rabbinicTitleScope = 'rabbinic_title';
 const aramaicScope = 'aramaic';
 const projectMidrashFormulaDefinitions = [
   {
@@ -370,7 +434,7 @@ const projectMidrashFormulaDefinitions = [
     surface: '\u05E8\u05D1\u05D9',
     renderings: ['Rabbi'],
     kind: 'Rabbinic title',
-    work_scope: midrashAggadahScope,
+    work_scope: rabbinicTitleScope,
   },
   {
     source_id: 'project-midrash-label:hakadosh-baruch-hu-short',
@@ -1937,7 +2001,8 @@ function isEntryAllowedForWork(entry, workId) {
   if (entry?.work_scope === 'zohar_ari' && !isZoharAriWork(workId)) return false;
   if (entry?.work_scope === aramaicScope && !isAramaicWork(workId)) return false;
   if (entry?.work_scope === midrashAggadahScope && !isMidrashAggadahWork(workId)) return false;
-  if (entry?.work_scope && !['orot', 'kabbalah', 'zohar_ari', aramaicScope, midrashAggadahScope].includes(entry.work_scope) && entry.work_scope !== workId) return false;
+  if (entry?.work_scope === rabbinicTitleScope && !isRabbinicTitleWork(workId)) return false;
+  if (entry?.work_scope && !['orot', 'kabbalah', 'zohar_ari', aramaicScope, midrashAggadahScope, rabbinicTitleScope].includes(entry.work_scope) && entry.work_scope !== workId) return false;
   const sourceIds = [
     ...(entry?.source_rows || []).map((row) => row.source_id),
     ...(entry?.possible_entries || []).map((row) => row.source_id || row.entry_key),
@@ -1991,6 +2056,18 @@ function isMidrashAggadahWork(workId) {
   return String(meta.work_slug || '').startsWith('midrash/');
 }
 
+function isRabbinicTitleWork(workId) {
+  const meta = sourceMetaByWorkId.get(workId) || {};
+  const slug = String(meta.work_slug || '');
+  return slug.startsWith('midrash/')
+    || slug.startsWith('mishnah/')
+    || slug.startsWith('tosefta/')
+    || slug.startsWith('talmud/')
+    || slug.includes('tractate-')
+    || String(workId || '').includes('tractate-')
+    || String(workId || '').startsWith('beur-hagra-on-jerusalem-talmud-');
+}
+
 function isProjectOrotTechnicalEntry(entry) {
   const sourceIds = [
     ...(entry?.source_rows || []).map((row) => row.source_id),
@@ -2012,9 +2089,11 @@ function lookupLexiconEntryId(normalized, workId) {
     .map((entryId) => lexiconById.get(entryId))
     .filter((entry) => isEntryAllowedForWork(entry, workId));
   if (!candidates.length) return '';
-  if (isMidrashAggadahWork(workId)) {
+  if (isMidrashAggadahWork(workId) || isRabbinicTitleWork(workId)) {
     const projectMidrashEntry = candidates.find(isProjectMidrashFormulaEntry);
-    if (projectMidrashEntry) return projectMidrashEntry.entry_id;
+    if (projectMidrashEntry && (isMidrashAggadahWork(workId) || projectMidrashEntry.work_scope === rabbinicTitleScope)) {
+      return projectMidrashEntry.entry_id;
+    }
   }
   if (workId === 'orot') {
     const projectOrotEntry = candidates.find(isProjectOrotTechnicalEntry);
@@ -2413,11 +2492,9 @@ for (const entry of lexicon.entries || []) {
 }
 
 fs.mkdirSync(occurrencesDir, { recursive: true });
-for (const oldFile of fs.readdirSync(occurrencesDir).filter((name) => name.endsWith('.json'))) {
-  fs.unlinkSync(path.join(occurrencesDir, oldFile));
-}
-fs.rmSync(tokenIndexesDir, { recursive: true, force: true });
 fs.mkdirSync(tokenIndexesDir, { recursive: true });
+const expectedOccurrencePaths = new Set();
+const expectedTokenIndexPaths = new Set();
 
 const tokenRows = new Map();
 const sourceFiles = fs.readdirSync(sourceDir).filter((name) => name.endsWith('.json')).sort();
@@ -2547,7 +2624,9 @@ for (const fileName of sourceFiles) {
     };
   }
 
-  writeJson(path.join(occurrencesDir, `${source.work_id}.json`), {
+  const occurrencePath = path.join(occurrencesDir, `${source.work_id}.json`);
+  expectedOccurrencePaths.add(path.resolve(occurrencePath));
+  writeJson(occurrencePath, {
     schema_version: 1,
     work_id: source.work_id,
     work_title: source.work_title,
@@ -2593,7 +2672,9 @@ for (const [workId, workForms] of Array.from(formsByWork.entries()).sort((a, b) 
   const workMatchedForms = workForms.filter((row) => row.status === 'matched');
   const workUnmatchedForms = workForms.filter((row) => row.status !== 'matched');
   const workPath = `token-indexes/${meta.work_slug}.json`;
-  writeCompactJson(path.join(lexicalDir, workPath), {
+  const tokenIndexFilePath = path.join(lexicalDir, workPath);
+  expectedTokenIndexPaths.add(path.resolve(tokenIndexFilePath));
+  writeCompactJson(tokenIndexFilePath, {
     schema_version: 1,
     generated_at: generatedAt,
     work_id: workId,
@@ -2616,6 +2697,9 @@ for (const [workId, workForms] of Array.from(formsByWork.entries()).sort((a, b) 
     unmatched_surface_forms: workUnmatchedForms.length,
   });
 }
+
+removeStaleJsonFiles(occurrencesDir, expectedOccurrencePaths);
+removeStaleJsonFiles(tokenIndexesDir, expectedTokenIndexPaths);
 
 writeCompactJson(tokenIndexPath, {
   schema_version: 1,

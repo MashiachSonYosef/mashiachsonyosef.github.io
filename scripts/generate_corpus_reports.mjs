@@ -30,13 +30,61 @@ function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
+function withoutGeneratedAt(value) {
+  if (Array.isArray(value)) return value.map(withoutGeneratedAt);
+  if (!value || typeof value !== 'object') return value;
+  return Object.fromEntries(Object.entries(value)
+    .filter(([key]) => key !== 'generated_at')
+    .map(([key, child]) => [key, withoutGeneratedAt(child)]));
+}
+
+function preserveGeneratedAtIfUnchanged(filePath, value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value) || !Object.hasOwn(value, 'generated_at')) {
+    return value;
+  }
+  if (!fs.existsSync(filePath)) return value;
+  try {
+    const previous = readJson(filePath);
+    if (previous?.generated_at && JSON.stringify(withoutGeneratedAt(previous)) === JSON.stringify(withoutGeneratedAt(value))) {
+      return { ...value, generated_at: previous.generated_at };
+    }
+  } catch {
+    // If an existing generated artifact is not JSON, rewrite normally.
+  }
+  return value;
+}
+
+function normalizeGeneratedAtText(value) {
+  return String(value)
+    .replace(/\r\n/g, '\n')
+    .replace(/"generated_at"\s*:\s*"[^"]+"/g, '"generated_at":"<generated_at>"');
+}
+
+function preserveGeneratedAtTextIfUnchanged(filePath, value) {
+  if (!fs.existsSync(filePath)) return value;
+  try {
+    const previous = fs.readFileSync(filePath, 'utf8');
+    if (normalizeGeneratedAtText(previous) === normalizeGeneratedAtText(value)) return previous;
+  } catch {
+    // If the previous artifact cannot be read, rewrite normally.
+  }
+  return value;
+}
+
 function writeJson(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
+  const body = `${JSON.stringify(preserveGeneratedAtIfUnchanged(filePath, value), null, 2)}\n`;
+  fs.writeFileSync(filePath, preserveGeneratedAtTextIfUnchanged(filePath, body), 'utf8');
 }
 
 function writeText(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  if (fs.existsSync(filePath)) {
+    const previous = fs.readFileSync(filePath, 'utf8');
+    if (previous.replace(/\r\n/g, '\n') === String(value).replace(/\r\n/g, '\n')) {
+      return;
+    }
+  }
   fs.writeFileSync(filePath, value, 'utf8');
 }
 
