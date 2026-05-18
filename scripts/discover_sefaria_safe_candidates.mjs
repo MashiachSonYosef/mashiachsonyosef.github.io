@@ -73,6 +73,22 @@ function slugify(value) {
     .replace(/^-+|-+$/g, '') || 'text';
 }
 
+function libraryLaneForCategories(categories) {
+  const lower = (categories || []).map((category) => String(category || '').toLowerCase());
+  if (lower.includes('midrash') || lower.includes('aggadah')) return 'midrash';
+  if (lower.includes('tanakh')) return 'tanakh';
+  if (lower.includes('targum')) return 'targum';
+  if (lower.includes('tosefta')) return 'tosefta';
+  if (lower.includes('mishnah')) return 'mishnah';
+  if (lower.includes('kabbalah')) return 'kabbalah';
+  if (lower.includes('halakhah')) return 'halakhah';
+  if (lower.includes('musar')) return 'musar';
+  if (lower.includes('philosophy')) return 'philosophy';
+  if (lower.includes('liturgy')) return 'liturgy';
+  if (lower.includes('second temple')) return 'second-temple';
+  return 'other';
+}
+
 function mdCell(value) {
   return String(value ?? '').replace(/\|/g, '\\|').replace(/\r?\n/g, '<br>');
 }
@@ -244,7 +260,7 @@ async function main() {
       work_id: workId,
       work_title: candidate.title,
       he_title: candidate.he_title,
-      work_slug: `midrash/${workId}`,
+      work_slug: `${libraryLaneForCategories(candidate.categories)}/${workId}`,
       sefaria_ref: candidate.title,
       categories: candidate.categories,
       already_configured: configuredRefs.has(candidate.title) || configuredIds.has(workId),
@@ -265,7 +281,7 @@ async function main() {
       const index = await fetchJson(`https://www.sefaria.org/api/index/${encodeURIComponent(candidate.title)}`);
       report.sefaria_ref = index.title || candidate.title;
       report.work_id = slugify(index.title || candidate.title);
-      report.work_slug = `midrash/${report.work_id}`;
+      report.work_slug = `${libraryLaneForCategories(candidate.categories)}/${report.work_id}`;
       report.estimated_unit_count = estimateUnitCount(index);
       const leaf = firstLeaf(index.schema);
       report.schema_importable = isSchemaImportable(leaf);
@@ -340,7 +356,6 @@ async function main() {
     const blocker = report.already_imported ? 'already imported' : report.already_configured ? 'already configured' : report.blocker;
     lines.push(`| ${mdCell(report.work_title)} | ${mdCell(report.license)} | ${report.hebrew_available ? 'yes' : 'no'} | ${report.already_imported ? 'yes' : 'no'} | ${report.already_configured ? 'yes' : 'no'} | ${mdCell(blocker)} |`);
   }
-  lines.push('');
   writeText(args.outputMarkdown, `${lines.join('\n')}\n`);
 
   console.log(JSON.stringify({

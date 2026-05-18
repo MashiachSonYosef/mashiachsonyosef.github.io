@@ -10,7 +10,7 @@ This export contains claim-shaped lexical HUD rows for hardened public workbench
 
 | Work | Rows |
 | --- | ---: |
-| orot | 28255 |
+| orot | 28258 |
 | aggadat-bereshit | 9386 |
 
 ## Exported Row Counts by License Bucket
@@ -18,10 +18,10 @@ This export contains claim-shaped lexical HUD rows for hardened public workbench
 | License bucket | Rows | File |
 | --- | ---: | --- |
 | Project-authored / CC0 | 471 | data/public-lexical/by-license/project-cc0.jsonl |
-| Wikidata CC0 | 7783 | data/public-lexical/by-license/wikidata-cc0.jsonl |
-| OpenScriptures CC BY 4.0 | 28358 | data/public-lexical/by-license/openscriptures-cc-by-4.jsonl |
-| Kaikki/Wiktionary CC BY-SA/GFDL | 966 | data/public-lexical/by-license/kaikki-wiktionary-cc-by-sa-gfdl.jsonl |
-| Combined CC0-only CSV | 8254 | data/public-lexical/by-license/cc0-only.csv |
+| Wikidata CC0 | 7786 | data/public-lexical/by-license/wikidata-cc0.jsonl |
+| OpenScriptures CC BY 4.0 | 28350 | data/public-lexical/by-license/openscriptures-cc-by-4.jsonl |
+| Kaikki/Wiktionary CC BY-SA/GFDL | 974 | data/public-lexical/by-license/kaikki-wiktionary-cc-by-sa-gfdl.jsonl |
+| Combined CC0-only CSV | 8257 | data/public-lexical/by-license/cc0-only.csv |
 
 CSV mirrors are available beside the JSONL files. The CSV files are meant for spreadsheet import or AI-assisted workflows that prefer flat rows.
 
@@ -61,21 +61,24 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | aramaic-targum-to-psalms | 9776 | 367 | data/public-lexical/by-work/aramaic-targum-to-psalms-token-claims-min60.csv |
 | aramaic-targum-to-ruth | 1183 | 84 | data/public-lexical/by-work/aramaic-targum-to-ruth-token-claims-min60.csv |
 | aramaic-targum-to-song-of-songs | 2723 | 137 | data/public-lexical/by-work/aramaic-targum-to-song-of-songs-token-claims-min60.csv |
+| asarah-perakim-leramchal | 1799 | 326 | data/public-lexical/by-work/asarah-perakim-leramchal-token-claims-min60.csv |
 | avot-derabbi-natan | 7948 | 1278 | data/public-lexical/by-work/avot-derabbi-natan-token-claims-min60.csv |
 | ben-sira | 5302 | 966 | data/public-lexical/by-work/ben-sira-token-claims-min60.csv |
+| beur-eser-sefirot | 1405 | 365 | data/public-lexical/by-work/beur-eser-sefirot-token-claims-min60.csv |
 | beur-hagra-on-jerusalem-talmud-bikkurim | 2487 | 371 | data/public-lexical/by-work/beur-hagra-on-jerusalem-talmud-bikkurim-token-claims-min60.csv |
 | beur-hagra-on-jerusalem-talmud-challah | 3544 | 458 | data/public-lexical/by-work/beur-hagra-on-jerusalem-talmud-challah-token-claims-min60.csv |
 | beur-hagra-on-shulchan-arukh-choshen-mishpat | 1106 | 175 | data/public-lexical/by-work/beur-hagra-on-shulchan-arukh-choshen-mishpat-token-claims-min60.csv |
 | beur-hagra-on-shulchan-arukh-even-haezer | 2159 | 289 | data/public-lexical/by-work/beur-hagra-on-shulchan-arukh-even-haezer-token-claims-min60.csv |
-| beur-hagra-on-shulchan-arukh-orach-chayim | 12656 | 1190 | data/public-lexical/by-work/beur-hagra-on-shulchan-arukh-orach-chayim-token-claims-min60.csv |
+| beur-hagra-on-shulchan-arukh-orach-chayim | 12656 | 1191 | data/public-lexical/by-work/beur-hagra-on-shulchan-arukh-orach-chayim-token-claims-min60.csv |
 | beur-hagra-on-shulchan-arukh-yoreh-deah | 25673 | 1909 | data/public-lexical/by-work/beur-hagra-on-shulchan-arukh-yoreh-deah-token-claims-min60.csv |
 | beur-hagra-on-sifra-detzniuta | 10860 | 1368 | data/public-lexical/by-work/beur-hagra-on-sifra-detzniuta-token-claims-min60.csv |
-| beur-haradal-on-pirkei-derabbi-eliezer | 41996 | 4136 | data/public-lexical/by-work/beur-haradal-on-pirkei-derabbi-eliezer-token-claims-min60.csv |
+| beur-haradal-on-pirkei-derabbi-eliezer | 41996 | 4137 | data/public-lexical/by-work/beur-haradal-on-pirkei-derabbi-eliezer-token-claims-min60.csv |
 | beur-hareem-on-midrash-lekach-tov | 13211 | 1772 | data/public-lexical/by-work/beur-hareem-on-midrash-lekach-tov-token-claims-min60.csv |
 | book-of-jubilees | 6786 | 1091 | data/public-lexical/by-work/book-of-jubilees-token-claims-min60.csv |
 | book-of-judith | 2919 | 552 | data/public-lexical/by-work/book-of-judith-token-claims-min60.csv |
 | book-of-tobit | 1798 | 385 | data/public-lexical/by-work/book-of-tobit-token-claims-min60.csv |
 | chafetz-chaim-on-sifra | 29588 | 2925 | data/public-lexical/by-work/chafetz-chaim-on-sifra-token-claims-min60.csv |
+| chesed-leavraham | 22564 | 3020 | data/public-lexical/by-work/chesed-leavraham-token-claims-min60.csv |
 | daniel | 4269 | 499 | data/public-lexical/by-work/daniel-token-claims-min60.csv |
 | derech-etz-chayim-ramchal | 2409 | 528 | data/public-lexical/by-work/derech-etz-chayim-ramchal-token-claims-min60.csv |
 | deuteronomy | 8113 | 1334 | data/public-lexical/by-work/deuteronomy-token-claims-min60.csv |
@@ -84,7 +87,7 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | ein-yaakov | 70278 | 6870 | data/public-lexical/by-work/ein-yaakov-token-claims-min60.csv |
 | esther | 1962 | 311 | data/public-lexical/by-work/esther-token-claims-min60.csv |
 | etz-yosef-on-bamidbar-rabbah | 3554 | 724 | data/public-lexical/by-work/etz-yosef-on-bamidbar-rabbah-token-claims-min60.csv |
-| etz-yosef-on-bereishit-rabbah | 7900 | 1268 | data/public-lexical/by-work/etz-yosef-on-bereishit-rabbah-token-claims-min60.csv |
+| etz-yosef-on-bereishit-rabbah | 7900 | 1269 | data/public-lexical/by-work/etz-yosef-on-bereishit-rabbah-token-claims-min60.csv |
 | etz-yosef-on-devarim-rabbah | 1541 | 338 | data/public-lexical/by-work/etz-yosef-on-devarim-rabbah-token-claims-min60.csv |
 | etz-yosef-on-eichah-rabbah | 6435 | 1037 | data/public-lexical/by-work/etz-yosef-on-eichah-rabbah-token-claims-min60.csv |
 | etz-yosef-on-esther-rabbah | 2889 | 515 | data/public-lexical/by-work/etz-yosef-on-esther-rabbah-token-claims-min60.csv |
@@ -129,14 +132,17 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | jonah | 525 | 103 | data/public-lexical/by-work/jonah-token-claims-min60.csv |
 | joshua | 5856 | 988 | data/public-lexical/by-work/joshua-token-claims-min60.csv |
 | judges | 6131 | 982 | data/public-lexical/by-work/judges-token-claims-min60.csv |
+| kalach-pitchei-chokhmah | 9569 | 1579 | data/public-lexical/by-work/kalach-pitchei-chokhmah-token-claims-min60.csv |
+| ketem-paz-on-zohar | 57156 | 5027 | data/public-lexical/by-work/ketem-paz-on-zohar-token-claims-min60.csv |
 | kohelet-rabbah | 2205 | 428 | data/public-lexical/by-work/kohelet-rabbah-token-claims-min60.csv |
-| kol-hator | 4308 | 841 | data/public-lexical/by-work/kol-hator-token-claims-min60.csv |
+| kol-hator | 4308 | 843 | data/public-lexical/by-work/kol-hator-token-claims-min60.csv |
 | lamentations | 1264 | 222 | data/public-lexical/by-work/lamentations-token-claims-min60.csv |
 | letter-of-aristeas | 4299 | 745 | data/public-lexical/by-work/letter-of-aristeas-token-claims-min60.csv |
 | leviticus | 6089 | 822 | data/public-lexical/by-work/leviticus-token-claims-min60.csv |
 | maamar-hador | 1965 | 485 | data/public-lexical/by-work/maamar-hador-token-claims-min60.csv |
 | maaseh-rav | 2700 | 454 | data/public-lexical/by-work/maaseh-rav-token-claims-min60.csv |
 | maaseh-rokeach-on-mishnah | 15665 | 2000 | data/public-lexical/by-work/maaseh-rokeach-on-mishnah-token-claims-min60.csv |
+| maggid-meisharim | 20513 | 1822 | data/public-lexical/by-work/maggid-meisharim-token-claims-min60.csv |
 | maharzu-hakatzar-on-bereshit-rabbah | 198 | 60 | data/public-lexical/by-work/maharzu-hakatzar-on-bereshit-rabbah-token-claims-min60.csv |
 | malachi | 676 | 146 | data/public-lexical/by-work/malachi-token-claims-min60.csv |
 | matnot-kehunah-on-bamidbar-rabbah | 1378 | 305 | data/public-lexical/by-work/matnot-kehunah-on-bamidbar-rabbah-token-claims-min60.csv |
@@ -149,13 +155,14 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | matnot-kehunah-on-shemot-rabbah | 1632 | 347 | data/public-lexical/by-work/matnot-kehunah-on-shemot-rabbah-token-claims-min60.csv |
 | matnot-kehunah-on-shir-hashirim-rabbah | 7681 | 1134 | data/public-lexical/by-work/matnot-kehunah-on-shir-hashirim-rabbah-token-claims-min60.csv |
 | matnot-kehunah-on-vayikra-rabbah | 2518 | 441 | data/public-lexical/by-work/matnot-kehunah-on-vayikra-rabbah-token-claims-min60.csv |
+| megalleh-amukkot-on-parashat-vaetchanan | 15768 | 1971 | data/public-lexical/by-work/megalleh-amukkot-on-parashat-vaetchanan-token-claims-min60.csv |
 | megillat-taanit | 2491 | 426 | data/public-lexical/by-work/megillat-taanit-token-claims-min60.csv |
 | micah | 1144 | 207 | data/public-lexical/by-work/micah-token-claims-min60.csv |
-| midbar-shur | 19798 | 2975 | data/public-lexical/by-work/midbar-shur-token-claims-min60.csv |
+| midbar-shur | 19798 | 2977 | data/public-lexical/by-work/midbar-shur-token-claims-min60.csv |
 | midrash-aggadah | 20618 | 2642 | data/public-lexical/by-work/midrash-aggadah-token-claims-min60.csv |
-| midrash-bechiddush-on-pesach-haggadah | 8662 | 1370 | data/public-lexical/by-work/midrash-bechiddush-on-pesach-haggadah-token-claims-min60.csv |
+| midrash-bechiddush-on-pesach-haggadah | 8662 | 1371 | data/public-lexical/by-work/midrash-bechiddush-on-pesach-haggadah-token-claims-min60.csv |
 | midrash-haittamari | 23927 | 3091 | data/public-lexical/by-work/midrash-haittamari-token-claims-min60.csv |
-| midrash-lekach-tov | 41646 | 4213 | data/public-lexical/by-work/midrash-lekach-tov-token-claims-min60.csv |
+| midrash-lekach-tov | 41646 | 4217 | data/public-lexical/by-work/midrash-lekach-tov-token-claims-min60.csv |
 | midrash-lekach-tov-on-ecclesiastes | 421 | 125 | data/public-lexical/by-work/midrash-lekach-tov-on-ecclesiastes-token-claims-min60.csv |
 | midrash-lekach-tov-on-esther | 1030 | 231 | data/public-lexical/by-work/midrash-lekach-tov-on-esther-token-claims-min60.csv |
 | midrash-lekach-tov-on-lamentations | 757 | 184 | data/public-lexical/by-work/midrash-lekach-tov-on-lamentations-token-claims-min60.csv |
@@ -170,6 +177,7 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | midrash-tannaim-on-deuteronomy | 2712 | 530 | data/public-lexical/by-work/midrash-tannaim-on-deuteronomy-token-claims-min60.csv |
 | midrash-tehillim | 20099 | 2618 | data/public-lexical/by-work/midrash-tehillim-token-claims-min60.csv |
 | midrash-yelamdenu-selections-from-yalkut-talmud-torah | 523 | 117 | data/public-lexical/by-work/midrash-yelamdenu-selections-from-yalkut-talmud-torah-token-claims-min60.csv |
+| mikdash-melekh-on-zohar | 42974 | 3859 | data/public-lexical/by-work/mikdash-melekh-on-zohar-token-claims-min60.csv |
 | mishnah-arakhin | 1052 | 186 | data/public-lexical/by-work/mishnah-arakhin-token-claims-min60.csv |
 | mishnah-avodah-zarah | 1041 | 187 | data/public-lexical/by-work/mishnah-avodah-zarah-token-claims-min60.csv |
 | mishnah-bava-batra | 1619 | 263 | data/public-lexical/by-work/mishnah-bava-batra-token-claims-min60.csv |
@@ -244,11 +252,14 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | notes-and-corrections-on-midrash-lekach-tov-on-esther | 1178 | 212 | data/public-lexical/by-work/notes-and-corrections-on-midrash-lekach-tov-on-esther-token-claims-min60.csv |
 | numbers | 8225 | 1178 | data/public-lexical/by-work/numbers-token-claims-min60.csv |
 | obadiah | 237 | 37 | data/public-lexical/by-work/obadiah-token-claims-min60.csv |
-| orot | 17307 | 4741 | data/public-lexical/by-work/orot-token-claims-min60.csv |
-| orot-ha-kodesh | 18735 | 3169 | data/public-lexical/by-work/orot-ha-kodesh-token-claims-min60.csv |
+| ohr-hachammah-on-zohar | 102152 | 6945 | data/public-lexical/by-work/ohr-hachammah-on-zohar-token-claims-min60.csv |
+| orot | 17307 | 4747 | data/public-lexical/by-work/orot-token-claims-min60.csv |
+| orot-ha-kodesh | 18735 | 3183 | data/public-lexical/by-work/orot-ha-kodesh-token-claims-min60.csv |
 | orot-ha-torah | 807 | 223 | data/public-lexical/by-work/orot-ha-torah-token-claims-min60.csv |
-| otzar-midrashim | 56400 | 5770 | data/public-lexical/by-work/otzar-midrashim-token-claims-min60.csv |
+| otzar-midrashim | 56400 | 5772 | data/public-lexical/by-work/otzar-midrashim-token-claims-min60.csv |
 | par-echad-on-pirkei-derabbi-eliezer | 5738 | 948 | data/public-lexical/by-work/par-echad-on-pirkei-derabbi-eliezer-token-claims-min60.csv |
+| pardes-rimmonim | 38362 | 3971 | data/public-lexical/by-work/pardes-rimmonim-token-claims-min60.csv |
+| peri-etz-hadar | 1947 | 413 | data/public-lexical/by-work/peri-etz-hadar-token-claims-min60.csv |
 | perush-maharzu-on-bamidbar-rabbah | 3476 | 698 | data/public-lexical/by-work/perush-maharzu-on-bamidbar-rabbah-token-claims-min60.csv |
 | perush-maharzu-on-bereshit-rabbah | 6701 | 1195 | data/public-lexical/by-work/perush-maharzu-on-bereshit-rabbah-token-claims-min60.csv |
 | perush-maharzu-on-devarim-rabbah | 1369 | 321 | data/public-lexical/by-work/perush-maharzu-on-devarim-rabbah-token-claims-min60.csv |
@@ -264,20 +275,27 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | pirkei-avot | 2110 | 449 | data/public-lexical/by-work/pirkei-avot-token-claims-min60.csv |
 | pirkei-derabbi-eliezer | 11509 | 1824 | data/public-lexical/by-work/pirkei-derabbi-eliezer-token-claims-min60.csv |
 | pri-etz-chaim | 9512 | 1467 | data/public-lexical/by-work/pri-etz-chaim-token-claims-min60.csv |
+| pri-yitzhak-on-sefer-yetzirah-gra-version | 3472 | 664 | data/public-lexical/by-work/pri-yitzhak-on-sefer-yetzirah-gra-version-token-claims-min60.csv |
 | proverbs | 4705 | 701 | data/public-lexical/by-work/proverbs-token-claims-min60.csv |
 | psalms | 12462 | 1934 | data/public-lexical/by-work/psalms-token-claims-min60.csv |
-| raavad-on-sifra | 23139 | 2286 | data/public-lexical/by-work/raavad-on-sifra-token-claims-min60.csv |
+| raavad-on-sefer-yetzirah | 10831 | 1714 | data/public-lexical/by-work/raavad-on-sefer-yetzirah-token-claims-min60.csv |
+| raavad-on-sifra | 23139 | 2287 | data/public-lexical/by-work/raavad-on-sifra-token-claims-min60.csv |
+| ramban-on-sefer-yetzirah | 1288 | 312 | data/public-lexical/by-work/ramban-on-sefer-yetzirah-token-claims-min60.csv |
+| rasag-on-sefer-yetzirah | 2831 | 527 | data/public-lexical/by-work/rasag-on-sefer-yetzirah-token-claims-min60.csv |
 | rashi-on-bereshit-rabbah | 2795 | 522 | data/public-lexical/by-work/rashi-on-bereshit-rabbah-token-claims-min60.csv |
 | rashi-on-deuteronomy | 10519 | 1734 | data/public-lexical/by-work/rashi-on-deuteronomy-token-claims-min60.csv |
 | rashi-on-genesis | 14570 | 2123 | data/public-lexical/by-work/rashi-on-genesis-token-claims-min60.csv |
 | rashi-on-leviticus | 9523 | 1438 | data/public-lexical/by-work/rashi-on-leviticus-token-claims-min60.csv |
 | rashi-on-numbers | 10778 | 1694 | data/public-lexical/by-work/rashi-on-numbers-token-claims-min60.csv |
+| recanati-on-the-torah | 34727 | 3851 | data/public-lexical/by-work/recanati-on-the-torah-token-claims-min60.csv |
 | ruth | 999 | 196 | data/public-lexical/by-work/ruth-token-claims-min60.csv |
 | ruth-rabbah | 1529 | 342 | data/public-lexical/by-work/ruth-rabbah-token-claims-min60.csv |
 | seder-olam-rabbah | 268 | 64 | data/public-lexical/by-work/seder-olam-rabbah-token-claims-min60.csv |
 | seder-olam-zutta | 976 | 145 | data/public-lexical/by-work/seder-olam-zutta-token-claims-min60.csv |
 | sefer-etz-chaim | 974 | 263 | data/public-lexical/by-work/sefer-etz-chaim-token-claims-min60.csv |
+| sefer-hakanah | 23172 | 2743 | data/public-lexical/by-work/sefer-hakanah-token-claims-min60.csv |
 | sefer-hayashar-midrash | 11610 | 1594 | data/public-lexical/by-work/sefer-hayashar-midrash-token-claims-min60.csv |
+| sefer-yetzirah | 770 | 149 | data/public-lexical/by-work/sefer-yetzirah-token-claims-min60.csv |
 | sefer-yetzirah-gra-version | 743 | 153 | data/public-lexical/by-work/sefer-yetzirah-gra-version-token-claims-min60.csv |
 | shaar-hagilgulim | 13104 | 1816 | data/public-lexical/by-work/shaar-hagilgulim-token-claims-min60.csv |
 | shaar-hahakdamot | 9189 | 1314 | data/public-lexical/by-work/shaar-hahakdamot-token-claims-min60.csv |
@@ -288,6 +306,7 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | shaar-maamarei-razal | 5388 | 907 | data/public-lexical/by-work/shaar-maamarei-razal-token-claims-min60.csv |
 | shaar-ruach-hakodesh | 2004 | 369 | data/public-lexical/by-work/shaar-ruach-hakodesh-token-claims-min60.csv |
 | shaarei-kedusha | 1732 | 382 | data/public-lexical/by-work/shaarei-kedusha-token-claims-min60.csv |
+| shaarei-orah | 13803 | 2029 | data/public-lexical/by-work/shaarei-orah-token-claims-min60.csv |
 | shir-hashirim-rabbah | 2477 | 513 | data/public-lexical/by-work/shir-hashirim-rabbah-token-claims-min60.csv |
 | sifrei-aggadah-on-esther | 6654 | 1009 | data/public-lexical/by-work/sifrei-aggadah-on-esther-token-claims-min60.csv |
 | sifrei-bamidbar | 9816 | 1509 | data/public-lexical/by-work/sifrei-bamidbar-token-claims-min60.csv |
@@ -329,7 +348,7 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | the-book-of-maccabees-ii | 3951 | 704 | data/public-lexical/by-work/the-book-of-maccabees-ii-token-claims-min60.csv |
 | the-book-of-susanna | 555 | 122 | data/public-lexical/by-work/the-book-of-susanna-token-claims-min60.csv |
 | the-testaments-of-the-twelve-patriarchs | 5702 | 814 | data/public-lexical/by-work/the-testaments-of-the-twelve-patriarchs-token-claims-min60.csv |
-| the-wars-of-god | 17999 | 2376 | data/public-lexical/by-work/the-wars-of-god-token-claims-min60.csv |
+| the-wars-of-god | 17999 | 2378 | data/public-lexical/by-work/the-wars-of-god-token-claims-min60.csv |
 | the-wisdom-of-solomon | 3279 | 713 | data/public-lexical/by-work/the-wisdom-of-solomon-token-claims-min60.csv |
 | tosefta-arakhin | 1460 | 259 | data/public-lexical/by-work/tosefta-arakhin-token-claims-min60.csv |
 | tosefta-avodah-zarah | 2058 | 303 | data/public-lexical/by-work/tosefta-avodah-zarah-token-claims-min60.csv |
@@ -422,9 +441,9 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | Reason | Count |
 | --- | ---: |
 | missing work files | 0 |
-| unmatched | 8252 |
-| no lexicon entry | 0 |
-| no renderings | 19118 |
+| unmatched | 8245 |
+| no lexicon entry | 1 |
+| no renderings | 19117 |
 | missing source license | 0 |
 | exported rows not placed in a by-license file | 63 |
 
@@ -434,12 +453,12 @@ Rows are skipped from the public JSONL export when they have no renderings or wh
 
 | File | Rows / terms | Purpose |
 | --- | ---: | --- |
-| data/public-lexical/sitewide/claim-index.jsonl | 9122 | Deduplicated claim-shaped lexical rows across all imported works |
-| data/public-lexical/sitewide/claim-index.csv | 9122 | CSV mirror of the compact claim index |
+| data/public-lexical/sitewide/claim-index.jsonl | 9136 | Deduplicated claim-shaped lexical rows across all imported works |
+| data/public-lexical/sitewide/claim-index.csv | 9136 | CSV mirror of the compact claim index |
 | data/public-lexical/sitewide/normalized-lookup.json | 19235 | Normalized Hebrew form to claim ID lookup |
-| data/public-lexical/sitewide/work-summary.jsonl | 367 | Per-work compact-export coverage summary |
-| data/public-lexical/sitewide/work-summary.csv | 367 | CSV mirror of per-work compact-export coverage summary |
-| data/public-lexical/sitewide/work-downloads.csv | 367 | Per-work download index for lexical manifests, token indexes, and public export files |
+| data/public-lexical/sitewide/work-summary.jsonl | 386 | Per-work compact-export coverage summary |
+| data/public-lexical/sitewide/work-summary.csv | 386 | CSV mirror of per-work compact-export coverage summary |
+| data/public-lexical/sitewide/work-downloads.csv | 386 | Per-work download index for lexical manifests, token indexes, and public export files |
 
 The compact sitewide files are intended for AI/tool import. They preserve source/license metadata per claim and avoid repeating the same source-backed lexical row for every work-token occurrence.
 
@@ -447,9 +466,9 @@ The compact sitewide files are intended for AI/tool import. They preserve source
 
 | Item | Count |
 | --- | ---: |
-| manifests scanned | 367 |
-| chunks scanned | 2006 |
-| candidate rows without renderings | 411565 |
+| manifests scanned | 386 |
+| chunks scanned | 2419 |
+| candidate rows without renderings | 478421 |
 | candidate rows without source/license | 0 |
 
 ## User-Facing Prompt

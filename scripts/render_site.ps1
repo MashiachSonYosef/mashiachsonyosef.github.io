@@ -28,6 +28,7 @@ function Convert-HebrewDisplayHtml {
 function Convert-SourceHtml {
   param([AllowNull()][string]$Text)
   if ($null -eq $Text) { return '' }
+  $Text = $Text.Trim()
   $html = Convert-HebrewDisplayHtml $Text
   $html = $html -replace '(?i)&lt;br\s*/?&gt;', '<br>'
   $html = $html -replace '(?i)&lt;b&gt;', '<strong>'
@@ -36,7 +37,8 @@ function Convert-SourceHtml {
   $html = $html -replace '(?i)&lt;/strong&gt;', '</strong>'
   $html = $html -replace '(?i)&lt;small&gt;', '<span class="source-small">'
   $html = $html -replace '(?i)&lt;/small&gt;', '</span>'
-  return $html
+  $html = (($html -split '\r?\n') | ForEach-Object { $_.TrimEnd() }) -join "`n"
+  return $html.Trim()
 }
 
 function Read-Json {
