@@ -1289,7 +1289,10 @@ function Append-LexicalHudScript {
 }
 
 function Get-LexicalCache {
-  param([string]$LexicalDir = 'data/lexical')
+  param(
+    [string]$LexicalDir = 'data/lexical',
+    [string[]]$WorkIds = @()
+  )
 
   $lexiconPath = Join-Path $LexicalDir 'lexicon.json'
   $tokenIndexPath = Join-Path $LexicalDir 'token-index.json'
@@ -1347,7 +1350,12 @@ function Get-LexicalCache {
 
   $occurrencesByWork = @{}
   if (Test-Path $occurrencesDir) {
-    foreach ($file in @(Get-ChildItem -Path $occurrencesDir -Filter '*.json')) {
+    $occurrenceFiles = if ($WorkIds.Count -gt 0) {
+      @($WorkIds | ForEach-Object { Join-Path $occurrencesDir "$_.json" } | Where-Object { Test-Path -LiteralPath $_ } | ForEach-Object { Get-Item -LiteralPath $_ })
+    } else {
+      @(Get-ChildItem -Path $occurrencesDir -Filter '*.json')
+    }
+    foreach ($file in $occurrenceFiles) {
       $occurrence = Read-Json -Path $file.FullName
       if ($occurrence.work_id) {
         $occurrencesByWork[[string]$occurrence.work_id] = $occurrence
@@ -1929,7 +1937,19 @@ $sourceById = @{}
 foreach ($source in $sources) {
   $sourceById[[string]$source.work_id] = $source
 }
-$lexicalCache = Get-LexicalCache
+
+$targetWorkIds = @($WorkIds | Where-Object { $_ -and $_.ToString().Trim() } | ForEach-Object { $_.ToString().Trim() })
+if ($OnlyWorkIdsPath) {
+  if (-not (Test-Path -LiteralPath $OnlyWorkIdsPath)) {
+    throw "OnlyWorkIdsPath not found: $OnlyWorkIdsPath"
+  }
+  $targetWorkIds += @(Get-Content -LiteralPath $OnlyWorkIdsPath -Encoding UTF8 |
+    Where-Object { $_ -and $_.ToString().Trim() } |
+    ForEach-Object { $_.ToString().Trim() })
+  $targetWorkIds = @($targetWorkIds | Select-Object -Unique)
+}
+
+$lexicalCache = Get-LexicalCache -WorkIds $targetWorkIds
 
 function Find-SourceForFeature {
   param(
@@ -2216,16 +2236,6 @@ Write-Utf8 -Path 'about\index.html' -Content $aboutPage.ToString()
 
 Write-Utf8 -Path 'library\index.html' -Content (New-LibraryPageHtml -Sources $sources -HrefPrefix '../' -HomeHref '../' -AboutHref '../about/')
 
-$targetWorkIds = @($WorkIds | Where-Object { $_ -and $_.ToString().Trim() } | ForEach-Object { $_.ToString().Trim() })
-if ($OnlyWorkIdsPath) {
-  if (-not (Test-Path -LiteralPath $OnlyWorkIdsPath)) {
-    throw "OnlyWorkIdsPath not found: $OnlyWorkIdsPath"
-  }
-  $targetWorkIds += @(Get-Content -LiteralPath $OnlyWorkIdsPath -Encoding UTF8 |
-    Where-Object { $_ -and $_.ToString().Trim() } |
-    ForEach-Object { $_.ToString().Trim() })
-  $targetWorkIds = @($targetWorkIds | Select-Object -Unique)
-}
 $renderSources = if ($targetWorkIds.Count -gt 0) {
   @($sources | Where-Object { $targetWorkIds -contains [string]$_.work_id })
 } else {
