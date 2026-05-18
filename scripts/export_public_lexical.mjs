@@ -32,6 +32,7 @@ const licenseFiles = {
 };
 const safeAiMinConfidence = 60;
 const unsafeAiStatuses = new Set(['Related', 'Caution', 'Unresolved']);
+const strictAiStatuses = new Set(['Strict Hebrew', 'Strict Aramaic']);
 
 function abs(rel) {
   return path.join(root, rel);
@@ -44,7 +45,23 @@ function readJson(rel) {
 function writeText(rel, text) {
   const file = abs(rel);
   fs.mkdirSync(path.dirname(file), { recursive: true });
-  fs.writeFileSync(file, text, 'utf8');
+  const temp = `${file}.${process.pid}.tmp`;
+  let lastError = null;
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    try {
+      fs.writeFileSync(temp, text, 'utf8');
+      fs.renameSync(temp, file);
+      return;
+    } catch (error) {
+      lastError = error;
+      try {
+        if (fs.existsSync(temp)) fs.unlinkSync(temp);
+      } catch {
+        // Ignore cleanup failures and retry the write.
+      }
+    }
+  }
+  throw lastError;
 }
 
 function writeJson(rel, value) {
@@ -224,6 +241,17 @@ function sourceRowsForTokenSurface(entry, token, sourceRowsByKey) {
   return getSourceRows(entry.source_row_ids || [], sourceRowsByKey);
 }
 
+function claimIdForClaim(row) {
+  return stableId('claim', [
+    row.status,
+    row.hebrew_lemma_or_form,
+    (row.strict_renderings || []).join('|'),
+    row.source_name,
+    row.source_id,
+    row.license,
+  ].join('\u001f'));
+}
+
 function sourceHasUsableLicense(row) {
   return Boolean(row && row.source_name && row.source_id && row.license);
 }
@@ -277,7 +305,7 @@ function confidenceNote(row) {
 }
 
 function isSafeAiOption(row) {
-  return row.confidence >= safeAiMinConfidence && !unsafeAiStatuses.has(row.status);
+  return row.confidence >= safeAiMinConfidence && strictAiStatuses.has(row.status);
 }
 
 function makeClaim({ work, token, status, hebrewForm, renderings, breakdown, candidate, sourceRow }) {
@@ -334,14 +362,7 @@ function makeCompactClaim({ status, normalizedForms, hebrewForm, renderings, can
   };
   row.confidence = confidenceForClaim({ status, token: null, candidate, sourceRow });
   row.confidence_note = confidenceNote(row);
-  row.claim_id = stableId('claim', [
-    row.status,
-    row.hebrew_lemma_or_form,
-    row.strict_renderings.join('|'),
-    row.source_name,
-    row.source_id,
-    row.license,
-  ].join('\u001f'));
+  row.claim_id = claimIdForClaim(row);
   return row;
 }
 
@@ -740,6 +761,42 @@ function repoRel(file) {
   return path.relative(root, file).replaceAll(path.sep, '/');
 }
 
+function buildAllWorkSpecs() {
+  const tokenIndexesByWork = new Map();
+  for (const tokenIndexPath of listJsonFiles(abs('data/lexical/token-indexes'))) {
+    try {
+      const tokenIndex = JSON.parse(fs.readFileSync(tokenIndexPath, 'utf8'));
+      if (tokenIndex.work_id && !tokenIndexesByWork.has(tokenIndex.work_id)) {
+        tokenIndexesByWork.set(tokenIndex.work_id, {
+          path: repoRel(tokenIndexPath),
+          label: tokenIndex.work_title || tokenIndex.work_id,
+        });
+      }
+    } catch {
+      // Validation scripts catch malformed JSON; skip bad index files here.
+    }
+  }
+
+  const specs = [];
+  for (const manifestPath of listManifestFiles(abs('data/lexical'))) {
+    try {
+      const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+      if (!manifest.work_id) continue;
+      const tokenIndex = tokenIndexesByWork.get(manifest.work_id);
+      if (!tokenIndex) continue;
+      specs.push({
+        work_id: manifest.work_id,
+        label: tokenIndex.label,
+        token_index: tokenIndex.path,
+        manifest: repoRel(manifestPath),
+      });
+    } catch {
+      // Keep scanning other manifests.
+    }
+  }
+  return specs.sort((a, b) => a.work_id.localeCompare(b.work_id));
+}
+
 function buildWorkDownloadIndex() {
   const tokenIndexesByWork = new Map();
   for (const tokenIndexPath of listJsonFiles(abs('data/lexical/token-indexes'))) {
@@ -767,6 +824,7 @@ function buildWorkDownloadIndex() {
         public_claims_csv: fs.existsSync(abs(`data/public-lexical/by-work/${workId}.csv`)) ? `data/public-lexical/by-work/${workId}.csv` : '',
         token_status_csv: fs.existsSync(abs(`data/public-lexical/by-work/${workId}-token-status.csv`)) ? `data/public-lexical/by-work/${workId}-token-status.csv` : '',
         ai_options_min60_csv: fs.existsSync(abs(`data/public-lexical/by-work/${workId}-ai-options-min${safeAiMinConfidence}.csv`)) ? `data/public-lexical/by-work/${workId}-ai-options-min${safeAiMinConfidence}.csv` : '',
+        compact_token_claims_min60_csv: fs.existsSync(abs(`data/public-lexical/by-work/${workId}-token-claims-min${safeAiMinConfidence}.csv`)) ? `data/public-lexical/by-work/${workId}-token-claims-min${safeAiMinConfidence}.csv` : '',
         sitewide_claim_index_csv: 'data/public-lexical/sitewide/claim-index.csv',
         sitewide_normalized_lookup: 'data/public-lexical/sitewide/normalized-lookup.json',
       });
@@ -877,13 +935,134 @@ function buildSitewideCompactExport() {
 
   return {
     claims,
+    lookup: lookupObject,
     lookup_terms: lookup.size,
     work_rows: workRows,
     diagnostics,
   };
 }
 
+function writePerWorkTokenClaimCsvs(sitewideCompact) {
+  const rowsByWork = [];
+  const minConfidence = safeAiMinConfidence;
+  const columns = [
+    { header: 'clicked_surface_form', value: (row) => row.clicked_surface_form },
+    { header: 'normalized_form', value: (row) => row.normalized_form },
+    { header: 'occurrence_count', value: (row) => row.occurrence_count },
+    { header: 'best_confidence_any_claim', value: (row) => row.best_confidence_any_claim },
+    { header: 'safe_min_confidence', value: (row) => row.safe_min_confidence },
+    { header: 'safe_claim_ids', value: (row) => row.safe_claim_ids },
+    { header: 'safe_rendering_options', value: (row) => row.safe_rendering_options },
+    { header: 'safe_source_names', value: (row) => row.safe_source_names },
+    { header: 'safe_source_ids', value: (row) => row.safe_source_ids },
+    { header: 'safe_licenses', value: (row) => row.safe_licenses },
+    { header: 'export_status', value: (row) => row.export_status },
+    { header: 'notes', value: (row) => row.notes },
+  ];
+
+  for (const spec of buildAllWorkSpecs()) {
+    const { work, tokenIndex, entryById, sourceRowsByKey } = loadWorkExportContext(spec);
+    const workId = work.work_id || spec.work_id;
+    const rows = tokenIndex.forms.map((token) => {
+      const claims = [];
+      const entry = token.status === 'matched' && token.lexicon_entry_id
+        ? entryById.get(token.lexicon_entry_id)
+        : null;
+      if (entry) {
+        const surfaceRenderings = canonicalRenderings(token.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          for (const sourceRow of sourceRowsForTokenSurface(entry, token, sourceRowsByKey)) {
+            if (!sourceHasUsableLicense(sourceRow)) continue;
+            claims.push(makeClaim({
+              work,
+              token,
+              status: isAramaicCandidate({}, [sourceRow]) ? 'Strict Aramaic' : 'Strict Hebrew',
+              hebrewForm: entry.hebrew_word || token.normalized_word,
+              renderings: surfaceRenderings,
+              breakdown: token.breakdown || [],
+              candidate: null,
+              sourceRow,
+            }));
+          }
+        }
+        for (const candidate of entry.possible_entries || []) {
+          const renderings = canonicalRenderings(candidate.strict_renderings || []);
+          if (!renderings.length) continue;
+          const sourceRows = sourceRowsForCandidate(entry, candidate, sourceRowsByKey);
+          for (const sourceRow of sourceRows) {
+            if (!sourceHasUsableLicense(sourceRow)) continue;
+            claims.push(makeClaim({
+              work,
+              token,
+              status: claimStatusForCandidate(candidate, sourceRows),
+              hebrewForm: candidate.lemma || candidate.match_key || entry.hebrew_word,
+              renderings,
+              breakdown: [],
+              candidate,
+              sourceRow,
+            }));
+          }
+        }
+      }
+
+      const seenClaims = new Set();
+      const dedupedClaims = [];
+      for (const claim of claims) {
+        const id = claimIdForClaim(claim);
+        if (!seenClaims.has(id)) {
+          dedupedClaims.push({ ...claim, claim_id: id });
+          seenClaims.add(id);
+        }
+      }
+      const safeClaims = dedupedClaims.filter(isSafeAiOption);
+      const bestConfidence = claims.length ? Math.max(...claims.map((claim) => claim.confidence || 0)) : 0;
+      const safeStatus = safeClaims.length
+        ? `safe_claims_min${minConfidence}`
+        : (dedupedClaims.length ? `claims_below_safe_min${minConfidence}` : 'unresolved');
+      const notes = safeClaims.length
+        ? ''
+        : (dedupedClaims.length ? `No strict claim >=${minConfidence}%.` : 'No lexical entry yet.');
+
+      return {
+        work_id: workId,
+        work_title: work.work_title || tokenIndex.work_title || workId,
+        token_index_id: token.token_index_id || '',
+        clicked_surface_form: token.surface_word || '',
+        normalized_form: token.normalized_word || '',
+        occurrence_count: token.occurrence_count || 0,
+        lexical_status: token.status || '',
+        match_method: token.match_method || '',
+        lexicon_entry_id: token.lexicon_entry_id || '',
+        safe_min_confidence: minConfidence,
+        safe_claim_ids: safeClaims.map((claim) => claim.claim_id),
+        safe_statuses: unique(safeClaims.map((claim) => claim.status)),
+        safe_rendering_options: unique(safeClaims.flatMap((claim) => claim.strict_renderings || [])),
+        safe_source_names: unique(safeClaims.map((claim) => claim.source_name)),
+        safe_source_ids: unique(safeClaims.map((claim) => claim.source_id)),
+        safe_licenses: unique(safeClaims.map((claim) => claim.license)),
+        best_confidence_any_claim: bestConfidence,
+        export_status: safeStatus,
+        notes,
+        not_a_translation: true,
+      };
+    });
+
+    const rel = `data/public-lexical/by-work/${workId}-token-claims-min${minConfidence}.csv`;
+    writeCsv(rel, rows, columns);
+    rowsByWork.push({
+      work_id: workId,
+      token_rows: rows.length,
+      safe_token_rows: rows.filter((row) => row.safe_claim_ids.length).length,
+      path: rel,
+      bytes: fileSize(rel),
+    });
+  }
+
+  return rowsByWork.sort((a, b) => a.work_id.localeCompare(b.work_id));
+}
+
 const sitewideCompact = buildSitewideCompactExport();
+const perWorkCompactTokenCsvs = writePerWorkTokenClaimCsvs(sitewideCompact);
 const workDownloadRows = buildWorkDownloadIndex();
 const workDownloadColumns = [
   { header: 'work_id', value: (row) => row.work_id },
@@ -893,6 +1072,7 @@ const workDownloadColumns = [
   { header: 'public_claims_csv', value: (row) => row.public_claims_csv },
   { header: 'token_status_csv', value: (row) => row.token_status_csv },
   { header: 'ai_options_min60_csv', value: (row) => row.ai_options_min60_csv },
+  { header: 'compact_token_claims_min60_csv', value: (row) => row.compact_token_claims_min60_csv },
   { header: 'sitewide_claim_index_csv', value: (row) => row.sitewide_claim_index_csv },
   { header: 'sitewide_normalized_lookup', value: (row) => row.sitewide_normalized_lookup },
 ];
@@ -955,6 +1135,14 @@ const manifest = {
         safe_min_confidence: safeAiMinConfidence,
         bytes: fileSize(`data/public-lexical/by-work/${result.spec.work_id}-ai-options-min${safeAiMinConfidence}.csv`),
       })),
+    ...perWorkCompactTokenCsvs.map((row) => ({
+      path: row.path,
+      work_id: row.work_id,
+      row_count: row.token_rows,
+      safe_token_rows: row.safe_token_rows,
+      safe_min_confidence: safeAiMinConfidence,
+      bytes: row.bytes,
+    })),
     { path: 'data/public-lexical/sitewide/claim-index.jsonl', row_count: sitewideCompact.claims.length, bytes: fileSize('data/public-lexical/sitewide/claim-index.jsonl') },
     { path: 'data/public-lexical/sitewide/claim-index.csv', row_count: sitewideCompact.claims.length, bytes: fileSize('data/public-lexical/sitewide/claim-index.csv') },
     { path: 'data/public-lexical/sitewide/normalized-lookup.json', row_count: sitewideCompact.lookup_terms, bytes: fileSize('data/public-lexical/sitewide/normalized-lookup.json') },
@@ -965,7 +1153,7 @@ const manifest = {
   ],
   ai_export_policy: {
     safe_min_confidence: safeAiMinConfidence,
-    note: 'AI options CSVs include every token row. Renderings below the threshold, Related, Caution, and unresolved rows are retained as placeholders or diagnostics but are not safe_export_rendering_options.',
+    note: 'AI options CSVs include token rows. Safe export columns include only Strict Hebrew / Strict Aramaic claims at or above the confidence threshold. Compact per-work token-claim CSVs are available for every work and point back to deduplicated source/license claims.',
   },
   license_policy: {
     note: 'Rows retain their own source/license metadata. Do not combine CC BY-SA/GFDL rows into CC0-only downstream output.',
@@ -1026,13 +1214,21 @@ const reportLines = [
   '',
   'Token-status CSVs include unresolved forms explicitly. An unresolved row means `No lexical entry yet`, not a hidden translation or inferred definition.',
   '',
-  `For AI-assisted workflows, use the \`*-ai-options-min${safeAiMinConfidence}.csv\` files. They include every token row, but only expose \`safe_export_rendering_options\` when a public claim is at least ${safeAiMinConfidence}% confident and is not Related/Caution.`,
+  `For AI-assisted workflows, use the \`*-ai-options-min${safeAiMinConfidence}.csv\` files. They include every token row, but only expose \`safe_export_rendering_options\` when a Strict Hebrew or Strict Aramaic public claim is at least ${safeAiMinConfidence}% confident.`,
   '',
   '| Work | Unique token rows | AI options CSV |',
   '| --- | ---: | --- |',
   ...workResults
     .filter((result) => result.tokenStatusRows?.length)
     .map((result) => `| ${result.spec.work_id} | ${result.tokenStatusRows.length} | data/public-lexical/by-work/${result.spec.work_id}-ai-options-min${safeAiMinConfidence}.csv |`),
+  '',
+  '## Compact Per-Work Token Claim CSVs',
+  '',
+  `A compact \`*-token-claims-min${safeAiMinConfidence}.csv\` file was generated for every work with a token index. These files avoid duplicating full source rows per work; they include Strict Hebrew / Strict Aramaic claim IDs, rendering options, and compact license columns when the claim clears the confidence threshold, and they point back to the sitewide claim index for full row details.`,
+  '',
+  '| Work | Token rows | Safe token rows | CSV |',
+  '| --- | ---: | ---: | --- |',
+  ...perWorkCompactTokenCsvs.map((row) => `| ${row.work_id} | ${row.token_rows} | ${row.safe_token_rows} | ${row.path} |`),
   '',
   '## Skipped / Diagnostic Counts',
   '',
@@ -1097,5 +1293,10 @@ console.log(JSON.stringify({
     lookup_terms: sitewideCompact.lookup_terms,
     works: sitewideCompact.work_rows.length,
     diagnostics: sitewideCompact.diagnostics,
+  },
+  per_work_compact_token_csvs: {
+    works: perWorkCompactTokenCsvs.length,
+    token_rows: perWorkCompactTokenCsvs.reduce((sum, row) => sum + row.token_rows, 0),
+    safe_token_rows: perWorkCompactTokenCsvs.reduce((sum, row) => sum + row.safe_token_rows, 0),
   },
 }, null, 2));

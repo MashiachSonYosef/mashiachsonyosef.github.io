@@ -2122,6 +2122,10 @@ function Append-WorkLexicalDownloadLinks {
   if (Test-Path -LiteralPath $aiOptionsCsv) {
     $links.Add("<a class=""export-button"" href=""$($RootHref)$aiOptionsCsv"" download>AI options CSV</a>")
   }
+  $compactTokenClaimsCsv = "data/public-lexical/by-work/$workId-token-claims-min60.csv"
+  if (Test-Path -LiteralPath $compactTokenClaimsCsv) {
+    $links.Add("<a class=""export-button"" href=""$($RootHref)$compactTokenClaimsCsv"" download>Compact token claims CSV</a>")
+  }
 
   if ($links.Count -gt 0) {
     [void]$Builder.AppendLine('        <div class="license-notice lexical-downloads">')
