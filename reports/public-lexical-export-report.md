@@ -70,7 +70,7 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | beur-hagra-on-shulchan-arukh-orach-chayim | 12656 | 1190 | data/public-lexical/by-work/beur-hagra-on-shulchan-arukh-orach-chayim-token-claims-min60.csv |
 | beur-hagra-on-shulchan-arukh-yoreh-deah | 25673 | 1909 | data/public-lexical/by-work/beur-hagra-on-shulchan-arukh-yoreh-deah-token-claims-min60.csv |
 | beur-hagra-on-sifra-detzniuta | 10860 | 1368 | data/public-lexical/by-work/beur-hagra-on-sifra-detzniuta-token-claims-min60.csv |
-| beur-haradal-on-pirkei-derabbi-eliezer | 41996 | 4135 | data/public-lexical/by-work/beur-haradal-on-pirkei-derabbi-eliezer-token-claims-min60.csv |
+| beur-haradal-on-pirkei-derabbi-eliezer | 41996 | 4136 | data/public-lexical/by-work/beur-haradal-on-pirkei-derabbi-eliezer-token-claims-min60.csv |
 | beur-hareem-on-midrash-lekach-tov | 13211 | 1772 | data/public-lexical/by-work/beur-hareem-on-midrash-lekach-tov-token-claims-min60.csv |
 | book-of-jubilees | 6786 | 1091 | data/public-lexical/by-work/book-of-jubilees-token-claims-min60.csv |
 | book-of-judith | 2919 | 552 | data/public-lexical/by-work/book-of-judith-token-claims-min60.csv |
@@ -153,14 +153,18 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | micah | 1144 | 207 | data/public-lexical/by-work/micah-token-claims-min60.csv |
 | midbar-shur | 19798 | 2975 | data/public-lexical/by-work/midbar-shur-token-claims-min60.csv |
 | midrash-aggadah | 20618 | 2642 | data/public-lexical/by-work/midrash-aggadah-token-claims-min60.csv |
+| midrash-bechiddush-on-pesach-haggadah | 8662 | 1370 | data/public-lexical/by-work/midrash-bechiddush-on-pesach-haggadah-token-claims-min60.csv |
+| midrash-haittamari | 23927 | 3091 | data/public-lexical/by-work/midrash-haittamari-token-claims-min60.csv |
 | midrash-lekach-tov | 41646 | 4213 | data/public-lexical/by-work/midrash-lekach-tov-token-claims-min60.csv |
 | midrash-lekach-tov-on-ecclesiastes | 421 | 125 | data/public-lexical/by-work/midrash-lekach-tov-on-ecclesiastes-token-claims-min60.csv |
 | midrash-lekach-tov-on-esther | 1030 | 231 | data/public-lexical/by-work/midrash-lekach-tov-on-esther-token-claims-min60.csv |
 | midrash-lekach-tov-on-lamentations | 757 | 184 | data/public-lexical/by-work/midrash-lekach-tov-on-lamentations-token-claims-min60.csv |
 | midrash-lekach-tov-on-ruth | 759 | 204 | data/public-lexical/by-work/midrash-lekach-tov-on-ruth-token-claims-min60.csv |
 | midrash-lekach-tov-on-song-of-songs | 787 | 205 | data/public-lexical/by-work/midrash-lekach-tov-on-song-of-songs-token-claims-min60.csv |
+| midrash-pinchas | 8709 | 1387 | data/public-lexical/by-work/midrash-pinchas-token-claims-min60.csv |
 | midrash-sekhel-tov | 38876 | 3664 | data/public-lexical/by-work/midrash-sekhel-tov-token-claims-min60.csv |
 | midrash-shmuel | 7023 | 1134 | data/public-lexical/by-work/midrash-shmuel-token-claims-min60.csv |
+| midrash-shmuel-on-avot | 28325 | 3620 | data/public-lexical/by-work/midrash-shmuel-on-avot-token-claims-min60.csv |
 | midrash-tanchuma | 37138 | 4617 | data/public-lexical/by-work/midrash-tanchuma-token-claims-min60.csv |
 | midrash-tanchuma-buber | 26484 | 3099 | data/public-lexical/by-work/midrash-tanchuma-buber-token-claims-min60.csv |
 | midrash-tannaim-on-deuteronomy | 2712 | 530 | data/public-lexical/by-work/midrash-tannaim-on-deuteronomy-token-claims-min60.csv |
@@ -241,7 +245,7 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | numbers | 8225 | 1178 | data/public-lexical/by-work/numbers-token-claims-min60.csv |
 | obadiah | 237 | 37 | data/public-lexical/by-work/obadiah-token-claims-min60.csv |
 | orot | 17307 | 4741 | data/public-lexical/by-work/orot-token-claims-min60.csv |
-| orot-ha-kodesh | 18735 | 3168 | data/public-lexical/by-work/orot-ha-kodesh-token-claims-min60.csv |
+| orot-ha-kodesh | 18735 | 3169 | data/public-lexical/by-work/orot-ha-kodesh-token-claims-min60.csv |
 | orot-ha-torah | 807 | 223 | data/public-lexical/by-work/orot-ha-torah-token-claims-min60.csv |
 | otzar-midrashim | 56400 | 5770 | data/public-lexical/by-work/otzar-midrashim-token-claims-min60.csv |
 | par-echad-on-pirkei-derabbi-eliezer | 5738 | 948 | data/public-lexical/by-work/par-echad-on-pirkei-derabbi-eliezer-token-claims-min60.csv |
@@ -430,12 +434,12 @@ Rows are skipped from the public JSONL export when they have no renderings or wh
 
 | File | Rows / terms | Purpose |
 | --- | ---: | --- |
-| data/public-lexical/sitewide/claim-index.jsonl | 9120 | Deduplicated claim-shaped lexical rows across all imported works |
-| data/public-lexical/sitewide/claim-index.csv | 9120 | CSV mirror of the compact claim index |
+| data/public-lexical/sitewide/claim-index.jsonl | 9122 | Deduplicated claim-shaped lexical rows across all imported works |
+| data/public-lexical/sitewide/claim-index.csv | 9122 | CSV mirror of the compact claim index |
 | data/public-lexical/sitewide/normalized-lookup.json | 19235 | Normalized Hebrew form to claim ID lookup |
-| data/public-lexical/sitewide/work-summary.jsonl | 363 | Per-work compact-export coverage summary |
-| data/public-lexical/sitewide/work-summary.csv | 363 | CSV mirror of per-work compact-export coverage summary |
-| data/public-lexical/sitewide/work-downloads.csv | 363 | Per-work download index for lexical manifests, token indexes, and public export files |
+| data/public-lexical/sitewide/work-summary.jsonl | 367 | Per-work compact-export coverage summary |
+| data/public-lexical/sitewide/work-summary.csv | 367 | CSV mirror of per-work compact-export coverage summary |
+| data/public-lexical/sitewide/work-downloads.csv | 367 | Per-work download index for lexical manifests, token indexes, and public export files |
 
 The compact sitewide files are intended for AI/tool import. They preserve source/license metadata per claim and avoid repeating the same source-backed lexical row for every work-token occurrence.
 
@@ -443,9 +447,9 @@ The compact sitewide files are intended for AI/tool import. They preserve source
 
 | Item | Count |
 | --- | ---: |
-| manifests scanned | 363 |
-| chunks scanned | 1935 |
-| candidate rows without renderings | 396013 |
+| manifests scanned | 367 |
+| chunks scanned | 2006 |
+| candidate rows without renderings | 411565 |
 | candidate rows without source/license | 0 |
 
 ## User-Facing Prompt

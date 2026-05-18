@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-16T18:16:25.704Z
+Generated: 2026-05-18T04:41:52.527Z
 
 ## Scope
 
@@ -15,18 +15,18 @@ Generated: 2026-05-16T18:16:25.704Z
 
 ## Counts
 
-- Total work-surface rows: 1758660
-- Total sitewide unique surface forms: 561920
-- Sitewide unique surface forms matched at least once: 76671
-- Sitewide unique surface forms unmatched everywhere: 485249
-- Total token occurrences: 7797109
-- Matched before prefix/suffix parser: 444207
-- Newly resolved by prefix/suffix parser: 59301
-- Total matched after parser: 520430
-- Percent matched: 29.6%
-- Matched via Wikidata: 378786
-- Enriched via OpenScriptures: 441853
-- Unmatched: 1238230
+- Total work-surface rows: 1828283
+- Total sitewide unique surface forms: 570449
+- Sitewide unique surface forms matched at least once: 78295
+- Sitewide unique surface forms unmatched everywhere: 492154
+- Total token occurrences: 8238645
+- Matched before prefix/suffix parser: 459753
+- Newly resolved by prefix/suffix parser: 62765
+- Total matched after parser: 544061
+- Percent matched: 29.8%
+- Matched via Wikidata: 394428
+- Enriched via OpenScriptures: 459186
+- Unmatched: 1284222
 
 ## Newly Resolved Parsed Forms
 
@@ -45,11 +45,11 @@ Generated: 2026-05-16T18:16:25.704Z
 - בלשון -> in tongue, Muscular organ in the mouth, with tongue, Muscular organ in the mouth, by tongue, Muscular organ in the mouth (wikidata + openscriptures) -- beur-haradal-on-pirkei-derabbi-eliezer
 - וכתיב -> and it is written (workspace) -- midrash-lekach-tov
 - וכתיב -> and it is written (workspace) -- midrash-sekhel-tov
+- שאם -> that if, which if, who if (workspace) -- midrash-shmuel-on-avot
 - כנגד -> as resistor, like resistor (wikidata + openscriptures) -- midrash-lekach-tov
 - שאם -> that if, which if, who if (workspace) -- chafetz-chaim-on-sifra
 - ואלו -> and this/that, and demonstrative pronoun (wikidata + openscriptures) -- otzar-midrashim
-- שאם -> that if, which if, who if (workspace) -- raavad-on-sifra
-- וּכְתִיב -> and it is written (workspace) -- midrash-tanchuma
+- כאלו -> as this/that, like this/that, as demonstrative pronoun (wikidata + openscriptures) -- midrash-shmuel-on-avot
 
 ## Sample Matched Words With Refs To Test
 
@@ -93,9 +93,9 @@ Generated: 2026-05-16T18:16:25.704Z
 - אאהבנו -- etz-yosef-on-bamidbar-rabbah
 - אאהוב -- book-of-jubilees
 - אַאוּגְרַיְהוּ -- ein-yaakov
+- אאוירא -- midrash-shmuel-on-avot
 - אאוכל -- chafetz-chaim-on-sifra
 - אאוכלין -- raavad-on-sifra
-- אאומינס -- the-book-of-maccabees-i
 
 ## Top 50 Remaining Unmatched By Frequency
 
@@ -132,7 +132,6 @@ Generated: 2026-05-16T18:16:25.704Z
 - 662x בְּגִין -- zohar-chadash
 - 659x רִבִּי -- zohar-chadash
 - 656x אֶלְעָזָר -- ein-yaakov
-- 655x וכ״כ -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 653x נמי -- raavad-on-sifra
 - 652x ע״ב -- shaar-maamarei-rashbi
 - 648x י״ל -- beur-haradal-on-pirkei-derabbi-eliezer
@@ -140,15 +139,16 @@ Generated: 2026-05-16T18:16:25.704Z
 - 630x ב״ר -- notes-and-corrections-on-midrash-aggadah
 - 626x דְּאִיהוּ -- zohar-chadash
 - 624x הגי׳ -- notes-and-corrections-on-midrash-lekach-tov
+- 624x כתב -- midrash-shmuel-on-avot
 - 623x הי׳ -- beur-haradal-on-pirkei-derabbi-eliezer
+- 613x ואמר -- midrash-shmuel-on-avot
+- 611x עכ״ל -- midrash-shmuel-on-avot
 - 609x יְיָ -- aramaic-targum-to-psalms
 - 607x המלך -- sefer-hayashar-midrash
 - 603x ס״א -- beur-hagra-on-shulchan-arukh-orach-chayim
 - 600x ה׳ -- shaar-hapesukim
 - 596x א׳ -- pesikta-derav-kahana
 - 592x ב׳ -- otzar-midrashim
-- 585x יְיָ -- targum-jonathan-on-jeremiah
-- 582x כמנין -- maaseh-rokeach-on-mishnah
 
 ## Exact Orot Refs To Test
 
