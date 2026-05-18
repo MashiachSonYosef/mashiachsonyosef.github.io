@@ -2135,24 +2135,39 @@ function Append-WorkLexicalDownloadLinks {
   }
 }
 
-$homePage = New-Object System.Text.StringBuilder
-[void]$homePage.AppendLine('<!DOCTYPE html>')
-[void]$homePage.AppendLine('<html lang="en">')
-[void]$homePage.AppendLine('<head>')
-[void]$homePage.AppendLine('  <meta charset="UTF-8">')
-[void]$homePage.AppendLine('  <meta name="viewport" content="width=device-width, initial-scale=1.0">')
-[void]$homePage.AppendLine('  <meta http-equiv="refresh" content="0; url=library/">')
-[void]$homePage.AppendLine('  <link rel="canonical" href="library/">')
-[void]$homePage.AppendLine('  <title>Hebrew Source Workbench</title>')
-[void]$homePage.AppendLine('  <script>window.location.replace("library/");</script>')
-[void]$homePage.AppendLine('</head>')
-[void]$homePage.AppendLine('<body>')
-[void]$homePage.AppendLine('  <main>')
-[void]$homePage.AppendLine('    <p>Hebrew Source Workbench with lexical HUD support. Redirecting to the <a href="library/">Full Library</a>.</p>')
-[void]$homePage.AppendLine('  </main>')
-[void]$homePage.AppendLine('</body>')
-[void]$homePage.AppendLine('</html>')
-Write-Utf8 -Path 'index.html' -Content $homePage.ToString()
+function New-LibraryPageHtml {
+  param(
+    [object[]]$Sources,
+    [string]$HrefPrefix = '',
+    [string]$HomeHref = './',
+    [string]$AboutHref = 'about/'
+  )
+
+  $page = New-Object System.Text.StringBuilder
+  Append-SiteHead -Builder $page -Title 'Full Library'
+  [void]$page.AppendLine('  <main>')
+  [void]$page.AppendLine('    <div class="shell">')
+  [void]$page.AppendLine('      <div class="hero">')
+  [void]$page.AppendLine("        <p class=""crumbs""><a href=""$HomeHref"">Home</a> &middot; <a href=""$AboutHref"">About / License</a></p>")
+  [void]$page.AppendLine('        <h1>Full Library</h1>')
+  [void]$page.AppendLine('        <p>Hebrew Source Workbench with lexical HUD support. All imported Hebrew source works remain available here. Talmud and commentary material stays in an internal archive shelf until hardened.</p>')
+  [void]$page.AppendLine('      </div>')
+  [void]$page.AppendLine('      <div style="padding:22px">')
+  [void]$page.AppendLine('        <section class="home-section">')
+  [void]$page.AppendLine('          <h2>Lexical Downloads</h2>')
+  [void]$page.AppendLine('          <p>Use the per-work downloads CSV to find available manifests, token indexes, token-status CSVs, and AI option CSVs for each work.</p>')
+  Append-PublicExportLinks -Builder $page -HrefPrefix $HrefPrefix
+  [void]$page.AppendLine('        </section>')
+  Append-LibrarySections -Builder $page -Sources $Sources -HrefPrefix $HrefPrefix
+  [void]$page.AppendLine('      </div>')
+  [void]$page.AppendLine('    </div>')
+  [void]$page.AppendLine('  </main>')
+  [void]$page.AppendLine('</body>')
+  [void]$page.AppendLine('</html>')
+  return $page.ToString()
+}
+
+Write-Utf8 -Path 'index.html' -Content (New-LibraryPageHtml -Sources $sources -HrefPrefix '' -HomeHref './' -AboutHref 'about/')
 
 $aboutPage = New-Object System.Text.StringBuilder
 Append-SiteHead -Builder $aboutPage -Title 'About / License'
@@ -2190,28 +2205,7 @@ Append-PublicExportLinks -Builder $aboutPage -HrefPrefix '../'
 [void]$aboutPage.AppendLine('</html>')
 Write-Utf8 -Path 'about\index.html' -Content $aboutPage.ToString()
 
-$libraryPage = New-Object System.Text.StringBuilder
-Append-SiteHead -Builder $libraryPage -Title 'Full Library'
-[void]$libraryPage.AppendLine('  <main>')
-[void]$libraryPage.AppendLine('    <div class="shell">')
-[void]$libraryPage.AppendLine('      <div class="hero">')
-[void]$libraryPage.AppendLine('        <p class="crumbs"><a href="../">Home</a> &middot; <a href="../about/">About / License</a></p>')
-[void]$libraryPage.AppendLine('        <h1>Full Library</h1>')
-[void]$libraryPage.AppendLine('        <p>All imported Hebrew source works remain available here. Talmud and commentary material stays in an internal archive shelf until hardened.</p>')
-[void]$libraryPage.AppendLine('      </div>')
-[void]$libraryPage.AppendLine('      <div style="padding:22px">')
-[void]$libraryPage.AppendLine('        <section class="home-section">')
-[void]$libraryPage.AppendLine('          <h2>Lexical Downloads</h2>')
-[void]$libraryPage.AppendLine('          <p>Use the per-work downloads CSV to find available manifests, token indexes, token-status CSVs, and AI option CSVs for each work.</p>')
-Append-PublicExportLinks -Builder $libraryPage -HrefPrefix '../'
-[void]$libraryPage.AppendLine('        </section>')
-Append-LibrarySections -Builder $libraryPage -Sources $sources -HrefPrefix '../'
-[void]$libraryPage.AppendLine('      </div>')
-[void]$libraryPage.AppendLine('    </div>')
-[void]$libraryPage.AppendLine('  </main>')
-[void]$libraryPage.AppendLine('</body>')
-[void]$libraryPage.AppendLine('</html>')
-Write-Utf8 -Path 'library\index.html' -Content $libraryPage.ToString()
+Write-Utf8 -Path 'library\index.html' -Content (New-LibraryPageHtml -Sources $sources -HrefPrefix '../' -HomeHref '../' -AboutHref '../about/')
 
 $targetWorkIds = @($WorkIds | Where-Object { $_ -and $_.ToString().Trim() } | ForEach-Object { $_.ToString().Trim() })
 if ($OnlyWorkIdsPath) {
