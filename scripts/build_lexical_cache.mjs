@@ -2680,7 +2680,7 @@ for (const fileName of sourceFiles) {
 
   const occurrencePath = path.join(occurrencesDir, `${source.work_id}.json`);
   expectedOccurrencePaths.add(path.resolve(occurrencePath));
-  writeJson(occurrencePath, {
+  writeCompactJson(occurrencePath, {
     schema_version: 1,
     work_id: source.work_id,
     work_title: source.work_title,

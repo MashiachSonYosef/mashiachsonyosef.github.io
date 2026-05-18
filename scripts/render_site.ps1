@@ -594,7 +594,7 @@ function Append-LexicalHudScript {
   $geresh = [char]0x05F3
   $gershayim = [char]0x05F4
   [void]$Builder.AppendLine('  <script>')
-  [void]$Builder.AppendLine('    (() => {')
+  [void]$Builder.AppendLine('    (async () => {')
   [void]$Builder.AppendLine('      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");')
   [void]$Builder.AppendLine('      const lexiconNode = document.querySelector("[data-lexical-lexicon]");')
   [void]$Builder.AppendLine('      const configNode = document.querySelector("[data-lexical-config]");')
@@ -602,7 +602,7 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };')
   [void]$Builder.AppendLine('      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};')
   [void]$Builder.AppendLine('      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");')
-  [void]$Builder.AppendLine('      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };')
+  [void]$Builder.AppendLine('      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };')
   [void]$Builder.AppendLine('      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));')
   [void]$Builder.AppendLine('      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));')
   [void]$Builder.AppendLine('      const chunkPromises = new Map();')
@@ -635,6 +635,12 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        const response = await fetch(toAbsoluteUrl(url, base));')
   [void]$Builder.AppendLine('        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);')
   [void]$Builder.AppendLine('        return response.json();')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const loadOccurrences = async () => {')
+  [void]$Builder.AppendLine('        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;')
+  [void]$Builder.AppendLine('        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");')
+  [void]$Builder.AppendLine('        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);')
+  [void]$Builder.AppendLine('        return occurrences;')
   [void]$Builder.AppendLine('      };')
   [void]$Builder.AppendLine('      const loadManifest = async () => {')
   [void]$Builder.AppendLine('        if (!lexicalConfig.manifest_url) return null;')
@@ -717,8 +723,9 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        const state = { index: 0 };')
   [void]$Builder.AppendLine('        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));')
   [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const loadedOccurrences = await loadOccurrences();')
   [void]$Builder.AppendLine('      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {')
-  [void]$Builder.AppendLine('        const unitData = occurrences.units ? occurrences.units[unit.id] : null;')
+  [void]$Builder.AppendLine('        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;')
   [void]$Builder.AppendLine('        if (!unitData) return;')
   [void]$Builder.AppendLine('        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {')
   [void]$Builder.AppendLine('          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);')
@@ -2263,6 +2270,7 @@ foreach ($source in $renderSources) {
     if ($SkipLexicalPayloadFiles) {
       [pscustomobject]@{
         manifest_url = "$rootHref" + "data/lexical/$($source.work_id).manifest.json"
+        occurrence_url = "$rootHref" + "data/lexical/occurrences/$($source.work_id).json"
         root_href = $rootHref
       }
     } else {
@@ -2438,12 +2446,14 @@ foreach ($source in $renderSources) {
     [void]$page.AppendLine('      <div data-hud-sources></div>')
     [void]$page.AppendLine('    </details>')
     [void]$page.AppendLine('  </section>')
-    $occurrenceJson = (ConvertTo-Json -InputObject $workOccurrence -Depth 30 -Compress) -replace '</script', '<\/script'
-    [void]$page.AppendLine("  <script type=""application/json"" data-lexical-occurrences>$occurrenceJson</script>")
     if ($null -ne $workLexicalExternal) {
       $lexicalConfigJson = (ConvertTo-Json -InputObject $workLexicalExternal -Depth 10 -Compress) -replace '</script', '<\/script'
+      $occurrenceUrl = [System.Net.WebUtility]::HtmlEncode([string]$workLexicalExternal.occurrence_url)
+      [void]$page.AppendLine("  <script type=""application/json"" data-lexical-occurrences data-src=""$occurrenceUrl"">{}</script>")
       [void]$page.AppendLine("  <script type=""application/json"" data-lexical-config>$lexicalConfigJson</script>")
     } else {
+      $occurrenceJson = (ConvertTo-Json -InputObject $workOccurrence -Depth 30 -Compress) -replace '</script', '<\/script'
+      [void]$page.AppendLine("  <script type=""application/json"" data-lexical-occurrences>$occurrenceJson</script>")
       $tokenIndexJson = (ConvertTo-Json -InputObject $workLexicalPayload.token_index -Depth 30 -Compress) -replace '</script', '<\/script'
       $lexiconJson = (ConvertTo-Json -InputObject $workLexicalPayload.lexicon -Depth 30 -Compress) -replace '</script', '<\/script'
       [void]$page.AppendLine("  <script type=""application/json"" data-lexical-token-index>$tokenIndexJson</script>")
