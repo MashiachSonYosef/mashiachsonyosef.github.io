@@ -1,0 +1,837 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction to Commentary:2 | pat-lechem-introduction-to-commentary-introduction-to-commentary-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction to Commentary:3 | pat-lechem-introduction-to-commentary-introduction-to-commentary-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction to Commentary:4 | pat-lechem-introduction-to-commentary-introduction-to-commentary-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction to Commentary:5 | pat-lechem-introduction-to-commentary-introduction-to-commentary-5 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction to Commentary:6 | pat-lechem-introduction-to-commentary-introduction-to-commentary-6 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction to Commentary:7 | pat-lechem-introduction-to-commentary-introduction-to-commentary-7 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction to Commentary:8 | pat-lechem-introduction-to-commentary-introduction-to-commentary-8 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction to Commentary:9 | pat-lechem-introduction-to-commentary-introduction-to-commentary-9 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction to Commentary:10 | pat-lechem-introduction-to-commentary-introduction-to-commentary-10 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction to Commentary:11 | pat-lechem-introduction-to-commentary-introduction-to-commentary-11 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction to Commentary:12 | pat-lechem-introduction-to-commentary-introduction-to-commentary-12 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction to Commentary:13 | pat-lechem-introduction-to-commentary-introduction-to-commentary-13 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:1 | pat-lechem-introduction-of-the-author-introduction-of-the-author-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:2 | pat-lechem-introduction-of-the-author-introduction-of-the-author-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:3 | pat-lechem-introduction-of-the-author-introduction-of-the-author-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:4 | pat-lechem-introduction-of-the-author-introduction-of-the-author-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:5 | pat-lechem-introduction-of-the-author-introduction-of-the-author-5 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:6 | pat-lechem-introduction-of-the-author-introduction-of-the-author-6 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:7 | pat-lechem-introduction-of-the-author-introduction-of-the-author-7 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:8 | pat-lechem-introduction-of-the-author-introduction-of-the-author-8 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:9 | pat-lechem-introduction-of-the-author-introduction-of-the-author-9 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:10 | pat-lechem-introduction-of-the-author-introduction-of-the-author-10 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:11 | pat-lechem-introduction-of-the-author-introduction-of-the-author-11 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:12 | pat-lechem-introduction-of-the-author-introduction-of-the-author-12 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:13 | pat-lechem-introduction-of-the-author-introduction-of-the-author-13 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:14 | pat-lechem-introduction-of-the-author-introduction-of-the-author-14 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:15 | pat-lechem-introduction-of-the-author-introduction-of-the-author-15 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:16 | pat-lechem-introduction-of-the-author-introduction-of-the-author-16 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:17 | pat-lechem-introduction-of-the-author-introduction-of-the-author-17 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:18 | pat-lechem-introduction-of-the-author-introduction-of-the-author-18 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:19 | pat-lechem-introduction-of-the-author-introduction-of-the-author-19 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:20 | pat-lechem-introduction-of-the-author-introduction-of-the-author-20 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:21 | pat-lechem-introduction-of-the-author-introduction-of-the-author-21 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:22 | pat-lechem-introduction-of-the-author-introduction-of-the-author-22 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:23 | pat-lechem-introduction-of-the-author-introduction-of-the-author-23 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:24 | pat-lechem-introduction-of-the-author-introduction-of-the-author-24 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:25 | pat-lechem-introduction-of-the-author-introduction-of-the-author-25 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:26 | pat-lechem-introduction-of-the-author-introduction-of-the-author-26 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:27 | pat-lechem-introduction-of-the-author-introduction-of-the-author-27 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:28 | pat-lechem-introduction-of-the-author-introduction-of-the-author-28 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:29 | pat-lechem-introduction-of-the-author-introduction-of-the-author-29 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:30 | pat-lechem-introduction-of-the-author-introduction-of-the-author-30 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:31 | pat-lechem-introduction-of-the-author-introduction-of-the-author-31 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:32 | pat-lechem-introduction-of-the-author-introduction-of-the-author-32 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:33 | pat-lechem-introduction-of-the-author-introduction-of-the-author-33 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:34 | pat-lechem-introduction-of-the-author-introduction-of-the-author-34 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:35 | pat-lechem-introduction-of-the-author-introduction-of-the-author-35 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:36 | pat-lechem-introduction-of-the-author-introduction-of-the-author-36 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:37 | pat-lechem-introduction-of-the-author-introduction-of-the-author-37 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:38 | pat-lechem-introduction-of-the-author-introduction-of-the-author-38 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:39 | pat-lechem-introduction-of-the-author-introduction-of-the-author-39 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:40 | pat-lechem-introduction-of-the-author-introduction-of-the-author-40 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:41 | pat-lechem-introduction-of-the-author-introduction-of-the-author-41 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:42 | pat-lechem-introduction-of-the-author-introduction-of-the-author-42 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:43 | pat-lechem-introduction-of-the-author-introduction-of-the-author-43 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:44 | pat-lechem-introduction-of-the-author-introduction-of-the-author-44 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:45 | pat-lechem-introduction-of-the-author-introduction-of-the-author-45 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:46 | pat-lechem-introduction-of-the-author-introduction-of-the-author-46 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:47 | pat-lechem-introduction-of-the-author-introduction-of-the-author-47 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:48 | pat-lechem-introduction-of-the-author-introduction-of-the-author-48 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:49 | pat-lechem-introduction-of-the-author-introduction-of-the-author-49 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:50 | pat-lechem-introduction-of-the-author-introduction-of-the-author-50 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:51 | pat-lechem-introduction-of-the-author-introduction-of-the-author-51 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:52 | pat-lechem-introduction-of-the-author-introduction-of-the-author-52 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:53 | pat-lechem-introduction-of-the-author-introduction-of-the-author-53 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:54 | pat-lechem-introduction-of-the-author-introduction-of-the-author-54 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:55 | pat-lechem-introduction-of-the-author-introduction-of-the-author-55 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:56 | pat-lechem-introduction-of-the-author-introduction-of-the-author-56 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:57 | pat-lechem-introduction-of-the-author-introduction-of-the-author-57 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:58 | pat-lechem-introduction-of-the-author-introduction-of-the-author-58 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:59 | pat-lechem-introduction-of-the-author-introduction-of-the-author-59 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:60 | pat-lechem-introduction-of-the-author-introduction-of-the-author-60 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:61 | pat-lechem-introduction-of-the-author-introduction-of-the-author-61 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:62 | pat-lechem-introduction-of-the-author-introduction-of-the-author-62 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:63 | pat-lechem-introduction-of-the-author-introduction-of-the-author-63 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:64 | pat-lechem-introduction-of-the-author-introduction-of-the-author-64 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:65 | pat-lechem-introduction-of-the-author-introduction-of-the-author-65 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:66 | pat-lechem-introduction-of-the-author-introduction-of-the-author-66 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:67 | pat-lechem-introduction-of-the-author-introduction-of-the-author-67 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:68 | pat-lechem-introduction-of-the-author-introduction-of-the-author-68 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:69 | pat-lechem-introduction-of-the-author-introduction-of-the-author-69 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:70 | pat-lechem-introduction-of-the-author-introduction-of-the-author-70 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:71 | pat-lechem-introduction-of-the-author-introduction-of-the-author-71 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:72 | pat-lechem-introduction-of-the-author-introduction-of-the-author-72 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:73 | pat-lechem-introduction-of-the-author-introduction-of-the-author-73 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:74 | pat-lechem-introduction-of-the-author-introduction-of-the-author-74 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:75 | pat-lechem-introduction-of-the-author-introduction-of-the-author-75 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:76 | pat-lechem-introduction-of-the-author-introduction-of-the-author-76 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:77 | pat-lechem-introduction-of-the-author-introduction-of-the-author-77 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:78 | pat-lechem-introduction-of-the-author-introduction-of-the-author-78 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:79 | pat-lechem-introduction-of-the-author-introduction-of-the-author-79 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:80 | pat-lechem-introduction-of-the-author-introduction-of-the-author-80 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:81 | pat-lechem-introduction-of-the-author-introduction-of-the-author-81 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:82 | pat-lechem-introduction-of-the-author-introduction-of-the-author-82 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:83 | pat-lechem-introduction-of-the-author-introduction-of-the-author-83 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:84 | pat-lechem-introduction-of-the-author-introduction-of-the-author-84 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:85 | pat-lechem-introduction-of-the-author-introduction-of-the-author-85 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:86 | pat-lechem-introduction-of-the-author-introduction-of-the-author-86 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:87 | pat-lechem-introduction-of-the-author-introduction-of-the-author-87 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:88 | pat-lechem-introduction-of-the-author-introduction-of-the-author-88 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:89 | pat-lechem-introduction-of-the-author-introduction-of-the-author-89 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:90 | pat-lechem-introduction-of-the-author-introduction-of-the-author-90 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:91 | pat-lechem-introduction-of-the-author-introduction-of-the-author-91 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:92 | pat-lechem-introduction-of-the-author-introduction-of-the-author-92 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:93 | pat-lechem-introduction-of-the-author-introduction-of-the-author-93 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:94 | pat-lechem-introduction-of-the-author-introduction-of-the-author-94 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:95 | pat-lechem-introduction-of-the-author-introduction-of-the-author-95 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:96 | pat-lechem-introduction-of-the-author-introduction-of-the-author-96 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:97 | pat-lechem-introduction-of-the-author-introduction-of-the-author-97 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:98 | pat-lechem-introduction-of-the-author-introduction-of-the-author-98 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:99 | pat-lechem-introduction-of-the-author-introduction-of-the-author-99 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:100 | pat-lechem-introduction-of-the-author-introduction-of-the-author-100 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:101 | pat-lechem-introduction-of-the-author-introduction-of-the-author-101 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:102 | pat-lechem-introduction-of-the-author-introduction-of-the-author-102 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:103 | pat-lechem-introduction-of-the-author-introduction-of-the-author-103 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:104 | pat-lechem-introduction-of-the-author-introduction-of-the-author-104 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:105 | pat-lechem-introduction-of-the-author-introduction-of-the-author-105 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:106 | pat-lechem-introduction-of-the-author-introduction-of-the-author-106 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:107 | pat-lechem-introduction-of-the-author-introduction-of-the-author-107 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:108 | pat-lechem-introduction-of-the-author-introduction-of-the-author-108 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:109 | pat-lechem-introduction-of-the-author-introduction-of-the-author-109 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:110 | pat-lechem-introduction-of-the-author-introduction-of-the-author-110 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:111 | pat-lechem-introduction-of-the-author-introduction-of-the-author-111 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:112 | pat-lechem-introduction-of-the-author-introduction-of-the-author-112 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:113 | pat-lechem-introduction-of-the-author-introduction-of-the-author-113 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:114 | pat-lechem-introduction-of-the-author-introduction-of-the-author-114 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:115 | pat-lechem-introduction-of-the-author-introduction-of-the-author-115 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:116 | pat-lechem-introduction-of-the-author-introduction-of-the-author-116 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:117 | pat-lechem-introduction-of-the-author-introduction-of-the-author-117 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:118 | pat-lechem-introduction-of-the-author-introduction-of-the-author-118 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:119 | pat-lechem-introduction-of-the-author-introduction-of-the-author-119 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:120 | pat-lechem-introduction-of-the-author-introduction-of-the-author-120 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:121 | pat-lechem-introduction-of-the-author-introduction-of-the-author-121 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:122 | pat-lechem-introduction-of-the-author-introduction-of-the-author-122 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:123 | pat-lechem-introduction-of-the-author-introduction-of-the-author-123 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:124 | pat-lechem-introduction-of-the-author-introduction-of-the-author-124 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:125 | pat-lechem-introduction-of-the-author-introduction-of-the-author-125 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:126 | pat-lechem-introduction-of-the-author-introduction-of-the-author-126 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:127 | pat-lechem-introduction-of-the-author-introduction-of-the-author-127 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:128 | pat-lechem-introduction-of-the-author-introduction-of-the-author-128 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:129 | pat-lechem-introduction-of-the-author-introduction-of-the-author-129 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:130 | pat-lechem-introduction-of-the-author-introduction-of-the-author-130 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:131 | pat-lechem-introduction-of-the-author-introduction-of-the-author-131 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:132 | pat-lechem-introduction-of-the-author-introduction-of-the-author-132 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:133 | pat-lechem-introduction-of-the-author-introduction-of-the-author-133 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:134 | pat-lechem-introduction-of-the-author-introduction-of-the-author-134 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:135 | pat-lechem-introduction-of-the-author-introduction-of-the-author-135 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:136 | pat-lechem-introduction-of-the-author-introduction-of-the-author-136 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:137 | pat-lechem-introduction-of-the-author-introduction-of-the-author-137 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:138 | pat-lechem-introduction-of-the-author-introduction-of-the-author-138 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:139 | pat-lechem-introduction-of-the-author-introduction-of-the-author-139 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:140 | pat-lechem-introduction-of-the-author-introduction-of-the-author-140 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:141 | pat-lechem-introduction-of-the-author-introduction-of-the-author-141 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:142 | pat-lechem-introduction-of-the-author-introduction-of-the-author-142 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:143 | pat-lechem-introduction-of-the-author-introduction-of-the-author-143 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:144 | pat-lechem-introduction-of-the-author-introduction-of-the-author-144 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:145 | pat-lechem-introduction-of-the-author-introduction-of-the-author-145 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:146 | pat-lechem-introduction-of-the-author-introduction-of-the-author-146 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:147 | pat-lechem-introduction-of-the-author-introduction-of-the-author-147 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:148 | pat-lechem-introduction-of-the-author-introduction-of-the-author-148 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:149 | pat-lechem-introduction-of-the-author-introduction-of-the-author-149 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:150 | pat-lechem-introduction-of-the-author-introduction-of-the-author-150 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:151 | pat-lechem-introduction-of-the-author-introduction-of-the-author-151 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:152 | pat-lechem-introduction-of-the-author-introduction-of-the-author-152 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:153 | pat-lechem-introduction-of-the-author-introduction-of-the-author-153 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:154 | pat-lechem-introduction-of-the-author-introduction-of-the-author-154 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:155 | pat-lechem-introduction-of-the-author-introduction-of-the-author-155 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:156 | pat-lechem-introduction-of-the-author-introduction-of-the-author-156 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:157 | pat-lechem-introduction-of-the-author-introduction-of-the-author-157 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:158 | pat-lechem-introduction-of-the-author-introduction-of-the-author-158 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:159 | pat-lechem-introduction-of-the-author-introduction-of-the-author-159 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:160 | pat-lechem-introduction-of-the-author-introduction-of-the-author-160 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:161 | pat-lechem-introduction-of-the-author-introduction-of-the-author-161 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:162 | pat-lechem-introduction-of-the-author-introduction-of-the-author-162 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:163 | pat-lechem-introduction-of-the-author-introduction-of-the-author-163 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:164 | pat-lechem-introduction-of-the-author-introduction-of-the-author-164 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:165 | pat-lechem-introduction-of-the-author-introduction-of-the-author-165 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:166 | pat-lechem-introduction-of-the-author-introduction-of-the-author-166 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:167 | pat-lechem-introduction-of-the-author-introduction-of-the-author-167 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:168 | pat-lechem-introduction-of-the-author-introduction-of-the-author-168 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:169 | pat-lechem-introduction-of-the-author-introduction-of-the-author-169 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:170 | pat-lechem-introduction-of-the-author-introduction-of-the-author-170 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:171 | pat-lechem-introduction-of-the-author-introduction-of-the-author-171 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:172 | pat-lechem-introduction-of-the-author-introduction-of-the-author-172 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:173 | pat-lechem-introduction-of-the-author-introduction-of-the-author-173 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:174 | pat-lechem-introduction-of-the-author-introduction-of-the-author-174 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:175 | pat-lechem-introduction-of-the-author-introduction-of-the-author-175 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:176 | pat-lechem-introduction-of-the-author-introduction-of-the-author-176 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:177 | pat-lechem-introduction-of-the-author-introduction-of-the-author-177 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:178 | pat-lechem-introduction-of-the-author-introduction-of-the-author-178 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:179 | pat-lechem-introduction-of-the-author-introduction-of-the-author-179 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:180 | pat-lechem-introduction-of-the-author-introduction-of-the-author-180 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:181 | pat-lechem-introduction-of-the-author-introduction-of-the-author-181 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:182 | pat-lechem-introduction-of-the-author-introduction-of-the-author-182 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:183 | pat-lechem-introduction-of-the-author-introduction-of-the-author-183 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:184 | pat-lechem-introduction-of-the-author-introduction-of-the-author-184 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:185 | pat-lechem-introduction-of-the-author-introduction-of-the-author-185 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:186 | pat-lechem-introduction-of-the-author-introduction-of-the-author-186 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:187 | pat-lechem-introduction-of-the-author-introduction-of-the-author-187 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:188 | pat-lechem-introduction-of-the-author-introduction-of-the-author-188 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:189 | pat-lechem-introduction-of-the-author-introduction-of-the-author-189 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:190 | pat-lechem-introduction-of-the-author-introduction-of-the-author-190 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:191 | pat-lechem-introduction-of-the-author-introduction-of-the-author-191 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:192 | pat-lechem-introduction-of-the-author-introduction-of-the-author-192 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:193 | pat-lechem-introduction-of-the-author-introduction-of-the-author-193 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:194 | pat-lechem-introduction-of-the-author-introduction-of-the-author-194 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:195 | pat-lechem-introduction-of-the-author-introduction-of-the-author-195 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:196 | pat-lechem-introduction-of-the-author-introduction-of-the-author-196 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:197 | pat-lechem-introduction-of-the-author-introduction-of-the-author-197 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:198 | pat-lechem-introduction-of-the-author-introduction-of-the-author-198 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:199 | pat-lechem-introduction-of-the-author-introduction-of-the-author-199 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:200 | pat-lechem-introduction-of-the-author-introduction-of-the-author-200 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:201 | pat-lechem-introduction-of-the-author-introduction-of-the-author-201 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:202 | pat-lechem-introduction-of-the-author-introduction-of-the-author-202 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:203 | pat-lechem-introduction-of-the-author-introduction-of-the-author-203 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:204 | pat-lechem-introduction-of-the-author-introduction-of-the-author-204 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:205 | pat-lechem-introduction-of-the-author-introduction-of-the-author-205 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:206 | pat-lechem-introduction-of-the-author-introduction-of-the-author-206 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:207 | pat-lechem-introduction-of-the-author-introduction-of-the-author-207 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:208 | pat-lechem-introduction-of-the-author-introduction-of-the-author-208 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:209 | pat-lechem-introduction-of-the-author-introduction-of-the-author-209 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:210 | pat-lechem-introduction-of-the-author-introduction-of-the-author-210 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:211 | pat-lechem-introduction-of-the-author-introduction-of-the-author-211 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:212 | pat-lechem-introduction-of-the-author-introduction-of-the-author-212 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:213 | pat-lechem-introduction-of-the-author-introduction-of-the-author-213 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:214 | pat-lechem-introduction-of-the-author-introduction-of-the-author-214 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:215 | pat-lechem-introduction-of-the-author-introduction-of-the-author-215 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:216 | pat-lechem-introduction-of-the-author-introduction-of-the-author-216 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:217 | pat-lechem-introduction-of-the-author-introduction-of-the-author-217 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:218 | pat-lechem-introduction-of-the-author-introduction-of-the-author-218 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:219 | pat-lechem-introduction-of-the-author-introduction-of-the-author-219 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:220 | pat-lechem-introduction-of-the-author-introduction-of-the-author-220 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:221 | pat-lechem-introduction-of-the-author-introduction-of-the-author-221 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:222 | pat-lechem-introduction-of-the-author-introduction-of-the-author-222 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:223 | pat-lechem-introduction-of-the-author-introduction-of-the-author-223 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:224 | pat-lechem-introduction-of-the-author-introduction-of-the-author-224 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:225 | pat-lechem-introduction-of-the-author-introduction-of-the-author-225 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:226 | pat-lechem-introduction-of-the-author-introduction-of-the-author-226 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:227 | pat-lechem-introduction-of-the-author-introduction-of-the-author-227 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:228 | pat-lechem-introduction-of-the-author-introduction-of-the-author-228 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:229 | pat-lechem-introduction-of-the-author-introduction-of-the-author-229 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:230 | pat-lechem-introduction-of-the-author-introduction-of-the-author-230 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:231 | pat-lechem-introduction-of-the-author-introduction-of-the-author-231 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:232 | pat-lechem-introduction-of-the-author-introduction-of-the-author-232 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:233 | pat-lechem-introduction-of-the-author-introduction-of-the-author-233 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:234 | pat-lechem-introduction-of-the-author-introduction-of-the-author-234 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:235 | pat-lechem-introduction-of-the-author-introduction-of-the-author-235 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:236 | pat-lechem-introduction-of-the-author-introduction-of-the-author-236 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:237 | pat-lechem-introduction-of-the-author-introduction-of-the-author-237 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:238 | pat-lechem-introduction-of-the-author-introduction-of-the-author-238 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:239 | pat-lechem-introduction-of-the-author-introduction-of-the-author-239 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:240 | pat-lechem-introduction-of-the-author-introduction-of-the-author-240 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:241 | pat-lechem-introduction-of-the-author-introduction-of-the-author-241 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:242 | pat-lechem-introduction-of-the-author-introduction-of-the-author-242 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:243 | pat-lechem-introduction-of-the-author-introduction-of-the-author-243 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:244 | pat-lechem-introduction-of-the-author-introduction-of-the-author-244 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:245 | pat-lechem-introduction-of-the-author-introduction-of-the-author-245 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:246 | pat-lechem-introduction-of-the-author-introduction-of-the-author-246 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:247 | pat-lechem-introduction-of-the-author-introduction-of-the-author-247 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:248 | pat-lechem-introduction-of-the-author-introduction-of-the-author-248 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:249 | pat-lechem-introduction-of-the-author-introduction-of-the-author-249 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:250 | pat-lechem-introduction-of-the-author-introduction-of-the-author-250 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:251 | pat-lechem-introduction-of-the-author-introduction-of-the-author-251 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:252 | pat-lechem-introduction-of-the-author-introduction-of-the-author-252 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:253 | pat-lechem-introduction-of-the-author-introduction-of-the-author-253 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:254 | pat-lechem-introduction-of-the-author-introduction-of-the-author-254 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:255 | pat-lechem-introduction-of-the-author-introduction-of-the-author-255 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:256 | pat-lechem-introduction-of-the-author-introduction-of-the-author-256 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:257 | pat-lechem-introduction-of-the-author-introduction-of-the-author-257 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:258 | pat-lechem-introduction-of-the-author-introduction-of-the-author-258 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:259 | pat-lechem-introduction-of-the-author-introduction-of-the-author-259 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:260 | pat-lechem-introduction-of-the-author-introduction-of-the-author-260 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:261 | pat-lechem-introduction-of-the-author-introduction-of-the-author-261 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:262 | pat-lechem-introduction-of-the-author-introduction-of-the-author-262 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:263 | pat-lechem-introduction-of-the-author-introduction-of-the-author-263 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:264 | pat-lechem-introduction-of-the-author-introduction-of-the-author-264 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:265 | pat-lechem-introduction-of-the-author-introduction-of-the-author-265 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:266 | pat-lechem-introduction-of-the-author-introduction-of-the-author-266 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:267 | pat-lechem-introduction-of-the-author-introduction-of-the-author-267 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:268 | pat-lechem-introduction-of-the-author-introduction-of-the-author-268 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:269 | pat-lechem-introduction-of-the-author-introduction-of-the-author-269 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:270 | pat-lechem-introduction-of-the-author-introduction-of-the-author-270 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:271 | pat-lechem-introduction-of-the-author-introduction-of-the-author-271 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:272 | pat-lechem-introduction-of-the-author-introduction-of-the-author-272 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:273 | pat-lechem-introduction-of-the-author-introduction-of-the-author-273 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:274 | pat-lechem-introduction-of-the-author-introduction-of-the-author-274 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:275 | pat-lechem-introduction-of-the-author-introduction-of-the-author-275 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:276 | pat-lechem-introduction-of-the-author-introduction-of-the-author-276 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:277 | pat-lechem-introduction-of-the-author-introduction-of-the-author-277 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:278 | pat-lechem-introduction-of-the-author-introduction-of-the-author-278 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:279 | pat-lechem-introduction-of-the-author-introduction-of-the-author-279 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:280 | pat-lechem-introduction-of-the-author-introduction-of-the-author-280 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:281 | pat-lechem-introduction-of-the-author-introduction-of-the-author-281 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:282 | pat-lechem-introduction-of-the-author-introduction-of-the-author-282 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:283 | pat-lechem-introduction-of-the-author-introduction-of-the-author-283 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:284 | pat-lechem-introduction-of-the-author-introduction-of-the-author-284 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:285 | pat-lechem-introduction-of-the-author-introduction-of-the-author-285 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:286 | pat-lechem-introduction-of-the-author-introduction-of-the-author-286 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:287 | pat-lechem-introduction-of-the-author-introduction-of-the-author-287 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:288 | pat-lechem-introduction-of-the-author-introduction-of-the-author-288 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:289 | pat-lechem-introduction-of-the-author-introduction-of-the-author-289 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:290 | pat-lechem-introduction-of-the-author-introduction-of-the-author-290 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:291 | pat-lechem-introduction-of-the-author-introduction-of-the-author-291 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:292 | pat-lechem-introduction-of-the-author-introduction-of-the-author-292 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:293 | pat-lechem-introduction-of-the-author-introduction-of-the-author-293 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:294 | pat-lechem-introduction-of-the-author-introduction-of-the-author-294 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:295 | pat-lechem-introduction-of-the-author-introduction-of-the-author-295 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:296 | pat-lechem-introduction-of-the-author-introduction-of-the-author-296 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:297 | pat-lechem-introduction-of-the-author-introduction-of-the-author-297 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:298 | pat-lechem-introduction-of-the-author-introduction-of-the-author-298 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:299 | pat-lechem-introduction-of-the-author-introduction-of-the-author-299 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:300 | pat-lechem-introduction-of-the-author-introduction-of-the-author-300 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:301 | pat-lechem-introduction-of-the-author-introduction-of-the-author-301 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:302 | pat-lechem-introduction-of-the-author-introduction-of-the-author-302 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:303 | pat-lechem-introduction-of-the-author-introduction-of-the-author-303 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:304 | pat-lechem-introduction-of-the-author-introduction-of-the-author-304 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:305 | pat-lechem-introduction-of-the-author-introduction-of-the-author-305 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:306 | pat-lechem-introduction-of-the-author-introduction-of-the-author-306 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:307 | pat-lechem-introduction-of-the-author-introduction-of-the-author-307 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:308 | pat-lechem-introduction-of-the-author-introduction-of-the-author-308 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:309 | pat-lechem-introduction-of-the-author-introduction-of-the-author-309 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:310 | pat-lechem-introduction-of-the-author-introduction-of-the-author-310 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:311 | pat-lechem-introduction-of-the-author-introduction-of-the-author-311 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:312 | pat-lechem-introduction-of-the-author-introduction-of-the-author-312 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:313 | pat-lechem-introduction-of-the-author-introduction-of-the-author-313 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:314 | pat-lechem-introduction-of-the-author-introduction-of-the-author-314 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:315 | pat-lechem-introduction-of-the-author-introduction-of-the-author-315 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:316 | pat-lechem-introduction-of-the-author-introduction-of-the-author-316 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:317 | pat-lechem-introduction-of-the-author-introduction-of-the-author-317 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:318 | pat-lechem-introduction-of-the-author-introduction-of-the-author-318 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:319 | pat-lechem-introduction-of-the-author-introduction-of-the-author-319 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:320 | pat-lechem-introduction-of-the-author-introduction-of-the-author-320 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:321 | pat-lechem-introduction-of-the-author-introduction-of-the-author-321 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:322 | pat-lechem-introduction-of-the-author-introduction-of-the-author-322 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:323 | pat-lechem-introduction-of-the-author-introduction-of-the-author-323 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:324 | pat-lechem-introduction-of-the-author-introduction-of-the-author-324 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:325 | pat-lechem-introduction-of-the-author-introduction-of-the-author-325 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:326 | pat-lechem-introduction-of-the-author-introduction-of-the-author-326 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:327 | pat-lechem-introduction-of-the-author-introduction-of-the-author-327 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:328 | pat-lechem-introduction-of-the-author-introduction-of-the-author-328 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:329 | pat-lechem-introduction-of-the-author-introduction-of-the-author-329 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:330 | pat-lechem-introduction-of-the-author-introduction-of-the-author-330 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:331 | pat-lechem-introduction-of-the-author-introduction-of-the-author-331 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:332 | pat-lechem-introduction-of-the-author-introduction-of-the-author-332 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:333 | pat-lechem-introduction-of-the-author-introduction-of-the-author-333 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:334 | pat-lechem-introduction-of-the-author-introduction-of-the-author-334 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:335 | pat-lechem-introduction-of-the-author-introduction-of-the-author-335 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:336 | pat-lechem-introduction-of-the-author-introduction-of-the-author-336 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:337 | pat-lechem-introduction-of-the-author-introduction-of-the-author-337 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:338 | pat-lechem-introduction-of-the-author-introduction-of-the-author-338 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:339 | pat-lechem-introduction-of-the-author-introduction-of-the-author-339 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:340 | pat-lechem-introduction-of-the-author-introduction-of-the-author-340 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:341 | pat-lechem-introduction-of-the-author-introduction-of-the-author-341 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:342 | pat-lechem-introduction-of-the-author-introduction-of-the-author-342 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:343 | pat-lechem-introduction-of-the-author-introduction-of-the-author-343 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:344 | pat-lechem-introduction-of-the-author-introduction-of-the-author-344 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:345 | pat-lechem-introduction-of-the-author-introduction-of-the-author-345 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:346 | pat-lechem-introduction-of-the-author-introduction-of-the-author-346 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:347 | pat-lechem-introduction-of-the-author-introduction-of-the-author-347 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:348 | pat-lechem-introduction-of-the-author-introduction-of-the-author-348 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:349 | pat-lechem-introduction-of-the-author-introduction-of-the-author-349 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:350 | pat-lechem-introduction-of-the-author-introduction-of-the-author-350 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:351 | pat-lechem-introduction-of-the-author-introduction-of-the-author-351 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:352 | pat-lechem-introduction-of-the-author-introduction-of-the-author-352 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:353 | pat-lechem-introduction-of-the-author-introduction-of-the-author-353 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:354 | pat-lechem-introduction-of-the-author-introduction-of-the-author-354 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:355 | pat-lechem-introduction-of-the-author-introduction-of-the-author-355 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:356 | pat-lechem-introduction-of-the-author-introduction-of-the-author-356 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:357 | pat-lechem-introduction-of-the-author-introduction-of-the-author-357 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:358 | pat-lechem-introduction-of-the-author-introduction-of-the-author-358 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:359 | pat-lechem-introduction-of-the-author-introduction-of-the-author-359 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:360 | pat-lechem-introduction-of-the-author-introduction-of-the-author-360 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:361 | pat-lechem-introduction-of-the-author-introduction-of-the-author-361 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:362 | pat-lechem-introduction-of-the-author-introduction-of-the-author-362 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:363 | pat-lechem-introduction-of-the-author-introduction-of-the-author-363 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:364 | pat-lechem-introduction-of-the-author-introduction-of-the-author-364 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:365 | pat-lechem-introduction-of-the-author-introduction-of-the-author-365 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:366 | pat-lechem-introduction-of-the-author-introduction-of-the-author-366 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:367 | pat-lechem-introduction-of-the-author-introduction-of-the-author-367 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:368 | pat-lechem-introduction-of-the-author-introduction-of-the-author-368 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:369 | pat-lechem-introduction-of-the-author-introduction-of-the-author-369 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:370 | pat-lechem-introduction-of-the-author-introduction-of-the-author-370 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:371 | pat-lechem-introduction-of-the-author-introduction-of-the-author-371 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:372 | pat-lechem-introduction-of-the-author-introduction-of-the-author-372 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:373 | pat-lechem-introduction-of-the-author-introduction-of-the-author-373 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:374 | pat-lechem-introduction-of-the-author-introduction-of-the-author-374 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:375 | pat-lechem-introduction-of-the-author-introduction-of-the-author-375 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:376 | pat-lechem-introduction-of-the-author-introduction-of-the-author-376 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:377 | pat-lechem-introduction-of-the-author-introduction-of-the-author-377 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:378 | pat-lechem-introduction-of-the-author-introduction-of-the-author-378 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:379 | pat-lechem-introduction-of-the-author-introduction-of-the-author-379 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:380 | pat-lechem-introduction-of-the-author-introduction-of-the-author-380 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:381 | pat-lechem-introduction-of-the-author-introduction-of-the-author-381 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:382 | pat-lechem-introduction-of-the-author-introduction-of-the-author-382 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:383 | pat-lechem-introduction-of-the-author-introduction-of-the-author-383 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Introduction of the Author:384 | pat-lechem-introduction-of-the-author-introduction-of-the-author-384 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:1 | pat-lechem-first-treatise-on-unity-introduction-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:2 | pat-lechem-first-treatise-on-unity-introduction-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:3 | pat-lechem-first-treatise-on-unity-introduction-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:4 | pat-lechem-first-treatise-on-unity-introduction-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:5 | pat-lechem-first-treatise-on-unity-introduction-5 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:6 | pat-lechem-first-treatise-on-unity-introduction-6 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:7 | pat-lechem-first-treatise-on-unity-introduction-7 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:8 | pat-lechem-first-treatise-on-unity-introduction-8 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:9 | pat-lechem-first-treatise-on-unity-introduction-9 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:10 | pat-lechem-first-treatise-on-unity-introduction-10 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:11 | pat-lechem-first-treatise-on-unity-introduction-11 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:12 | pat-lechem-first-treatise-on-unity-introduction-12 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:13 | pat-lechem-first-treatise-on-unity-introduction-13 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:14 | pat-lechem-first-treatise-on-unity-introduction-14 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:15 | pat-lechem-first-treatise-on-unity-introduction-15 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:16 | pat-lechem-first-treatise-on-unity-introduction-16 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:17 | pat-lechem-first-treatise-on-unity-introduction-17 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity, Introduction:18 | pat-lechem-first-treatise-on-unity-introduction-18 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity 1:1 | pat-lechem-first-treatise-on-unity-default-1-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity 1:2 | pat-lechem-first-treatise-on-unity-default-1-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity 1:3 | pat-lechem-first-treatise-on-unity-default-1-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, First Treatise on Unity 1:4 | pat-lechem-first-treatise-on-unity-default-1-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:1 | pat-lechem-second-treatise-on-examination-introduction-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:2 | pat-lechem-second-treatise-on-examination-introduction-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:3 | pat-lechem-second-treatise-on-examination-introduction-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:4 | pat-lechem-second-treatise-on-examination-introduction-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:5 | pat-lechem-second-treatise-on-examination-introduction-5 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:6 | pat-lechem-second-treatise-on-examination-introduction-6 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:7 | pat-lechem-second-treatise-on-examination-introduction-7 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:8 | pat-lechem-second-treatise-on-examination-introduction-8 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:9 | pat-lechem-second-treatise-on-examination-introduction-9 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:10 | pat-lechem-second-treatise-on-examination-introduction-10 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:11 | pat-lechem-second-treatise-on-examination-introduction-11 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:12 | pat-lechem-second-treatise-on-examination-introduction-12 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:13 | pat-lechem-second-treatise-on-examination-introduction-13 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:14 | pat-lechem-second-treatise-on-examination-introduction-14 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:15 | pat-lechem-second-treatise-on-examination-introduction-15 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:16 | pat-lechem-second-treatise-on-examination-introduction-16 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:17 | pat-lechem-second-treatise-on-examination-introduction-17 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:18 | pat-lechem-second-treatise-on-examination-introduction-18 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:19 | pat-lechem-second-treatise-on-examination-introduction-19 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:20 | pat-lechem-second-treatise-on-examination-introduction-20 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:21 | pat-lechem-second-treatise-on-examination-introduction-21 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:22 | pat-lechem-second-treatise-on-examination-introduction-22 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:23 | pat-lechem-second-treatise-on-examination-introduction-23 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:24 | pat-lechem-second-treatise-on-examination-introduction-24 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:25 | pat-lechem-second-treatise-on-examination-introduction-25 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:26 | pat-lechem-second-treatise-on-examination-introduction-26 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:27 | pat-lechem-second-treatise-on-examination-introduction-27 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:28 | pat-lechem-second-treatise-on-examination-introduction-28 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:29 | pat-lechem-second-treatise-on-examination-introduction-29 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:30 | pat-lechem-second-treatise-on-examination-introduction-30 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:31 | pat-lechem-second-treatise-on-examination-introduction-31 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:32 | pat-lechem-second-treatise-on-examination-introduction-32 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:33 | pat-lechem-second-treatise-on-examination-introduction-33 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:34 | pat-lechem-second-treatise-on-examination-introduction-34 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:35 | pat-lechem-second-treatise-on-examination-introduction-35 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:36 | pat-lechem-second-treatise-on-examination-introduction-36 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:37 | pat-lechem-second-treatise-on-examination-introduction-37 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:38 | pat-lechem-second-treatise-on-examination-introduction-38 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:39 | pat-lechem-second-treatise-on-examination-introduction-39 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:40 | pat-lechem-second-treatise-on-examination-introduction-40 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:41 | pat-lechem-second-treatise-on-examination-introduction-41 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:42 | pat-lechem-second-treatise-on-examination-introduction-42 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:43 | pat-lechem-second-treatise-on-examination-introduction-43 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:44 | pat-lechem-second-treatise-on-examination-introduction-44 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:45 | pat-lechem-second-treatise-on-examination-introduction-45 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:46 | pat-lechem-second-treatise-on-examination-introduction-46 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:47 | pat-lechem-second-treatise-on-examination-introduction-47 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:48 | pat-lechem-second-treatise-on-examination-introduction-48 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:49 | pat-lechem-second-treatise-on-examination-introduction-49 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:50 | pat-lechem-second-treatise-on-examination-introduction-50 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:51 | pat-lechem-second-treatise-on-examination-introduction-51 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:52 | pat-lechem-second-treatise-on-examination-introduction-52 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:53 | pat-lechem-second-treatise-on-examination-introduction-53 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:54 | pat-lechem-second-treatise-on-examination-introduction-54 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:55 | pat-lechem-second-treatise-on-examination-introduction-55 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:56 | pat-lechem-second-treatise-on-examination-introduction-56 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:57 | pat-lechem-second-treatise-on-examination-introduction-57 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:58 | pat-lechem-second-treatise-on-examination-introduction-58 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:59 | pat-lechem-second-treatise-on-examination-introduction-59 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:60 | pat-lechem-second-treatise-on-examination-introduction-60 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:61 | pat-lechem-second-treatise-on-examination-introduction-61 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:62 | pat-lechem-second-treatise-on-examination-introduction-62 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:63 | pat-lechem-second-treatise-on-examination-introduction-63 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:64 | pat-lechem-second-treatise-on-examination-introduction-64 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:65 | pat-lechem-second-treatise-on-examination-introduction-65 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:66 | pat-lechem-second-treatise-on-examination-introduction-66 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:67 | pat-lechem-second-treatise-on-examination-introduction-67 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:68 | pat-lechem-second-treatise-on-examination-introduction-68 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:69 | pat-lechem-second-treatise-on-examination-introduction-69 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:70 | pat-lechem-second-treatise-on-examination-introduction-70 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:71 | pat-lechem-second-treatise-on-examination-introduction-71 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:72 | pat-lechem-second-treatise-on-examination-introduction-72 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:73 | pat-lechem-second-treatise-on-examination-introduction-73 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:74 | pat-lechem-second-treatise-on-examination-introduction-74 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:75 | pat-lechem-second-treatise-on-examination-introduction-75 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:76 | pat-lechem-second-treatise-on-examination-introduction-76 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:77 | pat-lechem-second-treatise-on-examination-introduction-77 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:78 | pat-lechem-second-treatise-on-examination-introduction-78 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination, Introduction:79 | pat-lechem-second-treatise-on-examination-introduction-79 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:1 | pat-lechem-second-treatise-on-examination-default-1-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:2 | pat-lechem-second-treatise-on-examination-default-1-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:3 | pat-lechem-second-treatise-on-examination-default-1-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:4 | pat-lechem-second-treatise-on-examination-default-1-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:5 | pat-lechem-second-treatise-on-examination-default-1-5 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:6 | pat-lechem-second-treatise-on-examination-default-1-6 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:7 | pat-lechem-second-treatise-on-examination-default-1-7 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:8 | pat-lechem-second-treatise-on-examination-default-1-8 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:9 | pat-lechem-second-treatise-on-examination-default-1-9 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:10 | pat-lechem-second-treatise-on-examination-default-1-10 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:11 | pat-lechem-second-treatise-on-examination-default-1-11 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:12 | pat-lechem-second-treatise-on-examination-default-1-12 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:13 | pat-lechem-second-treatise-on-examination-default-1-13 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:14 | pat-lechem-second-treatise-on-examination-default-1-14 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:15 | pat-lechem-second-treatise-on-examination-default-1-15 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:16 | pat-lechem-second-treatise-on-examination-default-1-16 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:17 | pat-lechem-second-treatise-on-examination-default-1-17 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:18 | pat-lechem-second-treatise-on-examination-default-1-18 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:19 | pat-lechem-second-treatise-on-examination-default-1-19 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:20 | pat-lechem-second-treatise-on-examination-default-1-20 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:21 | pat-lechem-second-treatise-on-examination-default-1-21 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Second Treatise on Examination 1:22 | pat-lechem-second-treatise-on-examination-default-1-22 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:1 | pat-lechem-third-treatise-on-service-of-god-introduction-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:2 | pat-lechem-third-treatise-on-service-of-god-introduction-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:3 | pat-lechem-third-treatise-on-service-of-god-introduction-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:4 | pat-lechem-third-treatise-on-service-of-god-introduction-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:5 | pat-lechem-third-treatise-on-service-of-god-introduction-5 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:6 | pat-lechem-third-treatise-on-service-of-god-introduction-6 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:7 | pat-lechem-third-treatise-on-service-of-god-introduction-7 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:8 | pat-lechem-third-treatise-on-service-of-god-introduction-8 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:9 | pat-lechem-third-treatise-on-service-of-god-introduction-9 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:10 | pat-lechem-third-treatise-on-service-of-god-introduction-10 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:11 | pat-lechem-third-treatise-on-service-of-god-introduction-11 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:12 | pat-lechem-third-treatise-on-service-of-god-introduction-12 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:13 | pat-lechem-third-treatise-on-service-of-god-introduction-13 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:14 | pat-lechem-third-treatise-on-service-of-god-introduction-14 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:15 | pat-lechem-third-treatise-on-service-of-god-introduction-15 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:16 | pat-lechem-third-treatise-on-service-of-god-introduction-16 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:17 | pat-lechem-third-treatise-on-service-of-god-introduction-17 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:18 | pat-lechem-third-treatise-on-service-of-god-introduction-18 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:19 | pat-lechem-third-treatise-on-service-of-god-introduction-19 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:20 | pat-lechem-third-treatise-on-service-of-god-introduction-20 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:21 | pat-lechem-third-treatise-on-service-of-god-introduction-21 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:22 | pat-lechem-third-treatise-on-service-of-god-introduction-22 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:23 | pat-lechem-third-treatise-on-service-of-god-introduction-23 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:24 | pat-lechem-third-treatise-on-service-of-god-introduction-24 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:25 | pat-lechem-third-treatise-on-service-of-god-introduction-25 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:26 | pat-lechem-third-treatise-on-service-of-god-introduction-26 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:27 | pat-lechem-third-treatise-on-service-of-god-introduction-27 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:28 | pat-lechem-third-treatise-on-service-of-god-introduction-28 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:29 | pat-lechem-third-treatise-on-service-of-god-introduction-29 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:30 | pat-lechem-third-treatise-on-service-of-god-introduction-30 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:31 | pat-lechem-third-treatise-on-service-of-god-introduction-31 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:32 | pat-lechem-third-treatise-on-service-of-god-introduction-32 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:33 | pat-lechem-third-treatise-on-service-of-god-introduction-33 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:34 | pat-lechem-third-treatise-on-service-of-god-introduction-34 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:35 | pat-lechem-third-treatise-on-service-of-god-introduction-35 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:36 | pat-lechem-third-treatise-on-service-of-god-introduction-36 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:37 | pat-lechem-third-treatise-on-service-of-god-introduction-37 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:38 | pat-lechem-third-treatise-on-service-of-god-introduction-38 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:39 | pat-lechem-third-treatise-on-service-of-god-introduction-39 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:40 | pat-lechem-third-treatise-on-service-of-god-introduction-40 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:41 | pat-lechem-third-treatise-on-service-of-god-introduction-41 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:42 | pat-lechem-third-treatise-on-service-of-god-introduction-42 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:43 | pat-lechem-third-treatise-on-service-of-god-introduction-43 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:44 | pat-lechem-third-treatise-on-service-of-god-introduction-44 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:45 | pat-lechem-third-treatise-on-service-of-god-introduction-45 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:46 | pat-lechem-third-treatise-on-service-of-god-introduction-46 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:47 | pat-lechem-third-treatise-on-service-of-god-introduction-47 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:48 | pat-lechem-third-treatise-on-service-of-god-introduction-48 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:49 | pat-lechem-third-treatise-on-service-of-god-introduction-49 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:50 | pat-lechem-third-treatise-on-service-of-god-introduction-50 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:51 | pat-lechem-third-treatise-on-service-of-god-introduction-51 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:52 | pat-lechem-third-treatise-on-service-of-god-introduction-52 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God, Introduction:53 | pat-lechem-third-treatise-on-service-of-god-introduction-53 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God 1:1 | pat-lechem-third-treatise-on-service-of-god-default-1-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Third Treatise on Service of God 1:2 | pat-lechem-third-treatise-on-service-of-god-default-1-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:1 | pat-lechem-fourth-treatise-on-trust-introduction-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:2 | pat-lechem-fourth-treatise-on-trust-introduction-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:3 | pat-lechem-fourth-treatise-on-trust-introduction-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:4 | pat-lechem-fourth-treatise-on-trust-introduction-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:5 | pat-lechem-fourth-treatise-on-trust-introduction-5 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:6 | pat-lechem-fourth-treatise-on-trust-introduction-6 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:7 | pat-lechem-fourth-treatise-on-trust-introduction-7 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:8 | pat-lechem-fourth-treatise-on-trust-introduction-8 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:9 | pat-lechem-fourth-treatise-on-trust-introduction-9 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:10 | pat-lechem-fourth-treatise-on-trust-introduction-10 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:11 | pat-lechem-fourth-treatise-on-trust-introduction-11 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:12 | pat-lechem-fourth-treatise-on-trust-introduction-12 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:13 | pat-lechem-fourth-treatise-on-trust-introduction-13 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:14 | pat-lechem-fourth-treatise-on-trust-introduction-14 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:15 | pat-lechem-fourth-treatise-on-trust-introduction-15 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:16 | pat-lechem-fourth-treatise-on-trust-introduction-16 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:17 | pat-lechem-fourth-treatise-on-trust-introduction-17 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:18 | pat-lechem-fourth-treatise-on-trust-introduction-18 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:19 | pat-lechem-fourth-treatise-on-trust-introduction-19 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:20 | pat-lechem-fourth-treatise-on-trust-introduction-20 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:21 | pat-lechem-fourth-treatise-on-trust-introduction-21 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:22 | pat-lechem-fourth-treatise-on-trust-introduction-22 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:23 | pat-lechem-fourth-treatise-on-trust-introduction-23 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:24 | pat-lechem-fourth-treatise-on-trust-introduction-24 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:25 | pat-lechem-fourth-treatise-on-trust-introduction-25 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:26 | pat-lechem-fourth-treatise-on-trust-introduction-26 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:27 | pat-lechem-fourth-treatise-on-trust-introduction-27 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:28 | pat-lechem-fourth-treatise-on-trust-introduction-28 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:29 | pat-lechem-fourth-treatise-on-trust-introduction-29 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:30 | pat-lechem-fourth-treatise-on-trust-introduction-30 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:31 | pat-lechem-fourth-treatise-on-trust-introduction-31 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:32 | pat-lechem-fourth-treatise-on-trust-introduction-32 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:33 | pat-lechem-fourth-treatise-on-trust-introduction-33 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:34 | pat-lechem-fourth-treatise-on-trust-introduction-34 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:35 | pat-lechem-fourth-treatise-on-trust-introduction-35 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:36 | pat-lechem-fourth-treatise-on-trust-introduction-36 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:37 | pat-lechem-fourth-treatise-on-trust-introduction-37 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:38 | pat-lechem-fourth-treatise-on-trust-introduction-38 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:39 | pat-lechem-fourth-treatise-on-trust-introduction-39 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:40 | pat-lechem-fourth-treatise-on-trust-introduction-40 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:41 | pat-lechem-fourth-treatise-on-trust-introduction-41 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:42 | pat-lechem-fourth-treatise-on-trust-introduction-42 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:43 | pat-lechem-fourth-treatise-on-trust-introduction-43 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:44 | pat-lechem-fourth-treatise-on-trust-introduction-44 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:45 | pat-lechem-fourth-treatise-on-trust-introduction-45 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:46 | pat-lechem-fourth-treatise-on-trust-introduction-46 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:47 | pat-lechem-fourth-treatise-on-trust-introduction-47 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:48 | pat-lechem-fourth-treatise-on-trust-introduction-48 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:49 | pat-lechem-fourth-treatise-on-trust-introduction-49 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:50 | pat-lechem-fourth-treatise-on-trust-introduction-50 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:51 | pat-lechem-fourth-treatise-on-trust-introduction-51 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:52 | pat-lechem-fourth-treatise-on-trust-introduction-52 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:53 | pat-lechem-fourth-treatise-on-trust-introduction-53 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:54 | pat-lechem-fourth-treatise-on-trust-introduction-54 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:55 | pat-lechem-fourth-treatise-on-trust-introduction-55 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:56 | pat-lechem-fourth-treatise-on-trust-introduction-56 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:57 | pat-lechem-fourth-treatise-on-trust-introduction-57 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:58 | pat-lechem-fourth-treatise-on-trust-introduction-58 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:59 | pat-lechem-fourth-treatise-on-trust-introduction-59 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:60 | pat-lechem-fourth-treatise-on-trust-introduction-60 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:61 | pat-lechem-fourth-treatise-on-trust-introduction-61 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:62 | pat-lechem-fourth-treatise-on-trust-introduction-62 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:63 | pat-lechem-fourth-treatise-on-trust-introduction-63 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:64 | pat-lechem-fourth-treatise-on-trust-introduction-64 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:65 | pat-lechem-fourth-treatise-on-trust-introduction-65 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:66 | pat-lechem-fourth-treatise-on-trust-introduction-66 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:67 | pat-lechem-fourth-treatise-on-trust-introduction-67 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:68 | pat-lechem-fourth-treatise-on-trust-introduction-68 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:69 | pat-lechem-fourth-treatise-on-trust-introduction-69 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:70 | pat-lechem-fourth-treatise-on-trust-introduction-70 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:71 | pat-lechem-fourth-treatise-on-trust-introduction-71 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:72 | pat-lechem-fourth-treatise-on-trust-introduction-72 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:73 | pat-lechem-fourth-treatise-on-trust-introduction-73 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:74 | pat-lechem-fourth-treatise-on-trust-introduction-74 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:75 | pat-lechem-fourth-treatise-on-trust-introduction-75 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:76 | pat-lechem-fourth-treatise-on-trust-introduction-76 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:77 | pat-lechem-fourth-treatise-on-trust-introduction-77 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:78 | pat-lechem-fourth-treatise-on-trust-introduction-78 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:79 | pat-lechem-fourth-treatise-on-trust-introduction-79 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:80 | pat-lechem-fourth-treatise-on-trust-introduction-80 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:81 | pat-lechem-fourth-treatise-on-trust-introduction-81 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:82 | pat-lechem-fourth-treatise-on-trust-introduction-82 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:83 | pat-lechem-fourth-treatise-on-trust-introduction-83 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:84 | pat-lechem-fourth-treatise-on-trust-introduction-84 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:85 | pat-lechem-fourth-treatise-on-trust-introduction-85 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:86 | pat-lechem-fourth-treatise-on-trust-introduction-86 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:87 | pat-lechem-fourth-treatise-on-trust-introduction-87 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:88 | pat-lechem-fourth-treatise-on-trust-introduction-88 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:89 | pat-lechem-fourth-treatise-on-trust-introduction-89 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:90 | pat-lechem-fourth-treatise-on-trust-introduction-90 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:91 | pat-lechem-fourth-treatise-on-trust-introduction-91 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:92 | pat-lechem-fourth-treatise-on-trust-introduction-92 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:93 | pat-lechem-fourth-treatise-on-trust-introduction-93 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:94 | pat-lechem-fourth-treatise-on-trust-introduction-94 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:95 | pat-lechem-fourth-treatise-on-trust-introduction-95 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:96 | pat-lechem-fourth-treatise-on-trust-introduction-96 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:97 | pat-lechem-fourth-treatise-on-trust-introduction-97 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:98 | pat-lechem-fourth-treatise-on-trust-introduction-98 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:99 | pat-lechem-fourth-treatise-on-trust-introduction-99 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:100 | pat-lechem-fourth-treatise-on-trust-introduction-100 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:101 | pat-lechem-fourth-treatise-on-trust-introduction-101 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:102 | pat-lechem-fourth-treatise-on-trust-introduction-102 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:103 | pat-lechem-fourth-treatise-on-trust-introduction-103 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:104 | pat-lechem-fourth-treatise-on-trust-introduction-104 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:105 | pat-lechem-fourth-treatise-on-trust-introduction-105 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:106 | pat-lechem-fourth-treatise-on-trust-introduction-106 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:107 | pat-lechem-fourth-treatise-on-trust-introduction-107 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:108 | pat-lechem-fourth-treatise-on-trust-introduction-108 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:109 | pat-lechem-fourth-treatise-on-trust-introduction-109 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:110 | pat-lechem-fourth-treatise-on-trust-introduction-110 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:111 | pat-lechem-fourth-treatise-on-trust-introduction-111 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:112 | pat-lechem-fourth-treatise-on-trust-introduction-112 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust, Introduction:113 | pat-lechem-fourth-treatise-on-trust-introduction-113 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust 1:1 | pat-lechem-fourth-treatise-on-trust-default-1-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust 1:2 | pat-lechem-fourth-treatise-on-trust-default-1-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust 1:3 | pat-lechem-fourth-treatise-on-trust-default-1-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fourth Treatise on Trust 1:4 | pat-lechem-fourth-treatise-on-trust-default-1-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fifth Treatise on Devotion, Introduction:1 | pat-lechem-fifth-treatise-on-devotion-introduction-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fifth Treatise on Devotion, Introduction:2 | pat-lechem-fifth-treatise-on-devotion-introduction-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fifth Treatise on Devotion, Introduction:3 | pat-lechem-fifth-treatise-on-devotion-introduction-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fifth Treatise on Devotion, Introduction:4 | pat-lechem-fifth-treatise-on-devotion-introduction-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fifth Treatise on Devotion, Introduction:5 | pat-lechem-fifth-treatise-on-devotion-introduction-5 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fifth Treatise on Devotion, Introduction:6 | pat-lechem-fifth-treatise-on-devotion-introduction-6 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fifth Treatise on Devotion 1:1 | pat-lechem-fifth-treatise-on-devotion-default-1-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Fifth Treatise on Devotion 1:2 | pat-lechem-fifth-treatise-on-devotion-default-1-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission, Introduction:1 | pat-lechem-sixth-treatise-on-submission-introduction-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission, Introduction:2 | pat-lechem-sixth-treatise-on-submission-introduction-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission, Introduction:3 | pat-lechem-sixth-treatise-on-submission-introduction-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission, Introduction:4 | pat-lechem-sixth-treatise-on-submission-introduction-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission, Introduction:5 | pat-lechem-sixth-treatise-on-submission-introduction-5 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission, Introduction:6 | pat-lechem-sixth-treatise-on-submission-introduction-6 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission, Introduction:7 | pat-lechem-sixth-treatise-on-submission-introduction-7 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission, Introduction:8 | pat-lechem-sixth-treatise-on-submission-introduction-8 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission, Introduction:9 | pat-lechem-sixth-treatise-on-submission-introduction-9 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission 1:1 | pat-lechem-sixth-treatise-on-submission-default-1-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission 1:2 | pat-lechem-sixth-treatise-on-submission-default-1-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission 1:3 | pat-lechem-sixth-treatise-on-submission-default-1-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission 1:4 | pat-lechem-sixth-treatise-on-submission-default-1-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission 1:5 | pat-lechem-sixth-treatise-on-submission-default-1-5 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission 1:6 | pat-lechem-sixth-treatise-on-submission-default-1-6 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission 1:7 | pat-lechem-sixth-treatise-on-submission-default-1-7 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission 1:8 | pat-lechem-sixth-treatise-on-submission-default-1-8 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission 1:9 | pat-lechem-sixth-treatise-on-submission-default-1-9 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission 1:10 | pat-lechem-sixth-treatise-on-submission-default-1-10 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Sixth Treatise on Submission 1:11 | pat-lechem-sixth-treatise-on-submission-default-1-11 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance, Introduction:1 | pat-lechem-seventh-treatise-on-repentance-introduction-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance, Introduction:2 | pat-lechem-seventh-treatise-on-repentance-introduction-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance, Introduction:3 | pat-lechem-seventh-treatise-on-repentance-introduction-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance, Introduction:4 | pat-lechem-seventh-treatise-on-repentance-introduction-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance, Introduction:5 | pat-lechem-seventh-treatise-on-repentance-introduction-5 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance, Introduction:6 | pat-lechem-seventh-treatise-on-repentance-introduction-6 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance, Introduction:7 | pat-lechem-seventh-treatise-on-repentance-introduction-7 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance, Introduction:8 | pat-lechem-seventh-treatise-on-repentance-introduction-8 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance, Introduction:9 | pat-lechem-seventh-treatise-on-repentance-introduction-9 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance, Introduction:10 | pat-lechem-seventh-treatise-on-repentance-introduction-10 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance, Introduction:11 | pat-lechem-seventh-treatise-on-repentance-introduction-11 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance, Introduction:12 | pat-lechem-seventh-treatise-on-repentance-introduction-12 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance, Introduction:13 | pat-lechem-seventh-treatise-on-repentance-introduction-13 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance, Introduction:14 | pat-lechem-seventh-treatise-on-repentance-introduction-14 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance, Introduction:15 | pat-lechem-seventh-treatise-on-repentance-introduction-15 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance 1:1 | pat-lechem-seventh-treatise-on-repentance-default-1-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance 1:2 | pat-lechem-seventh-treatise-on-repentance-default-1-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance 1:3 | pat-lechem-seventh-treatise-on-repentance-default-1-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance 1:4 | pat-lechem-seventh-treatise-on-repentance-default-1-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance 1:5 | pat-lechem-seventh-treatise-on-repentance-default-1-5 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance 1:6 | pat-lechem-seventh-treatise-on-repentance-default-1-6 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Seventh Treatise on Repentance 1:7 | pat-lechem-seventh-treatise-on-repentance-default-1-7 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Eighth Treatise on Examining the Soul, Introduction:1 | pat-lechem-eighth-treatise-on-examining-the-soul-introduction-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Eighth Treatise on Examining the Soul 1:1 | pat-lechem-eighth-treatise-on-examining-the-soul-default-1-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Eighth Treatise on Examining the Soul 1:2 | pat-lechem-eighth-treatise-on-examining-the-soul-default-1-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Eighth Treatise on Examining the Soul 1:3 | pat-lechem-eighth-treatise-on-examining-the-soul-default-1-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Eighth Treatise on Examining the Soul 1:4 | pat-lechem-eighth-treatise-on-examining-the-soul-default-1-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Eighth Treatise on Examining the Soul 1:5 | pat-lechem-eighth-treatise-on-examining-the-soul-default-1-5 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Eighth Treatise on Examining the Soul 1:6 | pat-lechem-eighth-treatise-on-examining-the-soul-default-1-6 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Eighth Treatise on Examining the Soul 1:7 | pat-lechem-eighth-treatise-on-examining-the-soul-default-1-7 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Eighth Treatise on Examining the Soul 1:8 | pat-lechem-eighth-treatise-on-examining-the-soul-default-1-8 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Eighth Treatise on Examining the Soul 1:9 | pat-lechem-eighth-treatise-on-examining-the-soul-default-1-9 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Eighth Treatise on Examining the Soul 1:10 | pat-lechem-eighth-treatise-on-examining-the-soul-default-1-10 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence, Introduction:1 | pat-lechem-ninth-treatise-on-abstinence-introduction-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence, Introduction:2 | pat-lechem-ninth-treatise-on-abstinence-introduction-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence, Introduction:3 | pat-lechem-ninth-treatise-on-abstinence-introduction-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:1 | pat-lechem-ninth-treatise-on-abstinence-default-1-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:2 | pat-lechem-ninth-treatise-on-abstinence-default-1-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:3 | pat-lechem-ninth-treatise-on-abstinence-default-1-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:4 | pat-lechem-ninth-treatise-on-abstinence-default-1-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:5 | pat-lechem-ninth-treatise-on-abstinence-default-1-5 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:6 | pat-lechem-ninth-treatise-on-abstinence-default-1-6 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:7 | pat-lechem-ninth-treatise-on-abstinence-default-1-7 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:8 | pat-lechem-ninth-treatise-on-abstinence-default-1-8 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:9 | pat-lechem-ninth-treatise-on-abstinence-default-1-9 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:10 | pat-lechem-ninth-treatise-on-abstinence-default-1-10 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:11 | pat-lechem-ninth-treatise-on-abstinence-default-1-11 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:12 | pat-lechem-ninth-treatise-on-abstinence-default-1-12 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:13 | pat-lechem-ninth-treatise-on-abstinence-default-1-13 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:14 | pat-lechem-ninth-treatise-on-abstinence-default-1-14 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:15 | pat-lechem-ninth-treatise-on-abstinence-default-1-15 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:16 | pat-lechem-ninth-treatise-on-abstinence-default-1-16 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:17 | pat-lechem-ninth-treatise-on-abstinence-default-1-17 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:18 | pat-lechem-ninth-treatise-on-abstinence-default-1-18 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:19 | pat-lechem-ninth-treatise-on-abstinence-default-1-19 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:20 | pat-lechem-ninth-treatise-on-abstinence-default-1-20 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:21 | pat-lechem-ninth-treatise-on-abstinence-default-1-21 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:22 | pat-lechem-ninth-treatise-on-abstinence-default-1-22 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:23 | pat-lechem-ninth-treatise-on-abstinence-default-1-23 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:24 | pat-lechem-ninth-treatise-on-abstinence-default-1-24 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Ninth Treatise on Abstinence 1:25 | pat-lechem-ninth-treatise-on-abstinence-default-1-25 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:1 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:2 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:3 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:4 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:5 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-5 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:6 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-6 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:7 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-7 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:8 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-8 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:9 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-9 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:10 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-10 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:11 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-11 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:12 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-12 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:13 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-13 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:14 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-14 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:15 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-15 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:16 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-16 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:17 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-17 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God, Introduction:18 | pat-lechem-tenth-treatise-on-devotion-to-god-introduction-18 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:1 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-1 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:2 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-2 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:3 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-3 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:4 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-4 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:5 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-5 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:6 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-6 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:7 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-7 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:8 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-8 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:9 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-9 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:10 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-10 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:11 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-11 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:12 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-12 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:13 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-13 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:14 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-14 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:15 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-15 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:16 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-16 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:17 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-17 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:18 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-18 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:19 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-19 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:20 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-20 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:21 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-21 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:22 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-22 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:23 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-23 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:24 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-24 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:25 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-25 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:26 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-26 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:27 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-27 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:28 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-28 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:29 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-29 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:30 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-30 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:31 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-31 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:32 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-32 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:33 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-33 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:34 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-34 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:35 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-35 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:36 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-36 |  |  | not_done |  |
+| pat-lechem | Pat Lechem | Pat Lechem, Tenth Treatise on Devotion to God 1:37 | pat-lechem-tenth-treatise-on-devotion-to-god-default-1-37 |  |  | not_done |  |

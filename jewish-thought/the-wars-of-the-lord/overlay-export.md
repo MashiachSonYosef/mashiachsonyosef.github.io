@@ -1,0 +1,725 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:1 | the-wars-of-the-lord-introduction-introduction-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:2 | the-wars-of-the-lord-introduction-introduction-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:3 | the-wars-of-the-lord-introduction-introduction-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:4 | the-wars-of-the-lord-introduction-introduction-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:5 | the-wars-of-the-lord-introduction-introduction-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:6 | the-wars-of-the-lord-introduction-introduction-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:7 | the-wars-of-the-lord-introduction-introduction-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:8 | the-wars-of-the-lord-introduction-introduction-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:9 | the-wars-of-the-lord-introduction-introduction-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:10 | the-wars-of-the-lord-introduction-introduction-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:11 | the-wars-of-the-lord-introduction-introduction-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:12 | the-wars-of-the-lord-introduction-introduction-12 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:13 | the-wars-of-the-lord-introduction-introduction-13 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:14 | the-wars-of-the-lord-introduction-introduction-14 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:15 | the-wars-of-the-lord-introduction-introduction-15 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:16 | the-wars-of-the-lord-introduction-introduction-16 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:17 | the-wars-of-the-lord-introduction-introduction-17 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:18 | the-wars-of-the-lord-introduction-introduction-18 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:19 | the-wars-of-the-lord-introduction-introduction-19 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:20 | the-wars-of-the-lord-introduction-introduction-20 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Introduction:21 | the-wars-of-the-lord-introduction-introduction-21 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 1:1 | the-wars-of-the-lord-first-treatise-first-treatise-1-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 1:2 | the-wars-of-the-lord-first-treatise-first-treatise-1-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 1:3 | the-wars-of-the-lord-first-treatise-first-treatise-1-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 1:4 | the-wars-of-the-lord-first-treatise-first-treatise-1-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 2:1 | the-wars-of-the-lord-first-treatise-first-treatise-2-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 2:2 | the-wars-of-the-lord-first-treatise-first-treatise-2-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 2:3 | the-wars-of-the-lord-first-treatise-first-treatise-2-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 2:4 | the-wars-of-the-lord-first-treatise-first-treatise-2-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 2:5 | the-wars-of-the-lord-first-treatise-first-treatise-2-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 2:6 | the-wars-of-the-lord-first-treatise-first-treatise-2-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 2:7 | the-wars-of-the-lord-first-treatise-first-treatise-2-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 3:1 | the-wars-of-the-lord-first-treatise-first-treatise-3-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 3:2 | the-wars-of-the-lord-first-treatise-first-treatise-3-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 3:3 | the-wars-of-the-lord-first-treatise-first-treatise-3-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 3:4 | the-wars-of-the-lord-first-treatise-first-treatise-3-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 3:5 | the-wars-of-the-lord-first-treatise-first-treatise-3-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 3:6 | the-wars-of-the-lord-first-treatise-first-treatise-3-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 3:7 | the-wars-of-the-lord-first-treatise-first-treatise-3-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 3:8 | the-wars-of-the-lord-first-treatise-first-treatise-3-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 3:9 | the-wars-of-the-lord-first-treatise-first-treatise-3-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 3:10 | the-wars-of-the-lord-first-treatise-first-treatise-3-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 3:11 | the-wars-of-the-lord-first-treatise-first-treatise-3-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 3:12 | the-wars-of-the-lord-first-treatise-first-treatise-3-12 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 3:13 | the-wars-of-the-lord-first-treatise-first-treatise-3-13 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 3:14 | the-wars-of-the-lord-first-treatise-first-treatise-3-14 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 3:15 | the-wars-of-the-lord-first-treatise-first-treatise-3-15 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 4:1 | the-wars-of-the-lord-first-treatise-first-treatise-4-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 4:2 | the-wars-of-the-lord-first-treatise-first-treatise-4-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 4:3 | the-wars-of-the-lord-first-treatise-first-treatise-4-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 4:4 | the-wars-of-the-lord-first-treatise-first-treatise-4-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 4:5 | the-wars-of-the-lord-first-treatise-first-treatise-4-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 4:6 | the-wars-of-the-lord-first-treatise-first-treatise-4-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 4:7 | the-wars-of-the-lord-first-treatise-first-treatise-4-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 4:8 | the-wars-of-the-lord-first-treatise-first-treatise-4-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 4:9 | the-wars-of-the-lord-first-treatise-first-treatise-4-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 5:1 | the-wars-of-the-lord-first-treatise-first-treatise-5-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 5:2 | the-wars-of-the-lord-first-treatise-first-treatise-5-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 5:3 | the-wars-of-the-lord-first-treatise-first-treatise-5-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 6:1 | the-wars-of-the-lord-first-treatise-first-treatise-6-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 6:2 | the-wars-of-the-lord-first-treatise-first-treatise-6-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 6:3 | the-wars-of-the-lord-first-treatise-first-treatise-6-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 6:4 | the-wars-of-the-lord-first-treatise-first-treatise-6-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 6:5 | the-wars-of-the-lord-first-treatise-first-treatise-6-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 6:6 | the-wars-of-the-lord-first-treatise-first-treatise-6-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 6:7 | the-wars-of-the-lord-first-treatise-first-treatise-6-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 6:8 | the-wars-of-the-lord-first-treatise-first-treatise-6-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 6:9 | the-wars-of-the-lord-first-treatise-first-treatise-6-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 6:10 | the-wars-of-the-lord-first-treatise-first-treatise-6-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 7:1 | the-wars-of-the-lord-first-treatise-first-treatise-7-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 7:2 | the-wars-of-the-lord-first-treatise-first-treatise-7-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 7:3 | the-wars-of-the-lord-first-treatise-first-treatise-7-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 7:4 | the-wars-of-the-lord-first-treatise-first-treatise-7-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 8:1 | the-wars-of-the-lord-first-treatise-first-treatise-8-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 8:2 | the-wars-of-the-lord-first-treatise-first-treatise-8-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 8:3 | the-wars-of-the-lord-first-treatise-first-treatise-8-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 8:4 | the-wars-of-the-lord-first-treatise-first-treatise-8-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 8:5 | the-wars-of-the-lord-first-treatise-first-treatise-8-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 9:1 | the-wars-of-the-lord-first-treatise-first-treatise-9-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 9:2 | the-wars-of-the-lord-first-treatise-first-treatise-9-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 9:3 | the-wars-of-the-lord-first-treatise-first-treatise-9-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 9:4 | the-wars-of-the-lord-first-treatise-first-treatise-9-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 9:5 | the-wars-of-the-lord-first-treatise-first-treatise-9-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 9:6 | the-wars-of-the-lord-first-treatise-first-treatise-9-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 9:7 | the-wars-of-the-lord-first-treatise-first-treatise-9-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 9:8 | the-wars-of-the-lord-first-treatise-first-treatise-9-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 9:9 | the-wars-of-the-lord-first-treatise-first-treatise-9-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 9:10 | the-wars-of-the-lord-first-treatise-first-treatise-9-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 9:11 | the-wars-of-the-lord-first-treatise-first-treatise-9-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 9:12 | the-wars-of-the-lord-first-treatise-first-treatise-9-12 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 9:13 | the-wars-of-the-lord-first-treatise-first-treatise-9-13 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 9:14 | the-wars-of-the-lord-first-treatise-first-treatise-9-14 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:1 | the-wars-of-the-lord-first-treatise-first-treatise-10-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:2 | the-wars-of-the-lord-first-treatise-first-treatise-10-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:3 | the-wars-of-the-lord-first-treatise-first-treatise-10-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:4 | the-wars-of-the-lord-first-treatise-first-treatise-10-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:5 | the-wars-of-the-lord-first-treatise-first-treatise-10-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:6 | the-wars-of-the-lord-first-treatise-first-treatise-10-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:7 | the-wars-of-the-lord-first-treatise-first-treatise-10-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:8 | the-wars-of-the-lord-first-treatise-first-treatise-10-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:9 | the-wars-of-the-lord-first-treatise-first-treatise-10-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:10 | the-wars-of-the-lord-first-treatise-first-treatise-10-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:11 | the-wars-of-the-lord-first-treatise-first-treatise-10-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:12 | the-wars-of-the-lord-first-treatise-first-treatise-10-12 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:13 | the-wars-of-the-lord-first-treatise-first-treatise-10-13 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:14 | the-wars-of-the-lord-first-treatise-first-treatise-10-14 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:15 | the-wars-of-the-lord-first-treatise-first-treatise-10-15 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:16 | the-wars-of-the-lord-first-treatise-first-treatise-10-16 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:17 | the-wars-of-the-lord-first-treatise-first-treatise-10-17 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:18 | the-wars-of-the-lord-first-treatise-first-treatise-10-18 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:19 | the-wars-of-the-lord-first-treatise-first-treatise-10-19 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:20 | the-wars-of-the-lord-first-treatise-first-treatise-10-20 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 10:21 | the-wars-of-the-lord-first-treatise-first-treatise-10-21 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 11:1 | the-wars-of-the-lord-first-treatise-first-treatise-11-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 11:2 | the-wars-of-the-lord-first-treatise-first-treatise-11-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 11:3 | the-wars-of-the-lord-first-treatise-first-treatise-11-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 11:4 | the-wars-of-the-lord-first-treatise-first-treatise-11-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 11:5 | the-wars-of-the-lord-first-treatise-first-treatise-11-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 11:6 | the-wars-of-the-lord-first-treatise-first-treatise-11-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 11:7 | the-wars-of-the-lord-first-treatise-first-treatise-11-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 11:8 | the-wars-of-the-lord-first-treatise-first-treatise-11-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 12:1 | the-wars-of-the-lord-first-treatise-first-treatise-12-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 12:2 | the-wars-of-the-lord-first-treatise-first-treatise-12-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 12:3 | the-wars-of-the-lord-first-treatise-first-treatise-12-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 12:4 | the-wars-of-the-lord-first-treatise-first-treatise-12-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 12:5 | the-wars-of-the-lord-first-treatise-first-treatise-12-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 12:6 | the-wars-of-the-lord-first-treatise-first-treatise-12-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 13:1 | the-wars-of-the-lord-first-treatise-first-treatise-13-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 13:2 | the-wars-of-the-lord-first-treatise-first-treatise-13-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 13:3 | the-wars-of-the-lord-first-treatise-first-treatise-13-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 14:1 | the-wars-of-the-lord-first-treatise-first-treatise-14-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 14:2 | the-wars-of-the-lord-first-treatise-first-treatise-14-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, First Treatise 14:3 | the-wars-of-the-lord-first-treatise-first-treatise-14-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 1:1 | the-wars-of-the-lord-second-treatise-second-treatise-1-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 1:2 | the-wars-of-the-lord-second-treatise-second-treatise-1-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 1:3 | the-wars-of-the-lord-second-treatise-second-treatise-1-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 1:4 | the-wars-of-the-lord-second-treatise-second-treatise-1-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 1:5 | the-wars-of-the-lord-second-treatise-second-treatise-1-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 2:1 | the-wars-of-the-lord-second-treatise-second-treatise-2-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 2:2 | the-wars-of-the-lord-second-treatise-second-treatise-2-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 2:3 | the-wars-of-the-lord-second-treatise-second-treatise-2-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 2:4 | the-wars-of-the-lord-second-treatise-second-treatise-2-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 2:5 | the-wars-of-the-lord-second-treatise-second-treatise-2-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 2:6 | the-wars-of-the-lord-second-treatise-second-treatise-2-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 2:7 | the-wars-of-the-lord-second-treatise-second-treatise-2-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 3:1 | the-wars-of-the-lord-second-treatise-second-treatise-3-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 3:2 | the-wars-of-the-lord-second-treatise-second-treatise-3-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 3:3 | the-wars-of-the-lord-second-treatise-second-treatise-3-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 3:4 | the-wars-of-the-lord-second-treatise-second-treatise-3-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 4:1 | the-wars-of-the-lord-second-treatise-second-treatise-4-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 4:2 | the-wars-of-the-lord-second-treatise-second-treatise-4-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 4:3 | the-wars-of-the-lord-second-treatise-second-treatise-4-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 4:4 | the-wars-of-the-lord-second-treatise-second-treatise-4-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 4:5 | the-wars-of-the-lord-second-treatise-second-treatise-4-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 4:6 | the-wars-of-the-lord-second-treatise-second-treatise-4-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 5:1 | the-wars-of-the-lord-second-treatise-second-treatise-5-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 5:2 | the-wars-of-the-lord-second-treatise-second-treatise-5-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 5:3 | the-wars-of-the-lord-second-treatise-second-treatise-5-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 6:1 | the-wars-of-the-lord-second-treatise-second-treatise-6-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 6:2 | the-wars-of-the-lord-second-treatise-second-treatise-6-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 6:3 | the-wars-of-the-lord-second-treatise-second-treatise-6-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 6:4 | the-wars-of-the-lord-second-treatise-second-treatise-6-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 6:5 | the-wars-of-the-lord-second-treatise-second-treatise-6-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 6:6 | the-wars-of-the-lord-second-treatise-second-treatise-6-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 6:7 | the-wars-of-the-lord-second-treatise-second-treatise-6-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 6:8 | the-wars-of-the-lord-second-treatise-second-treatise-6-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 6:9 | the-wars-of-the-lord-second-treatise-second-treatise-6-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 6:10 | the-wars-of-the-lord-second-treatise-second-treatise-6-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 6:11 | the-wars-of-the-lord-second-treatise-second-treatise-6-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 6:12 | the-wars-of-the-lord-second-treatise-second-treatise-6-12 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 6:13 | the-wars-of-the-lord-second-treatise-second-treatise-6-13 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 6:14 | the-wars-of-the-lord-second-treatise-second-treatise-6-14 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 6:15 | the-wars-of-the-lord-second-treatise-second-treatise-6-15 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 7:1 | the-wars-of-the-lord-second-treatise-second-treatise-7-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 7:2 | the-wars-of-the-lord-second-treatise-second-treatise-7-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 7:3 | the-wars-of-the-lord-second-treatise-second-treatise-7-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 7:4 | the-wars-of-the-lord-second-treatise-second-treatise-7-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 7:5 | the-wars-of-the-lord-second-treatise-second-treatise-7-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 8:1 | the-wars-of-the-lord-second-treatise-second-treatise-8-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 8:2 | the-wars-of-the-lord-second-treatise-second-treatise-8-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 8:3 | the-wars-of-the-lord-second-treatise-second-treatise-8-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Second Treatise 8:4 | the-wars-of-the-lord-second-treatise-second-treatise-8-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 1:1 | the-wars-of-the-lord-third-treatise-third-treatise-1-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 1:2 | the-wars-of-the-lord-third-treatise-third-treatise-1-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 1:3 | the-wars-of-the-lord-third-treatise-third-treatise-1-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 1:4 | the-wars-of-the-lord-third-treatise-third-treatise-1-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 1:5 | the-wars-of-the-lord-third-treatise-third-treatise-1-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 2:1 | the-wars-of-the-lord-third-treatise-third-treatise-2-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 2:2 | the-wars-of-the-lord-third-treatise-third-treatise-2-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 2:3 | the-wars-of-the-lord-third-treatise-third-treatise-2-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 2:4 | the-wars-of-the-lord-third-treatise-third-treatise-2-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 2:5 | the-wars-of-the-lord-third-treatise-third-treatise-2-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 2:6 | the-wars-of-the-lord-third-treatise-third-treatise-2-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 2:7 | the-wars-of-the-lord-third-treatise-third-treatise-2-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 2:8 | the-wars-of-the-lord-third-treatise-third-treatise-2-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 2:9 | the-wars-of-the-lord-third-treatise-third-treatise-2-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 2:10 | the-wars-of-the-lord-third-treatise-third-treatise-2-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 2:11 | the-wars-of-the-lord-third-treatise-third-treatise-2-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 2:12 | the-wars-of-the-lord-third-treatise-third-treatise-2-12 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 2:13 | the-wars-of-the-lord-third-treatise-third-treatise-2-13 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 3:1 | the-wars-of-the-lord-third-treatise-third-treatise-3-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 3:2 | the-wars-of-the-lord-third-treatise-third-treatise-3-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 3:3 | the-wars-of-the-lord-third-treatise-third-treatise-3-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 3:4 | the-wars-of-the-lord-third-treatise-third-treatise-3-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 3:5 | the-wars-of-the-lord-third-treatise-third-treatise-3-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 4:1 | the-wars-of-the-lord-third-treatise-third-treatise-4-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 4:2 | the-wars-of-the-lord-third-treatise-third-treatise-4-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 4:3 | the-wars-of-the-lord-third-treatise-third-treatise-4-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 4:4 | the-wars-of-the-lord-third-treatise-third-treatise-4-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 4:5 | the-wars-of-the-lord-third-treatise-third-treatise-4-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 4:6 | the-wars-of-the-lord-third-treatise-third-treatise-4-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 4:7 | the-wars-of-the-lord-third-treatise-third-treatise-4-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 4:8 | the-wars-of-the-lord-third-treatise-third-treatise-4-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 4:9 | the-wars-of-the-lord-third-treatise-third-treatise-4-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 4:10 | the-wars-of-the-lord-third-treatise-third-treatise-4-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 4:11 | the-wars-of-the-lord-third-treatise-third-treatise-4-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 5:1 | the-wars-of-the-lord-third-treatise-third-treatise-5-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 5:2 | the-wars-of-the-lord-third-treatise-third-treatise-5-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 5:3 | the-wars-of-the-lord-third-treatise-third-treatise-5-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 6:1 | the-wars-of-the-lord-third-treatise-third-treatise-6-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 6:2 | the-wars-of-the-lord-third-treatise-third-treatise-6-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 6:3 | the-wars-of-the-lord-third-treatise-third-treatise-6-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 6:4 | the-wars-of-the-lord-third-treatise-third-treatise-6-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Third Treatise 6:5 | the-wars-of-the-lord-third-treatise-third-treatise-6-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 1:1 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-1-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 1:2 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-1-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 1:3 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-1-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 2:1 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-2-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 2:2 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-2-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 2:3 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-2-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 2:4 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-2-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 2:5 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-2-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 2:6 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-2-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 2:7 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-2-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 2:8 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-2-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 2:9 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-2-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 2:10 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-2-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 3:1 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-3-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 3:2 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-3-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 3:3 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-3-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 3:4 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-3-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 3:5 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-3-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 3:6 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-3-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 3:7 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-3-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 4:1 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-4-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 4:2 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-4-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 5:1 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-5-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 5:2 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-5-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 5:3 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-5-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 5:4 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-5-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 5:5 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-5-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 6:1 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-6-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 6:2 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-6-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 6:3 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-6-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 6:4 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-6-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 6:5 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-6-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 6:6 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-6-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 6:7 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-6-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 6:8 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-6-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 6:9 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-6-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 6:10 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-6-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 6:11 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-6-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 6:12 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-6-12 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 6:13 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-6-13 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 6:14 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-6-14 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 6:15 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-6-15 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 6:16 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-6-16 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 6:17 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-6-17 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 7:1 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-7-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 7:2 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-7-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 7:3 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-7-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 7:4 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-7-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fourth Treatise 7:5 | the-wars-of-the-lord-fourth-treatise-fourth-treatise-7-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part One 1:1 | the-wars-of-the-lord-fifth-treatise-part-one-1-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part One 1:2 | the-wars-of-the-lord-fifth-treatise-part-one-1-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 1:1 | the-wars-of-the-lord-fifth-treatise-part-two-1-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 1:2 | the-wars-of-the-lord-fifth-treatise-part-two-1-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 1:3 | the-wars-of-the-lord-fifth-treatise-part-two-1-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 2:1 | the-wars-of-the-lord-fifth-treatise-part-two-2-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 2:2 | the-wars-of-the-lord-fifth-treatise-part-two-2-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 2:3 | the-wars-of-the-lord-fifth-treatise-part-two-2-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 3:1 | the-wars-of-the-lord-fifth-treatise-part-two-3-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 3:2 | the-wars-of-the-lord-fifth-treatise-part-two-3-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 3:3 | the-wars-of-the-lord-fifth-treatise-part-two-3-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 4:1 | the-wars-of-the-lord-fifth-treatise-part-two-4-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 4:2 | the-wars-of-the-lord-fifth-treatise-part-two-4-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 4:3 | the-wars-of-the-lord-fifth-treatise-part-two-4-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 5:1 | the-wars-of-the-lord-fifth-treatise-part-two-5-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 5:2 | the-wars-of-the-lord-fifth-treatise-part-two-5-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 5:3 | the-wars-of-the-lord-fifth-treatise-part-two-5-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 6:1 | the-wars-of-the-lord-fifth-treatise-part-two-6-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 6:2 | the-wars-of-the-lord-fifth-treatise-part-two-6-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 6:3 | the-wars-of-the-lord-fifth-treatise-part-two-6-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 6:4 | the-wars-of-the-lord-fifth-treatise-part-two-6-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 6:5 | the-wars-of-the-lord-fifth-treatise-part-two-6-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 6:6 | the-wars-of-the-lord-fifth-treatise-part-two-6-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 6:7 | the-wars-of-the-lord-fifth-treatise-part-two-6-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:1 | the-wars-of-the-lord-fifth-treatise-part-two-7-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:2 | the-wars-of-the-lord-fifth-treatise-part-two-7-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:3 | the-wars-of-the-lord-fifth-treatise-part-two-7-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:4 | the-wars-of-the-lord-fifth-treatise-part-two-7-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:5 | the-wars-of-the-lord-fifth-treatise-part-two-7-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:6 | the-wars-of-the-lord-fifth-treatise-part-two-7-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:7 | the-wars-of-the-lord-fifth-treatise-part-two-7-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:8 | the-wars-of-the-lord-fifth-treatise-part-two-7-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:9 | the-wars-of-the-lord-fifth-treatise-part-two-7-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:10 | the-wars-of-the-lord-fifth-treatise-part-two-7-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:11 | the-wars-of-the-lord-fifth-treatise-part-two-7-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:12 | the-wars-of-the-lord-fifth-treatise-part-two-7-12 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:13 | the-wars-of-the-lord-fifth-treatise-part-two-7-13 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:14 | the-wars-of-the-lord-fifth-treatise-part-two-7-14 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:15 | the-wars-of-the-lord-fifth-treatise-part-two-7-15 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:16 | the-wars-of-the-lord-fifth-treatise-part-two-7-16 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:17 | the-wars-of-the-lord-fifth-treatise-part-two-7-17 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:18 | the-wars-of-the-lord-fifth-treatise-part-two-7-18 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:19 | the-wars-of-the-lord-fifth-treatise-part-two-7-19 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:20 | the-wars-of-the-lord-fifth-treatise-part-two-7-20 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:21 | the-wars-of-the-lord-fifth-treatise-part-two-7-21 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:22 | the-wars-of-the-lord-fifth-treatise-part-two-7-22 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:23 | the-wars-of-the-lord-fifth-treatise-part-two-7-23 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:24 | the-wars-of-the-lord-fifth-treatise-part-two-7-24 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:25 | the-wars-of-the-lord-fifth-treatise-part-two-7-25 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:26 | the-wars-of-the-lord-fifth-treatise-part-two-7-26 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:27 | the-wars-of-the-lord-fifth-treatise-part-two-7-27 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:28 | the-wars-of-the-lord-fifth-treatise-part-two-7-28 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 7:29 | the-wars-of-the-lord-fifth-treatise-part-two-7-29 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 8:1 | the-wars-of-the-lord-fifth-treatise-part-two-8-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 8:2 | the-wars-of-the-lord-fifth-treatise-part-two-8-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:1 | the-wars-of-the-lord-fifth-treatise-part-two-9-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:2 | the-wars-of-the-lord-fifth-treatise-part-two-9-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:3 | the-wars-of-the-lord-fifth-treatise-part-two-9-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:4 | the-wars-of-the-lord-fifth-treatise-part-two-9-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:5 | the-wars-of-the-lord-fifth-treatise-part-two-9-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:6 | the-wars-of-the-lord-fifth-treatise-part-two-9-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:7 | the-wars-of-the-lord-fifth-treatise-part-two-9-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:8 | the-wars-of-the-lord-fifth-treatise-part-two-9-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:9 | the-wars-of-the-lord-fifth-treatise-part-two-9-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:10 | the-wars-of-the-lord-fifth-treatise-part-two-9-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:11 | the-wars-of-the-lord-fifth-treatise-part-two-9-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:12 | the-wars-of-the-lord-fifth-treatise-part-two-9-12 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:13 | the-wars-of-the-lord-fifth-treatise-part-two-9-13 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:14 | the-wars-of-the-lord-fifth-treatise-part-two-9-14 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:15 | the-wars-of-the-lord-fifth-treatise-part-two-9-15 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:16 | the-wars-of-the-lord-fifth-treatise-part-two-9-16 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:17 | the-wars-of-the-lord-fifth-treatise-part-two-9-17 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:18 | the-wars-of-the-lord-fifth-treatise-part-two-9-18 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Two 9:19 | the-wars-of-the-lord-fifth-treatise-part-two-9-19 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 1:1 | the-wars-of-the-lord-fifth-treatise-part-three-1-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 1:2 | the-wars-of-the-lord-fifth-treatise-part-three-1-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 1:3 | the-wars-of-the-lord-fifth-treatise-part-three-1-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 1:4 | the-wars-of-the-lord-fifth-treatise-part-three-1-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 2:1 | the-wars-of-the-lord-fifth-treatise-part-three-2-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 2:2 | the-wars-of-the-lord-fifth-treatise-part-three-2-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 2:3 | the-wars-of-the-lord-fifth-treatise-part-three-2-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 2:4 | the-wars-of-the-lord-fifth-treatise-part-three-2-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:1 | the-wars-of-the-lord-fifth-treatise-part-three-3-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:2 | the-wars-of-the-lord-fifth-treatise-part-three-3-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:3 | the-wars-of-the-lord-fifth-treatise-part-three-3-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:4 | the-wars-of-the-lord-fifth-treatise-part-three-3-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:5 | the-wars-of-the-lord-fifth-treatise-part-three-3-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:6 | the-wars-of-the-lord-fifth-treatise-part-three-3-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:7 | the-wars-of-the-lord-fifth-treatise-part-three-3-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:8 | the-wars-of-the-lord-fifth-treatise-part-three-3-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:9 | the-wars-of-the-lord-fifth-treatise-part-three-3-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:10 | the-wars-of-the-lord-fifth-treatise-part-three-3-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:11 | the-wars-of-the-lord-fifth-treatise-part-three-3-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:12 | the-wars-of-the-lord-fifth-treatise-part-three-3-12 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:13 | the-wars-of-the-lord-fifth-treatise-part-three-3-13 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:14 | the-wars-of-the-lord-fifth-treatise-part-three-3-14 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:15 | the-wars-of-the-lord-fifth-treatise-part-three-3-15 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:16 | the-wars-of-the-lord-fifth-treatise-part-three-3-16 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:17 | the-wars-of-the-lord-fifth-treatise-part-three-3-17 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:18 | the-wars-of-the-lord-fifth-treatise-part-three-3-18 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:19 | the-wars-of-the-lord-fifth-treatise-part-three-3-19 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 3:20 | the-wars-of-the-lord-fifth-treatise-part-three-3-20 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 4:1 | the-wars-of-the-lord-fifth-treatise-part-three-4-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 4:2 | the-wars-of-the-lord-fifth-treatise-part-three-4-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 4:3 | the-wars-of-the-lord-fifth-treatise-part-three-4-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 4:4 | the-wars-of-the-lord-fifth-treatise-part-three-4-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 4:5 | the-wars-of-the-lord-fifth-treatise-part-three-4-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 4:6 | the-wars-of-the-lord-fifth-treatise-part-three-4-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 4:7 | the-wars-of-the-lord-fifth-treatise-part-three-4-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 4:8 | the-wars-of-the-lord-fifth-treatise-part-three-4-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 4:9 | the-wars-of-the-lord-fifth-treatise-part-three-4-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 4:10 | the-wars-of-the-lord-fifth-treatise-part-three-4-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 4:11 | the-wars-of-the-lord-fifth-treatise-part-three-4-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 4:12 | the-wars-of-the-lord-fifth-treatise-part-three-4-12 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 4:13 | the-wars-of-the-lord-fifth-treatise-part-three-4-13 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 5:1 | the-wars-of-the-lord-fifth-treatise-part-three-5-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 5:2 | the-wars-of-the-lord-fifth-treatise-part-three-5-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 6:1 | the-wars-of-the-lord-fifth-treatise-part-three-6-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 6:2 | the-wars-of-the-lord-fifth-treatise-part-three-6-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 6:3 | the-wars-of-the-lord-fifth-treatise-part-three-6-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 6:4 | the-wars-of-the-lord-fifth-treatise-part-three-6-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 6:5 | the-wars-of-the-lord-fifth-treatise-part-three-6-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 6:6 | the-wars-of-the-lord-fifth-treatise-part-three-6-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 6:7 | the-wars-of-the-lord-fifth-treatise-part-three-6-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 6:8 | the-wars-of-the-lord-fifth-treatise-part-three-6-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 6:9 | the-wars-of-the-lord-fifth-treatise-part-three-6-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 6:10 | the-wars-of-the-lord-fifth-treatise-part-three-6-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 6:11 | the-wars-of-the-lord-fifth-treatise-part-three-6-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 7:1 | the-wars-of-the-lord-fifth-treatise-part-three-7-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 7:2 | the-wars-of-the-lord-fifth-treatise-part-three-7-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 7:3 | the-wars-of-the-lord-fifth-treatise-part-three-7-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 8:1 | the-wars-of-the-lord-fifth-treatise-part-three-8-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 8:2 | the-wars-of-the-lord-fifth-treatise-part-three-8-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 8:3 | the-wars-of-the-lord-fifth-treatise-part-three-8-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 8:4 | the-wars-of-the-lord-fifth-treatise-part-three-8-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 8:5 | the-wars-of-the-lord-fifth-treatise-part-three-8-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 8:6 | the-wars-of-the-lord-fifth-treatise-part-three-8-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 8:7 | the-wars-of-the-lord-fifth-treatise-part-three-8-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 9:1 | the-wars-of-the-lord-fifth-treatise-part-three-9-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 9:2 | the-wars-of-the-lord-fifth-treatise-part-three-9-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 9:3 | the-wars-of-the-lord-fifth-treatise-part-three-9-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 9:4 | the-wars-of-the-lord-fifth-treatise-part-three-9-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 10:1 | the-wars-of-the-lord-fifth-treatise-part-three-10-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 10:2 | the-wars-of-the-lord-fifth-treatise-part-three-10-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 11:1 | the-wars-of-the-lord-fifth-treatise-part-three-11-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 11:2 | the-wars-of-the-lord-fifth-treatise-part-three-11-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 11:3 | the-wars-of-the-lord-fifth-treatise-part-three-11-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 12:1 | the-wars-of-the-lord-fifth-treatise-part-three-12-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 12:2 | the-wars-of-the-lord-fifth-treatise-part-three-12-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 12:3 | the-wars-of-the-lord-fifth-treatise-part-three-12-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 12:4 | the-wars-of-the-lord-fifth-treatise-part-three-12-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 12:5 | the-wars-of-the-lord-fifth-treatise-part-three-12-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 12:6 | the-wars-of-the-lord-fifth-treatise-part-three-12-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 12:7 | the-wars-of-the-lord-fifth-treatise-part-three-12-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 12:8 | the-wars-of-the-lord-fifth-treatise-part-three-12-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 12:9 | the-wars-of-the-lord-fifth-treatise-part-three-12-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 12:10 | the-wars-of-the-lord-fifth-treatise-part-three-12-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 12:11 | the-wars-of-the-lord-fifth-treatise-part-three-12-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 12:12 | the-wars-of-the-lord-fifth-treatise-part-three-12-12 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 12:13 | the-wars-of-the-lord-fifth-treatise-part-three-12-13 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 13:1 | the-wars-of-the-lord-fifth-treatise-part-three-13-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 13:2 | the-wars-of-the-lord-fifth-treatise-part-three-13-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 13:3 | the-wars-of-the-lord-fifth-treatise-part-three-13-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 13:4 | the-wars-of-the-lord-fifth-treatise-part-three-13-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 13:5 | the-wars-of-the-lord-fifth-treatise-part-three-13-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 13:6 | the-wars-of-the-lord-fifth-treatise-part-three-13-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 13:7 | the-wars-of-the-lord-fifth-treatise-part-three-13-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 13:8 | the-wars-of-the-lord-fifth-treatise-part-three-13-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 13:9 | the-wars-of-the-lord-fifth-treatise-part-three-13-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 14:1 | the-wars-of-the-lord-fifth-treatise-part-three-14-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 14:2 | the-wars-of-the-lord-fifth-treatise-part-three-14-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 14:3 | the-wars-of-the-lord-fifth-treatise-part-three-14-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Fifth Treatise, Part Three 14:4 | the-wars-of-the-lord-fifth-treatise-part-three-14-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 1:1 | the-wars-of-the-lord-sixth-treatise-part-one-1-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 1:2 | the-wars-of-the-lord-sixth-treatise-part-one-1-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 1:3 | the-wars-of-the-lord-sixth-treatise-part-one-1-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 1:4 | the-wars-of-the-lord-sixth-treatise-part-one-1-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 1:5 | the-wars-of-the-lord-sixth-treatise-part-one-1-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 2:1 | the-wars-of-the-lord-sixth-treatise-part-one-2-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 2:2 | the-wars-of-the-lord-sixth-treatise-part-one-2-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 3:1 | the-wars-of-the-lord-sixth-treatise-part-one-3-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 3:2 | the-wars-of-the-lord-sixth-treatise-part-one-3-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 3:3 | the-wars-of-the-lord-sixth-treatise-part-one-3-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 3:4 | the-wars-of-the-lord-sixth-treatise-part-one-3-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 3:5 | the-wars-of-the-lord-sixth-treatise-part-one-3-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 3:6 | the-wars-of-the-lord-sixth-treatise-part-one-3-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 3:7 | the-wars-of-the-lord-sixth-treatise-part-one-3-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 3:8 | the-wars-of-the-lord-sixth-treatise-part-one-3-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 3:9 | the-wars-of-the-lord-sixth-treatise-part-one-3-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 4:1 | the-wars-of-the-lord-sixth-treatise-part-one-4-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 4:2 | the-wars-of-the-lord-sixth-treatise-part-one-4-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 4:3 | the-wars-of-the-lord-sixth-treatise-part-one-4-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 4:4 | the-wars-of-the-lord-sixth-treatise-part-one-4-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 4:5 | the-wars-of-the-lord-sixth-treatise-part-one-4-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 4:6 | the-wars-of-the-lord-sixth-treatise-part-one-4-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 5:1 | the-wars-of-the-lord-sixth-treatise-part-one-5-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 5:2 | the-wars-of-the-lord-sixth-treatise-part-one-5-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 5:3 | the-wars-of-the-lord-sixth-treatise-part-one-5-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 5:4 | the-wars-of-the-lord-sixth-treatise-part-one-5-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 6:1 | the-wars-of-the-lord-sixth-treatise-part-one-6-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 6:2 | the-wars-of-the-lord-sixth-treatise-part-one-6-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 6:3 | the-wars-of-the-lord-sixth-treatise-part-one-6-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 6:4 | the-wars-of-the-lord-sixth-treatise-part-one-6-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 7:1 | the-wars-of-the-lord-sixth-treatise-part-one-7-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 7:2 | the-wars-of-the-lord-sixth-treatise-part-one-7-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 7:3 | the-wars-of-the-lord-sixth-treatise-part-one-7-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 7:4 | the-wars-of-the-lord-sixth-treatise-part-one-7-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 7:5 | the-wars-of-the-lord-sixth-treatise-part-one-7-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 7:6 | the-wars-of-the-lord-sixth-treatise-part-one-7-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 7:7 | the-wars-of-the-lord-sixth-treatise-part-one-7-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 7:8 | the-wars-of-the-lord-sixth-treatise-part-one-7-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 8:1 | the-wars-of-the-lord-sixth-treatise-part-one-8-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 8:2 | the-wars-of-the-lord-sixth-treatise-part-one-8-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 8:3 | the-wars-of-the-lord-sixth-treatise-part-one-8-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 8:4 | the-wars-of-the-lord-sixth-treatise-part-one-8-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 8:5 | the-wars-of-the-lord-sixth-treatise-part-one-8-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 8:6 | the-wars-of-the-lord-sixth-treatise-part-one-8-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 9:1 | the-wars-of-the-lord-sixth-treatise-part-one-9-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 9:2 | the-wars-of-the-lord-sixth-treatise-part-one-9-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 9:3 | the-wars-of-the-lord-sixth-treatise-part-one-9-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 9:4 | the-wars-of-the-lord-sixth-treatise-part-one-9-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 9:5 | the-wars-of-the-lord-sixth-treatise-part-one-9-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 9:6 | the-wars-of-the-lord-sixth-treatise-part-one-9-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 9:7 | the-wars-of-the-lord-sixth-treatise-part-one-9-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 9:8 | the-wars-of-the-lord-sixth-treatise-part-one-9-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 9:9 | the-wars-of-the-lord-sixth-treatise-part-one-9-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 9:10 | the-wars-of-the-lord-sixth-treatise-part-one-9-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 10:1 | the-wars-of-the-lord-sixth-treatise-part-one-10-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 10:2 | the-wars-of-the-lord-sixth-treatise-part-one-10-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 10:3 | the-wars-of-the-lord-sixth-treatise-part-one-10-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 10:4 | the-wars-of-the-lord-sixth-treatise-part-one-10-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 10:5 | the-wars-of-the-lord-sixth-treatise-part-one-10-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:1 | the-wars-of-the-lord-sixth-treatise-part-one-11-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:2 | the-wars-of-the-lord-sixth-treatise-part-one-11-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:3 | the-wars-of-the-lord-sixth-treatise-part-one-11-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:4 | the-wars-of-the-lord-sixth-treatise-part-one-11-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:5 | the-wars-of-the-lord-sixth-treatise-part-one-11-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:6 | the-wars-of-the-lord-sixth-treatise-part-one-11-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:7 | the-wars-of-the-lord-sixth-treatise-part-one-11-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:8 | the-wars-of-the-lord-sixth-treatise-part-one-11-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:9 | the-wars-of-the-lord-sixth-treatise-part-one-11-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:10 | the-wars-of-the-lord-sixth-treatise-part-one-11-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:11 | the-wars-of-the-lord-sixth-treatise-part-one-11-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:12 | the-wars-of-the-lord-sixth-treatise-part-one-11-12 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:13 | the-wars-of-the-lord-sixth-treatise-part-one-11-13 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:14 | the-wars-of-the-lord-sixth-treatise-part-one-11-14 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:15 | the-wars-of-the-lord-sixth-treatise-part-one-11-15 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:16 | the-wars-of-the-lord-sixth-treatise-part-one-11-16 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:17 | the-wars-of-the-lord-sixth-treatise-part-one-11-17 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:18 | the-wars-of-the-lord-sixth-treatise-part-one-11-18 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:19 | the-wars-of-the-lord-sixth-treatise-part-one-11-19 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 11:20 | the-wars-of-the-lord-sixth-treatise-part-one-11-20 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 12:1 | the-wars-of-the-lord-sixth-treatise-part-one-12-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 12:2 | the-wars-of-the-lord-sixth-treatise-part-one-12-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 12:3 | the-wars-of-the-lord-sixth-treatise-part-one-12-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 12:4 | the-wars-of-the-lord-sixth-treatise-part-one-12-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 12:5 | the-wars-of-the-lord-sixth-treatise-part-one-12-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 12:6 | the-wars-of-the-lord-sixth-treatise-part-one-12-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 12:7 | the-wars-of-the-lord-sixth-treatise-part-one-12-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 12:8 | the-wars-of-the-lord-sixth-treatise-part-one-12-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 12:9 | the-wars-of-the-lord-sixth-treatise-part-one-12-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 12:10 | the-wars-of-the-lord-sixth-treatise-part-one-12-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 13:1 | the-wars-of-the-lord-sixth-treatise-part-one-13-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 13:2 | the-wars-of-the-lord-sixth-treatise-part-one-13-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 13:3 | the-wars-of-the-lord-sixth-treatise-part-one-13-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 13:4 | the-wars-of-the-lord-sixth-treatise-part-one-13-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 13:5 | the-wars-of-the-lord-sixth-treatise-part-one-13-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 13:6 | the-wars-of-the-lord-sixth-treatise-part-one-13-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 13:7 | the-wars-of-the-lord-sixth-treatise-part-one-13-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 14:1 | the-wars-of-the-lord-sixth-treatise-part-one-14-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 14:2 | the-wars-of-the-lord-sixth-treatise-part-one-14-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 14:3 | the-wars-of-the-lord-sixth-treatise-part-one-14-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 14:4 | the-wars-of-the-lord-sixth-treatise-part-one-14-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 14:5 | the-wars-of-the-lord-sixth-treatise-part-one-14-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 14:6 | the-wars-of-the-lord-sixth-treatise-part-one-14-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 15:1 | the-wars-of-the-lord-sixth-treatise-part-one-15-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 15:2 | the-wars-of-the-lord-sixth-treatise-part-one-15-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 15:3 | the-wars-of-the-lord-sixth-treatise-part-one-15-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 16:1 | the-wars-of-the-lord-sixth-treatise-part-one-16-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 16:2 | the-wars-of-the-lord-sixth-treatise-part-one-16-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 16:3 | the-wars-of-the-lord-sixth-treatise-part-one-16-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 16:4 | the-wars-of-the-lord-sixth-treatise-part-one-16-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 17:1 | the-wars-of-the-lord-sixth-treatise-part-one-17-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 17:2 | the-wars-of-the-lord-sixth-treatise-part-one-17-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 17:3 | the-wars-of-the-lord-sixth-treatise-part-one-17-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 17:4 | the-wars-of-the-lord-sixth-treatise-part-one-17-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 17:5 | the-wars-of-the-lord-sixth-treatise-part-one-17-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 17:6 | the-wars-of-the-lord-sixth-treatise-part-one-17-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 17:7 | the-wars-of-the-lord-sixth-treatise-part-one-17-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:1 | the-wars-of-the-lord-sixth-treatise-part-one-18-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:2 | the-wars-of-the-lord-sixth-treatise-part-one-18-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:3 | the-wars-of-the-lord-sixth-treatise-part-one-18-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:4 | the-wars-of-the-lord-sixth-treatise-part-one-18-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:5 | the-wars-of-the-lord-sixth-treatise-part-one-18-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:6 | the-wars-of-the-lord-sixth-treatise-part-one-18-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:7 | the-wars-of-the-lord-sixth-treatise-part-one-18-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:8 | the-wars-of-the-lord-sixth-treatise-part-one-18-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:9 | the-wars-of-the-lord-sixth-treatise-part-one-18-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:10 | the-wars-of-the-lord-sixth-treatise-part-one-18-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:11 | the-wars-of-the-lord-sixth-treatise-part-one-18-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:12 | the-wars-of-the-lord-sixth-treatise-part-one-18-12 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:13 | the-wars-of-the-lord-sixth-treatise-part-one-18-13 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:14 | the-wars-of-the-lord-sixth-treatise-part-one-18-14 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:15 | the-wars-of-the-lord-sixth-treatise-part-one-18-15 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:16 | the-wars-of-the-lord-sixth-treatise-part-one-18-16 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:17 | the-wars-of-the-lord-sixth-treatise-part-one-18-17 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:18 | the-wars-of-the-lord-sixth-treatise-part-one-18-18 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:19 | the-wars-of-the-lord-sixth-treatise-part-one-18-19 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:20 | the-wars-of-the-lord-sixth-treatise-part-one-18-20 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 18:21 | the-wars-of-the-lord-sixth-treatise-part-one-18-21 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 19:1 | the-wars-of-the-lord-sixth-treatise-part-one-19-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 19:2 | the-wars-of-the-lord-sixth-treatise-part-one-19-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 19:3 | the-wars-of-the-lord-sixth-treatise-part-one-19-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 20:1 | the-wars-of-the-lord-sixth-treatise-part-one-20-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 20:2 | the-wars-of-the-lord-sixth-treatise-part-one-20-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 20:3 | the-wars-of-the-lord-sixth-treatise-part-one-20-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 20:4 | the-wars-of-the-lord-sixth-treatise-part-one-20-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 20:5 | the-wars-of-the-lord-sixth-treatise-part-one-20-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 20:6 | the-wars-of-the-lord-sixth-treatise-part-one-20-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 21:1 | the-wars-of-the-lord-sixth-treatise-part-one-21-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 21:2 | the-wars-of-the-lord-sixth-treatise-part-one-21-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 21:3 | the-wars-of-the-lord-sixth-treatise-part-one-21-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 21:4 | the-wars-of-the-lord-sixth-treatise-part-one-21-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 21:5 | the-wars-of-the-lord-sixth-treatise-part-one-21-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 22:1 | the-wars-of-the-lord-sixth-treatise-part-one-22-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 22:2 | the-wars-of-the-lord-sixth-treatise-part-one-22-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 22:3 | the-wars-of-the-lord-sixth-treatise-part-one-22-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 23:1 | the-wars-of-the-lord-sixth-treatise-part-one-23-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 23:2 | the-wars-of-the-lord-sixth-treatise-part-one-23-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 23:3 | the-wars-of-the-lord-sixth-treatise-part-one-23-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 23:4 | the-wars-of-the-lord-sixth-treatise-part-one-23-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 24:1 | the-wars-of-the-lord-sixth-treatise-part-one-24-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 24:2 | the-wars-of-the-lord-sixth-treatise-part-one-24-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 24:3 | the-wars-of-the-lord-sixth-treatise-part-one-24-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 24:4 | the-wars-of-the-lord-sixth-treatise-part-one-24-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 24:5 | the-wars-of-the-lord-sixth-treatise-part-one-24-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 24:6 | the-wars-of-the-lord-sixth-treatise-part-one-24-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 24:7 | the-wars-of-the-lord-sixth-treatise-part-one-24-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 24:8 | the-wars-of-the-lord-sixth-treatise-part-one-24-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 24:9 | the-wars-of-the-lord-sixth-treatise-part-one-24-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 25:1 | the-wars-of-the-lord-sixth-treatise-part-one-25-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 25:2 | the-wars-of-the-lord-sixth-treatise-part-one-25-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 25:3 | the-wars-of-the-lord-sixth-treatise-part-one-25-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 26:1 | the-wars-of-the-lord-sixth-treatise-part-one-26-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 26:2 | the-wars-of-the-lord-sixth-treatise-part-one-26-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 26:3 | the-wars-of-the-lord-sixth-treatise-part-one-26-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 27:1 | the-wars-of-the-lord-sixth-treatise-part-one-27-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 27:2 | the-wars-of-the-lord-sixth-treatise-part-one-27-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 27:3 | the-wars-of-the-lord-sixth-treatise-part-one-27-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 27:4 | the-wars-of-the-lord-sixth-treatise-part-one-27-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 27:5 | the-wars-of-the-lord-sixth-treatise-part-one-27-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 27:6 | the-wars-of-the-lord-sixth-treatise-part-one-27-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 27:7 | the-wars-of-the-lord-sixth-treatise-part-one-27-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 27:8 | the-wars-of-the-lord-sixth-treatise-part-one-27-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 27:9 | the-wars-of-the-lord-sixth-treatise-part-one-27-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 27:10 | the-wars-of-the-lord-sixth-treatise-part-one-27-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 27:11 | the-wars-of-the-lord-sixth-treatise-part-one-27-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 27:12 | the-wars-of-the-lord-sixth-treatise-part-one-27-12 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 27:13 | the-wars-of-the-lord-sixth-treatise-part-one-27-13 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 28:1 | the-wars-of-the-lord-sixth-treatise-part-one-28-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 28:2 | the-wars-of-the-lord-sixth-treatise-part-one-28-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 28:3 | the-wars-of-the-lord-sixth-treatise-part-one-28-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 29:1 | the-wars-of-the-lord-sixth-treatise-part-one-29-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 29:2 | the-wars-of-the-lord-sixth-treatise-part-one-29-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 29:3 | the-wars-of-the-lord-sixth-treatise-part-one-29-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 29:4 | the-wars-of-the-lord-sixth-treatise-part-one-29-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part One 29:5 | the-wars-of-the-lord-sixth-treatise-part-one-29-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 1:1 | the-wars-of-the-lord-sixth-treatise-part-two-1-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 1:2 | the-wars-of-the-lord-sixth-treatise-part-two-1-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 1:3 | the-wars-of-the-lord-sixth-treatise-part-two-1-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 1:4 | the-wars-of-the-lord-sixth-treatise-part-two-1-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 2:1 | the-wars-of-the-lord-sixth-treatise-part-two-2-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 2:2 | the-wars-of-the-lord-sixth-treatise-part-two-2-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 2:3 | the-wars-of-the-lord-sixth-treatise-part-two-2-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 3:1 | the-wars-of-the-lord-sixth-treatise-part-two-3-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 3:2 | the-wars-of-the-lord-sixth-treatise-part-two-3-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 4:1 | the-wars-of-the-lord-sixth-treatise-part-two-4-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 4:2 | the-wars-of-the-lord-sixth-treatise-part-two-4-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 4:3 | the-wars-of-the-lord-sixth-treatise-part-two-4-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 5:1 | the-wars-of-the-lord-sixth-treatise-part-two-5-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 5:2 | the-wars-of-the-lord-sixth-treatise-part-two-5-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 5:3 | the-wars-of-the-lord-sixth-treatise-part-two-5-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 6:1 | the-wars-of-the-lord-sixth-treatise-part-two-6-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 6:2 | the-wars-of-the-lord-sixth-treatise-part-two-6-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 6:3 | the-wars-of-the-lord-sixth-treatise-part-two-6-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 7:1 | the-wars-of-the-lord-sixth-treatise-part-two-7-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 7:2 | the-wars-of-the-lord-sixth-treatise-part-two-7-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 7:3 | the-wars-of-the-lord-sixth-treatise-part-two-7-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 7:4 | the-wars-of-the-lord-sixth-treatise-part-two-7-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 7:5 | the-wars-of-the-lord-sixth-treatise-part-two-7-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 7:6 | the-wars-of-the-lord-sixth-treatise-part-two-7-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 7:7 | the-wars-of-the-lord-sixth-treatise-part-two-7-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:1 | the-wars-of-the-lord-sixth-treatise-part-two-8-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:2 | the-wars-of-the-lord-sixth-treatise-part-two-8-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:3 | the-wars-of-the-lord-sixth-treatise-part-two-8-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:4 | the-wars-of-the-lord-sixth-treatise-part-two-8-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:5 | the-wars-of-the-lord-sixth-treatise-part-two-8-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:6 | the-wars-of-the-lord-sixth-treatise-part-two-8-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:7 | the-wars-of-the-lord-sixth-treatise-part-two-8-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:8 | the-wars-of-the-lord-sixth-treatise-part-two-8-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:9 | the-wars-of-the-lord-sixth-treatise-part-two-8-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:10 | the-wars-of-the-lord-sixth-treatise-part-two-8-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:11 | the-wars-of-the-lord-sixth-treatise-part-two-8-11 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:12 | the-wars-of-the-lord-sixth-treatise-part-two-8-12 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:13 | the-wars-of-the-lord-sixth-treatise-part-two-8-13 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:14 | the-wars-of-the-lord-sixth-treatise-part-two-8-14 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:15 | the-wars-of-the-lord-sixth-treatise-part-two-8-15 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:16 | the-wars-of-the-lord-sixth-treatise-part-two-8-16 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:17 | the-wars-of-the-lord-sixth-treatise-part-two-8-17 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:18 | the-wars-of-the-lord-sixth-treatise-part-two-8-18 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:19 | the-wars-of-the-lord-sixth-treatise-part-two-8-19 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:20 | the-wars-of-the-lord-sixth-treatise-part-two-8-20 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:21 | the-wars-of-the-lord-sixth-treatise-part-two-8-21 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 8:22 | the-wars-of-the-lord-sixth-treatise-part-two-8-22 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 9:1 | the-wars-of-the-lord-sixth-treatise-part-two-9-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 9:2 | the-wars-of-the-lord-sixth-treatise-part-two-9-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 9:3 | the-wars-of-the-lord-sixth-treatise-part-two-9-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 10:1 | the-wars-of-the-lord-sixth-treatise-part-two-10-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 10:2 | the-wars-of-the-lord-sixth-treatise-part-two-10-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 10:3 | the-wars-of-the-lord-sixth-treatise-part-two-10-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 10:4 | the-wars-of-the-lord-sixth-treatise-part-two-10-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 10:5 | the-wars-of-the-lord-sixth-treatise-part-two-10-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 10:6 | the-wars-of-the-lord-sixth-treatise-part-two-10-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 10:7 | the-wars-of-the-lord-sixth-treatise-part-two-10-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 10:8 | the-wars-of-the-lord-sixth-treatise-part-two-10-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 10:9 | the-wars-of-the-lord-sixth-treatise-part-two-10-9 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 10:10 | the-wars-of-the-lord-sixth-treatise-part-two-10-10 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 11:1 | the-wars-of-the-lord-sixth-treatise-part-two-11-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 11:2 | the-wars-of-the-lord-sixth-treatise-part-two-11-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 11:3 | the-wars-of-the-lord-sixth-treatise-part-two-11-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 12:1 | the-wars-of-the-lord-sixth-treatise-part-two-12-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 12:2 | the-wars-of-the-lord-sixth-treatise-part-two-12-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 12:3 | the-wars-of-the-lord-sixth-treatise-part-two-12-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 12:4 | the-wars-of-the-lord-sixth-treatise-part-two-12-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 12:5 | the-wars-of-the-lord-sixth-treatise-part-two-12-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 12:6 | the-wars-of-the-lord-sixth-treatise-part-two-12-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 13:1 | the-wars-of-the-lord-sixth-treatise-part-two-13-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 13:2 | the-wars-of-the-lord-sixth-treatise-part-two-13-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 13:3 | the-wars-of-the-lord-sixth-treatise-part-two-13-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 13:4 | the-wars-of-the-lord-sixth-treatise-part-two-13-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 13:5 | the-wars-of-the-lord-sixth-treatise-part-two-13-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 14:1 | the-wars-of-the-lord-sixth-treatise-part-two-14-1 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 14:2 | the-wars-of-the-lord-sixth-treatise-part-two-14-2 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 14:3 | the-wars-of-the-lord-sixth-treatise-part-two-14-3 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 14:4 | the-wars-of-the-lord-sixth-treatise-part-two-14-4 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 14:5 | the-wars-of-the-lord-sixth-treatise-part-two-14-5 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 14:6 | the-wars-of-the-lord-sixth-treatise-part-two-14-6 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 14:7 | the-wars-of-the-lord-sixth-treatise-part-two-14-7 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 14:8 | the-wars-of-the-lord-sixth-treatise-part-two-14-8 |  |  | not_done |  |
+| the-wars-of-the-lord | The Wars of the Lord | The Wars of the Lord, Sixth Treatise, Part Two 14:9 | the-wars-of-the-lord-sixth-treatise-part-two-14-9 |  |  | not_done |  |

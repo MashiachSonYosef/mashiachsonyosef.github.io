@@ -14,6 +14,7 @@ $ErrorActionPreference = 'Stop'
 
 $AllowedHebrewSourceLicenses = @(
   'Public Domain',
+  'PD',
   'CC0',
   'CC-BY',
   'CC BY',

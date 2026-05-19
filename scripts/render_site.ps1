@@ -105,6 +105,8 @@ function Get-HomeGroup {
     if ($first -eq 'rav-kook') { return 'Rav Kook School' }
     if ($first -eq 'second-temple') { return 'Second Temple / Apocrypha' }
     if ($first -eq 'tosefta') { return 'Tosefta / Tannaitic' }
+    if ($first -eq 'jewish-thought') { return 'Jewish Thought / Philosophy' }
+    if ($first -eq 'musar') { return 'Musar' }
     return (Get-Culture).TextInfo.ToTitleCase(($first -replace '-', ' '))
   }
   return 'Other'
@@ -416,6 +418,46 @@ function Write-OverlayExports {
   Write-Utf8 -Path (Join-Path $exportDir 'overlay-export.csv') -Content $csv.ToString()
   Write-Utf8 -Path (Join-Path $exportDir 'overlay-export.json') -Content $json
   Write-Utf8 -Path (Join-Path $exportDir 'overlay-export.md') -Content $markdown.ToString()
+}
+
+function Write-FullSiteOverlayManifest {
+  param(
+    [object[]]$Sources
+  )
+
+  $headers = @('work_id', 'work_title', 'source_ref', 'anchor_id', 'translation', 'translator_notes', 'done_status', 'updated_at')
+  $csvHeader = ($headers | ForEach-Object { Convert-CsvCell $_ }) -join ','
+  $markdownHeader = '| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |'
+  $markdownDivider = '|---|---|---|---|---|---|---|---|'
+
+  $entries = New-Object System.Collections.Generic.List[object]
+  $rowCount = 0
+  foreach ($source in @($Sources)) {
+    $unitCount = @($source.units).Count
+    $rowCount += $unitCount
+    $entries.Add([ordered]@{
+      work_id = [string]$source.work_id
+      path = "$($source.work_slug)/overlay-export.json"
+      unit_count = $unitCount
+    })
+  }
+
+  $manifest = [ordered]@{
+    kind = 'overlay_export_manifest'
+    schema_version = 1
+    row_count = $rowCount
+    full_site_exports = [ordered]@{
+      note = 'Full-site overlay rows are kept per work to avoid oversized root export files.'
+      csv = 'overlay-export.csv'
+      json = 'overlay-export.json'
+      markdown = 'overlay-export.md'
+    }
+    per_work_json = $entries
+  }
+
+  Write-Utf8 -Path 'overlay-export.csv' -Content "$csvHeader`n"
+  Write-Utf8 -Path 'overlay-export.json' -Content (ConvertTo-Json -InputObject $manifest -Depth 10)
+  Write-Utf8 -Path 'overlay-export.md' -Content "$markdownHeader`n$markdownDivider`n"
 }
 
 function Get-ValueListHtml {
@@ -2034,10 +2076,12 @@ function Append-LibrarySections {
     'Gra School' = 4
     'Ari / Kabbalah' = 5
     'Second Temple / Apocrypha' = 6
-    'Tosefta / Tannaitic' = 7
-    'Talmud / Commentary' = 8
-    'Other' = 9
-    'Works' = 10
+    'Jewish Thought / Philosophy' = 7
+    'Musar' = 8
+    'Tosefta / Tannaitic' = 9
+    'Talmud / Commentary' = 10
+    'Other' = 11
+    'Works' = 12
   }
   $allHomeGroups = $Sources | Group-Object { Get-HomeGroup $_ } | Sort-Object @{ Expression = { if ($groupOrder.ContainsKey($_.Name)) { $groupOrder[$_.Name] } else { 99 } } }, Name
   $internalArchiveGroups = @($allHomeGroups | Where-Object { $_.Name -eq 'Talmud / Commentary' })
@@ -2242,15 +2286,20 @@ $renderSources = if ($targetWorkIds.Count -gt 0) {
   $sources
 }
 
-$allExportRows = New-Object System.Collections.Generic.List[object]
 if (-not $SkipOverlayExports) {
-  foreach ($source in $sources) {
+  $overlaySources = @($sources)
+  if ($targetWorkIds.Count -gt 0) {
+    $targetWorkIdSet = @{}
+    foreach ($workId in $targetWorkIds) {
+      $targetWorkIdSet[[string]$workId] = $true
+    }
+    $overlaySources = @($sources | Where-Object { $targetWorkIdSet.ContainsKey([string]$_.work_id) })
+  }
+
+  foreach ($source in $overlaySources) {
     $overlay = Get-OverlayForSource -Source $source -OverlayDir $OverlayDir
     $exportRows = Get-OverlayExportRows -Source $source -Overlay $overlay
     Write-OverlayExports -WorkSlug $source.work_slug -Rows $exportRows
-    foreach ($row in @($exportRows)) {
-      $allExportRows.Add($row)
-    }
   }
 }
 
@@ -2480,5 +2529,5 @@ foreach ($source in $renderSources) {
 }
 
 if (-not $SkipOverlayExports) {
-  Write-OverlayExports -WorkSlug '.' -Rows $allExportRows.ToArray()
+  Write-FullSiteOverlayManifest -Sources $sources
 }

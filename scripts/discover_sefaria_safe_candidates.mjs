@@ -84,6 +84,7 @@ function libraryLaneForCategories(categories) {
   if (lower.includes('halakhah')) return 'halakhah';
   if (lower.includes('musar')) return 'musar';
   if (lower.includes('philosophy')) return 'philosophy';
+  if (lower.includes('jewish thought')) return 'jewish-thought';
   if (lower.includes('liturgy')) return 'liturgy';
   if (lower.includes('second temple')) return 'second-temple';
   return 'other';

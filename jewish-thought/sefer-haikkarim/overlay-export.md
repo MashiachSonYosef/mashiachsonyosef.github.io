@@ -1,0 +1,225 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Title:1 | sefer-haikkarim-title-title-1 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Title:2 | sefer-haikkarim-title-title-2 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Title:3 | sefer-haikkarim-title-title-3 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Title:4 | sefer-haikkarim-title-title-4 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Title:5 | sefer-haikkarim-title-title-5 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:1 | sefer-haikkarim-forward-forward-1 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:2 | sefer-haikkarim-forward-forward-2 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:3 | sefer-haikkarim-forward-forward-3 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:4 | sefer-haikkarim-forward-forward-4 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:5 | sefer-haikkarim-forward-forward-5 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:6 | sefer-haikkarim-forward-forward-6 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:7 | sefer-haikkarim-forward-forward-7 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:8 | sefer-haikkarim-forward-forward-8 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:9 | sefer-haikkarim-forward-forward-9 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:10 | sefer-haikkarim-forward-forward-10 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:11 | sefer-haikkarim-forward-forward-11 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:12 | sefer-haikkarim-forward-forward-12 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:13 | sefer-haikkarim-forward-forward-13 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:14 | sefer-haikkarim-forward-forward-14 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:15 | sefer-haikkarim-forward-forward-15 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:16 | sefer-haikkarim-forward-forward-16 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:17 | sefer-haikkarim-forward-forward-17 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:18 | sefer-haikkarim-forward-forward-18 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:19 | sefer-haikkarim-forward-forward-19 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:20 | sefer-haikkarim-forward-forward-20 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:21 | sefer-haikkarim-forward-forward-21 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:22 | sefer-haikkarim-forward-forward-22 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:23 | sefer-haikkarim-forward-forward-23 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:24 | sefer-haikkarim-forward-forward-24 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:25 | sefer-haikkarim-forward-forward-25 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:26 | sefer-haikkarim-forward-forward-26 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:27 | sefer-haikkarim-forward-forward-27 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:28 | sefer-haikkarim-forward-forward-28 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:29 | sefer-haikkarim-forward-forward-29 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:30 | sefer-haikkarim-forward-forward-30 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:31 | sefer-haikkarim-forward-forward-31 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:32 | sefer-haikkarim-forward-forward-32 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:33 | sefer-haikkarim-forward-forward-33 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:34 | sefer-haikkarim-forward-forward-34 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:35 | sefer-haikkarim-forward-forward-35 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:36 | sefer-haikkarim-forward-forward-36 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:37 | sefer-haikkarim-forward-forward-37 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:38 | sefer-haikkarim-forward-forward-38 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:39 | sefer-haikkarim-forward-forward-39 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:40 | sefer-haikkarim-forward-forward-40 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:41 | sefer-haikkarim-forward-forward-41 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:42 | sefer-haikkarim-forward-forward-42 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:43 | sefer-haikkarim-forward-forward-43 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:44 | sefer-haikkarim-forward-forward-44 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:45 | sefer-haikkarim-forward-forward-45 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:46 | sefer-haikkarim-forward-forward-46 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:47 | sefer-haikkarim-forward-forward-47 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:48 | sefer-haikkarim-forward-forward-48 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:49 | sefer-haikkarim-forward-forward-49 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:50 | sefer-haikkarim-forward-forward-50 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:51 | sefer-haikkarim-forward-forward-51 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:52 | sefer-haikkarim-forward-forward-52 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:53 | sefer-haikkarim-forward-forward-53 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:54 | sefer-haikkarim-forward-forward-54 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:55 | sefer-haikkarim-forward-forward-55 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:56 | sefer-haikkarim-forward-forward-56 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:57 | sefer-haikkarim-forward-forward-57 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:58 | sefer-haikkarim-forward-forward-58 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:59 | sefer-haikkarim-forward-forward-59 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:60 | sefer-haikkarim-forward-forward-60 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:61 | sefer-haikkarim-forward-forward-61 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:62 | sefer-haikkarim-forward-forward-62 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:63 | sefer-haikkarim-forward-forward-63 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:64 | sefer-haikkarim-forward-forward-64 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:65 | sefer-haikkarim-forward-forward-65 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:66 | sefer-haikkarim-forward-forward-66 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:67 | sefer-haikkarim-forward-forward-67 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:68 | sefer-haikkarim-forward-forward-68 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:69 | sefer-haikkarim-forward-forward-69 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:70 | sefer-haikkarim-forward-forward-70 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:71 | sefer-haikkarim-forward-forward-71 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:72 | sefer-haikkarim-forward-forward-72 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:73 | sefer-haikkarim-forward-forward-73 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:74 | sefer-haikkarim-forward-forward-74 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:75 | sefer-haikkarim-forward-forward-75 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:76 | sefer-haikkarim-forward-forward-76 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:77 | sefer-haikkarim-forward-forward-77 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:78 | sefer-haikkarim-forward-forward-78 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:79 | sefer-haikkarim-forward-forward-79 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:80 | sefer-haikkarim-forward-forward-80 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:81 | sefer-haikkarim-forward-forward-81 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:82 | sefer-haikkarim-forward-forward-82 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:83 | sefer-haikkarim-forward-forward-83 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:84 | sefer-haikkarim-forward-forward-84 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:85 | sefer-haikkarim-forward-forward-85 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:86 | sefer-haikkarim-forward-forward-86 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:87 | sefer-haikkarim-forward-forward-87 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:88 | sefer-haikkarim-forward-forward-88 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:89 | sefer-haikkarim-forward-forward-89 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:90 | sefer-haikkarim-forward-forward-90 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:91 | sefer-haikkarim-forward-forward-91 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:92 | sefer-haikkarim-forward-forward-92 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:93 | sefer-haikkarim-forward-forward-93 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:94 | sefer-haikkarim-forward-forward-94 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:95 | sefer-haikkarim-forward-forward-95 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:96 | sefer-haikkarim-forward-forward-96 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:97 | sefer-haikkarim-forward-forward-97 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:98 | sefer-haikkarim-forward-forward-98 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:99 | sefer-haikkarim-forward-forward-99 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:100 | sefer-haikkarim-forward-forward-100 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:101 | sefer-haikkarim-forward-forward-101 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:102 | sefer-haikkarim-forward-forward-102 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:103 | sefer-haikkarim-forward-forward-103 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:104 | sefer-haikkarim-forward-forward-104 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:105 | sefer-haikkarim-forward-forward-105 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:106 | sefer-haikkarim-forward-forward-106 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:107 | sefer-haikkarim-forward-forward-107 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:108 | sefer-haikkarim-forward-forward-108 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:109 | sefer-haikkarim-forward-forward-109 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:110 | sefer-haikkarim-forward-forward-110 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:111 | sefer-haikkarim-forward-forward-111 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:112 | sefer-haikkarim-forward-forward-112 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:113 | sefer-haikkarim-forward-forward-113 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:114 | sefer-haikkarim-forward-forward-114 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:115 | sefer-haikkarim-forward-forward-115 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:116 | sefer-haikkarim-forward-forward-116 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:117 | sefer-haikkarim-forward-forward-117 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:118 | sefer-haikkarim-forward-forward-118 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:119 | sefer-haikkarim-forward-forward-119 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:120 | sefer-haikkarim-forward-forward-120 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:121 | sefer-haikkarim-forward-forward-121 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:122 | sefer-haikkarim-forward-forward-122 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:123 | sefer-haikkarim-forward-forward-123 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:124 | sefer-haikkarim-forward-forward-124 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:125 | sefer-haikkarim-forward-forward-125 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:126 | sefer-haikkarim-forward-forward-126 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:127 | sefer-haikkarim-forward-forward-127 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:128 | sefer-haikkarim-forward-forward-128 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:129 | sefer-haikkarim-forward-forward-129 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:130 | sefer-haikkarim-forward-forward-130 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:131 | sefer-haikkarim-forward-forward-131 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:132 | sefer-haikkarim-forward-forward-132 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:133 | sefer-haikkarim-forward-forward-133 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:134 | sefer-haikkarim-forward-forward-134 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:135 | sefer-haikkarim-forward-forward-135 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:136 | sefer-haikkarim-forward-forward-136 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:137 | sefer-haikkarim-forward-forward-137 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:138 | sefer-haikkarim-forward-forward-138 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:139 | sefer-haikkarim-forward-forward-139 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:140 | sefer-haikkarim-forward-forward-140 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:141 | sefer-haikkarim-forward-forward-141 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:142 | sefer-haikkarim-forward-forward-142 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:143 | sefer-haikkarim-forward-forward-143 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:144 | sefer-haikkarim-forward-forward-144 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:145 | sefer-haikkarim-forward-forward-145 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:146 | sefer-haikkarim-forward-forward-146 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:147 | sefer-haikkarim-forward-forward-147 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:148 | sefer-haikkarim-forward-forward-148 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:149 | sefer-haikkarim-forward-forward-149 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:150 | sefer-haikkarim-forward-forward-150 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:151 | sefer-haikkarim-forward-forward-151 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:152 | sefer-haikkarim-forward-forward-152 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:153 | sefer-haikkarim-forward-forward-153 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:154 | sefer-haikkarim-forward-forward-154 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:155 | sefer-haikkarim-forward-forward-155 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:156 | sefer-haikkarim-forward-forward-156 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:157 | sefer-haikkarim-forward-forward-157 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:158 | sefer-haikkarim-forward-forward-158 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:159 | sefer-haikkarim-forward-forward-159 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:160 | sefer-haikkarim-forward-forward-160 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:161 | sefer-haikkarim-forward-forward-161 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:162 | sefer-haikkarim-forward-forward-162 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:163 | sefer-haikkarim-forward-forward-163 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:164 | sefer-haikkarim-forward-forward-164 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:165 | sefer-haikkarim-forward-forward-165 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:166 | sefer-haikkarim-forward-forward-166 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Forward:167 | sefer-haikkarim-forward-forward-167 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Introduction:1 | sefer-haikkarim-introduction-introduction-1 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Introduction:2 | sefer-haikkarim-introduction-introduction-2 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Introduction:3 | sefer-haikkarim-introduction-introduction-3 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Introduction:4 | sefer-haikkarim-introduction-introduction-4 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Introduction:5 | sefer-haikkarim-introduction-introduction-5 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Introduction:6 | sefer-haikkarim-introduction-introduction-6 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Introduction:7 | sefer-haikkarim-introduction-introduction-7 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Introduction:8 | sefer-haikkarim-introduction-introduction-8 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Introduction:9 | sefer-haikkarim-introduction-introduction-9 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Introduction:10 | sefer-haikkarim-introduction-introduction-10 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Introduction:11 | sefer-haikkarim-introduction-introduction-11 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 1, Introduction:1 | sefer-haikkarim-maamar-1-introduction-1 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 1 1:1 | sefer-haikkarim-maamar-1-default-1-1 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 1 1:2 | sefer-haikkarim-maamar-1-default-1-2 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 1 1:3 | sefer-haikkarim-maamar-1-default-1-3 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 1 1:4 | sefer-haikkarim-maamar-1-default-1-4 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 1 1:5 | sefer-haikkarim-maamar-1-default-1-5 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 2, Introduction:1 | sefer-haikkarim-maamar-2-introduction-1 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 2, Introduction:2 | sefer-haikkarim-maamar-2-introduction-2 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 2, Observation:1 | sefer-haikkarim-maamar-2-observation-1 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 2, Observation:2 | sefer-haikkarim-maamar-2-observation-2 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 2, Observation:3 | sefer-haikkarim-maamar-2-observation-3 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 2, Observation:4 | sefer-haikkarim-maamar-2-observation-4 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 2 1:1 | sefer-haikkarim-maamar-2-default-1-1 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 2 1:2 | sefer-haikkarim-maamar-2-default-1-2 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 2 1:3 | sefer-haikkarim-maamar-2-default-1-3 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 2 1:4 | sefer-haikkarim-maamar-2-default-1-4 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 2 1:5 | sefer-haikkarim-maamar-2-default-1-5 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 2 1:6 | sefer-haikkarim-maamar-2-default-1-6 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 2 1:7 | sefer-haikkarim-maamar-2-default-1-7 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 3, Introduction:1 | sefer-haikkarim-maamar-3-introduction-1 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 3 1:1 | sefer-haikkarim-maamar-3-default-1-1 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 3 1:2 | sefer-haikkarim-maamar-3-default-1-2 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 3 1:3 | sefer-haikkarim-maamar-3-default-1-3 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 3 1:4 | sefer-haikkarim-maamar-3-default-1-4 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 3 1:5 | sefer-haikkarim-maamar-3-default-1-5 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 3 1:6 | sefer-haikkarim-maamar-3-default-1-6 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 3 1:7 | sefer-haikkarim-maamar-3-default-1-7 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 3 1:8 | sefer-haikkarim-maamar-3-default-1-8 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 3 1:9 | sefer-haikkarim-maamar-3-default-1-9 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 3 1:10 | sefer-haikkarim-maamar-3-default-1-10 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 3 1:11 | sefer-haikkarim-maamar-3-default-1-11 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 3 1:12 | sefer-haikkarim-maamar-3-default-1-12 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 4, Introduction:1 | sefer-haikkarim-maamar-4-introduction-1 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 4, Introduction:2 | sefer-haikkarim-maamar-4-introduction-2 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 4 1:1 | sefer-haikkarim-maamar-4-default-1-1 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 4 1:2 | sefer-haikkarim-maamar-4-default-1-2 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 4 1:3 | sefer-haikkarim-maamar-4-default-1-3 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 4 1:4 | sefer-haikkarim-maamar-4-default-1-4 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 4 1:5 | sefer-haikkarim-maamar-4-default-1-5 |  |  | not_done |  |
+| sefer-haikkarim | Sefer HaIkkarim | Sefer HaIkkarim, Maamar 4 1:6 | sefer-haikkarim-maamar-4-default-1-6 |  |  | not_done |  |
