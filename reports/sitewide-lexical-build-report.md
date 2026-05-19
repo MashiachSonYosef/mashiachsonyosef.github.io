@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-18T15:50:29.945Z
+Generated: 2026-05-18T23:41:24.526Z
 
 ## Scope
 
@@ -15,18 +15,18 @@ Generated: 2026-05-18T15:50:29.945Z
 
 ## Counts
 
-- Total work-surface rows: 2233386
-- Total sitewide unique surface forms: 640184
-- Sitewide unique surface forms matched at least once: 79892
-- Sitewide unique surface forms unmatched everywhere: 560292
-- Total token occurrences: 12371680
-- Matched before prefix/suffix parser: 527130
-- Newly resolved by prefix/suffix parser: 79274
-- Total matched after parser: 629642
-- Percent matched: 28.2%
-- Matched via Wikidata: 459114
-- Enriched via OpenScriptures: 526259
-- Unmatched: 1603744
+- Total work-surface rows: 2624827
+- Total sitewide unique surface forms: 688548
+- Sitewide unique surface forms matched at least once: 83281
+- Sitewide unique surface forms unmatched everywhere: 605267
+- Total token occurrences: 15291257
+- Matched before prefix/suffix parser: 606319
+- Newly resolved by prefix/suffix parser: 96308
+- Total matched after parser: 727394
+- Percent matched: 27.7%
+- Matched via Wikidata: 532242
+- Enriched via OpenScriptures: 607336
+- Unmatched: 1897433
 
 ## Newly Resolved Parsed Forms
 
@@ -35,8 +35,11 @@ Generated: 2026-05-18T15:50:29.945Z
 - והענין -> and ado, and business, and travail (openscriptures) -- ohr-hachammah-on-zohar
 - ודא -> and this, and one..another (openscriptures) -- ohr-hachammah-on-zohar
 - ואלו -> and this/that, and demonstrative pronoun (wikidata + openscriptures) -- ohr-hachammah-on-zohar
+- כנגד -> as resistor, like resistor (wikidata + openscriptures) -- shenei-luchot-haberit
+- כאלו -> as this/that, like this/that, as demonstrative pronoun (wikidata + openscriptures) -- shenei-luchot-haberit
 - בעלמא -> in forever, with forever, by forever (openscriptures) -- ohr-hachammah-on-zohar
 - שאם -> that if, which if, who if (workspace) -- ohr-hachammah-on-zohar
+- ואלו -> and this/that, and demonstrative pronoun (wikidata + openscriptures) -- shenei-luchot-haberit
 - כנגד -> as resistor, like resistor (wikidata + openscriptures) -- otzar-midrashim
 - וּכְתִיב -> and it is written (workspace) -- ein-yaakov
 - ברזא -> in a mystery, with a mystery, by a mystery (openscriptures) -- ohr-hachammah-on-zohar
@@ -46,10 +49,7 @@ Generated: 2026-05-18T15:50:29.945Z
 - הֲדָא -> the this, the one..another (openscriptures) -- zohar-chadash
 - רבינו -> our Rabbi (workspace) -- notes-and-corrections-on-midrash-lekach-tov
 - שאז -> that at that time, which at that time, who at that time (openscriptures) -- ohr-hachammah-on-zohar
-- בְּרָזָא -> in a mystery, with a mystery, by a mystery (openscriptures) -- zohar-chadash
-- וְדָא -> and this, and one..another (openscriptures) -- zohar-chadash
-- וְהָא -> and behold, and this (workspace) -- ein-yaakov
-- הברכות -> the blessing, the bracha (wikidata + openscriptures) -- ohr-hachammah-on-zohar
+- בלשון -> in tongue, Muscular organ in the mouth, with tongue, Muscular organ in the mouth, by tongue, Muscular organ in the mouth (wikidata + openscriptures) -- shenei-luchot-haberit
 
 ## Sample Matched Words With Refs To Test
 
@@ -81,8 +81,11 @@ Generated: 2026-05-18T15:50:29.945Z
 - אאבד -- avot-derabbi-natan
 - אאבד -- ein-yaakov
 - אאבד -- raavad-on-sifra
+- אאבד -- shevet-musar
 - אַאֲבוּהָ -- ein-yaakov
+- אאבוהי -- yaarot-devash-i
 - אאבוי -- ohr-hachammah-on-zohar
+- אאבות -- shenei-luchot-haberit
 - אאביד -- midrash-tanchuma-buber
 - אאביו -- chafetz-chaim-on-sifra
 - אאביו -- etz-yosef-on-kohelet-rabbah
@@ -91,31 +94,33 @@ Generated: 2026-05-18T15:50:29.945Z
 - אאבל -- beur-hagra-on-shulchan-arukh-orach-chayim
 - אאבנט -- midrash-sekhel-tov
 - אאברהם -- ohr-hachammah-on-zohar
+- אאברהם -- shenei-luchot-haberit
 - אאגרייהו -- midrash-sekhel-tov
-- אאגרייכון -- midrash-sekhel-tov
-- אאדירך -- maggid-meisharim
-- אאדם -- ohr-hachammah-on-zohar
-- אאהבנו -- etz-yosef-on-bamidbar-rabbah
 
 ## Top 50 Remaining Unmatched By Frequency
 
 - 9864x וגומר -- ohr-hachammah-on-zohar
 - 8149x וז״ש -- ohr-hachammah-on-zohar
 - 5775x ה׳ -- ohr-hachammah-on-zohar
+- 4314x ה׳ -- shenei-luchot-haberit
 - 4253x א׳ -- ohr-hachammah-on-zohar
 - 3738x הת״ת -- ohr-hachammah-on-zohar
 - 3022x ת״ת -- ohr-hachammah-on-zohar
 - 2547x ר -- notes-and-corrections-on-midrash-lekach-tov
 - 2533x א׳ -- beur-hagra-on-shulchan-arukh-yoreh-deah
+- 2526x שנא׳ -- menorat-hamaor
 - 2487x ג׳ -- ohr-hachammah-on-zohar
+- 2467x אמ׳ -- menorat-hamaor
 - 2433x ב׳ -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - 2208x נ״ב -- mikdash-melekh-on-zohar
 - 2176x נק׳ -- ohr-hachammah-on-zohar
 - 2151x המ׳ -- ohr-hachammah-on-zohar
+- 2150x ה׳ -- menorat-hamaor
 - 2147x כדפי׳ -- ohr-hachammah-on-zohar
 - 2146x ולכך -- ohr-hachammah-on-zohar
 - 2066x ואמר -- ohr-hachammah-on-zohar
 - 1977x אינון -- ohr-hachammah-on-zohar
+- 1965x וזהו -- shenei-luchot-haberit
 - 1962x וזהו -- ohr-hachammah-on-zohar
 - 1957x דף -- ohr-hachammah-on-zohar
 - 1918x זלה״ה -- ohr-hachammah-on-zohar
@@ -132,23 +137,18 @@ Generated: 2026-05-18T15:50:29.945Z
 - 1728x עילאה -- ohr-hachammah-on-zohar
 - 1702x הי׳ -- ohr-hachammah-on-zohar
 - 1673x מ׳ -- ohr-hachammah-on-zohar
+- 1653x לשונו -- shenei-luchot-haberit
 - 1642x איהו -- ohr-hachammah-on-zohar
 - 1635x בפ׳ -- ohr-hachammah-on-zohar
 - 1634x כתיב -- ohr-hachammah-on-zohar
 - 1610x מַאי -- ein-yaakov
+- 1586x הב״ה -- menorat-hamaor
 - 1539x עכ״ל -- ohr-hachammah-on-zohar
 - 1511x ב״ -- notes-and-corrections-on-midrash-lekach-tov
+- 1491x ה׳ -- yaarot-devash-i
 - 1458x יצחק -- ohr-hachammah-on-zohar
-- 1391x הכי -- ohr-hachammah-on-zohar
-- 1378x ה״ג -- ohr-hachammah-on-zohar
-- 1364x ז׳ -- ohr-hachammah-on-zohar
-- 1334x הייחוד -- ohr-hachammah-on-zohar
-- 1330x לכך -- ohr-hachammah-on-zohar
-- 1319x כנודע -- ohr-hachammah-on-zohar
-- 1318x ע״ -- notes-and-corrections-on-midrash-lekach-tov
-- 1276x כד -- ohr-hachammah-on-zohar
-- 1214x קב״ה -- ohr-hachammah-on-zohar
-- 1201x דף -- pardes-rimmonim
+- 1397x ג׳ -- shenei-luchot-haberit
+- 1397x רז״ל -- shenei-luchot-haberit
 
 ## Exact Orot Refs To Test
 
