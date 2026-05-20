@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ma&#39;aneh Lashon Chabad</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Ma&#39;aneh Lashon Chabad</h1>
+        <p class="meta">61 total source units | imported 2026-05-20</p>
+        <p class="meta source-citation">Hebrew version: Warsaw, 1869 | Version source: <a href="https://dlib.rsl.ru/01007492803">dlib.rsl.ru</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>1347 matched</strong> / 3971 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/maaneh-lashon-chabad.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Ma&#39;aneh Lashon Chabad <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Ma&#39;aneh Lashon Chabad <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-maaneh-lashon-chabad-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-1-1" title="Ma&#39;aneh Lashon Chabad 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-1-2" title="Ma&#39;aneh Lashon Chabad 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-1-3" title="Ma&#39;aneh Lashon Chabad 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-1-4" title="Ma&#39;aneh Lashon Chabad 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-1-5" title="Ma&#39;aneh Lashon Chabad 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-1-6" title="Ma&#39;aneh Lashon Chabad 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-1-7" title="Ma&#39;aneh Lashon Chabad 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-1-8" title="Ma&#39;aneh Lashon Chabad 1:8">1:8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-maaneh-lashon-chabad-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-2-1" title="Ma&#39;aneh Lashon Chabad 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-2-2" title="Ma&#39;aneh Lashon Chabad 2:2">2:2</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-2-3" title="Ma&#39;aneh Lashon Chabad 2:3">2:3</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-2-4" title="Ma&#39;aneh Lashon Chabad 2:4">2:4</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-2-5" title="Ma&#39;aneh Lashon Chabad 2:5">2:5</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-2-6" title="Ma&#39;aneh Lashon Chabad 2:6">2:6</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-2-7" title="Ma&#39;aneh Lashon Chabad 2:7">2:7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-maaneh-lashon-chabad-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-3-1" title="Ma&#39;aneh Lashon Chabad 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-3-2" title="Ma&#39;aneh Lashon Chabad 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-3-3" title="Ma&#39;aneh Lashon Chabad 3:3">3:3</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-3-4" title="Ma&#39;aneh Lashon Chabad 3:4">3:4</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-3-5" title="Ma&#39;aneh Lashon Chabad 3:5">3:5</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-3-6" title="Ma&#39;aneh Lashon Chabad 3:6">3:6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-maaneh-lashon-chabad-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-1" title="Ma&#39;aneh Lashon Chabad 4:1">4:1</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-2" title="Ma&#39;aneh Lashon Chabad 4:2">4:2</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-3" title="Ma&#39;aneh Lashon Chabad 4:3">4:3</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-4" title="Ma&#39;aneh Lashon Chabad 4:4">4:4</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-5" title="Ma&#39;aneh Lashon Chabad 4:5">4:5</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-6" title="Ma&#39;aneh Lashon Chabad 4:6">4:6</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-7" title="Ma&#39;aneh Lashon Chabad 4:7">4:7</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-8" title="Ma&#39;aneh Lashon Chabad 4:8">4:8</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-9" title="Ma&#39;aneh Lashon Chabad 4:9">4:9</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-10" title="Ma&#39;aneh Lashon Chabad 4:10">4:10</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-11" title="Ma&#39;aneh Lashon Chabad 4:11">4:11</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-12" title="Ma&#39;aneh Lashon Chabad 4:12">4:12</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-13" title="Ma&#39;aneh Lashon Chabad 4:13">4:13</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-14" title="Ma&#39;aneh Lashon Chabad 4:14">4:14</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-15" title="Ma&#39;aneh Lashon Chabad 4:15">4:15</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-16" title="Ma&#39;aneh Lashon Chabad 4:16">4:16</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-17" title="Ma&#39;aneh Lashon Chabad 4:17">4:17</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-18" title="Ma&#39;aneh Lashon Chabad 4:18">4:18</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-19" title="Ma&#39;aneh Lashon Chabad 4:19">4:19</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-20" title="Ma&#39;aneh Lashon Chabad 4:20">4:20</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-21" title="Ma&#39;aneh Lashon Chabad 4:21">4:21</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-22" title="Ma&#39;aneh Lashon Chabad 4:22">4:22</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-23" title="Ma&#39;aneh Lashon Chabad 4:23">4:23</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-24" title="Ma&#39;aneh Lashon Chabad 4:24">4:24</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-25" title="Ma&#39;aneh Lashon Chabad 4:25">4:25</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-26" title="Ma&#39;aneh Lashon Chabad 4:26">4:26</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-27" title="Ma&#39;aneh Lashon Chabad 4:27">4:27</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-28" title="Ma&#39;aneh Lashon Chabad 4:28">4:28</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-4-29" title="Ma&#39;aneh Lashon Chabad 4:29">4:29</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-maaneh-lashon-chabad-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-5-1" title="Ma&#39;aneh Lashon Chabad 5:1">5:1</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-5-2" title="Ma&#39;aneh Lashon Chabad 5:2">5:2</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-5-3" title="Ma&#39;aneh Lashon Chabad 5:3">5:3</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-5-4" title="Ma&#39;aneh Lashon Chabad 5:4">5:4</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-5-5" title="Ma&#39;aneh Lashon Chabad 5:5">5:5</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-5-6" title="Ma&#39;aneh Lashon Chabad 5:6">5:6</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-5-7" title="Ma&#39;aneh Lashon Chabad 5:7">5:7</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-5-8" title="Ma&#39;aneh Lashon Chabad 5:8">5:8</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-5-9" title="Ma&#39;aneh Lashon Chabad 5:9">5:9</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-5-10" title="Ma&#39;aneh Lashon Chabad 5:10">5:10</a></li>
+                    <li><a class="toc-unit" href="#maaneh-lashon-chabad-5-11" title="Ma&#39;aneh Lashon Chabad 5:11">5:11</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-maaneh-lashon-chabad-text-1">Chapter 1</h4>
+          <section class="unit" id="maaneh-lashon-chabad-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 1:1</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-1-1" aria-label="Copy link to Ma'aneh Lashon Chabad 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;big&gt;<strong>ספר מענה לשון</strong>&lt;/big&gt;</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 1:2</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-1-2" aria-label="Copy link to Ma'aneh Lashon Chabad 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">לאמר על קברי הצדיקים<br>כפי שהנהיג כ״ק אדמו״ר ר׳ דוב בער נ״ע לאמר בהאדיץ על קבר אדמו״ר נ״ע</span></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 1:3</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-1-3" aria-label="Copy link to Ma'aneh Lashon Chabad 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם אֲשֶׁר יָצַר אֶתְכֶם בַּדִּין וְזָן אֶתְכֶם בַּדִּין. וְכִלְכֵּל אֶתְכֶם בַּדִּין וְהֵמִית אֶתְכֶם בַּדִּין. וְיוֹדֵעַ מִסְפַּר כֻּלְּכֶם בַּדִּין. וְעָתִיד לְהַחֲזִיר וּלְהַחֲיוֹתְכֶם בַּדִּין. בָּרוּךְ אַתָּה יְיָ מְחַיֶּה הַמֵּתִים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 1:4</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-1-4" aria-label="Copy link to Ma'aneh Lashon Chabad 1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אַתָּה גִּבּוֹר לְעוֹלָם אֲדֹנָי מְחַיֶּה מֵתִים אַתָּה רַב לְהוֹשִׁיעַ: מְכַלְכֵּל חַיִּים בְּחֶסֶד מְחַיֶּה מֵתִים בְּרַחֲמִים רַבִּים. סוֹמֵךְ נוֹפְלִים וְרוֹפֵא חוֹלִים וּמַתִּיר אֲסוּרִים וּמְקַיֵּם אֱמוּנָתוֹ לִישֵׁנֵי עָפָר. מִי כָמוֹךָ בַּעַל גְּבוּרוֹת וּמִי דּוֹמֶה לָךְ מֶלֶךְ מֵמִית וּמְחַיֶּה וּמַצְמִיחַ יְשׁוּעָה וְנֶאֱמָן אַתָּה לְהַחֲיוֹת מֵתִים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 1:5</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-1-5" aria-label="Copy link to Ma'aneh Lashon Chabad 1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">אח״כ יאמר זה:</span></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 1:6</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-1-6" aria-label="Copy link to Ma'aneh Lashon Chabad 1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעַל כָּל זֶה אֲנַחְנוּ חַיָּבִים לְהוֹדוֹת לְךָ וּלְיַיחֵד אֶת שִׁמְךָ הַגָּדוֹל הַגִּבּוֹר וְהַנּוֹרָא. אֵין עֲרוֹךְ לְךָ אֱלֹהֵינוּ בָּעוֹלָם הַזֶּה. וְאֵין זוּלָתְךָ מַלְכֵּנוּ לְחַיֵּי הָעוֹלָם הַבָּא. אֶפֶס בִּלְתֶּךָ גּוֹאֲלֵנוּ לִימוֹת הַמָּשִׁיחַ וְאֵין דּוֹמֶה לְךָ מוֹשִׁיעֵנוּ לִתְחִיַּת הַמֵּתִים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-1-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 1:7</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-1-7" aria-label="Copy link to Ma'aneh Lashon Chabad 1:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">הנוסח מה שאומרים בעת הדלקת הלאמפין:</span></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-1-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 1:8</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-1-8" aria-label="Copy link to Ma'aneh Lashon Chabad 1:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֲרֵינִי מַדְלִיק הַלָאמְפְּף שֶׁל שֶׁמֶן זַיִת לִכְבוֹד נִשְׁמַת אֲדוֹנֵנוּ מוֹרֵנוּ וְרַבֵּנוּ נִשְׁמָתוֹ בְּגִנְזֵי מְרוֹמִים זְכוּתוֹ יָגֵן עָלַי אָמֵן כֵּן יְהִי רָצוֹן. וּמְאוֹרוֹ יָאִיר עַל נֶפֶשׁ רוּחַ נְשָׁמָה חַיָּה יְחִידָה שֶׁל (פב״פ) בְּרוּחֲנִיוֹת וְגַשְׁמִיוֹת בִּבְנֵי חַיֵּי וּמְזוֹנֵי רְוִויחָא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-maaneh-lashon-chabad-text-2">Chapter 2</h4>
+          <section class="unit" id="maaneh-lashon-chabad-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 2:1</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-2-1" aria-label="Copy link to Ma'aneh Lashon Chabad 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רַנְּנוּ צַדִּיקִים בַּיָי לַיְשָׁרִים נָאוָה תְהִלָּה: הוֹדוּ לַיָי בְּכִנּוֹר בְּנֵבֶל עָשׂוֹר זַמְּרוּ־לוֹ: שִׁירוּ־לוֹ שִׁיר חָדָשׁ הֵיטִיבוּ נַגֵּן בִּתְרוּעָה: כִּי־יָשָׁר דְּבַר־יְיָ וְכָל־מַעֲשֵׂהוּ בֶּאֱמוּנָה: אֹהֵב צְדָקָה וּמִשְׁפָּט חֶסֶד יְיָ מָלְאָה הָאָרֶץ: בִּדְבַר יְיָ שָׁמַיִם נַעֲשׂוּ וּבְרוּחַ פִּיו כָּל־צְבָאָם: כֹּנֵס כַּנֵּד מֵי הַיָּם נֹתֵן בְּאֹצָרוֹת תְּהוֹמוֹת: יִירְאוּ מֵיְיָ כָּל־הָאָרֶץ מִמֶּנּוּ יָגוּרוּ כָּל־יֹשְׁבֵי תֵבֵל: כִּי הוּא אָמַר וַיֶּהִי הוּא־צִוָּה וַיַּעֲמֹד׃ יְיָ הֵפִיר עֲצַת־גּוֹיִם הֵנִיא מַחְשְׁבוֹת עַמִּים: עֲצַת יְיָ לְעוֹלָם תַּעֲמֹד מַחְשְׁבוֹת לִבּוֹ לְדֹר וָדֹר: אַשְׁרֵי הַגּוֹי אֲשֶׁר־יְיָ אֱלֹהָיו הָעָם בָּחַר לְנַחֲלָה לוֹ: מִשָּׁמַיִם הִבִּיט יְיָ רָאָה אֶת־כָּל־בְּנֵי הָאָדָם: מִמְּכוֹן־שִׁבְתּוֹ הִשְׁגִּיחַ אֶל כָּל־יֹשְׁבֵי הָאָרֶץ: הַיֹּצֵר יַחַד לִבָּם הַמֵּבִין אֶל־כָּל־מַעֲשֵׂיהֶם: אֵין־הַמֶּלֶךְ נוֹשָׁע בְּרָב־חָיִל גִּבּוֹר לֹא־יִנָּצֵל בְּרָב־כֹּחַ: שֶׁקֶר הַסּוּס לִתְשׁוּעָה וּבְרֹב חֵילוֹ לֹא יְמַלֵּט: הִנֵּה עֵין יְיָ אֶל־יְרֵאָיו לַמְיַחֲלִים לְחַסְדּוֹ: לְהַצִּיל מִמָּוֶת נַפְשָׁם וּלְחַיּוֹתָם בָּרָעָב׃ נַפְשֵׁנוּ חִכְּתָה לַיָי עֶזְרֵנוּ וּמָגִנֵּנוּ הוּא: כִּי־בוֹ יִשְׂמַח לִבֵּנוּ כִּי בְשֵׁם קָדְשׁוֹ בָטָחְנוּ: יְהִי־חַסְדְּךָ יְיָ עָלֵינוּ כַּאֲשֶׁר יִחַלְנוּ לָךְ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-2-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 2:2</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-2-2" aria-label="Copy link to Ma'aneh Lashon Chabad 2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">נִשְׁמַת כָּל חַי תְּבָרֵךְ אֶת שִׁמְךָ יְיָ אֱלֹהֵֽינוּ וְרֽוּחַ כָּל בָּשָׂר תְּפָאֵר וּתְרוֹמֵם זִכְרְךָ מַלְכֵּֽנוּ תָּמִיד. מִן הָעוֹלָם וְעַד הָעוֹלָם אַתָּה אֵל: וּמִבַּלְעָדֶֽיךָ אֵין לָנוּ מֶֽלֶךְ גּוֹאֵל וּמוֹשִֽׁיעַ. פּוֹדֶה וּמַצִּיל וּמְפַרְנֵס וְעוֹנֶה וּמְרַחֵם בְּכָל עֵת צָרָה וְצוּקָה. אֵין לָנוּ מֶֽלֶךְ אֶלָּא אָֽתָּה אֱלֹהֵי הָרִאשׁוֹנִים וְהָאַחֲרוֹנִים. אֱלֽוֹהַּ כָּל בְּרִיּוֹת אֲדוֹן כָּל תּוֹלָדוֹת הַמְּהוּלָּל בְּרוֹב הַתִּשְׁבָּחוֹת. הַמְנַהֵג עוֹלָמוֹ בְּחֶֽסֶד וּבְרִיּוֹתָיו בְּרַחֲמִים. וַיָי הִנֵה לֹא יָנוּם וְלֹא יִישָׁן. הַמְּעוֹרֵר יְשֵׁנִים וְהַמֵּקִיץ נִרְדָּמִים וְהַמֵּשִֽׂיחַ אִלְּמִים. וְהַמַּתִּיר אֲסוּרִים. וְהַסּוֹמֵךְ נוֹפְלִים. וְהַזּוֹקֵף כְּפוּפִים. לְךָ לְבַדְּךָ אֲנַֽחְנוּ מוֹדִים. אִלּוּ פִֽינוּ מָלֵא שִׁירָה כַּיָּם וּלְשׁוֹנֵֽנוּ רִנָּה כַּהֲמוֹן גַּלָּיו וְשִׂפְתוֹתֵֽינוּ שֶֽׁבַח כְּמֶרְחֲבֵי רָקִֽיעַ וְעֵינֵֽינוּ מְאִירוֹת כַּשֶּֽׁמֶשׁ וְכַיָּרֵֽחַ וְיָדֵֽינוּ פְרוּשׂוֹת כְּנִשְׁרֵי שָׁמָֽיִם. וְרַגְלֵֽינוּ קַלּוֹת כָּאַיָּלוֹת. אֵין אֲנַֽחְנוּ מַסְפִּיקִים לְהוֹדוֹת לְךָ יְיָ אֱלֹהֵֽינוּ וֵאלֹהֵי אֲבוֹתֵֽינוּ וּלְבָרֵךְ אֶת שְׁמֶֽךָ עַל אַחַת מֵאָֽלֶף אֶֽלֶף אַלְפֵי אֲלָפִים וְרִבֵּי רְבָבוֹת פְּעָמִים הַטּוֹבוֹת שֶׁעָשִֽׂיתָ עִמָנוּ וְעִם אֲבוֹתֵֽינוּ מִלְפָנִים. מִמִּצְרַֽיִם גְּאַלְתָּֽנוּ יְיָ אֱלֹהֵֽינוּ וּמִבֵּית עֲבָדִים פְּדִיתָֽנוּ בְּרָעָב זַנְתָּֽנוּ וּבְשָׂבָע כִּלְכַּלְתָּֽנוּ. מֵחֶֽרֶב הִצַּלְתָּֽנוּ וּמִדֶּֽבֶר מִלַּטְתָּֽנוּ וּמֵחֳלָיִם רָעִים וְנֶאֱמָנִים דִּלִּיתָֽנוּ: עַד הֵֽנָּה עֲזָרֽוּנוּ רַחֲמֶֽיךָ וְלֹא עֲזָבֽוּנוּ חֲסָדֶֽיךָ. וְאַל תִּטְּשֵֽׁנוּ יְיָ אֱלֹהֵֽינוּ לָנֶֽצַח. עַל כֵּן אֵבָרִים שֶׁפִּלַּֽגְתָּ בָּֽנוּ וְרֽוּחַ וּנְשָׁמָה שֶׁנָּפַֽחְתָּ בְּאַפֵּֽינוּ וְלָשׁוֹן אֲשֶׁר שַֽׂמְתָּ בְּפִֽינוּ הֵן הֵם יוֹדוּ וִיבָרְכוּ וִישַׁבְּחוּ וִיפָאֲרוּ וִירוֹמְמוּ וְיַעֲרִֽיצוּ וְיַקְדִּֽישׁוּ וְיַמְלִֽיכוּ אֶת שִׁמְךָ מַלְכֵּֽנוּ. כִּי כָל פֶּה לְךָ יוֹדֶה וְכָל לָשׁוֹן לְךָ תִשָּׁבַע וְכָל עַיִן לְךָ תְּצַפֶּה וְכָל בֶּֽרֶךְ לְךָ תִכְרַע וְכָל קוֹמָה לְפָנֶֽיךָ תִשְׁתַּחֲוֶה וְכָל לְבָבוֹת יִירָאֽוּךָ וְכָל קֶֽרֶב וּכְלָיוֹת יְזַמְּרוּ לִשְׁמֶֽךָ כַּדָּבָר שֶׁכָּתוּב כָּל עַצְמוֹתַי תֹּאמַֽרְנָה יְיָ מִי כָמֽוֹךָ. מַצִּיל עָנִי מֵחָזָק מִמֶּֽנּוּ וְעָנִי וְאֶבְיוֹן מִגּוֹזְלוֹ: מִי יִדְמֶה לָּךְ. וּמִי יִשְׁוֶה לָּךְ. וּמִי יַעֲרָךְ לָךְ. הָאֵל הַגָּדוֹל הַגִּבּוֹר וְהַנּוֹרָא אֵל עֶלְיוֹן קוֹנֵה שָׁמַֽיִם וָאָֽרֶץ: נְהַלֶּלְךָ וּנְשַׁבֵּחֲךָ וּנְפָאֶרְךָ וּנְבָרֵךְ אֶת שֵׁם קָדְשֶֽׁךָ: כָּאָמוּר לְדָוִד בָּרְכִי נַפְשִׁי אֶת יְיָ וְכָל קְרָבַי אֶת שֵׁם קָדְשׁוֹ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-2-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 2:3</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-2-3" aria-label="Copy link to Ma'aneh Lashon Chabad 2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הָאֵל בְּתַעֲצֻמוֹת עוּזֶּֽךָ הַגָּדוֹל בִּכְבוֹד שְׁמֶֽךָ הַגִּבּוֹר לָנֶֽצַח וְהַנּוֹרָא בְּנוֹרְאוֹתֶֽיךָ. הַמֶּֽלֶךְ הַיּוֹשֵׁב עַל כִּסֵּא רָם וְנִשָּׂא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-2-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 2:4</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-2-4" aria-label="Copy link to Ma'aneh Lashon Chabad 2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שׁוֹכֵן עַד מָרוֹם וְקָדוֹשׁ שְׁמוֹ. וְכָתוּב רַנְּנוּ צַדִּיקִים בַּיָי לַיְשָׁרִים נָאוָה תְהִלָּה: בְּפִי יְשָׁרִים תִּתְרוֹמָם. וּבְשִׂפְתֵי צַדִּיקִים תִּתְבָּרַךְ. וּבִלְשׁוֹן חֲסִידִים תִּתְקַדָּשׁ. וּבְקֶֽרֶב קְדוֹשִׁים תִּתְהַלָּל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-2-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 2:5</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-2-5" aria-label="Copy link to Ma'aneh Lashon Chabad 2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וּבְמַקְהֲלוֹת רִבְבוֹת עַמְךָ בֵּית יִשְׂרָאֵל בְּרִנָּה יִתְפָּאַר שִׁמְךָ מַלְכֵּֽנוּ בְּכָל דּוֹר וָדוֹר שֶׁכֵּן חוֹבַת כָּל הַיְצוּרִים לְפָנֶֽיךָ יְיָ אֱלֹהֵֽינוּ וֵאלֹהֵי אֲבוֹתֵֽינוּ לְהוֹדוֹת לְהַלֵּל לְשַׁבֵּחַ לְפָאֵר לְרוֹמֵם לְהַדֵּר לְבָרֵךְ לְעַלֵּה וּלְקַלֵּס עַל כָּל דִּבְרֵי שִׁירוֹת וְתִשְׁבָּחוֹת דָּוִד בֶּן יִשַׁי עַבְדְּךָ מְשִׁיחֶֽךָ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-2-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 2:6</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-2-6" aria-label="Copy link to Ma'aneh Lashon Chabad 2:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תְּפִלָּה לְמֹשֶׁה אִישׁ־הָאֱלֹהִים אֲ‍דֹנָי מָעוֹן אַתָּה הָיִיתָ לָּנוּ בְּדֹר וָדֹר׃ בְּטֶרֶם הָרִים יֻלָּדוּ וַתְּחוֹלֵל אֶרֶץ וְתֵבֵל וּמֵעוֹלָם עַד־עוֹלָם אַתָּה אֵל׃ תָּשֵׁב אֱנוֹשׁ עַד־דַּכָּא וַתֹּאמֶר שׁוּבוּ בְנֵי־אָדָם׃ כִּי אֶלֶף שָׁנִים בְּעֵינֶיךָ כְּיוֹם אֶתְמוֹל כִּי יַעֲבֹר וְאַשְׁמוּרָה בַלָּיְלָה׃ זְרַמְתָּם שֵׁנָה יִהְיוּ בַּבֹּקֶר כֶּחָצִיר יַחֲלֹף׃ בַּבֹּקֶר יָצִיץ וְחָלָף לָעֶרֶב יְמוֹלֵל וְיָבֵשׁ׃ כִּי־כָלִינוּ בְאַפֶּךָ וּבַחֲמָתְךָ נִבְהָלְנוּ׃ שַׁתָּה עֲוֺנֹתֵינוּ לְנֶגְדֶּךָ עֲלֻמֵנוּ לִמְאוֹר פָּנֶיךָ׃ כִּי כָל־יָמֵינוּ פָּנוּ בְעֶבְרָתֶךָ כִּלִּינוּ שָׁנֵינוּ כְמוֹ־הֶגֶה׃ יְמֵי־שְׁנוֹתֵינוּ בָהֶם שִׁבְעִים שָׁנָה וְאִם בִּגְבוּרֹת שְׁמוֹנִים שָׁנָה וְרָהְבָּם עָמָל וָאָוֶן כִּי־גָז חִישׁ וַנָּעֻפָה׃ מִי־יוֹדֵעַ עֹז אַפֶּךָ וּכְיִרְאָתְךָ עֶבְרָתֶךָ׃ לִמְנוֹת יָמֵינוּ כֵּן הוֹדַע וְנָבִא לְבַב חָכְמָה׃ שׁוּבָה יְיָ עַד־מָתָי וְהִנָּחֵם עַל־עֲבָדֶיךָ׃ שַׂבְּעֵנוּ בַבֹּקֶר חַסְדֶּךָ וּנְרַנְּנָה וְנִשְׂמְחָה בְּכָל־יָמֵינוּ׃ שַׂמְּחֵנוּ כִּימוֹת עִנִּיתָנוּ שְׁנוֹת רָאִינוּ רָעָה׃ יֵרָאֶה אֶל־עֲבָדֶיךָ פָעֳלֶךָ וַהֲדָרְךָ עַל־בְּנֵיהֶם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-2-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 2:7</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-2-7" aria-label="Copy link to Ma'aneh Lashon Chabad 2:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וִיהִי נֹעַם אֲדֹנָי אֱלֹהֵינוּ עָלֵינוּ וּמַעֲשֵׂה יָדֵינוּ כּוֹנְנָה עָלֵינוּ וּמַעֲשֵׂה יָדֵינוּ כּוֹנְנֵהוּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-maaneh-lashon-chabad-text-3">Chapter 3</h4>
+          <section class="unit" id="maaneh-lashon-chabad-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 3:1</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-3-1" aria-label="Copy link to Ma'aneh Lashon Chabad 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">מענה לשון סימן ג׳</span></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-3-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 3:2</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-3-2" aria-label="Copy link to Ma'aneh Lashon Chabad 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שָׁלוֹם עָלֶיךָ אֲדוֹנֵינוּ מוֹרֵנוּ וְרַבֵּנוּ עָלֶיךָ הַשָּׁלוֹם מֵעַתָּה וְעַד עוֹלָם. בְּשָׁלוֹם תָּנוּחַ עַל מִשְׁכָּבְךָ וְאַף לֹא תִצְטַעֵר בְּצָרַת קְרוֹבֶיךָ. שְׁכוּנָתְךָ תִּהְיֶה בְּעַב הֶעָנָן וּבְסֵּתֶר עֶלְיוֹן בְּצֵל שַׁדַי תִּתְלוֹנָן. אַשְׁרֶיךָ וְטוֹב לָךְ שֶׁזָּכִיתָ לָלֶכֶת אַחֲרֵי בוֹרְאֶךָ וּלְהָאֵר נֵרְךָ וְהוֹרֵיתָ לְיִשְׂרָאֵל חוּקִים יְשָׁרִים וּמִשְׁפָּטִים טוֹבִים לְהַצְדִּיק אֶת בְּנֵי דּוֹרֶךָ. וְטוֹב לָכֶם כִּי גָּדוֹל שְׂכַרְכֶם מְאֹד. וְהַמֶּלֶךְ הַגָּדוֹל וְהַקָּדוֹשׁ בָּרוּךְ הוּא יָחִישׁ וִימַהֵר תְּחִיַיתְכֶם וַעֲמִידַתְכֶם עִם כָּל שְׁאָר צַדִּיקֵי וַחֲסִידֵי עוֹלָם וּלְזַכּוֹתְךָ לְעוֹלָם שֶׁכּוּלּוֹ טוֹב וְאָרוּךְ. אֲשֶׁר בְּכָל דְּבָרָיו הוּא בָּרוּךְ: וּלְהִתְעַנֵּג בְּתַעֲנוּגִים מֵזִיז שָׂדַי בְהֵמוֹת בְּהַרְרֵי אָלֶף. וְלִוְיָתָן וְיַיִן חֲמַר שֶׁמִּבְּרֵאשִׁית הַמִּבְחַר בְּכָל טוֹב לְקָבֵל אָלֶף. וְכַאֲשֶׁר בִמְּלַאכְתֶּךָ עָמַלְתָּ בָּעוֹלָם הַזֶּה לַעֲסוֹק בְּדִבְרֵי תוֹרָה. כְּנֶגֶד זֶה מֵחַיִל אֶל חָיִל תֵּלֵךְ וּמִיְּשִׁיבָה לִישִׁיבָה מְקוֹם מַה נוֹרָא. וְחִידּוּשֵׁי טַעֲמֵי תוֹרָה תִּזְכֶּה לִשְׁמוֹעַ מִפִּי הַשֵּׁם יִתְבָּרֵךְ וְיִתְעַלֶה. אֲשֶׁר לֶעָתִיד הוּא יִדְרוֹשׁ וְיִתְגַּלֶּה. וִיהִי רָצוֹן לִפְנֵי אָבִינוּ שֶׁבַּשָּׁמַיִם שֶׁאֶזְכֶּה בִּזְכוּתָךְ וּבִזְכוּת כָּל שְׁאָר הַצַּדִּיקִים וְהַחֲסִידִים הַשּׁוֹכְנִים פֹּה שֶׁיְּכַפֵּר לִי הָאֵל הַסָּלְחָן עַל כָּל חַטֹאתַי וַעֲוֹנֹתַי וּפְשָׁעַי כִּי לְמַעַן כְּבוֹדְךָ בָּאתִי הֵנָה לְהַלֵל לְשֵׁם הַגָּדוֹל וְהַנּוֹרָא וּלְהִשְׁתַּטֵּחַ עַל קִבְרְךָ לְבַקֵּשׁ מִמְּךָ שֶׁתִּתְפַּלֵּל עָלַי שֶׁיַּצִּלֵנִי מִן הַשּׁוֹד וּמִן הַשֶּׁבֶר וּמִן הַבִּזָּה וּמִן הַטִּלְטוּל הַקָּשֶׁה וּמִפַּחַד וּבֶהָלָה וּמִמִּיתָה מְשׁוּנָּה וּמְגוּנָּה וּמִן הַשָּׁעוֹת הָרָעוֹת וְיִשְׁלַח בְּרָכָה וְהַצְלָחָה בְּכָל מַעֲשֵׂה יָדַי וְיִּרְפָּא אֶת תַּחֲלוּאַי וִיבָרֵךְ אֶת לַחְמִי וּמֵימַי וְיָסִיר כָּל מַחֲלָה מִקִרְבִּי וְיַּצִּלֵנִי מִן כָּל אוֹיֵב וְאוֹרֵב וְלִסְטִים. וְיִתֶּן לִי וּלְכָל יִשְׂרָאֵל מַתָּנָה טוֹבָה וּפַרְנָסָה טוֹבָה. לְמַעַן זְכוּתְכֶם וְצִדְקַתְכֶם. וְיִתֶּן לִי חֵלֶק טוֹב וְשָׂכָר טוֹב כְּדֵי שֶׁאֶזְכֶּה לְחַיֵּי עוֹלָם הַבָּא. וִיבַשְּׂרֵנִי בְּשׂוֹרוֹת טוֹבוֹת. וְיַשְׁמִיעֵנִי שְׁמוּעוֹת טוֹבוֹת וְיִתֶּן לִי אוֹרֶךְ יָמִים וּשְׁנוֹת חַיִּים וְשָׁלוֹם וְהַשְׁקֵט וָבֶטַח. וְאַל יֶאֱסוֹף עִם חַטָּאִים נַפְשִׁי וְעִם אַנְשֵׁי דָמִים חַיָּי. וְאַל יַאַסְפֵנִי בַּחֲצִי יָמָי וִימַלֵּא מִסְפַּר יָמַי בְּשֵׂיבָה טוֹבָה. וְיוֹסֵף לִי חָכְמָה וָדַעַת וּבִינָה וְחֵן וָחֶסֶד וְרַחֲמִים לְפָנָיו וְלִפְנֵי כִּסֵּא כְבוֹדוֹ וְלִפְנֵי כָּל הַבְּרִיּוֹת שֶׁרוֹאִים אֶת פָּנַי. וְיַחֵד לְבָבִי לְאַהֲבָה אוֹתוֹ וּלְיִרְאָה אֶת שְׁמוֹ וְיַטֶּה לְבָבִי לַעֲשׂוֹת רְצוֹנוֹ בְּלֵבָב שָׁלֵם וְיִשְׁמַע קוֹל תַּחֲנוּנָי וְאַל יְשִׁיבֵנִי רֵיקָם מִלְּפָנָיו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-3-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 3:3</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-3-3" aria-label="Copy link to Ma'aneh Lashon Chabad 3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">וישא עיניו אל כפים אל אל בשמים ויאמר</span></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-3-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 3:4</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-3-4" aria-label="Copy link to Ma'aneh Lashon Chabad 3:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אָנָּא אֲדוֹן הָעוֹלָמִים רַחֲמָן מָלֵא רַחֲמִים אַף אִם אָמְנָם שָׁגִיתִי חָטָאתִי עָוִיתִי וּפָשַׁעְתִּי כָּזֹאת וְכָזֹאת עָשִׂיתִי הֵן בְּעַצְמִי אוֹ בְּגִלְגּוּלִי הֲרֵעוֹתִי אֶת מַעֲלָלַי. הֵן אִם בְּגִלְגּוּל זֶה אוֹ בְּגִלְגּוּל אַחֵר בְּמַעֲשֵׂה אֲשֶׁר אֵין לוֹ שַׁחַר. אֲדֹנָי שְׁמָעָה אֲדֹנָי סְלָחָה אֲדֹנָי הַקֲשִׁיבָה וַעֲשֵׂה אַל תְּאַחַר. וְלֹא תִרְאֶה אוֹתִי נִדָּח וְהִתְעַלַּמְתָּ. עָזוֹב תַּעֲזוֹב וְהָקֵם תָּקִים לִיצוּר אֲשֶׁר גָּלַמְתָּ. כִּי מִי אָנֹכִי כִּי הֲבִיאֹתַנִי עַד הֲלוֹם וְאֵין אֲנִי לְצוֹרְכָךְ כְּלוּם כִּי אִם בְּחַסְדְּךָ הַגָּדוֹל לְזַכּוֹתִי בְּרָאתַנִי. וּמֵאַיִן לְיֵשׁ הִמְצֵאתַנִי. וְאִם הֲרֵעוֹתִי אֶת מַעֲשַׂי וְקִפַּחְתִּי פַּרְנָסָתִי אַל בְּאַפְּךָ תּוֹכִיחֵנִי לְיַסֵּר בַּמִּשְׁפָּט אוֹתִי. וְאִם כָּכָה אַתְּ עֹשֶׂה לִּי הַלֹּא טוֹב לִי שֶׁלֹּא נִבְרֵאתִי וּלְעוֹלָם לֹא יָצָאתִי. אַךְ בְּהַבִּיטְךָ לְסוֹף דָּבָר בְּקַדְמוּתוֹ. עַל כֵּן הִקְדַּמְתָּ רַחֲמֶיךָ לְדִינֶךָ וּמִדָּתְךָ לְהַאֲרִיךְ אַפֶּךָ לָרָעִים וְלַטּוֹבִים וּלְוַתֵּר צִבְחַר לְהִתְקַיֵּם הָעוֹלָם בְּיִשּׁוּבוֹ. כִּי טוֹב יְיָ לַכֹּל וְרַחֲמָיו עַל כָּל מַעֲשָׂיו. יִשְׂמַח יִשְׂרָאֵל בְּעוֹשָׂיו. וְאִם מַעֲשַׂי גָּרְמוּ לְהַבְדִּיל בֵּין קוֹדֶשׁ לְקוֹדֶשׁ אַתָּה תִבְחַר וּתְקָרֵב וּתְחַדֵּשׁ. הֲשִׁיבֵנוּ יְיָ אֵלֶיךָ וְנָשׁוּבָה. וְנַחְטִיבְךָ בָּעוֹלָם חֲטִיבָה וְאִם סַכּוֹתָה בֶעָנָן לָךְ מֵעֲבוֹר תְּפִלָּה. גָּרֵשׁ לֵץ וְיֵצֵא מָדוֹן כּוֹתֵב שִׂטְנָה וִילָלָה. וּתְשַׂמְּחֵנִי בְּגִילָה אַחַר גִּילָה. וְאִם אֵין אַתָּה עוֹשֶׂה בְּגִינִי עֲשֵׂה לְמַעַן זְכוּת אֲבוֹתֵינוּ פְּדֵנִי וְחָנֵּנִי. הוֹשִׁיעָה יְמִינְךָ וַעֲנֵנִי. יִהְיוּ לְרָצוֹן אִמְרֵי פִי וְלֹא יַחֲשׁוֹב לִי שֶׁמֶץ וְדוֹפִי. וּדְבָרַי הַמְּגוּמְגָּם וּלְשׁוֹנִי הַמָּלֵא פְּגַם. יְהִי רָצוֹן לְפָנֶיךָ כְּאִלּוּ הָיִיתִי מֵלִיץ יוֹשֶׁר מַרְבֶּה בִּשְׁבָחוֹת וּכְתָרִים קוֹשֵׁר. וּכְמֹשֶׁה בְּשִׁירַת אָז יָשִׁיר. וּכְדָוִד יֵחָשֵׁב לִי לִכְּלֵי שִׁיר. וּכְאִלּוּ הָיִיתִי מְכַוֵּן בְּסוֹדוֹת עֶלְיוֹנִים וְאוֹמֵר שִׁירָה עִם עִירִין קַדִּישִׁין שָׁרִים וְנוֹגְנִים. וְדִלּוּגִי וְלִגְלוּגִי יִהְיוּ עָלֶיךָ אַהֲבָה כְּשֶׁבַח וְשִׁירָה עֲרֵבָה. וַאֲנִי חָכְמָה שָׁכַנְתִּי עָרְמָה לְסַבֵּב אֶת קִבְרֵי הַצַּדִּיקִים בַּעֲלֵי נְשָׁמָה. כְּדֵי שֶׁגַּם הַמֵּתִים יְבַקְּשׁוּ עָלַי רַחֲמִים. כִּי גַּם לָהֶם הוּא לְתוֹעֶלֶת. וְהַרְבֵּה פְּעָמִים נְשָׁמָה מִנְּשָׁמָה נֶאֱצֶלֶת. וּכְעָנָף בְּאִילָן דְּבוּקָה וְכַגְדִיל בְּשַׁלְשֶׁלֶת חֲבוּקָה. כַּאן הַמֵּתִים יוֹרְשִׁים אֶת הַחַיִּים. לְהוֹסִיף לָהֶם מְאוֹרַיִם. וְאַתָּה אֱלוֹהַּ סְלִיחוֹת. תִּהְיֶינָה אָזְנֶיךָ קַשֻּׁבוֹת וְעֵינֶיךָ פְּקוּחוֹת לִשְׁמֹעַ אֶל תְּפִלַּת עֲבָדֶיךָ הַנְּשָׁמָה וְהָרוּחוֹת. וְאֶל הָאָדָם הַמְּבוּנֶּה מֵחוּשִׁים וְכוֹחוֹת וּמַגִּיד שִׂיחוֹת. מֵעֲבוֹדָה קָשָׁה וּמִקוֹצֶר רוּחוֹת. וְאַל תְּשִׁיבֵנּוּ רֵיקָם מִלְּפָנֶיךָ וְהָאֵר אֵלֵינוּ אֶת פָּנֶיךָ. וְיִהְיוּ לְרָצוֹן הֶגְיוֹן פִּי וּמִלּוּלִי לְפָנֶיךָ יְיָ צוּרִי וְגֹאֲלִי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-3-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 3:5</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-3-5" aria-label="Copy link to Ma'aneh Lashon Chabad 3:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יְהִי רָצוֹן מִלְּפָנֶיךָ יְיָ אֱלֹהַי וֵאלֹהֵי אֲבוֹתַי שֶׁתְּבָרֵךְ אֶת כָּל מַעֲשֵׂי יָדַי עַד בְּלִי דַּי. וּמִיָּדְךָ הַמְּלֵאָה תַּשְׁבִּיעֵנִי וּמֵאוֹצָרְךָ הַטּוֹב תְּמַלֵּא אֶת בֵּיתִי. וְתַצְלִיחַ דְּרָכַי וְאוֹרְחוֹתַי. וּשְׁמוֹר רַגְלַי וּנְתִיבוֹתַי. כִּי בְּיָדְךָ מְסוּרִים כָּל הַחַיִּים. וְיִהְיוּ מְזוֹנוֹתַי מְסוּרִים בְּיָדְךָ וּמְתוּקִים. וְלֹא יִהְיוּ בְּיַד בְּנֵי אָדָם כִּי הֵם מָרִים וְקָשִׁים כְּלַעֲנָה בְּבוֹשֶׁת פָּנִים מַכְלִימִים. לָכֵן בְּרַחֲמֶיךָ הָרַבִּים תָּכִין לִי מְזוֹנוֹתַי מִיָּדְךָ הַטּוֹבָה וְהַמְּלֵאָה וְיִהְיוּ שְׁלֵמִים. וּתְהֵא מְלַאכְתִּי לִבְרָכָה וְלֹא לַעֲנִיּוֹת לְחַיִּים וְלֹא לַמָּוֶת. וּתְזַכֵּנִי שֶׁלֹּא יִתְחַלֵּל שֵׁם שָׁמַיִם עַל יָדִי וְאֶהְיֶה מִן הַמּוֹעִילִים וְהַמַּשְׁפִּיעִים טוֹב לְכָל אָדָם תָּמִיד וְתַדְרִיכֵנִי בְּדֶרֶךְ יְשָׁרָה לְפָנֶיךָ וּתְנֵנִי לְחֵן וּלְחֶסֶד וּלְרַחֲמִים וּלְרָצוֹן בְּעֵינֶיךָ וּבְעֵינֵי כָּל רוֹאַי כִּי אֵל רַחוּם וְחַנּוּן אַתָּה וְרַב חֶסֶד לְכָל קוֹרְאֶיךָ בֶּאֱמֶת. וְאַל תְּשִׁיבֵנִי רֵיקָם מִלְּפָנֶיךָ בִּזְכוּת הַצַּדִּיקִים מָרָנָן וְרַבָּנָן הַנִּקְבָּרִים פֹּה וּבְכָל הָעוֹלָם וּבִזְכוּת תּוֹרָתָם הַקְּדוֹשָׁה וְחִדּוּשֶׁיהָ שֶׁנִּתְחַדְּשׁוּ עַל יְדֵיהֶם וּמַעֲשֵׂיהֶם הַטּוֹבִים שֶׁעָשׂוּ בָּעוֹלָם הַזֶּה. כֻּלָּם יִהְיוּ עָלַי מְלִיצֵי יוֹשֶׁר לְפָנֶיךָ וְלִפְנֵי כִסֵּא כְבוֹדֶךָ לַעֲשׂוֹת אֶת שְׁאֵלָתִי וּלְמַלְאוֹת אֶת בַּקָּשָׁתִי אֲשֶׁר עַבְדְּךָ מִתְפַּלֵּל לְפָנֶיךָ לְבִלְתִּי אָשׁוּב רֵיקָם וְאַל יִמְנָעֵנִי שׁוּם מְקַטְרֵג מֵעַתָּה וְעַד עוֹלָם אָמֵן סֶלָה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-3-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 3:6</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-3-6" aria-label="Copy link to Ma'aneh Lashon Chabad 3:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">אחר כלותו עבודת הקודש באמרי קודש הנ״ל בבכי ובתחנונים ובמרירות הלב יקרא הפ״נ שלו על מנוחת קודש אדמו״ר נבג״מ וזיע״א. ואח״כ יאמר מזמורים אלו:</span></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-maaneh-lashon-chabad-text-4">Chapter 4</h4>
+          <section class="unit" id="maaneh-lashon-chabad-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:1</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-1" aria-label="Copy link to Ma'aneh Lashon Chabad 4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">כה</span> לְדָוִד אֵלֶיךָ יְיָ נַפְשִׁי אֶשָּׂא׃ אֱ‍לֹהַי בְּךָ בָטַחְתִּי אַל־אֵבוֹשָׁה אַל־יַעַלְצוּ אֹיְבַי לִי׃ גַּם כָּל־קֹוֶיךָ לֹא יֵבֹשׁוּ יֵבֹשׁוּ הַבּוֹגְדִים רֵיקָם׃ דְּרָכֶיךָ יְיָ הוֹדִיעֵנִי אֹרְחוֹתֶיךָ לַמְּדֵנִי׃ הַדְרִיכֵנִי בַאֲמִתֶּךָ וְלַמְּדֵנִי כִּי־אַתָּה אֱלֹהֵי יִשְׁעִי אוֹתְךָ קִוִּיתִי כָּל־הַיּוֹם׃ זְכֹר־רַחֲמֶיךָ יְיָ וַחֲסָדֶיךָ כִּי מֵעוֹלָם הֵמָּה׃ חַטֹּאות נְעוּרַי וּפְשָׁעַי אַל־תִּזְכֹּר כְּחַסְדְּךָ זְכָר־לִי־אַתָּה לְמַעַן טוּבְךָ יְיָ׃ טוֹב־וְיָשָׁר יְיָ עַל־כֵּן יוֹרֶה חַטָּאִים בַּדָּרֶךְ׃ יַדְרֵךְ עֲנָוִים בַּמִּשְׁפָּט וִילַמֵּד עֲנָוִים דַּרְכּוֹ׃ כָּל־אָרְחוֹת יְיָ חֶסֶד וֶאֱמֶת לְנֹצְרֵי בְרִיתוֹ וְעֵדֹתָיו׃ לְמַעַן־שִׁמְךָ יְיָ וְסָלַחְתָּ לַעֲוֺנִי כִּי רַב־הוּא׃ מִי־זֶה הָאִישׁ יְרֵא יְיָ יוֹרֶנּוּ בְּדֶרֶךְ יִבְחָר׃ נַפְשׁוֹ בְּטוֹב תָּלִין וְזַרְעוֹ יִירַשׁ אָרֶץ׃ סוֹד יְיָ לִירֵאָיו וּבְרִיתוֹ לְהוֹדִיעָם׃ עֵינַי תָּמִיד אֶל־יְיָ כִּי הוּא־יוֹצִיא מֵרֶשֶׁת רַגְלָי׃ פְּנֵה־אֵלַי וְחָנֵּנִי כִּי־יָחִיד וְעָנִי אָנִי׃ צָרוֹת לְבָבִי הִרְחִיבוּ מִמְּצוּקוֹתַי הוֹצִיאֵנִי׃ רְאֵה עָנְיִי וַעֲמָלִי וְשָׂא לְכָל־חַטֹּאותָי׃ רְאֵה־אוֹיְבַי כִּי־רָבּוּ וְשִׂנְאַת חָמָס שְׂנֵאוּנִי׃ שָׁמְרָה נַפְשִׁי וְהַצִּילֵנִי אַל־אֵבוֹשׁ כִּי־חָסִיתִי בָךְ׃ תֹּם־וָיֹשֶׁר יִצְּרוּנִי כִּי קִוִּיתִיךָ׃ פְּדֵה אֱלֹהִים אֶת־יִשְׂרָאֵל מִכֹּל צָרוֹתָיו׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:2</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-2" aria-label="Copy link to Ma'aneh Lashon Chabad 4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">לד</span> לְדָוִד בְּשַׁנּוֹתוֹ אֶת־טַעְמוֹ לִפְנֵי אֲבִימֶלֶךְ וַיְגָרֲשֵׁהוּ וַיֵּלַךְ׃ אֲבָרֲכָה אֶת־יְיָ בְּכָל־עֵת תָּמִיד תְּהִלָּתוֹ בְּפִי׃ בַּיָי תִּתְהַלֵּל נַפְשִׁי יִשְׁמְעוּ עֲנָוִים וְיִשְׂמָחוּ׃ גַּדְּלוּ לַיָי אִתִּי וּנְרוֹמְמָה שְׁמוֹ יַחְדָּו׃ דָּרַשְׁתִּי אֶת־יְיָ וְעָנָנִי וּמִכָּל־מְגוּרוֹתַי הִצִּילָנִי׃ הִבִּיטוּ אֵלָיו וְנָהָרוּ וּפְנֵיהֶם אַל־יֶחְפָּרוּ׃ זֶה עָנִי קָרָא וַיָי שָׁמֵעַ וּמִכָּל־צָרוֹתָיו הוֹשִׁיעוֹ׃ חֹנֶה מַלְאַךְ־יְיָ סָבִיב לִירֵאָיו וַיְחַלְּצֵם׃ טַעֲמוּ וּרְאוּ כִּי־טוֹב יְיָ אַשְׁרֵי הַגֶּבֶר יֶחֱסֶה־בּוֹ׃ יְראוּ אֶת־יְיָ קְדֹשָׁיו כִּי־אֵין מַחְסוֹר לִירֵאָיו׃ כְּפִירִים רָשׁוּ וְרָעֵבוּ וְדֹרְשֵׁי יְיָ לֹא־יַחְסְרוּ כָל־טוֹב׃ לְכוּ־בָנִים שִׁמְעוּ־לִי יִרְאַת יְיָ אֲלַמֶּדְכֶם׃ מִי־הָאִישׁ הֶחָפֵץ חַיִּים אֹהֵב יָמִים לִרְאוֹת טוֹב׃ נְצֹר לְשׁוֹנְךָ מֵרָע וּשְׂפָתֶיךָ מִדַּבֵּר מִרְמָה׃ סוּר מֵרָע וַעֲשֵׂה־טוֹב בַּקֵּשׁ שָׁלוֹם וְרָדְפֵהוּ׃ עֵינֵי יְיָ אֶל־צַדִּיקִים וְאָזְנָיו אֶל־שַׁוְעָתָם׃ פְּנֵי יְיָ בְּעֹשֵׂי רָע לְהַכְרִית מֵאֶרֶץ זִכְרָם׃ צָעֲקוּ וַיָי שָׁמֵעַ וּמִכָּל־צָרוֹתָם הִצִּילָם׃ קָרוֹב יְיָ לְנִשְׁבְּרֵי־לֵב וְאֶת־דַּכְּאֵי־רוּחַ יוֹשִׁיעַ׃ רַבּוֹת רָעוֹת צַדִּיק וּמִכֻּלָּם יַצִּילֶנּוּ יְיָ׃ שֹׁמֵר כָּל־עַצְמוֹתָיו אַחַת מֵהֵנָּה לֹא נִשְׁבָּרָה׃ תְּמוֹתֵת רָשָׁע רָעָה וְשֹׂנְאֵי צַדִּיק יֶאְשָׁמוּ׃ פּוֹדֶה יְיָ נֶפֶשׁ עֲבָדָיו וְלֹא יֶאְשְׁמוּ כָּל־הַחֹסִים בּוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:3</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-3" aria-label="Copy link to Ma'aneh Lashon Chabad 4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קיא</span> הַלְלוּיָהּ אוֹדֶה יְיָ בְּכָל־לֵבָב בְּסוֹד יְשָׁרִים וְעֵדָה׃ גְּדֹלִים מַעֲשֵׂי יְיָ דְּרוּשִׁים לְכָל־חֶפְצֵיהֶם׃ הוֹד־וְהָדָר פָּעֳלוֹ וְצִדְקָתוֹ עֹמֶדֶת לָעַד׃ זֵכֶר עָשָׂה לְנִפְלְאֹתָיו חַנּוּן וְרַחוּם יְיָ׃ טֶרֶף נָתַן לִירֵאָיו יִזְכֹּר לְעוֹלָם בְּרִיתוֹ׃ כֹּחַ מַעֲשָׂיו הִגִּיד לְעַמּוֹ לָתֵת לָהֶם נַחֲלַת גּוֹיִם׃ מַעֲשֵׂי יָדָיו אֱמֶת וּמִשְׁפָּט נֶאֱמָנִים כָּל־פִּקּוּדָיו׃ סְמוּכִים לָעַד לְעוֹלָם עֲשׂוּיִם בֶּאֱמֶת וְיָשָׁר׃ פְּדוּת שָׁלַח לְעַמּוֹ צִוָּה־לְעוֹלָם בְּרִיתוֹ קָדוֹשׁ וְנוֹרָא שְׁמוֹ׃ רֵאשִׁית חָכְמָה יִרְאַת יְיָ שֵׂכֶל טוֹב לְכָל־עֹשֵׂיהֶם תְּהִלָּתוֹ עֹמֶדֶת לָעַד׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:4</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-4" aria-label="Copy link to Ma'aneh Lashon Chabad 4:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קיב</span> הַלְלוּיָהּ אַשְׁרֵי־אִישׁ יָרֵא אֶת־יְיָ בְּמִצְוֺתָיו חָפֵץ מְאֹד׃ גִּבּוֹר בָּאָרֶץ יִהְיֶה זַרְעוֹ דּוֹר יְשָׁרִים יְבֹרָךְ׃ הוֹן־וָעֹשֶׁר בְּבֵיתוֹ וְצִדְקָתוֹ עֹמֶדֶת לָעַד׃ זָרַח בַּחֹשֶׁךְ אוֹר לַיְשָׁרִים חַנּוּן וְרַחוּם וְצַדִּיק׃ טוֹב־אִישׁ חוֹנֵן וּמַלְוֶה יְכַלְכֵּל דְּבָרָיו בְּמִשְׁפָּט׃ כִּי־לְעוֹלָם לֹא־יִמּוֹט לְזֵכֶר עוֹלָם יִהְיֶה צַדִּיק׃ מִשְּׁמוּעָה רָעָה לֹא יִירָא נָכוֹן לִבּוֹ בָּטֻחַ בַּיָי׃ סָמוּךְ לִבּוֹ לֹא יִירָא עַד אֲשֶׁר־יִרְאֶה בְצָרָיו׃ פִּזַּר נָתַן לָאֶבְיוֹנִים צִדְקָתוֹ עֹמֶדֶת לָעַד קַרְנוֹ תָּרוּם בְּכָבוֹד׃ רָשָׁע יִרְאֶה וְכָעָס שִׁנָּיו יַחֲרֹק וְנָמָס תַּאֲוַת רְשָׁעִים תֹּאבֵד׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:5</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-5" aria-label="Copy link to Ma'aneh Lashon Chabad 4:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קיט</span> אַשְׁרֵי תְמִימֵי־דָרֶךְ הַהֹלְכִים בְּתוֹרַת יְיָ׃ אַשְׁרֵי נֹצְרֵי עֵדֹתָיו בְּכָל־לֵב יִדְרְשׁוּהוּ׃ אַף לֹא־פָעֲלוּ עַוְלָה בִּדְרָכָיו הָלָכוּ׃ אַתָּה צִוִּיתָה פִקֻּדֶיךָ לִשְׁמֹר מְאֹד׃ אַחֲלַי יִכֹּנוּ דְרָכָי לִשְׁמֹר חֻקֶּיךָ׃ אָז לֹא־אֵבוֹשׁ בְּהַבִּיטִי אֶל־כָּל־מִצְוֺתֶיךָ׃ אוֹדְךָ בְּיֹשֶׁר לֵבָב בְּלָמְדִי מִשְׁפְּטֵי צִדְקֶךָ׃ אֶת־חֻקֶּיךָ אֶשְׁמֹר אַל־תַּעַזְבֵנִי עַד־מְאֹד׃ בַּמֶּה יְזַכֶּה־נַּעַר אֶת־אָרְחוֹ לִשְׁמֹר כִּדְבָרֶךָ׃ בְּכָל־לִבִּי דְרַשְׁתִּיךָ אַל־תַּשְׁגֵּנִי מִמִּצְוֺתֶיךָ׃ בְּלִבִּי צָפַנְתִּי אִמְרָתֶךָ לְמַעַן לֹא אֶחֱטָא־לָךְ׃ בָּרוּךְ אַתָּה יְיָ לַמְּדֵנִי חֻקֶּיךָ׃ בִּשְׂפָתַי סִפַּרְתִּי כֹּל מִשְׁפְּטֵי־פִיךָ׃ בְּדֶרֶךְ עֵדְוֺתֶיךָ שַׂשְׂתִּי כְּעַל כָּל־הוֹן׃ בְּפִקֻּדֶיךָ אָשִׂיחָה וְאַבִּיטָה אֹרְחֹתֶיךָ׃ בְּחֻקֹּתֶיךָ אֶשְׁתַּעֲשָׁע לֹא אֶשְׁכַּח דְּבָרֶךָ׃ גְּמֹל עַל־עַבְדְּךָ אֶחְיֶה וְאֶשְׁמְרָה דְבָרֶךָ׃ גַּל־עֵינַי וְאַבִּיטָה נִפְלָאוֹת מִתּוֹרָתֶךָ׃ גֵּר אָנֹכִי בָאָרֶץ אַל־תַּסְתֵּר מִמֶּנִּי מִצְוֺתֶיךָ׃ גָּרְסָה נַפְשִׁי לְתַאֲבָה אֶל־מִשְׁפָּטֶיךָ בְכָל־עֵת׃ גָּעַרְתָּ זֵדִים אֲרוּרִים הַשֹּׁגִים מִמִּצְוֺתֶיךָ׃ גַּל מֵעָלַי חֶרְפָּה וָבוּז כִּי עֵדֹתֶיךָ נָצָרְתִּי׃ גַּם יָשְׁבוּ שָׂרִים בִּי נִדְבָּרוּ עַבְדְּךָ יָשִׂיחַ בְּחֻקֶּיךָ׃ גַּם־עֵדֹתֶיךָ שַׁעֲשֻׁעָי אַנְשֵׁי עֲצָתִי׃ דָּבְקָה לֶעָפָר נַפְשִׁי חַיֵּנִי כִּדְבָרֶךָ׃ דְּרָכַי סִפַּרְתִּי וַתַּעֲנֵנִי לַמְּדֵנִי חֻקֶּיךָ׃ דֶּרֶךְ־פִּקּוּדֶיךָ הֲבִינֵנִי וְאָשִׂיחָה בְּנִפְלְאוֹתֶיךָ׃ דָּלְפָה נַפְשִׁי מִתּוּגָה קַיְּמֵנִי כִּדְבָרֶךָ׃ דֶּרֶךְ־שֶׁקֶר הָסֵר מִמֶּנִּי וְתוֹרָתְךָ חָנֵּנִי׃ דֶּרֶךְ־אֱמוּנָה בָחָרְתִּי מִשְׁפָּטֶיךָ שִׁוִּיתִי׃ דָּבַקְתִּי בְעֵדְוֺתֶיךָ יְיָ אַל־תְּבִישֵׁנִי׃ דֶּרֶךְ־מִצְוֺתֶיךָ אָרוּץ כִּי תַרְחִיב לִבִּי׃ הוֹרֵנִי יְיָ דֶּרֶךְ חֻקֶּיךָ וְאֶצְּרֶנָּה עֵקֶב׃ הֲבִינֵנִי וְאֶצְּרָה תוֹרָתֶךָ וְאֶשְׁמְרֶנָּה בְכָל־לֵב׃ הַדְרִיכֵנִי בִּנְתִיב מִצְוֺתֶיךָ כִּי־בוֹ חָפָצְתִּי׃ הַט־לִבִּי אֶל־עֵדְוֺתֶיךָ וְאַל אֶל־בָּצַע׃ הַעֲבֵר עֵינַי מֵרְאוֹת שָׁוְא בִּדְרָכֶךָ חַיֵּנִי׃ הָקֵם לְעַבְדְּךָ אִמְרָתֶךָ אֲשֶׁר לְיִרְאָתֶךָ׃ הַעֲבֵר חֶרְפָּתִי אֲשֶׁר יָגֹרְתִּי כִּי מִשְׁפָּטֶיךָ טוֹבִים׃ הִנֵּה תָּאַבְתִּי לְפִקֻּדֶיךָ בְּצִדְקָתְךָ חַיֵּנִי׃ וִיבֹאֻנִי חֲסָדֶךָ יְיָ תְּשׁוּעָתְךָ כְּאִמְרָתֶךָ׃ וְאֶעֱנֶה חֹרְפִי דָבָר כִּי־בָטַחְתִּי בִּדְבָרֶךָ׃ וְאַל־תַּצֵּל מִפִּי דְבַר־אֱמֶת עַד־מְאֹד כִּי לְמִשְׁפָּטֶךָ יִחָלְתִּי׃ וְאֶשְׁמְרָה תוֹרָתְךָ תָמִיד לְעוֹלָם וָעֶד׃ וְאֶתְהַלְּכָה בָרְחָבָה כִּי פִקֻּדֶיךָ דָרָשְׁתִּי׃ וַאֲדַבְּרָה בְעֵדֹתֶיךָ נֶגֶד מְלָכִים וְלֹא אֵבוֹשׁ׃ וְאֶשְׁתַּעֲשַׁע בְּמִצְוֺתֶיךָ אֲשֶׁר אָהָבְתִּי׃ וְאֶשָּׂא־כַפַּי אֶל־מִצְוֺתֶיךָ אֲשֶׁר אָהָבְתִּי וְאָשִׂיחָה בְחֻקֶּיךָ׃ זְכֹר־דָּבָר לְעַבְדֶּךָ עַל אֲשֶׁר יִחַלְתָּנִי׃ זֹאת נֶחָמָתִי בְעָנְיִי כִּי אִמְרָתְךָ חִיָּתְנִי׃ זֵדִים הֱלִיצֻנִי עַד־מְאֹד מִתּוֹרָתְךָ לֹא נָטִיתִי׃ זָכַרְתִּי מִשְׁפָּטֶיךָ מֵעוֹלָם יְיָ וָאֶתְנֶחָם׃ זַלְעָפָה אֲחָזַתְנִי מֵרְשָׁעִים עֹזְבֵי תּוֹרָתֶךָ׃ זְמִרוֹת הָיוּ־לִי חֻקֶּיךָ בְּבֵית מְגוּרָי׃ זָכַרְתִּי בַלַּיְלָה שִׁמְךָ יְיָ וָאֶשְׁמְרָה תּוֹרָתֶךָ׃ זֹאת הָיְתָה־לִּי כִּי פִקֻּדֶיךָ נָצָרְתִּי׃ חֶלְקִי יְיָ אָמַרְתִּי לִשְׁמֹר דְּבָרֶיךָ׃ חִלִּיתִי פָנֶיךָ בְכָל־לֵב חָנֵּנִי כְּאִמְרָתֶךָ׃ חִשַּׁבְתִּי דְרָכָי וָאָשִׁיבָה רַגְלַי אֶל־עֵדֹתֶיךָ׃ חַשְׁתִּי וְלֹא הִתְמַהְמָהְתִּי לִשְׁמֹר מִצְוֺתֶיךָ׃ חֶבְלֵי רְשָׁעִים עִוְּדֻנִי תּוֹרָתְךָ לֹא שָׁכָחְתִּי׃ חֲצוֹת־לַיְלָה אָקוּם לְהוֹדוֹת לָךְ עַל מִשְׁפְּטֵי צִדְקֶךָ׃ חָבֵר אָנִי לְכָל־אֲשֶׁר יְרֵאוּךָ וּלְשֹׁמְרֵי פִּקּוּדֶיךָ׃ חַסְדְּךָ יְיָ מָלְאָה הָאָרֶץ חֻקֶּיךָ לַמְּדֵנִי׃ טוֹב עָשִׂיתָ עִם־עַבְדְּךָ יְיָ כִּדְבָרֶךָ׃ טוּב טַעַם וָדַעַת לַמְּדֵנִי כִּי בְמִצְוֺתֶיךָ הֶאֱמָנְתִּי׃ טֶרֶם אֶעֱנֶה אֲנִי שֹׁגֵג וְעַתָּה אִמְרָתְךָ שָׁמָרְתִּי׃ טוֹב־אַתָּה וּמֵטִיב לַמְּדֵנִי חֻקֶּיךָ׃ טָפְלוּ עָלַי שֶׁקֶר זֵדִים אֲנִי בְּכָל־לֵב אֱצֹּר פִּקּוּדֶיךָ׃ טָפַשׁ כַּחֵלֶב לִבָּם אֲנִי תּוֹרָתְךָ שִׁעֲשָׁעְתִּי׃ טוֹב־לִי כִי־עֻנֵּיתִי לְמַעַן אֶלְמַד חֻקֶּיךָ׃ טוֹב־לִי תוֹרַת־פִּיךָ מֵאַלְפֵי זָהָב וָכָסֶף׃ יָדֶיךָ עָשׂוּנִי וַיְכוֹנְנוּנִי הֲבִינֵנִי וְאֶלְמְדָה מִצְוֺתֶיךָ׃ יְרֵאֶיךָ יִרְאוּנִי וְיִשְׂמָחוּ כִּי לִדְבָרְךָ יִחָלְתִּי׃ יָדַעְתִּי יְיָ כִּי־צֶדֶק מִשְׁפָּטֶיךָ וֶאֱמוּנָה עִנִּיתָנִי׃ יְהִי־נָא חַסְדְּךָ לְנַחֲמֵנִי כְּאִמְרָתְךָ לְעַבְדֶּךָ׃ יְבֹאוּנִי רַחֲמֶיךָ וְאֶחְיֶה כִּי־תוֹרָתְךָ שַׁעֲשֻׁעָי׃ יֵבֹשׁוּ זֵדִים כִּי־שֶׁקֶר עִוְּתוּנִי אֲנִי אָשִׂיחַ בְּפִקּוּדֶיךָ׃ יָשׁוּבוּ לִי יְרֵאֶיךָ וְיֹדְעֵי עֵדֹתֶיךָ׃ יְהִי־לִבִּי תָמִים בְּחֻקֶּיךָ לְמַעַן לֹא אֵבוֹשׁ׃ כָּלְתָה לִתְשׁוּעָתְךָ נַפְשִׁי לִדְבָרְךָ יִחָלְתִּי׃ כָּלוּ עֵינַי לְאִמְרָתֶךָ לֵאמֹר מָתַי תְּנַחֲמֵנִי׃ כִּי־הָיִיתִי כְּנֹאד בְּקִיטוֹר חֻקֶּיךָ לֹא שָׁכָחְתִּי׃ כַּמָּה יְמֵי־עַבְדֶּךָ מָתַי תַּעֲשֶׂה בְרֹדְפַי מִשְׁפָּט׃ כָּרוּ־לִי זֵדִים שִׁיחוֹת אֲשֶׁר לֹא כְתוֹרָתֶךָ׃ כָּל־מִצְוֺתֶיךָ אֱמוּנָה שֶׁקֶר רְדָפוּנִי עָזְרֵנִי׃ כִּמְעַט כִּלּוּנִי בָאָרֶץ וַאֲנִי לֹא־עָזַבְתִּי פִקֻּודֶיךָ׃ כְּחַסְדְּךָ חַיֵּנִי וְאֶשְׁמְרָה עֵדוּת פִּיךָ׃ לְעוֹלָם יְיָ דְּבָרְךָ נִצָּב בַּשָּׁמָיִם׃ לְדֹר וָדֹר אֱמוּנָתֶךָ כּוֹנַנְתָּ אֶרֶץ וַתַּעֲמֹד׃ לְמִשְׁפָּטֶיךָ עָמְדוּ הַיּוֹם כִּי הַכֹּל עֲבָדֶיךָ׃ לוּלֵי תוֹרָתְךָ שַׁעֲשֻׁעָי אָז אָבַדְתִּי בְעָנְיִי׃ לְעוֹלָם לֹא־אֶשְׁכַּח פִּקּוּדֶיךָ כִּי בָם חִיִּיתָנִי׃ לְךָ־אֲנִי הוֹשִׁיעֵנִי כִּי פִקּוּדֶיךָ דָרָשְׁתִּי׃ לִי קִוּוּ רְשָׁעִים לְאַבְּדֵנִי עֵדֹתֶיךָ אֶתְבּוֹנָן׃ לְכָל תִּכְלָה רָאִיתִי קֵץ רְחָבָה מִצְוָתְךָ מְאֹד׃ מָה־אָהַבְתִּי תוֹרָתֶךָ כָּל־הַיּוֹם הִיא שִׂיחָתִי׃ מֵאֹיְבַי תְּחַכְּמֵנִי מִצְוֺתֶךָ כִּי לְעוֹלָם הִיא־לִי׃ מִכָּל־מְלַמְּדַי הִשְׂכַּלְתִּי כִּי עֵדְוֺתֶיךָ שִׂיחָה לִי׃ מִזְּקֵנִים אֶתְבּוֹנָן כִּי פִקּוּדֶיךָ נָצָרְתִּי׃ מִכָּל־אֹרַח רָע כָּלִאתִי רַגְלָי לְמַעַן אֶשְׁמֹר דְּבָרֶךָ׃ מִמִּשְׁפָּטֶיךָ לֹא־סָרְתִּי כִּי־אַתָּה הוֹרֵתָנִי׃ מַה־נִּמְלְצוּ לְחִכִּי אִמְרָתֶךָ מִדְּבַשׁ לְפִי׃ מִפִּקּוּדֶיךָ אֶתְבּוֹנָן עַל־כֵּן שָׂנֵאתִי כָּל־אֹרַח שָׁקֶר׃ נֵר־לְרַגְלִי דְבָרֶךָ וְאוֹר לִנְתִיבָתִי׃ נִשְׁבַּעְתִּי וָאֲקַיֵּמָה לִשְׁמֹר מִשְׁפְּטֵי צִדְקֶךָ׃ נַעֲנֵיתִי עַד־מְאֹד יְיָ חַיֵּנִי כִדְבָרֶךָ׃ נִדְבוֹת פִּי רְצֵה־נָא יְיָ וּמִשְׁפָּטֶיךָ לַמְּדֵנִי׃ נַפְשִׁי בְכַפִּי תָמִיד וְתוֹרָתְךָ לֹא שָׁכָחְתִּי׃ נָתְנוּ רְשָׁעִים פַּח לִי וּמִפִּקּוּדֶיךָ לֹא תָעִיתִי׃ נָחַלְתִּי עֵדְוֺתֶיךָ לְעוֹלָם כִּי־שְׂשׂוֹן לִבִּי הֵמָּה׃ נָטִיתִי לִבִּי לַעֲשׂוֹת חֻקֶּיךָ לְעוֹלָם עֵקֶב׃ סֵעֲפִים שָׂנֵאתִי וְתוֹרָתְךָ אָהָבְתִּי׃ סִתְרִי וּמָגִנִּי אָתָּה לִדְבָרְךָ יִחָלְתִּי׃ סוּרוּ־מִמֶּנִּי מְרֵעִים וְאֶצְּרָה מִצְוֺת אֱלֹהָי׃ סָמְכֵנִי כְאִמְרָתְךָ וְאֶחְיֶה וְאַל־תְּבִישֵׁנִי מִשִּׂבְרִי׃ סְעָדֵנִי וְאִוָּשֵׁעָה וְאֶשְׁעָה בְחֻקֶּיךָ תָמִיד׃ סָלִיתָ כָּל־שׁוֹגִים מֵחֻקֶּיךָ כִּי־שֶׁקֶר תַּרְמִיתָם׃ סִגִים הִשְׁבַּתָּ כָל־רִשְׁעֵי־אָרֶץ לָכֵן אָהַבְתִּי עֵדֹתֶיךָ׃ סָמַר מִפַּחְדְּךָ בְשָׂרִי וּמִמִּשְׁפָּטֶיךָ יָרֵאתִי׃ עָשִׂיתִי מִשְׁפָּט וָצֶדֶק בַּל־תַּנִּיחֵנִי לְעֹשְׁקָי׃ עֲרֹב עַבְדְּךָ לְטוֹב אַל־יַעַשְׁקֻנִי זֵדִים׃ עֵינַי כָּלוּ לִישׁוּעָתֶךָ וּלְאִמְרַת צִדְקֶךָ׃ עֲשֵׂה עִם־עַבְדְּךָ כְחַסְדֶּךָ וְחֻקֶּיךָ לַמְּדֵנִי׃ עַבְדְּךָ־אָנִי הֲבִינֵנִי וְאֵדְעָה עֵדֹתֶיךָ׃ עֵת לַעֲשׂוֹת לַיָי הֵפֵרוּ תּוֹרָתֶךָ׃ עַל־כֵּן אָהַבְתִּי מִצְוֺתֶיךָ מִזָּהָב וּמִפָּז׃ עַל־כֵּן כָּל־פִּקּוּדֵי כֹל יִשָּׁרְתִּי כָּל־אֹרַח שֶׁקֶר שָׂנֵאתִי׃ פְּלָאוֹת עֵדְוֺתֶיךָ עַל־כֵּן נְצָרָתַם נַפְשִׁי׃ פֵּתַח דְּבָרֶיךָ יָאִיר מֵבִין פְּתָיִים׃ פִּי־פָעַרְתִּי וָאֶשְׁאָפָה כִּי לְמִצְוֺתֶיךָ יָאָבְתִּי׃ פְּנֵה־אֵלַי וְחָנֵּנִי כְּמִשְׁפָּט לְאֹהֲבֵי שְׁמֶךָ׃ פְּעָמַי הָכֵן בְּאִמְרָתֶךָ וְאַל־תַּשְׁלֶט־בִּי כָל־אָוֶן׃ פְּדֵנִי מֵעֹשֶׁק אָדָם וְאֶשְׁמְרָה פִּקּוּדֶיךָ׃ פָּנֶיךָ הָאֵר בְּעַבְדֶּךָ וְלַמְּדֵנִי אֶת־חֻקֶּיךָ׃ פַּלְגֵי־מַיִם יָרְדוּ עֵינָי עַל לֹא־שָׁמְרוּ תוֹרָתֶךָ׃ צַדִּיק אַתָּה יְיָ וְיָשָׁר מִשְׁפָּטֶיךָ׃ צִוִּיתָ צֶדֶק עֵדֹתֶיךָ וֶאֱמוּנָה מְאֹד׃ צִמְּתַתְנִי קִנְאָתִי כִּי־שָׁכְחוּ דְבָרֶיךָ צָרָי׃ צְרוּפָה אִמְרָתְךָ מְאֹד וְעַבְדְּךָ אֲהֵבָהּ׃ צָעִיר אָנֹכִי וְנִבְזֶה פִּקֻּדֶיךָ לֹא שָׁכָחְתִּי׃ צִדְקָתְךָ צֶדֶק לְעוֹלָם וְתוֹרָתְךָ אֱמֶת׃ צַר־וּמָצוֹק מְצָאוּנִי מִצְוֺתֶיךָ שַׁעֲשֻׁעָי׃ צֶדֶק עֵדְוֺתֶיךָ לְעוֹלָם הֲבִינֵנִי וְאֶחְיֶה׃ קָרָאתִי בְכָל־לֵב עֲנֵנִי יְיָ חֻקֶּיךָ אֶצֹּרָה׃ קְרָאתִיךָ הוֹשִׁיעֵנִי וְאֶשְׁמְרָה עֵדֹתֶיךָ׃ קִדַּמְתִּי בַנֶּשֶׁף וָאֲשַׁוֵּעָה לִדְבָרְךָ יִחָלְתִּי׃ קִדְּמוּ עֵינַי אַשְׁמֻרוֹת לָשִׂיחַ בְּאִמְרָתֶךָ׃ קוֹלִי שִׁמְעָה כְחַסְדֶּךָ יְיָ כְּמִשְׁפָּטֶךָ חַיֵּנִי׃ קָרְבוּ רֹדְפֵי זִמָּה מִתּוֹרָתְךָ רָחָקוּ׃ קָרוֹב אַתָּה יְיָ וְכָל־מִצְוֺתֶיךָ אֱמֶת׃ קֶדֶם יָדַעְתִּי מֵעֵדֹתֶיךָ כִּי לְעוֹלָם יְסַדְתָּם׃ רְאֵה־עָנְיִי וְחַלְּצֵנִי כִּי־תוֹרָתְךָ לֹא שָׁכָחְתִּי׃ רִיבָה רִיבִי וּגְאָלֵנִי לְאִמְרָתְךָ חַיֵּנִי׃ רָחוֹק מֵרְשָׁעִים יְשׁוּעָה כִּי־חֻקֶּיךָ לֹא דָרָשׁוּ׃ רַחֲמֶיךָ רַבִּים יְיָ כְּמִשְׁפָּטֶיךָ חַיֵּנִי׃ רַבִּים רֹדְפַי וְצָרָי מֵעֵדְוֺתֶיךָ לֹא נָטִיתִי׃ רָאִיתִי בֹגְדִים וָאֶתְקוֹטָטָה אֲשֶׁר אִמְרָתְךָ לֹא שָׁמָרוּ׃ רְאֵה כִּי־פִקּוּדֶיךָ אָהָבְתִּי יְיָ כְּחַסְדְּךָ חַיֵּנִי׃ רֹאשׁ־דְּבָרְךָ אֱמֶת וּלְעוֹלָם כָּל־מִשְׁפַּט צִדְקֶךָ׃ שָׂרִים רְדָפוּנִי חִנָּם וּמִדְּבָרְךָ פָּחַד לִבִּי׃ שָׂשׂ אָנֹכִי עַל־אִמְרָתֶךָ כְּמוֹצֵא שָׁלָל רָב׃ שֶׁקֶר שָׂנֵאתִי וַאֲתַעֵבָה תּוֹרָתְךָ אָהָבְתִּי׃ שֶׁבַע בַּיּוֹם הִלַּלְתִּיךָ עַל מִשְׁפְּטֵי צִדְקֶךָ׃ שָׁלוֹם רָב לְאֹהֲבֵי תוֹרָתֶךָ וְאֵין־לָמוֹ מִכְשׁוֹל׃ שִׂבַּרְתִּי לִישׁוּעָתְךָ יְיָ וּמִצְוֺתֶיךָ עָשִׂיתִי׃ שָׁמְרָה נַפְשִׁי עֵדֹתֶיךָ וָאֹהֲבֵם מְאֹד׃ שָׁמַרְתִּי פִקּוּדֶיךָ וְעֵדֹתֶיךָ כִּי כָל־דְּרָכַי נֶגְדֶּךָ׃ תִּקְרַב רִנָּתִי לְפָנֶיךָ יְיָ כִּדְבָרְךָ הֲבִינֵנִי׃ תָּבוֹא תְּחִנָּתִי לְפָנֶיךָ כְּאִמְרָתְךָ הַצִּילֵנִי׃ תַּבַּעְנָה שְׂפָתַי תְּהִלָּה כִּי תְלַמְּדֵנִי חֻקֶּיךָ׃ תַּעַן לְשׁוֹנִי אִמְרָתֶךָ כִּי כָל־מִצְוֺתֶיךָ צֶּדֶק׃ תְּהִי־יָדְךָ לְעָזְרֵנִי כִּי פִקּוּדֶיךָ בָחָרְתִּי׃ תָּאַבְתִּי לִישׁוּעָתְךָ יְיָ וְתוֹרָתְךָ שַׁעֲשֻׁעָי׃ תְּחִי־נַפְשִׁי וּתְהַלְלֶךָּ וּמִשְׁפָּטֶךָ יַעֲזְרֻנִי׃ תָּעִיתִי כְּשֶׂה אֹבֵד בַּקֵּשׁ עַבְדֶּךָ כִּי מִצְוֺתֶיךָ לֹא שָׁכָחְתִּי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:6</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-6" aria-label="Copy link to Ma'aneh Lashon Chabad 4:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קכ</span> שִׁיר הַמַּעֲלוֹת אֶל־יְיָ בַּצָּרָתָה לִּי קָרָאתִי וַיַּעֲנֵנִי׃ יְיָ הַצִּילָה נַפְשִׁי מִשְּׂפַת־שֶׁקֶר מִלָּשׁוֹן רְמִיָּה׃ מַה־יִּתֵּן לְךָ וּמַה־יֹּסִיף לָךְ לָשׁוֹן רְמִיָּה׃ חִצֵּי גִבּוֹר שְׁנוּנִים עִם גַּחֲלֵי רְתָמִים׃ אוֹיָה־לִי כִּי־גַרְתִּי מֶשֶׁךְ שָׁכַנְתִּי עִם־אָהֳלֵי קֵדָר׃ רַבַּת שָׁכְנָה־לָּהּ נַפְשִׁי עִם שׂוֹנֵא שָׁלוֹם׃ אֲ‍נִי־שָׁלוֹם וְכִי אֲדַבֵּר הֵמָּה לַמִּלְחָמָה׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:7</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-7" aria-label="Copy link to Ma'aneh Lashon Chabad 4:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קכא</span> שִׁיר לַמַּעֲלוֹת אֶשָּׂא עֵינַי אֶל־הֶהָרִים מֵאַיִן יָבֹא עֶזְרִי׃ עֶזְרִי מֵעִם יְיָ עֹשֵׂה שָׁמַיִם וָאָרֶץ׃ אַל־יִתֵּן לַמּוֹט רַגְלֶךָ אַל־יָנוּם שֹׁמְרֶךָ׃ הִנֵּה לֹא־יָנוּם וְלֹא יִישָׁן שׁוֹמֵר יִשְׂרָאֵל׃ יְיָ שֹׁמְרֶךָ יְיָ צִלְּךָ עַל־יַד יְמִינֶךָ׃ יוֹמָם הַשֶּׁמֶשׁ לֹא־יַכֶּכָּה וְיָרֵחַ בַּלָּיְלָה׃ יְיָ יִשְׁמָרְךָ מִכָּל־רָע יִשְׁמֹר אֶת־נַפְשֶׁךָ׃ יְיָ יִשְׁמָר־צֵאתְךָ וּבוֹאֶךָ מֵעַתָּה וְעַד־עוֹלָם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:8</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-8" aria-label="Copy link to Ma'aneh Lashon Chabad 4:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קכב</span> שִׁיר הַמַּעֲלוֹת לְדָוִד שָׂמַחְתִּי בְּאֹמְרִים לִי בֵּית יְיָ נֵלֵךְ׃ עֹמְדוֹת הָיוּ רַגְלֵינוּ בִּשְׁעָרַיִךְ יְרוּשָׁלִָם׃ יְרוּשָׁלִַם הַבְּנוּיָה כְּעִיר שֶׁחֻבְּרָה־לָּהּ יַחְדָּו׃ שֶׁשָּׁם עָלוּ שְׁבָטִים שִׁבְטֵי־יָהּ עֵדוּת לְיִשְׂרָאֵל לְהֹדוֹת לְשֵׁם יְיָ׃ כִּי שָׁמָּה יָשְׁבוּ כִסְאוֹת לְמִשְׁפָּט כִּסְאוֹת לְבֵית דָּוִיד׃ שַׁאֲלוּ שְׁלוֹם יְרוּשָׁלִָם יִשְׁלָיוּ אֹהֲבָיִךְ׃ יְהִי־שָׁלוֹם בְּחֵילֵךְ שַׁלְוָה בְּאַרְמְנוֹתָיִךְ׃ לְמַעַן אַחַי וְרֵעָי אֲדַבְּרָה־נָּא שָׁלוֹם בָּךְ׃ לְמַעַן בֵּית־יְיָ אֱלֹהֵינוּ אֲבַקְשָׁה טוֹב לָךְ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:9</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-9" aria-label="Copy link to Ma'aneh Lashon Chabad 4:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קכג</span> שִׁיר הַמַּעֲלוֹת אֵלֶיךָ נָשָׂאתִי אֶת־עֵינַי הַיֹּשְׁבִי בַּשָּׁמָיִם׃ הִנֵּה כְעֵינֵי עֲבָדִים אֶל־יַד אֲ‍דוֹנֵיהֶם כְּעֵינֵי שִׁפְחָה אֶל־יַד גְּבִרְתָּהּ כֵּן עֵינֵינוּ אֶל־יְיָ אֱלֹהֵינוּ עַד שֶׁיְּחָנֵּנוּ׃ חָנֵּנוּ יְיָ חָנֵּנוּ כִּי־רַב שָׂבַעְנוּ בוּז׃ רַבַּת שָׂבְעָה־לָּהּ נַפְשֵׁנוּ הַלַּעַג הַשַּׁאֲנַנִּים הַבּוּז לִגְאֵיוֹנִים׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:10</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-10" aria-label="Copy link to Ma'aneh Lashon Chabad 4:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קכד</span> שִׁיר הַמַּעֲלוֹת לְדָוִד לוּלֵי יְיָ שֶׁהָיָה לָנוּ יֹאמַר־נָא יִשְׂרָאֵל׃ לוּלֵי יְיָ שֶׁהָיָה לָנוּ בְּקוּם עָלֵינוּ אָדָם׃ אֲזַי חַיִּים בְּלָעוּנוּ בַּחֲרוֹת אַפָּם בָּנוּ׃ אֲזַי הַמַּיִם שְׁטָפוּנוּ נַחְלָה עָבַר עַל־נַפְשֵׁנוּ׃ אֲזַי עָבַר עַל־נַפְשֵׁנוּ הַמַּיִם הַזֵּידוֹנִים׃ בָּרוּךְ יְיָ שֶׁלֹּא נְתָנָנוּ טֶרֶף לְשִׁנֵּיהֶם׃ נַפְשֵׁנוּ כְּצִפּוֹר נִמְלְטָה מִפַּח יוֹקְשִׁים הַפַּח נִשְׁבָּר וַאֲנַחְנוּ נִמְלָטְנוּ׃ עֶזְרֵנוּ בְּשֵׁם יְיָ עֹשֵׂה שָׁמַיִם וָאָרֶץ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:11</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-11" aria-label="Copy link to Ma'aneh Lashon Chabad 4:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קכה</span> שִׁיר הַמַּעֲלוֹת הַבֹּטְחִים בַּיָי כְּהַר־צִיּוֹן לֹא־יִמּוֹט לְעוֹלָם יֵשֵׁב׃ יְרוּשָׁלִַם הָרִים סָבִיב לָהּ וַיָי סָבִיב לְעַמּוֹ מֵעַתָּה וְעַד־עוֹלָם׃ כִּי לֹא יָנוּחַ שֵׁבֶט הָרֶשַׁע עַל גּוֹרַל הַצַּדִּיקִים לְמַעַן לֹא־יִשְׁלְחוּ הַצַּדִּיקִים בְּעַוְלָתָה יְדֵיהֶם׃ הֵיטִיבָה יְיָ לַטּוֹבִים וְלִישָׁרִים בְּלִבּוֹתָם׃ וְהַמַּטִּים עַקַלְקַלּוֹתָם יוֹלִיכֵם יְיָ אֶת־פֹּעֲלֵי הָאָוֶן שָׁלוֹם עַל־יִשְׂרָאֵל׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:12</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-12" aria-label="Copy link to Ma'aneh Lashon Chabad 4:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קכו</span> שִׁיר הַמַּעֲלוֹת בְּשׁוּב יְיָ אֶת־שִׁיבַת צִיּוֹן הָיִינוּ כְּחֹלְמִים׃ אָז יִמָּלֵא שְׂחוֹק פִּינוּ וּלְשׁוֹנֵנוּ רִנָּה אָז יֹאמְרוּ בַגּוֹיִם הִגְדִּיל יְיָ לַעֲשׂוֹת עִם־אֵלֶּה׃ הִגְדִּיל יְיָ לַעֲשׂוֹת עִמָּנוּ הָיִינוּ שְׂמֵחִים׃ שׁוּבָה יְיָ אֶת־שְׁבִיתֵנוּ כַּאֲפִיקִים בַּנֶּגֶב׃ הַזֹּרְעִים בְּדִמְעָה בְּרִנָּה יִקְצֹרוּ׃ הָלוֹךְ יֵלֵךְ וּבָכֹה נֹשֵׂא מֶשֶׁךְ־הַזָּרַע בֹּא־יָבוֹא בְרִנָּה נֹשֵׂא אֲלֻמֹּתָיו׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:13</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-13" aria-label="Copy link to Ma'aneh Lashon Chabad 4:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קכז</span> שִׁיר הַמַּעֲלוֹת לִשְׁלֹמֹה אִם־יְיָ לֹא־יִבְנֶה בַיִת שָׁוְא עָמְלוּ בוֹנָיו בּוֹ אִם־יְיָ לֹא־יִשְׁמָר־עִיר שָׁוְא שָׁקַד שׁוֹמֵר׃ שָׁוְא לָכֶם מַשְׁכִּימֵי קוּם מְאַחֲרֵי־שֶׁבֶת אֹכְלֵי לֶחֶם הָעֲצָבִים כֵּן יִתֵּן לִידִידוֹ שֵׁנָא׃ הִנֵּה נַחֲלַת יְיָ בָּנִים שָׂכָר פְּרִי הַבָּטֶן׃ כְּחִצִּים בְּיַד־גִּבּוֹר כֵּן בְּנֵי הַנְּעוּרִים׃ אַשְׁרֵי הַגֶּבֶר אֲשֶׁר מִלֵּא אֶת־אַשְׁפָּתוֹ מֵהֶם לֹא־יֵבֹשׁוּ כִּי־יְדַבְּרוּ אֶת־אוֹיְבִים בַּשָּׁעַר׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:14</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-14" aria-label="Copy link to Ma'aneh Lashon Chabad 4:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קכח</span> שִׁיר הַמַּעֲלוֹת אַשְׁרֵי כָּל־יְרֵא יְיָ הַהֹלֵךְ בִּדְרָכָיו׃ יְגִיעַ כַּפֶּיךָ כִּי תֹאכֵל אַשְׁרֶיךָ וְטוֹב לָךְ׃ אֶשְׁתְּךָ כְּגֶפֶן פֹּרִיָּה בְּיַרְכְּתֵי בֵיתֶךָ בָּנֶיךָ כִּשְׁתִלֵי זֵיתִים סָבִיב לְשֻׁלְחָנֶךָ׃ הִנֵּה כִי־כֵן יְבֹרַךְ גָּבֶר יְרֵא יְיָ׃ יְבָרֶכְךָ יְיָ מִצִּיּוֹן וּרְאֵה בְּטוּב יְרוּשָׁלִָם כֹּל יְמֵי חַיֶּיךָ׃ וּרְאֵה־בָנִים לְבָנֶיךָ שָׁלוֹם עַל־יִשְׂרָאֵל׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:15</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-15" aria-label="Copy link to Ma'aneh Lashon Chabad 4:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קכט</span> שִׁיר הַמַּעֲלוֹת רַבַּת צְרָרוּנִי מִנְּעוּרַי יֹאמַר־נָא יִשְׂרָאֵל׃ רַבַּת צְרָרוּנִי מִנְּעוּרָי גַּם לֹא־יָכְלוּ לִי׃ עַל־גַּבִּי חָרְשׁוּ חֹרְשִׁים הֶאֱרִיכוּ לְמַעֲנִיתָם׃ יְיָ צַדִּיק קִצֵּץ עֲבוֹת רְשָׁעִים׃ יֵבֹשׁוּ וְיִסֹּגוּ אָחוֹר כֹּל שֹׂנְאֵי צִיּוֹן׃ יִהְיוּ כַּחֲצִיר גַּגּוֹת שֶׁקַּדְמַת שָׁלַף יָבֵשׁ׃ שֶׁלֹּא מִלֵּא כַפּוֹ קוֹצֵר וְחִצְנוֹ מְעַמֵּר׃ וְלֹא אָמְרוּ הָעֹבְרִים בִּרְכַּת־יְיָ אֲלֵיכֶם בֵּרַכְנוּ אֶתְכֶם בְּשֵׁם יְיָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:16</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-16" aria-label="Copy link to Ma'aneh Lashon Chabad 4:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קל</span> שִׁיר הַמַּעֲלוֹת מִמַּעֲמַקִּים קְרָאתִיךָ יְיָ׃ אֲדֹנָי שִׁמְעָה בְקוֹלִי תִּהְיֶינָה אָזְנֶיךָ קַשֻּׁבוֹת לְקוֹל תַּחֲנוּנָי׃ אִם־עֲוֺנוֹת תִּשְׁמָר־יָהּ אֲדֹנָי מִי יַעֲמֹד׃ כִּי־עִמְּךָ הַסְּלִיחָה לְמַעַן תִּוָּרֵא׃ קִוִּיתִי יְיָ קִוְּתָה נַפְשִׁי וְלִדְבָרוֹ הוֹחָלְתִּי׃ נַפְשִׁי לַאדֹנָי מִשֹּׁמְרִים לַבֹּקֶר שֹׁמְרִים לַבֹּקֶר׃ יַחֵל יִשְׂרָאֵל אֶל־יְיָ כִּי־עִם־יְיָ הַחֶסֶד וְהַרְבֵּה עִמּוֹ פְדוּת׃ וְהוּא יִפְדֶּה אֶת־יִשְׂרָאֵל מִכֹּל עֲוֺנֹתָיו׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:17</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-17" aria-label="Copy link to Ma'aneh Lashon Chabad 4:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קלא</span> שִׁיר הַמַּעֲלוֹת לְדָוִד יְיָ לֹא־גָבַהּ לִבִּי וְלֹא־רָמוּ עֵינַי וְלֹא־הִלַּכְתִּי בִּגְדֹלוֹת וּבְנִפְלָאוֹת מִמֶּנִּי׃ אִם־לֹא שִׁוִּיתִי וְדוֹמַמְתִּי נַפְשִׁי כְּגָמֻל עֲלֵי אִמּוֹ כַּגָּמֻל עָלַי נַפְשִׁי׃ יַחֵל יִשְׂרָאֵל אֶל־יְיָ מֵעַתָּה וְעַד־עוֹלָם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:18</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-18" aria-label="Copy link to Ma'aneh Lashon Chabad 4:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קלב</span> שִׁיר הַמַּעֲלוֹת זְכוֹר־יְיָ לְדָוִד אֵת כָּל־עֻנּוֹתוֹ׃ אֲשֶׁר נִשְׁבַּע לַיָי נָדַר לַאֲבִיר יַעֲקֹב׃ אִם־אָבֹא בְּאֹהֶל בֵּיתִי אִם־אֶעֱלֶה עַל־עֶרֶשׂ יְצוּעָי׃ אִם־אֶתֵּן שְׁנַת לְעֵינָי לְעַפְעַפַּי תְּנוּמָה׃ עַד־אֶמְצָא מָקוֹם לַיָי מִשְׁכָּנוֹת לַאֲבִיר יַעֲקֹב׃ הִנֵּה־שְׁמַעֲנוּהָ בְאֶפְרָתָה מְצָאנוּהָ בִּשְׂדֵי־יָעַר׃ נָבוֹאָה לְמִשְׁכְּנוֹתָיו נִשְׁתַּחֲוֶה לַהֲדֹם רַגְלָיו׃ קוּמָה יְיָ לִמְנוּחָתֶךָ אַתָּה וַאֲרוֹן עֻזֶּךָ׃ כֹּהֲנֶיךָ יִלְבְּשׁוּ־צֶדֶק וַחֲסִידֶיךָ יְרַנֵּנוּ׃ בַּעֲבוּר דָּוִד עַבְדֶּךָ אַל־תָּשֵׁב פְּנֵי מְשִׁיחֶךָ׃ נִשְׁבַּע־יְיָ לְדָוִד אֱמֶת לֹא־יָשׁוּב מִמֶּנָּה מִפְּרִי בִטְנְךָ אָשִׁית לְכִסֵּא־לָךְ׃ אִם־יִשְׁמְרוּ בָנֶיךָ בְּרִיתִי וְעֵדֹתִי זוֹ אֲלַמְּדֵם גַּם־בְּנֵיהֶם עֲדֵי־עַד יֵשְׁבוּ לְכִסֵּא־לָךְ׃ כִּי־בָחַר יְיָ בְּצִיּוֹן אִוָּהּ לְמוֹשָׁב לוֹ׃ זֹאת־מְנוּחָתִי עֲדֵי־עַד פֹּה־אֵשֵׁב כִּי אִוִּתִיהָ׃ צֵידָהּ בָּרֵךְ אֲבָרֵךְ אֶבְיוֹנֶיהָ אַשְׂבִּיעַ לָחֶם׃ וְכֹהֲנֶיהָ אַלְבִּישׁ יֶשַׁע וַחֲסִידֶיהָ רַנֵּן יְרַנֵּנוּ׃ שָׁם אַצְמִיחַ קֶרֶן לְדָוִד עָרַכְתִּי נֵר לִמְשִׁיחִי׃ אוֹיְבָיו אַלְבִּישׁ בֹּשֶׁת וְעָלָיו יָצִיץ נִזְרוֹ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-19" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:19</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-19" aria-label="Copy link to Ma'aneh Lashon Chabad 4:19">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קלג</span> שִׁיר הַמַּעֲלוֹת לְדָוִד הִנֵּה מַה־טּוֹב וּמַה־נָּעִים שֶׁבֶת אַחִים גַּם־יָחַד׃ כַּשֶּׁמֶן הַטּוֹב עַל־הָרֹאשׁ יֹרֵד עַל־הַזָּקָן זְקַן־אַהֲרֹן שֶׁיֹּרֵד עַל־פִּי מִדּוֹתָיו׃ כְּטַל־חֶרְמוֹן שֶׁיֹּרֵד עַל־הַרְרֵי צִיּוֹן כִּי שָׁם צִוָּה יְיָ אֶת־הַבְּרָכָה חַיִּים עַד־הָעוֹלָם׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-20" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:20</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-20" aria-label="Copy link to Ma'aneh Lashon Chabad 4:20">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קלד</span> שִׁיר הַמַּעֲלוֹת הִנֵּה בָּרֲכוּ אֶת־יְיָ כָּל־עַבְדֵי יְיָ הָעֹמְדִים בְּבֵית־יְיָ בַּלֵּילוֹת׃ שְׂאוּ־יְדֵכֶם קֹדֶשׁ וּבָרֲכוּ אֶת־יְיָ׃ יְבָרֶכְךָ יְיָ מִצִּיּוֹן עֹשֵׂה שָׁמַיִם וָאָרֶץ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-21" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:21</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-21" aria-label="Copy link to Ma'aneh Lashon Chabad 4:21">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קמב</span> מַשְׂכִּיל לְדָוִד בִּהְיוֹתוֹ בַמְּעָרָה תְפִלָּה׃ קוֹלִי אֶל־יְיָ אֶזְעָק קוֹלִי אֶל־יְיָ אֶתְחַנָּן׃ אֶשְׁפֹּךְ לְפָנָיו שִׂיחִי צָרָתִי לְפָנָיו אַגִּיד׃ בְּהִתְעַטֵּף עָלַי רוּחִי וְאַתָּה יָדַעְתָּ נְתִיבָתִי בְּאֹרַח־זוּ אֲהַלֵּךְ טָמְנוּ פַח לִי׃ הַבֵּיט יָמִין וּרְאֵה וְאֵין־לִי מַכִּיר אָבַד מָנוֹס מִמֶּנִּי אֵין דּוֹרֵשׁ לְנַפְשִׁי׃ זָעַקְתִּי אֵלֶיךָ יְיָ אָמַרְתִּי אַתָּה מַחְסִי חֶלְקִי בְּאֶרֶץ הַחַיִּים׃ הַקְשִׁיבָה אֶל־רִנָּתִי כִּי־דַלּוֹתִי מְאֹד הַצִּילֵנִי מֵרֹדְפַי כִּי אָמְצוּ מִמֶּנִּי׃ הוֹצִיאָה מִמַּסְגֵּר נַפְשִׁי לְהוֹדוֹת אֶת־שְׁמֶךָ בִּי יַכְתִּרוּ צַדִּיקִים כִּי תִגְמֹל עָלָי׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-22" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:22</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-22" aria-label="Copy link to Ma'aneh Lashon Chabad 4:22">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קמג</span> מִזְמוֹר לְדָוִד יְיָ שְׁמַע תְּפִלָּתִי הַאֲזִינָה אֶל־תַּחֲנוּנַי בֶּאֱמֻנָתְךָ עֲנֵנִי בְּצִדְקָתֶךָ׃ וְאַל־תָּבוֹא בְמִשְׁפָּט אֶת־עַבְדֶּךָ כִּי לֹא־יִצְדַּק לְפָנֶיךָ כָל־חָי׃ כִּי רָדַף אוֹיֵב נַפְשִׁי דִּכָּא לָאָרֶץ חַיָּתִי הוֹשִׁיבַנִי בְמַחֲשַׁכִּים כְּמֵתֵי עוֹלָם׃ וַתִּתְעַטֵּף עָלַי רוּחִי בְּתוֹכִי יִשְׁתּוֹמֵם לִבִּי׃ זָכַרְתִּי יָמִים מִקֶּדֶם הָגִיתִי בְכָל־פָּעֳלֶךָ בְּמַעֲשֵׂה יָדֶיךָ אֲשׂוֹחֵחַ׃ פֵּרַשְׂתִּי יָדַי אֵלֶיךָ נַפְשִׁי כְּאֶרֶץ־עֲיֵפָה לְךָ סֶלָה׃ מַהֵר עֲנֵנִי יְיָ כָּלְתָה רוּחִי אַל־תַּסְתֵּר פָּנֶיךָ מִמֶּנִּי וְנִמְשַׁלְתִּי עִם־יֹרְדֵי בוֹר׃ הַשְׁמִיעֵנִי בַבֹּקֶר חַסְדֶּךָ כִּי־בְךָ בָטָחְתִּי הוֹדִיעֵנִי דֶּרֶךְ־זוּ אֵלֵךְ כִּי־אֵלֶיךָ נָשָׂאתִי נַפְשִׁי׃ הַצִּילֵנִי מֵאֹיְבַי יְיָ אֵלֶיךָ כִסִּתִי׃ לַמְּדֵנִי לַעֲשׂוֹת רְצוֹנֶךָ כִּי־אַתָּה אֱלוֹהָי רוּחֲךָ טוֹבָה תַּנְחֵנִי בְּאֶרֶץ מִישׁוֹר׃ לְמַעַן־שִׁמְךָ יְיָ תְּחַיֵּנִי בְּצִדְקָתְךָ תוֹצִיא מִצָּרָה נַפְשִׁי׃ וּבְחַסְדְּךָ תַּצְמִית אֹיְבָי וְהַאֲבַדְתָּ כָּל־צֹרֲרֵי נַפְשִׁי כִּי אֲנִי עַבְדֶּךָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-23" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:23</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-23" aria-label="Copy link to Ma'aneh Lashon Chabad 4:23">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קמד</span> לְדָוִד בָּרוּךְ יְיָ צוּרִי הַמְלַמֵּד יָדַי לַקְרָב אֶצְבְּעוֹתַי לַמִּלְחָמָה׃ חַסְדִּי וּמְצוּדָתִי מִשְׂגַּבִּי וּמְפַלְטִי לִי מָגִנִּי וּבוֹ חָסִיתִי הָרוֹדֵד עַמִּי תַחְתָּי׃ יְיָ מָה־אָדָם וַתֵּדָעֵהוּ בֶּן־אֱנוֹשׁ וַתְּחַשְּׁבֵהוּ׃ אָדָם לַהֶבֶל דָּמָה יָמָיו כְּצֵל עוֹבֵר׃ יְיָ הַט־שָׁמֶיךָ וְתֵרֵד גַּע בֶּהָרִים וְיֶעֱשָׁנוּ׃ בְּרוֹק בָּרָק וּתְפִיצֵם שְׁלַח חִצֶּיךָ וּתְהֻמֵּם׃ שְׁלַח יָדֶיךָ מִמָּרוֹם פְּצֵנִי וְהַצִּילֵנִי מִמַּיִם רַבִּים מִיַּד בְּנֵי נֵכָר׃ אֲשֶׁר פִּיהֶם דִּבֶּר־שָׁוְא וִימִינָם יְמִין שָׁקֶר׃ אֱ‍לֹהִים שִׁיר חָדָשׁ אָשִׁירָה לָּךְ בְּנֵבֶל עָשׂוֹר אֲזַמְּרָה־לָּךְ׃ הַנּוֹתֵן תְּשׁוּעָה לַמְּלָכִים הַפּוֹצֶה אֶת־דָּוִד עַבְדּוֹ מֵחֶרֶב רָעָה׃ פְּצֵנִי וְהַצִּילֵנִי מִיַּד בְּנֵי־נֵכָר אֲשֶׁר פִּיהֶם דִּבֶּר־שָׁוְא וִימִינָם יְמִין שָׁקֶר׃ אֲשֶׁר בָּנֵינוּ כִּנְטִעִים מְגֻדָּלִים בִּנְעוּרֵיהֶם בְּנוֹתֵינוּ כְזָוִיֹּת מְחֻטָּבוֹת תַּבְנִית הֵיכָל׃ מְזָוֵינוּ מְלֵאִים מְפִיקִים מִזַּן אֶל־זַן צֹאונֵנוּ מַאֲלִיפוֹת מְרֻבָּבוֹת בְּחוּצוֹתֵינוּ׃ אַלּוּפֵינוּ מְסֻבָּלִים אֵין־פֶּרֶץ וְאֵין יוֹצֵאת וְאֵין צְוָחָה בִּרְחֹבֹתֵינוּ׃ אַשְׁרֵי הָעָם שֶׁכָּכָה לּוֹ אַשְׁרֵי הָעָם שֶׁיָי אֱלֹהָיו׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-24" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:24</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-24" aria-label="Copy link to Ma'aneh Lashon Chabad 4:24">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קמה</span> תְּהִלָּה לְדָוִד אֲרוֹמִמְךָ אֱלוֹהַי הַמֶּלֶךְ וַאֲבָרֲכָה שִׁמְךָ לְעוֹלָם וָעֶד׃ בְּכָל־יוֹם אֲבָרֲכֶךָּ וַאֲהַלְלָה שִׁמְךָ לְעוֹלָם וָעֶד׃ גָּדוֹל יְיָ וּמְהֻלָּל מְאֹד וְלִגְדֻלָּתוֹ אֵין חֵקֶר׃ דּוֹר לְדוֹר יְשַׁבַּח מַעֲשֶׂיךָ וּגְבוּרֹתֶיךָ יַגִּידוּ׃ הֲדַר כְּבוֹד הוֹדֶךָ וְדִבְרֵי נִפְלְאוֹתֶיךָ אָשִׂיחָה׃ וֶעֱזוּז נוֹרְאֹתֶיךָ יֹאמֵרוּ וּגְדוּלָּתְךָ אֲסַפְּרֶנָּה׃ זֵכֶר רַב־טוּבְךָ יַבִּיעוּ וְצִדְקָתְךָ יְרַנֵּנוּ׃ חַנּוּן וְרַחוּם יְיָ אֶרֶךְ אַפַּיִם וּגְדָל־חָסֶד׃ טוֹב־יְיָ לַכֹּל וְרַחֲמָיו עַל־כָּל־מַעֲשָׂיו׃ יוֹדוּךָ יְיָ כָּל־מַעֲשֶׂיךָ וַחֲסִידֶיךָ יְבָרֲכוּכָה׃ כְּבוֹד מַלְכוּתְךָ יֹאמֵרוּ וּגְבוּרָתְךָ יְדַבֵּרוּ׃ לְהוֹדִיעַ לִבְנֵי הָאָדָם גְּבוּרֹתָיו וּכְבוֹד הֲדַר מַלְכוּתוֹ׃ מַלְכוּתְךָ מַלְכוּת כָּל־עֹלָמִים וּמֶמְשֶׁלְתְּךָ בְּכָל־דּוֹר וָדוֹר׃ סוֹמֵךְ יְיָ לְכָל־הַנֹּפְלִים וְזוֹקֵף לְכָל־הַכְּפוּפִים׃ עֵינֵי־כֹל אֵלֶיךָ יְשַׂבֵּרוּ וְאַתָּה נוֹתֵן־לָהֶם אֶת־אָכְלָם בְּעִתּוֹ׃ פּוֹתֵחַ אֶת־יָדֶךָ וּמַשְׂבִּיעַ לְכָל־חַי רָצוֹן׃ צַדִּיק יְיָ בְּכָל־דְּרָכָיו וְחָסִיד בְּכָל־מַעֲשָׂיו׃ קָרוֹב יְיָ לְכָל־קֹרְאָיו לְכֹל אֲשֶׁר יִקְרָאֻהוּ בֶאֱמֶת׃ רְצוֹן־יְרֵאָיו יַעֲשֶׂה וְאֶת־שַׁוְעָתָם יִשְׁמַע וְיוֹשִׁיעֵם׃ שׁוֹמֵר יְיָ אֶת־כָּל־אֹהֲבָיו וְאֵת כָּל־הָרְשָׁעִים יַשְׁמִיד׃ תְּהִלַּת יְיָ יְדַבֶּר־פִּי וִיבָרֵךְ כָּל־בָּשָׂר שֵׁם קָדְשׁוֹ לְעוֹלָם וָעֶד׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-25" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:25</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-25" aria-label="Copy link to Ma'aneh Lashon Chabad 4:25">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קמו</span> הַלְלוּיָהּ הַלְלִי נַפְשִׁי אֶת־יְיָ׃ אֲהַלְלָה יְיָ בְּחַיָּי אֲזַמְּרָה לֵאלֹהַי בְּעוֹדִי׃ אַל־תִּבְטְחוּ בִנְדִיבִים בְּבֶן־אָדָם שֶׁאֵין לוֹ תְשׁוּעָה׃ תֵּצֵא רוּחוֹ יָשֻׁב לְאַדְמָתוֹ בַּיּוֹם הַהוּא אָבְדוּ עֶשְׁתֹּנֹתָיו׃ אַשְׁרֵי שֶׁאֵל יַעֲקֹב בְּעֶזְרוֹ שִׂבְרוֹ עַל־יְיָ אֱלֹהָיו׃ עֹשֶׂה שָׁמַיִם וָאָרֶץ אֶת־הַיָּם וְאֶת־כָּל־אֲשֶׁר־בָּם הַשֹּׁמֵר אֱמֶת לְעוֹלָם׃ עֹשֶׂה מִשְׁפָּט לָעֲשׁוּקִים נֹתֵן לֶחֶם לָרְעֵבִים יְיָ מַתִּיר אֲסוּרִים׃ יְיָ פֹּקֵחַ עִוְרִים יְיָ זֹקֵף כְּפוּפִים יְיָ אֹהֵב צַדִּיקִים׃ יְיָ שֹׁמֵר אֶת־גֵּרִים יָתוֹם וְאַלְמָנָה יְעוֹדֵד וְדֶרֶךְ רְשָׁעִים יְעַוֵּת׃ יִמְלֹךְ יְיָ לְעוֹלָם אֱלֹהַיִךְ צִיּוֹן לְדֹר וָדֹר הַלְלוּיָהּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-26" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:26</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-26" aria-label="Copy link to Ma'aneh Lashon Chabad 4:26">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קמז</span> הַלְלוּיָהּ כִּי־טוֹב זַמְּרָה אֱלֹהֵינוּ כִּי־נָעִים נָאוָה תְהִלָּה׃ בּוֹנֵה יְרוּשָׁלִַם יְיָ נִדְחֵי יִשְׂרָאֵל יְכַנֵּס׃ הָרֹפֵא לִשְׁבוּרֵי לֵב וּמְחַבֵּשׁ לְעַצְּבוֹתָם׃ מוֹנֶה מִסְפָּר לַכּוֹכָבִים לְכֻלָּם שֵׁמוֹת יִקְרָא׃ גָּדוֹל אֲדוֹנֵינוּ וְרַב־כֹּחַ לִתְבוּנָתוֹ אֵין מִסְפָּר׃ מְעוֹדֵד עֲנָוִים יְיָ מַשְׁפִּיל רְשָׁעִים עֲדֵי־אָרֶץ׃ עֱנוּ לַיָי בְּתוֹדָה זַמְּרוּ לֵאלֹהֵינוּ בְכִנּוֹר׃ הַמְכַסֶּה שָׁמַיִם בְּעָבִים הַמֵּכִין לָאָרֶץ מָטָר הַמַּצְמִיחַ הָרִים חָצִיר׃ נוֹתֵן לִבְהֵמָה לַחְמָהּ לִבְנֵי עֹרֵב אֲשֶׁר יִקְרָאוּ׃ לֹא בִגְבוּרַת הַסּוּס יֶחְפָּץ לֹא־בְשׁוֹקֵי הָאִישׁ יִרְצֶה׃ רוֹצֶה יְיָ אֶת־יְרֵאָיו אֶת־הַמְיַחֲלִים לְחַסְדּוֹ׃ שַׁבְּחִי יְרוּשָׁלִַם אֶת־יְיָ הַלְלִי אֱלֹהַיִךְ צִיּוֹן׃ כִּי־חִזַּק בְּרִיחֵי שְׁעָרָיִךְ בֵּרַךְ בָּנַיִךְ בְּקִרְבֵּךְ׃ הַשָּׂם־גְּבוּלֵךְ שָׁלוֹם חֵלֶב חִטִּים יַשְׂבִּיעֵךְ׃ הַשֹּׁלֵחַ אִמְרָתוֹ אָרֶץ עַד־מְהֵרָה יָרוּץ דְּבָרוֹ׃ הַנֹּתֵן שֶׁלֶג כַּצָּמֶר כְּפוֹר כָּאֵפֶר יְפַזֵּר׃ מַשְׁלִיךְ קַרְחוֹ כְפִתִּים לִפְנֵי קָרָתוֹ מִי יַעֲמֹד׃ יִשְׁלַח דְּבָרוֹ וְיַמְסֵם יַשֵּׁב רוּחוֹ יִזְּלוּ־מָיִם׃ מַגִּיד דְּבָרָיו לְיַעֲקֹב חֻקָּיו וּמִשְׁפָּטָיו לְיִשְׂרָאֵל׃ לֹא עָשָׂה כֵן לְכָל־גּוֹי וּמִשְׁפָּטִים בַּל־יְדָעוּם הַלְלוּיָהּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-27" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:27</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-27" aria-label="Copy link to Ma'aneh Lashon Chabad 4:27">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קמח</span> הַלְלוּיָהּ הַלְלוּ אֶת־יְיָ מִן־הַשָּׁמַיִם הַלְלוּהוּ בַּמְּרוֹמִים׃ הַלְלוּהוּ כָל־מַלְאָכָיו הַלְלוּהוּ כָּל־צְבָאָיו׃ הַלְלוּהוּ שֶׁמֶשׁ וְיָרֵחַ הַלְלוּהוּ כָּל־כּוֹכְבֵי אוֹר׃ הַלְלוּהוּ שְׁמֵי הַשָּׁמָיִם וְהַמַּיִם אֲשֶׁר מֵעַל הַשָּׁמָיִם׃ יְהַלְלוּ אֶת־שֵׁם יְיָ כִּי הוּא צִוָּה וְנִבְרָאוּ׃ וַיַּעֲמִידֵם לָעַד לְעוֹלָם חָק־נָתַן וְלֹא יַעֲבוֹר׃ הַלְלוּ אֶת־יְיָ מִן־הָאָרֶץ תַּנִּינִים וְכָל־תְּהֹמוֹת׃ אֵשׁ וּבָרָד שֶׁלֶג וְקִיטוֹר רוּחַ סְעָרָה עֹשָׂה דְבָרוֹ׃ הֶהָרִים וְכָל־גְּבָעוֹת עֵץ פְּרִי וְכָל־אֲרָזִים׃ הַחַיָּה וְכָל־בְּהֵמָה רֶמֶשׂ וְצִפּוֹר כָּנָף׃ מַלְכֵי־אֶרֶץ וְכָל־לְאֻמִּים שָׂרִים וְכָל־שֹׁפְטֵי אָרֶץ׃ בַּחוּרִים וְגַם־בְּתוּלוֹת זְקֵנִים עִם־נְעָרִים׃ יְהַלְלוּ אֶת־שֵׁם יְיָ כִּי־נִשְׂגָּב שְׁמוֹ לְבַדּוֹ הוֹדוֹ עַל־אֶרֶץ וְשָׁמָיִם׃ וַיָּרֶם קֶרֶן לְעַמּוֹ תְּהִלָּה לְכָל־חֲסִידָיו לִבְנֵי יִשְׂרָאֵל עַם־קְרֹבוֹ הַלְלוּיָהּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-28" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:28</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-28" aria-label="Copy link to Ma'aneh Lashon Chabad 4:28">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קמט</span> הַלְלוּיָהּ שִׁירוּ לַיָי שִׁיר חָדָשׁ תְּהִלָּתוֹ בִּקְהַל חֲסִידִים׃ יִשְׂמַח יִשְׂרָאֵל בְּעֹשָׂיו בְּנֵי־צִיּוֹן יָגִילוּ בְמַלְכָּם׃ יְהַלְלוּ שְׁמוֹ בְמָחוֹל בְּתֹף וְכִנּוֹר יְזַמְּרוּ־לוֹ׃ כִּי־רוֹצֶה יְיָ בְּעַמּוֹ יְפָאֵר עֲנָוִים בִּישׁוּעָה׃ יַעְלְזוּ חֲסִידִים בְּכָבוֹד יְרַנְּנוּ עַל־מִשְׁכְּבוֹתָם׃ רוֹמְמוֹת אֵל בִּגְרוֹנָם וְחֶרֶב פִּיפִיּוֹת בְּיָדָם׃ לַעֲשׂוֹת נְקָמָה בַּגּוֹיִם תּוֹכֵחֹת בַּל־אֻמִּים׃ לֶאְסֹר מַלְכֵיהֶם בְּזִקִּים וְנִכְבְּדֵיהֶם בְּכַבְלֵי בַרְזֶל׃ לַעֲשׂוֹת בָּהֶם מִשְׁפָּט כָּתוּב הָדָר הוּא לְכָל־חֲסִידָיו הַלְלוּיָהּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-4-29" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 4:29</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-4-29" aria-label="Copy link to Ma'aneh Lashon Chabad 4:29">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">קנ</span> הַלְלוּיָהּ הַלְלוּ־אֵל בְּקָדְשׁוֹ הַלְלוּהוּ בִּרְקִיעַ עֻזּוֹ׃ הַלְלוּהוּ בִגְבוּרֹתָיו הַלְלוּהוּ כְּרֹב גֻּדְלוֹ׃ הַלְלוּהוּ בְּתֵקַע שׁוֹפָר הַלְלוּהוּ בְּנֵבֶל וְכִנּוֹר׃ הַלְלוּהוּ בְתֹף וּמָחוֹל הַלְלוּהוּ בְּמִנִּים וְעוּגָב׃ הַלְלוּהוּ בְצִלְצְלֵי־שָׁמַע הַלְלוּהוּ בְּצִלְצְלֵי תְרוּעָה׃ כֹּל הַנְּשָׁמָה תְּהַלֵּל יָהּ הַלְלוּיָהּ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-maaneh-lashon-chabad-text-5">Chapter 5</h4>
+          <section class="unit" id="maaneh-lashon-chabad-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 5:1</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-5-1" aria-label="Copy link to Ma'aneh Lashon Chabad 5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">זוהר אחרי מות דף ע׳ ע״ב</span></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-5-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 5:2</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-5-2" aria-label="Copy link to Ma'aneh Lashon Chabad 5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אָמַר רִבִּי יִצְחָק זַכָּאִין אִינּוּן צַדִּיקַיָא בְּעָלְמָא דֵּין וּבְעָלְמָא דְּאָתֵי דְּהָא כֻלְּהוּ קַדִּישִׁין. גּוּפָא דִּלְהוֹן קַדִּישָׁא. נַפְשָׁא דִּלְהוֹן קַדִּישָׁא. רוּחָא דִּלְהוֹן קַדִּישָׁא. נִשְׁמְתָא דִּלְהוֹן קֹדֶשׁ קֳדָשִׁים. תְּלַת דַּרְגִּין אִינּוּן כְּגַוְונָא דִּלְעֵילָּא דְּתַנְיָא אָמַר רִבִּי יְהוּדָה כְּתִיב תּוֹצֵא הָאָרֶץ נֶפֶשׁ חַיָּה דָּא הִיא נִשְׁמְתָא (עִילָאָה) דְּאָדָם קַדְמָאָה עִילָאָה. תָּא חֲזֵי תְּלַת דַּרְגִּין אִינּוּן וְאִתְדַבָּקוּ כְּחָד נֶפֶשׁ רוּחַ נְשָׁמָה. וְעִלָּאָה מִנַּיְיהוּ נְשָׁמָה. דְּאָמַר רִבִּי יוֹסֵי בְּכֻלְּהוּ בְּנֵי נָשָׁא אִית נֶפֶשׁ. וְאִית נֶפֶשׁ עִלָּאָה מִנֶּפֶשׁ. זָכָה בַּר נַשׁ בְּהַאי נֶפֶשׁ מְרִיקִין עֲלֵיהּ עִטְרָא חָד דְּאִקְרֵי רוּחַ. הֲדָא הוּא דִכְתִיב עַד יֵעָרֶה עָלֵינוּ רוּחַ מִמָּרוֹם. כְּדֵין אִתְעַר בַּר נַשׁ בְּאִתְעֲרוּתָא אָחֲרָא עִילָּאָה לְאִסְתַּכָּלָא בְּנִמוּסֵי מַלְכָּא קַדִּישָׁא. זָכָה בַּר נַשׁ בֵּיהּ בְּהַהוּא רוּחָא מְעַטְּרִין לֵיהּ בְּכִתְרָא קַדִּישָׁא עִלָּאָה דְּכָלִיל כֻּלָּא דְּאִקְרֵי נְשָׁמָה דְּאִתְקְרֵי נִשְׁמַת אֱלוֹהַּ. וְתָּאנָא בְּרָזָא דְּרָזִין בְּגוֹ רָזִין דְּסִפְרָא דִּשְׁלֹמֹה מַלְכָּא. הַאי קְרָא דִּכְתִיב וְשַׁבֵּחַ אֲנִי אֶת הַמֵּתִים שֶׁכְּבָר מֵתוּ. כֵּיוָן דִּכְתִיב וְשַׁבֵּחַ אֲנִי אֶת הַמֵּתִים: אֲמַאי שְׁכְּבָר מֵתוּ. אֶלָּא שְׁכְּבָר מֵתוּ בְּהַאי עָלְמָא בְּפוּלְחָנָא דְּמָארֵיהוֹן. וְתַמָּן כְּתִיב תְּלַת מְדוֹרִין עָבַד קוּדְשָׁא בְּרִיךְ הוּא לְצַדִּיקַיָא חַד לְנַפְשָׁאָן דְּאִינּוּן צַדִּיקַיָא דְּלָא אִסְתַּלָקוּ מֵהַאי עָלְמָא. וּשְׁכִיחִין בְּהַאי עָלְמָא. וְכַד אִצְטְרִיךְ עָלְמָא רַחֲמִין וְאִינּוּן חַיִּין יָתְבִין בְּצַעֲרָא אִינּוּן מְצַלוּ צְלוּתָא עֲלַיְיהוּ. וְאָזְלִין וּמוֹדְעִין מִלָּה לְאִינּוּן דְּמִיכִין דְּחֶבְרוֹן. וּמִתְעֲרִין וְעָאֳלִין לְגַּן עֵדֶן דְּאַרְעָא. דְּתַמָּן רוּחֵיהוֹן דְּצַדִּיקַיָא מִתְלַבְּשִׁין בְּעִטְרִין דִּנְהוֹרָא וְאִתְיַיעֲטוּ בְּהוּ. וְגָזְרִין גְּזֵירָה וְקוּדְשָׁא בְּרִיךְ הוּא עָבֵד רְעוּתָא דִּלְהוֹן וְחָס עַל עָלְמָא. וְאִינּוּן נַפְשָׁן דְּצַדִּיקַיָא מִשְׁתַּכְּחִין בְּהַאי עָלְמָא לְאַגָּנָא עַל חַיַּיָא. וְהַאי אִקְרֵי נֶפֶשׁ וְדָא לָא אִסְתַּלָקָא (וְלָא אִשְׁתְּצֵי) מֵהַאי עָלְמָא וּשְׁכִיחָא בְּהַאי עָלְמָא לְאִסְתַּכָּלָא וּלְמִנְדָּע וּלְאַגָּנָא עַל דָּרָא. וְהַאי הוּא דַּאֲמַרוּ חַבְרַיָּיא דְּמִיתֵי יְדָעוּ בְּצַעֲרָא דְּעָלְמָא וְעוֹנְשָׁא דְּחַיָּיבִין דִּי בְאַרְעָא. בְּהַאי הוּא דִּכְתִיב וְנִכְרְתָה הַנֶּפֶשׁ הַהִיא מֵעַמֶּיהָ. וּמְדוֹרָא תִּנְיָינָא הוּא גַּן עֵדֶן דִּי בְאַרְעָא בֵּיהּ עָבֵד קוּדְשָׁא בְּרִיךְ הוּא מְדוֹרִין עִילָּאִין יַקִּירִין כְּגַוְונָא דְּהַאי עָלְמָא. וּכְגַוְונָא דְּעָלְמָא עִילָּאָה וְהֵיכָלִין בִּתְרֵין גַּוְונִין דְּלֵית לְהוֹן חוּשְׁבָּנָא. וְאִילָנִין וַעִשְׂבִּין וְרֵיחִין דְּסַלְּקִין בְּכָל יוֹמָא. וּבְהַאי אֲתַר שָׁארֵי הַהוּא דְּאִקְרֵי רוּחַ דְּאִינּוּן צַדִּיקַיָא. וּמְדוֹרָא דְּהַהוּא רוּחָא בֵּיהּ שָׁארֵי. וְכָל רוּחַ וְרוּחַ מִתְלַבְּשָׁא בִּלְבוּשׁ יַקִּירָא כְּגַוְונָא דְּהַאי עָלְמָא. וּכְגַוְונָא דְּהַהוּא עָלְמָא עִילָּאָה. מְדוֹרָא תְּלִיתָאָה הַהוּא מְדוֹרָא עִילָּאָה קַדִּישָׁא דְּאִיקְרֵי צְרוֹרָא דְּחַיֵּי דְּתַמָּן מִתְעַדְּנָא הַהוּא דַּרְגָּא עִלָּאָה קַדִּישָׁא דְּאִקְרֵי נְשָׁמָה. וְהַאי אִתְדַּבַּק לְאִתְעַנְּגָא בְּעִדּוּנָא עִלָּאָה. וַעֲלֵיהּ כְּתִיב אָז תִּתְעַנַּג עַל יְיָ וְהִרְכַּבְתִּיךָ וְגוֹ׳. וְתָּאנָא בְּשַׁעֲתָא דְּאִצְטְרִיךְ עַלְמָא רַחֲמֵי וְאִינּוּן צַדִּיקַיָיא זַכָּאִין. הַהוּא נֶפֶשׁ דְּאִשְׁתַּכְּחָא בְּעָלְמָא לְאַגָּנָא עַל עָלְמָא. נֶפֶשׁ סָלִיק וְאָזִיל וְשָׁאֵט בְּעָלְמָא וּמוֹדַע לְרוּחַ. וְרוּחַ סַלִיק וְאִתְעַטַּר וּמוֹדַע לִנְשָׁמָה. וּנְשָׁמָה לְּקוּדְשָׁא בְּרִיךְ הוּא וּכְדֵין חַס קוּדְשָׁא בְּרִיךְ הוּא עַל עָלְמָא. כְּדֵין נַחֲתָא מֵעֵילָּא לְתַתָּא. נְשָׁמָה אוֹדַע לְרוּחַ. וְרוּחַ אוֹדַע לְנַפְשָׁא. וּבְכָל שַׁבַּתָא וְשַׁבַּתָא וְרֵישׁ יַרְחָא כֻלְּהוּ מִתְחַבְּרָן וּמִתְעַטְּרָן כְּחָד עַד דְּאִזְדַּווְגוּ לְמֵיתֵי לְסַגָּדָא לְמַלְכָּא עִלָּאָה. וּלְבָתַר תַּיְיבִין לְאַתְרַיְיהוּ הֲדָא הוּא דִכְתִיב וְהָיָה מִדֵּי חֹדֶשׁ בְּחָדְשׁוֹ וּמִדֵּי שַׁבָּת בְּשַׁבַּתוֹ יָבֹא כָל בָּשָׂר וְגוֹ׳. וּבְשַׁעֲתָּא דְּאִצְטְרִיךְ עָלְמָא רַחֲמֵי וְחַיָיא אָזְלֵי וּמוֹדָעֵי לְהוּ לְנַפְשַׁיְיהוּ דְּצַדִּיקַיָיא וּבְכָאָן עַל קִבְרַיְיהוּ אִינּוּן דְּאִתְחֲזוּ לְאוֹדָעָא לְהוּ מַאי טַעְמָא דְּשַׁוְיָין רְעוּתָא דִּלְהוֹן לְאִתְדַּבְּקָא נַפְשָׁא בְּנַפְשָׁא כְּדֵין אִתְעֲרִין נַפְשַׁיְיהוּ דְּצַדִּיקַיָיא. וּמִתְכַּנְּפֵי וְאָזְלִין וְשָׁאטִין לִדְמִיכֵי חֶבְרוֹן וּמוֹדִיעֵי לְהוּ צַעֲרָא דְּעָלְמָא. וְכֻלְּהוּ עָאלִין בְּהַהוּא פִּתְחָא דְגַּן עֵדֶן וּמוֹדִיעֵי לְרוּחַ. וְאִינּוּן רוּחִין דְּמִתְעַטְּרָן בְּגַּן עֵדֶן מַלְאֲכֵי עִלָּאִין אָזְלֵי בֵּינַיְיהוּ. וְכֻלְּהוּ מוֹדִיעִין לִנְשָׁמָה וּנְשָׁמָה אוֹדִיעַת לְּקוּדְשָׁא בְּרִיךְ הוּא. וְכֻלְּהוּ בָּעאָן רַחֲמֵי עַל חַיִּין וְחַס קוּדְשָׁא בְּרִיךְ הוּא עַל עָלְמָא בְּגִינֵיהוֹן. וְעַל דָּא אָמַר שְׁלֹמֹה וְשַׁבֵּחַ אֲנִי אֶת הַמֵּתִים שֶׁכְּבָר מֵתוּ וְגוֹ׳. אָמַר רִבִּי חִיָּיא תְּוַוהְנָא אִי אִית מַאן לְאוֹדָעָא לְהוּ לְמֵתַיָּיא בַּר אֲנָן. אָמַר רִבִּי אַבָּא צַעֲרָא מוֹדְָעָא לְהוּ. אוֹרַיְיתָא מוֹדְעָא לְהוּ דְּהָא בְּשַׁעֲתָּא דְּלֵית מַאן דְּיָדַע בְּהַאי אַפְקֵי אוֹרַיְיתָא סָמוּךְ לִקְבָרֵי וְאִינּוּן מִתְעֲרֵי עַל אוֹרַיְיתָא עַל מָה אִתְגַּלְיָיא לְהַהוּא אֲתַר. כְּדֵין דוֹמֶה אוֹדַע לְהוֹן. אָמַר רִבִּי יוֹסֵי וְאִינּוּן יַדְעֵי דְּהָא עָלְמָא בְּצַעֲרָא וְחַיַיָא לָא אִתְחֲזוּן וְלָא יָדְעֵי לְאוֹדָעָא לְהוּ. בֵּיהּ שַׁעֲתָּא כֻלְּהוֹן צַוְוחִין עַל אוֹרַיְיתָא. דְּאִתְקַלְנָא וְאִתְגַּלְיָיא לְהַהוּא אֲתַר. אִי בְּנֵי נַשָׁא תַּיְיבִין וּבְכָאָן בְּלִיבָּא שְׁלִים וְתַיְיבִין קַמֵי קוּדְשָׁא בְּרִיךְ הוּא כֻּלְּהוּ מִתְכַּנְּשֵׁי וּבָעאָן רַחֲמֵי וּמוֹדִיעִין לְאִינּוּן דְּמִיכֵי חֶבְרוֹן. וְעָאלִין וּמוֹדִיעִין לְרוּחַ דִבְּגַּן עֵדֶן כְּמָה דְּאַמָרָן וְאִי אִינּוּן לָא תַיְיבִין בְּלִיבָּא שְׁלִים וּלְמִבְעֵי וּלְמִבְכֵּי עַל צַעֲרָא דְּעָלְמָא וַוי לְהוֹן דְּכֻלְּהוֹן מִתְכַּנְּפֵי לְרֵיקָא. אָמְרֵי מַאן גָּרִים לְאוֹרַיְיתָא קַדִּישָׁא דְּאִתְגַּלְיָיא עַל יְדַיְיהוּ בְּלָא תְּשׁוּבָה וְכֻלְּהוּ אֲתָאָן לְאִתְחַדְתָּא וּלְאַדְכָּרָא חוֹבַיְיהוּ. בְּגִינֵי כַךְ לָא יְהָכוּן תַמָּן בְּלָא תְּשׁוּבָה וּבְלָא תַּעֲנֵיתָא לְמִבְעֵי בָּעוּתָא קַמַּיְיהוּ. רִבִּי אַבָּא אָמַר בְּלָא תְּלַת תַּעֲנֵיתָא. רִבִּי יוֹסֵי אָמַר אֲפִילּוּ חָד. וּבְהַהוּא יוֹמָא וּבִלְבָד דְּעָלְמָא יָתִיב בְּצַעֲרָא טְפֵי. כְּדֵין כֻלְּהוּ מִזְדַּוְּוגֵי לְמִבְעֵי רַחֲמִין עַל עָלְמָא. תָּאנָא אָמַר רִבִּי יְהוּדָה יוֹמָא חַד הֲווּ אָזְלֵי רִבִּי חִזְקִיָּה וְרִבִּי יֵיסָא בְּאוֹרְחָא. עֲרָעוּ בְּגוּשׁ חָלָב וַהֲוָה חָרִיב יָתְבוּ סָמוּךְ לְבֵּי קִבְרֵי וְרִבִּי יֵיסָא הֲוָה בִּידֵיהּ חַד חוּטְרָא (<span class="source-small">ס״א</span> קיטרא) דְסֵפֶר תּוֹרָה דְּאִקְרַע עַד דְּיָתְבוּ אִתְרְגִישׁ חַד קִבְרָא קַמַיְיהוּ וְצָוַוח וַוי וַוי דְּהָא עָלְמָא בְּצַעֲרָא שְׁכִיחַ. הָא אוֹרַיְיתָא הָכָא דְּאִתְגַּלְיָיא אוֹ חַיַיָא אֲתוֹ לְחַיָיכָא עֲלָן וּלְכִסְפָא בְּכִסּוּפָא עֲלָן בְּאוֹרַיְיתַיְהוּ. אִזְדַּעְזְעוּ רִבִּי חִזְקִיָּה וְרִבִּי יֵיסָא. אָמַר רִבִּי חִזְקִיָּה מַאן אַתְּ. אָמַר לֵיהּ מִיתָא אֲנָא וְהָא אִתְעַרְנָא לְגַבֵּי סֵפֶר תּוֹרָה דְּזִמְנָא חֲדָא הֲוָה יָתִיב עָלְמָא בְּצַעֲרָא וַאֲתוֹ חַיַיָא הָכָא לְאִתְעֲרָא לָּן בְּסֵפֶר תּוֹרָה וַאֲנָא וְחַבְרָאִי אַקְדִּימְנָא לְגַבֵּי דְּמִיכֵי חֶבְרוֹן וְכַד אִתְחַבָּרוּ בְּגַן עֵדֶן בְּרוּחֵיהוֹן דְּצַדִּיקַיָיא אִשְׁתַּכַּח קַמַיְיהוּ דְּהַהוּא סֵפֶר תּוֹרָה דְּאַיְיתוּ לְקַמָּן אִינּוּן חַיַיָא הֲוָה פָּסוּל וּמְשַׁקֵּר בִּשְׁמָא דְּמַלְכָּא עַל דְּאִשְׁתַּכַּח וָא׳׳ו יַתִּיר בְּהַהוּא קְרָא דִּוְשׁוֹסַעַת שֶׁסַע שְׁתֵּי פְרָסוֹת וַאֲמָרוּ הוֹאִיל וּשְׁקָּרוּ בִּשְׁמָא דְּמַלְכָּא דְּלָא יְתוּבוּן לְגַבֵּיהוֹן וְדָחוּ לִי וּלְחַבְרָאי בְּהַהִיא שַׁעֲתָּא מִבֵּי מְתִיבְתָּא. עַד דְּחַד סָבָא דַּהֲוָה בֵּינַיְיהוּ אֲזַל וְאַיְיתֵי סַפְרָא דְּרַב הֶמְנוּנָא סָבָא וּכְדֵין אִתְעַר רִבִּי אֶלְעָזָר בְּרִבִּי שִׁמְעוֹן דַּהֲוָה קְבִיר עִמָּנָא. וַאֲזַל וּבְעָא בְּגַּן עֵדֶן עֲלַיְיהוּ וְאִתְּסֵי עָלְמָא וּכְּדֵין שָׁארוּ לָן. וּמִן הַהוּא יוֹמָא דִּסְלִיקוּ לֵיהּ לְרִבִּי אֶלְעָזָר מִבֵּי קִבְרָא דָּא וְאִתְיְיהִיב לְגַבֵּי אֲבוּהָ לֵית מַאן דְּאִתְעַר לְמֵיקָם קַמַּיְיהוּ דִּדְמִיכֵי חֶבְרוֹן דְּמִסְתַּפִּינָא מִן הַהוּא יוֹמָא דְּדָחוּ לִי וְלְחַבְרָאִי. וְהַשְׁתָּא אָתֵיתוּן לְגַבָּן וְסֵפֶר תּוֹרָה גַּבֵּיכוֹן אֲמִינָא דְּהָא עָלְמָא בְּצַעֲרָא אִשְׁתַּכַּח. וְעַל דָּא אִזְדַּעֲזָענָא דַּאֲמִינָא מַאן יַקְדִּים לְאוֹדָעָה לְאִינּוּן זַכָּאֵי קְשׁוֹט דְּמִיכֵי חֶבְרוֹן אִשְׁתְּמִיט רִבִּי יֵיסָא בְּהַהוּא קִיטְרָא דְּסֵפֶר תּוֹרָה. אָמַר רִבִּי חִזְקִיָּה חַס וְשָׁלוֹם לֵית עָלְמָא בְּצַעֲרָא וַאֲנַן לָא אֲתִינָן לְהַאי קָמוּ רִבִּי חִזְקִיָּה וְרִבִּי יֵיסָא וַאֲזָלוּ. אָמְרֵי וַדְאַי בְּשַׁעֲתָּא דְּזַכָּאִין לָא אִשְׁתַּכָּחוּ בְּעָלְמָא. עָלְמָא לָא מִתְקַיְּימָא אֶלָּא בְּגִינֵיהוֹן דְּמֵתַיָּיא. אָמַר רִבִּי יֵיסָא בְּשַׁעֲתָּא דְּאִצְטְרִיךְ עָלְמָא לְמִטְרָא אֲמַאי אַזְלִינָן לְגַבֵּיהוֹן דְּמִתַיָּיא וְהָא כְּתִיב וְדוֹרֵשׁ אֶל הַמֵּתִים וְאָסִיר אָמַר לֵיהּ עַד כְּען לָא חֲמִיתָא גַּדְפָא דְּצִפְּרָא דְּעֵדֶן. וְדוֹרֵשׁ אֶל הַמֵּתִים אֶל הַמֵּתִים דַּיְיקָא דְּאִינּוּן חַיָּיבֵי עָלְמָא דְּאִינּוּן [מֵעַמִּין] מְפַלְחֵי כּוֹכְבַיָא דְּאִשְׁתְּכָחוּ תָּדִיר מֵתִים אֲבָל יִשְׂרָאֵל דְּאִינּוּן זַכָּאֵי קְשׁוֹט שְׁלֹמֹה קָרָא עֲלַיְיהוּ וְשַׁבֵּחַ אֲנִי אֶת הַמֵּתִים שֶׁכְּבָר מֵתוּ בְּזִמְנָא אַחֲרָא וְלָא הַשְׁתָּא. שֶׁכְּבָר מֵתוּ וְהַשְׁתָּא אִינּוּן חַיִּין. וְעוֹד [דִּשְׁאַר עַמִּין] (דְפַּלְחֵי כּוֹכְבַיָא) כַּד אֲתָאָן לְמִיתֵיהוֹן אַתְיָין בְּחַרְשִׁין לְאִתְעָרָא עֲלַיְיהוּ זִינִין בִּישִׁין. וְכַד יִשְׂרָאֵל אֲתָאָן לְמִיתֵיהוֹן אַתְיָין בְּכַמָּה תְּשׁוּבָה לְקַמֵּי קוּדְשָׁא בְּרִיךְ הוּא בִּתְבִירוּ דְּלִבָּא בְּתַעֲנִיתָא לָקִבְּלֵיהּ וְכֻלָּא בְּגִין דְּנִשְׁמָתִין קַדִּישִׁין יִבְעוּן רַחֲמֵי לְקַמֵּי קוּדְשָׁא בְּרִיךְ הוּא עֲלַיְיהוּ וְקוּדְשָׁא בְּרִיךְ הוּא חַיִיס עַל עָלְמָא בְּגִינֵיהוֹן. וְעַל דָּא תַּנִינָן צַדִּיקָא אַף עַל גַּב דְּאִתְפַּטַר מֵהַאי עָלְמָא לָא אִסְתַּלַּק וְלָא אִתְ[אֲ]בִיד מְכֻּלְּהוּ עַלְמִין דְּהָא בְּכֻלְּהוּ עָלְמִין אִשְׁתַּכַּח יַתִּיר מֵחַיוֹי. דִּבְחַיוֹי אִשְׁתַּכַּח בְּהַאי עָלְמָא בִּלְחוֹדוֹי וּלְבָתַר אִשְׁתַּכַּח בִּתְלַת עָלְמִין וְזַמִּין לְגַבַּיְיהוּ דִּכְתִיב עֲלָמוֹת אֲהֵבוּךָ אַל תִּקְרֵי עֲלָמוֹת אֶלָּא עוֹלָמוֹת זַכָּאָה חוּלְקָהוֹן. תָּאנָא כְּתִיב וְהָיְתָה נֶפֶשׁ אֲדוֹנִי צְרוּרָה בִּצְרוֹר הַחַיִּים. וְהָיְתָה נֶפֶשׁ אֲדוֹנִי. נִשְׁמַת אֲדוֹנִי מִבָּעֵי לֵיהּ. אֶלָּא כְּמָה דַּאֲמָרָן. דְּזַכָּאָה חוּלְקָהוֹן דְּצַדִּיקַיָיא דְּכֻלָּא אִתְקַשְׁרָא דָּא בְּדָא. נֶפֶשׁ בְּרוּחַ וְרוּחַ בִּנְּשָׁמָה וּנְשָׁמָה בְּקוּדְשָׁא בְּרִיךְ הוּא. אִשְׁתַּכַּח דְּנֶפֶשׁ צְרוּרָה בִּצְרוֹר הַחַיִּים. אָמַר רִבִּי אֶלְעָזָר הַאי דַּאֲמָרוּ חַבְרַיָא גָּלוּתָא דְסֵפֶר תּוֹרָה אֲפִילּוּ מִבֵּי כְנִישְׁתָּא לְבֵּי כְנִישְׁתָּא אַחֲרָא אָסִיר. וְכָּל שֶׁכֵּן לְבֵּי רְחוֹב. אֲמַאי לְבֵּי רְחוֹב אָמַר רִבִּי יְהוּדָה כְּמָה דַּאֲמָרָן בְּגִין דְּיִתְעַרוּן עֲלֵיהּ וְיִתְבְּעוּן רַחֲמֵי עַל עָלְמָא. אָמַר רִבִּי אַבָּא שְׁכִינְתָּא כַד אִתְגַּלְיָיא הָכִי נַמִי מֵאֲתַר לַאֲתַר. עַד דְּאָמְרָה מִי יִתְּנֵנִי בַּמִּדְבָּר מְלוֹן אוֹרְחִים וְגוֹ׳. אוֹף הָכָא בְּקַדְמֵיתָא מִבֵּי כְנִישְׁתָּא לְבֵּי כְנִישְׁתָּא. לְבָּתַר לְבֵּי רְחוֹב. לְבָּתַר בַּמִּדְבָּר מְלוֹן אוֹרְחִים. אָמַר רִבִּי יְהוּדָה בְּנֵי בָּבֶל מִסְתְּפוּ וְלָא קָא עָבְדֵי אֲפִילּוּ מִבֵּי כְנִישְׁתָּא לְבֵּי כְנִישְׁתָּא כָּל שֶׁכֵּן הַאי. תַּנְיָא אָמַר לְהוּ רִבִּי שִׁמְעוֹן לְחַבְרַיָּיא בְּיוֹמָאִי לָא יִצְטַרְכוּן בְּנֵי עָלְמָא לְהַאי. אָמַר לֵיהּ רִבִּי יוֹסֵי צַדִּיקַיָיא מְגִינִּין עַל עָלְמָא בְּחַיֵּיהוֹן וּבְמִיתַתְהוֹן יוֹתֵר מֵחַיֵּיהוֹן. הֲדָא הוּא דִכְתִיב וְגַנּוֹתִי עַל הָעִיר הַזֹאת לְהוֹשִׁיעָהּ לְמַעֲנִי וּלְמַעַן דָּוִד עַבְדִּי וְאִילּוּ בְּחַיּוֹהִי לָא כְּתִיב. אָמַר רִבִּי יְהוּדָה מַאי שְׁנָא הָכָא דִּכְתִיב לְמַעֲנִי וּלְמַעַן דָּוִד עַבְדִּי דְּשָׁקִיל הַאי לְגַבֵּי הַאי אֶלָּא בְּגִין דְּדָוִד זָכָה לְאִתְקַשְּׁרָא בִּרְתִיכָא קַדִּישָׁא דַּאֲבְהָתָא וּבְגִין כָּךְ כֻּלָּא חָד בְּרִיךְ הוּא לְעָלַם וּלְעָלְמֵי עָלְמַיָּא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-5-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 5:3</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-5-3" aria-label="Copy link to Ma'aneh Lashon Chabad 5:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">מעבר יבוק</span></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-5-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 5:4</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-5-4" aria-label="Copy link to Ma'aneh Lashon Chabad 5:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יְהִי רָצוֹן מִלְּפָנֶיךָ יְיָ אֱלֹהֵינוּ וֵאלֹהֵי אֲבוֹתֵינוּ שֶׁתִּתְעַטֵּף בְּרַחֲמֶיךָ וְתִתְאַזָּר בַּחֲנִינוּתֶיךָ וְתָבֹא לְפָנֶיךָ מִדַּת חֲסָדֶיךָ וְעִנְוְתָנוּתֶךָ וְתַעְמִידֵנוּ בְּכֶתֶר אוֹרָה וְאַל תַּעֲמִידֵנוּ בְּקֶרֶן חֲשֵׁיכָה וְתִהְיֶה תּוֹרָתֶךָ אוּמְנָתֵנוּ וְאַל יִגְבַּהּ לִבֵּנוּ וְאַל יַחְשְׁכוּ עֵינֵינוּ וְלֹא נִכָּלֵם מֵאֲבוֹתֵינוּ וְתַצִּילֵנוּ מֵעַזֵּי פָנִים וּמֵעַזּוּת פָנִים. מֵאָדָם רָע וּמֵחָבֵר רָע וּמִשָּׁכֵן רָע וּמִדִּין קָשֶׁה וּמִבַּעַל דִּין קָשֶׁה. <span class="source-small">אלהי נצר וכו׳:</span></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-5-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 5:5</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-5-5" aria-label="Copy link to Ma'aneh Lashon Chabad 5:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יְהִי רָצוֹן מִלְּפָנֶיךָ שֶׁלֹּא אַקְפִּיד נֶגֶד חֲבֵירַי וְלֹא חֲבֵירַי יַקְפִּידוּ כְּנֶגְדִּי. שֶׁלֹּא נְטַמֵּא אֶת הַטָּהוֹר וְלֹא נְטַהֵר אֶת הַטָּמֵא. שֶׁלֹּא נֶאֱסוֹר אֶת הַמּוּתָּר. וְלֹא נַתִּיר אֶת הָאָסוּר. וּבְכֵן יְהִי רָצוֹן מִלְּפָנֶיךָ שֶׁלֹּא תַּעֲלֶה שִׂנְאָתֵנוּ וְלֹא קִנְאָתֵנוּ עַל לֵב אָדָם. וְלֹא שִׂנְאַת וְקִנְאַת אָדָם תַּעֲלֶה עַל לִבֵּנוּ. וְלֵב טָהוֹר תִּבְרָא בְּקִרְבֵּנוּ לְהָפִיק מִמַּעֲיָן קָדְשֶׁךָ רְצוֹנֵנוּ וִיהִי תוֹרָתֶךָ מָלֵא בָּתֵּינוּ כָּל יְמֵי חַיֵּינוּ וְיִהְיוּ דְּבָרֵינוּ תַּחֲנוּנִים לְפָנֶיךָ וְיִתְיַחֵד לְבָבֵנוּ לְיִרְאָה אֶת שְׁמֶךָ וּתְקָרְבֵנוּ לְכָל מַה שֶׁאָהַבְתָּ וְתַעֲשֶׂה עִמָּנוּ צְדָקָה לְמַעַן שְׁמֶךָ. יְהִי רָצוֹן מִלְּפָנֶיךָ שֶׁתִּתֵּן לָנוּ לֵב טוֹב. וְחֵלֶק טוֹב. יֵצֶר טוֹב. חָבֵר טוֹב. שֵׁם טוֹב. עַיִן טוֹבָה וְנֶפֶשׁ טוֹבָה. נֶפֶשׁ שְׁפֵלָה וְרוּחַ נְמוּכָה. וְאַל יִתְחַלֵּל שִׁמְךָ בָּנוּ וְאַל תַּעֲשֵׂנוּ שִׂיחָה בְּפִי הַבְּרִיּוֹת וְלֹא תִּהְיֶה אַחֲרִיתֵנוּ לְהַכְרִית וְלֹא תִקְוָתֵנוּ לְמַפַּח נָפֶשׁ. וְאַל תַּצְרִיכֵנוּ לִידֵי מַתְּנַת בָּשָׂר וָדָם. וְאַל תִּמְסוֹר מְזוֹנוֹתֵינוּ בִּידֵי בָּשָׂר וָדָם. שֶׁמַּתָּנָתָם מְעוּטָה וְחֶרְפָּתָם מְרוּבָּה. וְתֵן בְּלִבֵּנוּ לַעֲשׂוֹת תְּשׁוּבָה שְׁלֵימָה לְפָנֶיךָ שֶׁלֹּא נֵבוֹשׁ מֵאֲבוֹתֵינוּ לְעוֹלָם הַבָּא. וּבְכֵן יְהִי רָצוֹן מִלְּפָנֶיךָ יְיָ אֱלֹהֵינוּ וֵאלֹהֵי אֲבוֹתֵינוּ שֶׁתִּשְׁבּוֹר וְתַשְׁבִּית עוּלּוֹ שֶׁל יֵצֶר הָרָע מִלִּבֵּנוּ שֶׁכַּךְ בְּרָאתָנוּ לַעֲשׂוֹת רְצוֹנֶךָ וְאָנוּ חַיָיבִים לַעֲשׂוֹת רְצוֹנֶךָ. אַתָּה חָפֵץ וְאָנוּ חֲפֵצִים וּמִי מְעַכֵּב שְׂאוֹר שֶׁבָּעִסָּה. גָּלוּי וְיָדוּעַ לְפָנֶיךָ שֶׁאֵין בָּנוּ כֹּחַ לַעֲמוֹד כְּנֶגְדּוֹ. אֶלָּא יְהִי רָצוֹן מִלְּפָנֶיךָ יְיָ אֱלֹהֵינוּ וֵאלֹהֵי אֲבוֹתֵינוּ שֶׁתַּשְׁבִּיתֵהוּ מֵעָלֵינוּ וְתַכְנִיעֵהוּ וְנַעֲשֶׂה רְצוֹנְךָ כִּרְצוֹנֵנוּ בְּלֵבָב שָׁלֵם וְתִשְׁכּוֹן בְּפוּרֵינוּ אַהֲבָה וְאַחֲוָה שָׁלוֹם וְרֵיעוּת וְתַצְלִיחַ סוֹפֵנוּ אַחֲרִית וְתִקְוָה וְתַרְבֶּה גְּבוּלֵינוּ בְּתַלְמִידִים וְנָשִׂישׂ בְּחֶלְקֵנוּ בְּגַן עֵדֶן וְתַקְּנֵנוּ לֵב טוֹב וְחָבֵר טוֹב וְנַשְׁכִּים וְנִמְצָא יִיחוּל לְבָבֵנוּ. וְתָבֹא לְפָנֶיךָ קוֹרַת נַפְשֵׁנוּ לְטוֹבָה. וּבְכֵן יְהִי רָצוֹן מִלְּפָנֶיךָ יְיָ אֱלֹהֵינוּ וֵאלֹהֵי אֲבוֹתֵינוּ שֶׁתִּסְלַח וְתִמְחוֹל לָנוּ עַל כָּל עֲוֹנוֹתֵינוּ וּפְשָׁעֵינוּ וּתְכַפֵּר לָנוּ עַל כָּל חַטֹאתֵנוּ. אָנָא אֱלוֹהַּ הָרַחֲמִים בַּעַל הַסְּלִיחוֹת סְלַח לָנוּ מְחוֹל לָנוּ כַּפֶּר לָנוּ וְתִמְרוֹק עֲוֹנוֹתֵינוּ בְּרַחֲמֶיךָ הָרַבִּים אֲבָל לֹא עַל יְדֵי יְסּוּרִים וְחוֹלָאִים רָעִים וְלֹא נָשׁוּב עוֹד מֵאַחֲרֶיךָ וְנִזְכֶּה לְנוֹעַם יְדִידוֹתֶיךָ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-5-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 5:6</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-5-6" aria-label="Copy link to Ma'aneh Lashon Chabad 5:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יְהִי רָצוֹן מִלְּפָנֶיךָ יְיָ אֱלֹהֵינוּ וֵאלֹהֵי אֲבוֹתֵינוּ שֶׁתִּתֵּן לָנוּ חַיִּים אֲרוּכִים. חַיִּים שֶׁל שָׁלוֹם. חַיִּים שֶׁל טוֹבָה. חַיִּים שֶׁל בְּרָכָה. חַיִּים שֶׁל פַּרְנָסָה. חַיִּים שֶׁל חִילּוּץ עֲצָמוֹת. חַיִּים שֶׁיֵּשׁ בָּהֶם יִרְאַת חֵטְא. חַיִּים שֶׁאֵין בָּהֶם בּוּשָׁה וּכְלִימָה. חַיִּים שֶׁל עוֹשֶׁר וְכָבוֹד. חַיִּים שֶׁתְּהֵא בָּנוּ אַהֲבַת תּוֹרָה וְיִרְאַת שָׁמַיִם. חַיִּים שֶׁתְּמַלֵּא לָנוּ כָּל מִשְׁאֲלוֹת לִבֵּנוּ בִּזְכוּת הַתַּנָּאִים וְהָאֲמוֹרָאִים זְרוֹעוֹת וְיַרְכִין בְּסִטְרָא דִּקְדוּשָּׁה אֲשֶׁר אֵיתָן מוֹשָׁבָם וּבִזְכוּת הַצַּדִּיקִים הַקְּבוּרִים בַּמָּקוֹם הַזֶּה. וּבִפְרָט זְכוּת הַצַּדִּיק אֲדוֹנֵינוּ מוֹרֵנוּ וְרַבֵּינוּ רַבִּי (פלוני) בֶּן הָרַב ר׳ (פלוני) זְכוּתָם יָגֵן עָלֵינוּ וְעַל כָּל בְּנֵי בָּתֵּינוּ וְתִהְיֶה תְּפִלָּתִי זַכָּה לִפְנֵי שׁוֹכֵן מְעוֹנָה לְהֵטִיב לִי וּלְזַרְעִי וּלְזֶרַע זַרְעִי בָּעוֹלָם הַזֶּה בָּאוֹרֶךְ יָמִים וּשְׁנוֹת חַיִּים וְשָׁלוֹם. וּבָעוֹלָם הַבָּא לְהִתְעַלֵּס בְּאַהֲבָה רַבָּה וּבְאַהֲבָה זוּטָא וְנַפְשִׁי בְּטוֹב תָּלִין וְתִשְׂבַּע בְּצַחְצָחוֹת וְעַצְמוֹתָיו יַחֲלִיץ וְרוּחוֹ יְתַאְדָר בְּגַן עֵדֶן וְנִשְׁמָתוֹ תְּדוּשָּׁן בְּגַן עֵדֶן עֶלְיוֹן וּבִצְרוֹר הַחַיִּים עִם יְיָ אֱלֹהֵינוּ וְעַצְמוֹתָיו יְנוּחוּן וְיִרְוְיוּן מִדֶּשֶׁן בֵּיתוֹ וְכָל שָׁכְבֵי עַמּוֹ יִשְׂרָאֵל בִּכְלַל הָרַחֲמִים וְהַסְּלִיחוֹת וְהַנֶּחָמוֹת וְנֹאמַר אָמֵן. עֲשֵׂה לְמַעַן שְׁמֶךָ. עֲשֵׂה לְמַעַן יְמִינֶךָ. עֲשֵׂה לְמַעַן תּוֹרָתֶךָ עֲשֵׂה לְמַעַן קְדוּשָׁתֶךָ. יִהְיוּ לְרָצוֹן אִמְרֵי פִי וְהֶגְיוֹן לִבִּי לְפָנֶיךָ יְיָ צוּרִי וְגוֹאֲלִי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-5-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 5:7</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-5-7" aria-label="Copy link to Ma'aneh Lashon Chabad 5:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">ויהי נועם וכו׳ אנא בכח ז״פ</span></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-5-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 5:8</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-5-8" aria-label="Copy link to Ma'aneh Lashon Chabad 5:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אָמַר רַבָּה בַּר בַּר חָנָה אָמַר רִבִּי יוֹחָנָן עֲתִידִים צַדִּיקִים שֶׁיֵקָרְאוּ עַל שְׁמוֹ שֶׁל הַקָּדוֹשׁ בָּרוּךְ הוּא שֶׁנֶּאֱמַר כֹּל הַנִּקְרָא בִּשְׁמִי וְלִכְבוֹדִי בְּרָאתִיו יְצַרְתִּיו אַף עֲשִׂיתִיו. אָמַר רִבִּי אֶלִיעֶזֶר עֲתִידִים צַדִּיקִים שֶׁיֵאָמֵר לִפְנֵיהֶם קָדוֹשׁ כְּדֶרֶךְ שֶׁאוֹמְרִים לִפְנֵי הַקָּדוֹשׁ בָּרוּךְ הוּא שֶׁנֶּאֱמַר וְהָיָה הַנִּשְׁאָר בְּצִיּוֹן וְהַנּוֹתָר בִּירוּשָׁלַיִם קָדוֹשׁ יֵאָמֵר לוֹ כָּל הַכָּתוּב לַחַיִּים בִּירוּשָׁלָיִם. וְנֶאֱמַר וְיִשְׂמְחוּ כָל חוֹסֵי בָךְ לְעוֹלָם יְרַנֵּנוּ וְתָסֵךְ עָלֵימוֹ וְיַעְלְצוּ בְּךָ אֹהֲבֵי שְׁמֶךָ׃</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-5-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 5:9</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-5-9" aria-label="Copy link to Ma'aneh Lashon Chabad 5:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">וכשיצא מבה״ק יאמר</span></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-5-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 5:10</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-5-10" aria-label="Copy link to Ma'aneh Lashon Chabad 5:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יְהִי רָצוֹן מִלְּפָנֶיךָ יְיָ אֱלֹהַי וֵאלֹהֵי אֲבוֹתַי כָּל מַה שֶׁבִּקַּשְׁתִּי לְפָנֶיךָ יִהְיֶה בְּעֵינֶיךָ כִּקְטוֹרֶת וְתַעֲשֶׂה עִמִּי לִפְנִים מִשּׁוּרַת הַדִּין וְאַתָּה רַחֲמָן שׁוֹמֵעַ בְּרָצוֹן תְּפִלַּת עַבְדֶּךָ וּבַּעֲבוּר זֶה בָּאתִי לְפָנֶיךָ כִּי אֵין לִי מֵלִיץ לְהָלִיץ בַּעֲדִי לְפָנֶיךָ וְנָא אַל תְּשִׁיבֵנִי רֵיקָם מִלְּפָנֶיךָ כִּי אַתָּה שׁוֹמֵעַ תְּפִלָּה בַּעֲבוּר כָּל הַצַּדִּיקִים הַשּׁוֹכְנִים בְּכַּאן וּבַעֲבוּר תִּפְאַרְתֶּךָ הַגָּדוֹל בָּרוּךְ שׁוֹמֵעַ תְּפִלָּה. יִהְיוּ לְרָצוֹן אִמְרֵי פִי וְהֶגְיוֹן לִבִּי לְפָנֶיךָ יְיָ צוּרִי וְגֹאֲלִי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maaneh-lashon-chabad-5-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;aneh Lashon Chabad 5:11</h4></div>
+              <a class="anchor" href="#maaneh-lashon-chabad-5-11" aria-label="Copy link to Ma'aneh Lashon Chabad 5:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">תם ונשלם</span></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maaneh-lashon-chabad-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/maaneh-lashon-chabad.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/maaneh-lashon-chabad.manifest.json","occurrence_url":"../../data/lexical/occurrences/maaneh-lashon-chabad.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

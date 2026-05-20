@@ -1,0 +1,3381 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Modeh Ani:1 | siddur-edot-hamizrach-preparatory-prayers-modeh-ani-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Modeh Ani:2 | siddur-edot-hamizrach-preparatory-prayers-modeh-ani-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Modeh Ani:3 | siddur-edot-hamizrach-preparatory-prayers-modeh-ani-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Modeh Ani:4 | siddur-edot-hamizrach-preparatory-prayers-modeh-ani-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:1 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:2 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:3 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:4 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:5 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:6 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:7 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:8 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:9 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:10 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:11 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:12 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:13 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:14 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:15 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:16 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:17 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:18 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:19 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:20 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:21 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:22 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:23 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:24 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:25 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:26 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings:27 | siddur-edot-hamizrach-preparatory-prayers-morning-blessings-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Torah Blessings:1 | siddur-edot-hamizrach-preparatory-prayers-torah-blessings-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Torah Blessings:2 | siddur-edot-hamizrach-preparatory-prayers-torah-blessings-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Torah Blessings:3 | siddur-edot-hamizrach-preparatory-prayers-torah-blessings-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Torah Blessings:4 | siddur-edot-hamizrach-preparatory-prayers-torah-blessings-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Preparatory Prayers, Torah Blessings:5 | siddur-edot-hamizrach-preparatory-prayers-torah-blessings-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, LeShem Yichud:1 | siddur-edot-hamizrach-the-midnight-rite-leshem-yichud-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, LeShem Yichud:2 | siddur-edot-hamizrach-the-midnight-rite-leshem-yichud-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, LeShem Yichud:3 | siddur-edot-hamizrach-the-midnight-rite-leshem-yichud-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, LeShem Yichud:4 | siddur-edot-hamizrach-the-midnight-rite-leshem-yichud-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Rachel:1 | siddur-edot-hamizrach-the-midnight-rite-tikkun-rachel-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Rachel:2 | siddur-edot-hamizrach-the-midnight-rite-tikkun-rachel-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Rachel:3 | siddur-edot-hamizrach-the-midnight-rite-tikkun-rachel-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Rachel:4 | siddur-edot-hamizrach-the-midnight-rite-tikkun-rachel-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Rachel:5 | siddur-edot-hamizrach-the-midnight-rite-tikkun-rachel-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Rachel:6 | siddur-edot-hamizrach-the-midnight-rite-tikkun-rachel-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Rachel:7 | siddur-edot-hamizrach-the-midnight-rite-tikkun-rachel-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Rachel:8 | siddur-edot-hamizrach-the-midnight-rite-tikkun-rachel-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Rachel:9 | siddur-edot-hamizrach-the-midnight-rite-tikkun-rachel-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Leah:1 | siddur-edot-hamizrach-the-midnight-rite-tikkun-leah-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Leah:2 | siddur-edot-hamizrach-the-midnight-rite-tikkun-leah-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Leah:3 | siddur-edot-hamizrach-the-midnight-rite-tikkun-leah-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Leah:4 | siddur-edot-hamizrach-the-midnight-rite-tikkun-leah-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Leah:5 | siddur-edot-hamizrach-the-midnight-rite-tikkun-leah-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Leah:6 | siddur-edot-hamizrach-the-midnight-rite-tikkun-leah-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Leah:7 | siddur-edot-hamizrach-the-midnight-rite-tikkun-leah-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Leah:8 | siddur-edot-hamizrach-the-midnight-rite-tikkun-leah-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Leah:9 | siddur-edot-hamizrach-the-midnight-rite-tikkun-leah-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Leah:10 | siddur-edot-hamizrach-the-midnight-rite-tikkun-leah-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Leah:11 | siddur-edot-hamizrach-the-midnight-rite-tikkun-leah-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Leah:12 | siddur-edot-hamizrach-the-midnight-rite-tikkun-leah-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Leah:13 | siddur-edot-hamizrach-the-midnight-rite-tikkun-leah-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Leah:14 | siddur-edot-hamizrach-the-midnight-rite-tikkun-leah-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, The Midnight Rite, Tikkun Leah:15 | siddur-edot-hamizrach-the-midnight-rite-tikkun-leah-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Petichat Eliyahu:1 | siddur-edot-hamizrach-weekday-shacharit-petichat-eliyahu-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Petichat Eliyahu:2 | siddur-edot-hamizrach-weekday-shacharit-petichat-eliyahu-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Petichat Eliyahu:3 | siddur-edot-hamizrach-weekday-shacharit-petichat-eliyahu-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Petichat Eliyahu:4 | siddur-edot-hamizrach-weekday-shacharit-petichat-eliyahu-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Petichat Eliyahu:5 | siddur-edot-hamizrach-weekday-shacharit-petichat-eliyahu-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Petichat Eliyahu:6 | siddur-edot-hamizrach-weekday-shacharit-petichat-eliyahu-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Petichat Eliyahu:7 | siddur-edot-hamizrach-weekday-shacharit-petichat-eliyahu-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Petichat Eliyahu:8 | siddur-edot-hamizrach-weekday-shacharit-petichat-eliyahu-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Petichat Eliyahu:9 | siddur-edot-hamizrach-weekday-shacharit-petichat-eliyahu-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Petichat Eliyahu:10 | siddur-edot-hamizrach-weekday-shacharit-petichat-eliyahu-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Petichat Eliyahu:11 | siddur-edot-hamizrach-weekday-shacharit-petichat-eliyahu-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Order of Talit:1 | siddur-edot-hamizrach-weekday-shacharit-order-of-talit-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Order of Talit:2 | siddur-edot-hamizrach-weekday-shacharit-order-of-talit-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Order of Talit:3 | siddur-edot-hamizrach-weekday-shacharit-order-of-talit-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Order of Tefillin:1 | siddur-edot-hamizrach-weekday-shacharit-order-of-tefillin-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Order of Tefillin:2 | siddur-edot-hamizrach-weekday-shacharit-order-of-tefillin-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Order of Tefillin:3 | siddur-edot-hamizrach-weekday-shacharit-order-of-tefillin-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Order of Tefillin:4 | siddur-edot-hamizrach-weekday-shacharit-order-of-tefillin-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Order of Tefillin:5 | siddur-edot-hamizrach-weekday-shacharit-order-of-tefillin-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Order of Tefillin:6 | siddur-edot-hamizrach-weekday-shacharit-order-of-tefillin-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Hanna's Prayer:1 | siddur-edot-hamizrach-weekday-shacharit-hannas-prayer-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Hanna's Prayer:2 | siddur-edot-hamizrach-weekday-shacharit-hannas-prayer-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:1 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:2 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:3 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:4 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:5 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:6 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:7 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:8 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:9 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:10 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:11 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:12 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:13 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:14 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:15 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:16 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:17 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:18 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer:19 | siddur-edot-hamizrach-weekday-shacharit-morning-prayer-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:1 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:2 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:3 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:4 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:5 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:6 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:7 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:8 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:9 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:10 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:11 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:12 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:13 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:14 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:15 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:16 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:17 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:18 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:19 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:20 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:21 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:22 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:23 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:24 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:25 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:26 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:27 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:28 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:29 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:30 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:31 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:32 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:33 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:34 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering:35 | siddur-edot-hamizrach-weekday-shacharit-incense-offering-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Hodu:1 | siddur-edot-hamizrach-weekday-shacharit-hodu-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Hodu:2 | siddur-edot-hamizrach-weekday-shacharit-hodu-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Hodu:3 | siddur-edot-hamizrach-weekday-shacharit-hodu-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Hodu:4 | siddur-edot-hamizrach-weekday-shacharit-hodu-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Hodu:5 | siddur-edot-hamizrach-weekday-shacharit-hodu-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Hodu:6 | siddur-edot-hamizrach-weekday-shacharit-hodu-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Hodu:7 | siddur-edot-hamizrach-weekday-shacharit-hodu-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Hodu:8 | siddur-edot-hamizrach-weekday-shacharit-hodu-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Hodu:9 | siddur-edot-hamizrach-weekday-shacharit-hodu-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Hodu:10 | siddur-edot-hamizrach-weekday-shacharit-hodu-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Hodu:11 | siddur-edot-hamizrach-weekday-shacharit-hodu-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Hodu:12 | siddur-edot-hamizrach-weekday-shacharit-hodu-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Hodu:13 | siddur-edot-hamizrach-weekday-shacharit-hodu-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Hodu:14 | siddur-edot-hamizrach-weekday-shacharit-hodu-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Hodu:15 | siddur-edot-hamizrach-weekday-shacharit-hodu-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:1 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:2 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:3 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:4 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:5 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:6 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:7 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:8 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:9 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:10 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:11 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:12 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:13 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:14 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:15 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:16 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:17 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:18 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:19 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:20 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:21 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:22 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:23 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:24 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:25 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra:26 | siddur-edot-hamizrach-weekday-shacharit-pesukei-dzimra-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:1 | siddur-edot-hamizrach-weekday-shacharit-the-shema-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:2 | siddur-edot-hamizrach-weekday-shacharit-the-shema-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:3 | siddur-edot-hamizrach-weekday-shacharit-the-shema-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:4 | siddur-edot-hamizrach-weekday-shacharit-the-shema-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:5 | siddur-edot-hamizrach-weekday-shacharit-the-shema-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:6 | siddur-edot-hamizrach-weekday-shacharit-the-shema-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:7 | siddur-edot-hamizrach-weekday-shacharit-the-shema-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:8 | siddur-edot-hamizrach-weekday-shacharit-the-shema-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:9 | siddur-edot-hamizrach-weekday-shacharit-the-shema-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:10 | siddur-edot-hamizrach-weekday-shacharit-the-shema-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:11 | siddur-edot-hamizrach-weekday-shacharit-the-shema-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:12 | siddur-edot-hamizrach-weekday-shacharit-the-shema-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:13 | siddur-edot-hamizrach-weekday-shacharit-the-shema-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:14 | siddur-edot-hamizrach-weekday-shacharit-the-shema-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:15 | siddur-edot-hamizrach-weekday-shacharit-the-shema-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:16 | siddur-edot-hamizrach-weekday-shacharit-the-shema-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:17 | siddur-edot-hamizrach-weekday-shacharit-the-shema-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:18 | siddur-edot-hamizrach-weekday-shacharit-the-shema-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:19 | siddur-edot-hamizrach-weekday-shacharit-the-shema-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:20 | siddur-edot-hamizrach-weekday-shacharit-the-shema-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, The Shema:21 | siddur-edot-hamizrach-weekday-shacharit-the-shema-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:1 | siddur-edot-hamizrach-weekday-shacharit-amida-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:2 | siddur-edot-hamizrach-weekday-shacharit-amida-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:3 | siddur-edot-hamizrach-weekday-shacharit-amida-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:4 | siddur-edot-hamizrach-weekday-shacharit-amida-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:5 | siddur-edot-hamizrach-weekday-shacharit-amida-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:6 | siddur-edot-hamizrach-weekday-shacharit-amida-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:7 | siddur-edot-hamizrach-weekday-shacharit-amida-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:8 | siddur-edot-hamizrach-weekday-shacharit-amida-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:9 | siddur-edot-hamizrach-weekday-shacharit-amida-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:10 | siddur-edot-hamizrach-weekday-shacharit-amida-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:11 | siddur-edot-hamizrach-weekday-shacharit-amida-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:12 | siddur-edot-hamizrach-weekday-shacharit-amida-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:13 | siddur-edot-hamizrach-weekday-shacharit-amida-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:14 | siddur-edot-hamizrach-weekday-shacharit-amida-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:15 | siddur-edot-hamizrach-weekday-shacharit-amida-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:16 | siddur-edot-hamizrach-weekday-shacharit-amida-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:17 | siddur-edot-hamizrach-weekday-shacharit-amida-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:18 | siddur-edot-hamizrach-weekday-shacharit-amida-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:19 | siddur-edot-hamizrach-weekday-shacharit-amida-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:20 | siddur-edot-hamizrach-weekday-shacharit-amida-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:21 | siddur-edot-hamizrach-weekday-shacharit-amida-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:22 | siddur-edot-hamizrach-weekday-shacharit-amida-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:23 | siddur-edot-hamizrach-weekday-shacharit-amida-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:24 | siddur-edot-hamizrach-weekday-shacharit-amida-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:25 | siddur-edot-hamizrach-weekday-shacharit-amida-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:26 | siddur-edot-hamizrach-weekday-shacharit-amida-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:27 | siddur-edot-hamizrach-weekday-shacharit-amida-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:28 | siddur-edot-hamizrach-weekday-shacharit-amida-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:29 | siddur-edot-hamizrach-weekday-shacharit-amida-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:30 | siddur-edot-hamizrach-weekday-shacharit-amida-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:31 | siddur-edot-hamizrach-weekday-shacharit-amida-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:32 | siddur-edot-hamizrach-weekday-shacharit-amida-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:33 | siddur-edot-hamizrach-weekday-shacharit-amida-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:34 | siddur-edot-hamizrach-weekday-shacharit-amida-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:35 | siddur-edot-hamizrach-weekday-shacharit-amida-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:36 | siddur-edot-hamizrach-weekday-shacharit-amida-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:37 | siddur-edot-hamizrach-weekday-shacharit-amida-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:38 | siddur-edot-hamizrach-weekday-shacharit-amida-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:39 | siddur-edot-hamizrach-weekday-shacharit-amida-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:40 | siddur-edot-hamizrach-weekday-shacharit-amida-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:41 | siddur-edot-hamizrach-weekday-shacharit-amida-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:42 | siddur-edot-hamizrach-weekday-shacharit-amida-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:43 | siddur-edot-hamizrach-weekday-shacharit-amida-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:44 | siddur-edot-hamizrach-weekday-shacharit-amida-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:45 | siddur-edot-hamizrach-weekday-shacharit-amida-45 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:46 | siddur-edot-hamizrach-weekday-shacharit-amida-46 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:47 | siddur-edot-hamizrach-weekday-shacharit-amida-47 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:48 | siddur-edot-hamizrach-weekday-shacharit-amida-48 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:49 | siddur-edot-hamizrach-weekday-shacharit-amida-49 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:50 | siddur-edot-hamizrach-weekday-shacharit-amida-50 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:51 | siddur-edot-hamizrach-weekday-shacharit-amida-51 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:52 | siddur-edot-hamizrach-weekday-shacharit-amida-52 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:53 | siddur-edot-hamizrach-weekday-shacharit-amida-53 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:54 | siddur-edot-hamizrach-weekday-shacharit-amida-54 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:55 | siddur-edot-hamizrach-weekday-shacharit-amida-55 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:56 | siddur-edot-hamizrach-weekday-shacharit-amida-56 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:57 | siddur-edot-hamizrach-weekday-shacharit-amida-57 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:58 | siddur-edot-hamizrach-weekday-shacharit-amida-58 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:59 | siddur-edot-hamizrach-weekday-shacharit-amida-59 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:60 | siddur-edot-hamizrach-weekday-shacharit-amida-60 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:61 | siddur-edot-hamizrach-weekday-shacharit-amida-61 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:62 | siddur-edot-hamizrach-weekday-shacharit-amida-62 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:63 | siddur-edot-hamizrach-weekday-shacharit-amida-63 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:64 | siddur-edot-hamizrach-weekday-shacharit-amida-64 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:65 | siddur-edot-hamizrach-weekday-shacharit-amida-65 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:66 | siddur-edot-hamizrach-weekday-shacharit-amida-66 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:67 | siddur-edot-hamizrach-weekday-shacharit-amida-67 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:68 | siddur-edot-hamizrach-weekday-shacharit-amida-68 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:69 | siddur-edot-hamizrach-weekday-shacharit-amida-69 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:70 | siddur-edot-hamizrach-weekday-shacharit-amida-70 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:71 | siddur-edot-hamizrach-weekday-shacharit-amida-71 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:72 | siddur-edot-hamizrach-weekday-shacharit-amida-72 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:73 | siddur-edot-hamizrach-weekday-shacharit-amida-73 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:74 | siddur-edot-hamizrach-weekday-shacharit-amida-74 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:75 | siddur-edot-hamizrach-weekday-shacharit-amida-75 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:76 | siddur-edot-hamizrach-weekday-shacharit-amida-76 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:77 | siddur-edot-hamizrach-weekday-shacharit-amida-77 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:78 | siddur-edot-hamizrach-weekday-shacharit-amida-78 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:79 | siddur-edot-hamizrach-weekday-shacharit-amida-79 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:80 | siddur-edot-hamizrach-weekday-shacharit-amida-80 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:81 | siddur-edot-hamizrach-weekday-shacharit-amida-81 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:82 | siddur-edot-hamizrach-weekday-shacharit-amida-82 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:83 | siddur-edot-hamizrach-weekday-shacharit-amida-83 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:84 | siddur-edot-hamizrach-weekday-shacharit-amida-84 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:85 | siddur-edot-hamizrach-weekday-shacharit-amida-85 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:86 | siddur-edot-hamizrach-weekday-shacharit-amida-86 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:87 | siddur-edot-hamizrach-weekday-shacharit-amida-87 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:88 | siddur-edot-hamizrach-weekday-shacharit-amida-88 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:89 | siddur-edot-hamizrach-weekday-shacharit-amida-89 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:90 | siddur-edot-hamizrach-weekday-shacharit-amida-90 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:91 | siddur-edot-hamizrach-weekday-shacharit-amida-91 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:92 | siddur-edot-hamizrach-weekday-shacharit-amida-92 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:93 | siddur-edot-hamizrach-weekday-shacharit-amida-93 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:94 | siddur-edot-hamizrach-weekday-shacharit-amida-94 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:95 | siddur-edot-hamizrach-weekday-shacharit-amida-95 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:96 | siddur-edot-hamizrach-weekday-shacharit-amida-96 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:97 | siddur-edot-hamizrach-weekday-shacharit-amida-97 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:98 | siddur-edot-hamizrach-weekday-shacharit-amida-98 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:99 | siddur-edot-hamizrach-weekday-shacharit-amida-99 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:100 | siddur-edot-hamizrach-weekday-shacharit-amida-100 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:101 | siddur-edot-hamizrach-weekday-shacharit-amida-101 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:102 | siddur-edot-hamizrach-weekday-shacharit-amida-102 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:103 | siddur-edot-hamizrach-weekday-shacharit-amida-103 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:104 | siddur-edot-hamizrach-weekday-shacharit-amida-104 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:105 | siddur-edot-hamizrach-weekday-shacharit-amida-105 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:106 | siddur-edot-hamizrach-weekday-shacharit-amida-106 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:107 | siddur-edot-hamizrach-weekday-shacharit-amida-107 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Amida:108 | siddur-edot-hamizrach-weekday-shacharit-amida-108 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:1 | siddur-edot-hamizrach-weekday-shacharit-vidui-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:2 | siddur-edot-hamizrach-weekday-shacharit-vidui-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:3 | siddur-edot-hamizrach-weekday-shacharit-vidui-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:4 | siddur-edot-hamizrach-weekday-shacharit-vidui-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:5 | siddur-edot-hamizrach-weekday-shacharit-vidui-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:6 | siddur-edot-hamizrach-weekday-shacharit-vidui-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:7 | siddur-edot-hamizrach-weekday-shacharit-vidui-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:8 | siddur-edot-hamizrach-weekday-shacharit-vidui-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:9 | siddur-edot-hamizrach-weekday-shacharit-vidui-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:10 | siddur-edot-hamizrach-weekday-shacharit-vidui-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:11 | siddur-edot-hamizrach-weekday-shacharit-vidui-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:12 | siddur-edot-hamizrach-weekday-shacharit-vidui-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:13 | siddur-edot-hamizrach-weekday-shacharit-vidui-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:14 | siddur-edot-hamizrach-weekday-shacharit-vidui-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:15 | siddur-edot-hamizrach-weekday-shacharit-vidui-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:16 | siddur-edot-hamizrach-weekday-shacharit-vidui-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:17 | siddur-edot-hamizrach-weekday-shacharit-vidui-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:18 | siddur-edot-hamizrach-weekday-shacharit-vidui-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:19 | siddur-edot-hamizrach-weekday-shacharit-vidui-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:20 | siddur-edot-hamizrach-weekday-shacharit-vidui-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:21 | siddur-edot-hamizrach-weekday-shacharit-vidui-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:22 | siddur-edot-hamizrach-weekday-shacharit-vidui-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:23 | siddur-edot-hamizrach-weekday-shacharit-vidui-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:24 | siddur-edot-hamizrach-weekday-shacharit-vidui-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:25 | siddur-edot-hamizrach-weekday-shacharit-vidui-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:26 | siddur-edot-hamizrach-weekday-shacharit-vidui-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:27 | siddur-edot-hamizrach-weekday-shacharit-vidui-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:28 | siddur-edot-hamizrach-weekday-shacharit-vidui-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:29 | siddur-edot-hamizrach-weekday-shacharit-vidui-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:30 | siddur-edot-hamizrach-weekday-shacharit-vidui-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:31 | siddur-edot-hamizrach-weekday-shacharit-vidui-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:32 | siddur-edot-hamizrach-weekday-shacharit-vidui-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:33 | siddur-edot-hamizrach-weekday-shacharit-vidui-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Vidui:34 | siddur-edot-hamizrach-weekday-shacharit-vidui-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:1 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:2 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:3 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:4 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:5 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:6 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:7 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:8 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:9 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:10 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:11 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:12 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:13 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:14 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:15 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:16 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:17 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:18 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:19 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:20 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading:21 | siddur-edot-hamizrach-weekday-shacharit-torah-reading-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Ashrei:1 | siddur-edot-hamizrach-weekday-shacharit-ashrei-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Ashrei:2 | siddur-edot-hamizrach-weekday-shacharit-ashrei-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Ashrei:3 | siddur-edot-hamizrach-weekday-shacharit-ashrei-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Ashrei:4 | siddur-edot-hamizrach-weekday-shacharit-ashrei-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Ashrei:5 | siddur-edot-hamizrach-weekday-shacharit-ashrei-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Ashrei:6 | siddur-edot-hamizrach-weekday-shacharit-ashrei-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Uva LeSion:1 | siddur-edot-hamizrach-weekday-shacharit-uva-lesion-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Uva LeSion:2 | siddur-edot-hamizrach-weekday-shacharit-uva-lesion-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Uva LeSion:3 | siddur-edot-hamizrach-weekday-shacharit-uva-lesion-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Uva LeSion:4 | siddur-edot-hamizrach-weekday-shacharit-uva-lesion-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Uva LeSion:5 | siddur-edot-hamizrach-weekday-shacharit-uva-lesion-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Uva LeSion:6 | siddur-edot-hamizrach-weekday-shacharit-uva-lesion-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Uva LeSion:7 | siddur-edot-hamizrach-weekday-shacharit-uva-lesion-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Uva LeSion:8 | siddur-edot-hamizrach-weekday-shacharit-uva-lesion-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Uva LeSion:9 | siddur-edot-hamizrach-weekday-shacharit-uva-lesion-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Uva LeSion:10 | siddur-edot-hamizrach-weekday-shacharit-uva-lesion-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Beit Yaakov:1 | siddur-edot-hamizrach-weekday-shacharit-beit-yaakov-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Beit Yaakov:2 | siddur-edot-hamizrach-weekday-shacharit-beit-yaakov-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Beit Yaakov:3 | siddur-edot-hamizrach-weekday-shacharit-beit-yaakov-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Beit Yaakov:4 | siddur-edot-hamizrach-weekday-shacharit-beit-yaakov-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Beit Yaakov:5 | siddur-edot-hamizrach-weekday-shacharit-beit-yaakov-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:1 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:2 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:3 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:4 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:5 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:6 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:7 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:8 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:9 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:10 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:11 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:12 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:13 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:14 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:15 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:16 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:17 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:18 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:19 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:20 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:21 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:22 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:23 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:24 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:25 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:26 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:27 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:28 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:29 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day:30 | siddur-edot-hamizrach-weekday-shacharit-song-of-the-day-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:1 | siddur-edot-hamizrach-weekday-shacharit-kaveh-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:2 | siddur-edot-hamizrach-weekday-shacharit-kaveh-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:3 | siddur-edot-hamizrach-weekday-shacharit-kaveh-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:4 | siddur-edot-hamizrach-weekday-shacharit-kaveh-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:5 | siddur-edot-hamizrach-weekday-shacharit-kaveh-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:6 | siddur-edot-hamizrach-weekday-shacharit-kaveh-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:7 | siddur-edot-hamizrach-weekday-shacharit-kaveh-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:8 | siddur-edot-hamizrach-weekday-shacharit-kaveh-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:9 | siddur-edot-hamizrach-weekday-shacharit-kaveh-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:10 | siddur-edot-hamizrach-weekday-shacharit-kaveh-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:11 | siddur-edot-hamizrach-weekday-shacharit-kaveh-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:12 | siddur-edot-hamizrach-weekday-shacharit-kaveh-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:13 | siddur-edot-hamizrach-weekday-shacharit-kaveh-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:14 | siddur-edot-hamizrach-weekday-shacharit-kaveh-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:15 | siddur-edot-hamizrach-weekday-shacharit-kaveh-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:16 | siddur-edot-hamizrach-weekday-shacharit-kaveh-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:17 | siddur-edot-hamizrach-weekday-shacharit-kaveh-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:18 | siddur-edot-hamizrach-weekday-shacharit-kaveh-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Kaveh:19 | siddur-edot-hamizrach-weekday-shacharit-kaveh-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Alenu:1 | siddur-edot-hamizrach-weekday-shacharit-alenu-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Alenu:2 | siddur-edot-hamizrach-weekday-shacharit-alenu-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Alenu:3 | siddur-edot-hamizrach-weekday-shacharit-alenu-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Alenu:4 | siddur-edot-hamizrach-weekday-shacharit-alenu-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Alenu:5 | siddur-edot-hamizrach-weekday-shacharit-alenu-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Shacharit, Alenu:6 | siddur-edot-hamizrach-weekday-shacharit-alenu-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Thirteen Principles of Faith:1 | siddur-edot-hamizrach-additions-for-shacharit-thirteen-principles-of-faith-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Thirteen Principles of Faith:2 | siddur-edot-hamizrach-additions-for-shacharit-thirteen-principles-of-faith-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Thirteen Principles of Faith:3 | siddur-edot-hamizrach-additions-for-shacharit-thirteen-principles-of-faith-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:1 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:2 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:3 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:4 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:5 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:6 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:7 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:8 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:9 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:10 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:11 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:12 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:13 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:14 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:15 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:16 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:17 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:18 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:19 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:20 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:21 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:22 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:23 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:24 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances:25 | siddur-edot-hamizrach-additions-for-shacharit-ten-remembrances-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Offerings:1 | siddur-edot-hamizrach-weekday-mincha-offerings-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Offerings:2 | siddur-edot-hamizrach-weekday-mincha-offerings-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Offerings:3 | siddur-edot-hamizrach-weekday-mincha-offerings-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Offerings:4 | siddur-edot-hamizrach-weekday-mincha-offerings-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Offerings:5 | siddur-edot-hamizrach-weekday-mincha-offerings-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Offerings:6 | siddur-edot-hamizrach-weekday-mincha-offerings-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Offerings:7 | siddur-edot-hamizrach-weekday-mincha-offerings-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Offerings:8 | siddur-edot-hamizrach-weekday-mincha-offerings-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Offerings:9 | siddur-edot-hamizrach-weekday-mincha-offerings-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Offerings:10 | siddur-edot-hamizrach-weekday-mincha-offerings-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Offerings:11 | siddur-edot-hamizrach-weekday-mincha-offerings-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Offerings:12 | siddur-edot-hamizrach-weekday-mincha-offerings-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Offerings:13 | siddur-edot-hamizrach-weekday-mincha-offerings-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Offerings:14 | siddur-edot-hamizrach-weekday-mincha-offerings-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Offerings:15 | siddur-edot-hamizrach-weekday-mincha-offerings-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Offerings:16 | siddur-edot-hamizrach-weekday-mincha-offerings-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:1 | siddur-edot-hamizrach-weekday-mincha-amida-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:2 | siddur-edot-hamizrach-weekday-mincha-amida-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:3 | siddur-edot-hamizrach-weekday-mincha-amida-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:4 | siddur-edot-hamizrach-weekday-mincha-amida-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:5 | siddur-edot-hamizrach-weekday-mincha-amida-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:6 | siddur-edot-hamizrach-weekday-mincha-amida-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:7 | siddur-edot-hamizrach-weekday-mincha-amida-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:8 | siddur-edot-hamizrach-weekday-mincha-amida-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:9 | siddur-edot-hamizrach-weekday-mincha-amida-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:10 | siddur-edot-hamizrach-weekday-mincha-amida-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:11 | siddur-edot-hamizrach-weekday-mincha-amida-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:12 | siddur-edot-hamizrach-weekday-mincha-amida-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:13 | siddur-edot-hamizrach-weekday-mincha-amida-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:14 | siddur-edot-hamizrach-weekday-mincha-amida-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:15 | siddur-edot-hamizrach-weekday-mincha-amida-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:16 | siddur-edot-hamizrach-weekday-mincha-amida-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:17 | siddur-edot-hamizrach-weekday-mincha-amida-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:18 | siddur-edot-hamizrach-weekday-mincha-amida-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:19 | siddur-edot-hamizrach-weekday-mincha-amida-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:20 | siddur-edot-hamizrach-weekday-mincha-amida-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:21 | siddur-edot-hamizrach-weekday-mincha-amida-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:22 | siddur-edot-hamizrach-weekday-mincha-amida-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:23 | siddur-edot-hamizrach-weekday-mincha-amida-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:24 | siddur-edot-hamizrach-weekday-mincha-amida-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:25 | siddur-edot-hamizrach-weekday-mincha-amida-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:26 | siddur-edot-hamizrach-weekday-mincha-amida-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:27 | siddur-edot-hamizrach-weekday-mincha-amida-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:28 | siddur-edot-hamizrach-weekday-mincha-amida-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:29 | siddur-edot-hamizrach-weekday-mincha-amida-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:30 | siddur-edot-hamizrach-weekday-mincha-amida-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:31 | siddur-edot-hamizrach-weekday-mincha-amida-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:32 | siddur-edot-hamizrach-weekday-mincha-amida-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:33 | siddur-edot-hamizrach-weekday-mincha-amida-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:34 | siddur-edot-hamizrach-weekday-mincha-amida-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:35 | siddur-edot-hamizrach-weekday-mincha-amida-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:36 | siddur-edot-hamizrach-weekday-mincha-amida-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:37 | siddur-edot-hamizrach-weekday-mincha-amida-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:38 | siddur-edot-hamizrach-weekday-mincha-amida-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:39 | siddur-edot-hamizrach-weekday-mincha-amida-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:40 | siddur-edot-hamizrach-weekday-mincha-amida-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:41 | siddur-edot-hamizrach-weekday-mincha-amida-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:42 | siddur-edot-hamizrach-weekday-mincha-amida-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:43 | siddur-edot-hamizrach-weekday-mincha-amida-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:44 | siddur-edot-hamizrach-weekday-mincha-amida-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:45 | siddur-edot-hamizrach-weekday-mincha-amida-45 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:46 | siddur-edot-hamizrach-weekday-mincha-amida-46 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:47 | siddur-edot-hamizrach-weekday-mincha-amida-47 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:48 | siddur-edot-hamizrach-weekday-mincha-amida-48 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:49 | siddur-edot-hamizrach-weekday-mincha-amida-49 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:50 | siddur-edot-hamizrach-weekday-mincha-amida-50 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:51 | siddur-edot-hamizrach-weekday-mincha-amida-51 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:52 | siddur-edot-hamizrach-weekday-mincha-amida-52 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:53 | siddur-edot-hamizrach-weekday-mincha-amida-53 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:54 | siddur-edot-hamizrach-weekday-mincha-amida-54 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:55 | siddur-edot-hamizrach-weekday-mincha-amida-55 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:56 | siddur-edot-hamizrach-weekday-mincha-amida-56 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:57 | siddur-edot-hamizrach-weekday-mincha-amida-57 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:58 | siddur-edot-hamizrach-weekday-mincha-amida-58 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:59 | siddur-edot-hamizrach-weekday-mincha-amida-59 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:60 | siddur-edot-hamizrach-weekday-mincha-amida-60 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:61 | siddur-edot-hamizrach-weekday-mincha-amida-61 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:62 | siddur-edot-hamizrach-weekday-mincha-amida-62 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:63 | siddur-edot-hamizrach-weekday-mincha-amida-63 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:64 | siddur-edot-hamizrach-weekday-mincha-amida-64 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:65 | siddur-edot-hamizrach-weekday-mincha-amida-65 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:66 | siddur-edot-hamizrach-weekday-mincha-amida-66 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:67 | siddur-edot-hamizrach-weekday-mincha-amida-67 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:68 | siddur-edot-hamizrach-weekday-mincha-amida-68 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:69 | siddur-edot-hamizrach-weekday-mincha-amida-69 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:70 | siddur-edot-hamizrach-weekday-mincha-amida-70 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:71 | siddur-edot-hamizrach-weekday-mincha-amida-71 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:72 | siddur-edot-hamizrach-weekday-mincha-amida-72 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:73 | siddur-edot-hamizrach-weekday-mincha-amida-73 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:74 | siddur-edot-hamizrach-weekday-mincha-amida-74 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:75 | siddur-edot-hamizrach-weekday-mincha-amida-75 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:76 | siddur-edot-hamizrach-weekday-mincha-amida-76 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:77 | siddur-edot-hamizrach-weekday-mincha-amida-77 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:78 | siddur-edot-hamizrach-weekday-mincha-amida-78 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:79 | siddur-edot-hamizrach-weekday-mincha-amida-79 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:80 | siddur-edot-hamizrach-weekday-mincha-amida-80 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:81 | siddur-edot-hamizrach-weekday-mincha-amida-81 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:82 | siddur-edot-hamizrach-weekday-mincha-amida-82 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:83 | siddur-edot-hamizrach-weekday-mincha-amida-83 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:84 | siddur-edot-hamizrach-weekday-mincha-amida-84 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:85 | siddur-edot-hamizrach-weekday-mincha-amida-85 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:86 | siddur-edot-hamizrach-weekday-mincha-amida-86 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:87 | siddur-edot-hamizrach-weekday-mincha-amida-87 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:88 | siddur-edot-hamizrach-weekday-mincha-amida-88 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:89 | siddur-edot-hamizrach-weekday-mincha-amida-89 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:90 | siddur-edot-hamizrach-weekday-mincha-amida-90 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:91 | siddur-edot-hamizrach-weekday-mincha-amida-91 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:92 | siddur-edot-hamizrach-weekday-mincha-amida-92 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:93 | siddur-edot-hamizrach-weekday-mincha-amida-93 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:94 | siddur-edot-hamizrach-weekday-mincha-amida-94 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:95 | siddur-edot-hamizrach-weekday-mincha-amida-95 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:96 | siddur-edot-hamizrach-weekday-mincha-amida-96 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:97 | siddur-edot-hamizrach-weekday-mincha-amida-97 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:98 | siddur-edot-hamizrach-weekday-mincha-amida-98 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:99 | siddur-edot-hamizrach-weekday-mincha-amida-99 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:100 | siddur-edot-hamizrach-weekday-mincha-amida-100 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:101 | siddur-edot-hamizrach-weekday-mincha-amida-101 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:102 | siddur-edot-hamizrach-weekday-mincha-amida-102 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:103 | siddur-edot-hamizrach-weekday-mincha-amida-103 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:104 | siddur-edot-hamizrach-weekday-mincha-amida-104 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:105 | siddur-edot-hamizrach-weekday-mincha-amida-105 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:106 | siddur-edot-hamizrach-weekday-mincha-amida-106 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Amida:107 | siddur-edot-hamizrach-weekday-mincha-amida-107 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:1 | siddur-edot-hamizrach-weekday-mincha-vidui-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:2 | siddur-edot-hamizrach-weekday-mincha-vidui-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:3 | siddur-edot-hamizrach-weekday-mincha-vidui-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:4 | siddur-edot-hamizrach-weekday-mincha-vidui-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:5 | siddur-edot-hamizrach-weekday-mincha-vidui-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:6 | siddur-edot-hamizrach-weekday-mincha-vidui-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:7 | siddur-edot-hamizrach-weekday-mincha-vidui-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:8 | siddur-edot-hamizrach-weekday-mincha-vidui-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:9 | siddur-edot-hamizrach-weekday-mincha-vidui-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:10 | siddur-edot-hamizrach-weekday-mincha-vidui-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:11 | siddur-edot-hamizrach-weekday-mincha-vidui-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:12 | siddur-edot-hamizrach-weekday-mincha-vidui-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:13 | siddur-edot-hamizrach-weekday-mincha-vidui-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:14 | siddur-edot-hamizrach-weekday-mincha-vidui-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:15 | siddur-edot-hamizrach-weekday-mincha-vidui-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:16 | siddur-edot-hamizrach-weekday-mincha-vidui-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:17 | siddur-edot-hamizrach-weekday-mincha-vidui-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:18 | siddur-edot-hamizrach-weekday-mincha-vidui-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:19 | siddur-edot-hamizrach-weekday-mincha-vidui-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:20 | siddur-edot-hamizrach-weekday-mincha-vidui-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:21 | siddur-edot-hamizrach-weekday-mincha-vidui-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:22 | siddur-edot-hamizrach-weekday-mincha-vidui-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:23 | siddur-edot-hamizrach-weekday-mincha-vidui-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Vidui:24 | siddur-edot-hamizrach-weekday-mincha-vidui-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Alenu:1 | siddur-edot-hamizrach-weekday-mincha-alenu-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Alenu:2 | siddur-edot-hamizrach-weekday-mincha-alenu-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Alenu:3 | siddur-edot-hamizrach-weekday-mincha-alenu-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Mincha, Alenu:4 | siddur-edot-hamizrach-weekday-mincha-alenu-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Barchu:1 | siddur-edot-hamizrach-weekday-arvit-barchu-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Barchu:2 | siddur-edot-hamizrach-weekday-arvit-barchu-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Barchu:3 | siddur-edot-hamizrach-weekday-arvit-barchu-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Barchu:4 | siddur-edot-hamizrach-weekday-arvit-barchu-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Barchu:5 | siddur-edot-hamizrach-weekday-arvit-barchu-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Barchu:6 | siddur-edot-hamizrach-weekday-arvit-barchu-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Barchu:7 | siddur-edot-hamizrach-weekday-arvit-barchu-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Barchu:8 | siddur-edot-hamizrach-weekday-arvit-barchu-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Barchu:9 | siddur-edot-hamizrach-weekday-arvit-barchu-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Barchu:10 | siddur-edot-hamizrach-weekday-arvit-barchu-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Barchu:11 | siddur-edot-hamizrach-weekday-arvit-barchu-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, The Shema:1 | siddur-edot-hamizrach-weekday-arvit-the-shema-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, The Shema:2 | siddur-edot-hamizrach-weekday-arvit-the-shema-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, The Shema:3 | siddur-edot-hamizrach-weekday-arvit-the-shema-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, The Shema:4 | siddur-edot-hamizrach-weekday-arvit-the-shema-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, The Shema:5 | siddur-edot-hamizrach-weekday-arvit-the-shema-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, The Shema:6 | siddur-edot-hamizrach-weekday-arvit-the-shema-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, The Shema:7 | siddur-edot-hamizrach-weekday-arvit-the-shema-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, The Shema:8 | siddur-edot-hamizrach-weekday-arvit-the-shema-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, The Shema:9 | siddur-edot-hamizrach-weekday-arvit-the-shema-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, The Shema:10 | siddur-edot-hamizrach-weekday-arvit-the-shema-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, The Shema:11 | siddur-edot-hamizrach-weekday-arvit-the-shema-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, The Shema:12 | siddur-edot-hamizrach-weekday-arvit-the-shema-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, The Shema:13 | siddur-edot-hamizrach-weekday-arvit-the-shema-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:1 | siddur-edot-hamizrach-weekday-arvit-amidah-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:2 | siddur-edot-hamizrach-weekday-arvit-amidah-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:3 | siddur-edot-hamizrach-weekday-arvit-amidah-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:4 | siddur-edot-hamizrach-weekday-arvit-amidah-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:5 | siddur-edot-hamizrach-weekday-arvit-amidah-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:6 | siddur-edot-hamizrach-weekday-arvit-amidah-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:7 | siddur-edot-hamizrach-weekday-arvit-amidah-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:8 | siddur-edot-hamizrach-weekday-arvit-amidah-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:9 | siddur-edot-hamizrach-weekday-arvit-amidah-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:10 | siddur-edot-hamizrach-weekday-arvit-amidah-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:11 | siddur-edot-hamizrach-weekday-arvit-amidah-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:12 | siddur-edot-hamizrach-weekday-arvit-amidah-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:13 | siddur-edot-hamizrach-weekday-arvit-amidah-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:14 | siddur-edot-hamizrach-weekday-arvit-amidah-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:15 | siddur-edot-hamizrach-weekday-arvit-amidah-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:16 | siddur-edot-hamizrach-weekday-arvit-amidah-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:17 | siddur-edot-hamizrach-weekday-arvit-amidah-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:18 | siddur-edot-hamizrach-weekday-arvit-amidah-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:19 | siddur-edot-hamizrach-weekday-arvit-amidah-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:20 | siddur-edot-hamizrach-weekday-arvit-amidah-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:21 | siddur-edot-hamizrach-weekday-arvit-amidah-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:22 | siddur-edot-hamizrach-weekday-arvit-amidah-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:23 | siddur-edot-hamizrach-weekday-arvit-amidah-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:24 | siddur-edot-hamizrach-weekday-arvit-amidah-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:25 | siddur-edot-hamizrach-weekday-arvit-amidah-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:26 | siddur-edot-hamizrach-weekday-arvit-amidah-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:27 | siddur-edot-hamizrach-weekday-arvit-amidah-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:28 | siddur-edot-hamizrach-weekday-arvit-amidah-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:29 | siddur-edot-hamizrach-weekday-arvit-amidah-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:30 | siddur-edot-hamizrach-weekday-arvit-amidah-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:31 | siddur-edot-hamizrach-weekday-arvit-amidah-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:32 | siddur-edot-hamizrach-weekday-arvit-amidah-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:33 | siddur-edot-hamizrach-weekday-arvit-amidah-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:34 | siddur-edot-hamizrach-weekday-arvit-amidah-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:35 | siddur-edot-hamizrach-weekday-arvit-amidah-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:36 | siddur-edot-hamizrach-weekday-arvit-amidah-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:37 | siddur-edot-hamizrach-weekday-arvit-amidah-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:38 | siddur-edot-hamizrach-weekday-arvit-amidah-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:39 | siddur-edot-hamizrach-weekday-arvit-amidah-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:40 | siddur-edot-hamizrach-weekday-arvit-amidah-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:41 | siddur-edot-hamizrach-weekday-arvit-amidah-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:42 | siddur-edot-hamizrach-weekday-arvit-amidah-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:43 | siddur-edot-hamizrach-weekday-arvit-amidah-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:44 | siddur-edot-hamizrach-weekday-arvit-amidah-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:45 | siddur-edot-hamizrach-weekday-arvit-amidah-45 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:46 | siddur-edot-hamizrach-weekday-arvit-amidah-46 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:47 | siddur-edot-hamizrach-weekday-arvit-amidah-47 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:48 | siddur-edot-hamizrach-weekday-arvit-amidah-48 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:49 | siddur-edot-hamizrach-weekday-arvit-amidah-49 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:50 | siddur-edot-hamizrach-weekday-arvit-amidah-50 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:51 | siddur-edot-hamizrach-weekday-arvit-amidah-51 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:52 | siddur-edot-hamizrach-weekday-arvit-amidah-52 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:53 | siddur-edot-hamizrach-weekday-arvit-amidah-53 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:54 | siddur-edot-hamizrach-weekday-arvit-amidah-54 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:55 | siddur-edot-hamizrach-weekday-arvit-amidah-55 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:56 | siddur-edot-hamizrach-weekday-arvit-amidah-56 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:57 | siddur-edot-hamizrach-weekday-arvit-amidah-57 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:58 | siddur-edot-hamizrach-weekday-arvit-amidah-58 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:59 | siddur-edot-hamizrach-weekday-arvit-amidah-59 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:60 | siddur-edot-hamizrach-weekday-arvit-amidah-60 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:61 | siddur-edot-hamizrach-weekday-arvit-amidah-61 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:62 | siddur-edot-hamizrach-weekday-arvit-amidah-62 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:63 | siddur-edot-hamizrach-weekday-arvit-amidah-63 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:64 | siddur-edot-hamizrach-weekday-arvit-amidah-64 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:65 | siddur-edot-hamizrach-weekday-arvit-amidah-65 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:66 | siddur-edot-hamizrach-weekday-arvit-amidah-66 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:67 | siddur-edot-hamizrach-weekday-arvit-amidah-67 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:68 | siddur-edot-hamizrach-weekday-arvit-amidah-68 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:69 | siddur-edot-hamizrach-weekday-arvit-amidah-69 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:70 | siddur-edot-hamizrach-weekday-arvit-amidah-70 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:71 | siddur-edot-hamizrach-weekday-arvit-amidah-71 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:72 | siddur-edot-hamizrach-weekday-arvit-amidah-72 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Amidah:73 | siddur-edot-hamizrach-weekday-arvit-amidah-73 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Alenu:1 | siddur-edot-hamizrach-weekday-arvit-alenu-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Alenu:2 | siddur-edot-hamizrach-weekday-arvit-alenu-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Alenu:3 | siddur-edot-hamizrach-weekday-arvit-alenu-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Weekday Arvit, Alenu:4 | siddur-edot-hamizrach-weekday-arvit-alenu-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:1 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:2 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:3 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:4 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:5 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:6 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:7 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:8 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:9 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:10 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:11 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:12 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:13 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:14 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:15 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:16 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:17 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:18 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:19 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:20 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:21 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:22 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:23 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:24 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:25 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:26 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:27 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:28 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:29 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:30 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:31 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:32 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:33 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:34 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:35 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:36 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:37 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:38 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:39 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:40 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:41 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:42 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:43 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:44 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:45 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-45 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:46 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-46 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:47 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-47 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:48 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-48 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:49 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-49 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:50 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-50 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:51 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-51 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:52 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-52 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:53 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-53 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:54 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-54 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:55 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-55 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:56 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-56 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:57 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-57 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:58 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-58 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:59 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-59 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:60 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-60 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:61 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-61 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:62 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-62 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:63 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-63 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:64 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-64 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:65 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-65 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:66 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-66 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:67 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-67 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:68 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-68 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:69 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-69 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:70 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-70 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:71 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-71 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:72 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-72 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:73 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-73 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:74 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-74 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:75 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-75 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:76 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-76 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:77 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-77 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:78 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-78 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:79 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-79 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:80 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-80 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:81 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-81 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:82 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-82 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:83 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-83 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:84 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-84 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:85 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-85 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:86 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-86 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:87 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-87 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:88 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-88 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:89 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-89 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:90 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-90 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:91 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-91 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:92 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-92 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:93 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-93 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:94 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-94 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:95 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-95 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:96 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-96 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:97 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-97 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:98 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-98 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:99 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-99 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:100 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-100 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:101 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-101 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:102 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-102 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:103 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-103 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:104 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-104 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:105 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-105 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:106 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-106 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:107 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-107 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:108 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-108 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:109 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-109 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:110 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-110 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:111 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-111 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:112 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-112 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:113 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-113 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:114 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-114 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:115 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-115 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:116 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-116 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:117 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-117 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:118 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-118 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:119 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-119 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:120 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-120 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:121 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-121 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:122 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-122 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:123 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-123 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:124 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-124 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:125 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-125 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:126 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-126 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:127 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-127 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:128 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-128 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:129 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-129 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:130 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-130 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:131 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-131 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:132 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-132 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:133 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-133 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:134 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-134 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:135 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-135 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:136 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-136 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:137 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-137 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:138 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-138 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:139 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-139 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:140 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-140 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:141 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-141 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:142 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-142 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:143 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-143 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:144 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-144 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:145 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-145 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:146 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-146 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:147 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-147 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:148 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-148 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:149 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-149 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:150 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-150 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:151 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-151 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:152 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-152 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:153 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-153 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:154 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-154 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:155 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-155 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:156 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-156 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:157 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-157 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:158 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-158 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:159 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-159 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:160 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-160 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Counting of the Omer:161 | siddur-edot-hamizrach-counting-of-the-omer-counting-of-the-omer-161 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:1 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:2 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:3 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:4 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:5 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:6 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:7 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:8 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:9 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:10 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:11 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:12 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:13 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:14 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:15 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:16 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:17 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:18 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:19 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:20 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:21 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:22 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:23 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:24 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:25 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessing of the Moon:26 | siddur-edot-hamizrach-blessing-of-the-moon-blessing-of-the-moon-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:1 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:2 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:3 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:4 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:5 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:6 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:7 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:8 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:9 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:10 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:11 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:12 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:13 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:14 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:15 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:16 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:17 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:18 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:19 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:20 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:21 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:22 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:23 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:24 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:25 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:26 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:27 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:28 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:29 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Bedtime Shema:30 | siddur-edot-hamizrach-bedtime-shema-bedtime-shema-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Candle Lighting:1 | siddur-edot-hamizrach-shabbat-candle-lighting-shabbat-candle-lighting-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Candle Lighting:2 | siddur-edot-hamizrach-shabbat-candle-lighting-shabbat-candle-lighting-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Candle Lighting:3 | siddur-edot-hamizrach-shabbat-candle-lighting-shabbat-candle-lighting-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Candle Lighting:4 | siddur-edot-hamizrach-shabbat-candle-lighting-shabbat-candle-lighting-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Candle Lighting:5 | siddur-edot-hamizrach-shabbat-candle-lighting-shabbat-candle-lighting-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Candle Lighting:6 | siddur-edot-hamizrach-shabbat-candle-lighting-shabbat-candle-lighting-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Candle Lighting:7 | siddur-edot-hamizrach-shabbat-candle-lighting-shabbat-candle-lighting-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Song of Songs:1 | siddur-edot-hamizrach-song-of-songs-song-of-songs-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Song of Songs:2 | siddur-edot-hamizrach-song-of-songs-song-of-songs-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Song of Songs:3 | siddur-edot-hamizrach-song-of-songs-song-of-songs-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Song of Songs:4 | siddur-edot-hamizrach-song-of-songs-song-of-songs-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Song of Songs:5 | siddur-edot-hamizrach-song-of-songs-song-of-songs-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Song of Songs:6 | siddur-edot-hamizrach-song-of-songs-song-of-songs-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Song of Songs:7 | siddur-edot-hamizrach-song-of-songs-song-of-songs-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Song of Songs:8 | siddur-edot-hamizrach-song-of-songs-song-of-songs-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Song of Songs:9 | siddur-edot-hamizrach-song-of-songs-song-of-songs-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Song of Songs:10 | siddur-edot-hamizrach-song-of-songs-song-of-songs-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Song of Songs:11 | siddur-edot-hamizrach-song-of-songs-song-of-songs-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Song of Songs:12 | siddur-edot-hamizrach-song-of-songs-song-of-songs-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Song of Songs:13 | siddur-edot-hamizrach-song-of-songs-song-of-songs-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Song of Songs:14 | siddur-edot-hamizrach-song-of-songs-song-of-songs-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Song of Songs:15 | siddur-edot-hamizrach-song-of-songs-song-of-songs-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Song of Songs:16 | siddur-edot-hamizrach-song-of-songs-song-of-songs-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:1 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:2 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:3 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:4 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:5 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:6 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:7 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:8 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:9 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:10 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:11 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:12 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:13 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:14 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:15 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:16 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:17 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:18 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:19 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:20 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:21 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:22 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:23 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:24 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:25 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:26 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:27 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:28 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:29 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:30 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:31 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:32 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:33 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:34 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Kabbalat Shabbat:35 | siddur-edot-hamizrach-kabbalat-shabbat-kabbalat-shabbat-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Barchu:1 | siddur-edot-hamizrach-shabbat-arvit-barchu-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Barchu:2 | siddur-edot-hamizrach-shabbat-arvit-barchu-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Barchu:3 | siddur-edot-hamizrach-shabbat-arvit-barchu-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Barchu:4 | siddur-edot-hamizrach-shabbat-arvit-barchu-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Barchu:5 | siddur-edot-hamizrach-shabbat-arvit-barchu-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Barchu:6 | siddur-edot-hamizrach-shabbat-arvit-barchu-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Barchu:7 | siddur-edot-hamizrach-shabbat-arvit-barchu-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Barchu:8 | siddur-edot-hamizrach-shabbat-arvit-barchu-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, The Shema:1 | siddur-edot-hamizrach-shabbat-arvit-the-shema-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, The Shema:2 | siddur-edot-hamizrach-shabbat-arvit-the-shema-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, The Shema:3 | siddur-edot-hamizrach-shabbat-arvit-the-shema-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, The Shema:4 | siddur-edot-hamizrach-shabbat-arvit-the-shema-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, The Shema:5 | siddur-edot-hamizrach-shabbat-arvit-the-shema-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, The Shema:6 | siddur-edot-hamizrach-shabbat-arvit-the-shema-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, The Shema:7 | siddur-edot-hamizrach-shabbat-arvit-the-shema-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, The Shema:8 | siddur-edot-hamizrach-shabbat-arvit-the-shema-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, The Shema:9 | siddur-edot-hamizrach-shabbat-arvit-the-shema-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, The Shema:10 | siddur-edot-hamizrach-shabbat-arvit-the-shema-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, The Shema:11 | siddur-edot-hamizrach-shabbat-arvit-the-shema-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, The Shema:12 | siddur-edot-hamizrach-shabbat-arvit-the-shema-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, The Shema:13 | siddur-edot-hamizrach-shabbat-arvit-the-shema-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, The Shema:14 | siddur-edot-hamizrach-shabbat-arvit-the-shema-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, The Shema:15 | siddur-edot-hamizrach-shabbat-arvit-the-shema-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:1 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:2 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:3 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:4 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:5 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:6 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:7 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:8 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:9 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:10 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:11 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:12 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:13 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:14 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:15 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:16 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:17 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:18 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:19 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:20 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:21 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:22 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:23 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:24 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:25 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:26 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:27 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:28 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:29 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:30 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:31 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:32 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:33 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:34 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:35 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:36 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:37 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:38 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:39 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:40 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:41 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:42 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:43 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:44 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:45 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-45 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:46 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-46 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:47 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-47 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:48 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-48 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot:49 | siddur-edot-hamizrach-shabbat-arvit-magen-avot-49 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:1 | siddur-edot-hamizrach-shabbat-arvit-alenu-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:2 | siddur-edot-hamizrach-shabbat-arvit-alenu-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:3 | siddur-edot-hamizrach-shabbat-arvit-alenu-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:4 | siddur-edot-hamizrach-shabbat-arvit-alenu-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:5 | siddur-edot-hamizrach-shabbat-arvit-alenu-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:6 | siddur-edot-hamizrach-shabbat-arvit-alenu-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:7 | siddur-edot-hamizrach-shabbat-arvit-alenu-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:8 | siddur-edot-hamizrach-shabbat-arvit-alenu-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:9 | siddur-edot-hamizrach-shabbat-arvit-alenu-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:10 | siddur-edot-hamizrach-shabbat-arvit-alenu-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:11 | siddur-edot-hamizrach-shabbat-arvit-alenu-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:12 | siddur-edot-hamizrach-shabbat-arvit-alenu-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:13 | siddur-edot-hamizrach-shabbat-arvit-alenu-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:14 | siddur-edot-hamizrach-shabbat-arvit-alenu-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:15 | siddur-edot-hamizrach-shabbat-arvit-alenu-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:16 | siddur-edot-hamizrach-shabbat-arvit-alenu-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:17 | siddur-edot-hamizrach-shabbat-arvit-alenu-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:18 | siddur-edot-hamizrach-shabbat-arvit-alenu-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Arvit, Alenu:19 | siddur-edot-hamizrach-shabbat-arvit-alenu-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Shalom Alekhem:1 | siddur-edot-hamizrach-shabbat-evening-shalom-alekhem-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Shalom Alekhem:2 | siddur-edot-hamizrach-shabbat-evening-shalom-alekhem-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Shalom Alekhem:3 | siddur-edot-hamizrach-shabbat-evening-shalom-alekhem-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Shalom Alekhem:4 | siddur-edot-hamizrach-shabbat-evening-shalom-alekhem-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Shalom Alekhem:5 | siddur-edot-hamizrach-shabbat-evening-shalom-alekhem-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Shalom Alekhem:6 | siddur-edot-hamizrach-shabbat-evening-shalom-alekhem-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Shalom Alekhem:7 | siddur-edot-hamizrach-shabbat-evening-shalom-alekhem-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Shalom Alekhem:8 | siddur-edot-hamizrach-shabbat-evening-shalom-alekhem-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Shalom Alekhem:9 | siddur-edot-hamizrach-shabbat-evening-shalom-alekhem-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Shalom Alekhem:10 | siddur-edot-hamizrach-shabbat-evening-shalom-alekhem-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Eshet Hayil:1 | siddur-edot-hamizrach-shabbat-evening-eshet-hayil-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Eshet Hayil:2 | siddur-edot-hamizrach-shabbat-evening-eshet-hayil-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Eshet Hayil:3 | siddur-edot-hamizrach-shabbat-evening-eshet-hayil-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:1 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:2 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:3 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:4 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:5 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:6 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:7 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:8 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:9 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:10 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:11 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:12 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:13 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:14 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:15 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:16 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:17 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:18 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:19 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:20 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:21 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:22 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:23 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:24 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:25 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:26 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:27 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:28 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata:29 | siddur-edot-hamizrach-shabbat-evening-atkenu-seudata-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Kiddush:1 | siddur-edot-hamizrach-shabbat-evening-kiddush-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Kiddush:2 | siddur-edot-hamizrach-shabbat-evening-kiddush-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Kiddush:3 | siddur-edot-hamizrach-shabbat-evening-kiddush-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Kiddush:4 | siddur-edot-hamizrach-shabbat-evening-kiddush-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Kiddush:5 | siddur-edot-hamizrach-shabbat-evening-kiddush-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Kiddush:6 | siddur-edot-hamizrach-shabbat-evening-kiddush-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Kiddush:7 | siddur-edot-hamizrach-shabbat-evening-kiddush-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Kiddush:8 | siddur-edot-hamizrach-shabbat-evening-kiddush-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Kiddush:9 | siddur-edot-hamizrach-shabbat-evening-kiddush-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Kiddush:10 | siddur-edot-hamizrach-shabbat-evening-kiddush-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Kiddush:11 | siddur-edot-hamizrach-shabbat-evening-kiddush-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Kiddush:12 | siddur-edot-hamizrach-shabbat-evening-kiddush-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Kiddush:13 | siddur-edot-hamizrach-shabbat-evening-kiddush-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Kiddush:14 | siddur-edot-hamizrach-shabbat-evening-kiddush-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Blessing of Children:1 | siddur-edot-hamizrach-shabbat-evening-blessing-of-children-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Blessing of Children:2 | siddur-edot-hamizrach-shabbat-evening-blessing-of-children-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Blessing of Children:3 | siddur-edot-hamizrach-shabbat-evening-blessing-of-children-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Blessing of Children:4 | siddur-edot-hamizrach-shabbat-evening-blessing-of-children-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Blessing of Children:5 | siddur-edot-hamizrach-shabbat-evening-blessing-of-children-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Blessing of Children:6 | siddur-edot-hamizrach-shabbat-evening-blessing-of-children-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, First Meal:1 | siddur-edot-hamizrach-shabbat-evening-first-meal-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, First Meal:2 | siddur-edot-hamizrach-shabbat-evening-first-meal-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, First Meal:3 | siddur-edot-hamizrach-shabbat-evening-first-meal-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, First Meal:4 | siddur-edot-hamizrach-shabbat-evening-first-meal-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, First Meal:5 | siddur-edot-hamizrach-shabbat-evening-first-meal-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, First Meal:6 | siddur-edot-hamizrach-shabbat-evening-first-meal-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, First Meal:7 | siddur-edot-hamizrach-shabbat-evening-first-meal-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, First Meal:8 | siddur-edot-hamizrach-shabbat-evening-first-meal-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, First Meal:9 | siddur-edot-hamizrach-shabbat-evening-first-meal-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, First Meal:10 | siddur-edot-hamizrach-shabbat-evening-first-meal-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, First Meal:11 | siddur-edot-hamizrach-shabbat-evening-first-meal-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Zohar:1 | siddur-edot-hamizrach-shabbat-evening-zohar-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Zohar:2 | siddur-edot-hamizrach-shabbat-evening-zohar-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Zohar:3 | siddur-edot-hamizrach-shabbat-evening-zohar-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Zohar:4 | siddur-edot-hamizrach-shabbat-evening-zohar-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Zohar:5 | siddur-edot-hamizrach-shabbat-evening-zohar-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Zohar:6 | siddur-edot-hamizrach-shabbat-evening-zohar-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Zohar:7 | siddur-edot-hamizrach-shabbat-evening-zohar-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Zohar:8 | siddur-edot-hamizrach-shabbat-evening-zohar-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Zohar:9 | siddur-edot-hamizrach-shabbat-evening-zohar-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Zohar:10 | siddur-edot-hamizrach-shabbat-evening-zohar-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Zohar:11 | siddur-edot-hamizrach-shabbat-evening-zohar-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Zohar:12 | siddur-edot-hamizrach-shabbat-evening-zohar-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Zohar:13 | siddur-edot-hamizrach-shabbat-evening-zohar-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Zohar:14 | siddur-edot-hamizrach-shabbat-evening-zohar-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Zohar:15 | siddur-edot-hamizrach-shabbat-evening-zohar-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:1 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:2 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:3 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:4 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:5 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:6 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:7 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:8 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:9 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:10 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:11 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:12 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:13 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:14 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:15 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:16 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:17 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:18 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:19 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:20 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:21 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:22 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:23 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:24 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:25 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:26 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:27 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:28 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:29 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:30 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:31 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:32 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:33 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:34 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:35 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:36 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:37 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:38 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:39 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:40 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:41 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:42 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:43 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:44 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:45 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-45 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:46 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-46 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:47 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-47 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:48 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-48 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:49 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-49 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:50 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-50 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:51 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-51 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:52 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-52 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:53 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-53 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:54 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-54 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:55 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-55 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:56 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-56 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:57 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-57 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:58 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-58 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:59 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-59 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:60 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-60 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:61 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-61 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:62 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-62 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:63 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-63 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:64 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-64 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:65 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-65 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:66 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-66 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:67 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-67 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:68 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-68 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:69 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-69 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:70 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-70 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:71 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-71 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:72 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-72 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:73 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-73 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:74 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-74 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:75 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-75 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:76 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-76 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:77 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-77 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:78 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-78 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:79 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-79 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:80 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-80 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:81 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-81 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:82 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-82 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:83 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-83 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:84 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-84 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:85 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-85 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:86 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-86 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:87 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-87 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:88 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-88 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:89 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-89 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:90 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-90 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:91 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-91 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:92 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-92 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:93 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-93 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:94 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-94 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:95 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-95 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:96 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-96 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:97 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-97 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:98 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-98 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:99 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-99 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:100 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-100 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:101 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-101 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:102 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-102 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:103 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-103 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:104 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-104 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:105 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-105 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:106 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-106 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:107 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-107 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:108 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-108 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:109 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-109 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:110 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-110 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:111 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-111 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:112 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-112 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:113 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-113 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:114 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-114 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:115 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-115 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:116 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-116 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:117 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-117 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:118 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-118 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:119 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-119 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:120 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-120 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:121 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-121 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:122 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-122 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:123 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-123 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:124 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-124 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:125 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-125 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:126 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-126 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:127 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-127 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:128 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-128 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:129 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-129 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:130 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-130 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:131 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-131 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:132 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-132 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:133 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-133 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:134 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-134 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:135 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-135 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:136 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-136 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:137 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-137 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:138 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-138 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:139 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-139 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:140 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-140 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:141 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-141 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:142 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-142 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:143 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-143 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:144 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-144 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:145 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-145 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:146 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-146 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:147 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-147 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat:148 | siddur-edot-hamizrach-shabbat-evening-songs-for-shabbat-148 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:1 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:2 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:3 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:4 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:5 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:6 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:7 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:8 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:9 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:10 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:11 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:12 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:13 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:14 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:15 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:16 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:17 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:18 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:19 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:20 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:21 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:22 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:23 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:24 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:25 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:26 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:27 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:28 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:29 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:30 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:31 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:32 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:33 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:34 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:35 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:36 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:37 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:38 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:39 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:40 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:41 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:42 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:43 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:44 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:45 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-45 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:46 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-46 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:47 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-47 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:48 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-48 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:49 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-49 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:50 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-50 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:51 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-51 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:52 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-52 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:53 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-53 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:54 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-54 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:55 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-55 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:56 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-56 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:57 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-57 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:58 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-58 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Post Meal Blessing:59 | siddur-edot-hamizrach-post-meal-blessing-post-meal-blessing-59 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:1 | siddur-edot-hamizrach-al-hamihya-al-hamihya-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:2 | siddur-edot-hamizrach-al-hamihya-al-hamihya-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:3 | siddur-edot-hamizrach-al-hamihya-al-hamihya-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:4 | siddur-edot-hamizrach-al-hamihya-al-hamihya-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:5 | siddur-edot-hamizrach-al-hamihya-al-hamihya-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:6 | siddur-edot-hamizrach-al-hamihya-al-hamihya-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:7 | siddur-edot-hamizrach-al-hamihya-al-hamihya-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:8 | siddur-edot-hamizrach-al-hamihya-al-hamihya-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:9 | siddur-edot-hamizrach-al-hamihya-al-hamihya-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:10 | siddur-edot-hamizrach-al-hamihya-al-hamihya-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:11 | siddur-edot-hamizrach-al-hamihya-al-hamihya-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:12 | siddur-edot-hamizrach-al-hamihya-al-hamihya-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:13 | siddur-edot-hamizrach-al-hamihya-al-hamihya-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:14 | siddur-edot-hamizrach-al-hamihya-al-hamihya-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:15 | siddur-edot-hamizrach-al-hamihya-al-hamihya-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:16 | siddur-edot-hamizrach-al-hamihya-al-hamihya-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:17 | siddur-edot-hamizrach-al-hamihya-al-hamihya-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:18 | siddur-edot-hamizrach-al-hamihya-al-hamihya-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:19 | siddur-edot-hamizrach-al-hamihya-al-hamihya-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:20 | siddur-edot-hamizrach-al-hamihya-al-hamihya-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Al Hamihya:21 | siddur-edot-hamizrach-al-hamihya-al-hamihya-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:1 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:2 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:3 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:4 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:5 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:6 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:7 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:8 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:9 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:10 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:11 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:12 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:13 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:14 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:15 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:16 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:17 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:18 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:19 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:20 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Blessings on Enjoyments:21 | siddur-edot-hamizrach-blessings-on-enjoyments-blessings-on-enjoyments-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:1 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:2 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:3 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:4 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:5 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:6 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:7 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:8 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:9 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:10 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:11 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:12 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:13 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:14 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:15 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:16 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:17 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:18 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:19 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:20 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:21 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:22 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:23 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:24 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:25 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:26 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:27 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:28 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:29 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:30 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:31 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:32 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:33 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:34 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:35 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:36 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:37 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:38 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:39 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat:40 | siddur-edot-hamizrach-shabbat-shacharit-psalms-for-shabbat-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:1 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:2 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:3 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:4 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:5 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:6 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:7 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:8 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:9 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:10 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:11 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:12 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:13 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:14 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:15 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:16 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:17 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:18 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:19 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:20 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:21 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:22 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:23 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:24 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:25 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:26 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:27 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:28 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:29 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:30 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:31 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:32 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:33 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:34 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:35 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:36 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra:37 | siddur-edot-hamizrach-shabbat-shacharit-pesukei-dzimra-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:1 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:2 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:3 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:4 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:5 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:6 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:7 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:8 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:9 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:10 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:11 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:12 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:13 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:14 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:15 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:16 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:17 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:18 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:19 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:20 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:21 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:22 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:23 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:24 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:25 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, The Shema:26 | siddur-edot-hamizrach-shabbat-shacharit-the-shema-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:1 | siddur-edot-hamizrach-shabbat-shacharit-amidah-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:2 | siddur-edot-hamizrach-shabbat-shacharit-amidah-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:3 | siddur-edot-hamizrach-shabbat-shacharit-amidah-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:4 | siddur-edot-hamizrach-shabbat-shacharit-amidah-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:5 | siddur-edot-hamizrach-shabbat-shacharit-amidah-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:6 | siddur-edot-hamizrach-shabbat-shacharit-amidah-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:7 | siddur-edot-hamizrach-shabbat-shacharit-amidah-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:8 | siddur-edot-hamizrach-shabbat-shacharit-amidah-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:9 | siddur-edot-hamizrach-shabbat-shacharit-amidah-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:10 | siddur-edot-hamizrach-shabbat-shacharit-amidah-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:11 | siddur-edot-hamizrach-shabbat-shacharit-amidah-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:12 | siddur-edot-hamizrach-shabbat-shacharit-amidah-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:13 | siddur-edot-hamizrach-shabbat-shacharit-amidah-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:14 | siddur-edot-hamizrach-shabbat-shacharit-amidah-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:15 | siddur-edot-hamizrach-shabbat-shacharit-amidah-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:16 | siddur-edot-hamizrach-shabbat-shacharit-amidah-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:17 | siddur-edot-hamizrach-shabbat-shacharit-amidah-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:18 | siddur-edot-hamizrach-shabbat-shacharit-amidah-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:19 | siddur-edot-hamizrach-shabbat-shacharit-amidah-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:20 | siddur-edot-hamizrach-shabbat-shacharit-amidah-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:21 | siddur-edot-hamizrach-shabbat-shacharit-amidah-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:22 | siddur-edot-hamizrach-shabbat-shacharit-amidah-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:23 | siddur-edot-hamizrach-shabbat-shacharit-amidah-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:24 | siddur-edot-hamizrach-shabbat-shacharit-amidah-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:25 | siddur-edot-hamizrach-shabbat-shacharit-amidah-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:26 | siddur-edot-hamizrach-shabbat-shacharit-amidah-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:27 | siddur-edot-hamizrach-shabbat-shacharit-amidah-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:28 | siddur-edot-hamizrach-shabbat-shacharit-amidah-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:29 | siddur-edot-hamizrach-shabbat-shacharit-amidah-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:30 | siddur-edot-hamizrach-shabbat-shacharit-amidah-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:31 | siddur-edot-hamizrach-shabbat-shacharit-amidah-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:32 | siddur-edot-hamizrach-shabbat-shacharit-amidah-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:33 | siddur-edot-hamizrach-shabbat-shacharit-amidah-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:34 | siddur-edot-hamizrach-shabbat-shacharit-amidah-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:35 | siddur-edot-hamizrach-shabbat-shacharit-amidah-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:36 | siddur-edot-hamizrach-shabbat-shacharit-amidah-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:37 | siddur-edot-hamizrach-shabbat-shacharit-amidah-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:38 | siddur-edot-hamizrach-shabbat-shacharit-amidah-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:39 | siddur-edot-hamizrach-shabbat-shacharit-amidah-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:40 | siddur-edot-hamizrach-shabbat-shacharit-amidah-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:41 | siddur-edot-hamizrach-shabbat-shacharit-amidah-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:42 | siddur-edot-hamizrach-shabbat-shacharit-amidah-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:43 | siddur-edot-hamizrach-shabbat-shacharit-amidah-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:44 | siddur-edot-hamizrach-shabbat-shacharit-amidah-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:45 | siddur-edot-hamizrach-shabbat-shacharit-amidah-45 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:46 | siddur-edot-hamizrach-shabbat-shacharit-amidah-46 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:47 | siddur-edot-hamizrach-shabbat-shacharit-amidah-47 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:48 | siddur-edot-hamizrach-shabbat-shacharit-amidah-48 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:49 | siddur-edot-hamizrach-shabbat-shacharit-amidah-49 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:50 | siddur-edot-hamizrach-shabbat-shacharit-amidah-50 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:51 | siddur-edot-hamizrach-shabbat-shacharit-amidah-51 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:52 | siddur-edot-hamizrach-shabbat-shacharit-amidah-52 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:53 | siddur-edot-hamizrach-shabbat-shacharit-amidah-53 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:54 | siddur-edot-hamizrach-shabbat-shacharit-amidah-54 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:55 | siddur-edot-hamizrach-shabbat-shacharit-amidah-55 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:56 | siddur-edot-hamizrach-shabbat-shacharit-amidah-56 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:57 | siddur-edot-hamizrach-shabbat-shacharit-amidah-57 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:58 | siddur-edot-hamizrach-shabbat-shacharit-amidah-58 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:59 | siddur-edot-hamizrach-shabbat-shacharit-amidah-59 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:60 | siddur-edot-hamizrach-shabbat-shacharit-amidah-60 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:61 | siddur-edot-hamizrach-shabbat-shacharit-amidah-61 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:62 | siddur-edot-hamizrach-shabbat-shacharit-amidah-62 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:63 | siddur-edot-hamizrach-shabbat-shacharit-amidah-63 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:64 | siddur-edot-hamizrach-shabbat-shacharit-amidah-64 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:65 | siddur-edot-hamizrach-shabbat-shacharit-amidah-65 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:66 | siddur-edot-hamizrach-shabbat-shacharit-amidah-66 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:67 | siddur-edot-hamizrach-shabbat-shacharit-amidah-67 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:68 | siddur-edot-hamizrach-shabbat-shacharit-amidah-68 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:69 | siddur-edot-hamizrach-shabbat-shacharit-amidah-69 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:70 | siddur-edot-hamizrach-shabbat-shacharit-amidah-70 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:71 | siddur-edot-hamizrach-shabbat-shacharit-amidah-71 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:72 | siddur-edot-hamizrach-shabbat-shacharit-amidah-72 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:73 | siddur-edot-hamizrach-shabbat-shacharit-amidah-73 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:74 | siddur-edot-hamizrach-shabbat-shacharit-amidah-74 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:75 | siddur-edot-hamizrach-shabbat-shacharit-amidah-75 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:76 | siddur-edot-hamizrach-shabbat-shacharit-amidah-76 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:77 | siddur-edot-hamizrach-shabbat-shacharit-amidah-77 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:78 | siddur-edot-hamizrach-shabbat-shacharit-amidah-78 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:79 | siddur-edot-hamizrach-shabbat-shacharit-amidah-79 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:80 | siddur-edot-hamizrach-shabbat-shacharit-amidah-80 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:81 | siddur-edot-hamizrach-shabbat-shacharit-amidah-81 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:82 | siddur-edot-hamizrach-shabbat-shacharit-amidah-82 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:83 | siddur-edot-hamizrach-shabbat-shacharit-amidah-83 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:84 | siddur-edot-hamizrach-shabbat-shacharit-amidah-84 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Amidah:85 | siddur-edot-hamizrach-shabbat-shacharit-amidah-85 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:1 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:2 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:3 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:4 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:5 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:6 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:7 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:8 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:9 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:10 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:11 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:12 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:13 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:14 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:15 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:16 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:17 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:18 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:19 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:20 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:21 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:22 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:23 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:24 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:25 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:26 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:27 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading:28 | siddur-edot-hamizrach-shabbat-shacharit-torah-reading-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, HaGomel:1 | siddur-edot-hamizrach-shabbat-shacharit-hagomel-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, HaGomel:2 | siddur-edot-hamizrach-shabbat-shacharit-hagomel-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, HaGomel:3 | siddur-edot-hamizrach-shabbat-shacharit-hagomel-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, HaGomel:4 | siddur-edot-hamizrach-shabbat-shacharit-hagomel-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, HaGomel:5 | siddur-edot-hamizrach-shabbat-shacharit-hagomel-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, HaGomel:6 | siddur-edot-hamizrach-shabbat-shacharit-hagomel-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, HaGomel:7 | siddur-edot-hamizrach-shabbat-shacharit-hagomel-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, HaGomel:8 | siddur-edot-hamizrach-shabbat-shacharit-hagomel-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, HaGomel:9 | siddur-edot-hamizrach-shabbat-shacharit-hagomel-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, HaGomel:10 | siddur-edot-hamizrach-shabbat-shacharit-hagomel-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, HaGomel:11 | siddur-edot-hamizrach-shabbat-shacharit-hagomel-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Zeved HaBat:1 | siddur-edot-hamizrach-shabbat-shacharit-zeved-habat-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Zeved HaBat:2 | siddur-edot-hamizrach-shabbat-shacharit-zeved-habat-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Zeved HaBat:3 | siddur-edot-hamizrach-shabbat-shacharit-zeved-habat-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:1 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:2 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:3 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:4 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:5 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:6 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:7 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:8 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:9 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:10 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:11 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:12 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:13 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:14 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:15 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:16 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:17 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:18 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:19 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan:20 | siddur-edot-hamizrach-shabbat-shacharit-shabbat-chatan-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Haftarah:1 | siddur-edot-hamizrach-shabbat-shacharit-haftarah-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Haftarah:2 | siddur-edot-hamizrach-shabbat-shacharit-haftarah-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Haftarah:3 | siddur-edot-hamizrach-shabbat-shacharit-haftarah-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Haftarah:4 | siddur-edot-hamizrach-shabbat-shacharit-haftarah-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Haftarah:5 | siddur-edot-hamizrach-shabbat-shacharit-haftarah-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Haftarah:6 | siddur-edot-hamizrach-shabbat-shacharit-haftarah-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Haftarah:7 | siddur-edot-hamizrach-shabbat-shacharit-haftarah-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Haftarah:8 | siddur-edot-hamizrach-shabbat-shacharit-haftarah-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Haftarah:9 | siddur-edot-hamizrach-shabbat-shacharit-haftarah-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Haftarah:10 | siddur-edot-hamizrach-shabbat-shacharit-haftarah-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Birkat HaChodesh:1 | siddur-edot-hamizrach-shabbat-shacharit-birkat-hachodesh-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Birkat HaChodesh:2 | siddur-edot-hamizrach-shabbat-shacharit-birkat-hachodesh-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Birkat HaChodesh:3 | siddur-edot-hamizrach-shabbat-shacharit-birkat-hachodesh-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Birkat HaChodesh:4 | siddur-edot-hamizrach-shabbat-shacharit-birkat-hachodesh-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Birkat HaChodesh:5 | siddur-edot-hamizrach-shabbat-shacharit-birkat-hachodesh-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Birkat HaChodesh:6 | siddur-edot-hamizrach-shabbat-shacharit-birkat-hachodesh-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Birkat HaChodesh:7 | siddur-edot-hamizrach-shabbat-shacharit-birkat-hachodesh-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Announcement of Fast:1 | siddur-edot-hamizrach-shabbat-shacharit-announcement-of-fast-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Announcement of Fast:2 | siddur-edot-hamizrach-shabbat-shacharit-announcement-of-fast-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Announcement of Fast:3 | siddur-edot-hamizrach-shabbat-shacharit-announcement-of-fast-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Mi Sheberach:1 | siddur-edot-hamizrach-shabbat-shacharit-mi-sheberach-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Mi Sheberach:2 | siddur-edot-hamizrach-shabbat-shacharit-mi-sheberach-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Mi Sheberach:3 | siddur-edot-hamizrach-shabbat-shacharit-mi-sheberach-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Ashrei:1 | siddur-edot-hamizrach-shabbat-shacharit-ashrei-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Ashrei:2 | siddur-edot-hamizrach-shabbat-shacharit-ashrei-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Ashrei:3 | siddur-edot-hamizrach-shabbat-shacharit-ashrei-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Ashrei:4 | siddur-edot-hamizrach-shabbat-shacharit-ashrei-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Ashrei:5 | siddur-edot-hamizrach-shabbat-shacharit-ashrei-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Ashrei:6 | siddur-edot-hamizrach-shabbat-shacharit-ashrei-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Ashrei:7 | siddur-edot-hamizrach-shabbat-shacharit-ashrei-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Ashrei:8 | siddur-edot-hamizrach-shabbat-shacharit-ashrei-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Ashrei:9 | siddur-edot-hamizrach-shabbat-shacharit-ashrei-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Shacharit, Ashrei:10 | siddur-edot-hamizrach-shabbat-shacharit-ashrei-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:1 | siddur-edot-hamizrach-shabbat-mussaf-amida-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:2 | siddur-edot-hamizrach-shabbat-mussaf-amida-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:3 | siddur-edot-hamizrach-shabbat-mussaf-amida-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:4 | siddur-edot-hamizrach-shabbat-mussaf-amida-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:5 | siddur-edot-hamizrach-shabbat-mussaf-amida-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:6 | siddur-edot-hamizrach-shabbat-mussaf-amida-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:7 | siddur-edot-hamizrach-shabbat-mussaf-amida-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:8 | siddur-edot-hamizrach-shabbat-mussaf-amida-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:9 | siddur-edot-hamizrach-shabbat-mussaf-amida-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:10 | siddur-edot-hamizrach-shabbat-mussaf-amida-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:11 | siddur-edot-hamizrach-shabbat-mussaf-amida-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:12 | siddur-edot-hamizrach-shabbat-mussaf-amida-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:13 | siddur-edot-hamizrach-shabbat-mussaf-amida-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:14 | siddur-edot-hamizrach-shabbat-mussaf-amida-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:15 | siddur-edot-hamizrach-shabbat-mussaf-amida-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:16 | siddur-edot-hamizrach-shabbat-mussaf-amida-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:17 | siddur-edot-hamizrach-shabbat-mussaf-amida-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:18 | siddur-edot-hamizrach-shabbat-mussaf-amida-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:19 | siddur-edot-hamizrach-shabbat-mussaf-amida-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:20 | siddur-edot-hamizrach-shabbat-mussaf-amida-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:21 | siddur-edot-hamizrach-shabbat-mussaf-amida-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:22 | siddur-edot-hamizrach-shabbat-mussaf-amida-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:23 | siddur-edot-hamizrach-shabbat-mussaf-amida-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:24 | siddur-edot-hamizrach-shabbat-mussaf-amida-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:25 | siddur-edot-hamizrach-shabbat-mussaf-amida-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:26 | siddur-edot-hamizrach-shabbat-mussaf-amida-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:27 | siddur-edot-hamizrach-shabbat-mussaf-amida-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:28 | siddur-edot-hamizrach-shabbat-mussaf-amida-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:29 | siddur-edot-hamizrach-shabbat-mussaf-amida-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:30 | siddur-edot-hamizrach-shabbat-mussaf-amida-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:31 | siddur-edot-hamizrach-shabbat-mussaf-amida-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:32 | siddur-edot-hamizrach-shabbat-mussaf-amida-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:33 | siddur-edot-hamizrach-shabbat-mussaf-amida-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:34 | siddur-edot-hamizrach-shabbat-mussaf-amida-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:35 | siddur-edot-hamizrach-shabbat-mussaf-amida-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:36 | siddur-edot-hamizrach-shabbat-mussaf-amida-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:37 | siddur-edot-hamizrach-shabbat-mussaf-amida-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:38 | siddur-edot-hamizrach-shabbat-mussaf-amida-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:39 | siddur-edot-hamizrach-shabbat-mussaf-amida-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:40 | siddur-edot-hamizrach-shabbat-mussaf-amida-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:41 | siddur-edot-hamizrach-shabbat-mussaf-amida-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:42 | siddur-edot-hamizrach-shabbat-mussaf-amida-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:43 | siddur-edot-hamizrach-shabbat-mussaf-amida-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:44 | siddur-edot-hamizrach-shabbat-mussaf-amida-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:45 | siddur-edot-hamizrach-shabbat-mussaf-amida-45 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:46 | siddur-edot-hamizrach-shabbat-mussaf-amida-46 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:47 | siddur-edot-hamizrach-shabbat-mussaf-amida-47 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:48 | siddur-edot-hamizrach-shabbat-mussaf-amida-48 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:49 | siddur-edot-hamizrach-shabbat-mussaf-amida-49 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:50 | siddur-edot-hamizrach-shabbat-mussaf-amida-50 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:51 | siddur-edot-hamizrach-shabbat-mussaf-amida-51 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:52 | siddur-edot-hamizrach-shabbat-mussaf-amida-52 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:53 | siddur-edot-hamizrach-shabbat-mussaf-amida-53 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:54 | siddur-edot-hamizrach-shabbat-mussaf-amida-54 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:55 | siddur-edot-hamizrach-shabbat-mussaf-amida-55 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:56 | siddur-edot-hamizrach-shabbat-mussaf-amida-56 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:57 | siddur-edot-hamizrach-shabbat-mussaf-amida-57 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:58 | siddur-edot-hamizrach-shabbat-mussaf-amida-58 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:59 | siddur-edot-hamizrach-shabbat-mussaf-amida-59 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:60 | siddur-edot-hamizrach-shabbat-mussaf-amida-60 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:61 | siddur-edot-hamizrach-shabbat-mussaf-amida-61 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:62 | siddur-edot-hamizrach-shabbat-mussaf-amida-62 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:63 | siddur-edot-hamizrach-shabbat-mussaf-amida-63 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Amida:64 | siddur-edot-hamizrach-shabbat-mussaf-amida-64 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Incense Offering:1 | siddur-edot-hamizrach-shabbat-mussaf-incense-offering-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Incense Offering:2 | siddur-edot-hamizrach-shabbat-mussaf-incense-offering-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Incense Offering:3 | siddur-edot-hamizrach-shabbat-mussaf-incense-offering-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Incense Offering:4 | siddur-edot-hamizrach-shabbat-mussaf-incense-offering-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Incense Offering:5 | siddur-edot-hamizrach-shabbat-mussaf-incense-offering-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Incense Offering:6 | siddur-edot-hamizrach-shabbat-mussaf-incense-offering-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Incense Offering:7 | siddur-edot-hamizrach-shabbat-mussaf-incense-offering-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Incense Offering:8 | siddur-edot-hamizrach-shabbat-mussaf-incense-offering-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Incense Offering:9 | siddur-edot-hamizrach-shabbat-mussaf-incense-offering-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Incense Offering:10 | siddur-edot-hamizrach-shabbat-mussaf-incense-offering-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Incense Offering:11 | siddur-edot-hamizrach-shabbat-mussaf-incense-offering-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Incense Offering:12 | siddur-edot-hamizrach-shabbat-mussaf-incense-offering-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Incense Offering:13 | siddur-edot-hamizrach-shabbat-mussaf-incense-offering-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Incense Offering:14 | siddur-edot-hamizrach-shabbat-mussaf-incense-offering-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Incense Offering:15 | siddur-edot-hamizrach-shabbat-mussaf-incense-offering-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Incense Offering:16 | siddur-edot-hamizrach-shabbat-mussaf-incense-offering-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Alenu:1 | siddur-edot-hamizrach-shabbat-mussaf-alenu-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Alenu:2 | siddur-edot-hamizrach-shabbat-mussaf-alenu-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Alenu:3 | siddur-edot-hamizrach-shabbat-mussaf-alenu-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mussaf, Alenu:4 | siddur-edot-hamizrach-shabbat-mussaf-alenu-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:1 | siddur-edot-hamizrach-daytime-meal-daytime-meal-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:2 | siddur-edot-hamizrach-daytime-meal-daytime-meal-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:3 | siddur-edot-hamizrach-daytime-meal-daytime-meal-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:4 | siddur-edot-hamizrach-daytime-meal-daytime-meal-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:5 | siddur-edot-hamizrach-daytime-meal-daytime-meal-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:6 | siddur-edot-hamizrach-daytime-meal-daytime-meal-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:7 | siddur-edot-hamizrach-daytime-meal-daytime-meal-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:8 | siddur-edot-hamizrach-daytime-meal-daytime-meal-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:9 | siddur-edot-hamizrach-daytime-meal-daytime-meal-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:10 | siddur-edot-hamizrach-daytime-meal-daytime-meal-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:11 | siddur-edot-hamizrach-daytime-meal-daytime-meal-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:12 | siddur-edot-hamizrach-daytime-meal-daytime-meal-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:13 | siddur-edot-hamizrach-daytime-meal-daytime-meal-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:14 | siddur-edot-hamizrach-daytime-meal-daytime-meal-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:15 | siddur-edot-hamizrach-daytime-meal-daytime-meal-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:16 | siddur-edot-hamizrach-daytime-meal-daytime-meal-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:17 | siddur-edot-hamizrach-daytime-meal-daytime-meal-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:18 | siddur-edot-hamizrach-daytime-meal-daytime-meal-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:19 | siddur-edot-hamizrach-daytime-meal-daytime-meal-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:20 | siddur-edot-hamizrach-daytime-meal-daytime-meal-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:21 | siddur-edot-hamizrach-daytime-meal-daytime-meal-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:22 | siddur-edot-hamizrach-daytime-meal-daytime-meal-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:23 | siddur-edot-hamizrach-daytime-meal-daytime-meal-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:24 | siddur-edot-hamizrach-daytime-meal-daytime-meal-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:25 | siddur-edot-hamizrach-daytime-meal-daytime-meal-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:26 | siddur-edot-hamizrach-daytime-meal-daytime-meal-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:27 | siddur-edot-hamizrach-daytime-meal-daytime-meal-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Daytime Meal:28 | siddur-edot-hamizrach-daytime-meal-daytime-meal-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Kiddush:1 | siddur-edot-hamizrach-daytime-meal-kiddush-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Kiddush:2 | siddur-edot-hamizrach-daytime-meal-kiddush-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Kiddush:3 | siddur-edot-hamizrach-daytime-meal-kiddush-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Kiddush:4 | siddur-edot-hamizrach-daytime-meal-kiddush-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Kiddush:5 | siddur-edot-hamizrach-daytime-meal-kiddush-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Kiddush:6 | siddur-edot-hamizrach-daytime-meal-kiddush-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Kiddush:7 | siddur-edot-hamizrach-daytime-meal-kiddush-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Kiddush:8 | siddur-edot-hamizrach-daytime-meal-kiddush-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Kiddush:9 | siddur-edot-hamizrach-daytime-meal-kiddush-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Kiddush:10 | siddur-edot-hamizrach-daytime-meal-kiddush-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Kiddush:11 | siddur-edot-hamizrach-daytime-meal-kiddush-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Daytime Meal, Kiddush:12 | siddur-edot-hamizrach-daytime-meal-kiddush-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Offerings:1 | siddur-edot-hamizrach-shabbat-mincha-offerings-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Offerings:2 | siddur-edot-hamizrach-shabbat-mincha-offerings-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Offerings:3 | siddur-edot-hamizrach-shabbat-mincha-offerings-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Offerings:4 | siddur-edot-hamizrach-shabbat-mincha-offerings-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Offerings:5 | siddur-edot-hamizrach-shabbat-mincha-offerings-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Offerings:6 | siddur-edot-hamizrach-shabbat-mincha-offerings-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Offerings:7 | siddur-edot-hamizrach-shabbat-mincha-offerings-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Offerings:8 | siddur-edot-hamizrach-shabbat-mincha-offerings-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Offerings:9 | siddur-edot-hamizrach-shabbat-mincha-offerings-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Offerings:10 | siddur-edot-hamizrach-shabbat-mincha-offerings-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Offerings:11 | siddur-edot-hamizrach-shabbat-mincha-offerings-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Offerings:12 | siddur-edot-hamizrach-shabbat-mincha-offerings-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Offerings:13 | siddur-edot-hamizrach-shabbat-mincha-offerings-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:1 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:2 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:3 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:4 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:5 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:6 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:7 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:8 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:9 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:10 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:11 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:12 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:13 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:14 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:15 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:16 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:17 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:18 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:19 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:20 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:21 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:22 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion:23 | siddur-edot-hamizrach-shabbat-mincha-uva-lesion-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:1 | siddur-edot-hamizrach-shabbat-mincha-amida-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:2 | siddur-edot-hamizrach-shabbat-mincha-amida-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:3 | siddur-edot-hamizrach-shabbat-mincha-amida-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:4 | siddur-edot-hamizrach-shabbat-mincha-amida-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:5 | siddur-edot-hamizrach-shabbat-mincha-amida-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:6 | siddur-edot-hamizrach-shabbat-mincha-amida-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:7 | siddur-edot-hamizrach-shabbat-mincha-amida-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:8 | siddur-edot-hamizrach-shabbat-mincha-amida-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:9 | siddur-edot-hamizrach-shabbat-mincha-amida-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:10 | siddur-edot-hamizrach-shabbat-mincha-amida-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:11 | siddur-edot-hamizrach-shabbat-mincha-amida-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:12 | siddur-edot-hamizrach-shabbat-mincha-amida-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:13 | siddur-edot-hamizrach-shabbat-mincha-amida-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:14 | siddur-edot-hamizrach-shabbat-mincha-amida-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:15 | siddur-edot-hamizrach-shabbat-mincha-amida-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:16 | siddur-edot-hamizrach-shabbat-mincha-amida-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:17 | siddur-edot-hamizrach-shabbat-mincha-amida-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:18 | siddur-edot-hamizrach-shabbat-mincha-amida-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:19 | siddur-edot-hamizrach-shabbat-mincha-amida-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:20 | siddur-edot-hamizrach-shabbat-mincha-amida-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:21 | siddur-edot-hamizrach-shabbat-mincha-amida-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:22 | siddur-edot-hamizrach-shabbat-mincha-amida-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:23 | siddur-edot-hamizrach-shabbat-mincha-amida-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:24 | siddur-edot-hamizrach-shabbat-mincha-amida-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:25 | siddur-edot-hamizrach-shabbat-mincha-amida-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:26 | siddur-edot-hamizrach-shabbat-mincha-amida-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:27 | siddur-edot-hamizrach-shabbat-mincha-amida-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:28 | siddur-edot-hamizrach-shabbat-mincha-amida-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:29 | siddur-edot-hamizrach-shabbat-mincha-amida-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:30 | siddur-edot-hamizrach-shabbat-mincha-amida-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:31 | siddur-edot-hamizrach-shabbat-mincha-amida-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:32 | siddur-edot-hamizrach-shabbat-mincha-amida-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:33 | siddur-edot-hamizrach-shabbat-mincha-amida-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:34 | siddur-edot-hamizrach-shabbat-mincha-amida-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:35 | siddur-edot-hamizrach-shabbat-mincha-amida-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:36 | siddur-edot-hamizrach-shabbat-mincha-amida-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:37 | siddur-edot-hamizrach-shabbat-mincha-amida-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:38 | siddur-edot-hamizrach-shabbat-mincha-amida-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:39 | siddur-edot-hamizrach-shabbat-mincha-amida-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:40 | siddur-edot-hamizrach-shabbat-mincha-amida-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:41 | siddur-edot-hamizrach-shabbat-mincha-amida-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:42 | siddur-edot-hamizrach-shabbat-mincha-amida-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:43 | siddur-edot-hamizrach-shabbat-mincha-amida-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:44 | siddur-edot-hamizrach-shabbat-mincha-amida-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:45 | siddur-edot-hamizrach-shabbat-mincha-amida-45 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:46 | siddur-edot-hamizrach-shabbat-mincha-amida-46 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:47 | siddur-edot-hamizrach-shabbat-mincha-amida-47 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Amida:48 | siddur-edot-hamizrach-shabbat-mincha-amida-48 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Alenu:1 | siddur-edot-hamizrach-shabbat-mincha-alenu-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Alenu:2 | siddur-edot-hamizrach-shabbat-mincha-alenu-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Shabbat Mincha, Alenu:3 | siddur-edot-hamizrach-shabbat-mincha-alenu-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:1 | siddur-edot-hamizrach-third-meal-third-meal-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:2 | siddur-edot-hamizrach-third-meal-third-meal-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:3 | siddur-edot-hamizrach-third-meal-third-meal-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:4 | siddur-edot-hamizrach-third-meal-third-meal-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:5 | siddur-edot-hamizrach-third-meal-third-meal-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:6 | siddur-edot-hamizrach-third-meal-third-meal-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:7 | siddur-edot-hamizrach-third-meal-third-meal-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:8 | siddur-edot-hamizrach-third-meal-third-meal-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:9 | siddur-edot-hamizrach-third-meal-third-meal-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:10 | siddur-edot-hamizrach-third-meal-third-meal-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:11 | siddur-edot-hamizrach-third-meal-third-meal-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:12 | siddur-edot-hamizrach-third-meal-third-meal-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:13 | siddur-edot-hamizrach-third-meal-third-meal-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:14 | siddur-edot-hamizrach-third-meal-third-meal-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:15 | siddur-edot-hamizrach-third-meal-third-meal-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:16 | siddur-edot-hamizrach-third-meal-third-meal-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:17 | siddur-edot-hamizrach-third-meal-third-meal-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:18 | siddur-edot-hamizrach-third-meal-third-meal-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:19 | siddur-edot-hamizrach-third-meal-third-meal-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:20 | siddur-edot-hamizrach-third-meal-third-meal-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:21 | siddur-edot-hamizrach-third-meal-third-meal-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:22 | siddur-edot-hamizrach-third-meal-third-meal-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:23 | siddur-edot-hamizrach-third-meal-third-meal-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:24 | siddur-edot-hamizrach-third-meal-third-meal-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:25 | siddur-edot-hamizrach-third-meal-third-meal-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:26 | siddur-edot-hamizrach-third-meal-third-meal-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:27 | siddur-edot-hamizrach-third-meal-third-meal-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:28 | siddur-edot-hamizrach-third-meal-third-meal-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:29 | siddur-edot-hamizrach-third-meal-third-meal-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:30 | siddur-edot-hamizrach-third-meal-third-meal-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:31 | siddur-edot-hamizrach-third-meal-third-meal-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:32 | siddur-edot-hamizrach-third-meal-third-meal-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:33 | siddur-edot-hamizrach-third-meal-third-meal-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:34 | siddur-edot-hamizrach-third-meal-third-meal-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Third Meal:35 | siddur-edot-hamizrach-third-meal-third-meal-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:1 | siddur-edot-hamizrach-havdalah-before-havdalah-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:2 | siddur-edot-hamizrach-havdalah-before-havdalah-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:3 | siddur-edot-hamizrach-havdalah-before-havdalah-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:4 | siddur-edot-hamizrach-havdalah-before-havdalah-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:5 | siddur-edot-hamizrach-havdalah-before-havdalah-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:6 | siddur-edot-hamizrach-havdalah-before-havdalah-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:7 | siddur-edot-hamizrach-havdalah-before-havdalah-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:8 | siddur-edot-hamizrach-havdalah-before-havdalah-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:9 | siddur-edot-hamizrach-havdalah-before-havdalah-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:10 | siddur-edot-hamizrach-havdalah-before-havdalah-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:11 | siddur-edot-hamizrach-havdalah-before-havdalah-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:12 | siddur-edot-hamizrach-havdalah-before-havdalah-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:13 | siddur-edot-hamizrach-havdalah-before-havdalah-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:14 | siddur-edot-hamizrach-havdalah-before-havdalah-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:15 | siddur-edot-hamizrach-havdalah-before-havdalah-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:16 | siddur-edot-hamizrach-havdalah-before-havdalah-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:17 | siddur-edot-hamizrach-havdalah-before-havdalah-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:18 | siddur-edot-hamizrach-havdalah-before-havdalah-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:19 | siddur-edot-hamizrach-havdalah-before-havdalah-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:20 | siddur-edot-hamizrach-havdalah-before-havdalah-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Before Havdalah:21 | siddur-edot-hamizrach-havdalah-before-havdalah-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:1 | siddur-edot-hamizrach-havdalah-havdala-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:2 | siddur-edot-hamizrach-havdalah-havdala-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:3 | siddur-edot-hamizrach-havdalah-havdala-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:4 | siddur-edot-hamizrach-havdalah-havdala-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:5 | siddur-edot-hamizrach-havdalah-havdala-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:6 | siddur-edot-hamizrach-havdalah-havdala-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:7 | siddur-edot-hamizrach-havdalah-havdala-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:8 | siddur-edot-hamizrach-havdalah-havdala-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:9 | siddur-edot-hamizrach-havdalah-havdala-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:10 | siddur-edot-hamizrach-havdalah-havdala-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:11 | siddur-edot-hamizrach-havdalah-havdala-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:12 | siddur-edot-hamizrach-havdalah-havdala-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:13 | siddur-edot-hamizrach-havdalah-havdala-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:14 | siddur-edot-hamizrach-havdalah-havdala-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:15 | siddur-edot-hamizrach-havdalah-havdala-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:16 | siddur-edot-hamizrach-havdalah-havdala-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:17 | siddur-edot-hamizrach-havdalah-havdala-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:18 | siddur-edot-hamizrach-havdalah-havdala-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:19 | siddur-edot-hamizrach-havdalah-havdala-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:20 | siddur-edot-hamizrach-havdalah-havdala-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Havdala:21 | siddur-edot-hamizrach-havdalah-havdala-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:1 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:2 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:3 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:4 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:5 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:6 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:7 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:8 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:9 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:10 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:11 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:12 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:13 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:14 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:15 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:16 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:17 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:18 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:19 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:20 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:21 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:22 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:23 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:24 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:25 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:26 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:27 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:28 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:29 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:30 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:31 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:32 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:33 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:34 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:35 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:36 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:37 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:38 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:39 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:40 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:41 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:42 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:43 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:44 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:45 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-45 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:46 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-46 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:47 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-47 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:48 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-48 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:49 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-49 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:50 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-50 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:51 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-51 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:52 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-52 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:53 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-53 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:54 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-54 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:55 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-55 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:56 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-56 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:57 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-57 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:58 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-58 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:59 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-59 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:60 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-60 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:61 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-61 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:62 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-62 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:63 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-63 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:64 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-64 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:65 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-65 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:66 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-66 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:67 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-67 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:68 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-68 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs:69 | siddur-edot-hamizrach-havdalah-motzei-shabbat-songs-69 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:1 | siddur-edot-hamizrach-havdalah-veyiten-lecha-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:2 | siddur-edot-hamizrach-havdalah-veyiten-lecha-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:3 | siddur-edot-hamizrach-havdalah-veyiten-lecha-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:4 | siddur-edot-hamizrach-havdalah-veyiten-lecha-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:5 | siddur-edot-hamizrach-havdalah-veyiten-lecha-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:6 | siddur-edot-hamizrach-havdalah-veyiten-lecha-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:7 | siddur-edot-hamizrach-havdalah-veyiten-lecha-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:8 | siddur-edot-hamizrach-havdalah-veyiten-lecha-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:9 | siddur-edot-hamizrach-havdalah-veyiten-lecha-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:10 | siddur-edot-hamizrach-havdalah-veyiten-lecha-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:11 | siddur-edot-hamizrach-havdalah-veyiten-lecha-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:12 | siddur-edot-hamizrach-havdalah-veyiten-lecha-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:13 | siddur-edot-hamizrach-havdalah-veyiten-lecha-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:14 | siddur-edot-hamizrach-havdalah-veyiten-lecha-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:15 | siddur-edot-hamizrach-havdalah-veyiten-lecha-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:16 | siddur-edot-hamizrach-havdalah-veyiten-lecha-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:17 | siddur-edot-hamizrach-havdalah-veyiten-lecha-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:18 | siddur-edot-hamizrach-havdalah-veyiten-lecha-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:19 | siddur-edot-hamizrach-havdalah-veyiten-lecha-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Veyiten Lecha:20 | siddur-edot-hamizrach-havdalah-veyiten-lecha-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Fourth Meal:1 | siddur-edot-hamizrach-havdalah-fourth-meal-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Fourth Meal:2 | siddur-edot-hamizrach-havdalah-fourth-meal-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Fourth Meal:3 | siddur-edot-hamizrach-havdalah-fourth-meal-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Fourth Meal:4 | siddur-edot-hamizrach-havdalah-fourth-meal-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Fourth Meal:5 | siddur-edot-hamizrach-havdalah-fourth-meal-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Havdalah, Fourth Meal:6 | siddur-edot-hamizrach-havdalah-fourth-meal-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Rosh Hodesh:1 | siddur-edot-hamizrach-rosh-hodesh-rosh-hodesh-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Rosh Hodesh:2 | siddur-edot-hamizrach-rosh-hodesh-rosh-hodesh-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Rosh Hodesh:3 | siddur-edot-hamizrach-rosh-hodesh-rosh-hodesh-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:1 | siddur-edot-hamizrach-rosh-hodesh-hallel-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:2 | siddur-edot-hamizrach-rosh-hodesh-hallel-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:3 | siddur-edot-hamizrach-rosh-hodesh-hallel-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:4 | siddur-edot-hamizrach-rosh-hodesh-hallel-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:5 | siddur-edot-hamizrach-rosh-hodesh-hallel-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:6 | siddur-edot-hamizrach-rosh-hodesh-hallel-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:7 | siddur-edot-hamizrach-rosh-hodesh-hallel-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:8 | siddur-edot-hamizrach-rosh-hodesh-hallel-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:9 | siddur-edot-hamizrach-rosh-hodesh-hallel-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:10 | siddur-edot-hamizrach-rosh-hodesh-hallel-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:11 | siddur-edot-hamizrach-rosh-hodesh-hallel-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:12 | siddur-edot-hamizrach-rosh-hodesh-hallel-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:13 | siddur-edot-hamizrach-rosh-hodesh-hallel-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:14 | siddur-edot-hamizrach-rosh-hodesh-hallel-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:15 | siddur-edot-hamizrach-rosh-hodesh-hallel-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:16 | siddur-edot-hamizrach-rosh-hodesh-hallel-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:17 | siddur-edot-hamizrach-rosh-hodesh-hallel-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:18 | siddur-edot-hamizrach-rosh-hodesh-hallel-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:19 | siddur-edot-hamizrach-rosh-hodesh-hallel-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:20 | siddur-edot-hamizrach-rosh-hodesh-hallel-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:21 | siddur-edot-hamizrach-rosh-hodesh-hallel-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:22 | siddur-edot-hamizrach-rosh-hodesh-hallel-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:23 | siddur-edot-hamizrach-rosh-hodesh-hallel-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:24 | siddur-edot-hamizrach-rosh-hodesh-hallel-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:25 | siddur-edot-hamizrach-rosh-hodesh-hallel-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:26 | siddur-edot-hamizrach-rosh-hodesh-hallel-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:27 | siddur-edot-hamizrach-rosh-hodesh-hallel-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:28 | siddur-edot-hamizrach-rosh-hodesh-hallel-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:29 | siddur-edot-hamizrach-rosh-hodesh-hallel-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:30 | siddur-edot-hamizrach-rosh-hodesh-hallel-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:31 | siddur-edot-hamizrach-rosh-hodesh-hallel-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:32 | siddur-edot-hamizrach-rosh-hodesh-hallel-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:33 | siddur-edot-hamizrach-rosh-hodesh-hallel-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:34 | siddur-edot-hamizrach-rosh-hodesh-hallel-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:35 | siddur-edot-hamizrach-rosh-hodesh-hallel-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:36 | siddur-edot-hamizrach-rosh-hodesh-hallel-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:37 | siddur-edot-hamizrach-rosh-hodesh-hallel-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:38 | siddur-edot-hamizrach-rosh-hodesh-hallel-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:39 | siddur-edot-hamizrach-rosh-hodesh-hallel-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:40 | siddur-edot-hamizrach-rosh-hodesh-hallel-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:41 | siddur-edot-hamizrach-rosh-hodesh-hallel-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:42 | siddur-edot-hamizrach-rosh-hodesh-hallel-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:43 | siddur-edot-hamizrach-rosh-hodesh-hallel-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Hallel:44 | siddur-edot-hamizrach-rosh-hodesh-hallel-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Uva LeSion:1 | siddur-edot-hamizrach-rosh-hodesh-uva-lesion-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Uva LeSion:2 | siddur-edot-hamizrach-rosh-hodesh-uva-lesion-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Uva LeSion:3 | siddur-edot-hamizrach-rosh-hodesh-uva-lesion-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Uva LeSion:4 | siddur-edot-hamizrach-rosh-hodesh-uva-lesion-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Uva LeSion:5 | siddur-edot-hamizrach-rosh-hodesh-uva-lesion-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:1 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:2 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:3 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:4 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:5 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:6 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:7 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:8 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:9 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:10 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:11 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:12 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:13 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:14 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:15 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:16 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:17 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:18 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day:19 | siddur-edot-hamizrach-rosh-hodesh-song-of-the-day-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:1 | siddur-edot-hamizrach-rosh-hodesh-mussaf-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:2 | siddur-edot-hamizrach-rosh-hodesh-mussaf-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:3 | siddur-edot-hamizrach-rosh-hodesh-mussaf-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:4 | siddur-edot-hamizrach-rosh-hodesh-mussaf-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:5 | siddur-edot-hamizrach-rosh-hodesh-mussaf-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:6 | siddur-edot-hamizrach-rosh-hodesh-mussaf-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:7 | siddur-edot-hamizrach-rosh-hodesh-mussaf-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:8 | siddur-edot-hamizrach-rosh-hodesh-mussaf-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:9 | siddur-edot-hamizrach-rosh-hodesh-mussaf-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:10 | siddur-edot-hamizrach-rosh-hodesh-mussaf-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:11 | siddur-edot-hamizrach-rosh-hodesh-mussaf-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:12 | siddur-edot-hamizrach-rosh-hodesh-mussaf-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:13 | siddur-edot-hamizrach-rosh-hodesh-mussaf-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:14 | siddur-edot-hamizrach-rosh-hodesh-mussaf-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:15 | siddur-edot-hamizrach-rosh-hodesh-mussaf-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:16 | siddur-edot-hamizrach-rosh-hodesh-mussaf-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:17 | siddur-edot-hamizrach-rosh-hodesh-mussaf-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:18 | siddur-edot-hamizrach-rosh-hodesh-mussaf-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:19 | siddur-edot-hamizrach-rosh-hodesh-mussaf-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:20 | siddur-edot-hamizrach-rosh-hodesh-mussaf-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:21 | siddur-edot-hamizrach-rosh-hodesh-mussaf-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:22 | siddur-edot-hamizrach-rosh-hodesh-mussaf-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:23 | siddur-edot-hamizrach-rosh-hodesh-mussaf-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:24 | siddur-edot-hamizrach-rosh-hodesh-mussaf-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:25 | siddur-edot-hamizrach-rosh-hodesh-mussaf-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:26 | siddur-edot-hamizrach-rosh-hodesh-mussaf-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:27 | siddur-edot-hamizrach-rosh-hodesh-mussaf-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:28 | siddur-edot-hamizrach-rosh-hodesh-mussaf-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:29 | siddur-edot-hamizrach-rosh-hodesh-mussaf-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:30 | siddur-edot-hamizrach-rosh-hodesh-mussaf-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:31 | siddur-edot-hamizrach-rosh-hodesh-mussaf-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:32 | siddur-edot-hamizrach-rosh-hodesh-mussaf-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:33 | siddur-edot-hamizrach-rosh-hodesh-mussaf-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:34 | siddur-edot-hamizrach-rosh-hodesh-mussaf-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:35 | siddur-edot-hamizrach-rosh-hodesh-mussaf-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:36 | siddur-edot-hamizrach-rosh-hodesh-mussaf-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:37 | siddur-edot-hamizrach-rosh-hodesh-mussaf-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:38 | siddur-edot-hamizrach-rosh-hodesh-mussaf-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:39 | siddur-edot-hamizrach-rosh-hodesh-mussaf-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:40 | siddur-edot-hamizrach-rosh-hodesh-mussaf-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:41 | siddur-edot-hamizrach-rosh-hodesh-mussaf-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:42 | siddur-edot-hamizrach-rosh-hodesh-mussaf-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:43 | siddur-edot-hamizrach-rosh-hodesh-mussaf-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:44 | siddur-edot-hamizrach-rosh-hodesh-mussaf-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:45 | siddur-edot-hamizrach-rosh-hodesh-mussaf-45 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:46 | siddur-edot-hamizrach-rosh-hodesh-mussaf-46 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:47 | siddur-edot-hamizrach-rosh-hodesh-mussaf-47 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:48 | siddur-edot-hamizrach-rosh-hodesh-mussaf-48 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Mussaf:49 | siddur-edot-hamizrach-rosh-hodesh-mussaf-49 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Barchi Nafshi:1 | siddur-edot-hamizrach-rosh-hodesh-barchi-nafshi-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Barchi Nafshi:2 | siddur-edot-hamizrach-rosh-hodesh-barchi-nafshi-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Barchi Nafshi:3 | siddur-edot-hamizrach-rosh-hodesh-barchi-nafshi-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Barchi Nafshi:4 | siddur-edot-hamizrach-rosh-hodesh-barchi-nafshi-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Barchi Nafshi:5 | siddur-edot-hamizrach-rosh-hodesh-barchi-nafshi-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Barchi Nafshi:6 | siddur-edot-hamizrach-rosh-hodesh-barchi-nafshi-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Kaveh:1 | siddur-edot-hamizrach-rosh-hodesh-kaveh-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Kaveh:2 | siddur-edot-hamizrach-rosh-hodesh-kaveh-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Kaveh:3 | siddur-edot-hamizrach-rosh-hodesh-kaveh-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Incense Offering:1 | siddur-edot-hamizrach-rosh-hodesh-incense-offering-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Incense Offering:2 | siddur-edot-hamizrach-rosh-hodesh-incense-offering-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Incense Offering:3 | siddur-edot-hamizrach-rosh-hodesh-incense-offering-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Incense Offering:4 | siddur-edot-hamizrach-rosh-hodesh-incense-offering-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Incense Offering:5 | siddur-edot-hamizrach-rosh-hodesh-incense-offering-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Incense Offering:6 | siddur-edot-hamizrach-rosh-hodesh-incense-offering-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Incense Offering:7 | siddur-edot-hamizrach-rosh-hodesh-incense-offering-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Incense Offering:8 | siddur-edot-hamizrach-rosh-hodesh-incense-offering-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Incense Offering:9 | siddur-edot-hamizrach-rosh-hodesh-incense-offering-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Incense Offering:10 | siddur-edot-hamizrach-rosh-hodesh-incense-offering-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Incense Offering:11 | siddur-edot-hamizrach-rosh-hodesh-incense-offering-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Incense Offering:12 | siddur-edot-hamizrach-rosh-hodesh-incense-offering-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Incense Offering:13 | siddur-edot-hamizrach-rosh-hodesh-incense-offering-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Incense Offering:14 | siddur-edot-hamizrach-rosh-hodesh-incense-offering-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Incense Offering:15 | siddur-edot-hamizrach-rosh-hodesh-incense-offering-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Incense Offering:16 | siddur-edot-hamizrach-rosh-hodesh-incense-offering-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Alenu:1 | siddur-edot-hamizrach-rosh-hodesh-alenu-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Alenu:2 | siddur-edot-hamizrach-rosh-hodesh-alenu-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Alenu:3 | siddur-edot-hamizrach-rosh-hodesh-alenu-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Rosh Hodesh, Alenu:4 | siddur-edot-hamizrach-rosh-hodesh-alenu-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Prayers for Three Festivals:1 | siddur-edot-hamizrach-prayers-for-three-festivals-prayers-for-three-festivals-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Prayers for Three Festivals:2 | siddur-edot-hamizrach-prayers-for-three-festivals-prayers-for-three-festivals-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Passover:1 | siddur-edot-hamizrach-prayers-for-three-festivals-song-for-passover-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Passover:2 | siddur-edot-hamizrach-prayers-for-three-festivals-song-for-passover-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Passover:3 | siddur-edot-hamizrach-prayers-for-three-festivals-song-for-passover-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Shavuot:1 | siddur-edot-hamizrach-prayers-for-three-festivals-song-for-shavuot-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Shavuot:2 | siddur-edot-hamizrach-prayers-for-three-festivals-song-for-shavuot-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Sukkot:1 | siddur-edot-hamizrach-prayers-for-three-festivals-song-for-sukkot-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Sukkot:2 | siddur-edot-hamizrach-prayers-for-three-festivals-song-for-sukkot-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Sukkot:3 | siddur-edot-hamizrach-prayers-for-three-festivals-song-for-sukkot-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Shemini Atzeret:1 | siddur-edot-hamizrach-prayers-for-three-festivals-song-for-shemini-atzeret-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Shemini Atzeret:2 | siddur-edot-hamizrach-prayers-for-three-festivals-song-for-shemini-atzeret-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Shemini Atzeret:3 | siddur-edot-hamizrach-prayers-for-three-festivals-song-for-shemini-atzeret-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Shemini Atzeret:4 | siddur-edot-hamizrach-prayers-for-three-festivals-song-for-shemini-atzeret-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Shemini Atzeret:5 | siddur-edot-hamizrach-prayers-for-three-festivals-song-for-shemini-atzeret-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Shemini Atzeret:6 | siddur-edot-hamizrach-prayers-for-three-festivals-song-for-shemini-atzeret-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:1 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:2 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:3 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:4 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:5 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:6 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:7 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:8 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:9 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:10 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:11 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:12 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:13 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:14 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:15 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:16 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:17 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:18 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:19 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:20 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:21 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:22 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:23 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:24 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:25 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:26 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:27 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:28 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:29 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:30 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:31 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:32 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:33 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:34 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:35 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:36 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:37 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:38 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:39 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:40 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:41 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:42 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:43 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:44 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:45 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-45 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:46 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-46 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:47 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-47 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:48 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-48 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:49 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-49 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:50 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-50 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:51 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-51 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:52 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-52 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:53 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-53 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:54 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-54 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:55 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-55 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:56 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-56 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:57 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-57 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:58 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-58 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:59 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-59 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:60 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-60 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:61 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-61 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:62 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-62 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:63 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-63 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:64 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-64 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:65 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-65 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:66 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-66 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:67 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-67 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:68 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-68 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:69 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-69 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:70 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-70 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:71 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-71 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah:72 | siddur-edot-hamizrach-prayers-for-three-festivals-amidah-72 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:1 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:2 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:3 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:4 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:5 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:6 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:7 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:8 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:9 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:10 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:11 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:12 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:13 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:14 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:15 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:16 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:17 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:18 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:19 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:20 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:21 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:22 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:23 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:24 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:25 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:26 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:27 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:28 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:29 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:30 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:31 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:32 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:33 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:34 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:35 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:36 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:37 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:38 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:39 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:40 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:41 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:42 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:43 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:44 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:45 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-45 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:46 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-46 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:47 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-47 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:48 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-48 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:49 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-49 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:50 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-50 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:51 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-51 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:52 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-52 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:53 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-53 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:54 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-54 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:55 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-55 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:56 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-56 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:57 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-57 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:58 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-58 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:59 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-59 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:60 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-60 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:61 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-61 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:62 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-62 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:63 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-63 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:64 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-64 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:65 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-65 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:66 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-66 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:67 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-67 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:68 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-68 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:69 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-69 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:70 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-70 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:71 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-71 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:72 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-72 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:73 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-73 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:74 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-74 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:75 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-75 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:76 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-76 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:77 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-77 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:78 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-78 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:79 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-79 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:80 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-80 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:81 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-81 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:82 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-82 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:83 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-83 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:84 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-84 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:85 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-85 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:86 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-86 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:87 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-87 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:88 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-88 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:89 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-89 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:90 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-90 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:91 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-91 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:92 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-92 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:93 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-93 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:94 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-94 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:95 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-95 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:96 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-96 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:97 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-97 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:98 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-98 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:99 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-99 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:100 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-100 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:101 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-101 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:102 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-102 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:103 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-103 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:104 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-104 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:105 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-105 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:106 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-106 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:107 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-107 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:108 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-108 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:109 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-109 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:110 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-110 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:111 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-111 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:112 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-112 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:113 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-113 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:114 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-114 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:115 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-115 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:116 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-116 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:117 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-117 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:118 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-118 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:119 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-119 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:120 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-120 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:121 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-121 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:122 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-122 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:123 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-123 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:124 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-124 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:125 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-125 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:126 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-126 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:127 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-127 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:128 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-128 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:129 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-129 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:130 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-130 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:131 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-131 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:132 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-132 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:133 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-133 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:134 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-134 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:135 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-135 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:136 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-136 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:137 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-137 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:138 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-138 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:139 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-139 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:140 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-140 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:141 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-141 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:142 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-142 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:143 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-143 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:144 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-144 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:145 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-145 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:146 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-146 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:147 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-147 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:148 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-148 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:149 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-149 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:150 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-150 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:151 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-151 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:152 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-152 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:153 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-153 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:154 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-154 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:155 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-155 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:156 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-156 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:157 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-157 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:158 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-158 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:159 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-159 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:160 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-160 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:161 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-161 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:162 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-162 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:163 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-163 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:164 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-164 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:165 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-165 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:166 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-166 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:167 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-167 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:168 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-168 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:169 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-169 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:170 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-170 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:171 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-171 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:172 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-172 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:173 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-173 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:174 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-174 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:175 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-175 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:176 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-176 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:177 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-177 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:178 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-178 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:179 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-179 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:180 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-180 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:181 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-181 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:182 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-182 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:183 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-183 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:184 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-184 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:185 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-185 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:186 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-186 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:187 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-187 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:188 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-188 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:189 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-189 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:190 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-190 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:191 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-191 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:192 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-192 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:193 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-193 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:194 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-194 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:195 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-195 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:196 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-196 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:197 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-197 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:198 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-198 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:199 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-199 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:200 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-200 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:201 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-201 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:202 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-202 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:203 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-203 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:204 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-204 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:205 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-205 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:206 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-206 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:207 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-207 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:208 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-208 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:209 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-209 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:210 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-210 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:211 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-211 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:212 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-212 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:213 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-213 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:214 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-214 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:215 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-215 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:216 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-216 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:217 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-217 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:218 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-218 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:219 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-219 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:220 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-220 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:221 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-221 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:222 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-222 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:223 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-223 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:224 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-224 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:225 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-225 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:226 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-226 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:227 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-227 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:228 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-228 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:229 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-229 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:230 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-230 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:231 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-231 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:232 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-232 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:233 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-233 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:234 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-234 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:235 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-235 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:236 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-236 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:237 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-237 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:238 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-238 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:239 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-239 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:240 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-240 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:241 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-241 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:242 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-242 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:243 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-243 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:244 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-244 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:245 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-245 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:246 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-246 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:247 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-247 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:248 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-248 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:249 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-249 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:250 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-250 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:251 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-251 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:252 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-252 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:253 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-253 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:254 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-254 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:255 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-255 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:256 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-256 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:257 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-257 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:258 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-258 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:259 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-259 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:260 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-260 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:261 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-261 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:262 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-262 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:263 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-263 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:265 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-265 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:266 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-266 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:267 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-267 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:268 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-268 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:269 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-269 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:270 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-270 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:271 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-271 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:272 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-272 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:273 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-273 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:274 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-274 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:275 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-275 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:276 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-276 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:277 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-277 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:278 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-278 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:279 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-279 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:280 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-280 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:281 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-281 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:282 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-282 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:283 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-283 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:284 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-284 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:285 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-285 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:286 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-286 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:287 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-287 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:288 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-288 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:289 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-289 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:290 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-290 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:291 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-291 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:292 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-292 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:293 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-293 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:294 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-294 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:295 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-295 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:296 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-296 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf:297 | siddur-edot-hamizrach-prayers-for-three-festivals-mussaf-297 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:1 | siddur-edot-hamizrach-hanukkah-menorah-lighting-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:2 | siddur-edot-hamizrach-hanukkah-menorah-lighting-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:3 | siddur-edot-hamizrach-hanukkah-menorah-lighting-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:4 | siddur-edot-hamizrach-hanukkah-menorah-lighting-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:5 | siddur-edot-hamizrach-hanukkah-menorah-lighting-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:6 | siddur-edot-hamizrach-hanukkah-menorah-lighting-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:7 | siddur-edot-hamizrach-hanukkah-menorah-lighting-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:8 | siddur-edot-hamizrach-hanukkah-menorah-lighting-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:9 | siddur-edot-hamizrach-hanukkah-menorah-lighting-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:10 | siddur-edot-hamizrach-hanukkah-menorah-lighting-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:11 | siddur-edot-hamizrach-hanukkah-menorah-lighting-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:12 | siddur-edot-hamizrach-hanukkah-menorah-lighting-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:13 | siddur-edot-hamizrach-hanukkah-menorah-lighting-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:14 | siddur-edot-hamizrach-hanukkah-menorah-lighting-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:15 | siddur-edot-hamizrach-hanukkah-menorah-lighting-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:16 | siddur-edot-hamizrach-hanukkah-menorah-lighting-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:17 | siddur-edot-hamizrach-hanukkah-menorah-lighting-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:18 | siddur-edot-hamizrach-hanukkah-menorah-lighting-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:19 | siddur-edot-hamizrach-hanukkah-menorah-lighting-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:20 | siddur-edot-hamizrach-hanukkah-menorah-lighting-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Menorah Lighting:21 | siddur-edot-hamizrach-hanukkah-menorah-lighting-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:1 | siddur-edot-hamizrach-hanukkah-shacharit-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:2 | siddur-edot-hamizrach-hanukkah-shacharit-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:3 | siddur-edot-hamizrach-hanukkah-shacharit-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:4 | siddur-edot-hamizrach-hanukkah-shacharit-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:5 | siddur-edot-hamizrach-hanukkah-shacharit-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:6 | siddur-edot-hamizrach-hanukkah-shacharit-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:7 | siddur-edot-hamizrach-hanukkah-shacharit-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:8 | siddur-edot-hamizrach-hanukkah-shacharit-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:9 | siddur-edot-hamizrach-hanukkah-shacharit-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:10 | siddur-edot-hamizrach-hanukkah-shacharit-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:11 | siddur-edot-hamizrach-hanukkah-shacharit-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:12 | siddur-edot-hamizrach-hanukkah-shacharit-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:13 | siddur-edot-hamizrach-hanukkah-shacharit-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:14 | siddur-edot-hamizrach-hanukkah-shacharit-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:15 | siddur-edot-hamizrach-hanukkah-shacharit-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:16 | siddur-edot-hamizrach-hanukkah-shacharit-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:17 | siddur-edot-hamizrach-hanukkah-shacharit-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:18 | siddur-edot-hamizrach-hanukkah-shacharit-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:19 | siddur-edot-hamizrach-hanukkah-shacharit-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:20 | siddur-edot-hamizrach-hanukkah-shacharit-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:21 | siddur-edot-hamizrach-hanukkah-shacharit-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:22 | siddur-edot-hamizrach-hanukkah-shacharit-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:23 | siddur-edot-hamizrach-hanukkah-shacharit-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:24 | siddur-edot-hamizrach-hanukkah-shacharit-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:25 | siddur-edot-hamizrach-hanukkah-shacharit-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:26 | siddur-edot-hamizrach-hanukkah-shacharit-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:27 | siddur-edot-hamizrach-hanukkah-shacharit-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Hanukkah, Shacharit:28 | siddur-edot-hamizrach-hanukkah-shacharit-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:1 | siddur-edot-hamizrach-purim-shabbat-zachor-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:2 | siddur-edot-hamizrach-purim-shabbat-zachor-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:3 | siddur-edot-hamizrach-purim-shabbat-zachor-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:4 | siddur-edot-hamizrach-purim-shabbat-zachor-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:5 | siddur-edot-hamizrach-purim-shabbat-zachor-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:6 | siddur-edot-hamizrach-purim-shabbat-zachor-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:7 | siddur-edot-hamizrach-purim-shabbat-zachor-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:8 | siddur-edot-hamizrach-purim-shabbat-zachor-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:9 | siddur-edot-hamizrach-purim-shabbat-zachor-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:10 | siddur-edot-hamizrach-purim-shabbat-zachor-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:11 | siddur-edot-hamizrach-purim-shabbat-zachor-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:12 | siddur-edot-hamizrach-purim-shabbat-zachor-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:13 | siddur-edot-hamizrach-purim-shabbat-zachor-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:14 | siddur-edot-hamizrach-purim-shabbat-zachor-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:15 | siddur-edot-hamizrach-purim-shabbat-zachor-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:16 | siddur-edot-hamizrach-purim-shabbat-zachor-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:17 | siddur-edot-hamizrach-purim-shabbat-zachor-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:18 | siddur-edot-hamizrach-purim-shabbat-zachor-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:19 | siddur-edot-hamizrach-purim-shabbat-zachor-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:20 | siddur-edot-hamizrach-purim-shabbat-zachor-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:21 | siddur-edot-hamizrach-purim-shabbat-zachor-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:22 | siddur-edot-hamizrach-purim-shabbat-zachor-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:23 | siddur-edot-hamizrach-purim-shabbat-zachor-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:24 | siddur-edot-hamizrach-purim-shabbat-zachor-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:25 | siddur-edot-hamizrach-purim-shabbat-zachor-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:26 | siddur-edot-hamizrach-purim-shabbat-zachor-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:27 | siddur-edot-hamizrach-purim-shabbat-zachor-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:28 | siddur-edot-hamizrach-purim-shabbat-zachor-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:29 | siddur-edot-hamizrach-purim-shabbat-zachor-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:30 | siddur-edot-hamizrach-purim-shabbat-zachor-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:31 | siddur-edot-hamizrach-purim-shabbat-zachor-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:32 | siddur-edot-hamizrach-purim-shabbat-zachor-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:33 | siddur-edot-hamizrach-purim-shabbat-zachor-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:34 | siddur-edot-hamizrach-purim-shabbat-zachor-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:35 | siddur-edot-hamizrach-purim-shabbat-zachor-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:36 | siddur-edot-hamizrach-purim-shabbat-zachor-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:37 | siddur-edot-hamizrach-purim-shabbat-zachor-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:38 | siddur-edot-hamizrach-purim-shabbat-zachor-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:39 | siddur-edot-hamizrach-purim-shabbat-zachor-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:40 | siddur-edot-hamizrach-purim-shabbat-zachor-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:41 | siddur-edot-hamizrach-purim-shabbat-zachor-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:42 | siddur-edot-hamizrach-purim-shabbat-zachor-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:43 | siddur-edot-hamizrach-purim-shabbat-zachor-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:44 | siddur-edot-hamizrach-purim-shabbat-zachor-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:45 | siddur-edot-hamizrach-purim-shabbat-zachor-45 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:46 | siddur-edot-hamizrach-purim-shabbat-zachor-46 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:47 | siddur-edot-hamizrach-purim-shabbat-zachor-47 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:48 | siddur-edot-hamizrach-purim-shabbat-zachor-48 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:49 | siddur-edot-hamizrach-purim-shabbat-zachor-49 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:50 | siddur-edot-hamizrach-purim-shabbat-zachor-50 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:51 | siddur-edot-hamizrach-purim-shabbat-zachor-51 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:52 | siddur-edot-hamizrach-purim-shabbat-zachor-52 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:53 | siddur-edot-hamizrach-purim-shabbat-zachor-53 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:54 | siddur-edot-hamizrach-purim-shabbat-zachor-54 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:55 | siddur-edot-hamizrach-purim-shabbat-zachor-55 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:56 | siddur-edot-hamizrach-purim-shabbat-zachor-56 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:57 | siddur-edot-hamizrach-purim-shabbat-zachor-57 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:58 | siddur-edot-hamizrach-purim-shabbat-zachor-58 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:59 | siddur-edot-hamizrach-purim-shabbat-zachor-59 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:60 | siddur-edot-hamizrach-purim-shabbat-zachor-60 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:61 | siddur-edot-hamizrach-purim-shabbat-zachor-61 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:62 | siddur-edot-hamizrach-purim-shabbat-zachor-62 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:63 | siddur-edot-hamizrach-purim-shabbat-zachor-63 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:64 | siddur-edot-hamizrach-purim-shabbat-zachor-64 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:65 | siddur-edot-hamizrach-purim-shabbat-zachor-65 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:66 | siddur-edot-hamizrach-purim-shabbat-zachor-66 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:67 | siddur-edot-hamizrach-purim-shabbat-zachor-67 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:68 | siddur-edot-hamizrach-purim-shabbat-zachor-68 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:69 | siddur-edot-hamizrach-purim-shabbat-zachor-69 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:70 | siddur-edot-hamizrach-purim-shabbat-zachor-70 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:71 | siddur-edot-hamizrach-purim-shabbat-zachor-71 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:72 | siddur-edot-hamizrach-purim-shabbat-zachor-72 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:73 | siddur-edot-hamizrach-purim-shabbat-zachor-73 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:74 | siddur-edot-hamizrach-purim-shabbat-zachor-74 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:75 | siddur-edot-hamizrach-purim-shabbat-zachor-75 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:76 | siddur-edot-hamizrach-purim-shabbat-zachor-76 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:77 | siddur-edot-hamizrach-purim-shabbat-zachor-77 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:78 | siddur-edot-hamizrach-purim-shabbat-zachor-78 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:79 | siddur-edot-hamizrach-purim-shabbat-zachor-79 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:80 | siddur-edot-hamizrach-purim-shabbat-zachor-80 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:81 | siddur-edot-hamizrach-purim-shabbat-zachor-81 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:82 | siddur-edot-hamizrach-purim-shabbat-zachor-82 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:83 | siddur-edot-hamizrach-purim-shabbat-zachor-83 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:84 | siddur-edot-hamizrach-purim-shabbat-zachor-84 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:85 | siddur-edot-hamizrach-purim-shabbat-zachor-85 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:86 | siddur-edot-hamizrach-purim-shabbat-zachor-86 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:87 | siddur-edot-hamizrach-purim-shabbat-zachor-87 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:88 | siddur-edot-hamizrach-purim-shabbat-zachor-88 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:89 | siddur-edot-hamizrach-purim-shabbat-zachor-89 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:90 | siddur-edot-hamizrach-purim-shabbat-zachor-90 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:91 | siddur-edot-hamizrach-purim-shabbat-zachor-91 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Shabbat Zachor:92 | siddur-edot-hamizrach-purim-shabbat-zachor-92 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Megillah Reading:1 | siddur-edot-hamizrach-purim-megillah-reading-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Megillah Reading:2 | siddur-edot-hamizrach-purim-megillah-reading-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Megillah Reading:3 | siddur-edot-hamizrach-purim-megillah-reading-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Megillah Reading:4 | siddur-edot-hamizrach-purim-megillah-reading-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Megillah Reading:5 | siddur-edot-hamizrach-purim-megillah-reading-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Megillah Reading:6 | siddur-edot-hamizrach-purim-megillah-reading-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Megillah Reading:7 | siddur-edot-hamizrach-purim-megillah-reading-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Megillah Reading:8 | siddur-edot-hamizrach-purim-megillah-reading-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Megillah Reading:9 | siddur-edot-hamizrach-purim-megillah-reading-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Megillah Reading:10 | siddur-edot-hamizrach-purim-megillah-reading-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Megillah Reading:11 | siddur-edot-hamizrach-purim-megillah-reading-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Megillah Reading:12 | siddur-edot-hamizrach-purim-megillah-reading-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Megillah Reading:13 | siddur-edot-hamizrach-purim-megillah-reading-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Megillah Reading:14 | siddur-edot-hamizrach-purim-megillah-reading-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Megillah Reading:15 | siddur-edot-hamizrach-purim-megillah-reading-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Purim Day:1 | siddur-edot-hamizrach-purim-purim-day-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Purim Day:2 | siddur-edot-hamizrach-purim-purim-day-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Purim Day:3 | siddur-edot-hamizrach-purim-purim-day-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Purim Day:4 | siddur-edot-hamizrach-purim-purim-day-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Purim Day:5 | siddur-edot-hamizrach-purim-purim-day-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Purim Day:6 | siddur-edot-hamizrach-purim-purim-day-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Purim Day:7 | siddur-edot-hamizrach-purim-purim-day-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Purim Day:8 | siddur-edot-hamizrach-purim-purim-day-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Purim Day:9 | siddur-edot-hamizrach-purim-purim-day-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Purim, Purim Day:10 | siddur-edot-hamizrach-purim-purim-day-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Blessing of the Trees:1 | siddur-edot-hamizrach-nissan-blessing-of-the-trees-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Blessing of the Trees:2 | siddur-edot-hamizrach-nissan-blessing-of-the-trees-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Blessing of the Trees:3 | siddur-edot-hamizrach-nissan-blessing-of-the-trees-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Blessing of the Trees:4 | siddur-edot-hamizrach-nissan-blessing-of-the-trees-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Blessing of the Trees:5 | siddur-edot-hamizrach-nissan-blessing-of-the-trees-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Blessing of the Trees:6 | siddur-edot-hamizrach-nissan-blessing-of-the-trees-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Blessing of the Trees:7 | siddur-edot-hamizrach-nissan-blessing-of-the-trees-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Blessing of the Trees:8 | siddur-edot-hamizrach-nissan-blessing-of-the-trees-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Blessing of the Trees:9 | siddur-edot-hamizrach-nissan-blessing-of-the-trees-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Blessing of the Trees:10 | siddur-edot-hamizrach-nissan-blessing-of-the-trees-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Blessing of the Trees:11 | siddur-edot-hamizrach-nissan-blessing-of-the-trees-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Blessing of the Trees:12 | siddur-edot-hamizrach-nissan-blessing-of-the-trees-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Blessing of the Trees:13 | siddur-edot-hamizrach-nissan-blessing-of-the-trees-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Blessing of the Trees:14 | siddur-edot-hamizrach-nissan-blessing-of-the-trees-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Blessing of the Trees:15 | siddur-edot-hamizrach-nissan-blessing-of-the-trees-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:1 | siddur-edot-hamizrach-nissan-learning-of-the-day-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:2 | siddur-edot-hamizrach-nissan-learning-of-the-day-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:3 | siddur-edot-hamizrach-nissan-learning-of-the-day-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:4 | siddur-edot-hamizrach-nissan-learning-of-the-day-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:5 | siddur-edot-hamizrach-nissan-learning-of-the-day-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:6 | siddur-edot-hamizrach-nissan-learning-of-the-day-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:7 | siddur-edot-hamizrach-nissan-learning-of-the-day-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:8 | siddur-edot-hamizrach-nissan-learning-of-the-day-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:9 | siddur-edot-hamizrach-nissan-learning-of-the-day-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:10 | siddur-edot-hamizrach-nissan-learning-of-the-day-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:11 | siddur-edot-hamizrach-nissan-learning-of-the-day-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:12 | siddur-edot-hamizrach-nissan-learning-of-the-day-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:13 | siddur-edot-hamizrach-nissan-learning-of-the-day-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:14 | siddur-edot-hamizrach-nissan-learning-of-the-day-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:15 | siddur-edot-hamizrach-nissan-learning-of-the-day-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:16 | siddur-edot-hamizrach-nissan-learning-of-the-day-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:17 | siddur-edot-hamizrach-nissan-learning-of-the-day-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:18 | siddur-edot-hamizrach-nissan-learning-of-the-day-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:19 | siddur-edot-hamizrach-nissan-learning-of-the-day-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:20 | siddur-edot-hamizrach-nissan-learning-of-the-day-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:21 | siddur-edot-hamizrach-nissan-learning-of-the-day-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:22 | siddur-edot-hamizrach-nissan-learning-of-the-day-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:23 | siddur-edot-hamizrach-nissan-learning-of-the-day-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:24 | siddur-edot-hamizrach-nissan-learning-of-the-day-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:25 | siddur-edot-hamizrach-nissan-learning-of-the-day-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:26 | siddur-edot-hamizrach-nissan-learning-of-the-day-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:27 | siddur-edot-hamizrach-nissan-learning-of-the-day-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:28 | siddur-edot-hamizrach-nissan-learning-of-the-day-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:29 | siddur-edot-hamizrach-nissan-learning-of-the-day-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:30 | siddur-edot-hamizrach-nissan-learning-of-the-day-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:31 | siddur-edot-hamizrach-nissan-learning-of-the-day-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:32 | siddur-edot-hamizrach-nissan-learning-of-the-day-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:33 | siddur-edot-hamizrach-nissan-learning-of-the-day-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:34 | siddur-edot-hamizrach-nissan-learning-of-the-day-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:35 | siddur-edot-hamizrach-nissan-learning-of-the-day-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:36 | siddur-edot-hamizrach-nissan-learning-of-the-day-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:37 | siddur-edot-hamizrach-nissan-learning-of-the-day-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:38 | siddur-edot-hamizrach-nissan-learning-of-the-day-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:39 | siddur-edot-hamizrach-nissan-learning-of-the-day-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:40 | siddur-edot-hamizrach-nissan-learning-of-the-day-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:41 | siddur-edot-hamizrach-nissan-learning-of-the-day-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:42 | siddur-edot-hamizrach-nissan-learning-of-the-day-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:43 | siddur-edot-hamizrach-nissan-learning-of-the-day-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:44 | siddur-edot-hamizrach-nissan-learning-of-the-day-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:45 | siddur-edot-hamizrach-nissan-learning-of-the-day-45 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:46 | siddur-edot-hamizrach-nissan-learning-of-the-day-46 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:47 | siddur-edot-hamizrach-nissan-learning-of-the-day-47 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:48 | siddur-edot-hamizrach-nissan-learning-of-the-day-48 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:49 | siddur-edot-hamizrach-nissan-learning-of-the-day-49 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:50 | siddur-edot-hamizrach-nissan-learning-of-the-day-50 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:51 | siddur-edot-hamizrach-nissan-learning-of-the-day-51 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:52 | siddur-edot-hamizrach-nissan-learning-of-the-day-52 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:53 | siddur-edot-hamizrach-nissan-learning-of-the-day-53 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:54 | siddur-edot-hamizrach-nissan-learning-of-the-day-54 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:55 | siddur-edot-hamizrach-nissan-learning-of-the-day-55 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:56 | siddur-edot-hamizrach-nissan-learning-of-the-day-56 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:57 | siddur-edot-hamizrach-nissan-learning-of-the-day-57 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:58 | siddur-edot-hamizrach-nissan-learning-of-the-day-58 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:59 | siddur-edot-hamizrach-nissan-learning-of-the-day-59 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:60 | siddur-edot-hamizrach-nissan-learning-of-the-day-60 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:61 | siddur-edot-hamizrach-nissan-learning-of-the-day-61 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:62 | siddur-edot-hamizrach-nissan-learning-of-the-day-62 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:63 | siddur-edot-hamizrach-nissan-learning-of-the-day-63 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:64 | siddur-edot-hamizrach-nissan-learning-of-the-day-64 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:65 | siddur-edot-hamizrach-nissan-learning-of-the-day-65 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:66 | siddur-edot-hamizrach-nissan-learning-of-the-day-66 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:67 | siddur-edot-hamizrach-nissan-learning-of-the-day-67 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:68 | siddur-edot-hamizrach-nissan-learning-of-the-day-68 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:69 | siddur-edot-hamizrach-nissan-learning-of-the-day-69 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:70 | siddur-edot-hamizrach-nissan-learning-of-the-day-70 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:71 | siddur-edot-hamizrach-nissan-learning-of-the-day-71 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:72 | siddur-edot-hamizrach-nissan-learning-of-the-day-72 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:73 | siddur-edot-hamizrach-nissan-learning-of-the-day-73 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:74 | siddur-edot-hamizrach-nissan-learning-of-the-day-74 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:75 | siddur-edot-hamizrach-nissan-learning-of-the-day-75 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:76 | siddur-edot-hamizrach-nissan-learning-of-the-day-76 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:77 | siddur-edot-hamizrach-nissan-learning-of-the-day-77 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:78 | siddur-edot-hamizrach-nissan-learning-of-the-day-78 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:79 | siddur-edot-hamizrach-nissan-learning-of-the-day-79 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:80 | siddur-edot-hamizrach-nissan-learning-of-the-day-80 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:81 | siddur-edot-hamizrach-nissan-learning-of-the-day-81 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:82 | siddur-edot-hamizrach-nissan-learning-of-the-day-82 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:83 | siddur-edot-hamizrach-nissan-learning-of-the-day-83 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:84 | siddur-edot-hamizrach-nissan-learning-of-the-day-84 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:85 | siddur-edot-hamizrach-nissan-learning-of-the-day-85 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:86 | siddur-edot-hamizrach-nissan-learning-of-the-day-86 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:87 | siddur-edot-hamizrach-nissan-learning-of-the-day-87 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Nissan, Learning of the Day:88 | siddur-edot-hamizrach-nissan-learning-of-the-day-88 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Marriage:1 | siddur-edot-hamizrach-assorted-blessings-and-prayers-marriage-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Marriage:2 | siddur-edot-hamizrach-assorted-blessings-and-prayers-marriage-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Marriage:3 | siddur-edot-hamizrach-assorted-blessings-and-prayers-marriage-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Marriage:4 | siddur-edot-hamizrach-assorted-blessings-and-prayers-marriage-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Marriage:5 | siddur-edot-hamizrach-assorted-blessings-and-prayers-marriage-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Marriage:6 | siddur-edot-hamizrach-assorted-blessings-and-prayers-marriage-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Marriage:7 | siddur-edot-hamizrach-assorted-blessings-and-prayers-marriage-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Marriage:8 | siddur-edot-hamizrach-assorted-blessings-and-prayers-marriage-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Sheva Berachot:1 | siddur-edot-hamizrach-assorted-blessings-and-prayers-sheva-berachot-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Sheva Berachot:2 | siddur-edot-hamizrach-assorted-blessings-and-prayers-sheva-berachot-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Sheva Berachot:3 | siddur-edot-hamizrach-assorted-blessings-and-prayers-sheva-berachot-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Sheva Berachot:4 | siddur-edot-hamizrach-assorted-blessings-and-prayers-sheva-berachot-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Sheva Berachot:5 | siddur-edot-hamizrach-assorted-blessings-and-prayers-sheva-berachot-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Sheva Berachot:6 | siddur-edot-hamizrach-assorted-blessings-and-prayers-sheva-berachot-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Sheva Berachot:7 | siddur-edot-hamizrach-assorted-blessings-and-prayers-sheva-berachot-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Sheva Berachot:8 | siddur-edot-hamizrach-assorted-blessings-and-prayers-sheva-berachot-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Sheva Berachot:9 | siddur-edot-hamizrach-assorted-blessings-and-prayers-sheva-berachot-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Sheva Berachot:10 | siddur-edot-hamizrach-assorted-blessings-and-prayers-sheva-berachot-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Sheva Berachot:11 | siddur-edot-hamizrach-assorted-blessings-and-prayers-sheva-berachot-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Sheva Berachot:12 | siddur-edot-hamizrach-assorted-blessings-and-prayers-sheva-berachot-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Sheva Berachot:13 | siddur-edot-hamizrach-assorted-blessings-and-prayers-sheva-berachot-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:1 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:2 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:3 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:4 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:5 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:6 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:7 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:8 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:9 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:10 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:11 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:12 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:13 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:14 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:15 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:16 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:17 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:18 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:19 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:20 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:21 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:22 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:23 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:24 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:25 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:26 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:27 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:28 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:29 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:30 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:31 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:32 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:33 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:34 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:35 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:36 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:37 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:38 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:39 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:40 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila:41 | siddur-edot-hamizrach-assorted-blessings-and-prayers-brit-mila-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Redeeming the First Born:1 | siddur-edot-hamizrach-assorted-blessings-and-prayers-redeeming-the-first-born-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Redeeming the First Born:2 | siddur-edot-hamizrach-assorted-blessings-and-prayers-redeeming-the-first-born-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Redeeming the First Born:3 | siddur-edot-hamizrach-assorted-blessings-and-prayers-redeeming-the-first-born-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Redeeming the First Born:4 | siddur-edot-hamizrach-assorted-blessings-and-prayers-redeeming-the-first-born-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Redeeming the First Born:5 | siddur-edot-hamizrach-assorted-blessings-and-prayers-redeeming-the-first-born-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Redeeming the First Born:6 | siddur-edot-hamizrach-assorted-blessings-and-prayers-redeeming-the-first-born-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Redeeming the First Born:7 | siddur-edot-hamizrach-assorted-blessings-and-prayers-redeeming-the-first-born-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Redeeming the First Born:8 | siddur-edot-hamizrach-assorted-blessings-and-prayers-redeeming-the-first-born-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Redeeming the First Born:9 | siddur-edot-hamizrach-assorted-blessings-and-prayers-redeeming-the-first-born-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Redeeming the First Born:10 | siddur-edot-hamizrach-assorted-blessings-and-prayers-redeeming-the-first-born-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Redeeming the First Born:11 | siddur-edot-hamizrach-assorted-blessings-and-prayers-redeeming-the-first-born-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Redeeming the First Born:12 | siddur-edot-hamizrach-assorted-blessings-and-prayers-redeeming-the-first-born-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Redeeming the First Born:13 | siddur-edot-hamizrach-assorted-blessings-and-prayers-redeeming-the-first-born-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Redeeming the First Born:14 | siddur-edot-hamizrach-assorted-blessings-and-prayers-redeeming-the-first-born-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Mezuza:1 | siddur-edot-hamizrach-assorted-blessings-and-prayers-mezuza-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Mezuza:2 | siddur-edot-hamizrach-assorted-blessings-and-prayers-mezuza-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Mezuza:3 | siddur-edot-hamizrach-assorted-blessings-and-prayers-mezuza-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Mezuza:4 | siddur-edot-hamizrach-assorted-blessings-and-prayers-mezuza-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Mezuza:5 | siddur-edot-hamizrach-assorted-blessings-and-prayers-mezuza-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Building a Fence:1 | siddur-edot-hamizrach-assorted-blessings-and-prayers-building-a-fence-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Building a Fence:2 | siddur-edot-hamizrach-assorted-blessings-and-prayers-building-a-fence-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Building a Fence:3 | siddur-edot-hamizrach-assorted-blessings-and-prayers-building-a-fence-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Hallah:1 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-hallah-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Hallah:2 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-hallah-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Hallah:3 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-hallah-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Hallah:4 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-hallah-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Hallah:5 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-hallah-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Hallah:6 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-hallah-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Hallah:7 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-hallah-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Hallah:8 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-hallah-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Hallah:9 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-hallah-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Hallah:10 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-hallah-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Tevillat Kelim:1 | siddur-edot-hamizrach-assorted-blessings-and-prayers-tevillat-kelim-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Tevillat Kelim:2 | siddur-edot-hamizrach-assorted-blessings-and-prayers-tevillat-kelim-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Tevillat Kelim:3 | siddur-edot-hamizrach-assorted-blessings-and-prayers-tevillat-kelim-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Tevillat Kelim:4 | siddur-edot-hamizrach-assorted-blessings-and-prayers-tevillat-kelim-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:1 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:2 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:3 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:4 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:5 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:6 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:7 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:8 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:9 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:10 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:11 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:12 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:13 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:14 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:15 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:16 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:17 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:18 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:19 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:20 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:21 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes:22 | siddur-edot-hamizrach-assorted-blessings-and-prayers-separating-tithes-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Rainbow:1 | siddur-edot-hamizrach-assorted-blessings-and-prayers-rainbow-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Rainbow:2 | siddur-edot-hamizrach-assorted-blessings-and-prayers-rainbow-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Rainbow:3 | siddur-edot-hamizrach-assorted-blessings-and-prayers-rainbow-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Blessings on Lighting and Thunder:1 | siddur-edot-hamizrach-assorted-blessings-and-prayers-blessings-on-lighting-and-thunder-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Blessings on Lighting and Thunder:2 | siddur-edot-hamizrach-assorted-blessings-and-prayers-blessings-on-lighting-and-thunder-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Blessings on Lighting and Thunder:3 | siddur-edot-hamizrach-assorted-blessings-and-prayers-blessings-on-lighting-and-thunder-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Blessings on Lighting and Thunder:4 | siddur-edot-hamizrach-assorted-blessings-and-prayers-blessings-on-lighting-and-thunder-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Blessings on Lighting and Thunder:5 | siddur-edot-hamizrach-assorted-blessings-and-prayers-blessings-on-lighting-and-thunder-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Prayer for Taking Medicine:1 | siddur-edot-hamizrach-assorted-blessings-and-prayers-prayer-for-taking-medicine-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Prayer for Taking Medicine:2 | siddur-edot-hamizrach-assorted-blessings-and-prayers-prayer-for-taking-medicine-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Prayer for Taking Medicine:3 | siddur-edot-hamizrach-assorted-blessings-and-prayers-prayer-for-taking-medicine-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Traveler's Prayer:1 | siddur-edot-hamizrach-assorted-blessings-and-prayers-travelers-prayer-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Traveler's Prayer:2 | siddur-edot-hamizrach-assorted-blessings-and-prayers-travelers-prayer-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Traveler's Prayer:3 | siddur-edot-hamizrach-assorted-blessings-and-prayers-travelers-prayer-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Traveler's Prayer:4 | siddur-edot-hamizrach-assorted-blessings-and-prayers-travelers-prayer-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Traveler's Prayer:5 | siddur-edot-hamizrach-assorted-blessings-and-prayers-travelers-prayer-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Traveler's Prayer:6 | siddur-edot-hamizrach-assorted-blessings-and-prayers-travelers-prayer-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Traveler's Prayer:7 | siddur-edot-hamizrach-assorted-blessings-and-prayers-travelers-prayer-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Traveler's Prayer:8 | siddur-edot-hamizrach-assorted-blessings-and-prayers-travelers-prayer-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Assorted Blessings and Prayers, Traveler's Prayer:9 | siddur-edot-hamizrach-assorted-blessings-and-prayers-travelers-prayer-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:1 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:2 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:3 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:4 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:5 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:6 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:7 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:8 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:9 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:10 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:11 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:12 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:13 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:14 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:15 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:16 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:17 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:18 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:19 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:20 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:21 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:22 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:23 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:24 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:25 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:26 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:27 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:28 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:29 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya:30 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-gedalya-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:1 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:2 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:3 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:4 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:5 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:6 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:7 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:8 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:9 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:10 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:11 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:12 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:13 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:14 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:15 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:16 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:17 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:18 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:19 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:20 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:21 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:22 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:23 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:24 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:25 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:26 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:27 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:28 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:29 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:30 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:31 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:32 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:33 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:34 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:35 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:36 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet:37 | siddur-edot-hamizrach-fast-days-and-mourning-tenth-of-tevet-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:1 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:2 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:3 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:4 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:5 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:6 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:7 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:8 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:9 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:10 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:11 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:12 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:13 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:14 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:15 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:16 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:17 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:18 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:19 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:20 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:21 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:22 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:23 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:24 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:25 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:26 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:27 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:28 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:29 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:30 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:31 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:32 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:33 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:34 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther:35 | siddur-edot-hamizrach-fast-days-and-mourning-fast-of-esther-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:1 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:2 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:3 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:4 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:5 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:6 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:7 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:8 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:9 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:10 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:11 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:12 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:13 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:14 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:15 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:16 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:17 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:18 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:19 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:20 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:21 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:22 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:23 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:24 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:25 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:26 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:27 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:28 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:29 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:30 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:31 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:32 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:33 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:34 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:35 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:36 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:37 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:38 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:39 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz:40 | siddur-edot-hamizrach-fast-days-and-mourning-seventeenth-of-tammuz-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:1 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:2 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:3 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:4 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:5 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:6 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:7 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:8 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:9 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:10 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:11 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:12 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:13 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:14 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:15 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:16 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:17 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:18 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:19 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:20 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:21 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:22 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:23 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:24 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:25 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:26 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:27 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:28 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:29 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:30 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:31 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:32 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Mourning:33 | siddur-edot-hamizrach-fast-days-and-mourning-mourning-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Torah Reading for Fast Days:1 | siddur-edot-hamizrach-fast-days-and-mourning-torah-reading-for-fast-days-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Fast Days and Mourning, Torah Reading for Fast Days:2 | siddur-edot-hamizrach-fast-days-and-mourning-torah-reading-for-fast-days-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, First Meal:1 | siddur-edot-hamizrach-mishna-study-for-shabbat-first-meal-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, First Meal:2 | siddur-edot-hamizrach-mishna-study-for-shabbat-first-meal-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, First Meal:3 | siddur-edot-hamizrach-mishna-study-for-shabbat-first-meal-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, First Meal:4 | siddur-edot-hamizrach-mishna-study-for-shabbat-first-meal-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, First Meal:5 | siddur-edot-hamizrach-mishna-study-for-shabbat-first-meal-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, First Meal:6 | siddur-edot-hamizrach-mishna-study-for-shabbat-first-meal-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, First Meal:7 | siddur-edot-hamizrach-mishna-study-for-shabbat-first-meal-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, First Meal:8 | siddur-edot-hamizrach-mishna-study-for-shabbat-first-meal-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, First Meal:9 | siddur-edot-hamizrach-mishna-study-for-shabbat-first-meal-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, First Meal:10 | siddur-edot-hamizrach-mishna-study-for-shabbat-first-meal-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Second Meal:1 | siddur-edot-hamizrach-mishna-study-for-shabbat-second-meal-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Second Meal:2 | siddur-edot-hamizrach-mishna-study-for-shabbat-second-meal-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Second Meal:3 | siddur-edot-hamizrach-mishna-study-for-shabbat-second-meal-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Second Meal:4 | siddur-edot-hamizrach-mishna-study-for-shabbat-second-meal-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Second Meal:5 | siddur-edot-hamizrach-mishna-study-for-shabbat-second-meal-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Second Meal:6 | siddur-edot-hamizrach-mishna-study-for-shabbat-second-meal-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Second Meal:7 | siddur-edot-hamizrach-mishna-study-for-shabbat-second-meal-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Second Meal:8 | siddur-edot-hamizrach-mishna-study-for-shabbat-second-meal-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Second Meal:9 | siddur-edot-hamizrach-mishna-study-for-shabbat-second-meal-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Third Meal:1 | siddur-edot-hamizrach-mishna-study-for-shabbat-third-meal-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Third Meal:2 | siddur-edot-hamizrach-mishna-study-for-shabbat-third-meal-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Third Meal:3 | siddur-edot-hamizrach-mishna-study-for-shabbat-third-meal-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Third Meal:4 | siddur-edot-hamizrach-mishna-study-for-shabbat-third-meal-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Third Meal:5 | siddur-edot-hamizrach-mishna-study-for-shabbat-third-meal-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Third Meal:6 | siddur-edot-hamizrach-mishna-study-for-shabbat-third-meal-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Third Meal:7 | siddur-edot-hamizrach-mishna-study-for-shabbat-third-meal-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Third Meal:8 | siddur-edot-hamizrach-mishna-study-for-shabbat-third-meal-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Third Meal:9 | siddur-edot-hamizrach-mishna-study-for-shabbat-third-meal-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:1 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-1 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:2 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-2 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:3 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-3 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:4 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-4 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:5 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-5 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:6 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-6 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:7 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-7 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:8 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-8 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:9 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-9 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:10 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-10 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:11 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-11 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:12 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-12 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:13 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-13 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:14 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-14 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:15 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-15 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:16 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-16 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:17 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-17 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:18 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-18 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:19 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-19 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:20 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-20 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:21 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-21 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:22 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-22 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:23 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-23 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:24 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-24 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:25 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-25 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:26 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-26 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:27 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-27 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:28 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-28 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:29 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-29 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:30 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-30 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:31 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-31 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:32 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-32 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:33 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-33 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:34 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-34 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:35 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-35 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:36 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-36 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:37 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-37 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:38 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-38 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:39 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-39 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:40 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-40 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:41 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-41 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:42 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-42 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:43 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-43 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:44 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-44 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:45 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-45 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:46 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-46 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:47 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-47 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:48 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-48 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:49 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-49 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:50 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-50 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:51 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-51 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:52 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-52 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:53 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-53 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:54 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-54 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:55 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-55 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:56 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-56 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:57 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-57 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:58 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-58 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:59 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-59 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:60 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-60 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:61 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-61 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:62 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-62 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:63 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-63 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:64 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-64 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:65 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-65 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:66 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-66 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:67 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-67 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:68 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-68 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:69 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-69 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:70 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-70 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:71 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-71 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:72 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-72 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:73 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-73 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:74 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-74 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:75 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-75 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:76 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-76 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:77 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-77 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:78 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-78 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:79 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-79 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:80 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-80 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:81 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-81 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:82 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-82 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:83 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-83 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:84 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-84 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:85 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-85 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:86 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-86 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:87 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-87 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:88 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-88 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:89 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-89 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:90 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-90 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:91 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-91 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:92 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-92 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:93 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-93 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:94 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-94 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:95 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-95 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:96 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-96 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:97 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-97 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:98 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-98 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:99 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-99 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:100 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-100 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:101 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-101 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:102 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-102 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:103 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-103 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:104 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-104 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:105 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-105 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:106 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-106 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:107 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-107 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:108 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-108 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:109 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-109 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:110 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-110 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:111 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-111 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:112 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-112 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:113 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-113 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:114 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-114 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:115 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-115 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:116 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-116 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:117 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-117 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:118 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-118 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:119 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-119 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:120 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-120 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:121 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-121 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:122 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-122 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:123 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-123 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:124 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-124 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:125 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-125 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:126 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-126 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:127 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-127 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:128 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-128 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:129 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-129 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:130 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-130 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:131 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-131 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:132 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-132 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:133 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-133 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:134 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-134 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:135 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-135 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:136 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-136 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:137 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-137 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:138 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-138 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:139 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-139 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:140 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-140 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:141 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-141 |  |  | not_done |  |
+| siddur-edot-hamizrach | Siddur Edot HaMizrach | Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot:142 | siddur-edot-hamizrach-mishna-study-for-shabbat-pirkei-avot-142 |  |  | not_done |  |

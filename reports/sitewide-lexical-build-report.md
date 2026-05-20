@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-19T23:21:05.906Z
+Generated: 2026-05-20T07:48:02.230Z
 
 ## Scope
 
@@ -15,18 +15,18 @@ Generated: 2026-05-19T23:21:05.906Z
 
 ## Counts
 
-- Total work-surface rows: 3587102
-- Total sitewide unique surface forms: 783879
-- Sitewide unique surface forms matched at least once: 87869
-- Sitewide unique surface forms unmatched everywhere: 696010
-- Total token occurrences: 24382975
-- Matched before prefix/suffix parser: 803927
-- Newly resolved by prefix/suffix parser: 141892
-- Total matched after parser: 975949
-- Percent matched: 27.2%
-- Matched via Wikidata: 720256
-- Enriched via OpenScriptures: 804878
-- Unmatched: 2611153
+- Total work-surface rows: 3735961
+- Total sitewide unique surface forms: 820161
+- Sitewide unique surface forms matched at least once: 94413
+- Sitewide unique surface forms unmatched everywhere: 725748
+- Total token occurrences: 24949408
+- Matched before prefix/suffix parser: 846142
+- Newly resolved by prefix/suffix parser: 147014
+- Total matched after parser: 1024398
+- Percent matched: 27.4%
+- Matched via Wikidata: 755588
+- Enriched via OpenScriptures: 847981
+- Unmatched: 2711563
 
 ## Newly Resolved Parsed Forms
 
@@ -77,6 +77,7 @@ Generated: 2026-05-19T23:21:05.906Z
 ## Sample Unmatched Words
 
 - אֵ־ל -- ein-yaakov
+- א־תִירָ֣א -- siddur-edot-hamizrach
 - אאא -- otzar-midrashim
 - אאב -- peri-tzadik
 - אאבד -- avot-derabbi-natan
@@ -95,7 +96,6 @@ Generated: 2026-05-19T23:21:05.906Z
 - אאביו -- etz-yosef-on-kohelet-rabbah
 - אאביי -- beur-hagra-on-shulchan-arukh-yoreh-deah
 - אאביך -- ohr-hachammah-on-zohar
-- אאבינו -- peri-tzadik
 
 ## Top 50 Remaining Unmatched By Frequency
 
@@ -147,8 +147,8 @@ Generated: 2026-05-19T23:21:05.906Z
 - 1915x בזוה״ק -- sod-yesharim
 - 1913x בגין -- ohr-hachammah-on-zohar
 - 1909x וז״ש -- tiferet-shlomo
+- 1896x יְהֹוָה -- selichot-nusach-ashkenaz-lita
 - 1877x לעיל -- ohr-hachammah-on-zohar
-- 1870x ע״ב -- yismach-moshe
 
 ## Exact Orot Refs To Test
 

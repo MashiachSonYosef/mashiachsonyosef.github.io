@@ -1,11 +1,13 @@
 # Source License Inventory
 
-Generated: 2026-05-18
+Generated: 2026-05-20
 
 | Work | Units | Hebrew version title (source URL) | License | Commercial reuse allowed | Share-alike | Attribution requirements |
 |---|---:|---|---|---|---|---|
+| Abarbanel on Guide for the Perplexed | 633 | Warsaw, 1872 (https://www.nli.org.il/he/books/NNL_ALEPH990017717720205171/NLI) | PD | yes | no | none required by license; source/version retained |
 | Aderet Eliyahu | 59 | Aderet Eliyahu, Halberstadt, 1860 (https://www.nli.org.il/he/books/NNL_ALEPH001191318 ) | Public Domain | yes | no | none required by license; source/version retained |
 | Aggadat Bereshit | 222 | Krakow, 1903 (https://www.nli.org.il/he/books/NNL_ALEPH001779928/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Akeidat Yitzchak | 1728 | Akeidat Yitzchak, Pressburg 1849 (https://www.nli.org.il/he/books/NNL_ALEPH002034858) | Public Domain | yes | no | none required by license; source/version retained |
 | Alphabet of Ben Sira | 104 | Otzar Midrashim, New York, 1915 (https://www.nli.org.il/he/books/NNL_ALEPH001175329) | Public Domain | yes | no | none required by license; source/version retained |
 | Amos | 146 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Aramaic Targum to Ecclesiastes | 222 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
@@ -17,8 +19,12 @@ Generated: 2026-05-18
 | Aramaic Targum to Ruth | 85 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Aramaic Targum to Song of Songs | 117 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Asarah Perakim LeRamchal | 85 | Assarah Perakim -- Torat Emet (http://www.ateret4u.com/online/f_01919.html#HtmpReportNum0001_L2) | Public Domain | yes | no | none required by license; source/version retained |
+| Avodat Yisrael | 739 | Avodat Yisrael; Konigsberg, c. 1860. (https://www.nli.org.il/he/books/NNL_ALEPH001945066) | Public Domain | yes | no | none required by license; source/version retained |
 | Avot DeRabbi Natan | 253 | Talmud Bavli, Vilna 1883 ed. (https://www.nli.org.il/he/books/NNL_ALEPH001300957) | Public Domain | yes | no | none required by license; source/version retained |
+| Azharot of Solomon ibn Gabirol | 275 | Vilna, 1879 -- vocalized (https://www.nli.org.il/he/books/NNL_ALEPH001872727/NLI&local_base=NNL01) | Public Domain | yes | no | none required by license; source/version retained |
 | Bechinat Olam | 605 | Bechinat Olam, Vilna 1879 (https://www.nli.org.il/he/books/NNL_ALEPH990020506360205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Beit Aharon | 2388 | Beit Aharon, Brody, 1875. (https://www.nli.org.il/he/books/NNL_ALEPH001124498) | Public Domain | yes | no | none required by license; source/version retained |
+| Beit Elohim | 1845 | Warsaw, 1872 (https://www.nli.org.il/he/books/NNL_ALEPH001013444/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Ben Sira | 1016 | Ben Sira, David Kahana ed. -- Wikisource  (https://he.wikisource.org/wiki/%D7%91%D7%9F_%D7%A1%D7%99%D7%A8%D7%90) | CC-BY-SA | yes | yes | required |
 | Ben Sira | 2 | The Wisdom of Ben Sira, Cambridge University Press, 1899 (https://www.nli.org.il/he/books/NNL_ALEPH001966524 ) | Public Domain | yes | no | none required by license; source/version retained |
 | Beur Eser Sefirot | 46 | Be'ur Eser S'firot - grimoar (http://hebrew.grimoar.cz) | Public Domain | yes | no | none required by license; source/version retained |
@@ -31,18 +37,29 @@ Generated: 2026-05-18
 | Beur HaGra on Sifra DeTzniuta | 297 | Wikisource (https://he.wikisource.org/wiki/%D7%92%D7%A8%22%D7%90_%D7%A2%D7%9C_%D7%A1%D7%A4%D7%A8%D7%90_%D7%93%D7%A6%D7%A0%D7%99%D7%A2%D7%95%D7%AA%D7%90) | Public Domain | yes | no | none required by license; source/version retained |
 | Beur HaRadal on Pirkei DeRabbi Eliezer | 3398 | Warsaw, 1852 (https://www.nli.org.il/he/books/NNL_ALEPH990020480520205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Beur HaRe'em on Midrash Lekach Tov | 2885 | Midrash Lekach Tov on Torah, Vilna 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001922206) | Public Domain | yes | no | none required by license; source/version retained |
+| Bnei Yissaschar | 2100 | Bnei Yisaschar, Piotrkow 1883 (https://www.nli.org.il/he/books/NNL_ALEPH001763733) | Public Domain | yes | no | none required by license; source/version retained |
 | Book of Jubilees | 1758 | Wikisource 2019 (https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8_%D7%94%D7%99%D7%95%D7%91%D7%9C%D7%99%D7%9D) | CC-BY-SA | yes | yes | required |
 | Book of Judith | 354 | Ketuvim Achronim, Seckel Isaac Frankel. Warsaw, 1885 (https://www.nli.org.il/he/books/NNL_ALEPH001964863/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Book of Judith | 29 | תרגום מיוונית יצחק זעקיל פרענקיל,  ווארשא  1885, אתר דעת  (http://www.daat.ac.il/daat/hasfarim/yehudit-2.htm#1) | Public Domain | yes | no | none required by license; source/version retained |
 | Book of Tobit | 76 | The Book of Tobit, Hebrew translation, by A. Neubauer, 1878 (https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8_%D7%98%D7%95%D7%91%D7%99) | Public Domain | yes | no | none required by license; source/version retained |
 | Chafetz Chaim on Sifra | 9017 | Wikisource (https://he.wikisource.org/wiki/%D7%97%D7%A4%D7%A5_%D7%97%D7%99%D7%99%D7%9D_%D7%A2%D7%9C_%D7%A1%D7%A4%D7%A8%D7%90) | Public Domain | yes | no | none required by license; source/version retained |
 | Chesed LeAvraham | 1348 | Chesed le-Avraham -- grimoar (http://www.hebrew.grimoar.cz/azulaj/chesed_le-avraham.htm) | Public Domain | yes | no | none required by license; source/version retained |
+| Crescas on Guide for the Perplexed | 70 | Warsaw, 1872 (https://www.nli.org.il/he/books/NNL_ALEPH990017717720205171/NLI) | PD | yes | no | none required by license; source/version retained |
 | Daniel | 357 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| Darkhei Yesharim | 124 | Darkhei Yesharim, Warsaw 1913. (https://www.nli.org.il/he/books/NNL_ALEPH001950380) | Public Domain | yes | no | none required by license; source/version retained |
+| Degel Machaneh Ephraim | 875 | Degel Machaneh Ephraim, Korets, 1810 (https://www.nli.org.il/he/books/NNL_ALEPH001129557 ) | Public Domain | yes | no | none required by license; source/version retained |
 | Derech Etz Chayim (Ramchal) | 78 | Derech Etz Chayim - Wikisource (https://he.wikisource.org/wiki/%D7%A7%D7%9C%22%D7%97_%D7%A4%D7%AA%D7%97%D7%99_%D7%97%D7%9B%D7%9E%D7%94/%D7%94%D7%A7%D7%93%D7%9E%D7%94) | CC-BY-SA | yes | yes | required |
+| Derekh Hashem | 208 | Handwritten Manuscript EH 47 C 32. 1896 (http://etshaimmanuscripts.nl/eh_47_c_32/) | Public Domain | yes | no | none required by license; source/version retained |
 | Deuteronomy | 956 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| Divrei Emet | 561 | Divrei Emet, Zalkowa 1801 (https://www.nli.org.il/he/books/NNL_ALEPH001881071) | Public Domain | yes | no | none required by license; source/version retained |
+| Duties of the Heart | 39 | Chovat Halevavot, Amsterdam 1768. (https://books.google.co.il/books?id=u-NjAAAAcAAJ&lpg=PT488&ots=r4MvCsurfg&dq=%D7%91%D7%A0%D7%95%D7%99%20%D7%9E%D7%98%D7%A4%D7%94%20%D7%A1%D7%A8%D7%95%D7%97%D7%94&pg=PT2#v=onepage&q&f=false) | Public Domain | yes | no | none required by license; source/version retained |
+| Duties of the Heart | 412 | Vocalized Edition (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Ecclesiastes | 222 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| Efodi on Guide for the Perplexed | 151 | Warsaw, 1872 (https://www.nli.org.il/he/books/NNL_ALEPH990017717720205171/NLI) | PD | yes | no | none required by license; source/version retained |
+| Eight Chapters | 68 | Wikisource (https://he.wikisource.org/wiki/%D7%A9%D7%9E%D7%95%D7%A0%D7%94_%D7%A4%D7%A8%D7%A7%D7%99%D7%9D_%D7%9C%D7%A8%D7%9E%D7%91%22%D7%9D) | Public Domain | yes | no | none required by license; source/version retained |
 | Eikhah Rabbah | 91 | Midrash Rabbah -- TE (http://www.toratemetfreeware.com/online/f_01640.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Ein Yaakov | 3192 | Daat (https://www.nli.org.il/he/books/NNL_ALEPH001911837) | Public Domain | yes | no | none required by license; source/version retained |
+| Essay on Fundamentals | 69 | Maamar HaIkarim - Wikisource (https://he.wikisource.org/wiki/%D7%9E%D7%90%D7%9E%D7%A8_%D7%94%D7%A2%D7%99%D7%A7%D7%A8%D7%99%D7%9D) | CC-BY-SA | yes | yes | required |
 | Esther | 167 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Etz Yosef on Bamidbar Rabbah | 311 | Midrash Rabbah with Etz Yosef, Warsaw, 1867 (https://www.nli.org.il/he/books/NNL_ALEPH001987082&context=L&vid=NLI&search_scope=Local&tab=default_tab&lang=iw_IL) | Public Domain | yes | no | none required by license; source/version retained |
 | Etz Yosef on Bereishit Rabbah | 779 | Midrash Rabbah with Etz Yosef, Warsaw, 1867 (https://www.nli.org.il/he/books/NNL_ALEPH001987082&context=L&vid=NLI&search_scope=Local&tab=default_tab&lang=iw_IL) | Public Domain | yes | no | none required by license; source/version retained |
@@ -66,6 +83,7 @@ Generated: 2026-05-18
 | Gra's Nuschah on Tractate Semachot | 20 | Talmud Bavli, Vilna 1883 ed. (https://www.nli.org.il/he/books/NNL_ALEPH001300957) | Public Domain | yes | no | none required by license; source/version retained |
 | Gra's Nuschah on Tractate Soferim | 30 | Talmud Bavli, Vilna 1883 ed. (https://www.nli.org.il/he/books/NNL_ALEPH001300957) | Public Domain | yes | no | none required by license; source/version retained |
 | Habakkuk | 56 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| HaEmunot veHaDeot | 121 | Emunot we-Deot; Leipzig, 1864. (https://www.nli.org.il/he/books/NNL_ALEPH990020276490205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Haggai | 38 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | HaGra on Sefer Yetzirah Gra Version | 35 | Sefer Yetzirah, Warsaw 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001310968) | Public Domain | yes | no | none required by license; source/version retained |
 | Hosea | 197 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
@@ -85,6 +103,7 @@ Generated: 2026-05-18
 | II Chronicles | 822 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | II Kings | 719 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | II Samuel | 695 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| Imrei Binah | 1183 | Imrei Binah, Jerusalem 1908 (https://www.nli.org.il/he/books/NNL_ALEPH001933768/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Isaiah | 1291 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Jeremiah | 1364 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Jerusalem Talmud Taanit | 54 | The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015 (https://www.nli.org.il/he/books/NNL_ALEPH001901012/NLI) | CC-BY | yes | no | required |
@@ -96,21 +115,32 @@ Generated: 2026-05-18
 | Kad HaKemach | 396 | Kad HaKemach, Warsaw 1872 (https://www.nli.org.il/he/books/NNL_ALEPH001784725) | Public Domain | yes | no | none required by license; source/version retained |
 | Kalach Pitchei Chokhmah | 1948 | Kalach Pitchei Chokhmah -- grimoar (http://www.hebrew.grimoar.cz/luzzato/kalach_pitchej_chochma.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | Ketem Paz on Zohar | 2101 | Livorno, 1795 (https://www.nli.org.il/he/books/NNL_ALEPH990019674420205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Keter Malkhut | 447 | Mahberet miShire Kodesh, I. Davidson. JPS, Philadelphia, 1923 (https://www.nli.org.il/he/books/NNL01) | Public Domain | yes | no | none required by license; source/version retained |
+| Kinnot for Tisha B'Av (Ashkenaz) | 1065 | Kinnot for Tisha B'Av -- Wikisource (https://he.wikisource.org/wiki/%D7%A7%D7%99%D7%A0%D7%95%D7%AA_%D7%9C%D7%AA%D7%A9%D7%A2%D7%94_%D7%91%D7%90%D7%91_(%D7%90%D7%A9%D7%9B%D7%A0%D7%96)) | CC-BY-SA | yes | yes | required |
 | Kohelet Rabbah | 21 | Midrash Rabbah -- TE (http://www.toratemetfreeware.com/online/f_01641.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Kol HaTor | 194 | Kol HaTor (https://he.wikisource.org/wiki/%D7%A7%D7%95%D7%9C_%D7%94%D7%AA%D7%95%D7%A8_%D7%91_%D7%90) | CC-BY-SA | yes | yes | required |
 | Kol HaTor | 34 | Kol HaTor: Chapter 3 (https://he.wikisource.org/wiki/%D7%A7%D7%95%D7%9C_%D7%94%D7%AA%D7%95%D7%A8_%D7%92) | CC-BY-SA | yes | yes | required |
+| Kuzari | 350 | Sefer haKuzari - Project Ben-Yehuda (https://bybe.benyehuda.org/read/7575) | CC-BY-SA | yes | yes | required |
 | Lamentations | 154 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| Lekha Dodi | 38 | Wikisource (https://he.wikisource.org/wiki/%D7%9C%D7%9B%D7%94_%D7%93%D7%95%D7%93%D7%99) | CC-BY-SA | yes | yes | required |
 | Letter from Ramban to his Son | 8 | Jewish Quaterly Review, 1892, Solomon Schechter (http://www.jstor.org/stable/pdf/1449914.pdf) | Public Domain | yes | no | none required by license; source/version retained |
 | Letter of Aristeas | 322 | The Letter of Aristeas -- wikisource (https://he.wikisource.org/wiki/%D7%90%D7%92%D7%A8%D7%AA_%D7%90%D7%A8%D7%99%D7%A1%D7%98%D7%99%D7%90%D7%A1_(%D7%9B%D7%94%D7%A0%D7%90)) | CC-BY-SA | yes | yes | required |
+| Letter to the Ten Lost Tribes of Israel | 21 | Igeret haSheluha meHakme veRabane haAskenazim, Amsterdam 1831 (https://books.google.co.il/books?id=PRBpAAAAcAAJ&pg=PP1#v=onepage&q&f=false) | Public Domain | yes | no | none required by license; source/version retained |
 | Leviticus | 859 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Ma'alot HaMiddot | 573 | Warsaw, 1887 (https://www.nli.org.il/he/books/NNL_ALEPH990003745680205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Ma'amar Hador | 18 | Maamar Hador -- Wikisource (https://he.wikisource.org/wiki/%D7%9E%D7%90%D7%9E%D7%A8_%D7%94%D7%93%D7%95%D7%A8) | CC-BY-SA | yes | yes | required |
 | Ma'amar Torat HaBayit | 65 | Piotrkow, 1907 (https://www.nli.org.il/he/books/NNL_ALEPH001291361/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Ma'aneh Lashon Chabad | 61 | Warsaw, 1869 (https://dlib.rsl.ru/01007492803) | Public Domain | yes | no | none required by license; source/version retained |
+| Ma'avar Yabbok | 787 | Vilna, 1860 (https://www.nli.org.il/he/books/NNL_ALEPH990011247430205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Maaseh Rav | 250 | Wikisource (http://he.wikisource.org/wiki/%D7%9E%D7%A2%D7%A9%D7%94_%D7%A8%D7%91_%D7%94%D7%9C%D7%9B%D7%95%D7%AA_%D7%91%D7%A8%D7%9B%D7%95%D7%AA_%D7%94%D7%A9%D7%97%D7%A8) | CC-BY-SA | yes | yes | required |
 | Maaseh Rokeach on Mishnah | 1506 | Maaseh Rokeach, Amsterdam 1740 (https://he.wikisource.org/wiki/%D7%9E%D7%A2%D7%A9%D7%94_%D7%A8%D7%95%D7%A7%D7%97_%D7%A2%D7%9C_%D7%94%D7%9E%D7%A9%D7%A0%D7%94) | CC-BY-SA | yes | yes | required |
+| Maggid Devarav leYaakov | 277 | Maggid Devarav leYa'akov, Koretz, 1781 (https://www.nli.org.il/he/books/NNL_ALEPH001870067) | Public Domain | yes | no | none required by license; source/version retained |
 | Maggid Meisharim | 441 | Maggid Meisharim - Torat Emet (http://www.toratemetfreeware.com/online/f_01180.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Maharzu Hakatzar on Bereshit Rabbah | 8 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Malachi | 55 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| Maor VaShemesh | 917 | Maor Vashemesh, Breslau, 1842 (https://www.nli.org.il/he/books/NNL_ALEPH001799135) | Public Domain | yes | no | none required by license; source/version retained |
+| Marbeh Lesaper on Pesach Haggadah | 352 | Marbeh Lesaper, Karlsruhe 1791 (https://www.nli.org.il/he/books/NNL_ALEPH001261239&context=L) | Public Domain | yes | no | none required by license; source/version retained |
+| Marpeh la'Nefesh | 414 | Chovat Halevavot, Warsaw 1875 (https://www.nli.org.il/he/books/NNL_ALEPH001188038) | Public Domain | yes | no | none required by license; source/version retained |
 | Matnot Kehunah on Bamidbar Rabbah | 177 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Matnot Kehunah on Bereshit Rabbah | 516 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Matnot Kehunah on Devarim Rabbah | 57 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
@@ -121,6 +151,7 @@ Generated: 2026-05-18
 | Matnot Kehunah on Shemot Rabbah | 229 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Matnot Kehunah on Shir HaShirim Rabbah | 1816 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Matnot Kehunah on Vayikra Rabbah | 374 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Me'or Einayim | 734 | Me'or Einayim -- OYW (http://mobile.tora.ws/index.html?bgf=lnn(500099,0,0)) | Public Domain | yes | no | none required by license; source/version retained |
 | Megalleh Amukkot on Parashat VaEtchanan | 280 | Megaleh Amukot, based on Krakow, 1637 edition (https://www.nli.org.il/he/books/NNL_ALEPH002089275&context=L) | Public Domain | yes | no | none required by license; source/version retained |
 | Megillat Ta'anit | 79 | Warsaw, 1874 (https://www.nli.org.il/he/books/NNL_ALEPH001239373) | Public Domain | yes | no | none required by license; source/version retained |
 | Menorat HaMaor | 3663 | Menorat HaMaor, Alnakawa, H.G. Enelow ed. N.Y. 1929-1934 (https://www.nli.org.il/he/books/NNL_ALEPH001242736/NLI) | Public Domain | yes | no | none required by license; source/version retained |
@@ -146,6 +177,7 @@ Generated: 2026-05-18
 | Midrash Tehillim | 808 | OYW (http://mobile.tora.ws/) | Public Domain | yes | no | none required by license; source/version retained |
 | Midrash Yelamdenu, Selections from Yalkut Talmud Torah | 6 | Yalkut Talmud Torah. Cincinnati, 1940 (https://www.nli.org.il/en/books/NNL_ALEPH001264247/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Mikdash Melekh on Zohar | 9639 | Zholkva, 1864 (https://www.nli.org.il/he/books/NNL_ALEPH990018376830205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Minchat Kenaot | 566 | Minhat Kenaot, Pressburg, 1838. (https://www.nli.org.il/he/books/NNL_ALEPH001062708) | Public Domain | yes | no | none required by license; source/version retained |
 | Mishnah Arakhin | 50 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Mishnah Avodah Zarah | 50 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Mishnah Bava Batra | 86 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
@@ -213,16 +245,25 @@ Generated: 2026-05-18
 | Mishnat Rabbi Eliezer | 589 | New York, 1934 (https://www.nli.org.il/he/books/NNL_ALEPH001987876/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Mitpachat Sefarim | 54 | מטפחת ספרים (https://he.wikisource.org/wiki/%D7%9E%D7%98%D7%A4%D7%97%D7%AA_%D7%A1%D7%A4%D7%A8%D7%99%D7%9D) | CC-BY-SA | yes | yes | required |
 | Mivchar HaPeninim | 653 | Mivchar Hapeninim, London 1859 (https://beta.nli.org.il/he/books/NNL_ALEPH001866572/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Moreh Nevukhei HaZeman | 922 | Warsaw, 1894 (https://benyehuda.org/read/47208) | Public Domain | yes | no | none required by license; source/version retained |
 | Musar Avikha | 14 | Jerusalem, 1946 (https://he.wikisource.org/wiki/%D7%9E%D7%95%D7%A1%D7%A8_%D7%90%D7%91%D7%99%D7%9A) | Public Domain | yes | no | none required by license; source/version retained |
+| Naftali Seva Ratzon on Pesach Haggadah | 54 | Naftali Seva Ratzon, Furth, 1727 (https://www.nli.org.il/he/books/NNL_ALEPH001864542&context=L&vid=NLI&search_scope=Local&tab=default_tab&lang=iw_IL) | Public Domain | yes | no | none required by license; source/version retained |
 | Nahum | 47 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| Narboni on Guide for the Perplexed | 182 | Vienna, 1852 (https://www.nli.org.il/he/books/NNL_ALEPH002021142/NLI) | PD | yes | no | none required by license; source/version retained |
 | Nefesh HaChayim | 164 | Vilna, 1874 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Nehemiah | 405 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| Nineteen Letters | 641 | Iggerot Tzfun, Vilna 1890 (https://www.nli.org.il/he/books/NNL_ALEPH001855369) | Public Domain | yes | no | none required by license; source/version retained |
+| Nishmat Chayyim | 451 | Warsaw, 1876 (https://www.nli.org.il/he/books/NNL_ALEPH990020073790205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Noam Elimelekh | 1538 |  Noam Elimelech, Lvov, 1788. (https://he.wikisource.org/wiki/%D7%A0%D7%95%D7%A2%D7%9D_%D7%90%D7%9C%D7%99%D7%9E%D7%9C%D7%9A) | Public Domain | yes | no | none required by license; source/version retained |
 | Notes and Corrections on Midrash Aggadah | 3395 | Midrash Aggadah, ed. Buber, Vienna, 1894. (https://www.nli.org.il/he/books/NNL_ALEPH001323847) | Public Domain | yes | no | none required by license; source/version retained |
 | Notes and Corrections on Midrash Lekach Tov | 5955 | Midrash Lekach Tov on Torah, Vilna 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001922206) | Public Domain | yes | no | none required by license; source/version retained |
 | Notes and Corrections on Midrash Lekach Tov on Esther | 254 | Sifre DeAgadeta, Vilna 1886 (https://www.nli.org.il/he/books/NNL_ALEPH001838260) | Public Domain | yes | no | none required by license; source/version retained |
 | Numbers | 1288 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Obadiah | 21 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| Ohev Yisrael | 699 | Ohev Yisrael, Zhitomir, 1863. (https://www.nli.org.il/he/books/NNL_ALEPH001091554) | Public Domain | yes | no | none required by license; source/version retained |
 | Ohr HaChammah on Zohar | 19757 | Ohr Hachama, Peremyshl, 1896-1898 (https://www.nli.org.il/he/books/NNL_ALEPH001148825/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Ohr HaMeir | 551 | Warsaw, 1883 (https://www.nli.org.il/he/books/NNL_ALEPH990019041030205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Ohr Hashem | 830 | Vienna, 1859 (https://www.nli.org.il/he/books/NNL_ALEPH990018940210205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Orchot Chaim L'HaRosh | 154 | Orchot Chaim -- TE (http://www.ateret4u.com/online/f_01675.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Orchot Tzadikim | 865 | Orchot Tzadikim -- Vocalized (http://he.wikisource.org/wiki/%D7%90%D7%95%D7%A8%D7%97%D7%95%D7%AA_%D7%A6%D7%93%D7%99%D7%A7%D7%99%D7%9D) | CC-BY-SA | yes | yes | required |
 | Orchot Tzadikim | 44 | Wikitext (https://he.wikisource.org/wiki/%D7%90%D7%95%D7%A8%D7%97%D7%95%D7%AA_%D7%A6%D7%93%D7%99%D7%A7%D7%99%D7%9D_%D7%A1%D7%99%D7%9E%D7%A0%D7%99_%D7%A1%D7%A4%D7%A8_%D7%94%D7%9E%D7%99%D7%93%D7%95%D7%AA) | CC-BY-SA | yes | yes | required |
@@ -233,8 +274,12 @@ Generated: 2026-05-18
 | Par Echad on Pirkei DeRabbi Eliezer | 186 | İzmir, 1880 (https://he.wikisource.org/wiki/%D7%A4%D7%A8_%D7%90%D7%97%D7%93) | Public Domain | yes | no | none required by license; source/version retained |
 | Pardes Rimmonim | 3151 | Pardes Rimonim (http://www.hebrew.grimoar.cz/kordovero/pardes_rimonim.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | Pardes Rimmonim | 294 | Pardes Rimonim, Koretz, 1780. (http://dlib.rsl.ru/01006686897) | Public Domain | yes | no | none required by license; source/version retained |
+| Pat Lechem | 835 | Chovat Halevavot, Warsaw 1875 (https://www.nli.org.il/he/books/NNL_ALEPH001188038) | Public Domain | yes | no | none required by license; source/version retained |
 | Pele Yoetz | 1777 | Torat Emet (http://www.ateret4u.com/online/f_01643.html#HtmpReportNum0016_L2) | Public Domain | yes | no | none required by license; source/version retained |
 | Peri Etz Hadar | 92 | Pri Etz Hadar, Venice 1762 (http://opensiddur.org/?p=1503) | Public Domain | yes | no | none required by license; source/version retained |
+| Peri HaAretz | 179 | Pri Haaretz -- wikisource (https://he.wikisource.org/wiki/%D7%A4%D7%A8%D7%99_%D7%94%D7%90%D7%A8%D7%A5) | Public Domain | yes | no | none required by license; source/version retained |
+| Peri HaAretz | 68 | Pri Haaretz, Kopyst 1814 (https://www.nli.org.il/he/books/NNL_ALEPH002007733 ) | Public Domain | yes | no | none required by license; source/version retained |
+| Peri Tzadik | 1890 | Pri Tzaddik, Lublin, 1901 (https://www.nli.org.il/he/books/NNL_ALEPH001986677) | Public Domain | yes | no | none required by license; source/version retained |
 | Perush Maharzu on Bamidbar Rabbah | 277 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Perush Maharzu on Bereshit Rabbah | 462 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Perush Maharzu on Devarim Rabbah | 74 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
@@ -245,6 +290,7 @@ Generated: 2026-05-18
 | Perush Maharzu on Shemot Rabbah | 495 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Perush Maharzu on Shir HaShirim Rabbah | 1272 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Perush Maharzu on Vayikra Rabbah | 303 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Pesach Haggadah | 230 | Pesach Haggadah (http://www.daat.ac.il/daat/shabat/pesach/hagada-2.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | Pesikta DeRav Kahana | 304 | Pesikta de Rav Kahana according to an Oxford manuscript, Dov Mandelbaum ed., N.Y. 1987 (https://beta.nli.org.il/he/books/NNL_ALEPH002042999/NLI) | CC-BY | yes | no | required |
 | Pesikta Rabbati | 34 | OYW (http://mobile.tora.ws/) | Public Domain | yes | no | none required by license; source/version retained |
 | Pirkei Avot | 108 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
@@ -267,14 +313,22 @@ Generated: 2026-05-18
 | Recanati on the Torah | 1909 | Recanati on the Torah (http://www.hebrew.grimoar.cz/rekanati_al_ha-torah.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Ruth | 85 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Ruth Rabbah | 12 | Midrash Rabbah -- TE (http://www.toratemetfreeware.com/online/f_01639.html) | Public Domain | yes | no | none required by license; source/version retained |
+| Seder Ma'amadot | 369 | סדר מעמדות (http://www.toratemetfreeware.com/online/f_01797.html#HtmpReportNum0001_L3) | Public Domain | yes | no | none required by license; source/version retained |
 | Seder Olam Rabbah | 2 | Seder Olam, Warsaw 1904 (https://www.nli.org.il/he/books/NNL_ALEPH001364770) | Public Domain | yes | no | none required by license; source/version retained |
 | Seder Olam Zutta | 10 | Seder Olam Zuta, Rabbi M. Grossberg. London, 1910 (https://beta.nli.org.il/he/books/NNL_ALEPH002021777/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Sefat Emet | 7082 | Sefat emet, Piotrków, 1905-1908 (https://www.nli.org.il/he/books/NNL_ALEPH001186213) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefer Etz Chaim | 7 | Sefer Etz Chaim (http://www.hebrew.grimoar.cz/vital/ec_chajim.htm) | Public Domain | yes | no | none required by license; source/version retained |
+| Sefer HaIkkarim | 223 | Sefer Ha-'ikkarim (https://www.nli.org.il/he/books/NNL_ALEPH001187491) | CC-BY | yes | no | required |
 | Sefer HaKanah | 1502 | Sefer HaKana (http://www.hebrew.grimoar.cz/anonym/sefer_ha-kana.htm) | Public Domain | yes | no | none required by license; source/version retained |
+| Sefer HaMiddot | 2681 | Sefer HaMidot -- rabenubook (http://rabenubook.com/category/%D7%A1%D7%A4%D7%A8-%D7%94%D7%9E%D7%99%D7%93%D7%95%D7%AA/) | Public Domain | yes | no | none required by license; source/version retained |
+| Sefer HaMiddot | 13 | Sefer HaMidot, Moghilev, 1811 (https://www.nli.org.il/he/books/NNL_ALEPH002016939 ) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefer HaYashar | 311 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefer HaYashar (midrash) | 308 | Sefer HaYashar, Livorno 1870 (https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8_%D7%94%D7%99%D7%A9%D7%A8_-_%D7%9E%D7%A7%D7%A8%D7%90_%D7%95%D7%90%D7%92%D7%93%D7%94) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefer Yetzirah | 48 | Sefer Yetzirah, Warsaw 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001310968) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefer Yetzirah Gra Version | 62 | Sefer Yetzirah, Warsaw 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001310968) | Public Domain | yes | no | none required by license; source/version retained |
+| Selichot Edot HaMizrach | 229 | Selichot Edot HaMizrach - Torat Emet (http://www.toratemetfreeware.com/online/f_01821.html) | Public Domain | yes | no | none required by license; source/version retained |
+| Selichot Nusach Ashkenaz Lita | 2682 | Selichot Nusach Lita -- Wikisource (https://he.wikisource.org/wiki/%D7%A1%D7%9C%D7%99%D7%97%D7%95%D7%AA_%D7%9C%D7%99%D7%9E%D7%99_%D7%94%D7%AA%D7%A9%D7%95%D7%91%D7%94/%D7%9E%D7%A0%D7%94%D7%92_%D7%9C%D7%99%D7%98%D7%90) | CC-BY-SA | yes | yes | required |
+| Selichot Nusach Polin | 2233 | Selichot Nusach Polin -- Wikisource (https://he.wikisource.org/wiki/%D7%A1%D7%9C%D7%99%D7%97%D7%95%D7%AA_%D7%9C%D7%99%D7%9E%D7%99_%D7%94%D7%AA%D7%A9%D7%95%D7%91%D7%94/%D7%9E%D7%A0%D7%94%D7%92_%D7%A4%D7%95%D7%9C%D7%99%D7%9F) | CC-BY-SA | yes | yes | required |
 | Sha'ar HaGemul of the Ramban | 70 | שער הגמול - רמב''ן (http://mobile.tora.ws/index.html?bgf=lnn(500152,0,0)) | Public Domain | yes | no | none required by license; source/version retained |
 | Sha'ar HaGilgulim | 854 | Shaar HaGilgulim (http://www.hebrew.grimoar.cz/vital/saar_ha-gilgulim.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | Sha'ar HaHakdamot | 93 | Jerusalem, 1909 (https://www.nli.org.il/he/books/NNL_ALEPH990012777260205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
@@ -288,6 +342,7 @@ Generated: 2026-05-18
 | Sha'arei Orah | 1559 | Shaarei Orah, grimoar (http://www.hebrew.grimoar.cz/gikatalia/saare_ora.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | Sha'arei Teshuvah | 338 | Sefaria Vocalized Edition (https://www.sefaria.org/) | Public Domain | yes | no | none required by license; source/version retained |
 | Sha'arei Teshuvah | 1 | Torat Emet (http://www.toratemetfreeware.com/online/f_01645.html) | Public Domain | yes | no | none required by license; source/version retained |
+| Shalom Aleichem | 8 | Shalom Alechem (http://en.wikipedia.org/wiki/Shalom_Aleichem_(liturgy)) | CC-BY-SA | yes | yes | required |
 | Shekel HaKodesh | 440 | Shekel Hakodesh, London 1919 (https://www.nli.org.il/he/books/NNL_ALEPH002034753) | Public Domain | yes | no | none required by license; source/version retained |
 | Shenei Luchot HaBerit | 2667 | Shenei Luchot HaBrit, based on Amsterdam, 1698 ed. Part I (https://www.nli.org.il/he/books/NNL_ALEPH001881900) | Public Domain | yes | no | none required by license; source/version retained |
 | Shenei Luchot HaBerit | 3504 | Shenei Luchot HaBrit, based on Amsterdam, 1698 ed. Part II (https://www.nli.org.il/he/books/NNL_ALEPH001881900) | Public Domain | yes | no | none required by license; source/version retained |
@@ -295,10 +350,14 @@ Generated: 2026-05-18
 | Shevet Musar | 198 | Shevet Musar, Fiyorda, 1761 (https://www.nli.org.il/he/books/NNL_ALEPH001188109) | Public Domain | yes | no | none required by license; source/version retained |
 | Shevet Musar | 485 | Shevet Musar, Wilhermsdorf 1738 (https://he.wikisource.org/wiki/%D7%A9%D7%91%D7%98_%D7%9E%D7%95%D7%A1%D7%A8) | CC-BY-SA | yes | yes | required |
 | Shir HaShirim Rabbah | 24 | Midrash Rabbah -- TE (http://www.toratemetfreeware.com/online/f_01638.html) | Public Domain | yes | no | none required by license; source/version retained |
+| Shivchei HaBesht | 342 | Shivchei HaBesht, Kopyst 1815 (https://www.nli.org.il/he/books/NNL_ALEPH002074799) | Public Domain | yes | no | none required by license; source/version retained |
+| Siddur Edot HaMizrach | 3352 |  Shaliehsaboo Edition (https://www.sefaria.org) | CC0 | yes | no | none required by license; source/version retained |
+| Siddur Edot HaMizrach | 27 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Sifrei Aggadah on Esther | 197 | Vilna, 1886 (https://www.nli.org.il/he/books/NNL_ALEPH001838260/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Sifrei Bamidbar | 295 | Wikisource (https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%D7%99) | CC-BY-SA | yes | yes | required |
 | Sifrei Devarim | 2340 | Sifre on Deuteronomy, ed. Dr. Louis Finkelstein. JTS, 1969 (https://www.nli.org.il/he/books/NNL_ALEPH990012428250205171/NLI) | CC-BY | yes | no | required |
 | Sifrei Devarim | 17 | Sifrei Devarim, Hebrew (https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%D7%99_%D7%A2%D7%9C_%D7%93%D7%91%D7%A8%D7%99%D7%9D) | Public Domain | yes | no | none required by license; source/version retained |
+| Sod Yesharim | 1274 | Sod Yesharim, Warsaw 1902-1908 (https://www.nli.org.il/he/books/NNL_ALEPH001014854/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Song of Songs | 117 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Tanna DeBei Eliyahu Rabbah | 57 | OYW (segmentation according to Warsaw 1880) (http://mobile.tora.ws/) | Public Domain | yes | no | none required by license; source/version retained |
 | Tanna DeBei Eliyahu Zuta | 98 | Tanna deBei Eliyahu Zuta (http://www.daat.ac.il) | Public Domain | yes | no | none required by license; source/version retained |
@@ -337,8 +396,11 @@ Generated: 2026-05-18
 | The Book of Susanna | 76 | Leipzig, 1830, Wikisource (https://he.wikisource.org/wiki/%D7%9B%D7%AA%D7%95%D7%91%D7%99%D7%9D_%D7%90%D7%97%D7%A8%D7%95%D7%A0%D7%99%D7%9D/%D7%A9%D7%95%D7%A9%D7%A0%D7%94) | Public Domain | yes | no | none required by license; source/version retained |
 | The Testaments of the Twelve Patriarchs | 1002 | Tsavaat HaShevatim -- Wikisource (https://he.wikisource.org/wiki/%D7%A6%D7%95%D7%95%D7%90%D7%95%D7%AA_%D7%94%D7%A9%D7%91%D7%98%D7%99%D7%9D) | CC-BY-SA | yes | yes | required |
 | The Wars of God | 254 | ויקיטקסט (https://he.wikisource.org/wiki/%D7%9E%D7%9C%D7%97%D7%9E%D7%95%D7%AA_%D7%94%27_(%D7%99%D7%97%D7%99%D7%90_%D7%A7%D7%90%D7%A4%D7%97)) | CC-BY-SA | yes | yes | required |
+| The Wars of the Lord | 723 | Milhamot Hashem, Leipzig, 1866 (https://he.wikisource.org/wiki/%D7%9E%D7%9C%D7%97%D7%9E%D7%95%D7%AA_%D7%94%27_(%D7%A8%D7%9C%D7%91%22%D7%92)) | Public Domain | yes | no | none required by license; source/version retained |
 | The Wisdom of Solomon | 438 | Chokhmat Shlomo, Warsaw 1885 (https://www.nli.org.il/he/books/NNL01) | Public Domain | yes | no | none required by license; source/version retained |
+| Tiferet Shlomo | 1628 | Tiferet Shlomo, Warsaw, 1867 (https://www.nli.org.il/he/books/NNL_ALEPH990020679460205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Tomer Devorah | 133 | Torat Emet (http://www.ateret4u.com/online/f_01658.html#HtmpReportNum0000_L2) | Public Domain | yes | no | none required by license; source/version retained |
+| Torat HaOlah | 560 | Torat HaOlah, based on Prague, 1570 and Lemberg, 1858 editions  (https://he.wikisource.org/wiki/%D7%AA%D7%95%D7%A8%D7%AA_%D7%94%D7%A2%D7%95%D7%9C%D7%94) | Public Domain | yes | no | none required by license; source/version retained |
 | Tosefta Arakhin | 44 | Tosefta Arakhin - Machon Mamre (http://www.mechon-mamre.org/b/f/f55.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | Tosefta Avodah Zarah | 41 | Tosefta Avodah Zarah - Machon Mamre (http://www.mechon-mamre.org/b/f/f48.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | Tosefta Bava Batra | 73 | Tosefta Bava Batra - Machon Mamre (http://www.mechon-mamre.org/b/f/f43.htm) | Public Domain | yes | no | none required by license; source/version retained |
@@ -400,14 +462,20 @@ Generated: 2026-05-18
 | Tosefta Yoma | 61 | Tosefta Yoma (http://www.mechon-mamre.org/b/f/f25.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | Tosefta Zavim | 30 | Tosefta Zavim - Machon Mamre (http://www.mechon-mamre.org/b/f/f69.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | Tosefta Zevachim | 94 | Tosefta Zevachim - Machon Mamre (http://www.mechon-mamre.org/b/f/f51.htm) | Public Domain | yes | no | none required by license; source/version retained |
+| Tov haLevanon | 574 | Chovat Halevavot, Warsaw 1875 (https://www.nli.org.il/he/books/NNL_ALEPH001188038) | Public Domain | yes | no | none required by license; source/version retained |
 | Tractate Derekh Eretz Rabbah | 99 | Talmud Bavli, Vilna 1883 ed. (https://www.nli.org.il/he/books/NNL_ALEPH001300957) | Public Domain | yes | no | none required by license; source/version retained |
 | Tractate Derekh Eretz Zuta | 38 | Talmud Bavli, Vilna 1883 ed. (https://www.nli.org.il/he/books/NNL_ALEPH001300957) | Public Domain | yes | no | none required by license; source/version retained |
 | Tractate Kallah | 26 | Talmud Bavli, Vilna 1883 ed. (https://www.nli.org.il/he/books/NNL_ALEPH001300957) | Public Domain | yes | no | none required by license; source/version retained |
 | Tractate Semachot | 14 | Talmud Bavli, Vilna 1883 ed. (https://www.nli.org.il/he/books/NNL_ALEPH001300957) | Public Domain | yes | no | none required by license; source/version retained |
 | Tractate Soferim | 227 | Talmud Bavli, Vilna 1883 ed. (https://www.nli.org.il/he/books/NNL_ALEPH001300957) | Public Domain | yes | no | none required by license; source/version retained |
+| Treatise on Logic | 182 | Milot Higayon, Warsaw, 1928 (https://he.wikisource.org/wiki/%D7%9E%D7%99%D7%9C%D7%95%D7%AA_%D7%94%D7%92%D7%99%D7%95%D7%9F) | CC-BY-SA | yes | yes | required |
+| Tzava'at HaRivash | 312 | Warsaw, 1913 (http://rosetta.nli.org.il/delivery/DeliveryManagerServlet?dps_pid=IE13133653) | Public Domain | yes | no | none required by license; source/version retained |
+| Tzidkat HaTzadik | 271 | Tzidkat HaTzadick, Lublin, 1913 (https://www.nli.org.il/he/books/NNL_ARCHIVE_AL001986680) | Public Domain | yes | no | none required by license; source/version retained |
 | Ya'arot Devash I | 219 | Yaarot Devash -- OYW (http://mobile.tora.ws/index.html?bgf=lnn(500121,0,0)) | Public Domain | yes | no | none required by license; source/version retained |
 | Ya'arot Devash II | 1308 | Józefów, 1866 (https://www.nli.org.il/he/books/NNL_ALEPH990011676280205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Yahel Ohr on Zohar | 238 | Vilna 1882 (https://he.wikisource.org/wiki/%D7%99%D7%94%D7%9C_%D7%90%D7%95%D7%A8) | PD | yes | no | none required by license; source/version retained |
+| Yakar MiPaz | 18 | Yakar MiPaz, 1912. (https://www.nli.org.il/he/books/NNL_ALEPH001945123) | Public Domain | yes | no | none required by license; source/version retained |
+| Yakar MiPaz | 60 | Yakar MiPaz, Lvov 1874 (https://www.nli.org.il/he/books/NNL_ALEPH001945123) | Public Domain | yes | no | none required by license; source/version retained |
 | Yedei Moshe on Bereshit Rabbah | 83 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Yedei Moshe on Devarim Rabbah | 9 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Yedei Moshe on Kohelet Rabbah | 68 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
@@ -425,6 +493,8 @@ Generated: 2026-05-18
 | Yefeh To'ar on Vayikra Rabbah | 124 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Yesod HaYirah | 196 | Yesod hayirah, London 1919 (https://www.nli.org.il/he/books/NNL_ALEPH002034753) | Public Domain | yes | no | none required by license; source/version retained |
 | Yesod VeShoresh HaAvodah | 707 | Warsaw, 1875 (https://www.nli.org.il/he/books/NNL_ALEPH990011988730205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Yismach Moshe | 2012 | Yismach Moshe, Sighet, 1898 (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Zechariah | 211 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Zephaniah | 53 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| Zera Kodesh | 1253 | Lʹviv, 1868 (https://www.nli.org.il/he/books/NNL_ALEPH001741731) | Public Domain | yes | no | none required by license; source/version retained |
 | Zohar Chadash | 4421 | Zohar Chadash (http://www.toratemetfreeware.com/online/d_root__106_kblh.html) | Public Domain | yes | no | none required by license; source/version retained |

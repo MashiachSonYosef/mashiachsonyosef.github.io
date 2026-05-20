@@ -195,7 +195,7 @@ function getVersionMeta(payload) {
 
 function getHebrewOnlyBlocker(report) {
   const title = `${report.work_title} ${report.version_title}`.toLowerCase();
-  if (/\btranslat(?:ed|ion|or)\b/u.test(title)) {
+  if (/\btranslat(?:ed|ion|or)\b/u.test(title) || /\btrans\./u.test(title)) {
     return 'Version/title indicates translation; skipped for Hebrew-only import lane';
   }
   if (/\bglick\b/u.test(title)) {
